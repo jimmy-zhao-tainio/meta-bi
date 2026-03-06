@@ -250,7 +250,7 @@ public sealed class CliTests
         var directory = AppContext.BaseDirectory;
         while (!string.IsNullOrWhiteSpace(directory))
         {
-            if (File.Exists(Path.Combine(directory, "Metadata.Framework.sln")))
+            if (File.Exists(Path.Combine(directory, "README.md")) && Directory.Exists(Path.Combine(directory, "MetaSchema.Cli")))
             {
                 return directory;
             }
@@ -264,7 +264,7 @@ public sealed class CliTests
             directory = parent.FullName;
         }
 
-        throw new InvalidOperationException("Could not locate repository root from test base directory.");
+        throw new InvalidOperationException("Could not locate meta-bi repository root from test base directory.");
     }
 
     private static void DeleteDirectoryIfExists(string path)
@@ -275,3 +275,4 @@ public sealed class CliTests
         }
     }
 }
+
