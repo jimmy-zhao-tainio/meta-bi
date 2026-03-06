@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <BusinessBridgeImplementationList>
+    <BusinessBridgeImplementation Id="default-business-bridge">
+      <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
+      <RootHashKeyDataType>binary(16)</RootHashKeyDataType>
+      <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>
+      <RelatedHashKeyDataType>binary(16)</RelatedHashKeyDataType>
+      <DepthColumnName>Depth</DepthColumnName>
+      <DepthDataType>int</DepthDataType>
+      <PathColumnName>Path</PathColumnName>
+      <PathDataType>nvarchar(max)</PathDataType>
+      <EffectiveFromColumnName>EffectiveFrom</EffectiveFromColumnName>
+      <EffectiveFromDataType>datetime2(7)</EffectiveFromDataType>
+      <EffectiveToColumnName>EffectiveTo</EffectiveToColumnName>
+      <EffectiveToDataType>datetime2(7)</EffectiveToDataType>
+    </BusinessBridgeImplementation>
+  </BusinessBridgeImplementationList>
+</MetaDataVaultImplementation>

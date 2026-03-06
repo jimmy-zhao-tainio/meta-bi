@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <BusinessPointInTimeImplementationList>
+    <BusinessPointInTimeImplementation Id="default-business-pit">
+      <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
+      <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
+      <SnapshotTimestampColumnName>SnapshotTimestamp</SnapshotTimestampColumnName>
+      <SnapshotTimestampDataType>datetime2(7)</SnapshotTimestampDataType>
+      <SatelliteReferenceColumnNamePattern>{SatelliteName}LoadTimestamp</SatelliteReferenceColumnNamePattern>
+      <SatelliteReferenceDataType>datetime2(7)</SatelliteReferenceDataType>
+    </BusinessPointInTimeImplementation>
+  </BusinessPointInTimeImplementationList>
+</MetaDataVaultImplementation>

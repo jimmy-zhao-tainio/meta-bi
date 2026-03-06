@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <BusinessHubSatelliteImplementationList>
+    <BusinessHubSatelliteImplementation Id="default-business-hub-satellite">
+      <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
+      <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
+      <HashDiffColumnName>HashDiff</HashDiffColumnName>
+      <HashDiffDataType>binary(16)</HashDiffDataType>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataType>datetime2(7)</LoadTimestampDataType>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataType>nvarchar(256)</RecordSourceDataType>
+    </BusinessHubSatelliteImplementation>
+  </BusinessHubSatelliteImplementationList>
+</MetaDataVaultImplementation>

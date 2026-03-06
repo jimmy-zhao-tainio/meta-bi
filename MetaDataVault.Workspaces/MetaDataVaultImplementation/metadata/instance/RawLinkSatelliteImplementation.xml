@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <RawLinkSatelliteImplementationList>
+    <RawLinkSatelliteImplementation Id="default-raw-link-satellite">
+      <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
+      <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
+      <HashDiffColumnName>HashDiff</HashDiffColumnName>
+      <HashDiffDataType>binary(16)</HashDiffDataType>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataType>datetime2(7)</LoadTimestampDataType>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataType>nvarchar(256)</RecordSourceDataType>
+    </RawLinkSatelliteImplementation>
+  </RawLinkSatelliteImplementationList>
+</MetaDataVaultImplementation>

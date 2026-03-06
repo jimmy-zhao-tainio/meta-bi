@@ -64,3 +64,4 @@ It should not own:
 - vault table membership or payload design
 - cross-model bindings
 - runtime execution concerns
+

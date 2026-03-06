@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <RawHubImplementationList>
+    <RawHubImplementation Id="default-raw-hub">
+      <HashKeyColumnName>HashKey</HashKeyColumnName>
+      <HashKeyDataType>binary(16)</HashKeyDataType>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataType>datetime2(7)</LoadTimestampDataType>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataType>nvarchar(256)</RecordSourceDataType>
+    </RawHubImplementation>
+  </RawHubImplementationList>
+</MetaDataVaultImplementation>
