@@ -11,9 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Models\MetaDataVault.model.xml">
-      <LogicalName>MetaDataVault.Core.Models.MetaDataVault.model.xml</LogicalName>
+    <EmbeddedResource Include="..\MetaDataVault.Workspaces\MetaRawDataVault\metadata\model.xml">
+      <Link>Models\MetaRawDataVault.model.xml</Link>
+      <LogicalName>MetaDataVault.Core.Models.MetaRawDataVault.model.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 
 </Project>
+
+
+
+

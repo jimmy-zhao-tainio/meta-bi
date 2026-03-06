@@ -7,7 +7,7 @@ namespace MetaDataVault.Core;
 public static class MetaDataVaultModels
 {
     public const string MetaRawDataVaultModelName = "MetaRawDataVault";
-    private const string MetaDataVaultModelResourceName = "MetaDataVault.Core.Models.MetaDataVault.model.xml";
+    private const string MetaDataVaultModelResourceName = "MetaDataVault.Core.Models.MetaRawDataVault.model.xml";
 
     public static GenericModel CreateMetaRawDataVaultModel()
     {
@@ -31,3 +31,4 @@ public static class MetaDataVaultModels
         return model;
     }
 }
+

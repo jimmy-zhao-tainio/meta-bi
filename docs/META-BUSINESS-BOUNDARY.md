@@ -2,105 +2,76 @@
 
 ## Purpose
 
-`MetaBusiness` should be the sanctioned business-semantic anchor for the BI stack.
+`MetaBusiness` should be the sanctioned business-structure model for the BI stack.
 
-It should answer:
+At this stage it should answer:
 
-- what the BI system is about
+- how the business is organized
 - which business processes matter
-- which parts of the organization care
-- what should be measured
-- for whom the measures exist
+- how those processes decompose
+- which roles participate in them
+- how organization units align to those processes
 
-It should not be a technical model, a source-schema model, or a product-artifact model.
+It should stay at business-map level. It should not yet drop into analytical design details such as measures or semantic-model structure.
 
 ## Design inspiration
 
 This boundary is informed by established business-architecture and process-modeling material, without importing any external standard wholesale:
 
-- The Open Group ArchiMate business layer and motivation concepts: organization, roles, business processes, business objects, and business-facing meaning
+- The Open Group ArchiMate business layer: organization, roles, and business processes
 - APQC Process Classification Framework: hierarchical process decomposition
 - OMG BPMN: process-oriented communication
-- OMG Business Motivation Model: traceability from motivation and objectives to operational change
 
 Useful references:
 
 - ArchiMate 101: <https://archimate-community.pages.opengroup.org/workgroups/archimate-101/>
 - APQC Process Frameworks: <https://www.apqc.org/process-frameworks>
 - OMG BPMN FAQ: <https://www.omg.org/bpmn/Documents/FAQ-WG.htm>
-- OMG BPM portal / BMM: <https://www.omg.org/bpm/>
-- OMG BMM specification page: <https://www.omg.org/spec/BMM/1.0/>
 
 These are inspiration sources, not sanctioned dependencies.
 
 ## What MetaBusiness should own
 
-### 1. Business process structure
+### 1. Business process map
 
 `MetaBusiness` should own a nested business process map.
 
 That means:
 
-- top-level process areas
-- decomposed business processes
-- lower-level subprocess or activity structure where needed
+- business processes
 - parent/child process hierarchy
-- business ownership of those processes
+- role participation in those processes
 
 This is not an execution pipeline model. It is the business view of how work is performed.
 
-### 2. Organization and responsibility
+### 2. Organization structure
 
-`MetaBusiness` should own the business-side structure of who performs work, who consumes results, and who is accountable.
+`MetaBusiness` should own the business-side structure of who the organization is.
 
 That includes:
 
 - organization units
-- roles
-- stakeholder or consumer groups
-- ownership and accountability relationships
+- organization hierarchy
+- business roles
+- which roles belong to which organization units
 
-This is where the org chart belongs, along with the analytical audience for the BI system.
+This is where the org chart belongs.
 
-### 3. Business concepts and subject meaning
+### 3. Organization-to-process alignment
 
-`MetaBusiness` should own the meaning of core business concepts.
+`MetaBusiness` should explicitly model how organization units relate to business processes.
 
-That includes:
+That includes relationships such as:
 
-- business entities or concepts
-- subject areas
-- business-facing identities where they exist
-- conceptual relationships between business concepts
+- ownership
+- accountability
+- execution responsibility
+- support responsibility
+- consumption scope
 
-This is the semantic layer above source schemas and above technical warehouse artifacts.
+The first version can keep this simple as an explicit organization-unit to business-process relation with a small relationship-kind field.
 
-### 4. Business measures and outcomes
-
-`MetaBusiness` should own what the organization wants to measure and why.
-
-That includes:
-
-- measures
-- KPIs
-- outcomes
-- business-facing definitions
-- intended consumers of those measures
-
-This is the layer that should later drive parts of warehouse and analysis design.
-
-### 5. Motivation and intent
-
-`MetaBusiness` should own the business-side rationale for why the BI system exists and what it is meant to support.
-
-That may include:
-
-- goals
-- objectives
-- business priorities
-- policy or governance context
-
-This should be strong enough to connect business motivation to downstream operational and analytical design, without turning `MetaBusiness` into a generic enterprise-strategy dumping ground.
+This is important because later analytical models will need to infer which parts of the process map matter to which levels of the organization.
 
 ## What MetaBusiness should not own
 
@@ -115,10 +86,11 @@ It should not own:
 - raw-vault technical structures
 - warehouse physical design
 - semantic-product artifacts
+- measures, KPIs, dimensional structures, or semantic-model details
 - SSIS, SSDT, SSAS, Power BI, or cloud-product specifics
 - runtime execution state, deployment state, or infrastructure
 
-Those belong in other sanctioned models or in later state/operations layers.
+Those belong in other sanctioned models or later layers.
 
 ## What MetaBusiness must not become
 
@@ -130,7 +102,7 @@ It must not become:
 - a generic enterprise-architecture monolith
 - a technical semantic-model surrogate
 
-`MetaBusiness` is the business-intent model for the BI stack. It should carry enough meaning to drive downstream design, but it should stop before technical realization.
+`MetaBusiness` is the business-map model for the BI stack. It should carry enough structure to orient the rest of the platform, but it should stop before technical and analytical realization.
 
 ## Relationship to other sanctioned models
 
@@ -138,7 +110,7 @@ It must not become:
 
 `MetaSchema` describes what source systems physically expose.
 
-`MetaBusiness` describes what the business cares about.
+`MetaBusiness` describes the business structure that the BI system is meant to support.
 
 The relationship between them should be explicit through weaving/binding, not by collapsing source structure into business meaning.
 
@@ -146,49 +118,42 @@ The relationship between them should be explicit through weaving/binding, not by
 
 `MetaTransform` should describe how data is reshaped.
 
-`MetaBusiness` should describe why that shaping exists and what business concepts or measures it supports.
+`MetaBusiness` should describe the business process and organizational context that later motivates that shaping.
 
-### MetaBusiness and MetaDataVault
+### MetaBusiness and downstream analytical models
 
-`MetaBusiness` should not be confused with raw vault.
+Later models such as warehouse and analysis should be able to consume `MetaBusiness`, but `MetaBusiness` should not try to pre-own their detailed semantics now.
 
-But business semantics from `MetaBusiness` should be able to influence or drive later business-vault design where the stack introduces that distinction.
+What it should preserve is the structure that later analytical models can consume:
 
-### MetaBusiness and MetaDataWarehouse
+- process hierarchy
+- organization hierarchy
+- role participation
+- organization-to-process scope
 
-`MetaBusiness` should help drive warehouse-serving structures by providing the business meaning behind dimensions, facts, and analytical slices.
-
-### MetaBusiness and MetaAnalysis
-
-`MetaBusiness` should help drive analysis design by defining:
-
-- what should be measured
-- for whom
-- in which business context
+That is enough groundwork for later inference of analytical groupings without pretending to define measures too early.
 
 ## Initial modeling stance
 
-The first version of `MetaBusiness` should be conservative and strong:
+The first version of `MetaBusiness` should stay minimal and strong:
 
-- process hierarchy
-- org hierarchy
-- stakeholder / consumer structure
-- business concepts
-- measures / KPI intent
-- ownership / accountability
+- business process hierarchy
+- organization hierarchy
+- business roles
+- process participation by role
+- organization-unit to business-process alignment
 
-That is enough to make it real without overcommitting early to every possible business-architecture concept.
+That is enough to make it real without overcommitting early.
 
 ## Why this matters
 
-Without `MetaBusiness`, the stack remains mostly technical:
+Without `MetaBusiness`, the stack remains mostly technical.
 
-- source-first
-- structure-first
-- product-first
+With `MetaBusiness`, the stack gets a business-side map:
 
-With `MetaBusiness`, the stack gains a semantic center:
+- what the organization does
+- who does it
+- how work decomposes
+- which process areas each part of the organization is tied to
 
-- the business system says what matters
-- the technical models say how it is realized
-- the toolchain can then project business intent into downstream metadata and artifacts
+That structure can later guide analytical organization, aggregation scope, and model generation without forcing analytical details into the business model too early.

@@ -11,9 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Models\MetaType.model.xml">
+    <EmbeddedResource Include="..\MetaType.Workspaces\MetaType\metadata\model.xml">
+      <Link>Models\MetaType.model.xml</Link>
       <LogicalName>MetaType.Core.Models.MetaType.model.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 
 </Project>
+
+
+

@@ -11,9 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Models\MetaSchema.model.xml">
+    <EmbeddedResource Include="..\MetaSchema.Workspaces\MetaSchema\metadata\model.xml">
+      <Link>Models\MetaSchema.model.xml</Link>
       <LogicalName>MetaSchema.Core.Models.MetaSchema.model.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 
 </Project>
+
+
+

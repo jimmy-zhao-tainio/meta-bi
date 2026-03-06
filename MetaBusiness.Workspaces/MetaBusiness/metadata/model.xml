@@ -1,73 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaBusiness">
   <EntityList>
-    <Entity name="BusinessConcept">
-      <PropertyList>
-        <Property name="Description" isRequired="false" />
-        <Property name="Name" />
-      </PropertyList>
-    </Entity>
-    <Entity name="BusinessMeasure">
-      <PropertyList>
-        <Property name="Definition" isRequired="false" />
-        <Property name="Description" isRequired="false" />
-        <Property name="IsKpi" dataType="bool" isRequired="false" />
-        <Property name="Name" />
-        <Property name="Unit" isRequired="false" />
-      </PropertyList>
-    </Entity>
-    <Entity name="BusinessMeasureBusinessConcept">
-      <RelationshipList>
-        <Relationship entity="BusinessMeasure" />
-        <Relationship entity="BusinessConcept" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BusinessMeasureBusinessProcess">
-      <RelationshipList>
-        <Relationship entity="BusinessMeasure" />
-        <Relationship entity="BusinessProcess" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BusinessMeasureOwner">
-      <RelationshipList>
-        <Relationship entity="BusinessMeasure" />
-        <Relationship entity="OrganizationUnit" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BusinessMeasureStakeholderGroup">
-      <RelationshipList>
-        <Relationship entity="BusinessMeasure" />
-        <Relationship entity="StakeholderGroup" />
-      </RelationshipList>
-    </Entity>
     <Entity name="BusinessProcess">
       <PropertyList>
         <Property name="Description" isRequired="false" />
         <Property name="Name" />
       </PropertyList>
     </Entity>
-    <Entity name="BusinessProcessBusinessConcept">
-      <RelationshipList>
-        <Relationship entity="BusinessProcess" />
-        <Relationship entity="BusinessConcept" />
-      </RelationshipList>
-    </Entity>
     <Entity name="BusinessProcessHierarchy">
       <RelationshipList>
         <Relationship entity="BusinessProcess" role="ParentBusinessProcess" />
         <Relationship entity="BusinessProcess" role="ChildBusinessProcess" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BusinessProcessOwner">
-      <RelationshipList>
-        <Relationship entity="BusinessProcess" />
-        <Relationship entity="OrganizationUnit" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BusinessProcessStakeholderGroup">
-      <RelationshipList>
-        <Relationship entity="BusinessProcess" />
-        <Relationship entity="StakeholderGroup" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessRole">
@@ -83,52 +26,31 @@
         <Property name="Name" />
       </PropertyList>
     </Entity>
-    <Entity name="OrganizationUnitBusinessRole">
-      <RelationshipList>
-        <Relationship entity="OrganizationUnit" />
-        <Relationship entity="BusinessRole" />
-      </RelationshipList>
-    </Entity>
     <Entity name="OrganizationUnitHierarchy">
       <RelationshipList>
         <Relationship entity="OrganizationUnit" role="ParentOrganizationUnit" />
         <Relationship entity="OrganizationUnit" role="ChildOrganizationUnit" />
       </RelationshipList>
     </Entity>
-    <Entity name="StakeholderGroup">
-      <PropertyList>
-        <Property name="Description" isRequired="false" />
-        <Property name="Name" />
-      </PropertyList>
-    </Entity>
-    <Entity name="StakeholderGroupBusinessRole">
+    <Entity name="OrganizationUnitBusinessRole">
       <RelationshipList>
-        <Relationship entity="StakeholderGroup" />
+        <Relationship entity="OrganizationUnit" />
         <Relationship entity="BusinessRole" />
       </RelationshipList>
     </Entity>
-    <Entity name="StakeholderGroupHierarchy">
+    <Entity name="BusinessProcessBusinessRole">
       <RelationshipList>
-        <Relationship entity="StakeholderGroup" role="ParentStakeholderGroup" />
-        <Relationship entity="StakeholderGroup" role="ChildStakeholderGroup" />
+        <Relationship entity="BusinessProcess" />
+        <Relationship entity="BusinessRole" />
       </RelationshipList>
     </Entity>
-    <Entity name="SubjectArea">
+    <Entity name="OrganizationUnitBusinessProcess">
       <PropertyList>
-        <Property name="Description" isRequired="false" />
-        <Property name="Name" />
+        <Property name="RelationshipKind" />
       </PropertyList>
-    </Entity>
-    <Entity name="SubjectAreaBusinessConcept">
       <RelationshipList>
-        <Relationship entity="SubjectArea" />
-        <Relationship entity="BusinessConcept" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="SubjectAreaHierarchy">
-      <RelationshipList>
-        <Relationship entity="SubjectArea" role="ParentSubjectArea" />
-        <Relationship entity="SubjectArea" role="ChildSubjectArea" />
+        <Relationship entity="OrganizationUnit" />
+        <Relationship entity="BusinessProcess" />
       </RelationshipList>
     </Entity>
   </EntityList>

@@ -11,7 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Models\MetaTypeConversion.model.xml" />
+    <EmbeddedResource Include="..\MetaTypeConversion.Workspaces\MetaTypeConversion\metadata\model.xml">
+      <Link>Models\MetaTypeConversion.model.xml</Link>
+      <LogicalName>MetaTypeConversion.Core.Models.MetaTypeConversion.model.xml</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
+
+
