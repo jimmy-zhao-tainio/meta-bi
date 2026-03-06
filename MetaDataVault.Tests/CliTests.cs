@@ -12,7 +12,7 @@ public sealed class CliTests
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("MetaDataVault CLI", result.Output);
+        Assert.Contains("meta-datavault", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("from-metaschema", result.Output);
     }
 
@@ -23,11 +23,15 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--source-workspace <path>", result.Output);
+        Assert.Contains("--business-key-workspace <path>", result.Output);
+        Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--new-workspace <path>", result.Output);
+        Assert.Contains("MetaBusinessKey", result.Output);
+        Assert.Contains("MetaDataVaultImplementation", result.Output);
     }
 
     [Fact]
-    public async Task FromMetaSchema_CreatesRawDataVaultWorkspace()
+    public async Task FromMetaSchema_FailsWhenRequiredSanctionedWorkspacesAreMissing()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
@@ -41,34 +45,45 @@ public sealed class CliTests
             await new WorkspaceService().SaveAsync(source);
 
             var result = RunCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
-            Assert.Equal(0, result.ExitCode);
-            Assert.Contains("OK: raw datavault generated from metaschema", result.Output);
-            Assert.True(File.Exists(Path.Combine(targetPath, "workspace.xml")));
-            Assert.True(File.Exists(Path.Combine(targetPath, "metadata", "model.xml")));
+            Assert.Equal(1, result.ExitCode);
+            Assert.Contains("missing required option --business-key-workspace <path>", result.Output);
+            Assert.False(File.Exists(Path.Combine(targetPath, "workspace.xml")));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
 
-            var hubXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawHub.xml"));
-            Assert.Contains("<RawHub ", hubXml);
-            Assert.Contains("<Name>Order</Name>", hubXml);
-            Assert.Contains("<HubKeyColumnName>OrderHk</HubKeyColumnName>", hubXml);
-            Assert.Contains("<LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>", hubXml);
-            Assert.Contains("<RecordSourceColumnName>RecordSource</RecordSourceColumnName>", hubXml);
+    [Fact]
+    public async Task FromMetaSchema_FailsUntilWeaveDrivenMaterializationExists()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(root, "MetaSchemaSource");
+        var businessKeyPath = Path.Combine(root, "MetaBusinessKey");
+        var implementationPath = Path.Combine(root, "MetaDataVaultImplementation");
+        var targetPath = Path.Combine(root, "RawDataVault");
 
-            var satXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawHubSatellite.xml"));
-            Assert.Contains("<RawHubSatellite ", satXml);
-            Assert.Contains("<Name>OrderSat</Name>", satXml);
-            Assert.Contains("<ParentHubKeyColumnName>OrderHk</ParentHubKeyColumnName>", satXml);
-            Assert.Contains("<HashDiffColumnName>OrderHashDiff</HashDiffColumnName>", satXml);
+        try
+        {
+            Directory.CreateDirectory(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            SeedMetaSchema(source);
+            await new WorkspaceService().SaveAsync(source);
 
-            var linkXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawLink.xml"));
-            Assert.Contains("<RawLink ", linkXml);
-            Assert.Contains("<Name>FK_Order_Customer</Name>", linkXml);
-            Assert.Contains("<LinkKind>standard</LinkKind>", linkXml);
-            Assert.Contains("<LinkKeyColumnName>FK_Order_CustomerHk</LinkKeyColumnName>", linkXml);
+            var repoRoot = FindRepositoryRoot();
+            CopyDirectory(Path.Combine(repoRoot, "MetaBusinessKey.Workspaces", "MetaBusinessKey"), businessKeyPath);
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation"), implementationPath);
 
-            var linkEndXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawLinkEnd.xml"));
-            Assert.Contains("<RawLinkEnd ", linkEndXml);
-            Assert.Contains("<RoleName>Source</RoleName>", linkEndXml);
-            Assert.Contains("<RoleName>Target</RoleName>", linkEndXml);
+            var result = RunCli(
+                $"from-metaschema --source-workspace \"{sourcePath}\" --business-key-workspace \"{businessKeyPath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("could not materialize raw datavault from sanctioned inputs", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("MetaBusinessKey", result.Output);
+            Assert.Contains("MetaDataVaultImplementation", result.Output);
+            Assert.Contains("weave bindings", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.False(File.Exists(Path.Combine(targetPath, "workspace.xml")));
         }
         finally
         {
@@ -348,6 +363,24 @@ public sealed class CliTests
         throw new InvalidOperationException("Could not locate meta-bi repository root from test base directory.");
     }
 
+    private static void CopyDirectory(string sourcePath, string targetPath)
+    {
+        Directory.CreateDirectory(targetPath);
+
+        foreach (var directory in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
+        {
+            Directory.CreateDirectory(Path.Combine(targetPath, Path.GetRelativePath(sourcePath, directory)));
+        }
+
+        foreach (var file in Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories))
+        {
+            var relativePath = Path.GetRelativePath(sourcePath, file);
+            var targetFile = Path.Combine(targetPath, relativePath);
+            Directory.CreateDirectory(Path.GetDirectoryName(targetFile)!);
+            File.Copy(file, targetFile, overwrite: true);
+        }
+    }
+
     private static void DeleteDirectoryIfExists(string path)
     {
         if (Directory.Exists(path))
@@ -356,6 +389,3 @@ public sealed class CliTests
         }
     }
 }
-
-
-

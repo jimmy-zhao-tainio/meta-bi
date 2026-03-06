@@ -4,112 +4,97 @@
 
 `MetaRawDataVault` is the sanctioned raw Data Vault model in the BI stack.
 
-It should be specific enough to describe a real raw vault design, not just hint at one and leave core structure hidden inside generator code.
-
-At this layer the sanctioned model should make the required raw-vault table structure explicit:
-
-- hubs
-- links
-- hub satellites
-- link satellites
-- source lineage structures needed to anchor those vault objects back to extracted source schema metadata
+It should describe raw-vault structure and semantics explicitly, while leaving fixed technical naming conventions to a separate sanctioned implementation workspace.
 
 ## Modeling stance
 
 This model is not in architecture space.
 
-It is closer to `MetaSchema`: specific, implementation-facing, and detailed enough that a generator should not need to guess the mandatory technical columns of the raw vault tables it emits.
+It is specific and implementation-facing, but it should not carry house-fixed technical column names when those names are standard by table type and belong to implementation policy rather than vault structure.
 
-The rule is:
+That means `MetaRawDataVault` owns:
 
-- if generation requires the metadata, the model should carry it explicitly
+- source anchoring
+- raw hubs
+- raw links
+- raw hub satellites
+- raw link satellites
+- business-key part structure
+- payload attribute structure
+- link-end structure and semantics
 
-That means the sanctioned model represents, for each raw vault table family, the technical columns that every generated table needs:
+And it does **not** own fixed technical naming such as:
 
-- hash key column names
-- business key column names
-- parent key reference column names
+- hub hash-key column names
+- link hash-key column names
 - load timestamp column names
 - record source column names
-- hashdiff column names when the satellite kind requires them
+- hashdiff column names
+- link reference column names
+
+Those belong in `MetaDataVaultImplementation`.
 
 ## Raw table families represented
 
 ### RawHub
 
-A raw hub represents a business key entry point.
-
-The sanctioned model therefore carries:
-
-- `Name`
-- `HubKeyColumnName`
-- `LoadTimestampColumnName`
-- `RecordSourceColumnName`
-
-Business key composition is represented explicitly through `RawHubKeyPart` rows rather than inferred from naming conventions.
+Represents a raw hub and its source-table anchor.
 
 ### RawHubKeyPart
 
-A hub key part represents one component of the hub business key.
+Represents one component of the hub business key.
 
 The sanctioned model carries:
 
-- `BusinessKeyColumnName`
+- `Name`
 - `Ordinal`
 - relationship to the source field that supplies that key part
 
 ### RawHubSatellite
 
-A raw hub satellite represents descriptive history attached to a hub.
+Represents a raw hub satellite.
 
 The sanctioned model carries:
 
 - `Name`
 - `SatelliteKind`
-- `ParentHubKeyColumnName`
-- `LoadTimestampColumnName`
-- `RecordSourceColumnName`
-- `HashDiffColumnName` when the satellite kind uses a hashdiff
+- relationship to the parent raw hub
+- relationship to the source table that supplies the payload
 
-Payload structure is represented explicitly through `RawHubSatelliteAttribute` rows.
+Payload structure is carried through `RawHubSatelliteAttribute` rows.
 
 ### RawLink
 
-A raw link represents an asserted relationship between hubs.
+Represents a raw link.
 
 The sanctioned model carries:
 
 - `Name`
 - `LinkKind`
-- `LinkKeyColumnName`
-- `LoadTimestampColumnName`
-- `RecordSourceColumnName`
+- relationship to the source table relationship it comes from
 
 ### RawLinkEnd
 
-A link end represents one participating hub in a raw link.
+Represents one participating hub in a raw link.
 
 The sanctioned model carries:
 
 - `Ordinal`
-- `RoleName` when the end is role-qualified
-- `LinkReferenceColumnName`
-- optional `IsDrivingKey` when effectivity-style downstream semantics need that distinction
+- `RoleName`
+- optional `IsDrivingKey`
 
 ### RawLinkSatellite
 
-A raw link satellite represents descriptive history attached to a link.
+Represents a raw link satellite.
 
 The sanctioned model carries:
 
 - `Name`
 - `SatelliteKind`
-- `ParentLinkKeyColumnName`
-- `LoadTimestampColumnName`
-- `RecordSourceColumnName`
-- `HashDiffColumnName` when the satellite kind uses a hashdiff
+- relationship to the parent raw link
+- relationship to the source table that supplies the payload
 
-Payload structure is represented explicitly through `RawLinkSatelliteAttribute` rows.
+Payload structure is carried through `RawLinkSatelliteAttribute` rows.
 
 ## Source-side anchoring
 
@@ -122,16 +107,20 @@ The model still carries source schema entities:
 - `SourceTableRelationship`
 - `SourceTableRelationshipField`
 
-Those are not there to duplicate `MetaSchema` conceptually. They are there so a raw vault design can stay anchored to concrete extracted source structures and so generated lineage stays explicit.
+These keep the raw vault design anchored to concrete extracted source structures.
+
+## Business-key input
+
+`MetaRawDataVault` no longer permits heuristic business-key selection during `MetaSchema` conversion.
+
+Business-key intent must come from a separate sanctioned `MetaBusinessKey` workspace and be bound to `MetaSchema` explicitly.
 
 ## What MetaRawDataVault should not own
 
 It should not own:
 
 - business-process semantics
-- business mastering rules
-- PIT and bridge helper structures
-- dimensional or semantic-serving artifacts
-- runtime loading/orchestration details
-
-Those belong in business-vault, warehouse, analysis, or operations layers.
+- business-vault helper structures like PIT and Bridge
+- fixed implementation naming policy
+- downstream dimensional or semantic artifacts
+- runtime execution details

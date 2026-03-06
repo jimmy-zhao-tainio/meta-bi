@@ -61,9 +61,6 @@
     <Entity name="RawHub">
       <PropertyList>
         <Property name="Name" />
-        <Property name="HubKeyColumnName" />
-        <Property name="LoadTimestampColumnName" />
-        <Property name="RecordSourceColumnName" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="SourceTable" />
@@ -71,7 +68,7 @@
     </Entity>
     <Entity name="RawHubKeyPart">
       <PropertyList>
-        <Property name="BusinessKeyColumnName" />
+        <Property name="Name" />
         <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
@@ -83,10 +80,6 @@
       <PropertyList>
         <Property name="Name" />
         <Property name="SatelliteKind" />
-        <Property name="ParentHubKeyColumnName" />
-        <Property name="LoadTimestampColumnName" />
-        <Property name="RecordSourceColumnName" />
-        <Property name="HashDiffColumnName" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="RawHub" />
@@ -95,7 +88,7 @@
     </Entity>
     <Entity name="RawHubSatelliteAttribute">
       <PropertyList>
-        <Property name="ColumnName" />
+        <Property name="Name" />
         <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
@@ -107,9 +100,6 @@
       <PropertyList>
         <Property name="Name" />
         <Property name="LinkKind" />
-        <Property name="LinkKeyColumnName" />
-        <Property name="LoadTimestampColumnName" />
-        <Property name="RecordSourceColumnName" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="SourceTableRelationship" />
@@ -119,7 +109,6 @@
       <PropertyList>
         <Property name="Ordinal" />
         <Property name="RoleName" isRequired="false" />
-        <Property name="LinkReferenceColumnName" />
         <Property name="IsDrivingKey" dataType="bool" isRequired="false" />
       </PropertyList>
       <RelationshipList>
@@ -131,10 +120,6 @@
       <PropertyList>
         <Property name="Name" />
         <Property name="SatelliteKind" />
-        <Property name="ParentLinkKeyColumnName" />
-        <Property name="LoadTimestampColumnName" />
-        <Property name="RecordSourceColumnName" />
-        <Property name="HashDiffColumnName" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="RawLink" />
@@ -143,7 +128,7 @@
     </Entity>
     <Entity name="RawLinkSatelliteAttribute">
       <PropertyList>
-        <Property name="ColumnName" />
+        <Property name="Name" />
         <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
