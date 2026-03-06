@@ -1,8 +1,12 @@
+using Meta.Core.Domain;
+using Meta.Core.Presentation;
 using Meta.Core.Services;
 using MetaType.Core;
 
 internal static class Program
 {
+    private static readonly ConsolePresenter Presenter = new();
+
     static async Task<int> Main(string[] args)
     {
         if (args.Length == 0 || IsHelpToken(args[0]))
@@ -16,9 +20,7 @@ internal static class Program
             return await RunInitAsync(args).ConfigureAwait(false);
         }
 
-        Console.WriteLine($"Error: unknown command '{args[0]}'.");
-        Console.WriteLine("Next: meta-type help");
-        return 1;
+        return FailUnknownCommand(args[0], "meta-type help");
     }
 
     private static async Task<int> RunInitAsync(string[] args)
@@ -32,17 +34,13 @@ internal static class Program
         var parseResult = ParseNewWorkspaceOnly(args, startIndex: 1);
         if (!parseResult.Ok)
         {
-            Console.WriteLine($"Error: {parseResult.ErrorMessage}");
-            Console.WriteLine("Next: meta-type init --help");
-            return 1;
+            return Fail(parseResult.ErrorMessage, "meta-type init --help");
         }
 
         var workspacePath = Path.GetFullPath(parseResult.NewWorkspacePath);
         if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
         {
-            Console.WriteLine($"Error: target directory '{workspacePath}' must be empty.");
-            Console.WriteLine("Next: choose a new folder or empty the target directory and retry.");
-            return 4;
+            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
         }
 
         Directory.CreateDirectory(workspacePath);
@@ -51,23 +49,24 @@ internal static class Program
         var validation = new ValidationService().Validate(workspace);
         if (validation.HasErrors)
         {
-            Console.WriteLine("Error: metatype workspace is invalid.");
-            foreach (var issue in validation.Issues.Where(item => item.Severity == Meta.Core.Domain.IssueSeverity.Error))
-            {
-                Console.WriteLine($"  - {issue.Code}: {issue.Message}");
-            }
-            Console.WriteLine("Next: fix the sanctioned model and retry init.");
-            return 4;
+            return Fail(
+                "metatype workspace is invalid.",
+                "fix the sanctioned model and retry init.",
+                4,
+                validation.Issues
+                    .Where(item => item.Severity == IssueSeverity.Error)
+                    .Select(item => $"  - {item.Code}: {item.Message}"));
         }
 
         await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
 
-        Console.WriteLine("OK: metatype workspace created");
-        Console.WriteLine($"Path: {workspacePath}");
-        Console.WriteLine($"Model: {workspace.Model.Name}");
-        Console.WriteLine($"TypeSystems: {workspace.Instance.GetOrCreateEntityRecords("TypeSystem").Count}");
-        Console.WriteLine($"Types: {workspace.Instance.GetOrCreateEntityRecords("Type").Count}");
-        Console.WriteLine($"TypeSpecs: {workspace.Instance.GetOrCreateEntityRecords("TypeSpec").Count}");
+        Presenter.WriteOk(
+            "metatype workspace created",
+            ("Path", workspacePath),
+            ("Model", workspace.Model.Name),
+            ("TypeSystems", workspace.Instance.GetOrCreateEntityRecords("TypeSystem").Count.ToString()),
+            ("Types", workspace.Instance.GetOrCreateEntityRecords("Type").Count.ToString()),
+            ("TypeSpecs", workspace.Instance.GetOrCreateEntityRecords("TypeSpec").Count.ToString()));
         return 0;
     }
 
@@ -112,24 +111,42 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Console.WriteLine("MetaType CLI");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-type <command> [options]");
-        Console.WriteLine();
-        Console.WriteLine("Commands:");
-        Console.WriteLine("  help        Show this help.");
-        Console.WriteLine("  init        Create a new MetaType workspace.");
-        Console.WriteLine();
-        Console.WriteLine("Next: meta-type init --help");
+        Presenter.WriteInfo("MetaType CLI");
+        Presenter.WriteUsage("meta-type <command> [options]");
+        Presenter.WriteCommandCatalog(
+            "Commands",
+            new[]
+            {
+                ("help", "Show this help."),
+                ("init", "Create a new MetaType workspace.")
+            });
+        Presenter.WriteNext("meta-type init --help");
     }
 
     private static void PrintInitHelp()
     {
-        Console.WriteLine("Command: init");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-type init --new-workspace <path>");
-        Console.WriteLine();
-        Console.WriteLine("Notes:");
-        Console.WriteLine("  Creates a new workspace with the MetaType model, sanctioned type instances, and validates it.");
+        Presenter.WriteInfo("Command: init");
+        Presenter.WriteUsage("meta-type init --new-workspace <path>");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Creates a new workspace with the MetaType model, sanctioned type instances, and validates it.");
+    }
+
+    private static int FailUnknownCommand(string command, string next)
+    {
+        Presenter.WriteFailure($"unknown command '{command}'.", new[] { $"Next: {next}" });
+        return 1;
+    }
+
+    private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
+    {
+        var renderedDetails = new List<string>();
+        if (details != null)
+        {
+            renderedDetails.AddRange(details);
+        }
+
+        renderedDetails.Add($"Next: {next}");
+        Presenter.WriteFailure(message, renderedDetails);
+        return exitCode;
     }
 }

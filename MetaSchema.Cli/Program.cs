@@ -1,9 +1,13 @@
+using System.Linq;
+using Meta.Core.Presentation;
+using Meta.Core.Services;
 using MetaSchema.Core;
 using MetaSchema.Extractors.SqlServer;
-using Meta.Core.Services;
 
 internal static class Program
 {
+    private static readonly ConsolePresenter Presenter = new();
+
     static async Task<int> Main(string[] args)
     {
         if (args.Length == 0 || IsHelpToken(args[0]))
@@ -17,9 +21,7 @@ internal static class Program
             return await RunExtractAsync(args).ConfigureAwait(false);
         }
 
-        Console.WriteLine($"Error: unknown command '{args[0]}'.");
-        Console.WriteLine("Next: meta-schema help");
-        return 1;
+        return Fail($"unknown command '{args[0]}'.", "meta-schema help");
     }
 
     private static async Task<int> RunExtractAsync(string[] args)
@@ -32,9 +34,7 @@ internal static class Program
 
         if (!string.Equals(args[1], "sqlserver", StringComparison.OrdinalIgnoreCase))
         {
-            Console.WriteLine($"Error: unknown extractor '{args[1]}'.");
-            Console.WriteLine("Next: meta-schema extract --help");
-            return 1;
+            return Fail($"unknown extractor '{args[1]}'.", "meta-schema extract --help");
         }
 
         if (args.Length >= 3 && IsHelpToken(args[2]))
@@ -46,107 +46,91 @@ internal static class Program
         var parseResult = ParseSqlServerExtractOptions(args, startIndex: 2);
         if (!parseResult.Ok)
         {
-            Console.WriteLine($"Error: {parseResult.ErrorMessage}");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 1;
+            return Fail(parseResult.ErrorMessage, "meta-schema extract sqlserver --help");
         }
 
         if (string.IsNullOrWhiteSpace(parseResult.Request.NewWorkspacePath))
         {
-            Console.WriteLine("Error: missing required option --new-workspace <path>.");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 1;
+            return Fail("missing required option --new-workspace <path>.", "meta-schema extract sqlserver --help");
         }
 
         var workspacePath = Path.GetFullPath(parseResult.Request.NewWorkspacePath);
         if (string.IsNullOrWhiteSpace(parseResult.Request.ConnectionString))
         {
-            Console.WriteLine("Error: missing required option --connection <connectionString>.");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 1;
+            return Fail("missing required option --connection <connectionString>.", "meta-schema extract sqlserver --help");
         }
 
         if (string.IsNullOrWhiteSpace(parseResult.Request.SystemName))
         {
-            Console.WriteLine("Error: missing required option --system <name>.");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 1;
+            return Fail("missing required option --system <name>.", "meta-schema extract sqlserver --help");
         }
 
         if (!string.IsNullOrWhiteSpace(parseResult.Request.SchemaName) && parseResult.Request.AllSchemas)
         {
-            Console.WriteLine("Error: --schema and --all-schemas cannot be used together.");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 1;
+            return Fail("--schema and --all-schemas cannot be used together.", "meta-schema extract sqlserver --help");
         }
 
         if (string.IsNullOrWhiteSpace(parseResult.Request.SchemaName) && !parseResult.Request.AllSchemas)
         {
-            Console.WriteLine("Error: missing required scope option --schema <name> or --all-schemas.");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 1;
+            return Fail("missing required scope option --schema <name> or --all-schemas.", "meta-schema extract sqlserver --help");
         }
 
         if (!string.IsNullOrWhiteSpace(parseResult.Request.TableName) && parseResult.Request.AllTables)
         {
-            Console.WriteLine("Error: --table and --all-tables cannot be used together.");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 1;
+            return Fail("--table and --all-tables cannot be used together.", "meta-schema extract sqlserver --help");
         }
 
         if (string.IsNullOrWhiteSpace(parseResult.Request.TableName) && !parseResult.Request.AllTables)
         {
-            Console.WriteLine("Error: missing required scope option --table <name> or --all-tables.");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 1;
+            return Fail("missing required scope option --table <name> or --all-tables.", "meta-schema extract sqlserver --help");
         }
 
         if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
         {
-            Console.WriteLine($"Error: target directory '{workspacePath}' must be empty.");
-            Console.WriteLine("Next: choose a new folder or empty the target directory and retry.");
-            return 4;
+            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
         }
 
         Directory.CreateDirectory(workspacePath);
 
-        var extractor = new SqlServerSchemaExtractor();
-        var workspace = default(Meta.Core.Domain.Workspace);
+        Meta.Core.Domain.Workspace workspace;
         try
         {
-            workspace = extractor.ExtractMetaSchemaWorkspace(parseResult.Request);
+            workspace = new SqlServerSchemaExtractor().ExtractMetaSchemaWorkspace(parseResult.Request);
         }
         catch (InvalidOperationException exception)
         {
-            Console.WriteLine($"Error: {exception.Message}");
-            Console.WriteLine("Next: meta-schema extract sqlserver --help");
-            return 4;
+            return Fail(exception.Message, "meta-schema extract sqlserver --help", 4);
         }
 
         var validation = new ValidationService().Validate(workspace);
         if (validation.HasErrors)
         {
-            Console.WriteLine("Error: extracted schema workspace is invalid.");
-            foreach (var issue in validation.Issues.Where(item => item.Severity == Meta.Core.Domain.IssueSeverity.Error))
-            {
-                Console.WriteLine($"  - {issue.Code}: {issue.Message}");
-            }
-            Console.WriteLine("Next: fix extractor mapping and retry extract.");
-            return 4;
+            return Fail(
+                "extracted schema workspace is invalid.",
+                "fix extractor mapping and retry extract.",
+                4,
+                validation.Issues
+                    .Where(item => item.Severity == Meta.Core.Domain.IssueSeverity.Error)
+                    .Select(item => $"  - {item.Code}: {item.Message}"));
         }
 
         await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
 
-        Console.WriteLine("OK: metaschema workspace created");
-        Console.WriteLine($"Path: {workspacePath}");
-        Console.WriteLine($"Model: {workspace.Model.Name}");
-        Console.WriteLine($"Systems: {workspace.Instance.GetOrCreateEntityRecords("System").Count}");
-        Console.WriteLine($"Schemas: {workspace.Instance.GetOrCreateEntityRecords("Schema").Count}");
-        Console.WriteLine($"Tables: {workspace.Instance.GetOrCreateEntityRecords("Table").Count}");
-        Console.WriteLine($"Fields: {workspace.Instance.GetOrCreateEntityRecords("Field").Count}");
-        Console.WriteLine($"TableRelationships: {workspace.Instance.GetOrCreateEntityRecords("TableRelationship").Count}");
-        Console.WriteLine($"TableRelationshipFields: {workspace.Instance.GetOrCreateEntityRecords("TableRelationshipField").Count}");
-        Console.WriteLine($"TypeIds: {workspace.Instance.GetOrCreateEntityRecords("Field").Select(record => record.Values.TryGetValue("TypeId", out var typeId) ? typeId : string.Empty).Where(typeId => !string.IsNullOrWhiteSpace(typeId)).Distinct(StringComparer.Ordinal).Count()}");
+        Presenter.WriteOk(
+            "metaschema workspace created",
+            ("Path", workspacePath),
+            ("Model", workspace.Model.Name),
+            ("Systems", workspace.Instance.GetOrCreateEntityRecords("System").Count.ToString()),
+            ("Schemas", workspace.Instance.GetOrCreateEntityRecords("Schema").Count.ToString()),
+            ("Tables", workspace.Instance.GetOrCreateEntityRecords("Table").Count.ToString()),
+            ("Fields", workspace.Instance.GetOrCreateEntityRecords("Field").Count.ToString()),
+            ("TableRelationships", workspace.Instance.GetOrCreateEntityRecords("TableRelationship").Count.ToString()),
+            ("TableRelationshipFields", workspace.Instance.GetOrCreateEntityRecords("TableRelationshipField").Count.ToString()),
+            ("TypeIds", workspace.Instance.GetOrCreateEntityRecords("Field")
+                .Select(record => record.Values.TryGetValue("TypeId", out var typeId) ? typeId : string.Empty)
+                .Where(typeId => !string.IsNullOrWhiteSpace(typeId))
+                .Distinct(StringComparer.Ordinal)
+                .Count().ToString()));
         return 0;
     }
 
@@ -231,40 +215,6 @@ internal static class Program
         return (true, request, string.Empty);
     }
 
-    private static (bool Ok, string NewWorkspacePath, string ErrorMessage) ParseNewWorkspaceOnly(
-        string[] args,
-        int startIndex)
-    {
-        var newWorkspacePath = string.Empty;
-        for (var i = startIndex; i < args.Length; i++)
-        {
-            var arg = args[i];
-            if (!string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                return (false, newWorkspacePath, $"unknown option '{arg}'.");
-            }
-
-            if (i + 1 >= args.Length)
-            {
-                return (false, newWorkspacePath, "missing value for --new-workspace.");
-            }
-
-            if (!string.IsNullOrWhiteSpace(newWorkspacePath))
-            {
-                return (false, newWorkspacePath, "--new-workspace can only be provided once.");
-            }
-
-            newWorkspacePath = args[++i];
-        }
-
-        if (string.IsNullOrWhiteSpace(newWorkspacePath))
-        {
-            return (false, string.Empty, "missing required option --new-workspace <path>.");
-        }
-
-        return (true, newWorkspacePath, string.Empty);
-    }
-
     private static bool IsHelpToken(string value)
     {
         return string.Equals(value, "help", StringComparison.OrdinalIgnoreCase) ||
@@ -274,40 +224,52 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Console.WriteLine("MetaSchema CLI");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-schema <command> [options]");
-        Console.WriteLine();
-        Console.WriteLine("Commands:");
-        Console.WriteLine("  help        Show this help.");
-        Console.WriteLine("  extract     Materialize sanctioned MetaSchema workspaces from external sources.");
-        Console.WriteLine();
-        Console.WriteLine("Next: meta-schema extract --help");
+        Presenter.WriteInfo("MetaSchema CLI");
+        Presenter.WriteUsage("meta-schema <command> [options]");
+        Presenter.WriteCommandCatalog(
+            "Commands",
+            new[]
+            {
+                ("help", "Show this help."),
+                ("extract", "Materialize sanctioned MetaSchema workspaces from external sources.")
+            });
+        Presenter.WriteNext("meta-schema extract --help");
     }
 
     private static void PrintExtractHelp()
     {
-        Console.WriteLine("Command: extract");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-schema extract <extractor> [options]");
-        Console.WriteLine();
-        Console.WriteLine("Extractors:");
-        Console.WriteLine("  sqlserver   Extract SQL Server schema into MetaSchema workspace.");
-        Console.WriteLine();
-        Console.WriteLine("Next: meta-schema extract sqlserver --help");
+        Presenter.WriteInfo("Command: extract");
+        Presenter.WriteUsage("meta-schema extract <extractor> [options]");
+        Presenter.WriteCommandCatalog(
+            "Extractors",
+            new[]
+            {
+                ("sqlserver", "Extract SQL Server schema into MetaSchema workspace.")
+            });
+        Presenter.WriteNext("meta-schema extract sqlserver --help");
     }
 
     private static void PrintExtractSqlServerHelp()
     {
-        Console.WriteLine("Command: extract sqlserver");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-schema extract sqlserver --new-workspace <path> --connection <connectionString> --system <name> (--schema <name> | --all-schemas) (--table <name> | --all-tables)");
-        Console.WriteLine();
-        Console.WriteLine("Notes:");
-        Console.WriteLine("  Creates a new workspace with the MetaSchema model and validates it.");
-        Console.WriteLine("  Scope is controlled by schema/table filters or all-schemas/all-tables discovery switches.");
-        Console.WriteLine("  TableRelationship rows are emitted only for enforced and trusted SQL Server foreign keys.");
-        Console.WriteLine("  Field rows carry a scalar TypeId such as sqlserver:type:nvarchar.");
+        Presenter.WriteInfo("Command: extract sqlserver");
+        Presenter.WriteUsage("meta-schema extract sqlserver --new-workspace <path> --connection <connectionString> --system <name> (--schema <name> | --all-schemas) (--table <name> | --all-tables)");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Creates a new workspace with the MetaSchema model and validates it.");
+        Presenter.WriteInfo("  Scope is controlled by schema/table filters or all-schemas/all-tables discovery switches.");
+        Presenter.WriteInfo("  TableRelationship rows are emitted only for enforced and trusted SQL Server foreign keys.");
+        Presenter.WriteInfo("  Field rows carry a scalar TypeId such as sqlserver:type:nvarchar.");
     }
 
+    private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
+    {
+        var renderedDetails = new List<string>();
+        if (details != null)
+        {
+            renderedDetails.AddRange(details);
+        }
+
+        renderedDetails.Add($"Next: {next}");
+        Presenter.WriteFailure(message, renderedDetails);
+        return exitCode;
+    }
 }

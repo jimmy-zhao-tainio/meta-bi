@@ -1,9 +1,13 @@
+using System.Linq;
 using Meta.Core.Domain;
+using Meta.Core.Presentation;
 using Meta.Core.Services;
 using MetaTypeConversion.Core;
 
 internal static class Program
 {
+    private static readonly ConsolePresenter Presenter = new();
+
     static async Task<int> Main(string[] args)
     {
         if (args.Length == 0 || IsHelpToken(args[0]))
@@ -27,9 +31,7 @@ internal static class Program
             return await RunResolveAsync(args).ConfigureAwait(false);
         }
 
-        Console.WriteLine($"Error: unknown command '{args[0]}'.");
-        Console.WriteLine("Next: meta-type-conversion help");
-        return 1;
+        return Fail($"unknown command '{args[0]}'.", "meta-type-conversion help");
     }
 
     private static async Task<int> RunInitAsync(string[] args)
@@ -43,17 +45,13 @@ internal static class Program
         var parseResult = ParseNewWorkspaceOnly(args, startIndex: 1);
         if (!parseResult.Ok)
         {
-            Console.WriteLine($"Error: {parseResult.ErrorMessage}");
-            Console.WriteLine("Next: meta-type-conversion init --help");
-            return 1;
+            return Fail(parseResult.ErrorMessage, "meta-type-conversion init --help");
         }
 
         var workspacePath = Path.GetFullPath(parseResult.NewWorkspacePath);
         if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
         {
-            Console.WriteLine($"Error: target directory '{workspacePath}' must be empty.");
-            Console.WriteLine("Next: choose a new folder or empty the target directory and retry.");
-            return 4;
+            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
         }
 
         Directory.CreateDirectory(workspacePath);
@@ -62,22 +60,23 @@ internal static class Program
         var validation = new ValidationService().Validate(workspace);
         if (validation.HasErrors)
         {
-            Console.WriteLine("Error: metatypeconversion workspace is invalid.");
-            foreach (var issue in validation.Issues.Where(item => item.Severity == IssueSeverity.Error))
-            {
-                Console.WriteLine($"  - {issue.Code}: {issue.Message}");
-            }
-            Console.WriteLine("Next: fix the sanctioned model and retry init.");
-            return 4;
+            return Fail(
+                "metatypeconversion workspace is invalid.",
+                "fix the sanctioned model and retry init.",
+                4,
+                validation.Issues
+                    .Where(item => item.Severity == IssueSeverity.Error)
+                    .Select(item => $"  - {item.Code}: {item.Message}"));
         }
 
         await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
 
-        Console.WriteLine("OK: metatypeconversion workspace created");
-        Console.WriteLine($"Path: {workspacePath}");
-        Console.WriteLine($"Model: {workspace.Model.Name}");
-        Console.WriteLine($"ConversionImplementations: {workspace.Instance.GetOrCreateEntityRecords("ConversionImplementation").Count}");
-        Console.WriteLine($"TypeMappings: {workspace.Instance.GetOrCreateEntityRecords("TypeMapping").Count}");
+        Presenter.WriteOk(
+            "metatypeconversion workspace created",
+            ("Path", workspacePath),
+            ("Model", workspace.Model.Name),
+            ("ConversionImplementations", workspace.Instance.GetOrCreateEntityRecords("ConversionImplementation").Count.ToString()),
+            ("TypeMappings", workspace.Instance.GetOrCreateEntityRecords("TypeMapping").Count.ToString()));
         return 0;
     }
 
@@ -92,9 +91,7 @@ internal static class Program
         var parseResult = ParseWorkspaceOnly(args, startIndex: 1);
         if (!parseResult.Ok)
         {
-            Console.WriteLine($"Error: {parseResult.ErrorMessage}");
-            Console.WriteLine("Next: meta-type-conversion check --help");
-            return 1;
+            return Fail(parseResult.ErrorMessage, "meta-type-conversion check --help");
         }
 
         Workspace workspace;
@@ -104,26 +101,21 @@ internal static class Program
         }
         catch (Exception ex) when (ex is InvalidOperationException or IOException or UnauthorizedAccessException)
         {
-            Console.WriteLine($"Error: {ex.Message}");
-            return 4;
+            return Fail(ex.Message, "meta-type-conversion check --help", 4);
         }
 
         var result = new MetaTypeConversionService().Check(workspace);
         if (result.HasErrors)
         {
-            Console.WriteLine("Error: metatypeconversion check failed.");
-            foreach (var error in result.Errors)
-            {
-                Console.WriteLine($"  - {error}");
-            }
-            return 2;
+            return Fail("metatypeconversion check failed.", "fix the sanctioned mappings and rerun check.", 2, result.Errors.Select(error => $"  - {error}"));
         }
 
-        Console.WriteLine("OK: metatypeconversion check");
-        Console.WriteLine($"Workspace: {Path.GetFullPath(parseResult.WorkspacePath)}");
-        Console.WriteLine($"ConversionImplementations: {result.ImplementationCount}");
-        Console.WriteLine($"TypeMappings: {result.MappingCount}");
-        Console.WriteLine("Errors: 0");
+        Presenter.WriteOk(
+            "metatypeconversion check",
+            ("Workspace", Path.GetFullPath(parseResult.WorkspacePath)),
+            ("ConversionImplementations", result.ImplementationCount.ToString()),
+            ("TypeMappings", result.MappingCount.ToString()),
+            ("Errors", "0"));
         return 0;
     }
 
@@ -138,9 +130,7 @@ internal static class Program
         var parseResult = ParseResolveArgs(args, startIndex: 1);
         if (!parseResult.Ok)
         {
-            Console.WriteLine($"Error: {parseResult.ErrorMessage}");
-            Console.WriteLine("Next: meta-type-conversion resolve --help");
-            return 1;
+            return Fail(parseResult.ErrorMessage, "meta-type-conversion resolve --help");
         }
 
         Workspace workspace;
@@ -150,29 +140,31 @@ internal static class Program
         }
         catch (Exception ex) when (ex is InvalidOperationException or IOException or UnauthorizedAccessException)
         {
-            Console.WriteLine($"Error: {ex.Message}");
-            return 4;
+            return Fail(ex.Message, "meta-type-conversion resolve --help", 4);
         }
 
         try
         {
             var resolution = new MetaTypeConversionService().Resolve(workspace, parseResult.SourceTypeId);
-            Console.WriteLine("OK: metatypeconversion resolve");
-            Console.WriteLine($"Workspace: {Path.GetFullPath(parseResult.WorkspacePath)}");
-            Console.WriteLine($"SourceTypeId: {resolution.SourceTypeId}");
-            Console.WriteLine($"TargetTypeId: {resolution.TargetTypeId}");
-            Console.WriteLine($"ConversionImplementation: {resolution.ConversionImplementationName}");
+            var details = new List<(string Key, string Value)>
+            {
+                ("Workspace", Path.GetFullPath(parseResult.WorkspacePath)),
+                ("SourceTypeId", resolution.SourceTypeId),
+                ("TargetTypeId", resolution.TargetTypeId),
+                ("ConversionImplementation", resolution.ConversionImplementationName)
+            };
+
             if (!string.IsNullOrWhiteSpace(resolution.Notes))
             {
-                Console.WriteLine($"Notes: {resolution.Notes}");
+                details.Add(("Notes", resolution.Notes));
             }
 
+            Presenter.WriteOk("metatypeconversion resolve", details.ToArray());
             return 0;
         }
         catch (Exception ex) when (ex is InvalidOperationException or ArgumentException)
         {
-            Console.WriteLine($"Error: {ex.Message}");
-            return 4;
+            return Fail(ex.Message, "meta-type-conversion resolve --help", 4);
         }
     }
 
@@ -295,46 +287,54 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Console.WriteLine("MetaTypeConversion CLI");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-type-conversion <command> [options]");
-        Console.WriteLine();
-        Console.WriteLine("Commands:");
-        Console.WriteLine("  help        Show this help.");
-        Console.WriteLine("  init        Create a new MetaTypeConversion workspace.");
-        Console.WriteLine("  check       Validate sanctioned type mappings.");
-        Console.WriteLine("  resolve     Resolve one source type id through the sanctioned mappings.");
-        Console.WriteLine();
-        Console.WriteLine("Next: meta-type-conversion init --help");
+        Presenter.WriteInfo("MetaTypeConversion CLI");
+        Presenter.WriteUsage("meta-type-conversion <command> [options]");
+        Presenter.WriteCommandCatalog(
+            "Commands",
+            new[]
+            {
+                ("help", "Show this help."),
+                ("init", "Create a new MetaTypeConversion workspace."),
+                ("check", "Validate sanctioned type mappings."),
+                ("resolve", "Resolve one source type id through the sanctioned mappings.")
+            });
+        Presenter.WriteNext("meta-type-conversion init --help");
     }
 
     private static void PrintInitHelp()
     {
-        Console.WriteLine("Command: init");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-type-conversion init --new-workspace <path>");
-        Console.WriteLine();
-        Console.WriteLine("Notes:");
-        Console.WriteLine("  Creates a new workspace with the MetaTypeConversion model and validates it.");
+        Presenter.WriteInfo("Command: init");
+        Presenter.WriteUsage("meta-type-conversion init --new-workspace <path>");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Creates a new workspace with the MetaTypeConversion model and validates it.");
     }
 
     private static void PrintCheckHelp()
     {
-        Console.WriteLine("Command: check");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-type-conversion check --workspace <path>");
-        Console.WriteLine();
-        Console.WriteLine("Notes:");
-        Console.WriteLine("  Validates that each source type maps deterministically and that every mapping references a real ConversionImplementation.");
+        Presenter.WriteInfo("Command: check");
+        Presenter.WriteUsage("meta-type-conversion check --workspace <path>");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Validates that each source type maps deterministically and that every mapping references a real ConversionImplementation.");
     }
 
     private static void PrintResolveHelp()
     {
-        Console.WriteLine("Command: resolve");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-type-conversion resolve --workspace <path> --source-type <id>");
-        Console.WriteLine();
-        Console.WriteLine("Notes:");
-        Console.WriteLine("  Resolves one source type id to its target type id and conversion implementation.");
+        Presenter.WriteInfo("Command: resolve");
+        Presenter.WriteUsage("meta-type-conversion resolve --workspace <path> --source-type <id>");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Resolves one source type id to its target type id and conversion implementation.");
+    }
+
+    private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
+    {
+        var renderedDetails = new List<string>();
+        if (details != null)
+        {
+            renderedDetails.AddRange(details);
+        }
+
+        renderedDetails.Add($"Next: {next}");
+        Presenter.WriteFailure(message, renderedDetails);
+        return exitCode;
     }
 }

@@ -1,9 +1,13 @@
-using Meta.Core.Services;
+using System.Linq;
 using Meta.Core.Domain;
+using Meta.Core.Presentation;
+using Meta.Core.Services;
 using MetaDataVault.Core;
 
 internal static class Program
 {
+    private static readonly ConsolePresenter Presenter = new();
+
     static async Task<int> Main(string[] args)
     {
         if (args.Length == 0 || IsHelpToken(args[0]))
@@ -22,9 +26,7 @@ internal static class Program
             return await RunFromMetaSchemaAsync(args).ConfigureAwait(false);
         }
 
-        Console.WriteLine($"Error: unknown command '{args[0]}'.");
-        Console.WriteLine("Next: meta-datavault help");
-        return 1;
+        return Fail($"unknown command '{args[0]}'.", "meta-datavault help");
     }
 
     private static async Task<int> RunInitAsync(string[] args)
@@ -38,17 +40,13 @@ internal static class Program
         var parseResult = ParseNewWorkspaceOnly(args, 1);
         if (!parseResult.Ok)
         {
-            Console.WriteLine($"Error: {parseResult.ErrorMessage}");
-            Console.WriteLine("Next: meta-datavault init --help");
-            return 1;
+            return Fail(parseResult.ErrorMessage, "meta-datavault init --help");
         }
 
         var workspacePath = Path.GetFullPath(parseResult.NewWorkspacePath);
         if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
         {
-            Console.WriteLine($"Error: target directory '{workspacePath}' must be empty.");
-            Console.WriteLine("Next: choose a new folder or empty the target directory and retry.");
-            return 4;
+            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
         }
 
         Directory.CreateDirectory(workspacePath);
@@ -56,19 +54,20 @@ internal static class Program
         var validation = new ValidationService().Validate(workspace);
         if (validation.HasErrors)
         {
-            Console.WriteLine("Error: metarawdatavault workspace is invalid.");
-            foreach (var issue in validation.Issues.Where(item => item.Severity == Meta.Core.Domain.IssueSeverity.Error))
-            {
-                Console.WriteLine($"  - {issue.Code}: {issue.Message}");
-            }
-            Console.WriteLine("Next: fix the sanctioned model and retry init.");
-            return 4;
+            return Fail(
+                "metarawdatavault workspace is invalid.",
+                "fix the sanctioned model and retry init.",
+                4,
+                validation.Issues
+                    .Where(item => item.Severity == IssueSeverity.Error)
+                    .Select(item => $"  - {item.Code}: {item.Message}"));
         }
 
         await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
-        Console.WriteLine("OK: metarawdatavault workspace created");
-        Console.WriteLine($"Path: {workspacePath}");
-        Console.WriteLine($"Model: {workspace.Model.Name}");
+        Presenter.WriteOk(
+            "metarawdatavault workspace created",
+            ("Path", workspacePath),
+            ("Model", workspace.Model.Name));
         return 0;
     }
 
@@ -83,18 +82,14 @@ internal static class Program
         var parse = ParseFromMetaSchemaArgs(args, 1);
         if (!parse.Ok)
         {
-            Console.WriteLine($"Error: {parse.ErrorMessage}");
-            Console.WriteLine("Next: meta-datavault from-metaschema --help");
-            return 1;
+            return Fail(parse.ErrorMessage, "meta-datavault from-metaschema --help");
         }
 
         var sourceWorkspacePath = Path.GetFullPath(parse.SourceWorkspacePath);
         var newWorkspacePath = Path.GetFullPath(parse.NewWorkspacePath);
         if (Directory.Exists(newWorkspacePath) && Directory.EnumerateFileSystemEntries(newWorkspacePath).Any())
         {
-            Console.WriteLine($"Error: target directory '{newWorkspacePath}' must be empty.");
-            Console.WriteLine("Next: choose a new folder or empty the target directory and retry.");
-            return 4;
+            return Fail($"target directory '{newWorkspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
         }
 
         Workspace sourceWorkspace;
@@ -104,9 +99,11 @@ internal static class Program
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: could not load source workspace '{sourceWorkspacePath}'.");
-            Console.WriteLine($"  - {ex.Message}");
-            return 4;
+            return Fail(
+                $"could not load source workspace '{sourceWorkspacePath}'.",
+                "check the source workspace path and retry.",
+                4,
+                new[] { $"  - {ex.Message}" });
         }
 
         Workspace rawDataVaultWorkspace;
@@ -116,35 +113,39 @@ internal static class Program
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Error: could not convert MetaSchema workspace to raw datavault.");
-            Console.WriteLine($"  - {ex.Message}");
-            return 4;
+            return Fail(
+                "could not convert MetaSchema workspace to raw datavault.",
+                "check the source workspace and retry.",
+                4,
+                new[] { $"  - {ex.Message}" });
         }
 
         var validation = new ValidationService().Validate(rawDataVaultWorkspace);
         if (validation.HasErrors)
         {
-            Console.WriteLine("Error: generated metarawdatavault workspace is invalid.");
-            foreach (var issue in validation.Issues.Where(item => item.Severity == Meta.Core.Domain.IssueSeverity.Error))
-            {
-                Console.WriteLine($"  - {issue.Code}: {issue.Message}");
-            }
-            return 4;
+            return Fail(
+                "generated metarawdatavault workspace is invalid.",
+                "inspect the generated workspace and retry.",
+                4,
+                validation.Issues
+                    .Where(item => item.Severity == IssueSeverity.Error)
+                    .Select(item => $"  - {item.Code}: {item.Message}"));
         }
 
         Directory.CreateDirectory(newWorkspacePath);
         await new WorkspaceService().SaveAsync(rawDataVaultWorkspace).ConfigureAwait(false);
 
-        Console.WriteLine("OK: raw datavault generated from metaschema");
-        Console.WriteLine($"Source Workspace: {sourceWorkspacePath}");
-        Console.WriteLine($"Path: {newWorkspacePath}");
-        Console.WriteLine($"Model: {rawDataVaultWorkspace.Model.Name}");
-        Console.WriteLine($"SourceTables: {rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count}");
-        Console.WriteLine($"RawHubs: {rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count}");
-        Console.WriteLine($"RawLinks: {rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLink").Count}");
-        Console.WriteLine($"RawLinkEnds: {rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkEnd").Count}");
-        Console.WriteLine($"RawSatellites: {rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawSatellite").Count}");
-        Console.WriteLine($"RawSatelliteAttributes: {rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawSatelliteAttribute").Count}");
+        Presenter.WriteOk(
+            "raw datavault generated from metaschema",
+            ("Source Workspace", sourceWorkspacePath),
+            ("Path", newWorkspacePath),
+            ("Model", rawDataVaultWorkspace.Model.Name),
+            ("SourceTables", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count.ToString()),
+            ("RawHubs", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count.ToString()),
+            ("RawLinks", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLink").Count.ToString()),
+            ("RawLinkEnds", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkEnd").Count.ToString()),
+            ("RawSatellites", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawSatellite").Count.ToString()),
+            ("RawSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawSatelliteAttribute").Count.ToString()));
         return 0;
     }
 
@@ -245,36 +246,46 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Console.WriteLine("MetaDataVault CLI");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-datavault <command> [options]");
-        Console.WriteLine();
-        Console.WriteLine("Commands:");
-        Console.WriteLine("  help            Show this help.");
-        Console.WriteLine("  init            Create an empty MetaRawDataVault workspace.");
-        Console.WriteLine("  from-metaschema Consume a MetaSchema workspace and generate raw datavault metadata.");
-        Console.WriteLine();
-        Console.WriteLine("Next: meta-datavault from-metaschema --help");
+        Presenter.WriteInfo("MetaDataVault CLI");
+        Presenter.WriteUsage("meta-datavault <command> [options]");
+        Presenter.WriteCommandCatalog(
+            "Commands",
+            new[]
+            {
+                ("help", "Show this help."),
+                ("init", "Create an empty MetaRawDataVault workspace."),
+                ("from-metaschema", "Consume a MetaSchema workspace and generate raw datavault metadata.")
+            });
+        Presenter.WriteNext("meta-datavault from-metaschema --help");
     }
 
     private static void PrintInitHelp()
     {
-        Console.WriteLine("Command: init");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-datavault init --new-workspace <path>");
-        Console.WriteLine();
-        Console.WriteLine("Notes:");
-        Console.WriteLine("  Creates a new workspace with the sanctioned MetaRawDataVault model (raw vault only).");
+        Presenter.WriteInfo("Command: init");
+        Presenter.WriteUsage("meta-datavault init --new-workspace <path>");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Creates a new workspace with the sanctioned MetaRawDataVault model (raw vault only).");
     }
 
     private static void PrintFromMetaSchemaHelp()
     {
-        Console.WriteLine("Command: from-metaschema");
-        Console.WriteLine("Usage:");
-        Console.WriteLine("  meta-datavault from-metaschema --source-workspace <path> --new-workspace <path>");
-        Console.WriteLine();
-        Console.WriteLine("Notes:");
-        Console.WriteLine("  Loads a MetaSchema workspace and materializes a deterministic MetaRawDataVault workspace (hubs + links + satellites).");
-        Console.WriteLine("  RawLink rows are created only from explicit MetaSchema table relationships when both ends are present.");
+        Presenter.WriteInfo("Command: from-metaschema");
+        Presenter.WriteUsage("meta-datavault from-metaschema --source-workspace <path> --new-workspace <path>");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Loads a MetaSchema workspace and materializes a deterministic MetaRawDataVault workspace (hubs + links + satellites).");
+        Presenter.WriteInfo("  RawLink rows are created only from explicit MetaSchema table relationships when both ends are present.");
+    }
+
+    private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
+    {
+        var renderedDetails = new List<string>();
+        if (details != null)
+        {
+            renderedDetails.AddRange(details);
+        }
+
+        renderedDetails.Add($"Next: {next}");
+        Presenter.WriteFailure(message, renderedDetails);
+        return exitCode;
     }
 }
