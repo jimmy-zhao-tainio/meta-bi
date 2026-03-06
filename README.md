@@ -15,9 +15,14 @@ It also contains BI architecture notes in `docs/`.
 
 This repository now consumes the generic foundation through an internal NuGet package boundary instead of source-level project references.
 
-Current foundation package dependency:
+Current direct foundation package dependency:
 
 - `Meta.Core`
+
+Additional foundation packages available from the same internal feed when BI projects need them:
+
+- `Meta.Adapters`
+- `MetaWeave.Core`
 
 Before restore/build, add a package source that points at the packed output from `isomorphic-metadata`:
 
