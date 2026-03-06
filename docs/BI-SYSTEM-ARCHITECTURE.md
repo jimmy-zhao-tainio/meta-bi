@@ -16,6 +16,27 @@ This document keeps the stack explicit:
 
 Companion inventory document: [Platform.md](Platform.md)
 
+## Useful separation of levels
+
+An architecture matrix is useful here, not as something to copy literally, but as a way to keep levels separate while the BI stack is still being defined.
+
+The useful distinction is:
+
+- `Meta-meta`: the metadata platform itself. In our case, this is the foundation layer (`Meta.Core`, workspace/model/instance semantics, generic CLI/tooling).
+- `Meta`: framework definitions and architecture definitions. This is where generic architecture and framework-shaping concepts belong.
+- `Model`: business, information, logical, analytical, and implementation-domain models. This is where sanctioned BI models belong.
+- `Instance`: concrete technical realizations of those models, such as SQL schemas, pipeline definitions, semantic models, and other product-facing metadata instances.
+- `Runtime`: the live platform and automation estate: deployment, execution, monitoring, rollback, infrastructure, and operational health.
+
+Two distinctions are especially important:
+
+- model objects are not the same thing as technical objects
+- technical objects are not the same thing as runtime estate
+
+That separation matters because one model may project into several technical surfaces, and one runtime platform may execute many technical artifacts derived from several models.
+
+Framework names and product names in architecture discussions are examples only. They are useful for thinking, but they must not silently become sanctioned assumptions in the model stack. `BIML`, `SSIS`, `SSAS`, `Power BI`, `Azure`, `TOGAF`, `Kimball`, and `Data Vault` should be treated as reference points unless and until a sanctioned model explicitly commits to one of them.
+
 ## Current implemented architecture (repo state)
 
 This diagram reflects the currently implemented architecture and flow in this repository.
@@ -109,6 +130,17 @@ Purpose:
 
 These are BI-domain models, but not tied to a single execution product format.
 
+### BI business-semantic models
+
+- `MetaBusiness`
+
+Purpose:
+- own business-semantic meaning that is not the same thing as source structure or product artifacts
+- define business concepts, business-facing identities, and business-level modeling intent
+- act as the semantic anchor for downstream projections such as business vault, warehouse, and analysis
+
+This is the point where the stack stops being purely source-first. Business meaning should not be smeared across `MetaSchema`, `MetaDataVault`, `MetaDataWarehouse`, or semantic-product models.
+
 ### BI implementation-spec models
 
 - `MetaDataVault`
@@ -134,6 +166,26 @@ Purpose:
 This is the top layer. It is where a real BI system is composed from business entities, source systems, security, warehouse patterns, orchestration intent, semantic-model intent, and deployment intent.
 
 The sanctioned models are building blocks. The user model is the system design.
+
+## Realization path
+
+The stack needs to be understood as a realization path, not just a list of models.
+
+Broadly:
+
+- sanctioned models hold intent and reusable domain meaning
+- user system models compose that intent into one concrete BI system
+- tools and commands project model intent into technical metadata instances and artifact surfaces
+- technical instances are then deployed and executed as part of a live platform
+
+So the important separation is:
+
+- model intent
+- technical metadata instances
+- emitted artifacts
+- runtime estate
+
+The framework should make those transitions explicit. A model is not an artifact, and an artifact is not a running platform. The toolchain is what realizes one level into the next.
 
 ## Current foundation boundaries
 
@@ -214,6 +266,22 @@ Boundary:
 - transform semantics should not be smeared across `MetaSSIS`, `MetaDataVault`, or `MetaDataWarehouse`
 - downstream tools may compile `MetaTransform` into high-performance SQL or other runtimes
 - `MetaTransform` should hold transform intent, not execution-host specifics
+
+### Feature and state layer
+
+The eventual BI platform will also need metadata that is not just "design intent", but "system state and value-add behavior".
+
+That likely includes concerns such as:
+
+- completeness
+- deployment state
+- usage
+- monitoring
+- health
+- diagnostics
+- rollback and recovery evidence
+
+This should be treated as its own layer of concern rather than quietly mixed into the core design models. The exact sanctioned shape is not decided yet, but the need is real: a generated BI system is not only something to define, it is also something to observe, validate, and operate.
 
 ### `MetaWeave`
 
@@ -374,6 +442,36 @@ This keeps:
 - isomorphism
 - generic tooling
 - explicit model ownership
+
+## Traceability requirement
+
+The framework should preserve traceability across levels:
+
+- from model intent
+- to technical metadata instances
+- to emitted artifacts
+- to runtime execution and operational evidence
+
+That means a future BI platform should be able to answer questions such as:
+
+- which model elements produced this artifact?
+- which command or tool surface materialized it?
+- which sanctioned models and bindings were involved?
+- what runtime behavior, failure, or deployment event can be traced back to that metadata?
+
+This is not only data lineage. It is metadata-to-artifact-to-runtime traceability.
+
+## Irregular or non-standard concerns
+
+Not everything in a real BI system will fit cleanly into one sanctioned model on the first pass.
+
+That does not justify a generic dumping ground. The better direction is:
+
+- sanctioned models should expose explicit extension or custom paths where truly needed
+- irregular concerns should still be represented explicitly as metadata
+- custom material should remain visible and owned, not hidden outside the system
+
+The exact mechanism may differ by model, but the principle should stay the same: if something does not fit, it should fail into a sanctioned path, not into architecture drift.
 
 ## What must remain generic
 
