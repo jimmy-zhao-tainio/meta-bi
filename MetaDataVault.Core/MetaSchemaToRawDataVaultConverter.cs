@@ -37,12 +37,12 @@ public sealed class MetaSchemaToRawDataVaultConverter
         var result = MetaDataVaultWorkspaces.CreateEmptyMetaRawDataVaultWorkspace(newWorkspacePath);
         var instance = result.Instance;
 
-        CopyRecords(sourceSystems, instance.GetOrCreateEntityRecords("SourceSystem"), "SourceSystem.xml");
-        CopyRecords(sourceSchemas, instance.GetOrCreateEntityRecords("SourceSchema"), "SourceSchema.xml", ("SystemId", "SourceSystemId"));
-        CopyRecords(sourceTables, instance.GetOrCreateEntityRecords("SourceTable"), "SourceTable.xml", ("SchemaId", "SourceSchemaId"));
-        CopyRecords(sourceFields, instance.GetOrCreateEntityRecords("SourceField"), "SourceField.xml", ("TableId", "SourceTableId"));
-        CopyRecords(sourceTableRelationships, instance.GetOrCreateEntityRecords("SourceTableRelationship"), "SourceTableRelationship.xml", ("SourceTableId", "SourceTableId"));
-        CopyRecords(sourceTableRelationshipFields, instance.GetOrCreateEntityRecords("SourceTableRelationshipField"), "SourceTableRelationshipField.xml", ("TableRelationshipId", "SourceTableRelationshipId"), ("SourceFieldId", "SourceFieldId"));
+        CopyRecords(sourceSystems, instance.GetOrCreateEntityRecords("SourceSystem"), "SourceSystem.xml", null);
+        CopyRecords(sourceSchemas, instance.GetOrCreateEntityRecords("SourceSchema"), "SourceSchema.xml", null, ("SystemId", "SourceSystemId"));
+        CopyRecords(sourceTables, instance.GetOrCreateEntityRecords("SourceTable"), "SourceTable.xml", new[] { "Name" }, ("SchemaId", "SourceSchemaId"));
+        CopyRecords(sourceFields, instance.GetOrCreateEntityRecords("SourceField"), "SourceField.xml", null, ("TableId", "SourceTableId"));
+        CopyRecords(sourceTableRelationships, instance.GetOrCreateEntityRecords("SourceTableRelationship"), "SourceTableRelationship.xml", null, ("SourceTableId", "SourceTableId"));
+        CopyRecords(sourceTableRelationshipFields, instance.GetOrCreateEntityRecords("SourceTableRelationshipField"), "SourceTableRelationshipField.xml", null, ("TableRelationshipId", "SourceTableRelationshipId"), ("SourceFieldId", "SourceFieldId"));
 
         var fieldsByTableId = sourceFields
             .GroupBy(field => RequireRelationshipId(field, "TableId"), StringComparer.Ordinal)
@@ -71,11 +71,14 @@ public sealed class MetaSchemaToRawDataVaultConverter
 
         var rawHubs = instance.GetOrCreateEntityRecords("RawHub");
         var rawHubKeyParts = instance.GetOrCreateEntityRecords("RawHubKeyPart");
-        var rawSatellites = instance.GetOrCreateEntityRecords("RawSatellite");
-        var rawSatelliteAttributes = instance.GetOrCreateEntityRecords("RawSatelliteAttribute");
+        var rawHubSatellites = instance.GetOrCreateEntityRecords("RawHubSatellite");
+        var rawHubSatelliteAttributes = instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute");
         var rawLinks = instance.GetOrCreateEntityRecords("RawLink");
         var rawLinkEnds = instance.GetOrCreateEntityRecords("RawLinkEnd");
+        var rawLinkSatellites = instance.GetOrCreateEntityRecords("RawLinkSatellite");
+        var rawLinkSatelliteAttributes = instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute");
         var rawHubIdBySourceTableId = new Dictionary<string, string>(StringComparer.Ordinal);
+        var rawHubById = new Dictionary<string, GenericRecord>(StringComparer.Ordinal);
 
         foreach (var sourceTable in sourceTables)
         {
@@ -86,7 +89,8 @@ public sealed class MetaSchemaToRawDataVaultConverter
 
             var selectedBusinessKeyField = SelectBusinessKeyField(tableName, tableFields);
             var hubId = "hub:" + sourceTableId;
-            var satelliteId = "sat:" + sourceTableId;
+            var hubKeyColumnName = BuildHashKeyColumnName(tableName);
+            var satelliteId = "hubsat:" + sourceTableId;
 
             var hub = new GenericRecord
             {
@@ -94,33 +98,39 @@ public sealed class MetaSchemaToRawDataVaultConverter
                 SourceShardFileName = "RawHub.xml",
             };
             hub.Values["Name"] = tableName;
-            hub.Values["BusinessKeyName"] = selectedBusinessKeyField.Values["Name"];
-            hub.Values["BusinessKeySourceFieldName"] = selectedBusinessKeyField.Values["Name"];
+            hub.Values["HubKeyColumnName"] = hubKeyColumnName;
+            hub.Values["LoadTimestampColumnName"] = "LoadTimestamp";
+            hub.Values["RecordSourceColumnName"] = "RecordSource";
             hub.RelationshipIds["SourceTableId"] = sourceTableId;
             rawHubs.Add(hub);
             rawHubIdBySourceTableId[sourceTableId] = hubId;
+            rawHubById[hubId] = hub;
 
             var hubKeyPart = new GenericRecord
             {
                 Id = "hubkey:" + sourceTableId + ":1",
                 SourceShardFileName = "RawHubKeyPart.xml",
             };
+            hubKeyPart.Values["BusinessKeyColumnName"] = RequireValue(selectedBusinessKeyField, "Name");
             hubKeyPart.Values["Ordinal"] = "1";
-            hubKeyPart.Values["SourceFieldName"] = selectedBusinessKeyField.Values["Name"];
             hubKeyPart.RelationshipIds["RawHubId"] = hubId;
             hubKeyPart.RelationshipIds["SourceFieldId"] = selectedBusinessKeyField.Id;
             rawHubKeyParts.Add(hubKeyPart);
 
-            var satellite = new GenericRecord
+            var hubSatellite = new GenericRecord
             {
                 Id = satelliteId,
-                SourceShardFileName = "RawSatellite.xml",
+                SourceShardFileName = "RawHubSatellite.xml",
             };
-            satellite.Values["Name"] = tableName + "Sat";
-            satellite.Values["SatelliteKind"] = "standard";
-            satellite.RelationshipIds["RawHubId"] = hubId;
-            satellite.RelationshipIds["SourceTableId"] = sourceTableId;
-            rawSatellites.Add(satellite);
+            hubSatellite.Values["Name"] = tableName + "Sat";
+            hubSatellite.Values["SatelliteKind"] = "standard";
+            hubSatellite.Values["ParentHubKeyColumnName"] = hubKeyColumnName;
+            hubSatellite.Values["LoadTimestampColumnName"] = "LoadTimestamp";
+            hubSatellite.Values["RecordSourceColumnName"] = "RecordSource";
+            hubSatellite.Values["HashDiffColumnName"] = tableName + "HashDiff";
+            hubSatellite.RelationshipIds["RawHubId"] = hubId;
+            hubSatellite.RelationshipIds["SourceTableId"] = sourceTableId;
+            rawHubSatellites.Add(hubSatellite);
 
             var satelliteFields = tableFields
                 .Where(field => !string.Equals(field.Id, selectedBusinessKeyField.Id, StringComparison.Ordinal))
@@ -134,14 +144,14 @@ public sealed class MetaSchemaToRawDataVaultConverter
                 var field = satelliteFields[i];
                 var satelliteAttribute = new GenericRecord
                 {
-                    Id = "satattr:" + sourceTableId + ":" + (i + 1).ToString(),
-                    SourceShardFileName = "RawSatelliteAttribute.xml",
+                    Id = "hubsatattr:" + sourceTableId + ":" + (i + 1).ToString(),
+                    SourceShardFileName = "RawHubSatelliteAttribute.xml",
                 };
-                satelliteAttribute.Values["Name"] = RequireValue(field, "Name");
+                satelliteAttribute.Values["ColumnName"] = RequireValue(field, "Name");
                 satelliteAttribute.Values["Ordinal"] = (i + 1).ToString();
-                satelliteAttribute.RelationshipIds["RawSatelliteId"] = satelliteId;
+                satelliteAttribute.RelationshipIds["RawHubSatelliteId"] = satelliteId;
                 satelliteAttribute.RelationshipIds["SourceFieldId"] = field.Id;
-                rawSatelliteAttributes.Add(satelliteAttribute);
+                rawHubSatelliteAttributes.Add(satelliteAttribute);
             }
         }
 
@@ -166,13 +176,18 @@ public sealed class MetaSchemaToRawDataVaultConverter
                 continue;
             }
 
+            var linkName = RequireValue(sourceTableRelationship, "Name");
             var linkId = "link:" + sourceTableRelationship.Id;
             var link = new GenericRecord
             {
                 Id = linkId,
                 SourceShardFileName = "RawLink.xml",
             };
-            link.Values["Name"] = RequireValue(sourceTableRelationship, "Name");
+            link.Values["Name"] = linkName;
+            link.Values["LinkKind"] = "standard";
+            link.Values["LinkKeyColumnName"] = BuildHashKeyColumnName(linkName);
+            link.Values["LoadTimestampColumnName"] = "LoadTimestamp";
+            link.Values["RecordSourceColumnName"] = "RecordSource";
             link.RelationshipIds["SourceTableRelationshipId"] = sourceTableRelationship.Id;
             rawLinks.Add(link);
 
@@ -183,6 +198,7 @@ public sealed class MetaSchemaToRawDataVaultConverter
             };
             sourceEnd.Values["Ordinal"] = "1";
             sourceEnd.Values["RoleName"] = "Source";
+            sourceEnd.Values["LinkReferenceColumnName"] = BuildLinkReferenceColumnName(rawHubById[sourceHubId]);
             sourceEnd.RelationshipIds["RawLinkId"] = linkId;
             sourceEnd.RelationshipIds["RawHubId"] = sourceHubId;
             rawLinkEnds.Add(sourceEnd);
@@ -194,10 +210,14 @@ public sealed class MetaSchemaToRawDataVaultConverter
             };
             targetEnd.Values["Ordinal"] = "2";
             targetEnd.Values["RoleName"] = "Target";
+            targetEnd.Values["LinkReferenceColumnName"] = BuildLinkReferenceColumnName(rawHubById[targetHubId]);
             targetEnd.RelationshipIds["RawLinkId"] = linkId;
             targetEnd.RelationshipIds["RawHubId"] = targetHubId;
             rawLinkEnds.Add(targetEnd);
         }
+
+        _ = rawLinkSatellites;
+        _ = rawLinkSatelliteAttributes;
 
         result.IsDirty = true;
         return result;
@@ -207,9 +227,14 @@ public sealed class MetaSchemaToRawDataVaultConverter
         IEnumerable<GenericRecord> source,
         ICollection<GenericRecord> destination,
         string shardFileName,
+        IReadOnlyCollection<string>? valuePropertyNames,
         params (string SourceName, string TargetName)[] relationshipNameMap)
     {
         var relationshipMap = relationshipNameMap.ToDictionary(item => item.SourceName, item => item.TargetName, StringComparer.Ordinal);
+        var valueNameFilter = valuePropertyNames == null
+            ? null
+            : new HashSet<string>(valuePropertyNames, StringComparer.Ordinal);
+
         foreach (var record in source)
         {
             var copy = new GenericRecord
@@ -219,6 +244,11 @@ public sealed class MetaSchemaToRawDataVaultConverter
             };
             foreach (var value in record.Values.OrderBy(item => item.Key, StringComparer.Ordinal))
             {
+                if (valueNameFilter != null && !valueNameFilter.Contains(value.Key))
+                {
+                    continue;
+                }
+
                 copy.Values[value.Key] = value.Value;
             }
 
@@ -281,6 +311,16 @@ public sealed class MetaSchemaToRawDataVaultConverter
         return int.MaxValue;
     }
 
+    private static string BuildHashKeyColumnName(string name)
+    {
+        return name + "Hk";
+    }
+
+    private static string BuildLinkReferenceColumnName(GenericRecord rawHub)
+    {
+        return RequireValue(rawHub, "HubKeyColumnName");
+    }
+
     private static string BuildSchemaTableKey(string schemaName, string tableName)
     {
         return schemaName + "\u001F" + tableName;
@@ -306,3 +346,4 @@ public sealed class MetaSchemaToRawDataVaultConverter
         return value;
     }
 }
+

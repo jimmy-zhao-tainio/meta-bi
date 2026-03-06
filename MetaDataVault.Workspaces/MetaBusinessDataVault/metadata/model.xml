@@ -3,14 +3,18 @@
   <EntityList>
     <Entity name="BusinessHub">
       <PropertyList>
-        <Property name="Description" isRequired="false" />
-        <Property name="HubKind" isRequired="false" />
         <Property name="Name" />
+        <Property name="HubKind" />
+        <Property name="HubKeyColumnName" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="RecordSourceColumnName" />
+        <Property name="Description" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHubKeyPart">
       <PropertyList>
         <Property name="Name" />
+        <Property name="BusinessKeyColumnName" />
         <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
@@ -19,15 +23,20 @@
     </Entity>
     <Entity name="BusinessLink">
       <PropertyList>
-        <Property name="Description" isRequired="false" />
-        <Property name="LinkKind" />
         <Property name="Name" />
+        <Property name="LinkKind" />
+        <Property name="LinkKeyColumnName" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="RecordSourceColumnName" />
+        <Property name="Description" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessLinkEnd">
       <PropertyList>
         <Property name="Ordinal" />
         <Property name="RoleName" isRequired="false" />
+        <Property name="LinkReferenceColumnName" />
+        <Property name="IsDrivingKey" dataType="bool" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessLink" />
@@ -36,9 +45,13 @@
     </Entity>
     <Entity name="BusinessHubSatellite">
       <PropertyList>
-        <Property name="Description" isRequired="false" />
         <Property name="Name" />
         <Property name="SatelliteKind" />
+        <Property name="ParentHubKeyColumnName" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="RecordSourceColumnName" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="Description" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessHub" />
@@ -47,6 +60,7 @@
     <Entity name="BusinessHubSatelliteAttribute">
       <PropertyList>
         <Property name="Name" />
+        <Property name="ColumnName" />
         <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
@@ -55,9 +69,13 @@
     </Entity>
     <Entity name="BusinessLinkSatellite">
       <PropertyList>
-        <Property name="Description" isRequired="false" />
         <Property name="Name" />
         <Property name="SatelliteKind" />
+        <Property name="ParentLinkKeyColumnName" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="RecordSourceColumnName" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="Description" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessLink" />
@@ -66,6 +84,7 @@
     <Entity name="BusinessLinkSatelliteAttribute">
       <PropertyList>
         <Property name="Name" />
+        <Property name="ColumnName" />
         <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
@@ -74,20 +93,30 @@
     </Entity>
     <Entity name="BusinessPointInTime">
       <PropertyList>
-        <Property name="Description" isRequired="false" />
         <Property name="Name" />
+        <Property name="HubKeyColumnName" />
+        <Property name="AsOfTimestampColumnName" />
+        <Property name="Description" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessHub" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessPointInTimeHubSatellite">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="ReferenceColumnName" />
+      </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessPointInTime" />
         <Relationship entity="BusinessHubSatellite" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessPointInTimeLinkSatellite">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="ReferenceColumnName" />
+      </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessPointInTime" />
         <Relationship entity="BusinessLinkSatellite" />
@@ -95,15 +124,20 @@
     </Entity>
     <Entity name="BusinessBridge">
       <PropertyList>
-        <Property name="BridgeKind" isRequired="false" />
-        <Property name="Description" isRequired="false" />
         <Property name="Name" />
+        <Property name="BridgeKind" />
+        <Property name="RootHubKeyColumnName" />
+        <Property name="AsOfTimestampColumnName" isRequired="false" />
+        <Property name="DepthColumnName" isRequired="false" />
+        <Property name="PathColumnName" isRequired="false" />
+        <Property name="Description" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessBridgeHub">
       <PropertyList>
         <Property name="Ordinal" />
         <Property name="RoleName" isRequired="false" />
+        <Property name="BridgeReferenceColumnName" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessBridge" />
@@ -114,6 +148,7 @@
       <PropertyList>
         <Property name="Ordinal" />
         <Property name="RoleName" isRequired="false" />
+        <Property name="BridgeReferenceColumnName" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessBridge" />

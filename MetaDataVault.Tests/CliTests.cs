@@ -49,14 +49,21 @@ public sealed class CliTests
             var hubXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawHub.xml"));
             Assert.Contains("<RawHub ", hubXml);
             Assert.Contains("<Name>Order</Name>", hubXml);
+            Assert.Contains("<HubKeyColumnName>OrderHk</HubKeyColumnName>", hubXml);
+            Assert.Contains("<LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>", hubXml);
+            Assert.Contains("<RecordSourceColumnName>RecordSource</RecordSourceColumnName>", hubXml);
 
-            var satXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawSatellite.xml"));
-            Assert.Contains("<RawSatellite ", satXml);
+            var satXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawHubSatellite.xml"));
+            Assert.Contains("<RawHubSatellite ", satXml);
             Assert.Contains("<Name>OrderSat</Name>", satXml);
+            Assert.Contains("<ParentHubKeyColumnName>OrderHk</ParentHubKeyColumnName>", satXml);
+            Assert.Contains("<HashDiffColumnName>OrderHashDiff</HashDiffColumnName>", satXml);
 
             var linkXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawLink.xml"));
             Assert.Contains("<RawLink ", linkXml);
             Assert.Contains("<Name>FK_Order_Customer</Name>", linkXml);
+            Assert.Contains("<LinkKind>standard</LinkKind>", linkXml);
+            Assert.Contains("<LinkKeyColumnName>FK_Order_CustomerHk</LinkKeyColumnName>", linkXml);
 
             var linkEndXml = File.ReadAllText(Path.Combine(targetPath, "metadata", "instance", "RawLinkEnd.xml"));
             Assert.Contains("<RawLinkEnd ", linkEndXml);
@@ -349,4 +356,6 @@ public sealed class CliTests
         }
     }
 }
+
+
 

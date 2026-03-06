@@ -2,17 +2,11 @@
 
 ## Purpose
 
-`MetaBusinessDataVault` should be the sanctioned Business Data Vault model in the BI stack.
+`MetaBusinessDataVault` is the sanctioned Business Data Vault model in the BI stack.
 
 It exists after raw integration and before downstream warehouse and analysis design.
 
-At this layer, the stack should be able to represent:
-
-- business-driven vault structures
-- business-rule-driven relationshiping and mastering
-- helper structures for performant temporal and relationship traversal
-
-It should not be simplified down to only PIT and Bridge. Business Vault carries a broader family of structures.
+At this layer the sanctioned model should be specific enough to describe real Business Vault structures, not just name them and rely on generator-side conventions.
 
 ## Design inspiration and sources
 
@@ -26,96 +20,154 @@ Verified references used in this draft:
 - Varigence reference values for Data Vault structures: <https://docs.varigence.com/bimlflex/reference-documentation/metadata-static-values.html>
 - dv2.org 2023 notes on effectivity / multi-active / record tracking satellites: <https://www.dv2.org/2023/>
 
-## What Business Data Vault needs to represent
-
-### 1. Business-driven core structures
-
-The Business Vault is not limited to helper tables. It can carry business-driven versions of core Data Vault structures.
-
-That includes:
-
-- business-driven hubs
-- business-driven links
-- business-driven satellites
-
-These are structures produced or reshaped by business logic rather than only mirrored from raw source integration.
-
-### 2. Link variants used in Business Vault
-
-The checked sources support link-level variants beyond the plain raw-link pattern, including same-as and hierarchy-oriented structures, and they show that Business Vault can contain business-logic-driven relationship structures.
-
-The model therefore needs to represent link-level variants such as:
-
-- standard business links
-- same-as links
-- hierarchical links
-- non-historized links
-
-`Exploration link` is still a plausible extension term in practice, but it is weaker in the verified citation set and should be treated as tentative until a better primary source is pinned down.
-
-These variants still share a link-like shape, so the model keeps a common `BusinessLink` structure with an explicit `LinkKind`.
-
-### 3. Satellite variants used in Business Vault
-
-Business Vault also needs to represent satellite variants driven by business rules or helper semantics.
-
-That includes at least:
-
-- standard business satellites
-- derived / calculated satellites
-- status satellites
-- effectivity satellites
-- multi-active satellites
-
-These still behave like satellites, but the subtype matters. The model therefore keeps explicit hub- and link-satellite structures with a `SatelliteKind`.
-
-### 4. Point-in-time structures
-
-PIT tables are part of the Business Vault helper surface and need first-class representation.
-
-The model must be able to represent:
-
-- a PIT structure
-- which business hub it serves
-- which hub satellites it includes
-- which link satellites it includes when relevant
-
-### 5. Bridge structures
-
-Bridge tables are also part of the Business Vault helper surface and need first-class representation.
-
-The model must be able to represent:
-
-- a bridge structure
-- the hubs it spans
-- the links it traverses
-- ordinal or path-position semantics where needed
-
 ## Modeling stance
 
-The sanctioned model should represent the full Business Vault table family, but it does not need to explode every subtype into a separate top-level entity when the table shape is still structurally the same.
+This model is not in architecture space.
 
-So the current modeling split is:
+It is a specific implementation-facing sanctioned model. If generated DDL or other emitted artifacts need the metadata, the sanctioned model should carry that metadata explicitly.
 
-- explicit entities where the structure really differs
-- explicit kind properties where the subtype is a variant of the same structure
+That means the model represents, where applicable:
 
-That leads to:
+- hash key column names
+- reference column names
+- business key column names
+- load timestamp column names
+- record source column names
+- hashdiff column names
+- PIT reference column names
+- bridge reference/path/depth columns when those helper structures require them
 
-- `BusinessHub`
-- `BusinessHubKeyPart`
-- `BusinessLink` + `LinkKind`
-- `BusinessLinkEnd`
-- `BusinessHubSatellite` + `SatelliteKind`
-- `BusinessHubSatelliteAttribute`
-- `BusinessLinkSatellite` + `SatelliteKind`
-- `BusinessLinkSatelliteAttribute`
+## Business Vault structure families
+
+### BusinessHub
+
+A business hub carries the Business Vault hub structure itself, including the mandatory technical columns the emitted table needs.
+
+The sanctioned model therefore carries:
+
+- `Name`
+- `HubKind`
+- `HubKeyColumnName`
+- `LoadTimestampColumnName`
+- `RecordSourceColumnName`
+
+Business key composition is carried explicitly through `BusinessHubKeyPart` rows.
+
+### BusinessHubKeyPart
+
+A hub key part represents one component of the business key carried by the hub.
+
+The sanctioned model carries:
+
+- `Name`
+- `BusinessKeyColumnName`
+- `Ordinal`
+
+### BusinessLink
+
+A business link carries the Business Vault link structure and its mandatory technical columns.
+
+The sanctioned model carries:
+
+- `Name`
+- `LinkKind`
+- `LinkKeyColumnName`
+- `LoadTimestampColumnName`
+- `RecordSourceColumnName`
+
+### BusinessLinkEnd
+
+A business link end represents one participating business hub in a business link.
+
+The sanctioned model carries:
+
+- `Ordinal`
+- `RoleName` when the end is role-qualified
+- `LinkReferenceColumnName`
+- optional `IsDrivingKey` when downstream effectivity semantics need that distinction
+
+### BusinessHubSatellite
+
+A business hub satellite represents descriptive or rule-driven history attached to a business hub.
+
+The sanctioned model carries:
+
+- `Name`
+- `SatelliteKind`
+- `ParentHubKeyColumnName`
+- `LoadTimestampColumnName`
+- `RecordSourceColumnName`
+- `HashDiffColumnName` when the satellite kind uses a hashdiff
+
+Payload structure is represented explicitly through `BusinessHubSatelliteAttribute` rows.
+
+### BusinessLinkSatellite
+
+A business link satellite represents descriptive or rule-driven history attached to a business link.
+
+The sanctioned model carries:
+
+- `Name`
+- `SatelliteKind`
+- `ParentLinkKeyColumnName`
+- `LoadTimestampColumnName`
+- `RecordSourceColumnName`
+- `HashDiffColumnName` when the satellite kind uses a hashdiff
+
+Payload structure is represented explicitly through `BusinessLinkSatelliteAttribute` rows.
+
+### Point-in-time structures
+
+PIT tables are helper structures in Business Vault and therefore need first-class representation.
+
+The sanctioned model carries:
+
 - `BusinessPointInTime`
+  - `Name`
+  - `HubKeyColumnName`
+  - `AsOfTimestampColumnName`
 - `BusinessPointInTimeHubSatellite`
+  - `Ordinal`
+  - `ReferenceColumnName`
 - `BusinessPointInTimeLinkSatellite`
+  - `Ordinal`
+  - `ReferenceColumnName`
+
+### Bridge structures
+
+Bridge tables are helper structures for traversal and performance and need first-class representation.
+
+The sanctioned model carries:
+
 - `BusinessBridge`
+  - `Name`
+  - `BridgeKind`
+  - `RootHubKeyColumnName`
+  - optional `AsOfTimestampColumnName`
+  - optional `DepthColumnName`
+  - optional `PathColumnName`
 - `BusinessBridgeHub`
+  - `Ordinal`
+  - `RoleName`
+  - `BridgeReferenceColumnName`
 - `BusinessBridgeLink`
+  - `Ordinal`
+  - `RoleName`
+  - `BridgeReferenceColumnName`
+
+## Link and satellite variants
+
+The checked sources support link-level and satellite-level variants beyond the plain raw pattern.
+
+The sanctioned model therefore keeps explicit kind properties where the physical structure family is the same but the subtype matters:
+
+- `BusinessLink.LinkKind`
+- `BusinessHubSatellite.SatelliteKind`
+- `BusinessLinkSatellite.SatelliteKind`
+- `BusinessBridge.BridgeKind`
+- `BusinessHub.HubKind`
+
+This keeps the model specific without exploding every subtype into a duplicate top-level entity when the structural family is still the same.
 
 ## What MetaBusinessDataVault should not own
 
@@ -154,7 +206,7 @@ Business Vault should later provide the stronger basis for:
 ## Current sanctioned direction
 
 - keep `meta-datavault` as the tool family
-- keep `MetaRawDataVault` as the current raw sanctioned model
-- add `MetaBusinessDataVault` as a separate sanctioned model beside it
+- keep `MetaRawDataVault` as the raw sanctioned model
+- keep `MetaBusinessDataVault` as the business sanctioned model beside it
 
 That keeps the tool family unified while making the model intent explicit.

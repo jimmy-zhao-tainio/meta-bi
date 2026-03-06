@@ -144,8 +144,10 @@ internal static class Program
             ("RawHubs", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count.ToString()),
             ("RawLinks", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLink").Count.ToString()),
             ("RawLinkEnds", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkEnd").Count.ToString()),
-            ("RawSatellites", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawSatellite").Count.ToString()),
-            ("RawSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawSatelliteAttribute").Count.ToString()));
+            ("RawHubSatellites", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").Count.ToString()),
+            ("RawHubSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count.ToString()),
+            ("RawLinkSatellites", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite").Count.ToString()),
+            ("RawLinkSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").Count.ToString()));
         return 0;
     }
 
@@ -290,4 +292,3 @@ internal static class Program
         return exitCode;
     }
 }
-
