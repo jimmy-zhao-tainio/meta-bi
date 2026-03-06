@@ -224,15 +224,16 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Presenter.WriteInfo("MetaSchema CLI");
         Presenter.WriteUsage("meta-schema <command> [options]");
+        Presenter.WriteInfo(string.Empty);
         Presenter.WriteCommandCatalog(
-            "Commands",
+            "Commands:",
             new[]
             {
                 ("help", "Show this help."),
                 ("extract", "Materialize sanctioned MetaSchema workspaces from external sources.")
             });
+        Presenter.WriteInfo(string.Empty);
         Presenter.WriteNext("meta-schema extract --help");
     }
 
@@ -273,3 +274,4 @@ internal static class Program
         return exitCode;
     }
 }
+

@@ -111,15 +111,16 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Presenter.WriteInfo("MetaType CLI");
         Presenter.WriteUsage("meta-type <command> [options]");
+        Presenter.WriteInfo(string.Empty);
         Presenter.WriteCommandCatalog(
-            "Commands",
+            "Commands:",
             new[]
             {
                 ("help", "Show this help."),
                 ("init", "Create a new MetaType workspace.")
             });
+        Presenter.WriteInfo(string.Empty);
         Presenter.WriteNext("meta-type init --help");
     }
 
@@ -150,3 +151,4 @@ internal static class Program
         return exitCode;
     }
 }
+

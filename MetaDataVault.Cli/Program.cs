@@ -246,16 +246,17 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Presenter.WriteInfo("MetaDataVault CLI");
         Presenter.WriteUsage("meta-datavault <command> [options]");
+        Presenter.WriteInfo(string.Empty);
         Presenter.WriteCommandCatalog(
-            "Commands",
+            "Commands:",
             new[]
             {
                 ("help", "Show this help."),
                 ("init", "Create an empty MetaRawDataVault workspace."),
                 ("from-metaschema", "Consume a MetaSchema workspace and generate raw datavault metadata.")
             });
+        Presenter.WriteInfo(string.Empty);
         Presenter.WriteNext("meta-datavault from-metaschema --help");
     }
 
@@ -289,3 +290,4 @@ internal static class Program
         return exitCode;
     }
 }
+

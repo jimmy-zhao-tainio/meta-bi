@@ -287,10 +287,10 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Presenter.WriteInfo("MetaTypeConversion CLI");
         Presenter.WriteUsage("meta-type-conversion <command> [options]");
+        Presenter.WriteInfo(string.Empty);
         Presenter.WriteCommandCatalog(
-            "Commands",
+            "Commands:",
             new[]
             {
                 ("help", "Show this help."),
@@ -298,6 +298,7 @@ internal static class Program
                 ("check", "Validate sanctioned type mappings."),
                 ("resolve", "Resolve one source type id through the sanctioned mappings.")
             });
+        Presenter.WriteInfo(string.Empty);
         Presenter.WriteNext("meta-type-conversion init --help");
     }
 
@@ -338,3 +339,4 @@ internal static class Program
         return exitCode;
     }
 }
+
