@@ -45,10 +45,16 @@ dotnet build MetaDataVault.sln
 
 This keeps BI work from silently editing foundation code and makes the boundary explicit.
 
-Install the BI CLIs (`meta-schema`, `meta-type`, `meta-type-conversion`, `meta-datavault`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
+Build the installer:
 
 ```cmd
-install-meta-bi.cmd
+dotnet build MetaBi.Installer\MetaBi.Installer.csproj
+```
+
+Then install the BI CLIs (`meta-schema`, `meta-type`, `meta-type-conversion`, `meta-datavault`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
+
+```cmd
+MetaBi.Installer\bin\publish\win-x64\install-meta-bi.exe
 ```
 
 ## Intent
