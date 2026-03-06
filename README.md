@@ -45,6 +45,12 @@ dotnet build MetaDataVault.sln
 
 This keeps BI work from silently editing foundation code and makes the boundary explicit.
 
+Install the BI CLIs (`meta-schema`, `meta-type`, `meta-type-conversion`, `meta-datavault`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
+
+```cmd
+install-meta-bi.cmd
+```
+
 ## Intent
 
 The long-term repo boundary is:
