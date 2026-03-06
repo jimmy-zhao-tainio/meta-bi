@@ -141,6 +141,8 @@ Purpose:
 
 This is the point where the stack stops being purely source-first. Business meaning should not be smeared across `MetaSchema`, `MetaDataVault`, `MetaDataWarehouse`, or semantic-product models.
 
+Boundary note: [META-BUSINESS-BOUNDARY.md](META-BUSINESS-BOUNDARY.md)
+
 ### BI implementation-spec models
 
 - `MetaDataVault`
