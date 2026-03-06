@@ -13,14 +13,32 @@ It also contains BI architecture notes in `docs/`.
 
 ## Current dependency boundary
 
-This is an extracted BI repository, not yet a fully decoupled build.
+This repository now consumes the generic foundation through an internal NuGet package boundary instead of source-level project references.
 
-The projects here still reference foundation projects from `isomorphic-metadata`, especially:
+Current foundation package dependency:
 
 - `Meta.Core`
-- `Meta.Adapters`
 
-So this repository is the first source split, not the final dependency split.
+Before restore/build, add a package source that points at the packed output from `isomorphic-metadata`:
+
+```cmd
+dotnet nuget add source C:\path\to\isomorphic-metadata\.nupkg --name meta-foundation-internal
+```
+
+Then pack the foundation repo and build this repo:
+
+```cmd
+cd C:\path\to\isomorphic-metadata
+pack-internal.cmd
+
+cd C:\path\to\meta-bi
+dotnet build MetaSchema.sln
+dotnet build MetaType.sln
+dotnet build MetaTypeConversion.sln
+dotnet build MetaDataVault.sln
+```
+
+This keeps BI work from silently editing foundation code and makes the boundary explicit.
 
 ## Intent
 

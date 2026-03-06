@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Meta.Core\Meta.Core.csproj" />
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\MetaTypeConversion.Core\MetaTypeConversion.Core.csproj" />
   </ItemGroup>
 
