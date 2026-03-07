@@ -4,13 +4,13 @@
     <RawHubSatelliteImplementation Id="default-raw-hub-satellite">
       <TableNamePattern>HS_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
-      <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
+      <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
       <HashDiffColumnName>HashDiff</HashDiffColumnName>
-      <HashDiffDataType>binary(16)</HashDiffDataType>
+      <HashDiffDataTypeId>sqlserver:type:binary</HashDiffDataTypeId>
       <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
-      <LoadTimestampDataType>datetime2(7)</LoadTimestampDataType>
+      <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
       <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
-      <RecordSourceDataType>nvarchar(256)</RecordSourceDataType>
+      <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
     </RawHubSatelliteImplementation>
   </RawHubSatelliteImplementationList>
 </MetaDataVaultImplementation>

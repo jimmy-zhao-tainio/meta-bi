@@ -57,8 +57,8 @@ flowchart LR
 
   subgraph Specialized["Specialized sanctioned toolchains"]
     MSC["meta-schema"]
-    MTC["meta-type"]
-    MTCC["meta-type-conversion"]
+    MTC["meta-data-type"]
+    MTCC["meta-data-type-conversion"]
     MWC["meta-weave"]
     MDVC["meta-datavault"]
   end
@@ -66,8 +66,8 @@ flowchart LR
   SQL["SQL Server schema"] -->|extract| MSC
   MSC --> MSW["MetaSchema workspace"]
 
-  MTC --> MTW["MetaType workspace"]
-  MTCC --> MTCW["MetaTypeConversion workspace"]
+  MTC --> MTW["MetaDataType workspace"]
+  MTCC --> MTCW["MetaDataTypeConversion workspace"]
 
   MSW --> MWC
   MTW --> MWC
@@ -118,14 +118,14 @@ Purpose:
 ### BI foundation models (product-neutral)
 
 - `MetaSchema`
-- `MetaType`
-- `MetaTypeConversion`
+- `MetaDataType`
+- `MetaDataTypeConversion`
 - `MetaTransform`
 
 Purpose:
 - source-system structure capture (`MetaSchema`)
-- canonical type identity (`MetaType`)
-- mapping and conversion intent (`MetaTypeConversion`)
+- canonical type identity (`MetaDataType`)
+- mapping and conversion intent (`MetaDataTypeConversion`)
 - transformation intent (`MetaTransform`)
 
 These are BI-domain models, but not tied to a single execution product format.
@@ -209,11 +209,11 @@ Current scope:
 Boundary:
 
 - `MetaSchema` should know only `MetaSchema`
-- it should not own `MetaType`, `MetaTypeConversion`, `MetaTransform`, or `MetaWeave`
+- it should not own `MetaDataType`, `MetaDataTypeConversion`, `MetaTransform`, or `MetaWeave`
 - connectors discover facts only
 - connectors do not decide canonical type mappings
 
-### `MetaType`
+### `MetaDataType`
 
 Purpose:
 
@@ -230,7 +230,7 @@ Boundary:
 - type identities live here
 - other models reference those identities through scalar `...Id` properties and weave bindings
 
-### `MetaTypeConversion`
+### `MetaDataTypeConversion`
 
 Purpose:
 
@@ -244,7 +244,7 @@ Current scope:
 
 Boundary:
 
-- `MetaTypeConversion` declares what maps to what
+- `MetaDataTypeConversion` declares what maps to what
 - it does not execute runtime conversions itself
 - downstream tools consume `ConversionImplementationId`
 
@@ -512,8 +512,8 @@ The practical order remains:
 
 1. finish and harden the foundation stack
    - `MetaSchema`
-   - `MetaType`
-   - `MetaTypeConversion`
+   - `MetaDataType`
+   - `MetaDataTypeConversion`
    - `MetaTransform`
    - `MetaWeave`
 2. define `MetaDataVault`

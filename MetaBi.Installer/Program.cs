@@ -20,8 +20,8 @@ if (repoRoot is null)
 var tools = new[]
 {
     new ToolSpec("meta-schema.exe", Path.Combine(repoRoot, "MetaSchema.Cli", "bin", "publish", "win-x64", "meta-schema.exe")),
-    new ToolSpec("meta-type.exe", Path.Combine(repoRoot, "MetaType.Cli", "bin", "publish", "win-x64", "meta-type.exe")),
-    new ToolSpec("meta-type-conversion.exe", Path.Combine(repoRoot, "MetaTypeConversion.Cli", "bin", "publish", "win-x64", "meta-type-conversion.exe")),
+    new ToolSpec("meta-data-type.exe", Path.Combine(repoRoot, "MetaDataType.Cli", "bin", "publish", "win-x64", "meta-data-type.exe")),
+    new ToolSpec("meta-data-type-conversion.exe", Path.Combine(repoRoot, "MetaDataTypeConversion.Cli", "bin", "publish", "win-x64", "meta-data-type-conversion.exe")),
     new ToolSpec("meta-datavault.exe", Path.Combine(repoRoot, "MetaDataVault.Cli", "bin", "publish", "win-x64", "meta-datavault.exe")),
 };
 
@@ -34,8 +34,8 @@ if (missing.Length > 0)
             .Concat(new[]
             {
                 "Next: dotnet build MetaSchema.sln",
-                "Next: dotnet build MetaType.sln",
-                "Next: dotnet build MetaTypeConversion.sln",
+                "Next: dotnet build MetaDataType.sln",
+                "Next: dotnet build MetaDataTypeConversion.sln",
                 "Next: dotnet build MetaDataVault.sln"
             }));
     return 1;

@@ -4,11 +4,11 @@
     <BusinessPointInTimeImplementation Id="default-business-pit">
       <TableNamePattern>PIT_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
-      <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
+      <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
       <SnapshotTimestampColumnName>SnapshotTimestamp</SnapshotTimestampColumnName>
-      <SnapshotTimestampDataType>datetime2(7)</SnapshotTimestampDataType>
+      <SnapshotTimestampDataTypeId>sqlserver:type:datetime2</SnapshotTimestampDataTypeId>
       <SatelliteReferenceColumnNamePattern>{SatelliteName}LoadTimestamp</SatelliteReferenceColumnNamePattern>
-      <SatelliteReferenceDataType>datetime2(7)</SatelliteReferenceDataType>
+      <SatelliteReferenceDataTypeId>sqlserver:type:datetime2</SatelliteReferenceDataTypeId>
     </BusinessPointInTimeImplementation>
   </BusinessPointInTimeImplementationList>
 </MetaDataVaultImplementation>

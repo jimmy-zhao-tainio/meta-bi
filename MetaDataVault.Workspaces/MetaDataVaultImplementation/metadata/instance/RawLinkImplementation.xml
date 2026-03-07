@@ -4,11 +4,11 @@
     <RawLinkImplementation Id="default-raw-link">
       <TableNamePattern>L_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
-      <HashKeyDataType>binary(16)</HashKeyDataType>
+      <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
       <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
-      <LoadTimestampDataType>datetime2(7)</LoadTimestampDataType>
+      <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
       <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
-      <RecordSourceDataType>nvarchar(256)</RecordSourceDataType>
+      <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
     </RawLinkImplementation>
   </RawLinkImplementationList>
 </MetaDataVaultImplementation>

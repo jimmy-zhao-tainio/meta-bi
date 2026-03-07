@@ -5,8 +5,8 @@
 This repository currently contains BI-oriented sanctioned models, CLIs, and docs:
 
 - `MetaSchema.*`
-- `MetaType.*`
-- `MetaTypeConversion.*`
+- `MetaDataType.*`
+- `MetaDataTypeConversion.*`
 - `MetaDataVault.*`
 
 It also contains BI architecture notes in `docs/`.
@@ -38,8 +38,8 @@ pack-internal.cmd
 
 cd C:\path\to\meta-bi
 dotnet build MetaSchema.sln
-dotnet build MetaType.sln
-dotnet build MetaTypeConversion.sln
+dotnet build MetaDataType.sln
+dotnet build MetaDataTypeConversion.sln
 dotnet build MetaDataVault.sln
 ```
 
@@ -51,7 +51,7 @@ Build the installer:
 dotnet build MetaBi.Installer\MetaBi.Installer.csproj
 ```
 
-Then install the BI CLIs (`meta-schema`, `meta-type`, `meta-type-conversion`, `meta-datavault`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
+Then install the BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-datavault`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
 
 ```cmd
 MetaBi.Installer\bin\publish\win-x64\install-meta-bi.exe
@@ -67,6 +67,6 @@ The long-term repo boundary is:
 ## Included solution files
 
 - `MetaSchema.sln`
-- `MetaType.sln`
-- `MetaTypeConversion.sln`
+- `MetaDataType.sln`
+- `MetaDataTypeConversion.sln`
 - `MetaDataVault.sln`

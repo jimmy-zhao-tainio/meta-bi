@@ -4,17 +4,17 @@
     <BusinessBridgeImplementation Id="default-business-bridge">
       <TableNamePattern>BR_{Name}</TableNamePattern>
       <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
-      <RootHashKeyDataType>binary(16)</RootHashKeyDataType>
+      <RootHashKeyDataTypeId>sqlserver:type:binary</RootHashKeyDataTypeId>
       <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>
-      <RelatedHashKeyDataType>binary(16)</RelatedHashKeyDataType>
+      <RelatedHashKeyDataTypeId>sqlserver:type:binary</RelatedHashKeyDataTypeId>
       <DepthColumnName>Depth</DepthColumnName>
-      <DepthDataType>int</DepthDataType>
+      <DepthDataTypeId>sqlserver:type:int</DepthDataTypeId>
       <PathColumnName>Path</PathColumnName>
-      <PathDataType>nvarchar(max)</PathDataType>
+      <PathDataTypeId>sqlserver:type:nvarchar</PathDataTypeId>
       <EffectiveFromColumnName>EffectiveFrom</EffectiveFromColumnName>
-      <EffectiveFromDataType>datetime2(7)</EffectiveFromDataType>
+      <EffectiveFromDataTypeId>sqlserver:type:datetime2</EffectiveFromDataTypeId>
       <EffectiveToColumnName>EffectiveTo</EffectiveToColumnName>
-      <EffectiveToDataType>datetime2(7)</EffectiveToDataType>
+      <EffectiveToDataTypeId>sqlserver:type:datetime2</EffectiveToDataTypeId>
     </BusinessBridgeImplementation>
   </BusinessBridgeImplementationList>
 </MetaDataVaultImplementation>

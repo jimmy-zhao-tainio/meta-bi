@@ -5,124 +5,124 @@
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
-        <Property name="HashKeyDataType" />
+        <Property name="HashKeyDataTypeId" />
         <Property name="LoadTimestampColumnName" />
-        <Property name="LoadTimestampDataType" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="RecordSourceColumnName" />
-        <Property name="RecordSourceDataType" />
+        <Property name="RecordSourceDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="RawLinkImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
-        <Property name="HashKeyDataType" />
+        <Property name="HashKeyDataTypeId" />
         <Property name="LoadTimestampColumnName" />
-        <Property name="LoadTimestampDataType" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="RecordSourceColumnName" />
-        <Property name="RecordSourceDataType" />
+        <Property name="RecordSourceDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="RawHubSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
-        <Property name="ParentHashKeyDataType" />
+        <Property name="ParentHashKeyDataTypeId" />
         <Property name="HashDiffColumnName" />
-        <Property name="HashDiffDataType" />
+        <Property name="HashDiffDataTypeId" />
         <Property name="LoadTimestampColumnName" />
-        <Property name="LoadTimestampDataType" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="RecordSourceColumnName" />
-        <Property name="RecordSourceDataType" />
+        <Property name="RecordSourceDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="RawLinkSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
-        <Property name="ParentHashKeyDataType" />
+        <Property name="ParentHashKeyDataTypeId" />
         <Property name="HashDiffColumnName" />
-        <Property name="HashDiffDataType" />
+        <Property name="HashDiffDataTypeId" />
         <Property name="LoadTimestampColumnName" />
-        <Property name="LoadTimestampDataType" />
+        <Property name="LoadTimestampDataTypeId" />
         <Property name="RecordSourceColumnName" />
-        <Property name="RecordSourceDataType" />
+        <Property name="RecordSourceDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHubImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
-        <Property name="HashKeyDataType" />
+        <Property name="HashKeyDataTypeId" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataType" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
         <Property name="RecordSourceColumnName" isRequired="false" />
-        <Property name="RecordSourceDataType" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessLinkImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
-        <Property name="HashKeyDataType" />
+        <Property name="HashKeyDataTypeId" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataType" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
         <Property name="RecordSourceColumnName" isRequired="false" />
-        <Property name="RecordSourceDataType" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHubSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
-        <Property name="ParentHashKeyDataType" />
+        <Property name="ParentHashKeyDataTypeId" />
         <Property name="HashDiffColumnName" isRequired="false" />
-        <Property name="HashDiffDataType" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataType" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
         <Property name="RecordSourceColumnName" isRequired="false" />
-        <Property name="RecordSourceDataType" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessLinkSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
-        <Property name="ParentHashKeyDataType" />
+        <Property name="ParentHashKeyDataTypeId" />
         <Property name="HashDiffColumnName" isRequired="false" />
-        <Property name="HashDiffDataType" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
-        <Property name="LoadTimestampDataType" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
         <Property name="RecordSourceColumnName" isRequired="false" />
-        <Property name="RecordSourceDataType" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessPointInTimeImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
-        <Property name="ParentHashKeyDataType" />
+        <Property name="ParentHashKeyDataTypeId" />
         <Property name="SnapshotTimestampColumnName" />
-        <Property name="SnapshotTimestampDataType" />
+        <Property name="SnapshotTimestampDataTypeId" />
         <Property name="SatelliteReferenceColumnNamePattern" />
-        <Property name="SatelliteReferenceDataType" />
+        <Property name="SatelliteReferenceDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessBridgeImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="RootHashKeyColumnName" />
-        <Property name="RootHashKeyDataType" />
+        <Property name="RootHashKeyDataTypeId" />
         <Property name="RelatedHashKeyColumnName" />
-        <Property name="RelatedHashKeyDataType" />
+        <Property name="RelatedHashKeyDataTypeId" />
         <Property name="DepthColumnName" isRequired="false" />
-        <Property name="DepthDataType" isRequired="false" />
+        <Property name="DepthDataTypeId" isRequired="false" />
         <Property name="PathColumnName" isRequired="false" />
-        <Property name="PathDataType" isRequired="false" />
+        <Property name="PathDataTypeId" isRequired="false" />
         <Property name="EffectiveFromColumnName" isRequired="false" />
-        <Property name="EffectiveFromDataType" isRequired="false" />
+        <Property name="EffectiveFromDataTypeId" isRequired="false" />
         <Property name="EffectiveToColumnName" isRequired="false" />
-        <Property name="EffectiveToDataType" isRequired="false" />
+        <Property name="EffectiveToDataTypeId" isRequired="false" />
       </PropertyList>
     </Entity>
   </EntityList>
