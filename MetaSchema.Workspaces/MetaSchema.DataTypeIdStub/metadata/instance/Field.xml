@@ -6,7 +6,6 @@
       <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
       <Ordinal>1</Ordinal>
       <IsNullable>false</IsNullable>
-      <Length>255</Length>
     </Field>
   </FieldList>
 </MetaSchema>

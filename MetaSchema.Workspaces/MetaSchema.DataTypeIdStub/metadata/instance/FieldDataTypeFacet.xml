@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldDataTypeFacetList>
+    <FieldDataTypeFacet Id="metaschema:stub:field:facet:Length" FieldId="metaschema:stub:field">
+      <Name>Length</Name>
+      <Value>255</Value>
+    </FieldDataTypeFacet>
+  </FieldDataTypeFacetList>
+</MetaSchema>

@@ -143,22 +143,12 @@ public sealed class SqlServerSchemaExtractor
                         values["DataTypeId"] = BuildDataTypeId(columnRow.DataTypeName);
                         values["Ordinal"] = columnRow.OrdinalPosition.ToString(System.Globalization.CultureInfo.InvariantCulture);
                         values["IsNullable"] = columnRow.IsNullable ? "true" : "false";
-                        if (columnRow.Length.HasValue)
-                        {
-                            values["Length"] = columnRow.Length.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                        }
-
-                        if (columnRow.NumericPrecision.HasValue)
-                        {
-                            values["NumericPrecision"] = columnRow.NumericPrecision.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                        }
-
-                        if (columnRow.Scale.HasValue)
-                        {
-                            values["Scale"] = columnRow.Scale.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                        }
                     },
                     relationships => relationships["TableId"] = tableId);
+
+                AddFieldDataTypeFacet(workspace, fieldId, "Length", columnRow.Length);
+                AddFieldDataTypeFacet(workspace, fieldId, "NumericPrecision", columnRow.NumericPrecision);
+                AddFieldDataTypeFacet(workspace, fieldId, "Scale", columnRow.Scale);
             }
 
             var foreignKeyColumnsByName = foreignKeyColumns
@@ -435,6 +425,25 @@ public sealed class SqlServerSchemaExtractor
     private static string BuildFieldId(string databaseName, string schemaName, string tableName, string columnName)
     {
         return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":field:" + columnName;
+    }
+
+    private static void AddFieldDataTypeFacet(Workspace workspace, string fieldId, string facetName, int? facetValue)
+    {
+        if (!facetValue.HasValue)
+        {
+            return;
+        }
+
+        AddRecord(
+            workspace,
+            "FieldDataTypeFacet",
+            fieldId + ":facet:" + facetName,
+            values =>
+            {
+                values["Name"] = facetName;
+                values["Value"] = facetValue.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            },
+            relationships => relationships["FieldId"] = fieldId);
     }
 
     private static string BuildRelationshipId(string databaseName, string schemaName, string tableName, string relationshipName)

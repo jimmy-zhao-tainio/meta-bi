@@ -30,12 +30,18 @@
         <Property name="DataTypeId" />
         <Property name="Ordinal" isRequired="false" />
         <Property name="IsNullable" isRequired="false" />
-        <Property name="Length" isRequired="false" />
-        <Property name="NumericPrecision" isRequired="false" />
-        <Property name="Scale" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FieldDataTypeFacet">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Field" />
       </RelationshipList>
     </Entity>
     <Entity name="TableRelationship">
