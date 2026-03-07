@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaBusiness">
   <EntityList>
+    <Entity name="BusinessObject">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
     <Entity name="BusinessProcess">
       <PropertyList>
         <Property name="Description" isRequired="false" />
@@ -19,7 +25,7 @@
         <Property name="Name" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BusinessProcess" />
+        <Relationship entity="BusinessObject" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessKeyPart">
@@ -60,6 +66,15 @@
       <RelationshipList>
         <Relationship entity="BusinessProcess" />
         <Relationship entity="BusinessRole" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessProcessBusinessObject">
+      <PropertyList>
+        <Property name="RelationshipKind" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessProcess" />
+        <Relationship entity="BusinessObject" />
       </RelationshipList>
     </Entity>
     <Entity name="OrganizationUnitBusinessProcess">

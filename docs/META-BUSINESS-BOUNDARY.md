@@ -11,7 +11,8 @@ At this stage it should answer:
 - how those processes decompose
 - which roles participate in them
 - how organization units align to those processes
-- which business keys identify those processes and the things they care about
+- which business objects the business cares about
+- which business keys identify those business objects
 
 It should stay at business-map level. It should not yet drop into analytical design details such as measures or semantic-model structure.
 
@@ -19,7 +20,7 @@ It should stay at business-map level. It should not yet drop into analytical des
 
 This boundary is informed by established business-architecture and process-modeling material, without importing any external standard wholesale:
 
-- The Open Group ArchiMate business layer: organization, roles, and business processes
+- The Open Group ArchiMate business layer: organization, roles, business objects, and business processes
 - APQC Process Classification Framework: hierarchical process decomposition
 - OMG BPMN: process-oriented communication
 
@@ -58,15 +59,17 @@ That includes:
 
 This is where the org chart belongs.
 
-### 3. Business identity
+### 3. Business objects and identity
 
-`MetaBusiness` should own business-key intent as business meaning, not as detached technical metadata.
+`MetaBusiness` should own the business things that processes act on and analytics eventually care about.
 
 That includes:
 
+- business objects
 - business keys
 - ordered business-key parts
-- which business process a business key belongs to
+- which business object a business key identifies
+- which business processes relate to which business objects
 
 `MetaBusiness` should not map those keys directly to source fields. That binding belongs in weave.
 
@@ -144,6 +147,7 @@ What it should preserve is the structure that later analytical models can consum
 - process hierarchy
 - organization hierarchy
 - role participation
+- business objects and business identity
 - organization-to-process scope
 
 That is enough groundwork for later inference of analytical groupings without pretending to define measures too early.
@@ -155,7 +159,10 @@ The first version of `MetaBusiness` should stay minimal and strong:
 - business process hierarchy
 - organization hierarchy
 - business roles
+- business objects
+- business keys and business-key parts
 - process participation by role
+- process-to-business-object alignment
 - organization-unit to business-process alignment
 
 That is enough to make it real without overcommitting early.
@@ -168,9 +175,9 @@ With `MetaBusiness`, the stack gets a business-side map:
 
 - what the organization does
 - who does it
+- what business objects it works with
 - how work decomposes
 - which process areas each part of the organization is tied to
+- which business identities justify downstream integration
 
-That structure can later guide analytical organization, aggregation scope, and model generation without forcing analytical details into the business model too early.
-
-
+That structure can later guide raw-vault justification, business-vault consistency, analytical organization, aggregation scope, and model generation without forcing analytical details into the business model too early.
