@@ -23,7 +23,7 @@ internal static class MetaDataTypeConversionSeed
             instance.GetOrCreateEntityRecords("ConversionImplementation").Add(record);
         }
 
-        foreach (var mapping in MetaDataTypeConversionSeedData.TypeMappings)
+        foreach (var mapping in MetaDataTypeConversionSeedData.DataTypeMappings)
         {
             var record = new GenericRecord
             {
@@ -33,14 +33,14 @@ internal static class MetaDataTypeConversionSeed
                     ["ConversionImplementationId"] = mapping.ConversionImplementationId
                 }
             };
-            record.Values["SourceTypeId"] = mapping.SourceTypeId;
-            record.Values["TargetTypeId"] = mapping.TargetTypeId;
+            record.Values["SourceDataTypeId"] = mapping.SourceDataTypeId;
+            record.Values["TargetDataTypeId"] = mapping.TargetDataTypeId;
             if (!string.IsNullOrWhiteSpace(mapping.Notes))
             {
                 record.Values["Notes"] = mapping.Notes;
             }
 
-            instance.GetOrCreateEntityRecords("TypeMapping").Add(record);
+            instance.GetOrCreateEntityRecords("DataTypeMapping").Add(record);
         }
     }
 }

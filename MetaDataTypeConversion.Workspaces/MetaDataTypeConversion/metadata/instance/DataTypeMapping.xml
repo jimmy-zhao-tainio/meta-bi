@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataTypeConversion>
+  <DataTypeMappingList>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:bigint" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:bigint</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Int64</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:binary" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:binary</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Binary</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:bit" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:bit</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Boolean</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:char" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:char</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:AnsiStringFixedLength</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:date" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:date</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Date</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:datetime" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:datetime</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:DateTime</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:datetime2" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:datetime2</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:DateTime2</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:datetimeoffset" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:datetimeoffset</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:DateTimeOffset</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:decimal" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:decimal</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Decimal</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:float" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:float</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Double</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:geography" ConversionImplementationId="MetaDataTypeConversion:implementation:structural">
+      <SourceDataTypeId>sqlserver:type:geography</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:geography</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:geometry" ConversionImplementationId="MetaDataTypeConversion:implementation:structural">
+      <SourceDataTypeId>sqlserver:type:geometry</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:geometry</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:hierarchyid" ConversionImplementationId="MetaDataTypeConversion:implementation:structural">
+      <SourceDataTypeId>sqlserver:type:hierarchyid</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:hierarchyid</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:int" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:int</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Int32</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:money" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:money</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Decimal</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:nchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:nchar</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:StringFixedLength</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:nvarchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:nvarchar</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:String</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:smallint" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:smallint</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Int16</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:smallmoney" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:smallmoney</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Decimal</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:sql_variant" ConversionImplementationId="MetaDataTypeConversion:implementation:structural">
+      <SourceDataTypeId>sqlserver:type:sql_variant</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Object</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:time" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:time</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Time</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:tinyint" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:tinyint</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Byte</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:uniqueidentifier" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:uniqueidentifier</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Guid</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:varbinary" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:varbinary</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Binary</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:varchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:varchar</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:AnsiString</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:xml" ConversionImplementationId="MetaDataTypeConversion:implementation:structural">
+      <SourceDataTypeId>sqlserver:type:xml</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Xml</TargetDataTypeId>
+    </DataTypeMapping>
+  </DataTypeMappingList>
+</MetaDataTypeConversion>

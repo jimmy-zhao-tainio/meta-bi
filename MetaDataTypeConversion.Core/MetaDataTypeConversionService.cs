@@ -2,10 +2,10 @@ using Meta.Core.Domain;
 
 namespace MetaDataTypeConversion.Core;
 
-public sealed record TypeMappingResolution(
+public sealed record DataTypeMappingResolution(
     string MappingId,
-    string SourceTypeId,
-    string TargetTypeId,
+    string SourceDataTypeId,
+    string TargetDataTypeId,
     string ConversionImplementationId,
     string ConversionImplementationName,
     string? Notes);
@@ -21,7 +21,7 @@ public sealed record MetaDataTypeConversionCheckResult(
 public interface IMetaDataTypeConversionService
 {
     MetaDataTypeConversionCheckResult Check(Workspace workspace);
-    TypeMappingResolution Resolve(Workspace workspace, string sourceTypeId);
+    DataTypeMappingResolution Resolve(Workspace workspace, string sourceDataTypeId);
 }
 
 public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionService
@@ -33,7 +33,7 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
         var implementations = workspace.Instance.GetOrCreateEntityRecords("ConversionImplementation")
             .OrderBy(record => record.Id, StringComparer.Ordinal)
             .ToList();
-        var mappings = workspace.Instance.GetOrCreateEntityRecords("TypeMapping")
+        var mappings = workspace.Instance.GetOrCreateEntityRecords("DataTypeMapping")
             .OrderBy(record => record.Id, StringComparer.Ordinal)
             .ToList();
 
@@ -42,41 +42,41 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
 
         foreach (var mapping in mappings)
         {
-            var sourceTypeId = RequireValue(mapping, "SourceTypeId");
-            var targetTypeId = RequireValue(mapping, "TargetTypeId");
-            _ = targetTypeId;
+            var sourceDataTypeId = RequireValue(mapping, "SourceDataTypeId");
+            _ = RequireValue(mapping, "TargetDataTypeId");
+
 
             if (!mapping.RelationshipIds.TryGetValue("ConversionImplementationId", out var implementationId) ||
                 string.IsNullOrWhiteSpace(implementationId))
             {
-                errors.Add($"TypeMapping '{mapping.Id}' is missing required relationship 'ConversionImplementationId'.");
+                errors.Add($"DataTypeMapping '{mapping.Id}' is missing required relationship 'ConversionImplementationId'.");
                 continue;
             }
 
             if (!implementationById.ContainsKey(implementationId))
             {
-                errors.Add($"TypeMapping '{mapping.Id}' references missing ConversionImplementation '{implementationId}'.");
+                errors.Add($"DataTypeMapping '{mapping.Id}' references missing ConversionImplementation '{implementationId}'.");
             }
         }
 
         var duplicateSources = mappings
-            .GroupBy(record => RequireValue(record, "SourceTypeId"), StringComparer.Ordinal)
+            .GroupBy(record => RequireValue(record, "SourceDataTypeId"), StringComparer.Ordinal)
             .Where(group => group.Count() > 1)
             .OrderBy(group => group.Key, StringComparer.Ordinal);
 
         foreach (var duplicateSource in duplicateSources)
         {
             var ids = string.Join(", ", duplicateSource.Select(record => record.Id).OrderBy(id => id, StringComparer.Ordinal));
-            errors.Add($"SourceTypeId '{duplicateSource.Key}' is mapped more than once ({ids}).");
+            errors.Add($"SourceDataTypeId '{duplicateSource.Key}' is mapped more than once ({ids}).");
         }
 
         return new MetaDataTypeConversionCheckResult(mappings.Count, implementations.Count, errors);
     }
 
-    public TypeMappingResolution Resolve(Workspace workspace, string sourceTypeId)
+    public DataTypeMappingResolution Resolve(Workspace workspace, string sourceDataTypeId)
     {
         ArgumentNullException.ThrowIfNull(workspace);
-        ArgumentException.ThrowIfNullOrWhiteSpace(sourceTypeId);
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourceDataTypeId);
 
         var check = Check(workspace);
         if (check.HasErrors)
@@ -84,18 +84,18 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
             throw new InvalidOperationException("MetaDataTypeConversion workspace is invalid. Run 'meta-data-type-conversion check' first.");
         }
 
-        var mappings = workspace.Instance.GetOrCreateEntityRecords("TypeMapping")
-            .Where(record => string.Equals(RequireValue(record, "SourceTypeId"), sourceTypeId, StringComparison.Ordinal))
+        var mappings = workspace.Instance.GetOrCreateEntityRecords("DataTypeMapping")
+            .Where(record => string.Equals(RequireValue(record, "SourceDataTypeId"), sourceDataTypeId, StringComparison.Ordinal))
             .ToList();
 
         if (mappings.Count == 0)
         {
-            throw new InvalidOperationException($"No TypeMapping exists for source type '{sourceTypeId}'.");
+            throw new InvalidOperationException($"No DataTypeMapping exists for source data type '{sourceDataTypeId}'.");
         }
 
         if (mappings.Count > 1)
         {
-            throw new InvalidOperationException($"Source type '{sourceTypeId}' resolves ambiguously to {mappings.Count} TypeMappings.");
+            throw new InvalidOperationException($"Source data type '{sourceDataTypeId}' resolves ambiguously to {mappings.Count} DataTypeMappings.");
         }
 
         var mapping = mappings[0];
@@ -105,10 +105,10 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
         var implementationId = mapping.RelationshipIds["ConversionImplementationId"];
         var implementation = implementations[implementationId];
 
-        return new TypeMappingResolution(
+        return new DataTypeMappingResolution(
             mapping.Id,
-            RequireValue(mapping, "SourceTypeId"),
-            RequireValue(mapping, "TargetTypeId"),
+            RequireValue(mapping, "SourceDataTypeId"),
+            RequireValue(mapping, "TargetDataTypeId"),
             implementationId,
             RequireValue(implementation, "Name"),
             mapping.Values.TryGetValue("Notes", out var notes) ? notes : null);

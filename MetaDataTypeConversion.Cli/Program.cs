@@ -76,7 +76,7 @@ internal static class Program
             ("Path", workspacePath),
             ("Model", workspace.Model.Name),
             ("ConversionImplementations", workspace.Instance.GetOrCreateEntityRecords("ConversionImplementation").Count.ToString()),
-            ("TypeMappings", workspace.Instance.GetOrCreateEntityRecords("TypeMapping").Count.ToString()));
+            ("DataTypeMappings", workspace.Instance.GetOrCreateEntityRecords("DataTypeMapping").Count.ToString()));
         return 0;
     }
 
@@ -114,7 +114,7 @@ internal static class Program
             "MetaDataTypeConversion check",
             ("Workspace", Path.GetFullPath(parseResult.WorkspacePath)),
             ("ConversionImplementations", result.ImplementationCount.ToString()),
-            ("TypeMappings", result.MappingCount.ToString()),
+            ("DataTypeMappings", result.MappingCount.ToString()),
             ("Errors", "0"));
         return 0;
     }
@@ -145,12 +145,12 @@ internal static class Program
 
         try
         {
-            var resolution = new MetaDataTypeConversionService().Resolve(workspace, parseResult.SourceTypeId);
+            var resolution = new MetaDataTypeConversionService().Resolve(workspace, parseResult.SourceDataTypeId);
             var details = new List<(string Key, string Value)>
             {
                 ("Workspace", Path.GetFullPath(parseResult.WorkspacePath)),
-                ("SourceTypeId", resolution.SourceTypeId),
-                ("TargetTypeId", resolution.TargetTypeId),
+                ("SourceDataTypeId", resolution.SourceDataTypeId),
+                ("TargetDataTypeId", resolution.TargetDataTypeId),
                 ("ConversionImplementation", resolution.ConversionImplementationName)
             };
 
@@ -232,16 +232,16 @@ internal static class Program
         return (true, workspacePath, string.Empty);
     }
 
-    private static (bool Ok, string WorkspacePath, string SourceTypeId, string ErrorMessage) ParseResolveArgs(string[] args, int startIndex)
+    private static (bool Ok, string WorkspacePath, string SourceDataTypeId, string ErrorMessage) ParseResolveArgs(string[] args, int startIndex)
     {
         var workspacePath = string.Empty;
-        var sourceTypeId = string.Empty;
+        var sourceDataTypeId = string.Empty;
         for (var i = startIndex; i < args.Length; i++)
         {
             var arg = args[i];
             if (i + 1 >= args.Length)
             {
-                return (false, workspacePath, sourceTypeId, $"missing value for {arg}.");
+                return (false, workspacePath, sourceDataTypeId, $"missing value for {arg}.");
             }
 
             switch (arg.ToLowerInvariant())
@@ -249,33 +249,33 @@ internal static class Program
                 case "--workspace":
                     if (!string.IsNullOrWhiteSpace(workspacePath))
                     {
-                        return (false, workspacePath, sourceTypeId, "--workspace can only be provided once.");
+                        return (false, workspacePath, sourceDataTypeId, "--workspace can only be provided once.");
                     }
                     workspacePath = args[++i];
                     break;
-                case "--source-type":
-                    if (!string.IsNullOrWhiteSpace(sourceTypeId))
+                case "--source-data-type":
+                    if (!string.IsNullOrWhiteSpace(sourceDataTypeId))
                     {
-                        return (false, workspacePath, sourceTypeId, "--source-type can only be provided once.");
+                        return (false, workspacePath, sourceDataTypeId, "--source-data-type can only be provided once.");
                     }
-                    sourceTypeId = args[++i];
+                    sourceDataTypeId = args[++i];
                     break;
                 default:
-                    return (false, workspacePath, sourceTypeId, $"unknown option '{arg}'.");
+                    return (false, workspacePath, sourceDataTypeId, $"unknown option '{arg}'.");
             }
         }
 
         if (string.IsNullOrWhiteSpace(workspacePath))
         {
-            return (false, string.Empty, sourceTypeId, "missing required option --workspace <path>.");
+            return (false, string.Empty, sourceDataTypeId, "missing required option --workspace <path>.");
         }
 
-        if (string.IsNullOrWhiteSpace(sourceTypeId))
+        if (string.IsNullOrWhiteSpace(sourceDataTypeId))
         {
-            return (false, workspacePath, string.Empty, "missing required option --source-type <id>.");
+            return (false, workspacePath, string.Empty, "missing required option --source-data-type <id>.");
         }
 
-        return (true, workspacePath, sourceTypeId, string.Empty);
+        return (true, workspacePath, sourceDataTypeId, string.Empty);
     }
 
     private static bool IsHelpToken(string value)
@@ -296,7 +296,7 @@ internal static class Program
                 ("help", "Show this help."),
                 ("init", "Create a new MetaDataTypeConversion workspace."),
                 ("check", "Validate sanctioned type mappings."),
-                ("resolve", "Resolve one source type id through the sanctioned mappings.")
+                ("resolve", "Resolve one source data type id through the sanctioned mappings.")
             });
         Presenter.WriteInfo(string.Empty);
         Presenter.WriteNext("meta-data-type-conversion init --help");
@@ -315,15 +315,15 @@ internal static class Program
         Presenter.WriteInfo("Command: check");
         Presenter.WriteUsage("meta-data-type-conversion check --workspace <path>");
         Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Validates that each source type maps deterministically and that every mapping references a real ConversionImplementation.");
+        Presenter.WriteInfo("  Validates that each source data type maps deterministically and that every mapping references a real ConversionImplementation.");
     }
 
     private static void PrintResolveHelp()
     {
         Presenter.WriteInfo("Command: resolve");
-        Presenter.WriteUsage("meta-data-type-conversion resolve --workspace <path> --source-type <id>");
+        Presenter.WriteUsage("meta-data-type-conversion resolve --workspace <path> --source-data-type <id>");
         Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Resolves one source type id to its target type id and conversion implementation.");
+        Presenter.WriteInfo("  Resolves one source data type id to its target data type id and conversion implementation.");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

@@ -64,9 +64,9 @@ internal static class Program
             "MetaDataType workspace created",
             ("Path", workspacePath),
             ("Model", workspace.Model.Name),
-            ("TypeSystems", workspace.Instance.GetOrCreateEntityRecords("TypeSystem").Count.ToString()),
-            ("Types", workspace.Instance.GetOrCreateEntityRecords("Type").Count.ToString()),
-            ("TypeSpecs", workspace.Instance.GetOrCreateEntityRecords("TypeSpec").Count.ToString()));
+            ("DataTypeSystems", workspace.Instance.GetOrCreateEntityRecords("DataTypeSystem").Count.ToString()),
+            ("DataTypes", workspace.Instance.GetOrCreateEntityRecords("DataType").Count.ToString()));
+            
         return 0;
     }
 

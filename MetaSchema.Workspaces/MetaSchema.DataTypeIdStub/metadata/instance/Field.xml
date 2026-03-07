@@ -3,7 +3,7 @@
   <FieldList>
     <Field Id="metaschema:stub:field" TableId="metaschema:stub:table">
       <Name>CubeName</Name>
-      <TypeId>sqlserver:type:nvarchar</TypeId>
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
       <Ordinal>1</Ordinal>
       <IsNullable>false</IsNullable>
       <Length>255</Length>

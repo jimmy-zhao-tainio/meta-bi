@@ -204,7 +204,7 @@ Current scope:
 - schemas
 - tables
 - fields
-- field `TypeId`
+- field `DataTypeId`
 
 Boundary:
 
@@ -221,9 +221,9 @@ Purpose:
 
 Current scope:
 
-- `TypeSystem`
-- `Type`
-- `TypeSpec`
+- `DataTypeSystem`
+- `DataType`
+
 
 Boundary:
 

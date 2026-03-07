@@ -2,18 +2,9 @@ namespace MetaDataType.Core;
 
 internal static class MetaDataTypeSeedData
 {
-    internal readonly record struct TypeSeed(string TypeSystem, string Name, string? Category);
-    internal readonly record struct TypeSpecSeed(
-        string TypeSystem,
-        string Type,
-        int? Length = null,
-        int? Precision = null,
-        int? Scale = null,
-        int? TimePrecision = null,
-        bool? IsUnicode = null,
-        bool? IsFixedLength = null);
+    internal readonly record struct DataTypeSeed(string DataTypeSystem, string Name, string? Category);
 
-    public static readonly string[] TypeSystems =
+    public static readonly string[] DataTypeSystems =
     [
         "Meta",
         "SqlServer",
@@ -23,7 +14,7 @@ internal static class MetaDataTypeSeedData
         "CSharp",
     ];
 
-    public static readonly TypeSeed[] Types =
+    public static readonly DataTypeSeed[] DataTypes =
     [
         new("Meta", "String", "Text"),
         new("Meta", "AnsiString", "Text"),
@@ -137,29 +128,5 @@ internal static class MetaDataTypeSeedData
         new("CSharp", "Guid", "Identifier"),
         new("CSharp", "byte[]", "Binary"),
         new("CSharp", "object", "Structured"),
-    ];
-
-    public static readonly TypeSpecSeed[] TypeSpecs =
-    [
-        new("Meta", "String", Length: 255, IsUnicode: true, IsFixedLength: false),
-        new("Meta", "AnsiString", Length: 255, IsUnicode: false, IsFixedLength: false),
-        new("Meta", "StringFixedLength", Length: 64, IsUnicode: true, IsFixedLength: true),
-        new("Meta", "AnsiStringFixedLength", Length: 64, IsUnicode: false, IsFixedLength: true),
-        new("Meta", "Decimal", Precision: 18, Scale: 0),
-        new("Meta", "VarNumeric", Precision: 38, Scale: 10),
-        new("Meta", "Single", Precision: 24),
-        new("Meta", "Double", Precision: 53),
-        new("Meta", "Time", TimePrecision: 7),
-        new("Meta", "DateTime2", TimePrecision: 7),
-        new("Meta", "DateTimeOffset", TimePrecision: 7),
-        new("Meta", "Binary", Length: 8000),
-        new("SqlServer", "varchar", Length: 255, IsUnicode: false, IsFixedLength: false),
-        new("SqlServer", "nvarchar", Length: 255, IsUnicode: true, IsFixedLength: false),
-        new("SqlServer", "decimal", Precision: 18, Scale: 0),
-        new("SqlServer", "time", TimePrecision: 7),
-        new("SqlServer", "datetime2", TimePrecision: 7),
-        new("SqlServer", "varbinary", Length: 8000),
-        new("Synapse", "varchar", Length: 8000),
-        new("Snowflake", "timestamp_tz", TimePrecision: 9),
     ];
 }

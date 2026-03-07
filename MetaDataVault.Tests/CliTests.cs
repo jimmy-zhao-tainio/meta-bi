@@ -155,7 +155,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "OrderId",
-                ["TypeId"] = "sqlserver:type:int",
+                ["DataTypeId"] = "sqlserver:type:int",
                 ["Ordinal"] = "1"
             },
             RelationshipIds =
@@ -170,7 +170,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "OrderNumber",
-                ["TypeId"] = "sqlserver:type:nvarchar",
+                ["DataTypeId"] = "sqlserver:type:nvarchar",
                 ["Ordinal"] = "2"
             },
             RelationshipIds =
@@ -185,7 +185,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "CustomerId",
-                ["TypeId"] = "sqlserver:type:int",
+                ["DataTypeId"] = "sqlserver:type:int",
                 ["Ordinal"] = "3"
             },
             RelationshipIds =
@@ -200,7 +200,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "CustomerId",
-                ["TypeId"] = "sqlserver:type:int",
+                ["DataTypeId"] = "sqlserver:type:int",
                 ["Ordinal"] = "1"
             },
             RelationshipIds =
@@ -215,7 +215,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "CustomerName",
-                ["TypeId"] = "sqlserver:type:nvarchar",
+                ["DataTypeId"] = "sqlserver:type:nvarchar",
                 ["Ordinal"] = "2"
             },
             RelationshipIds =

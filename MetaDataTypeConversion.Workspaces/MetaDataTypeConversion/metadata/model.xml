@@ -7,11 +7,11 @@
         <Property name="Name" />
       </PropertyList>
     </Entity>
-    <Entity name="TypeMapping">
+    <Entity name="DataTypeMapping">
       <PropertyList>
         <Property name="Notes" isRequired="false" />
-        <Property name="SourceTypeId" />
-        <Property name="TargetTypeId" />
+        <Property name="SourceDataTypeId" />
+        <Property name="TargetDataTypeId" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="ConversionImplementation" />

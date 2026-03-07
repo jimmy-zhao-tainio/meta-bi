@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataType>
+  <DataTypeSystemList>
+    <DataTypeSystem Id="csharp:type-system">
+      <Name>CSharp</Name>
+    </DataTypeSystem>
+    <DataTypeSystem Id="meta:type-system">
+      <Name>Meta</Name>
+    </DataTypeSystem>
+    <DataTypeSystem Id="snowflake:type-system">
+      <Name>Snowflake</Name>
+    </DataTypeSystem>
+    <DataTypeSystem Id="sqlserver:type-system">
+      <Name>SqlServer</Name>
+    </DataTypeSystem>
+    <DataTypeSystem Id="ssis:type-system">
+      <Name>SSIS</Name>
+    </DataTypeSystem>
+    <DataTypeSystem Id="synapse:type-system">
+      <Name>Synapse</Name>
+    </DataTypeSystem>
+  </DataTypeSystemList>
+</MetaDataType>

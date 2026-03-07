@@ -140,7 +140,7 @@ public sealed class SqlServerSchemaExtractor
                     values =>
                     {
                         values["Name"] = columnRow.ColumnName;
-                        values["TypeId"] = BuildTypeId(columnRow.DataTypeName);
+                        values["DataTypeId"] = BuildDataTypeId(columnRow.DataTypeName);
                         values["Ordinal"] = columnRow.OrdinalPosition.ToString(System.Globalization.CultureInfo.InvariantCulture);
                         values["IsNullable"] = columnRow.IsNullable ? "true" : "false";
                         if (columnRow.Length.HasValue)
@@ -427,7 +427,7 @@ public sealed class SqlServerSchemaExtractor
         return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName;
     }
 
-    private static string BuildTypeId(string dataTypeName)
+    private static string BuildDataTypeId(string dataTypeName)
     {
         return "sqlserver:type:" + dataTypeName;
     }

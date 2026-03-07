@@ -3,7 +3,7 @@ namespace MetaDataTypeConversion.Core;
 internal static class MetaDataTypeConversionSeedData
 {
     internal readonly record struct ConversionImplementationSeed(string Id, string Name, string? Description = null);
-    internal readonly record struct TypeMappingSeed(string Id, string SourceTypeId, string TargetTypeId, string ConversionImplementationId, string? Notes = null);
+    internal readonly record struct DataTypeMappingSeed(string Id, string SourceDataTypeId, string TargetDataTypeId, string ConversionImplementationId, string? Notes = null);
 
     public static readonly ConversionImplementationSeed[] ConversionImplementations =
     [
@@ -11,7 +11,7 @@ internal static class MetaDataTypeConversionSeedData
         new("MetaDataTypeConversion:implementation:structural", "Structural", "Structural sanctioned type mapping for non-scalar types.")
     ];
 
-    public static readonly TypeMappingSeed[] TypeMappings =
+    public static readonly DataTypeMappingSeed[] DataTypeMappings =
     [
         new("MetaDataTypeConversion:mapping:sqlserver:char", "sqlserver:type:char", "meta:type:AnsiStringFixedLength", "MetaDataTypeConversion:implementation:direct"),
         new("MetaDataTypeConversion:mapping:sqlserver:varchar", "sqlserver:type:varchar", "meta:type:AnsiString", "MetaDataTypeConversion:implementation:direct"),

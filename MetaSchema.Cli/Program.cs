@@ -126,8 +126,8 @@ internal static class Program
             ("Fields", workspace.Instance.GetOrCreateEntityRecords("Field").Count.ToString()),
             ("TableRelationships", workspace.Instance.GetOrCreateEntityRecords("TableRelationship").Count.ToString()),
             ("TableRelationshipFields", workspace.Instance.GetOrCreateEntityRecords("TableRelationshipField").Count.ToString()),
-            ("TypeIds", workspace.Instance.GetOrCreateEntityRecords("Field")
-                .Select(record => record.Values.TryGetValue("TypeId", out var typeId) ? typeId : string.Empty)
+            ("DataTypeIds", workspace.Instance.GetOrCreateEntityRecords("Field")
+                .Select(record => record.Values.TryGetValue("DataTypeId", out var typeId) ? typeId : string.Empty)
                 .Where(typeId => !string.IsNullOrWhiteSpace(typeId))
                 .Distinct(StringComparer.Ordinal)
                 .Count().ToString()));
@@ -258,7 +258,7 @@ internal static class Program
         Presenter.WriteInfo("  Creates a new workspace with the MetaSchema model and validates it.");
         Presenter.WriteInfo("  Scope is controlled by schema/table filters or all-schemas/all-tables discovery switches.");
         Presenter.WriteInfo("  TableRelationship rows are emitted only for enforced and trusted SQL Server foreign keys.");
-        Presenter.WriteInfo("  Field rows carry a scalar TypeId such as sqlserver:type:nvarchar.");
+        Presenter.WriteInfo("  Field rows carry a scalar DataTypeId such as sqlserver:type:nvarchar.");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

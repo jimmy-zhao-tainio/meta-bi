@@ -38,9 +38,9 @@ public sealed class CliTests
             Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
             Assert.True(File.Exists(Path.Combine(workspacePath, "metadata", "model.xml")));
             Assert.Contains("ConversionImplementations:", result.Output);
-            Assert.Contains("TypeMappings:", result.Output);
+            Assert.Contains("DataTypeMappings:", result.Output);
             Assert.DoesNotContain("ConversionImplementations: 0", result.Output);
-            Assert.DoesNotContain("TypeMappings: 0", result.Output);
+            Assert.DoesNotContain("DataTypeMappings: 0", result.Output);
         }
         finally
         {
@@ -77,11 +77,11 @@ public sealed class CliTests
             var init = RunCli($"init --new-workspace \"{workspacePath}\"");
             Assert.Equal(0, init.ExitCode);
 
-            var resolve = RunCli($"resolve --workspace \"{workspacePath}\" --source-type sqlserver:type:nvarchar");
+            var resolve = RunCli($"resolve --workspace \"{workspacePath}\" --source-data-type sqlserver:type:nvarchar");
             Assert.Equal(0, resolve.ExitCode);
             Assert.Contains("OK: MetaDataTypeConversion resolve", resolve.Output);
-            Assert.Contains("SourceTypeId: sqlserver:type:nvarchar", resolve.Output);
-            Assert.Contains("TargetTypeId: meta:type:String", resolve.Output);
+            Assert.Contains("SourceDataTypeId: sqlserver:type:nvarchar", resolve.Output);
+            Assert.Contains("TargetDataTypeId: meta:type:String", resolve.Output);
             Assert.Contains("ConversionImplementation: Direct", resolve.Output);
         }
         finally

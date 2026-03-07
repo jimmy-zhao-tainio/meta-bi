@@ -26,7 +26,7 @@
     <Entity name="SourceField">
       <PropertyList>
         <Property name="Name" />
-        <Property name="TypeId" />
+        <Property name="DataTypeId" />
         <Property name="Ordinal" isRequired="false" />
         <Property name="IsNullable" isRequired="false" />
         <Property name="Length" isRequired="false" />
