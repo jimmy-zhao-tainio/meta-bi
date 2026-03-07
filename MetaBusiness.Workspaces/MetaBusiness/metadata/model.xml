@@ -13,6 +13,24 @@
         <Relationship entity="BusinessProcess" role="ChildBusinessProcess" />
       </RelationshipList>
     </Entity>
+    <Entity name="BusinessKey">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessProcess" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessKeyPart">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessKey" />
+      </RelationshipList>
+    </Entity>
     <Entity name="BusinessRole">
       <PropertyList>
         <Property name="Description" isRequired="false" />

@@ -11,6 +11,7 @@ At this stage it should answer:
 - how those processes decompose
 - which roles participate in them
 - how organization units align to those processes
+- which business keys identify those processes and the things they care about
 
 It should stay at business-map level. It should not yet drop into analytical design details such as measures or semantic-model structure.
 
@@ -57,7 +58,19 @@ That includes:
 
 This is where the org chart belongs.
 
-### 3. Organization-to-process alignment
+### 3. Business identity
+
+`MetaBusiness` should own business-key intent as business meaning, not as detached technical metadata.
+
+That includes:
+
+- business keys
+- ordered business-key parts
+- which business process a business key belongs to
+
+`MetaBusiness` should not map those keys directly to source fields. That binding belongs in weave.
+
+### 4. Organization-to-process alignment
 
 `MetaBusiness` should explicitly model how organization units relate to business processes.
 
@@ -114,6 +127,8 @@ It must not become:
 
 The relationship between them should be explicit through weaving/binding, not by collapsing source structure into business meaning.
 
+That applies especially to business keys: `MetaBusiness` owns the business identity, while weave binds that identity to concrete `MetaSchema` fields.
+
 ### MetaBusiness and MetaTransform
 
 `MetaTransform` should describe how data is reshaped.
@@ -157,3 +172,5 @@ With `MetaBusiness`, the stack gets a business-side map:
 - which process areas each part of the organization is tied to
 
 That structure can later guide analytical organization, aggregation scope, and model generation without forcing analytical details into the business model too early.
+
+

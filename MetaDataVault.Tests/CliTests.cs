@@ -23,10 +23,10 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--source-workspace <path>", result.Output);
-        Assert.Contains("--business-key-workspace <path>", result.Output);
+        Assert.Contains("--business-workspace <path>", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--new-workspace <path>", result.Output);
-        Assert.Contains("MetaBusinessKey", result.Output);
+        Assert.Contains("MetaBusiness", result.Output);
         Assert.Contains("MetaDataVaultImplementation", result.Output);
     }
 
@@ -46,7 +46,7 @@ public sealed class CliTests
 
             var result = RunCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(1, result.ExitCode);
-            Assert.Contains("missing required option --business-key-workspace <path>", result.Output);
+            Assert.Contains("missing required option --business-workspace <path>", result.Output);
             Assert.False(File.Exists(Path.Combine(targetPath, "workspace.xml")));
         }
         finally
@@ -60,7 +60,7 @@ public sealed class CliTests
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
-        var businessKeyPath = Path.Combine(root, "MetaBusinessKey");
+        var businessPath = Path.Combine(root, "MetaBusiness");
         var implementationPath = Path.Combine(root, "MetaDataVaultImplementation");
         var targetPath = Path.Combine(root, "RawDataVault");
 
@@ -72,15 +72,15 @@ public sealed class CliTests
             await new WorkspaceService().SaveAsync(source);
 
             var repoRoot = FindRepositoryRoot();
-            CopyDirectory(Path.Combine(repoRoot, "MetaBusinessKey.Workspaces", "MetaBusinessKey"), businessKeyPath);
+            CopyDirectory(Path.Combine(repoRoot, "MetaBusiness.Workspaces", "MetaBusiness"), businessPath);
             CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation"), implementationPath);
 
             var result = RunCli(
-                $"from-metaschema --source-workspace \"{sourcePath}\" --business-key-workspace \"{businessKeyPath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+                $"from-metaschema --source-workspace \"{sourcePath}\" --business-workspace \"{businessPath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("could not materialize raw datavault from sanctioned inputs", result.Output, StringComparison.OrdinalIgnoreCase);
-            Assert.Contains("MetaBusinessKey", result.Output);
+            Assert.Contains("MetaBusiness", result.Output);
             Assert.Contains("MetaDataVaultImplementation", result.Output);
             Assert.Contains("weave bindings", result.Output, StringComparison.OrdinalIgnoreCase);
             Assert.False(File.Exists(Path.Combine(targetPath, "workspace.xml")));

@@ -57,7 +57,7 @@ For Data Vault, the sanctioned models are meant to be specific enough that a gen
 
 - `MetaRawDataVault` and `MetaBusinessDataVault` define the structure and semantics of vault tables.
 - `MetaDataVaultImplementation` defines the fixed physical naming and datatype conventions for those table types.
-- `MetaBusinessKey` defines explicit business-key intent and should be bound to `MetaSchema` before raw-vault materialization.
+- `MetaBusiness` defines explicit business-key intent and should be bound to `MetaSchema` before raw-vault materialization.
 
 ## What this model should not own
 

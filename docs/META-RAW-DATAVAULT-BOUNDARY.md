@@ -113,7 +113,7 @@ These keep the raw vault design anchored to concrete extracted source structures
 
 `MetaRawDataVault` no longer permits heuristic business-key selection during `MetaSchema` conversion.
 
-Business-key intent must come from a separate sanctioned `MetaBusinessKey` workspace and be bound to `MetaSchema` explicitly.
+Business-key intent must come from sanctioned `MetaBusiness` and be bound to `MetaSchema` explicitly.
 
 ## What MetaRawDataVault should not own
 
