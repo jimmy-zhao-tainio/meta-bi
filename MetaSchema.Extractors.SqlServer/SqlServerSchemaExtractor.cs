@@ -146,9 +146,9 @@ public sealed class SqlServerSchemaExtractor
                     },
                     relationships => relationships["TableId"] = tableId);
 
-                AddFieldDataTypeFacet(workspace, fieldId, "Length", columnRow.Length);
-                AddFieldDataTypeFacet(workspace, fieldId, "NumericPrecision", columnRow.NumericPrecision);
-                AddFieldDataTypeFacet(workspace, fieldId, "Scale", columnRow.Scale);
+                AddFieldDataTypeDetail(workspace, fieldId, "Length", columnRow.Length);
+                AddFieldDataTypeDetail(workspace, fieldId, "NumericPrecision", columnRow.NumericPrecision);
+                AddFieldDataTypeDetail(workspace, fieldId, "Scale", columnRow.Scale);
             }
 
             var foreignKeyColumnsByName = foreignKeyColumns
@@ -427,21 +427,21 @@ public sealed class SqlServerSchemaExtractor
         return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":field:" + columnName;
     }
 
-    private static void AddFieldDataTypeFacet(Workspace workspace, string fieldId, string facetName, int? facetValue)
+    private static void AddFieldDataTypeDetail(Workspace workspace, string fieldId, string detailName, int? detailValue)
     {
-        if (!facetValue.HasValue)
+        if (!detailValue.HasValue)
         {
             return;
         }
 
         AddRecord(
             workspace,
-            "FieldDataTypeFacet",
-            fieldId + ":facet:" + facetName,
+            "FieldDataTypeDetail",
+            fieldId + ":detail:" + detailName,
             values =>
             {
-                values["Name"] = facetName;
-                values["Value"] = facetValue.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                values["Name"] = detailName;
+                values["Value"] = detailValue.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
             },
             relationships => relationships["FieldId"] = fieldId);
     }

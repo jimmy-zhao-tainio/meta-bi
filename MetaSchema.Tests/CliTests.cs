@@ -153,7 +153,7 @@ public sealed class CliTests
         var model = MetaSchemaModels.CreateMetaSchemaModel();
 
         var field = Assert.Single(model.Entities, entity => entity.Name == "Field");
-        var fieldDataTypeFacet = Assert.Single(model.Entities, entity => entity.Name == "FieldDataTypeFacet");
+        var fieldDataTypeDetail = Assert.Single(model.Entities, entity => entity.Name == "FieldDataTypeDetail");
         var tableRelationship = Assert.Single(model.Entities, entity => entity.Name == "TableRelationship");
         var tableRelationshipField = Assert.Single(model.Entities, entity => entity.Name == "TableRelationshipField");
         Assert.DoesNotContain(model.Entities, entity => entity.Name == "FieldType");
@@ -162,7 +162,7 @@ public sealed class CliTests
         Assert.DoesNotContain(field.Properties, property => property.Name == "NumericPrecision");
         Assert.DoesNotContain(field.Properties, property => property.Name == "Scale");
         Assert.DoesNotContain(field.Relationships, relationship => relationship.Entity == "FieldType");
-        Assert.Contains(fieldDataTypeFacet.Relationships, relationship => relationship.Entity == "Field");
+        Assert.Contains(fieldDataTypeDetail.Relationships, relationship => relationship.Entity == "Field");
         Assert.Contains(tableRelationship.Properties, property => property.Name == "TargetTableName");
         Assert.Contains(tableRelationship.Relationships, relationship => relationship.Entity == "Table" && string.Equals(relationship.Role, "SourceTable", StringComparison.Ordinal));
         Assert.Contains(tableRelationshipField.Relationships, relationship => relationship.Entity == "TableRelationship");

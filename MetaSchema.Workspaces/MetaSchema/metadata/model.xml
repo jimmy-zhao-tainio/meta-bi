@@ -35,7 +35,7 @@
         <Relationship entity="Table" />
       </RelationshipList>
     </Entity>
-    <Entity name="FieldDataTypeFacet">
+    <Entity name="FieldDataTypeDetail">
       <PropertyList>
         <Property name="Name" />
         <Property name="Value" />
