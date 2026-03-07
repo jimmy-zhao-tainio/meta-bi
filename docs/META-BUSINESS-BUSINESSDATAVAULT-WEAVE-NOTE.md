@@ -4,7 +4,7 @@
 
 This note captures the minimal business-side contract that must exist before `MetaBusinessDataVault` can be considered anchored to `MetaBusiness`.
 
-It is not yet a sanctioned weave workspace. It is the intended contract.
+It is not itself the sanctioned weave workspace. It records the intended contract around the sanctioned weave instance.
 
 ## Minimal direct anchors
 
@@ -75,6 +75,22 @@ That means a full sanctioned Business/BDV weave will likely require either:
 - richer weave semantics in `MetaWeave`
 - or an explicit materialization/check step in `meta-datavault` that understands parent-scoped consistency
 
+## Current sanctioned weave instance
+
+The current sanctioned first-pass weave instance is:
+
+- `MetaWeave.Workspaces/Weave-MetaBusiness-MetaBusinessDataVault`
+
+It carries only the flat anchors that current `MetaWeave` can express honestly:
+
+- `BusinessHub.Name` -> `BusinessObject.Name`
+- `BusinessLink.Name` -> `BusinessRelationship.Name`
+
+Deeper parent-scoped consistency remains outside the weave instance for now.
+
+See also:
+
+- `docs/BUSINESS-BDV-WEAVE-DECISION.md`
 ## Practical conclusion
 
 For now, the right top-down move is:
@@ -82,3 +98,6 @@ For now, the right top-down move is:
 1. make sure `MetaBusiness` can represent business objects, business keys, business relationships, and relationship participants
 2. treat the four direct anchors above as the intended Business/BDV consistency seam
 3. do not pretend the current `MetaWeave` model already covers the full child-row consistency story
+
+
+

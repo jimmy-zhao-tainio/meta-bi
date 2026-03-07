@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <PropertyBindingList>
+    <PropertyBinding Id="1" SourceModelId="2" TargetModelId="1">
+      <Name>MetaBusinessDataVault.BusinessHub.Name -&gt; MetaBusiness.BusinessObject.Name</Name>
+      <SourceEntity>BusinessHub</SourceEntity>
+      <SourceProperty>Name</SourceProperty>
+      <TargetEntity>BusinessObject</TargetEntity>
+      <TargetProperty>Name</TargetProperty>
+    </PropertyBinding>
+    <PropertyBinding Id="2" SourceModelId="2" TargetModelId="1">
+      <Name>MetaBusinessDataVault.BusinessLink.Name -&gt; MetaBusiness.BusinessRelationship.Name</Name>
+      <SourceEntity>BusinessLink</SourceEntity>
+      <SourceProperty>Name</SourceProperty>
+      <TargetEntity>BusinessRelationship</TargetEntity>
+      <TargetProperty>Name</TargetProperty>
+    </PropertyBinding>
+  </PropertyBindingList>
+</MetaWeave>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWorkspace>
+  <ModelReferenceList>
+    <ModelReference Id="1">
+      <Alias>Business</Alias>
+      <ModelName>MetaBusiness</ModelName>
+      <WorkspacePath>..\..\MetaBusiness.Workspaces\MetaBusiness</WorkspacePath>
+    </ModelReference>
+    <ModelReference Id="2">
+      <Alias>Bdv</Alias>
+      <ModelName>MetaBusinessDataVault</ModelName>
+      <WorkspacePath>..\..\MetaDataVault.Workspaces\MetaBusinessDataVault</WorkspacePath>
+    </ModelReference>
+  </ModelReferenceList>
+</MetaWorkspace>
