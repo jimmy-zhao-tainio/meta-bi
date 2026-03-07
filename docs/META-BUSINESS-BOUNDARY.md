@@ -13,6 +13,7 @@ At this stage it should answer:
 - how organization units align to those processes
 - which business objects the business cares about
 - which business keys identify those business objects
+- which business relationships exist between those objects
 
 It should stay at business-map level. It should not yet drop into analytical design details such as measures or semantic-model structure.
 
@@ -73,7 +74,21 @@ That includes:
 
 `MetaBusiness` should not map those keys directly to source fields. That binding belongs in weave.
 
-### 4. Organization-to-process alignment
+### 4. Business relationships
+
+`MetaBusiness` should own the business relationships that connect business objects.
+
+That includes:
+
+- business relationships
+- relationship participants
+- participant ordinals
+- optional participant role names
+- which business object participates in which relationship
+
+This gives Business Data Vault links something business-side to anchor to.
+
+### 5. Organization-to-process alignment
 
 `MetaBusiness` should explicitly model how organization units relate to business processes.
 
@@ -148,6 +163,7 @@ What it should preserve is the structure that later analytical models can consum
 - organization hierarchy
 - role participation
 - business objects and business identity
+- business relationships between objects
 - organization-to-process scope
 
 That is enough groundwork for later inference of analytical groupings without pretending to define measures too early.
@@ -161,6 +177,7 @@ The first version of `MetaBusiness` should stay minimal and strong:
 - business roles
 - business objects
 - business keys and business-key parts
+- business relationships and participants
 - process participation by role
 - process-to-business-object alignment
 - organization-unit to business-process alignment
@@ -176,6 +193,7 @@ With `MetaBusiness`, the stack gets a business-side map:
 - what the organization does
 - who does it
 - what business objects it works with
+- how those objects relate to each other
 - how work decomposes
 - which process areas each part of the organization is tied to
 - which business identities justify downstream integration

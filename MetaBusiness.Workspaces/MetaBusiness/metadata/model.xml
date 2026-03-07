@@ -37,6 +37,23 @@
         <Relationship entity="BusinessKey" />
       </RelationshipList>
     </Entity>
+    <Entity name="BusinessRelationship">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="RelationshipKind" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessRelationshipParticipant">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="RoleName" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessRelationship" />
+        <Relationship entity="BusinessObject" />
+      </RelationshipList>
+    </Entity>
     <Entity name="BusinessRole">
       <PropertyList>
         <Property name="Description" isRequired="false" />

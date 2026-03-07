@@ -121,6 +121,15 @@ Business Vault adds business logic, mastering, helper structures, and business-d
 
 `MetaBusiness` should anchor why Business Vault structures exist.
 
+The minimum direct anchors are:
+
+- `BusinessHub` -> `BusinessObject`
+- `BusinessHubKeyPart` -> `BusinessKeyPart`
+- `BusinessLink` -> `BusinessRelationship`
+- `BusinessLinkEnd` -> `BusinessRelationshipParticipant`
+
+See `docs/META-BUSINESS-BUSINESSDATAVAULT-WEAVE-NOTE.md` for the current contract and limitations.
+
 ### MetaDataVaultImplementation -> MetaBusinessDataVault
 
 Implementation details such as fixed mandatory technical column names should come from `MetaDataVaultImplementation`, not from this model.
