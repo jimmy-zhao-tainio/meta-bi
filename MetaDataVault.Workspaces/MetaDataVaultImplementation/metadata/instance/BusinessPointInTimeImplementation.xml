@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessPointInTimeImplementationList>
     <BusinessPointInTimeImplementation Id="default-business-pit">
+      <TableNamePattern>PIT_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
       <SnapshotTimestampColumnName>SnapshotTimestamp</SnapshotTimestampColumnName>

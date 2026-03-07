@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessBridgeImplementationList>
     <BusinessBridgeImplementation Id="default-business-bridge">
+      <TableNamePattern>BR_{Name}</TableNamePattern>
       <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
       <RootHashKeyDataType>binary(16)</RootHashKeyDataType>
       <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>

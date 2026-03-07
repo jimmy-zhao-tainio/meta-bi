@@ -3,6 +3,7 @@
   <EntityList>
     <Entity name="RawHubImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataType" />
         <Property name="LoadTimestampColumnName" />
@@ -13,6 +14,7 @@
     </Entity>
     <Entity name="RawLinkImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataType" />
         <Property name="LoadTimestampColumnName" />
@@ -23,6 +25,7 @@
     </Entity>
     <Entity name="RawHubSatelliteImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataType" />
         <Property name="HashDiffColumnName" />
@@ -35,6 +38,7 @@
     </Entity>
     <Entity name="RawLinkSatelliteImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataType" />
         <Property name="HashDiffColumnName" />
@@ -47,6 +51,7 @@
     </Entity>
     <Entity name="BusinessHubImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataType" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
@@ -57,6 +62,7 @@
     </Entity>
     <Entity name="BusinessLinkImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataType" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
@@ -67,6 +73,7 @@
     </Entity>
     <Entity name="BusinessHubSatelliteImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataType" />
         <Property name="HashDiffColumnName" isRequired="false" />
@@ -79,6 +86,7 @@
     </Entity>
     <Entity name="BusinessLinkSatelliteImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataType" />
         <Property name="HashDiffColumnName" isRequired="false" />
@@ -91,6 +99,7 @@
     </Entity>
     <Entity name="BusinessPointInTimeImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataType" />
         <Property name="SnapshotTimestampColumnName" />
@@ -101,6 +110,7 @@
     </Entity>
     <Entity name="BusinessBridgeImplementation">
       <PropertyList>
+        <Property name="TableNamePattern" />
         <Property name="RootHashKeyColumnName" />
         <Property name="RootHashKeyDataType" />
         <Property name="RelatedHashKeyColumnName" />

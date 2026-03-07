@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessLinkImplementationList>
     <BusinessLinkImplementation Id="default-business-link">
+      <TableNamePattern>BL_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataType>binary(16)</HashKeyDataType>
       <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>

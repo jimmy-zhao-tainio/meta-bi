@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawLinkSatelliteImplementationList>
     <RawLinkSatelliteImplementation Id="default-raw-link-satellite">
+      <TableNamePattern>LS_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
       <HashDiffColumnName>HashDiff</HashDiffColumnName>

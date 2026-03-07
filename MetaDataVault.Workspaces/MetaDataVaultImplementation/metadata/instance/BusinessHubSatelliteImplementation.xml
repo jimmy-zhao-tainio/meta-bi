@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessHubSatelliteImplementationList>
     <BusinessHubSatelliteImplementation Id="default-business-hub-satellite">
+      <TableNamePattern>BHS_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
       <HashDiffColumnName>HashDiff</HashDiffColumnName>

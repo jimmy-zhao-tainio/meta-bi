@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawHubSatelliteImplementationList>
     <RawHubSatelliteImplementation Id="default-raw-hub-satellite">
+      <TableNamePattern>HS_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataType>binary(16)</ParentHashKeyDataType>
       <HashDiffColumnName>HashDiff</HashDiffColumnName>
