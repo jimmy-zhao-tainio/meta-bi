@@ -97,3 +97,37 @@ Current BI fabric samples therefore prove both:
   - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
 - multi-hop path scope:
   - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
+## Current Business Data Vault Materialization Contract
+
+`meta-datavault` now has an explicit preflight for future Business Data Vault materialization:
+
+```cmd
+meta-datavault check-business-materialization --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart
+```
+
+Example output:
+
+```text
+OK: business datavault materialization contract
+Business Workspace: C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart
+BusinessDataVault Workspace: C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart
+Implementation Workspace: C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation
+Weaves: 4
+Fabrics: 2
+FlatAnchors: 2/2
+ScopedAnchors: 2/2
+```
+
+This command does not materialize a BDV yet. It validates that the sanctioned input set is coherent enough for future materialization:
+
+- `MetaBusiness`
+- `MetaBusinessDataVault`
+- `MetaDataVaultImplementation`
+- flat `MetaWeave` anchors
+- scoped `MetaFabric` anchors
+
+See also:
+
+- `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
+
+

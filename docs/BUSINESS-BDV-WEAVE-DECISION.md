@@ -86,3 +86,10 @@ It is a richer fabric model for:
 - multi-parent scoped bindings
 - conditional scope across several parent bindings
 - richer structural predicates beyond path traversal
+## Current meta-datavault consequence
+
+`meta-datavault` now consumes this split through a sanctioned preflight command:
+
+- `meta-datavault check-business-materialization`
+
+That command does not materialize BDV rows yet. It verifies that the current Business/BDV/Implementation/Weave/Fabric input set is coherent enough for future materialization.

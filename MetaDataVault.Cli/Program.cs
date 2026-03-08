@@ -26,6 +26,11 @@ internal static class Program
             return await RunFromMetaSchemaAsync(args).ConfigureAwait(false);
         }
 
+        if (string.Equals(args[0], "check-business-materialization", StringComparison.OrdinalIgnoreCase))
+        {
+            return await RunCheckBusinessMaterializationAsync(args).ConfigureAwait(false);
+        }
+
         return Fail($"unknown command '{args[0]}'.", "meta-datavault help");
     }
 
@@ -164,6 +169,97 @@ internal static class Program
         return 0;
     }
 
+    private static async Task<int> RunCheckBusinessMaterializationAsync(string[] args)
+    {
+        if (args.Length == 1 || IsHelpToken(args[1]))
+        {
+            PrintCheckBusinessMaterializationHelp();
+            return 0;
+        }
+
+        var parse = ParseCheckBusinessMaterializationArgs(args, 1);
+        if (!parse.Ok)
+        {
+            return Fail(parse.ErrorMessage, "meta-datavault check-business-materialization --help");
+        }
+
+        var businessWorkspacePath = Path.GetFullPath(parse.BusinessWorkspacePath);
+        var businessDataVaultWorkspacePath = Path.GetFullPath(parse.BusinessDataVaultWorkspacePath);
+        var implementationWorkspacePath = Path.GetFullPath(parse.ImplementationWorkspacePath);
+        var weaveWorkspacePaths = parse.WeaveWorkspacePaths.Select(Path.GetFullPath).ToArray();
+        var fabricWorkspacePaths = parse.FabricWorkspacePaths.Select(Path.GetFullPath).ToArray();
+
+        Workspace businessWorkspace;
+        Workspace businessDataVaultWorkspace;
+        Workspace implementationWorkspace;
+        var weaveWorkspaces = new List<Workspace>();
+        var fabricWorkspaces = new List<Workspace>();
+
+        try
+        {
+            var workspaceService = new WorkspaceService();
+            businessWorkspace = await workspaceService.LoadAsync(businessWorkspacePath, searchUpward: false).ConfigureAwait(false);
+            businessDataVaultWorkspace = await workspaceService.LoadAsync(businessDataVaultWorkspacePath, searchUpward: false).ConfigureAwait(false);
+            implementationWorkspace = await workspaceService.LoadAsync(implementationWorkspacePath, searchUpward: false).ConfigureAwait(false);
+            foreach (var path in weaveWorkspacePaths)
+            {
+                weaveWorkspaces.Add(await workspaceService.LoadAsync(path, searchUpward: false).ConfigureAwait(false));
+            }
+
+            foreach (var path in fabricWorkspacePaths)
+            {
+                fabricWorkspaces.Add(await workspaceService.LoadAsync(path, searchUpward: false).ConfigureAwait(false));
+            }
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "could not load sanctioned business datavault materialization inputs.",
+                "check the MetaBusiness, MetaBusinessDataVault, MetaDataVaultImplementation, MetaWeave, and MetaFabric workspace paths and retry.",
+                4,
+                new[] { $"  - {ex.Message}" });
+        }
+
+        BusinessDataVaultMaterializationContractResult contract;
+        try
+        {
+            contract = await new BusinessDataVaultMaterializationContractService().CheckAsync(
+                businessWorkspace,
+                businessDataVaultWorkspace,
+                implementationWorkspace,
+                weaveWorkspaces,
+                fabricWorkspaces).ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "could not evaluate business datavault materialization contract.",
+                "check the sanctioned input models and retry.",
+                4,
+                new[] { $"  - {ex.Message}" });
+        }
+
+        if (contract.HasErrors)
+        {
+            return Fail(
+                "business datavault materialization contract failed.",
+                "fix the sanctioned inputs and retry.",
+                4,
+                contract.Errors.Select(item => $"  - {item}"));
+        }
+
+        Presenter.WriteOk(
+            "business datavault materialization contract",
+            ("Business Workspace", businessWorkspacePath),
+            ("BusinessDataVault Workspace", businessDataVaultWorkspacePath),
+            ("Implementation Workspace", implementationWorkspacePath),
+            ("Weaves", contract.WeaveCount.ToString()),
+            ("Fabrics", contract.FabricCount.ToString()),
+            ("FlatAnchors", $"{contract.FlatAnchorsSatisfied}/{contract.FlatAnchorsRequired}"),
+            ("ScopedAnchors", $"{contract.ScopedAnchorsSatisfied}/{contract.ScopedAnchorsRequired}"));
+        return 0;
+    }
+
     private static (bool Ok, string NewWorkspacePath, string ErrorMessage) ParseNewWorkspaceOnly(string[] args, int startIndex)
     {
         var newWorkspacePath = string.Empty;
@@ -296,6 +392,118 @@ internal static class Program
         return (true, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, string.Empty);
     }
 
+    private static (bool Ok, string BusinessWorkspacePath, string BusinessDataVaultWorkspacePath, string ImplementationWorkspacePath, List<string> WeaveWorkspacePaths, List<string> FabricWorkspacePaths, string ErrorMessage) ParseCheckBusinessMaterializationArgs(string[] args, int startIndex)
+    {
+        var businessWorkspacePath = string.Empty;
+        var businessDataVaultWorkspacePath = string.Empty;
+        var implementationWorkspacePath = string.Empty;
+        var weaveWorkspacePaths = new List<string>();
+        var fabricWorkspacePaths = new List<string>();
+
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+            if (string.Equals(arg, "--business-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length)
+                {
+                    return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing value for --business-workspace.");
+                }
+
+                if (!string.IsNullOrWhiteSpace(businessWorkspacePath))
+                {
+                    return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "--business-workspace can only be provided once.");
+                }
+
+                businessWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--bdv-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length)
+                {
+                    return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing value for --bdv-workspace.");
+                }
+
+                if (!string.IsNullOrWhiteSpace(businessDataVaultWorkspacePath))
+                {
+                    return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "--bdv-workspace can only be provided once.");
+                }
+
+                businessDataVaultWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--implementation-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length)
+                {
+                    return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing value for --implementation-workspace.");
+                }
+
+                if (!string.IsNullOrWhiteSpace(implementationWorkspacePath))
+                {
+                    return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "--implementation-workspace can only be provided once.");
+                }
+
+                implementationWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--weave-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length)
+                {
+                    return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing value for --weave-workspace.");
+                }
+
+                weaveWorkspacePaths.Add(args[++i]);
+                continue;
+            }
+
+            if (string.Equals(arg, "--fabric-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length)
+                {
+                    return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing value for --fabric-workspace.");
+                }
+
+                fabricWorkspacePaths.Add(args[++i]);
+                continue;
+            }
+
+            return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, $"unknown option '{arg}'.");
+        }
+
+        if (string.IsNullOrWhiteSpace(businessWorkspacePath))
+        {
+            return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing required option --business-workspace <path>.");
+        }
+
+        if (string.IsNullOrWhiteSpace(businessDataVaultWorkspacePath))
+        {
+            return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing required option --bdv-workspace <path>.");
+        }
+
+        if (string.IsNullOrWhiteSpace(implementationWorkspacePath))
+        {
+            return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing required option --implementation-workspace <path>.");
+        }
+
+        if (weaveWorkspacePaths.Count == 0)
+        {
+            return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing required option --weave-workspace <path>.");
+        }
+
+        if (fabricWorkspacePaths.Count == 0)
+        {
+            return (false, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, "missing required option --fabric-workspace <path>.");
+        }
+
+        return (true, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, string.Empty);
+    }
+
     private static bool IsHelpToken(string value)
     {
         return string.Equals(value, "help", StringComparison.OrdinalIgnoreCase) ||
@@ -313,10 +521,11 @@ internal static class Program
             {
                 ("help", "Show this help."),
                 ("init", "Create an empty MetaRawDataVault workspace."),
-                ("from-metaschema", "Materialize a raw datavault from MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces.")
+                ("from-metaschema", "Materialize a raw datavault from MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces."),
+                ("check-business-materialization", "Check the sanctioned input contract for Business Data Vault materialization.")
             });
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteNext("meta-datavault from-metaschema --help");
+        Presenter.WriteNext("meta-datavault check-business-materialization --help");
     }
 
     private static void PrintInitHelp()
@@ -334,6 +543,15 @@ internal static class Program
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Loads sanctioned MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces.");
         Presenter.WriteInfo("  Heuristic business-key inference was removed. Raw datavault materialization now requires explicit sanctioned inputs and weave bindings.");
+    }
+
+    private static void PrintCheckBusinessMaterializationHelp()
+    {
+        Presenter.WriteInfo("Command: check-business-materialization");
+        Presenter.WriteUsage("meta-datavault check-business-materialization --business-workspace <path> --bdv-workspace <path> --implementation-workspace <path> --weave-workspace <path> [--weave-workspace <path> ...] --fabric-workspace <path> [--fabric-workspace <path> ...]");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Loads sanctioned MetaBusiness, MetaBusinessDataVault, MetaDataVaultImplementation, MetaWeave, and MetaFabric workspaces.");
+        Presenter.WriteInfo("  Verifies the current Business -> BusinessDataVault anchor contract before future materialization work.");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

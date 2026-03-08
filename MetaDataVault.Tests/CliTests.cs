@@ -14,6 +14,7 @@ public sealed class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-datavault", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("from-metaschema", result.Output);
+        Assert.Contains("check-business-materialization", result.Output);
     }
 
     [Fact]
@@ -28,6 +29,21 @@ public sealed class CliTests
         Assert.Contains("--new-workspace <path>", result.Output);
         Assert.Contains("MetaBusiness", result.Output);
         Assert.Contains("MetaDataVaultImplementation", result.Output);
+    }
+
+    [Fact]
+    public void CheckBusinessMaterialization_Help_ShowsRequiredOptions()
+    {
+        var result = RunCli("check-business-materialization --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("--business-workspace <path>", result.Output);
+        Assert.Contains("--bdv-workspace <path>", result.Output);
+        Assert.Contains("--implementation-workspace <path>", result.Output);
+        Assert.Contains("--weave-workspace <path>", result.Output);
+        Assert.Contains("--fabric-workspace <path>", result.Output);
+        Assert.Contains("MetaBusinessDataVault", result.Output);
+        Assert.Contains("MetaFabric", result.Output);
     }
 
     [Fact]
@@ -89,6 +105,30 @@ public sealed class CliTests
         {
             DeleteDirectoryIfExists(root);
         }
+    }
+
+
+    [Fact]
+    public void CheckBusinessMaterialization_SucceedsForRepeatedKeyPartSamples()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var businessPath = Path.Combine(repoRoot, "MetaBusiness.Workspaces", "SampleBusinessCommerceRepeatedKeyPart");
+        var bdvPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceRepeatedKeyPart");
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var hubObjectWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart");
+        var hubKeyPartWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
+        var linkRelationshipWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart");
+        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var hubKeyPartFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
+        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+
+        var result = RunCli(
+            $"check-business-materialization --business-workspace \"{businessPath}\" --bdv-workspace \"{bdvPath}\" --implementation-workspace \"{implementationPath}\" --weave-workspace \"{hubObjectWeavePath}\" --weave-workspace \"{hubKeyPartWeavePath}\" --weave-workspace \"{linkRelationshipWeavePath}\" --weave-workspace \"{linkEndWeavePath}\" --fabric-workspace \"{hubKeyPartFabricPath}\" --fabric-workspace \"{linkEndFabricPath}\"");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("OK: business datavault materialization contract", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("FlatAnchors: 2/2", result.Output);
+        Assert.Contains("ScopedAnchors: 2/2", result.Output);
     }
 
     private static void SeedMetaSchema(Meta.Core.Domain.Workspace workspace)
@@ -389,3 +429,7 @@ public sealed class CliTests
         }
     }
 }
+
+
+
+
