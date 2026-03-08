@@ -70,3 +70,7 @@ The long-term repo boundary is:
 - `MetaDataType.sln`
 - `MetaDataTypeConversion.sln`
 - `MetaDataVault.sln`
+
+## Current BI Weave Example
+
+- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault`
