@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessBridgeHubList>
+    <BusinessBridgeHub Id="CustomerOrderTraversal-Order" BusinessBridgeId="CustomerOrderTraversal" BusinessHubId="Order">
+      <Ordinal>1</Ordinal>
+      <RoleName>Related</RoleName>
+    </BusinessBridgeHub>
+  </BusinessBridgeHubList>
+</MetaBusinessDataVault>

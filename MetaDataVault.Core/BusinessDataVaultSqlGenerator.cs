@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 using BDV = MetaBusinessDataVault;
 using DVI = MetaDataVaultImplementation;
@@ -12,7 +12,9 @@ public sealed record BusinessDataVaultSqlGenerationResult(
     int BusinessHubCount,
     int BusinessLinkCount,
     int BusinessHubSatelliteCount,
-    int BusinessLinkSatelliteCount);
+    int BusinessLinkSatelliteCount,
+    int BusinessPointInTimeCount,
+    int BusinessBridgeCount);
 
 public interface IBusinessDataVaultSqlGenerator
 {
@@ -44,16 +46,6 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         var implementation = await BusinessDataVaultSqlModelLoaders.LoadImplementationAsync(implementationWorkspacePath, cancellationToken).ConfigureAwait(false);
         var conversions = await BusinessDataVaultSqlModelLoaders.LoadDataTypeConversionAsync(dataTypeConversionWorkspacePath, cancellationToken).ConfigureAwait(false);
 
-        if (bdv.BusinessPointInTimeList.Count > 0)
-        {
-            throw new InvalidOperationException("BusinessPointInTime SQL generation is not implemented yet.");
-        }
-
-        if (bdv.BusinessBridgeList.Count > 0)
-        {
-            throw new InvalidOperationException("BusinessBridge SQL generation is not implemented yet.");
-        }
-
         var outputRoot = Path.GetFullPath(outputPath);
         Directory.CreateDirectory(outputRoot);
 
@@ -79,6 +71,16 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             scripts.Add(($"{satellite.Name}.sql", RenderBusinessLinkSatelliteSql(satellite, bdv, implementation, conversions)));
         }
 
+        foreach (var pointInTime in bdv.BusinessPointInTimeList.OrderBy(row => row.Name, StringComparer.Ordinal))
+        {
+            scripts.Add(($"{pointInTime.Name}.sql", RenderBusinessPointInTimeSql(pointInTime, bdv, implementation, conversions)));
+        }
+
+        foreach (var bridge in bdv.BusinessBridgeList.OrderBy(row => row.Name, StringComparer.Ordinal))
+        {
+            scripts.Add(($"{bridge.Name}.sql", RenderBusinessBridgeSql(bridge, bdv, implementation, conversions)));
+        }
+
         foreach (var script in scripts)
         {
             var path = Path.Combine(outputRoot, script.FileName);
@@ -92,10 +94,10 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             bdv.BusinessHubList.Count,
             bdv.BusinessLinkList.Count,
             bdv.BusinessHubSatelliteList.Count,
-            bdv.BusinessLinkSatelliteList.Count);
+            bdv.BusinessLinkSatelliteList.Count,
+            bdv.BusinessPointInTimeList.Count,
+            bdv.BusinessBridgeList.Count);
     }
-
-
 
     private static string RenderBusinessHubSql(BDV.BusinessHub hub, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
@@ -206,6 +208,78 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         };
 
         return RenderCreateTableSql(satellite.Name, columns, primaryKeyColumns, null, foreignKeys);
+    }
+
+    private static string RenderBusinessPointInTimeSql(BDV.BusinessPointInTime pointInTime, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
+    {
+        var columns = new List<string>
+        {
+            RenderColumn(implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessPointInTimeImplementation.ParentHashKeyDataTypeId, new DetailBag(implementation.BusinessPointInTimeImplementation.ParentHashKeyLength, null, null), conversions), false),
+            RenderColumn(implementation.BusinessPointInTimeImplementation.SnapshotTimestampColumnName, RenderSqlType(implementation.BusinessPointInTimeImplementation.SnapshotTimestampDataTypeId, new DetailBag(null, implementation.BusinessPointInTimeImplementation.SnapshotTimestampPrecision, null), conversions), false)
+        };
+
+        foreach (var satellite in bdv.BusinessPointInTimeHubSatelliteList.Where(row => row.BusinessPointInTimeId == pointInTime.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.BusinessHubSatellite.Name, StringComparer.Ordinal))
+        {
+            columns.Add(RenderColumn(RenderPattern(implementation.BusinessPointInTimeImplementation.SatelliteReferenceColumnNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["SatelliteName"] = satellite.BusinessHubSatellite.Name
+            }), RenderSqlType(implementation.BusinessPointInTimeImplementation.SatelliteReferenceDataTypeId, new DetailBag(null, implementation.BusinessPointInTimeImplementation.SatelliteReferencePrecision, null), conversions), false));
+        }
+
+        foreach (var satellite in bdv.BusinessPointInTimeLinkSatelliteList.Where(row => row.BusinessPointInTimeId == pointInTime.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.BusinessLinkSatellite.Name, StringComparer.Ordinal))
+        {
+            columns.Add(RenderColumn(RenderPattern(implementation.BusinessPointInTimeImplementation.SatelliteReferenceColumnNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["SatelliteName"] = satellite.BusinessLinkSatellite.Name
+            }), RenderSqlType(implementation.BusinessPointInTimeImplementation.SatelliteReferenceDataTypeId, new DetailBag(null, implementation.BusinessPointInTimeImplementation.SatelliteReferencePrecision, null), conversions), false));
+        }
+
+        var foreignKeys = new[]
+        {
+            $"    CONSTRAINT {Quote($"FK_{pointInTime.Name}_{pointInTime.BusinessHub.Name}")} FOREIGN KEY ({Quote(implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName)}) REFERENCES {Quote(pointInTime.BusinessHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+        };
+
+        return RenderCreateTableSql(pointInTime.Name, columns, new[]
+        {
+            implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName,
+            implementation.BusinessPointInTimeImplementation.SnapshotTimestampColumnName
+        }, null, foreignKeys);
+    }
+
+    private static string RenderBusinessBridgeSql(BDV.BusinessBridge bridge, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
+    {
+        var columns = new List<string>
+        {
+            RenderColumn(implementation.BusinessBridgeImplementation.RootHashKeyColumnName, RenderSqlType(implementation.BusinessBridgeImplementation.RootHashKeyDataTypeId, new DetailBag(implementation.BusinessBridgeImplementation.RootHashKeyLength, null, null), conversions), false),
+            RenderColumn(implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName, RenderSqlType(implementation.BusinessBridgeImplementation.RelatedHashKeyDataTypeId, new DetailBag(implementation.BusinessBridgeImplementation.RelatedHashKeyLength, null, null), conversions), false)
+        };
+        var primaryKeyColumns = new List<string>
+        {
+            implementation.BusinessBridgeImplementation.RootHashKeyColumnName,
+            implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName
+        };
+
+        AppendOptionalColumn(columns, implementation.BusinessBridgeImplementation.DepthColumnName, implementation.BusinessBridgeImplementation.DepthDataTypeId, new DetailBag(null, null, null), conversions);
+        AppendOptionalColumn(columns, implementation.BusinessBridgeImplementation.PathColumnName, implementation.BusinessBridgeImplementation.PathDataTypeId, new DetailBag(implementation.BusinessBridgeImplementation.PathLength, null, null), conversions);
+        if (!string.IsNullOrWhiteSpace(implementation.BusinessBridgeImplementation.EffectiveFromColumnName) && !string.IsNullOrWhiteSpace(implementation.BusinessBridgeImplementation.EffectiveFromDataTypeId))
+        {
+            AppendOptionalColumn(columns, implementation.BusinessBridgeImplementation.EffectiveFromColumnName, implementation.BusinessBridgeImplementation.EffectiveFromDataTypeId, new DetailBag(null, implementation.BusinessBridgeImplementation.EffectiveFromPrecision, null), conversions);
+            primaryKeyColumns.Add(implementation.BusinessBridgeImplementation.EffectiveFromColumnName);
+        }
+        AppendOptionalColumn(columns, implementation.BusinessBridgeImplementation.EffectiveToColumnName, implementation.BusinessBridgeImplementation.EffectiveToDataTypeId, new DetailBag(null, implementation.BusinessBridgeImplementation.EffectiveToPrecision, null), conversions);
+
+        var foreignKeys = new List<string>
+        {
+            $"    CONSTRAINT {Quote($"FK_{bridge.Name}_{bridge.AnchorHub.Name}_{implementation.BusinessBridgeImplementation.RootHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessBridgeImplementation.RootHashKeyColumnName)}) REFERENCES {Quote(bridge.AnchorHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+        };
+
+        var relatedHub = ResolveBridgeRelatedHub(bridge, bdv);
+        if (relatedHub is not null)
+        {
+            foreignKeys.Add($"    CONSTRAINT {Quote($"FK_{bridge.Name}_{relatedHub.Name}_{implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName)}) REFERENCES {Quote(relatedHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})");
+        }
+
+        return RenderCreateTableSql(bridge.Name, columns, primaryKeyColumns, null, foreignKeys);
     }
 
     private static void AppendOptionalColumn(List<string> columns, string columnName, string dataTypeId, DetailBag details, DataTypeConversionModel conversions, List<string>? primaryKeyColumns = null)
@@ -338,6 +412,20 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         return int.TryParse(ordinal, out var value) ? value : int.MaxValue;
     }
 
+    private static BDV.BusinessHub? ResolveBridgeRelatedHub(BDV.BusinessBridge bridge, BDV.MetaBusinessDataVaultModel bdv)
+    {
+        var bridgeHubs = bdv.BusinessBridgeHubList
+            .Where(row => row.BusinessBridgeId == bridge.Id)
+            .OrderBy(row => ParseOrdinal(row.Ordinal))
+            .ToList();
+        if (bridgeHubs.Count == 1)
+        {
+            return bridgeHubs[0].BusinessHub;
+        }
+
+        return bridgeHubs.LastOrDefault()?.BusinessHub;
+    }
+
     private static string Quote(string identifier) => $"[{identifier}]";
 
     private static string RequireNumber(string? value, string dataTypeId, string detailName)
@@ -352,4 +440,3 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private readonly record struct DetailBag(string? Length, string? Precision, string? Scale);
 }
-

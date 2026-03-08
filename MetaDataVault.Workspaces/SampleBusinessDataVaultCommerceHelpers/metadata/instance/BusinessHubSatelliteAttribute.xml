@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteAttributeList>
+    <BusinessHubSatelliteAttribute Id="CustomerProfileName" BusinessHubSatelliteId="CustomerProfile">
+      <Name>CustomerName</Name>
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+  </BusinessHubSatelliteAttributeList>
+</MetaBusinessDataVault>

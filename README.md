@@ -1,4 +1,4 @@
-# meta-bi
+﻿# meta-bi
 
 `meta-bi` is the BI stack that sits on top of the generic `meta` foundation.
 
@@ -164,29 +164,31 @@ Workspace: C:\path\to\Output\MaterializedBusinessDataVault
 Implementation Workspace: C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation
 DataTypeConversion Workspace: C:\path\to\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion
 Path: C:\path\to\Output\Sql
-Files: 5
-Tables: 5
+Files: 9
+Tables: 9
 BusinessHubs: 3
 BusinessLinks: 2
-BusinessHubSatellites: 0
-BusinessLinkSatellites: 0
+BusinessHubSatellites: 1
+BusinessLinkSatellites: 1
+BusinessPointInTimes: 1
+BusinessBridges: 1
 ```
 
-Current first-pass SQL scope:
+Current SQL scope:
 
 - `BusinessHub`
 - `BusinessLink`
 - `BusinessHubSatellite`
 - `BusinessLinkSatellite`
-
-Current exclusions:
-
 - `BusinessPointInTime`
 - `BusinessBridge`
 
-Those table families currently fail explicitly instead of being guessed.
+Helper-structure example workspace:
+
+- `MetaDataVault.Workspaces/SampleBusinessDataVaultCommerceHelpers`
 
 See also:
 
 - `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
 - `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
+

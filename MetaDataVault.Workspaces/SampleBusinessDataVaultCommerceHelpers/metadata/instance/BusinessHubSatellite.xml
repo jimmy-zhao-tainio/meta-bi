@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteList>
+    <BusinessHubSatellite Id="CustomerProfile" BusinessHubId="Customer">
+      <Name>BHS_Customer_Profile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+  </BusinessHubSatelliteList>
+</MetaBusinessDataVault>

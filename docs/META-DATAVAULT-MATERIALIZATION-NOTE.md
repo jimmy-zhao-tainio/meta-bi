@@ -1,4 +1,4 @@
-# MetaDataVault materialization note
+﻿# MetaDataVault materialization note
 
 ## Current split
 
@@ -133,9 +133,6 @@ It currently emits plain SQL scripts for:
 - `BusinessLink`
 - `BusinessHubSatellite`
 - `BusinessLinkSatellite`
-
-It currently fails explicitly for:
-
 - `BusinessPointInTime`
 - `BusinessBridge`
 
@@ -147,10 +144,11 @@ If the sanctioned input set is incomplete or inconsistent, the failure still hap
 
 ## Current proved sample set
 
-The current sanctioned repeated-key-part sample set is:
+The current sanctioned repeated-key-part and helper-structure sample set is:
 
 - `MetaBusiness.Workspaces/SampleBusinessCommerceRepeatedKeyPart`
 - `MetaDataVault.Workspaces/SampleBusinessDataVaultCommerceRepeatedKeyPart`
+- `MetaDataVault.Workspaces/SampleBusinessDataVaultCommerceHelpers`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart`
@@ -179,3 +177,5 @@ That keeps:
 See also:
 
 - `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
+
+

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkSatelliteList>
+    <BusinessLinkSatellite Id="CustomerOrderStatus" BusinessLinkId="CustomerOrder">
+      <Name>BLS_CustomerOrder_Status</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessLinkSatellite>
+  </BusinessLinkSatelliteList>
+</MetaBusinessDataVault>

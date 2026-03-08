@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkSatelliteAttributeDataTypeDetailList>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="CustomerOrderStatusCodeLength" BusinessLinkSatelliteAttributeId="CustomerOrderStatusCode">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+  </BusinessLinkSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

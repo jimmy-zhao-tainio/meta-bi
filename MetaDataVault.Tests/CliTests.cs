@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Meta.Core.Services;
 using MetaSchema.Core;
 
@@ -72,7 +72,7 @@ public sealed class CliTests
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--data-type-conversion-workspace <path>", result.Output);
         Assert.Contains("--out <path>", result.Output);
-        Assert.Contains("hubs, links, and satellites", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("hubs, links, satellites, point-in-time tables, and bridges", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -255,6 +255,49 @@ public sealed class CliTests
         }
     }
 
+
+    [Fact]
+    public async Task GenerateSql_EmitsPointInTimeAndBridgeScripts()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("OK: business datavault sql generated", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("Files: 9", result.Output);
+            Assert.Contains("BusinessPointInTimes: 1", result.Output);
+            Assert.Contains("BusinessBridges: 1", result.Output);
+
+            var pitSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "PIT_CustomerSnapshot.sql"));
+            Assert.Contains("CREATE TABLE [PIT_CustomerSnapshot]", pitSql);
+            Assert.Contains("[HubHashKey] binary(16) NOT NULL", pitSql);
+            Assert.Contains("[SnapshotTimestamp] datetime2(7) NOT NULL", pitSql);
+            Assert.Contains("[BHS_Customer_ProfileLoadTimestamp] datetime2(7) NOT NULL", pitSql);
+            Assert.Contains("[BLS_CustomerOrder_StatusLoadTimestamp] datetime2(7) NOT NULL", pitSql);
+
+            var bridgeSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BR_CustomerOrderTraversal.sql"));
+            Assert.Contains("CREATE TABLE [BR_CustomerOrderTraversal]", bridgeSql);
+            Assert.Contains("[RootHashKey] binary(16) NOT NULL", bridgeSql);
+            Assert.Contains("[RelatedHashKey] binary(16) NOT NULL", bridgeSql);
+            Assert.Contains("[Depth] int NOT NULL", bridgeSql);
+            Assert.Contains("[Path] nvarchar(4000) NOT NULL", bridgeSql);
+            Assert.Contains("[EffectiveFrom] datetime2(7) NOT NULL", bridgeSql);
+            Assert.Contains("[EffectiveTo] datetime2(7) NOT NULL", bridgeSql);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
     private static void SeedMetaSchema(Meta.Core.Domain.Workspace workspace)
     {
         var systems = workspace.Instance.GetOrCreateEntityRecords("System");
@@ -553,6 +596,7 @@ public sealed class CliTests
         }
     }
 }
+
 
 
 
