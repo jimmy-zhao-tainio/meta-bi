@@ -5,10 +5,14 @@
       <TableNamePattern>BL_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
+      <HashKeyLength>16</HashKeyLength>
+      <EndHashKeyColumnPattern>{RoleName}HashKey</EndHashKeyColumnPattern>
       <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
       <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
       <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
       <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
     </BusinessLinkImplementation>
   </BusinessLinkImplementationList>
 </MetaDataVaultImplementation>

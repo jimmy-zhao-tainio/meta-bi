@@ -113,7 +113,31 @@ The current materializer does not yet:
 
 - derive new BDV rows beyond the sanctioned intent workspace
 - embed implementation column defaults into the BDV workspace model
-- generate SQL or SSDT artifacts
+- generate SSDT artifacts
+
+## Current SQL generation step
+
+```cmd
+meta-datavault generate-sql --workspace <materialized-bdv-workspace> --implementation-workspace <path> --data-type-conversion-workspace <path> --out <path>
+```
+
+This first SQL pass consumes:
+
+- one materialized `MetaBusinessDataVault` workspace
+- one `MetaDataVaultImplementation` workspace
+- one `MetaDataTypeConversion` workspace
+
+It currently emits plain SQL scripts for:
+
+- `BusinessHub`
+- `BusinessLink`
+- `BusinessHubSatellite`
+- `BusinessLinkSatellite`
+
+It currently fails explicitly for:
+
+- `BusinessPointInTime`
+- `BusinessBridge`
 
 ## Why this is still useful
 

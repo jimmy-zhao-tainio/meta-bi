@@ -6,10 +6,13 @@
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
         <Property name="LoadTimestampColumnName" />
         <Property name="LoadTimestampDataTypeId" />
+        <Property name="LoadTimestampPrecision" />
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
+        <Property name="RecordSourceLength" />
       </PropertyList>
     </Entity>
     <Entity name="RawLinkImplementation">
@@ -17,10 +20,14 @@
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="EndHashKeyColumnPattern" />
         <Property name="LoadTimestampColumnName" />
         <Property name="LoadTimestampDataTypeId" />
+        <Property name="LoadTimestampPrecision" />
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
+        <Property name="RecordSourceLength" />
       </PropertyList>
     </Entity>
     <Entity name="RawHubSatelliteImplementation">
@@ -28,12 +35,16 @@
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
         <Property name="HashDiffColumnName" />
         <Property name="HashDiffDataTypeId" />
+        <Property name="HashDiffLength" />
         <Property name="LoadTimestampColumnName" />
         <Property name="LoadTimestampDataTypeId" />
+        <Property name="LoadTimestampPrecision" />
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
+        <Property name="RecordSourceLength" />
       </PropertyList>
     </Entity>
     <Entity name="RawLinkSatelliteImplementation">
@@ -41,12 +52,16 @@
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
         <Property name="HashDiffColumnName" />
         <Property name="HashDiffDataTypeId" />
+        <Property name="HashDiffLength" />
         <Property name="LoadTimestampColumnName" />
         <Property name="LoadTimestampDataTypeId" />
+        <Property name="LoadTimestampPrecision" />
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
+        <Property name="RecordSourceLength" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHubImplementation">
@@ -54,10 +69,13 @@
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
         <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessLinkImplementation">
@@ -65,10 +83,14 @@
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="EndHashKeyColumnPattern" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
         <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHubSatelliteImplementation">
@@ -76,12 +98,16 @@
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
         <Property name="HashDiffColumnName" isRequired="false" />
         <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
         <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessLinkSatelliteImplementation">
@@ -89,12 +115,16 @@
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
         <Property name="HashDiffColumnName" isRequired="false" />
         <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
         <Property name="LoadTimestampColumnName" isRequired="false" />
         <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessPointInTimeImplementation">
@@ -102,10 +132,13 @@
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
         <Property name="SnapshotTimestampColumnName" />
         <Property name="SnapshotTimestampDataTypeId" />
+        <Property name="SnapshotTimestampPrecision" />
         <Property name="SatelliteReferenceColumnNamePattern" />
         <Property name="SatelliteReferenceDataTypeId" />
+        <Property name="SatelliteReferencePrecision" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessBridgeImplementation">
@@ -113,16 +146,21 @@
         <Property name="TableNamePattern" />
         <Property name="RootHashKeyColumnName" />
         <Property name="RootHashKeyDataTypeId" />
+        <Property name="RootHashKeyLength" />
         <Property name="RelatedHashKeyColumnName" />
         <Property name="RelatedHashKeyDataTypeId" />
+        <Property name="RelatedHashKeyLength" />
         <Property name="DepthColumnName" isRequired="false" />
         <Property name="DepthDataTypeId" isRequired="false" />
         <Property name="PathColumnName" isRequired="false" />
         <Property name="PathDataTypeId" isRequired="false" />
+        <Property name="PathLength" isRequired="false" />
         <Property name="EffectiveFromColumnName" isRequired="false" />
         <Property name="EffectiveFromDataTypeId" isRequired="false" />
+        <Property name="EffectiveFromPrecision" isRequired="false" />
         <Property name="EffectiveToColumnName" isRequired="false" />
         <Property name="EffectiveToDataTypeId" isRequired="false" />
+        <Property name="EffectiveToPrecision" isRequired="false" />
       </PropertyList>
     </Entity>
   </EntityList>

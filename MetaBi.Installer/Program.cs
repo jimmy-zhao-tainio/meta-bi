@@ -19,18 +19,18 @@ if (repoRoot is null)
 
 var tools = new[]
 {
-    new ToolSpec("meta-schema.exe", Path.Combine(repoRoot, "MetaSchema.Cli", "bin", "publish", "win-x64", "meta-schema.exe")),
-    new ToolSpec("meta-data-type.exe", Path.Combine(repoRoot, "MetaDataType.Cli", "bin", "publish", "win-x64", "meta-data-type.exe")),
-    new ToolSpec("meta-data-type-conversion.exe", Path.Combine(repoRoot, "MetaDataTypeConversion.Cli", "bin", "publish", "win-x64", "meta-data-type-conversion.exe")),
-    new ToolSpec("meta-datavault.exe", Path.Combine(repoRoot, "MetaDataVault.Cli", "bin", "publish", "win-x64", "meta-datavault.exe")),
+    new ToolSpec("meta-schema.exe", ResolveBuiltToolPath(repoRoot, "MetaSchema.Cli", "meta-schema.exe")),
+    new ToolSpec("meta-data-type.exe", ResolveBuiltToolPath(repoRoot, "MetaDataType.Cli", "meta-data-type.exe")),
+    new ToolSpec("meta-data-type-conversion.exe", ResolveBuiltToolPath(repoRoot, "MetaDataTypeConversion.Cli", "meta-data-type-conversion.exe")),
+    new ToolSpec("meta-datavault.exe", ResolveBuiltToolPath(repoRoot, "MetaDataVault.Cli", "meta-datavault.exe")),
 };
 
-var missing = tools.Where(tool => !File.Exists(tool.SourcePath)).ToArray();
+var missing = tools.Where(tool => tool.SourcePath is null).ToArray();
 if (missing.Length > 0)
 {
     presenter.WriteFailure(
-        "required published CLI binaries are missing.",
-        missing.Select(tool => $"  Missing: {tool.SourcePath}")
+        "required CLI binaries are missing.",
+        missing.Select(tool => $"  Missing: {tool.FileName}")
             .Concat(new[]
             {
                 "Next: dotnet build MetaSchema.sln",
@@ -50,7 +50,7 @@ Directory.CreateDirectory(targetDir);
 
 foreach (var tool in tools)
 {
-    File.Copy(tool.SourcePath, Path.Combine(targetDir, tool.FileName), overwrite: true);
+    File.Copy(tool.SourcePath!, Path.Combine(targetDir, tool.FileName), overwrite: true);
 }
 
 EnsureUserPathContains(targetDir);
@@ -74,7 +74,7 @@ static void PrintHelp(ConsolePresenter presenter)
     presenter.WriteInfo("Notes:");
     presenter.WriteInfo("  Installs BI CLIs into %LOCALAPPDATA%\\meta\\bin.");
     presenter.WriteInfo("  Adds that directory to the user PATH if it is missing.");
-    presenter.WriteInfo("  Expects published binaries under the current meta-bi checkout.");
+    presenter.WriteInfo("  Uses the newest available built binary from the current meta-bi checkout.");
     presenter.WriteNext("dotnet build MetaSchema.sln");
 }
 
@@ -99,6 +99,21 @@ static string? FindRepoRoot(string startDirectory, string markerFileName)
     }
 
     return null;
+}
+
+static string? ResolveBuiltToolPath(string repoRoot, string projectDirectory, string fileName)
+{
+    var candidates = new[]
+    {
+        Path.Combine(repoRoot, projectDirectory, "bin", "publish", "win-x64", fileName),
+        Path.Combine(repoRoot, projectDirectory, "bin", "Debug", "net8.0", fileName),
+        Path.Combine(repoRoot, projectDirectory, "bin", "Release", "net8.0", fileName)
+    };
+
+    return candidates
+        .Where(File.Exists)
+        .OrderByDescending(path => File.GetLastWriteTimeUtc(path))
+        .FirstOrDefault();
 }
 
 static void EnsureUserPathContains(string targetDir)
@@ -130,7 +145,7 @@ static void BroadcastEnvironmentChange()
         out _);
 }
 
-internal sealed record ToolSpec(string FileName, string SourcePath);
+internal sealed record ToolSpec(string FileName, string? SourcePath);
 
 internal static class NativeMethods
 {

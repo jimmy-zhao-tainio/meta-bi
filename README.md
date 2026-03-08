@@ -150,6 +150,42 @@ Current scope of `materialize-business`:
 - applies the sanctioned implementation `TableNamePattern`s to BDV table-bearing rows
 - keeps semantic row `Id` values stable while physicalizing `Name`
 
+## Current Business Data Vault SQL Generation
+
+`meta-datavault` now has a first SQL pass:
+
+```cmd
+meta-datavault generate-sql --workspace C:\path\to\Output\MaterializedBusinessDataVault --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --data-type-conversion-workspace C:\path\to\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion --out C:\path\to\Output\Sql
+```
+
+```text
+OK: business datavault sql generated
+Workspace: C:\path\to\Output\MaterializedBusinessDataVault
+Implementation Workspace: C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation
+DataTypeConversion Workspace: C:\path\to\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion
+Path: C:\path\to\Output\Sql
+Files: 5
+Tables: 5
+BusinessHubs: 3
+BusinessLinks: 2
+BusinessHubSatellites: 0
+BusinessLinkSatellites: 0
+```
+
+Current first-pass SQL scope:
+
+- `BusinessHub`
+- `BusinessLink`
+- `BusinessHubSatellite`
+- `BusinessLinkSatellite`
+
+Current exclusions:
+
+- `BusinessPointInTime`
+- `BusinessBridge`
+
+Those table families currently fail explicitly instead of being guessed.
+
 See also:
 
 - `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`

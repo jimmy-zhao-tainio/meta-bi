@@ -5,10 +5,13 @@
       <TableNamePattern>H_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
+      <HashKeyLength>16</HashKeyLength>
       <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
       <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
       <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
       <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
     </RawHubImplementation>
   </RawHubImplementationList>
 </MetaDataVaultImplementation>

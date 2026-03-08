@@ -5,10 +5,13 @@
       <TableNamePattern>PIT_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
+      <ParentHashKeyLength>16</ParentHashKeyLength>
       <SnapshotTimestampColumnName>SnapshotTimestamp</SnapshotTimestampColumnName>
       <SnapshotTimestampDataTypeId>sqlserver:type:datetime2</SnapshotTimestampDataTypeId>
+      <SnapshotTimestampPrecision>7</SnapshotTimestampPrecision>
       <SatelliteReferenceColumnNamePattern>{SatelliteName}LoadTimestamp</SatelliteReferenceColumnNamePattern>
       <SatelliteReferenceDataTypeId>sqlserver:type:datetime2</SatelliteReferenceDataTypeId>
+      <SatelliteReferencePrecision>7</SatelliteReferencePrecision>
     </BusinessPointInTimeImplementation>
   </BusinessPointInTimeImplementationList>
 </MetaDataVaultImplementation>

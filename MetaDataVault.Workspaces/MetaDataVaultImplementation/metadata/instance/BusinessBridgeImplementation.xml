@@ -5,16 +5,21 @@
       <TableNamePattern>BR_{Name}</TableNamePattern>
       <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
       <RootHashKeyDataTypeId>sqlserver:type:binary</RootHashKeyDataTypeId>
+      <RootHashKeyLength>16</RootHashKeyLength>
       <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>
       <RelatedHashKeyDataTypeId>sqlserver:type:binary</RelatedHashKeyDataTypeId>
+      <RelatedHashKeyLength>16</RelatedHashKeyLength>
       <DepthColumnName>Depth</DepthColumnName>
       <DepthDataTypeId>sqlserver:type:int</DepthDataTypeId>
       <PathColumnName>Path</PathColumnName>
       <PathDataTypeId>sqlserver:type:nvarchar</PathDataTypeId>
+      <PathLength>4000</PathLength>
       <EffectiveFromColumnName>EffectiveFrom</EffectiveFromColumnName>
       <EffectiveFromDataTypeId>sqlserver:type:datetime2</EffectiveFromDataTypeId>
+      <EffectiveFromPrecision>7</EffectiveFromPrecision>
       <EffectiveToColumnName>EffectiveTo</EffectiveToColumnName>
       <EffectiveToDataTypeId>sqlserver:type:datetime2</EffectiveToDataTypeId>
+      <EffectiveToPrecision>7</EffectiveToPrecision>
     </BusinessBridgeImplementation>
   </BusinessBridgeImplementationList>
 </MetaDataVaultImplementation>

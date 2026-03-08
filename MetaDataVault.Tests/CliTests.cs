@@ -15,6 +15,7 @@ public sealed class CliTests
         Assert.Contains("meta-datavault", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("from-metaschema", result.Output);
         Assert.Contains("check-business-materialization", result.Output);
+        Assert.Contains("generate-sql", result.Output);
     }
 
     [Fact]
@@ -59,6 +60,19 @@ public sealed class CliTests
         Assert.Contains("--fabric-workspace <path>", result.Output);
         Assert.Contains("--new-workspace <path>", result.Output);
         Assert.Contains("table name patterns", result.Output, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void GenerateSql_Help_ShowsRequiredOptions()
+    {
+        var result = RunCli("generate-sql --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("--workspace <path>", result.Output);
+        Assert.Contains("--implementation-workspace <path>", result.Output);
+        Assert.Contains("--data-type-conversion-workspace <path>", result.Output);
+        Assert.Contains("--out <path>", result.Output);
+        Assert.Contains("hubs, links, and satellites", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -188,6 +202,56 @@ public sealed class CliTests
         finally
         {
             DeleteDirectoryIfExists(Path.GetDirectoryName(outputPath)!);
+        }
+    }
+
+        [Fact]
+    public async Task GenerateSql_EmitsHubLinkAndSatelliteScripts()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var businessPath = Path.Combine(repoRoot, "MetaBusiness.Workspaces", "SampleBusinessCommerceRepeatedKeyPart");
+        var bdvPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceRepeatedKeyPart");
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var hubObjectWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart");
+        var hubKeyPartWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
+        var linkRelationshipWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart");
+        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var hubKeyPartFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
+        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var materializedPath = Path.Combine(root, "MaterializedBusinessDataVault");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            var materializeResult = RunCli(
+                $"materialize-business --business-workspace \"{businessPath}\" --bdv-workspace \"{bdvPath}\" --implementation-workspace \"{implementationPath}\" --weave-workspace \"{hubObjectWeavePath}\" --weave-workspace \"{hubKeyPartWeavePath}\" --weave-workspace \"{linkRelationshipWeavePath}\" --weave-workspace \"{linkEndWeavePath}\" --fabric-workspace \"{hubKeyPartFabricPath}\" --fabric-workspace \"{linkEndFabricPath}\" --new-workspace \"{materializedPath}\"");
+
+            Assert.Equal(0, materializeResult.ExitCode);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{materializedPath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("OK: business datavault sql generated", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("Files: 5", result.Output);
+
+            var customerHubSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BH_Customer.sql"));
+            Assert.Contains("CREATE TABLE [BH_Customer]", customerHubSql);
+            Assert.Contains("[HashKey] binary(16) NOT NULL", customerHubSql);
+            Assert.Contains("[Identifier] nvarchar(50) NOT NULL", customerHubSql);
+            Assert.Contains("[LoadTimestamp] datetime2(7) NOT NULL", customerHubSql);
+            Assert.Contains("[RecordSource] nvarchar(256) NOT NULL", customerHubSql);
+
+            var customerOrderLinkSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BL_CustomerOrder.sql"));
+            Assert.Contains("CREATE TABLE [BL_CustomerOrder]", customerOrderLinkSql);
+            Assert.Contains("[CustomerHashKey] binary(16) NOT NULL", customerOrderLinkSql);
+            Assert.Contains("[OrderHashKey] binary(16) NOT NULL", customerOrderLinkSql);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
         }
     }
 
