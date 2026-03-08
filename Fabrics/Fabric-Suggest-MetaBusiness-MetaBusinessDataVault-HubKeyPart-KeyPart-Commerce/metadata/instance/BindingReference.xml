@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaFabric>
+  <BindingReferenceList>
+    <BindingReference Id="1" WeaveReferenceId="1">
+      <Name>ParentHub</Name>
+      <BindingName>BusinessHub.Name -&gt; BusinessObject.Name</BindingName>
+    </BindingReference>
+    <BindingReference Id="2" WeaveReferenceId="2">
+      <Name>ChildKeyPart</Name>
+      <BindingName>BusinessHubKeyPart.Name -&gt; BusinessKeyPart.Name</BindingName>
+    </BindingReference>
+  </BindingReferenceList>
+</MetaFabric>

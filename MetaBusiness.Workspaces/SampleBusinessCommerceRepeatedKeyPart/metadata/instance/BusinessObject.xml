@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusiness>
+  <BusinessObjectList>
+    <BusinessObject Id="Customer">
+      <Name>Customer</Name>
+    </BusinessObject>
+    <BusinessObject Id="Invoice">
+      <Name>Invoice</Name>
+    </BusinessObject>
+    <BusinessObject Id="Order">
+      <Name>Order</Name>
+    </BusinessObject>
+  </BusinessObjectList>
+</MetaBusiness>

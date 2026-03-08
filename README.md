@@ -89,9 +89,11 @@ The current proved path is:
 - `BusinessHub.Name` -> `BusinessObject.Name` through flat weave
 - `BusinessLink.Name` -> `BusinessRelationship.Name` through flat weave
 - `BusinessLinkEnd.RoleName` -> `BusinessRelationshipParticipant.RoleName` through fabric-scoped weave validation
+- `BusinessHubKeyPart.Name` -> `BusinessKeyPart.Name` through path-scoped fabric validation
 
-The remaining unresolved seam is:
+Current BI fabric samples therefore prove both:
 
-- `BusinessHubKeyPart` -> `BusinessKeyPart`
-
-That case is multi-hop rather than shared-parent and is not yet covered by current `MetaFabric`.
+- shared-parent scope:
+  - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+- multi-hop path scope:
+  - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`

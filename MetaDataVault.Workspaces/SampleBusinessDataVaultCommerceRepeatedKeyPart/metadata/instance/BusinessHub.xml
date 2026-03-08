@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubList>
+    <BusinessHub Id="Customer">
+      <HubKind>standard</HubKind>
+      <Name>Customer</Name>
+    </BusinessHub>
+    <BusinessHub Id="Invoice">
+      <HubKind>standard</HubKind>
+      <Name>Invoice</Name>
+    </BusinessHub>
+    <BusinessHub Id="Order">
+      <HubKind>standard</HubKind>
+      <Name>Order</Name>
+    </BusinessHub>
+  </BusinessHubList>
+</MetaBusinessDataVault>

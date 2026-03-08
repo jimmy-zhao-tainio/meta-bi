@@ -22,11 +22,11 @@ These bindings are structurally simple:
 - one target property
 - no parent context required
 
-## What fabric now handles
+## What fabric handles
 
 `MetaFabric` is now the sanctioned place for child bindings that only become deterministic inside a resolved parent binding context.
 
-The current worked BI example is:
+The first worked BI example is:
 
 - parent weave:
   - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
@@ -42,40 +42,47 @@ Without fabric, the child weave is ambiguous because `Customer` appears in more 
 With fabric, the child binding becomes deterministic by scoping it under:
 
 - parent binding: `BusinessLink.Name` -> `BusinessRelationship.Name`
-- source parent reference: `BusinessLinkId`
-- target parent reference: `BusinessRelationshipId`
+- source path: `BusinessLinkId`
+- target path: `BusinessRelationshipId`
 
-## What remains unresolved
+The second worked BI example is:
 
-The remaining hard case is:
+- parent weave:
+  - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart`
+  - `BusinessHub.Name` -> `BusinessObject.Name`
+- child weave:
+  - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
+  - `BusinessHubKeyPart.Name` -> `BusinessKeyPart.Name`
+- scoped fabric:
+  - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 
-- `BusinessHubKeyPart` -> `BusinessKeyPart`
+Without fabric, the child weave is ambiguous because `Identifier` appears in more than one business-key-part row.
 
-This is harder than the link-participant seam because the child rows do not scope through the same direct parent binding:
+With fabric, the child binding becomes deterministic by scoping it under:
 
-- source child parent: `BusinessHub`
-- target child parent: `BusinessKey`
-
-That is a multi-hop or cross-parent seam, not a simple shared-parent seam.
-
-Current `MetaFabric` does not yet model that richer path.
+- parent binding: `BusinessHub.Name` -> `BusinessObject.Name`
+- source path: `BusinessHubId`
+- target path: `BusinessKeyId.BusinessObjectId`
 
 ## Practical implication
 
-The project no longer needs to hide scoped Business/BDV consistency inside `meta-datavault` for the direct shared-parent cases.
+The project no longer needs to hide scoped Business/BDV consistency inside `meta-datavault` for either:
+
+- direct shared-parent cases
+- multi-hop path-to-parent cases
 
 The split is now:
 
 - `MetaWeave` for flat direct anchors
-- `MetaFabric` for shared-parent scoped anchors
+- `MetaFabric` for scoped anchors over weave bindings
 - `meta-datavault` only for DV-domain logic that is still outside those two foundational capabilities
 
 ## Next architectural question
 
-If the hub-key-part case, or similar cases in other sanctioned model families, becomes common, then the next foundational step is not another CLI-side special case.
+If more complex cases in other sanctioned model families become common, then the next foundational step is not another CLI-side special case.
 
 It is a richer fabric model for:
 
-- multi-hop parent scoping
-- chained scoped bindings
-- cross-parent coordination
+- multi-parent scoped bindings
+- conditional scope across several parent bindings
+- richer structural predicates beyond path traversal

@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaFabric">
   <EntityList>
+    <Entity name="WeaveReference">
+      <PropertyList>
+        <Property name="Alias" />
+        <Property name="WorkspacePath" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+    </Entity>
     <Entity name="BindingReference">
       <PropertyList>
+        <Property name="Name" />
         <Property name="BindingName" />
         <Property name="Description" isRequired="false" />
-        <Property name="Name" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="WeaveReference" />
@@ -14,20 +21,22 @@
     <Entity name="BindingScopeRequirement">
       <PropertyList>
         <Property name="Description" isRequired="false" />
-        <Property name="SourceParentReferenceName" />
-        <Property name="TargetParentReferenceName" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BindingReference" role="Binding" />
         <Relationship entity="BindingReference" role="ParentBinding" />
       </RelationshipList>
     </Entity>
-    <Entity name="WeaveReference">
+    <Entity name="BindingScopePathStep">
       <PropertyList>
-        <Property name="Alias" />
-        <Property name="Description" isRequired="false" />
-        <Property name="WorkspacePath" />
+        <Property name="Side" />
+        <Property name="Ordinal" />
+        <Property name="ReferenceName" />
       </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BindingScopeRequirement" />
+      </RelationshipList>
     </Entity>
   </EntityList>
 </Model>
+
