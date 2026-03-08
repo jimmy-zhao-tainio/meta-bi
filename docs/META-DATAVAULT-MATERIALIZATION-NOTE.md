@@ -133,3 +133,11 @@ The current sanctioned repeated-key-part sample set is:
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart`
 - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart`
+
+## Remaining modeling gap
+
+The current materializer physicalizes table-bearing BDV rows, but business-derived SQL columns such as business-key parts and satellite attributes still need an explicit sanctioned typing strategy before SQL generation can be honest.
+
+See also:
+
+- `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`

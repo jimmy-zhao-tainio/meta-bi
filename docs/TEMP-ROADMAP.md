@@ -49,6 +49,7 @@ Exit criteria:
 - table families and structural relations are explicit
 - no hidden generator knowledge is required to understand what a BDV row means
 - implementation naming stays out of the BDV model itself
+- the repo has an explicit answer for where business-derived column typing lives
 
 ## Stage 3. Define the Business <-> BDV consistency seam
 
@@ -144,4 +145,3 @@ These are real, but not the next move:
 The next real implementation work should stay inside stages 1-4.
 
 If we skip that and jump to artifact generation, we will hardcode missing semantics into tooling.
-

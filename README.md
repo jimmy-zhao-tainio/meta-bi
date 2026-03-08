@@ -153,6 +153,4 @@ Current scope of `materialize-business`:
 See also:
 
 - `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
-
-
-
+- `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
