@@ -79,7 +79,7 @@ That means a full sanctioned Business/BDV weave will likely require either:
 
 The current sanctioned first-pass weave instance is:
 
-- `MetaWeave.Workspaces/Weave-MetaBusiness-MetaBusinessDataVault`
+- `Weaves/Weave-MetaBusiness-MetaBusinessDataVault`
 
 It carries only the flat anchors that current `MetaWeave` can express honestly:
 
@@ -98,6 +98,7 @@ For now, the right top-down move is:
 1. make sure `MetaBusiness` can represent business objects, business keys, business relationships, and relationship participants
 2. treat the four direct anchors above as the intended Business/BDV consistency seam
 3. do not pretend the current `MetaWeave` model already covers the full child-row consistency story
+
 
 
 
