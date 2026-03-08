@@ -4,7 +4,6 @@
     <Entity name="BusinessHub">
       <PropertyList>
         <Property name="Name" />
-        <Property name="HubKind" />
         <Property name="Description" isRequired="false" />
       </PropertyList>
     </Entity>
@@ -45,6 +44,15 @@
         <Relationship entity="BusinessHub" />
       </RelationshipList>
     </Entity>
+    <Entity name="BusinessHubSatelliteKeyPart">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHubSatellite" />
+      </RelationshipList>
+    </Entity>
     <Entity name="BusinessHubSatelliteAttribute">
       <PropertyList>
         <Property name="Name" />
@@ -62,6 +70,15 @@
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessLinkSatelliteKeyPart">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessLinkSatellite" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessLinkSatelliteAttribute">
@@ -106,6 +123,9 @@
         <Property name="BridgeKind" />
         <Property name="Description" isRequired="false" />
       </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHub" role="AnchorHub" />
+      </RelationshipList>
     </Entity>
     <Entity name="BusinessBridgeHub">
       <PropertyList>

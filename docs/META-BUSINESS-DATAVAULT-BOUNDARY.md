@@ -29,7 +29,7 @@ Represents a business-vault hub structure.
 The sanctioned model carries:
 
 - `Name`
-- `HubKind`
+- optional `Description`
 
 ### BusinessHubKeyPart
 
@@ -68,7 +68,12 @@ The sanctioned model carries:
 - `Name`
 - `SatelliteKind`
 
-Payload structure is represented through `BusinessHubSatelliteAttribute` rows.
+Payload structure is represented through:
+
+- `BusinessHubSatelliteAttribute`
+- `BusinessHubSatelliteKeyPart`
+
+The additional key-part rows matter for multi-active or similarly qualified satellite structures where payload rows are not uniquely identified by parent key alone.
 
 ### BusinessLinkSatellite
 
@@ -79,7 +84,12 @@ The sanctioned model carries:
 - `Name`
 - `SatelliteKind`
 
-Payload structure is represented through `BusinessLinkSatelliteAttribute` rows.
+Payload structure is represented through:
+
+- `BusinessLinkSatelliteAttribute`
+- `BusinessLinkSatelliteKeyPart`
+
+The additional key-part rows matter for multi-active or similarly qualified satellite structures where payload rows are not uniquely identified by parent key alone.
 
 ### BusinessPointInTime
 
@@ -94,6 +104,12 @@ Included satellites are represented explicitly through:
 
 Represents a bridge helper structure.
 
+The sanctioned model carries:
+
+- `Name`
+- `BridgeKind`
+- required `AnchorHub`
+
 Participating hubs and links are represented explicitly through:
 
 - `BusinessBridgeHub`
@@ -103,7 +119,6 @@ Participating hubs and links are represented explicitly through:
 
 The sanctioned model keeps explicit kind properties where the structure family is the same but the subtype matters:
 
-- `BusinessHub.HubKind`
 - `BusinessLink.LinkKind`
 - `BusinessHubSatellite.SatelliteKind`
 - `BusinessLinkSatellite.SatelliteKind`
