@@ -47,6 +47,21 @@ public sealed class CliTests
     }
 
     [Fact]
+    public void MaterializeBusiness_Help_ShowsRequiredOptions()
+    {
+        var result = RunCli("materialize-business --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("--business-workspace <path>", result.Output);
+        Assert.Contains("--bdv-workspace <path>", result.Output);
+        Assert.Contains("--implementation-workspace <path>", result.Output);
+        Assert.Contains("--weave-workspace <path>", result.Output);
+        Assert.Contains("--fabric-workspace <path>", result.Output);
+        Assert.Contains("--new-workspace <path>", result.Output);
+        Assert.Contains("table name patterns", result.Output, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
     public async Task FromMetaSchema_FailsWhenRequiredSanctionedWorkspacesAreMissing()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
@@ -129,6 +144,45 @@ public sealed class CliTests
         Assert.Contains("OK: business datavault materialization contract", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("FlatAnchors: 2/2", result.Output);
         Assert.Contains("ScopedAnchors: 2/2", result.Output);
+    }
+
+    [Fact]
+    public async Task MaterializeBusiness_PhysicalizesBusinessDataVaultNames()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var businessPath = Path.Combine(repoRoot, "MetaBusiness.Workspaces", "SampleBusinessCommerceRepeatedKeyPart");
+        var bdvPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceRepeatedKeyPart");
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var hubObjectWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart");
+        var hubKeyPartWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
+        var linkRelationshipWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart");
+        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var hubKeyPartFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
+        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var outputPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MaterializedBusinessDataVault");
+
+        try
+        {
+            var result = RunCli(
+                $"materialize-business --business-workspace \"{businessPath}\" --bdv-workspace \"{bdvPath}\" --implementation-workspace \"{implementationPath}\" --weave-workspace \"{hubObjectWeavePath}\" --weave-workspace \"{hubKeyPartWeavePath}\" --weave-workspace \"{linkRelationshipWeavePath}\" --weave-workspace \"{linkEndWeavePath}\" --fabric-workspace \"{hubKeyPartFabricPath}\" --fabric-workspace \"{linkEndFabricPath}\" --new-workspace \"{outputPath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("OK: business datavault materialized", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("MaterializedTables: 5", result.Output);
+
+            var materializedWorkspace = await new WorkspaceService().LoadAsync(outputPath, searchUpward: false);
+            var hubs = materializedWorkspace.Instance.GetOrCreateEntityRecords("BusinessHub").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            var links = materializedWorkspace.Instance.GetOrCreateEntityRecords("BusinessLink").ToDictionary(record => record.Id, StringComparer.Ordinal);
+
+            Assert.Equal("BH_Customer", hubs["Customer"].Values["Name"]);
+            Assert.Equal("BH_Invoice", hubs["Invoice"].Values["Name"]);
+            Assert.Equal("BL_CustomerOrder", links["CustomerOrder"].Values["Name"]);
+            Assert.Equal("BL_CustomerInvoice", links["CustomerInvoice"].Values["Name"]);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(Path.GetDirectoryName(outputPath)!);
+        }
     }
 
     private static void SeedMetaSchema(Meta.Core.Domain.Workspace workspace)
@@ -429,6 +483,7 @@ public sealed class CliTests
         }
     }
 }
+
 
 
 

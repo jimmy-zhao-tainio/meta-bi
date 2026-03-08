@@ -97,15 +97,18 @@ Current BI fabric samples therefore prove both:
   - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
 - multi-hop path scope:
   - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
-## Current Business Data Vault Materialization Contract
+## Current Business Data Vault Materialization
 
-`meta-datavault` now has an explicit preflight for future Business Data Vault materialization:
+`meta-datavault` now has both:
+
+- `check-business-materialization`
+- `materialize-business`
+
+Preflight:
 
 ```cmd
 meta-datavault check-business-materialization --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart
 ```
-
-Example output:
 
 ```text
 OK: business datavault materialization contract
@@ -118,16 +121,38 @@ FlatAnchors: 2/2
 ScopedAnchors: 2/2
 ```
 
-This command does not materialize a BDV yet. It validates that the sanctioned input set is coherent enough for future materialization:
+First-step materialization:
 
-- `MetaBusiness`
-- `MetaBusinessDataVault`
-- `MetaDataVaultImplementation`
-- flat `MetaWeave` anchors
-- scoped `MetaFabric` anchors
+```cmd
+meta-datavault materialize-business --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart --new-workspace C:\path\to\Output\MaterializedBusinessDataVault
+```
+
+```text
+OK: business datavault materialized
+Business Workspace: C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart
+BusinessDataVault Workspace: C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart
+Implementation Workspace: C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation
+Path: C:\path\to\Output\MaterializedBusinessDataVault
+Model: MetaBusinessDataVault
+MaterializedTables: 5
+BusinessHubs: 3
+BusinessLinks: 2
+BusinessHubSatellites: 0
+BusinessLinkSatellites: 0
+BusinessPointInTimes: 0
+BusinessBridges: 0
+```
+
+Current scope of `materialize-business`:
+
+- validates the sanctioned Business/BDV/Implementation/Weave/Fabric input set first
+- writes a new `MetaBusinessDataVault` workspace
+- applies the sanctioned implementation `TableNamePattern`s to BDV table-bearing rows
+- keeps semantic row `Id` values stable while physicalizing `Name`
 
 See also:
 
 - `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
+
 
 

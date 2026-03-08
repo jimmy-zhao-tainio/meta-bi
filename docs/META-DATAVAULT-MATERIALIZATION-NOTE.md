@@ -9,15 +9,20 @@
 
 Those are both valid.
 
-## Current implemented contract gate
+## Current implemented steps
 
-The first implemented Business Vault materialization step is not generation. It is a sanctioned contract check:
+The first implemented Business Vault materialization steps are:
+
+- a sanctioned contract check
+- a first-step BDV materializer that physicalizes table names into a new workspace
+
+Contract check:
 
 ```cmd
 meta-datavault check-business-materialization --business-workspace <path> --bdv-workspace <path> --implementation-workspace <path> --weave-workspace <path> [--weave-workspace <path> ...] --fabric-workspace <path> [--fabric-workspace <path> ...]
 ```
 
-This command currently validates that the input set is coherent and complete enough for future Business Data Vault materialization.
+This command validates that the input set is coherent and complete enough for Business Data Vault materialization.
 
 ## Current sanctioned inputs
 
@@ -89,21 +94,32 @@ Scoped anchors:
 
 The contract check currently requires all four.
 
+## Current materialize-business step
+
+```cmd
+meta-datavault materialize-business --business-workspace <path> --bdv-workspace <path> --implementation-workspace <path> --weave-workspace <path> [--weave-workspace <path> ...] --fabric-workspace <path> [--fabric-workspace <path> ...] --new-workspace <path>
+```
+
+This command currently:
+
+- reruns the sanctioned contract gate
+- clones the sanctioned `MetaBusinessDataVault` intent workspace into a new workspace
+- applies the implementation `TableNamePattern` values to table-bearing BDV rows
+- keeps semantic row `Id` values stable while physicalizing `Name`
+
 ## What this does not do yet
 
-The command does not yet:
+The current materializer does not yet:
 
-- materialize a Business Data Vault workspace
-- rewrite or derive BDV rows
+- derive new BDV rows beyond the sanctioned intent workspace
+- embed implementation column defaults into the BDV workspace model
 - generate SQL or SSDT artifacts
-
-It is a sanctioned gate for future materialization work.
 
 ## Why this is still useful
 
-This keeps the future materializer honest.
+This gives downstream tooling a physicalized BDV workspace without hardcoding the table naming rules in generators.
 
-If the sanctioned input set is incomplete or inconsistent, the failure happens before any workspace generation logic is introduced.
+If the sanctioned input set is incomplete or inconsistent, the failure still happens before materialized output is written.
 
 ## Current proved sample set
 
