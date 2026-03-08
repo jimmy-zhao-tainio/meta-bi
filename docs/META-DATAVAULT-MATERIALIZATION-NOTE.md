@@ -134,9 +134,23 @@ The current sanctioned repeated-key-part sample set is:
 - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart`
 
-## Remaining modeling gap
+## Current typing position
 
-The current materializer physicalizes table-bearing BDV rows, but business-derived SQL columns such as business-key parts and satellite attributes still need an explicit sanctioned typing strategy before SQL generation can be honest.
+Business-derived BDV columns are now typed directly on the BDV rows that cause those SQL columns to exist:
+
+- `BusinessHubKeyPart`
+- `BusinessHubSatelliteAttribute`
+- `BusinessHubSatelliteKeyPart`
+- `BusinessLinkSatelliteAttribute`
+- `BusinessLinkSatelliteKeyPart`
+
+Those rows own `DataTypeId`, and optional local `...DataTypeDetail` rows carry variable details such as length or precision.
+
+That keeps:
+
+- `MetaBusiness` focused on business meaning
+- `MetaBusinessDataVault` responsible for the business-driven columns it materializes
+- `MetaDataVaultImplementation` responsible for standardized technical DV columns
 
 See also:
 

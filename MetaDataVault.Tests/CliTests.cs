@@ -173,11 +173,17 @@ public sealed class CliTests
             var materializedWorkspace = await new WorkspaceService().LoadAsync(outputPath, searchUpward: false);
             var hubs = materializedWorkspace.Instance.GetOrCreateEntityRecords("BusinessHub").ToDictionary(record => record.Id, StringComparer.Ordinal);
             var links = materializedWorkspace.Instance.GetOrCreateEntityRecords("BusinessLink").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            var hubKeyParts = materializedWorkspace.Instance.GetOrCreateEntityRecords("BusinessHubKeyPart").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            var hubKeyPartDetails = materializedWorkspace.Instance.GetOrCreateEntityRecords("BusinessHubKeyPartDataTypeDetail").ToDictionary(record => record.Id, StringComparer.Ordinal);
 
             Assert.Equal("BH_Customer", hubs["Customer"].Values["Name"]);
             Assert.Equal("BH_Invoice", hubs["Invoice"].Values["Name"]);
             Assert.Equal("BL_CustomerOrder", links["CustomerOrder"].Values["Name"]);
             Assert.Equal("BL_CustomerInvoice", links["CustomerInvoice"].Values["Name"]);
+            Assert.Equal("meta:type:String", hubKeyParts["CustomerIdentifier"].Values["DataTypeId"]);
+            Assert.Equal("meta:type:String", hubKeyParts["OrderIdentifier"].Values["DataTypeId"]);
+            Assert.Equal("Length", hubKeyPartDetails["CustomerIdentifierLength"].Values["Name"]);
+            Assert.Equal("50", hubKeyPartDetails["CustomerIdentifierLength"].Values["Value"]);
         }
         finally
         {

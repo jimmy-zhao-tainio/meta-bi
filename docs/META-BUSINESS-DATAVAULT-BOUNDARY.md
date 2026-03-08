@@ -38,7 +38,10 @@ Represents one component of the hub business key.
 The sanctioned model carries:
 
 - `Name`
+- `DataTypeId`
 - `Ordinal`
+
+Additional usage-specific detail such as length or precision belongs in `BusinessHubKeyPartDataTypeDetail` rows.
 
 ### BusinessLink
 
@@ -73,6 +76,8 @@ Payload structure is represented through:
 - `BusinessHubSatelliteAttribute`
 - `BusinessHubSatelliteKeyPart`
 
+Those child rows own their own `DataTypeId` values, with optional local detail rows for variable physical declarations.
+
 The additional key-part rows matter for multi-active or similarly qualified satellite structures where payload rows are not uniquely identified by parent key alone.
 
 ### BusinessLinkSatellite
@@ -88,6 +93,8 @@ Payload structure is represented through:
 
 - `BusinessLinkSatelliteAttribute`
 - `BusinessLinkSatelliteKeyPart`
+
+Those child rows own their own `DataTypeId` values, with optional local detail rows for variable physical declarations.
 
 The additional key-part rows matter for multi-active or similarly qualified satellite structures where payload rows are not uniquely identified by parent key alone.
 

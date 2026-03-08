@@ -121,6 +121,14 @@ Meaning:
 - more authoring overhead
 - likely premature before there is a second real consumer besides BDV SQL generation
 
+## Current repo decision
+
+This direction is now adopted in `meta-bi`:
+
+- business-derived BDV column rows own `DataTypeId`
+- local variability is expressed through `...DataTypeDetail` rows
+- `MetaDataVaultImplementation` remains responsible only for standardized technical DV columns
+
 ## Recommended direction
 
 For the current stage of `meta-bi`, the best tradeoff is:
