@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusiness>
+  <BusinessRelationshipParticipantList>
+    <BusinessRelationshipParticipant Id="CustomerInvoice-Customer" BusinessObjectId="Customer" BusinessRelationshipId="CustomerInvoice">
+      <Ordinal>1</Ordinal>
+      <RoleName>Customer</RoleName>
+    </BusinessRelationshipParticipant>
+    <BusinessRelationshipParticipant Id="CustomerInvoice-Invoice" BusinessObjectId="Invoice" BusinessRelationshipId="CustomerInvoice">
+      <Ordinal>2</Ordinal>
+      <RoleName>Invoice</RoleName>
+    </BusinessRelationshipParticipant>
+    <BusinessRelationshipParticipant Id="CustomerOrder-Customer" BusinessObjectId="Customer" BusinessRelationshipId="CustomerOrder">
+      <Ordinal>1</Ordinal>
+      <RoleName>Customer</RoleName>
+    </BusinessRelationshipParticipant>
+    <BusinessRelationshipParticipant Id="CustomerOrder-Order" BusinessObjectId="Order" BusinessRelationshipId="CustomerOrder">
+      <Ordinal>2</Ordinal>
+      <RoleName>Order</RoleName>
+    </BusinessRelationshipParticipant>
+  </BusinessRelationshipParticipantList>
+</MetaBusiness>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <PropertyBindingList>
+    <PropertyBinding Id="1" SourceModelId="2" TargetModelId="1">
+      <Name>BusinessLinkEnd.RoleName -&gt; BusinessRelationshipParticipant.RoleName</Name>
+      <SourceEntity>BusinessLinkEnd</SourceEntity>
+      <SourceProperty>RoleName</SourceProperty>
+      <TargetEntity>BusinessRelationshipParticipant</TargetEntity>
+      <TargetProperty>RoleName</TargetProperty>
+    </PropertyBinding>
+  </PropertyBindingList>
+</MetaWeave>

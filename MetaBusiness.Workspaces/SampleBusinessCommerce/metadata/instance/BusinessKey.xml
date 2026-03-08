@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusiness>
+  <BusinessKeyList>
+    <BusinessKey Id="CustomerKey" BusinessObjectId="Customer">
+      <Name>CustomerKey</Name>
+    </BusinessKey>
+    <BusinessKey Id="InvoiceKey" BusinessObjectId="Invoice">
+      <Name>InvoiceKey</Name>
+    </BusinessKey>
+    <BusinessKey Id="OrderKey" BusinessObjectId="Order">
+      <Name>OrderKey</Name>
+    </BusinessKey>
+  </BusinessKeyList>
+</MetaBusiness>

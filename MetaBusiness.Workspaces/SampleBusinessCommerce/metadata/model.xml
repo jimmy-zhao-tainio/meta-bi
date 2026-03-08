@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="MetaBusiness">
+  <EntityList>
+    <Entity name="BusinessKey">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessObject" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessKeyPart">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessKey" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessObject">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessProcess">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessProcessBusinessObject">
+      <PropertyList>
+        <Property name="RelationshipKind" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessObject" />
+        <Relationship entity="BusinessProcess" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessProcessBusinessRole">
+      <RelationshipList>
+        <Relationship entity="BusinessProcess" />
+        <Relationship entity="BusinessRole" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessProcessHierarchy">
+      <RelationshipList>
+        <Relationship entity="BusinessProcess" role="ChildBusinessProcess" />
+        <Relationship entity="BusinessProcess" role="ParentBusinessProcess" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessRelationship">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="RelationshipKind" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessRelationshipParticipant">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="RoleName" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessObject" />
+        <Relationship entity="BusinessRelationship" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessRole">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+    <Entity name="OrganizationUnit">
+      <PropertyList>
+        <Property name="Code" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+    <Entity name="OrganizationUnitBusinessProcess">
+      <PropertyList>
+        <Property name="RelationshipKind" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessProcess" />
+        <Relationship entity="OrganizationUnit" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OrganizationUnitBusinessRole">
+      <RelationshipList>
+        <Relationship entity="BusinessRole" />
+        <Relationship entity="OrganizationUnit" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OrganizationUnitHierarchy">
+      <RelationshipList>
+        <Relationship entity="OrganizationUnit" role="ChildOrganizationUnit" />
+        <Relationship entity="OrganizationUnit" role="ParentOrganizationUnit" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

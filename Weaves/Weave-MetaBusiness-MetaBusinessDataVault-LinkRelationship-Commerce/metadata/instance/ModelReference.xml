@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ModelReferenceList>
+    <ModelReference Id="1">
+      <Alias>Business</Alias>
+      <ModelName>MetaBusiness</ModelName>
+      <WorkspacePath>..\..\MetaBusiness.Workspaces\SampleBusinessCommerce</WorkspacePath>
+    </ModelReference>
+    <ModelReference Id="2">
+      <Alias>Bdv</Alias>
+      <ModelName>MetaBusinessDataVault</ModelName>
+      <WorkspacePath>..\..\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerce</WorkspacePath>
+    </ModelReference>
+  </ModelReferenceList>
+</MetaWeave>

@@ -1,45 +1,81 @@
 # Business <-> BDV Weave Decision
 
-## Decision for now
+## Current decision
 
-For the Business -> Business Data Vault path, current `MetaWeave` remains a flat property-binding tool.
+For the Business -> Business Data Vault path:
 
-Deeper parent-scoped consistency will be owned by `meta-datavault`, not by `MetaWeave`, until a second domain proves that scoped bindings are a foundational cross-domain requirement rather than a single-domain need.
+- flat direct anchors stay in `MetaWeave`
+- parent-scoped child consistency moves into `MetaFabric`
 
-## Why this is the current choice
+This is no longer hypothetical. The current foundation now supports scoped validation over weave workspaces through `meta-fabric`.
 
-`MetaWeave` today is clear and useful for direct property equivalence:
+## What flat weave handles well
 
-- explicit model references
-- explicit property bindings
-- deterministic check
-- deterministic materialization for direct cases
-
-That is enough for first-pass anchors such as:
+`MetaWeave` remains the correct place for direct, context-free anchors such as:
 
 - `BusinessHub.Name` -> `BusinessObject.Name`
 - `BusinessLink.Name` -> `BusinessRelationship.Name`
 
-It is not enough for parent-scoped child consistency such as:
+These bindings are structurally simple:
 
-- `BusinessHubKeyPart` under the correct `BusinessHub`
-- `BusinessLinkEnd` under the correct `BusinessLink`
+- one source property
+- one target property
+- no parent context required
 
-Trying to force those semantics into the current flat weave would muddy the core concept.
+## What fabric now handles
 
-## What meta-datavault must therefore own
+`MetaFabric` is now the sanctioned place for child bindings that only become deterministic inside a resolved parent binding context.
 
-Until scoped weave semantics exist, `meta-datavault` must own the deeper Business/BDV consistency rules, including:
+The current worked BI example is:
 
-- hub to business-object alignment
-- hub-key-part to business-key-part alignment in the correct parent context
-- link to business-relationship alignment
-- link-end to business-relationship-participant alignment in the correct parent context
+- parent weave:
+  - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
+  - `BusinessLink.Name` -> `BusinessRelationship.Name`
+- child weave:
+  - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+  - `BusinessLinkEnd.RoleName` -> `BusinessRelationshipParticipant.RoleName`
+- scoped fabric:
+  - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
 
-Those checks must be explicit and deterministic.
+Without fabric, the child weave is ambiguous because `Customer` appears in more than one relationship participant row.
 
-## What would change this decision
+With fabric, the child binding becomes deterministic by scoping it under:
 
-If another sanctioned model family needs the same parent-scoped binding behavior, then the capability should move down into the foundation and `MetaWeave` should grow beyond flat property bindings.
+- parent binding: `BusinessLink.Name` -> `BusinessRelationship.Name`
+- source parent reference: `BusinessLinkId`
+- target parent reference: `BusinessRelationshipId`
 
-At that point the project should revisit whether the foundational concept is still just weave, or whether it has become something broader and more fabric-like.
+## What remains unresolved
+
+The remaining hard case is:
+
+- `BusinessHubKeyPart` -> `BusinessKeyPart`
+
+This is harder than the link-participant seam because the child rows do not scope through the same direct parent binding:
+
+- source child parent: `BusinessHub`
+- target child parent: `BusinessKey`
+
+That is a multi-hop or cross-parent seam, not a simple shared-parent seam.
+
+Current `MetaFabric` does not yet model that richer path.
+
+## Practical implication
+
+The project no longer needs to hide scoped Business/BDV consistency inside `meta-datavault` for the direct shared-parent cases.
+
+The split is now:
+
+- `MetaWeave` for flat direct anchors
+- `MetaFabric` for shared-parent scoped anchors
+- `meta-datavault` only for DV-domain logic that is still outside those two foundational capabilities
+
+## Next architectural question
+
+If the hub-key-part case, or similar cases in other sanctioned model families, becomes common, then the next foundational step is not another CLI-side special case.
+
+It is a richer fabric model for:
+
+- multi-hop parent scoping
+- chained scoped bindings
+- cross-parent coordination

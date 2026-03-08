@@ -23,17 +23,18 @@ Additional foundation packages available from the same internal feed when BI pro
 
 - `Meta.Adapters`
 - `MetaWeave.Core`
+- `MetaFabric.Core`
 
-Before restore/build, add a package source that points at the packed output from `isomorphic-metadata`:
+Before restore/build, add a package source that points at the packed output from `meta`:
 
 ```cmd
-dotnet nuget add source C:\path\to\isomorphic-metadata\.nupkg --name meta-foundation-internal
+dotnet nuget add source C:\path\to\meta\.nupkg --name meta-foundation-internal
 ```
 
 Then pack the foundation repo and build this repo:
 
 ```cmd
-cd C:\path\to\isomorphic-metadata
+cd C:\path\to\meta
 pack-internal.cmd
 
 cd C:\path\to\meta-bi
@@ -61,7 +62,7 @@ MetaBi.Installer\bin\publish\win-x64\install-meta-bi.exe
 
 The long-term repo boundary is:
 
-- `isomorphic-metadata`: generic foundation (`Meta.Core`, `meta`, `MetaWeave`, `meta-weave`, generic metamodels)
+- `meta`: generic foundation (`Meta.Core`, `meta`, `MetaWeave`, `meta-weave`, `MetaFabric`, `meta-fabric`, generic metamodels)
 - `meta-bi`: sanctioned BI models and BI-specific CLIs/tooling
 
 ## Included solution files
@@ -71,6 +72,26 @@ The long-term repo boundary is:
 - `MetaDataTypeConversion.sln`
 - `MetaDataVault.sln`
 
-## Current BI Weave Example
+## Current BI Weave and Fabric Example
 
+Flat anchors:
 - `Weaves\Weave-MetaBusiness-MetaBusinessDataVault`
+- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce`
+- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
+
+Scoped seam:
+- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+- `Fabrics\Fabric-Suggest-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+- `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+
+The current proved path is:
+
+- `BusinessHub.Name` -> `BusinessObject.Name` through flat weave
+- `BusinessLink.Name` -> `BusinessRelationship.Name` through flat weave
+- `BusinessLinkEnd.RoleName` -> `BusinessRelationshipParticipant.RoleName` through fabric-scoped weave validation
+
+The remaining unresolved seam is:
+
+- `BusinessHubKeyPart` -> `BusinessKeyPart`
+
+That case is multi-hop rather than shared-parent and is not yet covered by current `MetaFabric`.
