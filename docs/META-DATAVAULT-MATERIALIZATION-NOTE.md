@@ -139,7 +139,6 @@ It currently emits plain SQL scripts for:
 Current SQL generator contract:
 
 - `BusinessLink.LinkKind` must currently be `standard`
-- `BusinessLinkEnd.IsDrivingKey` is not yet emitted and therefore fails fast
 - `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
 - `BusinessBridge.BridgeKind` must currently be `standard`
 - `BusinessPointInTime` currently supports only `standard` satellite references; point-in-time references to `multi-active` satellites fail fast

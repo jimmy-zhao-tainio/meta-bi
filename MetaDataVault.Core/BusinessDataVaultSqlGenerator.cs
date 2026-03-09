@@ -427,10 +427,6 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             throw new InvalidOperationException($"SQL generation currently supports only BusinessLink.LinkKind='standard'. Link '{link.Name}' uses '{link.LinkKind}'.");
         }
 
-        if (bdv.BusinessLinkEndList.Count(row => row.BusinessLinkId == link.Id && IsTrue(row.IsDrivingKey)) > 0)
-        {
-            throw new InvalidOperationException($"SQL generation does not yet support BusinessLinkEnd.IsDrivingKey semantics. Link '{link.Name}' sets IsDrivingKey.");
-        }
     }
 
     private static void EnsureSupportedBusinessHubSatellite(BDV.BusinessHubSatellite satellite, BDV.MetaBusinessDataVaultModel bdv)
@@ -557,10 +553,6 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
                hubIds.Contains(secondHubId, StringComparer.Ordinal);
     }
 
-    private static bool IsTrue(string? value)
-    {
-        return bool.TryParse(value, out var parsed) && parsed;
-    }
 
     private static void EnsureRequiredBusinessImplementation(DataVaultImplementationModel implementation)
     {

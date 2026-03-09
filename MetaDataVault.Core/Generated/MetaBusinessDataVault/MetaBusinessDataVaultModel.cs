@@ -280,7 +280,6 @@ namespace MetaBusinessDataVault
                     businessLinkEndList.Add(new BusinessLinkEnd
                     {
                         Id = record.Id ?? string.Empty,
-                        IsDrivingKey = record.Values.TryGetValue("IsDrivingKey", out var isDrivingKeyValue) ? isDrivingKeyValue ?? string.Empty : string.Empty,
                         Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
                         RoleName = record.Values.TryGetValue("RoleName", out var roleNameValue) ? roleNameValue ?? string.Empty : string.Empty,
                         BusinessHubId = record.RelationshipIds.TryGetValue("BusinessHubId", out var businessHubRelationshipId) ? businessHubRelationshipId ?? string.Empty : string.Empty,

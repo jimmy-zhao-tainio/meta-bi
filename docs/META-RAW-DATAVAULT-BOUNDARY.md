@@ -81,7 +81,7 @@ The sanctioned model carries:
 
 - `Ordinal`
 - `RoleName`
-- optional `IsDrivingKey`
+
 
 ### RawLinkSatellite
 

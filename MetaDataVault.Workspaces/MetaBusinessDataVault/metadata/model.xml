@@ -37,7 +37,6 @@
       <PropertyList>
         <Property name="Ordinal" />
         <Property name="RoleName" isRequired="false" />
-        <Property name="IsDrivingKey" dataType="bool" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="BusinessLink" />

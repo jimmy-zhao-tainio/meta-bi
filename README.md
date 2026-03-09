@@ -186,7 +186,6 @@ Current SQL scope:
 Current SQL constraints and supported semantics:
 
 - `BusinessLink.LinkKind` must currently be `standard`
-- `BusinessLinkEnd.IsDrivingKey` is not yet emitted and therefore causes SQL generation to fail fast if present
 - `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
 - `BusinessBridge.BridgeKind` must currently be `standard`
 - `BusinessPointInTime` currently supports only `standard` satellite references; point-in-time references to `multi-active` satellites fail fast

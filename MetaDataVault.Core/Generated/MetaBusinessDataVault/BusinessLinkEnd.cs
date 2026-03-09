@@ -3,7 +3,6 @@ namespace MetaBusinessDataVault
     public sealed class BusinessLinkEnd
     {
         public string Id { get; internal set; } = string.Empty;
-        public string IsDrivingKey { get; internal set; } = string.Empty;
         public string Ordinal { get; internal set; } = string.Empty;
         public string RoleName { get; internal set; } = string.Empty;
         public string BusinessHubId { get; internal set; } = string.Empty;
