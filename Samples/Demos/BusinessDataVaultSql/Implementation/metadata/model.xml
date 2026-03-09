@@ -93,6 +93,38 @@
         <Property name="RecordSourceLength" isRequired="false" />
       </PropertyList>
     </Entity>
+    <Entity name="BusinessSameAsLinkImplementation">
+      <PropertyList>
+        <Property name="TableNamePattern" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="PrimaryHashKeyColumnName" />
+        <Property name="EquivalentHashKeyColumnName" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkImplementation">
+      <PropertyList>
+        <Property name="TableNamePattern" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ChildHashKeyColumnName" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+      </PropertyList>
+    </Entity>
     <Entity name="BusinessHubSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
@@ -111,6 +143,40 @@
       </PropertyList>
     </Entity>
     <Entity name="BusinessLinkSatelliteImplementation">
+      <PropertyList>
+        <Property name="TableNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessSameAsLinkSatelliteImplementation">
+      <PropertyList>
+        <Property name="TableNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />

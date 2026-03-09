@@ -1,13 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessLinkList>
     <BusinessLink Id="CustomerInvoice">
-      <LinkKind>standard</LinkKind>
       <Name>BL_CustomerInvoice</Name>
     </BusinessLink>
     <BusinessLink Id="CustomerOrder">
-      <LinkKind>standard</LinkKind>
       <Name>BL_CustomerOrder</Name>
     </BusinessLink>
   </BusinessLinkList>
 </MetaBusinessDataVault>
+

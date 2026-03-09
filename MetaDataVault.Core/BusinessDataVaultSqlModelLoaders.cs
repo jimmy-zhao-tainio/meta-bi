@@ -8,8 +8,12 @@ public sealed record DataVaultImplementationModel(
     DVI.MetaDataVaultImplementationModel Model,
     DVI.BusinessHubImplementation BusinessHubImplementation,
     DVI.BusinessLinkImplementation BusinessLinkImplementation,
+    DVI.BusinessSameAsLinkImplementation BusinessSameAsLinkImplementation,
+    DVI.BusinessHierarchicalLinkImplementation BusinessHierarchicalLinkImplementation,
     DVI.BusinessHubSatelliteImplementation BusinessHubSatelliteImplementation,
     DVI.BusinessLinkSatelliteImplementation BusinessLinkSatelliteImplementation,
+    DVI.BusinessSameAsLinkSatelliteImplementation BusinessSameAsLinkSatelliteImplementation,
+    DVI.BusinessHierarchicalLinkSatelliteImplementation BusinessHierarchicalLinkSatelliteImplementation,
     DVI.BusinessPointInTimeImplementation BusinessPointInTimeImplementation,
     DVI.BusinessBridgeImplementation BusinessBridgeImplementation);
 
@@ -31,8 +35,12 @@ public static class BusinessDataVaultSqlModelLoaders
             model,
             GetSingle(model.BusinessHubImplementationList, nameof(DVI.BusinessHubImplementation)),
             GetSingle(model.BusinessLinkImplementationList, nameof(DVI.BusinessLinkImplementation)),
+            GetSingle(model.BusinessSameAsLinkImplementationList, nameof(DVI.BusinessSameAsLinkImplementation)),
+            GetSingle(model.BusinessHierarchicalLinkImplementationList, nameof(DVI.BusinessHierarchicalLinkImplementation)),
             GetSingle(model.BusinessHubSatelliteImplementationList, nameof(DVI.BusinessHubSatelliteImplementation)),
             GetSingle(model.BusinessLinkSatelliteImplementationList, nameof(DVI.BusinessLinkSatelliteImplementation)),
+            GetSingle(model.BusinessSameAsLinkSatelliteImplementationList, nameof(DVI.BusinessSameAsLinkSatelliteImplementation)),
+            GetSingle(model.BusinessHierarchicalLinkSatelliteImplementationList, nameof(DVI.BusinessHierarchicalLinkSatelliteImplementation)),
             GetSingle(model.BusinessPointInTimeImplementationList, nameof(DVI.BusinessPointInTimeImplementation)),
             GetSingle(model.BusinessBridgeImplementationList, nameof(DVI.BusinessBridgeImplementation))));
     }

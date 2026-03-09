@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSameAsLinkSatelliteList>
+    <BusinessSameAsLinkSatellite Id="CustomerMatchEvidence" BusinessSameAsLinkId="CustomerMatch">
+      <Name>BSALS_CustomerMatch_Evidence</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessSameAsLinkSatellite>
+  </BusinessSameAsLinkSatelliteList>
+</MetaBusinessDataVault>

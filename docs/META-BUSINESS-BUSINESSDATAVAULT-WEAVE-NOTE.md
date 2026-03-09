@@ -13,7 +13,7 @@ The following anchors are the minimum useful set:
 - `BusinessHub` -> `BusinessObject`
 - `BusinessHubKeyPart` -> `BusinessKeyPart`
 - `BusinessLink` -> `BusinessRelationship`
-- `BusinessLinkEnd` -> `BusinessRelationshipParticipant`
+- `BusinessLinkHub` -> `BusinessRelationshipParticipant`
 
 This is the core seam between business meaning and Business Data Vault structure.
 
@@ -37,7 +37,7 @@ A business link should exist because there is a business relationship worth reco
 
 Without this anchor, a link is just a technical association.
 
-### BusinessLinkEnd -> BusinessRelationshipParticipant
+### BusinessLinkHub -> BusinessRelationshipParticipant
 
 A link end should line up with a relationship participant.
 
@@ -68,7 +68,7 @@ Examples of what current `MetaWeave` can express reasonably:
 Examples of what current `MetaWeave` does not express well on its own:
 
 - a `BusinessHubKeyPart` must match a `BusinessKeyPart` within the correct parent key or hub context
-- a `BusinessLinkEnd` must match a `BusinessRelationshipParticipant` within the correct parent relationship or link context
+- a `BusinessLinkHub` must match a `BusinessRelationshipParticipant` within the correct parent relationship or link context
 
 Those child-row seams are now handled by `MetaFabric`, not by ad hoc CLI logic in `meta-datavault`.
 
@@ -79,7 +79,7 @@ The current sanctioned weave instances are:
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
-- `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+- `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 
@@ -100,8 +100,8 @@ The commerce sample workspaces show the split more clearly:
 
 The current sanctioned fabric instances are:
 
-- `Fabrics/Fabric-Suggest-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
-- `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+- `Fabrics/Fabric-Suggest-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
+- `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
 - `Fabrics/Fabric-Suggest-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 

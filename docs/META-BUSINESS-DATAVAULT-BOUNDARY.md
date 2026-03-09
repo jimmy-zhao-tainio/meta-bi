@@ -1,4 +1,4 @@
-﻿# MetaBusinessDataVault boundary
+# MetaBusinessDataVault boundary
 
 ## Purpose
 
@@ -50,9 +50,8 @@ Represents a business-vault link structure.
 The sanctioned model carries:
 
 - `Name`
-- `LinkKind`
 
-### BusinessLinkEnd
+### BusinessLinkHub
 
 Represents one participating hub in a business link.
 
@@ -133,9 +132,8 @@ Bridge output columns are represented explicitly through:
 
 ## Variant handling
 
-The sanctioned model keeps explicit kind properties where the structure family is the same but the subtype matters:
+The sanctioned model keeps explicit kind properties only where the structure family is the same but the subtype still matters:
 
-- `BusinessLink.LinkKind`
 - `BusinessHubSatellite.SatelliteKind`
 - `BusinessLinkSatellite.SatelliteKind`
 - bridge semantics
@@ -157,7 +155,7 @@ The minimum direct anchors are:
 - `BusinessHub` -> `BusinessObject`
 - `BusinessHubKeyPart` -> `BusinessKeyPart`
 - `BusinessLink` -> `BusinessRelationship`
-- `BusinessLinkEnd` -> `BusinessRelationshipParticipant`
+- `BusinessLinkHub` -> `BusinessRelationshipParticipant`
 
 See `docs/META-BUSINESS-BUSINESSDATAVAULT-WEAVE-NOTE.md` for the current contract and limitations.
 

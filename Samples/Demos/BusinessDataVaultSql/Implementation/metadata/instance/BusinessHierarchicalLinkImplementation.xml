@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <BusinessHierarchicalLinkImplementationList>
+    <BusinessHierarchicalLinkImplementation Id="default-business-hierarchical-link">
+      <TableNamePattern>BHAL_{Name}</TableNamePattern>
+      <HashKeyColumnName>HashKey</HashKeyColumnName>
+      <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
+      <HashKeyLength>16</HashKeyLength>
+      <ParentHashKeyColumnName>ParentHashKey</ParentHashKeyColumnName>
+      <ChildHashKeyColumnName>ChildHashKey</ChildHashKeyColumnName>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
+    </BusinessHierarchicalLinkImplementation>
+  </BusinessHierarchicalLinkImplementationList>
+</MetaDataVaultImplementation>

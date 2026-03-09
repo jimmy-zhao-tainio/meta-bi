@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSameAsLinkSatelliteAttributeList>
+    <BusinessSameAsLinkSatelliteAttribute Id="CustomerMatchScore" BusinessSameAsLinkSatelliteId="CustomerMatchEvidence">
+      <Name>MatchScore</Name>
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Ordinal>1</Ordinal>
+    </BusinessSameAsLinkSatelliteAttribute>
+  </BusinessSameAsLinkSatelliteAttributeList>
+</MetaBusinessDataVault>

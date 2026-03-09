@@ -9,11 +9,15 @@ namespace MetaDataVaultImplementation
     {
         internal MetaDataVaultImplementationModel(
             IReadOnlyList<BusinessBridgeImplementation> businessBridgeImplementationList,
+            IReadOnlyList<BusinessHierarchicalLinkImplementation> businessHierarchicalLinkImplementationList,
+            IReadOnlyList<BusinessHierarchicalLinkSatelliteImplementation> businessHierarchicalLinkSatelliteImplementationList,
             IReadOnlyList<BusinessHubImplementation> businessHubImplementationList,
             IReadOnlyList<BusinessHubSatelliteImplementation> businessHubSatelliteImplementationList,
             IReadOnlyList<BusinessLinkImplementation> businessLinkImplementationList,
             IReadOnlyList<BusinessLinkSatelliteImplementation> businessLinkSatelliteImplementationList,
             IReadOnlyList<BusinessPointInTimeImplementation> businessPointInTimeImplementationList,
+            IReadOnlyList<BusinessSameAsLinkImplementation> businessSameAsLinkImplementationList,
+            IReadOnlyList<BusinessSameAsLinkSatelliteImplementation> businessSameAsLinkSatelliteImplementationList,
             IReadOnlyList<RawHubImplementation> rawHubImplementationList,
             IReadOnlyList<RawHubSatelliteImplementation> rawHubSatelliteImplementationList,
             IReadOnlyList<RawLinkImplementation> rawLinkImplementationList,
@@ -21,11 +25,15 @@ namespace MetaDataVaultImplementation
         )
         {
             BusinessBridgeImplementationList = businessBridgeImplementationList;
+            BusinessHierarchicalLinkImplementationList = businessHierarchicalLinkImplementationList;
+            BusinessHierarchicalLinkSatelliteImplementationList = businessHierarchicalLinkSatelliteImplementationList;
             BusinessHubImplementationList = businessHubImplementationList;
             BusinessHubSatelliteImplementationList = businessHubSatelliteImplementationList;
             BusinessLinkImplementationList = businessLinkImplementationList;
             BusinessLinkSatelliteImplementationList = businessLinkSatelliteImplementationList;
             BusinessPointInTimeImplementationList = businessPointInTimeImplementationList;
+            BusinessSameAsLinkImplementationList = businessSameAsLinkImplementationList;
+            BusinessSameAsLinkSatelliteImplementationList = businessSameAsLinkSatelliteImplementationList;
             RawHubImplementationList = rawHubImplementationList;
             RawHubSatelliteImplementationList = rawHubSatelliteImplementationList;
             RawLinkImplementationList = rawLinkImplementationList;
@@ -33,11 +41,15 @@ namespace MetaDataVaultImplementation
         }
 
         public IReadOnlyList<BusinessBridgeImplementation> BusinessBridgeImplementationList { get; }
+        public IReadOnlyList<BusinessHierarchicalLinkImplementation> BusinessHierarchicalLinkImplementationList { get; }
+        public IReadOnlyList<BusinessHierarchicalLinkSatelliteImplementation> BusinessHierarchicalLinkSatelliteImplementationList { get; }
         public IReadOnlyList<BusinessHubImplementation> BusinessHubImplementationList { get; }
         public IReadOnlyList<BusinessHubSatelliteImplementation> BusinessHubSatelliteImplementationList { get; }
         public IReadOnlyList<BusinessLinkImplementation> BusinessLinkImplementationList { get; }
         public IReadOnlyList<BusinessLinkSatelliteImplementation> BusinessLinkSatelliteImplementationList { get; }
         public IReadOnlyList<BusinessPointInTimeImplementation> BusinessPointInTimeImplementationList { get; }
+        public IReadOnlyList<BusinessSameAsLinkImplementation> BusinessSameAsLinkImplementationList { get; }
+        public IReadOnlyList<BusinessSameAsLinkSatelliteImplementation> BusinessSameAsLinkSatelliteImplementationList { get; }
         public IReadOnlyList<RawHubImplementation> RawHubImplementationList { get; }
         public IReadOnlyList<RawHubSatelliteImplementation> RawHubSatelliteImplementationList { get; }
         public IReadOnlyList<RawLinkImplementation> RawLinkImplementationList { get; }
@@ -78,6 +90,55 @@ namespace MetaDataVaultImplementation
                         RootHashKeyColumnName = record.Values.TryGetValue("RootHashKeyColumnName", out var rootHashKeyColumnNameValue) ? rootHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         RootHashKeyDataTypeId = record.Values.TryGetValue("RootHashKeyDataTypeId", out var rootHashKeyDataTypeIdValue) ? rootHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         RootHashKeyLength = record.Values.TryGetValue("RootHashKeyLength", out var rootHashKeyLengthValue) ? rootHashKeyLengthValue ?? string.Empty : string.Empty,
+                        TableNamePattern = record.Values.TryGetValue("TableNamePattern", out var tableNamePatternValue) ? tableNamePatternValue ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkImplementationList = new List<BusinessHierarchicalLinkImplementation>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkImplementation", out var businessHierarchicalLinkImplementationListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkImplementationListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkImplementationList.Add(new BusinessHierarchicalLinkImplementation
+                    {
+                        Id = record.Id ?? string.Empty,
+                        ChildHashKeyColumnName = record.Values.TryGetValue("ChildHashKeyColumnName", out var childHashKeyColumnNameValue) ? childHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
+                        HashKeyLength = record.Values.TryGetValue("HashKeyLength", out var hashKeyLengthValue) ? hashKeyLengthValue ?? string.Empty : string.Empty,
+                        LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
+                        LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
+                        LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
+                        RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
+                        RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
+                        TableNamePattern = record.Values.TryGetValue("TableNamePattern", out var tableNamePatternValue) ? tableNamePatternValue ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteImplementationList = new List<BusinessHierarchicalLinkSatelliteImplementation>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteImplementation", out var businessHierarchicalLinkSatelliteImplementationListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteImplementationListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteImplementationList.Add(new BusinessHierarchicalLinkSatelliteImplementation
+                    {
+                        Id = record.Id ?? string.Empty,
+                        HashDiffColumnName = record.Values.TryGetValue("HashDiffColumnName", out var hashDiffColumnNameValue) ? hashDiffColumnNameValue ?? string.Empty : string.Empty,
+                        HashDiffDataTypeId = record.Values.TryGetValue("HashDiffDataTypeId", out var hashDiffDataTypeIdValue) ? hashDiffDataTypeIdValue ?? string.Empty : string.Empty,
+                        HashDiffLength = record.Values.TryGetValue("HashDiffLength", out var hashDiffLengthValue) ? hashDiffLengthValue ?? string.Empty : string.Empty,
+                        LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
+                        LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
+                        LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
+                        ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
+                        RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
+                        RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
+                        RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
                         TableNamePattern = record.Values.TryGetValue("TableNamePattern", out var tableNamePatternValue) ? tableNamePatternValue ?? string.Empty : string.Empty,
                     });
                 }
@@ -200,6 +261,55 @@ namespace MetaDataVaultImplementation
                 }
             }
 
+            var businessSameAsLinkImplementationList = new List<BusinessSameAsLinkImplementation>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkImplementation", out var businessSameAsLinkImplementationListRecords))
+            {
+                foreach (var record in businessSameAsLinkImplementationListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkImplementationList.Add(new BusinessSameAsLinkImplementation
+                    {
+                        Id = record.Id ?? string.Empty,
+                        EquivalentHashKeyColumnName = record.Values.TryGetValue("EquivalentHashKeyColumnName", out var equivalentHashKeyColumnNameValue) ? equivalentHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
+                        HashKeyLength = record.Values.TryGetValue("HashKeyLength", out var hashKeyLengthValue) ? hashKeyLengthValue ?? string.Empty : string.Empty,
+                        LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
+                        LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
+                        LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        PrimaryHashKeyColumnName = record.Values.TryGetValue("PrimaryHashKeyColumnName", out var primaryHashKeyColumnNameValue) ? primaryHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
+                        RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
+                        RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
+                        TableNamePattern = record.Values.TryGetValue("TableNamePattern", out var tableNamePatternValue) ? tableNamePatternValue ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteImplementationList = new List<BusinessSameAsLinkSatelliteImplementation>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteImplementation", out var businessSameAsLinkSatelliteImplementationListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteImplementationListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteImplementationList.Add(new BusinessSameAsLinkSatelliteImplementation
+                    {
+                        Id = record.Id ?? string.Empty,
+                        HashDiffColumnName = record.Values.TryGetValue("HashDiffColumnName", out var hashDiffColumnNameValue) ? hashDiffColumnNameValue ?? string.Empty : string.Empty,
+                        HashDiffDataTypeId = record.Values.TryGetValue("HashDiffDataTypeId", out var hashDiffDataTypeIdValue) ? hashDiffDataTypeIdValue ?? string.Empty : string.Empty,
+                        HashDiffLength = record.Values.TryGetValue("HashDiffLength", out var hashDiffLengthValue) ? hashDiffLengthValue ?? string.Empty : string.Empty,
+                        LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
+                        LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
+                        LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
+                        ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
+                        RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
+                        RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
+                        RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
+                        TableNamePattern = record.Values.TryGetValue("TableNamePattern", out var tableNamePatternValue) ? tableNamePatternValue ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
             var rawHubImplementationList = new List<RawHubImplementation>();
             if (workspace.Instance.RecordsByEntity.TryGetValue("RawHubImplementation", out var rawHubImplementationListRecords))
             {
@@ -301,6 +411,18 @@ namespace MetaDataVaultImplementation
                 businessBridgeImplementationListById[row.Id] = row;
             }
 
+            var businessHierarchicalLinkImplementationListById = new Dictionary<string, BusinessHierarchicalLinkImplementation>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkImplementationList)
+            {
+                businessHierarchicalLinkImplementationListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteImplementationListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteImplementation>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteImplementationList)
+            {
+                businessHierarchicalLinkSatelliteImplementationListById[row.Id] = row;
+            }
+
             var businessHubImplementationListById = new Dictionary<string, BusinessHubImplementation>(global::System.StringComparer.Ordinal);
             foreach (var row in businessHubImplementationList)
             {
@@ -331,6 +453,18 @@ namespace MetaDataVaultImplementation
                 businessPointInTimeImplementationListById[row.Id] = row;
             }
 
+            var businessSameAsLinkImplementationListById = new Dictionary<string, BusinessSameAsLinkImplementation>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkImplementationList)
+            {
+                businessSameAsLinkImplementationListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteImplementationListById = new Dictionary<string, BusinessSameAsLinkSatelliteImplementation>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteImplementationList)
+            {
+                businessSameAsLinkSatelliteImplementationListById[row.Id] = row;
+            }
+
             var rawHubImplementationListById = new Dictionary<string, RawHubImplementation>(global::System.StringComparer.Ordinal);
             foreach (var row in rawHubImplementationList)
             {
@@ -357,11 +491,15 @@ namespace MetaDataVaultImplementation
 
             return new MetaDataVaultImplementationModel(
                 new ReadOnlyCollection<BusinessBridgeImplementation>(businessBridgeImplementationList),
+                new ReadOnlyCollection<BusinessHierarchicalLinkImplementation>(businessHierarchicalLinkImplementationList),
+                new ReadOnlyCollection<BusinessHierarchicalLinkSatelliteImplementation>(businessHierarchicalLinkSatelliteImplementationList),
                 new ReadOnlyCollection<BusinessHubImplementation>(businessHubImplementationList),
                 new ReadOnlyCollection<BusinessHubSatelliteImplementation>(businessHubSatelliteImplementationList),
                 new ReadOnlyCollection<BusinessLinkImplementation>(businessLinkImplementationList),
                 new ReadOnlyCollection<BusinessLinkSatelliteImplementation>(businessLinkSatelliteImplementationList),
                 new ReadOnlyCollection<BusinessPointInTimeImplementation>(businessPointInTimeImplementationList),
+                new ReadOnlyCollection<BusinessSameAsLinkImplementation>(businessSameAsLinkImplementationList),
+                new ReadOnlyCollection<BusinessSameAsLinkSatelliteImplementation>(businessSameAsLinkSatelliteImplementationList),
                 new ReadOnlyCollection<RawHubImplementation>(rawHubImplementationList),
                 new ReadOnlyCollection<RawHubSatelliteImplementation>(rawHubSatelliteImplementationList),
                 new ReadOnlyCollection<RawLinkImplementation>(rawLinkImplementationList),

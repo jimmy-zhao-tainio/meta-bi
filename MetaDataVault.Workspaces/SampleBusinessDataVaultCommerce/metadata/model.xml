@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaBusinessDataVault">
   <EntityList>
     <Entity name="BusinessHub">
@@ -29,11 +29,10 @@
     <Entity name="BusinessLink">
       <PropertyList>
         <Property name="Name" />
-        <Property name="LinkKind" />
         <Property name="Description" isRequired="false" />
       </PropertyList>
     </Entity>
-    <Entity name="BusinessLinkEnd">
+    <Entity name="BusinessLinkHub">
       <PropertyList>
         <Property name="Ordinal" />
         <Property name="RoleName" isRequired="false" />
@@ -41,6 +40,26 @@
       <RelationshipList>
         <Relationship entity="BusinessLink" />
         <Relationship entity="BusinessHub" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessSameAsLink">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHub" role="PrimaryHub" />
+        <Relationship entity="BusinessHub" role="EquivalentHub" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLink">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHub" role="ParentHub" />
+        <Relationship entity="BusinessHub" role="ChildHub" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessHubSatellite">
@@ -139,6 +158,102 @@
         <Relationship entity="BusinessLinkSatelliteAttribute" />
       </RelationshipList>
     </Entity>
+    <Entity name="BusinessSameAsLinkSatellite">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="SatelliteKind" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessSameAsLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessSameAsLinkSatelliteKeyPart">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessSameAsLinkSatellite" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessSameAsLinkSatelliteKeyPartDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessSameAsLinkSatelliteKeyPart" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessSameAsLinkSatelliteAttribute">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessSameAsLinkSatellite" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessSameAsLinkSatelliteAttributeDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessSameAsLinkSatelliteAttribute" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkSatellite">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="SatelliteKind" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHierarchicalLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkSatelliteKeyPart">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHierarchicalLinkSatellite" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHierarchicalLinkSatelliteKeyPart" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkSatelliteAttribute">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHierarchicalLinkSatellite" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessHierarchicalLinkSatelliteAttribute" />
+      </RelationshipList>
+    </Entity>
     <Entity name="BusinessPointInTime">
       <PropertyList>
         <Property name="Name" />
@@ -166,7 +281,8 @@
       <RelationshipList>
         <Relationship entity="BusinessPointInTimeStamp" />
       </RelationshipList>
-    </Entity>    <Entity name="BusinessPointInTimeHubSatellite">
+    </Entity>
+    <Entity name="BusinessPointInTimeHubSatellite">
       <PropertyList>
         <Property name="Ordinal" />
       </PropertyList>
@@ -213,37 +329,35 @@
         <Relationship entity="BusinessLink" />
       </RelationshipList>
     </Entity>
-
-<Entity name="BusinessBridgeHubKeyPartProjection">
-  <PropertyList>
-    <Property name="Name" />
-    <Property name="Ordinal" />
-  </PropertyList>
-  <RelationshipList>
-    <Relationship entity="BusinessBridge" />
-    <Relationship entity="BusinessHubKeyPart" />
-  </RelationshipList>
-</Entity>
-<Entity name="BusinessBridgeHubSatelliteAttributeProjection">
-  <PropertyList>
-    <Property name="Name" />
-    <Property name="Ordinal" />
-  </PropertyList>
-  <RelationshipList>
-    <Relationship entity="BusinessBridge" />
-    <Relationship entity="BusinessHubSatelliteAttribute" />
-  </RelationshipList>
-</Entity>
-<Entity name="BusinessBridgeLinkSatelliteAttributeProjection">
-  <PropertyList>
-    <Property name="Name" />
-    <Property name="Ordinal" />
-  </PropertyList>
-  <RelationshipList>
-    <Relationship entity="BusinessBridge" />
-    <Relationship entity="BusinessLinkSatelliteAttribute" />
-  </RelationshipList>
-</Entity>
+    <Entity name="BusinessBridgeHubKeyPartProjection">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessBridge" />
+        <Relationship entity="BusinessHubKeyPart" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessBridgeHubSatelliteAttributeProjection">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessBridge" />
+        <Relationship entity="BusinessHubSatelliteAttribute" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessBridgeLinkSatelliteAttributeProjection">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessBridge" />
+        <Relationship entity="BusinessLinkSatelliteAttribute" />
+      </RelationshipList>
+    </Entity>
   </EntityList>
 </Model>
-

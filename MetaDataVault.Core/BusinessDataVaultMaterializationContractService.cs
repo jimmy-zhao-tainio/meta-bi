@@ -37,7 +37,7 @@ public sealed class BusinessDataVaultMaterializationContractService : IBusinessD
 
     private static readonly BindingSignature[] RequiredScopedAnchors =
     {
-        new("BusinessLinkEnd", "RoleName", "BusinessRelationshipParticipant", "RoleName"),
+        new("BusinessLinkHub", "RoleName", "BusinessRelationshipParticipant", "RoleName"),
         new("BusinessHubKeyPart", "Name", "BusinessKeyPart", "Name"),
     };
 

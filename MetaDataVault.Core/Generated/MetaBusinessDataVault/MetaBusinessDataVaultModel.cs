@@ -14,6 +14,12 @@ namespace MetaBusinessDataVault
             IReadOnlyList<BusinessBridgeHubSatelliteAttributeProjection> businessBridgeHubSatelliteAttributeProjectionList,
             IReadOnlyList<BusinessBridgeLink> businessBridgeLinkList,
             IReadOnlyList<BusinessBridgeLinkSatelliteAttributeProjection> businessBridgeLinkSatelliteAttributeProjectionList,
+            IReadOnlyList<BusinessHierarchicalLink> businessHierarchicalLinkList,
+            IReadOnlyList<BusinessHierarchicalLinkSatellite> businessHierarchicalLinkSatelliteList,
+            IReadOnlyList<BusinessHierarchicalLinkSatelliteAttribute> businessHierarchicalLinkSatelliteAttributeList,
+            IReadOnlyList<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail> businessHierarchicalLinkSatelliteAttributeDataTypeDetailList,
+            IReadOnlyList<BusinessHierarchicalLinkSatelliteKeyPart> businessHierarchicalLinkSatelliteKeyPartList,
+            IReadOnlyList<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail> businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList,
             IReadOnlyList<BusinessHub> businessHubList,
             IReadOnlyList<BusinessHubKeyPart> businessHubKeyPartList,
             IReadOnlyList<BusinessHubKeyPartDataTypeDetail> businessHubKeyPartDataTypeDetailList,
@@ -23,7 +29,7 @@ namespace MetaBusinessDataVault
             IReadOnlyList<BusinessHubSatelliteKeyPart> businessHubSatelliteKeyPartList,
             IReadOnlyList<BusinessHubSatelliteKeyPartDataTypeDetail> businessHubSatelliteKeyPartDataTypeDetailList,
             IReadOnlyList<BusinessLink> businessLinkList,
-            IReadOnlyList<BusinessLinkEnd> businessLinkEndList,
+            IReadOnlyList<BusinessLinkHub> businessLinkHubList,
             IReadOnlyList<BusinessLinkSatellite> businessLinkSatelliteList,
             IReadOnlyList<BusinessLinkSatelliteAttribute> businessLinkSatelliteAttributeList,
             IReadOnlyList<BusinessLinkSatelliteAttributeDataTypeDetail> businessLinkSatelliteAttributeDataTypeDetailList,
@@ -33,7 +39,13 @@ namespace MetaBusinessDataVault
             IReadOnlyList<BusinessPointInTimeHubSatellite> businessPointInTimeHubSatelliteList,
             IReadOnlyList<BusinessPointInTimeLinkSatellite> businessPointInTimeLinkSatelliteList,
             IReadOnlyList<BusinessPointInTimeStamp> businessPointInTimeStampList,
-            IReadOnlyList<BusinessPointInTimeStampDataTypeDetail> businessPointInTimeStampDataTypeDetailList
+            IReadOnlyList<BusinessPointInTimeStampDataTypeDetail> businessPointInTimeStampDataTypeDetailList,
+            IReadOnlyList<BusinessSameAsLink> businessSameAsLinkList,
+            IReadOnlyList<BusinessSameAsLinkSatellite> businessSameAsLinkSatelliteList,
+            IReadOnlyList<BusinessSameAsLinkSatelliteAttribute> businessSameAsLinkSatelliteAttributeList,
+            IReadOnlyList<BusinessSameAsLinkSatelliteAttributeDataTypeDetail> businessSameAsLinkSatelliteAttributeDataTypeDetailList,
+            IReadOnlyList<BusinessSameAsLinkSatelliteKeyPart> businessSameAsLinkSatelliteKeyPartList,
+            IReadOnlyList<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail> businessSameAsLinkSatelliteKeyPartDataTypeDetailList
         )
         {
             BusinessBridgeList = businessBridgeList;
@@ -42,6 +54,12 @@ namespace MetaBusinessDataVault
             BusinessBridgeHubSatelliteAttributeProjectionList = businessBridgeHubSatelliteAttributeProjectionList;
             BusinessBridgeLinkList = businessBridgeLinkList;
             BusinessBridgeLinkSatelliteAttributeProjectionList = businessBridgeLinkSatelliteAttributeProjectionList;
+            BusinessHierarchicalLinkList = businessHierarchicalLinkList;
+            BusinessHierarchicalLinkSatelliteList = businessHierarchicalLinkSatelliteList;
+            BusinessHierarchicalLinkSatelliteAttributeList = businessHierarchicalLinkSatelliteAttributeList;
+            BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList = businessHierarchicalLinkSatelliteAttributeDataTypeDetailList;
+            BusinessHierarchicalLinkSatelliteKeyPartList = businessHierarchicalLinkSatelliteKeyPartList;
+            BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList = businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList;
             BusinessHubList = businessHubList;
             BusinessHubKeyPartList = businessHubKeyPartList;
             BusinessHubKeyPartDataTypeDetailList = businessHubKeyPartDataTypeDetailList;
@@ -51,7 +69,7 @@ namespace MetaBusinessDataVault
             BusinessHubSatelliteKeyPartList = businessHubSatelliteKeyPartList;
             BusinessHubSatelliteKeyPartDataTypeDetailList = businessHubSatelliteKeyPartDataTypeDetailList;
             BusinessLinkList = businessLinkList;
-            BusinessLinkEndList = businessLinkEndList;
+            BusinessLinkHubList = businessLinkHubList;
             BusinessLinkSatelliteList = businessLinkSatelliteList;
             BusinessLinkSatelliteAttributeList = businessLinkSatelliteAttributeList;
             BusinessLinkSatelliteAttributeDataTypeDetailList = businessLinkSatelliteAttributeDataTypeDetailList;
@@ -62,6 +80,12 @@ namespace MetaBusinessDataVault
             BusinessPointInTimeLinkSatelliteList = businessPointInTimeLinkSatelliteList;
             BusinessPointInTimeStampList = businessPointInTimeStampList;
             BusinessPointInTimeStampDataTypeDetailList = businessPointInTimeStampDataTypeDetailList;
+            BusinessSameAsLinkList = businessSameAsLinkList;
+            BusinessSameAsLinkSatelliteList = businessSameAsLinkSatelliteList;
+            BusinessSameAsLinkSatelliteAttributeList = businessSameAsLinkSatelliteAttributeList;
+            BusinessSameAsLinkSatelliteAttributeDataTypeDetailList = businessSameAsLinkSatelliteAttributeDataTypeDetailList;
+            BusinessSameAsLinkSatelliteKeyPartList = businessSameAsLinkSatelliteKeyPartList;
+            BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList = businessSameAsLinkSatelliteKeyPartDataTypeDetailList;
         }
 
         public IReadOnlyList<BusinessBridge> BusinessBridgeList { get; }
@@ -70,6 +94,12 @@ namespace MetaBusinessDataVault
         public IReadOnlyList<BusinessBridgeHubSatelliteAttributeProjection> BusinessBridgeHubSatelliteAttributeProjectionList { get; }
         public IReadOnlyList<BusinessBridgeLink> BusinessBridgeLinkList { get; }
         public IReadOnlyList<BusinessBridgeLinkSatelliteAttributeProjection> BusinessBridgeLinkSatelliteAttributeProjectionList { get; }
+        public IReadOnlyList<BusinessHierarchicalLink> BusinessHierarchicalLinkList { get; }
+        public IReadOnlyList<BusinessHierarchicalLinkSatellite> BusinessHierarchicalLinkSatelliteList { get; }
+        public IReadOnlyList<BusinessHierarchicalLinkSatelliteAttribute> BusinessHierarchicalLinkSatelliteAttributeList { get; }
+        public IReadOnlyList<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail> BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList { get; }
+        public IReadOnlyList<BusinessHierarchicalLinkSatelliteKeyPart> BusinessHierarchicalLinkSatelliteKeyPartList { get; }
+        public IReadOnlyList<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail> BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList { get; }
         public IReadOnlyList<BusinessHub> BusinessHubList { get; }
         public IReadOnlyList<BusinessHubKeyPart> BusinessHubKeyPartList { get; }
         public IReadOnlyList<BusinessHubKeyPartDataTypeDetail> BusinessHubKeyPartDataTypeDetailList { get; }
@@ -79,7 +109,7 @@ namespace MetaBusinessDataVault
         public IReadOnlyList<BusinessHubSatelliteKeyPart> BusinessHubSatelliteKeyPartList { get; }
         public IReadOnlyList<BusinessHubSatelliteKeyPartDataTypeDetail> BusinessHubSatelliteKeyPartDataTypeDetailList { get; }
         public IReadOnlyList<BusinessLink> BusinessLinkList { get; }
-        public IReadOnlyList<BusinessLinkEnd> BusinessLinkEndList { get; }
+        public IReadOnlyList<BusinessLinkHub> BusinessLinkHubList { get; }
         public IReadOnlyList<BusinessLinkSatellite> BusinessLinkSatelliteList { get; }
         public IReadOnlyList<BusinessLinkSatelliteAttribute> BusinessLinkSatelliteAttributeList { get; }
         public IReadOnlyList<BusinessLinkSatelliteAttributeDataTypeDetail> BusinessLinkSatelliteAttributeDataTypeDetailList { get; }
@@ -90,6 +120,12 @@ namespace MetaBusinessDataVault
         public IReadOnlyList<BusinessPointInTimeLinkSatellite> BusinessPointInTimeLinkSatelliteList { get; }
         public IReadOnlyList<BusinessPointInTimeStamp> BusinessPointInTimeStampList { get; }
         public IReadOnlyList<BusinessPointInTimeStampDataTypeDetail> BusinessPointInTimeStampDataTypeDetailList { get; }
+        public IReadOnlyList<BusinessSameAsLink> BusinessSameAsLinkList { get; }
+        public IReadOnlyList<BusinessSameAsLinkSatellite> BusinessSameAsLinkSatelliteList { get; }
+        public IReadOnlyList<BusinessSameAsLinkSatelliteAttribute> BusinessSameAsLinkSatelliteAttributeList { get; }
+        public IReadOnlyList<BusinessSameAsLinkSatelliteAttributeDataTypeDetail> BusinessSameAsLinkSatelliteAttributeDataTypeDetailList { get; }
+        public IReadOnlyList<BusinessSameAsLinkSatelliteKeyPart> BusinessSameAsLinkSatelliteKeyPartList { get; }
+        public IReadOnlyList<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail> BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList { get; }
     }
 
     internal static class MetaBusinessDataVaultModelFactory
@@ -192,6 +228,100 @@ namespace MetaBusinessDataVault
                         Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
                         BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
                         BusinessLinkSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessLinkSatelliteAttributeId", out var businessLinkSatelliteAttributeRelationshipId) ? businessLinkSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkList = new List<BusinessHierarchicalLink>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLink", out var businessHierarchicalLinkListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkList.Add(new BusinessHierarchicalLink
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        ChildHubId = record.RelationshipIds.TryGetValue("ChildHubId", out var childHubRelationshipId) ? childHubRelationshipId ?? string.Empty : string.Empty,
+                        ParentHubId = record.RelationshipIds.TryGetValue("ParentHubId", out var parentHubRelationshipId) ? parentHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteList = new List<BusinessHierarchicalLinkSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatellite", out var businessHierarchicalLinkSatelliteListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteList.Add(new BusinessHierarchicalLinkSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        SatelliteKind = record.Values.TryGetValue("SatelliteKind", out var satelliteKindValue) ? satelliteKindValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkId", out var businessHierarchicalLinkRelationshipId) ? businessHierarchicalLinkRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteAttributeList = new List<BusinessHierarchicalLinkSatelliteAttribute>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteAttribute", out var businessHierarchicalLinkSatelliteAttributeListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteAttributeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteAttributeList.Add(new BusinessHierarchicalLinkSatelliteAttribute
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkSatelliteId", out var businessHierarchicalLinkSatelliteRelationshipId) ? businessHierarchicalLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteAttributeDataTypeDetailList = new List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail", out var businessHierarchicalLinkSatelliteAttributeDataTypeDetailListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteAttributeDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteAttributeDataTypeDetailList.Add(new BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkSatelliteAttributeId", out var businessHierarchicalLinkSatelliteAttributeRelationshipId) ? businessHierarchicalLinkSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteKeyPartList = new List<BusinessHierarchicalLinkSatelliteKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteKeyPart", out var businessHierarchicalLinkSatelliteKeyPartListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteKeyPartList.Add(new BusinessHierarchicalLinkSatelliteKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkSatelliteId", out var businessHierarchicalLinkSatelliteRelationshipId) ? businessHierarchicalLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList = new List<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail", out var businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList.Add(new BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkSatelliteKeyPartId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkSatelliteKeyPartId", out var businessHierarchicalLinkSatelliteKeyPartRelationshipId) ? businessHierarchicalLinkSatelliteKeyPartRelationshipId ?? string.Empty : string.Empty,
                     });
                 }
             }
@@ -328,18 +458,17 @@ namespace MetaBusinessDataVault
                     {
                         Id = record.Id ?? string.Empty,
                         Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
-                        LinkKind = record.Values.TryGetValue("LinkKind", out var linkKindValue) ? linkKindValue ?? string.Empty : string.Empty,
                         Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
                     });
                 }
             }
 
-            var businessLinkEndList = new List<BusinessLinkEnd>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLinkEnd", out var businessLinkEndListRecords))
+            var businessLinkHubList = new List<BusinessLinkHub>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLinkHub", out var businessLinkHubListRecords))
             {
-                foreach (var record in businessLinkEndListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                foreach (var record in businessLinkHubListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
                 {
-                    businessLinkEndList.Add(new BusinessLinkEnd
+                    businessLinkHubList.Add(new BusinessLinkHub
                     {
                         Id = record.Id ?? string.Empty,
                         Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
@@ -504,6 +633,100 @@ namespace MetaBusinessDataVault
                 }
             }
 
+            var businessSameAsLinkList = new List<BusinessSameAsLink>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLink", out var businessSameAsLinkListRecords))
+            {
+                foreach (var record in businessSameAsLinkListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkList.Add(new BusinessSameAsLink
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        EquivalentHubId = record.RelationshipIds.TryGetValue("EquivalentHubId", out var equivalentHubRelationshipId) ? equivalentHubRelationshipId ?? string.Empty : string.Empty,
+                        PrimaryHubId = record.RelationshipIds.TryGetValue("PrimaryHubId", out var primaryHubRelationshipId) ? primaryHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteList = new List<BusinessSameAsLinkSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatellite", out var businessSameAsLinkSatelliteListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteList.Add(new BusinessSameAsLinkSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        SatelliteKind = record.Values.TryGetValue("SatelliteKind", out var satelliteKindValue) ? satelliteKindValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkId", out var businessSameAsLinkRelationshipId) ? businessSameAsLinkRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteAttributeList = new List<BusinessSameAsLinkSatelliteAttribute>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteAttribute", out var businessSameAsLinkSatelliteAttributeListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteAttributeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteAttributeList.Add(new BusinessSameAsLinkSatelliteAttribute
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkSatelliteId", out var businessSameAsLinkSatelliteRelationshipId) ? businessSameAsLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteAttributeDataTypeDetailList = new List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteAttributeDataTypeDetail", out var businessSameAsLinkSatelliteAttributeDataTypeDetailListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteAttributeDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteAttributeDataTypeDetailList.Add(new BusinessSameAsLinkSatelliteAttributeDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkSatelliteAttributeId", out var businessSameAsLinkSatelliteAttributeRelationshipId) ? businessSameAsLinkSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteKeyPartList = new List<BusinessSameAsLinkSatelliteKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteKeyPart", out var businessSameAsLinkSatelliteKeyPartListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteKeyPartList.Add(new BusinessSameAsLinkSatelliteKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkSatelliteId", out var businessSameAsLinkSatelliteRelationshipId) ? businessSameAsLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteKeyPartDataTypeDetailList = new List<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteKeyPartDataTypeDetail", out var businessSameAsLinkSatelliteKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteKeyPartDataTypeDetailList.Add(new BusinessSameAsLinkSatelliteKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkSatelliteKeyPartId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkSatelliteKeyPartId", out var businessSameAsLinkSatelliteKeyPartRelationshipId) ? businessSameAsLinkSatelliteKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
             var businessBridgeListById = new Dictionary<string, BusinessBridge>(global::System.StringComparer.Ordinal);
             foreach (var row in businessBridgeList)
             {
@@ -538,6 +761,42 @@ namespace MetaBusinessDataVault
             foreach (var row in businessBridgeLinkSatelliteAttributeProjectionList)
             {
                 businessBridgeLinkSatelliteAttributeProjectionListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkListById = new Dictionary<string, BusinessHierarchicalLink>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkList)
+            {
+                businessHierarchicalLinkListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteListById = new Dictionary<string, BusinessHierarchicalLinkSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteList)
+            {
+                businessHierarchicalLinkSatelliteListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteAttributeListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteAttribute>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteAttributeList)
+            {
+                businessHierarchicalLinkSatelliteAttributeListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteAttributeDataTypeDetailList)
+            {
+                businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteKeyPartListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteKeyPartList)
+            {
+                businessHierarchicalLinkSatelliteKeyPartListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListById[row.Id] = row;
             }
 
             var businessHubListById = new Dictionary<string, BusinessHub>(global::System.StringComparer.Ordinal);
@@ -594,10 +853,10 @@ namespace MetaBusinessDataVault
                 businessLinkListById[row.Id] = row;
             }
 
-            var businessLinkEndListById = new Dictionary<string, BusinessLinkEnd>(global::System.StringComparer.Ordinal);
-            foreach (var row in businessLinkEndList)
+            var businessLinkHubListById = new Dictionary<string, BusinessLinkHub>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessLinkHubList)
             {
-                businessLinkEndListById[row.Id] = row;
+                businessLinkHubListById[row.Id] = row;
             }
 
             var businessLinkSatelliteListById = new Dictionary<string, BusinessLinkSatellite>(global::System.StringComparer.Ordinal);
@@ -658,6 +917,42 @@ namespace MetaBusinessDataVault
             foreach (var row in businessPointInTimeStampDataTypeDetailList)
             {
                 businessPointInTimeStampDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkListById = new Dictionary<string, BusinessSameAsLink>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkList)
+            {
+                businessSameAsLinkListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteListById = new Dictionary<string, BusinessSameAsLinkSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteList)
+            {
+                businessSameAsLinkSatelliteListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteAttributeListById = new Dictionary<string, BusinessSameAsLinkSatelliteAttribute>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteAttributeList)
+            {
+                businessSameAsLinkSatelliteAttributeListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteAttributeDataTypeDetailListById = new Dictionary<string, BusinessSameAsLinkSatelliteAttributeDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteAttributeDataTypeDetailList)
+            {
+                businessSameAsLinkSatelliteAttributeDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteKeyPartListById = new Dictionary<string, BusinessSameAsLinkSatelliteKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteKeyPartList)
+            {
+                businessSameAsLinkSatelliteKeyPartListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteKeyPartDataTypeDetailListById = new Dictionary<string, BusinessSameAsLinkSatelliteKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                businessSameAsLinkSatelliteKeyPartDataTypeDetailListById[row.Id] = row;
             }
 
             foreach (var row in businessBridgeList)
@@ -770,6 +1065,76 @@ namespace MetaBusinessDataVault
                     "BusinessLinkSatelliteAttributeId");
             }
 
+            foreach (var row in businessHierarchicalLinkList)
+            {
+                row.ChildHub = RequireTarget(
+                    businessHubListById,
+                    row.ChildHubId,
+                    "BusinessHierarchicalLink",
+                    row.Id,
+                    "ChildHubId");
+            }
+
+            foreach (var row in businessHierarchicalLinkList)
+            {
+                row.ParentHub = RequireTarget(
+                    businessHubListById,
+                    row.ParentHubId,
+                    "BusinessHierarchicalLink",
+                    row.Id,
+                    "ParentHubId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteList)
+            {
+                row.BusinessHierarchicalLink = RequireTarget(
+                    businessHierarchicalLinkListById,
+                    row.BusinessHierarchicalLinkId,
+                    "BusinessHierarchicalLinkSatellite",
+                    row.Id,
+                    "BusinessHierarchicalLinkId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteAttributeList)
+            {
+                row.BusinessHierarchicalLinkSatellite = RequireTarget(
+                    businessHierarchicalLinkSatelliteListById,
+                    row.BusinessHierarchicalLinkSatelliteId,
+                    "BusinessHierarchicalLinkSatelliteAttribute",
+                    row.Id,
+                    "BusinessHierarchicalLinkSatelliteId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteAttributeDataTypeDetailList)
+            {
+                row.BusinessHierarchicalLinkSatelliteAttribute = RequireTarget(
+                    businessHierarchicalLinkSatelliteAttributeListById,
+                    row.BusinessHierarchicalLinkSatelliteAttributeId,
+                    "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail",
+                    row.Id,
+                    "BusinessHierarchicalLinkSatelliteAttributeId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteKeyPartList)
+            {
+                row.BusinessHierarchicalLinkSatellite = RequireTarget(
+                    businessHierarchicalLinkSatelliteListById,
+                    row.BusinessHierarchicalLinkSatelliteId,
+                    "BusinessHierarchicalLinkSatelliteKeyPart",
+                    row.Id,
+                    "BusinessHierarchicalLinkSatelliteId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                row.BusinessHierarchicalLinkSatelliteKeyPart = RequireTarget(
+                    businessHierarchicalLinkSatelliteKeyPartListById,
+                    row.BusinessHierarchicalLinkSatelliteKeyPartId,
+                    "BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessHierarchicalLinkSatelliteKeyPartId");
+            }
+
             foreach (var row in businessHubKeyPartList)
             {
                 row.BusinessHub = RequireTarget(
@@ -840,22 +1205,22 @@ namespace MetaBusinessDataVault
                     "BusinessHubSatelliteKeyPartId");
             }
 
-            foreach (var row in businessLinkEndList)
+            foreach (var row in businessLinkHubList)
             {
                 row.BusinessHub = RequireTarget(
                     businessHubListById,
                     row.BusinessHubId,
-                    "BusinessLinkEnd",
+                    "BusinessLinkHub",
                     row.Id,
                     "BusinessHubId");
             }
 
-            foreach (var row in businessLinkEndList)
+            foreach (var row in businessLinkHubList)
             {
                 row.BusinessLink = RequireTarget(
                     businessLinkListById,
                     row.BusinessLinkId,
-                    "BusinessLinkEnd",
+                    "BusinessLinkHub",
                     row.Id,
                     "BusinessLinkId");
             }
@@ -980,6 +1345,76 @@ namespace MetaBusinessDataVault
                     "BusinessPointInTimeStampId");
             }
 
+            foreach (var row in businessSameAsLinkList)
+            {
+                row.EquivalentHub = RequireTarget(
+                    businessHubListById,
+                    row.EquivalentHubId,
+                    "BusinessSameAsLink",
+                    row.Id,
+                    "EquivalentHubId");
+            }
+
+            foreach (var row in businessSameAsLinkList)
+            {
+                row.PrimaryHub = RequireTarget(
+                    businessHubListById,
+                    row.PrimaryHubId,
+                    "BusinessSameAsLink",
+                    row.Id,
+                    "PrimaryHubId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteList)
+            {
+                row.BusinessSameAsLink = RequireTarget(
+                    businessSameAsLinkListById,
+                    row.BusinessSameAsLinkId,
+                    "BusinessSameAsLinkSatellite",
+                    row.Id,
+                    "BusinessSameAsLinkId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteAttributeList)
+            {
+                row.BusinessSameAsLinkSatellite = RequireTarget(
+                    businessSameAsLinkSatelliteListById,
+                    row.BusinessSameAsLinkSatelliteId,
+                    "BusinessSameAsLinkSatelliteAttribute",
+                    row.Id,
+                    "BusinessSameAsLinkSatelliteId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteAttributeDataTypeDetailList)
+            {
+                row.BusinessSameAsLinkSatelliteAttribute = RequireTarget(
+                    businessSameAsLinkSatelliteAttributeListById,
+                    row.BusinessSameAsLinkSatelliteAttributeId,
+                    "BusinessSameAsLinkSatelliteAttributeDataTypeDetail",
+                    row.Id,
+                    "BusinessSameAsLinkSatelliteAttributeId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteKeyPartList)
+            {
+                row.BusinessSameAsLinkSatellite = RequireTarget(
+                    businessSameAsLinkSatelliteListById,
+                    row.BusinessSameAsLinkSatelliteId,
+                    "BusinessSameAsLinkSatelliteKeyPart",
+                    row.Id,
+                    "BusinessSameAsLinkSatelliteId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                row.BusinessSameAsLinkSatelliteKeyPart = RequireTarget(
+                    businessSameAsLinkSatelliteKeyPartListById,
+                    row.BusinessSameAsLinkSatelliteKeyPartId,
+                    "BusinessSameAsLinkSatelliteKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessSameAsLinkSatelliteKeyPartId");
+            }
+
             return new MetaBusinessDataVaultModel(
                 new ReadOnlyCollection<BusinessBridge>(businessBridgeList),
                 new ReadOnlyCollection<BusinessBridgeHub>(businessBridgeHubList),
@@ -987,6 +1422,12 @@ namespace MetaBusinessDataVault
                 new ReadOnlyCollection<BusinessBridgeHubSatelliteAttributeProjection>(businessBridgeHubSatelliteAttributeProjectionList),
                 new ReadOnlyCollection<BusinessBridgeLink>(businessBridgeLinkList),
                 new ReadOnlyCollection<BusinessBridgeLinkSatelliteAttributeProjection>(businessBridgeLinkSatelliteAttributeProjectionList),
+                new ReadOnlyCollection<BusinessHierarchicalLink>(businessHierarchicalLinkList),
+                new ReadOnlyCollection<BusinessHierarchicalLinkSatellite>(businessHierarchicalLinkSatelliteList),
+                new ReadOnlyCollection<BusinessHierarchicalLinkSatelliteAttribute>(businessHierarchicalLinkSatelliteAttributeList),
+                new ReadOnlyCollection<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>(businessHierarchicalLinkSatelliteAttributeDataTypeDetailList),
+                new ReadOnlyCollection<BusinessHierarchicalLinkSatelliteKeyPart>(businessHierarchicalLinkSatelliteKeyPartList),
+                new ReadOnlyCollection<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail>(businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList),
                 new ReadOnlyCollection<BusinessHub>(businessHubList),
                 new ReadOnlyCollection<BusinessHubKeyPart>(businessHubKeyPartList),
                 new ReadOnlyCollection<BusinessHubKeyPartDataTypeDetail>(businessHubKeyPartDataTypeDetailList),
@@ -996,7 +1437,7 @@ namespace MetaBusinessDataVault
                 new ReadOnlyCollection<BusinessHubSatelliteKeyPart>(businessHubSatelliteKeyPartList),
                 new ReadOnlyCollection<BusinessHubSatelliteKeyPartDataTypeDetail>(businessHubSatelliteKeyPartDataTypeDetailList),
                 new ReadOnlyCollection<BusinessLink>(businessLinkList),
-                new ReadOnlyCollection<BusinessLinkEnd>(businessLinkEndList),
+                new ReadOnlyCollection<BusinessLinkHub>(businessLinkHubList),
                 new ReadOnlyCollection<BusinessLinkSatellite>(businessLinkSatelliteList),
                 new ReadOnlyCollection<BusinessLinkSatelliteAttribute>(businessLinkSatelliteAttributeList),
                 new ReadOnlyCollection<BusinessLinkSatelliteAttributeDataTypeDetail>(businessLinkSatelliteAttributeDataTypeDetailList),
@@ -1006,7 +1447,13 @@ namespace MetaBusinessDataVault
                 new ReadOnlyCollection<BusinessPointInTimeHubSatellite>(businessPointInTimeHubSatelliteList),
                 new ReadOnlyCollection<BusinessPointInTimeLinkSatellite>(businessPointInTimeLinkSatelliteList),
                 new ReadOnlyCollection<BusinessPointInTimeStamp>(businessPointInTimeStampList),
-                new ReadOnlyCollection<BusinessPointInTimeStampDataTypeDetail>(businessPointInTimeStampDataTypeDetailList)
+                new ReadOnlyCollection<BusinessPointInTimeStampDataTypeDetail>(businessPointInTimeStampDataTypeDetailList),
+                new ReadOnlyCollection<BusinessSameAsLink>(businessSameAsLinkList),
+                new ReadOnlyCollection<BusinessSameAsLinkSatellite>(businessSameAsLinkSatelliteList),
+                new ReadOnlyCollection<BusinessSameAsLinkSatelliteAttribute>(businessSameAsLinkSatelliteAttributeList),
+                new ReadOnlyCollection<BusinessSameAsLinkSatelliteAttributeDataTypeDetail>(businessSameAsLinkSatelliteAttributeDataTypeDetailList),
+                new ReadOnlyCollection<BusinessSameAsLinkSatelliteKeyPart>(businessSameAsLinkSatelliteKeyPartList),
+                new ReadOnlyCollection<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail>(businessSameAsLinkSatelliteKeyPartDataTypeDetailList)
             );
         }
 

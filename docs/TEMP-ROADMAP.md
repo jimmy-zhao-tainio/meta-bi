@@ -60,7 +60,7 @@ Current intended anchors:
 - `BusinessHub` -> `BusinessObject`
 - `BusinessHubKeyPart` -> `BusinessKeyPart`
 - `BusinessLink` -> `BusinessRelationship`
-- `BusinessLinkEnd` -> `BusinessRelationshipParticipant`
+- `BusinessLinkHub` -> `BusinessRelationshipParticipant`
 
 Exit criteria:
 - the anchor set is agreed

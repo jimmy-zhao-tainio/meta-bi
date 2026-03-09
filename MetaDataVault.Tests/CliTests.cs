@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Meta.Core.Services;
 using MetaSchema.Core;
 
@@ -147,9 +147,9 @@ public sealed class CliTests
         var hubObjectWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart");
         var hubKeyPartWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
         var linkRelationshipWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart");
-        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
         var hubKeyPartFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
-        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
 
         var result = RunCli(
             $"check-business-materialization --business-workspace \"{businessPath}\" --bdv-workspace \"{bdvPath}\" --implementation-workspace \"{implementationPath}\" --weave-workspace \"{hubObjectWeavePath}\" --weave-workspace \"{hubKeyPartWeavePath}\" --weave-workspace \"{linkRelationshipWeavePath}\" --weave-workspace \"{linkEndWeavePath}\" --fabric-workspace \"{hubKeyPartFabricPath}\" --fabric-workspace \"{linkEndFabricPath}\"");
@@ -170,9 +170,9 @@ public sealed class CliTests
         var hubObjectWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart");
         var hubKeyPartWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
         var linkRelationshipWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart");
-        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
         var hubKeyPartFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
-        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
         var outputPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MaterializedBusinessDataVault");
 
         try
@@ -216,9 +216,9 @@ public sealed class CliTests
         var hubObjectWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart");
         var hubKeyPartWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
         var linkRelationshipWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart");
-        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
         var hubKeyPartFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
-        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart");
+        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var materializedPath = Path.Combine(root, "MaterializedBusinessDataVault");
         var sqlOutputPath = Path.Combine(root, "Sql");
@@ -303,6 +303,48 @@ public sealed class CliTests
         }
     }
 
+    [Fact]
+    public async Task GenerateSql_EmitsSameAsAndHierarchicalLinkScripts()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultLinkVariants");
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("BusinessSameAsLinks: 1", result.Output);
+            Assert.Contains("BusinessHierarchicalLinks: 1", result.Output);
+            Assert.Contains("BusinessSameAsLinkSatellites: 1", result.Output);
+            Assert.Contains("BusinessHierarchicalLinkSatellites: 1", result.Output);
+
+            var sameAsSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BSAL_CustomerMatch.sql"));
+            Assert.Contains("CREATE TABLE [BSAL_CustomerMatch]", sameAsSql);
+            Assert.Contains("[PrimaryHashKey] binary(16) NOT NULL", sameAsSql);
+            Assert.Contains("[EquivalentHashKey] binary(16) NOT NULL", sameAsSql);
+
+            var hierarchySql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BHAL_EmployeeManager.sql"));
+            Assert.Contains("CREATE TABLE [BHAL_EmployeeManager]", hierarchySql);
+            Assert.Contains("[ParentHashKey] binary(16) NOT NULL", hierarchySql);
+            Assert.Contains("[ChildHashKey] binary(16) NOT NULL", hierarchySql);
+
+            var sameAsSatelliteSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BSALS_CustomerMatch_Evidence.sql"));
+            Assert.Contains("[MatchScore] nvarchar(20) NOT NULL", sameAsSatelliteSql);
+
+            var hierarchySatelliteSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BHALS_EmployeeManager_Line.sql"));
+            Assert.Contains("[LineType] nvarchar(20) NOT NULL", hierarchySatelliteSql);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
     [Fact]
     public async Task GenerateSql_FailsWhenBridgePathIsInconsistent()
     {
@@ -888,6 +930,7 @@ public sealed class CliTests
         }
     }
 }
+
 
 
 

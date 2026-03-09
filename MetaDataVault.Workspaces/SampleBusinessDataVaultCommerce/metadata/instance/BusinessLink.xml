@@ -2,11 +2,9 @@
 <MetaBusinessDataVault>
   <BusinessLinkList>
     <BusinessLink Id="CustomerInvoice">
-      <LinkKind>standard</LinkKind>
       <Name>CustomerInvoice</Name>
     </BusinessLink>
     <BusinessLink Id="CustomerOrder">
-      <LinkKind>standard</LinkKind>
       <Name>CustomerOrder</Name>
     </BusinessLink>
   </BusinessLinkList>

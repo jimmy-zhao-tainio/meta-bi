@@ -1,4 +1,4 @@
-﻿# meta-bi
+# meta-bi
 
 `meta-bi` is the BI stack that sits on top of the generic `meta` foundation.
 
@@ -80,21 +80,21 @@ Flat anchors:
 - `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
 
 Scoped seam:
-- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
-- `Fabrics\Fabric-Suggest-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
-- `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
+- `Fabrics\Fabric-Suggest-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
+- `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
 
 The current proved path is:
 
 - `BusinessHub.Name` -> `BusinessObject.Name` through flat weave
 - `BusinessLink.Name` -> `BusinessRelationship.Name` through flat weave
-- `BusinessLinkEnd.RoleName` -> `BusinessRelationshipParticipant.RoleName` through fabric-scoped weave validation
+- `BusinessLinkHub.RoleName` -> `BusinessRelationshipParticipant.RoleName` through fabric-scoped weave validation
 - `BusinessHubKeyPart.Name` -> `BusinessKeyPart.Name` through path-scoped fabric validation
 
 Current BI fabric samples therefore prove both:
 
 - shared-parent scope:
-  - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+  - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
 - multi-hop path scope:
   - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 ## Current Business Data Vault Materialization
@@ -107,7 +107,7 @@ Current BI fabric samples therefore prove both:
 Preflight:
 
 ```cmd
-meta-datavault check-business-materialization --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart
+meta-datavault check-business-materialization --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart
 ```
 
 ```text
@@ -124,7 +124,7 @@ ScopedAnchors: 2/2
 First-step materialization:
 
 ```cmd
-meta-datavault materialize-business --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart --new-workspace C:\path\to\Output\MaterializedBusinessDataVault
+meta-datavault materialize-business --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --new-workspace C:\path\to\Output\MaterializedBusinessDataVault
 ```
 
 ```text
@@ -185,7 +185,7 @@ Current SQL scope:
 
 Current SQL constraints and supported semantics:
 
-- `BusinessLink.LinkKind` must currently be `standard`
+- Standard links, same-as links, and hierarchical links are modeled as separate sanctioned entities and generate separate SQL structures
 - `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
 - `BusinessPointInTime` currently supports only the baseline snapshot/reference contract; point-in-time references to `multi-active` satellites fail fast and explicit `BusinessPointInTimeStamp` rows are modeled but not yet emitted to SQL
 - `BusinessPointInTime` must reference at least one hub or link satellite, ordinals must be unique across those references, hub satellites must belong to the point-in-time parent hub, and link satellites must connect to that hub

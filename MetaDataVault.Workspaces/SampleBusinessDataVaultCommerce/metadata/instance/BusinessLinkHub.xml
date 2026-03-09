@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkHubList>
+    <BusinessLinkHub Id="CustomerInvoice-Customer" BusinessHubId="Customer" BusinessLinkId="CustomerInvoice">
+      <Ordinal>1</Ordinal>
+      <RoleName>Customer</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="CustomerInvoice-Invoice" BusinessHubId="Invoice" BusinessLinkId="CustomerInvoice">
+      <Ordinal>2</Ordinal>
+      <RoleName>Invoice</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="CustomerOrder-Customer" BusinessHubId="Customer" BusinessLinkId="CustomerOrder">
+      <Ordinal>1</Ordinal>
+      <RoleName>Customer</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="CustomerOrder-Order" BusinessHubId="Order" BusinessLinkId="CustomerOrder">
+      <Ordinal>2</Ordinal>
+      <RoleName>Order</RoleName>
+    </BusinessLinkHub>
+  </BusinessLinkHubList>
+</MetaBusinessDataVault>

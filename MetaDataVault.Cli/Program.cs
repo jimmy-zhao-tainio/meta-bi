@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Meta.Core.Domain;
 using Meta.Core.Presentation;
 using Meta.Core.Services;
@@ -429,8 +429,12 @@ internal static class Program
             ("Tables", result.TableCount.ToString()),
             ("BusinessHubs", result.BusinessHubCount.ToString()),
             ("BusinessLinks", result.BusinessLinkCount.ToString()),
+            ("BusinessSameAsLinks", result.BusinessSameAsLinkCount.ToString()),
+            ("BusinessHierarchicalLinks", result.BusinessHierarchicalLinkCount.ToString()),
             ("BusinessHubSatellites", result.BusinessHubSatelliteCount.ToString()),
             ("BusinessLinkSatellites", result.BusinessLinkSatelliteCount.ToString()),
+            ("BusinessSameAsLinkSatellites", result.BusinessSameAsLinkSatelliteCount.ToString()),
+            ("BusinessHierarchicalLinkSatellites", result.BusinessHierarchicalLinkSatelliteCount.ToString()),
             ("BusinessPointInTimes", result.BusinessPointInTimeCount.ToString()),
             ("BusinessBridges", result.BusinessBridgeCount.ToString()));
         return 0;
@@ -996,6 +1000,7 @@ internal static class Program
         return exitCode;
     }
 }
+
 
 
 

@@ -1,4 +1,4 @@
-﻿# MetaDataVault materialization note
+# MetaDataVault materialization note
 
 ## Current split
 
@@ -75,7 +75,7 @@ Owns flat direct anchors such as:
 
 Owns scoped child-row consistency over weave workspaces, such as:
 
-- `BusinessLinkEnd.RoleName -> BusinessRelationshipParticipant.RoleName`
+- `BusinessLinkHub.RoleName -> BusinessRelationshipParticipant.RoleName`
 - `BusinessHubKeyPart.Name -> BusinessKeyPart.Name`
 
 where the child binding is only deterministic under a scoped parent binding.
@@ -89,7 +89,7 @@ Flat anchors:
 
 Scoped anchors:
 
-- `BusinessLinkEnd.RoleName -> BusinessRelationshipParticipant.RoleName`
+- `BusinessLinkHub.RoleName -> BusinessRelationshipParticipant.RoleName`
 - `BusinessHubKeyPart.Name -> BusinessKeyPart.Name`
 
 The contract check currently requires all four.
@@ -138,7 +138,7 @@ It currently emits plain SQL scripts for:
 
 Current SQL generator contract:
 
-- `BusinessLink.LinkKind` must currently be `standard`
+- Standard links, same-as links, and hierarchical links are emitted through separate sanctioned link entities
 - `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
 - `BusinessPointInTime` currently supports only the baseline snapshot/reference contract; point-in-time references to `multi-active` satellites fail fast and explicit `BusinessPointInTimeStamp` rows are modeled but not yet emitted to SQL
 - `BusinessPointInTime` must reference at least one hub or link satellite, ordinals must be unique across those references, hub satellites must belong to the point-in-time parent hub, and link satellites must connect to that hub
@@ -162,9 +162,9 @@ The current sanctioned repeated-key-part and helper-structure sample set is:
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart`
-- `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart`
+- `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart`
 - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
-- `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce-RepeatedKeyPart`
+- `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart`
 
 ## Current typing position
 

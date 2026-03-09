@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <BusinessSameAsLinkImplementationList>
+    <BusinessSameAsLinkImplementation Id="default-business-same-as-link">
+      <TableNamePattern>BSAL_{Name}</TableNamePattern>
+      <HashKeyColumnName>HashKey</HashKeyColumnName>
+      <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
+      <HashKeyLength>16</HashKeyLength>
+      <PrimaryHashKeyColumnName>PrimaryHashKey</PrimaryHashKeyColumnName>
+      <EquivalentHashKeyColumnName>EquivalentHashKey</EquivalentHashKeyColumnName>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
+    </BusinessSameAsLinkImplementation>
+  </BusinessSameAsLinkImplementationList>
+</MetaDataVaultImplementation>

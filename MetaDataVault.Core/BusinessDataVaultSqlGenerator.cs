@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using System.Text.RegularExpressions;
 using BDV = MetaBusinessDataVault;
 using DVI = MetaDataVaultImplementation;
@@ -11,8 +11,12 @@ public sealed record BusinessDataVaultSqlGenerationResult(
     int TableCount,
     int BusinessHubCount,
     int BusinessLinkCount,
+    int BusinessSameAsLinkCount,
+    int BusinessHierarchicalLinkCount,
     int BusinessHubSatelliteCount,
     int BusinessLinkSatelliteCount,
+    int BusinessSameAsLinkSatelliteCount,
+    int BusinessHierarchicalLinkSatelliteCount,
     int BusinessPointInTimeCount,
     int BusinessBridgeCount);
 
@@ -63,6 +67,16 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             scripts.Add(($"{link.Name}.sql", RenderBusinessLinkSql(link, bdv, implementation, conversions)));
         }
 
+        foreach (var link in bdv.BusinessSameAsLinkList.OrderBy(row => row.Name, StringComparer.Ordinal))
+        {
+            scripts.Add(($"{link.Name}.sql", RenderBusinessSameAsLinkSql(link, implementation, conversions)));
+        }
+
+        foreach (var link in bdv.BusinessHierarchicalLinkList.OrderBy(row => row.Name, StringComparer.Ordinal))
+        {
+            scripts.Add(($"{link.Name}.sql", RenderBusinessHierarchicalLinkSql(link, implementation, conversions)));
+        }
+
         foreach (var satellite in bdv.BusinessHubSatelliteList.OrderBy(row => row.Name, StringComparer.Ordinal))
         {
             scripts.Add(($"{satellite.Name}.sql", RenderBusinessHubSatelliteSql(satellite, bdv, implementation, conversions)));
@@ -71,6 +85,16 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         foreach (var satellite in bdv.BusinessLinkSatelliteList.OrderBy(row => row.Name, StringComparer.Ordinal))
         {
             scripts.Add(($"{satellite.Name}.sql", RenderBusinessLinkSatelliteSql(satellite, bdv, implementation, conversions)));
+        }
+
+        foreach (var satellite in bdv.BusinessSameAsLinkSatelliteList.OrderBy(row => row.Name, StringComparer.Ordinal))
+        {
+            scripts.Add(($"{satellite.Name}.sql", RenderBusinessSameAsLinkSatelliteSql(satellite, bdv, implementation, conversions)));
+        }
+
+        foreach (var satellite in bdv.BusinessHierarchicalLinkSatelliteList.OrderBy(row => row.Name, StringComparer.Ordinal))
+        {
+            scripts.Add(($"{satellite.Name}.sql", RenderBusinessHierarchicalLinkSatelliteSql(satellite, bdv, implementation, conversions)));
         }
 
         foreach (var pointInTime in bdv.BusinessPointInTimeList.OrderBy(row => row.Name, StringComparer.Ordinal))
@@ -95,8 +119,12 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             scripts.Count,
             bdv.BusinessHubList.Count,
             bdv.BusinessLinkList.Count,
+            bdv.BusinessSameAsLinkList.Count,
+            bdv.BusinessHierarchicalLinkList.Count,
             bdv.BusinessHubSatelliteList.Count,
             bdv.BusinessLinkSatelliteList.Count,
+            bdv.BusinessSameAsLinkSatelliteList.Count,
+            bdv.BusinessHierarchicalLinkSatelliteList.Count,
             bdv.BusinessPointInTimeList.Count,
             bdv.BusinessBridgeList.Count);
     }
@@ -133,7 +161,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         var foreignKeys = new List<string>();
         var endColumns = new List<string>();
 
-        foreach (var end in bdv.BusinessLinkEndList.Where(row => row.BusinessLinkId == link.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.RoleName, StringComparer.Ordinal))
+        foreach (var end in bdv.BusinessLinkHubList.Where(row => row.BusinessLinkId == link.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.RoleName, StringComparer.Ordinal))
         {
             var columnName = RenderPattern(implementation.BusinessLinkImplementation.EndHashKeyColumnPattern, new Dictionary<string, string>(StringComparer.Ordinal)
             {
@@ -150,6 +178,62 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
         var primaryKeyColumns = new[] { implementation.BusinessLinkImplementation.HashKeyColumnName };
         return RenderCreateTableSql(link.Name, columns, primaryKeyColumns, endColumns.Count == 0 ? null : endColumns, foreignKeys);
+    }
+
+    private static string RenderBusinessSameAsLinkSql(BDV.BusinessSameAsLink link, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
+    {
+        EnsureSupportedBusinessSameAsLink(link);
+
+        var columns = new List<string>
+        {
+            RenderColumn(implementation.BusinessSameAsLinkImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessSameAsLinkImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessSameAsLinkImplementation.HashKeyLength, null, null), conversions), false),
+            RenderColumn(implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName, RenderSqlType(implementation.BusinessHubImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHubImplementation.HashKeyLength, null, null), conversions), false),
+            RenderColumn(implementation.BusinessSameAsLinkImplementation.EquivalentHashKeyColumnName, RenderSqlType(implementation.BusinessHubImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHubImplementation.HashKeyLength, null, null), conversions), false)
+        };
+
+        AppendOptionalColumn(columns, implementation.BusinessSameAsLinkImplementation.LoadTimestampColumnName, implementation.BusinessSameAsLinkImplementation.LoadTimestampDataTypeId, new DetailBag(null, implementation.BusinessSameAsLinkImplementation.LoadTimestampPrecision, null), conversions);
+        AppendOptionalColumn(columns, implementation.BusinessSameAsLinkImplementation.RecordSourceColumnName, implementation.BusinessSameAsLinkImplementation.RecordSourceDataTypeId, new DetailBag(implementation.BusinessSameAsLinkImplementation.RecordSourceLength, null, null), conversions);
+
+        var foreignKeys = new[]
+        {
+            $"    CONSTRAINT {Quote($"FK_{link.Name}_{link.PrimaryHub.Name}_{implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName)}) REFERENCES {Quote(link.PrimaryHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})",
+            $"    CONSTRAINT {Quote($"FK_{link.Name}_{link.EquivalentHub.Name}_{implementation.BusinessSameAsLinkImplementation.EquivalentHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessSameAsLinkImplementation.EquivalentHashKeyColumnName)}) REFERENCES {Quote(link.EquivalentHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+        };
+
+        return RenderCreateTableSql(
+            link.Name,
+            columns,
+            new[] { implementation.BusinessSameAsLinkImplementation.HashKeyColumnName },
+            new[] { implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName, implementation.BusinessSameAsLinkImplementation.EquivalentHashKeyColumnName },
+            foreignKeys);
+    }
+
+    private static string RenderBusinessHierarchicalLinkSql(BDV.BusinessHierarchicalLink link, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
+    {
+        EnsureSupportedBusinessHierarchicalLink(link);
+
+        var columns = new List<string>
+        {
+            RenderColumn(implementation.BusinessHierarchicalLinkImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessHierarchicalLinkImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHierarchicalLinkImplementation.HashKeyLength, null, null), conversions), false),
+            RenderColumn(implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessHubImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHubImplementation.HashKeyLength, null, null), conversions), false),
+            RenderColumn(implementation.BusinessHierarchicalLinkImplementation.ChildHashKeyColumnName, RenderSqlType(implementation.BusinessHubImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHubImplementation.HashKeyLength, null, null), conversions), false)
+        };
+
+        AppendOptionalColumn(columns, implementation.BusinessHierarchicalLinkImplementation.LoadTimestampColumnName, implementation.BusinessHierarchicalLinkImplementation.LoadTimestampDataTypeId, new DetailBag(null, implementation.BusinessHierarchicalLinkImplementation.LoadTimestampPrecision, null), conversions);
+        AppendOptionalColumn(columns, implementation.BusinessHierarchicalLinkImplementation.RecordSourceColumnName, implementation.BusinessHierarchicalLinkImplementation.RecordSourceDataTypeId, new DetailBag(implementation.BusinessHierarchicalLinkImplementation.RecordSourceLength, null, null), conversions);
+
+        var foreignKeys = new[]
+        {
+            $"    CONSTRAINT {Quote($"FK_{link.Name}_{link.ParentHub.Name}_{implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName)}) REFERENCES {Quote(link.ParentHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})",
+            $"    CONSTRAINT {Quote($"FK_{link.Name}_{link.ChildHub.Name}_{implementation.BusinessHierarchicalLinkImplementation.ChildHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessHierarchicalLinkImplementation.ChildHashKeyColumnName)}) REFERENCES {Quote(link.ChildHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+        };
+
+        return RenderCreateTableSql(
+            link.Name,
+            columns,
+            new[] { implementation.BusinessHierarchicalLinkImplementation.HashKeyColumnName },
+            new[] { implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName, implementation.BusinessHierarchicalLinkImplementation.ChildHashKeyColumnName },
+            foreignKeys);
     }
 
     private static string RenderBusinessHubSatelliteSql(BDV.BusinessHubSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
@@ -216,6 +300,103 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         };
 
         return RenderCreateTableSql(satellite.Name, columns, primaryKeyColumns, null, foreignKeys);
+    }
+
+    private static string RenderBusinessSameAsLinkSatelliteSql(BDV.BusinessSameAsLinkSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
+    {
+        EnsureSupportedBusinessSameAsLinkSatellite(satellite, bdv);
+        return RenderLinkSatelliteSql(
+            satellite.Name,
+            satellite.BusinessSameAsLink.Name,
+            implementation.BusinessSameAsLinkSatelliteImplementation.ParentHashKeyColumnName,
+            implementation.BusinessSameAsLinkSatelliteImplementation.ParentHashKeyDataTypeId,
+            implementation.BusinessSameAsLinkSatelliteImplementation.ParentHashKeyLength,
+            implementation.BusinessSameAsLinkSatelliteImplementation.HashDiffColumnName,
+            implementation.BusinessSameAsLinkSatelliteImplementation.HashDiffDataTypeId,
+            implementation.BusinessSameAsLinkSatelliteImplementation.HashDiffLength,
+            implementation.BusinessSameAsLinkSatelliteImplementation.LoadTimestampColumnName,
+            implementation.BusinessSameAsLinkSatelliteImplementation.LoadTimestampDataTypeId,
+            implementation.BusinessSameAsLinkSatelliteImplementation.LoadTimestampPrecision,
+            implementation.BusinessSameAsLinkSatelliteImplementation.RecordSourceColumnName,
+            implementation.BusinessSameAsLinkSatelliteImplementation.RecordSourceDataTypeId,
+            implementation.BusinessSameAsLinkSatelliteImplementation.RecordSourceLength,
+            implementation.BusinessSameAsLinkImplementation.HashKeyColumnName,
+            bdv.BusinessSameAsLinkSatelliteKeyPartList.Where(row => row.BusinessSameAsLinkSatelliteId == satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal).Select(row => (row.Name, row.DataTypeId, BuildDetailBag(bdv.BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList.Where(detail => detail.BusinessSameAsLinkSatelliteKeyPartId == row.Id).Select(detail => (detail.Name, detail.Value))))),
+            bdv.BusinessSameAsLinkSatelliteAttributeList.Where(row => row.BusinessSameAsLinkSatelliteId == satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal).Select(row => (row.Name, row.DataTypeId, BuildDetailBag(bdv.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList.Where(detail => detail.BusinessSameAsLinkSatelliteAttributeId == row.Id).Select(detail => (detail.Name, detail.Value))))),
+            conversions);
+    }
+
+    private static string RenderBusinessHierarchicalLinkSatelliteSql(BDV.BusinessHierarchicalLinkSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
+    {
+        EnsureSupportedBusinessHierarchicalLinkSatellite(satellite, bdv);
+        return RenderLinkSatelliteSql(
+            satellite.Name,
+            satellite.BusinessHierarchicalLink.Name,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.ParentHashKeyColumnName,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.ParentHashKeyDataTypeId,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.ParentHashKeyLength,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.HashDiffColumnName,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.HashDiffDataTypeId,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.HashDiffLength,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.LoadTimestampColumnName,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.LoadTimestampDataTypeId,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.LoadTimestampPrecision,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.RecordSourceColumnName,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.RecordSourceDataTypeId,
+            implementation.BusinessHierarchicalLinkSatelliteImplementation.RecordSourceLength,
+            implementation.BusinessHierarchicalLinkImplementation.HashKeyColumnName,
+            bdv.BusinessHierarchicalLinkSatelliteKeyPartList.Where(row => row.BusinessHierarchicalLinkSatelliteId == satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal).Select(row => (row.Name, row.DataTypeId, BuildDetailBag(bdv.BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList.Where(detail => detail.BusinessHierarchicalLinkSatelliteKeyPartId == row.Id).Select(detail => (detail.Name, detail.Value))))),
+            bdv.BusinessHierarchicalLinkSatelliteAttributeList.Where(row => row.BusinessHierarchicalLinkSatelliteId == satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal).Select(row => (row.Name, row.DataTypeId, BuildDetailBag(bdv.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList.Where(detail => detail.BusinessHierarchicalLinkSatelliteAttributeId == row.Id).Select(detail => (detail.Name, detail.Value))))),
+            conversions);
+    }
+
+    private static string RenderLinkSatelliteSql(
+        string satelliteName,
+        string parentName,
+        string parentHashKeyColumnName,
+        string parentHashKeyDataTypeId,
+        string parentHashKeyLength,
+        string? hashDiffColumnName,
+        string? hashDiffDataTypeId,
+        string? hashDiffLength,
+        string? loadTimestampColumnName,
+        string? loadTimestampDataTypeId,
+        string? loadTimestampPrecision,
+        string? recordSourceColumnName,
+        string? recordSourceDataTypeId,
+        string? recordSourceLength,
+        string parentTableHashKeyColumnName,
+        IEnumerable<(string Name, string DataTypeId, DetailBag Detail)> keyParts,
+        IEnumerable<(string Name, string DataTypeId, DetailBag Detail)> attributes,
+        DataTypeConversionModel conversions)
+    {
+        var columns = new List<string>
+        {
+            RenderColumn(parentHashKeyColumnName, RenderSqlType(parentHashKeyDataTypeId, new DetailBag(parentHashKeyLength, null, null), conversions), false)
+        };
+        var primaryKeyColumns = new List<string> { parentHashKeyColumnName };
+
+        foreach (var keyPart in keyParts)
+        {
+            columns.Add(RenderColumn(keyPart.Name, RenderSqlType(keyPart.DataTypeId, keyPart.Detail, conversions), false));
+            primaryKeyColumns.Add(keyPart.Name);
+        }
+
+        foreach (var attribute in attributes)
+        {
+            columns.Add(RenderColumn(attribute.Name, RenderSqlType(attribute.DataTypeId, attribute.Detail, conversions), false));
+        }
+
+        AppendOptionalColumn(columns, hashDiffColumnName!, hashDiffDataTypeId!, new DetailBag(hashDiffLength, null, null), conversions);
+        AppendOptionalColumn(columns, loadTimestampColumnName!, loadTimestampDataTypeId!, new DetailBag(null, loadTimestampPrecision, null), conversions, primaryKeyColumns);
+        AppendOptionalColumn(columns, recordSourceColumnName!, recordSourceDataTypeId!, new DetailBag(recordSourceLength, null, null), conversions);
+
+        var foreignKeys = new[]
+        {
+            $"    CONSTRAINT {Quote($"FK_{satelliteName}_{parentName}")} FOREIGN KEY ({Quote(parentHashKeyColumnName)}) REFERENCES {Quote(parentName)} ({Quote(parentTableHashKeyColumnName)})"
+        };
+
+        return RenderCreateTableSql(satelliteName, columns, primaryKeyColumns, null, foreignKeys);
     }
 
     private static string RenderBusinessPointInTimeSql(BDV.BusinessPointInTime pointInTime, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
@@ -437,11 +618,27 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static void EnsureSupportedBusinessLink(BDV.BusinessLink link, BDV.MetaBusinessDataVaultModel bdv)
     {
-        if (!string.Equals(link.LinkKind, "standard", StringComparison.Ordinal))
+        var endCount = bdv.BusinessLinkHubList.Count(row => row.BusinessLinkId == link.Id);
+        if (endCount < 2)
         {
-            throw new InvalidOperationException($"SQL generation currently supports only BusinessLink.LinkKind='standard'. Link '{link.Name}' uses '{link.LinkKind}'.");
+            throw new InvalidOperationException($"BusinessLink '{link.Name}' must declare at least two BusinessLinkHub rows.");
         }
+    }
 
+    private static void EnsureSupportedBusinessSameAsLink(BDV.BusinessSameAsLink link)
+    {
+        if (!string.Equals(link.PrimaryHubId, link.EquivalentHubId, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"BusinessSameAsLink '{link.Name}' must bind two records from the same BusinessHub.");
+        }
+    }
+
+    private static void EnsureSupportedBusinessHierarchicalLink(BDV.BusinessHierarchicalLink link)
+    {
+        if (!string.Equals(link.ParentHubId, link.ChildHubId, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"BusinessHierarchicalLink '{link.Name}' must bind parent and child records from the same BusinessHub.");
+        }
     }
 
     private static void EnsureSupportedBusinessHubSatellite(BDV.BusinessHubSatellite satellite, BDV.MetaBusinessDataVaultModel bdv)
@@ -473,20 +670,58 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             .Where(row => row.BusinessLinkSatelliteId == satellite.Id)
             .ToList();
 
-        if (!string.Equals(satellite.SatelliteKind, "standard", StringComparison.Ordinal) &&
-            !string.Equals(satellite.SatelliteKind, "multi-active", StringComparison.Ordinal))
+        EnsureSupportedSatelliteKind(
+            satellite.Name,
+            satellite.SatelliteKind,
+            satelliteKeyParts.Count,
+            "BusinessLinkSatellite",
+            "BusinessLinkSatelliteKeyPart");
+    }
+
+    private static void EnsureSupportedBusinessSameAsLinkSatellite(BDV.BusinessSameAsLinkSatellite satellite, BDV.MetaBusinessDataVaultModel bdv)
+    {
+        var satelliteKeyParts = bdv.BusinessSameAsLinkSatelliteKeyPartList
+            .Where(row => row.BusinessSameAsLinkSatelliteId == satellite.Id)
+            .ToList();
+
+        EnsureSupportedSatelliteKind(
+            satellite.Name,
+            satellite.SatelliteKind,
+            satelliteKeyParts.Count,
+            "BusinessSameAsLinkSatellite",
+            "BusinessSameAsLinkSatelliteKeyPart");
+    }
+
+    private static void EnsureSupportedBusinessHierarchicalLinkSatellite(BDV.BusinessHierarchicalLinkSatellite satellite, BDV.MetaBusinessDataVaultModel bdv)
+    {
+        var satelliteKeyParts = bdv.BusinessHierarchicalLinkSatelliteKeyPartList
+            .Where(row => row.BusinessHierarchicalLinkSatelliteId == satellite.Id)
+            .ToList();
+
+        EnsureSupportedSatelliteKind(
+            satellite.Name,
+            satellite.SatelliteKind,
+            satelliteKeyParts.Count,
+            "BusinessHierarchicalLinkSatellite",
+            "BusinessHierarchicalLinkSatelliteKeyPart");
+    }
+
+    private static void EnsureSupportedSatelliteKind(string satelliteName, string satelliteKind, int keyPartCount, string entityName, string keyPartEntityName)
+    {
+        if (!string.Equals(satelliteKind, "standard", StringComparison.Ordinal) &&
+            !string.Equals(satelliteKind, "multi-active", StringComparison.Ordinal))
         {
-            throw new InvalidOperationException($"SQL generation currently supports BusinessLinkSatellite.SatelliteKind values 'standard' and 'multi-active'. Satellite '{satellite.Name}' uses '{satellite.SatelliteKind}'.");
+            throw new InvalidOperationException($"SQL generation currently supports {entityName}.SatelliteKind values 'standard' and 'multi-active'. Satellite '{satelliteName}' uses '{satelliteKind}'.");
         }
 
-        if (string.Equals(satellite.SatelliteKind, "standard", StringComparison.Ordinal) && satelliteKeyParts.Count > 0)
+        if (string.Equals(satelliteKind, "standard", StringComparison.Ordinal) && keyPartCount > 0)
         {
-            throw new InvalidOperationException($"SQL generation does not allow BusinessLinkSatellite.SatelliteKind='standard' with BusinessLinkSatelliteKeyPart rows. Satellite '{satellite.Name}' declares {satelliteKeyParts.Count} key part(s).");
+            throw new InvalidOperationException($"SQL generation does not allow {entityName}.SatelliteKind='standard' with {keyPartEntityName} rows. Satellite '{satelliteName}' declares {keyPartCount} key part(s).");
         }
 
-        if (string.Equals(satellite.SatelliteKind, "multi-active", StringComparison.Ordinal) && satelliteKeyParts.Count == 0)
+        if (string.Equals(satelliteKind, "multi-active", StringComparison.Ordinal) && keyPartCount == 0)
         {
-            throw new InvalidOperationException($"SQL generation requires BusinessLinkSatellite.SatelliteKind='multi-active' satellites to declare at least one BusinessLinkSatelliteKeyPart. Satellite '{satellite.Name}' declares none.");
+            throw new InvalidOperationException($"SQL generation requires {entityName}.SatelliteKind='multi-active' satellites to declare at least one {keyPartEntityName}. Satellite '{satelliteName}' declares none.");
         }
     }
 
@@ -555,7 +790,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
         var wrongLinkSatellite = linkSatelliteRows
             .Select(row => row.BusinessLinkSatellite)
-            .FirstOrDefault(row => !bdv.BusinessLinkEndList
+            .FirstOrDefault(row => !bdv.BusinessLinkHubList
                 .Where(end => end.BusinessLinkId == row.BusinessLinkId)
                 .Any(end => string.Equals(end.BusinessHubId, pointInTime.BusinessHubId, StringComparison.Ordinal)));
         if (wrongLinkSatellite is not null)
@@ -683,7 +918,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static bool LinkConnectsHubs(BDV.BusinessLink link, string firstHubId, string secondHubId, BDV.MetaBusinessDataVaultModel bdv)
     {
-        var hubIds = bdv.BusinessLinkEndList
+        var hubIds = bdv.BusinessLinkHubList
             .Where(row => row.BusinessLinkId == link.Id)
             .Select(row => row.BusinessHubId)
             .Distinct(StringComparer.Ordinal)
@@ -795,5 +1030,11 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     private readonly record struct DetailBag(string? Length, string? Precision, string? Scale);
     private readonly record struct BridgePath(BDV.BusinessHub RelatedHub, IReadOnlyList<string> HubIds, IReadOnlyList<string> LinkIds);
 }
+
+
+
+
+
+
 
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHierarchicalLinkSatelliteList>
+    <BusinessHierarchicalLinkSatellite Id="EmployeeManagerLine" BusinessHierarchicalLinkId="EmployeeManager">
+      <Name>BHALS_EmployeeManager_Line</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHierarchicalLinkSatellite>
+  </BusinessHierarchicalLinkSatelliteList>
+</MetaBusinessDataVault>

@@ -32,10 +32,10 @@ The first worked BI example is:
   - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
   - `BusinessLink.Name` -> `BusinessRelationship.Name`
 - child weave:
-  - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
-  - `BusinessLinkEnd.RoleName` -> `BusinessRelationshipParticipant.RoleName`
+  - `Weaves/Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
+  - `BusinessLinkHub.RoleName` -> `BusinessRelationshipParticipant.RoleName`
 - scoped fabric:
-  - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkEndParticipant-Commerce`
+  - `Fabrics/Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
 
 Without fabric, the child weave is ambiguous because `Customer` appears in more than one relationship participant row.
 
