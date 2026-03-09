@@ -316,6 +316,109 @@ Reason:
 - `Best Practices` will likely expose any remaining baseline gaps in naming, loading, or helper structure behavior
 
 
+
+## Focus review: Reference Data
+
+Primary source:
+- https://docs.varigence.com/bimlflex/delivering-solutions/delivering-data-vault/data-vault-concept-reference-data
+
+### What Varigence states
+
+1. Reference tables are a logical collection of code/description lookup structures.
+2. They use natural business keys.
+3. They are constructed from standard Hub, Link, and Satellite entities.
+4. Resolution occurs through queries at run time.
+5. They do not house nor require foreign keys.
+6. Codes are generally housed in satellites because they describe other keys or relationships.
+
+### Implications for `meta-bi`
+
+1. Our explicit `BusinessReference` / `BusinessReferenceSatellite` baseline is acceptable as a sanctioned modeling surface, because Varigence also treats `Reference` and `Reference Satellite` as first-class object types in the static values vocabulary.
+2. But the conceptual warning is important: reference data is still logically a lookup structure, not a separate business-relationship family.
+3. SQL generation should keep references simple and avoid overloading them with unnecessary relational enforcement.
+4. If we later add load-generation semantics, reference resolution should be treated as query-time lookup behavior, not as a generic foreign-key-driven pattern.
+
+### Current alignment
+
+Aligned:
+- `BusinessReference` and `BusinessReferenceSatellite` now exist as explicit sanctioned model families.
+- Reference SQL generation is present in the baseline.
+
+Needs more review:
+- whether reference-table SQL should remain free of additional constraints/indexes beyond the current baseline
+- whether the explicit model surface should stay as-is or later be reframed to better reflect the underlying logical lookup role
+
+## Focus review: Hashing
+
+Primary source:
+- https://docs.varigence.com/bimlflex/delivering-solutions/delivering-data-vault/hashing-in-data-vault
+
+### What Varigence states
+
+1. Hashing is used for two separate concerns:
+   - hash keys for Data Vault identity
+   - row hashes / `HashDiff` for change detection
+2. Hash keys support deterministic parallel loading and reduce key lookups.
+3. Hash keys are not compulsory in Data Vault generally, but are compulsory in BimlFlex.
+4. Binary hash representation is recommended over string representation.
+5. Supported algorithms include `MD5`, `SHA1`, `SHA2_256`, and `SHA2_512`.
+6. Hash input requires deterministic field order, separators, and null handling.
+7. Compatibility of hashing behavior across tools/processes matters.
+
+### Implications for `meta-bi`
+
+1. Our current DDL baseline is directionally aligned because it uses binary hash-key/hashdiff columns.
+2. Hash algorithm is not yet modeled in `MetaDataVaultImplementation`; that is acceptable only because current work is table-DDL generation, not load/hash-expression generation.
+3. Once we generate load logic or SQL that computes hashes, the implementation model will need explicit hash semantics, at minimum:
+   - hash algorithm
+   - binary vs string representation
+   - field separator
+   - null replacement behavior
+   - any case-normalization/compatibility settings
+4. `Ordinal` on key-part/attribute rows remains important because deterministic field order is part of the hash contract.
+
+### Current alignment
+
+Aligned:
+- binary storage is the current baseline in emitted SQL
+- `HashDiff` is treated separately from key columns
+- typed key parts and attributes preserve deterministic ordering metadata
+
+Needs more review:
+- explicit hash-algorithm policy in `MetaDataVaultImplementation`
+- load/hash compatibility settings once we move beyond DDL generation
+
+## Focus review: Data Vault Best Practices
+
+Primary source:
+- https://docs.varigence.com/bimlflex/delivering-solutions/delivering-data-vault/data-vault-best-practices
+
+### What Varigence states
+
+1. Business modeling should come before Data Vault acceleration/design.
+2. Core business concepts, natural business relationships, and context data should be modeled explicitly.
+3. Recommended system columns include:
+   - load/effective-from timestamp
+   - record source
+   - audit id
+4. The effective-from/load timestamp belongs on every DV object, but only satellites use it as part of the primary key.
+
+### Implications for `meta-bi`
+
+1. The current top-down direction is correct: `MetaBusiness` first, then Business/BDV seams, then SQL.
+2. `AuditId` being part of the house baseline is justified.
+3. `RecordSource` and `LoadTimestamp` being standard implementation columns is justified.
+4. If we later review generated PK definitions in more detail, satellite-vs-non-satellite use of load timestamp should be checked explicitly against this guidance.
+
+### Current alignment
+
+Aligned:
+- the repo direction now starts with `MetaBusiness`
+- `AuditId`, `RecordSource`, and `LoadTimestamp` are in the implementation baseline
+
+Needs more review:
+- whether emitted PK/UK/index patterns fully reflect the recommended system-column usage
+- whether future load-generation semantics should distinguish technical timeline and business/effective timeline more explicitly
 ## Current decision
 
 - `Integration Key` is treated as a Varigence/BimlFlex-specific pragmatic feature, not a standard term to copy into `meta-bi`.

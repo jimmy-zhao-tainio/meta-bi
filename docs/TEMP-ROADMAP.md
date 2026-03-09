@@ -145,3 +145,8 @@ These are real, but not the next move:
 The next real implementation work should stay inside stages 1-4.
 
 If we skip that and jump to artifact generation, we will hardcode missing semantics into tooling.
+
+## Additional deferred notes
+
+- Reference data is now implemented in the explicit BDV baseline, but its longer-term conceptual framing should stay under review so it remains a lookup-oriented structure rather than drifting into a separate domain.
+- Hash algorithm and hash-input semantics are intentionally deferred until load-generation work begins. When that happens, `MetaDataVaultImplementation` should own explicit settings for algorithm, representation, separator, null replacement, and compatibility behavior.
