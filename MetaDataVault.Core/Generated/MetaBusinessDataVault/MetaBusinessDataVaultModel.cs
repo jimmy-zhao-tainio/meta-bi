@@ -10,7 +10,10 @@ namespace MetaBusinessDataVault
         internal MetaBusinessDataVaultModel(
             IReadOnlyList<BusinessBridge> businessBridgeList,
             IReadOnlyList<BusinessBridgeHub> businessBridgeHubList,
+            IReadOnlyList<BusinessBridgeHubKeyPartProjection> businessBridgeHubKeyPartProjectionList,
+            IReadOnlyList<BusinessBridgeHubSatelliteAttributeProjection> businessBridgeHubSatelliteAttributeProjectionList,
             IReadOnlyList<BusinessBridgeLink> businessBridgeLinkList,
+            IReadOnlyList<BusinessBridgeLinkSatelliteAttributeProjection> businessBridgeLinkSatelliteAttributeProjectionList,
             IReadOnlyList<BusinessHub> businessHubList,
             IReadOnlyList<BusinessHubKeyPart> businessHubKeyPartList,
             IReadOnlyList<BusinessHubKeyPartDataTypeDetail> businessHubKeyPartDataTypeDetailList,
@@ -33,7 +36,10 @@ namespace MetaBusinessDataVault
         {
             BusinessBridgeList = businessBridgeList;
             BusinessBridgeHubList = businessBridgeHubList;
+            BusinessBridgeHubKeyPartProjectionList = businessBridgeHubKeyPartProjectionList;
+            BusinessBridgeHubSatelliteAttributeProjectionList = businessBridgeHubSatelliteAttributeProjectionList;
             BusinessBridgeLinkList = businessBridgeLinkList;
+            BusinessBridgeLinkSatelliteAttributeProjectionList = businessBridgeLinkSatelliteAttributeProjectionList;
             BusinessHubList = businessHubList;
             BusinessHubKeyPartList = businessHubKeyPartList;
             BusinessHubKeyPartDataTypeDetailList = businessHubKeyPartDataTypeDetailList;
@@ -56,7 +62,10 @@ namespace MetaBusinessDataVault
 
         public IReadOnlyList<BusinessBridge> BusinessBridgeList { get; }
         public IReadOnlyList<BusinessBridgeHub> BusinessBridgeHubList { get; }
+        public IReadOnlyList<BusinessBridgeHubKeyPartProjection> BusinessBridgeHubKeyPartProjectionList { get; }
+        public IReadOnlyList<BusinessBridgeHubSatelliteAttributeProjection> BusinessBridgeHubSatelliteAttributeProjectionList { get; }
         public IReadOnlyList<BusinessBridgeLink> BusinessBridgeLinkList { get; }
+        public IReadOnlyList<BusinessBridgeLinkSatelliteAttributeProjection> BusinessBridgeLinkSatelliteAttributeProjectionList { get; }
         public IReadOnlyList<BusinessHub> BusinessHubList { get; }
         public IReadOnlyList<BusinessHubKeyPart> BusinessHubKeyPartList { get; }
         public IReadOnlyList<BusinessHubKeyPartDataTypeDetail> BusinessHubKeyPartDataTypeDetailList { get; }
@@ -118,6 +127,38 @@ namespace MetaBusinessDataVault
                 }
             }
 
+            var businessBridgeHubKeyPartProjectionList = new List<BusinessBridgeHubKeyPartProjection>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeHubKeyPartProjection", out var businessBridgeHubKeyPartProjectionListRecords))
+            {
+                foreach (var record in businessBridgeHubKeyPartProjectionListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeHubKeyPartProjectionList.Add(new BusinessBridgeHubKeyPartProjection
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
+                        BusinessHubKeyPartId = record.RelationshipIds.TryGetValue("BusinessHubKeyPartId", out var businessHubKeyPartRelationshipId) ? businessHubKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessBridgeHubSatelliteAttributeProjectionList = new List<BusinessBridgeHubSatelliteAttributeProjection>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeHubSatelliteAttributeProjection", out var businessBridgeHubSatelliteAttributeProjectionListRecords))
+            {
+                foreach (var record in businessBridgeHubSatelliteAttributeProjectionListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeHubSatelliteAttributeProjectionList.Add(new BusinessBridgeHubSatelliteAttributeProjection
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
+                        BusinessHubSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessHubSatelliteAttributeId", out var businessHubSatelliteAttributeRelationshipId) ? businessHubSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
             var businessBridgeLinkList = new List<BusinessBridgeLink>();
             if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeLink", out var businessBridgeLinkListRecords))
             {
@@ -130,6 +171,22 @@ namespace MetaBusinessDataVault
                         RoleName = record.Values.TryGetValue("RoleName", out var roleNameValue) ? roleNameValue ?? string.Empty : string.Empty,
                         BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
                         BusinessLinkId = record.RelationshipIds.TryGetValue("BusinessLinkId", out var businessLinkRelationshipId) ? businessLinkRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessBridgeLinkSatelliteAttributeProjectionList = new List<BusinessBridgeLinkSatelliteAttributeProjection>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeLinkSatelliteAttributeProjection", out var businessBridgeLinkSatelliteAttributeProjectionListRecords))
+            {
+                foreach (var record in businessBridgeLinkSatelliteAttributeProjectionListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeLinkSatelliteAttributeProjectionList.Add(new BusinessBridgeLinkSatelliteAttributeProjection
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
+                        BusinessLinkSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessLinkSatelliteAttributeId", out var businessLinkSatelliteAttributeRelationshipId) ? businessLinkSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
                     });
                 }
             }
@@ -423,10 +480,28 @@ namespace MetaBusinessDataVault
                 businessBridgeHubListById[row.Id] = row;
             }
 
+            var businessBridgeHubKeyPartProjectionListById = new Dictionary<string, BusinessBridgeHubKeyPartProjection>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeHubKeyPartProjectionList)
+            {
+                businessBridgeHubKeyPartProjectionListById[row.Id] = row;
+            }
+
+            var businessBridgeHubSatelliteAttributeProjectionListById = new Dictionary<string, BusinessBridgeHubSatelliteAttributeProjection>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeHubSatelliteAttributeProjectionList)
+            {
+                businessBridgeHubSatelliteAttributeProjectionListById[row.Id] = row;
+            }
+
             var businessBridgeLinkListById = new Dictionary<string, BusinessBridgeLink>(global::System.StringComparer.Ordinal);
             foreach (var row in businessBridgeLinkList)
             {
                 businessBridgeLinkListById[row.Id] = row;
+            }
+
+            var businessBridgeLinkSatelliteAttributeProjectionListById = new Dictionary<string, BusinessBridgeLinkSatelliteAttributeProjection>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeLinkSatelliteAttributeProjectionList)
+            {
+                businessBridgeLinkSatelliteAttributeProjectionListById[row.Id] = row;
             }
 
             var businessHubListById = new Dictionary<string, BusinessHub>(global::System.StringComparer.Ordinal);
@@ -567,6 +642,46 @@ namespace MetaBusinessDataVault
                     "BusinessHubId");
             }
 
+            foreach (var row in businessBridgeHubKeyPartProjectionList)
+            {
+                row.BusinessBridge = RequireTarget(
+                    businessBridgeListById,
+                    row.BusinessBridgeId,
+                    "BusinessBridgeHubKeyPartProjection",
+                    row.Id,
+                    "BusinessBridgeId");
+            }
+
+            foreach (var row in businessBridgeHubKeyPartProjectionList)
+            {
+                row.BusinessHubKeyPart = RequireTarget(
+                    businessHubKeyPartListById,
+                    row.BusinessHubKeyPartId,
+                    "BusinessBridgeHubKeyPartProjection",
+                    row.Id,
+                    "BusinessHubKeyPartId");
+            }
+
+            foreach (var row in businessBridgeHubSatelliteAttributeProjectionList)
+            {
+                row.BusinessBridge = RequireTarget(
+                    businessBridgeListById,
+                    row.BusinessBridgeId,
+                    "BusinessBridgeHubSatelliteAttributeProjection",
+                    row.Id,
+                    "BusinessBridgeId");
+            }
+
+            foreach (var row in businessBridgeHubSatelliteAttributeProjectionList)
+            {
+                row.BusinessHubSatelliteAttribute = RequireTarget(
+                    businessHubSatelliteAttributeListById,
+                    row.BusinessHubSatelliteAttributeId,
+                    "BusinessBridgeHubSatelliteAttributeProjection",
+                    row.Id,
+                    "BusinessHubSatelliteAttributeId");
+            }
+
             foreach (var row in businessBridgeLinkList)
             {
                 row.BusinessBridge = RequireTarget(
@@ -585,6 +700,26 @@ namespace MetaBusinessDataVault
                     "BusinessBridgeLink",
                     row.Id,
                     "BusinessLinkId");
+            }
+
+            foreach (var row in businessBridgeLinkSatelliteAttributeProjectionList)
+            {
+                row.BusinessBridge = RequireTarget(
+                    businessBridgeListById,
+                    row.BusinessBridgeId,
+                    "BusinessBridgeLinkSatelliteAttributeProjection",
+                    row.Id,
+                    "BusinessBridgeId");
+            }
+
+            foreach (var row in businessBridgeLinkSatelliteAttributeProjectionList)
+            {
+                row.BusinessLinkSatelliteAttribute = RequireTarget(
+                    businessLinkSatelliteAttributeListById,
+                    row.BusinessLinkSatelliteAttributeId,
+                    "BusinessBridgeLinkSatelliteAttributeProjection",
+                    row.Id,
+                    "BusinessLinkSatelliteAttributeId");
             }
 
             foreach (var row in businessHubKeyPartList)
@@ -780,7 +915,10 @@ namespace MetaBusinessDataVault
             return new MetaBusinessDataVaultModel(
                 new ReadOnlyCollection<BusinessBridge>(businessBridgeList),
                 new ReadOnlyCollection<BusinessBridgeHub>(businessBridgeHubList),
+                new ReadOnlyCollection<BusinessBridgeHubKeyPartProjection>(businessBridgeHubKeyPartProjectionList),
+                new ReadOnlyCollection<BusinessBridgeHubSatelliteAttributeProjection>(businessBridgeHubSatelliteAttributeProjectionList),
                 new ReadOnlyCollection<BusinessBridgeLink>(businessBridgeLinkList),
+                new ReadOnlyCollection<BusinessBridgeLinkSatelliteAttributeProjection>(businessBridgeLinkSatelliteAttributeProjectionList),
                 new ReadOnlyCollection<BusinessHub>(businessHubList),
                 new ReadOnlyCollection<BusinessHubKeyPart>(businessHubKeyPartList),
                 new ReadOnlyCollection<BusinessHubKeyPartDataTypeDetail>(businessHubKeyPartDataTypeDetailList),

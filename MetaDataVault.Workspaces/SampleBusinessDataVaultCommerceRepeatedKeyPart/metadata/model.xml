@@ -196,5 +196,36 @@
         <Relationship entity="BusinessLink" />
       </RelationshipList>
     </Entity>
+
+<Entity name="BusinessBridgeHubKeyPartProjection">
+  <PropertyList>
+    <Property name="Name" />
+    <Property name="Ordinal" />
+  </PropertyList>
+  <RelationshipList>
+    <Relationship entity="BusinessBridge" />
+    <Relationship entity="BusinessHubKeyPart" />
+  </RelationshipList>
+</Entity>
+<Entity name="BusinessBridgeHubSatelliteAttributeProjection">
+  <PropertyList>
+    <Property name="Name" />
+    <Property name="Ordinal" />
+  </PropertyList>
+  <RelationshipList>
+    <Relationship entity="BusinessBridge" />
+    <Relationship entity="BusinessHubSatelliteAttribute" />
+  </RelationshipList>
+</Entity>
+<Entity name="BusinessBridgeLinkSatelliteAttributeProjection">
+  <PropertyList>
+    <Property name="Name" />
+    <Property name="Ordinal" />
+  </PropertyList>
+  <RelationshipList>
+    <Relationship entity="BusinessBridge" />
+    <Relationship entity="BusinessLinkSatelliteAttribute" />
+  </RelationshipList>
+</Entity>
   </EntityList>
 </Model>

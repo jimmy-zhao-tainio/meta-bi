@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Meta.Core.Services;
 using MetaSchema.Core;
 
@@ -290,6 +290,10 @@ public sealed class CliTests
             Assert.Contains("[RelatedHashKey] binary(16) NOT NULL", bridgeSql);
             Assert.Contains("[Depth] int NOT NULL", bridgeSql);
             Assert.Contains("[Path] nvarchar(4000) NOT NULL", bridgeSql);
+            Assert.Contains("[CustomerIdentifier] nvarchar(50) NOT NULL", bridgeSql);
+            Assert.Contains("[OrderIdentifier] nvarchar(50) NOT NULL", bridgeSql);
+            Assert.Contains("[CustomerName] nvarchar(200) NOT NULL", bridgeSql);
+            Assert.Contains("[StatusCode] nvarchar(20) NOT NULL", bridgeSql);
             Assert.Contains("[EffectiveFrom] datetime2(7) NOT NULL", bridgeSql);
             Assert.Contains("[EffectiveTo] datetime2(7) NOT NULL", bridgeSql);
         }
@@ -330,6 +334,37 @@ public sealed class CliTests
         }
     }
 
+
+    [Fact]
+    public async Task GenerateSql_FailsWhenBridgeProjectionFallsOutsidePath()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "Workspace");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers"), workspacePath);
+            var projectionPath = Path.Combine(workspacePath, "metadata", "instance", "BusinessBridgeHubKeyPartProjection.xml");
+            var projectionXml = await File.ReadAllTextAsync(projectionPath);
+            projectionXml = projectionXml.Replace("BusinessHubKeyPartId=\"OrderIdentifier\"", "BusinessHubKeyPartId=\"InvoiceIdentifier\"", StringComparison.Ordinal);
+            await File.WriteAllTextAsync(projectionPath, projectionXml);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("ordered path", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("BusinessHubKeyPart", result.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
 
     [Fact]
     public async Task GenerateSql_FailsWhenMultiActiveHubSatelliteHasNoKeyParts()

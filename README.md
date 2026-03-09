@@ -1,4 +1,4 @@
-# meta-bi
+﻿# meta-bi
 
 `meta-bi` is the BI stack that sits on top of the generic `meta` foundation.
 
@@ -191,6 +191,7 @@ Current SQL constraints and supported semantics:
 - `BusinessPointInTime` currently supports only `standard` satellite references; point-in-time references to `multi-active` satellites fail fast
 - `BusinessPointInTime` must reference at least one hub or link satellite, ordinals must be unique across those references, hub satellites must belong to the point-in-time parent hub, and link satellites must connect to that hub
 - bridge SQL generation requires an explicit ordered path from `AnchorHub` through `BusinessBridgeLink` and `BusinessBridgeHub` rows; inconsistent paths fail fast
+- bridge SQL generation also requires explicit projection rows (`BusinessBridgeHubKeyPartProjection`, `BusinessBridgeHubSatelliteAttributeProjection`, `BusinessBridgeLinkSatelliteAttributeProjection`); projected columns are typed from the referenced BDV rows and their local `...DataTypeDetail`
 - `MetaDataVaultImplementation` must provide the required technical column defaults for the currently supported SQL surface; missing required defaults fail fast instead of being silently omitted
 
 Helper-structure example workspace:
@@ -209,3 +210,5 @@ See also:
 For a checked-in Business Data Vault SQL demo with workspaces, instance data, generated SQL, and plain `cmd` scripts, see:
 
 - `Samples/Demos/BusinessDataVaultSql`
+
+

@@ -258,7 +258,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessBridgeSql(BDV.BusinessBridge bridge, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
-        EnsureSupportedBusinessBridge(bridge);
+        EnsureSupportedBusinessBridge(bridge, bdv);
         var bridgePath = ResolveBridgePath(bridge, bdv);
 
         var columns = new List<string>
@@ -271,6 +271,21 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             implementation.BusinessBridgeImplementation.RootHashKeyColumnName,
             implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName
         };
+
+        foreach (var projection in bdv.BusinessBridgeHubKeyPartProjectionList.Where(row => row.BusinessBridgeId == bridge.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal))
+        {
+            columns.Add(RenderColumn(projection.Name, RenderSqlType(projection.BusinessHubKeyPart.DataTypeId, BuildDetailBag(bdv.BusinessHubKeyPartDataTypeDetailList.Where(detail => detail.BusinessHubKeyPartId == projection.BusinessHubKeyPartId).Select(detail => (detail.Name, detail.Value))), conversions), false));
+        }
+
+        foreach (var projection in bdv.BusinessBridgeHubSatelliteAttributeProjectionList.Where(row => row.BusinessBridgeId == bridge.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal))
+        {
+            columns.Add(RenderColumn(projection.Name, RenderSqlType(projection.BusinessHubSatelliteAttribute.DataTypeId, BuildDetailBag(bdv.BusinessHubSatelliteAttributeDataTypeDetailList.Where(detail => detail.BusinessHubSatelliteAttributeId == projection.BusinessHubSatelliteAttributeId).Select(detail => (detail.Name, detail.Value))), conversions), false));
+        }
+
+        foreach (var projection in bdv.BusinessBridgeLinkSatelliteAttributeProjectionList.Where(row => row.BusinessBridgeId == bridge.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal))
+        {
+            columns.Add(RenderColumn(projection.Name, RenderSqlType(projection.BusinessLinkSatelliteAttribute.DataTypeId, BuildDetailBag(bdv.BusinessLinkSatelliteAttributeDataTypeDetailList.Where(detail => detail.BusinessLinkSatelliteAttributeId == projection.BusinessLinkSatelliteAttributeId).Select(detail => (detail.Name, detail.Value))), conversions), false));
+        }
 
         AppendOptionalColumn(columns, implementation.BusinessBridgeImplementation.DepthColumnName, implementation.BusinessBridgeImplementation.DepthDataTypeId, new DetailBag(null, null, null), conversions);
         AppendOptionalColumn(columns, implementation.BusinessBridgeImplementation.PathColumnName, implementation.BusinessBridgeImplementation.PathDataTypeId, new DetailBag(implementation.BusinessBridgeImplementation.PathLength, null, null), conversions);
@@ -539,11 +554,87 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         }
     }
 
-    private static void EnsureSupportedBusinessBridge(BDV.BusinessBridge bridge)
+    private static void EnsureSupportedBusinessBridge(BDV.BusinessBridge bridge, BDV.MetaBusinessDataVaultModel bdv)
     {
         if (!string.Equals(bridge.BridgeKind, "standard", StringComparison.Ordinal))
         {
             throw new InvalidOperationException($"SQL generation currently supports only BusinessBridge.BridgeKind='standard'. Bridge '{bridge.Name}' uses '{bridge.BridgeKind}'.");
+        }
+
+        var hubKeyPartProjections = bdv.BusinessBridgeHubKeyPartProjectionList
+            .Where(row => row.BusinessBridgeId == bridge.Id)
+            .OrderBy(row => ParseOrdinal(row.Ordinal))
+            .ThenBy(row => row.Name, StringComparer.Ordinal)
+            .ToList();
+        var hubSatelliteAttributeProjections = bdv.BusinessBridgeHubSatelliteAttributeProjectionList
+            .Where(row => row.BusinessBridgeId == bridge.Id)
+            .OrderBy(row => ParseOrdinal(row.Ordinal))
+            .ThenBy(row => row.Name, StringComparer.Ordinal)
+            .ToList();
+        var linkSatelliteAttributeProjections = bdv.BusinessBridgeLinkSatelliteAttributeProjectionList
+            .Where(row => row.BusinessBridgeId == bridge.Id)
+            .OrderBy(row => ParseOrdinal(row.Ordinal))
+            .ThenBy(row => row.Name, StringComparer.Ordinal)
+            .ToList();
+
+        if (hubKeyPartProjections.Count == 0 && hubSatelliteAttributeProjections.Count == 0 && linkSatelliteAttributeProjections.Count == 0)
+        {
+            throw new InvalidOperationException($"Bridge '{bridge.Name}' must declare at least one bridge projection row.");
+        }
+
+        var duplicateProjectionNames = hubKeyPartProjections.Select(row => row.Name)
+            .Concat(hubSatelliteAttributeProjections.Select(row => row.Name))
+            .Concat(linkSatelliteAttributeProjections.Select(row => row.Name))
+            .GroupBy(value => value, StringComparer.Ordinal)
+            .Where(group => group.Count() > 1)
+            .Select(group => group.Key)
+            .OrderBy(value => value, StringComparer.Ordinal)
+            .ToArray();
+        if (duplicateProjectionNames.Length > 0)
+        {
+            throw new InvalidOperationException($"Bridge '{bridge.Name}' declares duplicate projection names: {string.Join(", ", duplicateProjectionNames)}.");
+        }
+
+        var duplicateOrdinals = hubKeyPartProjections.Select(row => row.Ordinal)
+            .Concat(hubSatelliteAttributeProjections.Select(row => row.Ordinal))
+            .Concat(linkSatelliteAttributeProjections.Select(row => row.Ordinal))
+            .Where(value => !string.IsNullOrWhiteSpace(value))
+            .GroupBy(value => value, StringComparer.Ordinal)
+            .Where(group => group.Count() > 1)
+            .Select(group => group.Key)
+            .OrderBy(value => value, StringComparer.Ordinal)
+            .ToArray();
+        if (duplicateOrdinals.Length > 0)
+        {
+            throw new InvalidOperationException($"Bridge '{bridge.Name}' declares duplicate Ordinal values across bridge projections: {string.Join(", ", duplicateOrdinals)}.");
+        }
+
+        var path = ResolveBridgePath(bridge, bdv);
+        var allowedHubIds = new HashSet<string>(path.HubIds, StringComparer.Ordinal);
+        var allowedLinkIds = new HashSet<string>(path.LinkIds, StringComparer.Ordinal);
+
+        var wrongHubKeyPart = hubKeyPartProjections
+            .Select(row => row.BusinessHubKeyPart)
+            .FirstOrDefault(row => !allowedHubIds.Contains(row.BusinessHubId));
+        if (wrongHubKeyPart is not null)
+        {
+            throw new InvalidOperationException($"Bridge '{bridge.Name}' can only project BusinessHubKeyPart rows from hubs on its ordered path. Key part '{wrongHubKeyPart.Name}' belongs to hub '{wrongHubKeyPart.BusinessHub.Name}'.");
+        }
+
+        var wrongHubSatelliteAttribute = hubSatelliteAttributeProjections
+            .Select(row => row.BusinessHubSatelliteAttribute)
+            .FirstOrDefault(row => !allowedHubIds.Contains(row.BusinessHubSatellite.BusinessHubId));
+        if (wrongHubSatelliteAttribute is not null)
+        {
+            throw new InvalidOperationException($"Bridge '{bridge.Name}' can only project BusinessHubSatelliteAttribute rows from hubs on its ordered path. Attribute '{wrongHubSatelliteAttribute.Name}' belongs to satellite '{wrongHubSatelliteAttribute.BusinessHubSatellite.Name}' on hub '{wrongHubSatelliteAttribute.BusinessHubSatellite.BusinessHub.Name}'.");
+        }
+
+        var wrongLinkSatelliteAttribute = linkSatelliteAttributeProjections
+            .Select(row => row.BusinessLinkSatelliteAttribute)
+            .FirstOrDefault(row => !allowedLinkIds.Contains(row.BusinessLinkSatellite.BusinessLinkId));
+        if (wrongLinkSatelliteAttribute is not null)
+        {
+            throw new InvalidOperationException($"Bridge '{bridge.Name}' can only project BusinessLinkSatelliteAttribute rows from links on its ordered path. Attribute '{wrongLinkSatelliteAttribute.Name}' belongs to satellite '{wrongLinkSatelliteAttribute.BusinessLinkSatellite.Name}' on link '{wrongLinkSatelliteAttribute.BusinessLinkSatellite.BusinessLink.Name}'.");
         }
     }
 
@@ -581,7 +672,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             currentHub = bridgeHub.BusinessHub;
         }
 
-        return new BridgePath(bridgeHubs[^1].BusinessHub);
+        return new BridgePath(bridgeHubs[^1].BusinessHub, new[] { bridge.AnchorHubId }.Concat(bridgeHubs.Select(row => row.BusinessHubId)).ToArray(), bridgeLinks.Select(row => row.BusinessLinkId).ToArray());
     }
 
     private static bool LinkConnectsHubs(BDV.BusinessLink link, string firstHubId, string secondHubId, BDV.MetaBusinessDataVaultModel bdv)
@@ -696,5 +787,5 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     }
 
     private readonly record struct DetailBag(string? Length, string? Precision, string? Scale);
-    private readonly record struct BridgePath(BDV.BusinessHub RelatedHub);
+    private readonly record struct BridgePath(BDV.BusinessHub RelatedHub, IReadOnlyList<string> HubIds, IReadOnlyList<string> LinkIds);
 }
