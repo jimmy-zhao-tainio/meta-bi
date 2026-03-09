@@ -136,6 +136,14 @@ It currently emits plain SQL scripts for:
 - `BusinessPointInTime`
 - `BusinessBridge`
 
+Current SQL generator contract:
+
+- `BusinessLink.LinkKind` must currently be `standard`
+- `BusinessLinkEnd.IsDrivingKey` is not yet emitted and therefore fails fast
+- `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`
+- `BusinessBridge.BridgeKind` must currently be `standard`
+- bridge SQL generation requires an explicit ordered path from `AnchorHub` through `BusinessBridgeLink` and `BusinessBridgeHub` rows; inconsistent paths fail fast instead of being guessed
+
 ## Why this is still useful
 
 This gives downstream tooling a physicalized BDV workspace without hardcoding the table naming rules in generators.

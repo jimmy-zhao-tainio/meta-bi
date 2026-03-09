@@ -183,6 +183,14 @@ Current SQL scope:
 - `BusinessPointInTime`
 - `BusinessBridge`
 
+Current SQL constraints and supported semantics:
+
+- `BusinessLink.LinkKind` must currently be `standard`
+- `BusinessLinkEnd.IsDrivingKey` is not yet emitted and therefore causes SQL generation to fail fast if present
+- `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`
+- `BusinessBridge.BridgeKind` must currently be `standard`
+- bridge SQL generation requires an explicit ordered path from `AnchorHub` through `BusinessBridgeLink` and `BusinessBridgeHub` rows; inconsistent paths fail fast
+
 Helper-structure example workspace:
 
 - `MetaDataVault.Workspaces/SampleBusinessDataVaultCommerceHelpers`

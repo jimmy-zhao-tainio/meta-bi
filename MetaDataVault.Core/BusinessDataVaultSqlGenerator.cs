@@ -122,6 +122,8 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessLinkSql(BDV.BusinessLink link, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
+        EnsureSupportedBusinessLink(link, bdv);
+
         var columns = new List<string>
         {
             RenderColumn(implementation.BusinessLinkImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessLinkImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessLinkImplementation.HashKeyLength, null, null), conversions), false)
@@ -150,6 +152,8 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessHubSatelliteSql(BDV.BusinessHubSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
+        EnsureSupportedBusinessHubSatellite(satellite);
+
         var columns = new List<string>
         {
             RenderColumn(implementation.BusinessHubSatelliteImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessHubSatelliteImplementation.ParentHashKeyDataTypeId, new DetailBag(implementation.BusinessHubSatelliteImplementation.ParentHashKeyLength, null, null), conversions), false)
@@ -181,6 +185,8 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessLinkSatelliteSql(BDV.BusinessLinkSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
+        EnsureSupportedBusinessLinkSatellite(satellite);
+
         var columns = new List<string>
         {
             RenderColumn(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyDataTypeId, new DetailBag(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyLength, null, null), conversions), false)
@@ -248,6 +254,9 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessBridgeSql(BDV.BusinessBridge bridge, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
+        EnsureSupportedBusinessBridge(bridge);
+        var bridgePath = ResolveBridgePath(bridge, bdv);
+
         var columns = new List<string>
         {
             RenderColumn(implementation.BusinessBridgeImplementation.RootHashKeyColumnName, RenderSqlType(implementation.BusinessBridgeImplementation.RootHashKeyDataTypeId, new DetailBag(implementation.BusinessBridgeImplementation.RootHashKeyLength, null, null), conversions), false),
@@ -270,14 +279,9 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
         var foreignKeys = new List<string>
         {
-            $"    CONSTRAINT {Quote($"FK_{bridge.Name}_{bridge.AnchorHub.Name}_{implementation.BusinessBridgeImplementation.RootHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessBridgeImplementation.RootHashKeyColumnName)}) REFERENCES {Quote(bridge.AnchorHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+            $"    CONSTRAINT {Quote($"FK_{bridge.Name}_{bridge.AnchorHub.Name}_{implementation.BusinessBridgeImplementation.RootHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessBridgeImplementation.RootHashKeyColumnName)}) REFERENCES {Quote(bridge.AnchorHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})",
+            $"    CONSTRAINT {Quote($"FK_{bridge.Name}_{bridgePath.RelatedHub.Name}_{implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName)}) REFERENCES {Quote(bridgePath.RelatedHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
         };
-
-        var relatedHub = ResolveBridgeRelatedHub(bridge, bdv);
-        if (relatedHub is not null)
-        {
-            foreignKeys.Add($"    CONSTRAINT {Quote($"FK_{bridge.Name}_{relatedHub.Name}_{implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName)}) REFERENCES {Quote(relatedHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})");
-        }
 
         return RenderCreateTableSql(bridge.Name, columns, primaryKeyColumns, null, foreignKeys);
     }
@@ -412,18 +416,97 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         return int.TryParse(ordinal, out var value) ? value : int.MaxValue;
     }
 
-    private static BDV.BusinessHub? ResolveBridgeRelatedHub(BDV.BusinessBridge bridge, BDV.MetaBusinessDataVaultModel bdv)
+    private static void EnsureSupportedBusinessLink(BDV.BusinessLink link, BDV.MetaBusinessDataVaultModel bdv)
+    {
+        if (!string.Equals(link.LinkKind, "standard", StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"SQL generation currently supports only BusinessLink.LinkKind='standard'. Link '{link.Name}' uses '{link.LinkKind}'.");
+        }
+
+        if (bdv.BusinessLinkEndList.Count(row => row.BusinessLinkId == link.Id && IsTrue(row.IsDrivingKey)) > 0)
+        {
+            throw new InvalidOperationException($"SQL generation does not yet support BusinessLinkEnd.IsDrivingKey semantics. Link '{link.Name}' sets IsDrivingKey.");
+        }
+    }
+
+    private static void EnsureSupportedBusinessHubSatellite(BDV.BusinessHubSatellite satellite)
+    {
+        if (!string.Equals(satellite.SatelliteKind, "standard", StringComparison.Ordinal) &&
+            !string.Equals(satellite.SatelliteKind, "multi-active", StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"SQL generation currently supports BusinessHubSatellite.SatelliteKind values 'standard' and 'multi-active'. Satellite '{satellite.Name}' uses '{satellite.SatelliteKind}'.");
+        }
+    }
+
+    private static void EnsureSupportedBusinessLinkSatellite(BDV.BusinessLinkSatellite satellite)
+    {
+        if (!string.Equals(satellite.SatelliteKind, "standard", StringComparison.Ordinal) &&
+            !string.Equals(satellite.SatelliteKind, "multi-active", StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"SQL generation currently supports BusinessLinkSatellite.SatelliteKind values 'standard' and 'multi-active'. Satellite '{satellite.Name}' uses '{satellite.SatelliteKind}'.");
+        }
+    }
+
+    private static void EnsureSupportedBusinessBridge(BDV.BusinessBridge bridge)
+    {
+        if (!string.Equals(bridge.BridgeKind, "standard", StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"SQL generation currently supports only BusinessBridge.BridgeKind='standard'. Bridge '{bridge.Name}' uses '{bridge.BridgeKind}'.");
+        }
+    }
+
+    private static BridgePath ResolveBridgePath(BDV.BusinessBridge bridge, BDV.MetaBusinessDataVaultModel bdv)
     {
         var bridgeHubs = bdv.BusinessBridgeHubList
             .Where(row => row.BusinessBridgeId == bridge.Id)
             .OrderBy(row => ParseOrdinal(row.Ordinal))
             .ToList();
-        if (bridgeHubs.Count == 1)
+        var bridgeLinks = bdv.BusinessBridgeLinkList
+            .Where(row => row.BusinessBridgeId == bridge.Id)
+            .OrderBy(row => ParseOrdinal(row.Ordinal))
+            .ToList();
+
+        if (bridgeHubs.Count == 0)
         {
-            return bridgeHubs[0].BusinessHub;
+            throw new InvalidOperationException($"Bridge '{bridge.Name}' must declare at least one BusinessBridgeHub beyond AnchorHub.");
         }
 
-        return bridgeHubs.LastOrDefault()?.BusinessHub;
+        if (bridgeLinks.Count != bridgeHubs.Count)
+        {
+            throw new InvalidOperationException($"Bridge '{bridge.Name}' must declare one BusinessBridgeLink for each hop from AnchorHub through ordered BusinessBridgeHub rows.");
+        }
+
+        var currentHub = bridge.AnchorHub;
+        for (var index = 0; index < bridgeLinks.Count; index++)
+        {
+            var bridgeLink = bridgeLinks[index];
+            var bridgeHub = bridgeHubs[index];
+            if (!LinkConnectsHubs(bridgeLink.BusinessLink, currentHub.Id, bridgeHub.BusinessHub.Id, bdv))
+            {
+                throw new InvalidOperationException($"Bridge '{bridge.Name}' is inconsistent: link '{bridgeLink.BusinessLink.Name}' does not connect '{currentHub.Name}' to '{bridgeHub.BusinessHub.Name}' in ordinal path order.");
+            }
+
+            currentHub = bridgeHub.BusinessHub;
+        }
+
+        return new BridgePath(bridgeHubs[^1].BusinessHub);
+    }
+
+    private static bool LinkConnectsHubs(BDV.BusinessLink link, string firstHubId, string secondHubId, BDV.MetaBusinessDataVaultModel bdv)
+    {
+        var hubIds = bdv.BusinessLinkEndList
+            .Where(row => row.BusinessLinkId == link.Id)
+            .Select(row => row.BusinessHubId)
+            .Distinct(StringComparer.Ordinal)
+            .ToArray();
+        return hubIds.Length == 2 &&
+               hubIds.Contains(firstHubId, StringComparer.Ordinal) &&
+               hubIds.Contains(secondHubId, StringComparer.Ordinal);
+    }
+
+    private static bool IsTrue(string? value)
+    {
+        return bool.TryParse(value, out var parsed) && parsed;
     }
 
     private static string Quote(string identifier) => $"[{identifier}]";
@@ -439,4 +522,5 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     }
 
     private readonly record struct DetailBag(string? Length, string? Precision, string? Scale);
+    private readonly record struct BridgePath(BDV.BusinessHub RelatedHub);
 }

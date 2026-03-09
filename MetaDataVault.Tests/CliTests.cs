@@ -298,6 +298,69 @@ public sealed class CliTests
             DeleteDirectoryIfExists(root);
         }
     }
+
+    [Fact]
+    public async Task GenerateSql_FailsWhenDrivingKeySemanticsArePresent()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "Workspace");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerce"), workspacePath);
+            var linkEndPath = Path.Combine(workspacePath, "metadata", "instance", "BusinessLinkEnd.xml");
+            var linkEndXml = await File.ReadAllTextAsync(linkEndPath);
+            linkEndXml = linkEndXml.Replace("<RoleName>Customer</RoleName>", "<RoleName>Customer</RoleName>" + Environment.NewLine + "      <IsDrivingKey>true</IsDrivingKey>", StringComparison.Ordinal);
+            await File.WriteAllTextAsync(linkEndPath, linkEndXml);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("IsDrivingKey", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("OK: business datavault sql generated", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task GenerateSql_FailsWhenBridgePathIsInconsistent()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "Workspace");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers"), workspacePath);
+            var bridgeHubPath = Path.Combine(workspacePath, "metadata", "instance", "BusinessBridgeHub.xml");
+            var bridgeHubXml = await File.ReadAllTextAsync(bridgeHubPath);
+            bridgeHubXml = bridgeHubXml.Replace("BusinessHubId=\"Order\"", "BusinessHubId=\"Invoice\"", StringComparison.Ordinal);
+            await File.WriteAllTextAsync(bridgeHubPath, bridgeHubXml);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("does not connect", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("OK: business datavault sql generated", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
     private static void SeedMetaSchema(Meta.Core.Domain.Workspace workspace)
     {
         var systems = workspace.Instance.GetOrCreateEntityRecords("System");
