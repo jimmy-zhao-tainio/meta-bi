@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Meta.Core.Services;
 using MetaSchema.Core;
 
@@ -354,6 +354,129 @@ public sealed class CliTests
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("does not connect", result.Output, StringComparison.OrdinalIgnoreCase);
             Assert.DoesNotContain("OK: business datavault sql generated", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+
+    [Fact]
+    public async Task GenerateSql_FailsWhenMultiActiveHubSatelliteHasNoKeyParts()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "Workspace");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers"), workspacePath);
+            var satellitePath = Path.Combine(workspacePath, "metadata", "instance", "BusinessHubSatellite.xml");
+            var satelliteXml = await File.ReadAllTextAsync(satellitePath);
+            satelliteXml = satelliteXml.Replace("<SatelliteKind>standard</SatelliteKind>", "<SatelliteKind>multi-active</SatelliteKind>", StringComparison.Ordinal);
+            await File.WriteAllTextAsync(satellitePath, satelliteXml);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("multi-active", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("BusinessHubSatelliteKeyPart", result.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task GenerateSql_FailsWhenPointInTimeReferencesMultiActiveSatellite()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "Workspace");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers"), workspacePath);
+            var satellitePath = Path.Combine(workspacePath, "metadata", "instance", "BusinessHubSatellite.xml");
+            var satelliteXml = await File.ReadAllTextAsync(satellitePath);
+            satelliteXml = satelliteXml.Replace("<SatelliteKind>standard</SatelliteKind>", "<SatelliteKind>multi-active</SatelliteKind>", StringComparison.Ordinal);
+            await File.WriteAllTextAsync(satellitePath, satelliteXml);
+
+            var keyPartPath = Path.Combine(workspacePath, "metadata", "instance", "BusinessHubSatelliteKeyPart.xml");
+            await File.WriteAllTextAsync(keyPartPath,
+                """
+                <?xml version="1.0" encoding="utf-8"?>
+                <MetaBusinessDataVault>
+                  <BusinessHubSatelliteKeyPartList>
+                    <BusinessHubSatelliteKeyPart Id="CustomerProfileVersion" BusinessHubSatelliteId="CustomerProfile">
+                      <Name>VersionId</Name>
+                      <DataTypeId>meta:type:String</DataTypeId>
+                      <Ordinal>1</Ordinal>
+                    </BusinessHubSatelliteKeyPart>
+                  </BusinessHubSatelliteKeyPartList>
+                </MetaBusinessDataVault>
+                """);
+
+            var keyPartDetailPath = Path.Combine(workspacePath, "metadata", "instance", "BusinessHubSatelliteKeyPartDataTypeDetail.xml");
+            await File.WriteAllTextAsync(keyPartDetailPath,
+                """
+                <?xml version="1.0" encoding="utf-8"?>
+                <MetaBusinessDataVault>
+                  <BusinessHubSatelliteKeyPartDataTypeDetailList>
+                    <BusinessHubSatelliteKeyPartDataTypeDetail Id="CustomerProfileVersionLength" BusinessHubSatelliteKeyPartId="CustomerProfileVersion">
+                      <Name>Length</Name>
+                      <Value>50</Value>
+                    </BusinessHubSatelliteKeyPartDataTypeDetail>
+                  </BusinessHubSatelliteKeyPartDataTypeDetailList>
+                </MetaBusinessDataVault>
+                """);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("point-in-time", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("multi-active", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task GenerateSql_FailsWhenRequiredImplementationPropertyIsMissing()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var implementationPath = Path.Combine(root, "Implementation");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation"), implementationPath);
+            var implementationFile = Path.Combine(implementationPath, "metadata", "instance", "BusinessHubImplementation.xml");
+            var implementationXml = await File.ReadAllTextAsync(implementationFile);
+            implementationXml = implementationXml.Replace("<RecordSourceColumnName>RecordSource</RecordSourceColumnName>", string.Empty, StringComparison.Ordinal);
+            await File.WriteAllTextAsync(implementationFile, implementationXml);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("MetaDataVaultImplementation", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("RecordSourceColumnName", result.Output, StringComparison.Ordinal);
         }
         finally
         {

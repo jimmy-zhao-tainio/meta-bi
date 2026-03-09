@@ -49,6 +49,8 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         var outputRoot = Path.GetFullPath(outputPath);
         Directory.CreateDirectory(outputRoot);
 
+        EnsureRequiredBusinessImplementation(implementation);
+
         var scripts = new List<(string FileName, string Sql)>();
 
         foreach (var hub in bdv.BusinessHubList.OrderBy(row => row.Name, StringComparer.Ordinal))
@@ -152,7 +154,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessHubSatelliteSql(BDV.BusinessHubSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
-        EnsureSupportedBusinessHubSatellite(satellite);
+        EnsureSupportedBusinessHubSatellite(satellite, bdv);
 
         var columns = new List<string>
         {
@@ -185,7 +187,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessLinkSatelliteSql(BDV.BusinessLinkSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
-        EnsureSupportedBusinessLinkSatellite(satellite);
+        EnsureSupportedBusinessLinkSatellite(satellite, bdv);
 
         var columns = new List<string>
         {
@@ -218,6 +220,8 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessPointInTimeSql(BDV.BusinessPointInTime pointInTime, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
+        EnsureSupportedBusinessPointInTime(pointInTime, bdv);
+
         var columns = new List<string>
         {
             RenderColumn(implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessPointInTimeImplementation.ParentHashKeyDataTypeId, new DetailBag(implementation.BusinessPointInTimeImplementation.ParentHashKeyLength, null, null), conversions), false),
@@ -429,21 +433,70 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         }
     }
 
-    private static void EnsureSupportedBusinessHubSatellite(BDV.BusinessHubSatellite satellite)
+    private static void EnsureSupportedBusinessHubSatellite(BDV.BusinessHubSatellite satellite, BDV.MetaBusinessDataVaultModel bdv)
     {
+        var satelliteKeyParts = bdv.BusinessHubSatelliteKeyPartList
+            .Where(row => row.BusinessHubSatelliteId == satellite.Id)
+            .ToList();
+
         if (!string.Equals(satellite.SatelliteKind, "standard", StringComparison.Ordinal) &&
             !string.Equals(satellite.SatelliteKind, "multi-active", StringComparison.Ordinal))
         {
             throw new InvalidOperationException($"SQL generation currently supports BusinessHubSatellite.SatelliteKind values 'standard' and 'multi-active'. Satellite '{satellite.Name}' uses '{satellite.SatelliteKind}'.");
         }
+
+        if (string.Equals(satellite.SatelliteKind, "standard", StringComparison.Ordinal) && satelliteKeyParts.Count > 0)
+        {
+            throw new InvalidOperationException($"SQL generation does not allow BusinessHubSatellite.SatelliteKind='standard' with BusinessHubSatelliteKeyPart rows. Satellite '{satellite.Name}' declares {satelliteKeyParts.Count} key part(s).");
+        }
+
+        if (string.Equals(satellite.SatelliteKind, "multi-active", StringComparison.Ordinal) && satelliteKeyParts.Count == 0)
+        {
+            throw new InvalidOperationException($"SQL generation requires BusinessHubSatellite.SatelliteKind='multi-active' satellites to declare at least one BusinessHubSatelliteKeyPart. Satellite '{satellite.Name}' declares none.");
+        }
     }
 
-    private static void EnsureSupportedBusinessLinkSatellite(BDV.BusinessLinkSatellite satellite)
+    private static void EnsureSupportedBusinessLinkSatellite(BDV.BusinessLinkSatellite satellite, BDV.MetaBusinessDataVaultModel bdv)
     {
+        var satelliteKeyParts = bdv.BusinessLinkSatelliteKeyPartList
+            .Where(row => row.BusinessLinkSatelliteId == satellite.Id)
+            .ToList();
+
         if (!string.Equals(satellite.SatelliteKind, "standard", StringComparison.Ordinal) &&
             !string.Equals(satellite.SatelliteKind, "multi-active", StringComparison.Ordinal))
         {
             throw new InvalidOperationException($"SQL generation currently supports BusinessLinkSatellite.SatelliteKind values 'standard' and 'multi-active'. Satellite '{satellite.Name}' uses '{satellite.SatelliteKind}'.");
+        }
+
+        if (string.Equals(satellite.SatelliteKind, "standard", StringComparison.Ordinal) && satelliteKeyParts.Count > 0)
+        {
+            throw new InvalidOperationException($"SQL generation does not allow BusinessLinkSatellite.SatelliteKind='standard' with BusinessLinkSatelliteKeyPart rows. Satellite '{satellite.Name}' declares {satelliteKeyParts.Count} key part(s).");
+        }
+
+        if (string.Equals(satellite.SatelliteKind, "multi-active", StringComparison.Ordinal) && satelliteKeyParts.Count == 0)
+        {
+            throw new InvalidOperationException($"SQL generation requires BusinessLinkSatellite.SatelliteKind='multi-active' satellites to declare at least one BusinessLinkSatelliteKeyPart. Satellite '{satellite.Name}' declares none.");
+        }
+    }
+
+    private static void EnsureSupportedBusinessPointInTime(BDV.BusinessPointInTime pointInTime, BDV.MetaBusinessDataVaultModel bdv)
+    {
+        var multiActiveHubSatellite = bdv.BusinessPointInTimeHubSatelliteList
+            .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
+            .Select(row => row.BusinessHubSatellite)
+            .FirstOrDefault(row => string.Equals(row.SatelliteKind, "multi-active", StringComparison.Ordinal));
+        if (multiActiveHubSatellite is not null)
+        {
+            throw new InvalidOperationException($"SQL generation does not yet support BusinessPointInTime references to multi-active hub satellites. Point-in-time '{pointInTime.Name}' references '{multiActiveHubSatellite.Name}'.");
+        }
+
+        var multiActiveLinkSatellite = bdv.BusinessPointInTimeLinkSatelliteList
+            .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
+            .Select(row => row.BusinessLinkSatellite)
+            .FirstOrDefault(row => string.Equals(row.SatelliteKind, "multi-active", StringComparison.Ordinal));
+        if (multiActiveLinkSatellite is not null)
+        {
+            throw new InvalidOperationException($"SQL generation does not yet support BusinessPointInTime references to multi-active link satellites. Point-in-time '{pointInTime.Name}' references '{multiActiveLinkSatellite.Name}'.");
         }
     }
 
@@ -507,6 +560,92 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     private static bool IsTrue(string? value)
     {
         return bool.TryParse(value, out var parsed) && parsed;
+    }
+
+    private static void EnsureRequiredBusinessImplementation(DataVaultImplementationModel implementation)
+    {
+        RequireImplementationValue(implementation.BusinessHubImplementation.HashKeyColumnName, "BusinessHubImplementation.HashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessHubImplementation.HashKeyDataTypeId, "BusinessHubImplementation.HashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessHubImplementation.HashKeyLength, "BusinessHubImplementation.HashKeyLength");
+        RequireImplementationValue(implementation.BusinessHubImplementation.LoadTimestampColumnName, "BusinessHubImplementation.LoadTimestampColumnName");
+        RequireImplementationValue(implementation.BusinessHubImplementation.LoadTimestampDataTypeId, "BusinessHubImplementation.LoadTimestampDataTypeId");
+        RequireImplementationValue(implementation.BusinessHubImplementation.LoadTimestampPrecision, "BusinessHubImplementation.LoadTimestampPrecision");
+        RequireImplementationValue(implementation.BusinessHubImplementation.RecordSourceColumnName, "BusinessHubImplementation.RecordSourceColumnName");
+        RequireImplementationValue(implementation.BusinessHubImplementation.RecordSourceDataTypeId, "BusinessHubImplementation.RecordSourceDataTypeId");
+        RequireImplementationValue(implementation.BusinessHubImplementation.RecordSourceLength, "BusinessHubImplementation.RecordSourceLength");
+
+        RequireImplementationValue(implementation.BusinessLinkImplementation.HashKeyColumnName, "BusinessLinkImplementation.HashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.HashKeyDataTypeId, "BusinessLinkImplementation.HashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.HashKeyLength, "BusinessLinkImplementation.HashKeyLength");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.EndHashKeyColumnPattern, "BusinessLinkImplementation.EndHashKeyColumnPattern");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.LoadTimestampColumnName, "BusinessLinkImplementation.LoadTimestampColumnName");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.LoadTimestampDataTypeId, "BusinessLinkImplementation.LoadTimestampDataTypeId");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.LoadTimestampPrecision, "BusinessLinkImplementation.LoadTimestampPrecision");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.RecordSourceColumnName, "BusinessLinkImplementation.RecordSourceColumnName");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.RecordSourceDataTypeId, "BusinessLinkImplementation.RecordSourceDataTypeId");
+        RequireImplementationValue(implementation.BusinessLinkImplementation.RecordSourceLength, "BusinessLinkImplementation.RecordSourceLength");
+
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.ParentHashKeyColumnName, "BusinessHubSatelliteImplementation.ParentHashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.ParentHashKeyDataTypeId, "BusinessHubSatelliteImplementation.ParentHashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.ParentHashKeyLength, "BusinessHubSatelliteImplementation.ParentHashKeyLength");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.HashDiffColumnName, "BusinessHubSatelliteImplementation.HashDiffColumnName");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.HashDiffDataTypeId, "BusinessHubSatelliteImplementation.HashDiffDataTypeId");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.HashDiffLength, "BusinessHubSatelliteImplementation.HashDiffLength");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.LoadTimestampColumnName, "BusinessHubSatelliteImplementation.LoadTimestampColumnName");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.LoadTimestampDataTypeId, "BusinessHubSatelliteImplementation.LoadTimestampDataTypeId");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.LoadTimestampPrecision, "BusinessHubSatelliteImplementation.LoadTimestampPrecision");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.RecordSourceColumnName, "BusinessHubSatelliteImplementation.RecordSourceColumnName");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.RecordSourceDataTypeId, "BusinessHubSatelliteImplementation.RecordSourceDataTypeId");
+        RequireImplementationValue(implementation.BusinessHubSatelliteImplementation.RecordSourceLength, "BusinessHubSatelliteImplementation.RecordSourceLength");
+
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyColumnName, "BusinessLinkSatelliteImplementation.ParentHashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyDataTypeId, "BusinessLinkSatelliteImplementation.ParentHashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyLength, "BusinessLinkSatelliteImplementation.ParentHashKeyLength");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.HashDiffColumnName, "BusinessLinkSatelliteImplementation.HashDiffColumnName");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.HashDiffDataTypeId, "BusinessLinkSatelliteImplementation.HashDiffDataTypeId");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.HashDiffLength, "BusinessLinkSatelliteImplementation.HashDiffLength");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.LoadTimestampColumnName, "BusinessLinkSatelliteImplementation.LoadTimestampColumnName");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.LoadTimestampDataTypeId, "BusinessLinkSatelliteImplementation.LoadTimestampDataTypeId");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.LoadTimestampPrecision, "BusinessLinkSatelliteImplementation.LoadTimestampPrecision");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.RecordSourceColumnName, "BusinessLinkSatelliteImplementation.RecordSourceColumnName");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.RecordSourceDataTypeId, "BusinessLinkSatelliteImplementation.RecordSourceDataTypeId");
+        RequireImplementationValue(implementation.BusinessLinkSatelliteImplementation.RecordSourceLength, "BusinessLinkSatelliteImplementation.RecordSourceLength");
+
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName, "BusinessPointInTimeImplementation.ParentHashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.ParentHashKeyDataTypeId, "BusinessPointInTimeImplementation.ParentHashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.ParentHashKeyLength, "BusinessPointInTimeImplementation.ParentHashKeyLength");
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.SnapshotTimestampColumnName, "BusinessPointInTimeImplementation.SnapshotTimestampColumnName");
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.SnapshotTimestampDataTypeId, "BusinessPointInTimeImplementation.SnapshotTimestampDataTypeId");
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.SnapshotTimestampPrecision, "BusinessPointInTimeImplementation.SnapshotTimestampPrecision");
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.SatelliteReferenceColumnNamePattern, "BusinessPointInTimeImplementation.SatelliteReferenceColumnNamePattern");
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.SatelliteReferenceDataTypeId, "BusinessPointInTimeImplementation.SatelliteReferenceDataTypeId");
+        RequireImplementationValue(implementation.BusinessPointInTimeImplementation.SatelliteReferencePrecision, "BusinessPointInTimeImplementation.SatelliteReferencePrecision");
+
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.RootHashKeyColumnName, "BusinessBridgeImplementation.RootHashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.RootHashKeyDataTypeId, "BusinessBridgeImplementation.RootHashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.RootHashKeyLength, "BusinessBridgeImplementation.RootHashKeyLength");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName, "BusinessBridgeImplementation.RelatedHashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.RelatedHashKeyDataTypeId, "BusinessBridgeImplementation.RelatedHashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.RelatedHashKeyLength, "BusinessBridgeImplementation.RelatedHashKeyLength");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.DepthColumnName, "BusinessBridgeImplementation.DepthColumnName");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.DepthDataTypeId, "BusinessBridgeImplementation.DepthDataTypeId");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.PathColumnName, "BusinessBridgeImplementation.PathColumnName");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.PathDataTypeId, "BusinessBridgeImplementation.PathDataTypeId");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.PathLength, "BusinessBridgeImplementation.PathLength");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.EffectiveFromColumnName, "BusinessBridgeImplementation.EffectiveFromColumnName");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.EffectiveFromDataTypeId, "BusinessBridgeImplementation.EffectiveFromDataTypeId");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.EffectiveFromPrecision, "BusinessBridgeImplementation.EffectiveFromPrecision");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.EffectiveToColumnName, "BusinessBridgeImplementation.EffectiveToColumnName");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.EffectiveToDataTypeId, "BusinessBridgeImplementation.EffectiveToDataTypeId");
+        RequireImplementationValue(implementation.BusinessBridgeImplementation.EffectiveToPrecision, "BusinessBridgeImplementation.EffectiveToPrecision");
+    }
+
+    private static void RequireImplementationValue(string? value, string propertyName)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            throw new InvalidOperationException($"MetaDataVaultImplementation is missing required property '{propertyName}' for current SQL generation.");
+        }
     }
 
     private static string Quote(string identifier) => $"[{identifier}]";

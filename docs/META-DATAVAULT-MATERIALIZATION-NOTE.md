@@ -1,4 +1,4 @@
-﻿# MetaDataVault materialization note
+# MetaDataVault materialization note
 
 ## Current split
 
@@ -140,9 +140,11 @@ Current SQL generator contract:
 
 - `BusinessLink.LinkKind` must currently be `standard`
 - `BusinessLinkEnd.IsDrivingKey` is not yet emitted and therefore fails fast
-- `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`
+- `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
 - `BusinessBridge.BridgeKind` must currently be `standard`
-- bridge SQL generation requires an explicit ordered path from `AnchorHub` through `BusinessBridgeLink` and `BusinessBridgeHub` rows; inconsistent paths fail fast instead of being guessed
+- `BusinessPointInTime` currently supports only `standard` satellite references; point-in-time references to `multi-active` satellites fail fast
+- bridge SQL generation requires an explicit ordered path from `AnchorHub` through `BusinessBridgeLink` and `BusinessBridgeHub` rows; inconsistent paths fail fast
+- `MetaDataVaultImplementation` must provide the required technical column defaults for the currently supported SQL surface; missing required defaults fail fast instead of being silently omitted
 
 ## Why this is still useful
 
