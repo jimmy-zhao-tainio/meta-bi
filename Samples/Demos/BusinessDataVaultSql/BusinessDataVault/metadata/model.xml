@@ -148,7 +148,25 @@
         <Relationship entity="BusinessHub" />
       </RelationshipList>
     </Entity>
-    <Entity name="BusinessPointInTimeHubSatellite">
+    <Entity name="BusinessPointInTimeStamp">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessPointInTime" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessPointInTimeStampDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessPointInTimeStamp" />
+      </RelationshipList>
+    </Entity>    <Entity name="BusinessPointInTimeHubSatellite">
       <PropertyList>
         <Property name="Ordinal" />
       </PropertyList>
@@ -228,3 +246,4 @@
 </Entity>
   </EntityList>
 </Model>
+

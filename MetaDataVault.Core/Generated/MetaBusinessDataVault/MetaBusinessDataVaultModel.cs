@@ -31,7 +31,9 @@ namespace MetaBusinessDataVault
             IReadOnlyList<BusinessLinkSatelliteKeyPartDataTypeDetail> businessLinkSatelliteKeyPartDataTypeDetailList,
             IReadOnlyList<BusinessPointInTime> businessPointInTimeList,
             IReadOnlyList<BusinessPointInTimeHubSatellite> businessPointInTimeHubSatelliteList,
-            IReadOnlyList<BusinessPointInTimeLinkSatellite> businessPointInTimeLinkSatelliteList
+            IReadOnlyList<BusinessPointInTimeLinkSatellite> businessPointInTimeLinkSatelliteList,
+            IReadOnlyList<BusinessPointInTimeStamp> businessPointInTimeStampList,
+            IReadOnlyList<BusinessPointInTimeStampDataTypeDetail> businessPointInTimeStampDataTypeDetailList
         )
         {
             BusinessBridgeList = businessBridgeList;
@@ -58,6 +60,8 @@ namespace MetaBusinessDataVault
             BusinessPointInTimeList = businessPointInTimeList;
             BusinessPointInTimeHubSatelliteList = businessPointInTimeHubSatelliteList;
             BusinessPointInTimeLinkSatelliteList = businessPointInTimeLinkSatelliteList;
+            BusinessPointInTimeStampList = businessPointInTimeStampList;
+            BusinessPointInTimeStampDataTypeDetailList = businessPointInTimeStampDataTypeDetailList;
         }
 
         public IReadOnlyList<BusinessBridge> BusinessBridgeList { get; }
@@ -84,6 +88,8 @@ namespace MetaBusinessDataVault
         public IReadOnlyList<BusinessPointInTime> BusinessPointInTimeList { get; }
         public IReadOnlyList<BusinessPointInTimeHubSatellite> BusinessPointInTimeHubSatelliteList { get; }
         public IReadOnlyList<BusinessPointInTimeLinkSatellite> BusinessPointInTimeLinkSatelliteList { get; }
+        public IReadOnlyList<BusinessPointInTimeStamp> BusinessPointInTimeStampList { get; }
+        public IReadOnlyList<BusinessPointInTimeStampDataTypeDetail> BusinessPointInTimeStampDataTypeDetailList { get; }
     }
 
     internal static class MetaBusinessDataVaultModelFactory
@@ -467,6 +473,37 @@ namespace MetaBusinessDataVault
                 }
             }
 
+            var businessPointInTimeStampList = new List<BusinessPointInTimeStamp>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessPointInTimeStamp", out var businessPointInTimeStampListRecords))
+            {
+                foreach (var record in businessPointInTimeStampListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessPointInTimeStampList.Add(new BusinessPointInTimeStamp
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessPointInTimeId = record.RelationshipIds.TryGetValue("BusinessPointInTimeId", out var businessPointInTimeRelationshipId) ? businessPointInTimeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessPointInTimeStampDataTypeDetailList = new List<BusinessPointInTimeStampDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessPointInTimeStampDataTypeDetail", out var businessPointInTimeStampDataTypeDetailListRecords))
+            {
+                foreach (var record in businessPointInTimeStampDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessPointInTimeStampDataTypeDetailList.Add(new BusinessPointInTimeStampDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessPointInTimeStampId = record.RelationshipIds.TryGetValue("BusinessPointInTimeStampId", out var businessPointInTimeStampRelationshipId) ? businessPointInTimeStampRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
             var businessBridgeListById = new Dictionary<string, BusinessBridge>(global::System.StringComparer.Ordinal);
             foreach (var row in businessBridgeList)
             {
@@ -609,6 +646,18 @@ namespace MetaBusinessDataVault
             foreach (var row in businessPointInTimeLinkSatelliteList)
             {
                 businessPointInTimeLinkSatelliteListById[row.Id] = row;
+            }
+
+            var businessPointInTimeStampListById = new Dictionary<string, BusinessPointInTimeStamp>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessPointInTimeStampList)
+            {
+                businessPointInTimeStampListById[row.Id] = row;
+            }
+
+            var businessPointInTimeStampDataTypeDetailListById = new Dictionary<string, BusinessPointInTimeStampDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessPointInTimeStampDataTypeDetailList)
+            {
+                businessPointInTimeStampDataTypeDetailListById[row.Id] = row;
             }
 
             foreach (var row in businessBridgeList)
@@ -911,6 +960,26 @@ namespace MetaBusinessDataVault
                     "BusinessPointInTimeId");
             }
 
+            foreach (var row in businessPointInTimeStampList)
+            {
+                row.BusinessPointInTime = RequireTarget(
+                    businessPointInTimeListById,
+                    row.BusinessPointInTimeId,
+                    "BusinessPointInTimeStamp",
+                    row.Id,
+                    "BusinessPointInTimeId");
+            }
+
+            foreach (var row in businessPointInTimeStampDataTypeDetailList)
+            {
+                row.BusinessPointInTimeStamp = RequireTarget(
+                    businessPointInTimeStampListById,
+                    row.BusinessPointInTimeStampId,
+                    "BusinessPointInTimeStampDataTypeDetail",
+                    row.Id,
+                    "BusinessPointInTimeStampId");
+            }
+
             return new MetaBusinessDataVaultModel(
                 new ReadOnlyCollection<BusinessBridge>(businessBridgeList),
                 new ReadOnlyCollection<BusinessBridgeHub>(businessBridgeHubList),
@@ -935,7 +1004,9 @@ namespace MetaBusinessDataVault
                 new ReadOnlyCollection<BusinessLinkSatelliteKeyPartDataTypeDetail>(businessLinkSatelliteKeyPartDataTypeDetailList),
                 new ReadOnlyCollection<BusinessPointInTime>(businessPointInTimeList),
                 new ReadOnlyCollection<BusinessPointInTimeHubSatellite>(businessPointInTimeHubSatelliteList),
-                new ReadOnlyCollection<BusinessPointInTimeLinkSatellite>(businessPointInTimeLinkSatelliteList)
+                new ReadOnlyCollection<BusinessPointInTimeLinkSatellite>(businessPointInTimeLinkSatelliteList),
+                new ReadOnlyCollection<BusinessPointInTimeStamp>(businessPointInTimeStampList),
+                new ReadOnlyCollection<BusinessPointInTimeStampDataTypeDetail>(businessPointInTimeStampDataTypeDetailList)
             );
         }
 

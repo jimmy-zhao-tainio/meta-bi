@@ -500,6 +500,16 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
             .OrderBy(row => ParseOrdinal(row.Ordinal))
             .ToList();
+        var stampRows = bdv.BusinessPointInTimeStampList
+            .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
+            .OrderBy(row => ParseOrdinal(row.Ordinal))
+            .ToList();
+
+        if (stampRows.Count > 0)
+        {
+            throw new InvalidOperationException($"SQL generation does not yet support BusinessPointInTimeStamp rows. Point-in-time '{pointInTime.Name}' declares {stampRows.Count} explicit stamp row(s).");
+        }
+
 
         if (hubSatelliteRows.Count == 0 && linkSatelliteRows.Count == 0)
         {
@@ -785,4 +795,5 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     private readonly record struct DetailBag(string? Length, string? Precision, string? Scale);
     private readonly record struct BridgePath(BDV.BusinessHub RelatedHub, IReadOnlyList<string> HubIds, IReadOnlyList<string> LinkIds);
 }
+
 

@@ -106,6 +106,11 @@ Included satellites are represented explicitly through:
 - `BusinessPointInTimeHubSatellite`
 - `BusinessPointInTimeLinkSatellite`
 
+Additional arbitrary PIT date or timestamp contexts can be represented through:
+
+- `BusinessPointInTimeStamp`
+- `BusinessPointInTimeStampDataTypeDetail`
+
 ### BusinessBridge
 
 Represents a bridge helper structure.
@@ -169,5 +174,6 @@ It should not own:
 - downstream dimensional or semantic artifacts
 - measure definitions
 - runtime execution details
+
 
 

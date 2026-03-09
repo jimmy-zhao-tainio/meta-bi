@@ -187,7 +187,7 @@ Current SQL constraints and supported semantics:
 
 - `BusinessLink.LinkKind` must currently be `standard`
 - `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
-- `BusinessPointInTime` currently supports only `standard` satellite references; point-in-time references to `multi-active` satellites fail fast
+- `BusinessPointInTime` currently supports only the baseline snapshot/reference contract; point-in-time references to `multi-active` satellites fail fast and explicit `BusinessPointInTimeStamp` rows are modeled but not yet emitted to SQL
 - `BusinessPointInTime` must reference at least one hub or link satellite, ordinals must be unique across those references, hub satellites must belong to the point-in-time parent hub, and link satellites must connect to that hub
 - bridge SQL generation requires an explicit ordered path from `AnchorHub` through `BusinessBridgeLink` and `BusinessBridgeHub` rows; inconsistent paths fail fast
 - bridge SQL generation also requires explicit projection rows (`BusinessBridgeHubKeyPartProjection`, `BusinessBridgeHubSatelliteAttributeProjection`, `BusinessBridgeLinkSatelliteAttributeProjection`); projected columns are typed from the referenced BDV rows and their local `...DataTypeDetail`
@@ -209,6 +209,7 @@ See also:
 For a checked-in Business Data Vault SQL demo with workspaces, instance data, generated SQL, and plain `cmd` scripts, see:
 
 - `Samples/Demos/BusinessDataVaultSql`
+
 
 
 
