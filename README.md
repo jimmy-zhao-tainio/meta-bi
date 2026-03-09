@@ -1,4 +1,4 @@
-﻿# meta-bi
+# meta-bi
 
 `meta-bi` is the BI stack that sits on top of the generic `meta` foundation.
 
@@ -200,3 +200,10 @@ See also:
 - `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
 - `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
 
+
+
+## SQL Demo
+
+For a checked-in Business Data Vault SQL demo with workspaces, instance data, generated SQL, and plain `cmd` scripts, see:
+
+- `Samples/Demos/BusinessDataVaultSql`

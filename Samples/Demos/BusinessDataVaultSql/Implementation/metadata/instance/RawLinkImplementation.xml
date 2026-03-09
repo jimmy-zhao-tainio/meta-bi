@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <RawLinkImplementationList>
+    <RawLinkImplementation Id="default-raw-link">
+      <TableNamePattern>L_{Name}</TableNamePattern>
+      <HashKeyColumnName>HashKey</HashKeyColumnName>
+      <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
+      <HashKeyLength>16</HashKeyLength>
+      <EndHashKeyColumnPattern>{RoleName}HashKey</EndHashKeyColumnPattern>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
+    </RawLinkImplementation>
+  </RawLinkImplementationList>
+</MetaDataVaultImplementation>

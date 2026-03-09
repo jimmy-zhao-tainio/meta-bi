@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <RawHubSatelliteImplementationList>
+    <RawHubSatelliteImplementation Id="default-raw-hub-satellite">
+      <TableNamePattern>HS_{ParentName}_{Name}</TableNamePattern>
+      <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
+      <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
+      <ParentHashKeyLength>16</ParentHashKeyLength>
+      <HashDiffColumnName>HashDiff</HashDiffColumnName>
+      <HashDiffDataTypeId>sqlserver:type:binary</HashDiffDataTypeId>
+      <HashDiffLength>32</HashDiffLength>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
+    </RawHubSatelliteImplementation>
+  </RawHubSatelliteImplementationList>
+</MetaDataVaultImplementation>
