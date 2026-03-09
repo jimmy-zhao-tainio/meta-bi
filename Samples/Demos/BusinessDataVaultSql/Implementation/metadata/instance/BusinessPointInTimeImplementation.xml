@@ -12,6 +12,8 @@
       <SatelliteReferenceColumnNamePattern>{SatelliteName}LoadTimestamp</SatelliteReferenceColumnNamePattern>
       <SatelliteReferenceDataTypeId>sqlserver:type:datetime2</SatelliteReferenceDataTypeId>
       <SatelliteReferencePrecision>7</SatelliteReferencePrecision>
+      <AuditIdColumnName>AuditId</AuditIdColumnName>
+      <AuditIdDataTypeId>sqlserver:type:int</AuditIdDataTypeId>
     </BusinessPointInTimeImplementation>
   </BusinessPointInTimeImplementationList>
 </MetaDataVaultImplementation>

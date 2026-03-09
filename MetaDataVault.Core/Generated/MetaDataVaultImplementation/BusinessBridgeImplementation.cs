@@ -3,6 +3,8 @@ namespace MetaDataVaultImplementation
     public sealed class BusinessBridgeImplementation
     {
         public string Id { get; internal set; } = string.Empty;
+        public string AuditIdColumnName { get; internal set; } = string.Empty;
+        public string AuditIdDataTypeId { get; internal set; } = string.Empty;
         public string DepthColumnName { get; internal set; } = string.Empty;
         public string DepthDataTypeId { get; internal set; } = string.Empty;
         public string EffectiveFromColumnName { get; internal set; } = string.Empty;

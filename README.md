@@ -186,6 +186,7 @@ Current SQL scope:
 Current SQL constraints and supported semantics:
 
 - Standard links, same-as links, and hierarchical links are modeled as separate sanctioned entities and generate separate SQL structures
+- `AuditId` is part of the sanctioned implementation baseline and is emitted on every generated DV table in the current SQL path
 - `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
 - `BusinessPointInTime` currently supports only the baseline snapshot/reference contract; point-in-time references to `multi-active` satellites fail fast and explicit `BusinessPointInTimeStamp` rows are modeled but not yet emitted to SQL
 - `BusinessPointInTime` must reference at least one hub or link satellite, ordinals must be unique across those references, hub satellites must belong to the point-in-time parent hub, and link satellites must connect to that hub

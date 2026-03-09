@@ -13,6 +13,8 @@
       <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
       <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
       <RecordSourceLength>256</RecordSourceLength>
+      <AuditIdColumnName>AuditId</AuditIdColumnName>
+      <AuditIdDataTypeId>sqlserver:type:int</AuditIdDataTypeId>
     </BusinessLinkImplementation>
   </BusinessLinkImplementationList>
 </MetaDataVaultImplementation>

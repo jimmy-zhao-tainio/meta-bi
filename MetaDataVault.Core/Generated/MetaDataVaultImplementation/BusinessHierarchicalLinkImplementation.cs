@@ -3,6 +3,8 @@ namespace MetaDataVaultImplementation
     public sealed class BusinessHierarchicalLinkImplementation
     {
         public string Id { get; internal set; } = string.Empty;
+        public string AuditIdColumnName { get; internal set; } = string.Empty;
+        public string AuditIdDataTypeId { get; internal set; } = string.Empty;
         public string ChildHashKeyColumnName { get; internal set; } = string.Empty;
         public string HashKeyColumnName { get; internal set; } = string.Empty;
         public string HashKeyDataTypeId { get; internal set; } = string.Empty;

@@ -13,6 +13,8 @@
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="RawLinkImplementation">
@@ -28,6 +30,8 @@
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="RawHubSatelliteImplementation">
@@ -45,6 +49,8 @@
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="RawLinkSatelliteImplementation">
@@ -62,6 +68,8 @@
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHubImplementation">
@@ -76,6 +84,8 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessLinkImplementation">
@@ -91,6 +101,8 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessSameAsLinkImplementation">
@@ -107,6 +119,8 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHierarchicalLinkImplementation">
@@ -123,6 +137,8 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHubSatelliteImplementation">
@@ -140,6 +156,8 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessLinkSatelliteImplementation">
@@ -157,6 +175,8 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessSameAsLinkSatelliteImplementation">
@@ -174,6 +194,8 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessHierarchicalLinkSatelliteImplementation">
@@ -191,6 +213,8 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessPointInTimeImplementation">
@@ -205,6 +229,8 @@
         <Property name="SatelliteReferenceColumnNamePattern" />
         <Property name="SatelliteReferenceDataTypeId" />
         <Property name="SatelliteReferencePrecision" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
     <Entity name="BusinessBridgeImplementation">
@@ -227,6 +253,8 @@
         <Property name="EffectiveToColumnName" isRequired="false" />
         <Property name="EffectiveToDataTypeId" isRequired="false" />
         <Property name="EffectiveToPrecision" isRequired="false" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
       </PropertyList>
     </Entity>
   </EntityList>

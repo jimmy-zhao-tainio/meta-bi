@@ -73,6 +73,8 @@ namespace MetaDataVaultImplementation
                     businessBridgeImplementationList.Add(new BusinessBridgeImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         DepthColumnName = record.Values.TryGetValue("DepthColumnName", out var depthColumnNameValue) ? depthColumnNameValue ?? string.Empty : string.Empty,
                         DepthDataTypeId = record.Values.TryGetValue("DepthDataTypeId", out var depthDataTypeIdValue) ? depthDataTypeIdValue ?? string.Empty : string.Empty,
                         EffectiveFromColumnName = record.Values.TryGetValue("EffectiveFromColumnName", out var effectiveFromColumnNameValue) ? effectiveFromColumnNameValue ?? string.Empty : string.Empty,
@@ -103,6 +105,8 @@ namespace MetaDataVaultImplementation
                     businessHierarchicalLinkImplementationList.Add(new BusinessHierarchicalLinkImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         ChildHashKeyColumnName = record.Values.TryGetValue("ChildHashKeyColumnName", out var childHashKeyColumnNameValue) ? childHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
@@ -127,6 +131,8 @@ namespace MetaDataVaultImplementation
                     businessHierarchicalLinkSatelliteImplementationList.Add(new BusinessHierarchicalLinkSatelliteImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffColumnName = record.Values.TryGetValue("HashDiffColumnName", out var hashDiffColumnNameValue) ? hashDiffColumnNameValue ?? string.Empty : string.Empty,
                         HashDiffDataTypeId = record.Values.TryGetValue("HashDiffDataTypeId", out var hashDiffDataTypeIdValue) ? hashDiffDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffLength = record.Values.TryGetValue("HashDiffLength", out var hashDiffLengthValue) ? hashDiffLengthValue ?? string.Empty : string.Empty,
@@ -152,6 +158,8 @@ namespace MetaDataVaultImplementation
                     businessHubImplementationList.Add(new BusinessHubImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         HashKeyLength = record.Values.TryGetValue("HashKeyLength", out var hashKeyLengthValue) ? hashKeyLengthValue ?? string.Empty : string.Empty,
@@ -174,6 +182,8 @@ namespace MetaDataVaultImplementation
                     businessHubSatelliteImplementationList.Add(new BusinessHubSatelliteImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffColumnName = record.Values.TryGetValue("HashDiffColumnName", out var hashDiffColumnNameValue) ? hashDiffColumnNameValue ?? string.Empty : string.Empty,
                         HashDiffDataTypeId = record.Values.TryGetValue("HashDiffDataTypeId", out var hashDiffDataTypeIdValue) ? hashDiffDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffLength = record.Values.TryGetValue("HashDiffLength", out var hashDiffLengthValue) ? hashDiffLengthValue ?? string.Empty : string.Empty,
@@ -199,6 +209,8 @@ namespace MetaDataVaultImplementation
                     businessLinkImplementationList.Add(new BusinessLinkImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         EndHashKeyColumnPattern = record.Values.TryGetValue("EndHashKeyColumnPattern", out var endHashKeyColumnPatternValue) ? endHashKeyColumnPatternValue ?? string.Empty : string.Empty,
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
@@ -222,6 +234,8 @@ namespace MetaDataVaultImplementation
                     businessLinkSatelliteImplementationList.Add(new BusinessLinkSatelliteImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffColumnName = record.Values.TryGetValue("HashDiffColumnName", out var hashDiffColumnNameValue) ? hashDiffColumnNameValue ?? string.Empty : string.Empty,
                         HashDiffDataTypeId = record.Values.TryGetValue("HashDiffDataTypeId", out var hashDiffDataTypeIdValue) ? hashDiffDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffLength = record.Values.TryGetValue("HashDiffLength", out var hashDiffLengthValue) ? hashDiffLengthValue ?? string.Empty : string.Empty,
@@ -247,6 +261,8 @@ namespace MetaDataVaultImplementation
                     businessPointInTimeImplementationList.Add(new BusinessPointInTimeImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
@@ -269,6 +285,8 @@ namespace MetaDataVaultImplementation
                     businessSameAsLinkImplementationList.Add(new BusinessSameAsLinkImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         EquivalentHashKeyColumnName = record.Values.TryGetValue("EquivalentHashKeyColumnName", out var equivalentHashKeyColumnNameValue) ? equivalentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
@@ -293,6 +311,8 @@ namespace MetaDataVaultImplementation
                     businessSameAsLinkSatelliteImplementationList.Add(new BusinessSameAsLinkSatelliteImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffColumnName = record.Values.TryGetValue("HashDiffColumnName", out var hashDiffColumnNameValue) ? hashDiffColumnNameValue ?? string.Empty : string.Empty,
                         HashDiffDataTypeId = record.Values.TryGetValue("HashDiffDataTypeId", out var hashDiffDataTypeIdValue) ? hashDiffDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffLength = record.Values.TryGetValue("HashDiffLength", out var hashDiffLengthValue) ? hashDiffLengthValue ?? string.Empty : string.Empty,
@@ -318,6 +338,8 @@ namespace MetaDataVaultImplementation
                     rawHubImplementationList.Add(new RawHubImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         HashKeyLength = record.Values.TryGetValue("HashKeyLength", out var hashKeyLengthValue) ? hashKeyLengthValue ?? string.Empty : string.Empty,
@@ -340,6 +362,8 @@ namespace MetaDataVaultImplementation
                     rawHubSatelliteImplementationList.Add(new RawHubSatelliteImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffColumnName = record.Values.TryGetValue("HashDiffColumnName", out var hashDiffColumnNameValue) ? hashDiffColumnNameValue ?? string.Empty : string.Empty,
                         HashDiffDataTypeId = record.Values.TryGetValue("HashDiffDataTypeId", out var hashDiffDataTypeIdValue) ? hashDiffDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffLength = record.Values.TryGetValue("HashDiffLength", out var hashDiffLengthValue) ? hashDiffLengthValue ?? string.Empty : string.Empty,
@@ -365,6 +389,8 @@ namespace MetaDataVaultImplementation
                     rawLinkImplementationList.Add(new RawLinkImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         EndHashKeyColumnPattern = record.Values.TryGetValue("EndHashKeyColumnPattern", out var endHashKeyColumnPatternValue) ? endHashKeyColumnPatternValue ?? string.Empty : string.Empty,
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
@@ -388,6 +414,8 @@ namespace MetaDataVaultImplementation
                     rawLinkSatelliteImplementationList.Add(new RawLinkSatelliteImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
+                        AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffColumnName = record.Values.TryGetValue("HashDiffColumnName", out var hashDiffColumnNameValue) ? hashDiffColumnNameValue ?? string.Empty : string.Empty,
                         HashDiffDataTypeId = record.Values.TryGetValue("HashDiffDataTypeId", out var hashDiffDataTypeIdValue) ? hashDiffDataTypeIdValue ?? string.Empty : string.Empty,
                         HashDiffLength = record.Values.TryGetValue("HashDiffLength", out var hashDiffLengthValue) ? hashDiffLengthValue ?? string.Empty : string.Empty,

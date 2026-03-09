@@ -20,6 +20,8 @@
       <EffectiveToColumnName>EffectiveTo</EffectiveToColumnName>
       <EffectiveToDataTypeId>sqlserver:type:datetime2</EffectiveToDataTypeId>
       <EffectiveToPrecision>7</EffectiveToPrecision>
+      <AuditIdColumnName>AuditId</AuditIdColumnName>
+      <AuditIdDataTypeId>sqlserver:type:int</AuditIdDataTypeId>
     </BusinessBridgeImplementation>
   </BusinessBridgeImplementationList>
 </MetaDataVaultImplementation>

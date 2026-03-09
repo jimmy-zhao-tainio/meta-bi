@@ -3,6 +3,8 @@ namespace MetaDataVaultImplementation
     public sealed class RawLinkSatelliteImplementation
     {
         public string Id { get; internal set; } = string.Empty;
+        public string AuditIdColumnName { get; internal set; } = string.Empty;
+        public string AuditIdDataTypeId { get; internal set; } = string.Empty;
         public string HashDiffColumnName { get; internal set; } = string.Empty;
         public string HashDiffDataTypeId { get; internal set; } = string.Empty;
         public string HashDiffLength { get; internal set; } = string.Empty;
