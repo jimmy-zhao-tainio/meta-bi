@@ -556,10 +556,6 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static void EnsureSupportedBusinessBridge(BDV.BusinessBridge bridge, BDV.MetaBusinessDataVaultModel bdv)
     {
-        if (!string.Equals(bridge.BridgeKind, "standard", StringComparison.Ordinal))
-        {
-            throw new InvalidOperationException($"SQL generation currently supports only BusinessBridge.BridgeKind='standard'. Bridge '{bridge.Name}' uses '{bridge.BridgeKind}'.");
-        }
 
         var hubKeyPartProjections = bdv.BusinessBridgeHubKeyPartProjectionList
             .Where(row => row.BusinessBridgeId == bridge.Id)
@@ -789,3 +785,4 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     private readonly record struct DetailBag(string? Length, string? Precision, string? Scale);
     private readonly record struct BridgePath(BDV.BusinessHub RelatedHub, IReadOnlyList<string> HubIds, IReadOnlyList<string> LinkIds);
 }
+

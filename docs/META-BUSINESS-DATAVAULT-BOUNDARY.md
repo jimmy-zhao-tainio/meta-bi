@@ -113,13 +113,18 @@ Represents a bridge helper structure.
 The sanctioned model carries:
 
 - `Name`
-- `BridgeKind`
 - required `AnchorHub`
 
 Participating hubs and links are represented explicitly through:
 
 - `BusinessBridgeHub`
 - `BusinessBridgeLink`
+
+Bridge output columns are represented explicitly through:
+
+- `BusinessBridgeHubKeyPartProjection`
+- `BusinessBridgeHubSatelliteAttributeProjection`
+- `BusinessBridgeLinkSatelliteAttributeProjection`
 
 ## Variant handling
 
@@ -128,7 +133,7 @@ The sanctioned model keeps explicit kind properties where the structure family i
 - `BusinessLink.LinkKind`
 - `BusinessHubSatellite.SatelliteKind`
 - `BusinessLinkSatellite.SatelliteKind`
-- `BusinessBridge.BridgeKind`
+- bridge semantics
 
 ## Relationship to other sanctioned models
 
@@ -164,3 +169,5 @@ It should not own:
 - downstream dimensional or semantic artifacts
 - measure definitions
 - runtime execution details
+
+

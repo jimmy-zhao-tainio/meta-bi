@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaBusinessDataVault">
   <EntityList>
     <Entity name="BusinessHub">
@@ -169,7 +169,6 @@
     <Entity name="BusinessBridge">
       <PropertyList>
         <Property name="Name" />
-        <Property name="BridgeKind" />
         <Property name="Description" isRequired="false" />
       </PropertyList>
       <RelationshipList>

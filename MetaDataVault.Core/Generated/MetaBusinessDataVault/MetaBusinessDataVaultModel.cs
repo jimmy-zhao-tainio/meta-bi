@@ -103,7 +103,6 @@ namespace MetaBusinessDataVault
                     businessBridgeList.Add(new BusinessBridge
                     {
                         Id = record.Id ?? string.Empty,
-                        BridgeKind = record.Values.TryGetValue("BridgeKind", out var bridgeKindValue) ? bridgeKindValue ?? string.Empty : string.Empty,
                         Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
                         Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
                         AnchorHubId = record.RelationshipIds.TryGetValue("AnchorHubId", out var anchorHubRelationshipId) ? anchorHubRelationshipId ?? string.Empty : string.Empty,

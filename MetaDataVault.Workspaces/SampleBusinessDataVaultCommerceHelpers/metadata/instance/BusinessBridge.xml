@@ -3,7 +3,8 @@
   <BusinessBridgeList>
     <BusinessBridge Id="CustomerOrderTraversal" AnchorHubId="Customer">
       <Name>BR_CustomerOrderTraversal</Name>
-      <BridgeKind>standard</BridgeKind>
+
     </BusinessBridge>
   </BusinessBridgeList>
 </MetaBusinessDataVault>
+
