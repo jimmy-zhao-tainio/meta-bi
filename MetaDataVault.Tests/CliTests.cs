@@ -458,6 +458,46 @@ public sealed class CliTests
     }
 
     [Fact]
+    public async Task GenerateSql_FailsWhenPointInTimeDeclaresExplicitStampRows()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "Workspace");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers"), workspacePath);
+            await File.WriteAllTextAsync(
+                Path.Combine(workspacePath, "metadata", "instance", "BusinessPointInTimeStamp.xml"),
+                """
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessPointInTimeStampList>
+    <BusinessPointInTimeStamp Id="CustomerSnapshot-BusinessDate" BusinessPointInTimeId="CustomerSnapshot">
+      <Name>BusinessDate</Name>
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Ordinal>10</Ordinal>
+    </BusinessPointInTimeStamp>
+  </BusinessPointInTimeStampList>
+</MetaBusinessDataVault>
+""");
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("BusinessPointInTimeStamp", result.Output, StringComparison.Ordinal);
+            Assert.Contains("does not yet support", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+    [Fact]
     public async Task GenerateSql_FailsWhenPointInTimeReferencesHubSatelliteOutsideParentHub()
     {
         var repoRoot = FindRepositoryRoot();
@@ -848,6 +888,7 @@ public sealed class CliTests
         }
     }
 }
+
 
 
 
