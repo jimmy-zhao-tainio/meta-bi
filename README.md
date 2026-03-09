@@ -28,16 +28,16 @@ Additional foundation packages available from the same internal feed when BI pro
 Before restore/build, add a package source that points at the packed output from `meta`:
 
 ```cmd
-dotnet nuget add source C:\path\to\meta\.nupkg --name meta-foundation-internal
+dotnet nuget add source C:pathtometa.nupkg --name meta-foundation-internal
 ```
 
 Then pack the foundation repo and build this repo:
 
 ```cmd
-cd C:\path\to\meta
+cd C:pathtometa
 pack-internal.cmd
 
-cd C:\path\to\meta-bi
+cd C:pathtometa-bi
 dotnet build MetaSchema.sln
 dotnet build MetaDataType.sln
 dotnet build MetaDataTypeConversion.sln
@@ -49,13 +49,13 @@ This keeps BI work from silently editing foundation code and makes the boundary 
 Build the installer:
 
 ```cmd
-dotnet build MetaBi.Installer\MetaBi.Installer.csproj
+dotnet build MetaBi.InstallerMetaBi.Installer.csproj
 ```
 
-Then install the BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-datavault`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
+Then install the BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-datavault`) into `%LOCALAPPDATA%metabin` and add that directory to your user `PATH`:
 
 ```cmd
-MetaBi.Installer\bin\publish\win-x64\install-meta-bi.exe
+MetaBi.Installerbinpublishwin-x64install-meta-bi.exe
 ```
 
 ## Intent
@@ -75,14 +75,14 @@ The long-term repo boundary is:
 ## Current BI Weave and Fabric Example
 
 Flat anchors:
-- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault`
-- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce`
-- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
+- `WeavesWeave-MetaBusiness-MetaBusinessDataVault`
+- `WeavesWeave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce`
+- `WeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
 
 Scoped seam:
-- `Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
-- `Fabrics\Fabric-Suggest-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
-- `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
+- `WeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
+- `FabricsFabric-Suggest-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
+- `FabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
 
 The current proved path is:
 
@@ -94,9 +94,9 @@ The current proved path is:
 Current BI fabric samples therefore prove both:
 
 - shared-parent scope:
-  - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
+  - `FabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
 - multi-hop path scope:
-  - `Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
+  - `FabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
 ## Current Business Data Vault Materialization
 
 `meta-datavault` now has both:
@@ -107,14 +107,14 @@ Current BI fabric samples therefore prove both:
 Preflight:
 
 ```cmd
-meta-datavault check-business-materialization --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart
+meta-datavault check-business-materialization --business-workspace C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart
 ```
 
 ```text
 OK: business datavault materialization contract
-Business Workspace: C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart
-BusinessDataVault Workspace: C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart
-Implementation Workspace: C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation
+Business Workspace: C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart
+BusinessDataVault Workspace: C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart
+Implementation Workspace: C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation
 Weaves: 4
 Fabrics: 2
 FlatAnchors: 2/2
@@ -124,15 +124,15 @@ ScopedAnchors: 2/2
 First-step materialization:
 
 ```cmd
-meta-datavault materialize-business --business-workspace C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:\path\to\Weaves\Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:\path\to\Fabrics\Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --new-workspace C:\path\to\Output\MaterializedBusinessDataVault
+meta-datavault materialize-business --business-workspace C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --new-workspace C:pathtoOutputMaterializedBusinessDataVault
 ```
 
 ```text
 OK: business datavault materialized
-Business Workspace: C:\path\to\MetaBusiness.Workspaces\SampleBusinessCommerceRepeatedKeyPart
-BusinessDataVault Workspace: C:\path\to\MetaDataVault.Workspaces\SampleBusinessDataVaultCommerceRepeatedKeyPart
-Implementation Workspace: C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation
-Path: C:\path\to\Output\MaterializedBusinessDataVault
+Business Workspace: C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart
+BusinessDataVault Workspace: C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart
+Implementation Workspace: C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation
+Path: C:pathtoOutputMaterializedBusinessDataVault
 Model: MetaBusinessDataVault
 MaterializedTables: 5
 BusinessHubs: 3
@@ -164,12 +164,14 @@ Workspace: C:\path\to\Output\MaterializedBusinessDataVault
 Implementation Workspace: C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation
 DataTypeConversion Workspace: C:\path\to\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion
 Path: C:\path\to\Output\Sql
-Files: 9
-Tables: 9
+Files: 11
+Tables: 11
 BusinessHubs: 3
 BusinessLinks: 2
 BusinessHubSatellites: 1
 BusinessLinkSatellites: 1
+BusinessReferences: 1
+BusinessReferenceSatellites: 1
 BusinessPointInTimes: 1
 BusinessBridges: 1
 ```
@@ -178,8 +180,14 @@ Current SQL scope:
 
 - `BusinessHub`
 - `BusinessLink`
+- `BusinessSameAsLink`
+- `BusinessHierarchicalLink`
+- `BusinessReference`
 - `BusinessHubSatellite`
 - `BusinessLinkSatellite`
+- `BusinessSameAsLinkSatellite`
+- `BusinessHierarchicalLinkSatellite`
+- `BusinessReferenceSatellite`
 - `BusinessPointInTime`
 - `BusinessBridge`
 
@@ -202,8 +210,6 @@ See also:
 
 - `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
 - `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
-
-
 
 ## SQL Demo
 

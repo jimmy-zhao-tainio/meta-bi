@@ -72,7 +72,7 @@ public sealed class CliTests
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--data-type-conversion-workspace <path>", result.Output);
         Assert.Contains("--out <path>", result.Output);
-        Assert.Contains("hubs, links, satellites, point-in-time tables, and bridges", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("hubs, links, same-as links, hierarchical links, references, satellites, point-in-time tables, and bridges", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -275,7 +275,9 @@ public sealed class CliTests
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: business datavault sql generated", result.Output, StringComparison.OrdinalIgnoreCase);
-            Assert.Contains("Files: 9", result.Output);
+            Assert.Contains("Files: 11", result.Output);
+            Assert.Contains("BusinessReferences: 1", result.Output);
+            Assert.Contains("BusinessReferenceSatellites: 1", result.Output);
             Assert.Contains("BusinessPointInTimes: 1", result.Output);
             Assert.Contains("BusinessBridges: 1", result.Output);
 
@@ -938,6 +940,8 @@ public sealed class CliTests
         }
     }
 }
+
+
 
 
 

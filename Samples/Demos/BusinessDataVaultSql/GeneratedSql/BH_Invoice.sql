@@ -3,6 +3,7 @@ CREATE TABLE [BH_Invoice] (
     [Identifier] nvarchar(50) NOT NULL,
     [LoadTimestamp] datetime2(7) NOT NULL,
     [RecordSource] nvarchar(256) NOT NULL,
+    [AuditId] int NOT NULL,
     CONSTRAINT [PK_BH_Invoice] PRIMARY KEY ([HashKey]),
     CONSTRAINT [UQ_BH_Invoice] UNIQUE ([Identifier])
 );

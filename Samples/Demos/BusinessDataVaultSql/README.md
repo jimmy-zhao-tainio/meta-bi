@@ -36,12 +36,14 @@ Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\BusinessDataVaultSql\Bus
 Implementation Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\BusinessDataVaultSql\Implementation
 DataTypeConversion Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\BusinessDataVaultSql\DataTypeConversion
 Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\BusinessDataVaultSql\GeneratedSql
-Files: 9
-Tables: 9
+Files: 11
+Tables: 11
 BusinessHubs: 3
 BusinessLinks: 2
 BusinessHubSatellites: 1
 BusinessLinkSatellites: 1
+BusinessReferences: 1
+BusinessReferenceSatellites: 1
 BusinessPointInTimes: 1
 BusinessBridges: 1
 ```
@@ -58,6 +60,8 @@ BL_CustomerOrder.sql
 BLS_CustomerOrder_Status.sql
 BR_CustomerOrderTraversal.sql
 PIT_CustomerSnapshot.sql
+REF_Status.sql
+RSAT_Status_Current.sql
 ```
 
 ## Example SQL
@@ -70,6 +74,7 @@ CREATE TABLE [BH_Customer] (
     [Identifier] nvarchar(50) NOT NULL,
     [LoadTimestamp] datetime2(7) NOT NULL,
     [RecordSource] nvarchar(256) NOT NULL,
+    [AuditId] int NOT NULL,
     CONSTRAINT [PK_BH_Customer] PRIMARY KEY ([HashKey]),
     CONSTRAINT [UQ_BH_Customer] UNIQUE ([Identifier])
 );

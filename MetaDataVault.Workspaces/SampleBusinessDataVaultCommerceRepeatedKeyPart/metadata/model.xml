@@ -62,7 +62,31 @@
         <Relationship entity="BusinessHub" role="ChildHub" />
       </RelationshipList>
     </Entity>
-    <Entity name="BusinessHubSatellite">
+    <Entity name="BusinessReference">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessReferenceKeyPart">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessReference" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessReferenceKeyPartDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessReferenceKeyPart" />
+      </RelationshipList>
+    </Entity>    <Entity name="BusinessHubSatellite">
       <PropertyList>
         <Property name="Name" />
         <Property name="SatelliteKind" />
@@ -254,7 +278,54 @@
         <Relationship entity="BusinessHierarchicalLinkSatelliteAttribute" />
       </RelationshipList>
     </Entity>
-    <Entity name="BusinessPointInTime">
+    <Entity name="BusinessReferenceSatellite">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="SatelliteKind" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessReference" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessReferenceSatelliteKeyPart">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessReferenceSatellite" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessReferenceSatelliteKeyPartDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessReferenceSatelliteKeyPart" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessReferenceSatelliteAttribute">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessReferenceSatellite" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BusinessReferenceSatelliteAttributeDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BusinessReferenceSatelliteAttribute" />
+      </RelationshipList>
+    </Entity>    <Entity name="BusinessPointInTime">
       <PropertyList>
         <Property name="Name" />
         <Property name="Description" isRequired="false" />
@@ -361,3 +432,4 @@
     </Entity>
   </EntityList>
 </Model>
+

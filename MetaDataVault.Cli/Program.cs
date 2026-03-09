@@ -435,6 +435,8 @@ internal static class Program
             ("BusinessLinkSatellites", result.BusinessLinkSatelliteCount.ToString()),
             ("BusinessSameAsLinkSatellites", result.BusinessSameAsLinkSatelliteCount.ToString()),
             ("BusinessHierarchicalLinkSatellites", result.BusinessHierarchicalLinkSatelliteCount.ToString()),
+            ("BusinessReferences", result.BusinessReferenceCount.ToString()),
+            ("BusinessReferenceSatellites", result.BusinessReferenceSatelliteCount.ToString()),
             ("BusinessPointInTimes", result.BusinessPointInTimeCount.ToString()),
             ("BusinessBridges", result.BusinessBridgeCount.ToString()));
         return 0;
@@ -984,7 +986,7 @@ internal static class Program
         Presenter.WriteInfo("Command: generate-sql");
         Presenter.WriteUsage("meta-datavault generate-sql --workspace <path> --implementation-workspace <path> --data-type-conversion-workspace <path> --out <path>");
         Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Loads a materialized MetaBusinessDataVault workspace and emits SQL scripts for hubs, links, satellites, point-in-time tables, and bridges.");
+        Presenter.WriteInfo("  Loads a materialized MetaBusinessDataVault workspace and emits SQL scripts for hubs, links, same-as links, hierarchical links, references, satellites, point-in-time tables, and bridges.");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
@@ -1000,6 +1002,7 @@ internal static class Program
         return exitCode;
     }
 }
+
 
 
 

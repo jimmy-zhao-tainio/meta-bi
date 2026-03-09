@@ -17,6 +17,8 @@ public sealed record BusinessDataVaultSqlGenerationResult(
     int BusinessLinkSatelliteCount,
     int BusinessSameAsLinkSatelliteCount,
     int BusinessHierarchicalLinkSatelliteCount,
+    int BusinessReferenceCount,
+    int BusinessReferenceSatelliteCount,
     int BusinessPointInTimeCount,
     int BusinessBridgeCount);
 
@@ -97,6 +99,16 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             scripts.Add(($"{satellite.Name}.sql", RenderBusinessHierarchicalLinkSatelliteSql(satellite, bdv, implementation, conversions)));
         }
 
+        foreach (var reference in bdv.BusinessReferenceList.OrderBy(row => row.Name, StringComparer.Ordinal))
+        {
+            scripts.Add(($"{reference.Name}.sql", RenderBusinessReferenceSql(reference, bdv, implementation, conversions)));
+        }
+
+        foreach (var satellite in bdv.BusinessReferenceSatelliteList.OrderBy(row => row.Name, StringComparer.Ordinal))
+        {
+            scripts.Add(($"{satellite.Name}.sql", RenderBusinessReferenceSatelliteSql(satellite, bdv, implementation, conversions)));
+        }
+
         foreach (var pointInTime in bdv.BusinessPointInTimeList.OrderBy(row => row.Name, StringComparer.Ordinal))
         {
             scripts.Add(($"{pointInTime.Name}.sql", RenderBusinessPointInTimeSql(pointInTime, bdv, implementation, conversions)));
@@ -125,6 +137,8 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             bdv.BusinessLinkSatelliteList.Count,
             bdv.BusinessSameAsLinkSatelliteList.Count,
             bdv.BusinessHierarchicalLinkSatelliteList.Count,
+            bdv.BusinessReferenceList.Count,
+            bdv.BusinessReferenceSatelliteList.Count,
             bdv.BusinessPointInTimeList.Count,
             bdv.BusinessBridgeList.Count);
     }
@@ -240,6 +254,28 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             foreignKeys);
     }
 
+
+    private static string RenderBusinessReferenceSql(BDV.BusinessReference reference, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
+    {
+        var columns = new List<string>
+        {
+            RenderColumn(implementation.BusinessReferenceImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessReferenceImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessReferenceImplementation.HashKeyLength, null, null), conversions), false)
+        };
+
+        foreach (var keyPart in bdv.BusinessReferenceKeyPartList.Where(row => row.BusinessReferenceId == reference.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal))
+        {
+            columns.Add(RenderColumn(keyPart.Name, RenderSqlType(keyPart.DataTypeId, BuildDetailBag(bdv.BusinessReferenceKeyPartDataTypeDetailList.Where(detail => detail.BusinessReferenceKeyPartId == keyPart.Id).Select(detail => (detail.Name, detail.Value))), conversions), false));
+        }
+
+        AppendOptionalColumn(columns, implementation.BusinessReferenceImplementation.LoadTimestampColumnName, implementation.BusinessReferenceImplementation.LoadTimestampDataTypeId, new DetailBag(null, implementation.BusinessReferenceImplementation.LoadTimestampPrecision, null), conversions);
+        AppendOptionalColumn(columns, implementation.BusinessReferenceImplementation.RecordSourceColumnName, implementation.BusinessReferenceImplementation.RecordSourceDataTypeId, new DetailBag(implementation.BusinessReferenceImplementation.RecordSourceLength, null, null), conversions);
+        AppendRequiredColumn(columns, implementation.BusinessReferenceImplementation.AuditIdColumnName, implementation.BusinessReferenceImplementation.AuditIdDataTypeId, new DetailBag(null, null, null), conversions);
+
+        var primaryKeyColumns = new[] { implementation.BusinessReferenceImplementation.HashKeyColumnName };
+        var uniqueColumns = bdv.BusinessReferenceKeyPartList.Where(row => row.BusinessReferenceId == reference.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).Select(row => row.Name).ToList();
+
+        return RenderCreateTableSql(reference.Name, columns, primaryKeyColumns, uniqueColumns.Count == 0 ? null : uniqueColumns, Array.Empty<string>());
+    }
     private static string RenderBusinessHubSatelliteSql(BDV.BusinessHubSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
         EnsureSupportedBusinessHubSatellite(satellite, bdv);
@@ -360,6 +396,32 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             conversions);
     }
 
+
+    private static string RenderBusinessReferenceSatelliteSql(BDV.BusinessReferenceSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
+    {
+        EnsureSupportedBusinessReferenceSatellite(satellite, bdv);
+        return RenderLinkSatelliteSql(
+            satellite.Name,
+            satellite.BusinessReference.Name,
+            implementation.BusinessReferenceSatelliteImplementation.ParentHashKeyColumnName,
+            implementation.BusinessReferenceSatelliteImplementation.ParentHashKeyDataTypeId,
+            implementation.BusinessReferenceSatelliteImplementation.ParentHashKeyLength,
+            implementation.BusinessReferenceSatelliteImplementation.HashDiffColumnName,
+            implementation.BusinessReferenceSatelliteImplementation.HashDiffDataTypeId,
+            implementation.BusinessReferenceSatelliteImplementation.HashDiffLength,
+            implementation.BusinessReferenceSatelliteImplementation.LoadTimestampColumnName,
+            implementation.BusinessReferenceSatelliteImplementation.LoadTimestampDataTypeId,
+            implementation.BusinessReferenceSatelliteImplementation.LoadTimestampPrecision,
+            implementation.BusinessReferenceSatelliteImplementation.RecordSourceColumnName,
+            implementation.BusinessReferenceSatelliteImplementation.RecordSourceDataTypeId,
+            implementation.BusinessReferenceSatelliteImplementation.RecordSourceLength,
+            implementation.BusinessReferenceSatelliteImplementation.AuditIdColumnName,
+            implementation.BusinessReferenceSatelliteImplementation.AuditIdDataTypeId,
+            implementation.BusinessReferenceImplementation.HashKeyColumnName,
+            bdv.BusinessReferenceSatelliteKeyPartList.Where(row => row.BusinessReferenceSatelliteId == satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal).Select(row => (row.Name, row.DataTypeId, BuildDetailBag(bdv.BusinessReferenceSatelliteKeyPartDataTypeDetailList.Where(detail => detail.BusinessReferenceSatelliteKeyPartId == row.Id).Select(detail => (detail.Name, detail.Value))))),
+            bdv.BusinessReferenceSatelliteAttributeList.Where(row => row.BusinessReferenceSatelliteId == satellite.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal).Select(row => (row.Name, row.DataTypeId, BuildDetailBag(bdv.BusinessReferenceSatelliteAttributeDataTypeDetailList.Where(detail => detail.BusinessReferenceSatelliteAttributeId == row.Id).Select(detail => (detail.Name, detail.Value))))),
+            conversions);
+    }
     private static string RenderLinkSatelliteSql(
         string satelliteName,
         string parentName,
@@ -729,6 +791,20 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             "BusinessHierarchicalLinkSatelliteKeyPart");
     }
 
+    private static void EnsureSupportedBusinessReferenceSatellite(BDV.BusinessReferenceSatellite satellite, BDV.MetaBusinessDataVaultModel bdv)
+    {
+        var satelliteKeyParts = bdv.BusinessReferenceSatelliteKeyPartList
+            .Where(row => row.BusinessReferenceSatelliteId == satellite.Id)
+            .ToList();
+
+        EnsureSupportedSatelliteKind(
+            satellite.Name,
+            satellite.SatelliteKind,
+            satelliteKeyParts.Count,
+            "BusinessReferenceSatellite",
+            "BusinessReferenceSatelliteKeyPart");
+    }
+
     private static void EnsureSupportedSatelliteKind(string satelliteName, string satelliteKind, int keyPartCount, string entityName, string keyPartEntityName)
     {
         if (!string.Equals(satelliteKind, "standard", StringComparison.Ordinal) &&
@@ -1067,6 +1143,33 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         RequireImplementationValue(implementation.BusinessHierarchicalLinkSatelliteImplementation.AuditIdColumnName, "BusinessHierarchicalLinkSatelliteImplementation.AuditIdColumnName");
         RequireImplementationValue(implementation.BusinessHierarchicalLinkSatelliteImplementation.AuditIdDataTypeId, "BusinessHierarchicalLinkSatelliteImplementation.AuditIdDataTypeId");
 
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.HashKeyColumnName, "BusinessReferenceImplementation.HashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.HashKeyDataTypeId, "BusinessReferenceImplementation.HashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.HashKeyLength, "BusinessReferenceImplementation.HashKeyLength");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.LoadTimestampColumnName, "BusinessReferenceImplementation.LoadTimestampColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.LoadTimestampDataTypeId, "BusinessReferenceImplementation.LoadTimestampDataTypeId");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.LoadTimestampPrecision, "BusinessReferenceImplementation.LoadTimestampPrecision");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.RecordSourceColumnName, "BusinessReferenceImplementation.RecordSourceColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.RecordSourceDataTypeId, "BusinessReferenceImplementation.RecordSourceDataTypeId");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.RecordSourceLength, "BusinessReferenceImplementation.RecordSourceLength");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.AuditIdColumnName, "BusinessReferenceImplementation.AuditIdColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceImplementation.AuditIdDataTypeId, "BusinessReferenceImplementation.AuditIdDataTypeId");
+
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.ParentHashKeyColumnName, "BusinessReferenceSatelliteImplementation.ParentHashKeyColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.ParentHashKeyDataTypeId, "BusinessReferenceSatelliteImplementation.ParentHashKeyDataTypeId");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.ParentHashKeyLength, "BusinessReferenceSatelliteImplementation.ParentHashKeyLength");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.HashDiffColumnName, "BusinessReferenceSatelliteImplementation.HashDiffColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.HashDiffDataTypeId, "BusinessReferenceSatelliteImplementation.HashDiffDataTypeId");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.HashDiffLength, "BusinessReferenceSatelliteImplementation.HashDiffLength");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.LoadTimestampColumnName, "BusinessReferenceSatelliteImplementation.LoadTimestampColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.LoadTimestampDataTypeId, "BusinessReferenceSatelliteImplementation.LoadTimestampDataTypeId");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.LoadTimestampPrecision, "BusinessReferenceSatelliteImplementation.LoadTimestampPrecision");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.RecordSourceColumnName, "BusinessReferenceSatelliteImplementation.RecordSourceColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.RecordSourceDataTypeId, "BusinessReferenceSatelliteImplementation.RecordSourceDataTypeId");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.RecordSourceLength, "BusinessReferenceSatelliteImplementation.RecordSourceLength");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.AuditIdColumnName, "BusinessReferenceSatelliteImplementation.AuditIdColumnName");
+        RequireImplementationValue(implementation.BusinessReferenceSatelliteImplementation.AuditIdDataTypeId, "BusinessReferenceSatelliteImplementation.AuditIdDataTypeId");
+
         RequireImplementationValue(implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName, "BusinessPointInTimeImplementation.ParentHashKeyColumnName");
         RequireImplementationValue(implementation.BusinessPointInTimeImplementation.ParentHashKeyDataTypeId, "BusinessPointInTimeImplementation.ParentHashKeyDataTypeId");
         RequireImplementationValue(implementation.BusinessPointInTimeImplementation.ParentHashKeyLength, "BusinessPointInTimeImplementation.ParentHashKeyLength");
@@ -1123,6 +1226,10 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     private readonly record struct DetailBag(string? Length, string? Precision, string? Scale);
     private readonly record struct BridgePath(BDV.BusinessHub RelatedHub, IReadOnlyList<string> HubIds, IReadOnlyList<string> LinkIds);
 }
+
+
+
+
 
 
 

@@ -125,10 +125,10 @@ Aligned:
 - `BusinessHierarchicalLink` as explicit HAL
 - separate SQL handling for standard/SAL/HAL link families
 - relationship attributes in satellite families, not core link rows
+- `BusinessReference` and `BusinessReferenceSatellite` as explicit baseline Data Vault families
 
 Needs future review:
 - `Unit of Work`
-- `Reference` / `Reference Satellite`
 - `Driving Key` and effectivity semantics
 - best-practice sections around hashing and integration keys
 - exact BDV workflow guidance from `Business Data Vault` and `Dimensional Model Delivery`
@@ -202,3 +202,122 @@ Still weak / needs review:
 1. Review the Varigence `Driving Keys in Data Vault` page specifically through the lens of link satellites and effectivity.
 2. Review whether our `multi-active` baseline needs an explicit row-order / set-order concept.
 3. Review whether `AuditId` should remain universal across all DV table families.
+
+
+## Focus review: Integration Keys
+
+Primary source:
+- https://docs.varigence.com/bimlflex/concepts/integration-keys
+
+### What Varigence states
+
+1. Integration Keys are the source-side concept used to define business entity identity for Data Vault acceleration.
+2. BimlFlex uses Integration Keys to derive Hubs, Links, and Satellites from source metadata and relationships.
+3. An Integration Key is modeled as an additional Column in the source object.
+4. An Integration Key can be composite, but BimlFlex normalizes it into a single string representation.
+5. Integration Key definition can include Record Source to avoid cross-system key collisions.
+6. Relationship acceleration in Data Vault is based on references between Integration Keys.
+7. By default, the Integration Key is hashed into the surrogate key used in Hubs, and participates in Link and Satellite keys.
+8. Varigence is explicit that defining correct Integration Keys requires business analysis, source-system knowledge, and profiling.
+
+### Implications for `meta-bi`
+
+1. The unresolved source-side identity problem in our stack is real.
+2. `MetaSchema` on its own is not enough to derive a serious RDV/BDV, because it does not currently model source-side business identity in a Varigence-style way.
+3. The current idea of hanging business identity off `MetaBusiness` is valid, but if we want a source-to-DV acceleration story comparable to Varigence we still need an explicit source-side identity/binding concept.
+4. This strengthens the earlier conclusion that source derivation and explicit DV modeling are separate fronts.
+5. It also suggests that `Unit of Work` and Integration Key semantics may eventually belong in the source/business seam, not inside the DV model itself.
+
+### Current alignment
+
+Aligned:
+- we do not pretend `MetaSchema` alone is sufficient for business identity derivation
+- we already separate explicit BDV modeling from upstream derivation/materialization
+
+Not aligned yet:
+- there is no sanctioned source-side identity construct equivalent in role to Integration Key
+- there is no explicit source/business identity binding model yet
+
+## Focus review: Driving Keys in Data Vault
+
+Primary source:
+- https://docs.varigence.com/bimlflex/delivering-solutions/delivering-data-vault/driving-keys-in-data-vault
+
+### What Varigence states
+
+1. Driving Key is about enforcing relationship behavior when a Link represents a many-to-one source relationship.
+2. The driving key is the consistent part of the relationship key.
+3. The actual enforcement happens in the corresponding Link Satellite, not in the core Link table.
+4. End-dating/effectivity behavior is part of the mechanism.
+5. BimlFlex can infer driving-key scenarios automatically for Links derived out of a Hub / source FK pattern.
+
+### Implications for `meta-bi`
+
+1. Removing `IsDrivingKey` from the baseline was the correct move.
+2. If we ever reintroduce driving-key behavior, it should come back together with:
+   - link-satellite effectivity semantics
+   - end-dating semantics
+   - explicit loading behavior
+3. Driving Key is not a simple boolean on the link row.
+4. It is currently out of scope for the broad baseline, and that is fine.
+
+### Current alignment
+
+Aligned:
+- `IsDrivingKey` is gone from the baseline
+- we are not pretending to support effectivity/driving-key SQL semantics yet
+
+## Focus review: Business Data Vault
+
+Primary sources used:
+- https://docs.varigence.com/bimlflex/technologies/technology-ssis/ssis-on-prem-sql-server/
+- https://docs.varigence.com/bimlflex/getting-started/first-project-walkthrough/
+- https://docs.varigence.com/bimlflex/delivering-solutions/delivering-data-vault/data-vault-dimensional-model
+
+### What Varigence states
+
+1. BDV is a set of materialized constructs focused on performance improvement and easier querying.
+2. In BimlFlex, the two central BDV artifacts emphasized are PIT and Bridge.
+3. PIT is used to simplify timeline-sensitive querying and equi-joins across surrounding satellites.
+4. Bridge is used to flatten related business entities and reduce join complexity.
+5. For bridge usage, BimlFlex starts from a single business concept / central hub and expects an N-1 or many-to-one flow from that central business concept.
+6. Dimensional delivery is defined on top of the combined Raw + Business DV model, often through proxy/source objects.
+
+### Implications for `meta-bi`
+
+1. Our current `MetaBusinessDataVault` focus on PIT and Bridge is directionally right.
+2. Our explicit `AnchorHub` on `BusinessBridge` aligns with the idea of a central business concept.
+3. Our bridge model still needs to be reviewed against the N-1 / many-to-one expectation more explicitly.
+4. The fact that BDV is described as materialized helper constructs supports keeping `meta-datavault` responsible for both:
+   - native DV workspace management
+   - BDV materialization from sanctioned inputs
+5. It also supports the earlier choice not to jump straight into product artifact generators as if that were the same concern as BDV semantics.
+
+### Current alignment
+
+Aligned:
+- PIT and Bridge are explicit first-class BDV constructs in the sanctioned model
+- bridge has explicit `AnchorHub`
+- SQL generation for PIT/Bridge exists
+
+Needs more review:
+- whether our bridge path semantics fully reflect the N-1 / many-to-one discipline
+- whether PIT should eventually expose richer timeline semantics in SQL, not only in metadata
+
+## Suggested next review order after this
+
+1. `Reference Data`
+2. `Hashing`
+3. `Data Vault Best Practices`
+
+Reason:
+- `Reference Data` may expose another under-modeled sanctioned area
+- `Hashing` will affect the SQL-generation contract directly
+- `Best Practices` will likely expose any remaining baseline gaps in naming, loading, or helper structure behavior
+
+
+## Current decision
+
+- `Integration Key` is treated as a Varigence/BimlFlex-specific pragmatic feature, not a standard term to copy into `meta-bi`.
+- `Driving Key` is deferred until effectivity/end-dating semantics are modeled explicitly.
+- `Reference` and `Reference Satellite` are a standard Data Vault area and are now implemented in the explicit `MetaBusinessDataVault` baseline.

@@ -60,6 +60,18 @@ The sanctioned model carries:
 - `Ordinal`
 - `RoleName`
 
+### BusinessSameAsLink
+
+Represents a same-as link (SAL) with explicit PrimaryHub and EquivalentHub roles.
+
+### BusinessHierarchicalLink
+
+Represents a hierarchy link (HAL) with explicit ParentHub and ChildHub roles.
+
+### BusinessReference
+
+Represents a reference structure with explicit business key parts.
+
 ### BusinessHubSatellite
 
 Represents a business-vault hub satellite.
@@ -95,6 +107,18 @@ Payload structure is represented through:
 Those child rows own their own `DataTypeId` values, with optional local detail rows for variable physical declarations.
 
 The additional key-part rows matter for multi-active or similarly qualified satellite structures where payload rows are not uniquely identified by parent key alone.
+
+### BusinessSameAsLinkSatellite
+
+Represents a same-as link satellite.
+
+### BusinessHierarchicalLinkSatellite
+
+Represents a hierarchy link satellite.
+
+### BusinessReferenceSatellite
+
+Represents a reference satellite attached to a business reference.
 
 ### BusinessPointInTime
 
