@@ -477,8 +477,34 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static void EnsureSupportedBusinessPointInTime(BDV.BusinessPointInTime pointInTime, BDV.MetaBusinessDataVaultModel bdv)
     {
-        var multiActiveHubSatellite = bdv.BusinessPointInTimeHubSatelliteList
+        var hubSatelliteRows = bdv.BusinessPointInTimeHubSatelliteList
             .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
+            .OrderBy(row => ParseOrdinal(row.Ordinal))
+            .ToList();
+        var linkSatelliteRows = bdv.BusinessPointInTimeLinkSatelliteList
+            .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
+            .OrderBy(row => ParseOrdinal(row.Ordinal))
+            .ToList();
+
+        if (hubSatelliteRows.Count == 0 && linkSatelliteRows.Count == 0)
+        {
+            throw new InvalidOperationException($"BusinessPointInTime '{pointInTime.Name}' must reference at least one hub or link satellite.");
+        }
+
+        var duplicateOrdinals = hubSatelliteRows.Select(row => row.Ordinal)
+            .Concat(linkSatelliteRows.Select(row => row.Ordinal))
+            .Where(value => !string.IsNullOrWhiteSpace(value))
+            .GroupBy(value => value, StringComparer.Ordinal)
+            .Where(group => group.Count() > 1)
+            .Select(group => group.Key)
+            .OrderBy(value => value, StringComparer.Ordinal)
+            .ToArray();
+        if (duplicateOrdinals.Length > 0)
+        {
+            throw new InvalidOperationException($"BusinessPointInTime '{pointInTime.Name}' declares duplicate Ordinal values: {string.Join(", ", duplicateOrdinals)}.");
+        }
+
+        var multiActiveHubSatellite = hubSatelliteRows
             .Select(row => row.BusinessHubSatellite)
             .FirstOrDefault(row => string.Equals(row.SatelliteKind, "multi-active", StringComparison.Ordinal));
         if (multiActiveHubSatellite is not null)
@@ -486,13 +512,30 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             throw new InvalidOperationException($"SQL generation does not yet support BusinessPointInTime references to multi-active hub satellites. Point-in-time '{pointInTime.Name}' references '{multiActiveHubSatellite.Name}'.");
         }
 
-        var multiActiveLinkSatellite = bdv.BusinessPointInTimeLinkSatelliteList
-            .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
+        var multiActiveLinkSatellite = linkSatelliteRows
             .Select(row => row.BusinessLinkSatellite)
             .FirstOrDefault(row => string.Equals(row.SatelliteKind, "multi-active", StringComparison.Ordinal));
         if (multiActiveLinkSatellite is not null)
         {
             throw new InvalidOperationException($"SQL generation does not yet support BusinessPointInTime references to multi-active link satellites. Point-in-time '{pointInTime.Name}' references '{multiActiveLinkSatellite.Name}'.");
+        }
+
+        var wrongHubSatellite = hubSatelliteRows
+            .Select(row => row.BusinessHubSatellite)
+            .FirstOrDefault(row => !string.Equals(row.BusinessHubId, pointInTime.BusinessHubId, StringComparison.Ordinal));
+        if (wrongHubSatellite is not null)
+        {
+            throw new InvalidOperationException($"BusinessPointInTime '{pointInTime.Name}' can only reference BusinessHubSatellite rows belonging to hub '{pointInTime.BusinessHub.Name}'. Satellite '{wrongHubSatellite.Name}' belongs to '{wrongHubSatellite.BusinessHub.Name}'.");
+        }
+
+        var wrongLinkSatellite = linkSatelliteRows
+            .Select(row => row.BusinessLinkSatellite)
+            .FirstOrDefault(row => !bdv.BusinessLinkEndList
+                .Where(end => end.BusinessLinkId == row.BusinessLinkId)
+                .Any(end => string.Equals(end.BusinessHubId, pointInTime.BusinessHubId, StringComparison.Ordinal)));
+        if (wrongLinkSatellite is not null)
+        {
+            throw new InvalidOperationException($"BusinessPointInTime '{pointInTime.Name}' can only reference BusinessLinkSatellite rows whose link connects to hub '{pointInTime.BusinessHub.Name}'. Satellite '{wrongLinkSatellite.Name}' belongs to link '{wrongLinkSatellite.BusinessLink.Name}', which does not connect to that hub.");
         }
     }
 

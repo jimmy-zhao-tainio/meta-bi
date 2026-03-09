@@ -423,6 +423,68 @@ public sealed class CliTests
     }
 
     [Fact]
+    public async Task GenerateSql_FailsWhenPointInTimeReferencesHubSatelliteOutsideParentHub()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "Workspace");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers"), workspacePath);
+            var pitPath = Path.Combine(workspacePath, "metadata", "instance", "BusinessPointInTime.xml");
+            var pitXml = await File.ReadAllTextAsync(pitPath);
+            pitXml = pitXml.Replace("BusinessHubId=\"Customer\"", "BusinessHubId=\"Order\"", StringComparison.Ordinal);
+            await File.WriteAllTextAsync(pitPath, pitXml);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("BusinessPointInTime", result.Output, StringComparison.Ordinal);
+            Assert.Contains("BusinessHubSatellite", result.Output, StringComparison.Ordinal);
+            Assert.Contains("belonging to hub", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task GenerateSql_FailsWhenPointInTimeOrdinalsAreDuplicated()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "Workspace");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers"), workspacePath);
+            var pitLinkPath = Path.Combine(workspacePath, "metadata", "instance", "BusinessPointInTimeLinkSatellite.xml");
+            var pitLinkXml = await File.ReadAllTextAsync(pitLinkPath);
+            pitLinkXml = pitLinkXml.Replace("<Ordinal>2</Ordinal>", "<Ordinal>1</Ordinal>", StringComparison.Ordinal);
+            await File.WriteAllTextAsync(pitLinkPath, pitLinkXml);
+
+            var result = RunCli(
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("duplicate Ordinal", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
     public async Task GenerateSql_FailsWhenRequiredImplementationPropertyIsMissing()
     {
         var repoRoot = FindRepositoryRoot();
