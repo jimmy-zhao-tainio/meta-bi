@@ -972,3 +972,4 @@ public sealed class CliTests
         }
     }
 }
+

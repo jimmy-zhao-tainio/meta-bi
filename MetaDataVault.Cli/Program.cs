@@ -448,13 +448,18 @@ internal static class Program
 
     private static (bool Ok, string WorkspaceKind, string NewWorkspacePath, string ErrorMessage) ParseInitArgs(string[] args, int startIndex)
     {
-        var workspaceKind = "raw";
+        var workspaceKind = string.Empty;
         var newWorkspacePath = string.Empty;
 
         if (startIndex < args.Length && !args[startIndex].StartsWith("--", StringComparison.Ordinal))
         {
             workspaceKind = args[startIndex];
             startIndex++;
+        }
+
+        if (string.IsNullOrWhiteSpace(workspaceKind))
+        {
+            return (false, workspaceKind, newWorkspacePath, "missing required init kind <raw|business>.");
         }
 
         if (!string.Equals(workspaceKind, "raw", StringComparison.OrdinalIgnoreCase) && !string.Equals(workspaceKind, "business", StringComparison.OrdinalIgnoreCase))
@@ -1020,3 +1025,4 @@ internal static class Program
         return exitCode;
     }
 }
+
