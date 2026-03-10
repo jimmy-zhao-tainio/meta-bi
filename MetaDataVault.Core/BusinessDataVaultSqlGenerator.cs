@@ -501,6 +501,17 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             }), RenderSqlType(implementation.BusinessPointInTimeImplementation.SatelliteReferenceDataTypeId, new DetailBag(null, implementation.BusinessPointInTimeImplementation.SatelliteReferencePrecision, null), conversions), false));
         }
 
+        foreach (var stamp in bdv.BusinessPointInTimeStampList.Where(row => row.BusinessPointInTimeId == pointInTime.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Name, StringComparer.Ordinal))
+        {
+            columns.Add(RenderColumn(
+                stamp.Name,
+                RenderSqlType(
+                    stamp.DataTypeId,
+                    BuildDetailBag(bdv.BusinessPointInTimeStampDataTypeDetailList.Where(detail => detail.BusinessPointInTimeStampId == stamp.Id).Select(detail => (detail.Name, detail.Value))),
+                    conversions),
+                false));
+        }
+
         AppendRequiredColumn(columns, implementation.BusinessPointInTimeImplementation.AuditIdColumnName, implementation.BusinessPointInTimeImplementation.AuditIdDataTypeId, new DetailBag(null, null, null), conversions);
 
         var foreignKeys = new DdlForeignKeyConstraint[]
@@ -866,17 +877,6 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
             .OrderBy(row => ParseOrdinal(row.Ordinal))
             .ToList();
-        var stampRows = bdv.BusinessPointInTimeStampList
-            .Where(row => row.BusinessPointInTimeId == pointInTime.Id)
-            .OrderBy(row => ParseOrdinal(row.Ordinal))
-            .ToList();
-
-        if (stampRows.Count > 0)
-        {
-            throw new InvalidOperationException($"SQL generation does not yet support BusinessPointInTimeStamp rows. Point-in-time '{pointInTime.Name}' declares {stampRows.Count} explicit stamp row(s).");
-        }
-
-
         if (hubSatelliteRows.Count == 0 && linkSatelliteRows.Count == 0)
         {
             throw new InvalidOperationException($"BusinessPointInTime '{pointInTime.Name}' must reference at least one hub or link satellite.");

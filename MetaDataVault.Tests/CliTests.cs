@@ -510,7 +510,7 @@ public sealed class CliTests
     }
 
     [Fact]
-    public async Task GenerateSql_FailsWhenPointInTimeDeclaresExplicitStampRows()
+    public async Task GenerateSql_EmitsPointInTimeExplicitStampColumns()
     {
         var repoRoot = FindRepositoryRoot();
         var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
@@ -540,9 +540,9 @@ public sealed class CliTests
             var result = RunCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
-            Assert.Equal(4, result.ExitCode);
-            Assert.Contains("BusinessPointInTimeStamp", result.Output, StringComparison.Ordinal);
-            Assert.Contains("does not yet support", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Equal(0, result.ExitCode);
+            var pitSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "PIT_CustomerSnapshot.sql"));
+            Assert.Contains("[BusinessDate] datetime NOT NULL", pitSql);
         }
         finally
         {
@@ -940,6 +940,8 @@ public sealed class CliTests
         }
     }
 }
+
+
 
 
 
