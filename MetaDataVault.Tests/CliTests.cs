@@ -9,24 +9,23 @@ public sealed class CliTests
     [Fact]
     public void Help_ShowsFromMetaSchemaCommand()
     {
-        var result = RunCli("help");
+        var result = RunRawCli("help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("meta-datavault", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("meta-datavault-raw", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("from-metaschema", result.Output);
-        Assert.Contains("check-business-materialization", result.Output);
-        Assert.Contains("generate-sql", result.Output);
+        Assert.DoesNotContain("check-business-materialization", result.Output);
+        Assert.DoesNotContain("generate-sql", result.Output);
     }
 
     [Fact]
-    public void Init_Help_ShowsRawAndBusinessKinds()
+    public void Init_Help_ShowsBusinessUsage()
     {
-        var result = RunCli("init --help");
+        var result = RunBusinessCli("init --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("meta-datavault init [raw|business] --new-workspace <path>", result.Output);
-        Assert.Contains("defaults to raw", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("MetaBusinessDataVault", result.Output);
+        Assert.Contains("meta-datavault-business init --new-workspace <path>", result.Output);
+                Assert.Contains("MetaBusinessDataVault", result.Output);
     }
 
     [Fact]
@@ -37,7 +36,7 @@ public sealed class CliTests
 
         try
         {
-            var result = RunCli($"init business --new-workspace \"{workspacePath}\"");
+            var result = RunBusinessCli($"init --new-workspace \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: metabusinessdatavault workspace created", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -53,7 +52,7 @@ public sealed class CliTests
     [Fact]
     public void FromMetaSchema_Help_ShowsRequiredOptions()
     {
-        var result = RunCli("from-metaschema --help");
+        var result = RunRawCli("from-metaschema --help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--source-workspace <path>", result.Output);
@@ -67,11 +66,11 @@ public sealed class CliTests
     [Fact]
     public void CheckBusinessMaterialization_Help_ShowsRequiredOptions()
     {
-        var result = RunCli("check-business-materialization --help");
+        var result = RunBusinessCli("check-business-materialization --help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--business-workspace <path>", result.Output);
-        Assert.Contains("--bdv-workspace <path>", result.Output);
+        Assert.Contains("--bdv-workspace", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--weave-workspace <path>", result.Output);
         Assert.Contains("--fabric-workspace <path>", result.Output);
@@ -82,11 +81,11 @@ public sealed class CliTests
     [Fact]
     public void MaterializeBusiness_Help_ShowsRequiredOptions()
     {
-        var result = RunCli("materialize-business --help");
+        var result = RunBusinessCli("materialize-business --help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--business-workspace <path>", result.Output);
-        Assert.Contains("--bdv-workspace <path>", result.Output);
+        Assert.Contains("--bdv-workspace", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--weave-workspace <path>", result.Output);
         Assert.Contains("--fabric-workspace <path>", result.Output);
@@ -97,7 +96,7 @@ public sealed class CliTests
     [Fact]
     public void GenerateSql_Help_ShowsRequiredOptions()
     {
-        var result = RunCli("generate-sql --help");
+        var result = RunBusinessCli("generate-sql --help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--workspace <path>", result.Output);
@@ -121,7 +120,7 @@ public sealed class CliTests
             SeedMetaSchema(source);
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(1, result.ExitCode);
             Assert.Contains("missing required option --business-workspace <path>", result.Output);
             Assert.False(File.Exists(Path.Combine(targetPath, "workspace.xml")));
@@ -152,7 +151,7 @@ public sealed class CliTests
             CopyDirectory(Path.Combine(repoRoot, "MetaBusiness.Workspaces", "MetaBusiness"), businessPath);
             CopyDirectory(Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation"), implementationPath);
 
-            var result = RunCli(
+            var result = RunRawCli(
                 $"from-metaschema --source-workspace \"{sourcePath}\" --business-workspace \"{businessPath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(4, result.ExitCode);
@@ -183,7 +182,7 @@ public sealed class CliTests
         var hubKeyPartFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
         var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
 
-        var result = RunCli(
+        var result = RunBusinessCli(
             $"check-business-materialization --business-workspace \"{businessPath}\" --bdv-workspace \"{bdvPath}\" --implementation-workspace \"{implementationPath}\" --weave-workspace \"{hubObjectWeavePath}\" --weave-workspace \"{hubKeyPartWeavePath}\" --weave-workspace \"{linkRelationshipWeavePath}\" --weave-workspace \"{linkEndWeavePath}\" --fabric-workspace \"{hubKeyPartFabricPath}\" --fabric-workspace \"{linkEndFabricPath}\"");
 
         Assert.Equal(0, result.ExitCode);
@@ -209,7 +208,7 @@ public sealed class CliTests
 
         try
         {
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"materialize-business --business-workspace \"{businessPath}\" --bdv-workspace \"{bdvPath}\" --implementation-workspace \"{implementationPath}\" --weave-workspace \"{hubObjectWeavePath}\" --weave-workspace \"{hubKeyPartWeavePath}\" --weave-workspace \"{linkRelationshipWeavePath}\" --weave-workspace \"{linkEndWeavePath}\" --fabric-workspace \"{hubKeyPartFabricPath}\" --fabric-workspace \"{linkEndFabricPath}\" --new-workspace \"{outputPath}\"");
 
             Assert.Equal(0, result.ExitCode);
@@ -257,12 +256,12 @@ public sealed class CliTests
 
         try
         {
-            var materializeResult = RunCli(
+            var materializeResult = RunBusinessCli(
                 $"materialize-business --business-workspace \"{businessPath}\" --bdv-workspace \"{bdvPath}\" --implementation-workspace \"{implementationPath}\" --weave-workspace \"{hubObjectWeavePath}\" --weave-workspace \"{hubKeyPartWeavePath}\" --weave-workspace \"{linkRelationshipWeavePath}\" --weave-workspace \"{linkEndWeavePath}\" --fabric-workspace \"{hubKeyPartFabricPath}\" --fabric-workspace \"{linkEndFabricPath}\" --new-workspace \"{materializedPath}\"");
 
             Assert.Equal(0, materializeResult.ExitCode);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{materializedPath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(0, result.ExitCode);
@@ -302,7 +301,7 @@ public sealed class CliTests
 
         try
         {
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(0, result.ExitCode);
@@ -353,7 +352,7 @@ public sealed class CliTests
 
         try
         {
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(0, result.ExitCode);
@@ -405,7 +404,7 @@ public sealed class CliTests
             bridgeHubXml = bridgeHubXml.Replace("BusinessHubId=\"Order\"", "BusinessHubId=\"Invoice\"", StringComparison.Ordinal);
             await File.WriteAllTextAsync(bridgeHubPath, bridgeHubXml);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(4, result.ExitCode);
@@ -437,7 +436,7 @@ public sealed class CliTests
             projectionXml = projectionXml.Replace("BusinessHubKeyPartId=\"OrderIdentifier\"", "BusinessHubKeyPartId=\"InvoiceIdentifier\"", StringComparison.Ordinal);
             await File.WriteAllTextAsync(projectionPath, projectionXml);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(4, result.ExitCode);
@@ -468,7 +467,7 @@ public sealed class CliTests
             satelliteXml = satelliteXml.Replace("<SatelliteKind>standard</SatelliteKind>", "<SatelliteKind>multi-active</SatelliteKind>", StringComparison.Ordinal);
             await File.WriteAllTextAsync(satellitePath, satelliteXml);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(4, result.ExitCode);
@@ -528,7 +527,7 @@ public sealed class CliTests
                 </MetaBusinessDataVault>
                 """);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(4, result.ExitCode);
@@ -569,7 +568,7 @@ public sealed class CliTests
 </MetaBusinessDataVault>
 """);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(0, result.ExitCode);
@@ -599,7 +598,7 @@ public sealed class CliTests
             pitXml = pitXml.Replace("BusinessHubId=\"Customer\"", "BusinessHubId=\"Order\"", StringComparison.Ordinal);
             await File.WriteAllTextAsync(pitPath, pitXml);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(4, result.ExitCode);
@@ -631,7 +630,7 @@ public sealed class CliTests
             pitLinkXml = pitLinkXml.Replace("<Ordinal>2</Ordinal>", "<Ordinal>1</Ordinal>", StringComparison.Ordinal);
             await File.WriteAllTextAsync(pitLinkPath, pitLinkXml);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(4, result.ExitCode);
@@ -661,7 +660,7 @@ public sealed class CliTests
             implementationXml = implementationXml.Replace("<RecordSourceColumnName>RecordSource</RecordSourceColumnName>", string.Empty, StringComparison.Ordinal);
             await File.WriteAllTextAsync(implementationFile, implementationXml);
 
-            var result = RunCli(
+            var result = RunBusinessCli(
                 $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(4, result.ExitCode);
@@ -843,10 +842,10 @@ public sealed class CliTests
         });
     }
 
-    private static (int ExitCode, string Output) RunCli(string arguments)
+    private static (int ExitCode, string Output) RunRawCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
-        var cliPath = ResolveCliPath(repoRoot);
+        var cliPath = ResolveCliPath(repoRoot, "MetaDataVault.Raw.Cli", "meta-datavault-raw.exe");
         var startInfo = new ProcessStartInfo
         {
             FileName = cliPath,
@@ -858,7 +857,7 @@ public sealed class CliTests
             CreateNoWindow = true,
         };
 
-        return RunProcess(startInfo, "Could not start meta-datavault CLI process.");
+        return RunProcess(startInfo, "Could not start DataVault CLI process.");
     }
 
     private static (int ExitCode, string Output) RunProcess(ProcessStartInfo startInfo, string errorMessage)
@@ -896,12 +895,29 @@ public sealed class CliTests
         }
     }
 
-    private static string ResolveCliPath(string repoRoot)
+    private static (int ExitCode, string Output) RunBusinessCli(string arguments)
     {
-        var cliPath = Path.Combine(repoRoot, "MetaDataVault.Cli", "bin", "Debug", "net8.0", "meta-datavault.exe");
+        var repoRoot = FindRepositoryRoot();
+        var cliPath = ResolveCliPath(repoRoot, "MetaDataVault.Business.Cli", "meta-datavault-business.exe");
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = cliPath,
+            Arguments = arguments,
+            WorkingDirectory = repoRoot,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+        };
+        return RunProcess(startInfo, "Could not start DataVault CLI process.");
+    }
+
+    private static string ResolveCliPath(string repoRoot, string projectDirectory, string executableName)
+    {
+        var cliPath = Path.Combine(repoRoot, projectDirectory, "bin", "Debug", "net8.0", executableName);
         if (!File.Exists(cliPath))
         {
-            throw new FileNotFoundException($"Could not find compiled MetaDataVault CLI at '{cliPath}'. Build MetaDataVault.Cli before running tests.");
+            throw new FileNotFoundException($"Could not find compiled DataVault CLI at '{cliPath}'. Build the requested DataVault CLI before running tests.");
         }
 
         return cliPath;
@@ -929,7 +945,7 @@ public sealed class CliTests
         var directory = AppContext.BaseDirectory;
         while (!string.IsNullOrWhiteSpace(directory))
         {
-            if (File.Exists(Path.Combine(directory, "README.md")) && Directory.Exists(Path.Combine(directory, "MetaDataVault.Cli")))
+            if (File.Exists(Path.Combine(directory, "README.md")) && (Directory.Exists(Path.Combine(directory, "MetaDataVault.Raw.Cli")) || Directory.Exists(Path.Combine(directory, "MetaDataVault.Business.Cli"))))
             {
                 return directory;
             }
@@ -972,4 +988,8 @@ public sealed class CliTests
         }
     }
 }
+
+
+
+
 

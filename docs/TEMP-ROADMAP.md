@@ -77,16 +77,16 @@ Decision options:
 1. extend `MetaWeave`
    - add scoped/grouped binding semantics
 2. keep `MetaWeave` flat
-   - let `meta-datavault` own deeper business/BDV consistency checks
+   - let the Data Vault CLIs own deeper business/BDV consistency checks
 
 Exit criteria:
 - one path is chosen explicitly
 - we stop pretending the current flat weave is enough if it is not
 
-## Stage 5. Make meta-datavault materialization real
+## Stage 5. Make business Data Vault materialization real
 
 Goal:
-- make `meta-datavault` materially useful beyond empty workspaces and placeholder validation
+- make the Data Vault CLIs materially useful beyond empty workspaces and placeholder validation
 
 Minimum useful target:
 - materialize `MetaRawDataVault` from sanctioned inputs without heuristics
@@ -105,11 +105,11 @@ Exit criteria:
 Only after stages 1-5.
 
 Question:
-- does `meta-datavault` stop at sanctioned workspaces?
+- does the Data Vault CLIs stop at sanctioned workspaces?
 - or should it also participate in artifact generation?
 
 Current recommended stance:
-- `meta-datavault` owns DV semantics and materialization
+- the Data Vault CLIs owns DV semantics and materialization
 - generic `meta` owns generic representation emission
 - future `MetaSSDT` owns SQL Server product artifact specifics
 

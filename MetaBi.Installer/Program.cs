@@ -22,7 +22,8 @@ var tools = new[]
     new ToolSpec("meta-schema.exe", ResolveBuiltToolPath(repoRoot, "MetaSchema.Cli", "meta-schema.exe")),
     new ToolSpec("meta-data-type.exe", ResolveBuiltToolPath(repoRoot, "MetaDataType.Cli", "meta-data-type.exe")),
     new ToolSpec("meta-data-type-conversion.exe", ResolveBuiltToolPath(repoRoot, "MetaDataTypeConversion.Cli", "meta-data-type-conversion.exe")),
-    new ToolSpec("meta-datavault.exe", ResolveBuiltToolPath(repoRoot, "MetaDataVault.Cli", "meta-datavault.exe")),
+    new ToolSpec("meta-datavault-raw.exe", ResolveBuiltToolPath(repoRoot, "MetaDataVault.Raw.Cli", "meta-datavault-raw.exe")),
+    new ToolSpec("meta-datavault-business.exe", ResolveBuiltToolPath(repoRoot, "MetaDataVault.Business.Cli", "meta-datavault-business.exe")),
 };
 
 var missing = tools.Where(tool => tool.SourcePath is null).ToArray();
@@ -36,7 +37,8 @@ if (missing.Length > 0)
                 "Next: dotnet publish MetaSchema.Cli\\MetaSchema.Cli.csproj -c Debug -r win-x64",
                 "Next: dotnet publish MetaDataType.Cli\\MetaDataType.Cli.csproj -c Debug -r win-x64",
                 "Next: dotnet publish MetaDataTypeConversion.Cli\\MetaDataTypeConversion.Cli.csproj -c Debug -r win-x64",
-                "Next: dotnet publish MetaDataVault.Cli\\MetaDataVault.Cli.csproj -c Debug -r win-x64"
+                "Next: dotnet publish MetaDataVault.Raw.Cli\\MetaDataVault.Raw.Cli.csproj -c Debug -r win-x64",
+                "Next: dotnet publish MetaDataVault.Business.Cli\\MetaDataVault.Business.Cli.csproj -c Debug -r win-x64"
             }));
     return 1;
 }
@@ -152,3 +154,4 @@ internal static class NativeMethods
         uint uTimeout,
         out IntPtr lpdwResult);
 }
+

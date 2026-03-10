@@ -1,6 +1,6 @@
 # Business Data Vault SQL Demo
 
-This demo shows a materialized `MetaBusinessDataVault` workspace with instance data, a sanctioned `MetaDataVaultImplementation` workspace, a sanctioned `MetaDataTypeConversion` workspace, and the generated SQL scripts emitted by `meta-datavault generate-sql`.
+This demo shows a materialized `MetaBusinessDataVault` workspace with instance data, a sanctioned `MetaDataVaultImplementation` workspace, a sanctioned `MetaDataTypeConversion` workspace, and the generated SQL scripts emitted by `meta-datavault-business generate-sql`.
 
 ## Contents
 
@@ -25,7 +25,7 @@ run.cmd
 ## Command
 
 ```cmd
-meta-datavault generate-sql --workspace BusinessDataVault --implementation-workspace Implementation --data-type-conversion-workspace DataTypeConversion --out GeneratedSql
+meta-datavault-business generate-sql --workspace BusinessDataVault --implementation-workspace Implementation --data-type-conversion-workspace DataTypeConversion --out GeneratedSql
 ```
 
 ## Expected output
@@ -95,4 +95,5 @@ CREATE TABLE [dbo].[BR_CustomerOrderTraversal] (
     CONSTRAINT [FK_BR_CustomerOrderTraversal_BH_Order_RelatedHashKey] FOREIGN KEY ([RelatedHashKey]) REFERENCES [BH_Order] ([HashKey])
 );
 ```
+
 

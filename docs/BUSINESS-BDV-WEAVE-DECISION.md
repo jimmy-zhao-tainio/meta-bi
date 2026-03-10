@@ -66,7 +66,7 @@ With fabric, the child binding becomes deterministic by scoping it under:
 
 ## Practical implication
 
-The project no longer needs to hide scoped Business/BDV consistency inside `meta-datavault` for either:
+The project no longer needs to hide scoped Business/BDV consistency inside the Data Vault CLIs for either:
 
 - direct shared-parent cases
 - multi-hop path-to-parent cases
@@ -75,7 +75,7 @@ The split is now:
 
 - `MetaWeave` for flat direct anchors
 - `MetaFabric` for scoped anchors over weave bindings
-- `meta-datavault` only for DV-domain logic that is still outside those two foundational capabilities
+- the Data Vault CLIs only for DV-domain logic that is still outside those two foundational capabilities
 
 ## Next architectural question
 
@@ -86,10 +86,11 @@ It is a richer fabric model for:
 - multi-parent scoped bindings
 - conditional scope across several parent bindings
 - richer structural predicates beyond path traversal
-## Current meta-datavault consequence
+## Current Data Vault CLI consequence
 
-`meta-datavault` now consumes this split through a sanctioned preflight command:
+the Data Vault CLIs now consumes this split through a sanctioned preflight command:
 
-- `meta-datavault check-business-materialization`
+- `meta-datavault-business check-business-materialization`
 
 That command does not materialize BDV rows yet. It verifies that the current Business/BDV/Implementation/Weave/Fabric input set is coherent enough for future materialization.
+

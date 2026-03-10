@@ -82,7 +82,7 @@ Meaning:
 
 ### Pros
 - the model that causes the SQL column to exist also owns its physical declaration
-- `meta-datavault materialize-business` can produce a SQL-ready BDV workspace without guessing
+- `meta-datavault-business materialize-business` can produce a SQL-ready BDV workspace without guessing
 - the future SQL emitter can be deterministic
 - this matches the existing `MetaSchema` pattern:
   - base `DataTypeId`
@@ -179,3 +179,4 @@ Revisit the decision only if one of these becomes true:
 Until then, the simplest stable answer is:
 
 `MetaBusinessDataVault` should own the physical typing of its business-derived columns.
+

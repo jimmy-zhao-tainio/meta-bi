@@ -2,7 +2,7 @@
 
 ## Current split
 
-`meta-datavault` has two distinct responsibilities:
+the Data Vault CLIs has two distinct responsibilities:
 
 1. native Data Vault workspace authoring and management
 2. sanctioned materialization from other metadata workspaces
@@ -19,7 +19,7 @@ The first implemented Business Vault materialization steps are:
 Contract check:
 
 ```cmd
-meta-datavault check-business-materialization --business-workspace <path> --bdv-workspace <path> --implementation-workspace <path> --weave-workspace <path> [--weave-workspace <path> ...] --fabric-workspace <path> [--fabric-workspace <path> ...]
+meta-datavault-business check-business-materialization --business-workspace <path> --bdv-workspace <path> --implementation-workspace <path> --weave-workspace <path> [--weave-workspace <path> ...] --fabric-workspace <path> [--fabric-workspace <path> ...]
 ```
 
 This command validates that the input set is coherent and complete enough for Business Data Vault materialization.
@@ -97,7 +97,7 @@ The contract check currently requires all four.
 ## Current materialize-business step
 
 ```cmd
-meta-datavault materialize-business --business-workspace <path> --bdv-workspace <path> --implementation-workspace <path> --weave-workspace <path> [--weave-workspace <path> ...] --fabric-workspace <path> [--fabric-workspace <path> ...] --new-workspace <path>
+meta-datavault-business materialize-business --business-workspace <path> --bdv-workspace <path> --implementation-workspace <path> --weave-workspace <path> [--weave-workspace <path> ...] --fabric-workspace <path> [--fabric-workspace <path> ...] --new-workspace <path>
 ```
 
 This command currently:
@@ -118,7 +118,7 @@ The current materializer does not yet:
 ## Current SQL generation step
 
 ```cmd
-meta-datavault generate-sql --workspace <materialized-bdv-workspace> --implementation-workspace <path> --data-type-conversion-workspace <path> --out <path>
+meta-datavault-business generate-sql --workspace <materialized-bdv-workspace> --implementation-workspace <path> --data-type-conversion-workspace <path> --out <path>
 ```
 
 This first SQL pass consumes:
@@ -188,6 +188,7 @@ That keeps:
 See also:
 
 - `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
+
 
 
 

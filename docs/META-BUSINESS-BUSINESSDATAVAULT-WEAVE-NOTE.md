@@ -70,7 +70,7 @@ Examples of what current `MetaWeave` does not express well on its own:
 - a `BusinessHubKeyPart` must match a `BusinessKeyPart` within the correct parent key or hub context
 - a `BusinessLinkHub` must match a `BusinessRelationshipParticipant` within the correct parent relationship or link context
 
-Those child-row seams are now handled by `MetaFabric`, not by ad hoc CLI logic in `meta-datavault`.
+Those child-row seams are now handled by `MetaFabric`, not by ad hoc CLI logic in the Data Vault CLIs.
 
 ## Current sanctioned weave instances
 

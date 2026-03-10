@@ -288,7 +288,7 @@ Primary sources used:
 1. Our current `MetaBusinessDataVault` focus on PIT and Bridge is directionally right.
 2. Our explicit `AnchorHub` on `BusinessBridge` aligns with the idea of a central business concept.
 3. Our bridge model still needs to be reviewed against the N-1 / many-to-one expectation more explicitly.
-4. The fact that BDV is described as materialized helper constructs supports keeping `meta-datavault` responsible for both:
+4. The fact that BDV is described as materialized helper constructs supports keeping the Data Vault CLIs responsible for both:
    - native DV workspace management
    - BDV materialization from sanctioned inputs
 5. It also supports the earlier choice not to jump straight into product artifact generators as if that were the same concern as BDV semantics.
@@ -424,3 +424,4 @@ Needs more review:
 - `Integration Key` is treated as a Varigence/BimlFlex-specific pragmatic feature, not a standard term to copy into `meta-bi`.
 - `Driving Key` is deferred until effectivity/end-dating semantics are modeled explicitly.
 - `Reference` and `Reference Satellite` are a standard Data Vault area and are now implemented in the explicit `MetaBusinessDataVault` baseline.
+

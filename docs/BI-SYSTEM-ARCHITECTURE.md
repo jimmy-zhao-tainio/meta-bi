@@ -60,7 +60,8 @@ flowchart LR
     MTC["meta-data-type"]
     MTCC["meta-data-type-conversion"]
     MWC["meta-weave"]
-    MDVC["meta-datavault"]
+    MDVRC["meta-datavault-raw"]
+    MDVBC["meta-datavault-business"]
   end
 
   SQL["SQL Server schema"] -->|extract| MSC
