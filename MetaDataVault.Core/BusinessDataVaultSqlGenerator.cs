@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
+using Meta.Core.Ddl;
 using BDV = MetaBusinessDataVault;
 using DVI = MetaDataVaultImplementation;
 
@@ -145,7 +146,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessHubSql(BDV.BusinessHub hub, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessHubImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessHubImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHubImplementation.HashKeyLength, null, null), conversions), false)
         };
@@ -162,18 +163,18 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         var primaryKeyColumns = new[] { implementation.BusinessHubImplementation.HashKeyColumnName };
         var uniqueColumns = bdv.BusinessHubKeyPartList.Where(row => row.BusinessHubId == hub.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).Select(row => row.Name).ToList();
 
-        return RenderCreateTableSql(hub.Name, columns, primaryKeyColumns, uniqueColumns.Count == 0 ? null : uniqueColumns, Array.Empty<string>());
+        return RenderCreateTableSql(hub.Name, columns, primaryKeyColumns, uniqueColumns.Count == 0 ? null : uniqueColumns, Array.Empty<DdlForeignKeyConstraint>());
     }
 
     private static string RenderBusinessLinkSql(BDV.BusinessLink link, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
         EnsureSupportedBusinessLink(link, bdv);
 
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessLinkImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessLinkImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessLinkImplementation.HashKeyLength, null, null), conversions), false)
         };
-        var foreignKeys = new List<string>();
+        var foreignKeys = new List<DdlForeignKeyConstraint>();
         var endColumns = new List<string>();
 
         foreach (var end in bdv.BusinessLinkHubList.Where(row => row.BusinessLinkId == link.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.RoleName, StringComparer.Ordinal))
@@ -184,7 +185,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
                 ["HubName"] = end.BusinessHub.Name
             });
             columns.Add(RenderColumn(columnName, RenderSqlType(implementation.BusinessHubImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHubImplementation.HashKeyLength, null, null), conversions), false));
-            foreignKeys.Add($"    CONSTRAINT {Quote($"FK_{link.Name}_{end.BusinessHub.Name}_{columnName}")} FOREIGN KEY ({Quote(columnName)}) REFERENCES {Quote(end.BusinessHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})");
+            foreignKeys.Add(RenderForeignKeyConstraint($"FK_{link.Name}_{end.BusinessHub.Name}_{columnName}", columnName, end.BusinessHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName));
             endColumns.Add(columnName);
         }
 
@@ -200,7 +201,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     {
         EnsureSupportedBusinessSameAsLink(link);
 
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessSameAsLinkImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessSameAsLinkImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessSameAsLinkImplementation.HashKeyLength, null, null), conversions), false),
             RenderColumn(implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName, RenderSqlType(implementation.BusinessHubImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHubImplementation.HashKeyLength, null, null), conversions), false),
@@ -211,10 +212,10 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         AppendOptionalColumn(columns, implementation.BusinessSameAsLinkImplementation.RecordSourceColumnName, implementation.BusinessSameAsLinkImplementation.RecordSourceDataTypeId, new DetailBag(implementation.BusinessSameAsLinkImplementation.RecordSourceLength, null, null), conversions);
         AppendRequiredColumn(columns, implementation.BusinessSameAsLinkImplementation.AuditIdColumnName, implementation.BusinessSameAsLinkImplementation.AuditIdDataTypeId, new DetailBag(null, null, null), conversions);
 
-        var foreignKeys = new[]
+        var foreignKeys = new DdlForeignKeyConstraint[]
         {
-            $"    CONSTRAINT {Quote($"FK_{link.Name}_{link.PrimaryHub.Name}_{implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName)}) REFERENCES {Quote(link.PrimaryHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})",
-            $"    CONSTRAINT {Quote($"FK_{link.Name}_{link.EquivalentHub.Name}_{implementation.BusinessSameAsLinkImplementation.EquivalentHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessSameAsLinkImplementation.EquivalentHashKeyColumnName)}) REFERENCES {Quote(link.EquivalentHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+            RenderForeignKeyConstraint($"FK_{link.Name}_{link.PrimaryHub.Name}_{implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName}", implementation.BusinessSameAsLinkImplementation.PrimaryHashKeyColumnName, link.PrimaryHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName),
+            RenderForeignKeyConstraint($"FK_{link.Name}_{link.EquivalentHub.Name}_{implementation.BusinessSameAsLinkImplementation.EquivalentHashKeyColumnName}", implementation.BusinessSameAsLinkImplementation.EquivalentHashKeyColumnName, link.EquivalentHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName)
         };
 
         return RenderCreateTableSql(
@@ -229,7 +230,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     {
         EnsureSupportedBusinessHierarchicalLink(link);
 
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessHierarchicalLinkImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessHierarchicalLinkImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHierarchicalLinkImplementation.HashKeyLength, null, null), conversions), false),
             RenderColumn(implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessHubImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessHubImplementation.HashKeyLength, null, null), conversions), false),
@@ -240,10 +241,10 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         AppendOptionalColumn(columns, implementation.BusinessHierarchicalLinkImplementation.RecordSourceColumnName, implementation.BusinessHierarchicalLinkImplementation.RecordSourceDataTypeId, new DetailBag(implementation.BusinessHierarchicalLinkImplementation.RecordSourceLength, null, null), conversions);
         AppendRequiredColumn(columns, implementation.BusinessHierarchicalLinkImplementation.AuditIdColumnName, implementation.BusinessHierarchicalLinkImplementation.AuditIdDataTypeId, new DetailBag(null, null, null), conversions);
 
-        var foreignKeys = new[]
+        var foreignKeys = new DdlForeignKeyConstraint[]
         {
-            $"    CONSTRAINT {Quote($"FK_{link.Name}_{link.ParentHub.Name}_{implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName)}) REFERENCES {Quote(link.ParentHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})",
-            $"    CONSTRAINT {Quote($"FK_{link.Name}_{link.ChildHub.Name}_{implementation.BusinessHierarchicalLinkImplementation.ChildHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessHierarchicalLinkImplementation.ChildHashKeyColumnName)}) REFERENCES {Quote(link.ChildHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+            RenderForeignKeyConstraint($"FK_{link.Name}_{link.ParentHub.Name}_{implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName}", implementation.BusinessHierarchicalLinkImplementation.ParentHashKeyColumnName, link.ParentHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName),
+            RenderForeignKeyConstraint($"FK_{link.Name}_{link.ChildHub.Name}_{implementation.BusinessHierarchicalLinkImplementation.ChildHashKeyColumnName}", implementation.BusinessHierarchicalLinkImplementation.ChildHashKeyColumnName, link.ChildHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName)
         };
 
         return RenderCreateTableSql(
@@ -257,7 +258,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private static string RenderBusinessReferenceSql(BDV.BusinessReference reference, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessReferenceImplementation.HashKeyColumnName, RenderSqlType(implementation.BusinessReferenceImplementation.HashKeyDataTypeId, new DetailBag(implementation.BusinessReferenceImplementation.HashKeyLength, null, null), conversions), false)
         };
@@ -274,13 +275,13 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         var primaryKeyColumns = new[] { implementation.BusinessReferenceImplementation.HashKeyColumnName };
         var uniqueColumns = bdv.BusinessReferenceKeyPartList.Where(row => row.BusinessReferenceId == reference.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).Select(row => row.Name).ToList();
 
-        return RenderCreateTableSql(reference.Name, columns, primaryKeyColumns, uniqueColumns.Count == 0 ? null : uniqueColumns, Array.Empty<string>());
+        return RenderCreateTableSql(reference.Name, columns, primaryKeyColumns, uniqueColumns.Count == 0 ? null : uniqueColumns, Array.Empty<DdlForeignKeyConstraint>());
     }
     private static string RenderBusinessHubSatelliteSql(BDV.BusinessHubSatellite satellite, BDV.MetaBusinessDataVaultModel bdv, DataVaultImplementationModel implementation, DataTypeConversionModel conversions)
     {
         EnsureSupportedBusinessHubSatellite(satellite, bdv);
 
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessHubSatelliteImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessHubSatelliteImplementation.ParentHashKeyDataTypeId, new DetailBag(implementation.BusinessHubSatelliteImplementation.ParentHashKeyLength, null, null), conversions), false)
         };
@@ -302,9 +303,9 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         AppendOptionalColumn(columns, implementation.BusinessHubSatelliteImplementation.RecordSourceColumnName, implementation.BusinessHubSatelliteImplementation.RecordSourceDataTypeId, new DetailBag(implementation.BusinessHubSatelliteImplementation.RecordSourceLength, null, null), conversions);
         AppendRequiredColumn(columns, implementation.BusinessHubSatelliteImplementation.AuditIdColumnName, implementation.BusinessHubSatelliteImplementation.AuditIdDataTypeId, new DetailBag(null, null, null), conversions);
 
-        var foreignKeys = new[]
+        var foreignKeys = new DdlForeignKeyConstraint[]
         {
-            $"    CONSTRAINT {Quote($"FK_{satellite.Name}_{satellite.BusinessHub.Name}")} FOREIGN KEY ({Quote(implementation.BusinessHubSatelliteImplementation.ParentHashKeyColumnName)}) REFERENCES {Quote(satellite.BusinessHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+            RenderForeignKeyConstraint($"FK_{satellite.Name}_{satellite.BusinessHub.Name}", implementation.BusinessHubSatelliteImplementation.ParentHashKeyColumnName, satellite.BusinessHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName)
         };
 
         return RenderCreateTableSql(satellite.Name, columns, primaryKeyColumns, null, foreignKeys);
@@ -314,7 +315,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     {
         EnsureSupportedBusinessLinkSatellite(satellite, bdv);
 
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyDataTypeId, new DetailBag(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyLength, null, null), conversions), false)
         };
@@ -336,9 +337,9 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         AppendOptionalColumn(columns, implementation.BusinessLinkSatelliteImplementation.RecordSourceColumnName, implementation.BusinessLinkSatelliteImplementation.RecordSourceDataTypeId, new DetailBag(implementation.BusinessLinkSatelliteImplementation.RecordSourceLength, null, null), conversions);
         AppendRequiredColumn(columns, implementation.BusinessLinkSatelliteImplementation.AuditIdColumnName, implementation.BusinessLinkSatelliteImplementation.AuditIdDataTypeId, new DetailBag(null, null, null), conversions);
 
-        var foreignKeys = new[]
+        var foreignKeys = new DdlForeignKeyConstraint[]
         {
-            $"    CONSTRAINT {Quote($"FK_{satellite.Name}_{satellite.BusinessLink.Name}")} FOREIGN KEY ({Quote(implementation.BusinessLinkSatelliteImplementation.ParentHashKeyColumnName)}) REFERENCES {Quote(satellite.BusinessLink.Name)} ({Quote(implementation.BusinessLinkImplementation.HashKeyColumnName)})"
+            RenderForeignKeyConstraint($"FK_{satellite.Name}_{satellite.BusinessLink.Name}", implementation.BusinessLinkSatelliteImplementation.ParentHashKeyColumnName, satellite.BusinessLink.Name, implementation.BusinessLinkImplementation.HashKeyColumnName)
         };
 
         return RenderCreateTableSql(satellite.Name, columns, primaryKeyColumns, null, foreignKeys);
@@ -444,7 +445,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         IEnumerable<(string Name, string DataTypeId, DetailBag Detail)> attributes,
         DataTypeConversionModel conversions)
     {
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(parentHashKeyColumnName, RenderSqlType(parentHashKeyDataTypeId, new DetailBag(parentHashKeyLength, null, null), conversions), false)
         };
@@ -466,9 +467,9 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         AppendOptionalColumn(columns, recordSourceColumnName!, recordSourceDataTypeId!, new DetailBag(recordSourceLength, null, null), conversions);
         AppendRequiredColumn(columns, auditIdColumnName!, auditIdDataTypeId!, new DetailBag(null, null, null), conversions);
 
-        var foreignKeys = new[]
+        var foreignKeys = new DdlForeignKeyConstraint[]
         {
-            $"    CONSTRAINT {Quote($"FK_{satelliteName}_{parentName}")} FOREIGN KEY ({Quote(parentHashKeyColumnName)}) REFERENCES {Quote(parentName)} ({Quote(parentTableHashKeyColumnName)})"
+            RenderForeignKeyConstraint($"FK_{satelliteName}_{parentName}", parentHashKeyColumnName, parentName, parentTableHashKeyColumnName)
         };
 
         return RenderCreateTableSql(satelliteName, columns, primaryKeyColumns, null, foreignKeys);
@@ -478,7 +479,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     {
         EnsureSupportedBusinessPointInTime(pointInTime, bdv);
 
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName, RenderSqlType(implementation.BusinessPointInTimeImplementation.ParentHashKeyDataTypeId, new DetailBag(implementation.BusinessPointInTimeImplementation.ParentHashKeyLength, null, null), conversions), false),
             RenderColumn(implementation.BusinessPointInTimeImplementation.SnapshotTimestampColumnName, RenderSqlType(implementation.BusinessPointInTimeImplementation.SnapshotTimestampDataTypeId, new DetailBag(null, implementation.BusinessPointInTimeImplementation.SnapshotTimestampPrecision, null), conversions), false)
@@ -502,9 +503,9 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
         AppendRequiredColumn(columns, implementation.BusinessPointInTimeImplementation.AuditIdColumnName, implementation.BusinessPointInTimeImplementation.AuditIdDataTypeId, new DetailBag(null, null, null), conversions);
 
-        var foreignKeys = new[]
+        var foreignKeys = new DdlForeignKeyConstraint[]
         {
-            $"    CONSTRAINT {Quote($"FK_{pointInTime.Name}_{pointInTime.BusinessHub.Name}")} FOREIGN KEY ({Quote(implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName)}) REFERENCES {Quote(pointInTime.BusinessHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+            RenderForeignKeyConstraint($"FK_{pointInTime.Name}_{pointInTime.BusinessHub.Name}", implementation.BusinessPointInTimeImplementation.ParentHashKeyColumnName, pointInTime.BusinessHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName)
         };
 
         return RenderCreateTableSql(pointInTime.Name, columns, new[]
@@ -519,7 +520,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         EnsureSupportedBusinessBridge(bridge, bdv);
         var bridgePath = ResolveBridgePath(bridge, bdv);
 
-        var columns = new List<string>
+        var columns = new List<DdlColumn>
         {
             RenderColumn(implementation.BusinessBridgeImplementation.RootHashKeyColumnName, RenderSqlType(implementation.BusinessBridgeImplementation.RootHashKeyDataTypeId, new DetailBag(implementation.BusinessBridgeImplementation.RootHashKeyLength, null, null), conversions), false),
             RenderColumn(implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName, RenderSqlType(implementation.BusinessBridgeImplementation.RelatedHashKeyDataTypeId, new DetailBag(implementation.BusinessBridgeImplementation.RelatedHashKeyLength, null, null), conversions), false)
@@ -555,23 +556,23 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         AppendOptionalColumn(columns, implementation.BusinessBridgeImplementation.EffectiveToColumnName, implementation.BusinessBridgeImplementation.EffectiveToDataTypeId, new DetailBag(null, implementation.BusinessBridgeImplementation.EffectiveToPrecision, null), conversions);
         AppendRequiredColumn(columns, implementation.BusinessBridgeImplementation.AuditIdColumnName, implementation.BusinessBridgeImplementation.AuditIdDataTypeId, new DetailBag(null, null, null), conversions);
 
-        var foreignKeys = new List<string>
+        var foreignKeys = new List<DdlForeignKeyConstraint>
         {
-            $"    CONSTRAINT {Quote($"FK_{bridge.Name}_{bridge.AnchorHub.Name}_{implementation.BusinessBridgeImplementation.RootHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessBridgeImplementation.RootHashKeyColumnName)}) REFERENCES {Quote(bridge.AnchorHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})",
-            $"    CONSTRAINT {Quote($"FK_{bridge.Name}_{bridgePath.RelatedHub.Name}_{implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName}")} FOREIGN KEY ({Quote(implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName)}) REFERENCES {Quote(bridgePath.RelatedHub.Name)} ({Quote(implementation.BusinessHubImplementation.HashKeyColumnName)})"
+            RenderForeignKeyConstraint($"FK_{bridge.Name}_{bridge.AnchorHub.Name}_{implementation.BusinessBridgeImplementation.RootHashKeyColumnName}", implementation.BusinessBridgeImplementation.RootHashKeyColumnName, bridge.AnchorHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName),
+            RenderForeignKeyConstraint($"FK_{bridge.Name}_{bridgePath.RelatedHub.Name}_{implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName}", implementation.BusinessBridgeImplementation.RelatedHashKeyColumnName, bridgePath.RelatedHub.Name, implementation.BusinessHubImplementation.HashKeyColumnName)
         };
 
         return RenderCreateTableSql(bridge.Name, columns, primaryKeyColumns, null, foreignKeys);
     }
 
-    private static void AppendRequiredColumn(List<string> columns, string columnName, string dataTypeId, DetailBag details, DataTypeConversionModel conversions)
+    private static void AppendRequiredColumn(List<DdlColumn> columns, string columnName, string dataTypeId, DetailBag details, DataTypeConversionModel conversions)
     {
         RequireImplementationValue(columnName, "RequiredColumnName");
         RequireImplementationValue(dataTypeId, "RequiredDataTypeId");
         columns.Add(RenderColumn(columnName, RenderSqlType(dataTypeId, details, conversions), false));
     }
 
-    private static void AppendOptionalColumn(List<string> columns, string columnName, string dataTypeId, DetailBag details, DataTypeConversionModel conversions, List<string>? primaryKeyColumns = null)
+    private static void AppendOptionalColumn(List<DdlColumn> columns, string columnName, string dataTypeId, DetailBag details, DataTypeConversionModel conversions, List<string>? primaryKeyColumns = null)
     {
         if (string.IsNullOrWhiteSpace(columnName) || string.IsNullOrWhiteSpace(dataTypeId))
         {
@@ -585,27 +586,58 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         }
     }
 
-    private static string RenderCreateTableSql(string tableName, IReadOnlyList<string> columns, IEnumerable<string> primaryKeyColumns, IReadOnlyList<string>? uniqueColumns, IEnumerable<string> foreignKeys)
+    private static string RenderCreateTableSql(string tableName, IReadOnlyList<DdlColumn> columns, IEnumerable<string> primaryKeyColumns, IReadOnlyList<string>? uniqueColumns, IEnumerable<DdlForeignKeyConstraint> foreignKeys)
     {
-        var items = new List<string>();
-        items.AddRange(columns.Select(item => "    " + item));
-        items.Add($"    CONSTRAINT {Quote($"PK_{tableName}")} PRIMARY KEY ({string.Join(", ", primaryKeyColumns.Select(Quote))})");
+        var table = new DdlTable
+        {
+            Schema = "dbo",
+            Name = tableName,
+            PrimaryKey = new DdlPrimaryKeyConstraint
+            {
+                Name = $"PK_{tableName}",
+                IsClustered = true,
+            },
+        };
+        table.Columns.AddRange(columns);
+        table.PrimaryKey.ColumnNames.AddRange(primaryKeyColumns);
         if (uniqueColumns is not null && uniqueColumns.Count > 0)
         {
-            items.Add($"    CONSTRAINT {Quote($"UQ_{tableName}")} UNIQUE ({string.Join(", ", uniqueColumns.Select(Quote))})");
+            var uniqueConstraint = new DdlUniqueConstraint
+            {
+                Name = $"UQ_{tableName}",
+            };
+            uniqueConstraint.ColumnNames.AddRange(uniqueColumns);
+            table.UniqueConstraints.Add(uniqueConstraint);
         }
-        items.AddRange(foreignKeys);
 
-        var builder = new StringBuilder();
-        builder.AppendLine($"CREATE TABLE {Quote(tableName)} (");
-        builder.AppendLine(string.Join("," + Environment.NewLine, items));
-        builder.AppendLine(");");
-        return builder.ToString();
+        table.ForeignKeys.AddRange(foreignKeys);
+
+        var database = new DdlDatabase();
+        database.Tables.Add(table);
+        return DdlSqlServerRenderer.RenderSchema(database);
     }
 
-    private static string RenderColumn(string columnName, string sqlType, bool isNullable)
+    private static DdlForeignKeyConstraint RenderForeignKeyConstraint(string constraintName, string columnName, string referencedTableName, string referencedColumnName)
     {
-        return $"{Quote(columnName)} {sqlType} {(isNullable ? "NULL" : "NOT NULL")}";
+        var constraint = new DdlForeignKeyConstraint
+        {
+            Name = constraintName,
+            ReferencedSchema = "dbo",
+            ReferencedTableName = referencedTableName,
+        };
+        constraint.ColumnNames.Add(columnName);
+        constraint.ReferencedColumnNames.Add(referencedColumnName);
+        return constraint;
+    }
+
+    private static DdlColumn RenderColumn(string columnName, string sqlType, bool isNullable)
+    {
+        return new DdlColumn
+        {
+            Name = columnName,
+            DataType = sqlType,
+            IsNullable = isNullable,
+        };
     }
 
     private static string RenderSqlType(string sourceDataTypeId, DetailBag details, DataTypeConversionModel conversions)
@@ -1211,8 +1243,6 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
         }
     }
 
-    private static string Quote(string identifier) => $"[{identifier}]";
-
     private static string RequireNumber(string? value, string dataTypeId, string detailName)
     {
         if (string.IsNullOrWhiteSpace(value))
@@ -1226,6 +1256,8 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
     private readonly record struct DetailBag(string? Length, string? Precision, string? Scale);
     private readonly record struct BridgePath(BDV.BusinessHub RelatedHub, IReadOnlyList<string> HubIds, IReadOnlyList<string> LinkIds);
 }
+
+
 
 
 

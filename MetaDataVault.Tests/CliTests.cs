@@ -238,7 +238,7 @@ public sealed class CliTests
             Assert.Contains("Files: 5", result.Output);
 
             var customerHubSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BH_Customer.sql"));
-            Assert.Contains("CREATE TABLE [BH_Customer]", customerHubSql);
+            Assert.Contains("CREATE TABLE [dbo].[BH_Customer]", customerHubSql);
             Assert.Contains("[HashKey] binary(16) NOT NULL", customerHubSql);
             Assert.Contains("[Identifier] nvarchar(50) NOT NULL", customerHubSql);
             Assert.Contains("[LoadTimestamp] datetime2(7) NOT NULL", customerHubSql);
@@ -246,7 +246,7 @@ public sealed class CliTests
             Assert.Contains("[AuditId] int NOT NULL", customerHubSql);
 
             var customerOrderLinkSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BL_CustomerOrder.sql"));
-            Assert.Contains("CREATE TABLE [BL_CustomerOrder]", customerOrderLinkSql);
+            Assert.Contains("CREATE TABLE [dbo].[BL_CustomerOrder]", customerOrderLinkSql);
             Assert.Contains("[CustomerHashKey] binary(16) NOT NULL", customerOrderLinkSql);
             Assert.Contains("[OrderHashKey] binary(16) NOT NULL", customerOrderLinkSql);
             Assert.Contains("[AuditId] int NOT NULL", customerOrderLinkSql);
@@ -282,7 +282,7 @@ public sealed class CliTests
             Assert.Contains("BusinessBridges: 1", result.Output);
 
             var pitSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "PIT_CustomerSnapshot.sql"));
-            Assert.Contains("CREATE TABLE [PIT_CustomerSnapshot]", pitSql);
+            Assert.Contains("CREATE TABLE [dbo].[PIT_CustomerSnapshot]", pitSql);
             Assert.Contains("[HubHashKey] binary(16) NOT NULL", pitSql);
             Assert.Contains("[SnapshotTimestamp] datetime2(7) NOT NULL", pitSql);
             Assert.Contains("[BHS_Customer_ProfileLoadTimestamp] datetime2(7) NOT NULL", pitSql);
@@ -290,7 +290,7 @@ public sealed class CliTests
             Assert.Contains("[AuditId] int NOT NULL", pitSql);
 
             var bridgeSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BR_CustomerOrderTraversal.sql"));
-            Assert.Contains("CREATE TABLE [BR_CustomerOrderTraversal]", bridgeSql);
+            Assert.Contains("CREATE TABLE [dbo].[BR_CustomerOrderTraversal]", bridgeSql);
             Assert.Contains("[RootHashKey] binary(16) NOT NULL", bridgeSql);
             Assert.Contains("[RelatedHashKey] binary(16) NOT NULL", bridgeSql);
             Assert.Contains("[Depth] int NOT NULL", bridgeSql);
@@ -331,13 +331,13 @@ public sealed class CliTests
             Assert.Contains("BusinessHierarchicalLinkSatellites: 1", result.Output);
 
             var sameAsSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BSAL_CustomerMatch.sql"));
-            Assert.Contains("CREATE TABLE [BSAL_CustomerMatch]", sameAsSql);
+            Assert.Contains("CREATE TABLE [dbo].[BSAL_CustomerMatch]", sameAsSql);
             Assert.Contains("[PrimaryHashKey] binary(16) NOT NULL", sameAsSql);
             Assert.Contains("[EquivalentHashKey] binary(16) NOT NULL", sameAsSql);
             Assert.Contains("[AuditId] int NOT NULL", sameAsSql);
 
             var hierarchySql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BHAL_EmployeeManager.sql"));
-            Assert.Contains("CREATE TABLE [BHAL_EmployeeManager]", hierarchySql);
+            Assert.Contains("CREATE TABLE [dbo].[BHAL_EmployeeManager]", hierarchySql);
             Assert.Contains("[ParentHashKey] binary(16) NOT NULL", hierarchySql);
             Assert.Contains("[ChildHashKey] binary(16) NOT NULL", hierarchySql);
             Assert.Contains("[AuditId] int NOT NULL", hierarchySql);
@@ -940,6 +940,7 @@ public sealed class CliTests
         }
     }
 }
+
 
 
 

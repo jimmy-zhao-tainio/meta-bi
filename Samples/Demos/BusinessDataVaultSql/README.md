@@ -69,7 +69,7 @@ RSAT_Status_Current.sql
 `GeneratedSql/BH_Customer.sql`
 
 ```sql
-CREATE TABLE [BH_Customer] (
+CREATE TABLE [dbo].[BH_Customer] (
     [HashKey] binary(16) NOT NULL,
     [Identifier] nvarchar(50) NOT NULL,
     [LoadTimestamp] datetime2(7) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE [BH_Customer] (
 `GeneratedSql/BR_CustomerOrderTraversal.sql`
 
 ```sql
-CREATE TABLE [BR_CustomerOrderTraversal] (
+CREATE TABLE [dbo].[BR_CustomerOrderTraversal] (
     [RootHashKey] binary(16) NOT NULL,
     [RelatedHashKey] binary(16) NOT NULL,
     [Depth] int NOT NULL,
@@ -95,3 +95,4 @@ CREATE TABLE [BR_CustomerOrderTraversal] (
     CONSTRAINT [FK_BR_CustomerOrderTraversal_BH_Order_RelatedHashKey] FOREIGN KEY ([RelatedHashKey]) REFERENCES [BH_Order] ([HashKey])
 );
 ```
+
