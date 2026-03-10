@@ -52,7 +52,7 @@ internal static class Program
             return 0;
         }
 
-        var parseResult = ParseNewWorkspaceOnly(args, 1);
+        var parseResult = ParseInitArgs(args, 1);
         if (!parseResult.Ok)
         {
             return Fail(parseResult.ErrorMessage, "meta-datavault init --help");
@@ -65,12 +65,16 @@ internal static class Program
         }
 
         Directory.CreateDirectory(workspacePath);
-        var workspace = MetaDataVaultWorkspaces.CreateEmptyMetaRawDataVaultWorkspace(workspacePath);
+        var workspace = parseResult.WorkspaceKind switch
+        {
+            "business" => MetaDataVaultWorkspaces.CreateEmptyMetaBusinessDataVaultWorkspace(workspacePath),
+            _ => MetaDataVaultWorkspaces.CreateEmptyMetaRawDataVaultWorkspace(workspacePath),
+        };
         var validation = new ValidationService().Validate(workspace);
         if (validation.HasErrors)
         {
             return Fail(
-                "metarawdatavault workspace is invalid.",
+                $"{workspace.Model.Name.ToLowerInvariant()} workspace is invalid.",
                 "fix the sanctioned model and retry init.",
                 4,
                 validation.Issues
@@ -80,7 +84,7 @@ internal static class Program
 
         await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
         Presenter.WriteOk(
-            "metarawdatavault workspace created",
+            $"{workspace.Model.Name.ToLowerInvariant()} workspace created",
             ("Path", workspacePath),
             ("Model", workspace.Model.Name));
         return 0;
@@ -442,25 +446,38 @@ internal static class Program
         return 0;
     }
 
-    private static (bool Ok, string NewWorkspacePath, string ErrorMessage) ParseNewWorkspaceOnly(string[] args, int startIndex)
+    private static (bool Ok, string WorkspaceKind, string NewWorkspacePath, string ErrorMessage) ParseInitArgs(string[] args, int startIndex)
     {
+        var workspaceKind = "raw";
         var newWorkspacePath = string.Empty;
+
+        if (startIndex < args.Length && !args[startIndex].StartsWith("--", StringComparison.Ordinal))
+        {
+            workspaceKind = args[startIndex];
+            startIndex++;
+        }
+
+        if (!string.Equals(workspaceKind, "raw", StringComparison.OrdinalIgnoreCase) && !string.Equals(workspaceKind, "business", StringComparison.OrdinalIgnoreCase))
+        {
+            return (false, workspaceKind, newWorkspacePath, $"unknown init kind '{workspaceKind}'.");
+        }
+
         for (var i = startIndex; i < args.Length; i++)
         {
             var arg = args[i];
             if (!string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                return (false, newWorkspacePath, $"unknown option '{arg}'.");
+                return (false, workspaceKind, newWorkspacePath, $"unknown option '{arg}'.");
             }
 
             if (i + 1 >= args.Length)
             {
-                return (false, newWorkspacePath, "missing value for --new-workspace.");
+                return (false, workspaceKind, newWorkspacePath, "missing value for --new-workspace.");
             }
 
             if (!string.IsNullOrWhiteSpace(newWorkspacePath))
             {
-                return (false, newWorkspacePath, "--new-workspace can only be provided once.");
+                return (false, workspaceKind, newWorkspacePath, "--new-workspace can only be provided once.");
             }
 
             newWorkspacePath = args[++i];
@@ -468,10 +485,10 @@ internal static class Program
 
         if (string.IsNullOrWhiteSpace(newWorkspacePath))
         {
-            return (false, string.Empty, "missing required option --new-workspace <path>.");
+            return (false, workspaceKind, string.Empty, "missing required option --new-workspace <path>.");
         }
 
-        return (true, newWorkspacePath, string.Empty);
+        return (true, workspaceKind.ToLowerInvariant(), newWorkspacePath, string.Empty);
     }
 
     private static (bool Ok, string SourceWorkspacePath, string BusinessWorkspacePath, string ImplementationWorkspacePath, string NewWorkspacePath, string ErrorMessage) ParseFromMetaSchemaArgs(string[] args, int startIndex)
@@ -936,7 +953,7 @@ internal static class Program
             new[]
             {
                 ("help", "Show this help."),
-                ("init", "Create an empty MetaRawDataVault workspace."),
+                ("init", "Create an empty MetaRawDataVault or MetaBusinessDataVault workspace."),
                 ("from-metaschema", "Materialize a raw datavault from MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces."),
                 ("check-business-materialization", "Check the sanctioned input contract for Business Data Vault materialization."),
                 ("materialize-business", "Materialize a Business Data Vault workspace from sanctioned inputs."),
@@ -949,9 +966,10 @@ internal static class Program
     private static void PrintInitHelp()
     {
         Presenter.WriteInfo("Command: init");
-        Presenter.WriteUsage("meta-datavault init --new-workspace <path>");
+        Presenter.WriteUsage("meta-datavault init [raw|business] --new-workspace <path>");
         Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Creates a new workspace with the sanctioned MetaRawDataVault model (raw vault only).");
+        Presenter.WriteInfo("  Bare init defaults to raw.");
+        Presenter.WriteInfo("  Use business to create a new workspace with the sanctioned MetaBusinessDataVault model.");
     }
 
     private static void PrintFromMetaSchemaHelp()
@@ -1002,16 +1020,3 @@ internal static class Program
         return exitCode;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

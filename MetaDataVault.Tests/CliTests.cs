@@ -19,6 +19,38 @@ public sealed class CliTests
     }
 
     [Fact]
+    public void Init_Help_ShowsRawAndBusinessKinds()
+    {
+        var result = RunCli("init --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("meta-datavault init [raw|business] --new-workspace <path>", result.Output);
+        Assert.Contains("defaults to raw", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("MetaBusinessDataVault", result.Output);
+    }
+
+    [Fact]
+    public async Task Init_Business_CreatesMetaBusinessDataVaultWorkspace()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+
+        try
+        {
+            var result = RunCli($"init business --new-workspace \"{workspacePath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("OK: metabusinessdatavault workspace created", result.Output, StringComparison.OrdinalIgnoreCase);
+
+            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            Assert.Equal("MetaBusinessDataVault", workspace.Model.Name);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+    [Fact]
     public void FromMetaSchema_Help_ShowsRequiredOptions()
     {
         var result = RunCli("from-metaschema --help");
@@ -940,17 +972,3 @@ public sealed class CliTests
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

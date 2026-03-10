@@ -10,4 +10,11 @@ public static class MetaDataVaultWorkspaces
             workspaceRootPath,
             MetaDataVaultModels.CreateMetaRawDataVaultModel());
     }
+
+    public static Workspace CreateEmptyMetaBusinessDataVaultWorkspace(string workspaceRootPath)
+    {
+        return MetaDataVaultWorkspaceFactory.CreateEmptyWorkspace(
+            workspaceRootPath,
+            MetaDataVaultModels.CreateMetaBusinessDataVaultModel());
+    }
 }

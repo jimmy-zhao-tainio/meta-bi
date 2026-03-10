@@ -7,11 +7,19 @@ namespace MetaDataVault.Core;
 public static class MetaDataVaultModels
 {
     public const string MetaRawDataVaultModelName = "MetaRawDataVault";
-    private const string MetaDataVaultModelResourceName = "MetaDataVault.Core.Models.MetaRawDataVault.model.xml";
+    public const string MetaBusinessDataVaultModelName = "MetaBusinessDataVault";
+
+    private const string MetaRawDataVaultModelResourceName = "MetaDataVault.Core.Models.MetaRawDataVault.model.xml";
+    private const string MetaBusinessDataVaultModelResourceName = "MetaDataVault.Core.Models.MetaBusinessDataVault.model.xml";
 
     public static GenericModel CreateMetaRawDataVaultModel()
     {
-        return LoadModel(MetaDataVaultModelResourceName, MetaRawDataVaultModelName);
+        return LoadModel(MetaRawDataVaultModelResourceName, MetaRawDataVaultModelName);
+    }
+
+    public static GenericModel CreateMetaBusinessDataVaultModel()
+    {
+        return LoadModel(MetaBusinessDataVaultModelResourceName, MetaBusinessDataVaultModelName);
     }
 
     private static GenericModel LoadModel(string resourceName, string expectedModelName)
@@ -31,4 +39,3 @@ public static class MetaDataVaultModels
         return model;
     }
 }
-

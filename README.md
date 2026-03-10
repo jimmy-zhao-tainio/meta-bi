@@ -104,9 +104,16 @@ Current BI fabric samples therefore prove both:
 - `check-business-materialization`
 - `materialize-business`
 
+Bootstrap a Business Data Vault workspace:
+
+```cmd
+meta-datavault init business --new-workspace C:\path\to\NewBusinessDataVault
+```
+
 Preflight:
 
 ```cmd
+
 meta-datavault check-business-materialization --business-workspace C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart
 ```
 
@@ -216,7 +223,3 @@ See also:
 For a checked-in Business Data Vault SQL demo with workspaces, instance data, generated SQL, and plain `cmd` scripts, see:
 
 - `Samples/Demos/BusinessDataVaultSql`
-
-
-
-
