@@ -25,10 +25,10 @@ cleanup.cmd
 The workspace models a cross-department enterprise Business Data Vault with:
 
 - hubs for customer, CRM customer, product, supplier, order, invoice, shipment, employee, department, and cost center
-- standard links across sales, procurement, fulfillment, HR, and finance
+- standard links across sales, procurement, fulfillment, HR, finance, billing, and cost allocation
 - same-as and hierarchical links
 - references for order status and currency code
-- hub, link, same-as, hierarchical, and reference satellites
+- multiple hub satellites per business concept, richer link satellites, same-as, hierarchical, and reference satellites
 - PIT and bridge helper structures
 
 ## What gets deployed
@@ -189,4 +189,5 @@ Generated SQL is written to:
 - `GeneratedSql`
 
 The file names follow the same implementation naming patterns as the emitted table names.
+
 

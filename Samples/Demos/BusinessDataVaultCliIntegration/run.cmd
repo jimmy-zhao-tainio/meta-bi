@@ -51,6 +51,21 @@ meta-datavault-business add-link-hub --workspace .\Workspace --id EmployeeDepart
 meta-datavault-business add-link --workspace .\Workspace --id DepartmentCostCenter --name DepartmentCostCenter || exit /b 1
 meta-datavault-business add-link-hub --workspace .\Workspace --id DepartmentCostCenterDepartment --link DepartmentCostCenter --hub Department --ordinal 1 --role-name Department || exit /b 1
 meta-datavault-business add-link-hub --workspace .\Workspace --id DepartmentCostCenterCostCenter --link DepartmentCostCenter --hub CostCenter --ordinal 2 --role-name CostCenter || exit /b 1
+meta-datavault-business add-link --workspace .\Workspace --id CustomerInvoice --name CustomerInvoice || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id CustomerInvoiceCustomer --link CustomerInvoice --hub Customer --ordinal 1 --role-name Customer || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id CustomerInvoiceInvoice --link CustomerInvoice --hub Invoice --ordinal 2 --role-name Invoice || exit /b 1
+meta-datavault-business add-link --workspace .\Workspace --id SupplierInvoice --name SupplierInvoice || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id SupplierInvoiceSupplier --link SupplierInvoice --hub Supplier --ordinal 1 --role-name Supplier || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id SupplierInvoiceInvoice --link SupplierInvoice --hub Invoice --ordinal 2 --role-name Invoice || exit /b 1
+meta-datavault-business add-link --workspace .\Workspace --id InvoiceShipment --name InvoiceShipment || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id InvoiceShipmentInvoice --link InvoiceShipment --hub Invoice --ordinal 1 --role-name Invoice || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id InvoiceShipmentShipment --link InvoiceShipment --hub Shipment --ordinal 2 --role-name Shipment || exit /b 1
+meta-datavault-business add-link --workspace .\Workspace --id EmployeeCostCenter --name EmployeeCostCenter || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id EmployeeCostCenterEmployee --link EmployeeCostCenter --hub Employee --ordinal 1 --role-name Employee || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id EmployeeCostCenterCostCenter --link EmployeeCostCenter --hub CostCenter --ordinal 2 --role-name CostCenter || exit /b 1
+meta-datavault-business add-link --workspace .\Workspace --id DepartmentManager --name DepartmentManager || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id DepartmentManagerDepartment --link DepartmentManager --hub Department --ordinal 1 --role-name Department || exit /b 1
+meta-datavault-business add-link-hub --workspace .\Workspace --id DepartmentManagerEmployee --link DepartmentManager --hub Employee --ordinal 2 --role-name ManagerEmployee || exit /b 1
 meta-datavault-business add-same-as-link --workspace .\Workspace --id CustomerSameAsCrmCustomer --name CustomerSameAsCrmCustomer --primary-hub Customer --equivalent-hub Customer || exit /b 1
 meta-datavault-business add-hierarchical-link --workspace .\Workspace --id DepartmentHierarchy --name DepartmentHierarchy --parent-hub Department --child-hub Department || exit /b 1
 meta-datavault-business add-reference --workspace .\Workspace --id OrderStatus --name OrderStatus || exit /b 1
@@ -95,6 +110,40 @@ meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace
 meta-datavault-business add-hub-satellite --workspace .\Workspace --id CostCenterProfile --hub CostCenter --name CostCenterProfile --satellite-kind standard || exit /b 1
 meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id CostCenterName --hub-satellite CostCenterProfile --name CostCenterName --data-type-id meta:type:String --ordinal 1 || exit /b 1
 meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id CostCenterNameLength --hub-satellite-attribute CostCenterName --name Length --value 150 || exit /b 1
+meta-datavault-business add-hub-satellite --workspace .\Workspace --id CustomerContact --hub Customer --name CustomerContact --satellite-kind standard || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id CustomerEmailAddress --hub-satellite CustomerContact --name EmailAddress --data-type-id meta:type:String --ordinal 1 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id CustomerEmailAddressLength --hub-satellite-attribute CustomerEmailAddress --name Length --value 200 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id CustomerPhoneNumber --hub-satellite CustomerContact --name PhoneNumber --data-type-id meta:type:String --ordinal 2 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id CustomerPhoneNumberLength --hub-satellite-attribute CustomerPhoneNumber --name Length --value 40 || exit /b 1
+meta-datavault-business add-hub-satellite --workspace .\Workspace --id CustomerAddress --hub Customer --name CustomerAddress --satellite-kind standard || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id CustomerCountryCode --hub-satellite CustomerAddress --name CountryCode --data-type-id meta:type:String --ordinal 1 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id CustomerCountryCodeLength --hub-satellite-attribute CustomerCountryCode --name Length --value 3 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id CustomerCityName --hub-satellite CustomerAddress --name CityName --data-type-id meta:type:String --ordinal 2 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id CustomerCityNameLength --hub-satellite-attribute CustomerCityName --name Length --value 100 || exit /b 1
+meta-datavault-business add-hub-satellite --workspace .\Workspace --id ProductCommercial --hub Product --name ProductCommercial --satellite-kind standard || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id ProductBrand --hub-satellite ProductCommercial --name BrandName --data-type-id meta:type:String --ordinal 1 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id ProductBrandLength --hub-satellite-attribute ProductBrand --name Length --value 100 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id ProductLifecycleStatus --hub-satellite ProductCommercial --name LifecycleStatus --data-type-id meta:type:String --ordinal 2 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id ProductLifecycleStatusLength --hub-satellite-attribute ProductLifecycleStatus --name Length --value 40 || exit /b 1
+meta-datavault-business add-hub-satellite --workspace .\Workspace --id SupplierCompliance --hub Supplier --name SupplierCompliance --satellite-kind standard || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id SupplierRiskClass --hub-satellite SupplierCompliance --name RiskClass --data-type-id meta:type:String --ordinal 1 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id SupplierRiskClassLength --hub-satellite-attribute SupplierRiskClass --name Length --value 30 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id SupplierTaxIdentifier --hub-satellite SupplierCompliance --name TaxIdentifier --data-type-id meta:type:String --ordinal 2 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id SupplierTaxIdentifierLength --hub-satellite-attribute SupplierTaxIdentifier --name Length --value 50 || exit /b 1
+meta-datavault-business add-hub-satellite --workspace .\Workspace --id EmployeeEmployment --hub Employee --name EmployeeEmployment --satellite-kind standard || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id EmployeeHireDate --hub-satellite EmployeeEmployment --name HireDate --data-type-id meta:type:DateTime --ordinal 1 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id EmployeeEmploymentType --hub-satellite EmployeeEmployment --name EmploymentType --data-type-id meta:type:String --ordinal 2 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id EmployeeEmploymentTypeLength --hub-satellite-attribute EmployeeEmploymentType --name Length --value 30 || exit /b 1
+meta-datavault-business add-hub-satellite --workspace .\Workspace --id DepartmentOperatingModel --hub Department --name DepartmentOperatingModel --satellite-kind standard || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id DepartmentType --hub-satellite DepartmentOperatingModel --name DepartmentType --data-type-id meta:type:String --ordinal 1 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id DepartmentTypeLength --hub-satellite-attribute DepartmentType --name Length --value 40 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id DepartmentRegionName --hub-satellite DepartmentOperatingModel --name RegionName --data-type-id meta:type:String --ordinal 2 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id DepartmentRegionNameLength --hub-satellite-attribute DepartmentRegionName --name Length --value 50 || exit /b 1
+meta-datavault-business add-hub-satellite --workspace .\Workspace --id CostCenterBudget --hub CostCenter --name CostCenterBudget --satellite-kind standard || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id CostCenterBudgetAmount --hub-satellite CostCenterBudget --name BudgetAmount --data-type-id meta:type:Decimal --ordinal 1 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id CostCenterBudgetAmountPrecision --hub-satellite-attribute CostCenterBudgetAmount --name Precision --value 18 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute-data-type-detail --workspace .\Workspace --id CostCenterBudgetAmountScale --hub-satellite-attribute CostCenterBudgetAmount --name Scale --value 2 || exit /b 1
+meta-datavault-business add-hub-satellite-attribute --workspace .\Workspace --id CostCenterFiscalYear --hub-satellite CostCenterBudget --name FiscalYear --data-type-id meta:type:Int32 --ordinal 2 || exit /b 1
 meta-datavault-business add-link-satellite --workspace .\Workspace --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus --satellite-kind standard || exit /b 1
 meta-datavault-business add-link-satellite-attribute --workspace .\Workspace --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name OrderStatusCode --data-type-id meta:type:String --ordinal 1 || exit /b 1
 meta-datavault-business add-link-satellite-attribute-data-type-detail --workspace .\Workspace --id CustomerOrderStatusCodeLength --link-satellite-attribute CustomerOrderStatusCode --name Length --value 20 || exit /b 1
@@ -113,6 +162,20 @@ meta-datavault-business add-link-satellite --workspace .\Workspace --id Departme
 meta-datavault-business add-link-satellite-attribute --workspace .\Workspace --id DepartmentCostCenterShare --link-satellite DepartmentCostCenterAssignment --name AllocationShare --data-type-id meta:type:Decimal --ordinal 1 || exit /b 1
 meta-datavault-business add-link-satellite-attribute-data-type-detail --workspace .\Workspace --id DepartmentCostCenterSharePrecision --link-satellite-attribute DepartmentCostCenterShare --name Precision --value 9 || exit /b 1
 meta-datavault-business add-link-satellite-attribute-data-type-detail --workspace .\Workspace --id DepartmentCostCenterShareScale --link-satellite-attribute DepartmentCostCenterShare --name Scale --value 4 || exit /b 1
+meta-datavault-business add-link-satellite --workspace .\Workspace --id CustomerInvoiceStatus --link CustomerInvoice --name CustomerInvoiceStatus --satellite-kind standard || exit /b 1
+meta-datavault-business add-link-satellite-attribute --workspace .\Workspace --id CustomerInvoiceBillingStatus --link-satellite CustomerInvoiceStatus --name BillingStatus --data-type-id meta:type:String --ordinal 1 || exit /b 1
+meta-datavault-business add-link-satellite-attribute-data-type-detail --workspace .\Workspace --id CustomerInvoiceBillingStatusLength --link-satellite-attribute CustomerInvoiceBillingStatus --name Length --value 30 || exit /b 1
+meta-datavault-business add-link-satellite --workspace .\Workspace --id SupplierInvoiceTerms --link SupplierInvoice --name SupplierInvoiceTerms --satellite-kind standard || exit /b 1
+meta-datavault-business add-link-satellite-attribute --workspace .\Workspace --id SupplierInvoicePaymentTermsCode --link-satellite SupplierInvoiceTerms --name PaymentTermsCode --data-type-id meta:type:String --ordinal 1 || exit /b 1
+meta-datavault-business add-link-satellite-attribute-data-type-detail --workspace .\Workspace --id SupplierInvoicePaymentTermsCodeLength --link-satellite-attribute SupplierInvoicePaymentTermsCode --name Length --value 20 || exit /b 1
+meta-datavault-business add-link-satellite --workspace .\Workspace --id InvoiceShipmentTracking --link InvoiceShipment --name InvoiceShipmentTracking --satellite-kind standard || exit /b 1
+meta-datavault-business add-link-satellite-attribute --workspace .\Workspace --id InvoiceShipmentReceiptDate --link-satellite InvoiceShipmentTracking --name ReceiptDate --data-type-id meta:type:DateTime --ordinal 1 || exit /b 1
+meta-datavault-business add-link-satellite --workspace .\Workspace --id EmployeeCostCenterAssignment --link EmployeeCostCenter --name EmployeeCostCenterAssignment --satellite-kind standard || exit /b 1
+meta-datavault-business add-link-satellite-attribute --workspace .\Workspace --id EmployeeCostCenterAllocationPercentage --link-satellite EmployeeCostCenterAssignment --name AllocationPercentage --data-type-id meta:type:Decimal --ordinal 1 || exit /b 1
+meta-datavault-business add-link-satellite-attribute-data-type-detail --workspace .\Workspace --id EmployeeCostCenterAllocationPercentagePrecision --link-satellite-attribute EmployeeCostCenterAllocationPercentage --name Precision --value 9 || exit /b 1
+meta-datavault-business add-link-satellite-attribute-data-type-detail --workspace .\Workspace --id EmployeeCostCenterAllocationPercentageScale --link-satellite-attribute EmployeeCostCenterAllocationPercentage --name Scale --value 4 || exit /b 1
+meta-datavault-business add-link-satellite --workspace .\Workspace --id DepartmentManagerAssignment --link DepartmentManager --name DepartmentManagerAssignment --satellite-kind standard || exit /b 1
+meta-datavault-business add-link-satellite-attribute --workspace .\Workspace --id DepartmentManagerAssignmentStartDate --link-satellite DepartmentManagerAssignment --name StartDate --data-type-id meta:type:DateTime --ordinal 1 || exit /b 1
 meta-datavault-business add-same-as-link-satellite --workspace .\Workspace --id CustomerSameAsCrmCustomerAudit --same-as-link CustomerSameAsCrmCustomer --name CustomerSameAsCrmCustomerAudit --satellite-kind standard || exit /b 1
 meta-datavault-business add-same-as-link-satellite-attribute --workspace .\Workspace --id CustomerSameAsCrmConfidence --same-as-link-satellite CustomerSameAsCrmCustomerAudit --name MatchConfidence --data-type-id meta:type:Decimal --ordinal 1 || exit /b 1
 meta-datavault-business add-same-as-link-satellite-attribute-data-type-detail --workspace .\Workspace --id CustomerSameAsCrmConfidencePrecision --same-as-link-satellite-attribute CustomerSameAsCrmConfidence --name Precision --value 5 || exit /b 1
@@ -141,4 +204,5 @@ meta-datavault-business add-bridge-hub-satellite-attribute-projection --workspac
 meta-datavault-business add-bridge-link-satellite-attribute-projection --workspace .\Workspace --id CustomerFulfillmentOrderStatusCode --bridge CustomerFulfillmentTraversal --link-satellite-attribute CustomerOrderStatusCode --name OrderStatusCode --ordinal 5 || exit /b 1
 meta-datavault-business generate-sql --workspace .\Workspace --implementation-workspace C:\Users\jimmy\Desktop\meta-bi\MetaDataVault.Workspaces\MetaDataVaultImplementation --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion --out .\GeneratedSql || exit /b 1
 meta deploy sqlserver --scripts .\GeneratedSql --connection-string "Server=.;Integrated Security=true;TrustServerCertificate=true" --database BusinessDataVaultSample || exit /b 1
+
 
