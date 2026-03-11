@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessLinkHubList>
+    <BusinessLinkHub Id="CustomerInvoiceCustomer" BusinessHubId="Customer" BusinessLinkId="CustomerInvoice">
+      <Ordinal>1</Ordinal>
+      <RoleName>Customer</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="CustomerInvoiceInvoice" BusinessHubId="Invoice" BusinessLinkId="CustomerInvoice">
+      <Ordinal>2</Ordinal>
+      <RoleName>Invoice</RoleName>
+    </BusinessLinkHub>
     <BusinessLinkHub Id="CustomerOrderCustomer" BusinessHubId="Customer" BusinessLinkId="CustomerOrder">
       <Ordinal>1</Ordinal>
       <RoleName>Customer</RoleName>
@@ -17,6 +25,22 @@
       <Ordinal>1</Ordinal>
       <RoleName>Department</RoleName>
     </BusinessLinkHub>
+    <BusinessLinkHub Id="DepartmentManagerDepartment" BusinessHubId="Department" BusinessLinkId="DepartmentManager">
+      <Ordinal>1</Ordinal>
+      <RoleName>Department</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="DepartmentManagerEmployee" BusinessHubId="Employee" BusinessLinkId="DepartmentManager">
+      <Ordinal>2</Ordinal>
+      <RoleName>ManagerEmployee</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="EmployeeCostCenterCostCenter" BusinessHubId="CostCenter" BusinessLinkId="EmployeeCostCenter">
+      <Ordinal>2</Ordinal>
+      <RoleName>CostCenter</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="EmployeeCostCenterEmployee" BusinessHubId="Employee" BusinessLinkId="EmployeeCostCenter">
+      <Ordinal>1</Ordinal>
+      <RoleName>Employee</RoleName>
+    </BusinessLinkHub>
     <BusinessLinkHub Id="EmployeeDepartmentDepartment" BusinessHubId="Department" BusinessLinkId="EmployeeDepartment">
       <Ordinal>2</Ordinal>
       <RoleName>Department</RoleName>
@@ -24,6 +48,14 @@
     <BusinessLinkHub Id="EmployeeDepartmentEmployee" BusinessHubId="Employee" BusinessLinkId="EmployeeDepartment">
       <Ordinal>1</Ordinal>
       <RoleName>Employee</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="InvoiceShipmentInvoice" BusinessHubId="Invoice" BusinessLinkId="InvoiceShipment">
+      <Ordinal>1</Ordinal>
+      <RoleName>Invoice</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="InvoiceShipmentShipment" BusinessHubId="Shipment" BusinessLinkId="InvoiceShipment">
+      <Ordinal>2</Ordinal>
+      <RoleName>Shipment</RoleName>
     </BusinessLinkHub>
     <BusinessLinkHub Id="OrderInvoiceInvoice" BusinessHubId="Invoice" BusinessLinkId="OrderInvoice">
       <Ordinal>2</Ordinal>
@@ -48,6 +80,14 @@
     <BusinessLinkHub Id="ShipmentOrderShipment" BusinessHubId="Shipment" BusinessLinkId="ShipmentOrder">
       <Ordinal>1</Ordinal>
       <RoleName>Shipment</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SupplierInvoiceInvoice" BusinessHubId="Invoice" BusinessLinkId="SupplierInvoice">
+      <Ordinal>2</Ordinal>
+      <RoleName>Invoice</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SupplierInvoiceSupplier" BusinessHubId="Supplier" BusinessLinkId="SupplierInvoice">
+      <Ordinal>1</Ordinal>
+      <RoleName>Supplier</RoleName>
     </BusinessLinkHub>
     <BusinessLinkHub Id="SupplierProductProduct" BusinessHubId="Product" BusinessLinkId="SupplierProduct">
       <Ordinal>2</Ordinal>

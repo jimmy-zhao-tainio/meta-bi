@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessLinkSatelliteAttributeDataTypeDetailList>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="CustomerInvoiceBillingStatusLength" BusinessLinkSatelliteAttributeId="CustomerInvoiceBillingStatus">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
     <BusinessLinkSatelliteAttributeDataTypeDetail Id="CustomerOrderCurrencyCodeLength" BusinessLinkSatelliteAttributeId="CustomerOrderCurrencyCode">
       <Name>Length</Name>
       <Value>3</Value>
@@ -17,6 +21,14 @@
       <Name>Scale</Name>
       <Value>4</Value>
     </BusinessLinkSatelliteAttributeDataTypeDetail>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="EmployeeCostCenterAllocationPercentagePrecision" BusinessLinkSatelliteAttributeId="EmployeeCostCenterAllocationPercentage">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="EmployeeCostCenterAllocationPercentageScale" BusinessLinkSatelliteAttributeId="EmployeeCostCenterAllocationPercentage">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
     <BusinessLinkSatelliteAttributeDataTypeDetail Id="OrderProductUnitPricePrecision" BusinessLinkSatelliteAttributeId="OrderProductUnitPrice">
       <Name>Precision</Name>
       <Value>18</Value>
@@ -24,6 +36,10 @@
     <BusinessLinkSatelliteAttributeDataTypeDetail Id="OrderProductUnitPriceScale" BusinessLinkSatelliteAttributeId="OrderProductUnitPrice">
       <Name>Scale</Name>
       <Value>2</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="SupplierInvoicePaymentTermsCodeLength" BusinessLinkSatelliteAttributeId="SupplierInvoicePaymentTermsCode">
+      <Name>Length</Name>
+      <Value>20</Value>
     </BusinessLinkSatelliteAttributeDataTypeDetail>
   </BusinessLinkSatelliteAttributeDataTypeDetailList>
 </MetaBusinessDataVault>

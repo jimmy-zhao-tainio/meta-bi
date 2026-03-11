@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <SourceTableRelationshipFieldList>
+    <SourceTableRelationshipField Id="EmployeeDepartmentRelationshipField" SourceFieldId="EmployeeDepartmentIdField" SourceTableRelationshipId="EmployeeDepartmentRelationship">
+      <Ordinal>1</Ordinal>
+      <SourceFieldName>DepartmentId</SourceFieldName>
+      <TargetFieldName>DepartmentId</TargetFieldName>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="InvoiceOrderRelationshipField" SourceFieldId="InvoiceOrderIdField" SourceTableRelationshipId="InvoiceOrderRelationship">
+      <Ordinal>1</Ordinal>
+      <SourceFieldName>OrderId</SourceFieldName>
+      <TargetFieldName>OrderId</TargetFieldName>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="InvoiceSupplierRelationshipField" SourceFieldId="InvoiceSupplierIdField" SourceTableRelationshipId="InvoiceSupplierRelationship">
+      <Ordinal>1</Ordinal>
+      <SourceFieldName>SupplierId</SourceFieldName>
+      <TargetFieldName>SupplierId</TargetFieldName>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="OrderCustomerRelationshipField" SourceFieldId="OrderCustomerIdField" SourceTableRelationshipId="OrderCustomerRelationship">
+      <Ordinal>1</Ordinal>
+      <SourceFieldName>CustomerId</SourceFieldName>
+      <TargetFieldName>CustomerId</TargetFieldName>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="ProductSupplierRelationshipField" SourceFieldId="ProductSupplierIdField" SourceTableRelationshipId="ProductSupplierRelationship">
+      <Ordinal>1</Ordinal>
+      <SourceFieldName>SupplierId</SourceFieldName>
+      <TargetFieldName>SupplierId</TargetFieldName>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="ShipmentOrderRelationshipField" SourceFieldId="ShipmentOrderIdField" SourceTableRelationshipId="ShipmentOrderRelationship">
+      <Ordinal>1</Ordinal>
+      <SourceFieldName>OrderId</SourceFieldName>
+      <TargetFieldName>OrderId</TargetFieldName>
+    </SourceTableRelationshipField>
+  </SourceTableRelationshipFieldList>
+</MetaRawDataVault>

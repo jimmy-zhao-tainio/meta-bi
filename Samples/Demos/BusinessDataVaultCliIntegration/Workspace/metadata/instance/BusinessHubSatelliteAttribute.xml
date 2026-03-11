@@ -6,15 +6,45 @@
       <Name>CarrierName</Name>
       <Ordinal>2</Ordinal>
     </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="CostCenterBudgetAmount" BusinessHubSatelliteId="CostCenterBudget">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>BudgetAmount</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="CostCenterFiscalYear" BusinessHubSatelliteId="CostCenterBudget">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>FiscalYear</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
     <BusinessHubSatelliteAttribute Id="CostCenterName" BusinessHubSatelliteId="CostCenterProfile">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>CostCenterName</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="CustomerCityName" BusinessHubSatelliteId="CustomerAddress">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CityName</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="CustomerCountryCode" BusinessHubSatelliteId="CustomerAddress">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CountryCode</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="CustomerEmailAddress" BusinessHubSatelliteId="CustomerContact">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>EmailAddress</Name>
       <Ordinal>1</Ordinal>
     </BusinessHubSatelliteAttribute>
     <BusinessHubSatelliteAttribute Id="CustomerName" BusinessHubSatelliteId="CustomerProfile">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>CustomerName</Name>
       <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="CustomerPhoneNumber" BusinessHubSatelliteId="CustomerContact">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>PhoneNumber</Name>
+      <Ordinal>2</Ordinal>
     </BusinessHubSatelliteAttribute>
     <BusinessHubSatelliteAttribute Id="CustomerTier" BusinessHubSatelliteId="CustomerProfile">
       <DataTypeId>meta:type:String</DataTypeId>
@@ -24,6 +54,26 @@
     <BusinessHubSatelliteAttribute Id="DepartmentName" BusinessHubSatelliteId="DepartmentProfile">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>DepartmentName</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="DepartmentRegionName" BusinessHubSatelliteId="DepartmentOperatingModel">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>RegionName</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="DepartmentType" BusinessHubSatelliteId="DepartmentOperatingModel">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>DepartmentType</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="EmployeeEmploymentType" BusinessHubSatelliteId="EmployeeEmployment">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>EmploymentType</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="EmployeeHireDate" BusinessHubSatelliteId="EmployeeEmployment">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>HireDate</Name>
       <Ordinal>1</Ordinal>
     </BusinessHubSatelliteAttribute>
     <BusinessHubSatelliteAttribute Id="EmployeeName" BusinessHubSatelliteId="EmployeeProfile">
@@ -51,9 +101,19 @@
       <Name>OrderDate</Name>
       <Ordinal>1</Ordinal>
     </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="ProductBrand" BusinessHubSatelliteId="ProductCommercial">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>BrandName</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
     <BusinessHubSatelliteAttribute Id="ProductCategory" BusinessHubSatelliteId="ProductProfile">
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>ProductCategory</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="ProductLifecycleStatus" BusinessHubSatelliteId="ProductCommercial">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>LifecycleStatus</Name>
       <Ordinal>2</Ordinal>
     </BusinessHubSatelliteAttribute>
     <BusinessHubSatelliteAttribute Id="ProductName" BusinessHubSatelliteId="ProductProfile">
@@ -70,6 +130,16 @@
       <DataTypeId>meta:type:String</DataTypeId>
       <Name>SupplierName</Name>
       <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="SupplierRiskClass" BusinessHubSatelliteId="SupplierCompliance">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>RiskClass</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="SupplierTaxIdentifier" BusinessHubSatelliteId="SupplierCompliance">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>TaxIdentifier</Name>
+      <Ordinal>2</Ordinal>
     </BusinessHubSatelliteAttribute>
   </BusinessHubSatelliteAttributeList>
 </MetaBusinessDataVault>

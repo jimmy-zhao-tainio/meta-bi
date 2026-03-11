@@ -4,7 +4,7 @@ using Meta.Core.Presentation;
 using Meta.Core.Services;
 using MetaDataVault.Core;
 
-internal static class Program
+internal static partial class Program
 {
     private static readonly ConsolePresenter Presenter = new();
 
@@ -26,9 +26,18 @@ internal static class Program
             return await RunFromMetaSchemaAsync(args).ConfigureAwait(false);
         }
 
+        if (TryGetAddCommand(args[0], out var addCommand) && addCommand != null)
+        {
+            return await RunAddCommandAsync(addCommand, args).ConfigureAwait(false);
+        }
+
+        if (string.Equals(args[0], "generate-sql", StringComparison.OrdinalIgnoreCase))
+        {
+            return await RunGenerateSqlAsync(args).ConfigureAwait(false);
+        }
+
         return Fail($"unknown command '{args[0]}'.", "meta-datavault-raw help");
     }
-
 
     private static async Task<int> RunNewWorkspaceAsync(string[] args)
     {
@@ -155,7 +164,6 @@ internal static class Program
         return 0;
     }
 
-
     private static (bool Ok, string NewWorkspacePath, string ErrorMessage) ParseNewWorkspaceOnly(string[] args, int startIndex)
     {
         var newWorkspacePath = string.Empty;
@@ -200,53 +208,29 @@ internal static class Program
             var arg = args[i];
             if (string.Equals(arg, "--source-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --source-workspace.");
-                }
-                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath))
-                {
-                    return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--source-workspace can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --source-workspace.");
+                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--source-workspace can only be provided once.");
                 sourceWorkspacePath = args[++i];
                 continue;
             }
             if (string.Equals(arg, "--business-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --business-workspace.");
-                }
-                if (!string.IsNullOrWhiteSpace(businessWorkspacePath))
-                {
-                    return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--business-workspace can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --business-workspace.");
+                if (!string.IsNullOrWhiteSpace(businessWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--business-workspace can only be provided once.");
                 businessWorkspacePath = args[++i];
                 continue;
             }
             if (string.Equals(arg, "--implementation-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --implementation-workspace.");
-                }
-                if (!string.IsNullOrWhiteSpace(implementationWorkspacePath))
-                {
-                    return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--implementation-workspace can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --implementation-workspace.");
+                if (!string.IsNullOrWhiteSpace(implementationWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--implementation-workspace can only be provided once.");
                 implementationWorkspacePath = args[++i];
                 continue;
             }
             if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --new-workspace.");
-                }
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath))
-                {
-                    return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--new-workspace can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --new-workspace.");
+                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--new-workspace can only be provided once.");
                 newWorkspacePath = args[++i];
                 continue;
             }
@@ -271,11 +255,7 @@ internal static class Program
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
     {
         var renderedDetails = new List<string>();
-        if (details != null)
-        {
-            renderedDetails.AddRange(details);
-        }
-
+        if (details != null) renderedDetails.AddRange(details);
         renderedDetails.Add($"Next: {next}");
         Presenter.WriteFailure(message, renderedDetails);
         return exitCode;
@@ -289,12 +269,15 @@ internal static class Program
         {
             ("help", "Show this help."),
             ("--new-workspace", "Create an empty MetaRawDataVault workspace."),
-            ("from-metaschema", "Materialize a raw datavault from MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces.")
+            ("from-metaschema", "Materialize a raw datavault from MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces."),
+            ("generate-sql", "Generate raw datavault SQL from a MetaRawDataVault workspace."),
+            ("add-*", "Add sanctioned MetaRawDataVault rows.")
         });
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteNext("meta-datavault-raw from-metaschema --help");
+        Presenter.WriteCommandCatalog("Authoring commands:", GetAddCommandCatalog().ToList());
+        Presenter.WriteInfo(string.Empty);
+        Presenter.WriteNext("meta-datavault-raw generate-sql --help");
     }
-
 
     private static void PrintFromMetaSchemaHelp()
     {
@@ -305,5 +288,3 @@ internal static class Program
         Presenter.WriteInfo("  Heuristic business-key inference was removed. Raw datavault materialization now requires explicit sanctioned inputs and weave bindings.");
     }
 }
-
-

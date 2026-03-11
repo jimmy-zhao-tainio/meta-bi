@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Meta.Core.Services;
 using MetaSchema.Core;
 
@@ -148,7 +148,7 @@ public sealed class CliTests
         Assert.Contains("meta-datavault-raw", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("from-metaschema", result.Output);
         Assert.DoesNotContain("check-business-materialization", result.Output);
-        Assert.DoesNotContain("generate-sql", result.Output);
+        Assert.Contains("generate-sql", result.Output);
     }
 
 
@@ -761,6 +761,149 @@ public sealed class CliTests
         }
     }
 
+    [Fact]
+    public async Task RawAuthoringCommands_CoverBaselineAddCommands()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+
+        try
+        {
+            var createResult = RunRawCli($"--new-workspace \"{workspacePath}\"");
+            Assert.Equal(0, createResult.ExitCode);
+
+            RunRawAdd(workspacePath, "add-source-system --id Sales --name Sales");
+            RunRawAdd(workspacePath, "add-source-schema --id dbo --system Sales --name dbo");
+            RunRawAdd(workspacePath, "add-source-table --id CustomerTable --schema dbo --name Customer");
+            RunRawAdd(workspacePath, "add-source-table --id OrderTable --schema dbo --name [Order]");
+            RunRawAdd(workspacePath, "add-source-field --id CustomerIdField --table CustomerTable --name CustomerId --data-type-id sqlserver:type:nvarchar --ordinal 1 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id CustomerIdFieldLength --field CustomerIdField --name Length --value 50");
+            RunRawAdd(workspacePath, "add-source-field --id CustomerNameField --table CustomerTable --name CustomerName --data-type-id sqlserver:type:nvarchar --ordinal 2 --is-nullable true");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id CustomerNameFieldLength --field CustomerNameField --name Length --value 200");
+            RunRawAdd(workspacePath, "add-source-field --id OrderIdField --table OrderTable --name OrderId --data-type-id sqlserver:type:nvarchar --ordinal 1 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderIdFieldLength --field OrderIdField --name Length --value 50");
+            RunRawAdd(workspacePath, "add-source-field --id OrderCustomerIdField --table OrderTable --name CustomerId --data-type-id sqlserver:type:nvarchar --ordinal 2 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderCustomerIdFieldLength --field OrderCustomerIdField --name Length --value 50");
+            RunRawAdd(workspacePath, "add-source-field --id OrderStatusField --table OrderTable --name StatusCode --data-type-id sqlserver:type:nvarchar --ordinal 3 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderStatusFieldLength --field OrderStatusField --name Length --value 20");
+            RunRawAdd(workspacePath, "add-source-table-relationship --id OrderCustomerRelationship --source-table OrderTable --name FK_Order_Customer --target-schema-name dbo --target-table-name Customer");
+            RunRawAdd(workspacePath, "add-source-table-relationship-field --id OrderCustomerRelationshipField --relationship OrderCustomerRelationship --source-field OrderCustomerIdField --ordinal 1 --source-field-name CustomerId --target-field-name CustomerId");
+            RunRawAdd(workspacePath, "add-hub --id CustomerHub --source-table CustomerTable --name Customer");
+            RunRawAdd(workspacePath, "add-hub --id OrderHub --source-table OrderTable --name Order");
+            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --source-field CustomerIdField --name CustomerId --ordinal 1");
+            RunRawAdd(workspacePath, "add-hub-key-part --id OrderHubKey --hub OrderHub --source-field OrderIdField --name OrderId --ordinal 1");
+            RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --source-table CustomerTable --name CustomerProfile --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --source-field CustomerNameField --name CustomerName --ordinal 1");
+            RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --source-relationship OrderCustomerRelationship --name OrderCustomer --link-kind standard");
+            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --ordinal 1 --role-name Order");
+            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --ordinal 2 --role-name Customer");
+            RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --source-table OrderTable --name OrderCustomerStatus --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --source-field OrderStatusField --name StatusCode --ordinal 1");
+
+            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
+            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawLink").Count);
+            Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").Count);
+            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").Count);
+            Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite").Count);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task RawGenerateSql_EmitsExpectedFiles()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            var createResult = RunRawCli($"--new-workspace \"{workspacePath}\"");
+            Assert.Equal(0, createResult.ExitCode);
+            RunRawAdd(workspacePath, "add-source-system --id Sales --name Sales");
+            RunRawAdd(workspacePath, "add-source-schema --id dbo --system Sales --name dbo");
+            RunRawAdd(workspacePath, "add-source-table --id CustomerTable --schema dbo --name Customer");
+            RunRawAdd(workspacePath, "add-source-table --id OrderTable --schema dbo --name [Order]");
+            RunRawAdd(workspacePath, "add-source-field --id CustomerIdField --table CustomerTable --name CustomerId --data-type-id sqlserver:type:nvarchar --ordinal 1 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id CustomerIdFieldLength --field CustomerIdField --name Length --value 50");
+            RunRawAdd(workspacePath, "add-source-field --id CustomerNameField --table CustomerTable --name CustomerName --data-type-id sqlserver:type:nvarchar --ordinal 2 --is-nullable true");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id CustomerNameFieldLength --field CustomerNameField --name Length --value 200");
+            RunRawAdd(workspacePath, "add-source-field --id OrderIdField --table OrderTable --name OrderId --data-type-id sqlserver:type:nvarchar --ordinal 1 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderIdFieldLength --field OrderIdField --name Length --value 50");
+            RunRawAdd(workspacePath, "add-source-field --id OrderCustomerIdField --table OrderTable --name CustomerId --data-type-id sqlserver:type:nvarchar --ordinal 2 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderCustomerIdFieldLength --field OrderCustomerIdField --name Length --value 50");
+            RunRawAdd(workspacePath, "add-source-field --id OrderStatusField --table OrderTable --name StatusCode --data-type-id sqlserver:type:nvarchar --ordinal 3 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id OrderStatusFieldLength --field OrderStatusField --name Length --value 20");
+            RunRawAdd(workspacePath, "add-source-table-relationship --id OrderCustomerRelationship --source-table OrderTable --name FK_Order_Customer --target-schema-name dbo --target-table-name Customer");
+            RunRawAdd(workspacePath, "add-source-table-relationship-field --id OrderCustomerRelationshipField --relationship OrderCustomerRelationship --source-field OrderCustomerIdField --ordinal 1 --source-field-name CustomerId --target-field-name CustomerId");
+            RunRawAdd(workspacePath, "add-hub --id CustomerHub --source-table CustomerTable --name Customer");
+            RunRawAdd(workspacePath, "add-hub --id OrderHub --source-table OrderTable --name Order");
+            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --source-field CustomerIdField --name CustomerId --ordinal 1");
+            RunRawAdd(workspacePath, "add-hub-key-part --id OrderHubKey --hub OrderHub --source-field OrderIdField --name OrderId --ordinal 1");
+            RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --source-table CustomerTable --name CustomerProfile --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --source-field CustomerNameField --name CustomerName --ordinal 1");
+            RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --source-relationship OrderCustomerRelationship --name OrderCustomer --link-kind standard");
+            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --ordinal 1 --role-name Order");
+            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --ordinal 2 --role-name Customer");
+            RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --source-table OrderTable --name OrderCustomerStatus --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --source-field OrderStatusField --name StatusCode --ordinal 1");
+
+            var result = RunRawCli($"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+            Assert.Equal(0, result.ExitCode);
+            var hubSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "H_Customer.sql"));
+            var linkSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "L_OrderCustomer.sql"));
+            var hubSatSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "HS_Customer_CustomerProfile.sql"));
+            var linkSatSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "LS_OrderCustomer_OrderCustomerStatus.sql"));
+            Assert.Contains("CREATE TABLE [dbo].[H_Customer]", hubSql);
+            Assert.Contains("[CustomerId] nvarchar(50) NOT NULL", hubSql);
+            Assert.Contains("CREATE TABLE [dbo].[L_OrderCustomer]", linkSql);
+            Assert.Contains("[OrderHashKey] binary(16) NOT NULL", linkSql);
+            Assert.Contains("[CustomerHashKey] binary(16) NOT NULL", linkSql);
+            Assert.Contains("CREATE TABLE [dbo].[HS_Customer_CustomerProfile]", hubSatSql);
+            Assert.Contains("[CustomerName] nvarchar(200) NULL", hubSatSql);
+            Assert.Contains("CREATE TABLE [dbo].[LS_OrderCustomer_OrderCustomerStatus]", linkSatSql);
+            Assert.Contains("[StatusCode] nvarchar(20) NOT NULL", linkSatSql);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task RawGenerateSql_FailsWhenOutputDirectoryIsNotEmpty()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+
+        try
+        {
+            var createResult = RunRawCli($"--new-workspace \"{workspacePath}\"");
+            Assert.Equal(0, createResult.ExitCode);
+
+            Directory.CreateDirectory(sqlOutputPath);
+            await File.WriteAllTextAsync(Path.Combine(sqlOutputPath, "stale.sql"), "-- stale");
+
+            var result = RunRawCli($"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("must be empty", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
     private static void SeedMetaSchema(Meta.Core.Domain.Workspace workspace)
     {
         var systems = workspace.Instance.GetOrCreateEntityRecords("System");
@@ -983,6 +1126,12 @@ public sealed class CliTests
         }
     }
 
+    private static void RunRawAdd(string workspacePath, string command)
+    {
+        var result = RunRawCli($"{command} --workspace \"{workspacePath}\"");
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("OK: raw datavault row added", result.Output, StringComparison.OrdinalIgnoreCase);
+    }
     private static void RunBusinessAdd(string workspacePath, string command)
     {
         var result = RunBusinessCli($"{command} --workspace \"{workspacePath}\"");
@@ -1082,6 +1231,9 @@ public sealed class CliTests
         }
     }
 }
+
+
+
 
 
 

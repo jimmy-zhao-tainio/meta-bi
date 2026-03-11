@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <SourceSchemaList>
+    <SourceSchema Id="CrmDbo" SourceSystemId="CRM">
+      <Name>dbo</Name>
+    </SourceSchema>
+    <SourceSchema Id="ErpDbo" SourceSystemId="ERP">
+      <Name>dbo</Name>
+    </SourceSchema>
+    <SourceSchema Id="FinDbo" SourceSystemId="FIN">
+      <Name>dbo</Name>
+    </SourceSchema>
+    <SourceSchema Id="HrDbo" SourceSystemId="HR">
+      <Name>dbo</Name>
+    </SourceSchema>
+  </SourceSchemaList>
+</MetaRawDataVault>

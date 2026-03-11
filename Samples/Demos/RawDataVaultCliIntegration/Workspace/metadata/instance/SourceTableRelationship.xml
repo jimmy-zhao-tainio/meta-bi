@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <SourceTableRelationshipList>
+    <SourceTableRelationship Id="EmployeeDepartmentRelationship" SourceTableId="EmployeeTable">
+      <Name>FK_Employee_Department</Name>
+      <TargetSchemaName>dbo</TargetSchemaName>
+      <TargetTableName>Department</TargetTableName>
+    </SourceTableRelationship>
+    <SourceTableRelationship Id="InvoiceOrderRelationship" SourceTableId="InvoiceTable">
+      <Name>FK_Invoice_OrderHeader</Name>
+      <TargetSchemaName>dbo</TargetSchemaName>
+      <TargetTableName>OrderHeader</TargetTableName>
+    </SourceTableRelationship>
+    <SourceTableRelationship Id="InvoiceSupplierRelationship" SourceTableId="InvoiceTable">
+      <Name>FK_Invoice_Supplier</Name>
+      <TargetSchemaName>dbo</TargetSchemaName>
+      <TargetTableName>Supplier</TargetTableName>
+    </SourceTableRelationship>
+    <SourceTableRelationship Id="OrderCustomerRelationship" SourceTableId="OrderTable">
+      <Name>FK_OrderHeader_Customer</Name>
+      <TargetSchemaName>dbo</TargetSchemaName>
+      <TargetTableName>Customer</TargetTableName>
+    </SourceTableRelationship>
+    <SourceTableRelationship Id="ProductSupplierRelationship" SourceTableId="ProductTable">
+      <Name>FK_Product_Supplier</Name>
+      <TargetSchemaName>dbo</TargetSchemaName>
+      <TargetTableName>Supplier</TargetTableName>
+    </SourceTableRelationship>
+    <SourceTableRelationship Id="ShipmentOrderRelationship" SourceTableId="ShipmentTable">
+      <Name>FK_Shipment_OrderHeader</Name>
+      <TargetSchemaName>dbo</TargetSchemaName>
+      <TargetTableName>OrderHeader</TargetTableName>
+    </SourceTableRelationship>
+  </SourceTableRelationshipList>
+</MetaRawDataVault>

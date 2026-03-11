@@ -111,7 +111,7 @@
         <Relationship entity="SourceTableRelationship" />
       </RelationshipList>
     </Entity>
-    <Entity name="RawLinkEnd">
+    <Entity name="RawLinkHub">
       <PropertyList>
         <Property name="Ordinal" />
         <Property name="RoleName" isRequired="false" />

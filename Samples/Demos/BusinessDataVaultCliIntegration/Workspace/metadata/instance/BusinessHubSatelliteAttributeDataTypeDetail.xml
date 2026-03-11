@@ -5,13 +5,37 @@
       <Name>Length</Name>
       <Value>100</Value>
     </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CostCenterBudgetAmountPrecision" BusinessHubSatelliteAttributeId="CostCenterBudgetAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CostCenterBudgetAmountScale" BusinessHubSatelliteAttributeId="CostCenterBudgetAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
     <BusinessHubSatelliteAttributeDataTypeDetail Id="CostCenterNameLength" BusinessHubSatelliteAttributeId="CostCenterName">
       <Name>Length</Name>
       <Value>150</Value>
     </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerCityNameLength" BusinessHubSatelliteAttributeId="CustomerCityName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerCountryCodeLength" BusinessHubSatelliteAttributeId="CustomerCountryCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerEmailAddressLength" BusinessHubSatelliteAttributeId="CustomerEmailAddress">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
     <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerNameLength" BusinessHubSatelliteAttributeId="CustomerName">
       <Name>Length</Name>
       <Value>200</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerPhoneNumberLength" BusinessHubSatelliteAttributeId="CustomerPhoneNumber">
+      <Name>Length</Name>
+      <Value>40</Value>
     </BusinessHubSatelliteAttributeDataTypeDetail>
     <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerTierLength" BusinessHubSatelliteAttributeId="CustomerTier">
       <Name>Length</Name>
@@ -20,6 +44,18 @@
     <BusinessHubSatelliteAttributeDataTypeDetail Id="DepartmentNameLength" BusinessHubSatelliteAttributeId="DepartmentName">
       <Name>Length</Name>
       <Value>150</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="DepartmentRegionNameLength" BusinessHubSatelliteAttributeId="DepartmentRegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="DepartmentTypeLength" BusinessHubSatelliteAttributeId="DepartmentType">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="EmployeeEmploymentTypeLength" BusinessHubSatelliteAttributeId="EmployeeEmploymentType">
+      <Name>Length</Name>
+      <Value>30</Value>
     </BusinessHubSatelliteAttributeDataTypeDetail>
     <BusinessHubSatelliteAttributeDataTypeDetail Id="EmployeeNameLength" BusinessHubSatelliteAttributeId="EmployeeName">
       <Name>Length</Name>
@@ -41,9 +77,17 @@
       <Name>Scale</Name>
       <Value>2</Value>
     </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductBrandLength" BusinessHubSatelliteAttributeId="ProductBrand">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
     <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductCategoryLength" BusinessHubSatelliteAttributeId="ProductCategory">
       <Name>Length</Name>
       <Value>50</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductLifecycleStatusLength" BusinessHubSatelliteAttributeId="ProductLifecycleStatus">
+      <Name>Length</Name>
+      <Value>40</Value>
     </BusinessHubSatelliteAttributeDataTypeDetail>
     <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductNameLength" BusinessHubSatelliteAttributeId="ProductName">
       <Name>Length</Name>
@@ -52,6 +96,14 @@
     <BusinessHubSatelliteAttributeDataTypeDetail Id="SupplierNameLength" BusinessHubSatelliteAttributeId="SupplierName">
       <Name>Length</Name>
       <Value>200</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="SupplierRiskClassLength" BusinessHubSatelliteAttributeId="SupplierRiskClass">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="SupplierTaxIdentifierLength" BusinessHubSatelliteAttributeId="SupplierTaxIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
     </BusinessHubSatelliteAttributeDataTypeDetail>
   </BusinessHubSatelliteAttributeDataTypeDetailList>
 </MetaBusinessDataVault>
