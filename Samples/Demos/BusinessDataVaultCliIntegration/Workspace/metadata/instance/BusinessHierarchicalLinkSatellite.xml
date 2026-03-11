@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHierarchicalLinkSatelliteList>
+    <BusinessHierarchicalLinkSatellite Id="DepartmentHierarchyInfo" BusinessHierarchicalLinkId="DepartmentHierarchy">
+      <Name>DepartmentHierarchyInfo</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHierarchicalLinkSatellite>
+  </BusinessHierarchicalLinkSatelliteList>
+</MetaBusinessDataVault>

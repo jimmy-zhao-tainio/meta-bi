@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSameAsLinkSatelliteAttributeDataTypeDetailList>
+    <BusinessSameAsLinkSatelliteAttributeDataTypeDetail Id="CustomerSameAsCrmConfidencePrecision" BusinessSameAsLinkSatelliteAttributeId="CustomerSameAsCrmConfidence">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </BusinessSameAsLinkSatelliteAttributeDataTypeDetail>
+    <BusinessSameAsLinkSatelliteAttributeDataTypeDetail Id="CustomerSameAsCrmConfidenceScale" BusinessSameAsLinkSatelliteAttributeId="CustomerSameAsCrmConfidence">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessSameAsLinkSatelliteAttributeDataTypeDetail>
+  </BusinessSameAsLinkSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

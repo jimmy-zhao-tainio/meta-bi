@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessBridgeLinkSatelliteAttributeProjectionList>
+    <BusinessBridgeLinkSatelliteAttributeProjection Id="CustomerFulfillmentOrderStatusCode" BusinessBridgeId="CustomerFulfillmentTraversal" BusinessLinkSatelliteAttributeId="CustomerOrderStatusCode">
+      <Name>OrderStatusCode</Name>
+      <Ordinal>5</Ordinal>
+    </BusinessBridgeLinkSatelliteAttributeProjection>
+  </BusinessBridgeLinkSatelliteAttributeProjectionList>
+</MetaBusinessDataVault>

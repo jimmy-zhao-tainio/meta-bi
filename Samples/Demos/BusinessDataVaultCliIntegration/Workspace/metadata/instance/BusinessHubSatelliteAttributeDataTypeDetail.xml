@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteAttributeDataTypeDetailList>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CarrierNameLength" BusinessHubSatelliteAttributeId="CarrierName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CostCenterNameLength" BusinessHubSatelliteAttributeId="CostCenterName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerNameLength" BusinessHubSatelliteAttributeId="CustomerName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerTierLength" BusinessHubSatelliteAttributeId="CustomerTier">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="DepartmentNameLength" BusinessHubSatelliteAttributeId="DepartmentName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="EmployeeNameLength" BusinessHubSatelliteAttributeId="EmployeeName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="InvoiceAmountPrecision" BusinessHubSatelliteAttributeId="InvoiceAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="InvoiceAmountScale" BusinessHubSatelliteAttributeId="InvoiceAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="OrderAmountPrecision" BusinessHubSatelliteAttributeId="OrderAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="OrderAmountScale" BusinessHubSatelliteAttributeId="OrderAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductCategoryLength" BusinessHubSatelliteAttributeId="ProductCategory">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductNameLength" BusinessHubSatelliteAttributeId="ProductName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="SupplierNameLength" BusinessHubSatelliteAttributeId="SupplierName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+  </BusinessHubSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessBridgeHubKeyPartProjectionList>
+    <BusinessBridgeHubKeyPartProjection Id="CustomerFulfillmentCustomerIdentifier" BusinessBridgeId="CustomerFulfillmentTraversal" BusinessHubKeyPartId="CustomerIdentifier">
+      <Name>CustomerIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessBridgeHubKeyPartProjection>
+    <BusinessBridgeHubKeyPartProjection Id="CustomerFulfillmentOrderIdentifier" BusinessBridgeId="CustomerFulfillmentTraversal" BusinessHubKeyPartId="OrderIdentifier">
+      <Name>OrderIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessBridgeHubKeyPartProjection>
+    <BusinessBridgeHubKeyPartProjection Id="CustomerFulfillmentShipmentIdentifier" BusinessBridgeId="CustomerFulfillmentTraversal" BusinessHubKeyPartId="ShipmentIdentifier">
+      <Name>ShipmentIdentifier</Name>
+      <Ordinal>3</Ordinal>
+    </BusinessBridgeHubKeyPartProjection>
+  </BusinessBridgeHubKeyPartProjectionList>
+</MetaBusinessDataVault>

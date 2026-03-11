@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkSatelliteAttributeList>
+    <BusinessLinkSatelliteAttribute Id="CustomerOrderCurrencyCode" BusinessLinkSatelliteId="CustomerOrderStatus">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CurrencyCode</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessLinkSatelliteAttribute>
+    <BusinessLinkSatelliteAttribute Id="CustomerOrderStatusCode" BusinessLinkSatelliteId="CustomerOrderStatus">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>OrderStatusCode</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessLinkSatelliteAttribute>
+    <BusinessLinkSatelliteAttribute Id="DepartmentCostCenterShare" BusinessLinkSatelliteId="DepartmentCostCenterAssignment">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>AllocationShare</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessLinkSatelliteAttribute>
+    <BusinessLinkSatelliteAttribute Id="EmployeeDepartmentStartDate" BusinessLinkSatelliteId="EmployeeDepartmentAssignment">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>StartDate</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessLinkSatelliteAttribute>
+    <BusinessLinkSatelliteAttribute Id="OrderProductQuantity" BusinessLinkSatelliteId="OrderProductLine">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>Quantity</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessLinkSatelliteAttribute>
+    <BusinessLinkSatelliteAttribute Id="OrderProductUnitPrice" BusinessLinkSatelliteId="OrderProductLine">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>UnitPrice</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessLinkSatelliteAttribute>
+    <BusinessLinkSatelliteAttribute Id="SupplierProductLeadTimeDays" BusinessLinkSatelliteId="SupplierProductTerms">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>LeadTimeDays</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessLinkSatelliteAttribute>
+  </BusinessLinkSatelliteAttributeList>
+</MetaBusinessDataVault>

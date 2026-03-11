@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkSatelliteAttributeDataTypeDetailList>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="CustomerOrderCurrencyCodeLength" BusinessLinkSatelliteAttributeId="CustomerOrderCurrencyCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="CustomerOrderStatusCodeLength" BusinessLinkSatelliteAttributeId="CustomerOrderStatusCode">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="DepartmentCostCenterSharePrecision" BusinessLinkSatelliteAttributeId="DepartmentCostCenterShare">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="DepartmentCostCenterShareScale" BusinessLinkSatelliteAttributeId="DepartmentCostCenterShare">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="OrderProductUnitPricePrecision" BusinessLinkSatelliteAttributeId="OrderProductUnitPrice">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+    <BusinessLinkSatelliteAttributeDataTypeDetail Id="OrderProductUnitPriceScale" BusinessLinkSatelliteAttributeId="OrderProductUnitPrice">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessLinkSatelliteAttributeDataTypeDetail>
+  </BusinessLinkSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

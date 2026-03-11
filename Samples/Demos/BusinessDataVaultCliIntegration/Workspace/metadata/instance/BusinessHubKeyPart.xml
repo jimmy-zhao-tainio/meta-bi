@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubKeyPartList>
+    <BusinessHubKeyPart Id="CostCenterIdentifier" BusinessHubId="CostCenter">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CostCenterIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="CrmCustomerIdentifier" BusinessHubId="CrmCustomer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CrmCustomerIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="CustomerIdentifier" BusinessHubId="Customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CustomerIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="DepartmentIdentifier" BusinessHubId="Department">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>DepartmentIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="EmployeeIdentifier" BusinessHubId="Employee">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>EmployeeIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="InvoiceIdentifier" BusinessHubId="Invoice">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>InvoiceIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="OrderIdentifier" BusinessHubId="Order">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>OrderIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="ProductIdentifier" BusinessHubId="Product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="ShipmentIdentifier" BusinessHubId="Shipment">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ShipmentIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SupplierIdentifier" BusinessHubId="Supplier">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>SupplierIdentifier</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubKeyPart>
+  </BusinessHubKeyPartList>
+</MetaBusinessDataVault>

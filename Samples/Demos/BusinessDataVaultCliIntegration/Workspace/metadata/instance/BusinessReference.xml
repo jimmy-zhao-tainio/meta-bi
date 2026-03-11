@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessReferenceList>
+    <BusinessReference Id="CurrencyCode">
+      <Name>CurrencyCode</Name>
+    </BusinessReference>
+    <BusinessReference Id="OrderStatus">
+      <Name>OrderStatus</Name>
+    </BusinessReference>
+  </BusinessReferenceList>
+</MetaBusinessDataVault>

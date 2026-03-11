@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteList>
+    <BusinessHubSatellite Id="CostCenterProfile" BusinessHubId="CostCenter">
+      <Name>CostCenterProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="CustomerProfile" BusinessHubId="Customer">
+      <Name>CustomerProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="DepartmentProfile" BusinessHubId="Department">
+      <Name>DepartmentProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="EmployeeProfile" BusinessHubId="Employee">
+      <Name>EmployeeProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="InvoiceHeader" BusinessHubId="Invoice">
+      <Name>InvoiceHeader</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="OrderHeader" BusinessHubId="Order">
+      <Name>OrderHeader</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="ProductProfile" BusinessHubId="Product">
+      <Name>ProductProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="ShipmentHeader" BusinessHubId="Shipment">
+      <Name>ShipmentHeader</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="SupplierProfile" BusinessHubId="Supplier">
+      <Name>SupplierProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </BusinessHubSatellite>
+  </BusinessHubSatelliteList>
+</MetaBusinessDataVault>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkHubList>
+    <BusinessLinkHub Id="CustomerOrderCustomer" BusinessHubId="Customer" BusinessLinkId="CustomerOrder">
+      <Ordinal>1</Ordinal>
+      <RoleName>Customer</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="CustomerOrderOrder" BusinessHubId="Order" BusinessLinkId="CustomerOrder">
+      <Ordinal>2</Ordinal>
+      <RoleName>Order</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="DepartmentCostCenterCostCenter" BusinessHubId="CostCenter" BusinessLinkId="DepartmentCostCenter">
+      <Ordinal>2</Ordinal>
+      <RoleName>CostCenter</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="DepartmentCostCenterDepartment" BusinessHubId="Department" BusinessLinkId="DepartmentCostCenter">
+      <Ordinal>1</Ordinal>
+      <RoleName>Department</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="EmployeeDepartmentDepartment" BusinessHubId="Department" BusinessLinkId="EmployeeDepartment">
+      <Ordinal>2</Ordinal>
+      <RoleName>Department</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="EmployeeDepartmentEmployee" BusinessHubId="Employee" BusinessLinkId="EmployeeDepartment">
+      <Ordinal>1</Ordinal>
+      <RoleName>Employee</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="OrderInvoiceInvoice" BusinessHubId="Invoice" BusinessLinkId="OrderInvoice">
+      <Ordinal>2</Ordinal>
+      <RoleName>Invoice</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="OrderInvoiceOrder" BusinessHubId="Order" BusinessLinkId="OrderInvoice">
+      <Ordinal>1</Ordinal>
+      <RoleName>Order</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="OrderProductOrder" BusinessHubId="Order" BusinessLinkId="OrderProduct">
+      <Ordinal>1</Ordinal>
+      <RoleName>Order</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="OrderProductProduct" BusinessHubId="Product" BusinessLinkId="OrderProduct">
+      <Ordinal>2</Ordinal>
+      <RoleName>Product</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="ShipmentOrderOrder" BusinessHubId="Order" BusinessLinkId="ShipmentOrder">
+      <Ordinal>2</Ordinal>
+      <RoleName>Order</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="ShipmentOrderShipment" BusinessHubId="Shipment" BusinessLinkId="ShipmentOrder">
+      <Ordinal>1</Ordinal>
+      <RoleName>Shipment</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SupplierProductProduct" BusinessHubId="Product" BusinessLinkId="SupplierProduct">
+      <Ordinal>2</Ordinal>
+      <RoleName>Product</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SupplierProductSupplier" BusinessHubId="Supplier" BusinessLinkId="SupplierProduct">
+      <Ordinal>1</Ordinal>
+      <RoleName>Supplier</RoleName>
+    </BusinessLinkHub>
+  </BusinessLinkHubList>
+</MetaBusinessDataVault>
