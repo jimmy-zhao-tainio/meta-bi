@@ -1,6 +1,6 @@
 # Business Data Vault CLI Integration
 
-This demo creates a new Business Data Vault workspace using only CLI commands, generates SQL, and deploys it to a new SQL Server database.
+This demo creates a new Business Data Vault metadata workspace using only CLI commands, generates relational SQL for that workspace through generic `meta generate sql`, and deploys it to a new SQL Server database.
 
 ## Commands
 
@@ -18,7 +18,7 @@ cleanup.cmd
 
 ## Target database
 
-- `MetaBiBusinessDataVaultCliDemo`
+- `MetaBiBusinessDataVaultCliModelDemo`
 
 ## What the demo authors
 
@@ -31,8 +31,23 @@ The workspace models a cross-department enterprise Business Data Vault with:
 - hub, link, same-as, hierarchical, and reference satellites
 - PIT and bridge helper structures
 
+## What gets deployed
+
+The deployment target is the SQL representation of the `MetaBusinessDataVault` workspace itself.
+
+That means the database contains metadata tables such as:
+
+- `BusinessHub`
+- `BusinessLink`
+- `BusinessLinkHub`
+- `BusinessHubSatellite`
+- `BusinessPointInTime`
+- `BusinessBridge`
+
+plus deterministic insert scripts for the authored instance rows.
+
 ## Output
 
-SQL is written to:
+Generated SQL is written to:
 
 - `GeneratedSql`

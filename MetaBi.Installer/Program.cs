@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using Meta.Core.Presentation;
 using Microsoft.Win32;
 
@@ -19,14 +19,14 @@ if (repoRoot is null)
 
 var tools = new[]
 {
-    new ToolSpec("meta-schema.exe", ResolveBuiltToolPath(repoRoot, "MetaSchema.Cli", "meta-schema.exe")),
-    new ToolSpec("meta-data-type.exe", ResolveBuiltToolPath(repoRoot, "MetaDataType.Cli", "meta-data-type.exe")),
-    new ToolSpec("meta-data-type-conversion.exe", ResolveBuiltToolPath(repoRoot, "MetaDataTypeConversion.Cli", "meta-data-type-conversion.exe")),
-    new ToolSpec("meta-datavault-raw.exe", ResolveBuiltToolPath(repoRoot, "MetaDataVault.Raw.Cli", "meta-datavault-raw.exe")),
-    new ToolSpec("meta-datavault-business.exe", ResolveBuiltToolPath(repoRoot, "MetaDataVault.Business.Cli", "meta-datavault-business.exe")),
+    new ToolSpec("meta-schema.exe", ResolvePublishDirectory(repoRoot, "MetaSchema.Cli", "meta-schema.exe")),
+    new ToolSpec("meta-data-type.exe", ResolvePublishDirectory(repoRoot, "MetaDataType.Cli", "meta-data-type.exe")),
+    new ToolSpec("meta-data-type-conversion.exe", ResolvePublishDirectory(repoRoot, "MetaDataTypeConversion.Cli", "meta-data-type-conversion.exe")),
+    new ToolSpec("meta-datavault-raw.exe", ResolvePublishDirectory(repoRoot, "MetaDataVault.Raw.Cli", "meta-datavault-raw.exe")),
+    new ToolSpec("meta-datavault-business.exe", ResolvePublishDirectory(repoRoot, "MetaDataVault.Business.Cli", "meta-datavault-business.exe")),
 };
 
-var missing = tools.Where(tool => tool.SourcePath is null).ToArray();
+var missing = tools.Where(tool => tool.SourceDirectory is null).ToArray();
 if (missing.Length > 0)
 {
     presenter.WriteFailure(
@@ -52,7 +52,7 @@ Directory.CreateDirectory(targetDir);
 
 foreach (var tool in tools)
 {
-    File.Copy(tool.SourcePath!, Path.Combine(targetDir, tool.FileName), overwrite: true);
+    CopyPublishPayload(tool.SourceDirectory!, targetDir);
 }
 
 EnsureUserPathContains(targetDir);
@@ -76,7 +76,7 @@ static void PrintHelp(ConsolePresenter presenter)
     presenter.WriteInfo("Notes:");
     presenter.WriteInfo("  Installs BI CLIs into %LOCALAPPDATA%\\meta\\bin.");
     presenter.WriteInfo("  Adds that directory to the user PATH if it is missing.");
-    presenter.WriteInfo("  Installs published single-file binaries from the current meta-bi checkout.");
+    presenter.WriteInfo("  Installs the full published payload from the current meta-bi checkout.");
     presenter.WriteNext("dotnet publish MetaSchema.Cli\\MetaSchema.Cli.csproj -c Debug -r win-x64");
 }
 
@@ -103,12 +103,23 @@ static string? FindRepoRoot(string startDirectory, string markerFileName)
     return null;
 }
 
-static string? ResolveBuiltToolPath(string repoRoot, string projectDirectory, string fileName)
+static string? ResolvePublishDirectory(string repoRoot, string projectDirectory, string fileName)
 {
-    var publishPath = Path.Combine(repoRoot, projectDirectory, "bin", "publish", "win-x64", fileName);
-    return File.Exists(publishPath)
+    var publishPath = Path.Combine(repoRoot, projectDirectory, "bin", "publish", "win-x64");
+    return Directory.Exists(publishPath) && File.Exists(Path.Combine(publishPath, fileName))
         ? publishPath
         : null;
+}
+
+static void CopyPublishPayload(string sourceDirectory, string targetDirectory)
+{
+    foreach (var sourcePath in Directory.GetFiles(sourceDirectory, "*", SearchOption.AllDirectories))
+    {
+        var relativePath = Path.GetRelativePath(sourceDirectory, sourcePath);
+        var targetPath = Path.Combine(targetDirectory, relativePath);
+        Directory.CreateDirectory(Path.GetDirectoryName(targetPath)!);
+        File.Copy(sourcePath, targetPath, overwrite: true);
+    }
 }
 
 static void EnsureUserPathContains(string targetDir)
@@ -140,7 +151,7 @@ static void BroadcastEnvironmentChange()
         out _);
 }
 
-internal sealed record ToolSpec(string FileName, string? SourcePath);
+internal sealed record ToolSpec(string FileName, string? SourceDirectory);
 
 internal static class NativeMethods
 {
@@ -154,4 +165,3 @@ internal static class NativeMethods
         uint uTimeout,
         out IntPtr lpdwResult);
 }
-
