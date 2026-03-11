@@ -7,6 +7,50 @@ namespace MetaDataVault.Tests;
 public sealed class CliTests
 {
     [Fact]
+    public async Task NewWorkspace_CreatesMetaBusinessDataVaultWorkspace()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+
+        try
+        {
+            var result = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("OK: metabusinessdatavault workspace created", result.Output, StringComparison.OrdinalIgnoreCase);
+
+            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            Assert.Equal("MetaBusinessDataVault", workspace.Model.Name);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task NewWorkspace_CreatesMetaRawDataVaultWorkspace()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+
+        try
+        {
+            var result = RunRawCli($"--new-workspace \"{workspacePath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("OK: metarawdatavault workspace created", result.Output, StringComparison.OrdinalIgnoreCase);
+
+            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            Assert.Equal("MetaRawDataVault", workspace.Model.Name);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
     public void Help_ShowsFromMetaSchemaCommand()
     {
         var result = RunRawCli("help");

@@ -15,6 +15,12 @@ internal static class Program
             PrintHelp();
             return 0;
         }
+
+        if (string.Equals(args[0], "--new-workspace", StringComparison.OrdinalIgnoreCase))
+        {
+            return await RunNewWorkspaceAsync(args).ConfigureAwait(false);
+        }
+
         if (string.Equals(args[0], "from-metaschema", StringComparison.OrdinalIgnoreCase))
         {
             return await RunFromMetaSchemaAsync(args).ConfigureAwait(false);
@@ -23,6 +29,40 @@ internal static class Program
         return Fail($"unknown command '{args[0]}'.", "meta-datavault-raw help");
     }
 
+
+    private static async Task<int> RunNewWorkspaceAsync(string[] args)
+    {
+        var parseResult = ParseNewWorkspaceOnly(args, 0);
+        if (!parseResult.Ok)
+        {
+            return Fail(parseResult.ErrorMessage, "meta-datavault-raw --new-workspace <path>");
+        }
+
+        var workspacePath = Path.GetFullPath(parseResult.NewWorkspacePath);
+        if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
+        {
+            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
+        }
+
+        Directory.CreateDirectory(workspacePath);
+        var workspace = MetaDataVaultWorkspaces.CreateEmptyMetaRawDataVaultWorkspace(workspacePath);
+        var validation = new ValidationService().Validate(workspace);
+        if (validation.HasErrors)
+        {
+            return Fail(
+                "metarawdatavault workspace is invalid.",
+                "fix the sanctioned model and retry workspace creation.",
+                4,
+                validation.Issues.Where(item => item.Severity == IssueSeverity.Error).Select(item => $"  - {item.Code}: {item.Message}"));
+        }
+
+        await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
+        Presenter.WriteOk(
+            "metarawdatavault workspace created",
+            ("Path", workspacePath),
+            ("Model", workspace.Model.Name));
+        return 0;
+    }
 
     private static async Task<int> RunFromMetaSchemaAsync(string[] args)
     {
@@ -115,6 +155,38 @@ internal static class Program
         return 0;
     }
 
+
+    private static (bool Ok, string NewWorkspacePath, string ErrorMessage) ParseNewWorkspaceOnly(string[] args, int startIndex)
+    {
+        var newWorkspacePath = string.Empty;
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+            if (!string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                return (false, newWorkspacePath, $"unknown option '{arg}'.");
+            }
+
+            if (i + 1 >= args.Length)
+            {
+                return (false, newWorkspacePath, "missing value for --new-workspace.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(newWorkspacePath))
+            {
+                return (false, newWorkspacePath, "--new-workspace can only be provided once.");
+            }
+
+            newWorkspacePath = args[++i];
+        }
+
+        if (string.IsNullOrWhiteSpace(newWorkspacePath))
+        {
+            return (false, string.Empty, "missing required option --new-workspace <path>.");
+        }
+
+        return (true, newWorkspacePath, string.Empty);
+    }
 
     private static (bool Ok, string SourceWorkspacePath, string BusinessWorkspacePath, string ImplementationWorkspacePath, string NewWorkspacePath, string ErrorMessage) ParseFromMetaSchemaArgs(string[] args, int startIndex)
     {
@@ -211,12 +283,13 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Presenter.WriteUsage("meta-datavault-raw <command> [options]");
+        Presenter.WriteUsage("meta-datavault-raw [--new-workspace <path> | <command> [options]]");
         Presenter.WriteInfo(string.Empty);
         Presenter.WriteCommandCatalog("Commands:", new[]
         {
             ("help", "Show this help."),
-                        ("from-metaschema", "Materialize a raw datavault from MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces.")
+            ("--new-workspace", "Create an empty MetaRawDataVault workspace."),
+            ("from-metaschema", "Materialize a raw datavault from MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces.")
         });
         Presenter.WriteInfo(string.Empty);
         Presenter.WriteNext("meta-datavault-raw from-metaschema --help");

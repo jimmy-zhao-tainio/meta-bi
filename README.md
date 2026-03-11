@@ -104,6 +104,17 @@ The Data Vault tool family is now split into two CLIs:
 - `meta-datavault-raw`
 - `meta-datavault-business`
 
+Both CLIs bootstrap empty sanctioned workspaces directly with `--new-workspace <path>`.
+
+Examples:
+
+```cmd
+meta-datavault-raw --new-workspace C:\path\to\NewRawDataVault
+meta-datavault-business --new-workspace C:\path\to\NewBusinessDataVault
+```
+
+Business-only commands:
+
 - `check-business-materialization`
 - `materialize-business`
 
