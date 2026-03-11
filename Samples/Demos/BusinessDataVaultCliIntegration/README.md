@@ -18,7 +18,7 @@ cleanup.cmd
 
 ## Target database
 
-- `MetaBiBusinessDataVaultCliModelDemo`
+- `BusinessDataVaultSample`
 
 ## What the demo authors
 
@@ -189,3 +189,4 @@ Generated SQL is written to:
 - `GeneratedSql`
 
 The file names follow the same implementation naming patterns as the emitted table names.
+
