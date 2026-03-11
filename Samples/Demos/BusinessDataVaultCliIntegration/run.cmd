@@ -139,7 +139,5 @@ meta-datavault-business add-bridge-hub-key-part-projection --workspace .\Workspa
 meta-datavault-business add-bridge-hub-key-part-projection --workspace .\Workspace --id CustomerFulfillmentShipmentIdentifier --bridge CustomerFulfillmentTraversal --hub-key-part ShipmentIdentifier --name ShipmentIdentifier --ordinal 3 || exit /b 1
 meta-datavault-business add-bridge-hub-satellite-attribute-projection --workspace .\Workspace --id CustomerFulfillmentCustomerName --bridge CustomerFulfillmentTraversal --hub-satellite-attribute CustomerName --name CustomerName --ordinal 4 || exit /b 1
 meta-datavault-business add-bridge-link-satellite-attribute-projection --workspace .\Workspace --id CustomerFulfillmentOrderStatusCode --bridge CustomerFulfillmentTraversal --link-satellite-attribute CustomerOrderStatusCode --name OrderStatusCode --ordinal 5 || exit /b 1
-meta generate sql --workspace .\Workspace --out .\GeneratedSql || exit /b 1
+meta-datavault-business generate-sql --workspace .\Workspace --implementation-workspace C:\Users\jimmy\Desktop\meta-bi\MetaDataVault.Workspaces\MetaDataVaultImplementation --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion --out .\GeneratedSql || exit /b 1
 meta deploy sqlserver --scripts .\GeneratedSql --connection-string "Server=.;Integrated Security=true;TrustServerCertificate=true" --database MetaBiBusinessDataVaultCliModelDemo || exit /b 1
-
-
