@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Meta.Core.Services;
 using MetaSchema.Core;
 
@@ -343,29 +343,16 @@ public sealed class CliTests
     public async Task GenerateSql_EmitsHubLinkAndSatelliteScripts()
     {
         var repoRoot = FindRepositoryRoot();
-        var businessPath = Path.Combine(repoRoot, "MetaBusiness.Workspaces", "SampleBusinessCommerceRepeatedKeyPart");
-        var bdvPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceRepeatedKeyPart");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceRepeatedKeyPart");
         var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
         var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
-        var hubObjectWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart");
-        var hubKeyPartWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
-        var linkRelationshipWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart");
-        var linkEndWeavePath = Path.Combine(repoRoot, "Weaves", "Weave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
-        var hubKeyPartFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce");
-        var linkEndFabricPath = Path.Combine(repoRoot, "Fabrics", "Fabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart");
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
-        var materializedPath = Path.Combine(root, "MaterializedBusinessDataVault");
         var sqlOutputPath = Path.Combine(root, "Sql");
 
         try
         {
-            var materializeResult = RunBusinessCli(
-                $"materialize-business --business-workspace \"{businessPath}\" --bdv-workspace \"{bdvPath}\" --implementation-workspace \"{implementationPath}\" --weave-workspace \"{hubObjectWeavePath}\" --weave-workspace \"{hubKeyPartWeavePath}\" --weave-workspace \"{linkRelationshipWeavePath}\" --weave-workspace \"{linkEndWeavePath}\" --fabric-workspace \"{hubKeyPartFabricPath}\" --fabric-workspace \"{linkEndFabricPath}\" --new-workspace \"{materializedPath}\"");
-
-            Assert.Equal(0, materializeResult.ExitCode);
-
             var result = RunBusinessCli(
-                $"generate-sql --workspace \"{materializedPath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+                $"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: business datavault sql generated", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -390,9 +377,7 @@ public sealed class CliTests
             DeleteDirectoryIfExists(root);
         }
     }
-
-
-    [Fact]
+[Fact]
     public async Task GenerateSql_EmitsPointInTimeAndBridgeScripts()
     {
         var repoRoot = FindRepositoryRoot();
@@ -419,8 +404,8 @@ public sealed class CliTests
             Assert.Contains("CREATE TABLE [dbo].[PIT_CustomerSnapshot]", pitSql);
             Assert.Contains("[HubHashKey] binary(16) NOT NULL", pitSql);
             Assert.Contains("[SnapshotTimestamp] datetime2(7) NOT NULL", pitSql);
-            Assert.Contains("[BHS_Customer_ProfileLoadTimestamp] datetime2(7) NOT NULL", pitSql);
-            Assert.Contains("[BLS_CustomerOrder_StatusLoadTimestamp] datetime2(7) NOT NULL", pitSql);
+            Assert.Contains("[ProfileLoadTimestamp] datetime2(7) NOT NULL", pitSql);
+            Assert.Contains("[StatusLoadTimestamp] datetime2(7) NOT NULL", pitSql);
             Assert.Contains("[AuditId] int NOT NULL", pitSql);
 
             var bridgeSql = await File.ReadAllTextAsync(Path.Combine(sqlOutputPath, "BR_CustomerOrderTraversal.sql"));
@@ -1097,6 +1082,9 @@ public sealed class CliTests
         }
     }
 }
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-using Meta.Core.Ddl;
+﻿using Meta.Core.Ddl;
 using BDV = MetaBusinessDataVault;
 
 namespace MetaDataVault.Core;
@@ -118,6 +118,83 @@ internal sealed class BusinessDataVaultSqlGenerationContext
         });
     }
 
+    public string ResolveBusinessHubTableName(BDV.BusinessHub hub)
+        => RenderPattern(Implementation.BusinessHubImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["Name"] = hub.Name
+        });
+
+    public string ResolveBusinessLinkTableName(BDV.BusinessLink link)
+        => RenderPattern(Implementation.BusinessLinkImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["Name"] = link.Name
+        });
+
+    public string ResolveBusinessSameAsLinkTableName(BDV.BusinessSameAsLink link)
+        => RenderPattern(Implementation.BusinessSameAsLinkImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["Name"] = link.Name
+        });
+
+    public string ResolveBusinessHierarchicalLinkTableName(BDV.BusinessHierarchicalLink link)
+        => RenderPattern(Implementation.BusinessHierarchicalLinkImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["Name"] = link.Name
+        });
+
+    public string ResolveBusinessReferenceTableName(BDV.BusinessReference reference)
+        => RenderPattern(Implementation.BusinessReferenceImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["Name"] = reference.Name
+        });
+
+    public string ResolveBusinessHubSatelliteTableName(BDV.BusinessHubSatellite satellite)
+        => RenderPattern(Implementation.BusinessHubSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["ParentName"] = satellite.BusinessHub.Name,
+            ["Name"] = satellite.Name
+        });
+
+    public string ResolveBusinessLinkSatelliteTableName(BDV.BusinessLinkSatellite satellite)
+        => RenderPattern(Implementation.BusinessLinkSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["ParentName"] = satellite.BusinessLink.Name,
+            ["Name"] = satellite.Name
+        });
+
+    public string ResolveBusinessSameAsLinkSatelliteTableName(BDV.BusinessSameAsLinkSatellite satellite)
+        => RenderPattern(Implementation.BusinessSameAsLinkSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["ParentName"] = satellite.BusinessSameAsLink.Name,
+            ["Name"] = satellite.Name
+        });
+
+    public string ResolveBusinessHierarchicalLinkSatelliteTableName(BDV.BusinessHierarchicalLinkSatellite satellite)
+        => RenderPattern(Implementation.BusinessHierarchicalLinkSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["ParentName"] = satellite.BusinessHierarchicalLink.Name,
+            ["Name"] = satellite.Name
+        });
+
+    public string ResolveBusinessReferenceSatelliteTableName(BDV.BusinessReferenceSatellite satellite)
+        => RenderPattern(Implementation.BusinessReferenceSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["ParentName"] = satellite.BusinessReference.Name,
+            ["Name"] = satellite.Name
+        });
+
+    public string ResolveBusinessPointInTimeTableName(BDV.BusinessPointInTime pointInTime)
+        => RenderPattern(Implementation.BusinessPointInTimeImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["Name"] = pointInTime.Name
+        });
+
+    public string ResolveBusinessBridgeTableName(BDV.BusinessBridge bridge)
+        => RenderPattern(Implementation.BusinessBridgeImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["Name"] = bridge.Name
+        });
+
     public int ParseOrdinal(string ordinal)
     {
         return int.TryParse(ordinal, out var value) ? value : int.MaxValue;
@@ -181,4 +258,3 @@ internal sealed class BusinessDataVaultSqlGenerationContext
         return value;
     }
 }
-

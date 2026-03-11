@@ -2,8 +2,9 @@
 <MetaBusinessDataVault>
   <BusinessLinkSatelliteList>
     <BusinessLinkSatellite Id="CustomerOrderStatus" BusinessLinkId="CustomerOrder">
-      <Name>BLS_CustomerOrder_Status</Name>
+      <Name>Status</Name>
       <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
   </BusinessLinkSatelliteList>
 </MetaBusinessDataVault>
+

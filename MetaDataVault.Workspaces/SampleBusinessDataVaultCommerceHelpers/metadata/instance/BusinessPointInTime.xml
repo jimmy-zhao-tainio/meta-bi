@@ -2,7 +2,8 @@
 <MetaBusinessDataVault>
   <BusinessPointInTimeList>
     <BusinessPointInTime Id="CustomerSnapshot" BusinessHubId="Customer">
-      <Name>PIT_CustomerSnapshot</Name>
+      <Name>CustomerSnapshot</Name>
     </BusinessPointInTime>
   </BusinessPointInTimeList>
 </MetaBusinessDataVault>
+

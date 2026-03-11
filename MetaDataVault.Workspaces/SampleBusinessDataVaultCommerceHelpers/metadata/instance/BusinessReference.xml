@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessReferenceList>
     <BusinessReference Id="Status">
-      <Name>REF_Status</Name>
+      <Name>Status</Name>
     </BusinessReference>
   </BusinessReferenceList>
 </MetaBusinessDataVault>
+

@@ -1,6 +1,6 @@
-﻿# Business Data Vault CLI Integration
+# Business Data Vault CLI Integration
 
-This demo creates a new Business Data Vault metadata workspace using only CLI commands, generates SQL through `meta-datavault-business generate-sql`, and deploys that SQL to a new SQL Server database.
+This demo creates a new Business Data Vault metadata workspace using only CLI commands, generates DV-shaped SQL through `meta-datavault-business generate-sql`, and deploys that SQL to a new SQL Server database.
 
 ## Commands
 
@@ -40,14 +40,14 @@ It also loads the sanctioned:
 - `MetaDataVaultImplementation` workspace
 - `MetaDataTypeConversion` workspace
 
-The deployed SQL therefore represents the authored Business Data Vault structures, for example:
+The deployed SQL therefore represents the authored Business Data Vault structures with physical naming from `MetaDataVaultImplementation`, for example:
 
-- `Customer`
-- `CustomerOrder`
-- `CustomerProfile`
-- `OrderStatus`
-- `CustomerSnapshot`
-- `CustomerFulfillmentTraversal`
+- `BH_Customer`
+- `BL_CustomerOrder`
+- `BHS_Customer_CustomerProfile`
+- `REF_OrderStatus`
+- `PIT_CustomerSnapshot`
+- `BR_CustomerFulfillmentTraversal`
 
 ## Exact SQL mapping
 
@@ -60,6 +60,7 @@ The SQL generator loads:
 Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name order and emits one `.sql` file per row:
 
 - `BusinessHub` -> one table per hub
+  - physical table name from `BusinessHubImplementation.TableNamePattern`
   - hash key column from `BusinessHubImplementation`
   - one column per `BusinessHubKeyPart`
   - optional `LoadTimestamp` and `RecordSource`
@@ -68,6 +69,7 @@ Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name o
   - UQ on ordered hub key parts
 
 - `BusinessLink` -> one table per standard link
+  - physical table name from `BusinessLinkImplementation.TableNamePattern`
   - hash key column from `BusinessLinkImplementation`
   - one foreign-key hash column per `BusinessLinkHub`, named from `EndHashKeyColumnPattern`
   - optional `LoadTimestamp` and `RecordSource`
@@ -77,6 +79,7 @@ Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name o
   - FK from each participating hub hash key column to the corresponding hub table
 
 - `BusinessSameAsLink` -> one table per same-as link
+  - physical table name from `BusinessSameAsLinkImplementation.TableNamePattern`
   - hash key column
   - primary hub hash key column
   - equivalent hub hash key column
@@ -87,6 +90,7 @@ Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name o
   - FKs to the referenced hub table
 
 - `BusinessHierarchicalLink` -> one table per hierarchical link
+  - physical table name from `BusinessHierarchicalLinkImplementation.TableNamePattern`
   - hash key column
   - parent hub hash key column
   - child hub hash key column
@@ -97,6 +101,7 @@ Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name o
   - FKs to the referenced hub table
 
 - `BusinessReference` -> one table per reference
+  - physical table name from `BusinessReferenceImplementation.TableNamePattern`
   - hash key column
   - one column per `BusinessReferenceKeyPart`
   - optional `LoadTimestamp` and `RecordSource`
@@ -105,6 +110,7 @@ Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name o
   - UQ on ordered reference key parts
 
 - `BusinessHubSatellite` -> one table per hub satellite
+  - physical table name from `BusinessHubSatelliteImplementation.TableNamePattern`
   - parent hub hash key column
   - zero or more `BusinessHubSatelliteKeyPart` columns for `multi-active`
   - one column per `BusinessHubSatelliteAttribute`
@@ -114,6 +120,7 @@ Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name o
   - FK to the parent hub table
 
 - `BusinessLinkSatellite` -> one table per standard link satellite
+  - physical table name from `BusinessLinkSatelliteImplementation.TableNamePattern`
   - parent link hash key column
   - zero or more `BusinessLinkSatelliteKeyPart` columns for `multi-active`
   - one column per `BusinessLinkSatelliteAttribute`
@@ -123,21 +130,25 @@ Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name o
   - FK to the parent link table
 
 - `BusinessSameAsLinkSatellite` -> one table per same-as link satellite
+  - physical table name from `BusinessSameAsLinkSatelliteImplementation.TableNamePattern`
   - same shape as link satellites, but parent FK goes to the same-as link table
 
 - `BusinessHierarchicalLinkSatellite` -> one table per hierarchical link satellite
+  - physical table name from `BusinessHierarchicalLinkSatelliteImplementation.TableNamePattern`
   - same shape as link satellites, but parent FK goes to the hierarchical link table
 
 - `BusinessReferenceSatellite` -> one table per reference satellite
+  - physical table name from `BusinessReferenceSatelliteImplementation.TableNamePattern`
   - parent reference hash key column
   - zero or more reference-satellite key parts for `multi-active`
   - one column per `BusinessReferenceSatelliteAttribute`
   - optional `HashDiff`, `LoadTimestamp`, and `RecordSource`
   - required `AuditId`
-  - PK on parent hash key plus any satellite key parts plus `LoadTimestamp` when present
+  - PK on parent reference hash key plus any satellite key parts plus `LoadTimestamp` when present
   - FK to the parent reference table
 
 - `BusinessPointInTime` -> one table per PIT
+  - physical table name from `BusinessPointInTimeImplementation.TableNamePattern`
   - parent hub hash key column
   - snapshot timestamp column
   - one satellite reference column per `BusinessPointInTimeHubSatellite`
@@ -148,6 +159,7 @@ Then `BusinessDataVaultSqlGenerator` iterates these typed lists in stable name o
   - FK to the parent hub table
 
 - `BusinessBridge` -> one table per bridge
+  - physical table name from `BusinessBridgeImplementation.TableNamePattern`
   - root hash key column from the anchor hub
   - related hash key column from the resolved terminal hub in the ordered bridge path
   - one projected column per:
@@ -175,3 +187,5 @@ For any business-derived column, SQL type resolution is:
 Generated SQL is written to:
 
 - `GeneratedSql`
+
+The file names follow the same implementation naming patterns as the emitted table names.

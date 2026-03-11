@@ -2,13 +2,14 @@
 <MetaBusinessDataVault>
   <BusinessHubList>
     <BusinessHub Id="Customer">
-      <Name>BH_Customer</Name>
+      <Name>Customer</Name>
     </BusinessHub>
     <BusinessHub Id="Invoice">
-      <Name>BH_Invoice</Name>
+      <Name>Invoice</Name>
     </BusinessHub>
     <BusinessHub Id="Order">
-      <Name>BH_Order</Name>
+      <Name>Order</Name>
     </BusinessHub>
   </BusinessHubList>
 </MetaBusinessDataVault>
+

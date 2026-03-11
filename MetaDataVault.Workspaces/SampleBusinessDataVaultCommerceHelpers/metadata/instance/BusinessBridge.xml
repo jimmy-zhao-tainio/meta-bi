@@ -2,9 +2,10 @@
 <MetaBusinessDataVault>
   <BusinessBridgeList>
     <BusinessBridge Id="CustomerOrderTraversal" AnchorHubId="Customer">
-      <Name>BR_CustomerOrderTraversal</Name>
+      <Name>CustomerOrderTraversal</Name>
 
     </BusinessBridge>
   </BusinessBridgeList>
 </MetaBusinessDataVault>
+
 
