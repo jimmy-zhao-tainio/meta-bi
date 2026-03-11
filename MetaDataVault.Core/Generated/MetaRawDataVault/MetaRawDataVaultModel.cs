@@ -276,9 +276,8 @@ namespace MetaRawDataVault
                     {
                         Id = record.Id ?? string.Empty,
                         Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                        TargetSchemaName = record.Values.TryGetValue("TargetSchemaName", out var targetSchemaNameValue) ? targetSchemaNameValue ?? string.Empty : string.Empty,
-                        TargetTableName = record.Values.TryGetValue("TargetTableName", out var targetTableNameValue) ? targetTableNameValue ?? string.Empty : string.Empty,
                         SourceTableId = record.RelationshipIds.TryGetValue("SourceTableId", out var sourceTableRelationshipId) ? sourceTableRelationshipId ?? string.Empty : string.Empty,
+                        TargetTableId = record.RelationshipIds.TryGetValue("TargetTableId", out var targetTableRelationshipId) ? targetTableRelationshipId ?? string.Empty : string.Empty,
                     });
                 }
             }
@@ -292,9 +291,8 @@ namespace MetaRawDataVault
                     {
                         Id = record.Id ?? string.Empty,
                         Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
-                        SourceFieldName = record.Values.TryGetValue("SourceFieldName", out var sourceFieldNameValue) ? sourceFieldNameValue ?? string.Empty : string.Empty,
-                        TargetFieldName = record.Values.TryGetValue("TargetFieldName", out var targetFieldNameValue) ? targetFieldNameValue ?? string.Empty : string.Empty,
                         SourceFieldId = record.RelationshipIds.TryGetValue("SourceFieldId", out var sourceFieldRelationshipId) ? sourceFieldRelationshipId ?? string.Empty : string.Empty,
+                        TargetFieldId = record.RelationshipIds.TryGetValue("TargetFieldId", out var targetFieldRelationshipId) ? targetFieldRelationshipId ?? string.Empty : string.Empty,
                         SourceTableRelationshipId = record.RelationshipIds.TryGetValue("SourceTableRelationshipId", out var sourceTableRelationshipRelationshipId) ? sourceTableRelationshipRelationshipId ?? string.Empty : string.Empty,
                     });
                 }
@@ -580,6 +578,16 @@ namespace MetaRawDataVault
                     "SourceTableId");
             }
 
+            foreach (var row in sourceTableRelationshipList)
+            {
+                row.TargetTable = RequireTarget(
+                    sourceTableListById,
+                    row.TargetTableId,
+                    "SourceTableRelationship",
+                    row.Id,
+                    "TargetTableId");
+            }
+
             foreach (var row in sourceTableRelationshipFieldList)
             {
                 row.SourceField = RequireTarget(
@@ -588,6 +596,16 @@ namespace MetaRawDataVault
                     "SourceTableRelationshipField",
                     row.Id,
                     "SourceFieldId");
+            }
+
+            foreach (var row in sourceTableRelationshipFieldList)
+            {
+                row.TargetField = RequireTarget(
+                    sourceFieldListById,
+                    row.TargetFieldId,
+                    "SourceTableRelationshipField",
+                    row.Id,
+                    "TargetFieldId");
             }
 
             foreach (var row in sourceTableRelationshipFieldList)

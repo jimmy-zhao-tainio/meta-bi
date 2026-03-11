@@ -123,21 +123,19 @@
     <Entity name="SourceTableRelationship">
       <PropertyList>
         <Property name="Name" />
-        <Property name="TargetSchemaName" />
-        <Property name="TargetTableName" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="SourceTable" />
+        <Relationship entity="SourceTable" role="SourceTable" />
+        <Relationship entity="SourceTable" role="TargetTable" />
       </RelationshipList>
     </Entity>
     <Entity name="SourceTableRelationshipField">
       <PropertyList>
         <Property name="Ordinal" />
-        <Property name="SourceFieldName" />
-        <Property name="TargetFieldName" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="SourceField" />
+        <Relationship entity="SourceField" role="SourceField" />
+        <Relationship entity="SourceField" role="TargetField" />
         <Relationship entity="SourceTableRelationship" />
       </RelationshipList>
     </Entity>

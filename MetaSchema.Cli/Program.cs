@@ -258,7 +258,7 @@ internal static class Program
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Creates a new workspace with the MetaSchema model and validates it.");
         Presenter.WriteInfo("  Scope is controlled by schema/table filters or all-schemas/all-tables discovery switches.");
-        Presenter.WriteInfo("  TableRelationship rows are emitted only for enforced and trusted SQL Server foreign keys.");
+        Presenter.WriteInfo("  TableRelationship rows are emitted only for enforced and trusted SQL Server foreign keys whose source and target tables are both in scope.");
         Presenter.WriteInfo("  Field rows carry a scalar DataTypeId plus local FieldDataTypeDetail rows such as Length or NumericPrecision.");
     }
 

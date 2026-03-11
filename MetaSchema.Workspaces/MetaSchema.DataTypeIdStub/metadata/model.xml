@@ -44,25 +44,42 @@
         <Relationship entity="Field" />
       </RelationshipList>
     </Entity>
+    <Entity name="TableKey">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="KeyType" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableKeyField">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="FieldName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TableKey" />
+        <Relationship entity="Field" />
+      </RelationshipList>
+    </Entity>
     <Entity name="TableRelationship">
       <PropertyList>
         <Property name="Name" />
-        <Property name="TargetSchemaName" />
-        <Property name="TargetTableName" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Table" role="SourceTable" />
+        <Relationship entity="Table" role="TargetTable" />
       </RelationshipList>
     </Entity>
     <Entity name="TableRelationshipField">
       <PropertyList>
         <Property name="Ordinal" />
-        <Property name="SourceFieldName" />
-        <Property name="TargetFieldName" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="TableRelationship" />
         <Relationship entity="Field" role="SourceField" />
+        <Relationship entity="Field" role="TargetField" />
       </RelationshipList>
     </Entity>
   </EntityList>

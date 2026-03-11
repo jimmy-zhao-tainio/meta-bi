@@ -88,8 +88,8 @@ internal static partial class Program
         }
 
         var sourceWorkspacePath = Path.GetFullPath(parse.SourceWorkspacePath);
-        var businessWorkspacePath = Path.GetFullPath(parse.BusinessWorkspacePath);
-        var implementationWorkspacePath = Path.GetFullPath(parse.ImplementationWorkspacePath);
+        var businessWorkspacePath = string.IsNullOrWhiteSpace(parse.BusinessWorkspacePath) ? string.Empty : Path.GetFullPath(parse.BusinessWorkspacePath);
+        var implementationWorkspacePath = string.IsNullOrWhiteSpace(parse.ImplementationWorkspacePath) ? string.Empty : Path.GetFullPath(parse.ImplementationWorkspacePath);
         var newWorkspacePath = Path.GetFullPath(parse.NewWorkspacePath);
         if (Directory.Exists(newWorkspacePath) && Directory.EnumerateFileSystemEntries(newWorkspacePath).Any())
         {
@@ -97,20 +97,26 @@ internal static partial class Program
         }
 
         Workspace sourceWorkspace;
-        Workspace businessWorkspace;
-        Workspace implementationWorkspace;
+        Workspace? businessWorkspace = null;
+        Workspace? implementationWorkspace = null;
         try
         {
             var workspaceService = new WorkspaceService();
             sourceWorkspace = await workspaceService.LoadAsync(sourceWorkspacePath, searchUpward: false).ConfigureAwait(false);
-            businessWorkspace = await workspaceService.LoadAsync(businessWorkspacePath, searchUpward: false).ConfigureAwait(false);
-            implementationWorkspace = await workspaceService.LoadAsync(implementationWorkspacePath, searchUpward: false).ConfigureAwait(false);
+            if (!string.IsNullOrWhiteSpace(businessWorkspacePath))
+            {
+                businessWorkspace = await workspaceService.LoadAsync(businessWorkspacePath, searchUpward: false).ConfigureAwait(false);
+            }
+            if (!string.IsNullOrWhiteSpace(implementationWorkspacePath))
+            {
+                implementationWorkspace = await workspaceService.LoadAsync(implementationWorkspacePath, searchUpward: false).ConfigureAwait(false);
+            }
         }
         catch (Exception ex)
         {
             return Fail(
                 "could not load sanctioned input workspaces.",
-                "check the MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspace paths and retry.",
+                "check the MetaSchema workspace path and any optional MetaBusiness / MetaDataVaultImplementation workspace paths, then retry.",
                 4,
                 new[] { $"  - {ex.Message}" });
         }
@@ -120,15 +126,17 @@ internal static partial class Program
         {
             rawDataVaultWorkspace = new MetaSchemaToRawDataVaultConverter().Convert(
                 sourceWorkspace,
+                newWorkspacePath,
                 businessWorkspace,
                 implementationWorkspace,
-                newWorkspacePath);
+                parse.IgnoreFieldNames,
+                parse.IgnoreFieldSuffixes);
         }
         catch (Exception ex)
         {
             return Fail(
                 "could not materialize raw datavault from sanctioned inputs.",
-                "check the MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces and retry.",
+                "check the MetaSchema workspace contents and retry. Optional MetaBusiness / MetaDataVaultImplementation workspaces must match their sanctioned models when supplied.",
                 4,
                 new[] { $"  - {ex.Message}" });
         }
@@ -146,21 +154,41 @@ internal static partial class Program
         Directory.CreateDirectory(newWorkspacePath);
         await new WorkspaceService().SaveAsync(rawDataVaultWorkspace).ConfigureAwait(false);
 
-        Presenter.WriteOk(
-            "raw datavault materialized from sanctioned inputs",
+        var details = new List<(string Key, string Value)>
+        {
             ("MetaSchema Workspace", sourceWorkspacePath),
-            ("MetaBusiness Workspace", businessWorkspacePath),
-            ("MetaDataVaultImplementation Workspace", implementationWorkspacePath),
             ("Path", newWorkspacePath),
             ("Model", rawDataVaultWorkspace.Model.Name),
+            ("SourceSystems", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("SourceSystem").Count.ToString()),
+            ("SourceSchemas", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("SourceSchema").Count.ToString()),
             ("SourceTables", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count.ToString()),
             ("RawHubs", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count.ToString()),
+            ("RawHubKeyParts", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").Count.ToString()),
             ("RawLinks", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLink").Count.ToString()),
             ("RawLinkHubs", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkHub").Count.ToString()),
             ("RawHubSatellites", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").Count.ToString()),
             ("RawHubSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count.ToString()),
             ("RawLinkSatellites", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite").Count.ToString()),
-            ("RawLinkSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").Count.ToString()));
+            ("RawLinkSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").Count.ToString())
+        };
+        if (!string.IsNullOrWhiteSpace(businessWorkspacePath))
+        {
+            details.Add(("MetaBusiness Workspace", businessWorkspacePath));
+        }
+        if (!string.IsNullOrWhiteSpace(implementationWorkspacePath))
+        {
+            details.Add(("MetaDataVaultImplementation Workspace", implementationWorkspacePath));
+        }
+        if (parse.IgnoreFieldNames.Count > 0)
+        {
+            details.Add(("Ignored Field Names", string.Join(", ", parse.IgnoreFieldNames)));
+        }
+        if (parse.IgnoreFieldSuffixes.Count > 0)
+        {
+            details.Add(("Ignored Field Suffixes", string.Join(", ", parse.IgnoreFieldSuffixes)));
+        }
+
+        Presenter.WriteOk("raw datavault materialized from metaschema", details.ToArray());
         return 0;
     }
 
@@ -196,53 +224,65 @@ internal static partial class Program
         return (true, newWorkspacePath, string.Empty);
     }
 
-    private static (bool Ok, string SourceWorkspacePath, string BusinessWorkspacePath, string ImplementationWorkspacePath, string NewWorkspacePath, string ErrorMessage) ParseFromMetaSchemaArgs(string[] args, int startIndex)
+    private static (bool Ok, string SourceWorkspacePath, string BusinessWorkspacePath, string ImplementationWorkspacePath, string NewWorkspacePath, List<string> IgnoreFieldNames, List<string> IgnoreFieldSuffixes, string ErrorMessage) ParseFromMetaSchemaArgs(string[] args, int startIndex)
     {
         var sourceWorkspacePath = string.Empty;
         var businessWorkspacePath = string.Empty;
         var implementationWorkspacePath = string.Empty;
         var newWorkspacePath = string.Empty;
+        var ignoreFieldNames = new List<string>();
+        var ignoreFieldSuffixes = new List<string>();
 
         for (var i = startIndex; i < args.Length; i++)
         {
             var arg = args[i];
             if (string.Equals(arg, "--source-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --source-workspace.");
-                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--source-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "missing value for --source-workspace.");
+                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "--source-workspace can only be provided once.");
                 sourceWorkspacePath = args[++i];
                 continue;
             }
             if (string.Equals(arg, "--business-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --business-workspace.");
-                if (!string.IsNullOrWhiteSpace(businessWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--business-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "missing value for --business-workspace.");
+                if (!string.IsNullOrWhiteSpace(businessWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "--business-workspace can only be provided once.");
                 businessWorkspacePath = args[++i];
                 continue;
             }
             if (string.Equals(arg, "--implementation-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --implementation-workspace.");
-                if (!string.IsNullOrWhiteSpace(implementationWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--implementation-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "missing value for --implementation-workspace.");
+                if (!string.IsNullOrWhiteSpace(implementationWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "--implementation-workspace can only be provided once.");
                 implementationWorkspacePath = args[++i];
                 continue;
             }
             if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing value for --new-workspace.");
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "--new-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "missing value for --new-workspace.");
+                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "--new-workspace can only be provided once.");
                 newWorkspacePath = args[++i];
                 continue;
             }
-            return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, $"unknown option '{arg}'.");
+            if (string.Equals(arg, "--ignore-field-name", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "missing value for --ignore-field-name.");
+                ignoreFieldNames.Add(args[++i]);
+                continue;
+            }
+            if (string.Equals(arg, "--ignore-field-suffix", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "missing value for --ignore-field-suffix.");
+                ignoreFieldSuffixes.Add(args[++i]);
+                continue;
+            }
+            return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing required option --source-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(businessWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing required option --business-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(implementationWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing required option --implementation-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, "missing required option --new-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "missing required option --source-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, "missing required option --new-workspace <path>.");
 
-        return (true, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, string.Empty);
+        return (true, sourceWorkspacePath, businessWorkspacePath, implementationWorkspacePath, newWorkspacePath, ignoreFieldNames, ignoreFieldSuffixes, string.Empty);
     }
 
     private static bool IsHelpToken(string value)
@@ -269,7 +309,7 @@ internal static partial class Program
         {
             ("help", "Show this help."),
             ("--new-workspace", "Create an empty MetaRawDataVault workspace."),
-            ("from-metaschema", "Materialize a raw datavault from MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces."),
+            ("from-metaschema", "Materialize a schema-bootstrap raw datavault from a MetaSchema workspace."),
             ("generate-sql", "Generate raw datavault SQL from a MetaRawDataVault workspace."),
             ("add-*", "Add sanctioned MetaRawDataVault rows.")
         });
@@ -282,9 +322,12 @@ internal static partial class Program
     private static void PrintFromMetaSchemaHelp()
     {
         Presenter.WriteInfo("Command: from-metaschema");
-        Presenter.WriteUsage("meta-datavault-raw from-metaschema --source-workspace <path> --business-workspace <path> --implementation-workspace <path> --new-workspace <path>");
+        Presenter.WriteUsage("meta-datavault-raw from-metaschema --source-workspace <path> --new-workspace <path> [--business-workspace <path>] [--implementation-workspace <path>] [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]...");
         Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Loads sanctioned MetaSchema, MetaBusiness, and MetaDataVaultImplementation workspaces.");
-        Presenter.WriteInfo("  Heuristic business-key inference was removed. Raw datavault materialization now requires explicit sanctioned inputs and weave bindings.");
+        Presenter.WriteInfo("  Loads a sanctioned MetaSchema workspace and materializes a schema-bootstrap MetaRawDataVault workspace.");
+        Presenter.WriteInfo("  Hubs come from source-local primary or unique keys. Links come from MetaSchema table relationships.");
+        Presenter.WriteInfo("  MetaBusiness and MetaDataVaultImplementation are optional placeholders for later business-anchored materialization and are only validated when supplied.");
+        Presenter.WriteInfo("  Recognized technical fields are excluded from automatic key selection, but remain available as source attributes.");
+        Presenter.WriteInfo("  Use --ignore-field-name and/or --ignore-field-suffix only for explicit source-field exclusion.");
     }
 }

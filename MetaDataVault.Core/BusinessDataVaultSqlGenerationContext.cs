@@ -37,9 +37,9 @@ internal sealed class BusinessDataVaultSqlGenerationContext
         return sqlServerDataTypeId switch
         {
             "sqlserver:type:binary" => $"binary({RequireNumber(details.Length, sourceDataTypeId, "Length")})",
-            "sqlserver:type:varbinary" => details.Length is { Length: > 0 } length ? $"varbinary({length})" : "varbinary(max)",
-            "sqlserver:type:nvarchar" => details.Length is { Length: > 0 } nvarcharLength ? $"nvarchar({nvarcharLength})" : "nvarchar(max)",
-            "sqlserver:type:varchar" => details.Length is { Length: > 0 } varcharLength ? $"varchar({varcharLength})" : "varchar(max)",
+            "sqlserver:type:varbinary" => HasConcreteLength(details.Length) ? $"varbinary({details.Length})" : "varbinary(max)",
+            "sqlserver:type:nvarchar" => HasConcreteLength(details.Length) ? $"nvarchar({details.Length})" : "nvarchar(max)",
+            "sqlserver:type:varchar" => HasConcreteLength(details.Length) ? $"varchar({details.Length})" : "varchar(max)",
             "sqlserver:type:nchar" => $"nchar({RequireNumber(details.Length, sourceDataTypeId, "Length")})",
             "sqlserver:type:char" => $"char({RequireNumber(details.Length, sourceDataTypeId, "Length")})",
             "sqlserver:type:datetime2" => details.Precision is { Length: > 0 } precision ? $"datetime2({precision})" : "datetime2",
@@ -59,6 +59,11 @@ internal sealed class BusinessDataVaultSqlGenerationContext
             "sqlserver:type:uniqueidentifier" => "uniqueidentifier",
             _ => throw new InvalidOperationException($"SQL generation does not support data type '{sourceDataTypeId}' resolved as '{sqlServerDataTypeId}'.")
         };
+    }
+
+    private static bool HasConcreteLength(string? length)
+    {
+        return !string.IsNullOrWhiteSpace(length) && !string.Equals(length, "-1", StringComparison.Ordinal);
     }
 
     public string ResolveSqlServerDataTypeId(string sourceDataTypeId)

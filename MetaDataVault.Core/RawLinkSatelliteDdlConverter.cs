@@ -9,10 +9,10 @@ internal static class RawLinkSatelliteDdlConverter
     {
         EnsureSupported(satellite);
 
-        var columns = new List<DdlColumn>
-        {
-            RawDataVaultSqlGenerationContext.RenderColumn(context.Implementation.RawLinkSatelliteImplementation.ParentHashKeyColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.ParentHashKeyDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkSatelliteImplementation.ParentHashKeyLength, null, null)), false)
-        };
+        var columns = new List<DdlColumn>();
+        var usedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var parentHashKeyColumnName = RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkSatelliteImplementation.ParentHashKeyColumnName);
+        columns.Add(RawDataVaultSqlGenerationContext.RenderColumn(parentHashKeyColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.ParentHashKeyDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkSatelliteImplementation.ParentHashKeyLength, null, null)), false));
 
         var attrs = context.RawDataVault.RawLinkSatelliteAttributeList
             .Where(row => row.RawLinkSatelliteId == satellite.Id)
@@ -22,23 +22,28 @@ internal static class RawLinkSatelliteDdlConverter
 
         foreach (var attr in attrs)
         {
+            var attributeColumnName = RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, attr.Name);
             columns.Add(RawDataVaultSqlGenerationContext.RenderColumn(
-                attr.Name,
+                attributeColumnName,
                 context.RenderSqlType(attr.SourceField.DataTypeId, context.BuildSqlDataTypeDetail(context.RawDataVault.SourceFieldDataTypeDetailList.Where(detail => detail.SourceFieldId == attr.SourceFieldId).Select(detail => (detail.Name, detail.Value)))),
                 IsNullable(attr.SourceField.IsNullable)));
         }
 
-        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, context.Implementation.RawLinkSatelliteImplementation.HashDiffColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.HashDiffDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkSatelliteImplementation.HashDiffLength, null, null)));
-        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, context.Implementation.RawLinkSatelliteImplementation.LoadTimestampColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.LoadTimestampDataTypeId, new SqlDataTypeDetail(null, context.Implementation.RawLinkSatelliteImplementation.LoadTimestampPrecision, null)));
-        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, context.Implementation.RawLinkSatelliteImplementation.RecordSourceColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.RecordSourceDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkSatelliteImplementation.RecordSourceLength, null, null)));
-        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, context.Implementation.RawLinkSatelliteImplementation.AuditIdColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.AuditIdDataTypeId, new SqlDataTypeDetail(null, null, null)));
+        var hashDiffColumnName = RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkSatelliteImplementation.HashDiffColumnName);
+        var loadTimestampColumnName = RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkSatelliteImplementation.LoadTimestampColumnName);
+        var recordSourceColumnName = RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkSatelliteImplementation.RecordSourceColumnName);
+        var auditIdColumnName = RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkSatelliteImplementation.AuditIdColumnName);
+        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, hashDiffColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.HashDiffDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkSatelliteImplementation.HashDiffLength, null, null)));
+        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, loadTimestampColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.LoadTimestampDataTypeId, new SqlDataTypeDetail(null, context.Implementation.RawLinkSatelliteImplementation.LoadTimestampPrecision, null)));
+        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, recordSourceColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.RecordSourceDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkSatelliteImplementation.RecordSourceLength, null, null)));
+        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, auditIdColumnName, context.RenderSqlType(context.Implementation.RawLinkSatelliteImplementation.AuditIdDataTypeId, new SqlDataTypeDetail(null, null, null)));
 
         var foreignKeys = new[]
         {
-            RawDataVaultSqlGenerationContext.RenderForeignKeyConstraint($"FK_{context.ResolveRawLinkSatelliteTableName(satellite)}_{satellite.RawLink.Name}", context.Implementation.RawLinkSatelliteImplementation.ParentHashKeyColumnName, context.ResolveRawLinkTableName(satellite.RawLink), context.Implementation.RawLinkImplementation.HashKeyColumnName)
+            RawDataVaultSqlGenerationContext.RenderForeignKeyConstraint($"FK_{context.ResolveRawLinkSatelliteTableName(satellite)}_{satellite.RawLink.Name}", parentHashKeyColumnName, context.ResolveRawLinkTableName(satellite.RawLink), context.Implementation.RawLinkImplementation.HashKeyColumnName)
         };
 
-        var primaryKey = new[] { context.Implementation.RawLinkSatelliteImplementation.ParentHashKeyColumnName, context.Implementation.RawLinkSatelliteImplementation.LoadTimestampColumnName };
+        var primaryKey = new[] { parentHashKeyColumnName, loadTimestampColumnName };
         return RawDataVaultSqlGenerationContext.CreateTable(context.ResolveRawLinkSatelliteTableName(satellite), columns, primaryKey, null, foreignKeys);
     }
 

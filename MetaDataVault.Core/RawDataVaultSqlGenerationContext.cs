@@ -1,5 +1,7 @@
 using Meta.Core.Ddl;
 using MRDV = MetaRawDataVault;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace MetaDataVault.Core;
 
@@ -94,9 +96,9 @@ internal sealed class RawDataVaultSqlGenerationContext
         return sqlServerDataTypeId switch
         {
             "sqlserver:type:binary" => $"binary({RequireNumber(details.Length, sourceDataTypeId, "Length")})",
-            "sqlserver:type:varbinary" => details.Length is { Length: > 0 } length ? $"varbinary({length})" : "varbinary(max)",
-            "sqlserver:type:nvarchar" => details.Length is { Length: > 0 } nvarcharLength ? $"nvarchar({nvarcharLength})" : "nvarchar(max)",
-            "sqlserver:type:varchar" => details.Length is { Length: > 0 } varcharLength ? $"varchar({varcharLength})" : "varchar(max)",
+            "sqlserver:type:varbinary" => HasConcreteLength(details.Length) ? $"varbinary({details.Length})" : "varbinary(max)",
+            "sqlserver:type:nvarchar" => HasConcreteLength(details.Length) ? $"nvarchar({details.Length})" : "nvarchar(max)",
+            "sqlserver:type:varchar" => HasConcreteLength(details.Length) ? $"varchar({details.Length})" : "varchar(max)",
             "sqlserver:type:nchar" => $"nchar({RequireNumber(details.Length, sourceDataTypeId, "Length")})",
             "sqlserver:type:char" => $"char({RequireNumber(details.Length, sourceDataTypeId, "Length")})",
             "sqlserver:type:datetime2" => details.Precision is { Length: > 0 } precision ? $"datetime2({precision})" : "datetime2",
@@ -116,6 +118,11 @@ internal sealed class RawDataVaultSqlGenerationContext
             "sqlserver:type:uniqueidentifier" => "uniqueidentifier",
             _ => throw new InvalidOperationException($"SQL generation does not support data type '{sourceDataTypeId}' resolved as '{sqlServerDataTypeId}'.")
         };
+    }
+
+    private static bool HasConcreteLength(string? length)
+    {
+        return !string.IsNullOrWhiteSpace(length) && !string.Equals(length, "-1", StringComparison.Ordinal);
     }
 
     public string ResolveSqlServerDataTypeId(string sourceDataTypeId)
@@ -183,9 +190,26 @@ internal sealed class RawDataVaultSqlGenerationContext
     public static DdlColumn RenderColumn(string columnName, string sqlType, bool isNullable)
         => new() { Name = columnName, DataType = sqlType, IsNullable = isNullable };
 
+    public static string ReserveColumnName(ISet<string> usedColumnNames, string desiredName)
+    {
+        ArgumentNullException.ThrowIfNull(usedColumnNames);
+        if (string.IsNullOrWhiteSpace(desiredName))
+        {
+            throw new InvalidOperationException("Column name cannot be blank.");
+        }
+
+        var resolvedName = desiredName;
+        while (!usedColumnNames.Add(resolvedName))
+        {
+            resolvedName = "_" + resolvedName;
+        }
+
+        return resolvedName;
+    }
+
     public static DdlForeignKeyConstraint RenderForeignKeyConstraint(string constraintName, string columnName, string referencedTableName, string referencedColumnName)
     {
-        var constraint = new DdlForeignKeyConstraint { Name = constraintName, ReferencedSchema = "dbo", ReferencedTableName = referencedTableName };
+        var constraint = new DdlForeignKeyConstraint { Name = FitSqlIdentifier(constraintName), ReferencedSchema = "dbo", ReferencedTableName = referencedTableName };
         constraint.ColumnNames.Add(columnName);
         constraint.ReferencedColumnNames.Add(referencedColumnName);
         return constraint;
@@ -193,12 +217,12 @@ internal sealed class RawDataVaultSqlGenerationContext
 
     public static DdlTable CreateTable(string tableName, IReadOnlyList<DdlColumn> columns, IEnumerable<string> primaryKeyColumns, IReadOnlyList<string>? uniqueColumns, IEnumerable<DdlForeignKeyConstraint> foreignKeys)
     {
-        var table = new DdlTable { Schema = "dbo", Name = tableName, PrimaryKey = new DdlPrimaryKeyConstraint { Name = $"PK_{tableName}", IsClustered = true } };
+        var table = new DdlTable { Schema = "dbo", Name = tableName, PrimaryKey = new DdlPrimaryKeyConstraint { Name = FitSqlIdentifier($"PK_{tableName}"), IsClustered = true } };
         table.Columns.AddRange(columns);
         table.PrimaryKey.ColumnNames.AddRange(primaryKeyColumns);
         if (uniqueColumns is not null && uniqueColumns.Count > 0)
         {
-            var uq = new DdlUniqueConstraint { Name = $"UQ_{tableName}" };
+            var uq = new DdlUniqueConstraint { Name = FitSqlIdentifier($"UQ_{tableName}") };
             uq.ColumnNames.AddRange(uniqueColumns);
             table.UniqueConstraints.Add(uq);
         }
@@ -218,5 +242,20 @@ internal sealed class RawDataVaultSqlGenerationContext
     {
         if (string.IsNullOrWhiteSpace(value)) throw new InvalidOperationException($"Data type '{sourceDataTypeId}' requires detail '{detailName}' for SQL generation.");
         return value;
+    }
+
+    private static string FitSqlIdentifier(string value)
+    {
+        const int maxLength = 128;
+        const int hashLength = 12;
+        if (value.Length <= maxLength)
+        {
+            return value;
+        }
+
+        var hashBytes = SHA256.HashData(Encoding.UTF8.GetBytes(value));
+        var hash = Convert.ToHexString(hashBytes).Substring(0, hashLength);
+        var prefixLength = maxLength - hashLength - 1;
+        return value.Substring(0, prefixLength) + "_" + hash;
     }
 }

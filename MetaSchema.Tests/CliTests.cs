@@ -11,7 +11,7 @@ public sealed class CliTests
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("MetaSchema CLI", result.Output);
+        Assert.Contains("meta-schema <command> [options]", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("extract", result.Output);
     }
 
@@ -23,7 +23,8 @@ public sealed class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--new-workspace <path>", result.Output);
         Assert.Contains("--connection <connectionString>", result.Output);
-        Assert.Contains("--system <name>", result.Output);
+        Assert.Contains("--system", result.Output);
+        Assert.Contains("<name>", result.Output);
         Assert.Contains("--schema <name>", result.Output);
         Assert.Contains("--all-schemas", result.Output);
         Assert.Contains("--table <name>", result.Output);
@@ -148,12 +149,14 @@ public sealed class CliTests
     }
 
     [Fact]
-    public void MetaSchemaModel_UsesScalarDataTypeId_AndIncludesTableRelationships()
+    public void MetaSchemaModel_UsesScalarDataTypeId_AndIncludesStrongTableRelationships()
     {
         var model = MetaSchemaModels.CreateMetaSchemaModel();
 
         var field = Assert.Single(model.Entities, entity => entity.Name == "Field");
         var fieldDataTypeDetail = Assert.Single(model.Entities, entity => entity.Name == "FieldDataTypeDetail");
+        var tableKey = Assert.Single(model.Entities, entity => entity.Name == "TableKey");
+        var tableKeyField = Assert.Single(model.Entities, entity => entity.Name == "TableKeyField");
         var tableRelationship = Assert.Single(model.Entities, entity => entity.Name == "TableRelationship");
         var tableRelationshipField = Assert.Single(model.Entities, entity => entity.Name == "TableRelationshipField");
         Assert.DoesNotContain(model.Entities, entity => entity.Name == "FieldType");
@@ -163,10 +166,20 @@ public sealed class CliTests
         Assert.DoesNotContain(field.Properties, property => property.Name == "Scale");
         Assert.DoesNotContain(field.Relationships, relationship => relationship.Entity == "FieldType");
         Assert.Contains(fieldDataTypeDetail.Relationships, relationship => relationship.Entity == "Field");
-        Assert.Contains(tableRelationship.Properties, property => property.Name == "TargetTableName");
+        Assert.Contains(tableKey.Properties, property => property.Name == "KeyType");
+        Assert.Contains(tableKey.Relationships, relationship => relationship.Entity == "Table");
+        Assert.Contains(tableKeyField.Properties, property => property.Name == "FieldName");
+        Assert.Contains(tableKeyField.Relationships, relationship => relationship.Entity == "TableKey");
+        Assert.Contains(tableKeyField.Relationships, relationship => relationship.Entity == "Field");
         Assert.Contains(tableRelationship.Relationships, relationship => relationship.Entity == "Table" && string.Equals(relationship.Role, "SourceTable", StringComparison.Ordinal));
+        Assert.Contains(tableRelationship.Relationships, relationship => relationship.Entity == "Table" && string.Equals(relationship.Role, "TargetTable", StringComparison.Ordinal));
         Assert.Contains(tableRelationshipField.Relationships, relationship => relationship.Entity == "TableRelationship");
         Assert.Contains(tableRelationshipField.Relationships, relationship => relationship.Entity == "Field" && string.Equals(relationship.Role, "SourceField", StringComparison.Ordinal));
+        Assert.Contains(tableRelationshipField.Relationships, relationship => relationship.Entity == "Field" && string.Equals(relationship.Role, "TargetField", StringComparison.Ordinal));
+        Assert.DoesNotContain(tableRelationship.Properties, property => property.Name == "TargetSchemaName");
+        Assert.DoesNotContain(tableRelationship.Properties, property => property.Name == "TargetTableName");
+        Assert.DoesNotContain(tableRelationshipField.Properties, property => property.Name == "SourceFieldName");
+        Assert.DoesNotContain(tableRelationshipField.Properties, property => property.Name == "TargetFieldName");
     }
 
     private static (int ExitCode, string Output) RunCli(string arguments)

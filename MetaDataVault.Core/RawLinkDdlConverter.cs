@@ -9,10 +9,10 @@ internal static class RawLinkDdlConverter
     {
         EnsureSupported(link);
 
-        var columns = new List<DdlColumn>
-        {
-            RawDataVaultSqlGenerationContext.RenderColumn(context.Implementation.RawLinkImplementation.HashKeyColumnName, context.RenderSqlType(context.Implementation.RawLinkImplementation.HashKeyDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkImplementation.HashKeyLength, null, null)), false)
-        };
+        var columns = new List<DdlColumn>();
+        var usedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var hashKeyColumnName = RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkImplementation.HashKeyColumnName);
+        columns.Add(RawDataVaultSqlGenerationContext.RenderColumn(hashKeyColumnName, context.RenderSqlType(context.Implementation.RawLinkImplementation.HashKeyDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkImplementation.HashKeyLength, null, null)), false));
         var foreignKeys = new List<DdlForeignKeyConstraint>();
         var uniqueColumns = new List<string>();
 
@@ -31,19 +31,20 @@ internal static class RawLinkDdlConverter
                 ["RoleName"] = roleName,
                 ["HubName"] = hub.RawHub.Name
             });
-            columns.Add(RawDataVaultSqlGenerationContext.RenderColumn(columnName, context.RenderSqlType(context.Implementation.RawHubImplementation.HashKeyDataTypeId, new SqlDataTypeDetail(context.Implementation.RawHubImplementation.HashKeyLength, null, null)), false));
-            foreignKeys.Add(RawDataVaultSqlGenerationContext.RenderForeignKeyConstraint($"FK_{context.ResolveRawLinkTableName(link)}_{hub.RawHub.Name}_{columnName}", columnName, context.ResolveRawHubTableName(hub.RawHub), context.Implementation.RawHubImplementation.HashKeyColumnName));
-            uniqueColumns.Add(columnName);
+            var resolvedColumnName = RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, columnName);
+            columns.Add(RawDataVaultSqlGenerationContext.RenderColumn(resolvedColumnName, context.RenderSqlType(context.Implementation.RawHubImplementation.HashKeyDataTypeId, new SqlDataTypeDetail(context.Implementation.RawHubImplementation.HashKeyLength, null, null)), false));
+            foreignKeys.Add(RawDataVaultSqlGenerationContext.RenderForeignKeyConstraint($"FK_{context.ResolveRawLinkTableName(link)}_{hub.RawHub.Name}_{resolvedColumnName}", resolvedColumnName, context.ResolveRawHubTableName(hub.RawHub), context.Implementation.RawHubImplementation.HashKeyColumnName));
+            uniqueColumns.Add(resolvedColumnName);
         }
 
-        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, context.Implementation.RawLinkImplementation.LoadTimestampColumnName, context.RenderSqlType(context.Implementation.RawLinkImplementation.LoadTimestampDataTypeId, new SqlDataTypeDetail(null, context.Implementation.RawLinkImplementation.LoadTimestampPrecision, null)));
-        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, context.Implementation.RawLinkImplementation.RecordSourceColumnName, context.RenderSqlType(context.Implementation.RawLinkImplementation.RecordSourceDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkImplementation.RecordSourceLength, null, null)));
-        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, context.Implementation.RawLinkImplementation.AuditIdColumnName, context.RenderSqlType(context.Implementation.RawLinkImplementation.AuditIdDataTypeId, new SqlDataTypeDetail(null, null, null)));
+        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkImplementation.LoadTimestampColumnName), context.RenderSqlType(context.Implementation.RawLinkImplementation.LoadTimestampDataTypeId, new SqlDataTypeDetail(null, context.Implementation.RawLinkImplementation.LoadTimestampPrecision, null)));
+        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkImplementation.RecordSourceColumnName), context.RenderSqlType(context.Implementation.RawLinkImplementation.RecordSourceDataTypeId, new SqlDataTypeDetail(context.Implementation.RawLinkImplementation.RecordSourceLength, null, null)));
+        RawDataVaultSqlGenerationContext.AppendRequiredColumn(columns, RawDataVaultSqlGenerationContext.ReserveColumnName(usedColumnNames, context.Implementation.RawLinkImplementation.AuditIdColumnName), context.RenderSqlType(context.Implementation.RawLinkImplementation.AuditIdDataTypeId, new SqlDataTypeDetail(null, null, null)));
 
         return RawDataVaultSqlGenerationContext.CreateTable(
             context.ResolveRawLinkTableName(link),
             columns,
-            new[] { context.Implementation.RawLinkImplementation.HashKeyColumnName },
+            new[] { hashKeyColumnName },
             uniqueColumns,
             foreignKeys);
     }

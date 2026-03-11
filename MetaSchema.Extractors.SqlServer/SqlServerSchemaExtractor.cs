@@ -103,12 +103,40 @@ public sealed class SqlServerSchemaExtractor
                 relationships => relationships["SystemId"] = systemId);
         }
 
+        var tableIdsByKey = tableRows.ToDictionary(
+            row => BuildScopedObjectKey(row.SchemaName, row.TableName),
+            row => BuildTableId(databaseName, row.SchemaName, row.TableName),
+            StringComparer.OrdinalIgnoreCase);
+        var columnsByTableKey = tableRows.ToDictionary(
+            row => BuildScopedObjectKey(row.SchemaName, row.TableName),
+            row => LoadColumns(connection, row.SchemaName, row.TableName),
+            StringComparer.OrdinalIgnoreCase);
+        var tableKeysByTableKey = tableRows.ToDictionary(
+            row => BuildScopedObjectKey(row.SchemaName, row.TableName),
+            row => LoadTableKeys(connection, row.SchemaName, row.TableName),
+            StringComparer.OrdinalIgnoreCase);
+        var tableKeyFieldsByTableKey = tableRows.ToDictionary(
+            row => BuildScopedObjectKey(row.SchemaName, row.TableName),
+            row => LoadTableKeyFields(connection, row.SchemaName, row.TableName),
+            StringComparer.OrdinalIgnoreCase);
+        var foreignKeysByTableKey = tableRows.ToDictionary(
+            row => BuildScopedObjectKey(row.SchemaName, row.TableName),
+            row => LoadForeignKeys(connection, row.SchemaName, row.TableName),
+            StringComparer.OrdinalIgnoreCase);
+        var foreignKeyColumnsByTableKey = tableRows.ToDictionary(
+            row => BuildScopedObjectKey(row.SchemaName, row.TableName),
+            row => LoadForeignKeyColumns(connection, row.SchemaName, row.TableName),
+            StringComparer.OrdinalIgnoreCase);
+
         foreach (var tableRow in tableRows)
         {
             var schemaId = BuildSchemaId(databaseName, tableRow.SchemaName);
-            var columnRows = LoadColumns(connection, tableRow.SchemaName, tableRow.TableName);
-            var foreignKeys = LoadForeignKeys(connection, tableRow.SchemaName, tableRow.TableName);
-            var foreignKeyColumns = LoadForeignKeyColumns(connection, tableRow.SchemaName, tableRow.TableName);
+            var scopedTableKey = BuildScopedObjectKey(tableRow.SchemaName, tableRow.TableName);
+            var columnRows = columnsByTableKey[scopedTableKey];
+            var tableKeys = tableKeysByTableKey[scopedTableKey];
+            var tableKeyFields = tableKeyFieldsByTableKey[scopedTableKey];
+            var foreignKeys = foreignKeysByTableKey[scopedTableKey];
+            var foreignKeyColumns = foreignKeyColumnsByTableKey[scopedTableKey];
 
             var tableId = BuildTableId(databaseName, tableRow.SchemaName, tableRow.TableName);
             AddRecord(
@@ -151,6 +179,65 @@ public sealed class SqlServerSchemaExtractor
                 AddFieldDataTypeDetail(workspace, fieldId, "Scale", columnRow.Scale);
             }
 
+            var fieldIdsByColumnName = sourceFieldIdByColumnName;
+            var keyFieldsByName = tableKeyFields
+                .GroupBy(row => row.KeyName, StringComparer.Ordinal)
+                .ToDictionary(group => group.Key, group => group
+                    .OrderBy(item => item.Ordinal)
+                    .ToList(), StringComparer.Ordinal);
+
+            foreach (var tableKey in tableKeys
+                         .OrderBy(row => row.KeyType, StringComparer.Ordinal)
+                         .ThenBy(row => row.Name, StringComparer.Ordinal))
+            {
+                var tableKeyId = BuildTableKeyId(databaseName, tableRow.SchemaName, tableRow.TableName, tableKey.Name);
+                AddRecord(
+                    workspace,
+                    "TableKey",
+                    tableKeyId,
+                    values =>
+                    {
+                        values["Name"] = tableKey.Name;
+                        values["KeyType"] = tableKey.KeyType;
+                    },
+                    relationships => relationships["TableId"] = tableId);
+
+                if (!keyFieldsByName.TryGetValue(tableKey.Name, out var keyFields))
+                {
+                    continue;
+                }
+
+                foreach (var keyField in keyFields)
+                {
+                    if (!fieldIdsByColumnName.TryGetValue(keyField.ColumnName, out var sourceFieldId))
+                    {
+                        throw new InvalidOperationException(
+                            $"SQL Server key '{tableRow.SchemaName}.{tableRow.TableName}.{tableKey.Name}' referenced column '{keyField.ColumnName}' that was not extracted.");
+                    }
+
+                    var tableKeyFieldId = BuildTableKeyFieldId(
+                        databaseName,
+                        tableRow.SchemaName,
+                        tableRow.TableName,
+                        tableKey.Name,
+                        keyField.Ordinal);
+                    AddRecord(
+                        workspace,
+                        "TableKeyField",
+                        tableKeyFieldId,
+                        values =>
+                        {
+                            values["Ordinal"] = keyField.Ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                            values["FieldName"] = keyField.ColumnName;
+                        },
+                        relationships =>
+                        {
+                            relationships["TableKeyId"] = tableKeyId;
+                            relationships["FieldId"] = sourceFieldId;
+                        });
+                }
+            }
+
             var foreignKeyColumnsByName = foreignKeyColumns
                 .GroupBy(row => row.ForeignKeyName, StringComparer.Ordinal)
                 .ToDictionary(group => group.Key, group => group
@@ -160,6 +247,12 @@ public sealed class SqlServerSchemaExtractor
             foreach (var foreignKey in foreignKeys
                          .OrderBy(row => row.Name, StringComparer.Ordinal))
             {
+                var targetTableKey = BuildScopedObjectKey(foreignKey.TargetSchemaName, foreignKey.TargetTableName);
+                if (!tableIdsByKey.TryGetValue(targetTableKey, out var targetTableId))
+                {
+                    continue;
+                }
+
                 var relationshipId = BuildRelationshipId(databaseName, tableRow.SchemaName, tableRow.TableName, foreignKey.Name);
                 AddRecord(
                     workspace,
@@ -168,22 +261,36 @@ public sealed class SqlServerSchemaExtractor
                     values =>
                     {
                         values["Name"] = foreignKey.Name;
-                        values["TargetSchemaName"] = foreignKey.TargetSchemaName;
-                        values["TargetTableName"] = foreignKey.TargetTableName;
                     },
-                    relationships => relationships["SourceTableId"] = tableId);
+                    relationships =>
+                    {
+                        relationships["SourceTableId"] = tableId;
+                        relationships["TargetTableId"] = targetTableId;
+                    });
 
                 if (!foreignKeyColumnsByName.TryGetValue(foreignKey.Name, out var fkColumns))
                 {
                     continue;
                 }
 
+                var targetFieldIdByColumnName = columnsByTableKey[targetTableKey]
+                    .ToDictionary(
+                        row => row.ColumnName,
+                        row => BuildFieldId(databaseName, row.SchemaName, row.TableName, row.ColumnName),
+                        StringComparer.OrdinalIgnoreCase);
+
                 foreach (var fkColumn in fkColumns)
                 {
-                    if (!sourceFieldIdByColumnName.TryGetValue(fkColumn.SourceColumnName, out var sourceFieldId))
+                    if (!fieldIdsByColumnName.TryGetValue(fkColumn.SourceColumnName, out var sourceFieldId))
                     {
                         throw new InvalidOperationException(
                             $"SQL Server foreign key '{tableRow.SchemaName}.{tableRow.TableName}.{foreignKey.Name}' referenced source column '{fkColumn.SourceColumnName}' that was not extracted.");
+                    }
+
+                    if (!targetFieldIdByColumnName.TryGetValue(fkColumn.TargetColumnName, out var targetFieldId))
+                    {
+                        throw new InvalidOperationException(
+                            $"SQL Server foreign key '{tableRow.SchemaName}.{tableRow.TableName}.{foreignKey.Name}' referenced target column '{fkColumn.TargetColumnName}' that was not extracted.");
                     }
 
                     var relationshipFieldId = BuildRelationshipFieldId(
@@ -199,13 +306,12 @@ public sealed class SqlServerSchemaExtractor
                         values =>
                         {
                             values["Ordinal"] = fkColumn.Ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                            values["SourceFieldName"] = fkColumn.SourceColumnName;
-                            values["TargetFieldName"] = fkColumn.TargetColumnName;
                         },
                         relationships =>
                         {
                             relationships["TableRelationshipId"] = relationshipId;
                             relationships["SourceFieldId"] = sourceFieldId;
+                            relationships["TargetFieldId"] = targetFieldId;
                         });
                 }
             }
@@ -220,14 +326,18 @@ public sealed class SqlServerSchemaExtractor
         using var command = connection.CreateCommand();
         command.CommandText = """
             select
-                TABLE_SCHEMA,
-                TABLE_NAME,
-                TABLE_TYPE
-            from INFORMATION_SCHEMA.TABLES
-            where TABLE_TYPE in ('BASE TABLE', 'VIEW')
-              and (@schemaName is null or TABLE_SCHEMA = @schemaName)
-              and (@tableName is null or TABLE_NAME = @tableName)
-            order by TABLE_SCHEMA, TABLE_NAME
+                t.TABLE_SCHEMA,
+                t.TABLE_NAME,
+                t.TABLE_TYPE
+            from INFORMATION_SCHEMA.TABLES t
+            join sys.objects o on o.object_id = object_id(quotename(t.TABLE_SCHEMA) + '.' + quotename(t.TABLE_NAME))
+            where t.TABLE_TYPE in ('BASE TABLE', 'VIEW')
+              and t.TABLE_SCHEMA not in ('sys', 'INFORMATION_SCHEMA')
+              and o.is_ms_shipped = 0
+              and t.TABLE_NAME <> 'sysdiagrams'
+              and (@schemaName is null or t.TABLE_SCHEMA = @schemaName)
+              and (@tableName is null or t.TABLE_NAME = @tableName)
+            order by t.TABLE_SCHEMA, t.TABLE_NAME
             """;
         command.Parameters.Add(new SqlParameter("@schemaName", SqlDbType.NVarChar, 128) { Value = string.IsNullOrWhiteSpace(schemaName) ? DBNull.Value : schemaName });
         command.Parameters.Add(new SqlParameter("@tableName", SqlDbType.NVarChar, 128) { Value = string.IsNullOrWhiteSpace(tableName) ? DBNull.Value : tableName });
@@ -275,12 +385,79 @@ public sealed class SqlServerSchemaExtractor
                 SchemaName: reader.GetString(0),
                 TableName: reader.GetString(1),
                 ColumnName: reader.GetString(2),
-                OrdinalPosition: reader.GetInt32(3),
+                OrdinalPosition: ReadInt32(reader, 3),
                 IsNullable: string.Equals(reader.GetString(4), "YES", StringComparison.OrdinalIgnoreCase),
                 DataTypeName: reader.GetString(5),
                 Length: ReadNullableInt(reader, 6),
                 NumericPrecision: ReadNullableInt(reader, 7),
                 Scale: ReadNullableInt(reader, 8)));
+        }
+
+        return rows;
+    }
+
+    private static List<TableKeyRow> LoadTableKeys(SqlConnection connection, string schemaName, string tableName)
+    {
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            select
+                kc.name as KeyName,
+                kc.type as KeyConstraintType
+            from sys.key_constraints kc
+            join sys.tables srcTable on srcTable.object_id = kc.parent_object_id
+            join sys.schemas srcSchema on srcSchema.schema_id = srcTable.schema_id
+            where srcSchema.name = @schemaName
+              and srcTable.name = @tableName
+              and kc.type in ('PK', 'UQ')
+            order by
+                case kc.type when 'PK' then 0 else 1 end,
+                kc.name
+            """;
+        command.Parameters.Add(new SqlParameter("@schemaName", SqlDbType.NVarChar, 128) { Value = schemaName });
+        command.Parameters.Add(new SqlParameter("@tableName", SqlDbType.NVarChar, 128) { Value = tableName });
+
+        var rows = new List<TableKeyRow>();
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            rows.Add(new TableKeyRow(
+                Name: reader.GetString(0),
+                KeyType: NormalizeKeyType(reader.GetString(1))));
+        }
+
+        return rows;
+    }
+
+    private static List<TableKeyFieldRow> LoadTableKeyFields(SqlConnection connection, string schemaName, string tableName)
+    {
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            select
+                kc.name as KeyName,
+                ic.key_ordinal as Ordinal,
+                srcColumn.name as ColumnName
+            from sys.key_constraints kc
+            join sys.tables srcTable on srcTable.object_id = kc.parent_object_id
+            join sys.schemas srcSchema on srcSchema.schema_id = srcTable.schema_id
+            join sys.index_columns ic on ic.object_id = kc.parent_object_id and ic.index_id = kc.unique_index_id
+            join sys.columns srcColumn on srcColumn.object_id = ic.object_id and srcColumn.column_id = ic.column_id
+            where srcSchema.name = @schemaName
+              and srcTable.name = @tableName
+              and kc.type in ('PK', 'UQ')
+              and ic.key_ordinal > 0
+            order by kc.name, ic.key_ordinal
+            """;
+        command.Parameters.Add(new SqlParameter("@schemaName", SqlDbType.NVarChar, 128) { Value = schemaName });
+        command.Parameters.Add(new SqlParameter("@tableName", SqlDbType.NVarChar, 128) { Value = tableName });
+
+        var rows = new List<TableKeyFieldRow>();
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            rows.Add(new TableKeyFieldRow(
+                KeyName: reader.GetString(0),
+                Ordinal: ReadInt32(reader, 1),
+                ColumnName: reader.GetString(2)));
         }
 
         return rows;
@@ -349,7 +526,7 @@ public sealed class SqlServerSchemaExtractor
         {
             rows.Add(new ForeignKeyColumnRow(
                 ForeignKeyName: reader.GetString(0),
-                Ordinal: reader.GetInt32(1),
+                Ordinal: ReadInt32(reader, 1),
                 SourceColumnName: reader.GetString(2),
                 TargetColumnName: reader.GetString(3)));
         }
@@ -376,6 +553,17 @@ public sealed class SqlServerSchemaExtractor
         };
     }
 
+    private static int ReadInt32(SqlDataReader reader, int ordinal)
+    {
+        var value = ReadNullableInt(reader, ordinal);
+        if (!value.HasValue)
+        {
+            throw new InvalidOperationException($"Expected non-null integer at ordinal {ordinal}.");
+        }
+
+        return value.Value;
+    }
+
     private static string NormalizeTableType(string tableType)
     {
         return tableType switch
@@ -383,6 +571,16 @@ public sealed class SqlServerSchemaExtractor
             "BASE TABLE" => "Table",
             "VIEW" => "View",
             _ => tableType,
+        };
+    }
+
+    private static string NormalizeKeyType(string keyConstraintType)
+    {
+        return keyConstraintType switch
+        {
+            "PK" => "primary",
+            "UQ" => "unique",
+            _ => keyConstraintType,
         };
     }
 
@@ -420,6 +618,23 @@ public sealed class SqlServerSchemaExtractor
     private static string BuildDataTypeId(string dataTypeName)
     {
         return "sqlserver:type:" + dataTypeName;
+    }
+
+    private static string BuildScopedObjectKey(string schemaName, string objectName)
+    {
+        return schemaName + "." + objectName;
+    }
+
+    private static string BuildTableKeyId(string databaseName, string schemaName, string tableName, string keyName)
+    {
+        return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":key:" + keyName;
+    }
+
+    private static string BuildTableKeyFieldId(string databaseName, string schemaName, string tableName, string keyName, int ordinal)
+    {
+        return BuildTableKeyId(databaseName, schemaName, tableName, keyName) +
+               ":field:" +
+               ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
     }
 
     private static string BuildFieldId(string databaseName, string schemaName, string tableName, string columnName)
@@ -478,6 +693,15 @@ public sealed class SqlServerSchemaExtractor
         string Name,
         string TargetSchemaName,
         string TargetTableName);
+
+    private readonly record struct TableKeyRow(
+        string Name,
+        string KeyType);
+
+    private readonly record struct TableKeyFieldRow(
+        string KeyName,
+        int Ordinal,
+        string ColumnName);
 
     private readonly record struct ForeignKeyColumnRow(
         string ForeignKeyName,
