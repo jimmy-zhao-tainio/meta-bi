@@ -4,7 +4,7 @@ using Meta.Core.Presentation;
 using Meta.Core.Services;
 using MetaDataVault.Core;
 
-internal static class Program
+internal static partial class Program
 {
     private static readonly ConsolePresenter Presenter = new();
 
@@ -19,6 +19,11 @@ internal static class Program
         if (string.Equals(args[0], "--new-workspace", StringComparison.OrdinalIgnoreCase))
         {
             return await RunNewWorkspaceAsync(args).ConfigureAwait(false);
+        }
+
+        if (TryGetAddCommand(args[0], out var addCommand))
+        {
+            return await RunAddCommandAsync(addCommand!, args).ConfigureAwait(false);
         }
 
         if (string.Equals(args[0], "check-business-materialization", StringComparison.OrdinalIgnoreCase))
@@ -729,15 +734,16 @@ internal static class Program
     {
         Presenter.WriteUsage("meta-datavault-business [--new-workspace <path> | <command> [options]]");
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteCommandCatalog(
-            "Commands:",
-            new[]
-            {
-                ("help", "Show this help."),
-                ("check-business-materialization", "Check the sanctioned input contract for Business Data Vault materialization."),
-                ("materialize-business", "Materialize a Business Data Vault workspace from sanctioned inputs."),
-                ("generate-sql", "Generate SQL scripts from a materialized Business Data Vault workspace.")
-            });
+        var commands = new List<(string Name, string Description)>
+        {
+            ("help", "Show this help."),
+            ("--new-workspace", "Create an empty MetaBusinessDataVault workspace."),
+            ("check-business-materialization", "Check the sanctioned input contract for Business Data Vault materialization."),
+            ("materialize-business", "Materialize a Business Data Vault workspace from sanctioned inputs."),
+            ("generate-sql", "Generate SQL scripts from a materialized Business Data Vault workspace.")
+        };
+        commands.AddRange(GetAddCommandCatalog());
+        Presenter.WriteCommandCatalog("Commands:", commands);
         Presenter.WriteInfo(string.Empty);
         Presenter.WriteNext("meta-datavault-business generate-sql --help");
     }

@@ -117,11 +117,22 @@ Business-only commands:
 
 - `check-business-materialization`
 - `materialize-business`
+- `generate-sql`
+- explicit `add-*` authoring commands for hubs, links, references, satellites, PITs, bridges, and their child rows
+
+Example authoring flow:
+
+```cmd
+meta-datavault-business --new-workspace C:\path\to\NewBusinessDataVault
+meta-datavault-business add-hub --workspace C:\path\to\NewBusinessDataVault --id Customer --name Customer
+meta-datavault-business add-hub-key-part --workspace C:\path\to\NewBusinessDataVault --id CustomerIdentifier --hub Customer --name Identifier --data-type-id meta:type:String --ordinal 1
+meta-datavault-business add-link --workspace C:\path\to\NewBusinessDataVault --id CustomerOrder --name CustomerOrder
+meta-datavault-business add-link-hub --workspace C:\path\to\NewBusinessDataVault --id CustomerOrderCustomer --link CustomerOrder --hub Customer --ordinal 1 --role-name Customer
+```
 
 Preflight:
 
 ```cmd
-
 meta-datavault-business check-business-materialization --business-workspace C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart
 ```
 
@@ -190,7 +201,6 @@ BusinessReferenceSatellites: 1
 BusinessPointInTimes: 1
 BusinessBridges: 1
 ```
-
 Current SQL scope:
 
 - `BusinessHub`
@@ -231,4 +241,8 @@ See also:
 For a checked-in Business Data Vault SQL demo with workspaces, instance data, generated SQL, and plain `cmd` scripts, see:
 
 - `Samples/Demos/BusinessDataVaultSql`
+
+
+
+
 
