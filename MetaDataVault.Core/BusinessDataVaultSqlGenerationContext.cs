@@ -31,7 +31,7 @@ internal sealed class BusinessDataVaultSqlGenerationContext
         return DdlSqlServerRenderer.RenderSchema(database);
     }
 
-    public string RenderSqlType(string sourceDataTypeId, DetailBag details)
+    public string RenderSqlType(string sourceDataTypeId, SqlDataTypeDetail details)
     {
         var sqlServerDataTypeId = ResolveSqlServerDataTypeId(sourceDataTypeId);
         return sqlServerDataTypeId switch
@@ -81,7 +81,7 @@ internal sealed class BusinessDataVaultSqlGenerationContext
         return targetDataTypeId;
     }
 
-    public DetailBag BuildDetailBag(IEnumerable<(string Name, string Value)> details)
+    public SqlDataTypeDetail BuildSqlDataTypeDetail(IEnumerable<(string Name, string Value)> details)
     {
         string? length = null;
         string? precision = null;
@@ -102,7 +102,7 @@ internal sealed class BusinessDataVaultSqlGenerationContext
             }
         }
 
-        return new DetailBag(length, precision, scale);
+        return new SqlDataTypeDetail(length, precision, scale);
     }
 
     public string RenderPattern(string pattern, IReadOnlyDictionary<string, string> tokens)
@@ -181,3 +181,4 @@ internal sealed class BusinessDataVaultSqlGenerationContext
         return value;
     }
 }
+
