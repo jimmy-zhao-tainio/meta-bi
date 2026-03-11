@@ -1,4 +1,4 @@
-# meta-bi
+﻿# meta-bi
 
 `meta-bi` is the BI stack that sits on top of the generic `meta` foundation.
 
@@ -236,11 +236,40 @@ See also:
 - `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
 - `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
 
+## How Business Data Vault SQL Is Generated
+
+`meta-datavault-business generate-sql` does not walk generic workspace records.
+
+It loads typed models through generated tooling in `MetaDataVault.Core`:
+
+- `MetaBusinessDataVaultModel.LoadFromXmlWorkspace(...)`
+- `MetaDataVaultImplementationModel.LoadFromXmlWorkspace(...)`
+- `MetaDataTypeConversionModel.LoadFromXmlWorkspace(...)`
+
+Then `BusinessDataVaultSqlGenerator` iterates the typed object tree and emits one SQL file per typed BDV object family:
+
+- `BusinessHub`
+- `BusinessLink`
+- `BusinessSameAsLink`
+- `BusinessHierarchicalLink`
+- `BusinessReference`
+- `BusinessHubSatellite`
+- `BusinessLinkSatellite`
+- `BusinessSameAsLinkSatellite`
+- `BusinessHierarchicalLinkSatellite`
+- `BusinessReferenceSatellite`
+- `BusinessPointInTime`
+- `BusinessBridge`
+
+The exact per-object mapping is documented in:
+
+- `Samples/Demos/BusinessDataVaultCliIntegration/README.md`
 ## SQL Demo
 
 For a checked-in Business Data Vault SQL demo with workspaces, instance data, generated SQL, and plain `cmd` scripts, see:
 
 - `Samples/Demos/BusinessDataVaultSql`
+
 
 
 
