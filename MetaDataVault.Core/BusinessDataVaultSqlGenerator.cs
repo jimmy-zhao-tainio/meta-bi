@@ -34,9 +34,7 @@ public interface IBusinessDataVaultSqlGenerator
 }
 
 public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerator
-{
-    private const string DeployOrderManifestFileName = "_meta-sqlserver-order.txt";
-    private static readonly Regex TokenPattern = new(@"\{(?<name>[A-Za-z][A-Za-z0-9]*)\}", RegexOptions.Compiled);
+{    private static readonly Regex TokenPattern = new(@"\{(?<name>[A-Za-z][A-Za-z0-9]*)\}", RegexOptions.Compiled);
     public async Task<BusinessDataVaultSqlGenerationResult> GenerateAsync(
         string businessDataVaultWorkspacePath,
         string implementationWorkspacePath,
@@ -125,11 +123,6 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
             var path = Path.Combine(outputRoot, script.FileName);
             await File.WriteAllTextAsync(path, script.Sql, new UTF8Encoding(false), cancellationToken).ConfigureAwait(false);
         }
-
-        var manifestPath = Path.Combine(outputRoot, DeployOrderManifestFileName);
-        await File.WriteAllLinesAsync(manifestPath, scripts.Select(script => script.FileName), new UTF8Encoding(false), cancellationToken).ConfigureAwait(false);
-
-
         return new BusinessDataVaultSqlGenerationResult(
             outputRoot,
             scripts.Count,
@@ -1332,6 +1325,7 @@ public sealed class BusinessDataVaultSqlGenerator : IBusinessDataVaultSqlGenerat
 
     private readonly record struct BridgePath(BDV.BusinessHub RelatedHub, IReadOnlyList<string> HubIds, IReadOnlyList<string> LinkIds);
 }
+
 
 
 
