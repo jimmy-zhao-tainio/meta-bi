@@ -18,37 +18,7 @@ public sealed class CliTests
         Assert.DoesNotContain("generate-sql", result.Output);
     }
 
-    [Fact]
-    public void Init_Help_ShowsBusinessUsage()
-    {
-        var result = RunBusinessCli("init --help");
 
-        Assert.Equal(0, result.ExitCode);
-        Assert.Contains("meta-datavault-business init --new-workspace <path>", result.Output);
-                Assert.Contains("MetaBusinessDataVault", result.Output);
-    }
-
-    [Fact]
-    public async Task Init_Business_CreatesMetaBusinessDataVaultWorkspace()
-    {
-        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
-        var workspacePath = Path.Combine(root, "BusinessDataVault");
-
-        try
-        {
-            var result = RunBusinessCli($"init --new-workspace \"{workspacePath}\"");
-
-            Assert.Equal(0, result.ExitCode);
-            Assert.Contains("OK: metabusinessdatavault workspace created", result.Output, StringComparison.OrdinalIgnoreCase);
-
-            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
-            Assert.Equal("MetaBusinessDataVault", workspace.Model.Name);
-        }
-        finally
-        {
-            DeleteDirectoryIfExists(root);
-        }
-    }
     [Fact]
     public void FromMetaSchema_Help_ShowsRequiredOptions()
     {

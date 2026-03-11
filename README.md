@@ -107,12 +107,6 @@ The Data Vault tool family is now split into two CLIs:
 - `check-business-materialization`
 - `materialize-business`
 
-Bootstrap a Business Data Vault workspace:
-
-```cmd
-meta-datavault-business init --new-workspace C:\path\to\NewBusinessDataVault
-```
-
 Preflight:
 
 ```cmd

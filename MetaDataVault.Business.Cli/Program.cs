@@ -15,12 +15,6 @@ internal static class Program
             PrintHelp();
             return 0;
         }
-
-        if (string.Equals(args[0], "init", StringComparison.OrdinalIgnoreCase))
-        {
-            return await RunInitAsync(args).ConfigureAwait(false);
-        }
-
         if (string.Equals(args[0], "check-business-materialization", StringComparison.OrdinalIgnoreCase))
         {
             return await RunCheckBusinessMaterializationAsync(args).ConfigureAwait(false);
@@ -39,47 +33,6 @@ internal static class Program
         return Fail($"unknown command '{args[0]}'.", "meta-datavault-business help");
     }
 
-    private static async Task<int> RunInitAsync(string[] args)
-    {
-        if (args.Length == 1 || IsHelpToken(args[1]))
-        {
-            PrintInitHelp();
-            return 0;
-        }
-
-        var parseResult = ParseNewWorkspaceOnly(args, 1);
-        if (!parseResult.Ok)
-        {
-            return Fail(parseResult.ErrorMessage, "meta-datavault-business init --help");
-        }
-
-        var workspacePath = Path.GetFullPath(parseResult.NewWorkspacePath);
-        if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
-        {
-            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
-        }
-
-        Directory.CreateDirectory(workspacePath);
-        var workspace = MetaDataVaultWorkspaces.CreateEmptyMetaBusinessDataVaultWorkspace(workspacePath);
-        var validation = new ValidationService().Validate(workspace);
-        if (validation.HasErrors)
-        {
-            return Fail(
-                "metabusinessdatavault workspace is invalid.",
-                "fix the sanctioned model and retry init.",
-                4,
-                validation.Issues
-                    .Where(item => item.Severity == IssueSeverity.Error)
-                    .Select(item => $"  - {item.Code}: {item.Message}"));
-        }
-
-        await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
-        Presenter.WriteOk(
-            "metabusinessdatavault workspace created",
-            ("Path", workspacePath),
-            ("Model", workspace.Model.Name));
-        return 0;
-    }
 
 
     private static async Task<int> RunCheckBusinessMaterializationAsync(string[] args)
@@ -346,37 +299,6 @@ internal static class Program
     }
 
 
-    private static (bool Ok, string NewWorkspacePath, string ErrorMessage) ParseNewWorkspaceOnly(string[] args, int startIndex)
-    {
-        var newWorkspacePath = string.Empty;
-        for (var i = startIndex; i < args.Length; i++)
-        {
-            var arg = args[i];
-            if (!string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                return (false, newWorkspacePath, $"unknown option '{arg}'.");
-            }
-
-            if (i + 1 >= args.Length)
-            {
-                return (false, newWorkspacePath, "missing value for --new-workspace.");
-            }
-
-            if (!string.IsNullOrWhiteSpace(newWorkspacePath))
-            {
-                return (false, newWorkspacePath, "--new-workspace can only be provided once.");
-            }
-
-            newWorkspacePath = args[++i];
-        }
-
-        if (string.IsNullOrWhiteSpace(newWorkspacePath))
-        {
-            return (false, string.Empty, "missing required option --new-workspace <path>.");
-        }
-
-        return (true, newWorkspacePath, string.Empty);
-    }
 
     private static (bool Ok, string BusinessWorkspacePath, string BusinessDataVaultWorkspacePath, string ImplementationWorkspacePath, List<string> WeaveWorkspacePaths, List<string> FabricWorkspacePaths, string ErrorMessage) ParseCheckBusinessMaterializationArgs(string[] args, int startIndex)
     {
@@ -741,7 +663,6 @@ internal static class Program
             new[]
             {
                 ("help", "Show this help."),
-                ("init", "Create an empty MetaBusinessDataVault workspace."),
                 ("check-business-materialization", "Check the sanctioned input contract for Business Data Vault materialization."),
                 ("materialize-business", "Materialize a Business Data Vault workspace from sanctioned inputs."),
                 ("generate-sql", "Generate SQL scripts from a materialized Business Data Vault workspace.")
@@ -750,13 +671,6 @@ internal static class Program
         Presenter.WriteNext("meta-datavault-business generate-sql --help");
     }
 
-    private static void PrintInitHelp()
-    {
-        Presenter.WriteInfo("Command: init");
-        Presenter.WriteUsage("meta-datavault-business init --new-workspace <path>");
-        Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Creates a new workspace with the sanctioned MetaBusinessDataVault model.");
-    }
 
     private static void PrintCheckBusinessMaterializationHelp()
     {
