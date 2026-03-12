@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Adapters" Version="$(MetaFoundationPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>

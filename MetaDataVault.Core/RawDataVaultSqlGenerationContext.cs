@@ -174,16 +174,16 @@ internal sealed class RawDataVaultSqlGenerationContext
     }
 
     public string ResolveRawHubTableName(MRDV.RawHub hub)
-        => RenderPattern(Implementation.RawHubImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal) { ["Name"] = hub.Name });
+        => RequireTableIdentifier(RenderPattern(Implementation.RawHubImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal) { ["Name"] = hub.Name }));
 
     public string ResolveRawLinkTableName(MRDV.RawLink link)
-        => RenderPattern(Implementation.RawLinkImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal) { ["Name"] = link.Name });
+        => RequireTableIdentifier(RenderPattern(Implementation.RawLinkImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal) { ["Name"] = link.Name }));
 
     public string ResolveRawHubSatelliteTableName(MRDV.RawHubSatellite satellite)
-        => RenderPattern(Implementation.RawHubSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal) { ["ParentName"] = satellite.RawHub.Name, ["Name"] = satellite.Name });
+        => RequireTableIdentifier(RenderPattern(Implementation.RawHubSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal) { ["ParentName"] = satellite.RawHub.Name, ["Name"] = satellite.Name }));
 
     public string ResolveRawLinkSatelliteTableName(MRDV.RawLinkSatellite satellite)
-        => RenderPattern(Implementation.RawLinkSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal) { ["ParentName"] = satellite.RawLink.Name, ["Name"] = satellite.Name });
+        => RequireTableIdentifier(RenderPattern(Implementation.RawLinkSatelliteImplementation.TableNamePattern, new Dictionary<string, string>(StringComparer.Ordinal) { ["ParentName"] = satellite.RawLink.Name, ["Name"] = satellite.Name }));
 
     public int ParseOrdinal(string ordinal) => int.TryParse(ordinal, out var value) ? value : int.MaxValue;
 
@@ -209,7 +209,7 @@ internal sealed class RawDataVaultSqlGenerationContext
 
     public static DdlForeignKeyConstraint RenderForeignKeyConstraint(string constraintName, string columnName, string referencedTableName, string referencedColumnName)
     {
-        var constraint = new DdlForeignKeyConstraint { Name = FitSqlIdentifier(constraintName), ReferencedSchema = "dbo", ReferencedTableName = referencedTableName };
+        var constraint = new DdlForeignKeyConstraint { Name = FitSecondarySqlIdentifier(constraintName), ReferencedSchema = "dbo", ReferencedTableName = referencedTableName };
         constraint.ColumnNames.Add(columnName);
         constraint.ReferencedColumnNames.Add(referencedColumnName);
         return constraint;
@@ -217,12 +217,13 @@ internal sealed class RawDataVaultSqlGenerationContext
 
     public static DdlTable CreateTable(string tableName, IReadOnlyList<DdlColumn> columns, IEnumerable<string> primaryKeyColumns, IReadOnlyList<string>? uniqueColumns, IEnumerable<DdlForeignKeyConstraint> foreignKeys)
     {
-        var table = new DdlTable { Schema = "dbo", Name = tableName, PrimaryKey = new DdlPrimaryKeyConstraint { Name = FitSqlIdentifier($"PK_{tableName}"), IsClustered = true } };
+        var resolvedTableName = RequireTableIdentifier(tableName);
+        var table = new DdlTable { Schema = "dbo", Name = resolvedTableName, PrimaryKey = new DdlPrimaryKeyConstraint { Name = FitSecondarySqlIdentifier($"PK_{resolvedTableName}"), IsClustered = true } };
         table.Columns.AddRange(columns);
         table.PrimaryKey.ColumnNames.AddRange(primaryKeyColumns);
         if (uniqueColumns is not null && uniqueColumns.Count > 0)
         {
-            var uq = new DdlUniqueConstraint { Name = FitSqlIdentifier($"UQ_{tableName}") };
+            var uq = new DdlUniqueConstraint { Name = FitSecondarySqlIdentifier($"UQ_{resolvedTableName}") };
             uq.ColumnNames.AddRange(uniqueColumns);
             table.UniqueConstraints.Add(uq);
         }
@@ -244,7 +245,23 @@ internal sealed class RawDataVaultSqlGenerationContext
         return value;
     }
 
-    private static string FitSqlIdentifier(string value)
+    private static string RequireTableIdentifier(string value)
+    {
+        const int maxLength = 128;
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            throw new InvalidOperationException("Table name cannot be blank.");
+        }
+
+        if (value.Length > maxLength)
+        {
+            throw new InvalidOperationException($"Generated table name '{value}' exceeds SQL Server's 128 character identifier limit.");
+        }
+
+        return value;
+    }
+
+    private static string FitSecondarySqlIdentifier(string value)
     {
         const int maxLength = 128;
         const int hashLength = 12;

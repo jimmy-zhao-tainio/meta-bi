@@ -159,14 +159,19 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--source-workspace <path>", result.Output);
+        Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--new-workspace <path>", result.Output);
         Assert.Contains("[--business-workspace <path>]", result.Output);
-        Assert.Contains("[--implementation-workspace <path>]", result.Output);
         Assert.Contains("[--ignore-field-name <name>]", result.Output);
         Assert.Contains("[--ignore-field-suffix <suffix>]", result.Output);
+        Assert.Contains("[--include-views]", result.Output);
+        Assert.Contains("[--verbose]", result.Output);
         Assert.Contains("schema-bootstrap", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("primary or unique keys", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("excluded from automatic key selection", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("metadatavaultimplementation is required", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("views are excluded by default", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("print table and relationship materialization decisions to the console", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("schema-driven and agnostic to source field names", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -218,6 +223,7 @@ public sealed class CliTests
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
         var targetPath = Path.Combine(root, "RawDataVault");
+        var implementationPath = GetRawImplementationWorkspacePath();
 
         try
         {
@@ -226,9 +232,10 @@ public sealed class CliTests
             SeedMetaSchema(source);
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\" --verbose");
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: raw datavault materialized from metaschema", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("Materialization Summary", result.Output, StringComparison.OrdinalIgnoreCase);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
             Assert.Equal("MetaRawDataVault", workspace.Model.Name);
@@ -246,15 +253,27 @@ public sealed class CliTests
             Assert.Empty(workspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite"));
 
             var rawLinks = workspace.Instance.GetOrCreateEntityRecords("RawLink").ToDictionary(record => record.Id, StringComparer.Ordinal);
-            Assert.Equal("FK_Order_Customer", rawLinks["rawlink:rel:1"].Values["Name"]);
+            Assert.Equal("OrderCustomer", rawLinks["rawlink:rel:1"].Values["Name"]);
 
             var rawLinkHubs = workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").ToDictionary(record => record.Id, StringComparer.Ordinal);
             Assert.Equal("Order", rawLinkHubs["rawlink:rel:1:source"].Values["RoleName"]);
             Assert.Equal("Customer", rawLinkHubs["rawlink:rel:1:target"].Values["RoleName"]);
 
+            var rawHubSatellites = workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            Assert.Equal("Order", rawHubSatellites["rawhub:1:sat"].Values["Name"]);
+            Assert.Equal("Customer", rawHubSatellites["rawhub:2:sat"].Values["Name"]);
+
             var hubSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").ToDictionary(record => record.Id, StringComparer.Ordinal);
             Assert.Equal("OrderNumber", hubSatelliteAttributes["rawhub:1:sat:attr:2"].Values["Name"]);
             Assert.Equal("CustomerName", hubSatelliteAttributes["rawhub:2:sat:attr:5"].Values["Name"]);
+
+            var reportPath = Path.Combine(targetPath, "materialization-report.md");
+            Assert.False(File.Exists(reportPath));
+            Assert.Contains("dbo.Order", result.Output);
+            Assert.Contains("selected key: primary key `PK_Order` -> `OrderId`", result.Output);
+            Assert.Contains("satellite attribute count: 1", result.Output);
+            Assert.Contains("OrderCustomer (Order -> Customer)", result.Output);
+            Assert.Contains("link created: yes", result.Output);
         }
         finally
         {
@@ -371,11 +390,96 @@ public sealed class CliTests
     }
 
     [Fact]
+    public async Task FromMetaSchema_IncludesViewsOnlyWhenRequested()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(root, "MetaSchemaSource");
+        var defaultTargetPath = Path.Combine(root, "RawDataVault_Default");
+        var includeViewsTargetPath = Path.Combine(root, "RawDataVault_WithViews");
+        var implementationPath = GetRawImplementationWorkspacePath();
+
+        try
+        {
+            Directory.CreateDirectory(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            SeedMetaSchema(source);
+
+            source.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "view:1",
+                SourceShardFileName = "Table.xml",
+                Values =
+                {
+                    ["Name"] = "CustomerView",
+                    ["ObjectType"] = "View"
+                },
+                RelationshipIds =
+                {
+                    ["SchemaId"] = "1"
+                }
+            });
+            AddMetaSchemaField(source, "view-field:1", "view:1", "CustomerViewId", "sqlserver:type:int", "1", "false");
+            AddMetaSchemaField(source, "view-field:2", "view:1", "CustomerViewName", "sqlserver:type:nvarchar", "2", "true");
+            source.Instance.GetOrCreateEntityRecords("TableKey").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "view-key:1",
+                SourceShardFileName = "TableKey.xml",
+                Values =
+                {
+                    ["Name"] = "PK_CustomerView",
+                    ["KeyType"] = "primary"
+                },
+                RelationshipIds =
+                {
+                    ["TableId"] = "view:1"
+                }
+            });
+            source.Instance.GetOrCreateEntityRecords("TableKeyField").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "view-keyf:1",
+                SourceShardFileName = "TableKeyField.xml",
+                Values =
+                {
+                    ["Ordinal"] = "1",
+                    ["FieldName"] = "CustomerViewId"
+                },
+                RelationshipIds =
+                {
+                    ["TableKeyId"] = "view-key:1",
+                    ["FieldId"] = "view-field:1"
+                }
+            });
+
+            await new WorkspaceService().SaveAsync(source);
+
+            var defaultResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{defaultTargetPath}\"");
+            Assert.Equal(0, defaultResult.ExitCode);
+
+            var includeViewsResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{includeViewsTargetPath}\" --include-views");
+            Assert.Equal(0, includeViewsResult.ExitCode);
+            Assert.Contains("Included Views", includeViewsResult.Output, StringComparison.OrdinalIgnoreCase);
+
+            var defaultWorkspace = await new WorkspaceService().LoadAsync(defaultTargetPath, searchUpward: false);
+            var includeViewsWorkspace = await new WorkspaceService().LoadAsync(includeViewsTargetPath, searchUpward: false);
+
+            Assert.Equal(2, defaultWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count);
+            Assert.Equal(3, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count);
+            Assert.Equal(2, defaultWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
+            Assert.Equal(3, includeViewsWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
     public async Task FromMetaSchema_KeepsRecognizedTechnicalFieldsWithoutExplicitIgnoreSwitches()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
         var targetPath = Path.Combine(root, "RawDataVault");
+        var implementationPath = GetRawImplementationWorkspacePath();
 
         try
         {
@@ -385,7 +489,7 @@ public sealed class CliTests
             AddMetaSchemaField(source, "6", "1", "AuditId", "sqlserver:type:uniqueidentifier", "4", "false");
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(0, result.ExitCode);
 
@@ -405,6 +509,7 @@ public sealed class CliTests
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
         var targetPath = Path.Combine(root, "RawDataVault");
+        var implementationPath = GetRawImplementationWorkspacePath();
 
         try
         {
@@ -414,7 +519,7 @@ public sealed class CliTests
             AddMetaSchemaField(source, "6", "1", "OrderHashKey", "sqlserver:type:varbinary", "4", "false");
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --ignore-field-suffix HashKey");
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\" --ignore-field-suffix HashKey");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ignored Field Suffixes", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -422,6 +527,89 @@ public sealed class CliTests
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
             Assert.Equal(6, workspace.Instance.GetOrCreateEntityRecords("SourceField").Count);
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task FromMetaSchema_UsesSourceKeysEvenWhenFieldNameLooksTechnical()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(root, "MetaSchemaSource");
+        var targetPath = Path.Combine(root, "RawDataVault");
+        var implementationPath = GetRawImplementationWorkspacePath();
+
+        try
+        {
+            Directory.CreateDirectory(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            SeedMetaSchema(source);
+
+            source.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "3",
+                SourceShardFileName = "Table.xml",
+                Values =
+                {
+                    ["Name"] = "HashDriven"
+                },
+                RelationshipIds =
+                {
+                    ["SchemaId"] = "1"
+                }
+            });
+
+            AddMetaSchemaField(source, "6", "3", "OrderHashKey", "sqlserver:type:varbinary", "1", "false");
+            AddMetaSchemaField(source, "7", "3", "Description", "sqlserver:type:nvarchar", "2", "true");
+
+            source.Instance.GetOrCreateEntityRecords("TableKey").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "key:3",
+                SourceShardFileName = "TableKey.xml",
+                Values =
+                {
+                    ["Name"] = "PK_HashDriven",
+                    ["KeyType"] = "primary"
+                },
+                RelationshipIds =
+                {
+                    ["TableId"] = "3"
+                }
+            });
+
+            source.Instance.GetOrCreateEntityRecords("TableKeyField").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "keyf:3",
+                SourceShardFileName = "TableKeyField.xml",
+                Values =
+                {
+                    ["Ordinal"] = "1",
+                    ["FieldName"] = "OrderHashKey"
+                },
+                RelationshipIds =
+                {
+                    ["TableKeyId"] = "key:3",
+                    ["FieldId"] = "6"
+                }
+            });
+
+            await new WorkspaceService().SaveAsync(source);
+
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+
+            Assert.Equal(0, result.ExitCode);
+
+            var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
+            Assert.Equal(3, workspace.Instance.GetOrCreateEntityRecords("RawHub").Count);
+
+            var rawHubKeyParts = workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            Assert.Equal("OrderHashKey", rawHubKeyParts["rawhub:3:key:6"].Values["Name"]);
+
+            var rawHubSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").ToDictionary(record => record.Id, StringComparer.Ordinal);
+            Assert.Equal("Description", rawHubSatelliteAttributes["rawhub:3:sat:attr:7"].Values["Name"]);
         }
         finally
         {
@@ -972,6 +1160,41 @@ public sealed class CliTests
     }
 
     [Fact]
+    public Task RawGenerateSql_FailsWhenGeneratedTableNameExceedsSqlServerIdentifierLimit()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var implementationPath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        var conversionPath = Path.Combine(repoRoot, "MetaDataTypeConversion.Workspaces", "MetaDataTypeConversion");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+        var sqlOutputPath = Path.Combine(root, "Sql");
+        var overlongName = new string('A', 128);
+
+        try
+        {
+            var createResult = RunRawCli($"--new-workspace \"{workspacePath}\"");
+            Assert.Equal(0, createResult.ExitCode);
+            RunRawAdd(workspacePath, "add-source-system --id Sales --name Sales");
+            RunRawAdd(workspacePath, "add-source-schema --id dbo --system Sales --name dbo");
+            RunRawAdd(workspacePath, "add-source-table --id CustomerTable --schema dbo --name Customer");
+            RunRawAdd(workspacePath, "add-source-field --id CustomerIdField --table CustomerTable --name CustomerId --data-type-id sqlserver:type:nvarchar --ordinal 1 --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field-data-type-detail --id CustomerIdFieldLength --field CustomerIdField --name Length --value 50");
+            RunRawAdd(workspacePath, $"add-hub --id CustomerHub --source-table CustomerTable --name {overlongName}");
+            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --source-field CustomerIdField --name CustomerId --ordinal 1");
+
+            var result = RunRawCli($"generate-sql --workspace \"{workspacePath}\" --implementation-workspace \"{implementationPath}\" --data-type-conversion-workspace \"{conversionPath}\" --out \"{sqlOutputPath}\"");
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("128 character identifier limit", result.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    [Fact]
     public async Task RawGenerateSql_FailsWhenOutputDirectoryIsNotEmpty()
     {
         var repoRoot = FindRepositoryRoot();
@@ -1255,11 +1478,11 @@ public sealed class CliTests
     private static (int ExitCode, string Output) RunRawCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
-        var cliPath = ResolveCliPath(repoRoot, "MetaDataVault.Raw.Cli", "meta-datavault-raw.exe");
+        var cliPath = ResolveCliPath(repoRoot, "MetaDataVault.Raw.Cli", "meta-datavault-raw.dll");
         var startInfo = new ProcessStartInfo
         {
-            FileName = cliPath,
-            Arguments = arguments,
+            FileName = "dotnet",
+            Arguments = $"\"{cliPath}\" {arguments}",
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -1320,11 +1543,11 @@ public sealed class CliTests
     private static (int ExitCode, string Output) RunBusinessCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
-        var cliPath = ResolveCliPath(repoRoot, "MetaDataVault.Business.Cli", "meta-datavault-business.exe");
+        var cliPath = ResolveCliPath(repoRoot, "MetaDataVault.Business.Cli", "meta-datavault-business.dll");
         var startInfo = new ProcessStartInfo
         {
-            FileName = cliPath,
-            Arguments = arguments,
+            FileName = "dotnet",
+            Arguments = $"\"{cliPath}\" {arguments}",
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -1343,6 +1566,11 @@ public sealed class CliTests
         }
 
         return cliPath;
+    }
+
+    private static string GetRawImplementationWorkspacePath()
+    {
+        return Path.Combine(FindRepositoryRoot(), "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
     }
 
     private static void TryKillProcessTree(Process process)

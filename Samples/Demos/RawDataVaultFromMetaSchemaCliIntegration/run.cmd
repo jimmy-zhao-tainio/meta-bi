@@ -28,7 +28,7 @@ sqlcmd -S . -Q "IF DB_ID('%TARGET_DATABASE%') IS NOT NULL BEGIN ALTER DATABASE [
 
 dotnet "%META_SCHEMA_DLL%" extract sqlserver --new-workspace "%SCHEMA_WORKSPACE%" --connection "%SOURCE_CONNECTION%" --system "%SOURCE_DATABASE%" --all-schemas --all-tables || exit /b 1
 
-dotnet "%META_DATAVAULT_RAW_DLL%" from-metaschema --source-workspace "%SCHEMA_WORKSPACE%" --new-workspace "%RAW_WORKSPACE%" || exit /b 1
+dotnet "%META_DATAVAULT_RAW_DLL%" from-metaschema --source-workspace "%SCHEMA_WORKSPACE%" --implementation-workspace "%IMPLEMENTATION_WORKSPACE%" --new-workspace "%RAW_WORKSPACE%" || exit /b 1
 
 dotnet "%META_DATAVAULT_RAW_DLL%" generate-sql --workspace "%RAW_WORKSPACE%" --implementation-workspace "%IMPLEMENTATION_WORKSPACE%" --data-type-conversion-workspace "%DATA_TYPE_CONVERSION_WORKSPACE%" --out "%SQL_OUTPUT%" || exit /b 1
 

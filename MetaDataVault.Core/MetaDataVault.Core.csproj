@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MetaSchema.Core\MetaSchema.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="..\MetaDataVault.Workspaces\MetaRawDataVault\metadata\model.xml">
       <Link>Models\MetaRawDataVault.model.xml</Link>
       <LogicalName>MetaDataVault.Core.Models.MetaRawDataVault.model.xml</LogicalName>
