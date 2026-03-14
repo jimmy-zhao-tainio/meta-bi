@@ -39,30 +39,25 @@ public sealed class ArtifactWriterTests
 
                 ALTER TABLE dbo.S_Qa DROP COLUMN LegacyName;
                 """);
-            File.WriteAllText(
-                Path.Combine(repoRoot, "meta-sql.json"),
-                """
-                {
-                  "targets": {
-                    "qa": {
-                      "desiredSql": "sql/qa",
-                      "connectionStringEnvVar": "QA_CONN"
-                    },
-                    "prod": {
-                      "desiredSql": "sql/prod",
-                      "connectionStringEnvVar": "PROD_CONN"
-                    }
-                  }
-                }
-                """);
+            TestSupport.WriteDeployWorkspace(
+                repoRoot,
+                targets:
+                [
+                    new DeployWorkspaceTargetSpec("qa", "sql/qa", ConnectionStringEnvVar: "QA_CONN"),
+                    new DeployWorkspaceTargetSpec("prod", "sql/prod", ConnectionStringEnvVar: envVarName)
+                ]);
 
             new MetaSqlArtifactWriter().Write(repoRoot, artifactRoot, ["prod"]);
 
-            Assert.True(File.Exists(Path.Combine(artifactRoot, "meta-sql", "desired-sql", "prod", "H_PROD.sql")));
-            Assert.False(Directory.Exists(Path.Combine(artifactRoot, "meta-sql", "desired-sql", "qa")));
-            Assert.True(File.Exists(Path.Combine(artifactRoot, "meta-sql", "migrate", "baseline", "001.sql")));
-            Assert.True(File.Exists(Path.Combine(artifactRoot, "meta-sql", "migrate", "target", "prod", "002.sql")));
-            Assert.False(Directory.Exists(Path.Combine(artifactRoot, "meta-sql", "migrate", "target", "qa")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "workspace.xml")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "metadata", "model.xml")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "metadata", "instance", "DeployConfiguration.xml")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "metadata", "instance", "DeployTarget.xml")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "desired-sql", "prod", "H_PROD.sql")));
+            Assert.False(Directory.Exists(Path.Combine(artifactRoot, "deploy", "desired-sql", "qa")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "migrate", "baseline", "001.sql")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "migrate", "target", "prod", "002.sql")));
+            Assert.False(Directory.Exists(Path.Combine(artifactRoot, "deploy", "migrate", "target", "qa")));
 
             var previousDirectory = Directory.GetCurrentDirectory();
             try
@@ -70,7 +65,7 @@ public sealed class ArtifactWriterTests
                 Directory.SetCurrentDirectory(artifactRoot);
                 var context = new MetaSqlTargetContextLoader().Load("prod");
                 Assert.Equal(MetaSqlRootMode.Artifact, context.Mode);
-                Assert.Equal(Path.Combine(artifactRoot, "meta-sql", "desired-sql", "prod"), context.DesiredSqlPath);
+                Assert.Equal(Path.Combine(artifactRoot, "deploy", "desired-sql", "prod"), context.DesiredSqlPath);
 
                 var exception = Assert.Throws<InvalidOperationException>(() => new MetaSqlTargetContextLoader().Load("qa"));
                 Assert.Contains("not packaged in this artifact", exception.Message, StringComparison.OrdinalIgnoreCase);
@@ -102,27 +97,18 @@ public sealed class ArtifactWriterTests
             Directory.CreateDirectory(Path.Combine(repoRoot, "deploy", "migrate", "target", "prod"));
             File.WriteAllText(Path.Combine(repoRoot, "sql", "qa", "H_QA.sql"), "CREATE TABLE [dbo].[H_QA] ([Id] int NOT NULL);");
             File.WriteAllText(Path.Combine(repoRoot, "sql", "prod", "H_PROD.sql"), "CREATE TABLE [dbo].[H_PROD] ([Id] int NOT NULL);");
-            File.WriteAllText(
-                Path.Combine(repoRoot, "meta-sql.json"),
-                """
-                {
-                  "targets": {
-                    "qa": {
-                      "desiredSql": "sql/qa",
-                      "connectionStringEnvVar": "QA_CONN"
-                    },
-                    "prod": {
-                      "desiredSql": "sql/prod",
-                      "connectionStringEnvVar": "PROD_CONN"
-                    }
-                  }
-                }
-                """);
+            TestSupport.WriteDeployWorkspace(
+                repoRoot,
+                targets:
+                [
+                    new DeployWorkspaceTargetSpec("qa", "sql/qa", ConnectionStringEnvVar: "QA_CONN"),
+                    new DeployWorkspaceTargetSpec("prod", "sql/prod", ConnectionStringEnvVar: "PROD_CONN")
+                ]);
 
             new MetaSqlArtifactWriter().Write(repoRoot, artifactRoot, ["prod", "qa"]);
 
-            Assert.True(File.Exists(Path.Combine(artifactRoot, "meta-sql", "desired-sql", "prod", "H_PROD.sql")));
-            Assert.True(File.Exists(Path.Combine(artifactRoot, "meta-sql", "desired-sql", "qa", "H_QA.sql")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "desired-sql", "prod", "H_PROD.sql")));
+            Assert.True(File.Exists(Path.Combine(artifactRoot, "deploy", "desired-sql", "qa", "H_QA.sql")));
         }
         finally
         {

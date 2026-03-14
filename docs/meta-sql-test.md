@@ -26,20 +26,22 @@ Current:
 
 - repo root valid
 - artifact root valid
-- missing `meta-sql.json`
-- invalid `rootMode`
-- target present in repo config
-- target absent in repo config
-- target present in artifact config
-- target absent in artifact config
-- repo mode with inline `connectionString`
-- repo mode with `connectionStringEnvVar`
-- repo mode with missing `connectionStringEnvVar`
+- missing `deploy/workspace.xml`
+- missing `DeployConfiguration`
+- multiple `DeployConfiguration` rows
+- invalid `RootMode`
+- target present in repo deploy workspace
+- target absent in repo deploy workspace
+- target present in artifact deploy workspace
+- target absent in artifact deploy workspace
+- repo mode with inline `ConnectionString`
+- repo mode with `ConnectionStringEnvVar`
+- repo mode with missing `ConnectionStringEnvVar`
 - repo mode with no connection source
-- artifact mode with `connectionStringEnvVar`
-- artifact mode with missing `connectionStringEnvVar`
-- artifact mode with inline `connectionString` only
-- artifact mode with both inline `connectionString` and `connectionStringEnvVar`
+- artifact mode with `ConnectionStringEnvVar`
+- artifact mode with missing `ConnectionStringEnvVar`
+- artifact mode with inline `ConnectionString` only
+- artifact mode with both inline `ConnectionString` and `ConnectionStringEnvVar`
   Characterization note:
   current behavior prefers the env var.
 - artifact mode with no connection source
@@ -52,6 +54,7 @@ Current behavior note:
 - it does not validate repo or artifact layout as a separate concept
 - missing desired SQL is caught later by the desired SQL loader
 - missing migrate folders are tolerated
+- the sanctioned config boundary is now `deploy/workspace.xml` plus `deploy/metadata/instance/*.xml`
 
 Desired SQL loading
 -------------------

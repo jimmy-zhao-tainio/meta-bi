@@ -1,48 +1,36 @@
-using System.Text.Json;
+using MSD = MetaSqlDeploy;
 
 namespace MetaSql.App;
 
 public sealed class MetaSqlTargetContextLoader
 {
-    private const string ConfigFileName = "meta-sql.json";
-
     public MetaSqlTargetContext Load(string targetName, string? startDirectory = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(targetName);
 
         var rootDirectory = FindConfigRoot(startDirectory ?? Directory.GetCurrentDirectory());
-        var configPath = Path.Combine(rootDirectory, ConfigFileName);
-        var config = JsonSerializer.Deserialize<MetaSqlConfig>(
-            File.ReadAllText(configPath),
-            new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            }) ?? throw new InvalidOperationException($"configuration file '{configPath}' is empty.");
-
-        var mode = ParseRootMode(config.RootMode);
-        if (config.Targets == null || !config.Targets.TryGetValue(targetName, out var target))
-        {
-            throw mode == MetaSqlRootMode.Artifact
-                ? new InvalidOperationException($"target '{targetName}' is not packaged in this artifact.")
-                : new InvalidOperationException($"target '{targetName}' was not found in '{configPath}'.");
-        }
-
+        var workspacePath = MetaSqlDeployWorkspacePaths.GetWorkspaceDirectoryPath(rootDirectory);
+        var workspaceFilePath = MetaSqlDeployWorkspacePaths.GetWorkspaceFilePath(rootDirectory);
+        var model = MSD.MetaSqlDeployModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+        var configuration = RequireSingleConfiguration(model, workspaceFilePath);
+        var mode = ParseRootMode(configuration.RootMode, workspaceFilePath);
+        var target = RequireTarget(model, configuration.Id, targetName, workspaceFilePath, mode);
         if (string.IsNullOrWhiteSpace(target.DesiredSql))
         {
-            throw new InvalidOperationException($"target '{targetName}' is missing desiredSql in '{configPath}'.");
+            throw new InvalidOperationException($"target '{targetName}' is missing DesiredSql in '{workspaceFilePath}'.");
         }
 
         var connectionString = ResolveConnectionString(mode, targetName, target);
         var migrationRootPath = ResolvePath(
             rootDirectory,
-            string.IsNullOrWhiteSpace(config.MigrationRoot)
-                ? GetDefaultMigrationRoot(mode)
-                : config.MigrationRoot);
+            string.IsNullOrWhiteSpace(configuration.MigrationRoot)
+                ? MetaSqlDeployWorkspacePaths.DefaultMigrationRoot
+                : configuration.MigrationRoot);
         return new MetaSqlTargetContext(
             mode,
             targetName,
             rootDirectory,
-            configPath,
+            workspaceFilePath,
             ResolvePath(rootDirectory, target.DesiredSql),
             string.IsNullOrWhiteSpace(target.TraitsFile) ? null : ResolvePath(rootDirectory, target.TraitsFile),
             connectionString,
@@ -57,8 +45,8 @@ public sealed class MetaSqlTargetContextLoader
         var current = new DirectoryInfo(Path.GetFullPath(startDirectory));
         while (current != null)
         {
-            var configPath = Path.Combine(current.FullName, ConfigFileName);
-            if (File.Exists(configPath))
+            var workspaceFilePath = MetaSqlDeployWorkspacePaths.GetWorkspaceFilePath(current.FullName);
+            if (File.Exists(workspaceFilePath))
             {
                 return current.FullName;
             }
@@ -66,10 +54,53 @@ public sealed class MetaSqlTargetContextLoader
             current = current.Parent;
         }
 
-        throw new InvalidOperationException($"could not find '{ConfigFileName}' in '{Path.GetFullPath(startDirectory)}' or any parent directory.");
+        throw new InvalidOperationException(
+            $"could not find '{MetaSqlDeployWorkspacePaths.WorkspaceFileRelativePath}' in '{Path.GetFullPath(startDirectory)}' or any parent directory.");
     }
 
-    private static string ResolveConnectionString(MetaSqlRootMode mode, string targetName, MetaSqlTargetConfig target)
+    private static MSD.DeployConfiguration RequireSingleConfiguration(MSD.MetaSqlDeployModel model, string workspaceFilePath)
+    {
+        if (model.DeployConfigurationList.Count == 0)
+        {
+            throw new InvalidOperationException($"deploy workspace '{workspaceFilePath}' does not define a DeployConfiguration row.");
+        }
+
+        if (model.DeployConfigurationList.Count > 1)
+        {
+            throw new InvalidOperationException($"deploy workspace '{workspaceFilePath}' defines multiple DeployConfiguration rows.");
+        }
+
+        return model.DeployConfigurationList[0];
+    }
+
+    private static MSD.DeployTarget RequireTarget(
+        MSD.MetaSqlDeployModel model,
+        string configurationId,
+        string targetName,
+        string workspaceFilePath,
+        MetaSqlRootMode mode)
+    {
+        var matches = model.DeployTargetList
+            .Where(item =>
+                string.Equals(item.DeployConfigurationId, configurationId, StringComparison.Ordinal) &&
+                string.Equals(item.Name, targetName, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        if (matches.Length == 0)
+        {
+            throw mode == MetaSqlRootMode.Artifact
+                ? new InvalidOperationException($"target '{targetName}' is not packaged in this artifact.")
+                : new InvalidOperationException($"target '{targetName}' was not found in '{workspaceFilePath}'.");
+        }
+
+        if (matches.Length > 1)
+        {
+            throw new InvalidOperationException($"deploy workspace '{workspaceFilePath}' defines target '{targetName}' more than once.");
+        }
+
+        return matches[0];
+    }
+
+    private static string ResolveConnectionString(MetaSqlRootMode mode, string targetName, MSD.DeployTarget target)
     {
         if (!string.IsNullOrWhiteSpace(target.ConnectionStringEnvVar))
         {
@@ -93,10 +124,10 @@ public sealed class MetaSqlTargetContextLoader
         if (mode == MetaSqlRootMode.Artifact)
         {
             throw new InvalidOperationException(
-                $"artifact mode requires a connection source for target '{targetName}'. Use connectionStringEnvVar, or connectionString only for local/dev use.");
+                $"artifact mode requires a connection source for target '{targetName}'. Use ConnectionStringEnvVar, or ConnectionString only for local/dev use.");
         }
 
-        throw new InvalidOperationException($"target '{targetName}' must define connectionString or connectionStringEnvVar.");
+        throw new InvalidOperationException($"target '{targetName}' must define ConnectionString or ConnectionStringEnvVar.");
     }
 
     private static string ResolvePath(string rootDirectory, string path)
@@ -106,34 +137,13 @@ public sealed class MetaSqlTargetContextLoader
             : Path.GetFullPath(Path.Combine(rootDirectory, path));
     }
 
-    private static MetaSqlRootMode ParseRootMode(string? value)
+    private static MetaSqlRootMode ParseRootMode(string? value, string workspaceFilePath)
     {
         return value?.Trim().ToLowerInvariant() switch
         {
             null or "" or "repo" => MetaSqlRootMode.Repo,
             "artifact" => MetaSqlRootMode.Artifact,
-            _ => throw new InvalidOperationException($"unsupported rootMode '{value}' in '{ConfigFileName}'.")
+            _ => throw new InvalidOperationException($"unsupported RootMode '{value}' in '{workspaceFilePath}'.")
         };
     }
-
-    private static string GetDefaultMigrationRoot(MetaSqlRootMode mode)
-    {
-        return mode switch
-        {
-            MetaSqlRootMode.Repo => "deploy/migrate",
-            MetaSqlRootMode.Artifact => "meta-sql/migrate",
-            _ => throw new InvalidOperationException($"unsupported root mode '{mode}'.")
-        };
-    }
-
-    private sealed record MetaSqlConfig(
-        string? RootMode,
-        string? MigrationRoot,
-        Dictionary<string, MetaSqlTargetConfig>? Targets);
-
-    private sealed record MetaSqlTargetConfig(
-        string? DesiredSql,
-        string? TraitsFile,
-        string? ConnectionString,
-        string? ConnectionStringEnvVar);
 }

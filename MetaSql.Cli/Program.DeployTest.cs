@@ -23,7 +23,7 @@ internal static partial class Program
         }
         catch (InvalidOperationException exception)
         {
-            return Fail(exception.Message, "check meta-sql.json and retry.", 4);
+            return Fail(exception.Message, "check deploy/workspace.xml and retry.", 4);
         }
     }
 }

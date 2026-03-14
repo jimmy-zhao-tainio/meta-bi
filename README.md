@@ -99,20 +99,25 @@ Typical repo-mode flow:
 2. Put active migration SQL under:
    - `deploy/migrate/baseline`
    - `deploy/migrate/target/<target>`
-3. Add a small `meta-sql.json` at the repo root.
+3. Add a small deploy workspace under `deploy/`.
 4. Run `deploy-test`, then `resolve` if needed, then `deploy`.
 
-Minimal repo-mode `meta-sql.json` example:
+Current `MetaSql` config is a sanctioned workspace, not a JSON file.
 
-```json
-{
-  "targets": {
-    "prod": {
-      "desiredSql": "sql/prod",
-      "connectionStringEnvVar": "META_SQL_PROD"
-    }
-  }
-}
+Minimal repo-mode layout:
+
+```text
+deploy/
+  workspace.xml
+  metadata/
+    model.xml
+    instance/
+      DeployConfiguration.xml
+      DeployTarget.xml
+  migrate/
+    baseline/
+    target/
+      prod/
 ```
 
 Repo-mode examples:
@@ -145,19 +150,37 @@ What the commands do:
 
 Artifact mode is also supported for `deploy-test` and `deploy`.
 
-Minimal artifact-root `meta-sql.json` example:
+Minimal artifact-mode target rows:
 
-```json
-{
-  "rootMode": "artifact",
-  "migrationRoot": "meta-sql/migrate",
-  "targets": {
-    "prod": {
-      "desiredSql": "meta-sql/desired-sql/prod",
-      "connectionStringEnvVar": "META_SQL_PROD"
-    }
-  }
-}
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeploy>
+  <DeployConfigurationList>
+    <DeployConfiguration Id="deploy-config">
+      <RootMode>repo</RootMode>
+      <MigrationRoot>deploy/migrate</MigrationRoot>
+    </DeployConfiguration>
+  </DeployConfigurationList>
+</MetaSqlDeploy>
+```
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeploy>
+  <DeployTargetList>
+    <DeployTarget Id="deploy-target:prod" DeployConfigurationId="deploy-config">
+      <Name>prod</Name>
+      <DesiredSql>sql/prod</DesiredSql>
+      <ConnectionStringEnvVar>META_SQL_PROD</ConnectionStringEnvVar>
+    </DeployTarget>
+  </DeployTargetList>
+</MetaSqlDeploy>
+```
+
+Artifact mode uses the same deploy workspace shape, but the packaged target rows typically point at:
+
+```text
+deploy/desired-sql/<target>
 ```
 
 Further notes:
@@ -167,6 +190,7 @@ Further notes:
   - `baseline`
   - `target/<target>`
 - `archive` is outside normal deploy input
+- root detection looks for `deploy/workspace.xml`
 
 See also:
 
