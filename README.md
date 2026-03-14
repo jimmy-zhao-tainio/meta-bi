@@ -8,6 +8,7 @@ This repository currently contains BI-oriented sanctioned models, CLIs, and docs
 - `MetaDataType.*`
 - `MetaDataTypeConversion.*`
 - `MetaDataVault.*`
+- `MetaSql.*`
 
 It also contains BI architecture notes in `docs/`.
 
@@ -71,6 +72,107 @@ The long-term repo boundary is:
 - `MetaDataType.sln`
 - `MetaDataTypeConversion.sln`
 - `MetaDataVault.sln`
+- `MetaSql.sln`
+
+## MetaSql
+
+`meta-sql` is the structural SQL deploy tool in this repo.
+
+It stays intentionally narrow:
+
+- it plans and executes bounded structural SQL
+- it works from current desired SQL plus live SQL Server inspection
+- it does not infer heavyweight data movement
+- it does not auto-drop non-empty tables in the normal path
+
+Current command surface:
+
+```cmd
+meta-sql deploy-test <target>
+meta-sql resolve <target>
+meta-sql deploy <target>
+```
+
+Typical repo-mode flow:
+
+1. Put the desired SQL for a target under a repo path such as `sql/<target>/`.
+2. Put active migration SQL under:
+   - `deploy/migrate/baseline`
+   - `deploy/migrate/target/<target>`
+3. Add a small `meta-sql.json` at the repo root.
+4. Run `deploy-test`, then `resolve` if needed, then `deploy`.
+
+Minimal repo-mode `meta-sql.json` example:
+
+```json
+{
+  "targets": {
+    "prod": {
+      "desiredSql": "sql/prod",
+      "connectionStringEnvVar": "META_SQL_PROD"
+    }
+  }
+}
+```
+
+Repo-mode examples:
+
+```cmd
+meta-sql deploy-test prod
+meta-sql resolve prod
+meta-sql deploy prod
+```
+
+What the commands do:
+
+- `deploy-test <target>`
+  - non-interactive
+  - prints the deployment sheet in DB terms
+  - reports matching scripts and stale scripts
+
+- `resolve <target>`
+  - interactive
+  - walks unresolved manual issues and stale scripts
+  - creates normal `.sql` files with tiny required headers
+  - repo-mode only
+
+- `deploy <target>`
+  - non-interactive
+  - applies matching scripts first
+  - rechecks the target
+  - then applies safe structural SQL
+  - refuses if blockers remain
+
+Artifact mode is also supported for `deploy-test` and `deploy`.
+
+Minimal artifact-root `meta-sql.json` example:
+
+```json
+{
+  "rootMode": "artifact",
+  "migrationRoot": "meta-sql/migrate",
+  "targets": {
+    "prod": {
+      "desiredSql": "meta-sql/desired-sql/prod",
+      "connectionStringEnvVar": "META_SQL_PROD"
+    }
+  }
+}
+```
+
+Further notes:
+
+- `resolve` is intentionally not available from an artifact root
+- active script input is:
+  - `baseline`
+  - `target/<target>`
+- `archive` is outside normal deploy input
+
+See also:
+
+- `docs/META-SQL-DEPLOY-PLANNER-CONTRACT.md`
+- `docs/META-SQL-MIGRATE-WORKFLOW.md`
+- `docs/meta-sql-test.md`
 
 ## Current BI Weave and Fabric Example
 
