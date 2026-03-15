@@ -52,7 +52,7 @@ public sealed partial class MetaSchemaToRawDataVaultConverter
             {
                 Id = field.Id,
                 Name = field.Name,
-                DataTypeId = field.DataTypeId,
+                DataTypeId = field.MetaDataTypeId,
                 Ordinal = field.Ordinal,
                 IsNullable = field.IsNullable,
                 SourceTableId = field.TableId,

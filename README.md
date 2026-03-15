@@ -8,7 +8,7 @@ This repository currently contains BI-oriented sanctioned models, CLIs, and docs
 - `MetaDataType.*`
 - `MetaDataTypeConversion.*`
 - `MetaDataVault.*`
-- `MetaSql.*`
+- `SqlModel.*`
 
 It also contains BI architecture notes in `docs/`.
 
@@ -72,131 +72,29 @@ The long-term repo boundary is:
 - `MetaDataType.sln`
 - `MetaDataTypeConversion.sln`
 - `MetaDataVault.sln`
-- `MetaSql.sln`
 
-## MetaSql
+## MetaSql Status
 
-`meta-sql` is the structural SQL deploy tool in this repo.
-
-It stays intentionally narrow:
-
-- it plans and executes bounded structural SQL
-- it works from current desired SQL plus live SQL Server inspection
-- it does not infer heavyweight data movement
-- it does not auto-drop non-empty tables in the normal path
-
-Current command surface:
-
-```cmd
-meta-sql deploy-test <target>
-meta-sql resolve <target>
-meta-sql deploy <target>
-```
-
-Typical repo-mode flow:
-
-1. Put the desired SQL for a target under a repo path such as `sql/<target>/`.
-2. Put active migration SQL under:
-   - `deploy/migrate/baseline`
-   - `deploy/migrate/target/<target>`
-3. Add a small deploy workspace under `deploy/`.
-4. Run `deploy-test`, then `resolve` if needed, then `deploy`.
-
-Current `MetaSql` config is a sanctioned workspace, not a JSON file.
-
-Minimal repo-mode layout:
+The original `MetaSql` attempt has been archived under:
 
 ```text
-deploy/
-  workspace.xml
-  metadata/
-    model.xml
-    instance/
-      DeployConfiguration.xml
-      DeployTarget.xml
-  migrate/
-    baseline/
-    target/
-      prod/
+Archive/MetaSql.Legacy
 ```
 
-Repo-mode examples:
+It was a DDL-centered deployment experiment and is not the active direction anymore.
 
-```cmd
-meta-sql deploy-test prod
-meta-sql resolve prod
-meta-sql deploy prod
-```
+The reboot now starts from a sanctioned canonical `SqlModel` instead:
 
-What the commands do:
+- `SqlModel.Workspaces`
+- `SqlModel.Core`
 
-- `deploy-test <target>`
-  - non-interactive
-  - prints the deployment sheet in DB terms
-  - reports matching scripts and stale scripts
+Current canonical object families include:
 
-- `resolve <target>`
-  - interactive
-  - walks unresolved manual issues and stale scripts
-  - creates normal `.sql` files with tiny required headers
-  - repo-mode only
-
-- `deploy <target>`
-  - non-interactive
-  - applies matching scripts first
-  - rechecks the target
-  - then applies safe structural SQL
-  - refuses if blockers remain
-
-Artifact mode is also supported for `deploy-test` and `deploy`.
-
-Minimal artifact-mode target rows:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<MetaSqlDeploy>
-  <DeployConfigurationList>
-    <DeployConfiguration Id="deploy-config">
-      <RootMode>repo</RootMode>
-      <MigrationRoot>deploy/migrate</MigrationRoot>
-    </DeployConfiguration>
-  </DeployConfigurationList>
-</MetaSqlDeploy>
-```
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<MetaSqlDeploy>
-  <DeployTargetList>
-    <DeployTarget Id="deploy-target:prod" DeployConfigurationId="deploy-config">
-      <Name>prod</Name>
-      <DesiredSql>sql/prod</DesiredSql>
-      <ConnectionStringEnvVar>META_SQL_PROD</ConnectionStringEnvVar>
-    </DeployTarget>
-  </DeployTargetList>
-</MetaSqlDeploy>
-```
-
-Artifact mode uses the same deploy workspace shape, but the packaged target rows typically point at:
-
-```text
-deploy/desired-sql/<target>
-```
-
-Further notes:
-
-- `resolve` is intentionally not available from an artifact root
-- active script input is:
-  - `baseline`
-  - `target/<target>`
-- `archive` is outside normal deploy input
-- root detection looks for `deploy/workspace.xml`
-
-See also:
-
-- `docs/META-SQL-DEPLOY-PLANNER-CONTRACT.md`
-- `docs/META-SQL-MIGRATE-WORKFLOW.md`
-- `docs/meta-sql-test.md`
+- databases and schemas
+- tables and columns
+- primary keys and primary key columns
+- foreign keys and foreign key columns
+- indexes and index columns
 
 ## Current BI Weave and Fabric Example
 

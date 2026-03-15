@@ -149,7 +149,7 @@ public sealed class CliTests
     }
 
     [Fact]
-    public void MetaSchemaModel_UsesScalarDataTypeId_AndIncludesStrongTableRelationships()
+    public void MetaSchemaModel_UsesScalarMetaDataTypeId_AndIncludesStrongTableRelationships()
     {
         var model = MetaSchemaModels.CreateMetaSchemaModel();
 
@@ -160,7 +160,7 @@ public sealed class CliTests
         var tableRelationship = Assert.Single(model.Entities, entity => entity.Name == "TableRelationship");
         var tableRelationshipField = Assert.Single(model.Entities, entity => entity.Name == "TableRelationshipField");
         Assert.DoesNotContain(model.Entities, entity => entity.Name == "FieldType");
-        Assert.Contains(field.Properties, property => property.Name == "DataTypeId");
+        Assert.Contains(field.Properties, property => property.Name == "MetaDataTypeId");
         Assert.DoesNotContain(field.Properties, property => property.Name == "Length");
         Assert.DoesNotContain(field.Properties, property => property.Name == "NumericPrecision");
         Assert.DoesNotContain(field.Properties, property => property.Name == "Scale");

@@ -1,8 +1,12 @@
-namespace MetaSchema
+namespace SqlModel
 {
-    public sealed class Field
+    public sealed class TableColumn
     {
         public string Id { get; internal set; } = string.Empty;
+        public string ExpressionSql { get; internal set; } = string.Empty;
+        public string IdentityIncrement { get; internal set; } = string.Empty;
+        public string IdentitySeed { get; internal set; } = string.Empty;
+        public string IsIdentity { get; internal set; } = string.Empty;
         public string IsNullable { get; internal set; } = string.Empty;
         public string MetaDataTypeId { get; internal set; } = string.Empty;
         public string Name { get; internal set; } = string.Empty;

@@ -27,7 +27,7 @@
     <Entity name="Field">
       <PropertyList>
         <Property name="Name" />
-        <Property name="DataTypeId" />
+        <Property name="MetaDataTypeId" />
         <Property name="Ordinal" isRequired="false" />
         <Property name="IsNullable" isRequired="false" />
       </PropertyList>

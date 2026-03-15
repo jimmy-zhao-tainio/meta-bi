@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeploy>
+  <DeployTargetList>
+    <DeployTarget Id="deploy-target:fresh" DeployConfigurationId="deploy-config">
+      <Name>fresh</Name>
+      <DesiredSql>deploy/desired-sql/fresh</DesiredSql>
+      <ConnectionString>Server=.;Database=MetaSqlWorkflowFresh;Integrated Security=true;TrustServerCertificate=true</ConnectionString>
+    </DeployTarget>
+    <DeployTarget Id="deploy-target:blocked" DeployConfigurationId="deploy-config">
+      <Name>blocked</Name>
+      <DesiredSql>deploy/desired-sql/blocked</DesiredSql>
+      <ConnectionString>Server=.;Database=MetaSqlWorkflowBlocked;Integrated Security=true;TrustServerCertificate=true</ConnectionString>
+    </DeployTarget>
+  </DeployTargetList>
+</MetaSqlDeploy>

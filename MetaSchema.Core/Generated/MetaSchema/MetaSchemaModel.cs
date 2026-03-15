@@ -58,8 +58,8 @@ namespace MetaSchema
                     fieldList.Add(new Field
                     {
                         Id = record.Id ?? string.Empty,
-                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
                         IsNullable = record.Values.TryGetValue("IsNullable", out var isNullableValue) ? isNullableValue ?? string.Empty : string.Empty,
+                        MetaDataTypeId = record.Values.TryGetValue("MetaDataTypeId", out var metaDataTypeIdValue) ? metaDataTypeIdValue ?? string.Empty : string.Empty,
                         Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
                         Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
                         TableId = record.RelationshipIds.TryGetValue("TableId", out var tableRelationshipId) ? tableRelationshipId ?? string.Empty : string.Empty,

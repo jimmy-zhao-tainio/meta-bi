@@ -1285,7 +1285,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "OrderId",
-                ["DataTypeId"] = "sqlserver:type:int",
+                ["MetaDataTypeId"] = "sqlserver:type:int",
                 ["Ordinal"] = "1",
                 ["IsNullable"] = "false"
             },
@@ -1301,7 +1301,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "OrderNumber",
-                ["DataTypeId"] = "sqlserver:type:nvarchar",
+                ["MetaDataTypeId"] = "sqlserver:type:nvarchar",
                 ["Ordinal"] = "2",
                 ["IsNullable"] = "false"
             },
@@ -1317,7 +1317,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "CustomerId",
-                ["DataTypeId"] = "sqlserver:type:int",
+                ["MetaDataTypeId"] = "sqlserver:type:int",
                 ["Ordinal"] = "3",
                 ["IsNullable"] = "false"
             },
@@ -1333,7 +1333,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "CustomerId",
-                ["DataTypeId"] = "sqlserver:type:int",
+                ["MetaDataTypeId"] = "sqlserver:type:int",
                 ["Ordinal"] = "1",
                 ["IsNullable"] = "false"
             },
@@ -1349,7 +1349,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = "CustomerName",
-                ["DataTypeId"] = "sqlserver:type:nvarchar",
+                ["MetaDataTypeId"] = "sqlserver:type:nvarchar",
                 ["Ordinal"] = "2",
                 ["IsNullable"] = "true"
             },
@@ -1464,7 +1464,7 @@ public sealed class CliTests
             Values =
             {
                 ["Name"] = name,
-                ["DataTypeId"] = dataTypeId,
+                ["MetaDataTypeId"] = dataTypeId,
                 ["Ordinal"] = ordinal,
                 ["IsNullable"] = isNullable
             },

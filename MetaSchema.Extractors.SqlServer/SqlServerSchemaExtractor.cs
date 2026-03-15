@@ -168,7 +168,7 @@ public sealed class SqlServerSchemaExtractor
                     values =>
                     {
                         values["Name"] = columnRow.ColumnName;
-                        values["DataTypeId"] = BuildDataTypeId(columnRow.DataTypeName);
+                        values["MetaDataTypeId"] = BuildDataTypeId(columnRow.DataTypeName);
                         values["Ordinal"] = columnRow.OrdinalPosition.ToString(System.Globalization.CultureInfo.InvariantCulture);
                         values["IsNullable"] = columnRow.IsNullable ? "true" : "false";
                     },
