@@ -1,0 +1,4378 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Meta.Core.Domain;
+
+namespace MetaBusinessDataVault
+{
+    public sealed partial class MetaBusinessDataVaultModel
+    {
+        internal MetaBusinessDataVaultModel(
+            List<BusinessBridge> businessBridgeList,
+            List<BusinessBridgeHub> businessBridgeHubList,
+            List<BusinessBridgeHubKeyPartProjection> businessBridgeHubKeyPartProjectionList,
+            List<BusinessBridgeHubSatelliteAttributeProjection> businessBridgeHubSatelliteAttributeProjectionList,
+            List<BusinessBridgeLink> businessBridgeLinkList,
+            List<BusinessBridgeLinkSatelliteAttributeProjection> businessBridgeLinkSatelliteAttributeProjectionList,
+            List<BusinessHierarchicalLink> businessHierarchicalLinkList,
+            List<BusinessHierarchicalLinkSatellite> businessHierarchicalLinkSatelliteList,
+            List<BusinessHierarchicalLinkSatelliteAttribute> businessHierarchicalLinkSatelliteAttributeList,
+            List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail> businessHierarchicalLinkSatelliteAttributeDataTypeDetailList,
+            List<BusinessHierarchicalLinkSatelliteKeyPart> businessHierarchicalLinkSatelliteKeyPartList,
+            List<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail> businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList,
+            List<BusinessHub> businessHubList,
+            List<BusinessHubKeyPart> businessHubKeyPartList,
+            List<BusinessHubKeyPartDataTypeDetail> businessHubKeyPartDataTypeDetailList,
+            List<BusinessHubSatellite> businessHubSatelliteList,
+            List<BusinessHubSatelliteAttribute> businessHubSatelliteAttributeList,
+            List<BusinessHubSatelliteAttributeDataTypeDetail> businessHubSatelliteAttributeDataTypeDetailList,
+            List<BusinessHubSatelliteKeyPart> businessHubSatelliteKeyPartList,
+            List<BusinessHubSatelliteKeyPartDataTypeDetail> businessHubSatelliteKeyPartDataTypeDetailList,
+            List<BusinessLink> businessLinkList,
+            List<BusinessLinkHub> businessLinkHubList,
+            List<BusinessLinkSatellite> businessLinkSatelliteList,
+            List<BusinessLinkSatelliteAttribute> businessLinkSatelliteAttributeList,
+            List<BusinessLinkSatelliteAttributeDataTypeDetail> businessLinkSatelliteAttributeDataTypeDetailList,
+            List<BusinessLinkSatelliteKeyPart> businessLinkSatelliteKeyPartList,
+            List<BusinessLinkSatelliteKeyPartDataTypeDetail> businessLinkSatelliteKeyPartDataTypeDetailList,
+            List<BusinessPointInTime> businessPointInTimeList,
+            List<BusinessPointInTimeHubSatellite> businessPointInTimeHubSatelliteList,
+            List<BusinessPointInTimeLinkSatellite> businessPointInTimeLinkSatelliteList,
+            List<BusinessPointInTimeStamp> businessPointInTimeStampList,
+            List<BusinessPointInTimeStampDataTypeDetail> businessPointInTimeStampDataTypeDetailList,
+            List<BusinessReference> businessReferenceList,
+            List<BusinessReferenceKeyPart> businessReferenceKeyPartList,
+            List<BusinessReferenceKeyPartDataTypeDetail> businessReferenceKeyPartDataTypeDetailList,
+            List<BusinessReferenceSatellite> businessReferenceSatelliteList,
+            List<BusinessReferenceSatelliteAttribute> businessReferenceSatelliteAttributeList,
+            List<BusinessReferenceSatelliteAttributeDataTypeDetail> businessReferenceSatelliteAttributeDataTypeDetailList,
+            List<BusinessReferenceSatelliteKeyPart> businessReferenceSatelliteKeyPartList,
+            List<BusinessReferenceSatelliteKeyPartDataTypeDetail> businessReferenceSatelliteKeyPartDataTypeDetailList,
+            List<BusinessSameAsLink> businessSameAsLinkList,
+            List<BusinessSameAsLinkSatellite> businessSameAsLinkSatelliteList,
+            List<BusinessSameAsLinkSatelliteAttribute> businessSameAsLinkSatelliteAttributeList,
+            List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail> businessSameAsLinkSatelliteAttributeDataTypeDetailList,
+            List<BusinessSameAsLinkSatelliteKeyPart> businessSameAsLinkSatelliteKeyPartList,
+            List<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail> businessSameAsLinkSatelliteKeyPartDataTypeDetailList
+        )
+        {
+            BusinessBridgeList = businessBridgeList;
+            BusinessBridgeHubList = businessBridgeHubList;
+            BusinessBridgeHubKeyPartProjectionList = businessBridgeHubKeyPartProjectionList;
+            BusinessBridgeHubSatelliteAttributeProjectionList = businessBridgeHubSatelliteAttributeProjectionList;
+            BusinessBridgeLinkList = businessBridgeLinkList;
+            BusinessBridgeLinkSatelliteAttributeProjectionList = businessBridgeLinkSatelliteAttributeProjectionList;
+            BusinessHierarchicalLinkList = businessHierarchicalLinkList;
+            BusinessHierarchicalLinkSatelliteList = businessHierarchicalLinkSatelliteList;
+            BusinessHierarchicalLinkSatelliteAttributeList = businessHierarchicalLinkSatelliteAttributeList;
+            BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList = businessHierarchicalLinkSatelliteAttributeDataTypeDetailList;
+            BusinessHierarchicalLinkSatelliteKeyPartList = businessHierarchicalLinkSatelliteKeyPartList;
+            BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList = businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList;
+            BusinessHubList = businessHubList;
+            BusinessHubKeyPartList = businessHubKeyPartList;
+            BusinessHubKeyPartDataTypeDetailList = businessHubKeyPartDataTypeDetailList;
+            BusinessHubSatelliteList = businessHubSatelliteList;
+            BusinessHubSatelliteAttributeList = businessHubSatelliteAttributeList;
+            BusinessHubSatelliteAttributeDataTypeDetailList = businessHubSatelliteAttributeDataTypeDetailList;
+            BusinessHubSatelliteKeyPartList = businessHubSatelliteKeyPartList;
+            BusinessHubSatelliteKeyPartDataTypeDetailList = businessHubSatelliteKeyPartDataTypeDetailList;
+            BusinessLinkList = businessLinkList;
+            BusinessLinkHubList = businessLinkHubList;
+            BusinessLinkSatelliteList = businessLinkSatelliteList;
+            BusinessLinkSatelliteAttributeList = businessLinkSatelliteAttributeList;
+            BusinessLinkSatelliteAttributeDataTypeDetailList = businessLinkSatelliteAttributeDataTypeDetailList;
+            BusinessLinkSatelliteKeyPartList = businessLinkSatelliteKeyPartList;
+            BusinessLinkSatelliteKeyPartDataTypeDetailList = businessLinkSatelliteKeyPartDataTypeDetailList;
+            BusinessPointInTimeList = businessPointInTimeList;
+            BusinessPointInTimeHubSatelliteList = businessPointInTimeHubSatelliteList;
+            BusinessPointInTimeLinkSatelliteList = businessPointInTimeLinkSatelliteList;
+            BusinessPointInTimeStampList = businessPointInTimeStampList;
+            BusinessPointInTimeStampDataTypeDetailList = businessPointInTimeStampDataTypeDetailList;
+            BusinessReferenceList = businessReferenceList;
+            BusinessReferenceKeyPartList = businessReferenceKeyPartList;
+            BusinessReferenceKeyPartDataTypeDetailList = businessReferenceKeyPartDataTypeDetailList;
+            BusinessReferenceSatelliteList = businessReferenceSatelliteList;
+            BusinessReferenceSatelliteAttributeList = businessReferenceSatelliteAttributeList;
+            BusinessReferenceSatelliteAttributeDataTypeDetailList = businessReferenceSatelliteAttributeDataTypeDetailList;
+            BusinessReferenceSatelliteKeyPartList = businessReferenceSatelliteKeyPartList;
+            BusinessReferenceSatelliteKeyPartDataTypeDetailList = businessReferenceSatelliteKeyPartDataTypeDetailList;
+            BusinessSameAsLinkList = businessSameAsLinkList;
+            BusinessSameAsLinkSatelliteList = businessSameAsLinkSatelliteList;
+            BusinessSameAsLinkSatelliteAttributeList = businessSameAsLinkSatelliteAttributeList;
+            BusinessSameAsLinkSatelliteAttributeDataTypeDetailList = businessSameAsLinkSatelliteAttributeDataTypeDetailList;
+            BusinessSameAsLinkSatelliteKeyPartList = businessSameAsLinkSatelliteKeyPartList;
+            BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList = businessSameAsLinkSatelliteKeyPartDataTypeDetailList;
+        }
+
+        public static MetaBusinessDataVaultModel CreateEmpty()
+        {
+            return new MetaBusinessDataVaultModel(
+                new List<BusinessBridge>(),
+                new List<BusinessBridgeHub>(),
+                new List<BusinessBridgeHubKeyPartProjection>(),
+                new List<BusinessBridgeHubSatelliteAttributeProjection>(),
+                new List<BusinessBridgeLink>(),
+                new List<BusinessBridgeLinkSatelliteAttributeProjection>(),
+                new List<BusinessHierarchicalLink>(),
+                new List<BusinessHierarchicalLinkSatellite>(),
+                new List<BusinessHierarchicalLinkSatelliteAttribute>(),
+                new List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>(),
+                new List<BusinessHierarchicalLinkSatelliteKeyPart>(),
+                new List<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail>(),
+                new List<BusinessHub>(),
+                new List<BusinessHubKeyPart>(),
+                new List<BusinessHubKeyPartDataTypeDetail>(),
+                new List<BusinessHubSatellite>(),
+                new List<BusinessHubSatelliteAttribute>(),
+                new List<BusinessHubSatelliteAttributeDataTypeDetail>(),
+                new List<BusinessHubSatelliteKeyPart>(),
+                new List<BusinessHubSatelliteKeyPartDataTypeDetail>(),
+                new List<BusinessLink>(),
+                new List<BusinessLinkHub>(),
+                new List<BusinessLinkSatellite>(),
+                new List<BusinessLinkSatelliteAttribute>(),
+                new List<BusinessLinkSatelliteAttributeDataTypeDetail>(),
+                new List<BusinessLinkSatelliteKeyPart>(),
+                new List<BusinessLinkSatelliteKeyPartDataTypeDetail>(),
+                new List<BusinessPointInTime>(),
+                new List<BusinessPointInTimeHubSatellite>(),
+                new List<BusinessPointInTimeLinkSatellite>(),
+                new List<BusinessPointInTimeStamp>(),
+                new List<BusinessPointInTimeStampDataTypeDetail>(),
+                new List<BusinessReference>(),
+                new List<BusinessReferenceKeyPart>(),
+                new List<BusinessReferenceKeyPartDataTypeDetail>(),
+                new List<BusinessReferenceSatellite>(),
+                new List<BusinessReferenceSatelliteAttribute>(),
+                new List<BusinessReferenceSatelliteAttributeDataTypeDetail>(),
+                new List<BusinessReferenceSatelliteKeyPart>(),
+                new List<BusinessReferenceSatelliteKeyPartDataTypeDetail>(),
+                new List<BusinessSameAsLink>(),
+                new List<BusinessSameAsLinkSatellite>(),
+                new List<BusinessSameAsLinkSatelliteAttribute>(),
+                new List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail>(),
+                new List<BusinessSameAsLinkSatelliteKeyPart>(),
+                new List<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail>()
+            );
+        }
+
+        public List<BusinessBridge> BusinessBridgeList { get; }
+        public List<BusinessBridgeHub> BusinessBridgeHubList { get; }
+        public List<BusinessBridgeHubKeyPartProjection> BusinessBridgeHubKeyPartProjectionList { get; }
+        public List<BusinessBridgeHubSatelliteAttributeProjection> BusinessBridgeHubSatelliteAttributeProjectionList { get; }
+        public List<BusinessBridgeLink> BusinessBridgeLinkList { get; }
+        public List<BusinessBridgeLinkSatelliteAttributeProjection> BusinessBridgeLinkSatelliteAttributeProjectionList { get; }
+        public List<BusinessHierarchicalLink> BusinessHierarchicalLinkList { get; }
+        public List<BusinessHierarchicalLinkSatellite> BusinessHierarchicalLinkSatelliteList { get; }
+        public List<BusinessHierarchicalLinkSatelliteAttribute> BusinessHierarchicalLinkSatelliteAttributeList { get; }
+        public List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail> BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList { get; }
+        public List<BusinessHierarchicalLinkSatelliteKeyPart> BusinessHierarchicalLinkSatelliteKeyPartList { get; }
+        public List<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail> BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList { get; }
+        public List<BusinessHub> BusinessHubList { get; }
+        public List<BusinessHubKeyPart> BusinessHubKeyPartList { get; }
+        public List<BusinessHubKeyPartDataTypeDetail> BusinessHubKeyPartDataTypeDetailList { get; }
+        public List<BusinessHubSatellite> BusinessHubSatelliteList { get; }
+        public List<BusinessHubSatelliteAttribute> BusinessHubSatelliteAttributeList { get; }
+        public List<BusinessHubSatelliteAttributeDataTypeDetail> BusinessHubSatelliteAttributeDataTypeDetailList { get; }
+        public List<BusinessHubSatelliteKeyPart> BusinessHubSatelliteKeyPartList { get; }
+        public List<BusinessHubSatelliteKeyPartDataTypeDetail> BusinessHubSatelliteKeyPartDataTypeDetailList { get; }
+        public List<BusinessLink> BusinessLinkList { get; }
+        public List<BusinessLinkHub> BusinessLinkHubList { get; }
+        public List<BusinessLinkSatellite> BusinessLinkSatelliteList { get; }
+        public List<BusinessLinkSatelliteAttribute> BusinessLinkSatelliteAttributeList { get; }
+        public List<BusinessLinkSatelliteAttributeDataTypeDetail> BusinessLinkSatelliteAttributeDataTypeDetailList { get; }
+        public List<BusinessLinkSatelliteKeyPart> BusinessLinkSatelliteKeyPartList { get; }
+        public List<BusinessLinkSatelliteKeyPartDataTypeDetail> BusinessLinkSatelliteKeyPartDataTypeDetailList { get; }
+        public List<BusinessPointInTime> BusinessPointInTimeList { get; }
+        public List<BusinessPointInTimeHubSatellite> BusinessPointInTimeHubSatelliteList { get; }
+        public List<BusinessPointInTimeLinkSatellite> BusinessPointInTimeLinkSatelliteList { get; }
+        public List<BusinessPointInTimeStamp> BusinessPointInTimeStampList { get; }
+        public List<BusinessPointInTimeStampDataTypeDetail> BusinessPointInTimeStampDataTypeDetailList { get; }
+        public List<BusinessReference> BusinessReferenceList { get; }
+        public List<BusinessReferenceKeyPart> BusinessReferenceKeyPartList { get; }
+        public List<BusinessReferenceKeyPartDataTypeDetail> BusinessReferenceKeyPartDataTypeDetailList { get; }
+        public List<BusinessReferenceSatellite> BusinessReferenceSatelliteList { get; }
+        public List<BusinessReferenceSatelliteAttribute> BusinessReferenceSatelliteAttributeList { get; }
+        public List<BusinessReferenceSatelliteAttributeDataTypeDetail> BusinessReferenceSatelliteAttributeDataTypeDetailList { get; }
+        public List<BusinessReferenceSatelliteKeyPart> BusinessReferenceSatelliteKeyPartList { get; }
+        public List<BusinessReferenceSatelliteKeyPartDataTypeDetail> BusinessReferenceSatelliteKeyPartDataTypeDetailList { get; }
+        public List<BusinessSameAsLink> BusinessSameAsLinkList { get; }
+        public List<BusinessSameAsLinkSatellite> BusinessSameAsLinkSatelliteList { get; }
+        public List<BusinessSameAsLinkSatelliteAttribute> BusinessSameAsLinkSatelliteAttributeList { get; }
+        public List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail> BusinessSameAsLinkSatelliteAttributeDataTypeDetailList { get; }
+        public List<BusinessSameAsLinkSatelliteKeyPart> BusinessSameAsLinkSatelliteKeyPartList { get; }
+        public List<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail> BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList { get; }
+
+        public Workspace ToXmlWorkspace(string workspacePath)
+        {
+            if (string.IsNullOrWhiteSpace(workspacePath))
+            {
+                throw new global::System.ArgumentException("Workspace path is required.", nameof(workspacePath));
+            }
+
+            var rootPath = global::System.IO.Path.GetFullPath(workspacePath);
+            var metadataRootPath = global::System.IO.Path.Combine(rootPath, "metadata");
+            var model = CreateGenericModelDefinition();
+            var workspace = new Workspace
+            {
+                WorkspaceRootPath = rootPath,
+                MetadataRootPath = metadataRootPath,
+                WorkspaceConfig = global::Meta.Core.WorkspaceConfig.Generated.MetaWorkspace.CreateDefault(),
+                Model = model,
+                Instance = new GenericInstance
+                {
+                    ModelName = model.Name,
+                },
+                IsDirty = true,
+            };
+
+            foreach (var row in BusinessBridgeList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessBridge.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.AnchorHubId))
+                {
+                    record.RelationshipIds["AnchorHubId"] = row.AnchorHubId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessBridge").Add(record);
+            }
+
+            foreach (var row in BusinessBridgeHubList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessBridgeHub.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.RoleName))
+                {
+                    record.Values["RoleName"] = row.RoleName;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessBridgeId))
+                {
+                    record.RelationshipIds["BusinessBridgeId"] = row.BusinessBridgeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubId))
+                {
+                    record.RelationshipIds["BusinessHubId"] = row.BusinessHubId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeHub").Add(record);
+            }
+
+            foreach (var row in BusinessBridgeHubKeyPartProjectionList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessBridgeHubKeyPartProjection.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessBridgeId))
+                {
+                    record.RelationshipIds["BusinessBridgeId"] = row.BusinessBridgeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubKeyPartId))
+                {
+                    record.RelationshipIds["BusinessHubKeyPartId"] = row.BusinessHubKeyPartId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeHubKeyPartProjection").Add(record);
+            }
+
+            foreach (var row in BusinessBridgeHubSatelliteAttributeProjectionList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessBridgeHubSatelliteAttributeProjection.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessBridgeId))
+                {
+                    record.RelationshipIds["BusinessBridgeId"] = row.BusinessBridgeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubSatelliteAttributeId))
+                {
+                    record.RelationshipIds["BusinessHubSatelliteAttributeId"] = row.BusinessHubSatelliteAttributeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeHubSatelliteAttributeProjection").Add(record);
+            }
+
+            foreach (var row in BusinessBridgeLinkList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessBridgeLink.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.RoleName))
+                {
+                    record.Values["RoleName"] = row.RoleName;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessBridgeId))
+                {
+                    record.RelationshipIds["BusinessBridgeId"] = row.BusinessBridgeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkId))
+                {
+                    record.RelationshipIds["BusinessLinkId"] = row.BusinessLinkId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeLink").Add(record);
+            }
+
+            foreach (var row in BusinessBridgeLinkSatelliteAttributeProjectionList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessBridgeLinkSatelliteAttributeProjection.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessBridgeId))
+                {
+                    record.RelationshipIds["BusinessBridgeId"] = row.BusinessBridgeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkSatelliteAttributeId))
+                {
+                    record.RelationshipIds["BusinessLinkSatelliteAttributeId"] = row.BusinessLinkSatelliteAttributeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeLinkSatelliteAttributeProjection").Add(record);
+            }
+
+            foreach (var row in BusinessHierarchicalLinkList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHierarchicalLink.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.ChildHubId))
+                {
+                    record.RelationshipIds["ChildHubId"] = row.ChildHubId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.ParentHubId))
+                {
+                    record.RelationshipIds["ParentHubId"] = row.ParentHubId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLink").Add(record);
+            }
+
+            foreach (var row in BusinessHierarchicalLinkSatelliteList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHierarchicalLinkSatellite.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.SatelliteKind))
+                {
+                    record.Values["SatelliteKind"] = row.SatelliteKind;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHierarchicalLinkId))
+                {
+                    record.RelationshipIds["BusinessHierarchicalLinkId"] = row.BusinessHierarchicalLinkId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLinkSatellite").Add(record);
+            }
+
+            foreach (var row in BusinessHierarchicalLinkSatelliteAttributeList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHierarchicalLinkSatelliteAttribute.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHierarchicalLinkSatelliteId))
+                {
+                    record.RelationshipIds["BusinessHierarchicalLinkSatelliteId"] = row.BusinessHierarchicalLinkSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLinkSatelliteAttribute").Add(record);
+            }
+
+            foreach (var row in BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHierarchicalLinkSatelliteAttributeId))
+                {
+                    record.RelationshipIds["BusinessHierarchicalLinkSatelliteAttributeId"] = row.BusinessHierarchicalLinkSatelliteAttributeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessHierarchicalLinkSatelliteKeyPartList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHierarchicalLinkSatelliteKeyPart.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHierarchicalLinkSatelliteId))
+                {
+                    record.RelationshipIds["BusinessHierarchicalLinkSatelliteId"] = row.BusinessHierarchicalLinkSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLinkSatelliteKeyPart").Add(record);
+            }
+
+            foreach (var row in BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHierarchicalLinkSatelliteKeyPartId))
+                {
+                    record.RelationshipIds["BusinessHierarchicalLinkSatelliteKeyPartId"] = row.BusinessHierarchicalLinkSatelliteKeyPartId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessHubList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHub.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHub").Add(record);
+            }
+
+            foreach (var row in BusinessHubKeyPartList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHubKeyPart.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubId))
+                {
+                    record.RelationshipIds["BusinessHubId"] = row.BusinessHubId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHubKeyPart").Add(record);
+            }
+
+            foreach (var row in BusinessHubKeyPartDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHubKeyPartDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubKeyPartId))
+                {
+                    record.RelationshipIds["BusinessHubKeyPartId"] = row.BusinessHubKeyPartId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHubKeyPartDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessHubSatelliteList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHubSatellite.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.SatelliteKind))
+                {
+                    record.Values["SatelliteKind"] = row.SatelliteKind;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubId))
+                {
+                    record.RelationshipIds["BusinessHubId"] = row.BusinessHubId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHubSatellite").Add(record);
+            }
+
+            foreach (var row in BusinessHubSatelliteAttributeList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHubSatelliteAttribute.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubSatelliteId))
+                {
+                    record.RelationshipIds["BusinessHubSatelliteId"] = row.BusinessHubSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHubSatelliteAttribute").Add(record);
+            }
+
+            foreach (var row in BusinessHubSatelliteAttributeDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHubSatelliteAttributeDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubSatelliteAttributeId))
+                {
+                    record.RelationshipIds["BusinessHubSatelliteAttributeId"] = row.BusinessHubSatelliteAttributeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHubSatelliteAttributeDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessHubSatelliteKeyPartList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHubSatelliteKeyPart.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubSatelliteId))
+                {
+                    record.RelationshipIds["BusinessHubSatelliteId"] = row.BusinessHubSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHubSatelliteKeyPart").Add(record);
+            }
+
+            foreach (var row in BusinessHubSatelliteKeyPartDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessHubSatelliteKeyPartDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubSatelliteKeyPartId))
+                {
+                    record.RelationshipIds["BusinessHubSatelliteKeyPartId"] = row.BusinessHubSatelliteKeyPartId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessHubSatelliteKeyPartDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessLinkList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessLink.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessLink").Add(record);
+            }
+
+            foreach (var row in BusinessLinkHubList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessLinkHub.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.RoleName))
+                {
+                    record.Values["RoleName"] = row.RoleName;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubId))
+                {
+                    record.RelationshipIds["BusinessHubId"] = row.BusinessHubId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkId))
+                {
+                    record.RelationshipIds["BusinessLinkId"] = row.BusinessLinkId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessLinkHub").Add(record);
+            }
+
+            foreach (var row in BusinessLinkSatelliteList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessLinkSatellite.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.SatelliteKind))
+                {
+                    record.Values["SatelliteKind"] = row.SatelliteKind;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkId))
+                {
+                    record.RelationshipIds["BusinessLinkId"] = row.BusinessLinkId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatellite").Add(record);
+            }
+
+            foreach (var row in BusinessLinkSatelliteAttributeList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessLinkSatelliteAttribute.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkSatelliteId))
+                {
+                    record.RelationshipIds["BusinessLinkSatelliteId"] = row.BusinessLinkSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatelliteAttribute").Add(record);
+            }
+
+            foreach (var row in BusinessLinkSatelliteAttributeDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessLinkSatelliteAttributeDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkSatelliteAttributeId))
+                {
+                    record.RelationshipIds["BusinessLinkSatelliteAttributeId"] = row.BusinessLinkSatelliteAttributeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatelliteAttributeDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessLinkSatelliteKeyPartList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessLinkSatelliteKeyPart.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkSatelliteId))
+                {
+                    record.RelationshipIds["BusinessLinkSatelliteId"] = row.BusinessLinkSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatelliteKeyPart").Add(record);
+            }
+
+            foreach (var row in BusinessLinkSatelliteKeyPartDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessLinkSatelliteKeyPartDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkSatelliteKeyPartId))
+                {
+                    record.RelationshipIds["BusinessLinkSatelliteKeyPartId"] = row.BusinessLinkSatelliteKeyPartId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatelliteKeyPartDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessPointInTimeList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessPointInTime.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubId))
+                {
+                    record.RelationshipIds["BusinessHubId"] = row.BusinessHubId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTime").Add(record);
+            }
+
+            foreach (var row in BusinessPointInTimeHubSatelliteList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessPointInTimeHubSatellite.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessHubSatelliteId))
+                {
+                    record.RelationshipIds["BusinessHubSatelliteId"] = row.BusinessHubSatelliteId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessPointInTimeId))
+                {
+                    record.RelationshipIds["BusinessPointInTimeId"] = row.BusinessPointInTimeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeHubSatellite").Add(record);
+            }
+
+            foreach (var row in BusinessPointInTimeLinkSatelliteList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessPointInTimeLinkSatellite.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessLinkSatelliteId))
+                {
+                    record.RelationshipIds["BusinessLinkSatelliteId"] = row.BusinessLinkSatelliteId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessPointInTimeId))
+                {
+                    record.RelationshipIds["BusinessPointInTimeId"] = row.BusinessPointInTimeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeLinkSatellite").Add(record);
+            }
+
+            foreach (var row in BusinessPointInTimeStampList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessPointInTimeStamp.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessPointInTimeId))
+                {
+                    record.RelationshipIds["BusinessPointInTimeId"] = row.BusinessPointInTimeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeStamp").Add(record);
+            }
+
+            foreach (var row in BusinessPointInTimeStampDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessPointInTimeStampDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessPointInTimeStampId))
+                {
+                    record.RelationshipIds["BusinessPointInTimeStampId"] = row.BusinessPointInTimeStampId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeStampDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessReferenceList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessReference.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessReference").Add(record);
+            }
+
+            foreach (var row in BusinessReferenceKeyPartList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessReferenceKeyPart.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessReferenceId))
+                {
+                    record.RelationshipIds["BusinessReferenceId"] = row.BusinessReferenceId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceKeyPart").Add(record);
+            }
+
+            foreach (var row in BusinessReferenceKeyPartDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessReferenceKeyPartDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessReferenceKeyPartId))
+                {
+                    record.RelationshipIds["BusinessReferenceKeyPartId"] = row.BusinessReferenceKeyPartId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceKeyPartDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessReferenceSatelliteList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessReferenceSatellite.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.SatelliteKind))
+                {
+                    record.Values["SatelliteKind"] = row.SatelliteKind;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessReferenceId))
+                {
+                    record.RelationshipIds["BusinessReferenceId"] = row.BusinessReferenceId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceSatellite").Add(record);
+            }
+
+            foreach (var row in BusinessReferenceSatelliteAttributeList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessReferenceSatelliteAttribute.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessReferenceSatelliteId))
+                {
+                    record.RelationshipIds["BusinessReferenceSatelliteId"] = row.BusinessReferenceSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceSatelliteAttribute").Add(record);
+            }
+
+            foreach (var row in BusinessReferenceSatelliteAttributeDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessReferenceSatelliteAttributeDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessReferenceSatelliteAttributeId))
+                {
+                    record.RelationshipIds["BusinessReferenceSatelliteAttributeId"] = row.BusinessReferenceSatelliteAttributeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceSatelliteAttributeDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessReferenceSatelliteKeyPartList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessReferenceSatelliteKeyPart.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessReferenceSatelliteId))
+                {
+                    record.RelationshipIds["BusinessReferenceSatelliteId"] = row.BusinessReferenceSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceSatelliteKeyPart").Add(record);
+            }
+
+            foreach (var row in BusinessReferenceSatelliteKeyPartDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessReferenceSatelliteKeyPartDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessReferenceSatelliteKeyPartId))
+                {
+                    record.RelationshipIds["BusinessReferenceSatelliteKeyPartId"] = row.BusinessReferenceSatelliteKeyPartId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessReferenceSatelliteKeyPartDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessSameAsLinkList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessSameAsLink.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.EquivalentHubId))
+                {
+                    record.RelationshipIds["EquivalentHubId"] = row.EquivalentHubId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryHubId))
+                {
+                    record.RelationshipIds["PrimaryHubId"] = row.PrimaryHubId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLink").Add(record);
+            }
+
+            foreach (var row in BusinessSameAsLinkSatelliteList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessSameAsLinkSatellite.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Description))
+                {
+                    record.Values["Description"] = row.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.SatelliteKind))
+                {
+                    record.Values["SatelliteKind"] = row.SatelliteKind;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessSameAsLinkId))
+                {
+                    record.RelationshipIds["BusinessSameAsLinkId"] = row.BusinessSameAsLinkId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLinkSatellite").Add(record);
+            }
+
+            foreach (var row in BusinessSameAsLinkSatelliteAttributeList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessSameAsLinkSatelliteAttribute.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessSameAsLinkSatelliteId))
+                {
+                    record.RelationshipIds["BusinessSameAsLinkSatelliteId"] = row.BusinessSameAsLinkSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLinkSatelliteAttribute").Add(record);
+            }
+
+            foreach (var row in BusinessSameAsLinkSatelliteAttributeDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessSameAsLinkSatelliteAttributeDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessSameAsLinkSatelliteAttributeId))
+                {
+                    record.RelationshipIds["BusinessSameAsLinkSatelliteAttributeId"] = row.BusinessSameAsLinkSatelliteAttributeId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLinkSatelliteAttributeDataTypeDetail").Add(record);
+            }
+
+            foreach (var row in BusinessSameAsLinkSatelliteKeyPartList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessSameAsLinkSatelliteKeyPart.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.DataTypeId))
+                {
+                    record.Values["DataTypeId"] = row.DataTypeId;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Ordinal))
+                {
+                    record.Values["Ordinal"] = row.Ordinal;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessSameAsLinkSatelliteId))
+                {
+                    record.RelationshipIds["BusinessSameAsLinkSatelliteId"] = row.BusinessSameAsLinkSatelliteId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLinkSatelliteKeyPart").Add(record);
+            }
+
+            foreach (var row in BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+            {
+                var record = new GenericRecord
+                {
+                    Id = row.Id ?? string.Empty,
+                    SourceShardFileName = "BusinessSameAsLinkSatelliteKeyPartDataTypeDetail.xml",
+                };
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    record.Values["Name"] = row.Name;
+                }
+                if (!string.IsNullOrWhiteSpace(row.Value))
+                {
+                    record.Values["Value"] = row.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(row.BusinessSameAsLinkSatelliteKeyPartId))
+                {
+                    record.RelationshipIds["BusinessSameAsLinkSatelliteKeyPartId"] = row.BusinessSameAsLinkSatelliteKeyPartId;
+                }
+                workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLinkSatelliteKeyPartDataTypeDetail").Add(record);
+            }
+
+            return workspace;
+        }
+
+        public Task SaveToXmlWorkspaceAsync(
+            string workspacePath,
+            CancellationToken cancellationToken = default)
+        {
+            var workspace = ToXmlWorkspace(workspacePath);
+            return MetaBusinessDataVaultTooling.SaveWorkspaceAsync(workspace, cancellationToken);
+        }
+
+        private static GenericModel CreateGenericModelDefinition()
+        {
+            var model = new GenericModel
+            {
+                Name = "MetaBusinessDataVault",
+            };
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessBridge",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "AnchorHub",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessBridgeHub",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "RoleName",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessBridge",
+                        Role = "",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessBridgeHubKeyPartProjection",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessBridge",
+                        Role = "",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHubKeyPart",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessBridgeHubSatelliteAttributeProjection",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessBridge",
+                        Role = "",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHubSatelliteAttribute",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessBridgeLink",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "RoleName",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessBridge",
+                        Role = "",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLink",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessBridgeLinkSatelliteAttributeProjection",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessBridge",
+                        Role = "",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLinkSatelliteAttribute",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHierarchicalLink",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "ChildHub",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "ParentHub",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHierarchicalLinkSatellite",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "SatelliteKind",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHierarchicalLink",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHierarchicalLinkSatelliteAttribute",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHierarchicalLinkSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHierarchicalLinkSatelliteAttribute",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHierarchicalLinkSatelliteKeyPart",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHierarchicalLinkSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHierarchicalLinkSatelliteKeyPart",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHub",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHubKeyPart",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHubKeyPartDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHubKeyPart",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHubSatellite",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "SatelliteKind",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHubSatelliteAttribute",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHubSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHubSatelliteAttributeDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHubSatelliteAttribute",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHubSatelliteKeyPart",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHubSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessHubSatelliteKeyPartDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHubSatelliteKeyPart",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessLink",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessLinkHub",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "RoleName",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLink",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessLinkSatellite",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "SatelliteKind",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLink",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessLinkSatelliteAttribute",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLinkSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessLinkSatelliteAttributeDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLinkSatelliteAttribute",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessLinkSatelliteKeyPart",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLinkSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessLinkSatelliteKeyPartDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLinkSatelliteKeyPart",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessPointInTime",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessPointInTimeHubSatellite",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHubSatellite",
+                        Role = "",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessPointInTime",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessPointInTimeLinkSatellite",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessLinkSatellite",
+                        Role = "",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessPointInTime",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessPointInTimeStamp",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessPointInTime",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessPointInTimeStampDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessPointInTimeStamp",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessReference",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessReferenceKeyPart",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessReference",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessReferenceKeyPartDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessReferenceKeyPart",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessReferenceSatellite",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "SatelliteKind",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessReference",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessReferenceSatelliteAttribute",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessReferenceSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessReferenceSatelliteAttributeDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessReferenceSatelliteAttribute",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessReferenceSatelliteKeyPart",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessReferenceSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessReferenceSatelliteKeyPartDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessReferenceSatelliteKeyPart",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessSameAsLink",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "EquivalentHub",
+                    },
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessHub",
+                        Role = "PrimaryHub",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessSameAsLinkSatellite",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Description",
+                        DataType = "string",
+                        IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "SatelliteKind",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessSameAsLink",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessSameAsLinkSatelliteAttribute",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessSameAsLinkSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessSameAsLinkSatelliteAttributeDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessSameAsLinkSatelliteAttribute",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessSameAsLinkSatelliteKeyPart",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "DataTypeId",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Ordinal",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessSameAsLinkSatellite",
+                        Role = "",
+                    },
+                },
+            });
+
+            model.Entities.Add(new GenericEntity
+            {
+                Name = "BusinessSameAsLinkSatelliteKeyPartDataTypeDetail",
+                Properties =
+                {
+                    new GenericProperty
+                    {
+                        Name = "Name",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "Value",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                },
+                Relationships =
+                {
+                    new GenericRelationship
+                    {
+                        Entity = "BusinessSameAsLinkSatelliteKeyPart",
+                        Role = "",
+                    },
+                },
+            });
+
+            return model;
+        }
+    }
+
+    internal static class MetaBusinessDataVaultModelFactory
+    {
+        internal static MetaBusinessDataVaultModel CreateFromWorkspace(Workspace workspace)
+        {
+            if (workspace == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(workspace));
+            }
+
+            var businessBridgeList = new List<BusinessBridge>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridge", out var businessBridgeListRecords))
+            {
+                foreach (var record in businessBridgeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeList.Add(new BusinessBridge
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        AnchorHubId = record.RelationshipIds.TryGetValue("AnchorHubId", out var anchorHubRelationshipId) ? anchorHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessBridgeHubList = new List<BusinessBridgeHub>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeHub", out var businessBridgeHubListRecords))
+            {
+                foreach (var record in businessBridgeHubListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeHubList.Add(new BusinessBridgeHub
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        RoleName = record.Values.TryGetValue("RoleName", out var roleNameValue) ? roleNameValue ?? string.Empty : string.Empty,
+                        BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
+                        BusinessHubId = record.RelationshipIds.TryGetValue("BusinessHubId", out var businessHubRelationshipId) ? businessHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessBridgeHubKeyPartProjectionList = new List<BusinessBridgeHubKeyPartProjection>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeHubKeyPartProjection", out var businessBridgeHubKeyPartProjectionListRecords))
+            {
+                foreach (var record in businessBridgeHubKeyPartProjectionListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeHubKeyPartProjectionList.Add(new BusinessBridgeHubKeyPartProjection
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
+                        BusinessHubKeyPartId = record.RelationshipIds.TryGetValue("BusinessHubKeyPartId", out var businessHubKeyPartRelationshipId) ? businessHubKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessBridgeHubSatelliteAttributeProjectionList = new List<BusinessBridgeHubSatelliteAttributeProjection>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeHubSatelliteAttributeProjection", out var businessBridgeHubSatelliteAttributeProjectionListRecords))
+            {
+                foreach (var record in businessBridgeHubSatelliteAttributeProjectionListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeHubSatelliteAttributeProjectionList.Add(new BusinessBridgeHubSatelliteAttributeProjection
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
+                        BusinessHubSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessHubSatelliteAttributeId", out var businessHubSatelliteAttributeRelationshipId) ? businessHubSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessBridgeLinkList = new List<BusinessBridgeLink>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeLink", out var businessBridgeLinkListRecords))
+            {
+                foreach (var record in businessBridgeLinkListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeLinkList.Add(new BusinessBridgeLink
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        RoleName = record.Values.TryGetValue("RoleName", out var roleNameValue) ? roleNameValue ?? string.Empty : string.Empty,
+                        BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
+                        BusinessLinkId = record.RelationshipIds.TryGetValue("BusinessLinkId", out var businessLinkRelationshipId) ? businessLinkRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessBridgeLinkSatelliteAttributeProjectionList = new List<BusinessBridgeLinkSatelliteAttributeProjection>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessBridgeLinkSatelliteAttributeProjection", out var businessBridgeLinkSatelliteAttributeProjectionListRecords))
+            {
+                foreach (var record in businessBridgeLinkSatelliteAttributeProjectionListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessBridgeLinkSatelliteAttributeProjectionList.Add(new BusinessBridgeLinkSatelliteAttributeProjection
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessBridgeId = record.RelationshipIds.TryGetValue("BusinessBridgeId", out var businessBridgeRelationshipId) ? businessBridgeRelationshipId ?? string.Empty : string.Empty,
+                        BusinessLinkSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessLinkSatelliteAttributeId", out var businessLinkSatelliteAttributeRelationshipId) ? businessLinkSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkList = new List<BusinessHierarchicalLink>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLink", out var businessHierarchicalLinkListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkList.Add(new BusinessHierarchicalLink
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        ChildHubId = record.RelationshipIds.TryGetValue("ChildHubId", out var childHubRelationshipId) ? childHubRelationshipId ?? string.Empty : string.Empty,
+                        ParentHubId = record.RelationshipIds.TryGetValue("ParentHubId", out var parentHubRelationshipId) ? parentHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteList = new List<BusinessHierarchicalLinkSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatellite", out var businessHierarchicalLinkSatelliteListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteList.Add(new BusinessHierarchicalLinkSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        SatelliteKind = record.Values.TryGetValue("SatelliteKind", out var satelliteKindValue) ? satelliteKindValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkId", out var businessHierarchicalLinkRelationshipId) ? businessHierarchicalLinkRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteAttributeList = new List<BusinessHierarchicalLinkSatelliteAttribute>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteAttribute", out var businessHierarchicalLinkSatelliteAttributeListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteAttributeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteAttributeList.Add(new BusinessHierarchicalLinkSatelliteAttribute
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkSatelliteId", out var businessHierarchicalLinkSatelliteRelationshipId) ? businessHierarchicalLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteAttributeDataTypeDetailList = new List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail", out var businessHierarchicalLinkSatelliteAttributeDataTypeDetailListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteAttributeDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteAttributeDataTypeDetailList.Add(new BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkSatelliteAttributeId", out var businessHierarchicalLinkSatelliteAttributeRelationshipId) ? businessHierarchicalLinkSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteKeyPartList = new List<BusinessHierarchicalLinkSatelliteKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteKeyPart", out var businessHierarchicalLinkSatelliteKeyPartListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteKeyPartList.Add(new BusinessHierarchicalLinkSatelliteKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkSatelliteId", out var businessHierarchicalLinkSatelliteRelationshipId) ? businessHierarchicalLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList = new List<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail", out var businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList.Add(new BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessHierarchicalLinkSatelliteKeyPartId = record.RelationshipIds.TryGetValue("BusinessHierarchicalLinkSatelliteKeyPartId", out var businessHierarchicalLinkSatelliteKeyPartRelationshipId) ? businessHierarchicalLinkSatelliteKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHubList = new List<BusinessHub>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHub", out var businessHubListRecords))
+            {
+                foreach (var record in businessHubListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHubList.Add(new BusinessHub
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHubKeyPartList = new List<BusinessHubKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHubKeyPart", out var businessHubKeyPartListRecords))
+            {
+                foreach (var record in businessHubKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHubKeyPartList.Add(new BusinessHubKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessHubId = record.RelationshipIds.TryGetValue("BusinessHubId", out var businessHubRelationshipId) ? businessHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHubKeyPartDataTypeDetailList = new List<BusinessHubKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHubKeyPartDataTypeDetail", out var businessHubKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessHubKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHubKeyPartDataTypeDetailList.Add(new BusinessHubKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessHubKeyPartId = record.RelationshipIds.TryGetValue("BusinessHubKeyPartId", out var businessHubKeyPartRelationshipId) ? businessHubKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHubSatelliteList = new List<BusinessHubSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHubSatellite", out var businessHubSatelliteListRecords))
+            {
+                foreach (var record in businessHubSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHubSatelliteList.Add(new BusinessHubSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        SatelliteKind = record.Values.TryGetValue("SatelliteKind", out var satelliteKindValue) ? satelliteKindValue ?? string.Empty : string.Empty,
+                        BusinessHubId = record.RelationshipIds.TryGetValue("BusinessHubId", out var businessHubRelationshipId) ? businessHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHubSatelliteAttributeList = new List<BusinessHubSatelliteAttribute>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHubSatelliteAttribute", out var businessHubSatelliteAttributeListRecords))
+            {
+                foreach (var record in businessHubSatelliteAttributeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHubSatelliteAttributeList.Add(new BusinessHubSatelliteAttribute
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessHubSatelliteId = record.RelationshipIds.TryGetValue("BusinessHubSatelliteId", out var businessHubSatelliteRelationshipId) ? businessHubSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHubSatelliteAttributeDataTypeDetailList = new List<BusinessHubSatelliteAttributeDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHubSatelliteAttributeDataTypeDetail", out var businessHubSatelliteAttributeDataTypeDetailListRecords))
+            {
+                foreach (var record in businessHubSatelliteAttributeDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHubSatelliteAttributeDataTypeDetailList.Add(new BusinessHubSatelliteAttributeDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessHubSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessHubSatelliteAttributeId", out var businessHubSatelliteAttributeRelationshipId) ? businessHubSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHubSatelliteKeyPartList = new List<BusinessHubSatelliteKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHubSatelliteKeyPart", out var businessHubSatelliteKeyPartListRecords))
+            {
+                foreach (var record in businessHubSatelliteKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHubSatelliteKeyPartList.Add(new BusinessHubSatelliteKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessHubSatelliteId = record.RelationshipIds.TryGetValue("BusinessHubSatelliteId", out var businessHubSatelliteRelationshipId) ? businessHubSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessHubSatelliteKeyPartDataTypeDetailList = new List<BusinessHubSatelliteKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessHubSatelliteKeyPartDataTypeDetail", out var businessHubSatelliteKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessHubSatelliteKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessHubSatelliteKeyPartDataTypeDetailList.Add(new BusinessHubSatelliteKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessHubSatelliteKeyPartId = record.RelationshipIds.TryGetValue("BusinessHubSatelliteKeyPartId", out var businessHubSatelliteKeyPartRelationshipId) ? businessHubSatelliteKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessLinkList = new List<BusinessLink>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLink", out var businessLinkListRecords))
+            {
+                foreach (var record in businessLinkListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessLinkList.Add(new BusinessLink
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessLinkHubList = new List<BusinessLinkHub>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLinkHub", out var businessLinkHubListRecords))
+            {
+                foreach (var record in businessLinkHubListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessLinkHubList.Add(new BusinessLinkHub
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        RoleName = record.Values.TryGetValue("RoleName", out var roleNameValue) ? roleNameValue ?? string.Empty : string.Empty,
+                        BusinessHubId = record.RelationshipIds.TryGetValue("BusinessHubId", out var businessHubRelationshipId) ? businessHubRelationshipId ?? string.Empty : string.Empty,
+                        BusinessLinkId = record.RelationshipIds.TryGetValue("BusinessLinkId", out var businessLinkRelationshipId) ? businessLinkRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessLinkSatelliteList = new List<BusinessLinkSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLinkSatellite", out var businessLinkSatelliteListRecords))
+            {
+                foreach (var record in businessLinkSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessLinkSatelliteList.Add(new BusinessLinkSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        SatelliteKind = record.Values.TryGetValue("SatelliteKind", out var satelliteKindValue) ? satelliteKindValue ?? string.Empty : string.Empty,
+                        BusinessLinkId = record.RelationshipIds.TryGetValue("BusinessLinkId", out var businessLinkRelationshipId) ? businessLinkRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessLinkSatelliteAttributeList = new List<BusinessLinkSatelliteAttribute>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLinkSatelliteAttribute", out var businessLinkSatelliteAttributeListRecords))
+            {
+                foreach (var record in businessLinkSatelliteAttributeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessLinkSatelliteAttributeList.Add(new BusinessLinkSatelliteAttribute
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessLinkSatelliteId", out var businessLinkSatelliteRelationshipId) ? businessLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessLinkSatelliteAttributeDataTypeDetailList = new List<BusinessLinkSatelliteAttributeDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLinkSatelliteAttributeDataTypeDetail", out var businessLinkSatelliteAttributeDataTypeDetailListRecords))
+            {
+                foreach (var record in businessLinkSatelliteAttributeDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessLinkSatelliteAttributeDataTypeDetailList.Add(new BusinessLinkSatelliteAttributeDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessLinkSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessLinkSatelliteAttributeId", out var businessLinkSatelliteAttributeRelationshipId) ? businessLinkSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessLinkSatelliteKeyPartList = new List<BusinessLinkSatelliteKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLinkSatelliteKeyPart", out var businessLinkSatelliteKeyPartListRecords))
+            {
+                foreach (var record in businessLinkSatelliteKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessLinkSatelliteKeyPartList.Add(new BusinessLinkSatelliteKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessLinkSatelliteId", out var businessLinkSatelliteRelationshipId) ? businessLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessLinkSatelliteKeyPartDataTypeDetailList = new List<BusinessLinkSatelliteKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessLinkSatelliteKeyPartDataTypeDetail", out var businessLinkSatelliteKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessLinkSatelliteKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessLinkSatelliteKeyPartDataTypeDetailList.Add(new BusinessLinkSatelliteKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessLinkSatelliteKeyPartId = record.RelationshipIds.TryGetValue("BusinessLinkSatelliteKeyPartId", out var businessLinkSatelliteKeyPartRelationshipId) ? businessLinkSatelliteKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessPointInTimeList = new List<BusinessPointInTime>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessPointInTime", out var businessPointInTimeListRecords))
+            {
+                foreach (var record in businessPointInTimeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessPointInTimeList.Add(new BusinessPointInTime
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        BusinessHubId = record.RelationshipIds.TryGetValue("BusinessHubId", out var businessHubRelationshipId) ? businessHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessPointInTimeHubSatelliteList = new List<BusinessPointInTimeHubSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessPointInTimeHubSatellite", out var businessPointInTimeHubSatelliteListRecords))
+            {
+                foreach (var record in businessPointInTimeHubSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessPointInTimeHubSatelliteList.Add(new BusinessPointInTimeHubSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessHubSatelliteId = record.RelationshipIds.TryGetValue("BusinessHubSatelliteId", out var businessHubSatelliteRelationshipId) ? businessHubSatelliteRelationshipId ?? string.Empty : string.Empty,
+                        BusinessPointInTimeId = record.RelationshipIds.TryGetValue("BusinessPointInTimeId", out var businessPointInTimeRelationshipId) ? businessPointInTimeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessPointInTimeLinkSatelliteList = new List<BusinessPointInTimeLinkSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessPointInTimeLinkSatellite", out var businessPointInTimeLinkSatelliteListRecords))
+            {
+                foreach (var record in businessPointInTimeLinkSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessPointInTimeLinkSatelliteList.Add(new BusinessPointInTimeLinkSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessLinkSatelliteId", out var businessLinkSatelliteRelationshipId) ? businessLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                        BusinessPointInTimeId = record.RelationshipIds.TryGetValue("BusinessPointInTimeId", out var businessPointInTimeRelationshipId) ? businessPointInTimeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessPointInTimeStampList = new List<BusinessPointInTimeStamp>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessPointInTimeStamp", out var businessPointInTimeStampListRecords))
+            {
+                foreach (var record in businessPointInTimeStampListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessPointInTimeStampList.Add(new BusinessPointInTimeStamp
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessPointInTimeId = record.RelationshipIds.TryGetValue("BusinessPointInTimeId", out var businessPointInTimeRelationshipId) ? businessPointInTimeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessPointInTimeStampDataTypeDetailList = new List<BusinessPointInTimeStampDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessPointInTimeStampDataTypeDetail", out var businessPointInTimeStampDataTypeDetailListRecords))
+            {
+                foreach (var record in businessPointInTimeStampDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessPointInTimeStampDataTypeDetailList.Add(new BusinessPointInTimeStampDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessPointInTimeStampId = record.RelationshipIds.TryGetValue("BusinessPointInTimeStampId", out var businessPointInTimeStampRelationshipId) ? businessPointInTimeStampRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessReferenceList = new List<BusinessReference>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessReference", out var businessReferenceListRecords))
+            {
+                foreach (var record in businessReferenceListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessReferenceList.Add(new BusinessReference
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessReferenceKeyPartList = new List<BusinessReferenceKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessReferenceKeyPart", out var businessReferenceKeyPartListRecords))
+            {
+                foreach (var record in businessReferenceKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessReferenceKeyPartList.Add(new BusinessReferenceKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessReferenceId = record.RelationshipIds.TryGetValue("BusinessReferenceId", out var businessReferenceRelationshipId) ? businessReferenceRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessReferenceKeyPartDataTypeDetailList = new List<BusinessReferenceKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessReferenceKeyPartDataTypeDetail", out var businessReferenceKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessReferenceKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessReferenceKeyPartDataTypeDetailList.Add(new BusinessReferenceKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessReferenceKeyPartId = record.RelationshipIds.TryGetValue("BusinessReferenceKeyPartId", out var businessReferenceKeyPartRelationshipId) ? businessReferenceKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessReferenceSatelliteList = new List<BusinessReferenceSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessReferenceSatellite", out var businessReferenceSatelliteListRecords))
+            {
+                foreach (var record in businessReferenceSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessReferenceSatelliteList.Add(new BusinessReferenceSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        SatelliteKind = record.Values.TryGetValue("SatelliteKind", out var satelliteKindValue) ? satelliteKindValue ?? string.Empty : string.Empty,
+                        BusinessReferenceId = record.RelationshipIds.TryGetValue("BusinessReferenceId", out var businessReferenceRelationshipId) ? businessReferenceRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessReferenceSatelliteAttributeList = new List<BusinessReferenceSatelliteAttribute>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessReferenceSatelliteAttribute", out var businessReferenceSatelliteAttributeListRecords))
+            {
+                foreach (var record in businessReferenceSatelliteAttributeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessReferenceSatelliteAttributeList.Add(new BusinessReferenceSatelliteAttribute
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessReferenceSatelliteId = record.RelationshipIds.TryGetValue("BusinessReferenceSatelliteId", out var businessReferenceSatelliteRelationshipId) ? businessReferenceSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessReferenceSatelliteAttributeDataTypeDetailList = new List<BusinessReferenceSatelliteAttributeDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessReferenceSatelliteAttributeDataTypeDetail", out var businessReferenceSatelliteAttributeDataTypeDetailListRecords))
+            {
+                foreach (var record in businessReferenceSatelliteAttributeDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessReferenceSatelliteAttributeDataTypeDetailList.Add(new BusinessReferenceSatelliteAttributeDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessReferenceSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessReferenceSatelliteAttributeId", out var businessReferenceSatelliteAttributeRelationshipId) ? businessReferenceSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessReferenceSatelliteKeyPartList = new List<BusinessReferenceSatelliteKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessReferenceSatelliteKeyPart", out var businessReferenceSatelliteKeyPartListRecords))
+            {
+                foreach (var record in businessReferenceSatelliteKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessReferenceSatelliteKeyPartList.Add(new BusinessReferenceSatelliteKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessReferenceSatelliteId = record.RelationshipIds.TryGetValue("BusinessReferenceSatelliteId", out var businessReferenceSatelliteRelationshipId) ? businessReferenceSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessReferenceSatelliteKeyPartDataTypeDetailList = new List<BusinessReferenceSatelliteKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessReferenceSatelliteKeyPartDataTypeDetail", out var businessReferenceSatelliteKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessReferenceSatelliteKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessReferenceSatelliteKeyPartDataTypeDetailList.Add(new BusinessReferenceSatelliteKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessReferenceSatelliteKeyPartId = record.RelationshipIds.TryGetValue("BusinessReferenceSatelliteKeyPartId", out var businessReferenceSatelliteKeyPartRelationshipId) ? businessReferenceSatelliteKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkList = new List<BusinessSameAsLink>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLink", out var businessSameAsLinkListRecords))
+            {
+                foreach (var record in businessSameAsLinkListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkList.Add(new BusinessSameAsLink
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        EquivalentHubId = record.RelationshipIds.TryGetValue("EquivalentHubId", out var equivalentHubRelationshipId) ? equivalentHubRelationshipId ?? string.Empty : string.Empty,
+                        PrimaryHubId = record.RelationshipIds.TryGetValue("PrimaryHubId", out var primaryHubRelationshipId) ? primaryHubRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteList = new List<BusinessSameAsLinkSatellite>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatellite", out var businessSameAsLinkSatelliteListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteList.Add(new BusinessSameAsLinkSatellite
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        SatelliteKind = record.Values.TryGetValue("SatelliteKind", out var satelliteKindValue) ? satelliteKindValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkId", out var businessSameAsLinkRelationshipId) ? businessSameAsLinkRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteAttributeList = new List<BusinessSameAsLinkSatelliteAttribute>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteAttribute", out var businessSameAsLinkSatelliteAttributeListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteAttributeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteAttributeList.Add(new BusinessSameAsLinkSatelliteAttribute
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkSatelliteId", out var businessSameAsLinkSatelliteRelationshipId) ? businessSameAsLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteAttributeDataTypeDetailList = new List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteAttributeDataTypeDetail", out var businessSameAsLinkSatelliteAttributeDataTypeDetailListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteAttributeDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteAttributeDataTypeDetailList.Add(new BusinessSameAsLinkSatelliteAttributeDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkSatelliteAttributeId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkSatelliteAttributeId", out var businessSameAsLinkSatelliteAttributeRelationshipId) ? businessSameAsLinkSatelliteAttributeRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteKeyPartList = new List<BusinessSameAsLinkSatelliteKeyPart>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteKeyPart", out var businessSameAsLinkSatelliteKeyPartListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteKeyPartListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteKeyPartList.Add(new BusinessSameAsLinkSatelliteKeyPart
+                    {
+                        Id = record.Id ?? string.Empty,
+                        DataTypeId = record.Values.TryGetValue("DataTypeId", out var dataTypeIdValue) ? dataTypeIdValue ?? string.Empty : string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkSatelliteId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkSatelliteId", out var businessSameAsLinkSatelliteRelationshipId) ? businessSameAsLinkSatelliteRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessSameAsLinkSatelliteKeyPartDataTypeDetailList = new List<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail>();
+            if (workspace.Instance.RecordsByEntity.TryGetValue("BusinessSameAsLinkSatelliteKeyPartDataTypeDetail", out var businessSameAsLinkSatelliteKeyPartDataTypeDetailListRecords))
+            {
+                foreach (var record in businessSameAsLinkSatelliteKeyPartDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
+                {
+                    businessSameAsLinkSatelliteKeyPartDataTypeDetailList.Add(new BusinessSameAsLinkSatelliteKeyPartDataTypeDetail
+                    {
+                        Id = record.Id ?? string.Empty,
+                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
+                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
+                        BusinessSameAsLinkSatelliteKeyPartId = record.RelationshipIds.TryGetValue("BusinessSameAsLinkSatelliteKeyPartId", out var businessSameAsLinkSatelliteKeyPartRelationshipId) ? businessSameAsLinkSatelliteKeyPartRelationshipId ?? string.Empty : string.Empty,
+                    });
+                }
+            }
+
+            var businessBridgeListById = new Dictionary<string, BusinessBridge>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeList)
+            {
+                businessBridgeListById[row.Id] = row;
+            }
+
+            var businessBridgeHubListById = new Dictionary<string, BusinessBridgeHub>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeHubList)
+            {
+                businessBridgeHubListById[row.Id] = row;
+            }
+
+            var businessBridgeHubKeyPartProjectionListById = new Dictionary<string, BusinessBridgeHubKeyPartProjection>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeHubKeyPartProjectionList)
+            {
+                businessBridgeHubKeyPartProjectionListById[row.Id] = row;
+            }
+
+            var businessBridgeHubSatelliteAttributeProjectionListById = new Dictionary<string, BusinessBridgeHubSatelliteAttributeProjection>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeHubSatelliteAttributeProjectionList)
+            {
+                businessBridgeHubSatelliteAttributeProjectionListById[row.Id] = row;
+            }
+
+            var businessBridgeLinkListById = new Dictionary<string, BusinessBridgeLink>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeLinkList)
+            {
+                businessBridgeLinkListById[row.Id] = row;
+            }
+
+            var businessBridgeLinkSatelliteAttributeProjectionListById = new Dictionary<string, BusinessBridgeLinkSatelliteAttributeProjection>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessBridgeLinkSatelliteAttributeProjectionList)
+            {
+                businessBridgeLinkSatelliteAttributeProjectionListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkListById = new Dictionary<string, BusinessHierarchicalLink>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkList)
+            {
+                businessHierarchicalLinkListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteListById = new Dictionary<string, BusinessHierarchicalLinkSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteList)
+            {
+                businessHierarchicalLinkSatelliteListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteAttributeListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteAttribute>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteAttributeList)
+            {
+                businessHierarchicalLinkSatelliteAttributeListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteAttributeDataTypeDetailList)
+            {
+                businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteKeyPartListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteKeyPartList)
+            {
+                businessHierarchicalLinkSatelliteKeyPartListById[row.Id] = row;
+            }
+
+            var businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListById = new Dictionary<string, BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessHubListById = new Dictionary<string, BusinessHub>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHubList)
+            {
+                businessHubListById[row.Id] = row;
+            }
+
+            var businessHubKeyPartListById = new Dictionary<string, BusinessHubKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHubKeyPartList)
+            {
+                businessHubKeyPartListById[row.Id] = row;
+            }
+
+            var businessHubKeyPartDataTypeDetailListById = new Dictionary<string, BusinessHubKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHubKeyPartDataTypeDetailList)
+            {
+                businessHubKeyPartDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessHubSatelliteListById = new Dictionary<string, BusinessHubSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHubSatelliteList)
+            {
+                businessHubSatelliteListById[row.Id] = row;
+            }
+
+            var businessHubSatelliteAttributeListById = new Dictionary<string, BusinessHubSatelliteAttribute>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHubSatelliteAttributeList)
+            {
+                businessHubSatelliteAttributeListById[row.Id] = row;
+            }
+
+            var businessHubSatelliteAttributeDataTypeDetailListById = new Dictionary<string, BusinessHubSatelliteAttributeDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHubSatelliteAttributeDataTypeDetailList)
+            {
+                businessHubSatelliteAttributeDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessHubSatelliteKeyPartListById = new Dictionary<string, BusinessHubSatelliteKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHubSatelliteKeyPartList)
+            {
+                businessHubSatelliteKeyPartListById[row.Id] = row;
+            }
+
+            var businessHubSatelliteKeyPartDataTypeDetailListById = new Dictionary<string, BusinessHubSatelliteKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessHubSatelliteKeyPartDataTypeDetailList)
+            {
+                businessHubSatelliteKeyPartDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessLinkListById = new Dictionary<string, BusinessLink>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessLinkList)
+            {
+                businessLinkListById[row.Id] = row;
+            }
+
+            var businessLinkHubListById = new Dictionary<string, BusinessLinkHub>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessLinkHubList)
+            {
+                businessLinkHubListById[row.Id] = row;
+            }
+
+            var businessLinkSatelliteListById = new Dictionary<string, BusinessLinkSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessLinkSatelliteList)
+            {
+                businessLinkSatelliteListById[row.Id] = row;
+            }
+
+            var businessLinkSatelliteAttributeListById = new Dictionary<string, BusinessLinkSatelliteAttribute>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessLinkSatelliteAttributeList)
+            {
+                businessLinkSatelliteAttributeListById[row.Id] = row;
+            }
+
+            var businessLinkSatelliteAttributeDataTypeDetailListById = new Dictionary<string, BusinessLinkSatelliteAttributeDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessLinkSatelliteAttributeDataTypeDetailList)
+            {
+                businessLinkSatelliteAttributeDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessLinkSatelliteKeyPartListById = new Dictionary<string, BusinessLinkSatelliteKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessLinkSatelliteKeyPartList)
+            {
+                businessLinkSatelliteKeyPartListById[row.Id] = row;
+            }
+
+            var businessLinkSatelliteKeyPartDataTypeDetailListById = new Dictionary<string, BusinessLinkSatelliteKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                businessLinkSatelliteKeyPartDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessPointInTimeListById = new Dictionary<string, BusinessPointInTime>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessPointInTimeList)
+            {
+                businessPointInTimeListById[row.Id] = row;
+            }
+
+            var businessPointInTimeHubSatelliteListById = new Dictionary<string, BusinessPointInTimeHubSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessPointInTimeHubSatelliteList)
+            {
+                businessPointInTimeHubSatelliteListById[row.Id] = row;
+            }
+
+            var businessPointInTimeLinkSatelliteListById = new Dictionary<string, BusinessPointInTimeLinkSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessPointInTimeLinkSatelliteList)
+            {
+                businessPointInTimeLinkSatelliteListById[row.Id] = row;
+            }
+
+            var businessPointInTimeStampListById = new Dictionary<string, BusinessPointInTimeStamp>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessPointInTimeStampList)
+            {
+                businessPointInTimeStampListById[row.Id] = row;
+            }
+
+            var businessPointInTimeStampDataTypeDetailListById = new Dictionary<string, BusinessPointInTimeStampDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessPointInTimeStampDataTypeDetailList)
+            {
+                businessPointInTimeStampDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessReferenceListById = new Dictionary<string, BusinessReference>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessReferenceList)
+            {
+                businessReferenceListById[row.Id] = row;
+            }
+
+            var businessReferenceKeyPartListById = new Dictionary<string, BusinessReferenceKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessReferenceKeyPartList)
+            {
+                businessReferenceKeyPartListById[row.Id] = row;
+            }
+
+            var businessReferenceKeyPartDataTypeDetailListById = new Dictionary<string, BusinessReferenceKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessReferenceKeyPartDataTypeDetailList)
+            {
+                businessReferenceKeyPartDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessReferenceSatelliteListById = new Dictionary<string, BusinessReferenceSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessReferenceSatelliteList)
+            {
+                businessReferenceSatelliteListById[row.Id] = row;
+            }
+
+            var businessReferenceSatelliteAttributeListById = new Dictionary<string, BusinessReferenceSatelliteAttribute>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessReferenceSatelliteAttributeList)
+            {
+                businessReferenceSatelliteAttributeListById[row.Id] = row;
+            }
+
+            var businessReferenceSatelliteAttributeDataTypeDetailListById = new Dictionary<string, BusinessReferenceSatelliteAttributeDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessReferenceSatelliteAttributeDataTypeDetailList)
+            {
+                businessReferenceSatelliteAttributeDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessReferenceSatelliteKeyPartListById = new Dictionary<string, BusinessReferenceSatelliteKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessReferenceSatelliteKeyPartList)
+            {
+                businessReferenceSatelliteKeyPartListById[row.Id] = row;
+            }
+
+            var businessReferenceSatelliteKeyPartDataTypeDetailListById = new Dictionary<string, BusinessReferenceSatelliteKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessReferenceSatelliteKeyPartDataTypeDetailList)
+            {
+                businessReferenceSatelliteKeyPartDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkListById = new Dictionary<string, BusinessSameAsLink>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkList)
+            {
+                businessSameAsLinkListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteListById = new Dictionary<string, BusinessSameAsLinkSatellite>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteList)
+            {
+                businessSameAsLinkSatelliteListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteAttributeListById = new Dictionary<string, BusinessSameAsLinkSatelliteAttribute>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteAttributeList)
+            {
+                businessSameAsLinkSatelliteAttributeListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteAttributeDataTypeDetailListById = new Dictionary<string, BusinessSameAsLinkSatelliteAttributeDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteAttributeDataTypeDetailList)
+            {
+                businessSameAsLinkSatelliteAttributeDataTypeDetailListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteKeyPartListById = new Dictionary<string, BusinessSameAsLinkSatelliteKeyPart>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteKeyPartList)
+            {
+                businessSameAsLinkSatelliteKeyPartListById[row.Id] = row;
+            }
+
+            var businessSameAsLinkSatelliteKeyPartDataTypeDetailListById = new Dictionary<string, BusinessSameAsLinkSatelliteKeyPartDataTypeDetail>(global::System.StringComparer.Ordinal);
+            foreach (var row in businessSameAsLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                businessSameAsLinkSatelliteKeyPartDataTypeDetailListById[row.Id] = row;
+            }
+
+            foreach (var row in businessBridgeList)
+            {
+                row.AnchorHub = RequireTarget(
+                    businessHubListById,
+                    row.AnchorHubId,
+                    "BusinessBridge",
+                    row.Id,
+                    "AnchorHubId");
+            }
+
+            foreach (var row in businessBridgeHubList)
+            {
+                row.BusinessBridge = RequireTarget(
+                    businessBridgeListById,
+                    row.BusinessBridgeId,
+                    "BusinessBridgeHub",
+                    row.Id,
+                    "BusinessBridgeId");
+            }
+
+            foreach (var row in businessBridgeHubList)
+            {
+                row.BusinessHub = RequireTarget(
+                    businessHubListById,
+                    row.BusinessHubId,
+                    "BusinessBridgeHub",
+                    row.Id,
+                    "BusinessHubId");
+            }
+
+            foreach (var row in businessBridgeHubKeyPartProjectionList)
+            {
+                row.BusinessBridge = RequireTarget(
+                    businessBridgeListById,
+                    row.BusinessBridgeId,
+                    "BusinessBridgeHubKeyPartProjection",
+                    row.Id,
+                    "BusinessBridgeId");
+            }
+
+            foreach (var row in businessBridgeHubKeyPartProjectionList)
+            {
+                row.BusinessHubKeyPart = RequireTarget(
+                    businessHubKeyPartListById,
+                    row.BusinessHubKeyPartId,
+                    "BusinessBridgeHubKeyPartProjection",
+                    row.Id,
+                    "BusinessHubKeyPartId");
+            }
+
+            foreach (var row in businessBridgeHubSatelliteAttributeProjectionList)
+            {
+                row.BusinessBridge = RequireTarget(
+                    businessBridgeListById,
+                    row.BusinessBridgeId,
+                    "BusinessBridgeHubSatelliteAttributeProjection",
+                    row.Id,
+                    "BusinessBridgeId");
+            }
+
+            foreach (var row in businessBridgeHubSatelliteAttributeProjectionList)
+            {
+                row.BusinessHubSatelliteAttribute = RequireTarget(
+                    businessHubSatelliteAttributeListById,
+                    row.BusinessHubSatelliteAttributeId,
+                    "BusinessBridgeHubSatelliteAttributeProjection",
+                    row.Id,
+                    "BusinessHubSatelliteAttributeId");
+            }
+
+            foreach (var row in businessBridgeLinkList)
+            {
+                row.BusinessBridge = RequireTarget(
+                    businessBridgeListById,
+                    row.BusinessBridgeId,
+                    "BusinessBridgeLink",
+                    row.Id,
+                    "BusinessBridgeId");
+            }
+
+            foreach (var row in businessBridgeLinkList)
+            {
+                row.BusinessLink = RequireTarget(
+                    businessLinkListById,
+                    row.BusinessLinkId,
+                    "BusinessBridgeLink",
+                    row.Id,
+                    "BusinessLinkId");
+            }
+
+            foreach (var row in businessBridgeLinkSatelliteAttributeProjectionList)
+            {
+                row.BusinessBridge = RequireTarget(
+                    businessBridgeListById,
+                    row.BusinessBridgeId,
+                    "BusinessBridgeLinkSatelliteAttributeProjection",
+                    row.Id,
+                    "BusinessBridgeId");
+            }
+
+            foreach (var row in businessBridgeLinkSatelliteAttributeProjectionList)
+            {
+                row.BusinessLinkSatelliteAttribute = RequireTarget(
+                    businessLinkSatelliteAttributeListById,
+                    row.BusinessLinkSatelliteAttributeId,
+                    "BusinessBridgeLinkSatelliteAttributeProjection",
+                    row.Id,
+                    "BusinessLinkSatelliteAttributeId");
+            }
+
+            foreach (var row in businessHierarchicalLinkList)
+            {
+                row.ChildHub = RequireTarget(
+                    businessHubListById,
+                    row.ChildHubId,
+                    "BusinessHierarchicalLink",
+                    row.Id,
+                    "ChildHubId");
+            }
+
+            foreach (var row in businessHierarchicalLinkList)
+            {
+                row.ParentHub = RequireTarget(
+                    businessHubListById,
+                    row.ParentHubId,
+                    "BusinessHierarchicalLink",
+                    row.Id,
+                    "ParentHubId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteList)
+            {
+                row.BusinessHierarchicalLink = RequireTarget(
+                    businessHierarchicalLinkListById,
+                    row.BusinessHierarchicalLinkId,
+                    "BusinessHierarchicalLinkSatellite",
+                    row.Id,
+                    "BusinessHierarchicalLinkId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteAttributeList)
+            {
+                row.BusinessHierarchicalLinkSatellite = RequireTarget(
+                    businessHierarchicalLinkSatelliteListById,
+                    row.BusinessHierarchicalLinkSatelliteId,
+                    "BusinessHierarchicalLinkSatelliteAttribute",
+                    row.Id,
+                    "BusinessHierarchicalLinkSatelliteId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteAttributeDataTypeDetailList)
+            {
+                row.BusinessHierarchicalLinkSatelliteAttribute = RequireTarget(
+                    businessHierarchicalLinkSatelliteAttributeListById,
+                    row.BusinessHierarchicalLinkSatelliteAttributeId,
+                    "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail",
+                    row.Id,
+                    "BusinessHierarchicalLinkSatelliteAttributeId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteKeyPartList)
+            {
+                row.BusinessHierarchicalLinkSatellite = RequireTarget(
+                    businessHierarchicalLinkSatelliteListById,
+                    row.BusinessHierarchicalLinkSatelliteId,
+                    "BusinessHierarchicalLinkSatelliteKeyPart",
+                    row.Id,
+                    "BusinessHierarchicalLinkSatelliteId");
+            }
+
+            foreach (var row in businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                row.BusinessHierarchicalLinkSatelliteKeyPart = RequireTarget(
+                    businessHierarchicalLinkSatelliteKeyPartListById,
+                    row.BusinessHierarchicalLinkSatelliteKeyPartId,
+                    "BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessHierarchicalLinkSatelliteKeyPartId");
+            }
+
+            foreach (var row in businessHubKeyPartList)
+            {
+                row.BusinessHub = RequireTarget(
+                    businessHubListById,
+                    row.BusinessHubId,
+                    "BusinessHubKeyPart",
+                    row.Id,
+                    "BusinessHubId");
+            }
+
+            foreach (var row in businessHubKeyPartDataTypeDetailList)
+            {
+                row.BusinessHubKeyPart = RequireTarget(
+                    businessHubKeyPartListById,
+                    row.BusinessHubKeyPartId,
+                    "BusinessHubKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessHubKeyPartId");
+            }
+
+            foreach (var row in businessHubSatelliteList)
+            {
+                row.BusinessHub = RequireTarget(
+                    businessHubListById,
+                    row.BusinessHubId,
+                    "BusinessHubSatellite",
+                    row.Id,
+                    "BusinessHubId");
+            }
+
+            foreach (var row in businessHubSatelliteAttributeList)
+            {
+                row.BusinessHubSatellite = RequireTarget(
+                    businessHubSatelliteListById,
+                    row.BusinessHubSatelliteId,
+                    "BusinessHubSatelliteAttribute",
+                    row.Id,
+                    "BusinessHubSatelliteId");
+            }
+
+            foreach (var row in businessHubSatelliteAttributeDataTypeDetailList)
+            {
+                row.BusinessHubSatelliteAttribute = RequireTarget(
+                    businessHubSatelliteAttributeListById,
+                    row.BusinessHubSatelliteAttributeId,
+                    "BusinessHubSatelliteAttributeDataTypeDetail",
+                    row.Id,
+                    "BusinessHubSatelliteAttributeId");
+            }
+
+            foreach (var row in businessHubSatelliteKeyPartList)
+            {
+                row.BusinessHubSatellite = RequireTarget(
+                    businessHubSatelliteListById,
+                    row.BusinessHubSatelliteId,
+                    "BusinessHubSatelliteKeyPart",
+                    row.Id,
+                    "BusinessHubSatelliteId");
+            }
+
+            foreach (var row in businessHubSatelliteKeyPartDataTypeDetailList)
+            {
+                row.BusinessHubSatelliteKeyPart = RequireTarget(
+                    businessHubSatelliteKeyPartListById,
+                    row.BusinessHubSatelliteKeyPartId,
+                    "BusinessHubSatelliteKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessHubSatelliteKeyPartId");
+            }
+
+            foreach (var row in businessLinkHubList)
+            {
+                row.BusinessHub = RequireTarget(
+                    businessHubListById,
+                    row.BusinessHubId,
+                    "BusinessLinkHub",
+                    row.Id,
+                    "BusinessHubId");
+            }
+
+            foreach (var row in businessLinkHubList)
+            {
+                row.BusinessLink = RequireTarget(
+                    businessLinkListById,
+                    row.BusinessLinkId,
+                    "BusinessLinkHub",
+                    row.Id,
+                    "BusinessLinkId");
+            }
+
+            foreach (var row in businessLinkSatelliteList)
+            {
+                row.BusinessLink = RequireTarget(
+                    businessLinkListById,
+                    row.BusinessLinkId,
+                    "BusinessLinkSatellite",
+                    row.Id,
+                    "BusinessLinkId");
+            }
+
+            foreach (var row in businessLinkSatelliteAttributeList)
+            {
+                row.BusinessLinkSatellite = RequireTarget(
+                    businessLinkSatelliteListById,
+                    row.BusinessLinkSatelliteId,
+                    "BusinessLinkSatelliteAttribute",
+                    row.Id,
+                    "BusinessLinkSatelliteId");
+            }
+
+            foreach (var row in businessLinkSatelliteAttributeDataTypeDetailList)
+            {
+                row.BusinessLinkSatelliteAttribute = RequireTarget(
+                    businessLinkSatelliteAttributeListById,
+                    row.BusinessLinkSatelliteAttributeId,
+                    "BusinessLinkSatelliteAttributeDataTypeDetail",
+                    row.Id,
+                    "BusinessLinkSatelliteAttributeId");
+            }
+
+            foreach (var row in businessLinkSatelliteKeyPartList)
+            {
+                row.BusinessLinkSatellite = RequireTarget(
+                    businessLinkSatelliteListById,
+                    row.BusinessLinkSatelliteId,
+                    "BusinessLinkSatelliteKeyPart",
+                    row.Id,
+                    "BusinessLinkSatelliteId");
+            }
+
+            foreach (var row in businessLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                row.BusinessLinkSatelliteKeyPart = RequireTarget(
+                    businessLinkSatelliteKeyPartListById,
+                    row.BusinessLinkSatelliteKeyPartId,
+                    "BusinessLinkSatelliteKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessLinkSatelliteKeyPartId");
+            }
+
+            foreach (var row in businessPointInTimeList)
+            {
+                row.BusinessHub = RequireTarget(
+                    businessHubListById,
+                    row.BusinessHubId,
+                    "BusinessPointInTime",
+                    row.Id,
+                    "BusinessHubId");
+            }
+
+            foreach (var row in businessPointInTimeHubSatelliteList)
+            {
+                row.BusinessHubSatellite = RequireTarget(
+                    businessHubSatelliteListById,
+                    row.BusinessHubSatelliteId,
+                    "BusinessPointInTimeHubSatellite",
+                    row.Id,
+                    "BusinessHubSatelliteId");
+            }
+
+            foreach (var row in businessPointInTimeHubSatelliteList)
+            {
+                row.BusinessPointInTime = RequireTarget(
+                    businessPointInTimeListById,
+                    row.BusinessPointInTimeId,
+                    "BusinessPointInTimeHubSatellite",
+                    row.Id,
+                    "BusinessPointInTimeId");
+            }
+
+            foreach (var row in businessPointInTimeLinkSatelliteList)
+            {
+                row.BusinessLinkSatellite = RequireTarget(
+                    businessLinkSatelliteListById,
+                    row.BusinessLinkSatelliteId,
+                    "BusinessPointInTimeLinkSatellite",
+                    row.Id,
+                    "BusinessLinkSatelliteId");
+            }
+
+            foreach (var row in businessPointInTimeLinkSatelliteList)
+            {
+                row.BusinessPointInTime = RequireTarget(
+                    businessPointInTimeListById,
+                    row.BusinessPointInTimeId,
+                    "BusinessPointInTimeLinkSatellite",
+                    row.Id,
+                    "BusinessPointInTimeId");
+            }
+
+            foreach (var row in businessPointInTimeStampList)
+            {
+                row.BusinessPointInTime = RequireTarget(
+                    businessPointInTimeListById,
+                    row.BusinessPointInTimeId,
+                    "BusinessPointInTimeStamp",
+                    row.Id,
+                    "BusinessPointInTimeId");
+            }
+
+            foreach (var row in businessPointInTimeStampDataTypeDetailList)
+            {
+                row.BusinessPointInTimeStamp = RequireTarget(
+                    businessPointInTimeStampListById,
+                    row.BusinessPointInTimeStampId,
+                    "BusinessPointInTimeStampDataTypeDetail",
+                    row.Id,
+                    "BusinessPointInTimeStampId");
+            }
+
+            foreach (var row in businessReferenceKeyPartList)
+            {
+                row.BusinessReference = RequireTarget(
+                    businessReferenceListById,
+                    row.BusinessReferenceId,
+                    "BusinessReferenceKeyPart",
+                    row.Id,
+                    "BusinessReferenceId");
+            }
+
+            foreach (var row in businessReferenceKeyPartDataTypeDetailList)
+            {
+                row.BusinessReferenceKeyPart = RequireTarget(
+                    businessReferenceKeyPartListById,
+                    row.BusinessReferenceKeyPartId,
+                    "BusinessReferenceKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessReferenceKeyPartId");
+            }
+
+            foreach (var row in businessReferenceSatelliteList)
+            {
+                row.BusinessReference = RequireTarget(
+                    businessReferenceListById,
+                    row.BusinessReferenceId,
+                    "BusinessReferenceSatellite",
+                    row.Id,
+                    "BusinessReferenceId");
+            }
+
+            foreach (var row in businessReferenceSatelliteAttributeList)
+            {
+                row.BusinessReferenceSatellite = RequireTarget(
+                    businessReferenceSatelliteListById,
+                    row.BusinessReferenceSatelliteId,
+                    "BusinessReferenceSatelliteAttribute",
+                    row.Id,
+                    "BusinessReferenceSatelliteId");
+            }
+
+            foreach (var row in businessReferenceSatelliteAttributeDataTypeDetailList)
+            {
+                row.BusinessReferenceSatelliteAttribute = RequireTarget(
+                    businessReferenceSatelliteAttributeListById,
+                    row.BusinessReferenceSatelliteAttributeId,
+                    "BusinessReferenceSatelliteAttributeDataTypeDetail",
+                    row.Id,
+                    "BusinessReferenceSatelliteAttributeId");
+            }
+
+            foreach (var row in businessReferenceSatelliteKeyPartList)
+            {
+                row.BusinessReferenceSatellite = RequireTarget(
+                    businessReferenceSatelliteListById,
+                    row.BusinessReferenceSatelliteId,
+                    "BusinessReferenceSatelliteKeyPart",
+                    row.Id,
+                    "BusinessReferenceSatelliteId");
+            }
+
+            foreach (var row in businessReferenceSatelliteKeyPartDataTypeDetailList)
+            {
+                row.BusinessReferenceSatelliteKeyPart = RequireTarget(
+                    businessReferenceSatelliteKeyPartListById,
+                    row.BusinessReferenceSatelliteKeyPartId,
+                    "BusinessReferenceSatelliteKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessReferenceSatelliteKeyPartId");
+            }
+
+            foreach (var row in businessSameAsLinkList)
+            {
+                row.EquivalentHub = RequireTarget(
+                    businessHubListById,
+                    row.EquivalentHubId,
+                    "BusinessSameAsLink",
+                    row.Id,
+                    "EquivalentHubId");
+            }
+
+            foreach (var row in businessSameAsLinkList)
+            {
+                row.PrimaryHub = RequireTarget(
+                    businessHubListById,
+                    row.PrimaryHubId,
+                    "BusinessSameAsLink",
+                    row.Id,
+                    "PrimaryHubId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteList)
+            {
+                row.BusinessSameAsLink = RequireTarget(
+                    businessSameAsLinkListById,
+                    row.BusinessSameAsLinkId,
+                    "BusinessSameAsLinkSatellite",
+                    row.Id,
+                    "BusinessSameAsLinkId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteAttributeList)
+            {
+                row.BusinessSameAsLinkSatellite = RequireTarget(
+                    businessSameAsLinkSatelliteListById,
+                    row.BusinessSameAsLinkSatelliteId,
+                    "BusinessSameAsLinkSatelliteAttribute",
+                    row.Id,
+                    "BusinessSameAsLinkSatelliteId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteAttributeDataTypeDetailList)
+            {
+                row.BusinessSameAsLinkSatelliteAttribute = RequireTarget(
+                    businessSameAsLinkSatelliteAttributeListById,
+                    row.BusinessSameAsLinkSatelliteAttributeId,
+                    "BusinessSameAsLinkSatelliteAttributeDataTypeDetail",
+                    row.Id,
+                    "BusinessSameAsLinkSatelliteAttributeId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteKeyPartList)
+            {
+                row.BusinessSameAsLinkSatellite = RequireTarget(
+                    businessSameAsLinkSatelliteListById,
+                    row.BusinessSameAsLinkSatelliteId,
+                    "BusinessSameAsLinkSatelliteKeyPart",
+                    row.Id,
+                    "BusinessSameAsLinkSatelliteId");
+            }
+
+            foreach (var row in businessSameAsLinkSatelliteKeyPartDataTypeDetailList)
+            {
+                row.BusinessSameAsLinkSatelliteKeyPart = RequireTarget(
+                    businessSameAsLinkSatelliteKeyPartListById,
+                    row.BusinessSameAsLinkSatelliteKeyPartId,
+                    "BusinessSameAsLinkSatelliteKeyPartDataTypeDetail",
+                    row.Id,
+                    "BusinessSameAsLinkSatelliteKeyPartId");
+            }
+
+            return new MetaBusinessDataVaultModel(
+                businessBridgeList,
+                businessBridgeHubList,
+                businessBridgeHubKeyPartProjectionList,
+                businessBridgeHubSatelliteAttributeProjectionList,
+                businessBridgeLinkList,
+                businessBridgeLinkSatelliteAttributeProjectionList,
+                businessHierarchicalLinkList,
+                businessHierarchicalLinkSatelliteList,
+                businessHierarchicalLinkSatelliteAttributeList,
+                businessHierarchicalLinkSatelliteAttributeDataTypeDetailList,
+                businessHierarchicalLinkSatelliteKeyPartList,
+                businessHierarchicalLinkSatelliteKeyPartDataTypeDetailList,
+                businessHubList,
+                businessHubKeyPartList,
+                businessHubKeyPartDataTypeDetailList,
+                businessHubSatelliteList,
+                businessHubSatelliteAttributeList,
+                businessHubSatelliteAttributeDataTypeDetailList,
+                businessHubSatelliteKeyPartList,
+                businessHubSatelliteKeyPartDataTypeDetailList,
+                businessLinkList,
+                businessLinkHubList,
+                businessLinkSatelliteList,
+                businessLinkSatelliteAttributeList,
+                businessLinkSatelliteAttributeDataTypeDetailList,
+                businessLinkSatelliteKeyPartList,
+                businessLinkSatelliteKeyPartDataTypeDetailList,
+                businessPointInTimeList,
+                businessPointInTimeHubSatelliteList,
+                businessPointInTimeLinkSatelliteList,
+                businessPointInTimeStampList,
+                businessPointInTimeStampDataTypeDetailList,
+                businessReferenceList,
+                businessReferenceKeyPartList,
+                businessReferenceKeyPartDataTypeDetailList,
+                businessReferenceSatelliteList,
+                businessReferenceSatelliteAttributeList,
+                businessReferenceSatelliteAttributeDataTypeDetailList,
+                businessReferenceSatelliteKeyPartList,
+                businessReferenceSatelliteKeyPartDataTypeDetailList,
+                businessSameAsLinkList,
+                businessSameAsLinkSatelliteList,
+                businessSameAsLinkSatelliteAttributeList,
+                businessSameAsLinkSatelliteAttributeDataTypeDetailList,
+                businessSameAsLinkSatelliteKeyPartList,
+                businessSameAsLinkSatelliteKeyPartDataTypeDetailList
+            );
+        }
+
+        private static T RequireTarget<T>(
+            Dictionary<string, T> rowsById,
+            string targetId,
+            string sourceEntityName,
+            string sourceId,
+            string relationshipName)
+            where T : class
+        {
+            if (string.IsNullOrEmpty(targetId))
+            {
+                throw new global::System.InvalidOperationException(
+                    $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty."
+                );
+            }
+
+            if (!rowsById.TryGetValue(targetId, out var target))
+            {
+                throw new global::System.InvalidOperationException(
+                    $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' points to missing Id '{targetId}'."
+                );
+            }
+
+            return target;
+        }
+    }
+}

@@ -115,37 +115,22 @@ The current materializer does not yet:
 - embed implementation column defaults into the BDV workspace model
 - generate SSDT artifacts
 
-## Current SQL generation step
+## Current MetaSql generation step
 
-```cmd
-meta-datavault-business generate-sql --workspace <materialized-bdv-workspace> --implementation-workspace <path> --data-type-conversion-workspace <path> --out <path>
-```
+`generate-metasql` is currently a stub on the active Data Vault CLI surface.
 
-This first SQL pass consumes:
+The old DataVault-to-Sql projection implementation has been removed. The command names remain only to preserve the future CLI shape while the schema deployment direction is rebooted around sanctioned `SqlModel` tooling.
 
-- one materialized `MetaBusinessDataVault` workspace
-- one `MetaDataVaultImplementation` workspace
-- one `MetaDataTypeConversion` workspace
+So today:
 
-It currently emits plain SQL scripts for:
+- `meta-datavault-business generate-metasql` does not generate a `SqlModel` workspace
+- `meta-datavault-raw generate-metasql` does not generate a `SqlModel` workspace
 
-- `BusinessHub`
-- `BusinessLink`
-- `BusinessHubSatellite`
-- `BusinessLinkSatellite`
-- `BusinessPointInTime`
-- `BusinessBridge`
+Current active boundary:
 
-Current SQL generator contract:
-
-- Standard links, same-as links, and hierarchical links are emitted through separate sanctioned link entities
-- `AuditId` is part of the sanctioned implementation baseline and is required for current SQL generation across generated DV tables
-- `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
-- `BusinessPointInTime` currently supports only the baseline snapshot/reference contract; point-in-time references to `multi-active` satellites fail fast and explicit `BusinessPointInTimeStamp` rows are modeled but not yet emitted to SQL
-- `BusinessPointInTime` must reference at least one hub or link satellite, ordinals must be unique across those references, hub satellites must belong to the point-in-time parent hub, and link satellites must connect to that hub
-- bridge SQL generation requires an explicit ordered path from `AnchorHub` through `BusinessBridgeLink` and `BusinessBridgeHub` rows; inconsistent paths fail fast
-- bridge SQL generation also requires explicit projection rows (`BusinessBridgeHubKeyPartProjection`, `BusinessBridgeHubSatelliteAttributeProjection`, `BusinessBridgeLinkSatelliteAttributeProjection`); projected columns are typed from the referenced BDV rows and their local `...DataTypeDetail`
-- `MetaDataVaultImplementation` must provide the required technical column defaults for the currently supported SQL surface; missing required defaults fail fast instead of being silently omitted
+- Data Vault CLIs author and materialize sanctioned Data Vault workspaces
+- `SqlModel` exists as a sanctioned canonical SQL model
+- the removed DV-to-SQL projection path is not part of the active contract
 
 ## Why this is still useful
 

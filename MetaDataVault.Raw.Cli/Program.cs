@@ -31,9 +31,9 @@ internal static partial class Program
             return await RunAddCommandAsync(addCommand, args).ConfigureAwait(false);
         }
 
-        if (string.Equals(args[0], "generate-sql", StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(args[0], "generate-metasql", StringComparison.OrdinalIgnoreCase))
         {
-            return await RunGenerateSqlAsync(args).ConfigureAwait(false);
+            return await RunGenerateMetaSqlAsync(args).ConfigureAwait(false);
         }
 
         return Fail($"unknown command '{args[0]}'.", "meta-datavault-raw help");
@@ -108,7 +108,7 @@ internal static partial class Program
                 businessWorkspace = await workspaceService.LoadAsync(businessWorkspacePath, searchUpward: false).ConfigureAwait(false);
                 EnsureWorkspaceModel(businessWorkspace, "MetaBusiness", nameof(parse.BusinessWorkspacePath));
             }
-            implementationModel = await RawDataVaultSqlModelLoaders.LoadImplementationAsync(implementationWorkspacePath).ConfigureAwait(false);
+            implementationModel = await RawDataVaultImplementationLoaders.LoadImplementationAsync(implementationWorkspacePath).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
@@ -333,13 +333,13 @@ internal static partial class Program
             ("help", "Show this help."),
             ("--new-workspace", "Create an empty MetaRawDataVault workspace."),
             ("from-metaschema", "Materialize a schema-bootstrap raw datavault from a MetaSchema workspace."),
-            ("generate-sql", "Generate raw datavault SQL from a MetaRawDataVault workspace."),
+            ("generate-metasql", "Stub command. DataVault-to-Sql projection is not implemented."),
             ("add-*", "Add sanctioned MetaRawDataVault rows.")
         });
         Presenter.WriteInfo(string.Empty);
         Presenter.WriteCommandCatalog("Authoring commands:", GetAddCommandCatalog().ToList());
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteNext("meta-datavault-raw generate-sql --help");
+        Presenter.WriteNext("meta-datavault-raw generate-metasql --help");
     }
 
     private static void PrintFromMetaSchemaHelp()

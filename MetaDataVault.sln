@@ -10,6 +10,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Raw.Cli", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Business.Cli", "MetaDataVault.Business.Cli\MetaDataVault.Business.Cli.csproj", "{D2B67BE5-5293-413F-9F79-B5C40ED3B54A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Core", "MetaSql.Core\MetaSql.Core.csproj", "{D7A616AE-9A3C-4E07-A4D4-0A3B1A80A8A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Tooling", "MetaDataVault.Tooling\MetaDataVault.Tooling.csproj", "{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Tooling", "MetaSql.Tooling\MetaSql.Tooling.csproj", "{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.ConvertToMetaSql", "MetaDataVault.ConvertToMetaSql\MetaDataVault.ConvertToMetaSql.csproj", "{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema.Tooling\MetaSchema.Tooling.csproj", "{A44AD474-008C-4E63-ADA4-A4C77F6F888F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,5 +45,25 @@ Global
 		{D2B67BE5-5293-413F-9F79-B5C40ED3B54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B67BE5-5293-413F-9F79-B5C40ED3B54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B67BE5-5293-413F-9F79-B5C40ED3B54A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7A616AE-9A3C-4E07-A4D4-0A3B1A80A8A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7A616AE-9A3C-4E07-A4D4-0A3B1A80A8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7A616AE-9A3C-4E07-A4D4-0A3B1A80A8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7A616AE-9A3C-4E07-A4D4-0A3B1A80A8A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A44AD474-008C-4E63-ADA4-A4C77F6F888F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A44AD474-008C-4E63-ADA4-A4C77F6F888F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A44AD474-008C-4E63-ADA4-A4C77F6F888F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A44AD474-008C-4E63-ADA4-A4C77F6F888F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

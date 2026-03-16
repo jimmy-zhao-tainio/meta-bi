@@ -36,9 +36,9 @@ internal static partial class Program
             return await RunMaterializeBusinessAsync(args).ConfigureAwait(false);
         }
 
-        if (string.Equals(args[0], "generate-sql", StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(args[0], "generate-metasql", StringComparison.OrdinalIgnoreCase))
         {
-            return await RunGenerateSqlAsync(args).ConfigureAwait(false);
+            return await RunGenerateMetaSqlAsync(args).ConfigureAwait(false);
         }
 
         return Fail($"unknown command '{args[0]}'.", "meta-datavault-business help");
@@ -278,72 +278,6 @@ internal static partial class Program
             ("BusinessBridges", materialization.BusinessBridgeCount.ToString()));
         return 0;
     }
-
-    private static async Task<int> RunGenerateSqlAsync(string[] args)
-    {
-        if (args.Length == 1 || IsHelpToken(args[1]))
-        {
-            PrintGenerateSqlHelp();
-            return 0;
-        }
-
-        var parse = ParseGenerateSqlArgs(args, 1);
-        if (!parse.Ok)
-        {
-            return Fail(parse.ErrorMessage, "meta-datavault-business generate-sql --help");
-        }
-
-        var workspacePath = Path.GetFullPath(parse.WorkspacePath);
-        var implementationWorkspacePath = Path.GetFullPath(parse.ImplementationWorkspacePath);
-        var dataTypeConversionWorkspacePath = Path.GetFullPath(parse.DataTypeConversionWorkspacePath);
-        var outputPath = Path.GetFullPath(parse.OutputPath);
-        if (Directory.Exists(outputPath) && Directory.EnumerateFileSystemEntries(outputPath).Any())
-        {
-            return Fail($"target directory '{outputPath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
-        }
-
-        BusinessDataVaultSqlGenerationResult result;
-        try
-        {
-            result = await new BusinessDataVaultSqlGenerator().GenerateAsync(
-                workspacePath,
-                implementationWorkspacePath,
-                dataTypeConversionWorkspacePath,
-                outputPath).ConfigureAwait(false);
-        }
-        catch (Exception ex)
-        {
-            return Fail(
-                "could not generate business datavault SQL.",
-                "check the materialized MetaBusinessDataVault, MetaDataVaultImplementation, and MetaDataTypeConversion workspaces and retry.",
-                4,
-                new[] { $"  - {ex.Message}" });
-        }
-
-        Presenter.WriteOk(
-            "business datavault sql generated",
-            ("Workspace", workspacePath),
-            ("Implementation Workspace", implementationWorkspacePath),
-            ("DataTypeConversion Workspace", dataTypeConversionWorkspacePath),
-            ("Path", result.OutputPath),
-            ("Files", result.FileCount.ToString()),
-            ("Tables", result.TableCount.ToString()),
-            ("BusinessHubs", result.BusinessHubCount.ToString()),
-            ("BusinessLinks", result.BusinessLinkCount.ToString()),
-            ("BusinessSameAsLinks", result.BusinessSameAsLinkCount.ToString()),
-            ("BusinessHierarchicalLinks", result.BusinessHierarchicalLinkCount.ToString()),
-            ("BusinessHubSatellites", result.BusinessHubSatelliteCount.ToString()),
-            ("BusinessLinkSatellites", result.BusinessLinkSatelliteCount.ToString()),
-            ("BusinessSameAsLinkSatellites", result.BusinessSameAsLinkSatelliteCount.ToString()),
-            ("BusinessHierarchicalLinkSatellites", result.BusinessHierarchicalLinkSatelliteCount.ToString()),
-            ("BusinessReferences", result.BusinessReferenceCount.ToString()),
-            ("BusinessReferenceSatellites", result.BusinessReferenceSatelliteCount.ToString()),
-            ("BusinessPointInTimes", result.BusinessPointInTimeCount.ToString()),
-            ("BusinessBridges", result.BusinessBridgeCount.ToString()));
-        return 0;
-    }
-
-
 
     private static (bool Ok, string NewWorkspacePath, string ErrorMessage) ParseNewWorkspaceOnly(string[] args, int startIndex)
     {
@@ -622,107 +556,6 @@ internal static partial class Program
         return (true, businessWorkspacePath, businessDataVaultWorkspacePath, implementationWorkspacePath, weaveWorkspacePaths, fabricWorkspacePaths, newWorkspacePath, string.Empty);
     }
 
-    private static (bool Ok, string WorkspacePath, string ImplementationWorkspacePath, string DataTypeConversionWorkspacePath, string OutputPath, string ErrorMessage) ParseGenerateSqlArgs(string[] args, int startIndex)
-    {
-        var workspacePath = string.Empty;
-        var implementationWorkspacePath = string.Empty;
-        var dataTypeConversionWorkspacePath = string.Empty;
-        var outputPath = string.Empty;
-
-        for (var i = startIndex; i < args.Length; i++)
-        {
-            var arg = args[i];
-            if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "missing value for --workspace.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(workspacePath))
-                {
-                    return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "--workspace can only be provided once.");
-                }
-
-                workspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--implementation-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "missing value for --implementation-workspace.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(implementationWorkspacePath))
-                {
-                    return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "--implementation-workspace can only be provided once.");
-                }
-
-                implementationWorkspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--data-type-conversion-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "missing value for --data-type-conversion-workspace.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(dataTypeConversionWorkspacePath))
-                {
-                    return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "--data-type-conversion-workspace can only be provided once.");
-                }
-
-                dataTypeConversionWorkspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--out", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "missing value for --out.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(outputPath))
-                {
-                    return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "--out can only be provided once.");
-                }
-
-                outputPath = args[++i];
-                continue;
-            }
-
-            return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, $"unknown option '{arg}'.");
-        }
-
-        if (string.IsNullOrWhiteSpace(workspacePath))
-        {
-            return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "missing required option --workspace <path>.");
-        }
-
-        if (string.IsNullOrWhiteSpace(implementationWorkspacePath))
-        {
-            return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "missing required option --implementation-workspace <path>.");
-        }
-
-        if (string.IsNullOrWhiteSpace(dataTypeConversionWorkspacePath))
-        {
-            return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "missing required option --data-type-conversion-workspace <path>.");
-        }
-
-        if (string.IsNullOrWhiteSpace(outputPath))
-        {
-            return (false, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, "missing required option --out <path>.");
-        }
-
-        return (true, workspacePath, implementationWorkspacePath, dataTypeConversionWorkspacePath, outputPath, string.Empty);
-    }
-
-
     private static bool IsHelpToken(string value)
     {
         return string.Equals(value, "help", StringComparison.OrdinalIgnoreCase) ||
@@ -740,12 +573,12 @@ internal static partial class Program
             ("--new-workspace", "Create an empty MetaBusinessDataVault workspace."),
             ("check-business-materialization", "Check the sanctioned input contract for Business Data Vault materialization."),
             ("materialize-business", "Materialize a Business Data Vault workspace from sanctioned inputs."),
-            ("generate-sql", "Generate SQL scripts from a materialized Business Data Vault workspace.")
+            ("generate-metasql", "Stub command. DataVault-to-Sql projection is not implemented.")
         };
         commands.AddRange(GetAddCommandCatalog());
         Presenter.WriteCommandCatalog("Commands:", commands);
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteNext("meta-datavault-business generate-sql --help");
+        Presenter.WriteNext("meta-datavault-business generate-metasql --help");
     }
 
 
@@ -765,14 +598,6 @@ internal static partial class Program
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Loads sanctioned MetaBusiness, MetaBusinessDataVault, MetaDataVaultImplementation, MetaWeave, and MetaFabric workspaces.");
         Presenter.WriteInfo("  Applies sanctioned Business Data Vault table name patterns into a new output workspace while keeping semantic row identities stable.");
-    }
-
-    private static void PrintGenerateSqlHelp()
-    {
-        Presenter.WriteInfo("Command: generate-sql");
-        Presenter.WriteUsage("meta-datavault-business generate-sql --workspace <path> --implementation-workspace <path> --data-type-conversion-workspace <path> --out <path>");
-        Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Loads a materialized MetaBusinessDataVault workspace and emits SQL scripts for hubs, links, same-as links, hierarchical links, references, satellites, point-in-time tables, and bridges.");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

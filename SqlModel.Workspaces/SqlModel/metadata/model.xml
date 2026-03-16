@@ -39,6 +39,15 @@
         <Relationship entity="Table" />
       </RelationshipList>
     </Entity>
+    <Entity name="TableColumnDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TableColumn" />
+      </RelationshipList>
+    </Entity>
     <Entity name="PrimaryKey">
       <PropertyList>
         <Property name="Name" />

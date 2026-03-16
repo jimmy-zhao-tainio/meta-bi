@@ -160,5 +160,6 @@ meta-datavault-raw add-link-hub --workspace .\Workspace --id EmployeeDepartmentL
 meta-datavault-raw add-link-hub --workspace .\Workspace --id EmployeeDepartmentLinkDepartment --link EmployeeDepartmentLink --hub DepartmentHub --ordinal 2 --role-name Department || exit /b 1
 meta-datavault-raw add-link-satellite --workspace .\Workspace --id EmployeeDepartmentSat --link EmployeeDepartmentLink --source-table EmployeeTable --name EmployeeDepartmentAssignment --satellite-kind standard || exit /b 1
 meta-datavault-raw add-link-satellite-attribute --workspace .\Workspace --id EmployeeDepartmentHireDateAttr --link-satellite EmployeeDepartmentSat --source-field EmployeeHireDateField --name HireDate --ordinal 1 || exit /b 1
-meta-datavault-raw generate-sql --workspace .\Workspace --implementation-workspace C:\Users\jimmy\Desktop\meta-bi\MetaDataVault.Workspaces\MetaDataVaultImplementation --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion --out .\GeneratedSql || exit /b 1
-meta deploy sqlserver --scripts .\GeneratedSql --connection-string "Server=.;Integrated Security=true;TrustServerCertificate=true" --database RawDataVaultSample || exit /b 1
+echo.
+echo Workspace authored: .\Workspace
+echo generate-metasql is currently a stub and is not run by this demo.

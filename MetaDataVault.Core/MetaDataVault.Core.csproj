@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaSchema.Core\MetaSchema.Core.csproj" />
+    <ProjectReference Include="..\MetaSchema.Tooling\MetaSchema.Tooling.csproj" />
+    <ProjectReference Include="..\MetaDataVault.Tooling\MetaDataVault.Tooling.csproj" />
   </ItemGroup>
 
   <ItemGroup>

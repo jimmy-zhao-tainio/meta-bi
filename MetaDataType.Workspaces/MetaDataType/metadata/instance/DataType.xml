@@ -234,7 +234,7 @@
       <Category>Binary</Category>
       <Name>binary</Name>
     </DataType>
-
+    <DataType Id="sqlserver:type:bigint" DataTypeSystemId="sqlserver:type-system">
       <Category>Numeric</Category>
       <Name>bigint</Name>
     </DataType>

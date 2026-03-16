@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36014.32
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -7,6 +7,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Cli", "MetaDataTypeConversion.Cli\MetaDataTypeConversion.Cli.csproj", "{C9447D6E-85B4-45FD-8C1F-FF0C278E4947}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Tests", "MetaDataTypeConversion.Tests\MetaDataTypeConversion.Tests.csproj", "{B3CF2240-3A37-4A4F-A24A-D529BCB81AC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Tooling", "MetaDataTypeConversion.Tooling\MetaDataTypeConversion.Tooling.csproj", "{01338B14-79E9-4474-8448-50D4FD845F62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{B3CF2240-3A37-4A4F-A24A-D529BCB81AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3CF2240-3A37-4A4F-A24A-D529BCB81AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3CF2240-3A37-4A4F-A24A-D529BCB81AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01338B14-79E9-4474-8448-50D4FD845F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01338B14-79E9-4474-8448-50D4FD845F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01338B14-79E9-4474-8448-50D4FD845F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01338B14-79E9-4474-8448-50D4FD845F62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

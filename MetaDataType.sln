@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -7,6 +7,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Cli", "MetaDataType.Cli\MetaDataType.Cli.csproj", "{70245F6D-A2D7-4CB6-BFE2-1A6B1795C913}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Tests", "MetaDataType.Tests\MetaDataType.Tests.csproj", "{97A7908D-12AD-4D19-8569-5E338675300A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Tooling", "MetaDataType.Tooling\MetaDataType.Tooling.csproj", "{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,5 +31,9 @@ Global
 		{97A7908D-12AD-4D19-8569-5E338675300A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97A7908D-12AD-4D19-8569-5E338675300A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97A7908D-12AD-4D19-8569-5E338675300A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

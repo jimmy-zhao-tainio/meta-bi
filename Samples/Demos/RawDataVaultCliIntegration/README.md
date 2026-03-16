@@ -1,6 +1,11 @@
 # Raw Data Vault CLI Integration
 
-This demo creates a new Raw Data Vault metadata workspace using only CLI commands, generates DV-shaped raw SQL through `meta-datavault-raw generate-sql`, and deploys that SQL to a new SQL Server database.
+This demo still shows CLI-based authoring of a sanctioned `MetaRawDataVault` workspace.
+
+What it no longer does:
+
+- it does not generate a `SqlModel` workspace
+- `meta-datavault-raw generate-metasql` is currently a stub
 
 ## Commands
 
@@ -10,44 +15,21 @@ Run from this directory:
 run.cmd
 ```
 
-Remove the generated workspace, SQL scripts, and demo database:
+Remove the generated workspace:
 
 ```cmd
 cleanup.cmd
 ```
 
-## Target database
-
-- `RawDataVaultSample`
-
 ## What the demo authors
 
-The workspace models a cross-system Raw Data Vault baseline with:
-
-- source systems for CRM, ERP, FIN, and HR
-- source schemas, tables, fields, datatype details, and source relationships
-- raw hubs for customer, product, supplier, order, invoice, shipment, employee, and department
-- raw standard links for hub-to-hub foreign key relationships
-- raw hub satellites and raw link satellites sourced from the same operational tables
-
-## What gets deployed
-
-`meta-datavault-raw generate-sql` loads the authored `MetaRawDataVault` workspace through the generated typed tooling in `MetaDataVault.Core`, iterates the resulting object tree, and emits one SQL file per typed Raw Data Vault object.
-
-It also loads the sanctioned:
-
-- `MetaDataVaultImplementation` workspace
-- `MetaDataTypeConversion` workspace
-
-The deployed SQL therefore represents the authored Raw Data Vault structures with physical naming from `MetaDataVaultImplementation`, for example:
-
-- `H_Customer`
-- `L_OrderCustomer`
-- `HS_Customer_CustomerProfile`
-- `LS_OrderCustomer_OrderCustomerStatus`
+- source systems, schemas, tables, fields, and datatype details
+- raw hubs and hub key parts
+- raw links and link hubs
+- raw hub satellites and link satellites
 
 ## Output
 
-Generated SQL is written to:
+- `Workspace`
 
-- `GeneratedSql`
+The script stops after authoring the Raw Data Vault workspace and prints a note that `generate-metasql` is currently a stub.

@@ -10,7 +10,7 @@ public sealed class CliTests
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("MetaDataTypeConversion CLI", result.Output);
+        Assert.Contains("meta-data-type-conversion <command> [options]", result.Output);
         Assert.Contains("init", result.Output);
         Assert.Contains("check", result.Output);
         Assert.Contains("resolve", result.Output);

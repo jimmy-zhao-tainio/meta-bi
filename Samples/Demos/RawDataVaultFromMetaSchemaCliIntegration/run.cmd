@@ -13,32 +13,23 @@ set "SERVER_CONNECTION=Server=.;Integrated Security=true;TrustServerCertificate=
 set "SOURCE_CONNECTION=Server=.;Database=%SOURCE_DATABASE%;Integrated Security=true;TrustServerCertificate=true"
 set "SCHEMA_WORKSPACE=.\MetaSchemaWorkspace"
 set "RAW_WORKSPACE=.\RawDataVaultWorkspace"
-set "SQL_OUTPUT=.\GeneratedSql"
 set "IMPLEMENTATION_WORKSPACE=%REPO_ROOT%\MetaDataVault.Workspaces\MetaDataVaultImplementation"
-set "DATA_TYPE_CONVERSION_WORKSPACE=%REPO_ROOT%\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion"
 
 echo Source database: %SOURCE_DATABASE%
 echo Target database: %TARGET_DATABASE%
 
 if exist "%SCHEMA_WORKSPACE%" rmdir /s /q "%SCHEMA_WORKSPACE%"
 if exist "%RAW_WORKSPACE%" rmdir /s /q "%RAW_WORKSPACE%"
-if exist "%SQL_OUTPUT%" rmdir /s /q "%SQL_OUTPUT%"
-
 sqlcmd -S . -Q "IF DB_ID('%TARGET_DATABASE%') IS NOT NULL BEGIN ALTER DATABASE [%TARGET_DATABASE%] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [%TARGET_DATABASE%]; END" >nul || exit /b 1
 
 dotnet "%META_SCHEMA_DLL%" extract sqlserver --new-workspace "%SCHEMA_WORKSPACE%" --connection "%SOURCE_CONNECTION%" --system "%SOURCE_DATABASE%" --all-schemas --all-tables || exit /b 1
 
 dotnet "%META_DATAVAULT_RAW_DLL%" from-metaschema --source-workspace "%SCHEMA_WORKSPACE%" --implementation-workspace "%IMPLEMENTATION_WORKSPACE%" --new-workspace "%RAW_WORKSPACE%" || exit /b 1
 
-dotnet "%META_DATAVAULT_RAW_DLL%" generate-sql --workspace "%RAW_WORKSPACE%" --implementation-workspace "%IMPLEMENTATION_WORKSPACE%" --data-type-conversion-workspace "%DATA_TYPE_CONVERSION_WORKSPACE%" --out "%SQL_OUTPUT%" || exit /b 1
-
-meta deploy sqlserver --scripts "%SQL_OUTPUT%" --connection-string "%SERVER_CONNECTION%" --database "%TARGET_DATABASE%" || exit /b 1
-
 echo.
-echo End-to-end raw bootstrap completed.
+echo Raw bootstrap workspace generation completed.
 echo MetaSchema workspace: %SCHEMA_WORKSPACE%
 echo MetaRawDataVault workspace: %RAW_WORKSPACE%
-echo Generated SQL: %SQL_OUTPUT%
-echo Deployed database: %TARGET_DATABASE%
+echo generate-metasql is currently a stub and is not run by this demo.
 
 popd

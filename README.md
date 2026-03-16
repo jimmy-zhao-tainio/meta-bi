@@ -8,7 +8,8 @@ This repository currently contains BI-oriented sanctioned models, CLIs, and docs
 - `MetaDataType.*`
 - `MetaDataTypeConversion.*`
 - `MetaDataVault.*`
-- `SqlModel.*`
+- `SqlModel.Workspaces`
+- `MetaSql.Core`
 
 It also contains BI architecture notes in `docs/`.
 
@@ -86,7 +87,7 @@ It was a DDL-centered deployment experiment and is not the active direction anym
 The reboot now starts from a sanctioned canonical `SqlModel` instead:
 
 - `SqlModel.Workspaces`
-- `SqlModel.Core`
+- `MetaSql.Core`
 
 Current canonical object families include:
 
@@ -141,7 +142,7 @@ Business-only commands:
 
 - `check-business-materialization`
 - `materialize-business`
-- `generate-sql`
+- `generate-metasql` (currently a stub)
 - explicit `add-*` authoring commands for hubs, links, references, satellites, PITs, bridges, and their child rows
 
 Example authoring flow:
@@ -200,99 +201,25 @@ Current scope of `materialize-business`:
 - applies the sanctioned implementation `TableNamePattern`s to BDV table-bearing rows
 - keeps semantic row `Id` values stable while physicalizing `Name`
 
-## Current Business Data Vault SQL Generation
+## Current Data Vault MetaSql Command Status
 
-`meta-datavault-business` now has a first SQL pass:
+`generate-metasql` is currently a stub in both Data Vault CLIs:
 
-```cmd
-meta-datavault-business generate-sql --workspace C:\path\to\Output\MaterializedBusinessDataVault --implementation-workspace C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation --data-type-conversion-workspace C:\path\to\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion --out C:\path\to\Output\Sql
-```
+- `meta-datavault-raw generate-metasql`
+- `meta-datavault-business generate-metasql`
 
-```text
-OK: business datavault sql generated
-Workspace: C:\path\to\Output\MaterializedBusinessDataVault
-Implementation Workspace: C:\path\to\MetaDataVault.Workspaces\MetaDataVaultImplementation
-DataTypeConversion Workspace: C:\path\to\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion
-Path: C:\path\to\Output\Sql
-Files: 11
-Tables: 11
-BusinessHubs: 3
-BusinessLinks: 2
-BusinessHubSatellites: 1
-BusinessLinkSatellites: 1
-BusinessReferences: 1
-BusinessReferenceSatellites: 1
-BusinessPointInTimes: 1
-BusinessBridges: 1
-```
-Current SQL scope:
+The old DataVault-to-Sql projection code has been removed. These commands stay in the CLI surface only as placeholders for future work and currently do not generate any `SqlModel` workspace.
 
-- `BusinessHub`
-- `BusinessLink`
-- `BusinessSameAsLink`
-- `BusinessHierarchicalLink`
-- `BusinessReference`
-- `BusinessHubSatellite`
-- `BusinessLinkSatellite`
-- `BusinessSameAsLinkSatellite`
-- `BusinessHierarchicalLinkSatellite`
-- `BusinessReferenceSatellite`
-- `BusinessPointInTime`
-- `BusinessBridge`
+Current active direction:
 
-Current SQL constraints and supported semantics:
-
-- Standard links, same-as links, and hierarchical links are modeled as separate sanctioned entities and generate separate SQL structures
-- `AuditId` is part of the sanctioned implementation baseline and is emitted on every generated DV table in the current SQL path
-- `BusinessHubSatellite.SatelliteKind` and `BusinessLinkSatellite.SatelliteKind` currently support `standard` and `multi-active`; `multi-active` requires explicit satellite key-part rows, while `standard` must not declare them
-- `BusinessPointInTime` currently supports only the baseline snapshot/reference contract; point-in-time references to `multi-active` satellites fail fast and explicit `BusinessPointInTimeStamp` rows are modeled but not yet emitted to SQL
-- `BusinessPointInTime` must reference at least one hub or link satellite, ordinals must be unique across those references, hub satellites must belong to the point-in-time parent hub, and link satellites must connect to that hub
-- bridge SQL generation requires an explicit ordered path from `AnchorHub` through `BusinessBridgeLink` and `BusinessBridgeHub` rows; inconsistent paths fail fast
-- bridge SQL generation also requires explicit projection rows (`BusinessBridgeHubKeyPartProjection`, `BusinessBridgeHubSatelliteAttributeProjection`, `BusinessBridgeLinkSatelliteAttributeProjection`); projected columns are typed from the referenced BDV rows and their local `...DataTypeDetail`
-- `MetaDataVaultImplementation` must provide the required technical column defaults for the currently supported SQL surface; missing required defaults fail fast instead of being silently omitted
-
-Helper-structure example workspace:
-
-- `MetaDataVault.Workspaces/SampleBusinessDataVaultCommerceHelpers`
+- author and materialize sanctioned Data Vault workspaces
+- keep `SqlModel` as a sanctioned canonical SQL model in `MetaSql.Core`
+- reboot schema deployment from model-native `SqlModel`, not from the removed DV projection path
 
 See also:
 
 - `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
 - `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
-
-## How Business Data Vault SQL Is Generated
-
-`meta-datavault-business generate-sql` does not walk generic workspace records.
-
-It loads typed models through generated tooling in `MetaDataVault.Core`:
-
-- `MetaBusinessDataVaultModel.LoadFromXmlWorkspace(...)`
-- `MetaDataVaultImplementationModel.LoadFromXmlWorkspace(...)`
-- `MetaDataTypeConversionModel.LoadFromXmlWorkspace(...)`
-
-Then `BusinessDataVaultSqlGenerator` iterates the typed object tree and emits one SQL file per typed BDV object family:
-
-- `BusinessHub`
-- `BusinessLink`
-- `BusinessSameAsLink`
-- `BusinessHierarchicalLink`
-- `BusinessReference`
-- `BusinessHubSatellite`
-- `BusinessLinkSatellite`
-- `BusinessSameAsLinkSatellite`
-- `BusinessHierarchicalLinkSatellite`
-- `BusinessReferenceSatellite`
-- `BusinessPointInTime`
-- `BusinessBridge`
-
-The exact per-object mapping is documented in:
-
-- `Samples/Demos/BusinessDataVaultCliIntegration/README.md`
-## SQL Demo
-
-For a checked-in Business Data Vault SQL demo with workspaces, instance data, generated SQL, and plain `cmd` scripts, see:
-
-- `Samples/Demos/BusinessDataVaultSql`
 
 
 
