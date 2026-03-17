@@ -4,11 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Meta.Core.Domain;
 
-namespace SqlModel
+namespace MetaSql
 {
-    public sealed partial class SqlModelModel
+    public sealed partial class MetaSqlModel
     {
-        internal SqlModelModel(
+        internal MetaSqlModel(
             List<Database> databaseList,
             List<ForeignKey> foreignKeyList,
             List<ForeignKeyColumn> foreignKeyColumnList,
@@ -35,9 +35,9 @@ namespace SqlModel
             TableColumnDataTypeDetailList = tableColumnDataTypeDetailList;
         }
 
-        public static SqlModelModel CreateEmpty()
+        public static MetaSqlModel CreateEmpty()
         {
-            return new SqlModelModel(
+            return new MetaSqlModel(
                 new List<Database>(),
                 new List<ForeignKey>(),
                 new List<ForeignKeyColumn>(),
@@ -377,14 +377,14 @@ namespace SqlModel
             CancellationToken cancellationToken = default)
         {
             var workspace = ToXmlWorkspace(workspacePath);
-            return SqlModelTooling.SaveWorkspaceAsync(workspace, cancellationToken);
+            return MetaSqlTooling.SaveWorkspaceAsync(workspace, cancellationToken);
         }
 
         private static GenericModel CreateGenericModelDefinition()
         {
             var model = new GenericModel
             {
-                Name = "SqlModel",
+                Name = "MetaSql",
             };
 
             model.Entities.Add(new GenericEntity
@@ -755,9 +755,9 @@ namespace SqlModel
         }
     }
 
-    internal static class SqlModelModelFactory
+    internal static class MetaSqlModelFactory
     {
-        internal static SqlModelModel CreateFromWorkspace(Workspace workspace)
+        internal static MetaSqlModel CreateFromWorkspace(Workspace workspace)
         {
             if (workspace == null)
             {
@@ -1155,7 +1155,7 @@ namespace SqlModel
                     "TableColumnId");
             }
 
-            return new SqlModelModel(
+            return new MetaSqlModel(
                 databaseList,
                 foreignKeyList,
                 foreignKeyColumnList,

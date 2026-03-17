@@ -1,11 +1,11 @@
 using MetaBusinessDataVault;
-using SqlModel;
+using MetaSql;
 
 namespace MetaDataVault.ToMetaSql;
 
 public static partial class Converter
 {
-    private static void PopulateBusinessLinkVariantSqlModel(
+    private static void PopulateBusinessLinkVariantMetaSqlModel(
         MetaBusinessDataVaultModel model,
         ConversionContext context,
         IReadOnlyDictionary<string, Table> hubTablesByHubId,

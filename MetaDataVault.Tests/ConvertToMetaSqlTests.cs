@@ -27,7 +27,7 @@ public sealed class ConvertToMetaSqlTests
                 defaultSchemaName: "raw");
 
             Assert.Equal(targetPath, sqlWorkspace.WorkspaceRootPath);
-            Assert.Equal("SqlModel", sqlWorkspace.Model.Name);
+            Assert.Equal("MetaSql", sqlWorkspace.Model.Name);
             var databases = sqlWorkspace.Instance.GetOrCreateEntityRecords("Database");
             var schemas = sqlWorkspace.Instance.GetOrCreateEntityRecords("Schema");
             Assert.Single(databases);
@@ -64,7 +64,7 @@ public sealed class ConvertToMetaSqlTests
                 defaultSchemaName: "bdv");
 
             Assert.Equal(targetPath, sqlWorkspace.WorkspaceRootPath);
-            Assert.Equal("SqlModel", sqlWorkspace.Model.Name);
+            Assert.Equal("MetaSql", sqlWorkspace.Model.Name);
             var databases = sqlWorkspace.Instance.GetOrCreateEntityRecords("Database");
             var schemas = sqlWorkspace.Instance.GetOrCreateEntityRecords("Schema");
             Assert.Single(databases);
@@ -432,7 +432,7 @@ public sealed class ConvertToMetaSqlTests
             await workspaceService.SaveAsync(sqlWorkspace);
             var reloaded = await workspaceService.LoadAsync(targetPath, searchUpward: false);
 
-            Assert.Equal("SqlModel", reloaded.Model.Name);
+            Assert.Equal("MetaSql", reloaded.Model.Name);
             Assert.NotEmpty(reloaded.Instance.GetOrCreateEntityRecords("Table"));
             Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => string.Equals(row.Values["Name"], "BH_Customer", StringComparison.Ordinal));
             Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => string.Equals(row.Values["Name"], "PIT_CustomerSnapshot", StringComparison.Ordinal));

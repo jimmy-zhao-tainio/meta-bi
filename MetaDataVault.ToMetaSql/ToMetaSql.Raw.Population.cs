@@ -1,13 +1,13 @@
 using System.Globalization;
 using MetaDataVaultImplementation;
 using MetaRawDataVault;
-using SqlModel;
+using MetaSql;
 
 namespace MetaDataVault.ToMetaSql;
 
 public static partial class Converter
 {
-    private static void PopulateRawSqlModel(
+    private static void PopulateRawMetaSqlModel(
         MetaRawDataVaultModel model,
         ConversionContext context,
         IReadOnlyDictionary<string, List<SourceFieldDataTypeDetail>> sourceFieldDetailsByFieldId,
@@ -370,7 +370,7 @@ public static partial class Converter
             Schema = context.DefaultSchema,
         };
 
-        context.SqlModel.TableList.Add(table);
+        context.MetaSql.TableList.Add(table);
         return table;
     }
 
@@ -436,7 +436,7 @@ public static partial class Converter
         HashSet<string> reservedColumnNames)
     {
         var actualName = ReserveColumnName(reservedColumnNames, requestedName);
-        var ordinal = (context.SqlModel.TableColumnList.Count(row => ReferenceEquals(row.Table, table)) + 1).ToString(CultureInfo.InvariantCulture);
+        var ordinal = (context.MetaSql.TableColumnList.Count(row => ReferenceEquals(row.Table, table)) + 1).ToString(CultureInfo.InvariantCulture);
 
         var column = new TableColumn
         {
@@ -449,7 +449,7 @@ public static partial class Converter
             Table = table,
         };
 
-        context.SqlModel.TableColumnList.Add(column);
+        context.MetaSql.TableColumnList.Add(column);
         return column;
     }
 
@@ -460,7 +460,7 @@ public static partial class Converter
             return;
         }
 
-        context.SqlModel.TableColumnDataTypeDetailList.Add(new TableColumnDataTypeDetail
+        context.MetaSql.TableColumnDataTypeDetailList.Add(new TableColumnDataTypeDetail
         {
             Id = $"{tableColumn.Id}:Detail:{name}",
             Name = name,
@@ -484,8 +484,8 @@ public static partial class Converter
             TableId = table.Id,
             Table = table,
         };
-        context.SqlModel.PrimaryKeyList.Add(primaryKey);
-        context.SqlModel.PrimaryKeyColumnList.Add(new PrimaryKeyColumn
+        context.MetaSql.PrimaryKeyList.Add(primaryKey);
+        context.MetaSql.PrimaryKeyColumnList.Add(new PrimaryKeyColumn
         {
             Id = $"{id}:Column:{tableColumn.Id}",
             PrimaryKeyId = primaryKey.Id,
@@ -513,12 +513,12 @@ public static partial class Converter
             TargetTableId = targetTable.Id,
             TargetTable = targetTable,
         };
-        context.SqlModel.ForeignKeyList.Add(foreignKey);
+        context.MetaSql.ForeignKeyList.Add(foreignKey);
 
         var ordinal = 1;
         foreach (var (sourceColumn, targetColumn) in columnPairs)
         {
-            context.SqlModel.ForeignKeyColumnList.Add(new ForeignKeyColumn
+            context.MetaSql.ForeignKeyColumnList.Add(new ForeignKeyColumn
             {
                 Id = $"{id}:Column:{ordinal}",
                 ForeignKeyId = foreignKey.Id,

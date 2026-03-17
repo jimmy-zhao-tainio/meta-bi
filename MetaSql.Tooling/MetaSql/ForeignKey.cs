@@ -1,4 +1,4 @@
-namespace SqlModel
+namespace MetaSql
 {
     public sealed class ForeignKey
     {

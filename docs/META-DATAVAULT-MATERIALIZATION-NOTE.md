@@ -119,17 +119,17 @@ The current materializer does not yet:
 
 `generate-metasql` is currently a stub on the active Data Vault CLI surface.
 
-The old DataVault-to-Sql projection implementation has been removed. The command names remain only to preserve the future CLI shape while the schema deployment direction is rebooted around sanctioned `SqlModel` tooling.
+The old DataVault-to-Sql projection implementation has been removed. The command names remain only to preserve the future CLI shape while the schema deployment direction is rebooted around sanctioned `MetaSql` tooling.
 
 So today:
 
-- `meta-datavault-business generate-metasql` does not generate a `SqlModel` workspace
-- `meta-datavault-raw generate-metasql` does not generate a `SqlModel` workspace
+- `meta-datavault-business generate-metasql` does not generate a `MetaSql` workspace
+- `meta-datavault-raw generate-metasql` does not generate a `MetaSql` workspace
 
 Current active boundary:
 
 - Data Vault CLIs author and materialize sanctioned Data Vault workspaces
-- `SqlModel` exists as a sanctioned canonical SQL model
+- `MetaSql` exists as a sanctioned canonical SQL model
 - the removed DV-to-SQL projection path is not part of the active contract
 
 ## Why this is still useful

@@ -1,6 +1,6 @@
 using MetaBusinessDataVault;
 using MetaDataVaultImplementation;
-using SqlModel;
+using MetaSql;
 
 namespace MetaDataVault.ToMetaSql;
 

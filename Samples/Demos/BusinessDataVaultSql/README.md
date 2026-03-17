@@ -12,4 +12,4 @@ What remains here:
 
 These workspaces are still useful as sanctioned input examples. The checked-in generated SQL-model output has been removed from the active surface.
 
-If SQL deployment work resumes, it should start from sanctioned `SqlModel`, not from the removed projection code.
+If SQL deployment work resumes, it should start from sanctioned `MetaSql`, not from the removed projection code.

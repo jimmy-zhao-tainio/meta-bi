@@ -4,17 +4,17 @@ using Meta.Adapters;
 using Meta.Core.Domain;
 using Meta.Core.Services;
 
-namespace SqlModel
+namespace MetaSql
 {
-    public static class SqlModelTooling
+    public static class MetaSqlTooling
     {
-        public static async Task<SqlModelModel> LoadAsync(
+        public static async Task<MetaSqlModel> LoadAsync(
             string workspacePath,
             bool searchUpward = true,
             CancellationToken cancellationToken = default)
         {
             var workspace = await LoadWorkspaceAsync(workspacePath, searchUpward, cancellationToken).ConfigureAwait(false);
-            return SqlModelModelFactory.CreateFromWorkspace(workspace);
+            return MetaSqlModelFactory.CreateFromWorkspace(workspace);
         }
 
         public static Task<Workspace> LoadWorkspaceAsync(
@@ -44,21 +44,21 @@ namespace SqlModel
         }
     }
 
-    public sealed partial class SqlModelModel
+    public sealed partial class MetaSqlModel
     {
-        public static SqlModelModel LoadFromXmlWorkspace(
+        public static MetaSqlModel LoadFromXmlWorkspace(
             string workspacePath,
             bool searchUpward = true)
         {
             return LoadFromXmlWorkspaceAsync(workspacePath, searchUpward).GetAwaiter().GetResult();
         }
 
-        public static Task<SqlModelModel> LoadFromXmlWorkspaceAsync(
+        public static Task<MetaSqlModel> LoadFromXmlWorkspaceAsync(
             string workspacePath,
             bool searchUpward = true,
             CancellationToken cancellationToken = default)
         {
-            return SqlModelTooling.LoadAsync(workspacePath, searchUpward, cancellationToken);
+            return MetaSqlTooling.LoadAsync(workspacePath, searchUpward, cancellationToken);
         }
     }
 }

@@ -8,7 +8,7 @@ This repository currently contains BI-oriented sanctioned models, CLIs, and docs
 - `MetaDataType.*`
 - `MetaDataTypeConversion.*`
 - `MetaDataVault.*`
-- `SqlModel.Workspaces`
+- `MetaSql.Workspaces`
 - `MetaSql.Core`
 
 It also contains BI architecture notes in `docs/`.
@@ -84,9 +84,9 @@ Archive/MetaSql.Legacy
 
 It was a DDL-centered deployment experiment and is not the active direction anymore.
 
-The reboot now starts from a sanctioned canonical `SqlModel` instead:
+The reboot now starts from a sanctioned canonical `MetaSql` model instead:
 
-- `SqlModel.Workspaces`
+- `MetaSql.Workspaces`
 - `MetaSql.Core`
 
 Current canonical object families include:
@@ -208,13 +208,13 @@ Current scope of `materialize-business`:
 - `meta-datavault-raw generate-metasql`
 - `meta-datavault-business generate-metasql`
 
-The old DataVault-to-Sql projection code has been removed. These commands stay in the CLI surface only as placeholders for future work and currently do not generate any `SqlModel` workspace.
+The old DataVault-to-Sql projection code has been removed. These commands stay in the CLI surface only as placeholders for future work and currently do not generate any `MetaSql` workspace.
 
 Current active direction:
 
 - author and materialize sanctioned Data Vault workspaces
-- keep `SqlModel` as a sanctioned canonical SQL model in `MetaSql.Core`
-- reboot schema deployment from model-native `SqlModel`, not from the removed DV projection path
+- keep `MetaSql` as a sanctioned canonical SQL model in `MetaSql.Core`
+- reboot schema deployment from model-native `MetaSql`, not from the removed DV projection path
 
 See also:
 

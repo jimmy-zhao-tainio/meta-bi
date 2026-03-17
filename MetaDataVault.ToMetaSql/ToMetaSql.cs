@@ -3,7 +3,7 @@ using Meta.Core.Services;
 using MetaDataVaultImplementation;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
-using SqlModel;
+using MetaSql;
 
 namespace MetaDataVault.ToMetaSql;
 
@@ -77,7 +77,7 @@ public static partial class Converter
         string defaultSchemaName,
         MetaDataVaultImplementationModel implementationModel)
     {
-        var sqlModel = SqlModelModel.CreateEmpty();
+        var metaSqlModel = MetaSqlModel.CreateEmpty();
 
         var database = new Database
         {
@@ -94,8 +94,8 @@ public static partial class Converter
             Database = database,
         };
 
-        sqlModel.DatabaseList.Add(database);
-        sqlModel.SchemaList.Add(schema);
+        metaSqlModel.DatabaseList.Add(database);
+        metaSqlModel.SchemaList.Add(schema);
 
         return new ConversionContext
         {
@@ -103,7 +103,7 @@ public static partial class Converter
             DatabaseName = databaseName,
             DefaultSchemaName = defaultSchemaName,
             ImplementationModel = implementationModel,
-            SqlModel = sqlModel,
+            MetaSql = metaSqlModel,
             Database = database,
             DefaultSchema = schema,
         };

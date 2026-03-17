@@ -18,7 +18,7 @@ public static partial class Converter
         var rawLinkSatellitesByLinkId = GroupById(model.RawLinkSatelliteList, row => row.RawLinkId);
         var rawLinkSatelliteAttributesBySatelliteId = GroupById(model.RawLinkSatelliteAttributeList, row => row.RawLinkSatelliteId);
 
-        PopulateRawSqlModel(
+        PopulateRawMetaSqlModel(
             model,
             context,
             sourceFieldDetailsByFieldId,
@@ -29,6 +29,6 @@ public static partial class Converter
             rawLinkSatellitesByLinkId,
             rawLinkSatelliteAttributesBySatelliteId);
 
-        return context.SqlModel.ToXmlWorkspace(context.PathToNewMetaSqlWorkspace);
+        return context.MetaSql.ToXmlWorkspace(context.PathToNewMetaSqlWorkspace);
     }
 }

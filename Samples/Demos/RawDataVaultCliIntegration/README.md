@@ -4,7 +4,7 @@ This demo still shows CLI-based authoring of a sanctioned `MetaRawDataVault` wor
 
 What it no longer does:
 
-- it does not generate a `SqlModel` workspace
+- it does not generate a `MetaSql` workspace
 - `meta-datavault-raw generate-metasql` is currently a stub
 
 ## Commands

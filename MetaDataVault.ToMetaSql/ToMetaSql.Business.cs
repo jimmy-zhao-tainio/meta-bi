@@ -1,6 +1,6 @@
 using Meta.Core.Domain;
 using MetaBusinessDataVault;
-using SqlModel;
+using MetaSql;
 
 namespace MetaDataVault.ToMetaSql;
 
@@ -11,9 +11,9 @@ public static partial class Converter
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(context);
 
-        var (hubTablesByHubId, hubHashKeyColumnsByHubId) = PopulateBusinessPersistentSqlModel(model, context);
-        PopulateBusinessHelperSqlModel(model, context, hubTablesByHubId, hubHashKeyColumnsByHubId);
+        var (hubTablesByHubId, hubHashKeyColumnsByHubId) = PopulateBusinessPersistentMetaSqlModel(model, context);
+        PopulateBusinessHelperMetaSqlModel(model, context, hubTablesByHubId, hubHashKeyColumnsByHubId);
 
-        return context.SqlModel.ToXmlWorkspace(context.PathToNewMetaSqlWorkspace);
+        return context.MetaSql.ToXmlWorkspace(context.PathToNewMetaSqlWorkspace);
     }
 }

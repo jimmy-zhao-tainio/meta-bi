@@ -134,7 +134,7 @@ public sealed partial class CliTests
 
         Assert.Equal(4, result.ExitCode);
         Assert.Contains("generate-metasql is currently a stub", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("No SqlModel workspace is generated", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("No MetaSql workspace is generated", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -158,6 +158,6 @@ public sealed partial class CliTests
 
         Assert.Equal(4, result.ExitCode);
         Assert.Contains("generate-metasql is currently a stub", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("No SqlModel workspace is generated", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("No MetaSql workspace is generated", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 }

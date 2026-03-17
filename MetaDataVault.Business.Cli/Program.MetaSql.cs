@@ -16,7 +16,7 @@ internal static partial class Program
 
         return Task.FromResult(Fail(
             "generate-metasql is currently a stub.",
-            "DataVault-to-Sql projection has been removed. No SqlModel workspace is generated.",
+            "DataVault-to-Sql projection has been removed. No MetaSql workspace is generated.",
             4));
     }
 
@@ -75,6 +75,6 @@ internal static partial class Program
         Presenter.WriteUsage("meta-datavault-business generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --out <path>");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Stub only. DataVault-to-Sql projection is not currently implemented.");
-        Presenter.WriteInfo("  The command surface is kept for future work, but no SqlModel workspace is generated.");
+        Presenter.WriteInfo("  The command surface is kept for future work, but no MetaSql workspace is generated.");
     }
 }

@@ -1,12 +1,12 @@
 using MetaBusinessDataVault;
 using MetaDataVaultImplementation;
-using SqlModel;
+using MetaSql;
 
 namespace MetaDataVault.ToMetaSql;
 
 public static partial class Converter
 {
-    private static (Dictionary<string, Table> HubTablesByHubId, Dictionary<string, TableColumn> HubHashKeyColumnsByHubId) PopulateBusinessPersistentSqlModel(
+    private static (Dictionary<string, Table> HubTablesByHubId, Dictionary<string, TableColumn> HubHashKeyColumnsByHubId) PopulateBusinessPersistentMetaSqlModel(
         MetaBusinessDataVaultModel model,
         ConversionContext context)
     {
@@ -104,7 +104,7 @@ public static partial class Converter
             referenceTablesByReferenceId,
             referenceHashKeyColumnsByReferenceId);
 
-        PopulateBusinessLinkVariantSqlModel(model, context, hubTablesByHubId, hubHashKeyColumnsByHubId);
+        PopulateBusinessLinkVariantMetaSqlModel(model, context, hubTablesByHubId, hubHashKeyColumnsByHubId);
 
         return (hubTablesByHubId, hubHashKeyColumnsByHubId);
     }

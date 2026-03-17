@@ -4,7 +4,7 @@ This demo still shows CLI-based authoring of a sanctioned `MetaBusinessDataVault
 
 What it no longer does:
 
-- it does not generate a `SqlModel` workspace
+- it does not generate a `MetaSql` workspace
 - `meta-datavault-business generate-metasql` is currently a stub
 
 ## Commands
