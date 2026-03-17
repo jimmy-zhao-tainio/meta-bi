@@ -1,8 +1,8 @@
-using MRDV = MetaRawDataVault;
+using MRDV = global::MetaRawDataVault;
 
-namespace MetaDataVault.Core;
+namespace MetaSchema.ToRawDataVault;
 
-public sealed partial class MetaSchemaToRawDataVaultConverter
+public sealed partial class RawDataVaultBootstrapper
 {
     private static SchemaBootstrapDraft CopySourceStructure(SourceIndex sourceIndex)
     {

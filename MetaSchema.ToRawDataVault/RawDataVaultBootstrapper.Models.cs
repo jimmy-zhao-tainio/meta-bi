@@ -1,7 +1,7 @@
-using MS = MetaSchema;
-using MRDV = MetaRawDataVault;
+using MS = global::MetaSchema;
+using MRDV = global::MetaRawDataVault;
 
-namespace MetaDataVault.Core;
+namespace MetaSchema.ToRawDataVault;
 
 internal sealed record MetaSchemaBootstrapOptions(
     ISet<string> IgnoredFieldNames,

@@ -18,6 +18,7 @@
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\MetaDataVault.Core\MetaDataVault.Core.csproj" />
     <ProjectReference Include="..\MetaSchema.Tooling\MetaSchema.Tooling.csproj" />
+    <ProjectReference Include="..\MetaSchema.ToRawDataVault\MetaSchema.ToRawDataVault.csproj" />
   </ItemGroup>
 
   <Target

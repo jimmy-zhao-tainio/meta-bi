@@ -1,9 +1,9 @@
 using System.Text;
-using MS = MetaSchema;
+using MS = global::MetaSchema;
 
-namespace MetaDataVault.Core;
+namespace MetaSchema.ToRawDataVault;
 
-public sealed partial class MetaSchemaToRawDataVaultConverter
+public sealed partial class RawDataVaultBootstrapper
 {
     private static string BuildMaterializationReport(
         SchemaBootstrapDraft draft,

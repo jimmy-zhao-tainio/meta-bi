@@ -121,7 +121,6 @@ public sealed partial class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--workspace <path>", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
-        Assert.Contains("--data-type-conversion-workspace <path>", result.Output);
         Assert.Contains("--database-name <name>", result.Output);
         Assert.Contains("--out <path>", result.Output);
         Assert.Contains("Stub only", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -131,7 +130,7 @@ public sealed partial class CliTests
     [Fact]
     public void BusinessGenerateMetaSql_ReturnsStubFailure()
     {
-        var result = RunBusinessCli("generate-metasql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --data-type-conversion-workspace C:\\temp\\conv --database-name Demo --out C:\\temp\\sql");
+        var result = RunBusinessCli("generate-metasql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --database-name Demo --out C:\\temp\\sql");
 
         Assert.Equal(4, result.ExitCode);
         Assert.Contains("generate-metasql is currently a stub", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -146,7 +145,6 @@ public sealed partial class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--workspace <path>", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
-        Assert.Contains("--data-type-conversion-workspace <path>", result.Output);
         Assert.Contains("--database-name <name>", result.Output);
         Assert.Contains("--out <path>", result.Output);
         Assert.Contains("Stub only", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -156,7 +154,7 @@ public sealed partial class CliTests
     [Fact]
     public void GenerateMetaSql_ReturnsStubFailure()
     {
-        var result = RunRawCli("generate-metasql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --data-type-conversion-workspace C:\\temp\\conv --database-name Demo --out C:\\temp\\sql");
+        var result = RunRawCli("generate-metasql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --database-name Demo --out C:\\temp\\sql");
 
         Assert.Equal(4, result.ExitCode);
         Assert.Contains("generate-metasql is currently a stub", result.Output, StringComparison.OrdinalIgnoreCase);

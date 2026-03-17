@@ -1,12 +1,15 @@
-using MetaDataVault.ConvertToMetaSql;
+using MetaDataVault.ToMetaSql;
+using MetaRawDataVault;
+using Meta.Core.Services;
 
 namespace MetaDataVault.Tests;
 
 public sealed class ConvertToMetaSqlTests
 {
     [Fact]
-    public async Task ConvertAsync_LoadsRawWorkspaceAndCreatesEmptySqlWorkspaceInMemory()
+    public async Task ConvertAsync_LoadsRawWorkspaceAndCreatesSqlWorkspaceRootInMemory()
     {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "RawDataVault");
         var targetPath = Path.Combine(root, "MetaSql");
@@ -16,17 +19,433 @@ public sealed class ConvertToMetaSqlTests
             var createResult = RunRawCli($"--new-workspace \"{workspacePath}\"");
             Assert.Equal(0, createResult.ExitCode);
 
-            var sqlWorkspace = await MetaDataVaultToMetaSqlConverter.ConvertAsync(workspacePath, targetPath);
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "RawVault",
+                defaultSchemaName: "raw");
 
             Assert.Equal(targetPath, sqlWorkspace.WorkspaceRootPath);
             Assert.Equal("SqlModel", sqlWorkspace.Model.Name);
-            Assert.Empty(sqlWorkspace.Instance.GetOrCreateEntityRecords("Database"));
+            var databases = sqlWorkspace.Instance.GetOrCreateEntityRecords("Database");
+            var schemas = sqlWorkspace.Instance.GetOrCreateEntityRecords("Schema");
+            Assert.Single(databases);
+            Assert.Single(schemas);
+            Assert.Equal("RawVault", databases[0].Values["Name"]);
+            Assert.Equal("sqlserver", databases[0].Values["Platform"]);
+            Assert.Equal("raw", schemas[0].Values["Name"]);
             Assert.Empty(sqlWorkspace.Instance.GetOrCreateEntityRecords("Table"));
         }
         finally
         {
             DeleteDirectoryIfExists(root);
         }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_LoadsBusinessWorkspaceAndCreatesSqlWorkspaceRootInMemory()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            Assert.Equal(0, createResult.ExitCode);
+
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            Assert.Equal(targetPath, sqlWorkspace.WorkspaceRootPath);
+            Assert.Equal("SqlModel", sqlWorkspace.Model.Name);
+            var databases = sqlWorkspace.Instance.GetOrCreateEntityRecords("Database");
+            var schemas = sqlWorkspace.Instance.GetOrCreateEntityRecords("Schema");
+            Assert.Single(databases);
+            Assert.Single(schemas);
+            Assert.Equal("BusinessVault", databases[0].Values["Name"]);
+            Assert.Equal("sqlserver", databases[0].Values["Platform"]);
+            Assert.Equal("bdv", schemas[0].Values["Name"]);
+            Assert.Empty(sqlWorkspace.Instance.GetOrCreateEntityRecords("Table"));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_ProjectsRawSampleWorkspaceIntoSqlTables()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "Samples", "Demos", "RawDataVaultCliIntegration", "Workspace");
+        var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
+
+        try
+        {
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "RawVault",
+                defaultSchemaName: "raw");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var primaryKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKey");
+            var foreignKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("ForeignKey");
+
+            Assert.Equal(27, tables.Count);
+            Assert.Equal(14, primaryKeys.Count);
+            Assert.Equal(25, foreignKeys.Count);
+            Assert.Contains(tables, row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "H_Customer", StringComparison.Ordinal));
+            Assert.Contains(tables, row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "HS_Customer_CustomerProfile", StringComparison.Ordinal));
+            Assert.Contains(tables, row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "L_OrderCustomer", StringComparison.Ordinal));
+            Assert.Contains(tables, row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "LS_OrderCustomer_OrderCustomerStatus", StringComparison.Ordinal));
+
+            var customerHub = tables.Single(row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "H_Customer", StringComparison.Ordinal));
+            Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "HashKey", StringComparison.Ordinal));
+            Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "CustomerId", StringComparison.Ordinal));
+            Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "LoadTimestamp", StringComparison.Ordinal));
+            Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "RecordSource", StringComparison.Ordinal));
+            Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "AuditId", StringComparison.Ordinal));
+
+            var orderCustomerLink = tables.Single(row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "L_OrderCustomer", StringComparison.Ordinal));
+            Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == orderCustomerLink.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "OrderHashKey", StringComparison.Ordinal));
+            Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == orderCustomerLink.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "CustomerHashKey", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_UsesUnderscoreSuffixWhenSourceColumnCollidesWithTechnicalName()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = MetaRawDataVaultModel.CreateEmpty();
+
+            var sourceSystem = new SourceSystem
+            {
+                Id = "SourceSystem:CRM",
+                Name = "CRM",
+            };
+            var sourceSchema = new SourceSchema
+            {
+                Id = "SourceSchema:CRM:dbo",
+                Name = "dbo",
+                SourceSystemId = sourceSystem.Id,
+                SourceSystem = sourceSystem,
+            };
+            var sourceTable = new SourceTable
+            {
+                Id = "SourceTable:Customer",
+                Name = "Customer",
+                SourceSchemaId = sourceSchema.Id,
+                SourceSchema = sourceSchema,
+            };
+            var sourceField = new SourceField
+            {
+                Id = "SourceField:Customer:HashKey",
+                Name = "HashKey",
+                Ordinal = "1",
+                DataTypeId = "sqlserver:type:nvarchar",
+                IsNullable = "false",
+                SourceTableId = sourceTable.Id,
+                SourceTable = sourceTable,
+            };
+            var sourceFieldDetail = new SourceFieldDataTypeDetail
+            {
+                Id = "SourceFieldDetail:Customer:HashKey:Length",
+                Name = "Length",
+                Value = "50",
+                SourceFieldId = sourceField.Id,
+                SourceField = sourceField,
+            };
+            var rawHub = new RawHub
+            {
+                Id = "RawHub:Customer",
+                Name = "Customer",
+                SourceTableId = sourceTable.Id,
+                SourceTable = sourceTable,
+            };
+            var rawHubKeyPart = new RawHubKeyPart
+            {
+                Id = "RawHubKeyPart:Customer:HashKey",
+                Name = "HashKey",
+                Ordinal = "1",
+                RawHubId = rawHub.Id,
+                RawHub = rawHub,
+                SourceFieldId = sourceField.Id,
+                SourceField = sourceField,
+            };
+
+            model.SourceSystemList.Add(sourceSystem);
+            model.SourceSchemaList.Add(sourceSchema);
+            model.SourceTableList.Add(sourceTable);
+            model.SourceFieldList.Add(sourceField);
+            model.SourceFieldDataTypeDetailList.Add(sourceFieldDetail);
+            model.RawHubList.Add(rawHub);
+            model.RawHubKeyPartList.Add(rawHubKeyPart);
+
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "RawVault",
+                defaultSchemaName: "raw");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var customerHub = tables.Single(row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "H_Customer", StringComparison.Ordinal));
+            var customerHubColumnNames = columns
+                .Where(row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id)
+                .Select(row => row.Values["Name"])
+                .ToList();
+
+            Assert.Contains("HashKey", customerHubColumnNames);
+            Assert.Contains("HashKey_", customerHubColumnNames);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_ProjectsBusinessCommerceHelpersWorkspaceIntoSqlTables()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
+
+        try
+        {
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var foreignKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("ForeignKey");
+
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BH_Customer", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BL_CustomerOrder", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "REF_Status", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BHS_Customer_Profile", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BLS_CustomerOrder_Status", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "RSAT_Status_Current", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "PIT_CustomerSnapshot", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BR_CustomerOrderTraversal", StringComparison.Ordinal));
+
+            var customerHub = GetTable(tables, "BH_Customer");
+            var customerHubColumns = GetColumnNames(columns, customerHub.Id);
+            Assert.Contains("HashKey", customerHubColumns);
+            Assert.Contains("Identifier", customerHubColumns);
+            Assert.Contains("LoadTimestamp", customerHubColumns);
+            Assert.Contains("RecordSource", customerHubColumns);
+            Assert.Contains("AuditId", customerHubColumns);
+
+            var customerOrderLink = GetTable(tables, "BL_CustomerOrder");
+            var customerOrderLinkColumns = GetColumnNames(columns, customerOrderLink.Id);
+            Assert.Contains("CustomerHashKey", customerOrderLinkColumns);
+            Assert.Contains("OrderHashKey", customerOrderLinkColumns);
+
+            var customerSnapshotPit = GetTable(tables, "PIT_CustomerSnapshot");
+            var customerSnapshotColumns = GetColumnNames(columns, customerSnapshotPit.Id);
+            Assert.Contains("HubHashKey", customerSnapshotColumns);
+            Assert.Contains("SnapshotTimestamp", customerSnapshotColumns);
+            Assert.Contains("ProfileLoadTimestamp", customerSnapshotColumns);
+            Assert.Contains("StatusLoadTimestamp", customerSnapshotColumns);
+            Assert.Contains("AuditId", customerSnapshotColumns);
+
+            var customerOrderBridge = GetTable(tables, "BR_CustomerOrderTraversal");
+            var customerOrderBridgeColumns = GetColumnNames(columns, customerOrderBridge.Id);
+            Assert.Contains("RootHashKey", customerOrderBridgeColumns);
+            Assert.Contains("RelatedHashKey", customerOrderBridgeColumns);
+            Assert.Contains("Depth", customerOrderBridgeColumns);
+            Assert.Contains("Path", customerOrderBridgeColumns);
+            Assert.Contains("EffectiveFrom", customerOrderBridgeColumns);
+            Assert.Contains("EffectiveTo", customerOrderBridgeColumns);
+            Assert.Contains("CustomerIdentifier", customerOrderBridgeColumns);
+            Assert.Contains("OrderIdentifier", customerOrderBridgeColumns);
+            Assert.Contains("CustomerName", customerOrderBridgeColumns);
+            Assert.Contains("StatusCode", customerOrderBridgeColumns);
+            Assert.Contains("AuditId", customerOrderBridgeColumns);
+
+            Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BHS_Customer_Profile_BH_Customer", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BLS_CustomerOrder_Status_BL_CustomerOrder", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_PIT_CustomerSnapshot_BH_Customer", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BR_CustomerOrderTraversal_BH_Customer", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_ProjectsBusinessLinkVariantsWorkspaceIntoSqlTables()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultLinkVariants");
+        var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
+
+        try
+        {
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var foreignKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("ForeignKey");
+
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BSAL_CustomerMatch", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BSALS_CustomerMatch_Evidence", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BHAL_EmployeeManager", StringComparison.Ordinal));
+            Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BHALS_EmployeeManager_Line", StringComparison.Ordinal));
+
+            var customerMatch = GetTable(tables, "BSAL_CustomerMatch");
+            var customerMatchColumns = GetColumnNames(columns, customerMatch.Id);
+            Assert.Contains("HashKey", customerMatchColumns);
+            Assert.Contains("PrimaryHashKey", customerMatchColumns);
+            Assert.Contains("EquivalentHashKey", customerMatchColumns);
+
+            var employeeManager = GetTable(tables, "BHAL_EmployeeManager");
+            var employeeManagerColumns = GetColumnNames(columns, employeeManager.Id);
+            Assert.Contains("HashKey", employeeManagerColumns);
+            Assert.Contains("ParentHashKey", employeeManagerColumns);
+            Assert.Contains("ChildHashKey", employeeManagerColumns);
+
+            Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BSAL_CustomerMatch_BH_Customer_PrimaryHashKey", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BHAL_EmployeeManager_BH_Employee_ParentHashKey", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BHALS_EmployeeManager_Line_BHAL_EmployeeManager", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_PreservesBusinessDataTypeDetailsInProjectedColumns()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
+
+        try
+        {
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var details = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumnDataTypeDetail");
+
+            Assert.Equal("50", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BH_Customer").Id, "Identifier").Id, "Length"));
+            Assert.Equal("200", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BHS_Customer_Profile").Id, "CustomerName").Id, "Length"));
+            Assert.Equal("20", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BLS_CustomerOrder_Status").Id, "StatusCode").Id, "Length"));
+            Assert.Equal("50", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BR_CustomerOrderTraversal").Id, "CustomerIdentifier").Id, "Length"));
+            Assert.Equal("200", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BR_CustomerOrderTraversal").Id, "CustomerName").Id, "Length"));
+            Assert.Equal("20", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BR_CustomerOrderTraversal").Id, "StatusCode").Id, "Length"));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_PreservesBusinessLinkVariantSatelliteAttributeDetails()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultLinkVariants");
+        var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
+
+        try
+        {
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var details = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumnDataTypeDetail");
+
+            Assert.Equal("20", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BSALS_CustomerMatch_Evidence").Id, "MatchScore").Id, "Length"));
+            Assert.Equal("20", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BHALS_EmployeeManager_Line").Id, "LineType").Id, "Length"));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_CanSaveAndReloadProjectedSqlWorkspace()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            var workspaceService = new WorkspaceService();
+            await workspaceService.SaveAsync(sqlWorkspace);
+            var reloaded = await workspaceService.LoadAsync(targetPath, searchUpward: false);
+
+            Assert.Equal("SqlModel", reloaded.Model.Name);
+            Assert.NotEmpty(reloaded.Instance.GetOrCreateEntityRecords("Table"));
+            Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => string.Equals(row.Values["Name"], "BH_Customer", StringComparison.Ordinal));
+            Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => string.Equals(row.Values["Name"], "PIT_CustomerSnapshot", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    private static string GetImplementationWorkspacePath(string repoRoot)
+    {
+        return Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
     }
 
     private static (int ExitCode, string Output) RunRawCli(string arguments)
@@ -47,11 +466,60 @@ public sealed class ConvertToMetaSqlTests
         return CliTestSupport.RunProcess(startInfo, "Could not start DataVault CLI process.");
     }
 
+    private static (int ExitCode, string Output) RunBusinessCli(string arguments)
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var cliPath = CliTestSupport.ResolveCliPath(repoRoot, "MetaDataVault.Business.Cli", "meta-datavault-business.dll");
+        var startInfo = new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = "dotnet",
+            Arguments = $"\"{cliPath}\" {arguments}",
+            WorkingDirectory = repoRoot,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+        };
+
+        return CliTestSupport.RunProcess(startInfo, "Could not start DataVault CLI process.");
+    }
+
     private static void DeleteDirectoryIfExists(string path)
     {
         if (Directory.Exists(path))
         {
             Directory.Delete(path, recursive: true);
         }
+    }
+
+    private static Meta.Core.Domain.GenericRecord GetTable(IReadOnlyList<Meta.Core.Domain.GenericRecord> tables, string tableName)
+    {
+        return tables.Single(row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, tableName, StringComparison.Ordinal));
+    }
+
+    private static List<string> GetColumnNames(IReadOnlyList<Meta.Core.Domain.GenericRecord> columns, string tableId)
+    {
+        return columns
+            .Where(row => row.RelationshipIds.TryGetValue("TableId", out var currentTableId) && currentTableId == tableId)
+            .Select(row => row.Values["Name"])
+            .ToList();
+    }
+
+    private static Meta.Core.Domain.GenericRecord GetColumn(IReadOnlyList<Meta.Core.Domain.GenericRecord> columns, string tableId, string columnName)
+    {
+        return columns.Single(row =>
+            row.RelationshipIds.TryGetValue("TableId", out var currentTableId) &&
+            currentTableId == tableId &&
+            row.Values.TryGetValue("Name", out var currentName) &&
+            string.Equals(currentName, columnName, StringComparison.Ordinal));
+    }
+
+    private static string GetDetailValue(IReadOnlyList<Meta.Core.Domain.GenericRecord> details, string tableColumnId, string detailName)
+    {
+        return details.Single(row =>
+            row.RelationshipIds.TryGetValue("TableColumnId", out var currentTableColumnId) &&
+            currentTableColumnId == tableColumnId &&
+            row.Values.TryGetValue("Name", out var currentName) &&
+            string.Equals(currentName, detailName, StringComparison.Ordinal)).Values["Value"];
     }
 }

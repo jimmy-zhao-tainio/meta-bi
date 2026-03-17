@@ -1,6 +1,6 @@
-using DVI = MetaDataVaultImplementation;
+using DVI = global::MetaDataVaultImplementation;
 
-namespace MetaDataVault.Core;
+namespace MetaSchema.ToRawDataVault;
 
 public sealed record RawDataVaultImplementationModel(
     DVI.MetaDataVaultImplementationModel Model,

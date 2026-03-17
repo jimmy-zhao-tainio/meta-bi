@@ -1,10 +1,10 @@
 using System.Globalization;
-using MS = MetaSchema;
-using MRDV = MetaRawDataVault;
+using MS = global::MetaSchema;
+using MRDV = global::MetaRawDataVault;
 
-namespace MetaDataVault.Core;
+namespace MetaSchema.ToRawDataVault;
 
-public sealed partial class MetaSchemaToRawDataVaultConverter
+public sealed partial class RawDataVaultBootstrapper
 {
     private static SchemaBootstrapDraft ConvertSchemaBootstrap(
         MS.MetaSchemaModel metaSchemaModel,

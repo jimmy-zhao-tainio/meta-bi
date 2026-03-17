@@ -3,6 +3,7 @@ using Meta.Core.Domain;
 using Meta.Core.Presentation;
 using Meta.Core.Services;
 using MetaDataVault.Core;
+using MetaSchema.ToRawDataVault;
 
 internal static partial class Program
 {
@@ -119,10 +120,10 @@ internal static partial class Program
                 new[] { $"  - {ex.Message}" });
         }
 
-        MetaSchemaToRawDataVaultConverter.MetaSchemaToRawDataVaultConversionResult conversionResult;
+        RawDataVaultBootstrapper.RawDataVaultBootstrapResult conversionResult;
         try
         {
-            conversionResult = new MetaSchemaToRawDataVaultConverter().ConvertWithReport(
+            conversionResult = new RawDataVaultBootstrapper().BootstrapWithReport(
                 sourceModel,
                 newWorkspacePath,
                 implementationModel,

@@ -1,14 +1,14 @@
 using Meta.Core.Domain;
-using MS = MetaSchema;
+using MS = global::MetaSchema;
 
-namespace MetaDataVault.Core;
+namespace MetaSchema.ToRawDataVault;
 
-public sealed partial class MetaSchemaToRawDataVaultConverter
+public sealed partial class RawDataVaultBootstrapper
 {
     private const string StandardSatelliteKind = "standard";
     private const string StandardLinkKind = "standard";
 
-    public MetaSchemaToRawDataVaultConversionResult ConvertWithReport(
+    public RawDataVaultBootstrapResult BootstrapWithReport(
         MS.MetaSchemaModel metaSchemaModel,
         string newWorkspacePath,
         RawDataVaultImplementationModel implementation,
@@ -23,10 +23,10 @@ public sealed partial class MetaSchemaToRawDataVaultConverter
         var options = CreateOptions(ignoredFieldNames, ignoredFieldSuffixes, includeViews);
         var draft = ConvertSchemaBootstrap(metaSchemaModel, implementation, options);
         var workspace = CreateWorkspace(draft, newWorkspacePath);
-        return new MetaSchemaToRawDataVaultConversionResult(workspace, draft.MaterializationReport);
+        return new RawDataVaultBootstrapResult(workspace, draft.MaterializationReport);
     }
 
-    public Workspace Convert(
+    public Workspace Bootstrap(
         MS.MetaSchemaModel metaSchemaModel,
         string newWorkspacePath,
         RawDataVaultImplementationModel implementation,
@@ -34,7 +34,7 @@ public sealed partial class MetaSchemaToRawDataVaultConverter
         IEnumerable<string>? ignoredFieldSuffixes = null,
         bool includeViews = false)
     {
-        return ConvertWithReport(
+        return BootstrapWithReport(
             metaSchemaModel,
             newWorkspacePath,
             implementation,
@@ -60,7 +60,7 @@ public sealed partial class MetaSchemaToRawDataVaultConverter
         return new MetaSchemaBootstrapOptions(ignoredFieldNameSet, ignoredFieldSuffixSet, includeViews);
     }
 
-    public sealed record MetaSchemaToRawDataVaultConversionResult(
+    public sealed record RawDataVaultBootstrapResult(
         Workspace Workspace,
         string MaterializationReport);
 }
