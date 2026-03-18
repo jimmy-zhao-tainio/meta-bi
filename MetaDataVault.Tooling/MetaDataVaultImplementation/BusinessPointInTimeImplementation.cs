@@ -3,6 +3,7 @@ namespace MetaDataVaultImplementation
     public sealed class BusinessPointInTimeImplementation
     {
         public string Id { get; set; } = string.Empty;
+        public string AnchorHubForeignKeyNamePattern { get; set; } = string.Empty;
         public string AuditIdColumnName { get; set; } = string.Empty;
         public string AuditIdDataTypeId { get; set; } = string.Empty;
         public string ParentHashKeyColumnName { get; set; } = string.Empty;

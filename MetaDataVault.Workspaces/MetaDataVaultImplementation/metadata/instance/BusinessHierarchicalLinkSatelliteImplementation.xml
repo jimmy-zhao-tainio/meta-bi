@@ -3,6 +3,7 @@
   <BusinessHierarchicalLinkSatelliteImplementationList>
     <BusinessHierarchicalLinkSatelliteImplementation Id="default-business-hierarchical-link-satellite">
       <TableNamePattern>BHALS_{ParentName}_{Name}</TableNamePattern>
+      <ParentForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</ParentForeignKeyNamePattern>
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
       <ParentHashKeyLength>16</ParentHashKeyLength>

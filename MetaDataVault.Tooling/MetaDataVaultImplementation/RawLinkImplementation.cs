@@ -9,9 +9,11 @@ namespace MetaDataVaultImplementation
         public string HashKeyColumnName { get; set; } = string.Empty;
         public string HashKeyDataTypeId { get; set; } = string.Empty;
         public string HashKeyLength { get; set; } = string.Empty;
+        public string HubForeignKeyNamePattern { get; set; } = string.Empty;
         public string LoadTimestampColumnName { get; set; } = string.Empty;
         public string LoadTimestampDataTypeId { get; set; } = string.Empty;
         public string LoadTimestampPrecision { get; set; } = string.Empty;
+        public string PrimaryKeyNamePattern { get; set; } = string.Empty;
         public string RecordSourceColumnName { get; set; } = string.Empty;
         public string RecordSourceDataTypeId { get; set; } = string.Empty;
         public string RecordSourceLength { get; set; } = string.Empty;

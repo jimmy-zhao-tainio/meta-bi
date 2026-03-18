@@ -3,6 +3,7 @@ namespace MetaDataVaultImplementation
     public sealed class BusinessBridgeImplementation
     {
         public string Id { get; set; } = string.Empty;
+        public string AnchorHubForeignKeyNamePattern { get; set; } = string.Empty;
         public string AuditIdColumnName { get; set; } = string.Empty;
         public string AuditIdDataTypeId { get; set; } = string.Empty;
         public string DepthColumnName { get; set; } = string.Empty;

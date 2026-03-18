@@ -3,6 +3,7 @@
   <BusinessBridgeImplementationList>
     <BusinessBridgeImplementation Id="default-business-bridge">
       <TableNamePattern>BR_{Name}</TableNamePattern>
+      <AnchorHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</AnchorHubForeignKeyNamePattern>
       <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
       <RootHashKeyDataTypeId>sqlserver:type:binary</RootHashKeyDataTypeId>
       <RootHashKeyLength>16</RootHashKeyLength>

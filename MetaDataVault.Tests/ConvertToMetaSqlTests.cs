@@ -33,8 +33,10 @@ public sealed class ConvertToMetaSqlTests
             Assert.Single(databases);
             Assert.Single(schemas);
             Assert.Equal("RawVault", databases[0].Values["Name"]);
+            Assert.Equal("RawVault", databases[0].Id);
             Assert.Equal("sqlserver", databases[0].Values["Platform"]);
             Assert.Equal("raw", schemas[0].Values["Name"]);
+            Assert.Equal("RawVault.raw", schemas[0].Id);
             Assert.Empty(sqlWorkspace.Instance.GetOrCreateEntityRecords("Table"));
         }
         finally
@@ -70,8 +72,10 @@ public sealed class ConvertToMetaSqlTests
             Assert.Single(databases);
             Assert.Single(schemas);
             Assert.Equal("BusinessVault", databases[0].Values["Name"]);
+            Assert.Equal("BusinessVault", databases[0].Id);
             Assert.Equal("sqlserver", databases[0].Values["Platform"]);
             Assert.Equal("bdv", schemas[0].Values["Name"]);
+            Assert.Equal("BusinessVault.bdv", schemas[0].Id);
             Assert.Empty(sqlWorkspace.Instance.GetOrCreateEntityRecords("Table"));
         }
         finally
@@ -110,15 +114,20 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(tables, row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "LS_OrderCustomer_OrderCustomerStatus", StringComparison.Ordinal));
 
             var customerHub = tables.Single(row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "H_Customer", StringComparison.Ordinal));
+            Assert.Equal("RawVault.raw.H_Customer", customerHub.Id);
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "HashKey", StringComparison.Ordinal));
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "CustomerId", StringComparison.Ordinal));
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "LoadTimestamp", StringComparison.Ordinal));
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "RecordSource", StringComparison.Ordinal));
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == customerHub.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "AuditId", StringComparison.Ordinal));
+            Assert.Contains(columns, row => row.Id == "RawVault.raw.H_Customer.HashKey");
+            Assert.Contains(primaryKeys, row => row.Id == "RawVault.raw.H_Customer.pk.PK_H_Customer" && string.Equals(row.Values["Name"], "PK_H_Customer", StringComparison.Ordinal));
 
             var orderCustomerLink = tables.Single(row => row.Values.TryGetValue("Name", out var name) && string.Equals(name, "L_OrderCustomer", StringComparison.Ordinal));
+            Assert.Equal("RawVault.raw.L_OrderCustomer", orderCustomerLink.Id);
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == orderCustomerLink.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "OrderHashKey", StringComparison.Ordinal));
             Assert.Contains(columns, row => row.RelationshipIds.TryGetValue("TableId", out var tableId) && tableId == orderCustomerLink.Id && row.Values.TryGetValue("Name", out var name) && string.Equals(name, "CustomerHashKey", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => row.Id == "RawVault.raw.L_OrderCustomer.fk.FK_L_OrderCustomer_H_Order_OrderHashKey");
         }
         finally
         {
@@ -257,6 +266,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BR_CustomerOrderTraversal", StringComparison.Ordinal));
 
             var customerHub = GetTable(tables, "BH_Customer");
+            Assert.Equal("BusinessVault.bdv.BH_Customer", customerHub.Id);
             var customerHubColumns = GetColumnNames(columns, customerHub.Id);
             Assert.Contains("HashKey", customerHubColumns);
             Assert.Contains("Identifier", customerHubColumns);
@@ -270,6 +280,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains("OrderHashKey", customerOrderLinkColumns);
 
             var customerSnapshotPit = GetTable(tables, "PIT_CustomerSnapshot");
+            Assert.Equal("BusinessVault.bdv.PIT_CustomerSnapshot", customerSnapshotPit.Id);
             var customerSnapshotColumns = GetColumnNames(columns, customerSnapshotPit.Id);
             Assert.Contains("HubHashKey", customerSnapshotColumns);
             Assert.Contains("SnapshotTimestamp", customerSnapshotColumns);
@@ -295,6 +306,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BLS_CustomerOrder_Status_BL_CustomerOrder", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_PIT_CustomerSnapshot_BH_Customer", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BR_CustomerOrderTraversal_BH_Customer", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => row.Id == "BusinessVault.bdv.PIT_CustomerSnapshot.fk.FK_PIT_CustomerSnapshot_BH_Customer");
         }
         finally
         {
@@ -328,12 +340,14 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(tables, row => string.Equals(row.Values["Name"], "BHALS_EmployeeManager_Line", StringComparison.Ordinal));
 
             var customerMatch = GetTable(tables, "BSAL_CustomerMatch");
+            Assert.Equal("BusinessVault.bdv.BSAL_CustomerMatch", customerMatch.Id);
             var customerMatchColumns = GetColumnNames(columns, customerMatch.Id);
             Assert.Contains("HashKey", customerMatchColumns);
             Assert.Contains("PrimaryHashKey", customerMatchColumns);
             Assert.Contains("EquivalentHashKey", customerMatchColumns);
 
             var employeeManager = GetTable(tables, "BHAL_EmployeeManager");
+            Assert.Equal("BusinessVault.bdv.BHAL_EmployeeManager", employeeManager.Id);
             var employeeManagerColumns = GetColumnNames(columns, employeeManager.Id);
             Assert.Contains("HashKey", employeeManagerColumns);
             Assert.Contains("ParentHashKey", employeeManagerColumns);
@@ -342,6 +356,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BSAL_CustomerMatch_BH_Customer_PrimaryHashKey", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BHAL_EmployeeManager_BH_Employee_ParentHashKey", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BHALS_EmployeeManager_Line_BHAL_EmployeeManager", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => row.Id == "BusinessVault.bdv.BSAL_CustomerMatch.fk.FK_BSAL_CustomerMatch_BH_Customer_PrimaryHashKey");
         }
         finally
         {
@@ -436,6 +451,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.NotEmpty(reloaded.Instance.GetOrCreateEntityRecords("Table"));
             Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => string.Equals(row.Values["Name"], "BH_Customer", StringComparison.Ordinal));
             Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => string.Equals(row.Values["Name"], "PIT_CustomerSnapshot", StringComparison.Ordinal));
+            Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => row.Id == "BusinessVault.bdv.BH_Customer");
         }
         finally
         {

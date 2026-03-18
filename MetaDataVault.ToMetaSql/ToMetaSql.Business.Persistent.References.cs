@@ -19,14 +19,12 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"BusinessReference:{reference.Id}",
                 ApplyPattern(businessReferenceImplementation.TableNamePattern, ("Name", reference.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var hashKeyColumn = AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:HashKey",
                 businessReferenceImplementation.HashKeyColumnName,
                 businessReferenceImplementation.HashKeyDataTypeId,
                 "false",
@@ -38,7 +36,6 @@ public static partial class Converter
                 AddBusinessTypedColumn(
                     context,
                     table,
-                    $"{table.Id}:Column:KeyPart:{keyPart.Id}",
                     keyPart.Name,
                     keyPart.DataTypeId,
                     reservedColumnNames,
@@ -52,7 +49,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:LoadTimestamp",
                 businessReferenceImplementation.LoadTimestampColumnName,
                 businessReferenceImplementation.LoadTimestampDataTypeId,
                 "false",
@@ -62,7 +58,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RecordSource",
                 businessReferenceImplementation.RecordSourceColumnName,
                 businessReferenceImplementation.RecordSourceDataTypeId,
                 "false",
@@ -72,13 +67,12 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 businessReferenceImplementation.AuditIdColumnName,
                 businessReferenceImplementation.AuditIdDataTypeId,
                 "false",
                 reservedColumnNames);
 
-            AddPrimaryKey(context, table, $"{table.Id}:PrimaryKey", $"PK_{table.Name}", hashKeyColumn);
+            AddPrimaryKey(context, table, ApplyPattern(businessReferenceImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)), hashKeyColumn);
 
             referenceTablesByReferenceId[reference.Id] = table;
             referenceHashKeyColumnsByReferenceId[reference.Id] = hashKeyColumn;
@@ -100,7 +94,6 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"BusinessReferenceSatellite:{satellite.Id}",
                 ApplyPattern(
                     businessReferenceSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessReference.Name),
@@ -110,7 +103,6 @@ public static partial class Converter
             var parentHashKeyColumn = AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:ParentHashKey",
                 businessReferenceSatelliteImplementation.ParentHashKeyColumnName,
                 businessReferenceSatelliteImplementation.ParentHashKeyDataTypeId,
                 "false",
@@ -141,12 +133,11 @@ public static partial class Converter
                                 detail => detail.Name,
                                 detail => detail.Value))));
 
-            AddOrderedBusinessMembers(context, table, reservedColumnNames, members, "Member");
+            AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
 
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:HashDiff",
                 businessReferenceSatelliteImplementation.HashDiffColumnName,
                 businessReferenceSatelliteImplementation.HashDiffDataTypeId,
                 "false",
@@ -156,7 +147,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:LoadTimestamp",
                 businessReferenceSatelliteImplementation.LoadTimestampColumnName,
                 businessReferenceSatelliteImplementation.LoadTimestampDataTypeId,
                 "false",
@@ -166,7 +156,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RecordSource",
                 businessReferenceSatelliteImplementation.RecordSourceColumnName,
                 businessReferenceSatelliteImplementation.RecordSourceDataTypeId,
                 "false",
@@ -176,7 +165,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 businessReferenceSatelliteImplementation.AuditIdColumnName,
                 businessReferenceSatelliteImplementation.AuditIdDataTypeId,
                 "false",
@@ -188,8 +176,10 @@ public static partial class Converter
                 AddForeignKey(
                     context,
                     table,
-                    $"{table.Id}:ForeignKey:ParentReference",
-                    $"FK_{table.Name}_{parentTable.Name}",
+                    ApplyPattern(
+                        businessReferenceSatelliteImplementation.ParentForeignKeyNamePattern,
+                        ("TableName", table.Name),
+                        ("ParentTableName", parentTable.Name)),
                     parentTable,
                     new[] { (parentHashKeyColumn, parentHashKeyTarget) });
             }

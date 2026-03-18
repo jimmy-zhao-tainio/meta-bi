@@ -114,6 +114,10 @@ namespace MetaDataVaultImplementation
                     Id = row.Id ?? string.Empty,
                     SourceShardFileName = "BusinessBridgeImplementation.xml",
                 };
+                if (!string.IsNullOrWhiteSpace(row.AnchorHubForeignKeyNamePattern))
+                {
+                    record.Values["AnchorHubForeignKeyNamePattern"] = row.AnchorHubForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.AuditIdColumnName))
                 {
                     record.Values["AuditIdColumnName"] = row.AuditIdColumnName;
@@ -216,6 +220,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["ChildHashKeyColumnName"] = row.ChildHashKeyColumnName;
                 }
+                if (!string.IsNullOrWhiteSpace(row.ChildHubForeignKeyNamePattern))
+                {
+                    record.Values["ChildHubForeignKeyNamePattern"] = row.ChildHubForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.HashKeyColumnName))
                 {
                     record.Values["HashKeyColumnName"] = row.HashKeyColumnName;
@@ -243,6 +251,14 @@ namespace MetaDataVaultImplementation
                 if (!string.IsNullOrWhiteSpace(row.ParentHashKeyColumnName))
                 {
                     record.Values["ParentHashKeyColumnName"] = row.ParentHashKeyColumnName;
+                }
+                if (!string.IsNullOrWhiteSpace(row.ParentHubForeignKeyNamePattern))
+                {
+                    record.Values["ParentHubForeignKeyNamePattern"] = row.ParentHubForeignKeyNamePattern;
+                }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryKeyNamePattern))
+                {
+                    record.Values["PrimaryKeyNamePattern"] = row.PrimaryKeyNamePattern;
                 }
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
@@ -301,6 +317,10 @@ namespace MetaDataVaultImplementation
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampPrecision))
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
+                }
+                if (!string.IsNullOrWhiteSpace(row.ParentForeignKeyNamePattern))
+                {
+                    record.Values["ParentForeignKeyNamePattern"] = row.ParentForeignKeyNamePattern;
                 }
                 if (!string.IsNullOrWhiteSpace(row.ParentHashKeyColumnName))
                 {
@@ -372,6 +392,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
                 }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryKeyNamePattern))
+                {
+                    record.Values["PrimaryKeyNamePattern"] = row.PrimaryKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
                     record.Values["RecordSourceColumnName"] = row.RecordSourceColumnName;
@@ -429,6 +453,10 @@ namespace MetaDataVaultImplementation
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampPrecision))
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
+                }
+                if (!string.IsNullOrWhiteSpace(row.ParentForeignKeyNamePattern))
+                {
+                    record.Values["ParentForeignKeyNamePattern"] = row.ParentForeignKeyNamePattern;
                 }
                 if (!string.IsNullOrWhiteSpace(row.ParentHashKeyColumnName))
                 {
@@ -492,6 +520,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["HashKeyLength"] = row.HashKeyLength;
                 }
+                if (!string.IsNullOrWhiteSpace(row.HubForeignKeyNamePattern))
+                {
+                    record.Values["HubForeignKeyNamePattern"] = row.HubForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampColumnName))
                 {
                     record.Values["LoadTimestampColumnName"] = row.LoadTimestampColumnName;
@@ -503,6 +535,10 @@ namespace MetaDataVaultImplementation
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampPrecision))
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
+                }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryKeyNamePattern))
+                {
+                    record.Values["PrimaryKeyNamePattern"] = row.PrimaryKeyNamePattern;
                 }
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
@@ -562,6 +598,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
                 }
+                if (!string.IsNullOrWhiteSpace(row.ParentForeignKeyNamePattern))
+                {
+                    record.Values["ParentForeignKeyNamePattern"] = row.ParentForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.ParentHashKeyColumnName))
                 {
                     record.Values["ParentHashKeyColumnName"] = row.ParentHashKeyColumnName;
@@ -600,6 +640,10 @@ namespace MetaDataVaultImplementation
                     Id = row.Id ?? string.Empty,
                     SourceShardFileName = "BusinessPointInTimeImplementation.xml",
                 };
+                if (!string.IsNullOrWhiteSpace(row.AnchorHubForeignKeyNamePattern))
+                {
+                    record.Values["AnchorHubForeignKeyNamePattern"] = row.AnchorHubForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.AuditIdColumnName))
                 {
                     record.Values["AuditIdColumnName"] = row.AuditIdColumnName;
@@ -690,6 +734,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
                 }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryKeyNamePattern))
+                {
+                    record.Values["PrimaryKeyNamePattern"] = row.PrimaryKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
                     record.Values["RecordSourceColumnName"] = row.RecordSourceColumnName;
@@ -748,6 +796,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
                 }
+                if (!string.IsNullOrWhiteSpace(row.ParentForeignKeyNamePattern))
+                {
+                    record.Values["ParentForeignKeyNamePattern"] = row.ParentForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.ParentHashKeyColumnName))
                 {
                     record.Values["ParentHashKeyColumnName"] = row.ParentHashKeyColumnName;
@@ -798,6 +850,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["EquivalentHashKeyColumnName"] = row.EquivalentHashKeyColumnName;
                 }
+                if (!string.IsNullOrWhiteSpace(row.EquivalentHubForeignKeyNamePattern))
+                {
+                    record.Values["EquivalentHubForeignKeyNamePattern"] = row.EquivalentHubForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.HashKeyColumnName))
                 {
                     record.Values["HashKeyColumnName"] = row.HashKeyColumnName;
@@ -825,6 +881,14 @@ namespace MetaDataVaultImplementation
                 if (!string.IsNullOrWhiteSpace(row.PrimaryHashKeyColumnName))
                 {
                     record.Values["PrimaryHashKeyColumnName"] = row.PrimaryHashKeyColumnName;
+                }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryHubForeignKeyNamePattern))
+                {
+                    record.Values["PrimaryHubForeignKeyNamePattern"] = row.PrimaryHubForeignKeyNamePattern;
+                }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryKeyNamePattern))
+                {
+                    record.Values["PrimaryKeyNamePattern"] = row.PrimaryKeyNamePattern;
                 }
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
@@ -883,6 +947,10 @@ namespace MetaDataVaultImplementation
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampPrecision))
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
+                }
+                if (!string.IsNullOrWhiteSpace(row.ParentForeignKeyNamePattern))
+                {
+                    record.Values["ParentForeignKeyNamePattern"] = row.ParentForeignKeyNamePattern;
                 }
                 if (!string.IsNullOrWhiteSpace(row.ParentHashKeyColumnName))
                 {
@@ -954,6 +1022,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
                 }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryKeyNamePattern))
+                {
+                    record.Values["PrimaryKeyNamePattern"] = row.PrimaryKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
                     record.Values["RecordSourceColumnName"] = row.RecordSourceColumnName;
@@ -1011,6 +1083,10 @@ namespace MetaDataVaultImplementation
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampPrecision))
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
+                }
+                if (!string.IsNullOrWhiteSpace(row.ParentForeignKeyNamePattern))
+                {
+                    record.Values["ParentForeignKeyNamePattern"] = row.ParentForeignKeyNamePattern;
                 }
                 if (!string.IsNullOrWhiteSpace(row.ParentHashKeyColumnName))
                 {
@@ -1074,6 +1150,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["HashKeyLength"] = row.HashKeyLength;
                 }
+                if (!string.IsNullOrWhiteSpace(row.HubForeignKeyNamePattern))
+                {
+                    record.Values["HubForeignKeyNamePattern"] = row.HubForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampColumnName))
                 {
                     record.Values["LoadTimestampColumnName"] = row.LoadTimestampColumnName;
@@ -1085,6 +1165,10 @@ namespace MetaDataVaultImplementation
                 if (!string.IsNullOrWhiteSpace(row.LoadTimestampPrecision))
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
+                }
+                if (!string.IsNullOrWhiteSpace(row.PrimaryKeyNamePattern))
+                {
+                    record.Values["PrimaryKeyNamePattern"] = row.PrimaryKeyNamePattern;
                 }
                 if (!string.IsNullOrWhiteSpace(row.RecordSourceColumnName))
                 {
@@ -1144,6 +1228,10 @@ namespace MetaDataVaultImplementation
                 {
                     record.Values["LoadTimestampPrecision"] = row.LoadTimestampPrecision;
                 }
+                if (!string.IsNullOrWhiteSpace(row.ParentForeignKeyNamePattern))
+                {
+                    record.Values["ParentForeignKeyNamePattern"] = row.ParentForeignKeyNamePattern;
+                }
                 if (!string.IsNullOrWhiteSpace(row.ParentHashKeyColumnName))
                 {
                     record.Values["ParentHashKeyColumnName"] = row.ParentHashKeyColumnName;
@@ -1198,6 +1286,12 @@ namespace MetaDataVaultImplementation
                 Name = "BusinessBridgeImplementation",
                 Properties =
                 {
+                    new GenericProperty
+                    {
+                        Name = "AnchorHubForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
                     new GenericProperty
                     {
                         Name = "AuditIdColumnName",
@@ -1349,6 +1443,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "ChildHubForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "HashKeyColumnName",
                         DataType = "string",
                         IsNullable = false,
@@ -1386,6 +1486,18 @@ namespace MetaDataVaultImplementation
                     new GenericProperty
                     {
                         Name = "ParentHashKeyColumnName",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "ParentHubForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "PrimaryKeyNamePattern",
                         DataType = "string",
                         IsNullable = false,
                     },
@@ -1471,6 +1583,12 @@ namespace MetaDataVaultImplementation
                         Name = "LoadTimestampPrecision",
                         DataType = "string",
                         IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "ParentForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
                     },
                     new GenericProperty
                     {
@@ -1575,6 +1693,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "PrimaryKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "RecordSourceColumnName",
                         DataType = "string",
                         IsNullable = true,
@@ -1655,6 +1779,12 @@ namespace MetaDataVaultImplementation
                         Name = "LoadTimestampPrecision",
                         DataType = "string",
                         IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "ParentForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
                     },
                     new GenericProperty
                     {
@@ -1747,6 +1877,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "HubForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "LoadTimestampColumnName",
                         DataType = "string",
                         IsNullable = true,
@@ -1762,6 +1898,12 @@ namespace MetaDataVaultImplementation
                         Name = "LoadTimestampPrecision",
                         DataType = "string",
                         IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "PrimaryKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
                     },
                     new GenericProperty
                     {
@@ -1848,6 +1990,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "ParentForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "ParentHashKeyColumnName",
                         DataType = "string",
                         IsNullable = false,
@@ -1899,6 +2047,12 @@ namespace MetaDataVaultImplementation
                 Name = "BusinessPointInTimeImplementation",
                 Properties =
                 {
+                    new GenericProperty
+                    {
+                        Name = "AnchorHubForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
                     new GenericProperty
                     {
                         Name = "AuditIdColumnName",
@@ -2032,6 +2186,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "PrimaryKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "RecordSourceColumnName",
                         DataType = "string",
                         IsNullable = true,
@@ -2115,6 +2275,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "ParentForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "ParentHashKeyColumnName",
                         DataType = "string",
                         IsNullable = false,
@@ -2186,6 +2352,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "EquivalentHubForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "HashKeyColumnName",
                         DataType = "string",
                         IsNullable = false,
@@ -2223,6 +2395,18 @@ namespace MetaDataVaultImplementation
                     new GenericProperty
                     {
                         Name = "PrimaryHashKeyColumnName",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "PrimaryHubForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "PrimaryKeyNamePattern",
                         DataType = "string",
                         IsNullable = false,
                     },
@@ -2308,6 +2492,12 @@ namespace MetaDataVaultImplementation
                         Name = "LoadTimestampPrecision",
                         DataType = "string",
                         IsNullable = true,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "ParentForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
                     },
                     new GenericProperty
                     {
@@ -2412,6 +2602,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "PrimaryKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "RecordSourceColumnName",
                         DataType = "string",
                         IsNullable = false,
@@ -2490,6 +2686,12 @@ namespace MetaDataVaultImplementation
                     new GenericProperty
                     {
                         Name = "LoadTimestampPrecision",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "ParentForeignKeyNamePattern",
                         DataType = "string",
                         IsNullable = false,
                     },
@@ -2584,6 +2786,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "HubForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "LoadTimestampColumnName",
                         DataType = "string",
                         IsNullable = false,
@@ -2597,6 +2805,12 @@ namespace MetaDataVaultImplementation
                     new GenericProperty
                     {
                         Name = "LoadTimestampPrecision",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
+                        Name = "PrimaryKeyNamePattern",
                         DataType = "string",
                         IsNullable = false,
                     },
@@ -2685,6 +2899,12 @@ namespace MetaDataVaultImplementation
                     },
                     new GenericProperty
                     {
+                        Name = "ParentForeignKeyNamePattern",
+                        DataType = "string",
+                        IsNullable = false,
+                    },
+                    new GenericProperty
+                    {
                         Name = "ParentHashKeyColumnName",
                         DataType = "string",
                         IsNullable = false,
@@ -2752,6 +2972,7 @@ namespace MetaDataVaultImplementation
                     businessBridgeImplementationList.Add(new BusinessBridgeImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AnchorHubForeignKeyNamePattern = record.Values.TryGetValue("AnchorHubForeignKeyNamePattern", out var anchorHubForeignKeyNamePatternValue) ? anchorHubForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
                         AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         DepthColumnName = record.Values.TryGetValue("DepthColumnName", out var depthColumnNameValue) ? depthColumnNameValue ?? string.Empty : string.Empty,
@@ -2787,6 +3008,7 @@ namespace MetaDataVaultImplementation
                         AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
                         AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         ChildHashKeyColumnName = record.Values.TryGetValue("ChildHashKeyColumnName", out var childHashKeyColumnNameValue) ? childHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        ChildHubForeignKeyNamePattern = record.Values.TryGetValue("ChildHubForeignKeyNamePattern", out var childHubForeignKeyNamePatternValue) ? childHubForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         HashKeyLength = record.Values.TryGetValue("HashKeyLength", out var hashKeyLengthValue) ? hashKeyLengthValue ?? string.Empty : string.Empty,
@@ -2794,6 +3016,8 @@ namespace MetaDataVaultImplementation
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        ParentHubForeignKeyNamePattern = record.Values.TryGetValue("ParentHubForeignKeyNamePattern", out var parentHubForeignKeyNamePatternValue) ? parentHubForeignKeyNamePatternValue ?? string.Empty : string.Empty,
+                        PrimaryKeyNamePattern = record.Values.TryGetValue("PrimaryKeyNamePattern", out var primaryKeyNamePatternValue) ? primaryKeyNamePatternValue ?? string.Empty : string.Empty,
                         RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
                         RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
                         RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
@@ -2818,6 +3042,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentForeignKeyNamePattern = record.Values.TryGetValue("ParentForeignKeyNamePattern", out var parentForeignKeyNamePatternValue) ? parentForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
@@ -2845,6 +3070,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        PrimaryKeyNamePattern = record.Values.TryGetValue("PrimaryKeyNamePattern", out var primaryKeyNamePatternValue) ? primaryKeyNamePatternValue ?? string.Empty : string.Empty,
                         RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
                         RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
                         RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
@@ -2869,6 +3095,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentForeignKeyNamePattern = record.Values.TryGetValue("ParentForeignKeyNamePattern", out var parentForeignKeyNamePatternValue) ? parentForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
@@ -2894,9 +3121,11 @@ namespace MetaDataVaultImplementation
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         HashKeyLength = record.Values.TryGetValue("HashKeyLength", out var hashKeyLengthValue) ? hashKeyLengthValue ?? string.Empty : string.Empty,
+                        HubForeignKeyNamePattern = record.Values.TryGetValue("HubForeignKeyNamePattern", out var hubForeignKeyNamePatternValue) ? hubForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        PrimaryKeyNamePattern = record.Values.TryGetValue("PrimaryKeyNamePattern", out var primaryKeyNamePatternValue) ? primaryKeyNamePatternValue ?? string.Empty : string.Empty,
                         RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
                         RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
                         RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
@@ -2921,6 +3150,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentForeignKeyNamePattern = record.Values.TryGetValue("ParentForeignKeyNamePattern", out var parentForeignKeyNamePatternValue) ? parentForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
@@ -2940,6 +3170,7 @@ namespace MetaDataVaultImplementation
                     businessPointInTimeImplementationList.Add(new BusinessPointInTimeImplementation
                     {
                         Id = record.Id ?? string.Empty,
+                        AnchorHubForeignKeyNamePattern = record.Values.TryGetValue("AnchorHubForeignKeyNamePattern", out var anchorHubForeignKeyNamePatternValue) ? anchorHubForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
                         AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
@@ -2972,6 +3203,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        PrimaryKeyNamePattern = record.Values.TryGetValue("PrimaryKeyNamePattern", out var primaryKeyNamePatternValue) ? primaryKeyNamePatternValue ?? string.Empty : string.Empty,
                         RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
                         RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
                         RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
@@ -2996,6 +3228,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentForeignKeyNamePattern = record.Values.TryGetValue("ParentForeignKeyNamePattern", out var parentForeignKeyNamePatternValue) ? parentForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
@@ -3018,6 +3251,7 @@ namespace MetaDataVaultImplementation
                         AuditIdColumnName = record.Values.TryGetValue("AuditIdColumnName", out var auditIdColumnNameValue) ? auditIdColumnNameValue ?? string.Empty : string.Empty,
                         AuditIdDataTypeId = record.Values.TryGetValue("AuditIdDataTypeId", out var auditIdDataTypeIdValue) ? auditIdDataTypeIdValue ?? string.Empty : string.Empty,
                         EquivalentHashKeyColumnName = record.Values.TryGetValue("EquivalentHashKeyColumnName", out var equivalentHashKeyColumnNameValue) ? equivalentHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        EquivalentHubForeignKeyNamePattern = record.Values.TryGetValue("EquivalentHubForeignKeyNamePattern", out var equivalentHubForeignKeyNamePatternValue) ? equivalentHubForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         HashKeyLength = record.Values.TryGetValue("HashKeyLength", out var hashKeyLengthValue) ? hashKeyLengthValue ?? string.Empty : string.Empty,
@@ -3025,6 +3259,8 @@ namespace MetaDataVaultImplementation
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
                         PrimaryHashKeyColumnName = record.Values.TryGetValue("PrimaryHashKeyColumnName", out var primaryHashKeyColumnNameValue) ? primaryHashKeyColumnNameValue ?? string.Empty : string.Empty,
+                        PrimaryHubForeignKeyNamePattern = record.Values.TryGetValue("PrimaryHubForeignKeyNamePattern", out var primaryHubForeignKeyNamePatternValue) ? primaryHubForeignKeyNamePatternValue ?? string.Empty : string.Empty,
+                        PrimaryKeyNamePattern = record.Values.TryGetValue("PrimaryKeyNamePattern", out var primaryKeyNamePatternValue) ? primaryKeyNamePatternValue ?? string.Empty : string.Empty,
                         RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
                         RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
                         RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
@@ -3049,6 +3285,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentForeignKeyNamePattern = record.Values.TryGetValue("ParentForeignKeyNamePattern", out var parentForeignKeyNamePatternValue) ? parentForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
@@ -3076,6 +3313,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        PrimaryKeyNamePattern = record.Values.TryGetValue("PrimaryKeyNamePattern", out var primaryKeyNamePatternValue) ? primaryKeyNamePatternValue ?? string.Empty : string.Empty,
                         RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
                         RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
                         RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
@@ -3100,6 +3338,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentForeignKeyNamePattern = record.Values.TryGetValue("ParentForeignKeyNamePattern", out var parentForeignKeyNamePatternValue) ? parentForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,
@@ -3125,9 +3364,11 @@ namespace MetaDataVaultImplementation
                         HashKeyColumnName = record.Values.TryGetValue("HashKeyColumnName", out var hashKeyColumnNameValue) ? hashKeyColumnNameValue ?? string.Empty : string.Empty,
                         HashKeyDataTypeId = record.Values.TryGetValue("HashKeyDataTypeId", out var hashKeyDataTypeIdValue) ? hashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         HashKeyLength = record.Values.TryGetValue("HashKeyLength", out var hashKeyLengthValue) ? hashKeyLengthValue ?? string.Empty : string.Empty,
+                        HubForeignKeyNamePattern = record.Values.TryGetValue("HubForeignKeyNamePattern", out var hubForeignKeyNamePatternValue) ? hubForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        PrimaryKeyNamePattern = record.Values.TryGetValue("PrimaryKeyNamePattern", out var primaryKeyNamePatternValue) ? primaryKeyNamePatternValue ?? string.Empty : string.Empty,
                         RecordSourceColumnName = record.Values.TryGetValue("RecordSourceColumnName", out var recordSourceColumnNameValue) ? recordSourceColumnNameValue ?? string.Empty : string.Empty,
                         RecordSourceDataTypeId = record.Values.TryGetValue("RecordSourceDataTypeId", out var recordSourceDataTypeIdValue) ? recordSourceDataTypeIdValue ?? string.Empty : string.Empty,
                         RecordSourceLength = record.Values.TryGetValue("RecordSourceLength", out var recordSourceLengthValue) ? recordSourceLengthValue ?? string.Empty : string.Empty,
@@ -3152,6 +3393,7 @@ namespace MetaDataVaultImplementation
                         LoadTimestampColumnName = record.Values.TryGetValue("LoadTimestampColumnName", out var loadTimestampColumnNameValue) ? loadTimestampColumnNameValue ?? string.Empty : string.Empty,
                         LoadTimestampDataTypeId = record.Values.TryGetValue("LoadTimestampDataTypeId", out var loadTimestampDataTypeIdValue) ? loadTimestampDataTypeIdValue ?? string.Empty : string.Empty,
                         LoadTimestampPrecision = record.Values.TryGetValue("LoadTimestampPrecision", out var loadTimestampPrecisionValue) ? loadTimestampPrecisionValue ?? string.Empty : string.Empty,
+                        ParentForeignKeyNamePattern = record.Values.TryGetValue("ParentForeignKeyNamePattern", out var parentForeignKeyNamePatternValue) ? parentForeignKeyNamePatternValue ?? string.Empty : string.Empty,
                         ParentHashKeyColumnName = record.Values.TryGetValue("ParentHashKeyColumnName", out var parentHashKeyColumnNameValue) ? parentHashKeyColumnNameValue ?? string.Empty : string.Empty,
                         ParentHashKeyDataTypeId = record.Values.TryGetValue("ParentHashKeyDataTypeId", out var parentHashKeyDataTypeIdValue) ? parentHashKeyDataTypeIdValue ?? string.Empty : string.Empty,
                         ParentHashKeyLength = record.Values.TryGetValue("ParentHashKeyLength", out var parentHashKeyLengthValue) ? parentHashKeyLengthValue ?? string.Empty : string.Empty,

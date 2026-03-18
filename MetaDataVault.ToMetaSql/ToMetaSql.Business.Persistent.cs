@@ -112,14 +112,13 @@ public static partial class Converter
     private static TableColumn AddBusinessTypedColumn(
         ConversionContext context,
         Table table,
-        string id,
         string name,
         string metaDataTypeId,
         HashSet<string> reservedColumnNames,
         IEnumerable<(string Name, string Value)> details,
         string isNullable = "")
     {
-        var column = AddColumn(context, table, id, name, metaDataTypeId, isNullable, reservedColumnNames);
+        var column = AddColumn(context, table, name, metaDataTypeId, isNullable, reservedColumnNames);
 
         foreach (var (detailName, detailValue) in details)
         {
@@ -133,15 +132,13 @@ public static partial class Converter
         ConversionContext context,
         Table table,
         HashSet<string> reservedColumnNames,
-        IEnumerable<BusinessColumnMemberSpec> members,
-        string idCategory)
+        IEnumerable<BusinessColumnMemberSpec> members)
     {
         foreach (var member in members.OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
             AddBusinessTypedColumn(
                 context,
                 table,
-                $"{table.Id}:Column:{idCategory}:{member.Id}",
                 member.Name,
                 member.DataTypeId,
                 reservedColumnNames,

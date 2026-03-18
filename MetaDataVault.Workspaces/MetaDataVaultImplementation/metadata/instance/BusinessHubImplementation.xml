@@ -3,6 +3,7 @@
   <BusinessHubImplementationList>
     <BusinessHubImplementation Id="default-business-hub">
       <TableNamePattern>BH_{Name}</TableNamePattern>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
       <HashKeyLength>16</HashKeyLength>

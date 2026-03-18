@@ -29,14 +29,12 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"BusinessPointInTime:{pointInTime.Id}",
                 ApplyPattern(businessPointInTimeImplementation.TableNamePattern, ("Name", pointInTime.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var parentHashKeyColumn = AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:ParentHashKey",
                 businessPointInTimeImplementation.ParentHashKeyColumnName,
                 businessPointInTimeImplementation.ParentHashKeyDataTypeId,
                 "false",
@@ -46,7 +44,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:SnapshotTimestamp",
                 businessPointInTimeImplementation.SnapshotTimestampColumnName,
                 businessPointInTimeImplementation.SnapshotTimestampDataTypeId,
                 "false",
@@ -65,14 +62,13 @@ public static partial class Converter
                         detail => detail.Name,
                         detail => detail.Value)));
 
-            AddOrderedBusinessMembers(context, table, reservedColumnNames, stampMembers, "Stamp");
+            AddOrderedBusinessMembers(context, table, reservedColumnNames, stampMembers);
 
             foreach (var hubSatellite in GetGroup(businessPointInTimeHubSatellitesByPointInTimeId, pointInTime.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
             {
                 AddImplementationColumn(
                     context,
                     table,
-                    $"{table.Id}:Column:HubSatelliteRef:{hubSatellite.Id}",
                     ApplyPattern(businessPointInTimeImplementation.SatelliteReferenceColumnNamePattern, ("SatelliteName", hubSatellite.BusinessHubSatellite.Name)),
                     businessPointInTimeImplementation.SatelliteReferenceDataTypeId,
                     "false",
@@ -85,7 +81,6 @@ public static partial class Converter
                 AddImplementationColumn(
                     context,
                     table,
-                    $"{table.Id}:Column:LinkSatelliteRef:{linkSatellite.Id}",
                     ApplyPattern(businessPointInTimeImplementation.SatelliteReferenceColumnNamePattern, ("SatelliteName", linkSatellite.BusinessLinkSatellite.Name)),
                     businessPointInTimeImplementation.SatelliteReferenceDataTypeId,
                     "false",
@@ -96,7 +91,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 businessPointInTimeImplementation.AuditIdColumnName,
                 businessPointInTimeImplementation.AuditIdDataTypeId,
                 "false",
@@ -108,8 +102,10 @@ public static partial class Converter
                 AddForeignKey(
                     context,
                     table,
-                    $"{table.Id}:ForeignKey:AnchorHub",
-                    $"FK_{table.Name}_{parentHubTable.Name}",
+                    ApplyPattern(
+                        businessPointInTimeImplementation.AnchorHubForeignKeyNamePattern,
+                        ("TableName", table.Name),
+                        ("ParentTableName", parentHubTable.Name)),
                     parentHubTable,
                     new[] { (parentHashKeyColumn, parentHubHashKey) });
             }
@@ -119,14 +115,12 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"BusinessBridge:{bridge.Id}",
                 ApplyPattern(businessBridgeImplementation.TableNamePattern, ("Name", bridge.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var rootHashKeyColumn = AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RootHashKey",
                 businessBridgeImplementation.RootHashKeyColumnName,
                 businessBridgeImplementation.RootHashKeyDataTypeId,
                 "false",
@@ -136,7 +130,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RelatedHashKey",
                 businessBridgeImplementation.RelatedHashKeyColumnName,
                 businessBridgeImplementation.RelatedHashKeyDataTypeId,
                 "false",
@@ -146,7 +139,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:Depth",
                 businessBridgeImplementation.DepthColumnName,
                 businessBridgeImplementation.DepthDataTypeId,
                 "false",
@@ -155,7 +147,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:Path",
                 businessBridgeImplementation.PathColumnName,
                 businessBridgeImplementation.PathDataTypeId,
                 "false",
@@ -165,7 +156,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:EffectiveFrom",
                 businessBridgeImplementation.EffectiveFromColumnName,
                 businessBridgeImplementation.EffectiveFromDataTypeId,
                 "false",
@@ -175,7 +165,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:EffectiveTo",
                 businessBridgeImplementation.EffectiveToColumnName,
                 businessBridgeImplementation.EffectiveToDataTypeId,
                 "false",
@@ -218,12 +207,11 @@ public static partial class Converter
                                 detail => detail.Name,
                                 detail => detail.Value))));
 
-            AddOrderedBusinessMembers(context, table, reservedColumnNames, members, "Projection");
+            AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
 
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 businessBridgeImplementation.AuditIdColumnName,
                 businessBridgeImplementation.AuditIdDataTypeId,
                 "false",
@@ -235,8 +223,10 @@ public static partial class Converter
                 AddForeignKey(
                     context,
                     table,
-                    $"{table.Id}:ForeignKey:AnchorHub",
-                    $"FK_{table.Name}_{anchorHubTable.Name}",
+                    ApplyPattern(
+                        businessBridgeImplementation.AnchorHubForeignKeyNamePattern,
+                        ("TableName", table.Name),
+                        ("ParentTableName", anchorHubTable.Name)),
                     anchorHubTable,
                     new[] { (rootHashKeyColumn, anchorHubHashKey) });
             }

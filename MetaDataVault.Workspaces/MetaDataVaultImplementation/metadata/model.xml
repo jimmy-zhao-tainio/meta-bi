@@ -4,6 +4,7 @@
     <Entity name="RawHubImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
         <Property name="HashKeyLength" />
@@ -20,6 +21,8 @@
     <Entity name="RawLinkImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="HubForeignKeyNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
         <Property name="HashKeyLength" />
@@ -37,6 +40,7 @@
     <Entity name="RawHubSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
@@ -56,6 +60,7 @@
     <Entity name="RawLinkSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
@@ -75,6 +80,7 @@
     <Entity name="BusinessHubImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
         <Property name="HashKeyLength" />
@@ -91,6 +97,8 @@
     <Entity name="BusinessLinkImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="HubForeignKeyNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
         <Property name="HashKeyLength" />
@@ -108,6 +116,9 @@
     <Entity name="BusinessSameAsLinkImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="PrimaryHubForeignKeyNamePattern" />
+        <Property name="EquivalentHubForeignKeyNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
         <Property name="HashKeyLength" />
@@ -126,6 +137,9 @@
     <Entity name="BusinessHierarchicalLinkImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="ParentHubForeignKeyNamePattern" />
+        <Property name="ChildHubForeignKeyNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
         <Property name="HashKeyLength" />
@@ -144,6 +158,7 @@
     <Entity name="BusinessReferenceImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
         <Property name="HashKeyLength" />
@@ -159,6 +174,7 @@
     </Entity>    <Entity name="BusinessHubSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
@@ -178,6 +194,7 @@
     <Entity name="BusinessReferenceSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
@@ -196,6 +213,7 @@
     </Entity>    <Entity name="BusinessLinkSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
@@ -215,6 +233,7 @@
     <Entity name="BusinessSameAsLinkSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
@@ -234,6 +253,7 @@
     <Entity name="BusinessHierarchicalLinkSatelliteImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="ParentForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
@@ -253,6 +273,7 @@
     <Entity name="BusinessPointInTimeImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="AnchorHubForeignKeyNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
         <Property name="ParentHashKeyLength" />
@@ -269,6 +290,7 @@
     <Entity name="BusinessBridgeImplementation">
       <PropertyList>
         <Property name="TableNamePattern" />
+        <Property name="AnchorHubForeignKeyNamePattern" />
         <Property name="RootHashKeyColumnName" />
         <Property name="RootHashKeyDataTypeId" />
         <Property name="RootHashKeyLength" />

@@ -21,14 +21,12 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"BusinessLink:{link.Id}",
                 ApplyPattern(businessLinkImplementation.TableNamePattern, ("Name", link.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var hashKeyColumn = AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:HashKey",
                 businessLinkImplementation.HashKeyColumnName,
                 businessLinkImplementation.HashKeyDataTypeId,
                 "false",
@@ -40,7 +38,6 @@ public static partial class Converter
                 var endHashKeyColumn = AddImplementationColumn(
                     context,
                     table,
-                    $"{table.Id}:Column:EndHashKey:{linkHub.Id}",
                     ApplyPattern(businessLinkImplementation.EndHashKeyColumnPattern, ("RoleName", linkHub.RoleName)),
                     businessHubImplementation.HashKeyDataTypeId,
                     "false",
@@ -53,8 +50,11 @@ public static partial class Converter
                     AddForeignKey(
                         context,
                         table,
-                        $"{table.Id}:ForeignKey:Hub:{linkHub.Id}",
-                        $"FK_{table.Name}_{targetHubTable.Name}_{endHashKeyColumn.Name}",
+                        ApplyPattern(
+                            businessLinkImplementation.HubForeignKeyNamePattern,
+                            ("TableName", table.Name),
+                            ("TargetTableName", targetHubTable.Name),
+                            ("SourceColumnName", endHashKeyColumn.Name)),
                         targetHubTable,
                         new[] { (endHashKeyColumn, targetHubHashKey) });
                 }
@@ -63,7 +63,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:LoadTimestamp",
                 businessLinkImplementation.LoadTimestampColumnName,
                 businessLinkImplementation.LoadTimestampDataTypeId,
                 "false",
@@ -73,7 +72,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RecordSource",
                 businessLinkImplementation.RecordSourceColumnName,
                 businessLinkImplementation.RecordSourceDataTypeId,
                 "false",
@@ -83,13 +81,12 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 businessLinkImplementation.AuditIdColumnName,
                 businessLinkImplementation.AuditIdDataTypeId,
                 "false",
                 reservedColumnNames);
 
-            AddPrimaryKey(context, table, $"{table.Id}:PrimaryKey", $"PK_{table.Name}", hashKeyColumn);
+            AddPrimaryKey(context, table, ApplyPattern(businessLinkImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)), hashKeyColumn);
 
             linkTablesByLinkId[link.Id] = table;
             linkHashKeyColumnsByLinkId[link.Id] = hashKeyColumn;
@@ -111,7 +108,6 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"BusinessLinkSatellite:{satellite.Id}",
                 ApplyPattern(
                     businessLinkSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessLink.Name),
@@ -121,7 +117,6 @@ public static partial class Converter
             var parentHashKeyColumn = AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:ParentHashKey",
                 businessLinkSatelliteImplementation.ParentHashKeyColumnName,
                 businessLinkSatelliteImplementation.ParentHashKeyDataTypeId,
                 "false",
@@ -152,12 +147,11 @@ public static partial class Converter
                                 detail => detail.Name,
                                 detail => detail.Value))));
 
-            AddOrderedBusinessMembers(context, table, reservedColumnNames, members, "Member");
+            AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
 
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:HashDiff",
                 businessLinkSatelliteImplementation.HashDiffColumnName,
                 businessLinkSatelliteImplementation.HashDiffDataTypeId,
                 "false",
@@ -167,7 +161,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:LoadTimestamp",
                 businessLinkSatelliteImplementation.LoadTimestampColumnName,
                 businessLinkSatelliteImplementation.LoadTimestampDataTypeId,
                 "false",
@@ -177,7 +170,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RecordSource",
                 businessLinkSatelliteImplementation.RecordSourceColumnName,
                 businessLinkSatelliteImplementation.RecordSourceDataTypeId,
                 "false",
@@ -187,7 +179,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 businessLinkSatelliteImplementation.AuditIdColumnName,
                 businessLinkSatelliteImplementation.AuditIdDataTypeId,
                 "false",
@@ -199,8 +190,10 @@ public static partial class Converter
                 AddForeignKey(
                     context,
                     table,
-                    $"{table.Id}:ForeignKey:ParentLink",
-                    $"FK_{table.Name}_{parentTable.Name}",
+                    ApplyPattern(
+                        businessLinkSatelliteImplementation.ParentForeignKeyNamePattern,
+                        ("TableName", table.Name),
+                        ("ParentTableName", parentTable.Name)),
                     parentTable,
                     new[] { (parentHashKeyColumn, parentHashKeyTarget) });
             }

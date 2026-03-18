@@ -81,14 +81,14 @@ public static partial class Converter
 
         var database = new Database
         {
-            Id = $"Database:{databaseName}",
+            Id = databaseName,
             Name = databaseName,
             Platform = "sqlserver",
         };
 
         var schema = new Schema
         {
-            Id = $"Schema:{defaultSchemaName}",
+            Id = $"{database.Id}.{defaultSchemaName}",
             Name = defaultSchemaName,
             DatabaseId = database.Id,
             Database = database,

@@ -11,6 +11,7 @@ namespace MetaDataVaultImplementation
         public string LoadTimestampColumnName { get; set; } = string.Empty;
         public string LoadTimestampDataTypeId { get; set; } = string.Empty;
         public string LoadTimestampPrecision { get; set; } = string.Empty;
+        public string ParentForeignKeyNamePattern { get; set; } = string.Empty;
         public string ParentHashKeyColumnName { get; set; } = string.Empty;
         public string ParentHashKeyDataTypeId { get; set; } = string.Empty;
         public string ParentHashKeyLength { get; set; } = string.Empty;

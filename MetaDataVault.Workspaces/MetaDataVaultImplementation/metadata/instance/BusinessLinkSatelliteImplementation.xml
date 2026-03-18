@@ -3,6 +3,7 @@
   <BusinessLinkSatelliteImplementationList>
     <BusinessLinkSatelliteImplementation Id="default-business-link-satellite">
       <TableNamePattern>BLS_{ParentName}_{Name}</TableNamePattern>
+      <ParentForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</ParentForeignKeyNamePattern>
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
       <ParentHashKeyLength>16</ParentHashKeyLength>

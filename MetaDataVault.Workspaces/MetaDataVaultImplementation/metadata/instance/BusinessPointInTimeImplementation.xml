@@ -3,6 +3,7 @@
   <BusinessPointInTimeImplementationList>
     <BusinessPointInTimeImplementation Id="default-business-pit">
       <TableNamePattern>PIT_{Name}</TableNamePattern>
+      <AnchorHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</AnchorHubForeignKeyNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
       <ParentHashKeyLength>16</ParentHashKeyLength>

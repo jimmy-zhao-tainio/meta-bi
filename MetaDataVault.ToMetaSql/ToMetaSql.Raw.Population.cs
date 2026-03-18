@@ -32,17 +32,15 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"RawHub:{hub.Id}",
                 ApplyPattern(rawHubImplementation.TableNamePattern, ("Name", hub.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var hashKeyColumn = AddColumn(
                 context,
                 table,
-                $"{table.Id}:Column:HashKey",
                 rawHubImplementation.HashKeyColumnName,
                 rawHubImplementation.HashKeyDataTypeId,
-                isNullable: "false",
+                "false",
                 reservedColumnNames);
             AddDetail(context, hashKeyColumn, "Length", rawHubImplementation.HashKeyLength);
 
@@ -51,7 +49,6 @@ public static partial class Converter
                 AddSourceFieldColumn(
                     context,
                     table,
-                    $"{table.Id}:Column:KeyPart:{keyPart.Id}",
                     keyPart.SourceField,
                     reservedColumnNames,
                     sourceFieldDetailsByFieldId);
@@ -60,7 +57,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:LoadTimestamp",
                 rawHubImplementation.LoadTimestampColumnName,
                 rawHubImplementation.LoadTimestampDataTypeId,
                 "false",
@@ -70,7 +66,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RecordSource",
                 rawHubImplementation.RecordSourceColumnName,
                 rawHubImplementation.RecordSourceDataTypeId,
                 "false",
@@ -80,7 +75,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 rawHubImplementation.AuditIdColumnName,
                 rawHubImplementation.AuditIdDataTypeId,
                 "false",
@@ -89,8 +83,7 @@ public static partial class Converter
             AddPrimaryKey(
                 context,
                 table,
-                $"{table.Id}:PrimaryKey",
-                $"PK_{table.Name}",
+                ApplyPattern(rawHubImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)),
                 hashKeyColumn);
 
             hubTablesByHub[hub] = table;
@@ -101,7 +94,6 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"RawHubSatellite:{satellite.Id}",
                 ApplyPattern(
                     rawHubSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.RawHub.Name),
@@ -111,7 +103,6 @@ public static partial class Converter
             var parentHashKeyColumn = AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:ParentHashKey",
                 rawHubSatelliteImplementation.ParentHashKeyColumnName,
                 rawHubSatelliteImplementation.ParentHashKeyDataTypeId,
                 "false",
@@ -123,7 +114,6 @@ public static partial class Converter
                 AddSourceFieldColumn(
                     context,
                     table,
-                    $"{table.Id}:Column:Attribute:{attribute.Id}",
                     attribute.SourceField,
                     reservedColumnNames,
                     sourceFieldDetailsByFieldId);
@@ -132,7 +122,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:HashDiff",
                 rawHubSatelliteImplementation.HashDiffColumnName,
                 rawHubSatelliteImplementation.HashDiffDataTypeId,
                 "false",
@@ -142,7 +131,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:LoadTimestamp",
                 rawHubSatelliteImplementation.LoadTimestampColumnName,
                 rawHubSatelliteImplementation.LoadTimestampDataTypeId,
                 "false",
@@ -152,7 +140,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RecordSource",
                 rawHubSatelliteImplementation.RecordSourceColumnName,
                 rawHubSatelliteImplementation.RecordSourceDataTypeId,
                 "false",
@@ -162,7 +149,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 rawHubSatelliteImplementation.AuditIdColumnName,
                 rawHubSatelliteImplementation.AuditIdDataTypeId,
                 "false",
@@ -174,8 +160,10 @@ public static partial class Converter
                 AddForeignKey(
                     context,
                     table,
-                    $"{table.Id}:ForeignKey:ParentHub",
-                    $"FK_{table.Name}_{parentTable.Name}",
+                    ApplyPattern(
+                        rawHubSatelliteImplementation.ParentForeignKeyNamePattern,
+                        ("TableName", table.Name),
+                        ("ParentTableName", parentTable.Name)),
                     parentTable,
                     new[] { (parentHashKeyColumn, parentHashKeyTarget) });
             }
@@ -185,17 +173,15 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"RawLink:{link.Id}",
                 ApplyPattern(rawLinkImplementation.TableNamePattern, ("Name", link.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var hashKeyColumn = AddColumn(
                 context,
                 table,
-                $"{table.Id}:Column:HashKey",
                 rawLinkImplementation.HashKeyColumnName,
                 rawLinkImplementation.HashKeyDataTypeId,
-                isNullable: "false",
+                "false",
                 reservedColumnNames);
             AddDetail(context, hashKeyColumn, "Length", rawLinkImplementation.HashKeyLength);
 
@@ -204,7 +190,6 @@ public static partial class Converter
                 var endHashKeyColumn = AddImplementationColumn(
                     context,
                     table,
-                    $"{table.Id}:Column:EndHashKey:{linkHub.Id}",
                     ApplyPattern(rawLinkImplementation.EndHashKeyColumnPattern, ("RoleName", linkHub.RoleName)),
                     rawHubImplementation.HashKeyDataTypeId,
                     "false",
@@ -217,8 +202,11 @@ public static partial class Converter
                     AddForeignKey(
                         context,
                         table,
-                        $"{table.Id}:ForeignKey:Hub:{linkHub.Id}",
-                        $"FK_{table.Name}_{targetHubTable.Name}_{endHashKeyColumn.Name}",
+                        ApplyPattern(
+                            rawLinkImplementation.HubForeignKeyNamePattern,
+                            ("TableName", table.Name),
+                            ("TargetTableName", targetHubTable.Name),
+                            ("SourceColumnName", endHashKeyColumn.Name)),
                         targetHubTable,
                         new[] { (endHashKeyColumn, targetHubHashKey) });
                 }
@@ -227,7 +215,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:LoadTimestamp",
                 rawLinkImplementation.LoadTimestampColumnName,
                 rawLinkImplementation.LoadTimestampDataTypeId,
                 "false",
@@ -237,7 +224,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RecordSource",
                 rawLinkImplementation.RecordSourceColumnName,
                 rawLinkImplementation.RecordSourceDataTypeId,
                 "false",
@@ -247,7 +233,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 rawLinkImplementation.AuditIdColumnName,
                 rawLinkImplementation.AuditIdDataTypeId,
                 "false",
@@ -256,8 +241,7 @@ public static partial class Converter
             AddPrimaryKey(
                 context,
                 table,
-                $"{table.Id}:PrimaryKey",
-                $"PK_{table.Name}",
+                ApplyPattern(rawLinkImplementation.PrimaryKeyNamePattern, ("TableName", table.Name)),
                 hashKeyColumn);
 
             linkTablesByLink[link] = table;
@@ -268,7 +252,6 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
-                $"RawLinkSatellite:{satellite.Id}",
                 ApplyPattern(
                     rawLinkSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.RawLink.Name),
@@ -278,7 +261,6 @@ public static partial class Converter
             var parentHashKeyColumn = AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:ParentHashKey",
                 rawLinkSatelliteImplementation.ParentHashKeyColumnName,
                 rawLinkSatelliteImplementation.ParentHashKeyDataTypeId,
                 "false",
@@ -290,7 +272,6 @@ public static partial class Converter
                 AddSourceFieldColumn(
                     context,
                     table,
-                    $"{table.Id}:Column:Attribute:{attribute.Id}",
                     attribute.SourceField,
                     reservedColumnNames,
                     sourceFieldDetailsByFieldId);
@@ -299,7 +280,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:HashDiff",
                 rawLinkSatelliteImplementation.HashDiffColumnName,
                 rawLinkSatelliteImplementation.HashDiffDataTypeId,
                 "false",
@@ -309,7 +289,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:LoadTimestamp",
                 rawLinkSatelliteImplementation.LoadTimestampColumnName,
                 rawLinkSatelliteImplementation.LoadTimestampDataTypeId,
                 "false",
@@ -319,7 +298,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:RecordSource",
                 rawLinkSatelliteImplementation.RecordSourceColumnName,
                 rawLinkSatelliteImplementation.RecordSourceDataTypeId,
                 "false",
@@ -329,7 +307,6 @@ public static partial class Converter
             AddImplementationColumn(
                 context,
                 table,
-                $"{table.Id}:Column:AuditId",
                 rawLinkSatelliteImplementation.AuditIdColumnName,
                 rawLinkSatelliteImplementation.AuditIdDataTypeId,
                 "false",
@@ -341,8 +318,10 @@ public static partial class Converter
                 AddForeignKey(
                     context,
                     table,
-                    $"{table.Id}:ForeignKey:ParentLink",
-                    $"FK_{table.Name}_{parentTable.Name}",
+                    ApplyPattern(
+                        rawLinkSatelliteImplementation.ParentForeignKeyNamePattern,
+                        ("TableName", table.Name),
+                        ("ParentTableName", parentTable.Name)),
                     parentTable,
                     new[] { (parentHashKeyColumn, parentHashKeyTarget) });
             }
@@ -360,8 +339,11 @@ public static partial class Converter
         return rows[0];
     }
 
-    private static Table AddTable(ConversionContext context, string id, string name)
+    private static Table AddTable(ConversionContext context, string name)
     {
+        var id = $"{context.DefaultSchema.Id}.{name}";
+        EnsureUniqueId(context.MetaSql.TableList.Select(row => row.Id), id, "table");
+
         var table = new Table
         {
             Id = id,
@@ -377,7 +359,6 @@ public static partial class Converter
     private static TableColumn AddSourceFieldColumn(
         ConversionContext context,
         Table table,
-        string id,
         SourceField sourceField,
         HashSet<string> reservedColumnNames,
         IReadOnlyDictionary<string, List<SourceFieldDataTypeDetail>> sourceFieldDetailsByFieldId)
@@ -385,7 +366,6 @@ public static partial class Converter
         var column = AddColumn(
             context,
             table,
-            id,
             sourceField.Name,
             sourceField.DataTypeId,
             sourceField.IsNullable,
@@ -402,7 +382,6 @@ public static partial class Converter
     private static TableColumn AddImplementationColumn(
         ConversionContext context,
         Table table,
-        string id,
         string name,
         string metaDataTypeId,
         string isNullable,
@@ -412,7 +391,6 @@ public static partial class Converter
         var column = AddColumn(
             context,
             table,
-            id,
             name,
             metaDataTypeId,
             isNullable,
@@ -429,13 +407,14 @@ public static partial class Converter
     private static TableColumn AddColumn(
         ConversionContext context,
         Table table,
-        string id,
         string requestedName,
         string metaDataTypeId,
         string isNullable,
         HashSet<string> reservedColumnNames)
     {
         var actualName = ReserveColumnName(reservedColumnNames, requestedName);
+        var id = $"{table.Id}.{actualName}";
+        EnsureUniqueId(context.MetaSql.TableColumnList.Select(row => row.Id), id, "table column");
         var ordinal = (context.MetaSql.TableColumnList.Count(row => ReferenceEquals(row.Table, table)) + 1).ToString(CultureInfo.InvariantCulture);
 
         var column = new TableColumn
@@ -462,7 +441,7 @@ public static partial class Converter
 
         context.MetaSql.TableColumnDataTypeDetailList.Add(new TableColumnDataTypeDetail
         {
-            Id = $"{tableColumn.Id}:Detail:{name}",
+            Id = $"{tableColumn.Id}.detail.{name}",
             Name = name,
             Value = value,
             TableColumnId = tableColumn.Id,
@@ -473,10 +452,12 @@ public static partial class Converter
     private static void AddPrimaryKey(
         ConversionContext context,
         Table table,
-        string id,
         string name,
         TableColumn tableColumn)
     {
+        var id = $"{table.Id}.pk.{name}";
+        EnsureUniqueId(context.MetaSql.PrimaryKeyList.Select(row => row.Id), id, "primary key");
+
         var primaryKey = new PrimaryKey
         {
             Id = id,
@@ -487,7 +468,7 @@ public static partial class Converter
         context.MetaSql.PrimaryKeyList.Add(primaryKey);
         context.MetaSql.PrimaryKeyColumnList.Add(new PrimaryKeyColumn
         {
-            Id = $"{id}:Column:{tableColumn.Id}",
+            Id = $"{id}.column.1",
             PrimaryKeyId = primaryKey.Id,
             PrimaryKey = primaryKey,
             TableColumnId = tableColumn.Id,
@@ -499,11 +480,13 @@ public static partial class Converter
     private static void AddForeignKey(
         ConversionContext context,
         Table sourceTable,
-        string id,
         string name,
         Table targetTable,
         IEnumerable<(TableColumn SourceColumn, TableColumn TargetColumn)> columnPairs)
     {
+        var id = $"{sourceTable.Id}.fk.{name}";
+        EnsureUniqueId(context.MetaSql.ForeignKeyList.Select(row => row.Id), id, "foreign key");
+
         var foreignKey = new ForeignKey
         {
             Id = id,
@@ -520,7 +503,7 @@ public static partial class Converter
         {
             context.MetaSql.ForeignKeyColumnList.Add(new ForeignKeyColumn
             {
-                Id = $"{id}:Column:{ordinal}",
+                Id = $"{id}.column.{ordinal}",
                 ForeignKeyId = foreignKey.Id,
                 ForeignKey = foreignKey,
                 SourceColumnId = sourceColumn.Id,
@@ -542,6 +525,14 @@ public static partial class Converter
         }
 
         return actualName;
+    }
+
+    private static void EnsureUniqueId(IEnumerable<string> existingIds, string id, string logicalName)
+    {
+        if (existingIds.Contains(id, StringComparer.Ordinal))
+        {
+            throw new InvalidOperationException($"Projected {logicalName} id '{id}' is duplicated. The physical naming contract is not unique.");
+        }
     }
 
     private static string ApplyPattern(string pattern, params (string Token, string Value)[] replacements)

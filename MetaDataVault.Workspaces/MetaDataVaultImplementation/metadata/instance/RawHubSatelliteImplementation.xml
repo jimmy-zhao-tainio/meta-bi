@@ -3,6 +3,7 @@
   <RawHubSatelliteImplementationList>
     <RawHubSatelliteImplementation Id="default-raw-hub-satellite">
       <TableNamePattern>HS_{ParentName}_{Name}</TableNamePattern>
+      <ParentForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</ParentForeignKeyNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
       <ParentHashKeyLength>16</ParentHashKeyLength>

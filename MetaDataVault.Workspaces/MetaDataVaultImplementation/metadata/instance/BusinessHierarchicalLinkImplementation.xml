@@ -3,6 +3,9 @@
   <BusinessHierarchicalLinkImplementationList>
     <BusinessHierarchicalLinkImplementation Id="default-business-hierarchical-link">
       <TableNamePattern>BHAL_{Name}</TableNamePattern>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
+      <ParentHubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</ParentHubForeignKeyNamePattern>
+      <ChildHubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</ChildHubForeignKeyNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
       <HashKeyLength>16</HashKeyLength>

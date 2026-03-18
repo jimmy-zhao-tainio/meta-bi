@@ -3,6 +3,8 @@
   <BusinessLinkImplementationList>
     <BusinessLinkImplementation Id="default-business-link">
       <TableNamePattern>BL_{Name}</TableNamePattern>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
+      <HubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</HubForeignKeyNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
       <HashKeyLength>16</HashKeyLength>

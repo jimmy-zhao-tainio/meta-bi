@@ -6,6 +6,7 @@ namespace MetaDataVaultImplementation
         public string AuditIdColumnName { get; set; } = string.Empty;
         public string AuditIdDataTypeId { get; set; } = string.Empty;
         public string EquivalentHashKeyColumnName { get; set; } = string.Empty;
+        public string EquivalentHubForeignKeyNamePattern { get; set; } = string.Empty;
         public string HashKeyColumnName { get; set; } = string.Empty;
         public string HashKeyDataTypeId { get; set; } = string.Empty;
         public string HashKeyLength { get; set; } = string.Empty;
@@ -13,6 +14,8 @@ namespace MetaDataVaultImplementation
         public string LoadTimestampDataTypeId { get; set; } = string.Empty;
         public string LoadTimestampPrecision { get; set; } = string.Empty;
         public string PrimaryHashKeyColumnName { get; set; } = string.Empty;
+        public string PrimaryHubForeignKeyNamePattern { get; set; } = string.Empty;
+        public string PrimaryKeyNamePattern { get; set; } = string.Empty;
         public string RecordSourceColumnName { get; set; } = string.Empty;
         public string RecordSourceDataTypeId { get; set; } = string.Empty;
         public string RecordSourceLength { get; set; } = string.Empty;

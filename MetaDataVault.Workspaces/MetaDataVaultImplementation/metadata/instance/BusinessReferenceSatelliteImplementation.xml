@@ -3,6 +3,7 @@
   <BusinessReferenceSatelliteImplementationList>
     <BusinessReferenceSatelliteImplementation Id="default-business-reference-satellite">
       <TableNamePattern>RSAT_{ParentName}_{Name}</TableNamePattern>
+      <ParentForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</ParentForeignKeyNamePattern>
       <ParentHashKeyColumnName>ReferenceHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
       <ParentHashKeyLength>16</ParentHashKeyLength>

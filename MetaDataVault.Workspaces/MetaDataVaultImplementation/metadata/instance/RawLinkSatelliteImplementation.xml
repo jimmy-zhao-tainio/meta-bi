@@ -3,6 +3,7 @@
   <RawLinkSatelliteImplementationList>
     <RawLinkSatelliteImplementation Id="default-raw-link-satellite">
       <TableNamePattern>LS_{ParentName}_{Name}</TableNamePattern>
+      <ParentForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</ParentForeignKeyNamePattern>
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
       <ParentHashKeyLength>16</ParentHashKeyLength>
