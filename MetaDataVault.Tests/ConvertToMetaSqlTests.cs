@@ -1,4 +1,5 @@
 using MetaDataVault.ToMetaSql;
+using MetaBusinessDataVault;
 using MetaRawDataVault;
 using Meta.Core.Services;
 
@@ -452,6 +453,159 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => string.Equals(row.Values["Name"], "BH_Customer", StringComparison.Ordinal));
             Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => string.Equals(row.Values["Name"], "PIT_CustomerSnapshot", StringComparison.Ordinal));
             Assert.Contains(reloaded.Instance.GetOrCreateEntityRecords("Table"), row => row.Id == "BusinessVault.bdv.BH_Customer");
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_LowersBusinessLogicalTypesToSanctionedSqlServerTypes()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
+
+        try
+        {
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BH_Customer").Id, "Identifier").Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BHS_Customer_Profile").Id, "CustomerName").Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BLS_CustomerOrder_Status").Id, "StatusCode").Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "REF_Status").Id, "StatusCode").Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "RSAT_Status_Current").Id, "StatusName").Values["MetaDataTypeId"]);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_BusinessLogicalTypesUseSanctionedStaticTypeConversionInstance()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
+
+        try
+        {
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BH_Customer").Id, "Identifier").Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BHS_Customer_Profile").Id, "CustomerName").Values["MetaDataTypeId"]);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_BusinessPhysicalSqlServerTypesDoNotRequireConversionWorkspace()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(sourceWorkspacePath, searchUpward: false);
+
+            foreach (var row in model.BusinessHubKeyPartList)
+            {
+                row.DataTypeId = "sqlserver:type:nvarchar";
+            }
+
+            foreach (var row in model.BusinessHubSatelliteAttributeList)
+            {
+                row.DataTypeId = "sqlserver:type:nvarchar";
+            }
+
+            foreach (var row in model.BusinessLinkSatelliteAttributeList)
+            {
+                row.DataTypeId = "sqlserver:type:nvarchar";
+            }
+
+            foreach (var row in model.BusinessReferenceKeyPartList)
+            {
+                row.DataTypeId = "sqlserver:type:nvarchar";
+            }
+
+            foreach (var row in model.BusinessReferenceSatelliteAttributeList)
+            {
+                row.DataTypeId = "sqlserver:type:nvarchar";
+            }
+
+            foreach (var row in model.BusinessPointInTimeStampList)
+            {
+                row.DataTypeId = "sqlserver:type:nvarchar";
+            }
+
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BH_Customer").Id, "Identifier").Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BHS_Customer_Profile").Id, "CustomerName").Values["MetaDataTypeId"]);
+            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BLS_CustomerOrder_Status").Id, "StatusCode").Values["MetaDataTypeId"]);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_BusinessFailsWhenLogicalTypeHasNoSanctionedDirectSqlServerLowering()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(sourceWorkspacePath, searchUpward: false);
+            model.BusinessHubKeyPartList[0].DataTypeId = "meta:type:Xml";
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv"));
+
+            Assert.Contains("meta:type:Xml", error.Message, StringComparison.Ordinal);
+            Assert.Contains("no sanctioned direct SQL Server lowering", error.Message, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {

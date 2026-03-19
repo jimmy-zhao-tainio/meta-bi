@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MetaDataTypeConversion.Instance\MetaDataTypeConversion.Instance.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="..\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion\metadata\model.xml">
       <Link>Models\MetaDataTypeConversion.model.xml</Link>
       <LogicalName>MetaDataTypeConversion.Core.Models.MetaDataTypeConversion.model.xml</LogicalName>

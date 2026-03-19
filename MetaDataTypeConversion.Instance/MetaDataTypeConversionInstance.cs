@@ -1,17 +1,51 @@
-namespace MetaDataTypeConversion.Core;
+using MetaDataTypeConversion;
 
-internal static class MetaDataTypeConversionSeedData
+namespace MetaDataTypeConversion.Instance;
+
+public static class MetaDataTypeConversionInstance
 {
-    internal readonly record struct ConversionImplementationSeed(string Id, string Name, string? Description = null);
-    internal readonly record struct DataTypeMappingSeed(string Id, string SourceDataTypeId, string TargetDataTypeId, string ConversionImplementationId, string? Notes = null);
+    private static MetaDataTypeConversionModel CreateDefault()
+    {
+        var model = MetaDataTypeConversionModel.CreateEmpty();
 
-    public static readonly ConversionImplementationSeed[] ConversionImplementations =
+        foreach (var implementation in ConversionImplementations)
+        {
+            model.ConversionImplementationList.Add(new ConversionImplementation
+            {
+                Id = implementation.Id,
+                Name = implementation.Name,
+                Description = implementation.Description ?? string.Empty,
+            });
+        }
+
+        var implementationsById = model.ConversionImplementationList.ToDictionary(row => row.Id, StringComparer.Ordinal);
+
+        foreach (var mapping in DataTypeMappings)
+        {
+            model.DataTypeMappingList.Add(new DataTypeMapping
+            {
+                Id = mapping.Id,
+                SourceDataTypeId = mapping.SourceDataTypeId,
+                TargetDataTypeId = mapping.TargetDataTypeId,
+                ConversionImplementationId = mapping.ConversionImplementationId,
+                ConversionImplementation = implementationsById[mapping.ConversionImplementationId],
+                Notes = mapping.Notes ?? string.Empty,
+            });
+        }
+
+        return model;
+    }
+
+    private readonly record struct ConversionImplementationSeed(string Id, string Name, string? Description = null);
+    private readonly record struct DataTypeMappingSeed(string Id, string SourceDataTypeId, string TargetDataTypeId, string ConversionImplementationId, string? Notes = null);
+
+    private static readonly ConversionImplementationSeed[] ConversionImplementations =
     [
         new("MetaDataTypeConversion:implementation:direct", "Direct", "Direct sanctioned type mapping."),
         new("MetaDataTypeConversion:implementation:structural", "Structural", "Structural sanctioned type mapping for non-scalar types.")
     ];
 
-    public static readonly DataTypeMappingSeed[] DataTypeMappings =
+    private static readonly DataTypeMappingSeed[] DataTypeMappings =
     [
         new("MetaDataTypeConversion:mapping:sqlserver:char", "sqlserver:type:char", "meta:type:AnsiStringFixedLength", "MetaDataTypeConversion:implementation:direct"),
         new("MetaDataTypeConversion:mapping:sqlserver:varchar", "sqlserver:type:varchar", "meta:type:AnsiString", "MetaDataTypeConversion:implementation:direct"),
@@ -63,4 +97,6 @@ internal static class MetaDataTypeConversionSeedData
         new("MetaDataTypeConversion:mapping:meta:geography", "meta:type:geography", "sqlserver:type:geography", "MetaDataTypeConversion:implementation:structural"),
         new("MetaDataTypeConversion:mapping:meta:hierarchyid", "meta:type:hierarchyid", "sqlserver:type:hierarchyid", "MetaDataTypeConversion:implementation:structural")
     ];
+
+    public static MetaDataTypeConversionModel Default { get; } = CreateDefault();
 }

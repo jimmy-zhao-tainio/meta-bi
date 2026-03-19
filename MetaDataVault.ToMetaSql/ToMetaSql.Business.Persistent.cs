@@ -113,12 +113,29 @@ public static partial class Converter
         ConversionContext context,
         Table table,
         string name,
-        string metaDataTypeId,
+        string sourceMetaDataTypeId,
         HashSet<string> reservedColumnNames,
         IEnumerable<(string Name, string Value)> details,
         string isNullable = "")
     {
-        var column = AddColumn(context, table, name, metaDataTypeId, isNullable, reservedColumnNames);
+        if (string.IsNullOrWhiteSpace(sourceMetaDataTypeId))
+        {
+            throw new InvalidOperationException("Business column type id is required.");
+        }
+
+        var resolvedMetaDataTypeId = sourceMetaDataTypeId.StartsWith("sqlserver:type:", StringComparison.Ordinal)
+            ? sourceMetaDataTypeId
+            : context.BusinessTypeLowering?.LowerOrKeep(sourceMetaDataTypeId)
+              ?? throw new InvalidOperationException(
+                  $"Business logical type '{sourceMetaDataTypeId}' requires a sanctioned SQL Server lowering path.");
+
+        var column = AddColumn(
+            context,
+            table,
+            name,
+            resolvedMetaDataTypeId,
+            isNullable,
+            reservedColumnNames);
 
         foreach (var (detailName, detailValue) in details)
         {

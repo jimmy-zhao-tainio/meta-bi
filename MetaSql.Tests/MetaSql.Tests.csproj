@@ -18,7 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaDataTypeConversion.Instance\MetaDataTypeConversion.Instance.csproj" />
+    <ProjectReference Include="..\MetaDataVault.ToMetaSql\MetaDataVault.ToMetaSql.csproj" />
+    <ProjectReference Include="..\MetaDataVault.Tooling\MetaDataVault.Tooling.csproj" />
+    <ProjectReference Include="..\MetaSql.Core\MetaSql.Core.csproj" />
+    <ProjectReference Include="..\MetaSql.Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
+    <ProjectReference Include="..\MetaSql.Tooling\MetaSql.Tooling.csproj" />
   </ItemGroup>
 
 </Project>

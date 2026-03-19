@@ -1,4 +1,5 @@
 using Meta.Core.Domain;
+using MetaDataTypeConversion.Instance;
 
 namespace MetaDataTypeConversion.Core;
 
@@ -6,12 +7,7 @@ public static class MetaDataTypeConversionWorkspaces
 {
     public static Workspace CreateMetaDataTypeConversionWorkspace(string workspaceRootPath)
     {
-        var workspace = MetaDataTypeConversionWorkspaceFactory.CreateEmptyWorkspace(
-            workspaceRootPath,
-            MetaDataTypeConversionModels.CreateMetaDataTypeConversionModel());
-
-        MetaDataTypeConversionSeed.Populate(workspace.Instance);
-        return workspace;
+        return MetaDataTypeConversionInstance.Default.ToXmlWorkspace(workspaceRootPath);
     }
 
     public static Workspace CreateEmptyMetaDataTypeConversionWorkspace(string workspaceRootPath)

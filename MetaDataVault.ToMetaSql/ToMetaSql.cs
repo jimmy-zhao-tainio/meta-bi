@@ -1,6 +1,7 @@
 using Meta.Core.Domain;
 using Meta.Core.Services;
 using MetaDataVaultImplementation;
+using MetaDataTypeConversion.Instance;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
 using MetaSql;
@@ -45,22 +46,28 @@ public static partial class Converter
         var workspaceService = new WorkspaceService();
         var dataVaultWorkspace = await workspaceService.LoadAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
         var implementationModel = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(implementationWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
-        var context = CreateContext(
-            pathToNewMetaSqlWorkspace,
-            databaseName,
-            defaultSchemaName,
-            implementationModel);
 
         switch (dataVaultWorkspace.Model.Name)
         {
             case "MetaRawDataVault":
                 {
+                    var context = CreateContext(
+                        pathToNewMetaSqlWorkspace,
+                        databaseName,
+                        defaultSchemaName,
+                        implementationModel);
                     var rawModel = await MetaRawDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     return ConvertRaw(rawModel, context);
                 }
 
             case "MetaBusinessDataVault":
                 {
+                    var context = CreateContext(
+                        pathToNewMetaSqlWorkspace,
+                        databaseName,
+                        defaultSchemaName,
+                        implementationModel,
+                        SqlServerBusinessTypeLowering.Create(MetaDataTypeConversionInstance.Default));
                     var businessModel = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     return ConvertBusiness(businessModel, context);
                 }
@@ -75,7 +82,8 @@ public static partial class Converter
         string pathToNewMetaSqlWorkspace,
         string databaseName,
         string defaultSchemaName,
-        MetaDataVaultImplementationModel implementationModel)
+        MetaDataVaultImplementationModel implementationModel,
+        SqlServerBusinessTypeLowering? businessTypeLowering = null)
     {
         var metaSqlModel = MetaSqlModel.CreateEmpty();
 
@@ -103,6 +111,7 @@ public static partial class Converter
             DatabaseName = databaseName,
             DefaultSchemaName = defaultSchemaName,
             ImplementationModel = implementationModel,
+            BusinessTypeLowering = businessTypeLowering,
             MetaSql = metaSqlModel,
             Database = database,
             DefaultSchema = schema,

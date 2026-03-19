@@ -17,6 +17,10 @@
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\MetaDataVault.Core\MetaDataVault.Core.csproj" />
+    <ProjectReference Include="..\MetaDataVault.ToMetaSql\MetaDataVault.ToMetaSql.csproj" />
+    <ProjectReference Include="..\MetaSql.Core\MetaSql.Core.csproj" />
+    <ProjectReference Include="..\MetaSql.Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
+    <ProjectReference Include="..\MetaSql.Tooling\MetaSql.Tooling.csproj" />
     <ProjectReference Include="..\MetaSchema.Tooling\MetaSchema.Tooling.csproj" />
     <ProjectReference Include="..\MetaSchema.ToRawDataVault\MetaSchema.ToRawDataVault.csproj" />
   </ItemGroup>
