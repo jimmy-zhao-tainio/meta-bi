@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Tests", "MetaD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Tooling", "MetaDataType.Tooling\MetaDataType.Tooling.csproj", "{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Instance", "MetaDataType.Instance\MetaDataType.Instance.csproj", "{18A0FC42-3F1C-40E9-BCA4-90C3D7F4F745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,5 +37,9 @@ Global
 		{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C527A9E-52E7-4127-AEFE-B920E48F6CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18A0FC42-3F1C-40E9-BCA4-90C3D7F4F745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18A0FC42-3F1C-40E9-BCA4-90C3D7F4F745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18A0FC42-3F1C-40E9-BCA4-90C3D7F4F745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18A0FC42-3F1C-40E9-BCA4-90C3D7F4F745}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

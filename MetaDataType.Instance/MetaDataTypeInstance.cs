@@ -1,20 +1,57 @@
-namespace MetaDataType.Core;
+using MetaDataType;
 
-internal static class MetaDataTypeSeedData
+namespace MetaDataType.Instance;
+
+public static class MetaDataTypeInstance
 {
-    internal readonly record struct DataTypeSeed(string DataTypeSystem, string Name, string? Category);
+    private static MetaDataTypeModel CreateDefault()
+    {
+        var model = MetaDataTypeModel.CreateEmpty();
 
-    public static readonly string[] DataTypeSystems =
+        foreach (var system in DataTypeSystems)
+        {
+            model.DataTypeSystemList.Add(new DataTypeSystem
+            {
+                Id = BuildDataTypeSystemId(system.Name),
+                Name = system.Name,
+                Description = system.Description ?? string.Empty,
+            });
+        }
+
+        var dataTypeSystemsById = model.DataTypeSystemList.ToDictionary(row => row.Id, StringComparer.Ordinal);
+
+        foreach (var dataType in DataTypes)
+        {
+            var dataTypeSystemId = BuildDataTypeSystemId(dataType.DataTypeSystem);
+            model.DataTypeList.Add(new DataType
+            {
+                Id = BuildDataTypeId(dataType.DataTypeSystem, dataType.Name),
+                Name = dataType.Name,
+                Category = dataType.Category ?? string.Empty,
+                Description = dataType.Description ?? string.Empty,
+                IsCanonical = string.Equals(dataType.DataTypeSystem, "Meta", StringComparison.Ordinal) ? "true" : string.Empty,
+                DataTypeSystemId = dataTypeSystemId,
+                DataTypeSystem = dataTypeSystemsById[dataTypeSystemId],
+            });
+        }
+
+        return model;
+    }
+
+    private readonly record struct DataTypeSystemSeed(string Name, string? Description = null);
+    private readonly record struct DataTypeSeed(string DataTypeSystem, string Name, string? Category, string? Description = null);
+
+    private static readonly DataTypeSystemSeed[] DataTypeSystems =
     [
-        "Meta",
-        "SqlServer",
-        "Synapse",
-        "Snowflake",
-        "SSIS",
-        "CSharp",
+        new("Meta"),
+        new("SqlServer"),
+        new("Synapse"),
+        new("Snowflake"),
+        new("SSIS"),
+        new("CSharp"),
     ];
 
-    public static readonly DataTypeSeed[] DataTypes =
+    private static readonly DataTypeSeed[] DataTypes =
     [
         new("Meta", "String", "Text"),
         new("Meta", "AnsiString", "Text"),
@@ -129,4 +166,21 @@ internal static class MetaDataTypeSeedData
         new("CSharp", "byte[]", "Binary"),
         new("CSharp", "object", "Structured"),
     ];
+
+    public static MetaDataTypeModel Default { get; } = CreateDefault();
+
+    public static string BuildDataTypeSystemId(string dataTypeSystemName)
+    {
+        return NormalizeKey(dataTypeSystemName) + ":type-system";
+    }
+
+    public static string BuildDataTypeId(string dataTypeSystemName, string dataTypeName)
+    {
+        return NormalizeKey(dataTypeSystemName) + ":type:" + dataTypeName;
+    }
+
+    private static string NormalizeKey(string value)
+    {
+        return value.Trim().ToLowerInvariant();
+    }
 }

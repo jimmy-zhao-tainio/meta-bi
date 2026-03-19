@@ -17,4 +17,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MetaDataType.Instance\MetaDataType.Instance.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,3 +1,4 @@
+using MetaDataType;
 using MetaDataTypeConversion;
 
 namespace MetaDataVault.ToMetaSql;
@@ -5,24 +6,31 @@ namespace MetaDataVault.ToMetaSql;
 internal sealed class SqlServerBusinessTypeLowering
 {
     private const string DirectConversionImplementationId = "MetaDataTypeConversion:implementation:direct";
-    private const string SqlServerTypePrefix = "sqlserver:type:";
+    private const string SqlServerTypeSystemId = "sqlserver:type-system";
 
     private readonly IReadOnlyDictionary<string, string> _sqlServerTypesByLogicalTypeId;
+    private readonly IReadOnlyDictionary<string, DataType> _dataTypesById;
 
-    private SqlServerBusinessTypeLowering(IReadOnlyDictionary<string, string> sqlServerTypesByLogicalTypeId)
+    private SqlServerBusinessTypeLowering(
+        IReadOnlyDictionary<string, string> sqlServerTypesByLogicalTypeId,
+        IReadOnlyDictionary<string, DataType> dataTypesById)
     {
         _sqlServerTypesByLogicalTypeId = sqlServerTypesByLogicalTypeId;
+        _dataTypesById = dataTypesById;
     }
 
-    public static SqlServerBusinessTypeLowering Create(MetaDataTypeConversionModel model)
+    public static SqlServerBusinessTypeLowering Create(MetaDataTypeModel dataTypeModel, MetaDataTypeConversionModel conversionModel)
     {
-        ArgumentNullException.ThrowIfNull(model);
+        ArgumentNullException.ThrowIfNull(dataTypeModel);
+        ArgumentNullException.ThrowIfNull(conversionModel);
+
+        var dataTypesById = dataTypeModel.DataTypeList.ToDictionary(row => row.Id, StringComparer.Ordinal);
 
         var sqlServerTypesByLogicalTypeId = new Dictionary<string, string>(StringComparer.Ordinal);
 
-        foreach (var mapping in model.DataTypeMappingList
+        foreach (var mapping in conversionModel.DataTypeMappingList
                      .Where(row => string.Equals(row.ConversionImplementationId, DirectConversionImplementationId, StringComparison.Ordinal))
-                     .Where(row => row.TargetDataTypeId.StartsWith("sqlserver:type:", StringComparison.Ordinal)))
+                     .Where(row => IsSqlServerType(dataTypesById, row.TargetDataTypeId)))
         {
             if (sqlServerTypesByLogicalTypeId.TryGetValue(mapping.SourceDataTypeId, out var existingTargetDataTypeId))
             {
@@ -38,7 +46,7 @@ internal sealed class SqlServerBusinessTypeLowering
             sqlServerTypesByLogicalTypeId.Add(mapping.SourceDataTypeId, mapping.TargetDataTypeId);
         }
 
-        return new SqlServerBusinessTypeLowering(sqlServerTypesByLogicalTypeId);
+        return new SqlServerBusinessTypeLowering(sqlServerTypesByLogicalTypeId, dataTypesById);
     }
 
     public string LowerOrKeep(string sourceTypeId)
@@ -48,7 +56,13 @@ internal sealed class SqlServerBusinessTypeLowering
             throw new InvalidOperationException("Business column type id is required.");
         }
 
-        if (sourceTypeId.StartsWith(SqlServerTypePrefix, StringComparison.Ordinal))
+        if (!_dataTypesById.TryGetValue(sourceTypeId, out var sourceType))
+        {
+            throw new InvalidOperationException(
+                $"Business column type '{sourceTypeId}' is not sanctioned in MetaDataType.");
+        }
+
+        if (string.Equals(sourceType.DataTypeSystemId, SqlServerTypeSystemId, StringComparison.Ordinal))
         {
             return sourceTypeId;
         }
@@ -60,5 +74,15 @@ internal sealed class SqlServerBusinessTypeLowering
 
         throw new InvalidOperationException(
             $"Business logical type '{sourceTypeId}' has no sanctioned direct SQL Server lowering.");
+    }
+
+    private static bool IsSqlServerType(IReadOnlyDictionary<string, DataType> dataTypesById, string dataTypeId)
+    {
+        if (!dataTypesById.TryGetValue(dataTypeId, out var dataType))
+        {
+            return false;
+        }
+
+        return string.Equals(dataType.DataTypeSystemId, SqlServerTypeSystemId, StringComparison.Ordinal);
     }
 }

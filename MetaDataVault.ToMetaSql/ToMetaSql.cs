@@ -1,6 +1,7 @@
 using Meta.Core.Domain;
 using Meta.Core.Services;
 using MetaDataVaultImplementation;
+using MetaDataType.Instance;
 using MetaDataTypeConversion.Instance;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
@@ -67,7 +68,7 @@ public static partial class Converter
                         databaseName,
                         defaultSchemaName,
                         implementationModel,
-                        SqlServerBusinessTypeLowering.Create(MetaDataTypeConversionInstance.Default));
+                        SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
                     var businessModel = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     return ConvertBusiness(businessModel, context);
                 }

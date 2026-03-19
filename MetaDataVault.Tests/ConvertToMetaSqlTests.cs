@@ -613,6 +613,37 @@ public sealed class ConvertToMetaSqlTests
         }
     }
 
+    [Fact]
+    public async Task ConvertAsync_BusinessFailsWhenSqlServerTypedValueIsNotSanctionedInMetaDataType()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(sourceWorkspacePath, searchUpward: false);
+            model.BusinessHubKeyPartList[0].DataTypeId = "sqlserver:type:not-real";
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault",
+                defaultSchemaName: "bdv"));
+
+            Assert.Contains("sqlserver:type:not-real", error.Message, StringComparison.Ordinal);
+            Assert.Contains("not sanctioned in MetaDataType", error.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
     private static string GetImplementationWorkspacePath(string repoRoot)
     {
         return Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
