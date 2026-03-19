@@ -22,7 +22,6 @@ internal sealed class SqlServerBusinessTypeLowering
 
         foreach (var mapping in model.DataTypeMappingList
                      .Where(row => string.Equals(row.ConversionImplementationId, DirectConversionImplementationId, StringComparison.Ordinal))
-                     .Where(row => row.SourceDataTypeId.StartsWith("meta:type:", StringComparison.Ordinal))
                      .Where(row => row.TargetDataTypeId.StartsWith("sqlserver:type:", StringComparison.Ordinal)))
         {
             if (sqlServerTypesByLogicalTypeId.TryGetValue(mapping.SourceDataTypeId, out var existingTargetDataTypeId))
