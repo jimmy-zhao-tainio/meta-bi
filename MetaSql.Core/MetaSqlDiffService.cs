@@ -6,12 +6,6 @@ namespace MetaSql;
 
 public sealed class MetaSqlDiffService
 {
-    private static readonly Lazy<string> ExpectedContractSignature =
-        new(() => MetaSqlModel.CreateEmpty()
-            .ToXmlWorkspace(Path.Combine(Path.GetTempPath(), "MetaSql.Core", "Contract"))
-            .Model
-            .ComputeContractSignature());
-
     private readonly ServiceCollection _services;
 
     public MetaSqlDiffService()
@@ -73,7 +67,7 @@ public sealed class MetaSqlDiffService
         }
 
         var actualSignature = workspace.Model.ComputeContractSignature();
-        if (!string.Equals(actualSignature, ExpectedContractSignature.Value, StringComparison.Ordinal))
+        if (!string.Equals(actualSignature, MetaSqlModel.Signature, StringComparison.Ordinal))
         {
             throw new InvalidOperationException(
                 $"{parameterName} does not match the sanctioned MetaSql contract.");
