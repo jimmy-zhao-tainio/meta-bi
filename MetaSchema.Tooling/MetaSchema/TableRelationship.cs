@@ -1,12 +1,27 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaSchema
 {
     public sealed class TableRelationship
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
+
+        [XmlAttribute("SourceTableId")]
         public string SourceTableId { get; set; } = string.Empty;
-        public Table SourceTable { get; set; } = new Table();
+
+        [XmlAttribute("TargetTableId")]
         public string TargetTableId { get; set; } = string.Empty;
-        public Table TargetTable { get; set; } = new Table();
+
+        [XmlElement("Name")]
+        public string Name { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public Table SourceTable { get; set; } = null!;
+
+        [XmlIgnore]
+        public Table TargetTable { get; set; } = null!;
+
     }
 }

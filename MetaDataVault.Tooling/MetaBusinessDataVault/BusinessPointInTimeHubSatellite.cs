@@ -1,12 +1,27 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaBusinessDataVault
 {
     public sealed class BusinessPointInTimeHubSatellite
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlAttribute("BusinessHubSatelliteId")]
         public string BusinessHubSatelliteId { get; set; } = string.Empty;
-        public BusinessHubSatellite BusinessHubSatellite { get; set; } = new BusinessHubSatellite();
+
+        [XmlAttribute("BusinessPointInTimeId")]
         public string BusinessPointInTimeId { get; set; } = string.Empty;
-        public BusinessPointInTime BusinessPointInTime { get; set; } = new BusinessPointInTime();
+
+        [XmlElement("Ordinal")]
+        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public BusinessHubSatellite BusinessHubSatellite { get; set; } = null!;
+
+        [XmlIgnore]
+        public BusinessPointInTime BusinessPointInTime { get; set; } = null!;
+
     }
 }

@@ -8,7 +8,7 @@ This repository currently contains BI-oriented sanctioned models, CLIs, and docs
 - `MetaDataType.*`
 - `MetaDataTypeConversion.*`
 - `MetaDataVault.*`
-- `MetaSql.Workspaces`
+- `MetaSql.Workspace`
 - `MetaSql.Core`
 
 It also contains BI architecture notes in `docs/`.
@@ -86,7 +86,7 @@ It was a DDL-centered deployment experiment and is not the active direction anym
 
 The reboot now starts from a sanctioned canonical `MetaSql` model instead:
 
-- `MetaSql.Workspaces`
+- `MetaSql.Workspace`
 - `MetaSql.Core`
 
 Current canonical object families include:

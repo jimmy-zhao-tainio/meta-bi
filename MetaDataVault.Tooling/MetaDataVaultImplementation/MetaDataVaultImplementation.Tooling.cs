@@ -1,64 +1,47 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Meta.Adapters;
-using Meta.Core.Domain;
-using Meta.Core.Services;
 
 namespace MetaDataVaultImplementation
 {
     public static class MetaDataVaultImplementationTooling
     {
-        public static async Task<MetaDataVaultImplementationModel> LoadAsync(
-            string workspacePath,
-            bool searchUpward = true,
-            CancellationToken cancellationToken = default)
-        {
-            var workspace = await LoadWorkspaceAsync(workspacePath, searchUpward, cancellationToken).ConfigureAwait(false);
-            return MetaDataVaultImplementationModelFactory.CreateFromWorkspace(workspace);
-        }
-
-        public static Task<Workspace> LoadWorkspaceAsync(
-            string workspacePath,
-            bool searchUpward = true,
-            CancellationToken cancellationToken = default)
-        {
-            var services = new ServiceCollection();
-            return services.WorkspaceService.LoadAsync(workspacePath, searchUpward, cancellationToken);
-        }
-
-        public static Task SaveWorkspaceAsync(
-            Workspace workspace,
-            CancellationToken cancellationToken = default)
-        {
-            var services = new ServiceCollection();
-            return services.WorkspaceService.SaveAsync(workspace, cancellationToken);
-        }
-
-        public static Task<Workspace> ImportSqlAsync(
-            string connectionString,
-            string schema = "dbo",
-            CancellationToken cancellationToken = default)
-        {
-            var services = new ServiceCollection();
-            return services.ImportService.ImportSqlAsync(connectionString, schema, cancellationToken);
-        }
-    }
-
-    public sealed partial class MetaDataVaultImplementationModel
-    {
-        public static MetaDataVaultImplementationModel LoadFromXmlWorkspace(
+        public static MetaDataVaultImplementationModel Load(
             string workspacePath,
             bool searchUpward = true)
         {
-            return LoadFromXmlWorkspaceAsync(workspacePath, searchUpward).GetAwaiter().GetResult();
+            return MetaDataVaultImplementationModel.LoadFromXmlWorkspace(workspacePath, searchUpward);
         }
 
-        public static Task<MetaDataVaultImplementationModel> LoadFromXmlWorkspaceAsync(
+        public static Task<MetaDataVaultImplementationModel> LoadAsync(
             string workspacePath,
             bool searchUpward = true,
             CancellationToken cancellationToken = default)
         {
-            return MetaDataVaultImplementationTooling.LoadAsync(workspacePath, searchUpward, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            return MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward, cancellationToken);
+        }
+
+        public static void Save(MetaDataVaultImplementationModel model, string workspacePath)
+        {
+            if (model == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(model));
+            }
+
+            model.SaveToXmlWorkspace(workspacePath);
+        }
+
+        public static Task SaveAsync(MetaDataVaultImplementationModel model, string workspacePath,
+            CancellationToken cancellationToken = default)
+        {
+            if (model == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(model));
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+            model.SaveToXmlWorkspace(workspacePath);
+            return Task.CompletedTask;
         }
     }
 }

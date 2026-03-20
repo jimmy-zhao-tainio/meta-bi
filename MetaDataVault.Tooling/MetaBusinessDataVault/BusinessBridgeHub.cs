@@ -1,13 +1,31 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaBusinessDataVault
 {
     public sealed class BusinessBridgeHub
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Ordinal { get; set; } = string.Empty;
-        public string RoleName { get; set; } = string.Empty;
+
+        [XmlAttribute("BusinessBridgeId")]
         public string BusinessBridgeId { get; set; } = string.Empty;
-        public BusinessBridge BusinessBridge { get; set; } = new BusinessBridge();
+
+        [XmlAttribute("BusinessHubId")]
         public string BusinessHubId { get; set; } = string.Empty;
-        public BusinessHub BusinessHub { get; set; } = new BusinessHub();
+
+        [XmlElement("Ordinal")]
+        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlElement("RoleName")]
+        public string RoleName { get; set; } = string.Empty;
+        public bool ShouldSerializeRoleName() => !string.IsNullOrWhiteSpace(RoleName);
+
+        [XmlIgnore]
+        public BusinessBridge BusinessBridge { get; set; } = null!;
+
+        [XmlIgnore]
+        public BusinessHub BusinessHub { get; set; } = null!;
+
     }
 }

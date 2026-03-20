@@ -1,13 +1,30 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaRawDataVault
 {
     public sealed class RawHubSatelliteAttribute
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlAttribute("RawHubSatelliteId")]
         public string RawHubSatelliteId { get; set; } = string.Empty;
-        public RawHubSatellite RawHubSatellite { get; set; } = new RawHubSatellite();
+
+        [XmlAttribute("SourceFieldId")]
         public string SourceFieldId { get; set; } = string.Empty;
-        public SourceField SourceField { get; set; } = new SourceField();
+
+        [XmlElement("Name")]
+        public string Name { get; set; } = string.Empty;
+
+        [XmlElement("Ordinal")]
+        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public RawHubSatellite RawHubSatellite { get; set; } = null!;
+
+        [XmlIgnore]
+        public SourceField SourceField { get; set; } = null!;
+
     }
 }

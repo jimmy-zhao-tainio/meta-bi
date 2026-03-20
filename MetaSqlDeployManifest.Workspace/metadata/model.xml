@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="MetaSqlDeployManifest">
+  <EntityList>
+    <Entity name="DeployManifest">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="ManifestVersion" />
+        <Property name="SourceInstanceFingerprint" />
+        <Property name="LiveInstanceFingerprint" />
+        <Property name="CreatedUtc" />
+        <Property name="TargetDescription" isRequired="false" />
+      </PropertyList>
+    </Entity>
+
+    <Entity name="AddTable">
+      <PropertyList>
+        <Property name="SourceTableId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DropTable">
+      <PropertyList>
+        <Property name="LiveTableId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+
+    <Entity name="AddTableColumn">
+      <PropertyList>
+        <Property name="SourceTableColumnId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DropTableColumn">
+      <PropertyList>
+        <Property name="LiveTableColumnId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+
+    <Entity name="AddPrimaryKey">
+      <PropertyList>
+        <Property name="SourcePrimaryKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DropPrimaryKey">
+      <PropertyList>
+        <Property name="LivePrimaryKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+
+    <Entity name="AddForeignKey">
+      <PropertyList>
+        <Property name="SourceForeignKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DropForeignKey">
+      <PropertyList>
+        <Property name="LiveForeignKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+
+    <Entity name="AddIndex">
+      <PropertyList>
+        <Property name="SourceIndexId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DropIndex">
+      <PropertyList>
+        <Property name="LiveIndexId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+
+    <Entity name="BlockTableDifference">
+      <PropertyList>
+        <Property name="SourceTableId" />
+        <Property name="LiveTableId" />
+        <Property name="DifferenceSummary" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BlockTableColumnDifference">
+      <PropertyList>
+        <Property name="SourceTableColumnId" />
+        <Property name="LiveTableColumnId" />
+        <Property name="DifferenceSummary" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BlockPrimaryKeyDifference">
+      <PropertyList>
+        <Property name="SourcePrimaryKeyId" />
+        <Property name="LivePrimaryKeyId" />
+        <Property name="DifferenceSummary" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BlockForeignKeyDifference">
+      <PropertyList>
+        <Property name="SourceForeignKeyId" />
+        <Property name="LiveForeignKeyId" />
+        <Property name="DifferenceSummary" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BlockIndexDifference">
+      <PropertyList>
+        <Property name="SourceIndexId" />
+        <Property name="LiveIndexId" />
+        <Property name="DifferenceSummary" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

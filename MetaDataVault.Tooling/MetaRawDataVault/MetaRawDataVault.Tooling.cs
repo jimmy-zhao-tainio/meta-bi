@@ -1,64 +1,47 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Meta.Adapters;
-using Meta.Core.Domain;
-using Meta.Core.Services;
 
 namespace MetaRawDataVault
 {
     public static class MetaRawDataVaultTooling
     {
-        public static async Task<MetaRawDataVaultModel> LoadAsync(
-            string workspacePath,
-            bool searchUpward = true,
-            CancellationToken cancellationToken = default)
-        {
-            var workspace = await LoadWorkspaceAsync(workspacePath, searchUpward, cancellationToken).ConfigureAwait(false);
-            return MetaRawDataVaultModelFactory.CreateFromWorkspace(workspace);
-        }
-
-        public static Task<Workspace> LoadWorkspaceAsync(
-            string workspacePath,
-            bool searchUpward = true,
-            CancellationToken cancellationToken = default)
-        {
-            var services = new ServiceCollection();
-            return services.WorkspaceService.LoadAsync(workspacePath, searchUpward, cancellationToken);
-        }
-
-        public static Task SaveWorkspaceAsync(
-            Workspace workspace,
-            CancellationToken cancellationToken = default)
-        {
-            var services = new ServiceCollection();
-            return services.WorkspaceService.SaveAsync(workspace, cancellationToken);
-        }
-
-        public static Task<Workspace> ImportSqlAsync(
-            string connectionString,
-            string schema = "dbo",
-            CancellationToken cancellationToken = default)
-        {
-            var services = new ServiceCollection();
-            return services.ImportService.ImportSqlAsync(connectionString, schema, cancellationToken);
-        }
-    }
-
-    public sealed partial class MetaRawDataVaultModel
-    {
-        public static MetaRawDataVaultModel LoadFromXmlWorkspace(
+        public static MetaRawDataVaultModel Load(
             string workspacePath,
             bool searchUpward = true)
         {
-            return LoadFromXmlWorkspaceAsync(workspacePath, searchUpward).GetAwaiter().GetResult();
+            return MetaRawDataVaultModel.LoadFromXmlWorkspace(workspacePath, searchUpward);
         }
 
-        public static Task<MetaRawDataVaultModel> LoadFromXmlWorkspaceAsync(
+        public static Task<MetaRawDataVaultModel> LoadAsync(
             string workspacePath,
             bool searchUpward = true,
             CancellationToken cancellationToken = default)
         {
-            return MetaRawDataVaultTooling.LoadAsync(workspacePath, searchUpward, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            return MetaRawDataVaultModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward, cancellationToken);
+        }
+
+        public static void Save(MetaRawDataVaultModel model, string workspacePath)
+        {
+            if (model == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(model));
+            }
+
+            model.SaveToXmlWorkspace(workspacePath);
+        }
+
+        public static Task SaveAsync(MetaRawDataVaultModel model, string workspacePath,
+            CancellationToken cancellationToken = default)
+        {
+            if (model == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(model));
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+            model.SaveToXmlWorkspace(workspacePath);
+            return Task.CompletedTask;
         }
     }
 }

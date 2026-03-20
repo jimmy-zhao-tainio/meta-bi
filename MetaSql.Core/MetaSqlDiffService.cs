@@ -19,46 +19,46 @@ public sealed class MetaSqlDiffService
     }
 
     public async Task<InstanceDiffBuildResult> BuildEqualDiffWorkspaceAsync(
-        string desiredWorkspacePath,
+        string sourceWorkspacePath,
         string liveWorkspacePath,
         bool searchUpward = true,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(desiredWorkspacePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourceWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(liveWorkspacePath);
 
-        var desiredWorkspace = await _services.WorkspaceService
-            .LoadAsync(desiredWorkspacePath, searchUpward, cancellationToken)
+        var sourceWorkspace = await _services.WorkspaceService
+            .LoadAsync(sourceWorkspacePath, searchUpward, cancellationToken)
             .ConfigureAwait(false);
         var liveWorkspace = await _services.WorkspaceService
             .LoadAsync(liveWorkspacePath, searchUpward, cancellationToken)
             .ConfigureAwait(false);
 
         return BuildEqualDiffWorkspace(
-            desiredWorkspace,
+            sourceWorkspace,
             liveWorkspace,
             liveWorkspace.WorkspaceRootPath ?? Path.GetFullPath(liveWorkspacePath));
     }
 
     public InstanceDiffBuildResult BuildEqualDiffWorkspace(
-        Workspace desiredWorkspace,
+        Workspace sourceWorkspace,
         Workspace liveWorkspace,
         string liveWorkspacePath)
     {
-        ArgumentNullException.ThrowIfNull(desiredWorkspace);
+        ArgumentNullException.ThrowIfNull(sourceWorkspace);
         ArgumentNullException.ThrowIfNull(liveWorkspace);
         ArgumentException.ThrowIfNullOrWhiteSpace(liveWorkspacePath);
 
-        EnsureMetaSqlWorkspace(desiredWorkspace, nameof(desiredWorkspace));
+        EnsureMetaSqlWorkspace(sourceWorkspace, nameof(sourceWorkspace));
         EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
 
         return _services.InstanceDiffService.BuildEqualDiffWorkspace(
-            desiredWorkspace,
+            sourceWorkspace,
             liveWorkspace,
             liveWorkspacePath);
     }
 
-    private static void EnsureMetaSqlWorkspace(Workspace workspace, string parameterName)
+    internal static void EnsureMetaSqlWorkspace(Workspace workspace, string parameterName)
     {
         if (!string.Equals(workspace.Model.Name, "MetaSql", StringComparison.Ordinal))
         {
@@ -66,11 +66,5 @@ public sealed class MetaSqlDiffService
                 $"{parameterName} must use the MetaSql model. Actual model: '{workspace.Model.Name}'.");
         }
 
-        var actualSignature = workspace.Model.ComputeContractSignature();
-        if (!string.Equals(actualSignature, MetaSqlModel.Signature, StringComparison.Ordinal))
-        {
-            throw new InvalidOperationException(
-                $"{parameterName} does not match the sanctioned MetaSql contract.");
-        }
     }
 }

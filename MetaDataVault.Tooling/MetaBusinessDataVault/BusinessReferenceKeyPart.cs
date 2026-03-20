@@ -1,12 +1,27 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaBusinessDataVault
 {
     public sealed class BusinessReferenceKeyPart
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string DataTypeId { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlAttribute("BusinessReferenceId")]
         public string BusinessReferenceId { get; set; } = string.Empty;
-        public BusinessReference BusinessReference { get; set; } = new BusinessReference();
+
+        [XmlElement("DataTypeId")]
+        public string DataTypeId { get; set; } = string.Empty;
+
+        [XmlElement("Name")]
+        public string Name { get; set; } = string.Empty;
+
+        [XmlElement("Ordinal")]
+        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public BusinessReference BusinessReference { get; set; } = null!;
+
     }
 }

@@ -1,14 +1,33 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaSql
 {
     public sealed class ForeignKeyColumn
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlAttribute("ForeignKeyId")]
         public string ForeignKeyId { get; set; } = string.Empty;
-        public ForeignKey ForeignKey { get; set; } = new ForeignKey();
+
+        [XmlAttribute("SourceColumnId")]
         public string SourceColumnId { get; set; } = string.Empty;
-        public TableColumn SourceColumn { get; set; } = new TableColumn();
+
+        [XmlAttribute("TargetColumnId")]
         public string TargetColumnId { get; set; } = string.Empty;
-        public TableColumn TargetColumn { get; set; } = new TableColumn();
+
+        [XmlElement("Ordinal")]
+        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public ForeignKey ForeignKey { get; set; } = null!;
+
+        [XmlIgnore]
+        public TableColumn SourceColumn { get; set; } = null!;
+
+        [XmlIgnore]
+        public TableColumn TargetColumn { get; set; } = null!;
+
     }
 }

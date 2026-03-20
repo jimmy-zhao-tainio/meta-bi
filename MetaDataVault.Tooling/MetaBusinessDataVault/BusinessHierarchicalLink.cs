@@ -1,13 +1,31 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaBusinessDataVault
 {
     public sealed class BusinessHierarchicalLink
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
+
+        [XmlAttribute("ChildHubId")]
         public string ChildHubId { get; set; } = string.Empty;
-        public BusinessHub ChildHub { get; set; } = new BusinessHub();
+
+        [XmlAttribute("ParentHubId")]
         public string ParentHubId { get; set; } = string.Empty;
-        public BusinessHub ParentHub { get; set; } = new BusinessHub();
+
+        [XmlElement("Description")]
+        public string Description { get; set; } = string.Empty;
+        public bool ShouldSerializeDescription() => !string.IsNullOrWhiteSpace(Description);
+
+        [XmlElement("Name")]
+        public string Name { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public BusinessHub ChildHub { get; set; } = null!;
+
+        [XmlIgnore]
+        public BusinessHub ParentHub { get; set; } = null!;
+
     }
 }

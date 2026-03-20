@@ -11,4 +11,8 @@
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="**\model.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

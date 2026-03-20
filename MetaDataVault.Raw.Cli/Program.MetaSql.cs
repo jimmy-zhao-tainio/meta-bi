@@ -1,4 +1,5 @@
 using MetaDataVault.ToMetaSql;
+using Meta.Core.Services;
 using MetaSql;
 using MetaSql.Extractors.SqlServer;
 
@@ -28,6 +29,7 @@ internal static partial class Program
         try
         {
             Directory.CreateDirectory(outputRootPath);
+            var workspaceService = new WorkspaceService();
 
             var desiredWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -35,7 +37,7 @@ internal static partial class Program
                 implementationWorkspacePath,
                 parse.DatabaseName,
                 parse.SchemaName).ConfigureAwait(false);
-            await MetaSqlTooling.SaveWorkspaceAsync(desiredWorkspace).ConfigureAwait(false);
+            await workspaceService.SaveAsync(desiredWorkspace).ConfigureAwait(false);
 
             var extractor = new SqlServerMetaSqlExtractor();
             var liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
@@ -44,7 +46,7 @@ internal static partial class Program
                 ConnectionString = parse.ConnectionString,
                 SchemaName = parse.SchemaName,
             });
-            await MetaSqlTooling.SaveWorkspaceAsync(liveWorkspace).ConfigureAwait(false);
+            await workspaceService.SaveAsync(liveWorkspace).ConfigureAwait(false);
 
             var diffService = new MetaSqlDiffService();
             var diffResult = diffService.BuildEqualDiffWorkspace(
@@ -63,7 +65,7 @@ internal static partial class Program
                 return 0;
             }
 
-            await MetaSqlTooling.SaveWorkspaceAsync(diffResult.DiffWorkspace).ConfigureAwait(false);
+            await workspaceService.SaveAsync(diffResult.DiffWorkspace).ConfigureAwait(false);
             return Fail(
                 "raw metasql parity mismatch.",
                 "inspect the saved MetaSql workspaces and diff workspace.",

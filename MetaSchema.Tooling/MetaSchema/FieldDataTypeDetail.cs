@@ -1,11 +1,24 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaSchema
 {
     public sealed class FieldDataTypeDetail
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public string Value { get; set; } = string.Empty;
+
+        [XmlAttribute("FieldId")]
         public string FieldId { get; set; } = string.Empty;
-        public Field Field { get; set; } = new Field();
+
+        [XmlElement("Name")]
+        public string Name { get; set; } = string.Empty;
+
+        [XmlElement("Value")]
+        public string Value { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public Field Field { get; set; } = null!;
+
     }
 }

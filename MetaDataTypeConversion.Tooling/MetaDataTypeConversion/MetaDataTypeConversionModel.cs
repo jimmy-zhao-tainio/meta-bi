@@ -1,234 +1,103 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Meta.Core.Domain;
+using System.Xml.Serialization;
+using Meta.Core.Serialization;
 
 namespace MetaDataTypeConversion
 {
+    [XmlRoot("MetaDataTypeConversion")]
     public sealed partial class MetaDataTypeConversionModel
     {
-        internal MetaDataTypeConversionModel(
-            List<ConversionImplementation> conversionImplementationList,
-            List<DataTypeMapping> dataTypeMappingList
-        )
+        public static MetaDataTypeConversionModel CreateEmpty() => new();
+
+        [XmlArray("ConversionImplementationList")]
+        [XmlArrayItem("ConversionImplementation")]
+        public List<ConversionImplementation> ConversionImplementationList { get; set; } = new();
+        public bool ShouldSerializeConversionImplementationList() => ConversionImplementationList.Count > 0;
+
+        [XmlArray("DataTypeMappingList")]
+        [XmlArrayItem("DataTypeMapping")]
+        public List<DataTypeMapping> DataTypeMappingList { get; set; } = new();
+        public bool ShouldSerializeDataTypeMappingList() => DataTypeMappingList.Count > 0;
+
+        public static MetaDataTypeConversionModel LoadFromXmlWorkspace(
+            string workspacePath,
+            bool searchUpward = true)
         {
-            ConversionImplementationList = conversionImplementationList;
-            DataTypeMappingList = dataTypeMappingList;
+            var model = TypedWorkspaceXmlSerializer.Load<MetaDataTypeConversionModel>(workspacePath, searchUpward);
+            MetaDataTypeConversionModelFactory.Bind(model);
+            return model;
         }
 
-        public static string Signature => "6d6f64656c7c4d6574614461746154797065436f6e76657273696f6e0a656e746974797c436f6e76657273696f6e496d706c656d656e746174696f6e7c436f6e76657273696f6e496d706c656d656e746174696f6e4c6973740a70726f70657274797c436f6e76657273696f6e496d706c656d656e746174696f6e7c4465736372697074696f6e7c737472696e677c6e756c6c61626c650a70726f70657274797c436f6e76657273696f6e496d706c656d656e746174696f6e7c4e616d657c737472696e677c72657175697265640a656e746974797c44617461547970654d617070696e677c44617461547970654d617070696e674c6973740a70726f70657274797c44617461547970654d617070696e677c4e6f7465737c737472696e677c6e756c6c61626c650a70726f70657274797c44617461547970654d617070696e677c536f75726365446174615479706549647c737472696e677c72657175697265640a70726f70657274797c44617461547970654d617070696e677c546172676574446174615479706549647c737472696e677c72657175697265640a72656c6174696f6e736869707c44617461547970654d617070696e677c436f6e76657273696f6e496d706c656d656e746174696f6e7c436f6e76657273696f6e496d706c656d656e746174696f6e4964";
-
-        public static MetaDataTypeConversionModel CreateEmpty()
+        public static Task<MetaDataTypeConversionModel> LoadFromXmlWorkspaceAsync(
+            string workspacePath,
+            bool searchUpward = true,
+            CancellationToken cancellationToken = default)
         {
-            return new MetaDataTypeConversionModel(
-                new List<ConversionImplementation>(),
-                new List<DataTypeMapping>()
-            );
+            cancellationToken.ThrowIfCancellationRequested();
+            return Task.FromResult(LoadFromXmlWorkspace(workspacePath, searchUpward));
         }
 
-        public List<ConversionImplementation> ConversionImplementationList { get; }
-        public List<DataTypeMapping> DataTypeMappingList { get; }
-
-        public Workspace ToXmlWorkspace(string workspacePath)
+        public void SaveToXmlWorkspace(string workspacePath)
         {
-            if (string.IsNullOrWhiteSpace(workspacePath))
-            {
-                throw new global::System.ArgumentException("Workspace path is required.", nameof(workspacePath));
-            }
-
-            var rootPath = global::System.IO.Path.GetFullPath(workspacePath);
-            var metadataRootPath = global::System.IO.Path.Combine(rootPath, "metadata");
-            var model = CreateGenericModelDefinition();
-            var workspace = new Workspace
-            {
-                WorkspaceRootPath = rootPath,
-                MetadataRootPath = metadataRootPath,
-                WorkspaceConfig = global::Meta.Core.WorkspaceConfig.Generated.MetaWorkspace.CreateDefault(),
-                Model = model,
-                Instance = new GenericInstance
-                {
-                    ModelName = model.Name,
-                },
-                IsDirty = true,
-            };
-
-            foreach (var row in ConversionImplementationList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "ConversionImplementation.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Description))
-                {
-                    record.Values["Description"] = row.Description;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("ConversionImplementation").Add(record);
-            }
-
-            foreach (var row in DataTypeMappingList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "DataTypeMapping.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Notes))
-                {
-                    record.Values["Notes"] = row.Notes;
-                }
-                if (!string.IsNullOrWhiteSpace(row.SourceDataTypeId))
-                {
-                    record.Values["SourceDataTypeId"] = row.SourceDataTypeId;
-                }
-                if (!string.IsNullOrWhiteSpace(row.TargetDataTypeId))
-                {
-                    record.Values["TargetDataTypeId"] = row.TargetDataTypeId;
-                }
-                if (!string.IsNullOrWhiteSpace(row.ConversionImplementationId))
-                {
-                    record.RelationshipIds["ConversionImplementationId"] = row.ConversionImplementationId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("DataTypeMapping").Add(record);
-            }
-
-            return workspace;
+            MetaDataTypeConversionModelFactory.Bind(this);
+            TypedWorkspaceXmlSerializer.Save(this, workspacePath, ResolveBundledModelXmlPath());
         }
 
         public Task SaveToXmlWorkspaceAsync(
             string workspacePath,
             CancellationToken cancellationToken = default)
         {
-            var workspace = ToXmlWorkspace(workspacePath);
-            return MetaDataTypeConversionTooling.SaveWorkspaceAsync(workspace, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            SaveToXmlWorkspace(workspacePath);
+            return Task.CompletedTask;
         }
 
-        private static GenericModel CreateGenericModelDefinition()
+        private static string? ResolveBundledModelXmlPath()
         {
-            var model = new GenericModel
+            var assemblyDirectory = Path.GetDirectoryName(typeof(MetaDataTypeConversionModel).Assembly.Location);
+            if (string.IsNullOrWhiteSpace(assemblyDirectory))
             {
-                Name = "MetaDataTypeConversion",
-            };
+                return null;
+            }
 
-            model.Entities.Add(new GenericEntity
+            var directPath = Path.Combine(assemblyDirectory, "model.xml");
+            if (File.Exists(directPath))
             {
-                Name = "ConversionImplementation",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Description",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                },
-            });
+                return directPath;
+            }
 
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "DataTypeMapping",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Notes",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "SourceDataTypeId",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "TargetDataTypeId",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "ConversionImplementation",
-                        Role = "",
-                    },
-                },
-            });
-
-            return model;
+            var namespacedPath = Path.Combine(assemblyDirectory, "MetaDataTypeConversion", "model.xml");
+            return File.Exists(namespacedPath) ? namespacedPath : null;
         }
     }
 
     internal static class MetaDataTypeConversionModelFactory
     {
-        internal static MetaDataTypeConversionModel CreateFromWorkspace(Workspace workspace)
+        internal static void Bind(MetaDataTypeConversionModel model)
         {
-            if (workspace == null)
-            {
-                throw new global::System.ArgumentNullException(nameof(workspace));
-            }
+            ArgumentNullException.ThrowIfNull(model);
 
-            var conversionImplementationList = new List<ConversionImplementation>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("ConversionImplementation", out var conversionImplementationListRecords))
-            {
-                foreach (var record in conversionImplementationListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    conversionImplementationList.Add(new ConversionImplementation
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                    });
-                }
-            }
+            model.ConversionImplementationList ??= new List<ConversionImplementation>();
+            model.DataTypeMappingList ??= new List<DataTypeMapping>();
 
-            var dataTypeMappingList = new List<DataTypeMapping>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("DataTypeMapping", out var dataTypeMappingListRecords))
-            {
-                foreach (var record in dataTypeMappingListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    dataTypeMappingList.Add(new DataTypeMapping
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Notes = record.Values.TryGetValue("Notes", out var notesValue) ? notesValue ?? string.Empty : string.Empty,
-                        SourceDataTypeId = record.Values.TryGetValue("SourceDataTypeId", out var sourceDataTypeIdValue) ? sourceDataTypeIdValue ?? string.Empty : string.Empty,
-                        TargetDataTypeId = record.Values.TryGetValue("TargetDataTypeId", out var targetDataTypeIdValue) ? targetDataTypeIdValue ?? string.Empty : string.Empty,
-                        ConversionImplementationId = record.RelationshipIds.TryGetValue("ConversionImplementationId", out var conversionImplementationRelationshipId) ? conversionImplementationRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
+            NormalizeConversionImplementationList(model);
+            NormalizeDataTypeMappingList(model);
 
-            var conversionImplementationListById = new Dictionary<string, ConversionImplementation>(global::System.StringComparer.Ordinal);
-            foreach (var row in conversionImplementationList)
-            {
-                conversionImplementationListById[row.Id] = row;
-            }
+            var conversionImplementationListById = BuildById(model.ConversionImplementationList, row => row.Id, "ConversionImplementation");
+            var dataTypeMappingListById = BuildById(model.DataTypeMappingList, row => row.Id, "DataTypeMapping");
 
-            var dataTypeMappingListById = new Dictionary<string, DataTypeMapping>(global::System.StringComparer.Ordinal);
-            foreach (var row in dataTypeMappingList)
+            foreach (var row in model.DataTypeMappingList)
             {
-                dataTypeMappingListById[row.Id] = row;
-            }
-
-            foreach (var row in dataTypeMappingList)
-            {
+                row.ConversionImplementationId = ResolveRelationshipId(
+                    row.ConversionImplementationId,
+                    row.ConversionImplementation?.Id,
+                    "DataTypeMapping",
+                    row.Id,
+                    "ConversionImplementationId");
                 row.ConversionImplementation = RequireTarget(
                     conversionImplementationListById,
                     row.ConversionImplementationId,
@@ -237,10 +106,50 @@ namespace MetaDataTypeConversion
                     "ConversionImplementationId");
             }
 
-            return new MetaDataTypeConversionModel(
-                conversionImplementationList,
-                dataTypeMappingList
-            );
+        }
+
+        private static void NormalizeConversionImplementationList(MetaDataTypeConversionModel model)
+        {
+            foreach (var row in model.ConversionImplementationList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'ConversionImplementation' contains a row with empty Id.");
+                row.Description ??= string.Empty;
+                row.Name = RequireText(row.Name, $"Entity 'ConversionImplementation' row '{row.Id}' is missing required property 'Name'.");
+            }
+        }
+
+        private static void NormalizeDataTypeMappingList(MetaDataTypeConversionModel model)
+        {
+            foreach (var row in model.DataTypeMappingList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'DataTypeMapping' contains a row with empty Id.");
+                row.Notes ??= string.Empty;
+                row.SourceDataTypeId = RequireText(row.SourceDataTypeId, $"Entity 'DataTypeMapping' row '{row.Id}' is missing required property 'SourceDataTypeId'.");
+                row.TargetDataTypeId = RequireText(row.TargetDataTypeId, $"Entity 'DataTypeMapping' row '{row.Id}' is missing required property 'TargetDataTypeId'.");
+                row.ConversionImplementationId ??= string.Empty;
+            }
+        }
+
+        private static Dictionary<string, T> BuildById<T>(
+            IEnumerable<T> rows,
+            Func<T, string> getId,
+            string entityName)
+            where T : class
+        {
+            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            foreach (var row in rows)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var id = RequireIdentity(getId(row), $"Entity '{entityName}' contains a row with empty Id.");
+                if (!rowsById.TryAdd(id, row))
+                {
+                    throw new InvalidOperationException($"Entity '{entityName}' contains duplicate Id '{id}'.");
+                }
+            }
+
+            return rowsById;
         }
 
         private static T RequireTarget<T>(
@@ -251,21 +160,63 @@ namespace MetaDataTypeConversion
             string relationshipName)
             where T : class
         {
-            if (string.IsNullOrEmpty(targetId))
+            var normalizedTargetId = RequireIdentity(targetId, $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty.");
+            if (!rowsById.TryGetValue(normalizedTargetId, out var target))
             {
-                throw new global::System.InvalidOperationException(
-                    $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty."
-                );
-            }
-
-            if (!rowsById.TryGetValue(targetId, out var target))
-            {
-                throw new global::System.InvalidOperationException(
-                    $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' points to missing Id '{targetId}'."
-                );
+                throw new InvalidOperationException($"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' points to missing Id '{normalizedTargetId}'.");
             }
 
             return target;
+        }
+
+        private static string ResolveRelationshipId(
+            string relationshipId,
+            string? navigationId,
+            string sourceEntityName,
+            string sourceId,
+            string relationshipName)
+        {
+            var normalizedRelationshipId = NormalizeIdentity(relationshipId);
+            var normalizedNavigationId = NormalizeIdentity(navigationId);
+            if (!string.IsNullOrEmpty(normalizedRelationshipId) &&
+                !string.IsNullOrEmpty(normalizedNavigationId) &&
+                !string.Equals(normalizedRelationshipId, normalizedNavigationId, StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException($"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' conflicts between '{normalizedRelationshipId}' and '{normalizedNavigationId}'.");
+            }
+
+            var resolvedTargetId = string.IsNullOrEmpty(normalizedRelationshipId)
+                ? normalizedNavigationId
+                : normalizedRelationshipId;
+            return RequireIdentity(resolvedTargetId, $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty.");
+        }
+
+        private static string RequireIdentity(string? value, string errorMessage)
+        {
+            var normalizedValue = NormalizeIdentity(value);
+            if (string.IsNullOrEmpty(normalizedValue))
+            {
+                throw new InvalidOperationException(errorMessage);
+            }
+
+            return normalizedValue;
+        }
+
+        private static string RequireText(string? value, string errorMessage)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new InvalidOperationException(errorMessage);
+            }
+
+            return value;
+        }
+
+        private static string NormalizeIdentity(string? value)
+        {
+            return string.IsNullOrWhiteSpace(value)
+                ? string.Empty
+                : value.Trim();
         }
     }
 }

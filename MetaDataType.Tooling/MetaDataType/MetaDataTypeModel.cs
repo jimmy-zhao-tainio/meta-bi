@@ -1,245 +1,103 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Meta.Core.Domain;
+using System.Xml.Serialization;
+using Meta.Core.Serialization;
 
 namespace MetaDataType
 {
+    [XmlRoot("MetaDataType")]
     public sealed partial class MetaDataTypeModel
     {
-        internal MetaDataTypeModel(
-            List<DataType> dataTypeList,
-            List<DataTypeSystem> dataTypeSystemList
-        )
+        public static MetaDataTypeModel CreateEmpty() => new();
+
+        [XmlArray("DataTypeList")]
+        [XmlArrayItem("DataType")]
+        public List<DataType> DataTypeList { get; set; } = new();
+        public bool ShouldSerializeDataTypeList() => DataTypeList.Count > 0;
+
+        [XmlArray("DataTypeSystemList")]
+        [XmlArrayItem("DataTypeSystem")]
+        public List<DataTypeSystem> DataTypeSystemList { get; set; } = new();
+        public bool ShouldSerializeDataTypeSystemList() => DataTypeSystemList.Count > 0;
+
+        public static MetaDataTypeModel LoadFromXmlWorkspace(
+            string workspacePath,
+            bool searchUpward = true)
         {
-            DataTypeList = dataTypeList;
-            DataTypeSystemList = dataTypeSystemList;
+            var model = TypedWorkspaceXmlSerializer.Load<MetaDataTypeModel>(workspacePath, searchUpward);
+            MetaDataTypeModelFactory.Bind(model);
+            return model;
         }
 
-        public static string Signature => "6d6f64656c7c4d65746144617461547970650a656e746974797c44617461547970657c44617461547970654c6973740a70726f70657274797c44617461547970657c43617465676f72797c737472696e677c6e756c6c61626c650a70726f70657274797c44617461547970657c4465736372697074696f6e7c737472696e677c6e756c6c61626c650a70726f70657274797c44617461547970657c497343616e6f6e6963616c7c737472696e677c6e756c6c61626c650a70726f70657274797c44617461547970657c4e616d657c737472696e677c72657175697265640a72656c6174696f6e736869707c44617461547970657c446174615479706553797374656d7c446174615479706553797374656d49640a656e746974797c446174615479706553797374656d7c446174615479706553797374656d4c6973740a70726f70657274797c446174615479706553797374656d7c4465736372697074696f6e7c737472696e677c6e756c6c61626c650a70726f70657274797c446174615479706553797374656d7c4e616d657c737472696e677c7265717569726564";
-
-        public static MetaDataTypeModel CreateEmpty()
+        public static Task<MetaDataTypeModel> LoadFromXmlWorkspaceAsync(
+            string workspacePath,
+            bool searchUpward = true,
+            CancellationToken cancellationToken = default)
         {
-            return new MetaDataTypeModel(
-                new List<DataType>(),
-                new List<DataTypeSystem>()
-            );
+            cancellationToken.ThrowIfCancellationRequested();
+            return Task.FromResult(LoadFromXmlWorkspace(workspacePath, searchUpward));
         }
 
-        public List<DataType> DataTypeList { get; }
-        public List<DataTypeSystem> DataTypeSystemList { get; }
-
-        public Workspace ToXmlWorkspace(string workspacePath)
+        public void SaveToXmlWorkspace(string workspacePath)
         {
-            if (string.IsNullOrWhiteSpace(workspacePath))
-            {
-                throw new global::System.ArgumentException("Workspace path is required.", nameof(workspacePath));
-            }
-
-            var rootPath = global::System.IO.Path.GetFullPath(workspacePath);
-            var metadataRootPath = global::System.IO.Path.Combine(rootPath, "metadata");
-            var model = CreateGenericModelDefinition();
-            var workspace = new Workspace
-            {
-                WorkspaceRootPath = rootPath,
-                MetadataRootPath = metadataRootPath,
-                WorkspaceConfig = global::Meta.Core.WorkspaceConfig.Generated.MetaWorkspace.CreateDefault(),
-                Model = model,
-                Instance = new GenericInstance
-                {
-                    ModelName = model.Name,
-                },
-                IsDirty = true,
-            };
-
-            foreach (var row in DataTypeList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "DataType.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Category))
-                {
-                    record.Values["Category"] = row.Category;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Description))
-                {
-                    record.Values["Description"] = row.Description;
-                }
-                if (!string.IsNullOrWhiteSpace(row.IsCanonical))
-                {
-                    record.Values["IsCanonical"] = row.IsCanonical;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                if (!string.IsNullOrWhiteSpace(row.DataTypeSystemId))
-                {
-                    record.RelationshipIds["DataTypeSystemId"] = row.DataTypeSystemId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("DataType").Add(record);
-            }
-
-            foreach (var row in DataTypeSystemList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "DataTypeSystem.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Description))
-                {
-                    record.Values["Description"] = row.Description;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("DataTypeSystem").Add(record);
-            }
-
-            return workspace;
+            MetaDataTypeModelFactory.Bind(this);
+            TypedWorkspaceXmlSerializer.Save(this, workspacePath, ResolveBundledModelXmlPath());
         }
 
         public Task SaveToXmlWorkspaceAsync(
             string workspacePath,
             CancellationToken cancellationToken = default)
         {
-            var workspace = ToXmlWorkspace(workspacePath);
-            return MetaDataTypeTooling.SaveWorkspaceAsync(workspace, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            SaveToXmlWorkspace(workspacePath);
+            return Task.CompletedTask;
         }
 
-        private static GenericModel CreateGenericModelDefinition()
+        private static string? ResolveBundledModelXmlPath()
         {
-            var model = new GenericModel
+            var assemblyDirectory = Path.GetDirectoryName(typeof(MetaDataTypeModel).Assembly.Location);
+            if (string.IsNullOrWhiteSpace(assemblyDirectory))
             {
-                Name = "MetaDataType",
-            };
+                return null;
+            }
 
-            model.Entities.Add(new GenericEntity
+            var directPath = Path.Combine(assemblyDirectory, "model.xml");
+            if (File.Exists(directPath))
             {
-                Name = "DataType",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Category",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Description",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "IsCanonical",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "DataTypeSystem",
-                        Role = "",
-                    },
-                },
-            });
+                return directPath;
+            }
 
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "DataTypeSystem",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Description",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                },
-            });
-
-            return model;
+            var namespacedPath = Path.Combine(assemblyDirectory, "MetaDataType", "model.xml");
+            return File.Exists(namespacedPath) ? namespacedPath : null;
         }
     }
 
     internal static class MetaDataTypeModelFactory
     {
-        internal static MetaDataTypeModel CreateFromWorkspace(Workspace workspace)
+        internal static void Bind(MetaDataTypeModel model)
         {
-            if (workspace == null)
-            {
-                throw new global::System.ArgumentNullException(nameof(workspace));
-            }
+            ArgumentNullException.ThrowIfNull(model);
 
-            var dataTypeList = new List<DataType>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("DataType", out var dataTypeListRecords))
-            {
-                foreach (var record in dataTypeListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    dataTypeList.Add(new DataType
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Category = record.Values.TryGetValue("Category", out var categoryValue) ? categoryValue ?? string.Empty : string.Empty,
-                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
-                        IsCanonical = record.Values.TryGetValue("IsCanonical", out var isCanonicalValue) ? isCanonicalValue ?? string.Empty : string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                        DataTypeSystemId = record.RelationshipIds.TryGetValue("DataTypeSystemId", out var dataTypeSystemRelationshipId) ? dataTypeSystemRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
+            model.DataTypeList ??= new List<DataType>();
+            model.DataTypeSystemList ??= new List<DataTypeSystem>();
 
-            var dataTypeSystemList = new List<DataTypeSystem>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("DataTypeSystem", out var dataTypeSystemListRecords))
-            {
-                foreach (var record in dataTypeSystemListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    dataTypeSystemList.Add(new DataTypeSystem
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                    });
-                }
-            }
+            NormalizeDataTypeList(model);
+            NormalizeDataTypeSystemList(model);
 
-            var dataTypeListById = new Dictionary<string, DataType>(global::System.StringComparer.Ordinal);
-            foreach (var row in dataTypeList)
-            {
-                dataTypeListById[row.Id] = row;
-            }
+            var dataTypeListById = BuildById(model.DataTypeList, row => row.Id, "DataType");
+            var dataTypeSystemListById = BuildById(model.DataTypeSystemList, row => row.Id, "DataTypeSystem");
 
-            var dataTypeSystemListById = new Dictionary<string, DataTypeSystem>(global::System.StringComparer.Ordinal);
-            foreach (var row in dataTypeSystemList)
+            foreach (var row in model.DataTypeList)
             {
-                dataTypeSystemListById[row.Id] = row;
-            }
-
-            foreach (var row in dataTypeList)
-            {
+                row.DataTypeSystemId = ResolveRelationshipId(
+                    row.DataTypeSystemId,
+                    row.DataTypeSystem?.Id,
+                    "DataType",
+                    row.Id,
+                    "DataTypeSystemId");
                 row.DataTypeSystem = RequireTarget(
                     dataTypeSystemListById,
                     row.DataTypeSystemId,
@@ -248,10 +106,51 @@ namespace MetaDataType
                     "DataTypeSystemId");
             }
 
-            return new MetaDataTypeModel(
-                dataTypeList,
-                dataTypeSystemList
-            );
+        }
+
+        private static void NormalizeDataTypeList(MetaDataTypeModel model)
+        {
+            foreach (var row in model.DataTypeList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'DataType' contains a row with empty Id.");
+                row.Category ??= string.Empty;
+                row.Description ??= string.Empty;
+                row.IsCanonical ??= string.Empty;
+                row.Name = RequireText(row.Name, $"Entity 'DataType' row '{row.Id}' is missing required property 'Name'.");
+                row.DataTypeSystemId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeDataTypeSystemList(MetaDataTypeModel model)
+        {
+            foreach (var row in model.DataTypeSystemList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'DataTypeSystem' contains a row with empty Id.");
+                row.Description ??= string.Empty;
+                row.Name = RequireText(row.Name, $"Entity 'DataTypeSystem' row '{row.Id}' is missing required property 'Name'.");
+            }
+        }
+
+        private static Dictionary<string, T> BuildById<T>(
+            IEnumerable<T> rows,
+            Func<T, string> getId,
+            string entityName)
+            where T : class
+        {
+            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            foreach (var row in rows)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var id = RequireIdentity(getId(row), $"Entity '{entityName}' contains a row with empty Id.");
+                if (!rowsById.TryAdd(id, row))
+                {
+                    throw new InvalidOperationException($"Entity '{entityName}' contains duplicate Id '{id}'.");
+                }
+            }
+
+            return rowsById;
         }
 
         private static T RequireTarget<T>(
@@ -262,21 +161,63 @@ namespace MetaDataType
             string relationshipName)
             where T : class
         {
-            if (string.IsNullOrEmpty(targetId))
+            var normalizedTargetId = RequireIdentity(targetId, $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty.");
+            if (!rowsById.TryGetValue(normalizedTargetId, out var target))
             {
-                throw new global::System.InvalidOperationException(
-                    $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty."
-                );
-            }
-
-            if (!rowsById.TryGetValue(targetId, out var target))
-            {
-                throw new global::System.InvalidOperationException(
-                    $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' points to missing Id '{targetId}'."
-                );
+                throw new InvalidOperationException($"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' points to missing Id '{normalizedTargetId}'.");
             }
 
             return target;
+        }
+
+        private static string ResolveRelationshipId(
+            string relationshipId,
+            string? navigationId,
+            string sourceEntityName,
+            string sourceId,
+            string relationshipName)
+        {
+            var normalizedRelationshipId = NormalizeIdentity(relationshipId);
+            var normalizedNavigationId = NormalizeIdentity(navigationId);
+            if (!string.IsNullOrEmpty(normalizedRelationshipId) &&
+                !string.IsNullOrEmpty(normalizedNavigationId) &&
+                !string.Equals(normalizedRelationshipId, normalizedNavigationId, StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException($"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' conflicts between '{normalizedRelationshipId}' and '{normalizedNavigationId}'.");
+            }
+
+            var resolvedTargetId = string.IsNullOrEmpty(normalizedRelationshipId)
+                ? normalizedNavigationId
+                : normalizedRelationshipId;
+            return RequireIdentity(resolvedTargetId, $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty.");
+        }
+
+        private static string RequireIdentity(string? value, string errorMessage)
+        {
+            var normalizedValue = NormalizeIdentity(value);
+            if (string.IsNullOrEmpty(normalizedValue))
+            {
+                throw new InvalidOperationException(errorMessage);
+            }
+
+            return normalizedValue;
+        }
+
+        private static string RequireText(string? value, string errorMessage)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new InvalidOperationException(errorMessage);
+            }
+
+            return value;
+        }
+
+        private static string NormalizeIdentity(string? value)
+        {
+            return string.IsNullOrWhiteSpace(value)
+                ? string.Empty
+                : value.Trim();
         }
     }
 }

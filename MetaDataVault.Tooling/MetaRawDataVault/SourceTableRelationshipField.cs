@@ -1,14 +1,33 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaRawDataVault
 {
     public sealed class SourceTableRelationshipField
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlAttribute("SourceFieldId")]
         public string SourceFieldId { get; set; } = string.Empty;
-        public SourceField SourceField { get; set; } = new SourceField();
+
+        [XmlAttribute("SourceTableRelationshipId")]
         public string SourceTableRelationshipId { get; set; } = string.Empty;
-        public SourceTableRelationship SourceTableRelationship { get; set; } = new SourceTableRelationship();
+
+        [XmlAttribute("TargetFieldId")]
         public string TargetFieldId { get; set; } = string.Empty;
-        public SourceField TargetField { get; set; } = new SourceField();
+
+        [XmlElement("Ordinal")]
+        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public SourceField SourceField { get; set; } = null!;
+
+        [XmlIgnore]
+        public SourceTableRelationship SourceTableRelationship { get; set; } = null!;
+
+        [XmlIgnore]
+        public SourceField TargetField { get; set; } = null!;
+
     }
 }

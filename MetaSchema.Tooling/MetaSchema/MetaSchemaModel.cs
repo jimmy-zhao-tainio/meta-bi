@@ -1,777 +1,159 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Meta.Core.Domain;
+using System.Xml.Serialization;
+using Meta.Core.Serialization;
 
 namespace MetaSchema
 {
+    [XmlRoot("MetaSchema")]
     public sealed partial class MetaSchemaModel
     {
-        internal MetaSchemaModel(
-            List<Field> fieldList,
-            List<FieldDataTypeDetail> fieldDataTypeDetailList,
-            List<Schema> schemaList,
-            List<System> systemList,
-            List<Table> tableList,
-            List<TableKey> tableKeyList,
-            List<TableKeyField> tableKeyFieldList,
-            List<TableRelationship> tableRelationshipList,
-            List<TableRelationshipField> tableRelationshipFieldList
-        )
+        public static MetaSchemaModel CreateEmpty() => new();
+
+        [XmlArray("FieldList")]
+        [XmlArrayItem("Field")]
+        public List<Field> FieldList { get; set; } = new();
+        public bool ShouldSerializeFieldList() => FieldList.Count > 0;
+
+        [XmlArray("FieldDataTypeDetailList")]
+        [XmlArrayItem("FieldDataTypeDetail")]
+        public List<FieldDataTypeDetail> FieldDataTypeDetailList { get; set; } = new();
+        public bool ShouldSerializeFieldDataTypeDetailList() => FieldDataTypeDetailList.Count > 0;
+
+        [XmlArray("SchemaList")]
+        [XmlArrayItem("Schema")]
+        public List<Schema> SchemaList { get; set; } = new();
+        public bool ShouldSerializeSchemaList() => SchemaList.Count > 0;
+
+        [XmlArray("SystemList")]
+        [XmlArrayItem("System")]
+        public List<System> SystemList { get; set; } = new();
+        public bool ShouldSerializeSystemList() => SystemList.Count > 0;
+
+        [XmlArray("TableList")]
+        [XmlArrayItem("Table")]
+        public List<Table> TableList { get; set; } = new();
+        public bool ShouldSerializeTableList() => TableList.Count > 0;
+
+        [XmlArray("TableKeyList")]
+        [XmlArrayItem("TableKey")]
+        public List<TableKey> TableKeyList { get; set; } = new();
+        public bool ShouldSerializeTableKeyList() => TableKeyList.Count > 0;
+
+        [XmlArray("TableKeyFieldList")]
+        [XmlArrayItem("TableKeyField")]
+        public List<TableKeyField> TableKeyFieldList { get; set; } = new();
+        public bool ShouldSerializeTableKeyFieldList() => TableKeyFieldList.Count > 0;
+
+        [XmlArray("TableRelationshipList")]
+        [XmlArrayItem("TableRelationship")]
+        public List<TableRelationship> TableRelationshipList { get; set; } = new();
+        public bool ShouldSerializeTableRelationshipList() => TableRelationshipList.Count > 0;
+
+        [XmlArray("TableRelationshipFieldList")]
+        [XmlArrayItem("TableRelationshipField")]
+        public List<TableRelationshipField> TableRelationshipFieldList { get; set; } = new();
+        public bool ShouldSerializeTableRelationshipFieldList() => TableRelationshipFieldList.Count > 0;
+
+        public static MetaSchemaModel LoadFromXmlWorkspace(
+            string workspacePath,
+            bool searchUpward = true)
         {
-            FieldList = fieldList;
-            FieldDataTypeDetailList = fieldDataTypeDetailList;
-            SchemaList = schemaList;
-            SystemList = systemList;
-            TableList = tableList;
-            TableKeyList = tableKeyList;
-            TableKeyFieldList = tableKeyFieldList;
-            TableRelationshipList = tableRelationshipList;
-            TableRelationshipFieldList = tableRelationshipFieldList;
+            var model = TypedWorkspaceXmlSerializer.Load<MetaSchemaModel>(workspacePath, searchUpward);
+            MetaSchemaModelFactory.Bind(model);
+            return model;
         }
 
-        public static string Signature => "6d6f64656c7c4d657461536368656d610a656e746974797c4669656c647c4669656c644c6973740a70726f70657274797c4669656c647c49734e756c6c61626c657c737472696e677c6e756c6c61626c650a70726f70657274797c4669656c647c4d657461446174615479706549647c737472696e677c72657175697265640a70726f70657274797c4669656c647c4e616d657c737472696e677c72657175697265640a70726f70657274797c4669656c647c4f7264696e616c7c737472696e677c6e756c6c61626c650a72656c6174696f6e736869707c4669656c647c5461626c657c5461626c6549640a656e746974797c4669656c64446174615479706544657461696c7c4669656c64446174615479706544657461696c4c6973740a70726f70657274797c4669656c64446174615479706544657461696c7c4e616d657c737472696e677c72657175697265640a70726f70657274797c4669656c64446174615479706544657461696c7c56616c75657c737472696e677c72657175697265640a72656c6174696f6e736869707c4669656c64446174615479706544657461696c7c4669656c647c4669656c6449640a656e746974797c536368656d617c536368656d614c6973740a70726f70657274797c536368656d617c4e616d657c737472696e677c72657175697265640a72656c6174696f6e736869707c536368656d617c53797374656d7c53797374656d49640a656e746974797c53797374656d7c53797374656d4c6973740a70726f70657274797c53797374656d7c4465736372697074696f6e7c737472696e677c6e756c6c61626c650a70726f70657274797c53797374656d7c4e616d657c737472696e677c72657175697265640a656e746974797c5461626c657c5461626c654c6973740a70726f70657274797c5461626c657c4e616d657c737472696e677c72657175697265640a70726f70657274797c5461626c657c4f626a656374547970657c737472696e677c6e756c6c61626c650a72656c6174696f6e736869707c5461626c657c536368656d617c536368656d6149640a656e746974797c5461626c654b65797c5461626c654b65794c6973740a70726f70657274797c5461626c654b65797c4b6579547970657c737472696e677c72657175697265640a70726f70657274797c5461626c654b65797c4e616d657c737472696e677c72657175697265640a72656c6174696f6e736869707c5461626c654b65797c5461626c657c5461626c6549640a656e746974797c5461626c654b65794669656c647c5461626c654b65794669656c644c6973740a70726f70657274797c5461626c654b65794669656c647c4669656c644e616d657c737472696e677c72657175697265640a70726f70657274797c5461626c654b65794669656c647c4f7264696e616c7c737472696e677c72657175697265640a72656c6174696f6e736869707c5461626c654b65794669656c647c4669656c647c4669656c6449640a72656c6174696f6e736869707c5461626c654b65794669656c647c5461626c654b65797c5461626c654b657949640a656e746974797c5461626c6552656c6174696f6e736869707c5461626c6552656c6174696f6e736869704c6973740a70726f70657274797c5461626c6552656c6174696f6e736869707c4e616d657c737472696e677c72657175697265640a72656c6174696f6e736869707c5461626c6552656c6174696f6e736869707c5461626c657c536f757263655461626c6549640a72656c6174696f6e736869707c5461626c6552656c6174696f6e736869707c5461626c657c5461726765745461626c6549640a656e746974797c5461626c6552656c6174696f6e736869704669656c647c5461626c6552656c6174696f6e736869704669656c644c6973740a70726f70657274797c5461626c6552656c6174696f6e736869704669656c647c4f7264696e616c7c737472696e677c72657175697265640a72656c6174696f6e736869707c5461626c6552656c6174696f6e736869704669656c647c4669656c647c536f757263654669656c6449640a72656c6174696f6e736869707c5461626c6552656c6174696f6e736869704669656c647c5461626c6552656c6174696f6e736869707c5461626c6552656c6174696f6e7368697049640a72656c6174696f6e736869707c5461626c6552656c6174696f6e736869704669656c647c4669656c647c5461726765744669656c644964";
-
-        public static MetaSchemaModel CreateEmpty()
+        public static Task<MetaSchemaModel> LoadFromXmlWorkspaceAsync(
+            string workspacePath,
+            bool searchUpward = true,
+            CancellationToken cancellationToken = default)
         {
-            return new MetaSchemaModel(
-                new List<Field>(),
-                new List<FieldDataTypeDetail>(),
-                new List<Schema>(),
-                new List<System>(),
-                new List<Table>(),
-                new List<TableKey>(),
-                new List<TableKeyField>(),
-                new List<TableRelationship>(),
-                new List<TableRelationshipField>()
-            );
+            cancellationToken.ThrowIfCancellationRequested();
+            return Task.FromResult(LoadFromXmlWorkspace(workspacePath, searchUpward));
         }
 
-        public List<Field> FieldList { get; }
-        public List<FieldDataTypeDetail> FieldDataTypeDetailList { get; }
-        public List<Schema> SchemaList { get; }
-        public List<System> SystemList { get; }
-        public List<Table> TableList { get; }
-        public List<TableKey> TableKeyList { get; }
-        public List<TableKeyField> TableKeyFieldList { get; }
-        public List<TableRelationship> TableRelationshipList { get; }
-        public List<TableRelationshipField> TableRelationshipFieldList { get; }
-
-        public Workspace ToXmlWorkspace(string workspacePath)
+        public void SaveToXmlWorkspace(string workspacePath)
         {
-            if (string.IsNullOrWhiteSpace(workspacePath))
-            {
-                throw new global::System.ArgumentException("Workspace path is required.", nameof(workspacePath));
-            }
-
-            var rootPath = global::System.IO.Path.GetFullPath(workspacePath);
-            var metadataRootPath = global::System.IO.Path.Combine(rootPath, "metadata");
-            var model = CreateGenericModelDefinition();
-            var workspace = new Workspace
-            {
-                WorkspaceRootPath = rootPath,
-                MetadataRootPath = metadataRootPath,
-                WorkspaceConfig = global::Meta.Core.WorkspaceConfig.Generated.MetaWorkspace.CreateDefault(),
-                Model = model,
-                Instance = new GenericInstance
-                {
-                    ModelName = model.Name,
-                },
-                IsDirty = true,
-            };
-
-            foreach (var row in FieldList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "Field.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.IsNullable))
-                {
-                    record.Values["IsNullable"] = row.IsNullable;
-                }
-                if (!string.IsNullOrWhiteSpace(row.MetaDataTypeId))
-                {
-                    record.Values["MetaDataTypeId"] = row.MetaDataTypeId;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Ordinal))
-                {
-                    record.Values["Ordinal"] = row.Ordinal;
-                }
-                if (!string.IsNullOrWhiteSpace(row.TableId))
-                {
-                    record.RelationshipIds["TableId"] = row.TableId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("Field").Add(record);
-            }
-
-            foreach (var row in FieldDataTypeDetailList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "FieldDataTypeDetail.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Value))
-                {
-                    record.Values["Value"] = row.Value;
-                }
-                if (!string.IsNullOrWhiteSpace(row.FieldId))
-                {
-                    record.RelationshipIds["FieldId"] = row.FieldId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("FieldDataTypeDetail").Add(record);
-            }
-
-            foreach (var row in SchemaList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "Schema.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                if (!string.IsNullOrWhiteSpace(row.SystemId))
-                {
-                    record.RelationshipIds["SystemId"] = row.SystemId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("Schema").Add(record);
-            }
-
-            foreach (var row in SystemList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "System.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Description))
-                {
-                    record.Values["Description"] = row.Description;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("System").Add(record);
-            }
-
-            foreach (var row in TableList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "Table.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                if (!string.IsNullOrWhiteSpace(row.ObjectType))
-                {
-                    record.Values["ObjectType"] = row.ObjectType;
-                }
-                if (!string.IsNullOrWhiteSpace(row.SchemaId))
-                {
-                    record.RelationshipIds["SchemaId"] = row.SchemaId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("Table").Add(record);
-            }
-
-            foreach (var row in TableKeyList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "TableKey.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.KeyType))
-                {
-                    record.Values["KeyType"] = row.KeyType;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                if (!string.IsNullOrWhiteSpace(row.TableId))
-                {
-                    record.RelationshipIds["TableId"] = row.TableId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("TableKey").Add(record);
-            }
-
-            foreach (var row in TableKeyFieldList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "TableKeyField.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.FieldName))
-                {
-                    record.Values["FieldName"] = row.FieldName;
-                }
-                if (!string.IsNullOrWhiteSpace(row.Ordinal))
-                {
-                    record.Values["Ordinal"] = row.Ordinal;
-                }
-                if (!string.IsNullOrWhiteSpace(row.FieldId))
-                {
-                    record.RelationshipIds["FieldId"] = row.FieldId;
-                }
-                if (!string.IsNullOrWhiteSpace(row.TableKeyId))
-                {
-                    record.RelationshipIds["TableKeyId"] = row.TableKeyId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("TableKeyField").Add(record);
-            }
-
-            foreach (var row in TableRelationshipList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "TableRelationship.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Name))
-                {
-                    record.Values["Name"] = row.Name;
-                }
-                if (!string.IsNullOrWhiteSpace(row.SourceTableId))
-                {
-                    record.RelationshipIds["SourceTableId"] = row.SourceTableId;
-                }
-                if (!string.IsNullOrWhiteSpace(row.TargetTableId))
-                {
-                    record.RelationshipIds["TargetTableId"] = row.TargetTableId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("TableRelationship").Add(record);
-            }
-
-            foreach (var row in TableRelationshipFieldList.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-            {
-                var record = new GenericRecord
-                {
-                    Id = row.Id ?? string.Empty,
-                    SourceShardFileName = "TableRelationshipField.xml",
-                };
-                if (!string.IsNullOrWhiteSpace(row.Ordinal))
-                {
-                    record.Values["Ordinal"] = row.Ordinal;
-                }
-                if (!string.IsNullOrWhiteSpace(row.SourceFieldId))
-                {
-                    record.RelationshipIds["SourceFieldId"] = row.SourceFieldId;
-                }
-                if (!string.IsNullOrWhiteSpace(row.TableRelationshipId))
-                {
-                    record.RelationshipIds["TableRelationshipId"] = row.TableRelationshipId;
-                }
-                if (!string.IsNullOrWhiteSpace(row.TargetFieldId))
-                {
-                    record.RelationshipIds["TargetFieldId"] = row.TargetFieldId;
-                }
-                workspace.Instance.GetOrCreateEntityRecords("TableRelationshipField").Add(record);
-            }
-
-            return workspace;
+            MetaSchemaModelFactory.Bind(this);
+            TypedWorkspaceXmlSerializer.Save(this, workspacePath, ResolveBundledModelXmlPath());
         }
 
         public Task SaveToXmlWorkspaceAsync(
             string workspacePath,
             CancellationToken cancellationToken = default)
         {
-            var workspace = ToXmlWorkspace(workspacePath);
-            return MetaSchemaTooling.SaveWorkspaceAsync(workspace, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            SaveToXmlWorkspace(workspacePath);
+            return Task.CompletedTask;
         }
 
-        private static GenericModel CreateGenericModelDefinition()
+        private static string? ResolveBundledModelXmlPath()
         {
-            var model = new GenericModel
+            var assemblyDirectory = Path.GetDirectoryName(typeof(MetaSchemaModel).Assembly.Location);
+            if (string.IsNullOrWhiteSpace(assemblyDirectory))
             {
-                Name = "MetaSchema",
-            };
+                return null;
+            }
 
-            model.Entities.Add(new GenericEntity
+            var directPath = Path.Combine(assemblyDirectory, "model.xml");
+            if (File.Exists(directPath))
             {
-                Name = "Field",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "IsNullable",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "MetaDataTypeId",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Ordinal",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "Table",
-                        Role = "",
-                    },
-                },
-            });
+                return directPath;
+            }
 
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "FieldDataTypeDetail",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Value",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "Field",
-                        Role = "",
-                    },
-                },
-            });
-
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "Schema",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "System",
-                        Role = "",
-                    },
-                },
-            });
-
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "System",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Description",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                },
-            });
-
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "Table",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "ObjectType",
-                        DataType = "string",
-                        IsNullable = true,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "Schema",
-                        Role = "",
-                    },
-                },
-            });
-
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "TableKey",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "KeyType",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "Table",
-                        Role = "",
-                    },
-                },
-            });
-
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "TableKeyField",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "FieldName",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                    new GenericProperty
-                    {
-                        Name = "Ordinal",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "Field",
-                        Role = "",
-                    },
-                    new GenericRelationship
-                    {
-                        Entity = "TableKey",
-                        Role = "",
-                    },
-                },
-            });
-
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "TableRelationship",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Name",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "Table",
-                        Role = "SourceTable",
-                    },
-                    new GenericRelationship
-                    {
-                        Entity = "Table",
-                        Role = "TargetTable",
-                    },
-                },
-            });
-
-            model.Entities.Add(new GenericEntity
-            {
-                Name = "TableRelationshipField",
-                Properties =
-                {
-                    new GenericProperty
-                    {
-                        Name = "Ordinal",
-                        DataType = "string",
-                        IsNullable = false,
-                    },
-                },
-                Relationships =
-                {
-                    new GenericRelationship
-                    {
-                        Entity = "Field",
-                        Role = "SourceField",
-                    },
-                    new GenericRelationship
-                    {
-                        Entity = "TableRelationship",
-                        Role = "",
-                    },
-                    new GenericRelationship
-                    {
-                        Entity = "Field",
-                        Role = "TargetField",
-                    },
-                },
-            });
-
-            return model;
+            var namespacedPath = Path.Combine(assemblyDirectory, "MetaSchema", "model.xml");
+            return File.Exists(namespacedPath) ? namespacedPath : null;
         }
     }
 
     internal static class MetaSchemaModelFactory
     {
-        internal static MetaSchemaModel CreateFromWorkspace(Workspace workspace)
+        internal static void Bind(MetaSchemaModel model)
         {
-            if (workspace == null)
-            {
-                throw new global::System.ArgumentNullException(nameof(workspace));
-            }
+            ArgumentNullException.ThrowIfNull(model);
 
-            var fieldList = new List<Field>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("Field", out var fieldListRecords))
-            {
-                foreach (var record in fieldListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    fieldList.Add(new Field
-                    {
-                        Id = record.Id ?? string.Empty,
-                        IsNullable = record.Values.TryGetValue("IsNullable", out var isNullableValue) ? isNullableValue ?? string.Empty : string.Empty,
-                        MetaDataTypeId = record.Values.TryGetValue("MetaDataTypeId", out var metaDataTypeIdValue) ? metaDataTypeIdValue ?? string.Empty : string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
-                        TableId = record.RelationshipIds.TryGetValue("TableId", out var tableRelationshipId) ? tableRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
+            model.FieldList ??= new List<Field>();
+            model.FieldDataTypeDetailList ??= new List<FieldDataTypeDetail>();
+            model.SchemaList ??= new List<Schema>();
+            model.SystemList ??= new List<System>();
+            model.TableList ??= new List<Table>();
+            model.TableKeyList ??= new List<TableKey>();
+            model.TableKeyFieldList ??= new List<TableKeyField>();
+            model.TableRelationshipList ??= new List<TableRelationship>();
+            model.TableRelationshipFieldList ??= new List<TableRelationshipField>();
 
-            var fieldDataTypeDetailList = new List<FieldDataTypeDetail>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("FieldDataTypeDetail", out var fieldDataTypeDetailListRecords))
-            {
-                foreach (var record in fieldDataTypeDetailListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    fieldDataTypeDetailList.Add(new FieldDataTypeDetail
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                        Value = record.Values.TryGetValue("Value", out var valueValue) ? valueValue ?? string.Empty : string.Empty,
-                        FieldId = record.RelationshipIds.TryGetValue("FieldId", out var fieldRelationshipId) ? fieldRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
+            NormalizeFieldList(model);
+            NormalizeFieldDataTypeDetailList(model);
+            NormalizeSchemaList(model);
+            NormalizeSystemList(model);
+            NormalizeTableList(model);
+            NormalizeTableKeyList(model);
+            NormalizeTableKeyFieldList(model);
+            NormalizeTableRelationshipList(model);
+            NormalizeTableRelationshipFieldList(model);
 
-            var schemaList = new List<Schema>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("Schema", out var schemaListRecords))
-            {
-                foreach (var record in schemaListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    schemaList.Add(new Schema
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                        SystemId = record.RelationshipIds.TryGetValue("SystemId", out var systemRelationshipId) ? systemRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
+            var fieldListById = BuildById(model.FieldList, row => row.Id, "Field");
+            var fieldDataTypeDetailListById = BuildById(model.FieldDataTypeDetailList, row => row.Id, "FieldDataTypeDetail");
+            var schemaListById = BuildById(model.SchemaList, row => row.Id, "Schema");
+            var systemListById = BuildById(model.SystemList, row => row.Id, "System");
+            var tableListById = BuildById(model.TableList, row => row.Id, "Table");
+            var tableKeyListById = BuildById(model.TableKeyList, row => row.Id, "TableKey");
+            var tableKeyFieldListById = BuildById(model.TableKeyFieldList, row => row.Id, "TableKeyField");
+            var tableRelationshipListById = BuildById(model.TableRelationshipList, row => row.Id, "TableRelationship");
+            var tableRelationshipFieldListById = BuildById(model.TableRelationshipFieldList, row => row.Id, "TableRelationshipField");
 
-            var systemList = new List<System>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("System", out var systemListRecords))
+            foreach (var row in model.FieldList)
             {
-                foreach (var record in systemListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    systemList.Add(new System
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Description = record.Values.TryGetValue("Description", out var descriptionValue) ? descriptionValue ?? string.Empty : string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                    });
-                }
-            }
-
-            var tableList = new List<Table>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("Table", out var tableListRecords))
-            {
-                foreach (var record in tableListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    tableList.Add(new Table
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                        ObjectType = record.Values.TryGetValue("ObjectType", out var objectTypeValue) ? objectTypeValue ?? string.Empty : string.Empty,
-                        SchemaId = record.RelationshipIds.TryGetValue("SchemaId", out var schemaRelationshipId) ? schemaRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
-
-            var tableKeyList = new List<TableKey>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("TableKey", out var tableKeyListRecords))
-            {
-                foreach (var record in tableKeyListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    tableKeyList.Add(new TableKey
-                    {
-                        Id = record.Id ?? string.Empty,
-                        KeyType = record.Values.TryGetValue("KeyType", out var keyTypeValue) ? keyTypeValue ?? string.Empty : string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                        TableId = record.RelationshipIds.TryGetValue("TableId", out var tableRelationshipId) ? tableRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
-
-            var tableKeyFieldList = new List<TableKeyField>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("TableKeyField", out var tableKeyFieldListRecords))
-            {
-                foreach (var record in tableKeyFieldListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    tableKeyFieldList.Add(new TableKeyField
-                    {
-                        Id = record.Id ?? string.Empty,
-                        FieldName = record.Values.TryGetValue("FieldName", out var fieldNameValue) ? fieldNameValue ?? string.Empty : string.Empty,
-                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
-                        FieldId = record.RelationshipIds.TryGetValue("FieldId", out var fieldRelationshipId) ? fieldRelationshipId ?? string.Empty : string.Empty,
-                        TableKeyId = record.RelationshipIds.TryGetValue("TableKeyId", out var tableKeyRelationshipId) ? tableKeyRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
-
-            var tableRelationshipList = new List<TableRelationship>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("TableRelationship", out var tableRelationshipListRecords))
-            {
-                foreach (var record in tableRelationshipListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    tableRelationshipList.Add(new TableRelationship
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Name = record.Values.TryGetValue("Name", out var nameValue) ? nameValue ?? string.Empty : string.Empty,
-                        SourceTableId = record.RelationshipIds.TryGetValue("SourceTableId", out var sourceTableRelationshipId) ? sourceTableRelationshipId ?? string.Empty : string.Empty,
-                        TargetTableId = record.RelationshipIds.TryGetValue("TargetTableId", out var targetTableRelationshipId) ? targetTableRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
-
-            var tableRelationshipFieldList = new List<TableRelationshipField>();
-            if (workspace.Instance.RecordsByEntity.TryGetValue("TableRelationshipField", out var tableRelationshipFieldListRecords))
-            {
-                foreach (var record in tableRelationshipFieldListRecords.OrderBy(item => item.Id, global::System.StringComparer.OrdinalIgnoreCase).ThenBy(item => item.Id, global::System.StringComparer.Ordinal))
-                {
-                    tableRelationshipFieldList.Add(new TableRelationshipField
-                    {
-                        Id = record.Id ?? string.Empty,
-                        Ordinal = record.Values.TryGetValue("Ordinal", out var ordinalValue) ? ordinalValue ?? string.Empty : string.Empty,
-                        SourceFieldId = record.RelationshipIds.TryGetValue("SourceFieldId", out var sourceFieldRelationshipId) ? sourceFieldRelationshipId ?? string.Empty : string.Empty,
-                        TableRelationshipId = record.RelationshipIds.TryGetValue("TableRelationshipId", out var tableRelationshipRelationshipId) ? tableRelationshipRelationshipId ?? string.Empty : string.Empty,
-                        TargetFieldId = record.RelationshipIds.TryGetValue("TargetFieldId", out var targetFieldRelationshipId) ? targetFieldRelationshipId ?? string.Empty : string.Empty,
-                    });
-                }
-            }
-
-            var fieldListById = new Dictionary<string, Field>(global::System.StringComparer.Ordinal);
-            foreach (var row in fieldList)
-            {
-                fieldListById[row.Id] = row;
-            }
-
-            var fieldDataTypeDetailListById = new Dictionary<string, FieldDataTypeDetail>(global::System.StringComparer.Ordinal);
-            foreach (var row in fieldDataTypeDetailList)
-            {
-                fieldDataTypeDetailListById[row.Id] = row;
-            }
-
-            var schemaListById = new Dictionary<string, Schema>(global::System.StringComparer.Ordinal);
-            foreach (var row in schemaList)
-            {
-                schemaListById[row.Id] = row;
-            }
-
-            var systemListById = new Dictionary<string, System>(global::System.StringComparer.Ordinal);
-            foreach (var row in systemList)
-            {
-                systemListById[row.Id] = row;
-            }
-
-            var tableListById = new Dictionary<string, Table>(global::System.StringComparer.Ordinal);
-            foreach (var row in tableList)
-            {
-                tableListById[row.Id] = row;
-            }
-
-            var tableKeyListById = new Dictionary<string, TableKey>(global::System.StringComparer.Ordinal);
-            foreach (var row in tableKeyList)
-            {
-                tableKeyListById[row.Id] = row;
-            }
-
-            var tableKeyFieldListById = new Dictionary<string, TableKeyField>(global::System.StringComparer.Ordinal);
-            foreach (var row in tableKeyFieldList)
-            {
-                tableKeyFieldListById[row.Id] = row;
-            }
-
-            var tableRelationshipListById = new Dictionary<string, TableRelationship>(global::System.StringComparer.Ordinal);
-            foreach (var row in tableRelationshipList)
-            {
-                tableRelationshipListById[row.Id] = row;
-            }
-
-            var tableRelationshipFieldListById = new Dictionary<string, TableRelationshipField>(global::System.StringComparer.Ordinal);
-            foreach (var row in tableRelationshipFieldList)
-            {
-                tableRelationshipFieldListById[row.Id] = row;
-            }
-
-            foreach (var row in fieldList)
-            {
+                row.TableId = ResolveRelationshipId(
+                    row.TableId,
+                    row.Table?.Id,
+                    "Field",
+                    row.Id,
+                    "TableId");
                 row.Table = RequireTarget(
                     tableListById,
                     row.TableId,
@@ -780,8 +162,14 @@ namespace MetaSchema
                     "TableId");
             }
 
-            foreach (var row in fieldDataTypeDetailList)
+            foreach (var row in model.FieldDataTypeDetailList)
             {
+                row.FieldId = ResolveRelationshipId(
+                    row.FieldId,
+                    row.Field?.Id,
+                    "FieldDataTypeDetail",
+                    row.Id,
+                    "FieldId");
                 row.Field = RequireTarget(
                     fieldListById,
                     row.FieldId,
@@ -790,8 +178,14 @@ namespace MetaSchema
                     "FieldId");
             }
 
-            foreach (var row in schemaList)
+            foreach (var row in model.SchemaList)
             {
+                row.SystemId = ResolveRelationshipId(
+                    row.SystemId,
+                    row.System?.Id,
+                    "Schema",
+                    row.Id,
+                    "SystemId");
                 row.System = RequireTarget(
                     systemListById,
                     row.SystemId,
@@ -800,8 +194,14 @@ namespace MetaSchema
                     "SystemId");
             }
 
-            foreach (var row in tableList)
+            foreach (var row in model.TableList)
             {
+                row.SchemaId = ResolveRelationshipId(
+                    row.SchemaId,
+                    row.Schema?.Id,
+                    "Table",
+                    row.Id,
+                    "SchemaId");
                 row.Schema = RequireTarget(
                     schemaListById,
                     row.SchemaId,
@@ -810,8 +210,14 @@ namespace MetaSchema
                     "SchemaId");
             }
 
-            foreach (var row in tableKeyList)
+            foreach (var row in model.TableKeyList)
             {
+                row.TableId = ResolveRelationshipId(
+                    row.TableId,
+                    row.Table?.Id,
+                    "TableKey",
+                    row.Id,
+                    "TableId");
                 row.Table = RequireTarget(
                     tableListById,
                     row.TableId,
@@ -820,8 +226,14 @@ namespace MetaSchema
                     "TableId");
             }
 
-            foreach (var row in tableKeyFieldList)
+            foreach (var row in model.TableKeyFieldList)
             {
+                row.FieldId = ResolveRelationshipId(
+                    row.FieldId,
+                    row.Field?.Id,
+                    "TableKeyField",
+                    row.Id,
+                    "FieldId");
                 row.Field = RequireTarget(
                     fieldListById,
                     row.FieldId,
@@ -830,8 +242,14 @@ namespace MetaSchema
                     "FieldId");
             }
 
-            foreach (var row in tableKeyFieldList)
+            foreach (var row in model.TableKeyFieldList)
             {
+                row.TableKeyId = ResolveRelationshipId(
+                    row.TableKeyId,
+                    row.TableKey?.Id,
+                    "TableKeyField",
+                    row.Id,
+                    "TableKeyId");
                 row.TableKey = RequireTarget(
                     tableKeyListById,
                     row.TableKeyId,
@@ -840,8 +258,14 @@ namespace MetaSchema
                     "TableKeyId");
             }
 
-            foreach (var row in tableRelationshipList)
+            foreach (var row in model.TableRelationshipList)
             {
+                row.SourceTableId = ResolveRelationshipId(
+                    row.SourceTableId,
+                    row.SourceTable?.Id,
+                    "TableRelationship",
+                    row.Id,
+                    "SourceTableId");
                 row.SourceTable = RequireTarget(
                     tableListById,
                     row.SourceTableId,
@@ -850,8 +274,14 @@ namespace MetaSchema
                     "SourceTableId");
             }
 
-            foreach (var row in tableRelationshipList)
+            foreach (var row in model.TableRelationshipList)
             {
+                row.TargetTableId = ResolveRelationshipId(
+                    row.TargetTableId,
+                    row.TargetTable?.Id,
+                    "TableRelationship",
+                    row.Id,
+                    "TargetTableId");
                 row.TargetTable = RequireTarget(
                     tableListById,
                     row.TargetTableId,
@@ -860,8 +290,14 @@ namespace MetaSchema
                     "TargetTableId");
             }
 
-            foreach (var row in tableRelationshipFieldList)
+            foreach (var row in model.TableRelationshipFieldList)
             {
+                row.SourceFieldId = ResolveRelationshipId(
+                    row.SourceFieldId,
+                    row.SourceField?.Id,
+                    "TableRelationshipField",
+                    row.Id,
+                    "SourceFieldId");
                 row.SourceField = RequireTarget(
                     fieldListById,
                     row.SourceFieldId,
@@ -870,8 +306,14 @@ namespace MetaSchema
                     "SourceFieldId");
             }
 
-            foreach (var row in tableRelationshipFieldList)
+            foreach (var row in model.TableRelationshipFieldList)
             {
+                row.TableRelationshipId = ResolveRelationshipId(
+                    row.TableRelationshipId,
+                    row.TableRelationship?.Id,
+                    "TableRelationshipField",
+                    row.Id,
+                    "TableRelationshipId");
                 row.TableRelationship = RequireTarget(
                     tableRelationshipListById,
                     row.TableRelationshipId,
@@ -880,8 +322,14 @@ namespace MetaSchema
                     "TableRelationshipId");
             }
 
-            foreach (var row in tableRelationshipFieldList)
+            foreach (var row in model.TableRelationshipFieldList)
             {
+                row.TargetFieldId = ResolveRelationshipId(
+                    row.TargetFieldId,
+                    row.TargetField?.Id,
+                    "TableRelationshipField",
+                    row.Id,
+                    "TargetFieldId");
                 row.TargetField = RequireTarget(
                     fieldListById,
                     row.TargetFieldId,
@@ -890,17 +338,136 @@ namespace MetaSchema
                     "TargetFieldId");
             }
 
-            return new MetaSchemaModel(
-                fieldList,
-                fieldDataTypeDetailList,
-                schemaList,
-                systemList,
-                tableList,
-                tableKeyList,
-                tableKeyFieldList,
-                tableRelationshipList,
-                tableRelationshipFieldList
-            );
+        }
+
+        private static void NormalizeFieldList(MetaSchemaModel model)
+        {
+            foreach (var row in model.FieldList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'Field' contains a row with empty Id.");
+                row.IsNullable ??= string.Empty;
+                row.MetaDataTypeId = RequireText(row.MetaDataTypeId, $"Entity 'Field' row '{row.Id}' is missing required property 'MetaDataTypeId'.");
+                row.Name = RequireText(row.Name, $"Entity 'Field' row '{row.Id}' is missing required property 'Name'.");
+                row.Ordinal ??= string.Empty;
+                row.TableId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeFieldDataTypeDetailList(MetaSchemaModel model)
+        {
+            foreach (var row in model.FieldDataTypeDetailList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'FieldDataTypeDetail' contains a row with empty Id.");
+                row.Name = RequireText(row.Name, $"Entity 'FieldDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
+                row.Value = RequireText(row.Value, $"Entity 'FieldDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
+                row.FieldId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeSchemaList(MetaSchemaModel model)
+        {
+            foreach (var row in model.SchemaList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'Schema' contains a row with empty Id.");
+                row.Name = RequireText(row.Name, $"Entity 'Schema' row '{row.Id}' is missing required property 'Name'.");
+                row.SystemId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeSystemList(MetaSchemaModel model)
+        {
+            foreach (var row in model.SystemList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'System' contains a row with empty Id.");
+                row.Description ??= string.Empty;
+                row.Name = RequireText(row.Name, $"Entity 'System' row '{row.Id}' is missing required property 'Name'.");
+            }
+        }
+
+        private static void NormalizeTableList(MetaSchemaModel model)
+        {
+            foreach (var row in model.TableList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'Table' contains a row with empty Id.");
+                row.Name = RequireText(row.Name, $"Entity 'Table' row '{row.Id}' is missing required property 'Name'.");
+                row.ObjectType ??= string.Empty;
+                row.SchemaId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTableKeyList(MetaSchemaModel model)
+        {
+            foreach (var row in model.TableKeyList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TableKey' contains a row with empty Id.");
+                row.KeyType = RequireText(row.KeyType, $"Entity 'TableKey' row '{row.Id}' is missing required property 'KeyType'.");
+                row.Name = RequireText(row.Name, $"Entity 'TableKey' row '{row.Id}' is missing required property 'Name'.");
+                row.TableId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTableKeyFieldList(MetaSchemaModel model)
+        {
+            foreach (var row in model.TableKeyFieldList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TableKeyField' contains a row with empty Id.");
+                row.FieldName = RequireText(row.FieldName, $"Entity 'TableKeyField' row '{row.Id}' is missing required property 'FieldName'.");
+                row.Ordinal = RequireText(row.Ordinal, $"Entity 'TableKeyField' row '{row.Id}' is missing required property 'Ordinal'.");
+                row.FieldId ??= string.Empty;
+                row.TableKeyId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTableRelationshipList(MetaSchemaModel model)
+        {
+            foreach (var row in model.TableRelationshipList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TableRelationship' contains a row with empty Id.");
+                row.Name = RequireText(row.Name, $"Entity 'TableRelationship' row '{row.Id}' is missing required property 'Name'.");
+                row.SourceTableId ??= string.Empty;
+                row.TargetTableId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTableRelationshipFieldList(MetaSchemaModel model)
+        {
+            foreach (var row in model.TableRelationshipFieldList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TableRelationshipField' contains a row with empty Id.");
+                row.Ordinal = RequireText(row.Ordinal, $"Entity 'TableRelationshipField' row '{row.Id}' is missing required property 'Ordinal'.");
+                row.SourceFieldId ??= string.Empty;
+                row.TableRelationshipId ??= string.Empty;
+                row.TargetFieldId ??= string.Empty;
+            }
+        }
+
+        private static Dictionary<string, T> BuildById<T>(
+            IEnumerable<T> rows,
+            Func<T, string> getId,
+            string entityName)
+            where T : class
+        {
+            var rowsById = new Dictionary<string, T>(StringComparer.Ordinal);
+            foreach (var row in rows)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var id = RequireIdentity(getId(row), $"Entity '{entityName}' contains a row with empty Id.");
+                if (!rowsById.TryAdd(id, row))
+                {
+                    throw new InvalidOperationException($"Entity '{entityName}' contains duplicate Id '{id}'.");
+                }
+            }
+
+            return rowsById;
         }
 
         private static T RequireTarget<T>(
@@ -911,21 +478,63 @@ namespace MetaSchema
             string relationshipName)
             where T : class
         {
-            if (string.IsNullOrEmpty(targetId))
+            var normalizedTargetId = RequireIdentity(targetId, $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty.");
+            if (!rowsById.TryGetValue(normalizedTargetId, out var target))
             {
-                throw new global::System.InvalidOperationException(
-                    $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty."
-                );
-            }
-
-            if (!rowsById.TryGetValue(targetId, out var target))
-            {
-                throw new global::System.InvalidOperationException(
-                    $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' points to missing Id '{targetId}'."
-                );
+                throw new InvalidOperationException($"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' points to missing Id '{normalizedTargetId}'.");
             }
 
             return target;
+        }
+
+        private static string ResolveRelationshipId(
+            string relationshipId,
+            string? navigationId,
+            string sourceEntityName,
+            string sourceId,
+            string relationshipName)
+        {
+            var normalizedRelationshipId = NormalizeIdentity(relationshipId);
+            var normalizedNavigationId = NormalizeIdentity(navigationId);
+            if (!string.IsNullOrEmpty(normalizedRelationshipId) &&
+                !string.IsNullOrEmpty(normalizedNavigationId) &&
+                !string.Equals(normalizedRelationshipId, normalizedNavigationId, StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException($"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' conflicts between '{normalizedRelationshipId}' and '{normalizedNavigationId}'.");
+            }
+
+            var resolvedTargetId = string.IsNullOrEmpty(normalizedRelationshipId)
+                ? normalizedNavigationId
+                : normalizedRelationshipId;
+            return RequireIdentity(resolvedTargetId, $"Relationship '{sourceEntityName}.{relationshipName}' on row '{sourceEntityName}:{sourceId}' is empty.");
+        }
+
+        private static string RequireIdentity(string? value, string errorMessage)
+        {
+            var normalizedValue = NormalizeIdentity(value);
+            if (string.IsNullOrEmpty(normalizedValue))
+            {
+                throw new InvalidOperationException(errorMessage);
+            }
+
+            return normalizedValue;
+        }
+
+        private static string RequireText(string? value, string errorMessage)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new InvalidOperationException(errorMessage);
+            }
+
+            return value;
+        }
+
+        private static string NormalizeIdentity(string? value)
+        {
+            return string.IsNullOrWhiteSpace(value)
+                ? string.Empty
+                : value.Trim();
         }
     }
 }

@@ -1,11 +1,11 @@
-using Meta.Core.Domain;
 using MetaRawDataVault;
+using MetaSql;
 
 namespace MetaDataVault.ToMetaSql;
 
 public static partial class Converter
 {
-    private static Workspace ConvertRaw(MetaRawDataVaultModel model, ConversionContext context)
+    private static MetaSqlModel ConvertRaw(MetaRawDataVaultModel model, ConversionContext context)
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(context);
@@ -29,6 +29,6 @@ public static partial class Converter
             rawLinkSatellitesByLinkId,
             rawLinkSatelliteAttributesBySatelliteId);
 
-        return context.MetaSql.ToXmlWorkspace(context.PathToNewMetaSqlWorkspace);
+        return context.MetaSql;
     }
 }

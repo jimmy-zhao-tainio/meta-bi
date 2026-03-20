@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\MetaDataTypeConversion.Workspaces\MetaDataTypeConversion\metadata\model.xml">
+    <EmbeddedResource Include="..\MetaDataTypeConversion.Workspace\metadata\model.xml">
       <Link>Models\MetaDataTypeConversion.model.xml</Link>
       <LogicalName>MetaDataTypeConversion.Core.Models.MetaDataTypeConversion.model.xml</LogicalName>
     </EmbeddedResource>

@@ -1,14 +1,33 @@
+using System;
+using System.Xml.Serialization;
+
 namespace MetaSchema
 {
     public sealed class TableRelationshipField
     {
+        [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
-        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlAttribute("SourceFieldId")]
         public string SourceFieldId { get; set; } = string.Empty;
-        public Field SourceField { get; set; } = new Field();
+
+        [XmlAttribute("TableRelationshipId")]
         public string TableRelationshipId { get; set; } = string.Empty;
-        public TableRelationship TableRelationship { get; set; } = new TableRelationship();
+
+        [XmlAttribute("TargetFieldId")]
         public string TargetFieldId { get; set; } = string.Empty;
-        public Field TargetField { get; set; } = new Field();
+
+        [XmlElement("Ordinal")]
+        public string Ordinal { get; set; } = string.Empty;
+
+        [XmlIgnore]
+        public Field SourceField { get; set; } = null!;
+
+        [XmlIgnore]
+        public TableRelationship TableRelationship { get; set; } = null!;
+
+        [XmlIgnore]
+        public Field TargetField { get; set; } = null!;
+
     }
 }

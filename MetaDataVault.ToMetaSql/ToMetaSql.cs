@@ -58,7 +58,9 @@ public static partial class Converter
                         defaultSchemaName,
                         implementationModel);
                     var rawModel = await MetaRawDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
-                    return ConvertRaw(rawModel, context);
+                    var metaSqlModel = ConvertRaw(rawModel, context);
+                    metaSqlModel.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
+                    return await workspaceService.LoadAsync(pathToNewMetaSqlWorkspace, searchUpward: false, cancellationToken).ConfigureAwait(false);
                 }
 
             case "MetaBusinessDataVault":
@@ -70,7 +72,9 @@ public static partial class Converter
                         implementationModel,
                         SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
                     var businessModel = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
-                    return ConvertBusiness(businessModel, context);
+                    var metaSqlModel = ConvertBusiness(businessModel, context);
+                    metaSqlModel.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
+                    return await workspaceService.LoadAsync(pathToNewMetaSqlWorkspace, searchUpward: false, cancellationToken).ConfigureAwait(false);
                 }
 
             default:

@@ -1,0 +1,111 @@
+<Model name="MetaSql">
+  <EntityList>
+    <Entity name="Database">
+      <PropertyList>
+        <Property name="Collation" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Platform" />
+      </PropertyList>
+    </Entity>
+    <Entity name="ForeignKey">
+      <PropertyList>
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" role="SourceTable" />
+        <Relationship entity="Table" role="TargetTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ForeignKeyColumn">
+      <PropertyList>
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ForeignKey" />
+        <Relationship entity="TableColumn" role="SourceColumn" />
+        <Relationship entity="TableColumn" role="TargetColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Index">
+      <PropertyList>
+        <Property name="FilterSql" isRequired="false" />
+        <Property name="IsClustered" isRequired="false" />
+        <Property name="IsUnique" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="IndexColumn">
+      <PropertyList>
+        <Property name="IsDescending" isRequired="false" />
+        <Property name="IsIncluded" isRequired="false" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Index" />
+        <Relationship entity="TableColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PrimaryKey">
+      <PropertyList>
+        <Property name="IsClustered" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PrimaryKeyColumn">
+      <PropertyList>
+        <Property name="IsDescending" isRequired="false" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="PrimaryKey" />
+        <Relationship entity="TableColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Schema">
+      <PropertyList>
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Database" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Table">
+      <PropertyList>
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Schema" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableColumn">
+      <PropertyList>
+        <Property name="ExpressionSql" isRequired="false" />
+        <Property name="IdentityIncrement" isRequired="false" />
+        <Property name="IdentitySeed" isRequired="false" />
+        <Property name="IsIdentity" isRequired="false" />
+        <Property name="IsNullable" isRequired="false" />
+        <Property name="MetaDataTypeId" />
+        <Property name="Name" />
+        <Property name="Ordinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableColumnDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TableColumn" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

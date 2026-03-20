@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\MetaDataType.Workspaces\MetaDataType\metadata\model.xml">
+    <EmbeddedResource Include="..\MetaDataType.Workspace\metadata\model.xml">
       <Link>Models\MetaDataType.model.xml</Link>
       <LogicalName>MetaDataType.Core.Models.MetaDataType.model.xml</LogicalName>
     </EmbeddedResource>

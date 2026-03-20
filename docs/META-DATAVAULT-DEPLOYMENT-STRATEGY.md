@@ -1,726 +1,634 @@
-# MetaDataVault deployment strategy
+# MetaDataVault Deployment Strategy
 
 ## Purpose
 
-This document defines the intended deployment strategy for Data Vault in this platform.
+This document defines the deployment architecture for `MetaDataVault` under real operational conditions.
 
-It combines:
+The design assumption is not a clean lab environment.
 
-- general lessons from modern schema-deployment practice
-- Data Vault-specific operational behavior
-- the strengths of this platform being fully metadata-model driven
+It is a live SQL Server estate where any of the following may have happened:
 
-The goal is not to bolt EF-style migrations onto Data Vault, and not to copy existing Data Vault automation tools literally.
+- emergency production fixes
+- manual hot patches
+- partial restores
+- rollback to backup
+- corruption recovery
+- ad hoc operational repair
+- deployment drift
+- missing or untrusted deployment history
 
-The goal is:
+Under those conditions, deployment correctness cannot depend on trusted lineage.
 
-- metadata-aware deployment planning
-- explicit handling of schema changes with data
-- deployment behavior driven by sanctioned model semantics
-- a clean decomposition into a future `meta-sql` deployer/toolchain
+The deployer must therefore be:
 
-## Design stance
+- baseline-free
+- proof-based
+- conservative
+- non-interactive in CI/CD
 
-The platform should not treat SQL deployment as a generic diff problem first.
+## Core stance
 
-It should treat SQL deployment as:
+The deployer is not a historian.
 
-1. sanctioned metadata intent
-2. sanctioned physicalization intent
-3. deployable physical state transition
-4. runtime-safe execution against a database with existing data
+It is a conservative transformer from:
 
-That distinction matters because this platform already knows more than a normal SQL diff tool:
+- current live physical state
 
-- whether an object is Raw or Business
-- whether an object is a Hub, Link, Satellite, PIT, or Bridge
-- which columns are semantic and which are implementation-owned technical columns
-- which structures are persistent history and which are derived helpers
+to:
 
-This should be used aggressively.
+- current metadata-derived desired physical state
 
-## Core principle
+It may automate only the subset of transitions that are provably safe from:
 
-Deployment behavior must be driven by object semantics, not inferred from raw SQL text alone.
+- present-state inspection
+- desired-state inspection
+- generic deploy traits
+
+It must not guess semantic continuity for ambiguous persistent changes.
+
+## Operating without trusted lineage
+
+### Why trusted lineage cannot be required
+
+In real production estates, the following can invalidate lineage:
+
+- deployment history tables are lost, stale, or bypassed
+- generated manifests no longer correspond to the live database
+- the database was restored to a point that no longer matches recorded model state
+- emergency repair changed the physical shape outside the normal pipeline
+- the runtime estate contains partial or inconsistent changes
+
+Once that happens, previous manifests and deployment history are no longer safe foundations for correctness.
+
+They may still be informative, but they are not authoritative.
+
+### What remains authoritative
+
+For deployment purposes, only two states are authoritative:
+
+1. the current live database as it physically exists now
+2. the current desired physical state derived from current sanctioned metadata
+
+That is the only sound baseline for automated action.
+
+### Why stable metadata IDs still matter
+
+Stable IDs in sanctioned metadata are still valuable.
+
+They support:
+
+- design-time continuity
+- model refactoring discipline
+- deterministic generation
+- cross-model references
+- explicit authored migration/reconciliation metadata
+
+But they do not solve physical identity in a live database under amnesia, because those IDs are not stamped into the generated SQL artifacts or persisted into the deployed schema in a trustworthy universal way.
+
+So:
+
+- metadata IDs are useful for authoring continuity
+- metadata IDs are not sufficient proof of live database continuity
+
+## Core architectural split
+
+The deployment architecture should be split into three layers.
+
+## A. DV-aware physicalization and classification
+
+This layer may know Data Vault semantics.
+
+Its job is to convert sanctioned Data Vault metadata into desired physical artifacts and generic deploy traits.
+
+It should produce:
+
+- desired physical tables
+- desired columns
+- desired constraints
+- desired indexes
+- dependency graph
+- deploy unit graph
+- generic deploy traits
+
+Examples of generic deploy traits:
+
+- `persistent`
+- `rebuildable`
+- `additive-safe`
+- `migration-required-for-non-additive`
+- `deployment-group`
+- `validation-policy`
+
+This layer is where Data Vault semantics belong.
+
+Examples:
+
+- `RawHub` is persistent
+- `BusinessPointInTime` may be rebuildable
+- `BusinessBridge` may be rebuildable
+- `RawHubSatellite` is conservative under amnesia
+
+This layer should not execute deployment logic.
+
+Its job is to describe the target and classify it.
+
+## B. Generic `meta-sql` convergence engine
+
+This layer must know nothing about Data Vault families.
+
+It consumes:
+
+- live database introspection
+- current desired physical artifacts
+- generic deploy traits
+- optional prior manifests/history as hints only
+
+It performs:
+
+- present-state comparison
+- safe convergence classification
+- drift reporting
+- plan generation
+- script emission
+- optional execution
+- recording
+
+This engine should not care whether a table came from:
+
+- Raw Data Vault
+- Business Data Vault
+- a future warehouse model
+- another sanctioned SQL-producing model
+
+It should operate on:
+
+- current physical state
+- desired physical state
+- deploy traits
+
+## C. Human reconciliation path
+
+Some transitions cannot be safely automated from present-state proof alone.
+
+Those cases must not be guessed.
+
+Instead, the engine should emit a precise reconciliation artifact.
+
+Typical ambiguous cases:
+
+- possible rename vs drop/add
+- possible split/merge
+- possible payload move
+- possible semantic reinterpretation
+- destructive change on persistent structures
+
+Human reconciliation may take forms such as:
+
+- provide migration SQL
+- adopt current live shape into metadata
+- approve controlled replacement
+- explicitly classify an object as rebuildable
+
+There must be no runtime interactive prompts inside CI/CD.
+
+Reconciliation must happen before or outside the non-interactive deployment run.
+
+## Why pure schema convergence and semantic data recovery are different
+
+Schema convergence asks:
+
+- can the live database be moved safely toward the target shape?
+
+Semantic data recovery asks:
+
+- what should happen to existing data when continuity is ambiguous?
+
+These are different problems.
+
+The deployer should solve the first automatically only where it is provable.
+
+It should not pretend to solve the second by guessing.
+
+Examples:
+
+- adding a nullable column is usually a convergence problem
+- determining whether `CustomerCode` was renamed to `CustomerIdentifier` is a semantic continuity problem
+- rebuilding a PIT table is a convergence problem if the object is classified rebuildable
+- moving payload from one persistent satellite to another is a semantic data migration problem
+
+## Why the automation boundary is asymmetric
+
+The safe automation boundary is asymmetric.
+
+Some changes are often provable:
+
+- create missing table
+- add safe new column
+- add supporting index
+- rebuild explicitly rebuildable helper object
+
+Some changes are usually not provable under amnesia:
+
+- rename on persistent objects
+- split/merge on existing payload
+- destructive drop on persistent objects
+- semantic reinterpretation of keys or payload
+
+This asymmetry is expected.
+
+The deployer should embrace it, not fight it.
+
+## Convergence versus reconciliation
+
+### Convergence
+
+Convergence is safe automatic movement from present physical state toward target physical state.
+
+Convergence is valid only when:
+
+- the current live state is inspectable
+- the target state is known
+- the transition is provably safe from present-state proof plus generic deploy traits
+
+Typical convergence operations:
+
+- create missing objects
+- add additive-safe columns
+- add supporting indexes and constraints
+- rebuild explicitly rebuildable objects
+
+### Reconciliation
+
+Reconciliation is human-authored resolution of ambiguity or stateful mismatch.
+
+Reconciliation is required when:
+
+- semantic continuity is uncertain
+- data-moving changes are needed
+- destructive persistent changes are involved
+- the engine cannot prove safe automation
+
+Typical reconciliation outputs:
+
+- migration script
+- controlled replacement approval
+- metadata update to match current live reality
+- explicit deploy-class override
+
+### Why the distinction matters
+
+If convergence and reconciliation are not separated, the deployer tends to become unsafe in one of two ways:
+
+- it blocks too much because every mismatch is treated as fatal
+- it guesses too much because every mismatch is treated as automatable
+
+The correct middle path is:
+
+- automate convergence
+- surface reconciliation precisely
+
+## Key invariants
+
+- The deployer must function without trusted prior manifest, prior model, or deployment history.
+- Prior manifests/history may be used only as optional diagnostics or hints.
+- The current live database is the only authoritative current physical state.
+- The current metadata-derived target is the authoritative desired state.
+- The engine must not guess semantic continuity for ambiguous persistent changes.
+- CI/CD deployment must remain non-interactive.
+- Partial forward progress is allowed when safe and dependency-valid.
+- Reconciliation is outside the runtime deployment loop.
+- Data Vault semantics belong in physicalization/classification, not in the generic convergence engine.
+
+## Minimal authored metadata surface
+
+The authored deployment metadata surface should stay small.
+
+Do not build a giant deployment ontology.
+
+The minimum useful surface is:
+
+### 1. Deploy class
+
+Per deploy unit or per object family:
+
+- `persistent`
+- `rebuildable`
+
+### 2. Non-additive policy
+
+Minimal flag:
+
+- `migration-required-for-non-additive`
+
+### 3. Deployment group
+
+Minimal ordering control:
+
+- `deployment-group`
+
+This supports layered rollout without inventing a full workflow language.
+
+### 4. Validation policy
+
+Minimal policy reference:
+
+- `validation-policy`
+
+Examples:
+
+- none
+- row-count
+- dependency-ready
+- post-rebuild validation
+
+### 5. Optional reconciliation artifact binding
+
+Minimal way to attach human resolution when needed:
+
+- `reconciliation-artifact`
+
+That artifact might later point to:
+
+- SQL migration script
+- controlled replacement approval
+- adoption note
+
+This is enough to start.
+
+Anything larger should be justified by proven need.
+
+## Minimal planner and runtime artifact shape
+
+The planner output must not be only pass/fail.
+
+It should classify deploy units into explicit statuses.
+
+### Recommended statuses
+
+- `executable`
+- `executable-with-validation`
+- `rebuildable`
+- `requires-reconciliation`
+- `blocked-by-unresolved-dependency`
+
+Optional later statuses:
+
+- `noop`
+- `diagnostic-warning`
+
+### Minimal planner artifact
+
+For each deploy unit:
+
+- deploy unit id
+- desired artifact name
+- current live object match summary
+- deploy traits
+- status
+- change summary
+- dependency list
+- required validations
+- reconciliation reason, if any
+
+### Minimal runtime record
+
+The runtime recorder may store:
+
+- deployment run id
+- environment
+- deploy unit id
+- chosen plan status
+- executed artifact path
+- execution result
+- validation result
+- timestamp
+
+This runtime record is useful, but not authoritative for future correctness.
+
+It is telemetry, not baseline truth.
+
+## Planner behavior
+
+The planner should process deploy units independently where possible.
+
+It should not block the whole deployment just because one persistent unit is ambiguous, unless dependency structure requires it.
 
 That means:
 
-- `RawHub` is not just a table
-- `BusinessPointInTime` is not just a table
-- `RawHubSatellite` is not just a set of columns
+- safe units may move forward
+- ambiguous units are surfaced for reconciliation
+- dependent units are blocked only if their prerequisites are unresolved
 
-These objects carry different deploy semantics and should be handled differently.
+This is essential for large estates.
 
-## What we learn from general schema deployment
+## Default Data Vault behavior
 
-Modern deployment practice contributes the following rules:
+## RDV persistent objects
 
-- additive change is the cheap case
-- rename, split, merge, and shape-change are not cheap cases
-- destructive change must never be implicit
-- schema changes with data require explicit migration intent
-- production deploys need reviewable artifacts
-- deploys need version awareness and drift awareness
-- idempotent execution is useful but not sufficient
-- fix-forward is usually better than fantasy rollback
+Raw Data Vault persistent objects should be conservative under amnesia.
 
-These rules should be adopted, but expressed in metadata terms.
+Recommended default:
 
-## What we learn from Data Vault operations
+- allow create
+- allow safe additive extension
+- allow compatible supporting structures
+- block ambiguous non-additive transitions unless reconciled
 
-Data Vault contributes the following rules:
+Examples of usually safe convergence:
 
-- Raw Vault is persistent, auditable, and history-preserving
-- Raw Vault should strongly prefer additive evolution
-- Business Vault is derived and operationally more rebuildable
-- PIT and Bridge are the most rebuildable structures of all
-- load and deploy order matters by dependency
-- compatibility across layers matters more than clever diffing
+- create missing hub table
+- add nullable descriptive column to persistent satellite when safe
+- add supporting non-destructive index
 
-These rules should also be adopted, but without baking product-specific workflow assumptions into the sanctioned models.
+Examples of reconciliation-required cases:
 
-## The platform advantage
+- possible rename of persistent payload column
+- possible move of payload between satellites
+- key reinterpretation
+- destructive removal
 
-A normal migration system sees:
+## BDV rebuildable helper objects
 
-- old SQL model
-- new SQL model
-- maybe a diff
-
-This platform can see:
-
-- sanctioned semantic model
-- sanctioned implementation model
-- generated physical model
-- object family
-- object dependency graph
-- source provenance
-- deployment intent
-- migration intent
-
-That means deployment can be planned by object meaning rather than by fragile SQL guesswork.
-
-## Deployment semantics classes
-
-The platform should classify Data Vault objects into deployment-semantics classes.
-
-This classification may begin as an engine invariant, but it should be stated explicitly and eventually become sanctioned metadata.
-
-### 1. Persistent additive
-
-Objects in this class are expected to preserve history and should evolve cautiously.
+Rebuildable helper objects may be rebuilt or replaced when explicitly classified rebuildable and when upstream requirements are satisfied.
 
 Typical examples:
 
-- `RawHub`
-- `RawLink`
-- `RawHubSatellite`
-- `RawLinkSatellite`
-- most persistent Business Vault tables when they hold historized derived state
+- PIT
+- Bridge
+- future query-helper structures
 
-Expected behavior:
+Recommended default:
 
-- create is allowed
-- additive columns are allowed
-- additive indexes and constraints are allowed
-- destructive changes are blocked by default
-- incompatible type changes require explicit migration intent
+- allow drop/recreate or create/swap/replace
+- require upstream dependency readiness
+- validate after rebuild
 
-### 2. Persistent with explicit migration
+## Other BDV objects
 
-Objects in this class still preserve data, but some changes are only acceptable if accompanied by an explicit migration plan.
+Do not assume rebuildable merely because an object is in Business Data Vault.
 
-Typical examples:
+Rebuildability must be explicitly classified.
 
-- any vault table with data-bearing column changes
-- any table where column splits/merges/backfills are required
-- any table where a rename must preserve data
+Some Business Vault structures are still persistent enough that ambiguous non-additive change should require reconciliation.
 
-Expected behavior:
+## Safe convergence rules
 
-- deploy is blocked unless an explicit migration exists
-- migration must define data motion and sequencing
-- generator/deployer must not guess
+The generic engine should automate only what is provable.
 
-### 3. Derived rebuildable
+### Usually executable
 
-Objects in this class are derived artifacts and are operationally acceptable to rebuild from upstream vault state.
+- missing object create
+- additive-safe column add
+- supporting index/constraint add
+- rebuild of explicitly rebuildable helper
 
-Typical examples:
+### Usually executable with validation
 
-- `BusinessPointInTime`
-- `BusinessBridge`
-- other future helper/query structures
-- some fully derived Business Vault tables
+- operations where structure is safe but runtime verification is prudent
+- rebuildable object replacement with dependency checks
 
-Expected behavior:
+### Usually requires reconciliation
 
-- create is allowed
-- replace/rebuild is allowed
-- drop-and-recreate or create-swap-drop is acceptable
-- data preservation inside the object is not the primary concern
+- possible rename vs drop/add on persistent object
+- split/merge on persistent object
+- payload move
+- destructive change
+- semantic reinterpretation
 
-## Default deployment semantics by DV object family
+### Usually blocked by unresolved dependency
 
-This is the recommended default mapping.
+- rebuildable helper missing required upstream objects
+- dependent object whose parent unit requires reconciliation first
 
-| Object family | Default deploy semantics | Notes |
-|---|---|---|
-| Raw Hub | persistent additive | history-preserving |
-| Raw Link | persistent additive | history-preserving |
-| Raw Hub Satellite | persistent additive | history-preserving |
-| Raw Link Satellite | persistent additive | history-preserving |
-| Business Hub | persistent additive | may later vary by modeling stance |
-| Business Link | persistent additive | may later vary by modeling stance |
-| Business Hub Satellite | persistent additive | derived but often retained |
-| Business Link Satellite | persistent additive | derived but often retained |
-| Business Reference | persistent additive | depends on platform policy |
-| Business PIT | derived rebuildable | query helper |
-| Business Bridge | derived rebuildable | query helper |
+## Recommended decomposition of `meta-sql`
 
-The important part is not whether every line is perfect on day one.
+The future `meta-sql` deployer should be decomposed into small explicit stages.
 
-The important part is that the platform stops pretending all tables have the same operational meaning.
+### 1. Desired-state builder
 
-## Change classes
+Consumes sanctioned models and outputs:
 
-The deploy planner should classify changes into explicit categories.
+- desired physical artifacts
+- generic deploy traits
+- dependency graph
 
-### A. Safe additive
+This stage may use model-family-specific physicalizers such as Data Vault physicalizers.
 
-Examples:
+### 2. Live-state introspector
 
-- create table
-- add nullable column
-- add non-null column with safe default and explicit strategy
-- add index
-- add FK after data is already compatible
-
-Default behavior:
-
-- allowed automatically for compatible object classes
-
-### B. Compatible physical refinement
-
-Examples:
-
-- add non-destructive supporting constraints
-- rename FK or index object
-- secondary-object rename or rehash of long identifier
-
-Default behavior:
-
-- allowed automatically when data safety is unaffected
-
-### C. Explicit migration required
-
-Examples:
-
-- rename column with existing data
-- split one column into two
-- merge two columns into one
-- change data type with possible truncation/rounding
-- change nullability from nullable to non-nullable with existing rows
-- move payload between vault structures
-
-Default behavior:
-
-- blocked unless explicit migration metadata is provided
-
-### D. Rebuildable replacement
-
-Examples:
-
-- PIT reshaping
-- Bridge reshaping
-- fully derived helper-table replacement
-
-Default behavior:
-
-- allowed for derived-rebuildable object classes
-
-### E. Destructive blocked
-
-Examples:
-
-- drop persistent table with data
-- drop persistent column with data
-- incompatible PK/UQ change on persistent history structures
-- destructive refactor with no migration path
-
-Default behavior:
-
-- blocked
-
-## Raw Vault strategy
-
-Raw Vault deployment should be conservative.
-
-### Rules
-
-- prefer additive evolution
-- never silently rewrite history
-- never silently drop historical payload
-- require explicit migration for shape changes with data
-- treat business-key reinterpretation as a major event, not a casual diff
-
-### Practical policy
-
-- new hub/link/satellite: create
-- new descriptive columns on satellites: additive deploy
-- new constraints/indexes: allowed with caution
-- rename of semantic columns: explicit migration required
-- removal of payload or key parts: blocked unless an approved migration path exists
-
-### Why
-
-Raw Vault is the persistent audit-preserving core.
-
-If the platform treats Raw Vault like a replaceable reporting layer, it breaks the core value of the vault.
-
-## Business Vault strategy
-
-Business Vault deployment should be more flexible, but not careless.
-
-### Rules
-
-- separate persistent derived state from rebuildable helper state
-- allow rebuild behavior where semantics permit it
-- keep dependency order explicit
-
-### Practical policy
-
-- persistent Business Vault tables: use the same additive-plus-migration rules as Raw Vault
-- PIT/Bridge/helper structures: allow replace/rebuild
-- materialized derived tables may opt into rebuildable deployment only when explicitly classified that way
-
-### Why
-
-Business Vault is still important, but some of its tables are not the system-of-record for history.
-
-The platform should exploit that rather than treating PIT/Bridge as fragile irreplaceable assets.
-
-## Schema changes with data
-
-This is the real problem class.
-
-The platform must model it explicitly.
-
-### Rename
-
-A rename must not be treated as drop+add.
-
-The migration model should express:
-
-- source object
-- target object
-- whether this is semantic rename, physical rename, or both
-
-For SQL Server deploy, this likely means:
-
-- physical rename operation where safe
-- or create new shape + copy + swap behavior where required
-
-### Column split
-
-Example:
-
-- one descriptive column becomes two columns
-
-The migration model should express:
-
-- source column
-- target columns
-- transform logic
-- backfill order
-- cutover rule
-
-### Column merge
-
-Example:
-
-- two legacy descriptive columns become one standardized column
-
-The migration model should express:
-
-- source columns
-- target column
-- coalescing/merge logic
-- post-migration validation
-
-### Type change
-
-Examples:
-
-- `nvarchar(200)` to `nvarchar(100)`
-- `decimal(18,4)` to `decimal(18,2)`
-- nullable to non-nullable
-
-The migration model should express:
-
-- compatibility classification
-- whether backfill/cleanup is required
-- whether this is blocked, allowed, or rebuildable
-
-### Table refactor
-
-Examples:
-
-- moving payload from one satellite to another
-- replacing one derived structure with another
-
-The migration model should express:
-
-- whether the object is persistent or rebuildable
-- whether data motion is required
-- whether old and new can coexist during cutover
-
-## Recommended rollout pattern
-
-The deployer should prefer expand-contract style rollout for persistent objects.
-
-### Expand
-
-- create new objects/columns
-- keep old ones in place
-- preserve backward compatibility
-
-### Migrate/backfill
-
-- populate new structures
-- validate row counts and key coverage
-
-### Cutover
-
-- switch producers/consumers
-- add constraints only when data is ready
-
-### Contract
-
-- remove old structures only after explicit approval and sufficient stabilization
-
-For rebuildable objects, a simpler replace/rebuild flow is acceptable.
-
-## What should be metadata-driven
-
-The following should become explicit sanctioned metadata concepts, not remain buried in deployer code.
-
-- deployment semantics class
-- object rebuildability
-- allowed change policy
-- migration requirement policy
-- dependency order
-- deployment batch/group
-- compatibility window expectations
-- validation requirements
-- data-motion steps
-- post-deploy actions
-
-## Sketch of a DV migration model
-
-This does not need to be implemented immediately as a final sanctioned model, but the platform should head in this direction.
-
-### Candidate model name
-
-- `MetaDataVaultDeployment`
-- or a more generic future `MetaSqlDeployment`
-
-### Core entities
-
-#### DeploymentUnit
-
-Purpose:
-
-- one deployable object or tightly coupled object family
-
-Examples:
-
-- one Raw Hub
-- one Raw Link
-- one Raw Hub Satellite
-- one Business PIT
-
-Properties:
-
-- `Name`
-- `DeployKind`
-- `ExecutionOrder`
-- `FailurePolicy`
-
-#### DeploymentUnitObject
-
-Purpose:
-
-- binds the deployment unit to one sanctioned DV object
-
-Relationships:
-
-- `DeploymentUnit -> RawHub | RawLink | RawHubSatellite | ...`
-
-#### SchemaChange
-
-Purpose:
-
-- describes an intended state change between deployed and target states
-
-Properties:
-
-- `ChangeKind`
-- `RiskLevel`
-- `RequiresMigration`
-- `IsDestructive`
-- `IsRebuildable`
-
-#### MigrationPlan
-
-Purpose:
-
-- groups explicit steps required for a stateful change
-
-Properties:
-
-- `Name`
-- `AppliesToChangeKind`
-- `ApprovalRequired`
-
-#### MigrationStep
-
-Purpose:
-
-- one ordered step in a migration
-
-Properties:
-
-- `Ordinal`
-- `StepKind`
-- `SqlText` or later a structured SQL-operation model
-- `RollbackKind`
-- `IsOnlineCompatible`
-
-Step kinds could include:
-
-- create
-- alter
-- backfill
-- validate
-- cutover
-- drop
-- rebuild
-
-#### ValidationRule
-
-Purpose:
-
-- declarative checks before or after migration
-
-Examples:
-
-- row-count check
-- null check
-- uniqueness check
-- orphan check
-
-#### DeploymentRecord
-
-Purpose:
-
-- runtime/deployment history entry
-
-Properties:
-
-- `DeploymentId`
-- `Environment`
-- `AppliedAt`
-- `ArtifactVersion`
-- `Result`
-- `DriftStatus`
-
-This runtime state may eventually live in a runtime/deployment model rather than the design-time model.
-
-## When the migration model is required
-
-The platform should not require explicit migration metadata for every change.
-
-It should require it only when the deploy planner classifies a change as:
-
-- stateful and non-additive
-- persistent and incompatible
-- destructive but approved
-
-That keeps the platform pragmatic.
-
-## Recommended decomposition into a `meta-sql` deployer
-
-The SQL deployer should be decomposed into explicit stages.
-
-### 1. Model loader
-
-Loads:
-
-- sanctioned DV workspace
-- sanctioned implementation workspace
-- sanctioned data type conversion workspace
-- optional deployment/migration workspace
-
-### 2. Physicalizer
-
-Produces the intended physical SQL model:
+Reads current SQL Server physical state:
 
 - tables
 - columns
 - constraints
 - indexes
-- dependency graph
+- dependencies
 
-This is not deployment yet.
+### 3. Drift reporter
 
-It is the intended physical state.
+Reports mismatch between:
 
-### 3. Database introspector
+- current live state
+- desired state
 
-Reads current target state from SQL Server:
+This should include optional prior manifests/history only as hints.
 
-- current objects
-- columns
-- constraints
-- indexes
-- optional deployment history table
+### 4. Convergence classifier
 
-### 4. Drift detector
+Classifies each deploy unit into:
 
-Determines:
-
-- does target match previously deployed intent
-- are there unmanaged changes
-- is deployment safe to continue
-
-### 5. Change classifier
-
-Compares target state and intended state, then classifies each change as:
-
-- additive
-- compatible refinement
-- explicit migration required
+- executable
+- executable-with-validation
 - rebuildable
-- blocked destructive
+- requires-reconciliation
+- blocked-by-unresolved-dependency
 
-This is the most important stage.
+### 5. Plan builder
 
-### 6. Plan builder
+Builds:
 
-Builds an ordered deployment plan:
+- ordered executable subset
+- ordered rebuild subset
+- blocked/reconciliation subset
 
-- preconditions
-- DDL steps
-- migration steps
-- validation steps
-- post-deploy steps
-
-### 7. Artifact writer
+### 6. Script emitter
 
 Emits:
 
 - reviewable SQL scripts
-- deployment plan report
-- warnings and risk summary
+- planner report
+- reconciliation artifacts
 
-This should be the main production artifact, not a hidden internal detail.
+### 7. Optional executor
 
-### 8. Executor
+Applies only the executable/rebuildable validated subset.
 
-Executes the approved plan:
+No CI/CD prompt loop.
 
-- version-aware
-- idempotent where possible
-- ordered by dependency
-- transactional only where safe and practical
+### 8. Recorder
 
-### 9. Recorder
+Stores runtime telemetry and artifacts for observability.
 
-Records:
+Again:
 
-- deployed artifact/version
-- applied plan
-- timestamps
-- warnings
-- validation result
+- useful
+- not authoritative
 
-## Why a generic `meta-sql` deployer still makes sense
+## Reconciliation artifact expectations
 
-A future `meta-sql` deployer should be generic at the pipeline level, but not blind to semantics.
+When a unit cannot be safely converged, the system should emit a precise artifact, not a vague error.
 
-The right split is:
+The reconciliation artifact should contain:
 
-- generic deploy pipeline stages
-- specialized change classification plugins per sanctioned model family
+- deploy unit id
+- live object summary
+- target object summary
+- reason automation is unsafe
+- recommended resolution path
 
-That means:
+Recommended resolution paths:
 
-- the pipeline engine can be generic
-- the Data Vault classification rules can remain Data Vault-aware
-- later SSDT or warehouse models can reuse the same deploy pipeline with different classifiers
+- provide migration script
+- adopt live shape into metadata
+- approve controlled replacement
+- reclassify as rebuildable if truly valid
 
-This is much better than one giant Data Vault-only deployer and much better than one semantics-blind SQL diff tool.
+## What the system should not do
 
-## Proposed immediate next steps
+- require trusted deployment history for correctness
+- assume prior manifest continuity
+- use old metadata as mandatory baseline
+- infer semantic rename from name similarity alone
+- perform destructive persistent changes by default
+- pause CI/CD waiting for interactive operator decisions
+- model an oversized deployment ontology before there is real need
 
-### 1. Write down deploy classes as engine invariants
+## Immediate implementation direction
 
-Before new sanctioned models exist, make these explicit in code/docs:
+The next practical slice should be:
 
-- Raw Hub/Link/Satellite = persistent additive
-- PIT/Bridge = derived rebuildable
+1. Data Vault-aware physicalization emits deploy units and generic traits.
+2. SQL Server introspection captures current live physical state.
+3. A planner classifies deploy units into the five core statuses.
+4. Script emission covers only executable and rebuildable units.
+5. Reconciliation artifacts are emitted for ambiguous persistent units.
 
-### 2. Add a deploy planner before an executor
-
-Do not jump straight to mutation.
-
-First implement:
-
-- introspection
-- change classification
-- reviewable deployment plan output
-
-### 3. Support additive deployment first
-
-The first safe slice should support:
-
-- create database
-- create missing objects
-- add safe additive columns/constraints
-- reject unsupported stateful changes with explicit reasons
-
-### 4. Add migration-plan support next
-
-After additive deploy is solid:
-
-- introduce explicit migration metadata for non-additive persistent changes
-
-### 5. Add rebuild support for PIT/Bridge
-
-This is the easiest meaningful non-additive deploy behavior because it fits Data Vault semantics well.
-
-## Non-goals
-
-This strategy should not aim to:
-
-- infer semantic renames from SQL names alone
-- allow implicit destructive changes
-- hide deployment drift
-- mutate persistent vault history casually
-- pretend all DV object families are operationally equivalent
+That gives useful forward progress without requiring trusted lineage.
 
 ## Summary
 
-The right deployment strategy for this platform is:
+The correct deployment architecture for this platform is:
 
-- metadata-aware, not SQL-text-first
-- stateful, not naive-diff-only
-- conservative for Raw Vault
-- selectively rebuildable for Business Vault helper structures
-- explicit about migration when data is at risk
-- decomposed into a reusable `meta-sql` deploy pipeline with DV-aware change classification
+- baseline-free
+- proof-based
+- conservative under amnesia
+- Data Vault-aware during physicalization/classification
+- Data Vault-agnostic during generic SQL convergence
+- explicit about reconciliation rather than guessing continuity
 
-That is the path that uses the platform's real strength:
+This fits both reality and the platform's strengths:
 
-the sanctioned models already know what the database objects mean.
+- metadata models still provide strong design-time continuity
+- live-state proof governs deployment safety
+- non-interactive CI/CD remains possible
+- automation is allowed to move forward where it is provably safe

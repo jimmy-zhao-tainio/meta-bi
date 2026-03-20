@@ -30,6 +30,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Inst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Instance", "MetaDataType.Instance\MetaDataType.Instance.csproj", "{460C62F5-F706-4818-9E3E-29C8734A8D2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Cli", "MetaSql.Cli\MetaSql.Cli.csproj", "{3671CC11-A94E-40CC-B34C-27E755EBA77A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSqlDeployManifest.Tooling", "MetaSqlDeployManifest.Tooling\MetaSqlDeployManifest.Tooling.csproj", "{746307B0-49E9-49C5-A92D-6370BD02533B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,5 +99,13 @@ Global
 		{460C62F5-F706-4818-9E3E-29C8734A8D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{460C62F5-F706-4818-9E3E-29C8734A8D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{460C62F5-F706-4818-9E3E-29C8734A8D2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3671CC11-A94E-40CC-B34C-27E755EBA77A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3671CC11-A94E-40CC-B34C-27E755EBA77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3671CC11-A94E-40CC-B34C-27E755EBA77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3671CC11-A94E-40CC-B34C-27E755EBA77A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{746307B0-49E9-49C5-A92D-6370BD02533B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{746307B0-49E9-49C5-A92D-6370BD02533B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{746307B0-49E9-49C5-A92D-6370BD02533B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{746307B0-49E9-49C5-A92D-6370BD02533B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

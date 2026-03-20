@@ -1,4 +1,5 @@
 using Meta.Core.Domain;
+using Meta.Core.Services;
 
 namespace MetaSql.Tests;
 
@@ -10,14 +11,14 @@ public sealed class MetaSqlDiffServiceTests
         var tempRoot = CreateTempRoot();
         try
         {
-            var desiredPath = Path.Combine(tempRoot, "desired");
+            var sourcePath = Path.Combine(tempRoot, "source");
             var livePath = Path.Combine(tempRoot, "live");
 
-            await SaveWorkspaceAsync(desiredPath, CreateCustomerModel(includeExtraLiveColumn: false));
+            await SaveWorkspaceAsync(sourcePath, CreateCustomerModel(includeExtraLiveColumn: false));
             await SaveWorkspaceAsync(livePath, CreateCustomerModel(includeExtraLiveColumn: false));
 
             var service = new MetaSqlDiffService();
-            var result = await service.BuildEqualDiffWorkspaceAsync(desiredPath, livePath);
+            var result = await service.BuildEqualDiffWorkspaceAsync(sourcePath, livePath);
 
             Assert.False(result.HasDifferences);
             Assert.Equal(0, result.LeftNotInRightCount);
@@ -33,13 +34,11 @@ public sealed class MetaSqlDiffServiceTests
     [Fact]
     public void BuildEqualDiffWorkspace_ReturnsDifferencesForLiveOnlyColumn()
     {
-        var desiredWorkspace = CreateCustomerModel(includeExtraLiveColumn: false)
-            .ToXmlWorkspace(Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"), "desired"));
-        var liveWorkspace = CreateCustomerModel(includeExtraLiveColumn: true)
-            .ToXmlWorkspace(Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"), "live"));
+        var sourceWorkspace = CreateWorkspace(CreateCustomerModel(includeExtraLiveColumn: false), "source");
+        var liveWorkspace = CreateWorkspace(CreateCustomerModel(includeExtraLiveColumn: true), "live");
 
         var service = new MetaSqlDiffService();
-        var result = service.BuildEqualDiffWorkspace(desiredWorkspace, liveWorkspace, liveWorkspace.WorkspaceRootPath!);
+        var result = service.BuildEqualDiffWorkspace(sourceWorkspace, liveWorkspace, liveWorkspace.WorkspaceRootPath!);
 
         Assert.True(result.HasDifferences);
         Assert.True(result.RightRowCount > result.LeftRowCount);
@@ -48,15 +47,13 @@ public sealed class MetaSqlDiffServiceTests
     [Fact]
     public void BuildEqualDiffWorkspace_RejectsNonMetaSqlWorkspace()
     {
-        var desiredWorkspace = CreateCustomerModel(includeExtraLiveColumn: false)
-            .ToXmlWorkspace(Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"), "desired"));
-        var liveWorkspace = CreateCustomerModel(includeExtraLiveColumn: false)
-            .ToXmlWorkspace(Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"), "live"));
+        var sourceWorkspace = CreateWorkspace(CreateCustomerModel(includeExtraLiveColumn: false), "source");
+        var liveWorkspace = CreateWorkspace(CreateCustomerModel(includeExtraLiveColumn: false), "live");
         liveWorkspace.Model.Name = "OtherModel";
 
         var service = new MetaSqlDiffService();
         var exception = Assert.Throws<InvalidOperationException>(() =>
-            service.BuildEqualDiffWorkspace(desiredWorkspace, liveWorkspace, liveWorkspace.WorkspaceRootPath!));
+            service.BuildEqualDiffWorkspace(sourceWorkspace, liveWorkspace, liveWorkspace.WorkspaceRootPath!));
 
         Assert.Contains("MetaSql model", exception.Message, StringComparison.OrdinalIgnoreCase);
     }
@@ -144,10 +141,17 @@ public sealed class MetaSqlDiffServiceTests
         return model;
     }
 
-    private static async Task SaveWorkspaceAsync(string workspacePath, MetaSqlModel model)
+    private static Task SaveWorkspaceAsync(string workspacePath, MetaSqlModel model)
     {
-        var workspace = model.ToXmlWorkspace(workspacePath);
-        await MetaSqlTooling.SaveWorkspaceAsync(workspace);
+        model.SaveToXmlWorkspace(workspacePath);
+        return Task.CompletedTask;
+    }
+
+    private static Workspace CreateWorkspace(MetaSqlModel model, string leafName)
+    {
+        var workspacePath = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"), leafName);
+        model.SaveToXmlWorkspace(workspacePath);
+        return new WorkspaceService().LoadAsync(workspacePath, searchUpward: false).GetAwaiter().GetResult();
     }
 
     private static string CreateTempRoot() =>

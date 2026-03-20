@@ -1,0 +1,85 @@
+<Model name="MetaSchema">
+  <EntityList>
+    <Entity name="Field">
+      <PropertyList>
+        <Property name="IsNullable" isRequired="false" />
+        <Property name="MetaDataTypeId" />
+        <Property name="Name" />
+        <Property name="Ordinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FieldDataTypeDetail">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Value" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Field" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Schema">
+      <PropertyList>
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="System" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="System">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+    <Entity name="Table">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="ObjectType" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Schema" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableKey">
+      <PropertyList>
+        <Property name="KeyType" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableKeyField">
+      <PropertyList>
+        <Property name="FieldName" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Field" />
+        <Relationship entity="TableKey" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableRelationship">
+      <PropertyList>
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" role="SourceTable" />
+        <Relationship entity="Table" role="TargetTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableRelationshipField">
+      <PropertyList>
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Field" role="SourceField" />
+        <Relationship entity="TableRelationship" />
+        <Relationship entity="Field" role="TargetField" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

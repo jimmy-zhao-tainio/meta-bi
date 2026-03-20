@@ -1,5 +1,6 @@
 using System.Globalization;
 using Meta.Core.Domain;
+using Meta.Core.Services;
 
 namespace MetaSql.Extractors.SqlServer;
 
@@ -182,7 +183,8 @@ internal static class SqlServerMetaSqlProjector
             }
         }
 
-        return model.ToXmlWorkspace(newWorkspacePath);
+        model.SaveToXmlWorkspace(newWorkspacePath);
+        return new WorkspaceService().LoadAsync(newWorkspacePath, searchUpward: false).GetAwaiter().GetResult();
     }
 
     internal static string BuildScopedObjectKey(string part1, string part2) => part1 + "." + part2;

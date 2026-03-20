@@ -12,16 +12,16 @@ public sealed class MetaSqlAlignmentTests
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
         var rawWorkspacePath = Path.Combine(tempRoot, "RawDataVault");
-        var desiredMetaSqlPath = Path.Combine(tempRoot, "DesiredMetaSql");
+        var sourceMetaSqlPath = Path.Combine(tempRoot, "SourceMetaSql");
         var liveMetaSqlPath = Path.Combine(tempRoot, "LiveMetaSql");
 
         try
         {
             await CreateSimpleRawHubWorkspaceAsync(rawWorkspacePath);
 
-            var desiredWorkspace = await Converter.ConvertAsync(
+            var sourceWorkspace = await Converter.ConvertAsync(
                 rawWorkspacePath,
-                desiredMetaSqlPath,
+                sourceMetaSqlPath,
                 Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation"),
                 databaseName: "RawVault",
                 defaultSchemaName: "raw");
@@ -59,7 +59,7 @@ public sealed class MetaSqlAlignmentTests
 
             var diffService = new MetaSqlDiffService();
             var result = diffService.BuildEqualDiffWorkspace(
-                desiredWorkspace,
+                sourceWorkspace,
                 liveWorkspace,
                 liveMetaSqlPath);
 

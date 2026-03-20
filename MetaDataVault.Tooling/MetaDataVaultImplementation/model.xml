@@ -1,0 +1,317 @@
+<Model name="MetaDataVaultImplementation">
+  <EntityList>
+    <Entity name="BusinessBridgeImplementation">
+      <PropertyList>
+        <Property name="AnchorHubForeignKeyNamePattern" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="DepthColumnName" isRequired="false" />
+        <Property name="DepthDataTypeId" isRequired="false" />
+        <Property name="EffectiveFromColumnName" isRequired="false" />
+        <Property name="EffectiveFromDataTypeId" isRequired="false" />
+        <Property name="EffectiveFromPrecision" isRequired="false" />
+        <Property name="EffectiveToColumnName" isRequired="false" />
+        <Property name="EffectiveToDataTypeId" isRequired="false" />
+        <Property name="EffectiveToPrecision" isRequired="false" />
+        <Property name="PathColumnName" isRequired="false" />
+        <Property name="PathDataTypeId" isRequired="false" />
+        <Property name="PathLength" isRequired="false" />
+        <Property name="RelatedHashKeyColumnName" />
+        <Property name="RelatedHashKeyDataTypeId" />
+        <Property name="RelatedHashKeyLength" />
+        <Property name="RootHashKeyColumnName" />
+        <Property name="RootHashKeyDataTypeId" />
+        <Property name="RootHashKeyLength" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="ChildHashKeyColumnName" />
+        <Property name="ChildHubForeignKeyNamePattern" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHubForeignKeyNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessHierarchicalLinkSatelliteImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="ParentForeignKeyNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessHubImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessHubSatelliteImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="ParentForeignKeyNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessLinkImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="EndHashKeyColumnPattern" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="HubForeignKeyNamePattern" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessLinkSatelliteImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="ParentForeignKeyNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessPointInTimeImplementation">
+      <PropertyList>
+        <Property name="AnchorHubForeignKeyNamePattern" />
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="SatelliteReferenceColumnNamePattern" />
+        <Property name="SatelliteReferenceDataTypeId" />
+        <Property name="SatelliteReferencePrecision" />
+        <Property name="SnapshotTimestampColumnName" />
+        <Property name="SnapshotTimestampDataTypeId" />
+        <Property name="SnapshotTimestampPrecision" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessReferenceImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessReferenceSatelliteImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="ParentForeignKeyNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessSameAsLinkImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="EquivalentHashKeyColumnName" />
+        <Property name="EquivalentHubForeignKeyNamePattern" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="PrimaryHashKeyColumnName" />
+        <Property name="PrimaryHubForeignKeyNamePattern" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="BusinessSameAsLinkSatelliteImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashDiffColumnName" isRequired="false" />
+        <Property name="HashDiffDataTypeId" isRequired="false" />
+        <Property name="HashDiffLength" isRequired="false" />
+        <Property name="LoadTimestampColumnName" isRequired="false" />
+        <Property name="LoadTimestampDataTypeId" isRequired="false" />
+        <Property name="LoadTimestampPrecision" isRequired="false" />
+        <Property name="ParentForeignKeyNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="RecordSourceColumnName" isRequired="false" />
+        <Property name="RecordSourceDataTypeId" isRequired="false" />
+        <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="RawHubImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
+        <Property name="LoadTimestampPrecision" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="RecordSourceColumnName" />
+        <Property name="RecordSourceDataTypeId" />
+        <Property name="RecordSourceLength" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="RawHubSatelliteImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashDiffColumnName" />
+        <Property name="HashDiffDataTypeId" />
+        <Property name="HashDiffLength" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
+        <Property name="LoadTimestampPrecision" />
+        <Property name="ParentForeignKeyNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="RecordSourceColumnName" />
+        <Property name="RecordSourceDataTypeId" />
+        <Property name="RecordSourceLength" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="RawLinkImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="EndHashKeyColumnPattern" />
+        <Property name="HashKeyColumnName" />
+        <Property name="HashKeyDataTypeId" />
+        <Property name="HashKeyLength" />
+        <Property name="HubForeignKeyNamePattern" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
+        <Property name="LoadTimestampPrecision" />
+        <Property name="PrimaryKeyNamePattern" />
+        <Property name="RecordSourceColumnName" />
+        <Property name="RecordSourceDataTypeId" />
+        <Property name="RecordSourceLength" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+    <Entity name="RawLinkSatelliteImplementation">
+      <PropertyList>
+        <Property name="AuditIdColumnName" />
+        <Property name="AuditIdDataTypeId" />
+        <Property name="HashDiffColumnName" />
+        <Property name="HashDiffDataTypeId" />
+        <Property name="HashDiffLength" />
+        <Property name="LoadTimestampColumnName" />
+        <Property name="LoadTimestampDataTypeId" />
+        <Property name="LoadTimestampPrecision" />
+        <Property name="ParentForeignKeyNamePattern" />
+        <Property name="ParentHashKeyColumnName" />
+        <Property name="ParentHashKeyDataTypeId" />
+        <Property name="ParentHashKeyLength" />
+        <Property name="RecordSourceColumnName" />
+        <Property name="RecordSourceDataTypeId" />
+        <Property name="RecordSourceLength" />
+        <Property name="TableNamePattern" />
+      </PropertyList>
+    </Entity>
+  </EntityList>
+</Model>
