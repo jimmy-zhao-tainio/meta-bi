@@ -14,9 +14,14 @@ internal static partial class Program
             return 0;
         }
 
-        if (string.Equals(args[0], "deploy-test", StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(args[0], "deploy-plan", StringComparison.OrdinalIgnoreCase))
         {
-            return await RunDeployTestAsync(args).ConfigureAwait(false);
+            return await RunDeployPlanAsync(args).ConfigureAwait(false);
+        }
+
+        if (string.Equals(args[0], "deploy", StringComparison.OrdinalIgnoreCase))
+        {
+            return await RunDeployAsync(args).ConfigureAwait(false);
         }
 
         return Fail($"unknown command '{args[0]}'.", "meta-sql help");
@@ -80,6 +85,65 @@ internal static partial class Program
         return (true, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, string.Empty);
     }
 
+    private static (bool Ok, string ManifestWorkspacePath, string SourceWorkspacePath, string ConnectionString, string? SchemaName, string? TableName, string ErrorMessage) ParseDeployArgs(string[] args, int startIndex)
+    {
+        var manifestWorkspacePath = string.Empty;
+        var sourceWorkspacePath = string.Empty;
+        var connectionString = string.Empty;
+        string? schemaName = null;
+        string? tableName = null;
+
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+            if (string.Equals(arg, "--manifest-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "missing value for --manifest-workspace.");
+                if (!string.IsNullOrWhiteSpace(manifestWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "--manifest-workspace can only be provided once.");
+                manifestWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--source-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "missing value for --source-workspace.");
+                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "--source-workspace can only be provided once.");
+                sourceWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--connection-string", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "missing value for --connection-string.");
+                if (!string.IsNullOrWhiteSpace(connectionString)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "--connection-string can only be provided once.");
+                connectionString = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--schema", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "missing value for --schema.");
+                schemaName = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--table", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "missing value for --table.");
+                tableName = args[++i];
+                continue;
+            }
+
+            return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, $"unknown option '{arg}'.");
+        }
+
+        if (string.IsNullOrWhiteSpace(manifestWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "missing required option --manifest-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "missing required option --source-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(connectionString)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, "missing required option --connection-string <value>.");
+
+        return (true, manifestWorkspacePath, sourceWorkspacePath, connectionString, schemaName, tableName, string.Empty);
+    }
+
     private static bool IsHelpToken(string value)
     {
         return string.Equals(value, "help", StringComparison.OrdinalIgnoreCase) ||
@@ -96,10 +160,11 @@ internal static partial class Program
             new[]
             {
                 ("help", "Show this help."),
-                ("deploy-test", "Create a deploy manifest (add/drop/block) from desired vs live MetaSql.")
+                ("deploy-plan", "Create a deploy manifest (add/drop/block) from desired vs live MetaSql."),
+                ("deploy", "Apply a deploy manifest after source/live fingerprint validation.")
             });
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteNext("meta-sql deploy-test --help");
+        Presenter.WriteNext("meta-sql deploy-plan --help");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

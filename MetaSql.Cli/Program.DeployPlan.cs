@@ -4,28 +4,28 @@ using Meta.Core.Services;
 
 internal static partial class Program
 {
-    private static async Task<int> RunDeployTestAsync(string[] args)
+    private static async Task<int> RunDeployPlanAsync(string[] args)
     {
         if (args.Length == 1 || IsHelpToken(args[1]))
         {
-            PrintDeployTestHelp();
+            PrintDeployPlanHelp();
             return 0;
         }
 
         var parse = ParseDiffLikeArgs(args, 1);
         if (!parse.Ok)
         {
-            return Fail(parse.ErrorMessage, "meta-sql deploy-test --help");
+            return Fail(parse.ErrorMessage, "meta-sql deploy-plan --help");
         }
 
         if (string.IsNullOrWhiteSpace(parse.OutputPath))
         {
-            return Fail("missing required option --out <path>.", "meta-sql deploy-test --help");
+            return Fail("missing required option --out <path>.", "meta-sql deploy-plan --help");
         }
 
         var sourceWorkspacePath = Path.GetFullPath(parse.SourceWorkspacePath);
         var outputPath = Path.GetFullPath(parse.OutputPath);
-        var tempRootPath = Path.Combine(Path.GetTempPath(), "MetaSql.Cli", "deploy-test", Guid.NewGuid().ToString("N"));
+        var tempRootPath = Path.Combine(Path.GetTempPath(), "MetaSql.Cli", "deploy-plan", Guid.NewGuid().ToString("N"));
         var liveRuntimePath = Path.Combine(tempRootPath, "live-metasql");
 
         try
@@ -59,7 +59,7 @@ internal static partial class Program
             if (manifest.IsDeployable)
             {
                 Presenter.WriteOk(
-                    "deploy-test complete",
+                    "deploy-plan complete",
                     ("Verdict", "deployable"),
                     ("AddCount", manifest.AddCount.ToString()),
                     ("DropCount", manifest.DropCount.ToString()),
@@ -69,7 +69,7 @@ internal static partial class Program
             }
 
             return Fail(
-                "deploy-test produced a non-deployable manifest.",
+                "deploy-plan produced a non-deployable manifest.",
                 "review block entries in the manifest output and fix source/live drift.",
                 4,
                 RenderManifestDifferences(differences, outputPath));
@@ -77,7 +77,7 @@ internal static partial class Program
         catch (Exception ex)
         {
             return Fail(
-                "deploy-test failed.",
+                "deploy-plan failed.",
                 "check the source workspace, connection string, and any schema/table filters, then retry.",
                 4,
                 new[]
@@ -193,10 +193,10 @@ internal static partial class Program
         }
     }
 
-    private static void PrintDeployTestHelp()
+    private static void PrintDeployPlanHelp()
     {
-        Presenter.WriteInfo("Command: deploy-test");
-        Presenter.WriteUsage("meta-sql deploy-test --source-workspace <path> --connection-string <value> --out <path> [--schema <name>] [--table <name>]");
+        Presenter.WriteInfo("Command: deploy-plan");
+        Presenter.WriteUsage("meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--schema <name>] [--table <name>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Loads the source MetaSql workspace.");
         Presenter.WriteInfo("  Extracts the live SQL Server schema to MetaSql.");

@@ -1,0 +1,68 @@
+using MetaSql;
+
+internal static partial class Program
+{
+    private static async Task<int> RunDeployAsync(string[] args)
+    {
+        if (args.Length == 1 || IsHelpToken(args[1]))
+        {
+            PrintDeployHelp();
+            return 0;
+        }
+
+        var parse = ParseDeployArgs(args, 1);
+        if (!parse.Ok)
+        {
+            return Fail(parse.ErrorMessage, "meta-sql deploy --help");
+        }
+
+        var manifestWorkspacePath = Path.GetFullPath(parse.ManifestWorkspacePath);
+        var sourceWorkspacePath = Path.GetFullPath(parse.SourceWorkspacePath);
+
+        try
+        {
+            var deployService = new MetaSqlDeployService();
+            var result = await deployService.DeployAsync(
+                    new MetaSqlDeployRequest
+                    {
+                        ManifestWorkspacePath = manifestWorkspacePath,
+                        SourceWorkspacePath = sourceWorkspacePath,
+                        ConnectionString = parse.ConnectionString,
+                        SchemaName = parse.SchemaName,
+                        TableName = parse.TableName,
+                    })
+                .ConfigureAwait(false);
+
+            Presenter.WriteOk(
+                "deploy complete",
+                ("AppliedAddCount", result.AppliedAddCount.ToString()),
+                ("AppliedDropCount", result.AppliedDropCount.ToString()),
+                ("ExecutedStatementCount", result.ExecutedStatementCount.ToString()));
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "deploy failed.",
+                "recreate the deploy-plan manifest and retry.",
+                5,
+                new[]
+                {
+                    $"  ManifestWorkspace: {manifestWorkspacePath}",
+                    $"  SourceWorkspace: {sourceWorkspacePath}",
+                    $"  {ex.Message}",
+                });
+        }
+    }
+
+    private static void PrintDeployHelp()
+    {
+        Presenter.WriteInfo("Command: deploy");
+        Presenter.WriteUsage("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value> [--schema <name>] [--table <name>]");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Loads the deploy manifest and source MetaSql workspace.");
+        Presenter.WriteInfo("  Refuses when the manifest contains Block entries.");
+        Presenter.WriteInfo("  Refuses when source/live instance fingerprints no longer match.");
+        Presenter.WriteInfo("  Applies add/drop operations in one SQL transaction.");
+    }
+}

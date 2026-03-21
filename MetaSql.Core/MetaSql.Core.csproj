@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MetaSql.Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
     <ProjectReference Include="..\MetaSqlDeployManifest.Tooling\MetaSqlDeployManifest.Tooling.csproj" />
     <ProjectReference Include="..\MetaSql.Tooling\MetaSql.Tooling.csproj" />
   </ItemGroup>
