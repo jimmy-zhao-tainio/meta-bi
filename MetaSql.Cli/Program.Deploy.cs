@@ -37,6 +37,8 @@ internal static partial class Program
                 "deploy complete",
                 ("AppliedAddCount", result.AppliedAddCount.ToString()),
                 ("AppliedDropCount", result.AppliedDropCount.ToString()),
+                ("AppliedAlterCount", result.AppliedAlterCount.ToString()),
+                ("AppliedReplaceCount", result.AppliedReplaceCount.ToString()),
                 ("ExecutedStatementCount", result.ExecutedStatementCount.ToString()));
             return 0;
         }
@@ -63,6 +65,6 @@ internal static partial class Program
         Presenter.WriteInfo("  Loads the deploy manifest and source MetaSql workspace.");
         Presenter.WriteInfo("  Refuses when the manifest contains Block entries.");
         Presenter.WriteInfo("  Refuses when source/live instance fingerprints no longer match.");
-        Presenter.WriteInfo("  Applies add/drop operations in one SQL transaction.");
+        Presenter.WriteInfo("  Applies add/drop/alter/replace operations in one SQL transaction.");
     }
 }

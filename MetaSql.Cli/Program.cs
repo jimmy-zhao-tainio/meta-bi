@@ -27,62 +27,70 @@ internal static partial class Program
         return Fail($"unknown command '{args[0]}'.", "meta-sql help");
     }
 
-    private static (bool Ok, string SourceWorkspacePath, string OutputPath, string ConnectionString, string? SchemaName, string? TableName, string ErrorMessage) ParseDiffLikeArgs(string[] args, int startIndex)
+    private static (bool Ok, string SourceWorkspacePath, string OutputPath, string ConnectionString, string? SchemaName, string? TableName, bool WithDataDrop, string ErrorMessage) ParseDiffLikeArgs(string[] args, int startIndex)
     {
         var sourceWorkspacePath = string.Empty;
         var outputPath = string.Empty;
         var connectionString = string.Empty;
         string? schemaName = null;
         string? tableName = null;
+        var withDataDrop = false;
 
         for (var i = startIndex; i < args.Length; i++)
         {
             var arg = args[i];
             if (string.Equals(arg, "--source-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "missing value for --source-workspace.");
-                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "--source-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "missing value for --source-workspace.");
+                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "--source-workspace can only be provided once.");
                 sourceWorkspacePath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--out", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "missing value for --out.");
-                if (!string.IsNullOrWhiteSpace(outputPath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "--out can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "missing value for --out.");
+                if (!string.IsNullOrWhiteSpace(outputPath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "--out can only be provided once.");
                 outputPath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--connection-string", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "missing value for --connection-string.");
-                if (!string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "--connection-string can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "missing value for --connection-string.");
+                if (!string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "--connection-string can only be provided once.");
                 connectionString = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--schema", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "missing value for --schema.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "missing value for --schema.");
                 schemaName = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--table", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "missing value for --table.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "missing value for --table.");
                 tableName = args[++i];
                 continue;
             }
 
-            return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, $"unknown option '{arg}'.");
+            if (string.Equals(arg, "--with-data-drop", StringComparison.OrdinalIgnoreCase))
+            {
+                if (withDataDrop) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "--with-data-drop can only be provided once.");
+                withDataDrop = true;
+                continue;
+            }
+
+            return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "missing required option --source-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, "missing required option --connection-string <value>.");
+        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "missing required option --source-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, "missing required option --connection-string <value>.");
 
-        return (true, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, string.Empty);
+        return (true, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, withDataDrop, string.Empty);
     }
 
     private static (bool Ok, string ManifestWorkspacePath, string SourceWorkspacePath, string ConnectionString, string? SchemaName, string? TableName, string ErrorMessage) ParseDeployArgs(string[] args, int startIndex)
@@ -160,7 +168,7 @@ internal static partial class Program
             new[]
             {
                 ("help", "Show this help."),
-                ("deploy-plan", "Create a deploy manifest (add/drop/block) from desired vs live MetaSql."),
+                ("deploy-plan", "Create a deploy manifest (add/alter/block by default; data drops only with --with-data-drop)."),
                 ("deploy", "Apply a deploy manifest after source/live fingerprint validation.")
             });
         Presenter.WriteInfo(string.Empty);

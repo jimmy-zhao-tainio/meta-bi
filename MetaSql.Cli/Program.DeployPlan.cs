@@ -46,6 +46,13 @@ internal static partial class Program
 
             var differenceService = new MetaSqlDifferenceService();
             var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
+            var feasibilityBlockers = await new MetaSqlDifferenceFeasibilityService()
+                .BuildBlockersAsync(
+                    differences,
+                    sourceWorkspace,
+                    liveWorkspace,
+                    parse.ConnectionString)
+                .ConfigureAwait(false);
 
             var manifestService = new MetaSqlDeployManifestService();
             var manifest = manifestService.BuildManifest(
@@ -53,7 +60,9 @@ internal static partial class Program
                 liveWorkspace,
                 differences,
                 manifestName: "DeployManifest",
-                targetDescription: BuildTargetDescription(parse.SchemaName, parse.TableName));
+                targetDescription: BuildTargetDescription(parse.SchemaName, parse.TableName),
+                withDataDrop: parse.WithDataDrop,
+                feasibilityBlockers: feasibilityBlockers);
             await manifest.ManifestModel.SaveToXmlWorkspaceAsync(outputPath).ConfigureAwait(false);
 
             if (manifest.IsDeployable)
@@ -63,7 +72,10 @@ internal static partial class Program
                     ("Verdict", "deployable"),
                     ("AddCount", manifest.AddCount.ToString()),
                     ("DropCount", manifest.DropCount.ToString()),
+                    ("AlterCount", manifest.AlterCount.ToString()),
+                    ("ReplaceCount", manifest.ReplaceCount.ToString()),
                     ("BlockCount", manifest.BlockCount.ToString()),
+                    ("IgnoredLiveOnlyDataDropCount", manifest.IgnoredLiveOnlyDataDropCount.ToString()),
                     ("ManifestPath", outputPath));
                 return 0;
             }
@@ -72,7 +84,7 @@ internal static partial class Program
                 "deploy-plan produced a non-deployable manifest.",
                 "review block entries in the manifest output and fix source/live drift.",
                 4,
-                RenderManifestDifferences(differences, outputPath));
+                RenderManifestDifferences(differences, outputPath, parse.WithDataDrop, manifest.IgnoredLiveOnlyDataDropCount));
         }
         catch (Exception ex)
         {
@@ -101,11 +113,21 @@ internal static partial class Program
         return $"Scope={scope}";
     }
 
-    private static List<string> RenderManifestDifferences(IReadOnlyList<MetaSqlDifference> differences, string outputPath)
+    private static List<string> RenderManifestDifferences(
+        IReadOnlyList<MetaSqlDifference> differences,
+        string outputPath,
+        bool withDataDrop,
+        int ignoredLiveOnlyDataDropCount)
     {
+        var ignoredLiveOnlyDataDropDifferences = withDataDrop
+            ? []
+            : differences
+                .Where(IsLiveOnlyDataDropDifference)
+                .ToList();
         var lines = new List<string>
         {
             $"ManifestPath: {outputPath}",
+            $"IgnoredLiveOnlyDataDropCount: {ignoredLiveOnlyDataDropCount}",
         };
 
         AddMissingOrExtraLines(lines, differences, MetaSqlObjectKind.Table, MetaSqlDifferenceKind.MissingInLive, "AddTable entries:");
@@ -124,6 +146,7 @@ internal static partial class Program
         AddBlockLines(lines, differences, MetaSqlObjectKind.PrimaryKey, "BlockPrimaryKeyDifference");
         AddBlockLines(lines, differences, MetaSqlObjectKind.ForeignKey, "BlockForeignKeyDifference");
         AddBlockLines(lines, differences, MetaSqlObjectKind.Index, "BlockIndexDifference");
+        AddIgnoredLiveOnlyDataDropLines(lines, ignoredLiveOnlyDataDropDifferences);
 
         return lines;
     }
@@ -193,15 +216,50 @@ internal static partial class Program
         }
     }
 
+    private static void AddIgnoredLiveOnlyDataDropLines(
+        List<string> lines,
+        IReadOnlyList<MetaSqlDifference> ignoredLiveOnlyDataDropDifferences)
+    {
+        if (ignoredLiveOnlyDataDropDifferences.Count == 0)
+        {
+            return;
+        }
+
+        lines.Add("Ignored live-only data-bearing drift entries:");
+        foreach (var difference in ignoredLiveOnlyDataDropDifferences
+                     .OrderBy(row => row.ObjectKind)
+                     .ThenBy(row => row.ScopeDisplayName, StringComparer.Ordinal)
+                     .ThenBy(row => row.DisplayName, StringComparer.Ordinal))
+        {
+            var scope = string.IsNullOrWhiteSpace(difference.ScopeDisplayName)
+                ? string.Empty
+                : difference.ScopeDisplayName + ".";
+            lines.Add($"  {difference.ObjectKind}:{scope}{difference.DisplayName}");
+        }
+    }
+
+    private static bool IsLiveOnlyDataDropDifference(MetaSqlDifference difference)
+    {
+        return difference.DifferenceKind == MetaSqlDifferenceKind.ExtraInLive &&
+               (difference.ObjectKind == MetaSqlObjectKind.Table ||
+                difference.ObjectKind == MetaSqlObjectKind.TableColumn);
+    }
+
     private static void PrintDeployPlanHelp()
     {
         Presenter.WriteInfo("Command: deploy-plan");
-        Presenter.WriteUsage("meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--schema <name>] [--table <name>]");
+        Presenter.WriteUsage("meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--schema <name>] [--table <name>] [--with-data-drop]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Loads the source MetaSql workspace.");
         Presenter.WriteInfo("  Extracts the live SQL Server schema to MetaSql.");
-        Presenter.WriteInfo("  Creates a deploy manifest with Add/Drop/Block entries.");
-        Presenter.WriteInfo("  Shared-object differences become Block entries.");
+        Presenter.WriteInfo("  Creates a deploy manifest with Add/Drop/Alter/Replace/Block entries.");
+        Presenter.WriteInfo("  Without --with-data-drop, live-only Table/TableColumn drift is reported but not planned as drops.");
+        Presenter.WriteInfo("  Use --with-data-drop to include DropTable and DropTableColumn actions.");
+        Presenter.WriteInfo("  Live-only DropPrimaryKey/DropForeignKey/DropIndex are planned by default.");
+        Presenter.WriteInfo("  Shared table-column differences become AlterTableColumn when executable and feasible.");
+        Presenter.WriteInfo("  Shared primary-key differences become ReplacePrimaryKey when executable; otherwise they are blocked.");
+        Presenter.WriteInfo("  Shared foreign-key differences become ReplaceForeignKey when executable; otherwise they are blocked.");
+        Presenter.WriteInfo("  Shared index differences become ReplaceIndex when executable; otherwise they are blocked.");
         Presenter.WriteInfo("  Deployable only when BlockCount = 0.");
     }
 

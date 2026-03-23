@@ -40,33 +40,78 @@ public sealed class MetaSqlDifferenceServiceTests
         Assert.Equal("SalesDb.dbo.Customer.index.IX_Customer_Name", difference.LiveId);
     }
 
-    private static MetaSqlModel CreateCustomerModel(bool includeExtraLiveColumn, bool sourceIndexUnique = false)
+    [Fact]
+    public void BuildDifferences_MatchesByScopeAndName_WhenSourceAndLiveIdsDiffer()
+    {
+        var sourceWorkspace = CreateWorkspace(
+            CreateCustomerModel(includeExtraLiveColumn: false, sourceIndexUnique: true, idPrefix: "SourceDb"),
+            "source");
+        var liveWorkspace = CreateWorkspace(
+            CreateCustomerModel(includeExtraLiveColumn: false, sourceIndexUnique: false, idPrefix: "LiveDb"),
+            "live");
+
+        var service = new MetaSqlDifferenceService();
+        var differences = service.BuildDifferences(sourceWorkspace, liveWorkspace);
+
+        var difference = Assert.Single(differences, row => row.ObjectKind == MetaSqlObjectKind.Index);
+        Assert.Equal(MetaSqlObjectKind.Index, difference.ObjectKind);
+        Assert.Equal(MetaSqlDifferenceKind.Different, difference.DifferenceKind);
+        Assert.Equal("dbo.Customer", difference.ScopeDisplayName);
+        Assert.Equal("IX_Customer_Name", difference.DisplayName);
+        Assert.Equal("SourceDb.dbo.Customer.index.IX_Customer_Name", difference.SourceId);
+        Assert.Equal("LiveDb.dbo.Customer.index.IX_Customer_Name", difference.LiveId);
+        Assert.DoesNotContain(differences, row => row.ObjectKind == MetaSqlObjectKind.Index && row.DifferenceKind == MetaSqlDifferenceKind.MissingInLive);
+        Assert.DoesNotContain(differences, row => row.ObjectKind == MetaSqlObjectKind.Index && row.DifferenceKind == MetaSqlDifferenceKind.ExtraInLive);
+    }
+
+    [Fact]
+    public void BuildDifferences_ThrowsOnAmbiguousTableScopeIdentity()
+    {
+        var sourceModel = CreateCustomerModel(includeExtraLiveColumn: false);
+        var schema = Assert.Single(sourceModel.SchemaList);
+        sourceModel.TableList.Add(new Table
+        {
+            Id = "SalesDb.dbo.Customer.Duplicate",
+            Name = "Customer",
+            SchemaId = schema.Id,
+            Schema = schema,
+        });
+
+        var sourceWorkspace = CreateWorkspace(sourceModel, "source");
+        var liveWorkspace = CreateWorkspace(CreateCustomerModel(includeExtraLiveColumn: false), "live");
+
+        var service = new MetaSqlDifferenceService();
+        var exception = Assert.Throws<InvalidOperationException>(() => service.BuildDifferences(sourceWorkspace, liveWorkspace));
+        Assert.Contains("Ambiguous source table identity key", exception.Message, StringComparison.Ordinal);
+    }
+
+    private static MetaSqlModel CreateCustomerModel(bool includeExtraLiveColumn, bool sourceIndexUnique = false, string idPrefix = "SalesDb")
     {
         var model = MetaSqlModel.CreateEmpty();
 
         var database = new Database
         {
-            Id = "SalesDb",
+            Id = idPrefix,
             Name = "SalesDb",
             Platform = "sqlserver",
         };
         var schema = new Schema
         {
-            Id = "SalesDb.dbo",
+            Id = $"{idPrefix}.dbo",
             Name = "dbo",
             DatabaseId = database.Id,
             Database = database,
         };
         var table = new Table
         {
-            Id = "SalesDb.dbo.Customer",
+            Id = $"{idPrefix}.dbo.Customer",
             Name = "Customer",
             SchemaId = schema.Id,
             Schema = schema,
         };
         var idColumn = new TableColumn
         {
-            Id = "SalesDb.dbo.Customer.CustomerId",
+            Id = $"{idPrefix}.dbo.Customer.CustomerId",
             Name = "CustomerId",
             Ordinal = "1",
             MetaDataTypeId = "sqlserver:type:int",
@@ -76,7 +121,7 @@ public sealed class MetaSqlDifferenceServiceTests
         };
         var nameColumn = new TableColumn
         {
-            Id = "SalesDb.dbo.Customer.CustomerName",
+            Id = $"{idPrefix}.dbo.Customer.CustomerName",
             Name = "CustomerName",
             Ordinal = "2",
             MetaDataTypeId = "sqlserver:type:nvarchar",
@@ -90,24 +135,26 @@ public sealed class MetaSqlDifferenceServiceTests
         model.TableList.Add(table);
         model.TableColumnList.Add(idColumn);
         model.TableColumnList.Add(nameColumn);
+        var primaryKeyId = $"{idPrefix}.dbo.Customer.pk.PK_Customer";
         model.PrimaryKeyList.Add(new PrimaryKey
         {
-            Id = "SalesDb.dbo.Customer.pk.PK_Customer",
+            Id = primaryKeyId,
             Name = "PK_Customer",
             TableId = table.Id,
             Table = table,
         });
         model.PrimaryKeyColumnList.Add(new PrimaryKeyColumn
         {
-            Id = "SalesDb.dbo.Customer.pk.PK_Customer.column.1",
-            PrimaryKeyId = "SalesDb.dbo.Customer.pk.PK_Customer",
+            Id = $"{primaryKeyId}.column.1",
+            PrimaryKeyId = primaryKeyId,
             TableColumnId = idColumn.Id,
             TableColumn = idColumn,
             Ordinal = "1",
         });
+        var indexId = $"{idPrefix}.dbo.Customer.index.IX_Customer_Name";
         model.IndexList.Add(new Index
         {
-            Id = "SalesDb.dbo.Customer.index.IX_Customer_Name",
+            Id = indexId,
             Name = "IX_Customer_Name",
             TableId = table.Id,
             Table = table,
@@ -115,8 +162,8 @@ public sealed class MetaSqlDifferenceServiceTests
         });
         model.IndexColumnList.Add(new IndexColumn
         {
-            Id = "SalesDb.dbo.Customer.index.IX_Customer_Name.column.1",
-            IndexId = "SalesDb.dbo.Customer.index.IX_Customer_Name",
+            Id = $"{indexId}.column.1",
+            IndexId = indexId,
             TableColumnId = nameColumn.Id,
             TableColumn = nameColumn,
             Ordinal = "1",
@@ -126,7 +173,7 @@ public sealed class MetaSqlDifferenceServiceTests
         {
             model.TableColumnList.Add(new TableColumn
             {
-                Id = "SalesDb.dbo.Customer.LegacyCode",
+                Id = $"{idPrefix}.dbo.Customer.LegacyCode",
                 Name = "LegacyCode",
                 Ordinal = "3",
                 MetaDataTypeId = "sqlserver:type:nvarchar",

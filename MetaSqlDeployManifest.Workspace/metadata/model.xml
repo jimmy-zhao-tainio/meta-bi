@@ -4,7 +4,6 @@
     <Entity name="DeployManifest">
       <PropertyList>
         <Property name="Name" />
-        <Property name="ManifestVersion" />
         <Property name="SourceInstanceFingerprint" />
         <Property name="LiveInstanceFingerprint" />
         <Property name="CreatedUtc" />
@@ -45,6 +44,15 @@
         <Relationship entity="DeployManifest" />
       </RelationshipList>
     </Entity>
+    <Entity name="AlterTableColumn">
+      <PropertyList>
+        <Property name="SourceTableColumnId" />
+        <Property name="LiveTableColumnId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
 
     <Entity name="AddPrimaryKey">
       <PropertyList>
@@ -56,6 +64,15 @@
     </Entity>
     <Entity name="DropPrimaryKey">
       <PropertyList>
+        <Property name="LivePrimaryKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ReplacePrimaryKey">
+      <PropertyList>
+        <Property name="SourcePrimaryKeyId" />
         <Property name="LivePrimaryKeyId" />
       </PropertyList>
       <RelationshipList>
@@ -74,6 +91,24 @@
     <Entity name="DropForeignKey">
       <PropertyList>
         <Property name="LiveForeignKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ReplaceForeignKey">
+      <PropertyList>
+        <Property name="SourceForeignKeyId" />
+        <Property name="LiveForeignKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ReplaceIndex">
+      <PropertyList>
+        <Property name="SourceIndexId" />
+        <Property name="LiveIndexId" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="DeployManifest" />

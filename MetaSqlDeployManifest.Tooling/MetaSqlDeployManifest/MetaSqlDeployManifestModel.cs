@@ -38,6 +38,11 @@ namespace MetaSqlDeployManifest
         public List<AddTableColumn> AddTableColumnList { get; set; } = new();
         public bool ShouldSerializeAddTableColumnList() => AddTableColumnList.Count > 0;
 
+        [XmlArray("AlterTableColumnList")]
+        [XmlArrayItem("AlterTableColumn")]
+        public List<AlterTableColumn> AlterTableColumnList { get; set; } = new();
+        public bool ShouldSerializeAlterTableColumnList() => AlterTableColumnList.Count > 0;
+
         [XmlArray("BlockForeignKeyDifferenceList")]
         [XmlArrayItem("BlockForeignKeyDifference")]
         public List<BlockForeignKeyDifference> BlockForeignKeyDifferenceList { get; set; } = new();
@@ -72,6 +77,21 @@ namespace MetaSqlDeployManifest
         [XmlArrayItem("DropForeignKey")]
         public List<DropForeignKey> DropForeignKeyList { get; set; } = new();
         public bool ShouldSerializeDropForeignKeyList() => DropForeignKeyList.Count > 0;
+
+        [XmlArray("ReplaceForeignKeyList")]
+        [XmlArrayItem("ReplaceForeignKey")]
+        public List<ReplaceForeignKey> ReplaceForeignKeyList { get; set; } = new();
+        public bool ShouldSerializeReplaceForeignKeyList() => ReplaceForeignKeyList.Count > 0;
+
+        [XmlArray("ReplacePrimaryKeyList")]
+        [XmlArrayItem("ReplacePrimaryKey")]
+        public List<ReplacePrimaryKey> ReplacePrimaryKeyList { get; set; } = new();
+        public bool ShouldSerializeReplacePrimaryKeyList() => ReplacePrimaryKeyList.Count > 0;
+
+        [XmlArray("ReplaceIndexList")]
+        [XmlArrayItem("ReplaceIndex")]
+        public List<ReplaceIndex> ReplaceIndexList { get; set; } = new();
+        public bool ShouldSerializeReplaceIndexList() => ReplaceIndexList.Count > 0;
 
         [XmlArray("DropIndexList")]
         [XmlArrayItem("DropIndex")]
@@ -156,6 +176,7 @@ namespace MetaSqlDeployManifest
             model.AddPrimaryKeyList ??= new List<AddPrimaryKey>();
             model.AddTableList ??= new List<AddTable>();
             model.AddTableColumnList ??= new List<AddTableColumn>();
+            model.AlterTableColumnList ??= new List<AlterTableColumn>();
             model.BlockForeignKeyDifferenceList ??= new List<BlockForeignKeyDifference>();
             model.BlockIndexDifferenceList ??= new List<BlockIndexDifference>();
             model.BlockPrimaryKeyDifferenceList ??= new List<BlockPrimaryKeyDifference>();
@@ -163,6 +184,9 @@ namespace MetaSqlDeployManifest
             model.BlockTableDifferenceList ??= new List<BlockTableDifference>();
             model.DeployManifestList ??= new List<DeployManifest>();
             model.DropForeignKeyList ??= new List<DropForeignKey>();
+            model.ReplaceForeignKeyList ??= new List<ReplaceForeignKey>();
+            model.ReplacePrimaryKeyList ??= new List<ReplacePrimaryKey>();
+            model.ReplaceIndexList ??= new List<ReplaceIndex>();
             model.DropIndexList ??= new List<DropIndex>();
             model.DropPrimaryKeyList ??= new List<DropPrimaryKey>();
             model.DropTableList ??= new List<DropTable>();
@@ -173,6 +197,7 @@ namespace MetaSqlDeployManifest
             NormalizeAddPrimaryKeyList(model);
             NormalizeAddTableList(model);
             NormalizeAddTableColumnList(model);
+            NormalizeAlterTableColumnList(model);
             NormalizeBlockForeignKeyDifferenceList(model);
             NormalizeBlockIndexDifferenceList(model);
             NormalizeBlockPrimaryKeyDifferenceList(model);
@@ -180,6 +205,9 @@ namespace MetaSqlDeployManifest
             NormalizeBlockTableDifferenceList(model);
             NormalizeDeployManifestList(model);
             NormalizeDropForeignKeyList(model);
+            NormalizeReplaceForeignKeyList(model);
+            NormalizeReplacePrimaryKeyList(model);
+            NormalizeReplaceIndexList(model);
             NormalizeDropIndexList(model);
             NormalizeDropPrimaryKeyList(model);
             NormalizeDropTableList(model);
@@ -190,6 +218,7 @@ namespace MetaSqlDeployManifest
             var addPrimaryKeyListById = BuildById(model.AddPrimaryKeyList, row => row.Id, "AddPrimaryKey");
             var addTableListById = BuildById(model.AddTableList, row => row.Id, "AddTable");
             var addTableColumnListById = BuildById(model.AddTableColumnList, row => row.Id, "AddTableColumn");
+            var alterTableColumnListById = BuildById(model.AlterTableColumnList, row => row.Id, "AlterTableColumn");
             var blockForeignKeyDifferenceListById = BuildById(model.BlockForeignKeyDifferenceList, row => row.Id, "BlockForeignKeyDifference");
             var blockIndexDifferenceListById = BuildById(model.BlockIndexDifferenceList, row => row.Id, "BlockIndexDifference");
             var blockPrimaryKeyDifferenceListById = BuildById(model.BlockPrimaryKeyDifferenceList, row => row.Id, "BlockPrimaryKeyDifference");
@@ -278,6 +307,22 @@ namespace MetaSqlDeployManifest
                     deployManifestListById,
                     row.DeployManifestId,
                     "AddTableColumn",
+                    row.Id,
+                    "DeployManifestId");
+            }
+
+            foreach (var row in model.AlterTableColumnList)
+            {
+                row.DeployManifestId = ResolveRelationshipId(
+                    row.DeployManifestId,
+                    row.DeployManifest?.Id,
+                    "AlterTableColumn",
+                    row.Id,
+                    "DeployManifestId");
+                row.DeployManifest = RequireTarget(
+                    deployManifestListById,
+                    row.DeployManifestId,
+                    "AlterTableColumn",
                     row.Id,
                     "DeployManifestId");
             }
@@ -374,6 +419,54 @@ namespace MetaSqlDeployManifest
                     deployManifestListById,
                     row.DeployManifestId,
                     "DropForeignKey",
+                    row.Id,
+                    "DeployManifestId");
+            }
+
+            foreach (var row in model.ReplaceForeignKeyList)
+            {
+                row.DeployManifestId = ResolveRelationshipId(
+                    row.DeployManifestId,
+                    row.DeployManifest?.Id,
+                    "ReplaceForeignKey",
+                    row.Id,
+                    "DeployManifestId");
+                row.DeployManifest = RequireTarget(
+                    deployManifestListById,
+                    row.DeployManifestId,
+                    "ReplaceForeignKey",
+                    row.Id,
+                    "DeployManifestId");
+            }
+
+            foreach (var row in model.ReplacePrimaryKeyList)
+            {
+                row.DeployManifestId = ResolveRelationshipId(
+                    row.DeployManifestId,
+                    row.DeployManifest?.Id,
+                    "ReplacePrimaryKey",
+                    row.Id,
+                    "DeployManifestId");
+                row.DeployManifest = RequireTarget(
+                    deployManifestListById,
+                    row.DeployManifestId,
+                    "ReplacePrimaryKey",
+                    row.Id,
+                    "DeployManifestId");
+            }
+
+            foreach (var row in model.ReplaceIndexList)
+            {
+                row.DeployManifestId = ResolveRelationshipId(
+                    row.DeployManifestId,
+                    row.DeployManifest?.Id,
+                    "ReplaceIndex",
+                    row.Id,
+                    "DeployManifestId");
+                row.DeployManifest = RequireTarget(
+                    deployManifestListById,
+                    row.DeployManifestId,
+                    "ReplaceIndex",
                     row.Id,
                     "DeployManifestId");
             }
@@ -499,6 +592,18 @@ namespace MetaSqlDeployManifest
             }
         }
 
+        private static void NormalizeAlterTableColumnList(MetaSqlDeployManifestModel model)
+        {
+            foreach (var row in model.AlterTableColumnList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'AlterTableColumn' contains a row with empty Id.");
+                row.SourceTableColumnId = RequireText(row.SourceTableColumnId, $"Entity 'AlterTableColumn' row '{row.Id}' is missing required property 'SourceTableColumnId'.");
+                row.LiveTableColumnId = RequireText(row.LiveTableColumnId, $"Entity 'AlterTableColumn' row '{row.Id}' is missing required property 'LiveTableColumnId'.");
+                row.DeployManifestId ??= string.Empty;
+            }
+        }
+
         private static void NormalizeBlockForeignKeyDifferenceList(MetaSqlDeployManifestModel model)
         {
             foreach (var row in model.BlockForeignKeyDifferenceList)
@@ -572,7 +677,6 @@ namespace MetaSqlDeployManifest
                 row.Id = RequireIdentity(row.Id, "Entity 'DeployManifest' contains a row with empty Id.");
                 row.CreatedUtc = RequireText(row.CreatedUtc, $"Entity 'DeployManifest' row '{row.Id}' is missing required property 'CreatedUtc'.");
                 row.LiveInstanceFingerprint = RequireText(row.LiveInstanceFingerprint, $"Entity 'DeployManifest' row '{row.Id}' is missing required property 'LiveInstanceFingerprint'.");
-                row.ManifestVersion = RequireText(row.ManifestVersion, $"Entity 'DeployManifest' row '{row.Id}' is missing required property 'ManifestVersion'.");
                 row.Name = RequireText(row.Name, $"Entity 'DeployManifest' row '{row.Id}' is missing required property 'Name'.");
                 row.SourceInstanceFingerprint = RequireText(row.SourceInstanceFingerprint, $"Entity 'DeployManifest' row '{row.Id}' is missing required property 'SourceInstanceFingerprint'.");
                 row.TargetDescription ??= string.Empty;
@@ -586,6 +690,42 @@ namespace MetaSqlDeployManifest
                 ArgumentNullException.ThrowIfNull(row);
                 row.Id = RequireIdentity(row.Id, "Entity 'DropForeignKey' contains a row with empty Id.");
                 row.LiveForeignKeyId = RequireText(row.LiveForeignKeyId, $"Entity 'DropForeignKey' row '{row.Id}' is missing required property 'LiveForeignKeyId'.");
+                row.DeployManifestId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeReplaceForeignKeyList(MetaSqlDeployManifestModel model)
+        {
+            foreach (var row in model.ReplaceForeignKeyList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'ReplaceForeignKey' contains a row with empty Id.");
+                row.SourceForeignKeyId = RequireText(row.SourceForeignKeyId, $"Entity 'ReplaceForeignKey' row '{row.Id}' is missing required property 'SourceForeignKeyId'.");
+                row.LiveForeignKeyId = RequireText(row.LiveForeignKeyId, $"Entity 'ReplaceForeignKey' row '{row.Id}' is missing required property 'LiveForeignKeyId'.");
+                row.DeployManifestId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeReplacePrimaryKeyList(MetaSqlDeployManifestModel model)
+        {
+            foreach (var row in model.ReplacePrimaryKeyList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'ReplacePrimaryKey' contains a row with empty Id.");
+                row.SourcePrimaryKeyId = RequireText(row.SourcePrimaryKeyId, $"Entity 'ReplacePrimaryKey' row '{row.Id}' is missing required property 'SourcePrimaryKeyId'.");
+                row.LivePrimaryKeyId = RequireText(row.LivePrimaryKeyId, $"Entity 'ReplacePrimaryKey' row '{row.Id}' is missing required property 'LivePrimaryKeyId'.");
+                row.DeployManifestId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeReplaceIndexList(MetaSqlDeployManifestModel model)
+        {
+            foreach (var row in model.ReplaceIndexList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'ReplaceIndex' contains a row with empty Id.");
+                row.SourceIndexId = RequireText(row.SourceIndexId, $"Entity 'ReplaceIndex' row '{row.Id}' is missing required property 'SourceIndexId'.");
+                row.LiveIndexId = RequireText(row.LiveIndexId, $"Entity 'ReplaceIndex' row '{row.Id}' is missing required property 'LiveIndexId'.");
                 row.DeployManifestId ??= string.Empty;
             }
         }

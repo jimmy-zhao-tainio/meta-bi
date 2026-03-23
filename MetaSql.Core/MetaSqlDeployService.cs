@@ -20,11 +20,30 @@ public sealed record MetaSqlDeployResult
 {
     public required int AppliedAddCount { get; init; }
     public required int AppliedDropCount { get; init; }
+    public required int AppliedAlterCount { get; init; }
+    public required int AppliedReplaceCount { get; init; }
     public required int ExecutedStatementCount { get; init; }
 }
 
 public sealed class MetaSqlDeployService
 {
+    private static readonly HashSet<string> ExecutableColumnAspects = new(StringComparer.Ordinal)
+    {
+        "MetaDataTypeId",
+        "MetaDataTypeDetail",
+        "IsNullable",
+    };
+
+    private static readonly HashSet<string> LengthBasedSqlServerTypeNames = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "varchar",
+        "char",
+        "nvarchar",
+        "nchar",
+        "varbinary",
+        "binary",
+    };
+
     private static readonly HashSet<string> SupportedManifestEntityNames =
     [
         "DeployManifest",
@@ -32,12 +51,16 @@ public sealed class MetaSqlDeployService
         "DropTable",
         "AddTableColumn",
         "DropTableColumn",
+        "AlterTableColumn",
         "AddPrimaryKey",
         "DropPrimaryKey",
+        "ReplacePrimaryKey",
         "AddForeignKey",
         "DropForeignKey",
+        "ReplaceForeignKey",
         "AddIndex",
         "DropIndex",
+        "ReplaceIndex",
         "BlockTableDifference",
         "BlockTableColumnDifference",
         "BlockPrimaryKeyDifference",
@@ -126,6 +149,8 @@ public sealed class MetaSqlDeployService
             {
                 AppliedAddCount = CountAdds(manifestModel),
                 AppliedDropCount = CountDrops(manifestModel),
+                AppliedAlterCount = CountAlters(manifestModel),
+                AppliedReplaceCount = CountReplaces(manifestModel),
                 ExecutedStatementCount = statements.Count,
             };
         }
@@ -146,14 +171,7 @@ public sealed class MetaSqlDeployService
                 $"Deploy manifest workspace must contain exactly one DeployManifest row. Found {manifestModel.DeployManifestList.Count}.");
         }
 
-        var root = manifestModel.DeployManifestList[0];
-        if (!string.Equals(root.ManifestVersion, "1.0", StringComparison.Ordinal))
-        {
-            throw new InvalidOperationException(
-                $"Unsupported manifest version '{root.ManifestVersion}'. Supported version: '1.0'.");
-        }
-
-        return root;
+        return manifestModel.DeployManifestList[0];
     }
 
     private static void ValidateManifestContract(string manifestWorkspacePath)
@@ -255,6 +273,18 @@ public sealed class MetaSqlDeployService
                manifestModel.DropIndexList.Count;
     }
 
+    private static int CountAlters(MetaSqlDeployManifestModel manifestModel)
+    {
+        return manifestModel.AlterTableColumnList.Count;
+    }
+
+    private static int CountReplaces(MetaSqlDeployManifestModel manifestModel)
+    {
+        return manifestModel.ReplacePrimaryKeyList.Count +
+               manifestModel.ReplaceForeignKeyList.Count +
+               manifestModel.ReplaceIndexList.Count;
+    }
+
     private static int CountBlocks(MetaSqlDeployManifestModel manifestModel)
     {
         return manifestModel.BlockTableDifferenceList.Count +
@@ -278,9 +308,6 @@ public sealed class MetaSqlDeployService
         var sourceIndexesById = sourceModel.IndexList.ToDictionary(row => row.Id, StringComparer.Ordinal);
 
         var sourceColumnsByTableId = GroupBy(sourceModel.TableColumnList, row => row.TableId);
-        var sourcePrimaryKeysByTableId = GroupBy(sourceModel.PrimaryKeyList, row => row.TableId);
-        var sourceForeignKeysBySourceTableId = GroupBy(sourceModel.ForeignKeyList, row => row.SourceTableId);
-        var sourceIndexesByTableId = GroupBy(sourceModel.IndexList, row => row.TableId);
         var sourcePkColumnsByPrimaryKeyId = GroupBy(sourceModel.PrimaryKeyColumnList, row => row.PrimaryKeyId);
         var sourceFkColumnsByForeignKeyId = GroupBy(sourceModel.ForeignKeyColumnList, row => row.ForeignKeyId);
         var sourceIndexColumnsByIndexId = GroupBy(sourceModel.IndexColumnList, row => row.IndexId);
@@ -291,6 +318,7 @@ public sealed class MetaSqlDeployService
         var livePrimaryKeysById = liveModel.PrimaryKeyList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var liveForeignKeysById = liveModel.ForeignKeyList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var liveIndexesById = liveModel.IndexList.ToDictionary(row => row.Id, StringComparer.Ordinal);
+        var liveColumnDetailsByColumnId = GroupBy(liveModel.TableColumnDataTypeDetailList, row => row.TableColumnId);
 
         var droppedTableIds = manifestModel.DropTableList
             .Select(row => row.LiveTableId)
@@ -303,15 +331,8 @@ public sealed class MetaSqlDeployService
         // Drop order removes dependencies before dropping columns/tables.
         var dropForeignKeyIds = manifestModel.DropForeignKeyList
             .Select(row => row.LiveForeignKeyId)
+            .Concat(manifestModel.ReplaceForeignKeyList.Select(row => row.LiveForeignKeyId))
             .ToHashSet(StringComparer.Ordinal);
-
-        // Live foreign keys that reference dropped tables must be removed first when their source table remains.
-        foreach (var liveForeignKey in liveModel.ForeignKeyList.Where(row =>
-                     droppedTableIds.Contains(row.TargetTableId) &&
-                     !droppedTableIds.Contains(row.SourceTableId)))
-        {
-            dropForeignKeyIds.Add(liveForeignKey.Id);
-        }
 
         foreach (var foreignKeyId in dropForeignKeyIds.OrderBy(row => row, StringComparer.Ordinal))
         {
@@ -324,10 +345,13 @@ public sealed class MetaSqlDeployService
             statements.Add(BuildDropForeignKeySql(foreignKey));
         }
 
-        foreach (var entry in manifestModel.DropIndexList
-                     .OrderBy(row => row.LiveIndexId, StringComparer.Ordinal))
+        var dropIndexIds = manifestModel.DropIndexList
+            .Select(row => row.LiveIndexId)
+            .Concat(manifestModel.ReplaceIndexList.Select(row => row.LiveIndexId))
+            .ToHashSet(StringComparer.Ordinal);
+        foreach (var indexId in dropIndexIds.OrderBy(row => row, StringComparer.Ordinal))
         {
-            var index = RequireById(liveIndexesById, entry.LiveIndexId, "DropIndex.LiveIndexId");
+            var index = RequireById(liveIndexesById, indexId, "DropIndex.LiveIndexId");
             if (droppedTableIds.Contains(index.TableId))
             {
                 continue;
@@ -336,10 +360,13 @@ public sealed class MetaSqlDeployService
             statements.Add(BuildDropIndexSql(index));
         }
 
-        foreach (var entry in manifestModel.DropPrimaryKeyList
-                     .OrderBy(row => row.LivePrimaryKeyId, StringComparer.Ordinal))
+        var dropPrimaryKeyIds = manifestModel.DropPrimaryKeyList
+            .Select(row => row.LivePrimaryKeyId)
+            .Concat(manifestModel.ReplacePrimaryKeyList.Select(row => row.LivePrimaryKeyId))
+            .ToHashSet(StringComparer.Ordinal);
+        foreach (var primaryKeyId in dropPrimaryKeyIds.OrderBy(row => row, StringComparer.Ordinal))
         {
-            var primaryKey = RequireById(livePrimaryKeysById, entry.LivePrimaryKeyId, "DropPrimaryKey.LivePrimaryKeyId");
+            var primaryKey = RequireById(livePrimaryKeysById, primaryKeyId, "DropPrimaryKey.LivePrimaryKeyId");
             if (droppedTableIds.Contains(primaryKey.TableId))
             {
                 continue;
@@ -364,6 +391,15 @@ public sealed class MetaSqlDeployService
         {
             var table = RequireById(liveTablesById, tableId, "DropTable.LiveTableId");
             statements.Add(BuildDropTableSql(table));
+        }
+
+        foreach (var entry in manifestModel.AlterTableColumnList
+                     .OrderBy(row => row.SourceTableColumnId, StringComparer.Ordinal)
+                     .ThenBy(row => row.LiveTableColumnId, StringComparer.Ordinal))
+        {
+            var sourceColumn = RequireById(sourceColumnsById, entry.SourceTableColumnId, "AlterTableColumn.SourceTableColumnId");
+            var liveColumn = RequireById(liveColumnsById, entry.LiveTableColumnId, "AlterTableColumn.LiveTableColumnId");
+            statements.Add(BuildAlterColumnSql(sourceColumn, liveColumn, sourceColumnDetailsByColumnId, liveColumnDetailsByColumnId));
         }
 
         // Add order creates tables/columns before keys and indexes.
@@ -397,15 +433,8 @@ public sealed class MetaSqlDeployService
 
         var addPrimaryKeyIds = manifestModel.AddPrimaryKeyList
             .Select(row => row.SourcePrimaryKeyId)
+            .Concat(manifestModel.ReplacePrimaryKeyList.Select(row => row.SourcePrimaryKeyId))
             .ToHashSet(StringComparer.Ordinal);
-        foreach (var tableId in addedTableIds)
-        {
-            foreach (var primaryKey in GetGroup(sourcePrimaryKeysByTableId, tableId))
-            {
-                addPrimaryKeyIds.Add(primaryKey.Id);
-            }
-        }
-
         foreach (var primaryKeyId in addPrimaryKeyIds.OrderBy(row => row, StringComparer.Ordinal))
         {
             var primaryKey = RequireById(sourcePrimaryKeysById, primaryKeyId, "AddPrimaryKey.SourcePrimaryKeyId");
@@ -424,15 +453,8 @@ public sealed class MetaSqlDeployService
 
         var addForeignKeyIds = manifestModel.AddForeignKeyList
             .Select(row => row.SourceForeignKeyId)
+            .Concat(manifestModel.ReplaceForeignKeyList.Select(row => row.SourceForeignKeyId))
             .ToHashSet(StringComparer.Ordinal);
-        foreach (var tableId in addedTableIds)
-        {
-            foreach (var foreignKey in GetGroup(sourceForeignKeysBySourceTableId, tableId))
-            {
-                addForeignKeyIds.Add(foreignKey.Id);
-            }
-        }
-
         foreach (var foreignKeyId in addForeignKeyIds.OrderBy(row => row, StringComparer.Ordinal))
         {
             var foreignKey = RequireById(sourceForeignKeysById, foreignKeyId, "AddForeignKey.SourceForeignKeyId");
@@ -451,15 +473,8 @@ public sealed class MetaSqlDeployService
 
         var addIndexIds = manifestModel.AddIndexList
             .Select(row => row.SourceIndexId)
+            .Concat(manifestModel.ReplaceIndexList.Select(row => row.SourceIndexId))
             .ToHashSet(StringComparer.Ordinal);
-        foreach (var tableId in addedTableIds)
-        {
-            foreach (var index in GetGroup(sourceIndexesByTableId, tableId))
-            {
-                addIndexIds.Add(index.Id);
-            }
-        }
-
         foreach (var indexId in addIndexIds.OrderBy(row => row, StringComparer.Ordinal))
         {
             var index = RequireById(sourceIndexesById, indexId, "AddIndex.SourceIndexId");
@@ -569,13 +584,98 @@ public sealed class MetaSqlDeployService
         return $"ALTER TABLE {FormatTableName(column.Table)} ADD {BuildColumnDefinition(column, detailsByColumnId)};";
     }
 
+    private static string BuildAlterColumnSql(
+        TableColumn sourceColumn,
+        TableColumn liveColumn,
+        IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> sourceDetailsByColumnId,
+        IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> liveDetailsByColumnId)
+    {
+        if (sourceColumn.TableId != liveColumn.TableId)
+        {
+            throw new InvalidOperationException(
+                $"Cannot alter column because source table '{sourceColumn.TableId}' and live table '{liveColumn.TableId}' differ.");
+        }
+
+        if (sourceColumn.Name != liveColumn.Name)
+        {
+            throw new InvalidOperationException(
+                $"Cannot alter column because source column name '{sourceColumn.Name}' and live column name '{liveColumn.Name}' differ.");
+        }
+
+        if (!string.IsNullOrWhiteSpace(sourceColumn.ExpressionSql))
+        {
+            throw new InvalidOperationException(
+                $"Cannot alter computed column '{sourceColumn.Id}' in this deploy slice.");
+        }
+
+        if (IsTrue(sourceColumn.IsIdentity) || IsTrue(liveColumn.IsIdentity))
+        {
+            throw new InvalidOperationException(
+                $"Cannot alter identity column '{sourceColumn.Id}' in this deploy slice.");
+        }
+
+        var changedAspects = GetChangedColumnAspects(sourceColumn, liveColumn, sourceDetailsByColumnId, liveDetailsByColumnId);
+        if (changedAspects.Count == 0)
+        {
+            throw new InvalidOperationException(
+                $"Cannot alter column '{sourceColumn.Id}' because no supported changed aspects were detected.");
+        }
+
+        var unsupportedAspects = changedAspects
+            .Where(row => !ExecutableColumnAspects.Contains(row))
+            .OrderBy(row => row, StringComparer.Ordinal)
+            .ToList();
+        if (unsupportedAspects.Count > 0)
+        {
+            throw new InvalidOperationException(
+                $"Cannot alter column '{sourceColumn.Id}' because unsupported aspect changes are present: {string.Join(", ", unsupportedAspects)}.");
+        }
+
+        var typeShapeChanged = changedAspects.Contains("MetaDataTypeId", StringComparer.Ordinal) ||
+                               changedAspects.Contains("MetaDataTypeDetail", StringComparer.Ordinal);
+        if (typeShapeChanged)
+        {
+            if (!IsSqlServerTypeId(sourceColumn.MetaDataTypeId) || !IsSqlServerTypeId(liveColumn.MetaDataTypeId))
+            {
+                throw new InvalidOperationException(
+                    $"Cannot alter column '{sourceColumn.Id}' because only sqlserver:type:* MetaDataTypeId values are supported.");
+            }
+
+            var sourceTypeName = GetSqlServerTypeName(sourceColumn.MetaDataTypeId);
+            var liveTypeName = GetSqlServerTypeName(liveColumn.MetaDataTypeId);
+            if (!string.Equals(sourceTypeName, liveTypeName, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException(
+                    $"Cannot alter column '{sourceColumn.Id}' because type-family transitions are blocked in this deploy slice ({liveTypeName} -> {sourceTypeName}).");
+            }
+
+            if (!LengthBasedSqlServerTypeNames.Contains(sourceTypeName))
+            {
+                throw new InvalidOperationException(
+                    $"Cannot alter column '{sourceColumn.Id}' because only length-based sqlserver type-shape changes are executable in this deploy slice.");
+            }
+
+            var sourceDetailMap = GetDetailMap(sourceDetailsByColumnId, sourceColumn.Id);
+            var liveDetailMap = GetDetailMap(liveDetailsByColumnId, liveColumn.Id);
+            if (!HasOnlyLengthDetailChange(sourceDetailMap, liveDetailMap))
+            {
+                throw new InvalidOperationException(
+                    $"Cannot alter column '{sourceColumn.Id}' because only Length detail changes are executable for type-shape changes in this deploy slice.");
+            }
+        }
+
+        var detailValues = GetGroup(sourceDetailsByColumnId, sourceColumn.Id)
+            .ToDictionary(row => row.Name, row => row.Value, StringComparer.OrdinalIgnoreCase);
+        var typeSql = BuildSqlServerTypeSql(sourceColumn.MetaDataTypeId, detailValues);
+        var nullableSql = IsTrue(sourceColumn.IsNullable) ? "NULL" : "NOT NULL";
+        return $"ALTER TABLE {FormatTableName(liveColumn.Table)} ALTER COLUMN {EscapeSqlIdentifier(liveColumn.Name)} {typeSql} {nullableSql};";
+    }
+
     private static string BuildAddPrimaryKeySql(PrimaryKey primaryKey, IReadOnlyList<PrimaryKeyColumn> members)
     {
         var clusterClause = IsTrue(primaryKey.IsClustered)
             ? " CLUSTERED"
-            : IsFalse(primaryKey.IsClustered)
-                ? " NONCLUSTERED"
-                : string.Empty;
+            : " NONCLUSTERED";
         var memberList = string.Join(
             ", ",
             members.Select(row =>
@@ -715,6 +815,107 @@ public sealed class MetaSqlDeployService
     private static string NormalizeIdentityValue(string? value, string defaultValue)
     {
         return string.IsNullOrWhiteSpace(value) ? defaultValue : value.Trim();
+    }
+
+    private static bool IsSqlServerTypeId(string metaDataTypeId)
+    {
+        return !string.IsNullOrWhiteSpace(metaDataTypeId) &&
+               metaDataTypeId.StartsWith("sqlserver:type:", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string GetSqlServerTypeName(string metaDataTypeId)
+    {
+        const string prefix = "sqlserver:type:";
+        if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
+            !metaDataTypeId.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Empty;
+        }
+
+        return metaDataTypeId[prefix.Length..];
+    }
+
+    private static List<string> GetChangedColumnAspects(
+        TableColumn sourceColumn,
+        TableColumn liveColumn,
+        IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> sourceDetailsByColumnId,
+        IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> liveDetailsByColumnId)
+    {
+        var changedAspects = new List<string>();
+        AddIfDifferent(changedAspects, "Name", sourceColumn.Name, liveColumn.Name);
+        AddIfDifferent(changedAspects, "Ordinal", sourceColumn.Ordinal, liveColumn.Ordinal);
+        AddIfDifferent(changedAspects, "MetaDataTypeId", sourceColumn.MetaDataTypeId, liveColumn.MetaDataTypeId);
+        AddIfDifferent(changedAspects, "IsNullable", sourceColumn.IsNullable, liveColumn.IsNullable);
+        AddIfDifferent(changedAspects, "IsIdentity", sourceColumn.IsIdentity, liveColumn.IsIdentity);
+        AddIfDifferent(changedAspects, "IdentitySeed", sourceColumn.IdentitySeed, liveColumn.IdentitySeed);
+        AddIfDifferent(changedAspects, "IdentityIncrement", sourceColumn.IdentityIncrement, liveColumn.IdentityIncrement);
+        AddIfDifferent(changedAspects, "ExpressionSql", sourceColumn.ExpressionSql, liveColumn.ExpressionSql);
+
+        var sourceDetails = GetDetailPairs(sourceDetailsByColumnId, sourceColumn.Id);
+        var liveDetails = GetDetailPairs(liveDetailsByColumnId, liveColumn.Id);
+        if (!sourceDetails.SequenceEqual(liveDetails))
+        {
+            changedAspects.Add("MetaDataTypeDetail");
+        }
+
+        return changedAspects;
+    }
+
+    private static void AddIfDifferent(List<string> changedAspects, string aspectName, string left, string right)
+    {
+        if (!string.Equals(left ?? string.Empty, right ?? string.Empty, StringComparison.Ordinal))
+        {
+            changedAspects.Add(aspectName);
+        }
+    }
+
+    private static List<string> GetDetailPairs(
+        IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> detailsByColumnId,
+        string columnId)
+    {
+        return GetGroup(detailsByColumnId, columnId)
+            .Select(row => $"{row.Name}={row.Value}")
+            .OrderBy(row => row, StringComparer.Ordinal)
+            .ToList();
+    }
+
+    private static Dictionary<string, string> GetDetailMap(
+        IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> detailsByColumnId,
+        string columnId)
+    {
+        return GetGroup(detailsByColumnId, columnId)
+            .ToDictionary(
+                row => row.Name,
+                row => row.Value,
+                StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static bool HasOnlyLengthDetailChange(
+        IReadOnlyDictionary<string, string> sourceDetailMap,
+        IReadOnlyDictionary<string, string> liveDetailMap)
+    {
+        var detailNames = sourceDetailMap.Keys
+            .Concat(liveDetailMap.Keys)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(row => row, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        foreach (var detailName in detailNames)
+        {
+            var sourceValue = sourceDetailMap.TryGetValue(detailName, out var sourceFoundValue) ? sourceFoundValue : string.Empty;
+            var liveValue = liveDetailMap.TryGetValue(detailName, out var liveFoundValue) ? liveFoundValue : string.Empty;
+            if (string.Equals(sourceValue, liveValue, StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            if (!string.Equals(detailName, "Length", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static string FormatTableName(Table table)

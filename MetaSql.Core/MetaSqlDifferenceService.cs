@@ -52,29 +52,37 @@ public sealed class MetaSqlDifferenceService
         var liveSchemasById = GetRecordIndex(liveWorkspace, "Schema");
         var sourceTablesById = GetRecordIndex(sourceWorkspace, "Table");
         var liveTablesById = GetRecordIndex(liveWorkspace, "Table");
+        var sourceTablesByScopedName = BuildUniqueRecordIndex(
+            sourceTablesById.Values,
+            row => BuildTableScopeKey(row, sourceSchemasById),
+            "source table");
+        var liveTablesByScopedName = BuildUniqueRecordIndex(
+            liveTablesById.Values,
+            row => BuildTableScopeKey(row, liveSchemasById),
+            "live table");
 
         differences.AddRange(
-            sourceTablesById.Keys
-                .Except(liveTablesById.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            sourceTablesByScopedName.Keys
+                .Except(liveTablesByScopedName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.Table,
                     DifferenceKind = MetaSqlDifferenceKind.MissingInLive,
-                    DisplayName = FormatTable(sourceTablesById[id], sourceSchemasById),
-                    SourceId = id,
+                    DisplayName = FormatTable(sourceTablesByScopedName[key], sourceSchemasById),
+                    SourceId = sourceTablesByScopedName[key].Id,
                 }));
 
         differences.AddRange(
-            liveTablesById.Keys
-                .Except(sourceTablesById.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            liveTablesByScopedName.Keys
+                .Except(sourceTablesByScopedName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.Table,
                     DifferenceKind = MetaSqlDifferenceKind.ExtraInLive,
-                    DisplayName = FormatTable(liveTablesById[id], liveSchemasById),
-                    LiveId = id,
+                    DisplayName = FormatTable(liveTablesByScopedName[key], liveSchemasById),
+                    LiveId = liveTablesByScopedName[key].Id,
                 }));
 
         var sourceColumnsByTableId = GetGroupedRecordIndex(sourceWorkspace, "TableColumn", "TableId");
@@ -97,10 +105,10 @@ public sealed class MetaSqlDifferenceService
         var sourceIndexColumnsByIndexId = GetGroupedOrderedRecords(sourceWorkspace, "IndexColumn", "IndexId");
         var liveIndexColumnsByIndexId = GetGroupedOrderedRecords(liveWorkspace, "IndexColumn", "IndexId");
 
-        foreach (var tableId in sourceTablesById.Keys.Intersect(liveTablesById.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
+        foreach (var tableKey in sourceTablesByScopedName.Keys.Intersect(liveTablesByScopedName.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
         {
-            var sourceTable = sourceTablesById[tableId];
-            var liveTable = liveTablesById[tableId];
+            var sourceTable = sourceTablesByScopedName[tableKey];
+            var liveTable = liveTablesByScopedName[tableKey];
 
             AddColumnDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourceTablesById, liveTablesById, sourceColumnsByTableId, liveColumnsByTableId, sourceColumnDetailsByColumnId, liveColumnDetailsByColumnId);
             AddPrimaryKeyDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourcePrimaryKeysByTableId, livePrimaryKeysByTableId, sourcePrimaryKeyColumnsByPrimaryKeyId, livePrimaryKeyColumnsByPrimaryKeyId);
@@ -130,37 +138,45 @@ public sealed class MetaSqlDifferenceService
         var liveColumns = liveColumnsByTableId.TryGetValue(liveTable.Id, out var liveTableColumns)
             ? liveTableColumns
             : EmptyRecordIndex();
+        var sourceColumnsByName = BuildUniqueRecordIndex(
+            sourceColumns.Values,
+            row => GetValue(row, "Name"),
+            $"source table-column in '{FormatTable(sourceTable, sourceSchemasById)}'");
+        var liveColumnsByName = BuildUniqueRecordIndex(
+            liveColumns.Values,
+            row => GetValue(row, "Name"),
+            $"live table-column in '{FormatTable(liveTable, liveSchemasById)}'");
 
         differences.AddRange(
-            sourceColumns.Keys
-                .Except(liveColumns.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            sourceColumnsByName.Keys
+                .Except(liveColumnsByName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.TableColumn,
                     DifferenceKind = MetaSqlDifferenceKind.MissingInLive,
                     ScopeDisplayName = FormatTable(sourceTable, sourceSchemasById),
-                    DisplayName = FormatColumn(sourceColumns[id], sourceTablesById, sourceSchemasById),
-                    SourceId = id,
+                    DisplayName = FormatColumn(sourceColumnsByName[key], sourceTablesById, sourceSchemasById),
+                    SourceId = sourceColumnsByName[key].Id,
                 }));
 
         differences.AddRange(
-            liveColumns.Keys
-                .Except(sourceColumns.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            liveColumnsByName.Keys
+                .Except(sourceColumnsByName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.TableColumn,
                     DifferenceKind = MetaSqlDifferenceKind.ExtraInLive,
                     ScopeDisplayName = FormatTable(liveTable, liveSchemasById),
-                    DisplayName = FormatColumn(liveColumns[id], liveTablesById, liveSchemasById),
-                    LiveId = id,
+                    DisplayName = FormatColumn(liveColumnsByName[key], liveTablesById, liveSchemasById),
+                    LiveId = liveColumnsByName[key].Id,
                 }));
 
-        foreach (var columnId in sourceColumns.Keys.Intersect(liveColumns.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
+        foreach (var columnName in sourceColumnsByName.Keys.Intersect(liveColumnsByName.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
         {
-            var sourceColumn = sourceColumns[columnId];
-            var liveColumn = liveColumns[columnId];
+            var sourceColumn = sourceColumnsByName[columnName];
+            var liveColumn = liveColumnsByName[columnName];
             if (!AreColumnsEquivalent(sourceColumn, liveColumn, sourceColumnDetailsByColumnId, liveColumnDetailsByColumnId))
             {
                 differences.Add(new MetaSqlDifference
@@ -168,8 +184,8 @@ public sealed class MetaSqlDifferenceService
                     ObjectKind = MetaSqlObjectKind.TableColumn,
                     DifferenceKind = MetaSqlDifferenceKind.Different,
                     DisplayName = FormatColumn(sourceColumn, sourceTablesById, sourceSchemasById),
-                    SourceId = columnId,
-                    LiveId = columnId,
+                    SourceId = sourceColumn.Id,
+                    LiveId = liveColumn.Id,
                 });
             }
         }
@@ -192,37 +208,45 @@ public sealed class MetaSqlDifferenceService
         var livePrimaryKeys = livePrimaryKeysByTableId.TryGetValue(liveTable.Id, out var liveTablePrimaryKeys)
             ? liveTablePrimaryKeys
             : EmptyRecordIndex();
+        var sourcePrimaryKeysByName = BuildUniqueRecordIndex(
+            sourcePrimaryKeys.Values,
+            row => GetValue(row, "Name"),
+            $"source primary-key in '{FormatTable(sourceTable, sourceSchemasById)}'");
+        var livePrimaryKeysByName = BuildUniqueRecordIndex(
+            livePrimaryKeys.Values,
+            row => GetValue(row, "Name"),
+            $"live primary-key in '{FormatTable(liveTable, liveSchemasById)}'");
 
         differences.AddRange(
-            sourcePrimaryKeys.Keys
-                .Except(livePrimaryKeys.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            sourcePrimaryKeysByName.Keys
+                .Except(livePrimaryKeysByName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.PrimaryKey,
                     DifferenceKind = MetaSqlDifferenceKind.MissingInLive,
                     ScopeDisplayName = FormatTable(sourceTable, sourceSchemasById),
-                    DisplayName = sourcePrimaryKeys[id].Values["Name"],
-                    SourceId = id,
+                    DisplayName = sourcePrimaryKeysByName[key].Values["Name"],
+                    SourceId = sourcePrimaryKeysByName[key].Id,
                 }));
 
         differences.AddRange(
-            livePrimaryKeys.Keys
-                .Except(sourcePrimaryKeys.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            livePrimaryKeysByName.Keys
+                .Except(sourcePrimaryKeysByName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.PrimaryKey,
                     DifferenceKind = MetaSqlDifferenceKind.ExtraInLive,
                     ScopeDisplayName = FormatTable(liveTable, liveSchemasById),
-                    DisplayName = livePrimaryKeys[id].Values["Name"],
-                    LiveId = id,
+                    DisplayName = livePrimaryKeysByName[key].Values["Name"],
+                    LiveId = livePrimaryKeysByName[key].Id,
                 }));
 
-        foreach (var primaryKeyId in sourcePrimaryKeys.Keys.Intersect(livePrimaryKeys.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
+        foreach (var primaryKeyName in sourcePrimaryKeysByName.Keys.Intersect(livePrimaryKeysByName.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
         {
-            var sourcePrimaryKey = sourcePrimaryKeys[primaryKeyId];
-            var livePrimaryKey = livePrimaryKeys[primaryKeyId];
+            var sourcePrimaryKey = sourcePrimaryKeysByName[primaryKeyName];
+            var livePrimaryKey = livePrimaryKeysByName[primaryKeyName];
             if (!ArePrimaryKeysEquivalent(sourcePrimaryKey, livePrimaryKey, sourcePrimaryKeyColumnsByPrimaryKeyId, livePrimaryKeyColumnsByPrimaryKeyId))
             {
                 differences.Add(new MetaSqlDifference
@@ -231,8 +255,8 @@ public sealed class MetaSqlDifferenceService
                     DifferenceKind = MetaSqlDifferenceKind.Different,
                     ScopeDisplayName = FormatTable(sourceTable, sourceSchemasById),
                     DisplayName = sourcePrimaryKey.Values["Name"],
-                    SourceId = primaryKeyId,
-                    LiveId = primaryKeyId,
+                    SourceId = sourcePrimaryKey.Id,
+                    LiveId = livePrimaryKey.Id,
                 });
             }
         }
@@ -255,37 +279,45 @@ public sealed class MetaSqlDifferenceService
         var liveForeignKeys = liveForeignKeysByTableId.TryGetValue(liveTable.Id, out var liveTableForeignKeys)
             ? liveTableForeignKeys
             : EmptyRecordIndex();
+        var sourceForeignKeysByName = BuildUniqueRecordIndex(
+            sourceForeignKeys.Values,
+            row => GetValue(row, "Name"),
+            $"source foreign-key in '{FormatTable(sourceTable, sourceSchemasById)}'");
+        var liveForeignKeysByName = BuildUniqueRecordIndex(
+            liveForeignKeys.Values,
+            row => GetValue(row, "Name"),
+            $"live foreign-key in '{FormatTable(liveTable, liveSchemasById)}'");
 
         differences.AddRange(
-            sourceForeignKeys.Keys
-                .Except(liveForeignKeys.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            sourceForeignKeysByName.Keys
+                .Except(liveForeignKeysByName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.ForeignKey,
                     DifferenceKind = MetaSqlDifferenceKind.MissingInLive,
                     ScopeDisplayName = FormatTable(sourceTable, sourceSchemasById),
-                    DisplayName = sourceForeignKeys[id].Values["Name"],
-                    SourceId = id,
+                    DisplayName = sourceForeignKeysByName[key].Values["Name"],
+                    SourceId = sourceForeignKeysByName[key].Id,
                 }));
 
         differences.AddRange(
-            liveForeignKeys.Keys
-                .Except(sourceForeignKeys.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            liveForeignKeysByName.Keys
+                .Except(sourceForeignKeysByName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.ForeignKey,
                     DifferenceKind = MetaSqlDifferenceKind.ExtraInLive,
                     ScopeDisplayName = FormatTable(liveTable, liveSchemasById),
-                    DisplayName = liveForeignKeys[id].Values["Name"],
-                    LiveId = id,
+                    DisplayName = liveForeignKeysByName[key].Values["Name"],
+                    LiveId = liveForeignKeysByName[key].Id,
                 }));
 
-        foreach (var foreignKeyId in sourceForeignKeys.Keys.Intersect(liveForeignKeys.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
+        foreach (var foreignKeyName in sourceForeignKeysByName.Keys.Intersect(liveForeignKeysByName.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
         {
-            var sourceForeignKey = sourceForeignKeys[foreignKeyId];
-            var liveForeignKey = liveForeignKeys[foreignKeyId];
+            var sourceForeignKey = sourceForeignKeysByName[foreignKeyName];
+            var liveForeignKey = liveForeignKeysByName[foreignKeyName];
             if (!AreForeignKeysEquivalent(sourceForeignKey, liveForeignKey, sourceForeignKeyColumnsByForeignKeyId, liveForeignKeyColumnsByForeignKeyId))
             {
                 differences.Add(new MetaSqlDifference
@@ -294,8 +326,8 @@ public sealed class MetaSqlDifferenceService
                     DifferenceKind = MetaSqlDifferenceKind.Different,
                     ScopeDisplayName = FormatTable(sourceTable, sourceSchemasById),
                     DisplayName = sourceForeignKey.Values["Name"],
-                    SourceId = foreignKeyId,
-                    LiveId = foreignKeyId,
+                    SourceId = sourceForeignKey.Id,
+                    LiveId = liveForeignKey.Id,
                 });
             }
         }
@@ -318,37 +350,45 @@ public sealed class MetaSqlDifferenceService
         var liveIndexes = liveIndexesByTableId.TryGetValue(liveTable.Id, out var liveTableIndexes)
             ? liveTableIndexes
             : EmptyRecordIndex();
+        var sourceIndexesByName = BuildUniqueRecordIndex(
+            sourceIndexes.Values,
+            row => GetValue(row, "Name"),
+            $"source index in '{FormatTable(sourceTable, sourceSchemasById)}'");
+        var liveIndexesByName = BuildUniqueRecordIndex(
+            liveIndexes.Values,
+            row => GetValue(row, "Name"),
+            $"live index in '{FormatTable(liveTable, liveSchemasById)}'");
 
         differences.AddRange(
-            sourceIndexes.Keys
-                .Except(liveIndexes.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            sourceIndexesByName.Keys
+                .Except(liveIndexesByName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.Index,
                     DifferenceKind = MetaSqlDifferenceKind.MissingInLive,
                     ScopeDisplayName = FormatTable(sourceTable, sourceSchemasById),
-                    DisplayName = sourceIndexes[id].Values["Name"],
-                    SourceId = id,
+                    DisplayName = sourceIndexesByName[key].Values["Name"],
+                    SourceId = sourceIndexesByName[key].Id,
                 }));
 
         differences.AddRange(
-            liveIndexes.Keys
-                .Except(sourceIndexes.Keys, StringComparer.Ordinal)
-                .OrderBy(id => id, StringComparer.Ordinal)
-                .Select(id => new MetaSqlDifference
+            liveIndexesByName.Keys
+                .Except(sourceIndexesByName.Keys, StringComparer.Ordinal)
+                .OrderBy(key => key, StringComparer.Ordinal)
+                .Select(key => new MetaSqlDifference
                 {
                     ObjectKind = MetaSqlObjectKind.Index,
                     DifferenceKind = MetaSqlDifferenceKind.ExtraInLive,
                     ScopeDisplayName = FormatTable(liveTable, liveSchemasById),
-                    DisplayName = liveIndexes[id].Values["Name"],
-                    LiveId = id,
+                    DisplayName = liveIndexesByName[key].Values["Name"],
+                    LiveId = liveIndexesByName[key].Id,
                 }));
 
-        foreach (var indexId in sourceIndexes.Keys.Intersect(liveIndexes.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
+        foreach (var indexName in sourceIndexesByName.Keys.Intersect(liveIndexesByName.Keys, StringComparer.Ordinal).OrderBy(row => row, StringComparer.Ordinal))
         {
-            var sourceIndex = sourceIndexes[indexId];
-            var liveIndex = liveIndexes[indexId];
+            var sourceIndex = sourceIndexesByName[indexName];
+            var liveIndex = liveIndexesByName[indexName];
             if (!AreIndexesEquivalent(sourceIndex, liveIndex, sourceIndexColumnsByIndexId, liveIndexColumnsByIndexId))
             {
                 differences.Add(new MetaSqlDifference
@@ -357,8 +397,8 @@ public sealed class MetaSqlDifferenceService
                     DifferenceKind = MetaSqlDifferenceKind.Different,
                     ScopeDisplayName = FormatTable(sourceTable, sourceSchemasById),
                     DisplayName = sourceIndex.Values["Name"],
-                    SourceId = indexId,
-                    LiveId = indexId,
+                    SourceId = sourceIndex.Id,
+                    LiveId = liveIndex.Id,
                 });
             }
         }
@@ -370,7 +410,9 @@ public sealed class MetaSqlDifferenceService
         IReadOnlyDictionary<string, List<GenericRecord>> sourceDetailsByColumnId,
         IReadOnlyDictionary<string, List<GenericRecord>> liveDetailsByColumnId)
     {
-        if (!IsSameValue(GetValue(sourceColumn, "MetaDataTypeId"), GetValue(liveColumn, "MetaDataTypeId")) ||
+        if (!IsSameValue(GetValue(sourceColumn, "Name"), GetValue(liveColumn, "Name")) ||
+            !IsSameValue(GetValue(sourceColumn, "Ordinal"), GetValue(liveColumn, "Ordinal")) ||
+            !IsSameValue(GetValue(sourceColumn, "MetaDataTypeId"), GetValue(liveColumn, "MetaDataTypeId")) ||
             !IsSameValue(GetValue(sourceColumn, "IsNullable"), GetValue(liveColumn, "IsNullable")) ||
             !IsSameValue(GetValue(sourceColumn, "IsIdentity"), GetValue(liveColumn, "IsIdentity")) ||
             !IsSameValue(GetValue(sourceColumn, "IdentitySeed"), GetValue(liveColumn, "IdentitySeed")) ||
@@ -391,7 +433,8 @@ public sealed class MetaSqlDifferenceService
         IReadOnlyDictionary<string, List<GenericRecord>> sourceColumnsByPrimaryKeyId,
         IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByPrimaryKeyId)
     {
-        if (!IsSameValue(GetValue(sourcePrimaryKey, "IsClustered"), GetValue(livePrimaryKey, "IsClustered")))
+        if (!IsSameValue(GetValue(sourcePrimaryKey, "Name"), GetValue(livePrimaryKey, "Name")) ||
+            !IsSameValue(GetValue(sourcePrimaryKey, "IsClustered"), GetValue(livePrimaryKey, "IsClustered")))
         {
             return false;
         }
@@ -407,7 +450,8 @@ public sealed class MetaSqlDifferenceService
         IReadOnlyDictionary<string, List<GenericRecord>> sourceColumnsByForeignKeyId,
         IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByForeignKeyId)
     {
-        if (!IsSameValue(sourceForeignKey.RelationshipIds["TargetTableId"], liveForeignKey.RelationshipIds["TargetTableId"]))
+        if (!IsSameValue(GetValue(sourceForeignKey, "Name"), GetValue(liveForeignKey, "Name")) ||
+            !IsSameValue(sourceForeignKey.RelationshipIds["TargetTableId"], liveForeignKey.RelationshipIds["TargetTableId"]))
         {
             return false;
         }
@@ -423,7 +467,8 @@ public sealed class MetaSqlDifferenceService
         IReadOnlyDictionary<string, List<GenericRecord>> sourceColumnsByIndexId,
         IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByIndexId)
     {
-        if (!IsSameValue(GetValue(sourceIndex, "IsUnique"), GetValue(liveIndex, "IsUnique")) ||
+        if (!IsSameValue(GetValue(sourceIndex, "Name"), GetValue(liveIndex, "Name")) ||
+            !IsSameValue(GetValue(sourceIndex, "IsUnique"), GetValue(liveIndex, "IsUnique")) ||
             !IsSameValue(GetValue(sourceIndex, "IsClustered"), GetValue(liveIndex, "IsClustered")) ||
             !IsSameValue(GetValue(sourceIndex, "FilterSql"), GetValue(liveIndex, "FilterSql")))
         {
@@ -500,6 +545,44 @@ public sealed class MetaSqlDifferenceService
         var tableId = column.RelationshipIds["TableId"];
         var table = tablesById[tableId];
         return $"{schemasById[table.RelationshipIds["SchemaId"]].Values["Name"]}.{table.Values["Name"]}.{column.Values["Name"]}";
+    }
+
+    private static string BuildTableScopeKey(GenericRecord table, IReadOnlyDictionary<string, GenericRecord> schemasById)
+    {
+        var schemaId = table.RelationshipIds["SchemaId"];
+        if (!schemasById.TryGetValue(schemaId, out var schema))
+        {
+            throw new InvalidOperationException(
+                $"Table '{table.Id}' references missing schema '{schemaId}'.");
+        }
+
+        return schema.Values["Name"] + "|" + table.Values["Name"];
+    }
+
+    private static Dictionary<string, GenericRecord> BuildUniqueRecordIndex(
+        IEnumerable<GenericRecord> rows,
+        Func<GenericRecord, string> keySelector,
+        string contextName)
+    {
+        var result = new Dictionary<string, GenericRecord>(StringComparer.Ordinal);
+        foreach (var row in rows)
+        {
+            var key = keySelector(row);
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                throw new InvalidOperationException(
+                    $"Encountered empty key for {contextName} row '{row.Id}'.");
+            }
+
+            if (!result.TryAdd(key, row))
+            {
+                var existing = result[key];
+                throw new InvalidOperationException(
+                    $"Ambiguous {contextName} identity key '{key}' between ids '{existing.Id}' and '{row.Id}'.");
+            }
+        }
+
+        return result;
     }
 
     private static int ParseOrdinal(string value)

@@ -14,9 +14,6 @@ namespace MetaSqlDeployManifest
         [XmlElement("LiveInstanceFingerprint")]
         public string LiveInstanceFingerprint { get; set; } = string.Empty;
 
-        [XmlElement("ManifestVersion")]
-        public string ManifestVersion { get; set; } = string.Empty;
-
         [XmlElement("Name")]
         public string Name { get; set; } = string.Empty;
 
