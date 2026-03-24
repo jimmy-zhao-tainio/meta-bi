@@ -23,16 +23,6 @@ internal static partial class Program
             return Fail("missing required option --out <path>.", "meta-sql deploy-plan --help");
         }
 
-        if (parse.UsedDeprecatedWithDataDrop)
-        {
-            Presenter.WriteInfo("Warning: --with-data-drop is deprecated for authorization. Use object-scoped approvals.");
-        }
-
-        if (parse.UsedDeprecatedWithDataTruncate)
-        {
-            Presenter.WriteInfo("Warning: --with-data-truncate is deprecated for authorization. Use object-scoped approvals.");
-        }
-
         var sourceWorkspacePath = Path.GetFullPath(parse.SourceWorkspacePath);
         var outputPath = Path.GetFullPath(parse.OutputPath);
         var tempRootPath = Path.Combine(Path.GetTempPath(), "MetaSql.Cli", "deploy-plan", Guid.NewGuid().ToString("N"));
@@ -182,7 +172,6 @@ internal static partial class Program
         Presenter.WriteInfo("  Creates a deploy manifest with Add/Drop/Truncate/Alter/Replace/Block entries.");
         Presenter.WriteInfo("  DataDropTable and DataDropColumn require exact object-scoped approvals.");
         Presenter.WriteInfo("  DataTruncationColumn requires exact object-scoped approval.");
-        Presenter.WriteInfo("  --with-data-drop and --with-data-truncate are deprecated compatibility flags and do not grant authorization.");
         Presenter.WriteInfo("  Approvals can be passed as repeated CLI arguments and/or via --approval-file JSON.");
         Presenter.WriteInfo("  Live-only DropPrimaryKey/DropForeignKey/DropIndex are planned by default.");
         Presenter.WriteInfo("  Shared table-column differences become AlterTableColumn when executable and feasible.");

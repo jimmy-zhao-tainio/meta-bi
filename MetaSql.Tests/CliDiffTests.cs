@@ -162,7 +162,7 @@ public sealed class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployPlanCommand_DeprecatedGlobalFlagsDoNotAuthorizeDataDrop()
+    public async Task DeployPlanCommand_RemovedGlobalFlagsAreRejected()
     {
         var repoRoot = FindRepositoryRoot();
         var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
@@ -182,7 +182,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --with-data-truncate --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -192,14 +192,8 @@ public sealed class CliDiffTests
 
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
-            Assert.Equal(4, result.ExitCode);
-            Assert.Contains("deprecated for authorization", result.Output, StringComparison.Ordinal);
-            Assert.Contains("missing approval DataDropTable", result.Output, StringComparison.Ordinal);
-
-            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
-            Assert.Empty(manifest.DropTableList);
-            Assert.Single(manifest.DropForeignKeyList);
-            Assert.Single(manifest.BlockTableDifferenceList);
+            Assert.Equal(1, result.ExitCode);
+            Assert.Contains("unknown option '--with-data-drop'.", result.Output, StringComparison.Ordinal);
         }
         finally
         {

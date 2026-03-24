@@ -28,7 +28,7 @@ internal static partial class Program
         return Fail($"unknown command '{args[0]}'.", "meta-sql help");
     }
 
-    private static (bool Ok, string SourceWorkspacePath, string OutputPath, string ConnectionString, string? SchemaName, string? TableName, bool UsedDeprecatedWithDataDrop, bool UsedDeprecatedWithDataTruncate, IReadOnlyList<MetaSqlDestructiveApproval> DestructiveApprovals, string ErrorMessage) ParseDiffLikeArgs(string[] args, int startIndex)
+    private static (bool Ok, string SourceWorkspacePath, string OutputPath, string ConnectionString, string? SchemaName, string? TableName, IReadOnlyList<MetaSqlDestructiveApproval> DestructiveApprovals, string ErrorMessage) ParseDiffLikeArgs(string[] args, int startIndex)
     {
         var sourceWorkspacePath = string.Empty;
         var outputPath = string.Empty;
@@ -36,8 +36,6 @@ internal static partial class Program
         string? schemaName = null;
         string? tableName = null;
         string? approvalFilePath = null;
-        var usedDeprecatedWithDataDrop = false;
-        var usedDeprecatedWithDataTruncate = false;
         var explicitApprovals = new List<MetaSqlDestructiveApproval>();
 
         for (var i = startIndex; i < args.Length; i++)
@@ -45,63 +43,49 @@ internal static partial class Program
             var arg = args[i];
             if (string.Equals(arg, "--source-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --source-workspace.");
-                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "--source-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --source-workspace.");
+                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "--source-workspace can only be provided once.");
                 sourceWorkspacePath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--out", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --out.");
-                if (!string.IsNullOrWhiteSpace(outputPath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "--out can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --out.");
+                if (!string.IsNullOrWhiteSpace(outputPath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "--out can only be provided once.");
                 outputPath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--connection-string", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --connection-string.");
-                if (!string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "--connection-string can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --connection-string.");
+                if (!string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "--connection-string can only be provided once.");
                 connectionString = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--schema", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --schema.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --schema.");
                 schemaName = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--table", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --table.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --table.");
                 tableName = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--with-data-drop", StringComparison.OrdinalIgnoreCase))
-            {
-                if (usedDeprecatedWithDataDrop) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "--with-data-drop can only be provided once.");
-                usedDeprecatedWithDataDrop = true;
-                continue;
-            }
-
-            if (string.Equals(arg, "--with-data-truncate", StringComparison.OrdinalIgnoreCase))
-            {
-                if (usedDeprecatedWithDataTruncate) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "--with-data-truncate can only be provided once.");
-                usedDeprecatedWithDataTruncate = true;
                 continue;
             }
 
             if (string.Equals(arg, "--approve-drop-table", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --approve-drop-table.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --approve-drop-table.");
                 var value = args[++i];
                 if (!TryParseTableScope(value, out var approvedSchema, out var approvedTable))
                 {
-                    return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, $"invalid table scope '{value}' for --approve-drop-table. Expected <schema>.<table>.");
+                    return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, $"invalid table scope '{value}' for --approve-drop-table. Expected <schema>.<table>.");
                 }
 
                 explicitApprovals.Add(new MetaSqlDestructiveApproval
@@ -115,11 +99,11 @@ internal static partial class Program
 
             if (string.Equals(arg, "--approve-drop-column", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --approve-drop-column.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --approve-drop-column.");
                 var value = args[++i];
                 if (!TryParseColumnScope(value, out var approvedSchema, out var approvedTable, out var approvedColumn))
                 {
-                    return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, $"invalid column scope '{value}' for --approve-drop-column. Expected <schema>.<table>.<column>.");
+                    return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, $"invalid column scope '{value}' for --approve-drop-column. Expected <schema>.<table>.<column>.");
                 }
 
                 explicitApprovals.Add(new MetaSqlDestructiveApproval
@@ -134,11 +118,11 @@ internal static partial class Program
 
             if (string.Equals(arg, "--approve-truncate-column", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --approve-truncate-column.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --approve-truncate-column.");
                 var value = args[++i];
                 if (!TryParseColumnScope(value, out var approvedSchema, out var approvedTable, out var approvedColumn))
                 {
-                    return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, $"invalid column scope '{value}' for --approve-truncate-column. Expected <schema>.<table>.<column>.");
+                    return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, $"invalid column scope '{value}' for --approve-truncate-column. Expected <schema>.<table>.<column>.");
                 }
 
                 explicitApprovals.Add(new MetaSqlDestructiveApproval
@@ -153,17 +137,17 @@ internal static partial class Program
 
             if (string.Equals(arg, "--approval-file", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing value for --approval-file.");
-                if (!string.IsNullOrWhiteSpace(approvalFilePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "--approval-file can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing value for --approval-file.");
+                if (!string.IsNullOrWhiteSpace(approvalFilePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "--approval-file can only be provided once.");
                 approvalFilePath = args[++i];
                 continue;
             }
 
-            return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, $"unknown option '{arg}'.");
+            return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing required option --source-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, "missing required option --connection-string <value>.");
+        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing required option --source-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, "missing required option --connection-string <value>.");
 
         if (!string.IsNullOrWhiteSpace(approvalFilePath))
         {
@@ -174,11 +158,11 @@ internal static partial class Program
             }
             catch (Exception ex)
             {
-                return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, ex.Message);
+                return (false, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, ex.Message);
             }
         }
 
-        return (true, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, usedDeprecatedWithDataDrop, usedDeprecatedWithDataTruncate, explicitApprovals, string.Empty);
+        return (true, sourceWorkspacePath, outputPath, connectionString, schemaName, tableName, explicitApprovals, string.Empty);
     }
 
     private static (bool Ok, string ManifestWorkspacePath, string SourceWorkspacePath, string ConnectionString, string? SchemaName, string? TableName, string ErrorMessage) ParseDeployArgs(string[] args, int startIndex)
