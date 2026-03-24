@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tooling\MetaSchema.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataVault\Tooling\MetaDataVault.Tooling.csproj" />
+  </ItemGroup>
+
+</Project>

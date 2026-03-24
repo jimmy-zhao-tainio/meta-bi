@@ -2,37 +2,37 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Core", "MetaDataVault.Core\MetaDataVault.Core.csproj", "{FBDFD26B-BB95-46BE-B83F-286E8B9BD0A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Core", "MetaDataVault\Core\MetaDataVault.Core.csproj", "{FBDFD26B-BB95-46BE-B83F-286E8B9BD0A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Tests", "MetaDataVault.Tests\MetaDataVault.Tests.csproj", "{5841985A-708B-42B4-9618-93756E0F8B6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Tests", "MetaDataVault\Tests\MetaDataVault.Tests.csproj", "{5841985A-708B-42B4-9618-93756E0F8B6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Raw.Cli", "MetaDataVault.Raw.Cli\MetaDataVault.Raw.Cli.csproj", "{F00990C4-61C2-401B-851E-64DC97E8BC5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Raw.Cli", "MetaDataVault\Cli\Raw\MetaDataVault.Raw.Cli.csproj", "{F00990C4-61C2-401B-851E-64DC97E8BC5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Business.Cli", "MetaDataVault.Business.Cli\MetaDataVault.Business.Cli.csproj", "{D2B67BE5-5293-413F-9F79-B5C40ED3B54A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Business.Cli", "MetaDataVault\Cli\Business\MetaDataVault.Business.Cli.csproj", "{D2B67BE5-5293-413F-9F79-B5C40ED3B54A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Core", "MetaSql.Core\MetaSql.Core.csproj", "{D7A616AE-9A3C-4E07-A4D4-0A3B1A80A8A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Core", "MetaSql\Core\MetaSql.Core.csproj", "{D7A616AE-9A3C-4E07-A4D4-0A3B1A80A8A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Tooling", "MetaDataVault.Tooling\MetaDataVault.Tooling.csproj", "{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Tooling", "MetaDataVault\Tooling\MetaDataVault.Tooling.csproj", "{4A8DB13E-596B-4DE1-BB8A-7F8485B8E4A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Tooling", "MetaSql.Tooling\MetaSql.Tooling.csproj", "{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Tooling", "MetaSql\Tooling\MetaSql.Tooling.csproj", "{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.ToMetaSql", "MetaDataVault.ToMetaSql\MetaDataVault.ToMetaSql.csproj", "{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.ToMetaSql", "MetaDataVault\ToMetaSql\MetaDataVault.ToMetaSql.csproj", "{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema.Tooling\MetaSchema.Tooling.csproj", "{A44AD474-008C-4E63-ADA4-A4C77F6F888F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema\Tooling\MetaSchema.Tooling.csproj", "{A44AD474-008C-4E63-ADA4-A4C77F6F888F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.ToRawDataVault", "MetaSchema.ToRawDataVault\MetaSchema.ToRawDataVault.csproj", "{398F6198-8F58-4A25-8774-4DFA36C6C8A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.ToRawDataVault", "MetaSchema\ToRawDataVault\MetaSchema.ToRawDataVault.csproj", "{398F6198-8F58-4A25-8774-4DFA36C6C8A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Extractors.SqlServer", "MetaSql.Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj", "{A1B88888-AD3A-42C3-8DC8-D4D0525FB2D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Extractors.SqlServer", "MetaSql\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj", "{A1B88888-AD3A-42C3-8DC8-D4D0525FB2D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Tests", "MetaSql.Tests\MetaSql.Tests.csproj", "{45B96840-4A6A-422A-A525-FD5A9229A7C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Tests", "MetaSql\Tests\MetaSql.Tests.csproj", "{45B96840-4A6A-422A-A525-FD5A9229A7C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Instance", "MetaDataTypeConversion.Instance\MetaDataTypeConversion.Instance.csproj", "{E5758B81-8F06-45DC-A09A-87EFE8D6FD0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Instance", "MetaDataTypeConversion\Instance\MetaDataTypeConversion.Instance.csproj", "{E5758B81-8F06-45DC-A09A-87EFE8D6FD0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Instance", "MetaDataType.Instance\MetaDataType.Instance.csproj", "{460C62F5-F706-4818-9E3E-29C8734A8D2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Instance", "MetaDataType\Instance\MetaDataType.Instance.csproj", "{460C62F5-F706-4818-9E3E-29C8734A8D2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Cli", "MetaSql.Cli\MetaSql.Cli.csproj", "{3671CC11-A94E-40CC-B34C-27E755EBA77A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Cli", "MetaSql\Cli\MetaSql.Cli.csproj", "{3671CC11-A94E-40CC-B34C-27E755EBA77A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSqlDeployManifest.Tooling", "MetaSqlDeployManifest.Tooling\MetaSqlDeployManifest.Tooling.csproj", "{746307B0-49E9-49C5-A92D-6370BD02533B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSqlDeployManifest.Tooling", "MetaSqlDeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj", "{746307B0-49E9-49C5-A92D-6370BD02533B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

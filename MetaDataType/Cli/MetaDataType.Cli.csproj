@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>meta-data-type</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <UpdateMetaDataTypePublishDir Condition="'$(UpdateMetaDataTypePublishDir)' == ''">true</UpdateMetaDataTypePublishDir>
+    <RepoMetaDataTypePublishDir>$(MSBuildThisFileDirectory)bin\publish\win-x64\</RepoMetaDataTypePublishDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\Core\MetaDataType.Core.csproj" />
+  </ItemGroup>
+
+  <Target
+    Name="PublishMetaDataTypeAfterBuild"
+    AfterTargets="Build"
+    Condition="'$(OS)' == 'Windows_NT' and '$(UpdateMetaDataTypePublishDir)' == 'true' and '$(DesignTimeBuild)' != 'true'">
+    <Message Importance="High" Text="Publishing meta-data-type.exe to $(RepoMetaDataTypePublishDir)" />
+    <Exec
+      Command="dotnet publish &quot;$(MSBuildProjectFullPath)&quot; --configuration $(Configuration) -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:UpdateMetaDataTypePublishDir=false -o &quot;$(RepoMetaDataTypePublishDir)&quot;" />
+  </Target>
+
+</Project>

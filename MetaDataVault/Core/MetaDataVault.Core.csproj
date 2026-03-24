@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Adapters" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaFabric.Core" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MetaSchema\Tooling\MetaSchema.Tooling.csproj" />
+    <ProjectReference Include="..\Tooling\MetaDataVault.Tooling.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\Workspaces\MetaRawDataVault\metadata\model.xml">
+      <Link>Models\MetaRawDataVault.model.xml</Link>
+      <LogicalName>MetaDataVault.Core.Models.MetaRawDataVault.model.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Workspaces\MetaBusinessDataVault\metadata\model.xml">
+      <Link>Models\MetaBusinessDataVault.model.xml</Link>
+      <LogicalName>MetaDataVault.Core.Models.MetaBusinessDataVault.model.xml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

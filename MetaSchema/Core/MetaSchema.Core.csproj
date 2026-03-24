@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Adapters" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\Workspaces\MetaSchema\metadata\model.xml">
+      <Link>Models\MetaSchema.model.xml</Link>
+      <LogicalName>MetaSchema.Core.Models.MetaSchema.model.xml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
+
+
+

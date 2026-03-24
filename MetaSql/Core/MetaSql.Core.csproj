@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Adapters" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
+    <ProjectReference Include="..\..\MetaSqlDeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj" />
+    <ProjectReference Include="..\Tooling\MetaSql.Tooling.csproj" />
+  </ItemGroup>
+
+</Project>

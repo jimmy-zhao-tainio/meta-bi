@@ -2,15 +2,15 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36014.32
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Core", "MetaDataTypeConversion.Core\MetaDataTypeConversion.Core.csproj", "{6D027A0B-3B6B-4D56-87E2-B90F7D2D6A11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Core", "MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj", "{6D027A0B-3B6B-4D56-87E2-B90F7D2D6A11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Cli", "MetaDataTypeConversion.Cli\MetaDataTypeConversion.Cli.csproj", "{C9447D6E-85B4-45FD-8C1F-FF0C278E4947}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Cli", "MetaDataTypeConversion\Cli\MetaDataTypeConversion.Cli.csproj", "{C9447D6E-85B4-45FD-8C1F-FF0C278E4947}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Tests", "MetaDataTypeConversion.Tests\MetaDataTypeConversion.Tests.csproj", "{B3CF2240-3A37-4A4F-A24A-D529BCB81AC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Tests", "MetaDataTypeConversion\Tests\MetaDataTypeConversion.Tests.csproj", "{B3CF2240-3A37-4A4F-A24A-D529BCB81AC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Tooling", "MetaDataTypeConversion.Tooling\MetaDataTypeConversion.Tooling.csproj", "{01338B14-79E9-4474-8448-50D4FD845F62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Tooling", "MetaDataTypeConversion\Tooling\MetaDataTypeConversion.Tooling.csproj", "{01338B14-79E9-4474-8448-50D4FD845F62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Instance", "MetaDataTypeConversion.Instance\MetaDataTypeConversion.Instance.csproj", "{9C5819BA-ECA9-4A12-8F09-2A7085A588A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataTypeConversion.Instance", "MetaDataTypeConversion\Instance\MetaDataTypeConversion.Instance.csproj", "{9C5819BA-ECA9-4A12-8F09-2A7085A588A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
