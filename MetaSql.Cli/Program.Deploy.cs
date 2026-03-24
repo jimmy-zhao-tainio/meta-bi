@@ -38,6 +38,7 @@ internal static partial class Program
                 ("AppliedAddCount", result.AppliedAddCount.ToString()),
                 ("AppliedDropCount", result.AppliedDropCount.ToString()),
                 ("AppliedAlterCount", result.AppliedAlterCount.ToString()),
+                ("AppliedTruncateCount", result.AppliedTruncateCount.ToString()),
                 ("AppliedReplaceCount", result.AppliedReplaceCount.ToString()),
                 ("ExecutedStatementCount", result.ExecutedStatementCount.ToString()));
             return 0;

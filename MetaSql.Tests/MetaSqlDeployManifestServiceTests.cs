@@ -29,7 +29,17 @@ public sealed class MetaSqlDeployManifestServiceTests
             liveWorkspace,
             differences,
             manifestName: "TestManifest",
-            targetDescription: "Scope=raw:*");
+            targetDescription: "Scope=raw:*",
+            destructiveApprovals:
+            [
+                new MetaSqlDestructiveApproval
+                {
+                    Kind = MetaSqlDestructiveApprovalKind.DataDropColumn,
+                    SchemaName = "dbo",
+                    TableName = "Customer",
+                    ColumnName = "LegacyCode",
+                }
+            ]);
 
         Assert.Equal(1, manifest.AddCount);
         Assert.Equal(1, manifest.DropCount);
@@ -49,7 +59,7 @@ public sealed class MetaSqlDeployManifestServiceTests
     }
 
     [Fact]
-    public void BuildManifest_WithoutDataDrop_IgnoresLiveOnlyDataDropDifferences()
+    public void BuildManifest_WithoutExactDataDropColumnApproval_BlocksLiveOnlyColumnDrop()
     {
         var sourceWorkspace = CreateWorkspace(
             CreateModel(
@@ -73,20 +83,147 @@ public sealed class MetaSqlDeployManifestServiceTests
             liveWorkspace,
             differences,
             manifestName: "TestManifest",
-            targetDescription: "Scope=raw:*",
-            withDataDrop: false);
+            targetDescription: "Scope=raw:*");
 
         Assert.Equal(1, manifest.AddCount);
         Assert.Equal(0, manifest.DropCount);
         Assert.Equal(1, manifest.AlterCount);
         Assert.Equal(0, manifest.ReplaceCount);
-        Assert.Equal(0, manifest.BlockCount);
-        Assert.Equal(1, manifest.IgnoredLiveOnlyDataDropCount);
-        Assert.True(manifest.IsDeployable);
+        Assert.Equal(1, manifest.BlockCount);
+        Assert.False(manifest.IsDeployable);
 
         Assert.Single(manifest.ManifestModel.AddTableColumnList);
         Assert.Empty(manifest.ManifestModel.DropTableColumnList);
         Assert.Single(manifest.ManifestModel.AlterTableColumnList);
+        var block = Assert.Single(manifest.ManifestModel.BlockTableColumnDifferenceList);
+        Assert.Contains("missing approval DataDropColumn", block.DifferenceSummary, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void BuildManifest_WithExactTruncationApproval_EmitsExplicitTruncateAction_WhenOnlyBlockerIsTruncationRisk()
+    {
+        var sourceWorkspace = CreateWorkspace(
+            CreateModel(
+                includeSourceOnlyColumn: false,
+                includeLiveOnlyColumn: false,
+                sourceNameLength: 50),
+            "source");
+        var liveWorkspace = CreateWorkspace(
+            CreateModel(
+                includeSourceOnlyColumn: false,
+                includeLiveOnlyColumn: false,
+                sourceNameLength: 100),
+            "live");
+
+        var differenceService = new MetaSqlDifferenceService();
+        var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
+        var changedColumn = Assert.Single(
+            differences,
+            row => row.ObjectKind == MetaSqlObjectKind.TableColumn &&
+                   row.DifferenceKind == MetaSqlDifferenceKind.Different);
+
+        var blockers = new List<MetaSqlDifferenceBlocker>
+        {
+            new()
+            {
+                Difference = changedColumn,
+                Code = MetaSqlDifferenceBlockerCode.DataTruncationRequired,
+                Reason = $"{changedColumn.DisplayName}: source length 50 is smaller than live data currently stored.",
+            }
+        };
+
+        var service = new MetaSqlDeployManifestService();
+        var manifest = service.BuildManifest(
+            sourceWorkspace,
+            liveWorkspace,
+            differences,
+            manifestName: "TestManifest",
+            targetDescription: "Scope=raw:*",
+            feasibilityBlockers: blockers,
+            destructiveApprovals:
+            [
+                new MetaSqlDestructiveApproval
+                {
+                    Kind = MetaSqlDestructiveApprovalKind.DataTruncationColumn,
+                    SchemaName = "dbo",
+                    TableName = "Customer",
+                    ColumnName = "CustomerName",
+                }
+            ]);
+
+        Assert.Equal(1, manifest.AlterCount);
+        Assert.Equal(1, manifest.TruncateCount);
+        Assert.Equal(0, manifest.BlockCount);
+        Assert.True(manifest.IsDeployable);
+        Assert.Single(manifest.ManifestModel.AlterTableColumnList);
+        Assert.Single(manifest.ManifestModel.TruncateTableColumnDataList);
+        Assert.Empty(manifest.ManifestModel.BlockTableColumnDifferenceList);
+    }
+
+    [Fact]
+    public void BuildManifest_TruncationApproval_IsExactScopeOnly_PerColumn()
+    {
+        var sourceModel = CreateModel(
+            includeSourceOnlyColumn: false,
+            includeLiveOnlyColumn: false,
+            sourceNameLength: 50);
+        var liveModel = CreateModel(
+            includeSourceOnlyColumn: false,
+            includeLiveOnlyColumn: false,
+            sourceNameLength: 100);
+        AddSharedLengthColumn(sourceModel, columnName: "Alias", ordinal: "3", length: 50);
+        AddSharedLengthColumn(liveModel, columnName: "Alias", ordinal: "3", length: 100);
+
+        var sourceWorkspace = CreateWorkspace(sourceModel, "source");
+        var liveWorkspace = CreateWorkspace(liveModel, "live");
+
+        var differenceService = new MetaSqlDifferenceService();
+        var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
+        var changedColumns = differences
+            .Where(row => row.ObjectKind == MetaSqlObjectKind.TableColumn && row.DifferenceKind == MetaSqlDifferenceKind.Different)
+            .OrderBy(row => row.DisplayName, StringComparer.Ordinal)
+            .ToList();
+        Assert.Equal(2, changedColumns.Count);
+
+        var blockers = changedColumns
+            .Select(row => new MetaSqlDifferenceBlocker
+            {
+                Difference = row,
+                Code = MetaSqlDifferenceBlockerCode.DataTruncationRequired,
+                Reason = $"{row.DisplayName}: source length is smaller than live data currently stored.",
+            })
+            .ToList();
+
+        var service = new MetaSqlDeployManifestService();
+        var manifest = service.BuildManifest(
+            sourceWorkspace,
+            liveWorkspace,
+            differences,
+            manifestName: "TestManifest",
+            targetDescription: "Scope=raw:*",
+            feasibilityBlockers: blockers,
+            destructiveApprovals:
+            [
+                new MetaSqlDestructiveApproval
+                {
+                    Kind = MetaSqlDestructiveApprovalKind.DataTruncationColumn,
+                    SchemaName = "dbo",
+                    TableName = "Customer",
+                    ColumnName = "CustomerName",
+                }
+            ]);
+
+        Assert.Equal(1, manifest.AlterCount);
+        Assert.Equal(1, manifest.TruncateCount);
+        Assert.Equal(1, manifest.BlockCount);
+        Assert.False(manifest.IsDeployable);
+        Assert.Single(manifest.ManifestModel.AlterTableColumnList);
+        Assert.Single(manifest.ManifestModel.TruncateTableColumnDataList);
+        var block = Assert.Single(manifest.ManifestModel.BlockTableColumnDifferenceList);
+        Assert.Contains(
+            "Missing approval DataTruncationColumn(dbo.Customer.Alias)",
+            block.DifferenceSummary,
+            StringComparison.Ordinal);
     }
 
     [Fact]
@@ -640,6 +777,150 @@ public sealed class MetaSqlDeployManifestServiceTests
         Assert.Equal("SalesDb.dbo.ChildPkCase.fk.FK_ChildPkCase_ParentPkCase", dependentForeignKeyReplace.LiveForeignKeyId);
     }
 
+    [Fact]
+    public void BuildManifest_DeduplicatesDependentForeignKeyReplacement_WhenTwoAlteredColumnsAffectSameForeignKey()
+    {
+        var sourceModel = CreatePrimaryKeyModel(
+            isClustered: false,
+            includeSecondPrimaryKeyMember: true,
+            includePrimaryKeyMembers: true,
+            includeDependentForeignKey: true,
+            includeDependentForeignKeyMembers: true,
+            dependentForeignKeyTargetsAllMembers: true);
+        sourceModel.TableColumnList.Single(row => row.Id == "SalesDb.dbo.ChildPkCase.ParentKeyA").IsNullable = "true";
+        sourceModel.TableColumnList.Single(row => row.Id == "SalesDb.dbo.ChildPkCase.ParentKeyB").IsNullable = "true";
+
+        var sourceWorkspace = CreateWorkspace(sourceModel, "source");
+        var liveWorkspace = CreateWorkspace(
+            CreatePrimaryKeyModel(
+                isClustered: false,
+                includeSecondPrimaryKeyMember: true,
+                includePrimaryKeyMembers: true,
+                includeDependentForeignKey: true,
+                includeDependentForeignKeyMembers: true,
+                dependentForeignKeyTargetsAllMembers: true),
+            "live");
+
+        var differenceService = new MetaSqlDifferenceService();
+        var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
+
+        var service = new MetaSqlDeployManifestService();
+        var manifest = service.BuildManifest(
+            sourceWorkspace,
+            liveWorkspace,
+            differences,
+            manifestName: "TestManifest",
+            targetDescription: "Scope=dbo:*");
+
+        Assert.Equal(2, manifest.AlterCount);
+        Assert.Equal(1, manifest.ReplaceCount);
+        Assert.Equal(0, manifest.BlockCount);
+        Assert.True(manifest.IsDeployable);
+        Assert.Equal(2, manifest.ManifestModel.AlterTableColumnList.Count);
+        var replaceForeignKey = Assert.Single(manifest.ManifestModel.ReplaceForeignKeyList);
+        Assert.Equal("SalesDb.dbo.ChildPkCase.fk.FK_ChildPkCase_ParentPkCase", replaceForeignKey.SourceForeignKeyId);
+        Assert.Equal("SalesDb.dbo.ChildPkCase.fk.FK_ChildPkCase_ParentPkCase", replaceForeignKey.LiveForeignKeyId);
+    }
+
+    [Fact]
+    public void BuildManifest_DeduplicatesForeignKeyReplacement_WhenAlteredColumnAndSharedForeignKeyDifferenceConverge()
+    {
+        var sourceModel = CreateForeignKeyModel(sourceTargetTableName: "ParentAlt", includeSourceForeignKeyMember: true);
+        sourceModel.TableColumnList.Single(row => row.Id == "SalesDb.dbo.Child.ParentId").IsNullable = "true";
+
+        var sourceWorkspace = CreateWorkspace(sourceModel, "source");
+        var liveWorkspace = CreateWorkspace(
+            CreateForeignKeyModel(sourceTargetTableName: "Parent", includeSourceForeignKeyMember: true),
+            "live");
+
+        var differenceService = new MetaSqlDifferenceService();
+        var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
+
+        var service = new MetaSqlDeployManifestService();
+        var manifest = service.BuildManifest(
+            sourceWorkspace,
+            liveWorkspace,
+            differences,
+            manifestName: "TestManifest",
+            targetDescription: "Scope=dbo:*");
+
+        Assert.Equal(1, manifest.AlterCount);
+        Assert.Equal(1, manifest.ReplaceCount);
+        Assert.Equal(0, manifest.BlockCount);
+        Assert.True(manifest.IsDeployable);
+        Assert.Single(manifest.ManifestModel.AlterTableColumnList);
+        var replaceForeignKey = Assert.Single(manifest.ManifestModel.ReplaceForeignKeyList);
+        Assert.Equal("SalesDb.dbo.Child.fk.FK_Child_Parent", replaceForeignKey.SourceForeignKeyId);
+        Assert.Equal("SalesDb.dbo.Child.fk.FK_Child_Parent", replaceForeignKey.LiveForeignKeyId);
+    }
+
+    [Fact]
+    public void BuildManifest_DeduplicatesPrimaryKeyReplacement_WhenAlteredColumnAndSharedPrimaryKeyDifferenceConverge()
+    {
+        var sourceModel = CreateStringPrimaryKeyModel();
+        sourceModel.TableColumnDataTypeDetailList.Single(row =>
+            row.TableColumnId == "SalesDb.dbo.StringPkCase.KeyCode" &&
+            string.Equals(row.Name, "Length", StringComparison.Ordinal)).Value = "100";
+        sourceModel.PrimaryKeyColumnList.Single(row =>
+            row.PrimaryKeyId == "SalesDb.dbo.StringPkCase.pk.PK_StringPkCase" &&
+            string.Equals(row.Ordinal, "1", StringComparison.Ordinal)).IsDescending = "true";
+
+        var sourceWorkspace = CreateWorkspace(sourceModel, "source");
+        var liveWorkspace = CreateWorkspace(CreateStringPrimaryKeyModel(), "live");
+
+        var differenceService = new MetaSqlDifferenceService();
+        var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
+
+        var service = new MetaSqlDeployManifestService();
+        var manifest = service.BuildManifest(
+            sourceWorkspace,
+            liveWorkspace,
+            differences,
+            manifestName: "TestManifest",
+            targetDescription: "Scope=dbo:*");
+
+        Assert.Equal(1, manifest.AlterCount);
+        Assert.Equal(1, manifest.ReplaceCount);
+        Assert.Equal(0, manifest.BlockCount);
+        Assert.True(manifest.IsDeployable);
+        Assert.Single(manifest.ManifestModel.AlterTableColumnList);
+        var replacePrimaryKey = Assert.Single(manifest.ManifestModel.ReplacePrimaryKeyList);
+        Assert.Equal("SalesDb.dbo.StringPkCase.pk.PK_StringPkCase", replacePrimaryKey.SourcePrimaryKeyId);
+        Assert.Equal("SalesDb.dbo.StringPkCase.pk.PK_StringPkCase", replacePrimaryKey.LivePrimaryKeyId);
+    }
+
+    [Fact]
+    public void BuildManifest_DeduplicatesMixedConstraintAndIndexDependencyExpansions_PerObject()
+    {
+        var sourceModel = CreateMixedDependencyModel();
+        sourceModel.TableColumnDataTypeDetailList.Single(row =>
+            row.TableColumnId == "SalesDb.dbo.ParentMixed.KeyCode" &&
+            string.Equals(row.Name, "Length", StringComparison.Ordinal)).Value = "100";
+
+        var sourceWorkspace = CreateWorkspace(sourceModel, "source");
+        var liveWorkspace = CreateWorkspace(CreateMixedDependencyModel(), "live");
+
+        var differenceService = new MetaSqlDifferenceService();
+        var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
+
+        var service = new MetaSqlDeployManifestService();
+        var manifest = service.BuildManifest(
+            sourceWorkspace,
+            liveWorkspace,
+            differences,
+            manifestName: "TestManifest",
+            targetDescription: "Scope=dbo:*");
+
+        Assert.Equal(1, manifest.AlterCount);
+        Assert.Equal(3, manifest.ReplaceCount);
+        Assert.Equal(0, manifest.BlockCount);
+        Assert.True(manifest.IsDeployable);
+        Assert.Single(manifest.ManifestModel.AlterTableColumnList);
+        Assert.Single(manifest.ManifestModel.ReplacePrimaryKeyList);
+        Assert.Single(manifest.ManifestModel.ReplaceForeignKeyList);
+        Assert.Single(manifest.ManifestModel.ReplaceIndexList);
+    }
+
     private static MetaSqlModel CreateModel(bool includeSourceOnlyColumn, bool includeLiveOnlyColumn, int sourceNameLength)
     {
         var model = MetaSqlModel.CreateEmpty();
@@ -875,6 +1156,32 @@ public sealed class MetaSqlDeployManifestServiceTests
         }
 
         return model;
+    }
+
+    private static void AddSharedLengthColumn(MetaSqlModel model, string columnName, string ordinal, int length)
+    {
+        var table = model.TableList.Single(row => row.Id == "SalesDb.dbo.Customer");
+        var column = new TableColumn
+        {
+            Id = $"SalesDb.dbo.Customer.{columnName}",
+            Name = columnName,
+            Ordinal = ordinal,
+            MetaDataTypeId = "sqlserver:type:nvarchar",
+            IsNullable = "true",
+            TableId = table.Id,
+            Table = table,
+        };
+        var detail = new TableColumnDataTypeDetail
+        {
+            Id = $"SalesDb.dbo.Customer.{columnName}.detail.Length.{length}",
+            Name = "Length",
+            Value = length.ToString(),
+            TableColumnId = column.Id,
+            TableColumn = column,
+        };
+
+        model.TableColumnList.Add(column);
+        model.TableColumnDataTypeDetailList.Add(detail);
     }
 
     private static MetaSqlModel CreateIndexModel(bool isClustered, bool sourceDescending, bool includeSourceIndexMember)
@@ -1161,6 +1468,255 @@ public sealed class MetaSqlDeployManifestServiceTests
                 }
             }
         }
+
+        return model;
+    }
+
+    private static MetaSqlModel CreateStringPrimaryKeyModel()
+    {
+        var model = MetaSqlModel.CreateEmpty();
+
+        var database = new Database
+        {
+            Id = "SalesDb",
+            Name = "SalesDb",
+            Platform = "sqlserver",
+        };
+        var schema = new Schema
+        {
+            Id = "SalesDb.dbo",
+            Name = "dbo",
+            DatabaseId = database.Id,
+            Database = database,
+        };
+        var table = new Table
+        {
+            Id = "SalesDb.dbo.StringPkCase",
+            Name = "StringPkCase",
+            SchemaId = schema.Id,
+            Schema = schema,
+        };
+        var keyCode = new TableColumn
+        {
+            Id = "SalesDb.dbo.StringPkCase.KeyCode",
+            Name = "KeyCode",
+            Ordinal = "1",
+            MetaDataTypeId = "sqlserver:type:varchar",
+            IsNullable = "false",
+            TableId = table.Id,
+            Table = table,
+        };
+        var keyCodeLength = new TableColumnDataTypeDetail
+        {
+            Id = "SalesDb.dbo.StringPkCase.KeyCode.detail.Length",
+            Name = "Length",
+            Value = "50",
+            TableColumnId = keyCode.Id,
+            TableColumn = keyCode,
+        };
+        var primaryKey = new PrimaryKey
+        {
+            Id = "SalesDb.dbo.StringPkCase.pk.PK_StringPkCase",
+            Name = "PK_StringPkCase",
+            TableId = table.Id,
+            Table = table,
+            IsClustered = "false",
+        };
+        var primaryKeyMember = new PrimaryKeyColumn
+        {
+            Id = "SalesDb.dbo.StringPkCase.pk.PK_StringPkCase.column.1",
+            PrimaryKeyId = primaryKey.Id,
+            PrimaryKey = primaryKey,
+            TableColumnId = keyCode.Id,
+            TableColumn = keyCode,
+            Ordinal = "1",
+            IsDescending = "false",
+        };
+
+        model.DatabaseList.Add(database);
+        model.SchemaList.Add(schema);
+        model.TableList.Add(table);
+        model.TableColumnList.Add(keyCode);
+        model.TableColumnDataTypeDetailList.Add(keyCodeLength);
+        model.PrimaryKeyList.Add(primaryKey);
+        model.PrimaryKeyColumnList.Add(primaryKeyMember);
+
+        return model;
+    }
+
+    private static MetaSqlModel CreateMixedDependencyModel()
+    {
+        var model = MetaSqlModel.CreateEmpty();
+
+        var database = new Database
+        {
+            Id = "SalesDb",
+            Name = "SalesDb",
+            Platform = "sqlserver",
+        };
+        var schema = new Schema
+        {
+            Id = "SalesDb.dbo",
+            Name = "dbo",
+            DatabaseId = database.Id,
+            Database = database,
+        };
+        var parent = new Table
+        {
+            Id = "SalesDb.dbo.ParentMixed",
+            Name = "ParentMixed",
+            SchemaId = schema.Id,
+            Schema = schema,
+        };
+        var child = new Table
+        {
+            Id = "SalesDb.dbo.ChildMixed",
+            Name = "ChildMixed",
+            SchemaId = schema.Id,
+            Schema = schema,
+        };
+
+        var parentKeyCode = new TableColumn
+        {
+            Id = "SalesDb.dbo.ParentMixed.KeyCode",
+            Name = "KeyCode",
+            Ordinal = "1",
+            MetaDataTypeId = "sqlserver:type:varchar",
+            IsNullable = "false",
+            TableId = parent.Id,
+            Table = parent,
+        };
+        var parentKeyCodeLength = new TableColumnDataTypeDetail
+        {
+            Id = "SalesDb.dbo.ParentMixed.KeyCode.detail.Length",
+            Name = "Length",
+            Value = "50",
+            TableColumnId = parentKeyCode.Id,
+            TableColumn = parentKeyCode,
+        };
+        var childId = new TableColumn
+        {
+            Id = "SalesDb.dbo.ChildMixed.ChildId",
+            Name = "ChildId",
+            Ordinal = "1",
+            MetaDataTypeId = "sqlserver:type:int",
+            IsNullable = "false",
+            TableId = child.Id,
+            Table = child,
+        };
+        var childParentKeyCode = new TableColumn
+        {
+            Id = "SalesDb.dbo.ChildMixed.ParentKeyCode",
+            Name = "ParentKeyCode",
+            Ordinal = "2",
+            MetaDataTypeId = "sqlserver:type:varchar",
+            IsNullable = "false",
+            TableId = child.Id,
+            Table = child,
+        };
+        var childParentKeyCodeLength = new TableColumnDataTypeDetail
+        {
+            Id = "SalesDb.dbo.ChildMixed.ParentKeyCode.detail.Length",
+            Name = "Length",
+            Value = "50",
+            TableColumnId = childParentKeyCode.Id,
+            TableColumn = childParentKeyCode,
+        };
+
+        var parentPrimaryKey = new PrimaryKey
+        {
+            Id = "SalesDb.dbo.ParentMixed.pk.PK_ParentMixed",
+            Name = "PK_ParentMixed",
+            TableId = parent.Id,
+            Table = parent,
+            IsClustered = "false",
+        };
+        var parentPrimaryKeyColumn = new PrimaryKeyColumn
+        {
+            Id = "SalesDb.dbo.ParentMixed.pk.PK_ParentMixed.column.1",
+            PrimaryKeyId = parentPrimaryKey.Id,
+            PrimaryKey = parentPrimaryKey,
+            TableColumnId = parentKeyCode.Id,
+            TableColumn = parentKeyCode,
+            Ordinal = "1",
+            IsDescending = "false",
+        };
+        var childPrimaryKey = new PrimaryKey
+        {
+            Id = "SalesDb.dbo.ChildMixed.pk.PK_ChildMixed",
+            Name = "PK_ChildMixed",
+            TableId = child.Id,
+            Table = child,
+            IsClustered = "false",
+        };
+        var childPrimaryKeyColumn = new PrimaryKeyColumn
+        {
+            Id = "SalesDb.dbo.ChildMixed.pk.PK_ChildMixed.column.1",
+            PrimaryKeyId = childPrimaryKey.Id,
+            PrimaryKey = childPrimaryKey,
+            TableColumnId = childId.Id,
+            TableColumn = childId,
+            Ordinal = "1",
+            IsDescending = "false",
+        };
+        var foreignKey = new ForeignKey
+        {
+            Id = "SalesDb.dbo.ChildMixed.fk.FK_ChildMixed_ParentMixed",
+            Name = "FK_ChildMixed_ParentMixed",
+            SourceTableId = child.Id,
+            SourceTable = child,
+            TargetTableId = parent.Id,
+            TargetTable = parent,
+        };
+        var foreignKeyColumn = new ForeignKeyColumn
+        {
+            Id = "SalesDb.dbo.ChildMixed.fk.FK_ChildMixed_ParentMixed.column.1",
+            ForeignKeyId = foreignKey.Id,
+            ForeignKey = foreignKey,
+            SourceColumnId = childParentKeyCode.Id,
+            SourceColumn = childParentKeyCode,
+            TargetColumnId = parentKeyCode.Id,
+            TargetColumn = parentKeyCode,
+            Ordinal = "1",
+        };
+        var index = new Index
+        {
+            Id = "SalesDb.dbo.ParentMixed.index.IX_ParentMixed_KeyCode",
+            Name = "IX_ParentMixed_KeyCode",
+            TableId = parent.Id,
+            Table = parent,
+            IsUnique = string.Empty,
+            IsClustered = "false",
+        };
+        var indexColumn = new IndexColumn
+        {
+            Id = "SalesDb.dbo.ParentMixed.index.IX_ParentMixed_KeyCode.column.1",
+            IndexId = index.Id,
+            Index = index,
+            TableColumnId = parentKeyCode.Id,
+            TableColumn = parentKeyCode,
+            Ordinal = "1",
+            IsIncluded = string.Empty,
+            IsDescending = string.Empty,
+        };
+
+        model.DatabaseList.Add(database);
+        model.SchemaList.Add(schema);
+        model.TableList.Add(parent);
+        model.TableList.Add(child);
+        model.TableColumnList.Add(parentKeyCode);
+        model.TableColumnList.Add(childId);
+        model.TableColumnList.Add(childParentKeyCode);
+        model.TableColumnDataTypeDetailList.Add(parentKeyCodeLength);
+        model.TableColumnDataTypeDetailList.Add(childParentKeyCodeLength);
+        model.PrimaryKeyList.Add(parentPrimaryKey);
+        model.PrimaryKeyList.Add(childPrimaryKey);
+        model.PrimaryKeyColumnList.Add(parentPrimaryKeyColumn);
+        model.PrimaryKeyColumnList.Add(childPrimaryKeyColumn);
+        model.ForeignKeyList.Add(foreignKey);
+        model.ForeignKeyColumnList.Add(foreignKeyColumn);
+        model.IndexList.Add(index);
+        model.IndexColumnList.Add(indexColumn);
 
         return model;
     }

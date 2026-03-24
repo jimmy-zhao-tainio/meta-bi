@@ -43,6 +43,11 @@ namespace MetaSqlDeployManifest
         public List<AlterTableColumn> AlterTableColumnList { get; set; } = new();
         public bool ShouldSerializeAlterTableColumnList() => AlterTableColumnList.Count > 0;
 
+        [XmlArray("TruncateTableColumnDataList")]
+        [XmlArrayItem("TruncateTableColumnData")]
+        public List<TruncateTableColumnData> TruncateTableColumnDataList { get; set; } = new();
+        public bool ShouldSerializeTruncateTableColumnDataList() => TruncateTableColumnDataList.Count > 0;
+
         [XmlArray("BlockForeignKeyDifferenceList")]
         [XmlArrayItem("BlockForeignKeyDifference")]
         public List<BlockForeignKeyDifference> BlockForeignKeyDifferenceList { get; set; } = new();
@@ -177,6 +182,7 @@ namespace MetaSqlDeployManifest
             model.AddTableList ??= new List<AddTable>();
             model.AddTableColumnList ??= new List<AddTableColumn>();
             model.AlterTableColumnList ??= new List<AlterTableColumn>();
+            model.TruncateTableColumnDataList ??= new List<TruncateTableColumnData>();
             model.BlockForeignKeyDifferenceList ??= new List<BlockForeignKeyDifference>();
             model.BlockIndexDifferenceList ??= new List<BlockIndexDifference>();
             model.BlockPrimaryKeyDifferenceList ??= new List<BlockPrimaryKeyDifference>();
@@ -198,6 +204,7 @@ namespace MetaSqlDeployManifest
             NormalizeAddTableList(model);
             NormalizeAddTableColumnList(model);
             NormalizeAlterTableColumnList(model);
+            NormalizeTruncateTableColumnDataList(model);
             NormalizeBlockForeignKeyDifferenceList(model);
             NormalizeBlockIndexDifferenceList(model);
             NormalizeBlockPrimaryKeyDifferenceList(model);
@@ -323,6 +330,22 @@ namespace MetaSqlDeployManifest
                     deployManifestListById,
                     row.DeployManifestId,
                     "AlterTableColumn",
+                    row.Id,
+                    "DeployManifestId");
+            }
+
+            foreach (var row in model.TruncateTableColumnDataList)
+            {
+                row.DeployManifestId = ResolveRelationshipId(
+                    row.DeployManifestId,
+                    row.DeployManifest?.Id,
+                    "TruncateTableColumnData",
+                    row.Id,
+                    "DeployManifestId");
+                row.DeployManifest = RequireTarget(
+                    deployManifestListById,
+                    row.DeployManifestId,
+                    "TruncateTableColumnData",
                     row.Id,
                     "DeployManifestId");
             }
@@ -600,6 +623,18 @@ namespace MetaSqlDeployManifest
                 row.Id = RequireIdentity(row.Id, "Entity 'AlterTableColumn' contains a row with empty Id.");
                 row.SourceTableColumnId = RequireText(row.SourceTableColumnId, $"Entity 'AlterTableColumn' row '{row.Id}' is missing required property 'SourceTableColumnId'.");
                 row.LiveTableColumnId = RequireText(row.LiveTableColumnId, $"Entity 'AlterTableColumn' row '{row.Id}' is missing required property 'LiveTableColumnId'.");
+                row.DeployManifestId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTruncateTableColumnDataList(MetaSqlDeployManifestModel model)
+        {
+            foreach (var row in model.TruncateTableColumnDataList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TruncateTableColumnData' contains a row with empty Id.");
+                row.SourceTableColumnId = RequireText(row.SourceTableColumnId, $"Entity 'TruncateTableColumnData' row '{row.Id}' is missing required property 'SourceTableColumnId'.");
+                row.LiveTableColumnId = RequireText(row.LiveTableColumnId, $"Entity 'TruncateTableColumnData' row '{row.Id}' is missing required property 'LiveTableColumnId'.");
                 row.DeployManifestId ??= string.Empty;
             }
         }

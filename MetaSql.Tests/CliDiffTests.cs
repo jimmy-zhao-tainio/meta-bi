@@ -31,7 +31,11 @@ public sealed class CliDiffTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Command: deploy-plan", result.Output, StringComparison.Ordinal);
         Assert.Contains("meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path>", result.Output, StringComparison.Ordinal);
-        Assert.Contains("[--with-data-drop]", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--approve-drop-table", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--approve-drop-column", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--approve-truncate-column", result.Output, StringComparison.Ordinal);
+        Assert.DoesNotContain("[--with-data-drop]", result.Output, StringComparison.Ordinal);
+        Assert.DoesNotContain("[--with-data-truncate]", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--with-drop", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--allow-drop", result.Output, StringComparison.Ordinal);
     }
@@ -107,7 +111,7 @@ public sealed class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployPlanCommand_WithoutWithDataDrop_EmitsNonDataDropsButNotDataDrops()
+    public async Task DeployPlanCommand_WithoutDataDropApproval_BlocksLiveOnlyDataDrop()
     {
         var repoRoot = FindRepositoryRoot();
         var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
@@ -137,13 +141,15 @@ public sealed class CliDiffTests
 
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
-            Assert.Equal(0, result.ExitCode);
-            Assert.Contains("DropCount: 1", result.Output, StringComparison.Ordinal);
-            Assert.Contains("IgnoredLiveOnlyDataDropCount: 1", result.Output, StringComparison.Ordinal);
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("deploy-plan produced a non-deployable manifest.", result.Output, StringComparison.Ordinal);
+            Assert.Contains("BlockTableDifference", result.Output, StringComparison.Ordinal);
+            Assert.Contains("missing approval DataDropTable", result.Output, StringComparison.Ordinal);
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Empty(manifest.DropTableList);
             Assert.Single(manifest.DropForeignKeyList);
+            Assert.Single(manifest.BlockTableDifferenceList);
             Assert.Empty(manifest.DropPrimaryKeyList);
             Assert.Empty(manifest.DropIndexList);
             Assert.Empty(manifest.DropTableColumnList);
@@ -156,7 +162,54 @@ public sealed class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployPlanCommand_WithoutWithDataDrop_StillEmitsAddAndAlterActions()
+    public async Task DeployPlanCommand_DeprecatedGlobalFlagsDoNotAuthorizeDataDrop()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var outputPath = Path.Combine(tempRoot, "deploy-manifest");
+        var databaseName = $"MetaSqlDeployDeprecatedDropFlag_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            CreateParentChildWithForeignKey(databaseConnectionString);
+            await CreateSourceWorkspaceWithChildOnlyNoForeignKeyAsync(sourcePath, databaseName);
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --with-data-truncate --out \"{outputPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("deprecated for authorization", result.Output, StringComparison.Ordinal);
+            Assert.Contains("missing approval DataDropTable", result.Output, StringComparison.Ordinal);
+
+            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            Assert.Empty(manifest.DropTableList);
+            Assert.Single(manifest.DropForeignKeyList);
+            Assert.Single(manifest.BlockTableDifferenceList);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task DeployPlanCommand_StillEmitsAddAndAlterActions_WhenNoDestructiveApprovalRequired()
     {
         var repoRoot = FindRepositoryRoot();
         var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
@@ -215,7 +268,7 @@ public sealed class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployPlanCommand_WithDataDrop_EmitsDataDropActionsForLiveOnlyDrift()
+    public async Task DeployPlanCommand_WithExactDataDropTableApproval_EmitsDropTableForLiveOnlyDrift()
     {
         var repoRoot = FindRepositoryRoot();
         var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
@@ -235,7 +288,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --approve-drop-table raw.Parent --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -247,11 +300,11 @@ public sealed class CliDiffTests
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("DropCount: 2", result.Output, StringComparison.Ordinal);
-            Assert.Contains("IgnoredLiveOnlyDataDropCount: 0", result.Output, StringComparison.Ordinal);
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.DropTableList);
             Assert.Single(manifest.DropForeignKeyList);
+            Assert.Empty(manifest.BlockTableDifferenceList);
         }
         finally
         {
@@ -261,7 +314,53 @@ public sealed class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployPlanCommand_WithoutWithDataDrop_EmitsDropPrimaryKeyAndDropIndexByDefault()
+    public async Task DeployPlanCommand_TableDropApproval_IsExactScopeOnly()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var outputPath = Path.Combine(tempRoot, "deploy-manifest");
+        var databaseName = $"MetaSqlDeployScopeDrop_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            CreateParentChildWithForeignKey(databaseConnectionString);
+            await CreateSourceWorkspaceWithChildOnlyNoForeignKeyAsync(sourcePath, databaseName);
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --approve-drop-table raw.NotParent --out \"{outputPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("missing approval DataDropTable(raw.Parent)", result.Output, StringComparison.Ordinal);
+
+            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            Assert.Empty(manifest.DropTableList);
+            Assert.Single(manifest.DropForeignKeyList);
+            Assert.Single(manifest.BlockTableDifferenceList);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task DeployPlanCommand_EmitsDropPrimaryKeyAndDropIndexByDefault()
     {
         var repoRoot = FindRepositoryRoot();
         var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
@@ -316,7 +415,6 @@ public sealed class CliDiffTests
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("DropCount: 2", result.Output, StringComparison.Ordinal);
-            Assert.Contains("IgnoredLiveOnlyDataDropCount: 0", result.Output, StringComparison.Ordinal);
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.DropPrimaryKeyList);
@@ -332,7 +430,7 @@ public sealed class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployPlanCommand_WithDataDrop_EmitsDropTableAndDropTableColumn()
+    public async Task DeployPlanCommand_WithExactDataDropApprovals_EmitsDropTableAndDropTableColumn()
     {
         var repoRoot = FindRepositoryRoot();
         var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
@@ -398,7 +496,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --approve-drop-table raw.LegacyOnly --approve-drop-column raw.ActiveCase.LegacyCol --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -409,11 +507,12 @@ public sealed class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("IgnoredLiveOnlyDataDropCount: 0", result.Output, StringComparison.Ordinal);
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.DropTableList);
             Assert.Single(manifest.DropTableColumnList);
+            Assert.Empty(manifest.BlockTableDifferenceList);
+            Assert.Empty(manifest.BlockTableColumnDifferenceList);
         }
         finally
         {
@@ -1634,7 +1733,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1705,7 +1804,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1758,7 +1857,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1897,11 +1996,84 @@ public sealed class CliDiffTests
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(4, planResult.ExitCode);
             Assert.Contains("deploy-plan produced a non-deployable manifest.", planResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Missing approval DataTruncationColumn(raw.VarcharCase.ValueCol)", planResult.Output, StringComparison.Ordinal);
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
             Assert.Contains("smaller than live data currently stored", block.DifferenceSummary, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task DeployPlanAndDeploy_WithExactDataTruncationApproval_NarrowsLengthAndTruncatesData()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var cliPath = ResolveCliPath(repoRoot, "MetaSql.Cli", "meta-sql.dll");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var planPath = Path.Combine(tempRoot, "deploy-manifest");
+        var databaseName = $"MetaSqlAlterVarcharNarrowTruncate_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            CreateVarcharCaseTable(databaseConnectionString, length: 100, seedValue: new string('X', 80));
+            await CreateSourceWorkspaceFromLiveAndMutateAsync(
+                sourcePath,
+                databaseConnectionString,
+                "raw",
+                "VarcharCase",
+                model =>
+                {
+                    var column = RequireColumn(model, "raw", "VarcharCase", "ValueCol");
+                    SetOrReplaceColumnDetail(model, column, "Length", "50");
+                });
+
+            var planCommand = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table VarcharCase --approve-truncate-column raw.VarcharCase.ValueCol --out \"{planPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+            var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
+            Assert.Equal(0, planResult.ExitCode);
+            Assert.Contains("AlterCount: 1", planResult.Output, StringComparison.Ordinal);
+            Assert.Contains("TruncateCount: 1", planResult.Output, StringComparison.Ordinal);
+
+            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
+            Assert.Single(manifest.AlterTableColumnList);
+            Assert.Single(manifest.TruncateTableColumnDataList);
+            Assert.Empty(manifest.BlockTableColumnDifferenceList);
+
+            var deployCommand = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table VarcharCase",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+            var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
+            Assert.Equal(0, deployResult.ExitCode);
+            Assert.Contains("AppliedAlterCount: 1", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("AppliedTruncateCount: 1", deployResult.Output, StringComparison.Ordinal);
+
+            Assert.Equal(50, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "VarcharCase", "ValueCol"));
+            Assert.Equal(50, GetValueLength(databaseConnectionString, "raw", "VarcharCase", "ValueCol", 1));
         }
         finally
         {
@@ -2810,7 +2982,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --approve-drop-table raw.Parent --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -3642,6 +3814,31 @@ public sealed class CliDiffTests
         }
 
         return Convert.ToInt16(value);
+    }
+
+    private static int GetValueLength(
+        string connectionString,
+        string schemaName,
+        string tableName,
+        string columnName,
+        int id)
+    {
+        using var connection = new SqlConnection(connectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = $"""
+            SELECT LEN([{columnName}])
+            FROM [{schemaName}].[{tableName}]
+            WHERE [Id] = @Id;
+            """;
+        command.Parameters.AddWithValue("@Id", id);
+        var value = command.ExecuteScalar();
+        if (value is null || value is DBNull)
+        {
+            throw new InvalidOperationException($"Row '{schemaName}.{tableName}.Id={id}' was not found.");
+        }
+
+        return Convert.ToInt32(value);
     }
 
     private static bool GetColumnNullable(string connectionString, string schemaName, string tableName, string columnName)

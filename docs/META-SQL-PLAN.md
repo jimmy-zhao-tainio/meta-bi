@@ -16,15 +16,15 @@ The current CLI surface is:
 ## Current Command Surface
 
 ```bash
-meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <manifest-path> [--schema <name>] [--table <name>] [--with-data-drop]
+meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <manifest-path> [--schema <name>] [--table <name>] [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]
 meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value> [--schema <name>] [--table <name>]
 ```
 
-`deploy-plan` currently accepts `--source-workspace`, `--connection-string`, `--out`, optional `--schema`, optional `--table`, and optional `--with-data-drop`.
+`deploy-plan` currently accepts `--source-workspace`, `--connection-string`, `--out`, optional `--schema`, optional `--table`, and object-scoped destructive approvals via repeated CLI args and/or `--approval-file`.
 
 `deploy` currently requires `--manifest-workspace`, `--source-workspace`, and `--connection-string`, with optional `--schema` and `--table`.
 
-Default policy: without `--with-data-drop`, only live-only data-bearing drift (`Table`, `TableColumn`) is ignored for manifest action generation.
+Default policy: live-only data-bearing drift (`Table`, `TableColumn`) is blocked unless exact approvals are supplied.
 Live-only `PrimaryKey`, `ForeignKey`, and `Index` drift is planned as drop actions by default.
 
 ## Current Planning/Deploy Contract
@@ -92,13 +92,13 @@ MetaSql is not yet a general-purpose executor for clustered primary-key replacem
 | Add primary key | Yes | Yes | Supported | Planned as `AddPrimaryKey`; deploy adds from source members. |
 | Add foreign key | Yes | Yes | Supported | Planned as `AddForeignKey`; deploy adds from source members. |
 | Add index | Yes | Yes | Supported | Planned as `AddIndex`; deploy adds from source members. |
-| Drop table | Yes | Yes | Supported with `--with-data-drop` | Planned as `DropTable`; deploy drops after dependent FK/Index/PK/Column steps. Without `--with-data-drop`, live-only table drift is ignored. |
-| Drop column | Yes | Yes | Supported with `--with-data-drop` | Planned as `DropTableColumn`; deploy drops unless whole table is being dropped. Without `--with-data-drop`, live-only column drift is ignored. |
+| Drop table | Yes | Yes | Supported with exact approval | Planned as `DropTable` only when planner has exact `DataDropTable(schema.table)` approval. Otherwise blocked with precise missing approval. |
+| Drop column | Yes | Yes | Supported with exact approval | Planned as `DropTableColumn` only when planner has exact `DataDropColumn(schema.table.column)` approval. Otherwise blocked with precise missing approval. |
 | Drop primary key | Yes | Yes | Supported by default | Planned as `DropPrimaryKey`; deploy drops unless whole table is being dropped. |
 | Drop foreign key | Yes | Yes | Supported by default | Planned as `DropForeignKey`; deploy drops before table/column drops. |
 | Drop index | Yes | Yes | Supported by default | Planned as `DropIndex`; deploy drops before PK/column/table drops. |
 | Alter shared column nullability | Yes | Yes | Narrow support | Only via `AlterTableColumn`, only when changed aspects are in supported subset and all checks pass. `NULL -> NOT NULL` blocks if live contains `NULL`. |
-| Alter shared column type shape | Yes | Yes | Very narrow support | Only for `sqlserver:type:*`, same SQL type family, length-based families only, and only `Length` detail changes. Type-family transitions block. |
+| Alter shared column type shape | Yes | Yes | Very narrow support | Only for `sqlserver:type:*`, same SQL type family, length-based families only, and only `Length` detail changes. Type-family transitions block. Length narrowing that would truncate live data requires exact `DataTruncationColumn(schema.table.column)` approval and emits explicit `TruncateTableColumnData` plus `AlterTableColumn` actions. |
 | Alter shared column identity/computed/ordinal semantics | Planned as block | No | Blocked | `Name`, `Ordinal`, `IsIdentity`, `IdentitySeed`, `IdentityIncrement`, `ExpressionSql` changes block. Apply re-validates subset before SQL generation. |
 | Alter shared column participating in nonclustered primary key | Yes | Yes | Narrow support | Planner keeps `AlterTableColumn` and emits explicit dependent `ReplacePrimaryKey` actions when executable; otherwise it emits a block. |
 | Alter shared column participating in foreign key | Yes | Yes | Narrow support | Planner keeps `AlterTableColumn` and emits explicit dependent `ReplaceForeignKey` actions when executable; otherwise it emits a block. |
@@ -130,7 +130,7 @@ Already usable territory:
 
 - new tables, columns, PKs, FKs, indexes
 - live-only PK/FK/index extras by default
-- live-only table/column extras when explicitly planned with `--with-data-drop`
+- live-only table/column extras when exact object-scoped approvals are provided
 - simple safe shared-column nullability/length changes
 - shared-column nullability/length changes with dependent nonclustered primary keys (planned as `AlterTableColumn` + explicit `ReplacePrimaryKey`)
 - shared-column nullability/length changes with dependent foreign keys (planned as `AlterTableColumn` + explicit `ReplaceForeignKey`)
@@ -147,37 +147,28 @@ Expected blocked territory:
 - type-family transitions
 - dependency-heavy shared-column rewrites
 
-## `--with-data-drop` Planning Policy
+## Object-Scoped Destructive Approvals
 
-`--with-data-drop` makes data-bearing drop planning explicit.
+Global destructive flags are no longer used for planner authorization.
+Planner authorization is object-scoped and exact.
 
-Behavior without `--with-data-drop`:
+Approval kinds:
 
-- `MissingInLive` -> `Add*`
-- supported shared column differences -> `AlterTableColumn`
-- blocked differences -> `Block*`
-- `ExtraInLive` (`Table`, `TableColumn`) -> no `Drop*` actions
-- `ExtraInLive` (`PrimaryKey`, `ForeignKey`, `Index`) -> `Drop*` actions
+- `DataDropTable` targeting `schema.table`
+- `DataDropColumn` targeting `schema.table.column`
+- `DataTruncationColumn` targeting `schema.table.column`
 
-Behavior with `--with-data-drop`:
+Planner behavior:
 
-- all `ExtraInLive` families -> `Drop*` mapping
+- Without exact approval, planner does not emit executable destructive actions and emits precise block entries with missing approval details.
+- With exact approval, planner emits explicit destructive actions.
+- Truncation is explicit: planner emits `TruncateTableColumnData` followed by `AlterTableColumn`.
 
-CLI:
+Deploy behavior:
 
-```bash
-meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <manifest-path> [--schema <name>] [--table <name>] [--with-data-drop]
-```
-
-Reporting:
-
-Without `--with-data-drop`, `deploy-plan` reports ignored live-only data-bearing drift, for example:
-
-`IgnoredLiveOnlyDataDropCount = N`
-
-With `--with-data-drop`, drop counts include table/column data-bearing drops as normal.
-
-This policy is owned by planner semantics (`MetaSqlDeployManifestService`) and passed as an option from CLI. CLI no longer pre-filters differences.
+- deploy executes only explicit manifest actions.
+- no deploy-time destructive inference.
+- no ambient/global destructive authorization.
 
 ## Roadmap Implied by the Current Engine
 
@@ -195,8 +186,30 @@ Most important expansion areas next:
 
 - broaden `ReplacePrimaryKey` beyond nonclustered-only support
 - broaden `ReplaceIndex` beyond nonclustered rowstore only (with explicit safety policy)
-- broaden shared-column execution beyond the current narrow `AlterTableColumn` slice
-- broaden PK/FK-participating `AlterTableColumn` support beyond the current executable subset
+- close remaining blocked shared-column alter families via explicit closure classes (`Automatic` / `Staged` / `ManualRequired`) instead of broadening automatic `AlterTableColumn`
+
+## AlterTableColumn Closure Classification
+
+Policy change: automatic `AlterTableColumn` support is intentionally frozen to the current narrow safe subset.
+Remaining blocked alter families are classified for closure as follows:
+
+| Blocked alter family | Closure class | Closure path |
+|---|---|---|
+| `NULL -> NOT NULL` when live data contains `NULL` | `Staged` | Data remediation/backfill first, then rerun `deploy-plan` so normal `AlterTableColumn` becomes executable. |
+| Length/precision reduction when live data would truncate | `Staged` | Data remediation (trim/migrate) first, then rerun `deploy-plan`. |
+| Type-family transitions (for example `varchar` -> `int`) | `ManualRequired` | Requires explicit data migration/cast strategy outside current automatic alter slice. |
+| `IsIdentity`, `IdentitySeed`, `IdentityIncrement` changes | `ManualRequired` | Requires table-rebuild style workflow not represented by current manifest action families. |
+| `ExpressionSql` changes / computed-column shape changes | `ManualRequired` | Keep blocked; requires explicit computed-column replacement semantics not in current slice. |
+| `Ordinal` reshaping | `ManualRequired` | Column order is not treated as an automatic deploy target in current engine. |
+| Partitioned-table type-shape changes | `ManualRequired` | SQL Server restriction; keep blocked unless future explicit staged workflow is introduced. |
+| Live dependency blockers on `DEFAULT` / `CHECK` / `UNIQUE` | `Staged` | Close through future explicit dependency action families; until then block with precise reason. |
+| Column affected by clustered PK/index or advanced index families | `Staged` | Close via explicit replacement support for clustered/advanced families; do not widen automatic alter behavior. |
+
+Closure class definitions:
+
+- `Automatic`: executable now via existing automatic planner + `AlterTableColumn` subset.
+- `Staged`: potentially closable with explicit preconditions and/or additional explicit manifest action families.
+- `ManualRequired`: requires manual operator workflow in current architecture.
 
 ## Task Status Check
 
@@ -205,7 +218,8 @@ Completed:
 - [x] Strict manifest-driven `deploy-plan` -> `deploy` flow
 - [x] Source/live instance fingerprint validation
 - [x] Block refusal before execution
-- [x] `--with-data-drop` policy for data-bearing drops
+- [x] Object-scoped destructive approvals (`DataDropTable`, `DataDropColumn`, `DataTruncationColumn`)
+- [x] Explicit truncation action (`TruncateTableColumnData`) instead of inferred alter-side truncation flags
 - [x] `AlterTableColumn` executable subset
 - [x] `ReplacePrimaryKey` action family (plan + deploy), nonclustered subset
 - [x] `ReplaceForeignKey` action family (plan + deploy)
@@ -219,7 +233,7 @@ Remaining:
 
 - [ ] Broaden `ReplacePrimaryKey` beyond nonclustered-only support
 - [ ] Clustered/advanced index replacement support
-- [ ] Broader shared-column execution beyond the current narrow subset
+- [ ] Implement staged closure paths for blocked shared-column alter families (without broadening automatic `AlterTableColumn`)
 
 ## Principle For Future Work
 
@@ -252,4 +266,4 @@ Next operational improvement:
 
 Next engine improvement:
 
-- expand executable subsets while preserving strict block-on-uncertainty behavior.
+- expand staged explicit action-family coverage while preserving strict block-on-uncertainty behavior.

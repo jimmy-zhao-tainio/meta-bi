@@ -3,9 +3,16 @@ using Microsoft.Data.SqlClient;
 
 namespace MetaSql;
 
+public enum MetaSqlDifferenceBlockerCode
+{
+    Unspecified = 0,
+    DataTruncationRequired,
+}
+
 public sealed record MetaSqlDifferenceBlocker
 {
     public required MetaSqlDifference Difference { get; init; }
+    public required MetaSqlDifferenceBlockerCode Code { get; init; }
     public required string Reason { get; init; }
 }
 
@@ -102,6 +109,7 @@ public sealed class MetaSqlDifferenceFeasibilityService
                     blockers.Add(new MetaSqlDifferenceBlocker
                     {
                         Difference = difference,
+                        Code = MetaSqlDifferenceBlockerCode.Unspecified,
                         Reason = $"{difference.DisplayName}: source requires NOT NULL but live contains NULL values.",
                     });
                 }
@@ -137,6 +145,7 @@ public sealed class MetaSqlDifferenceFeasibilityService
                     blockers.Add(new MetaSqlDifferenceBlocker
                     {
                         Difference = difference,
+                        Code = MetaSqlDifferenceBlockerCode.Unspecified,
                         Reason = $"{difference.DisplayName}: SQL Server blocks ALTER COLUMN data-type changes on partitioned tables.",
                     });
                 }
@@ -154,6 +163,7 @@ public sealed class MetaSqlDifferenceFeasibilityService
                 blockers.Add(new MetaSqlDifferenceBlocker
                 {
                     Difference = difference,
+                    Code = MetaSqlDifferenceBlockerCode.Unspecified,
                     Reason = $"{difference.DisplayName}: ALTER COLUMN is blocked by live {string.Join("/", dependencyKinds)} constraint dependency.",
                 });
             }
@@ -174,6 +184,7 @@ public sealed class MetaSqlDifferenceFeasibilityService
                         blockers.Add(new MetaSqlDifferenceBlocker
                         {
                             Difference = difference,
+                            Code = MetaSqlDifferenceBlockerCode.DataTruncationRequired,
                             Reason = $"{difference.DisplayName}: source length {sourceLength.Value} is smaller than live data currently stored.",
                         });
                     }

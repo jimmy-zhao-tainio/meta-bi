@@ -49,6 +49,15 @@
         <Relationship entity="DeployManifest" />
       </RelationshipList>
     </Entity>
+    <Entity name="TruncateTableColumnData">
+      <PropertyList>
+        <Property name="SourceTableColumnId" />
+        <Property name="LiveTableColumnId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
     <Entity name="BlockForeignKeyDifference">
       <PropertyList>
         <Property name="DifferenceSummary" />
