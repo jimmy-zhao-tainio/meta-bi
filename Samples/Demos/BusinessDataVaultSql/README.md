@@ -2,7 +2,7 @@
 
 This demo is no longer an active SQL-generation demo.
 
-`meta-datavault-business generate-metasql` is currently a stub, and the old DataVault-to-Sql projection path has been removed.
+`meta-datavault-business generate-metasql` is active for current `MetaSql` projection, but this folder remains an older sample set and is not the active deployment path.
 
 What remains here:
 

@@ -10,8 +10,8 @@ Operator framing:
 
 The current CLI surface is:
 
-- `deploy-plan`: extract live schema, compute differences, run feasibility checks, write deploy manifest.
-- `deploy`: load manifest, validate source/live fingerprints and block-free status, execute manifest actions in one transaction.
+- `deploy-plan`: extract live schema when the target database exists, otherwise treat live as empty, compute differences, run feasibility checks, write deploy manifest.
+- `deploy`: load manifest, validate source/live fingerprints and block-free status, create the target database only when the manifest explicitly expects missing live, then execute manifest actions.
 
 ## Current Command Surface
 
@@ -23,6 +23,8 @@ meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connecti
 `deploy-plan` currently accepts `--source-workspace`, `--connection-string`, `--out`, optional `--schema`, optional `--table`, and object-scoped destructive approvals via repeated CLI args and/or `--approval-file`.
 
 `deploy` currently requires `--manifest-workspace`, `--source-workspace`, and `--connection-string`, with optional `--schema` and `--table`.
+
+If the target database is missing during `deploy-plan`, live is modeled as an empty `MetaSql` workspace and the manifest records that missing-database expectation explicitly.
 
 Default policy: live-only data-bearing drift (`Table`, `TableColumn`) is blocked unless exact approvals are supplied.
 Live-only `PrimaryKey`, `ForeignKey`, and `Index` drift is planned as drop actions by default.
@@ -51,6 +53,7 @@ Difference kinds:
 - no block entries
 - source instance fingerprint match
 - live instance fingerprint match
+- expected live database presence (`Missing` vs `Present`)
 
 Then it builds SQL statements from manifest actions and executes in one transaction.
 
@@ -123,6 +126,8 @@ A manifest is deployable only when all differences were converted into executabl
 - block entries exist
 - source fingerprint mismatches current source workspace
 - live fingerprint mismatches current extracted live database
+- the manifest expected a missing target database but the database already exists
+- the manifest expected an existing target database but the database is missing
 
 ## Practical Operator Interpretation
 

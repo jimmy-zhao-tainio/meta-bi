@@ -27,6 +27,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=raw:*",
@@ -81,6 +82,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=raw:*");
@@ -136,6 +138,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=raw:*",
@@ -198,6 +201,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=raw:*",
@@ -243,6 +247,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -274,6 +279,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -305,6 +311,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -337,6 +344,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -368,6 +376,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -397,6 +406,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -428,6 +438,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -464,6 +475,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -501,6 +513,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -544,6 +557,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -587,6 +601,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -630,6 +645,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -674,6 +690,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -715,6 +732,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -761,6 +779,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -808,6 +827,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -840,6 +860,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -875,6 +896,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");
@@ -907,6 +929,7 @@ public sealed class MetaSqlDeployManifestServiceTests
         var manifest = service.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
             differences,
             manifestName: "TestManifest",
             targetDescription: "Scope=dbo:*");

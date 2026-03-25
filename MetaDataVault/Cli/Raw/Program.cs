@@ -334,7 +334,7 @@ internal static partial class Program
             ("help", "Show this help."),
             ("--new-workspace", "Create an empty MetaRawDataVault workspace."),
             ("from-metaschema", "Materialize a schema-bootstrap raw datavault from a MetaSchema workspace."),
-            ("generate-metasql", "Generate desired/live MetaSql workspaces and report a raw parity verdict."),
+            ("generate-metasql", "Generate a current MetaSql workspace from the current raw datavault workspace."),
             ("add-*", "Add sanctioned MetaRawDataVault rows.")
         });
         Presenter.WriteInfo(string.Empty);

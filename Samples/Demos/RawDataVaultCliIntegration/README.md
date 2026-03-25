@@ -1,11 +1,6 @@
 # Raw Data Vault CLI Integration
 
-This demo still shows CLI-based authoring of a sanctioned `MetaRawDataVault` workspace.
-
-What it no longer does:
-
-- it does not generate a `MetaSql` workspace
-- `meta-datavault-raw generate-metasql` is currently a stub
+This demo shows CLI-based authoring of a sanctioned `MetaRawDataVault` workspace, generation of a current `MetaSql` workspace, and manifest-driven deployment to local SQL Server.
 
 ## Commands
 
@@ -30,6 +25,7 @@ cleanup.cmd
 
 ## Output
 
-- `Workspace`
-
-The script stops after authoring the Raw Data Vault workspace and prints a note that `generate-metasql` is currently a stub.
+- `RawDataVaultCliIntegrationWorkspace`
+- `CurrentMetaSqlWorkspace`
+- `MetaSqlDeployManifest`
+- `MetaSqlVerifyManifest`

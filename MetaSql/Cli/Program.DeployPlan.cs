@@ -1,6 +1,7 @@
 using MetaSql;
 using MetaSql.Extractors.SqlServer;
 using Meta.Core.Services;
+using Meta.Core.Domain;
 
 internal static partial class Program
 {
@@ -35,14 +36,29 @@ internal static partial class Program
             var workspaceService = new WorkspaceService();
             var sourceWorkspace = await workspaceService.LoadAsync(sourceWorkspacePath, searchUpward: false).ConfigureAwait(false);
 
-            var extractor = new SqlServerMetaSqlExtractor();
-            var liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
+            var liveDatabasePresence = await SqlServerDatabaseRuntime
+                .GetPresenceAsync(parse.ConnectionString)
+                .ConfigureAwait(false);
+            Workspace liveWorkspace;
+            if (liveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
             {
-                NewWorkspacePath = liveRuntimePath,
-                ConnectionString = parse.ConnectionString,
-                SchemaName = parse.SchemaName,
-                TableName = parse.TableName,
-            });
+                liveWorkspace = SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
+                    liveRuntimePath,
+                    SqlServerDatabaseRuntime.RequireDatabaseName(parse.ConnectionString),
+                    parse.SchemaName);
+            }
+            else
+            {
+                var extractor = new SqlServerMetaSqlExtractor();
+                liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
+                {
+                    NewWorkspacePath = liveRuntimePath,
+                    ConnectionString = parse.ConnectionString,
+                    SchemaName = parse.SchemaName,
+                    TableName = parse.TableName,
+                    AllowEmpty = true,
+                });
+            }
 
             var differenceService = new MetaSqlDifferenceService();
             var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
@@ -58,6 +74,7 @@ internal static partial class Program
             var manifest = manifestService.BuildManifest(
                 sourceWorkspace,
                 liveWorkspace,
+                liveDatabasePresence,
                 differences,
                 manifestName: "DeployManifest",
                 targetDescription: BuildTargetDescription(parse.SchemaName, parse.TableName),

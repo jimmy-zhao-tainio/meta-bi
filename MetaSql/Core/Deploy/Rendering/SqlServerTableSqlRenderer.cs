@@ -21,7 +21,8 @@ internal sealed class SqlServerTableSqlRenderer
         IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> detailsByColumnId)
     {
         var definitions = columns.Select(row => BuildColumnDefinition(row, detailsByColumnId));
-        return $"CREATE TABLE {SqlServerRenderingSupport.FormatTableName(table)} ({string.Join(", ", definitions)});";
+        var ensureSchemaSql = BuildEnsureSchemaSql(table.Schema);
+        return $"{ensureSchemaSql} CREATE TABLE {SqlServerRenderingSupport.FormatTableName(table)} ({string.Join(", ", definitions)});";
     }
 
     public string BuildAddColumnSql(
@@ -60,5 +61,17 @@ internal sealed class SqlServerTableSqlRenderer
     private static string NormalizeIdentityValue(string? value, string defaultValue)
     {
         return string.IsNullOrWhiteSpace(value) ? defaultValue : value.Trim();
+    }
+
+    private static string BuildEnsureSchemaSql(Schema? schema)
+    {
+        if (schema is null)
+        {
+            throw new InvalidOperationException("Table create requires a Schema relationship.");
+        }
+
+        var escapedSchemaName = SqlServerRenderingSupport.EscapeSqlIdentifier(schema.Name);
+        var literalSchemaName = schema.Name.Replace("'", "''", StringComparison.Ordinal);
+        return $"IF SCHEMA_ID(N'{literalSchemaName}') IS NULL EXEC(N'CREATE SCHEMA {escapedSchemaName}');";
     }
 }

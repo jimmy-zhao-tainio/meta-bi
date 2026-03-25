@@ -50,20 +50,19 @@ This keeps BI work from silently editing foundation code and makes the boundary 
 Build the installer:
 
 ```cmd
-dotnet build MetaBi.InstallerMetaBi.Installer.csproj
+dotnet build MetaBi\Installer\MetaBi.Installer.csproj
 ```
 
 Then install the BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-datavault-raw`, `meta-datavault-business`) into `%LOCALAPPDATA%metabin` and add that directory to your user `PATH`:
 
 ```cmd
-MetaBi.Installerbinpublishwin-x64install-meta-bi.exe
+MetaBi\Installer\bin\publish\win-x64\install-meta-bi.exe
 ```
 
 ## Intent
 
 The long-term repo boundary is:
 
-- `meta`: generic foundation (`Meta.Core`, `meta`, `MetaWeave`, `meta-weave`, `MetaFabric`, `meta-fabric`, generic metamodels)
 - `meta`: generic foundation (`Meta.Core`, `meta`, `MetaWeave`, `meta-weave`, generic metamodels)
 - `meta-bi`: sanctioned BI models and BI-specific CLIs/tooling
 
@@ -74,50 +73,170 @@ The long-term repo boundary is:
 - `MetaDataTypeConversion.sln`
 - `MetaDataVault.sln`
 
-## MetaSql Status
+## CLI Guide
 
-The original `MetaSql` attempt has been archived under:
+`meta-bi` currently ships these operator-facing CLIs:
 
-```text
-Archive/MetaSql.Legacy
-```
-
-It was a DDL-centered deployment experiment and is not the active direction anymore.
-
-The reboot now starts from a sanctioned canonical `MetaSql` model instead:
-
-- `MetaSql.Workspace`
-- `MetaSql.Core`
-
-Current canonical object families include:
-
-- databases and schemas
-- tables and columns
-- primary keys and primary key columns
-- foreign keys and foreign key columns
-- indexes and index columns
-
-## Current Data Vault CLI Status
-
-The Data Vault tool family is split into two CLIs:
-
+- `meta-schema`
+- `meta-data-type`
+- `meta-data-type-conversion`
 - `meta-datavault-raw`
 - `meta-datavault-business`
+- `meta-sql`
 
-Both CLIs bootstrap empty sanctioned workspaces directly with `--new-workspace <path>`, and `meta-datavault-business` supports explicit `add-*` authoring commands for business vault structures.
+### meta-schema
 
-Legacy weave/fabric-based materialization commands and related sample workspaces were removed from the active repo direction.
+Purpose:
+- extract a sanctioned `MetaSchema` workspace from a live SQL Server schema
 
-`generate-metasql` remains a CLI stub in both Data Vault CLIs:
+Current command surface:
+- `meta-schema help`
+- `meta-schema extract sqlserver --new-workspace <path> --connection <connectionString> --system <name> (--schema <name> | --all-schemas) (--table <name> | --all-tables)`
 
-- `meta-datavault-raw generate-metasql`
-- `meta-datavault-business generate-metasql`
+Example:
 
-Active direction:
+```cmd
+meta-schema extract sqlserver --new-workspace .\MetaSchema.Workspace --connection "<connectionString>" --system MySystem --schema dbo --all-tables
+```
 
-- author sanctioned Data Vault workspaces
-- project to sanctioned `MetaSql`
-- plan/deploy through the manifest-driven `MetaSql` pipeline
+### meta-data-type
+
+Purpose:
+- bootstrap sanctioned `MetaDataType` workspaces
+
+Current command surface:
+- `meta-data-type help`
+- `meta-data-type init --new-workspace <path>`
+
+Example:
+
+```cmd
+meta-data-type init --new-workspace .\MetaDataType.Workspace
+```
+
+### meta-data-type-conversion
+
+Purpose:
+- author and validate sanctioned type-conversion workspaces
+- resolve one source data type through the sanctioned conversion graph
+
+Current command surface:
+- `meta-data-type-conversion help`
+- `meta-data-type-conversion init --new-workspace <path>`
+- `meta-data-type-conversion check --workspace <path>`
+- `meta-data-type-conversion resolve --workspace <path> --source-data-type <id>`
+
+Examples:
+
+```cmd
+meta-data-type-conversion check --workspace .\MetaDataTypeConversion.Workspace
+meta-data-type-conversion resolve --workspace .\MetaDataTypeConversion.Workspace --source-data-type meta:type:String
+```
+
+### meta-datavault-raw
+
+Purpose:
+- author sanctioned raw Data Vault workspaces
+- bootstrap raw DV from `MetaSchema`
+- project raw DV to a current `MetaSql` workspace
+
+Current command surface:
+- `meta-datavault-raw --new-workspace <path>`
+- `meta-datavault-raw from-metaschema --source-workspace <path> --implementation-workspace <path> --new-workspace <path> [--business-workspace <path>] [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
+- `meta-datavault-raw generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --schema <name> --out <path>`
+- `meta-datavault-raw add-*`
+
+Current `add-*` commands:
+- `add-source-system`
+- `add-source-schema`
+- `add-source-table`
+- `add-source-field`
+- `add-source-field-data-type-detail`
+- `add-source-table-relationship`
+- `add-source-table-relationship-field`
+- `add-hub`
+- `add-hub-key-part`
+- `add-hub-satellite`
+- `add-hub-satellite-attribute`
+- `add-link`
+- `add-link-hub`
+- `add-link-satellite`
+- `add-link-satellite-attribute`
+
+Examples:
+
+```cmd
+meta-datavault-raw --new-workspace .\MetaRawDataVault.Workspace
+meta-datavault-raw from-metaschema --source-workspace .\MetaSchema.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --new-workspace .\MetaRawDataVault.Workspace
+meta-datavault-raw generate-metasql --workspace .\MetaRawDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyVault --schema dbo --out .\out\CurrentMetaSql.Workspace
+```
+
+### meta-datavault-business
+
+Purpose:
+- author sanctioned business Data Vault workspaces
+- project business DV to a current `MetaSql` workspace
+
+Current command surface:
+- `meta-datavault-business --new-workspace <path>`
+- `meta-datavault-business add-*`
+- `meta-datavault-business generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --schema <name> --out <path>`
+
+Representative `add-*` families:
+- `add-hub*`
+- `add-link*`
+- `add-hierarchical-link*`
+- `add-reference*`
+- `add-same-as-link*`
+- `add-bridge*`
+- `add-point-in-time*`
+
+Example:
+
+```cmd
+meta-datavault-business --new-workspace .\MetaBusinessDataVault.Workspace
+meta-datavault-business generate-metasql --workspace .\MetaBusinessDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyBusinessVault --schema dbo --out .\out\CurrentMetaSql.Workspace
+```
+
+### meta-sql
+
+Purpose:
+- plan and apply manifest-driven SQL Server deployment from sanctioned `MetaSql` workspaces
+
+Current command surface:
+- `meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--schema <name>] [--table <name>] [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]`
+- `meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value> [--schema <name>] [--table <name>]`
+
+Behavior summary:
+- `deploy-plan` extracts live schema when the target database exists, otherwise treats live as empty and writes a deploy manifest against empty live
+- destructive actions require exact object-scoped approvals
+- `deploy` executes only the manifest after source/live fingerprint validation
+- when the manifest expects a missing target database, `deploy` creates it first and refuses if it already exists
+
+Examples:
+
+```cmd
+meta-sql deploy-plan --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>" --schema dbo --out .\out\deploy-manifest
+meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>" --schema dbo
+```
+
+## Active Models
+
+Current active BI model families include:
+
+- `MetaSchema`
+- `MetaDataType`
+- `MetaDataTypeConversion`
+- `MetaRawDataVault`
+- `MetaBusinessDataVault`
+- `MetaSql`
+
+## Current Projection Status
+
+- `meta-datavault-raw generate-metasql` is operational:
+  it converts sanctioned raw DV to a current `MetaSql` workspace and does not query any live database.
+- `meta-datavault-business generate-metasql` is operational:
+  it converts sanctioned business DV to a current `MetaSql` workspace, applies sanctioned business-type lowering, and does not query any live database.
 
 
 

@@ -92,19 +92,19 @@ public sealed partial class CliTests
         Assert.Contains("--workspace <path>", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--database-name <name>", result.Output);
+        Assert.Contains("--schema <name>", result.Output);
         Assert.Contains("--out <path>", result.Output);
-        Assert.Contains("Stub only", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("not currently implemented", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("current sanctioned MetaBusinessDataVault workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Does not query any live database", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public void BusinessGenerateMetaSql_ReturnsStubFailure()
+    public void BusinessGenerateMetaSql_RequiresDatabaseName()
     {
-        var result = RunBusinessCli("generate-metasql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --database-name Demo --out C:\\temp\\sql");
+        var result = RunBusinessCli("generate-metasql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --schema bdv --out C:\\temp\\sql");
 
-        Assert.Equal(4, result.ExitCode);
-        Assert.Contains("generate-metasql is currently a stub", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("No MetaSql workspace is generated", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Equal(1, result.ExitCode);
+        Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -116,19 +116,18 @@ public sealed partial class CliTests
         Assert.Contains("--workspace <path>", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--database-name <name>", result.Output);
-        Assert.Contains("--connection-string <value>", result.Output);
         Assert.Contains("--schema <name>", result.Output);
         Assert.Contains("--out <path>", result.Output);
-        Assert.Contains("Converts the sanctioned MetaRawDataVault workspace to MetaSql", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Runs equal diff and prints a parity verdict", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("current sanctioned MetaRawDataVault workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Does not query any live database", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public void GenerateMetaSql_RequiresConnectionString()
+    public void GenerateMetaSql_RequiresDatabaseName()
     {
-        var result = RunRawCli("generate-metasql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --database-name Demo --schema raw --out C:\\temp\\sql");
+        var result = RunRawCli("generate-metasql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --schema raw --out C:\\temp\\sql");
 
         Assert.Equal(1, result.ExitCode);
-        Assert.Contains("missing required option --connection-string", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 }

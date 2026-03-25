@@ -48,6 +48,27 @@ internal sealed class MetaSqlDeployExecutionEngine
             MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace, nameof(sourceWorkspace));
             manifestFingerprintValidator.ValidateSourceFingerprint(root, sourceWorkspace);
 
+            var expectedLiveDatabasePresence = ParseExpectedLiveDatabasePresence(root.ExpectedLiveDatabasePresence);
+            var actualLiveDatabasePresence = await SqlServerDatabaseRuntime
+                .GetPresenceAsync(request.ConnectionString, cancellationToken)
+                .ConfigureAwait(false);
+            if (expectedLiveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
+            {
+                if (actualLiveDatabasePresence == MetaSqlLiveDatabasePresence.Present)
+                {
+                    throw new InvalidOperationException(
+                        "Manifest expects the live database to be missing so deploy can create it, but the database already exists.");
+                }
+
+                await SqlServerDatabaseRuntime.CreateDatabaseAsync(request.ConnectionString, cancellationToken)
+                    .ConfigureAwait(false);
+            }
+            else if (actualLiveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
+            {
+                throw new InvalidOperationException(
+                    "Manifest expects an existing live database, but the database does not exist.");
+            }
+
             var extractor = new SqlServerMetaSqlExtractor();
             var liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
             {
@@ -55,6 +76,7 @@ internal sealed class MetaSqlDeployExecutionEngine
                 ConnectionString = request.ConnectionString,
                 SchemaName = request.SchemaName,
                 TableName = request.TableName,
+                AllowEmpty = true,
             });
             MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
             manifestFingerprintValidator.ValidateLiveFingerprint(root, liveWorkspace);
@@ -91,5 +113,13 @@ internal sealed class MetaSqlDeployExecutionEngine
                 Directory.Delete(tempRootPath, recursive: true);
             }
         }
+    }
+
+    private static MetaSqlLiveDatabasePresence ParseExpectedLiveDatabasePresence(string value)
+    {
+        return Enum.TryParse<MetaSqlLiveDatabasePresence>(value, ignoreCase: false, out var parsed)
+            ? parsed
+            : throw new InvalidOperationException(
+                $"Manifest contains unknown ExpectedLiveDatabasePresence '{value}'.");
     }
 }

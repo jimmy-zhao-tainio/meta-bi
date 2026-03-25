@@ -6,6 +6,7 @@
         <Property name="Name" />
         <Property name="SourceInstanceFingerprint" />
         <Property name="LiveInstanceFingerprint" />
+        <Property name="ExpectedLiveDatabasePresence" />
         <Property name="CreatedUtc" />
         <Property name="TargetDescription" isRequired="false" />
       </PropertyList>

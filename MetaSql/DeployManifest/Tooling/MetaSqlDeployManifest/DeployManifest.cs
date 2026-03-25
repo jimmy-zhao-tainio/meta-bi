@@ -11,6 +11,9 @@ namespace MetaSqlDeployManifest
         [XmlElement("CreatedUtc")]
         public string CreatedUtc { get; set; } = string.Empty;
 
+        [XmlElement("ExpectedLiveDatabasePresence")]
+        public string ExpectedLiveDatabasePresence { get; set; } = string.Empty;
+
         [XmlElement("LiveInstanceFingerprint")]
         public string LiveInstanceFingerprint { get; set; } = string.Empty;
 

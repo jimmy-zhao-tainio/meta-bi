@@ -30,6 +30,6 @@ echo.
 echo Raw bootstrap workspace generation completed.
 echo MetaSchema workspace: %SCHEMA_WORKSPACE%
 echo MetaRawDataVault workspace: %RAW_WORKSPACE%
-echo generate-metasql is currently a stub and is not run by this demo.
+echo generate-metasql is not run by this demo.
 
 popd

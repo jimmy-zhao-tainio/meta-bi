@@ -117,7 +117,7 @@ internal static partial class Program
         {
             ("help", "Show this help."),
             ("--new-workspace", "Create an empty MetaBusinessDataVault workspace."),
-            ("generate-metasql", "Stub command. DataVault-to-Sql projection is not implemented.")
+            ("generate-metasql", "Generate a current MetaSql workspace from the current business datavault workspace.")
         };
         commands.AddRange(GetAddCommandCatalog());
         Presenter.WriteCommandCatalog("Commands:", commands);

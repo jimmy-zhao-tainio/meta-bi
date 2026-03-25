@@ -65,6 +65,166 @@ public sealed class CliDiffTests
     }
 
     [Fact]
+    public async Task DeployPlanCommand_WhenDatabaseIsMissing_TreatsLiveAsEmpty()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var cliPath = ResolveCliPath(repoRoot, Path.Combine("MetaSql", "Cli"), "meta-sql.dll");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var outputPath = Path.Combine(tempRoot, "deploy-manifest");
+        var databaseName = $"MetaSqlMissingLivePlan_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            await CreateSourceWorkspaceWithExtraColumnAsync(sourcePath, databaseName);
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("Verdict: deployable", result.Output, StringComparison.Ordinal);
+            Assert.False(DatabaseExists(masterConnectionString, databaseName));
+
+            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var root = Assert.Single(manifest.DeployManifestList);
+            Assert.Equal("Missing", root.ExpectedLiveDatabasePresence);
+            Assert.NotEmpty(manifest.AddTableList);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task DeployCommand_WhenManifestExpectsMissingDatabase_CreatesDatabaseAndAppliesSchema()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var cliPath = ResolveCliPath(repoRoot, Path.Combine("MetaSql", "Cli"), "meta-sql.dll");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var planPath = Path.Combine(tempRoot, "deploy-manifest");
+        var databaseName = $"MetaSqlMissingLiveDeploy_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            await CreateSourceWorkspaceWithExtraColumnAsync(sourcePath, databaseName);
+
+            var planCommand = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
+            Assert.Equal(0, planResult.ExitCode);
+            Assert.False(DatabaseExists(masterConnectionString, databaseName));
+
+            var deployCommand = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
+
+            Assert.Equal(0, deployResult.ExitCode);
+            Assert.True(DatabaseExists(masterConnectionString, databaseName));
+            Assert.True(TableExists(databaseConnectionString, "raw", "H_Customer"));
+            Assert.True(ColumnExists(databaseConnectionString, "raw", "H_Customer", "CustomerName"));
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task DeployCommand_WhenManifestExpectsMissingDatabase_RefusesIfDatabaseAlreadyExists()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var cliPath = ResolveCliPath(repoRoot, Path.Combine("MetaSql", "Cli"), "meta-sql.dll");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var planPath = Path.Combine(tempRoot, "deploy-manifest");
+        var databaseName = $"MetaSqlMissingLiveRefusal_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            await CreateSourceWorkspaceWithExtraColumnAsync(sourcePath, databaseName);
+
+            var planCommand = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
+            Assert.Equal(0, planResult.ExitCode);
+
+            CreateDatabase(masterConnectionString, databaseName);
+
+            var deployCommand = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
+
+            Assert.NotEqual(0, deployResult.ExitCode);
+            Assert.Contains("database already exists", deployResult.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.False(TableExists(databaseConnectionString, "raw", "H_Customer"));
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task DeployPlanCommand_WritesDeployableManifestForAddOnlyChanges()
     {
         var repoRoot = FindRepositoryRoot();
@@ -3761,6 +3921,16 @@ public sealed class CliDiffTests
         using var command = connection.CreateCommand();
         command.CommandText = sql;
         command.ExecuteNonQuery();
+    }
+
+    private static bool DatabaseExists(string masterConnectionString, string databaseName)
+    {
+        using var connection = new SqlConnection(masterConnectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = "SELECT CASE WHEN DB_ID(@DatabaseName) IS NULL THEN 0 ELSE 1 END;";
+        command.Parameters.AddWithValue("@DatabaseName", databaseName);
+        return Convert.ToInt32(command.ExecuteScalar()) == 1;
     }
 
     private static bool ColumnExists(string connectionString, string schemaName, string tableName, string columnName)

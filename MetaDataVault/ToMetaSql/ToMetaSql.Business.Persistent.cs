@@ -116,7 +116,7 @@ public static partial class Converter
         string sourceMetaDataTypeId,
         HashSet<string> reservedColumnNames,
         IEnumerable<(string Name, string Value)> details,
-        string isNullable = "")
+        string isNullable = "false")
     {
         if (string.IsNullOrWhiteSpace(sourceMetaDataTypeId))
         {

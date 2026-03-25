@@ -38,6 +38,14 @@ public sealed class SqlServerMetaSqlExtractor
 
         if (tableRows.Count == 0)
         {
+            if (request.AllowEmpty)
+            {
+                return SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
+                    request.NewWorkspacePath,
+                    databaseName,
+                    schemaFilter);
+            }
+
             var filterDescription = (schemaFilter, tableFilter) switch
             {
                 (null, null) => "any schema/table filter",
@@ -442,4 +450,5 @@ public sealed class SqlServerExtractRequest
     public string ConnectionString { get; set; } = string.Empty;
     public string? SchemaName { get; set; }
     public string? TableName { get; set; }
+    public bool AllowEmpty { get; set; }
 }

@@ -48,6 +48,7 @@ public sealed class MetaSqlDeployManifestService
     public MetaSqlDeployManifestBuildResult BuildManifest(
         Workspace sourceWorkspace,
         Workspace liveWorkspace,
+        MetaSqlLiveDatabasePresence liveDatabasePresence,
         IReadOnlyList<MetaSqlDifference> differences,
         string manifestName,
         string? targetDescription,
@@ -57,6 +58,7 @@ public sealed class MetaSqlDeployManifestService
         return engine.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            liveDatabasePresence,
             differences,
             manifestName,
             targetDescription,

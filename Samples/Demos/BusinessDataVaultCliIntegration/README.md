@@ -1,11 +1,6 @@
 # Business Data Vault CLI Integration
 
-This demo still shows CLI-based authoring of a sanctioned `MetaBusinessDataVault` workspace.
-
-What it no longer does:
-
-- it does not generate a `MetaSql` workspace
-- `meta-datavault-business generate-metasql` is currently a stub
+This demo shows CLI-based authoring of a sanctioned `MetaBusinessDataVault` workspace, generation of a current `MetaSql` workspace, and manifest-driven deployment to local SQL Server.
 
 ## Commands
 
@@ -29,6 +24,7 @@ cleanup.cmd
 
 ## Output
 
-- `Workspace`
-
-The script stops after authoring the Business Data Vault workspace and prints a note that `generate-metasql` is currently a stub.
+- `BusinessDataVaultCliIntegrationWorkspace`
+- `CurrentMetaSqlWorkspace`
+- `MetaSqlDeployManifest`
+- `MetaSqlVerifyManifest`

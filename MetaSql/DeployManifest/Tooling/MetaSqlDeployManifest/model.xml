@@ -111,6 +111,7 @@
     <Entity name="DeployManifest">
       <PropertyList>
         <Property name="CreatedUtc" />
+        <Property name="ExpectedLiveDatabasePresence" />
         <Property name="LiveInstanceFingerprint" />
         <Property name="Name" />
         <Property name="SourceInstanceFingerprint" />

@@ -41,6 +41,7 @@ internal sealed class ManifestPlanningEngine
     public MetaSqlDeployManifestBuildResult BuildManifest(
         Workspace sourceWorkspace,
         Workspace liveWorkspace,
+        MetaSqlLiveDatabasePresence liveDatabasePresence,
         IReadOnlyList<MetaSqlDifference> differences,
         string manifestName,
         string? targetDescription,
@@ -59,6 +60,7 @@ internal sealed class ManifestPlanningEngine
         {
             SourceWorkspace = sourceWorkspace,
             LiveWorkspace = liveWorkspace,
+            LiveDatabasePresence = liveDatabasePresence,
             Differences = differences,
             ManifestName = manifestName,
             TargetDescription = targetDescription,
@@ -73,6 +75,7 @@ internal sealed class ManifestPlanningEngine
             Name = manifestName,
             SourceInstanceFingerprint = MetaSqlInstanceFingerprint.Compute(sourceWorkspace),
             LiveInstanceFingerprint = MetaSqlInstanceFingerprint.Compute(liveWorkspace),
+            ExpectedLiveDatabasePresence = context.LiveDatabasePresence.ToString(),
             CreatedUtc = DateTime.UtcNow.ToString("O"),
             TargetDescription = targetDescription ?? string.Empty,
         };
