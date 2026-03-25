@@ -241,7 +241,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_ProjectsBusinessCommerceHelpersWorkspaceIntoSqlTables()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
         var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
 
         try
@@ -319,7 +319,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_ProjectsBusinessLinkVariantsWorkspaceIntoSqlTables()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultLinkVariants");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultLinkVariants");
         var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
 
         try
@@ -369,7 +369,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_PreservesBusinessDataTypeDetailsInProjectedColumns()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
         var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
 
         try
@@ -402,7 +402,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_PreservesBusinessLinkVariantSatelliteAttributeDetails()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultLinkVariants");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultLinkVariants");
         var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
 
         try
@@ -431,7 +431,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_CanSaveAndReloadProjectedSqlWorkspace()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var targetPath = Path.Combine(root, "MetaSql");
 
@@ -464,7 +464,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_LowersBusinessLogicalTypesToSanctionedSqlServerTypes()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
         var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
 
         try
@@ -495,7 +495,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_BusinessLogicalTypesUseSanctionedStaticTypeConversionInstance()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var workspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var workspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
         var targetPath = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"), "MetaSql");
 
         try
@@ -522,7 +522,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_BusinessPhysicalSqlServerTypesDoNotRequireConversionWorkspace()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "BusinessDataVault");
         var targetPath = Path.Combine(root, "MetaSql");
@@ -586,7 +586,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_BusinessFailsWhenLogicalTypeHasNoSanctionedDirectSqlServerLowering()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "BusinessDataVault");
         var targetPath = Path.Combine(root, "MetaSql");
@@ -617,7 +617,7 @@ public sealed class ConvertToMetaSqlTests
     public async Task ConvertAsync_BusinessFailsWhenSqlServerTypedValueIsNotSanctionedInMetaDataType()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault.Workspaces", "SampleBusinessDataVaultCommerceHelpers");
+        var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(root, "BusinessDataVault");
         var targetPath = Path.Combine(root, "MetaSql");
@@ -646,7 +646,7 @@ public sealed class ConvertToMetaSqlTests
 
     private static string GetImplementationWorkspacePath(string repoRoot)
     {
-        return Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        return Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "MetaDataVaultImplementation");
     }
 
     private static (int ExitCode, string Output) RunRawCli(string arguments)

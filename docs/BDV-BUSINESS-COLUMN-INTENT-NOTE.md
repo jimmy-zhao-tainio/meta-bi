@@ -82,7 +82,7 @@ Meaning:
 
 ### Pros
 - the model that causes the SQL column to exist also owns its physical declaration
-- `meta-datavault-business materialize-business` can produce a SQL-ready BDV workspace without guessing
+- downstream projection tooling can produce a SQL-ready BDV workspace without guessing
 - the future SQL emitter can be deterministic
 - this matches the existing `MetaSchema` pattern:
   - base `DataTypeId`

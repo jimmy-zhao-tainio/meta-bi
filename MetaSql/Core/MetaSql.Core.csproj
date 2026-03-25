@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
-    <ProjectReference Include="..\..\MetaSqlDeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj" />
+    <ProjectReference Include="..\DeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj" />
     <ProjectReference Include="..\Tooling\MetaSql.Tooling.csproj" />
   </ItemGroup>
 

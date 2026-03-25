@@ -13,7 +13,7 @@ set "SERVER_CONNECTION=Server=.;Integrated Security=true;TrustServerCertificate=
 set "SOURCE_CONNECTION=Server=.;Database=%SOURCE_DATABASE%;Integrated Security=true;TrustServerCertificate=true"
 set "SCHEMA_WORKSPACE=.\MetaSchemaWorkspace"
 set "RAW_WORKSPACE=.\RawDataVaultWorkspace"
-set "IMPLEMENTATION_WORKSPACE=%REPO_ROOT%\MetaDataVault.Workspaces\MetaDataVaultImplementation"
+set "IMPLEMENTATION_WORKSPACE=%REPO_ROOT%\MetaDataVault\Workspaces\MetaDataVaultImplementation"
 
 echo Source database: %SOURCE_DATABASE%
 echo Target database: %TARGET_DATABASE%

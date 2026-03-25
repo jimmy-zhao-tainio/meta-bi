@@ -32,7 +32,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataType.Instance", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Cli", "MetaSql\Cli\MetaSql.Cli.csproj", "{3671CC11-A94E-40CC-B34C-27E755EBA77A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSqlDeployManifest.Tooling", "MetaSqlDeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj", "{746307B0-49E9-49C5-A92D-6370BD02533B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSqlDeployManifest.Tooling", "MetaSql\DeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj", "{746307B0-49E9-49C5-A92D-6370BD02533B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

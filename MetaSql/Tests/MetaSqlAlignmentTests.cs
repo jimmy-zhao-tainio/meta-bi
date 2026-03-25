@@ -22,7 +22,7 @@ public sealed class MetaSqlAlignmentTests
             var sourceWorkspace = await Converter.ConvertAsync(
                 rawWorkspacePath,
                 sourceMetaSqlPath,
-                Path.Combine(repoRoot, "MetaDataVault.Workspaces", "MetaDataVaultImplementation"),
+                Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "MetaDataVaultImplementation"),
                 databaseName: "RawVault",
                 defaultSchemaName: "raw");
 

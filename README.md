@@ -97,129 +97,27 @@ Current canonical object families include:
 - foreign keys and foreign key columns
 - indexes and index columns
 
-## Current BI Weave and Fabric Example
+## Current Data Vault CLI Status
 
-Flat anchors:
-- `WeavesWeave-MetaBusiness-MetaBusinessDataVault`
-- `WeavesWeave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce`
-- `WeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce`
-
-Scoped seam:
-- `WeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
-- `FabricsFabric-Suggest-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
-- `FabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
-
-The current proved path is:
-
-- `BusinessHub.Name` -> `BusinessObject.Name` through flat weave
-- `BusinessLink.Name` -> `BusinessRelationship.Name` through flat weave
-- `BusinessLinkHub.RoleName` -> `BusinessRelationshipParticipant.RoleName` through fabric-scoped weave validation
-- `BusinessHubKeyPart.Name` -> `BusinessKeyPart.Name` through path-scoped fabric validation
-
-Current BI fabric samples therefore prove both:
-
-- shared-parent scope:
-  - `FabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce`
-- multi-hop path scope:
-  - `FabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce`
-## Current Business Data Vault Materialization
-
-The Data Vault tool family is now split into two CLIs:
+The Data Vault tool family is split into two CLIs:
 
 - `meta-datavault-raw`
 - `meta-datavault-business`
 
-Both CLIs bootstrap empty sanctioned workspaces directly with `--new-workspace <path>`.
+Both CLIs bootstrap empty sanctioned workspaces directly with `--new-workspace <path>`, and `meta-datavault-business` supports explicit `add-*` authoring commands for business vault structures.
 
-Examples:
+Legacy weave/fabric-based materialization commands and related sample workspaces were removed from the active repo direction.
 
-```cmd
-meta-datavault-raw --new-workspace C:\path\to\NewRawDataVault
-meta-datavault-business --new-workspace C:\path\to\NewBusinessDataVault
-```
-
-Business-only commands:
-
-- `check-business-materialization`
-- `materialize-business`
-- `generate-metasql` (currently a stub)
-- explicit `add-*` authoring commands for hubs, links, references, satellites, PITs, bridges, and their child rows
-
-Example authoring flow:
-
-```cmd
-meta-datavault-business --new-workspace C:\path\to\NewBusinessDataVault
-meta-datavault-business add-hub --workspace C:\path\to\NewBusinessDataVault --id Customer --name Customer
-meta-datavault-business add-hub-key-part --workspace C:\path\to\NewBusinessDataVault --id CustomerIdentifier --hub Customer --name Identifier --data-type-id meta:type:String --ordinal 1
-meta-datavault-business add-link --workspace C:\path\to\NewBusinessDataVault --id CustomerOrder --name CustomerOrder
-meta-datavault-business add-link-hub --workspace C:\path\to\NewBusinessDataVault --id CustomerOrderCustomer --link CustomerOrder --hub Customer --ordinal 1 --role-name Customer
-```
-
-Preflight:
-
-```cmd
-meta-datavault-business check-business-materialization --business-workspace C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart
-```
-
-```text
-OK: business datavault materialization contract
-Business Workspace: C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart
-BusinessDataVault Workspace: C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart
-Implementation Workspace: C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation
-Weaves: 4
-Fabrics: 2
-FlatAnchors: 2/2
-ScopedAnchors: 2/2
-```
-
-First-step materialization:
-
-```cmd
-meta-datavault-business materialize-business --business-workspace C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart --bdv-workspace C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart --implementation-workspace C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubObject-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkRelationship-Commerce-RepeatedKeyPart --weave-workspace C:pathtoWeavesWeave-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-HubKeyPart-KeyPart-Commerce --fabric-workspace C:pathtoFabricsFabric-Scoped-MetaBusiness-MetaBusinessDataVault-LinkHubParticipant-Commerce-RepeatedKeyPart --new-workspace C:pathtoOutputMaterializedBusinessDataVault
-```
-
-```text
-OK: business datavault materialized
-Business Workspace: C:pathtoMetaBusiness.WorkspacesSampleBusinessCommerceRepeatedKeyPart
-BusinessDataVault Workspace: C:pathtoMetaDataVault.WorkspacesSampleBusinessDataVaultCommerceRepeatedKeyPart
-Implementation Workspace: C:pathtoMetaDataVault.WorkspacesMetaDataVaultImplementation
-Path: C:pathtoOutputMaterializedBusinessDataVault
-Model: MetaBusinessDataVault
-MaterializedTables: 5
-BusinessHubs: 3
-BusinessLinks: 2
-BusinessHubSatellites: 0
-BusinessLinkSatellites: 0
-BusinessPointInTimes: 0
-BusinessBridges: 0
-```
-
-Current scope of `materialize-business`:
-
-- validates the sanctioned Business/BDV/Implementation/Weave/Fabric input set first
-- writes a new `MetaBusinessDataVault` workspace
-- applies the sanctioned implementation `TableNamePattern`s to BDV table-bearing rows
-- keeps semantic row `Id` values stable while physicalizing `Name`
-
-## Current Data Vault MetaSql Command Status
-
-`generate-metasql` is currently a stub in both Data Vault CLIs:
+`generate-metasql` remains a CLI stub in both Data Vault CLIs:
 
 - `meta-datavault-raw generate-metasql`
 - `meta-datavault-business generate-metasql`
 
-The old DataVault-to-Sql projection code has been removed. These commands stay in the CLI surface only as placeholders for future work and currently do not generate any `MetaSql` workspace.
+Active direction:
 
-Current active direction:
-
-- author and materialize sanctioned Data Vault workspaces
-- keep `MetaSql` as a sanctioned canonical SQL model in `MetaSql.Core`
-- reboot schema deployment from model-native `MetaSql`, not from the removed DV projection path
-
-See also:
-
-- `docs/META-DATAVAULT-MATERIALIZATION-NOTE.md`
-- `docs/BDV-BUSINESS-COLUMN-INTENT-NOTE.md`
+- author sanctioned Data Vault workspaces
+- project to sanctioned `MetaSql`
+- plan/deploy through the manifest-driven `MetaSql` pipeline
 
 
 

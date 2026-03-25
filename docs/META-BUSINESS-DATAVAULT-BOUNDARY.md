@@ -181,8 +181,6 @@ The minimum direct anchors are:
 - `BusinessLink` -> `BusinessRelationship`
 - `BusinessLinkHub` -> `BusinessRelationshipParticipant`
 
-See `docs/META-BUSINESS-BUSINESSDATAVAULT-WEAVE-NOTE.md` for the current contract and limitations.
-
 ### MetaDataVaultImplementation -> MetaBusinessDataVault
 
 Implementation details such as fixed mandatory technical column names should come from `MetaDataVaultImplementation`, not from this model.

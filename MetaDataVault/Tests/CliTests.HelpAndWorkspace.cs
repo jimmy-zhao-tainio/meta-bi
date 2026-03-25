@@ -84,36 +84,6 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public void CheckBusinessMaterialization_Help_ShowsRequiredOptions()
-    {
-        var result = RunBusinessCli("check-business-materialization --help");
-
-        Assert.Equal(0, result.ExitCode);
-        Assert.Contains("--business-workspace <path>", result.Output);
-        Assert.Contains("--bdv-workspace", result.Output);
-        Assert.Contains("--implementation-workspace <path>", result.Output);
-        Assert.Contains("--weave-workspace <path>", result.Output);
-        Assert.Contains("--fabric-workspace <path>", result.Output);
-        Assert.Contains("MetaBusinessDataVault", result.Output);
-        Assert.Contains("MetaFabric", result.Output);
-    }
-
-    [Fact]
-    public void MaterializeBusiness_Help_ShowsRequiredOptions()
-    {
-        var result = RunBusinessCli("materialize-business --help");
-
-        Assert.Equal(0, result.ExitCode);
-        Assert.Contains("--business-workspace <path>", result.Output);
-        Assert.Contains("--bdv-workspace", result.Output);
-        Assert.Contains("--implementation-workspace <path>", result.Output);
-        Assert.Contains("--weave-workspace <path>", result.Output);
-        Assert.Contains("--fabric-workspace <path>", result.Output);
-        Assert.Contains("--new-workspace <path>", result.Output);
-        Assert.Contains("table name patterns", result.Output, StringComparison.OrdinalIgnoreCase);
-    }
-
-    [Fact]
     public void BusinessGenerateMetaSql_Help_ShowsRequiredOptions()
     {
         var result = RunBusinessCli("generate-metasql --help");

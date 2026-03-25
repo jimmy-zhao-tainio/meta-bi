@@ -496,7 +496,7 @@ public sealed partial class CliTests
 
     private static string GetRawImplementationWorkspacePath()
     {
-        return Path.Combine(FindRepositoryRoot(), "MetaDataVault.Workspaces", "MetaDataVaultImplementation");
+        return Path.Combine(FindRepositoryRoot(), "MetaDataVault", "Workspaces", "MetaDataVaultImplementation");
     }
 
     private static void TryKillProcessTree(Process process)
