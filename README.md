@@ -25,7 +25,6 @@ Additional foundation packages available from the same internal feed when BI pro
 
 - `Meta.Adapters`
 - `MetaWeave.Core`
-- `MetaFabric.Core`
 
 Before restore/build, add a package source that points at the packed output from `meta`:
 
@@ -65,6 +64,7 @@ MetaBi.Installerbinpublishwin-x64install-meta-bi.exe
 The long-term repo boundary is:
 
 - `meta`: generic foundation (`Meta.Core`, `meta`, `MetaWeave`, `meta-weave`, `MetaFabric`, `meta-fabric`, generic metamodels)
+- `meta`: generic foundation (`Meta.Core`, `meta`, `MetaWeave`, `meta-weave`, generic metamodels)
 - `meta-bi`: sanctioned BI models and BI-specific CLIs/tooling
 
 ## Included solution files
