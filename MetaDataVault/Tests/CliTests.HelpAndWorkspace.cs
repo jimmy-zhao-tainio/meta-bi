@@ -92,16 +92,16 @@ public sealed partial class CliTests
         Assert.Contains("--workspace <path>", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--database-name <name>", result.Output);
-        Assert.Contains("--schema <name>", result.Output);
         Assert.Contains("--out <path>", result.Output);
         Assert.Contains("current sanctioned MetaBusinessDataVault workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Target schema comes from the sanctioned MetaDataVaultImplementation workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Does not query any live database", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
     public void BusinessGenerateMetaSql_RequiresDatabaseName()
     {
-        var result = RunBusinessCli("generate-metasql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --schema bdv --out C:\\temp\\sql");
+        var result = RunBusinessCli("generate-metasql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
 
         Assert.Equal(1, result.ExitCode);
         Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -116,16 +116,16 @@ public sealed partial class CliTests
         Assert.Contains("--workspace <path>", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--database-name <name>", result.Output);
-        Assert.Contains("--schema <name>", result.Output);
         Assert.Contains("--out <path>", result.Output);
         Assert.Contains("current sanctioned MetaRawDataVault workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Target schema comes from the sanctioned MetaDataVaultImplementation workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Does not query any live database", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
     public void GenerateMetaSql_RequiresDatabaseName()
     {
-        var result = RunRawCli("generate-metasql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --schema raw --out C:\\temp\\sql");
+        var result = RunRawCli("generate-metasql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
 
         Assert.Equal(1, result.ExitCode);
         Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);

@@ -74,8 +74,6 @@ internal sealed class MetaSqlDeployExecutionEngine
             {
                 NewWorkspacePath = liveWorkspacePath,
                 ConnectionString = request.ConnectionString,
-                SchemaName = request.SchemaName,
-                TableName = request.TableName,
                 AllowEmpty = true,
             });
             MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));

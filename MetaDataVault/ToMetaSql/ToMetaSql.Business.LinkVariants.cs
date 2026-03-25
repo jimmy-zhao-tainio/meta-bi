@@ -35,6 +35,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                businessSameAsLinkImplementation.SchemaName,
                 ApplyPattern(businessSameAsLinkImplementation.TableNamePattern, ("Name", link.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -131,6 +132,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                businessSameAsLinkSatelliteImplementation.SchemaName,
                 ApplyPattern(
                     businessSameAsLinkSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessSameAsLink.Name),
@@ -226,6 +228,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                businessHierarchicalLinkImplementation.SchemaName,
                 ApplyPattern(businessHierarchicalLinkImplementation.TableNamePattern, ("Name", link.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -322,6 +325,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                businessHierarchicalLinkSatelliteImplementation.SchemaName,
                 ApplyPattern(
                     businessHierarchicalLinkSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessHierarchicalLink.Name),

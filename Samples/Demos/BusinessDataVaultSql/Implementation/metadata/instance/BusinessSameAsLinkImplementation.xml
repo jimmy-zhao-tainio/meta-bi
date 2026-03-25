@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessSameAsLinkImplementationList>
     <BusinessSameAsLinkImplementation Id="default-business-same-as-link">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BSAL_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
@@ -19,3 +20,4 @@
     </BusinessSameAsLinkImplementation>
   </BusinessSameAsLinkImplementationList>
 </MetaDataVaultImplementation>
+

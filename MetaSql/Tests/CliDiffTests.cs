@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Xml.Linq;
 using Microsoft.Data.SqlClient;
 using MetaSql;
@@ -34,6 +34,8 @@ public sealed class CliDiffTests
         Assert.Contains("--approve-drop-table", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-column", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-truncate-column", result.Output, StringComparison.Ordinal);
+        Assert.DoesNotContain("--schema", result.Output, StringComparison.Ordinal);
+        Assert.DoesNotContain("--table", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("[--with-data-drop]", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("[--with-data-truncate]", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--with-drop", result.Output, StringComparison.Ordinal);
@@ -62,6 +64,8 @@ public sealed class CliDiffTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Command: deploy", result.Output, StringComparison.Ordinal);
         Assert.Contains("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>", result.Output, StringComparison.Ordinal);
+        Assert.DoesNotContain("--schema", result.Output, StringComparison.Ordinal);
+        Assert.DoesNotContain("--table", result.Output, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -84,7 +88,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -101,6 +105,7 @@ public sealed class CliDiffTests
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             var root = Assert.Single(manifest.DeployManifestList);
             Assert.Equal("Missing", root.ExpectedLiveDatabasePresence);
+            Assert.Single(manifest.AddSchemaList);
             Assert.NotEmpty(manifest.AddTableList);
         }
         finally
@@ -130,7 +135,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -142,10 +147,13 @@ public sealed class CliDiffTests
             Assert.Equal(0, planResult.ExitCode);
             Assert.False(DatabaseExists(masterConnectionString, databaseName));
 
+            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
+            Assert.Single(manifest.AddSchemaList);
+
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -157,6 +165,7 @@ public sealed class CliDiffTests
 
             Assert.Equal(0, deployResult.ExitCode);
             Assert.True(DatabaseExists(masterConnectionString, databaseName));
+            Assert.True(SchemaExists(databaseConnectionString, "raw"));
             Assert.True(TableExists(databaseConnectionString, "raw", "H_Customer"));
             Assert.True(ColumnExists(databaseConnectionString, "raw", "H_Customer", "CustomerName"));
         }
@@ -187,7 +196,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -203,7 +212,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -216,6 +225,50 @@ public sealed class CliDiffTests
             Assert.NotEqual(0, deployResult.ExitCode);
             Assert.Contains("database already exists", deployResult.Output, StringComparison.OrdinalIgnoreCase);
             Assert.False(TableExists(databaseConnectionString, "raw", "H_Customer"));
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task DeployPlanCommand_WhenDatabaseExistsWithoutFilteredSchema_PlansAddSchema()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var cliPath = ResolveCliPath(repoRoot, Path.Combine("MetaSql", "Cli"), "meta-sql.dll");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var outputPath = Path.Combine(tempRoot, "deploy-manifest");
+        var databaseName = $"MetaSqlMissingSchemaPlan_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            CreateDatabase(masterConnectionString, databaseName);
+            await CreateSourceWorkspaceWithExtraColumnAsync(sourcePath, databaseName);
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
+
+            Assert.Equal(0, result.ExitCode);
+            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            var root = Assert.Single(manifest.DeployManifestList);
+            Assert.Equal("Present", root.ExpectedLiveDatabasePresence);
+            Assert.Single(manifest.AddSchemaList);
         }
         finally
         {
@@ -245,7 +298,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -291,7 +344,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -342,7 +395,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --with-data-drop --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --with-data-drop --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -390,7 +443,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -442,7 +495,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --approve-drop-table raw.Parent --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-drop-table raw.Parent --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -488,7 +541,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --approve-drop-table raw.NotParent --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-drop-table raw.NotParent --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -557,7 +610,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkIndexCase --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -650,7 +703,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --approve-drop-table raw.LegacyOnly --approve-drop-column raw.ActiveCase.LegacyCol --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-drop-table raw.LegacyOnly --approve-drop-column raw.ActiveCase.LegacyCol --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -696,7 +749,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -740,7 +793,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -786,7 +839,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -799,7 +852,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -839,7 +892,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -853,7 +906,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -893,7 +946,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -907,7 +960,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -960,7 +1013,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkReplaceCase --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1016,7 +1069,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1034,7 +1087,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1087,7 +1140,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkClusteredCase --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1141,7 +1194,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkReplaceCase --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1197,7 +1250,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1253,7 +1306,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkClusteredCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1266,7 +1319,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkClusteredCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1317,7 +1370,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkReplaceCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1331,7 +1384,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkReplaceCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1387,7 +1440,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1401,7 +1454,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1452,7 +1505,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexReplaceCase --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1505,7 +1558,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexClusteredCase --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1559,7 +1612,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexReplaceCase --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1613,7 +1666,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexClusteredCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1626,7 +1679,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexClusteredCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1675,7 +1728,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexReplaceCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1689,7 +1742,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexReplaceCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1738,7 +1791,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexRollbackCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1752,7 +1805,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexRollbackCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1794,7 +1847,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1840,7 +1893,7 @@ public sealed class CliDiffTests
             var startInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{outputPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{outputPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1887,7 +1940,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1901,7 +1954,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1917,7 +1970,7 @@ public sealed class CliDiffTests
             var verifyCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{verifyPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{verifyPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1958,7 +2011,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -1971,7 +2024,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2011,7 +2064,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2025,7 +2078,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2076,7 +2129,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table VarcharCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2090,7 +2143,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table VarcharCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2140,7 +2193,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table VarcharCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2194,7 +2247,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table VarcharCase --approve-truncate-column raw.VarcharCase.ValueCol --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-truncate-column raw.VarcharCase.ValueCol --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2214,7 +2267,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table VarcharCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2266,7 +2319,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table NullableCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2318,7 +2371,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table NullableCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2332,7 +2385,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table NullableCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2382,7 +2435,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table DecimalCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2434,7 +2487,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table VarcharCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2491,7 +2544,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table ExprCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2549,7 +2602,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2607,7 +2660,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkAlterCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2628,7 +2681,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table PkAlterCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2694,7 +2747,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2714,7 +2767,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2776,7 +2829,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexCase --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2796,7 +2849,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexCase",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2856,7 +2909,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table IndexCaseClustered --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2907,7 +2960,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table H_Customer --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2927,7 +2980,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --table H_Customer",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2971,7 +3024,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePlannedPath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePlannedPath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2984,7 +3037,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourceDifferentPath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourceDifferentPath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -3024,7 +3077,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -3039,7 +3092,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -3079,7 +3132,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -3094,7 +3147,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -3136,7 +3189,7 @@ public sealed class CliDiffTests
             var planCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw --approve-drop-table raw.Parent --out \"{planPath}\"",
+                Arguments = $"\"{cliPath}\" deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-drop-table raw.Parent --out \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -3152,7 +3205,7 @@ public sealed class CliDiffTests
             var deployCommand = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --schema raw",
+                Arguments = $"\"{cliPath}\" deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -4045,6 +4098,21 @@ public sealed class CliDiffTests
             """;
         command.Parameters.AddWithValue("@SchemaName", schemaName);
         command.Parameters.AddWithValue("@TableName", tableName);
+        var value = command.ExecuteScalar();
+        return Convert.ToInt32(value) > 0;
+    }
+
+    private static bool SchemaExists(string connectionString, string schemaName)
+    {
+        using var connection = new SqlConnection(connectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            SELECT COUNT(*)
+            FROM sys.schemas AS s
+            WHERE s.name = @SchemaName;
+            """;
+        command.Parameters.AddWithValue("@SchemaName", schemaName);
         var value = command.ExecuteScalar();
         return Convert.ToInt32(value) > 0;
     }

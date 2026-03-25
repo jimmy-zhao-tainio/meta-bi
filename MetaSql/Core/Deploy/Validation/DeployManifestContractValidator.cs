@@ -25,6 +25,7 @@ internal sealed class DeployManifestContractValidator
         "AddIndex",
         "DropIndex",
         "ReplaceIndex",
+        "AddSchema",
         "BlockTableDifference",
         "BlockTableColumnDifference",
         "BlockPrimaryKeyDifference",

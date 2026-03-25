@@ -40,10 +40,14 @@ public sealed class SqlServerMetaSqlExtractor
         {
             if (request.AllowEmpty)
             {
+                var schemaRows = LoadSchemas(connection, schemaFilter)
+                    .OrderBy(row => row, StringComparer.OrdinalIgnoreCase)
+                    .ThenBy(row => row, StringComparer.Ordinal)
+                    .ToList();
                 return SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
                     request.NewWorkspacePath,
                     databaseName,
-                    schemaFilter);
+                    schemaRows);
             }
 
             var filterDescription = (schemaFilter, tableFilter) switch
@@ -104,6 +108,28 @@ public sealed class SqlServerMetaSqlExtractor
             foreignKeyColumnsByTableKey,
             indexesByTableKey,
             indexColumnsByTableKey);
+    }
+
+    private static List<string> LoadSchemas(SqlConnection connection, string? schemaName)
+    {
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            select
+                s.name
+            from sys.schemas s
+            where (@schemaName is null or s.name = @schemaName)
+            order by s.name
+            """;
+        command.Parameters.Add(new SqlParameter("@schemaName", SqlDbType.NVarChar, 128) { Value = string.IsNullOrWhiteSpace(schemaName) ? DBNull.Value : schemaName });
+
+        var rows = new List<string>();
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            rows.Add(reader.GetString(0));
+        }
+
+        return rows;
     }
 
     private static List<SqlServerMetaSqlProjector.TableRow> LoadTables(SqlConnection connection, string? schemaName, string? tableName)

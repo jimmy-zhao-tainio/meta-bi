@@ -27,6 +27,25 @@ internal sealed class AddedTableDependencyExpansionService
             return current;
         }
 
+        var liveSchemaIds = context.LiveWorkspace.Instance.GetOrCreateEntityRecords("Schema")
+            .Select(row => row.Id)
+            .ToHashSet(StringComparer.Ordinal);
+        var addedSchemaIds = model.AddSchemaList
+            .Select(row => row.SourceSchemaId)
+            .ToHashSet(StringComparer.Ordinal);
+        foreach (var sourceTable in context.SourceWorkspace.Instance.GetOrCreateEntityRecords("Table")
+                     .Where(row => addedTableIds.Contains(row.Id))
+                     .OrderBy(row => row.Id, StringComparer.Ordinal))
+        {
+            var sourceSchemaId = sourceTable.RelationshipIds["SchemaId"];
+            if (liveSchemaIds.Contains(sourceSchemaId) || !addedSchemaIds.Add(sourceSchemaId))
+            {
+                continue;
+            }
+
+            current.AddCount += manifestEntryFactory.AddSchemaEntry(model, root, sourceSchemaId);
+        }
+
         var primaryKeyIds = model.AddPrimaryKeyList
             .Select(row => row.SourcePrimaryKeyId)
             .ToHashSet(StringComparer.Ordinal);

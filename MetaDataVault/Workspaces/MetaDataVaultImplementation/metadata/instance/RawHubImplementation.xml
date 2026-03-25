@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawHubImplementationList>
     <RawHubImplementation Id="default-raw-hub">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>H_{Name}</TableNamePattern>
       <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
@@ -18,3 +19,4 @@
     </RawHubImplementation>
   </RawHubImplementationList>
 </MetaDataVaultImplementation>
+

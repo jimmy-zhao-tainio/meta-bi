@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessHubImplementationList>
     <BusinessHubImplementation Id="default-business-hub">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BH_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>

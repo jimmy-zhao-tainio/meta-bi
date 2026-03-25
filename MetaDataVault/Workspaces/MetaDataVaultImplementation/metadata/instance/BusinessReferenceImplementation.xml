@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessReferenceImplementationList>
     <BusinessReferenceImplementation Id="default-business-reference">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>REF_{Name}</TableNamePattern>
       <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
@@ -18,3 +19,4 @@
     </BusinessReferenceImplementation>
   </BusinessReferenceImplementationList>
 </MetaDataVaultImplementation>
+

@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawLinkSatelliteImplementationList>
     <RawLinkSatelliteImplementation Id="default-raw-link-satellite">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>LS_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>

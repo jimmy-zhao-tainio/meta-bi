@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessReferenceImplementationList>
     <BusinessReferenceImplementation Id="default-business-reference">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>REF_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
@@ -17,3 +18,4 @@
     </BusinessReferenceImplementation>
   </BusinessReferenceImplementationList>
 </MetaDataVaultImplementation>
+

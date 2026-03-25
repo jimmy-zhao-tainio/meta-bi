@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessSameAsLinkImplementationList>
     <BusinessSameAsLinkImplementation Id="default-business-same-as-link">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BSAL_{Name}</TableNamePattern>
       <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <PrimaryHubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</PrimaryHubForeignKeyNamePattern>
@@ -22,3 +23,4 @@
     </BusinessSameAsLinkImplementation>
   </BusinessSameAsLinkImplementationList>
 </MetaDataVaultImplementation>
+

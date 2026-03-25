@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessReferenceSatelliteImplementationList>
     <BusinessReferenceSatelliteImplementation Id="default-business-reference-satellite">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>RSAT_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>ReferenceHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
@@ -20,3 +21,4 @@
     </BusinessReferenceSatelliteImplementation>
   </BusinessReferenceSatelliteImplementationList>
 </MetaDataVaultImplementation>
+

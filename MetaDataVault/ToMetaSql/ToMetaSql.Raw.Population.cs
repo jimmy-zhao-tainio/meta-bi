@@ -32,6 +32,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                rawHubImplementation.SchemaName,
                 ApplyPattern(rawHubImplementation.TableNamePattern, ("Name", hub.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -94,6 +95,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                rawHubSatelliteImplementation.SchemaName,
                 ApplyPattern(
                     rawHubSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.RawHub.Name),
@@ -173,6 +175,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                rawLinkImplementation.SchemaName,
                 ApplyPattern(rawLinkImplementation.TableNamePattern, ("Name", link.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -252,6 +255,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                rawLinkSatelliteImplementation.SchemaName,
                 ApplyPattern(
                     rawLinkSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.RawLink.Name),
@@ -339,17 +343,22 @@ public static partial class Converter
         return rows[0];
     }
 
-    private static Table AddTable(ConversionContext context, string name)
+    private static Table AddTable(ConversionContext context, string schemaName, string name)
     {
-        var id = $"{context.DefaultSchema.Id}.{name}";
+        if (!context.SchemasByName.TryGetValue(schemaName, out var schema))
+        {
+            throw new InvalidOperationException($"Projected schema '{schemaName}' is not present in conversion context.");
+        }
+
+        var id = $"{schema.Id}.{name}";
         EnsureUniqueId(context.MetaSql.TableList.Select(row => row.Id), id, "table");
 
         var table = new Table
         {
             Id = id,
             Name = name,
-            SchemaId = context.DefaultSchema.Id,
-            Schema = context.DefaultSchema,
+            SchemaId = schema.Id,
+            Schema = schema,
         };
 
         context.MetaSql.TableList.Add(table);

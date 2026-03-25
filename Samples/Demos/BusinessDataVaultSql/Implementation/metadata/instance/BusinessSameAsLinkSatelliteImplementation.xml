@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessSameAsLinkSatelliteImplementationList>
     <BusinessSameAsLinkSatelliteImplementation Id="default-business-same-as-link-satellite">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BSALS_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
@@ -20,3 +21,4 @@
     </BusinessSameAsLinkSatelliteImplementation>
   </BusinessSameAsLinkSatelliteImplementationList>
 </MetaDataVaultImplementation>
+

@@ -53,8 +53,12 @@ namespace MetaDataVaultImplementation
         [XmlElement("RecordSourceLength")]
         public string RecordSourceLength { get; set; } = string.Empty;
 
+        [XmlElement("SchemaName")]
+        public string SchemaName { get; set; } = string.Empty;
+
         [XmlElement("TableNamePattern")]
         public string TableNamePattern { get; set; } = string.Empty;
 
     }
 }
+

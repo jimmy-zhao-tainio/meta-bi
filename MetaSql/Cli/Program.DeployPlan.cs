@@ -44,8 +44,7 @@ internal static partial class Program
             {
                 liveWorkspace = SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
                     liveRuntimePath,
-                    SqlServerDatabaseRuntime.RequireDatabaseName(parse.ConnectionString),
-                    parse.SchemaName);
+                    SqlServerDatabaseRuntime.RequireDatabaseName(parse.ConnectionString));
             }
             else
             {
@@ -54,8 +53,6 @@ internal static partial class Program
                 {
                     NewWorkspacePath = liveRuntimePath,
                     ConnectionString = parse.ConnectionString,
-                    SchemaName = parse.SchemaName,
-                    TableName = parse.TableName,
                     AllowEmpty = true,
                 });
             }
@@ -77,7 +74,7 @@ internal static partial class Program
                 liveDatabasePresence,
                 differences,
                 manifestName: "DeployManifest",
-                targetDescription: BuildTargetDescription(parse.SchemaName, parse.TableName),
+                targetDescription: BuildTargetDescription(),
                 feasibilityBlockers: feasibilityBlockers,
                 destructiveApprovals: parse.DestructiveApprovals);
             await manifest.ManifestModel.SaveToXmlWorkspaceAsync(outputPath).ConfigureAwait(false);
@@ -108,7 +105,7 @@ internal static partial class Program
         {
             return Fail(
                 "deploy-plan failed.",
-                "check the source workspace, connection string, and any schema/table filters, then retry.",
+                "check the source workspace and connection string, then retry.",
                 4,
                 new[]
                 {
@@ -123,13 +120,7 @@ internal static partial class Program
         }
     }
 
-    private static string BuildTargetDescription(string? schemaName, string? tableName)
-    {
-        var scope = string.IsNullOrWhiteSpace(schemaName) && string.IsNullOrWhiteSpace(tableName)
-            ? "(all)"
-            : $"{schemaName ?? "*"}:{tableName ?? "*"}";
-        return $"Scope={scope}";
-    }
+    private static string BuildTargetDescription() => "Scope=(all)";
 
     private static List<string> RenderManifestIssues(
         MetaSqlDeployManifest.MetaSqlDeployManifestModel manifestModel,
@@ -182,10 +173,11 @@ internal static partial class Program
     private static void PrintDeployPlanHelp()
     {
         Presenter.WriteInfo("Command: deploy-plan");
-        Presenter.WriteUsage("meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--schema <name>] [--table <name>] [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]");
+        Presenter.WriteUsage("meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Loads the source MetaSql workspace.");
         Presenter.WriteInfo("  Extracts the live SQL Server schema to MetaSql.");
+        Presenter.WriteInfo("  Always plans against the full source workspace and full live database. Filtered subset deploy is not supported.");
         Presenter.WriteInfo("  Creates a deploy manifest with Add/Drop/Truncate/Alter/Replace/Block entries.");
         Presenter.WriteInfo("  DataDropTable and DataDropColumn require exact object-scoped approvals.");
         Presenter.WriteInfo("  DataTruncationColumn requires exact object-scoped approval.");

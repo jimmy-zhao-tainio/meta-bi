@@ -16,7 +16,7 @@ public sealed partial class CliTests
         try
         {
             var result = RunRawCli(
-                $"generate-metasql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"RawGenerateMetaSqlTest\" --schema dbo --out \"{outputWorkspacePath}\"");
+                $"generate-metasql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"RawGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("raw metasql generated", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -44,7 +44,7 @@ public sealed partial class CliTests
         try
         {
             var result = RunBusinessCli(
-                $"generate-metasql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"BusinessGenerateMetaSqlTest\" --schema dbo --out \"{outputWorkspacePath}\"");
+                $"generate-metasql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"BusinessGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("business metasql generated", result.Output, StringComparison.OrdinalIgnoreCase);

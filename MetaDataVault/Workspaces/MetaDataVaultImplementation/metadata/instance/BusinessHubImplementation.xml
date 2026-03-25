@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessHubImplementationList>
     <BusinessHubImplementation Id="default-business-hub">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BH_{Name}</TableNamePattern>
       <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
@@ -18,3 +19,4 @@
     </BusinessHubImplementation>
   </BusinessHubImplementationList>
 </MetaDataVaultImplementation>
+

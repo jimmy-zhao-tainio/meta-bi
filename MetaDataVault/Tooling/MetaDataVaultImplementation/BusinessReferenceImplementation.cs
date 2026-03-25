@@ -50,8 +50,12 @@ namespace MetaDataVaultImplementation
         public string RecordSourceLength { get; set; } = string.Empty;
         public bool ShouldSerializeRecordSourceLength() => !string.IsNullOrWhiteSpace(RecordSourceLength);
 
+        [XmlElement("SchemaName")]
+        public string SchemaName { get; set; } = string.Empty;
+
         [XmlElement("TableNamePattern")]
         public string TableNamePattern { get; set; } = string.Empty;
 
     }
 }
+

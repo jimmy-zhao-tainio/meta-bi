@@ -229,6 +229,7 @@ namespace MetaDataVaultImplementation
                 row.RootHashKeyColumnName = RequireText(row.RootHashKeyColumnName, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RootHashKeyColumnName'.");
                 row.RootHashKeyDataTypeId = RequireText(row.RootHashKeyDataTypeId, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RootHashKeyDataTypeId'.");
                 row.RootHashKeyLength = RequireText(row.RootHashKeyLength, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RootHashKeyLength'.");
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -255,6 +256,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessHierarchicalLinkImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessHierarchicalLinkImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -280,6 +282,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessHierarchicalLinkSatelliteImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessHierarchicalLinkSatelliteImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -302,6 +305,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessHubImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessHubImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -327,6 +331,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessHubSatelliteImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessHubSatelliteImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -351,6 +356,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessLinkImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessLinkImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -376,6 +382,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessLinkSatelliteImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessLinkSatelliteImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -398,6 +405,7 @@ namespace MetaDataVaultImplementation
                 row.SnapshotTimestampColumnName = RequireText(row.SnapshotTimestampColumnName, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SnapshotTimestampColumnName'.");
                 row.SnapshotTimestampDataTypeId = RequireText(row.SnapshotTimestampDataTypeId, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SnapshotTimestampDataTypeId'.");
                 row.SnapshotTimestampPrecision = RequireText(row.SnapshotTimestampPrecision, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SnapshotTimestampPrecision'.");
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -420,6 +428,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessReferenceImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessReferenceImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -445,6 +454,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessReferenceSatelliteImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessReferenceSatelliteImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -471,6 +481,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessSameAsLinkImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessSameAsLinkImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -496,6 +507,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName ??= string.Empty;
                 row.RecordSourceDataTypeId ??= string.Empty;
                 row.RecordSourceLength ??= string.Empty;
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessSameAsLinkSatelliteImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessSameAsLinkSatelliteImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -518,6 +530,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName = RequireText(row.RecordSourceColumnName, $"Entity 'RawHubImplementation' row '{row.Id}' is missing required property 'RecordSourceColumnName'.");
                 row.RecordSourceDataTypeId = RequireText(row.RecordSourceDataTypeId, $"Entity 'RawHubImplementation' row '{row.Id}' is missing required property 'RecordSourceDataTypeId'.");
                 row.RecordSourceLength = RequireText(row.RecordSourceLength, $"Entity 'RawHubImplementation' row '{row.Id}' is missing required property 'RecordSourceLength'.");
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'RawHubImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'RawHubImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -543,6 +556,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName = RequireText(row.RecordSourceColumnName, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceColumnName'.");
                 row.RecordSourceDataTypeId = RequireText(row.RecordSourceDataTypeId, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceDataTypeId'.");
                 row.RecordSourceLength = RequireText(row.RecordSourceLength, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceLength'.");
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'RawHubSatelliteImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -567,6 +581,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName = RequireText(row.RecordSourceColumnName, $"Entity 'RawLinkImplementation' row '{row.Id}' is missing required property 'RecordSourceColumnName'.");
                 row.RecordSourceDataTypeId = RequireText(row.RecordSourceDataTypeId, $"Entity 'RawLinkImplementation' row '{row.Id}' is missing required property 'RecordSourceDataTypeId'.");
                 row.RecordSourceLength = RequireText(row.RecordSourceLength, $"Entity 'RawLinkImplementation' row '{row.Id}' is missing required property 'RecordSourceLength'.");
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'RawLinkImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'RawLinkImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -592,6 +607,7 @@ namespace MetaDataVaultImplementation
                 row.RecordSourceColumnName = RequireText(row.RecordSourceColumnName, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceColumnName'.");
                 row.RecordSourceDataTypeId = RequireText(row.RecordSourceDataTypeId, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceDataTypeId'.");
                 row.RecordSourceLength = RequireText(row.RecordSourceLength, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'RecordSourceLength'.");
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'RawLinkSatelliteImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -684,3 +700,4 @@ namespace MetaDataVaultImplementation
         }
     }
 }
+

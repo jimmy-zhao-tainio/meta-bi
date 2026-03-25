@@ -61,6 +61,23 @@ internal sealed class ManifestEntryFactory
         }
     }
 
+    public int AddSchemaEntry(MetaSqlDeployManifestModel model, DeployManifest root, string sourceSchemaId)
+    {
+        if (string.IsNullOrWhiteSpace(sourceSchemaId))
+        {
+            throw new InvalidOperationException("AddSchema requires SourceSchemaId.");
+        }
+
+        model.AddSchemaList.Add(new AddSchema
+        {
+            Id = $"AddSchema:{sourceSchemaId}",
+            SourceSchemaId = sourceSchemaId,
+            DeployManifestId = root.Id,
+            DeployManifest = root,
+        });
+        return 1;
+    }
+
     public int DropEntry(MetaSqlDeployManifestModel model, DeployManifest root, MetaSqlDifference difference)
     {
         switch (difference.ObjectKind)

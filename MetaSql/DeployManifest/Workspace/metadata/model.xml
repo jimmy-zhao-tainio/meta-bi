@@ -72,6 +72,14 @@
         <Relationship entity="DeployManifest" />
       </RelationshipList>
     </Entity>
+    <Entity name="AddSchema">
+      <PropertyList>
+        <Property name="SourceSchemaId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
     <Entity name="DropPrimaryKey">
       <PropertyList>
         <Property name="LivePrimaryKeyId" />

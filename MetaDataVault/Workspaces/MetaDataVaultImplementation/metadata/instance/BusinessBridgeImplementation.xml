@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessBridgeImplementationList>
     <BusinessBridgeImplementation Id="default-business-bridge">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BR_{Name}</TableNamePattern>
       <AnchorHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</AnchorHubForeignKeyNamePattern>
       <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
@@ -26,3 +27,4 @@
     </BusinessBridgeImplementation>
   </BusinessBridgeImplementationList>
 </MetaDataVaultImplementation>
+

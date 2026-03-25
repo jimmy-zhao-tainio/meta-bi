@@ -23,34 +23,33 @@ public sealed class MetaSqlAlignmentTests
                 rawWorkspacePath,
                 sourceMetaSqlPath,
                 Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "MetaDataVaultImplementation"),
-                databaseName: "RawVault",
-                defaultSchemaName: "raw");
+                databaseName: "RawVault");
 
             var liveWorkspace = SqlServerMetaSqlProjector.Project(
                 newWorkspacePath: liveMetaSqlPath,
                 databaseName: "RawVault",
                 tableRows:
                 [
-                    new SqlServerMetaSqlProjector.TableRow("raw", "H_Customer")
+                    new SqlServerMetaSqlProjector.TableRow("dbo", "H_Customer")
                 ],
                 columnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ColumnRow>>(StringComparer.OrdinalIgnoreCase)
                 {
-                    ["raw.H_Customer"] =
+                    ["dbo.H_Customer"] =
                     [
-                        new("raw", "H_Customer", "HashKey", 1, false, "binary", 16, null, null),
-                        new("raw", "H_Customer", "CustomerId", 2, false, "nvarchar", 50, null, null),
-                        new("raw", "H_Customer", "LoadTimestamp", 3, false, "datetime2", null, 7, null),
-                        new("raw", "H_Customer", "RecordSource", 4, false, "nvarchar", 256, null, null),
-                        new("raw", "H_Customer", "AuditId", 5, false, "int", null, null, null),
+                        new("dbo", "H_Customer", "HashKey", 1, false, "binary", 16, null, null),
+                        new("dbo", "H_Customer", "CustomerId", 2, false, "nvarchar", 50, null, null),
+                        new("dbo", "H_Customer", "LoadTimestamp", 3, false, "datetime2", null, 7, null),
+                        new("dbo", "H_Customer", "RecordSource", 4, false, "nvarchar", 256, null, null),
+                        new("dbo", "H_Customer", "AuditId", 5, false, "int", null, null, null),
                     ],
                 },
                 primaryKeysByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.PrimaryKeyRow>>(StringComparer.OrdinalIgnoreCase)
                 {
-                    ["raw.H_Customer"] = [new("PK_H_Customer", false)],
+                    ["dbo.H_Customer"] = [new("PK_H_Customer", false)],
                 },
                 primaryKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.PrimaryKeyColumnRow>>(StringComparer.OrdinalIgnoreCase)
                 {
-                    ["raw.H_Customer"] = [new("PK_H_Customer", 1, "HashKey", false)],
+                    ["dbo.H_Customer"] = [new("PK_H_Customer", 1, "HashKey", false)],
                 },
                 foreignKeysByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyRow>>(StringComparer.OrdinalIgnoreCase),
                 foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),

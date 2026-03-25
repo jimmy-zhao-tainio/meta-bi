@@ -8,7 +8,7 @@ public static class SqlServerMetaSqlWorkspaceFactory
     public static Workspace CreateEmptyWorkspace(
         string newWorkspacePath,
         string databaseName,
-        string? schemaName = null)
+        IEnumerable<string>? schemaNames = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(databaseName);
@@ -22,8 +22,13 @@ public static class SqlServerMetaSqlWorkspaceFactory
         };
         model.DatabaseList.Add(database);
 
-        if (!string.IsNullOrWhiteSpace(schemaName))
+        foreach (var schemaName in schemaNames ?? Array.Empty<string>())
         {
+            if (string.IsNullOrWhiteSpace(schemaName))
+            {
+                continue;
+            }
+
             model.SchemaList.Add(new Schema
             {
                 Id = $"{database.Id}.{schemaName}",

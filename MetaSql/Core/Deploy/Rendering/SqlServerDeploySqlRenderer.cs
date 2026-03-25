@@ -5,6 +5,7 @@ namespace MetaSql;
 /// </summary>
 internal sealed class SqlServerDeploySqlRenderer
 {
+    private readonly SqlServerSchemaSqlRenderer schemaSqlRenderer = new();
     private readonly SqlServerAlterColumnSqlRenderer alterColumnSqlRenderer = new();
     private readonly SqlServerTruncateColumnDataSqlRenderer truncateColumnDataSqlRenderer = new();
     private readonly SqlServerConstraintSqlRenderer constraintSqlRenderer = new();
@@ -32,6 +33,7 @@ internal sealed class SqlServerDeploySqlRenderer
             DropPrimaryKeyAction row => constraintSqlRenderer.BuildDropPrimaryKeySql(row.PrimaryKey),
             DropTableColumnAction row => tableSqlRenderer.BuildDropColumnSql(row.Column),
             DropTableAction row => tableSqlRenderer.BuildDropTableSql(row.Table),
+            AddSchemaAction row => schemaSqlRenderer.BuildAddSchemaSql(row.Schema),
             TruncateTableColumnDataAction row => truncateColumnDataSqlRenderer.BuildTruncateColumnDataSql(
                 row.SourceColumn,
                 row.LiveColumn,

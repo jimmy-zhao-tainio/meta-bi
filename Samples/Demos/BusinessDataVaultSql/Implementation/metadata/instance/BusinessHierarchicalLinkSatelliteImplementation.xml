@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessHierarchicalLinkSatelliteImplementationList>
     <BusinessHierarchicalLinkSatelliteImplementation Id="default-business-hierarchical-link-satellite">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BHALS_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
@@ -20,3 +21,4 @@
     </BusinessHierarchicalLinkSatelliteImplementation>
   </BusinessHierarchicalLinkSatelliteImplementationList>
 </MetaDataVaultImplementation>
+

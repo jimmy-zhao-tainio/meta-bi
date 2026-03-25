@@ -19,6 +19,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                businessReferenceImplementation.SchemaName,
                 ApplyPattern(businessReferenceImplementation.TableNamePattern, ("Name", reference.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -94,6 +95,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                businessReferenceSatelliteImplementation.SchemaName,
                 ApplyPattern(
                     businessReferenceSatelliteImplementation.TableNamePattern,
                     ("ParentName", satellite.BusinessReference.Name),

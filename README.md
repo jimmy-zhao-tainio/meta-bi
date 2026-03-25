@@ -143,8 +143,11 @@ Purpose:
 Current command surface:
 - `meta-datavault-raw --new-workspace <path>`
 - `meta-datavault-raw from-metaschema --source-workspace <path> --implementation-workspace <path> --new-workspace <path> [--business-workspace <path>] [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
-- `meta-datavault-raw generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --schema <name> --out <path>`
+- `meta-datavault-raw generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --out <path>`
 - `meta-datavault-raw add-*`
+
+Projection note:
+- `generate-metasql` takes physical schema ownership from the sanctioned `MetaDataVaultImplementation` workspace and does not accept a schema override.
 
 Current `add-*` commands:
 - `add-source-system`
@@ -168,7 +171,7 @@ Examples:
 ```cmd
 meta-datavault-raw --new-workspace .\MetaRawDataVault.Workspace
 meta-datavault-raw from-metaschema --source-workspace .\MetaSchema.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --new-workspace .\MetaRawDataVault.Workspace
-meta-datavault-raw generate-metasql --workspace .\MetaRawDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyVault --schema dbo --out .\out\CurrentMetaSql.Workspace
+meta-datavault-raw generate-metasql --workspace .\MetaRawDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyVault --out .\out\CurrentMetaSql.Workspace
 ```
 
 ### meta-datavault-business
@@ -180,7 +183,10 @@ Purpose:
 Current command surface:
 - `meta-datavault-business --new-workspace <path>`
 - `meta-datavault-business add-*`
-- `meta-datavault-business generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --schema <name> --out <path>`
+- `meta-datavault-business generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --out <path>`
+
+Projection note:
+- `generate-metasql` takes physical schema ownership from the sanctioned `MetaDataVaultImplementation` workspace and does not accept a schema override.
 
 Representative `add-*` families:
 - `add-hub*`
@@ -195,7 +201,7 @@ Example:
 
 ```cmd
 meta-datavault-business --new-workspace .\MetaBusinessDataVault.Workspace
-meta-datavault-business generate-metasql --workspace .\MetaBusinessDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyBusinessVault --schema dbo --out .\out\CurrentMetaSql.Workspace
+meta-datavault-business generate-metasql --workspace .\MetaBusinessDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyBusinessVault --out .\out\CurrentMetaSql.Workspace
 ```
 
 ### meta-sql
@@ -204,20 +210,22 @@ Purpose:
 - plan and apply manifest-driven SQL Server deployment from sanctioned `MetaSql` workspaces
 
 Current command surface:
-- `meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--schema <name>] [--table <name>] [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]`
-- `meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value> [--schema <name>] [--table <name>]`
+- `meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]`
+- `meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>`
 
 Behavior summary:
-- `deploy-plan` extracts live schema when the target database exists, otherwise treats live as empty and writes a deploy manifest against empty live
+- `deploy-plan` extracts live schema when the target database exists, otherwise treats live as truly empty and writes a deploy manifest against that empty live state
+- `deploy-plan` and `deploy` always operate on the full source workspace and full live database; filtered subset deploy is not supported
 - destructive actions require exact object-scoped approvals
 - `deploy` executes only the manifest after source/live fingerprint validation
 - when the manifest expects a missing target database, `deploy` creates it first and refuses if it already exists
+- schema creation is explicit in the manifest (`AddSchema`), not inferred while rendering table DDL
 
 Examples:
 
 ```cmd
-meta-sql deploy-plan --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>" --schema dbo --out .\out\deploy-manifest
-meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>" --schema dbo
+meta-sql deploy-plan --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>" --out .\out\deploy-manifest
+meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>"
 ```
 
 ## Active Models

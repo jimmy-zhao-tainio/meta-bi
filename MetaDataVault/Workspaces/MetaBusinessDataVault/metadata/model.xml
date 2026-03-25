@@ -86,7 +86,8 @@
       <RelationshipList>
         <Relationship entity="BusinessReferenceKeyPart" />
       </RelationshipList>
-    </Entity>    <Entity name="BusinessHubSatellite">
+    </Entity>    
+    <Entity name="BusinessHubSatellite">
       <PropertyList>
         <Property name="Name" />
         <Property name="SatelliteKind" />

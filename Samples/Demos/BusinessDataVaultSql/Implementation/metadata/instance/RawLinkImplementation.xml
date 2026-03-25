@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawLinkImplementationList>
     <RawLinkImplementation Id="default-raw-link">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>L_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>

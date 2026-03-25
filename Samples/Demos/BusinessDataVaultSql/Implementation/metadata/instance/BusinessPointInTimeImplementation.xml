@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessPointInTimeImplementationList>
     <BusinessPointInTimeImplementation Id="default-business-pit">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>PIT_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>

@@ -7,6 +7,7 @@ internal sealed record DropIndexAction(Index Index) : IDeployStatementAction;
 internal sealed record DropPrimaryKeyAction(PrimaryKey PrimaryKey) : IDeployStatementAction;
 internal sealed record DropTableColumnAction(TableColumn Column) : IDeployStatementAction;
 internal sealed record DropTableAction(Table Table) : IDeployStatementAction;
+internal sealed record AddSchemaAction(Schema Schema) : IDeployStatementAction;
 internal sealed record TruncateTableColumnDataAction(
     TableColumn SourceColumn,
     TableColumn LiveColumn,

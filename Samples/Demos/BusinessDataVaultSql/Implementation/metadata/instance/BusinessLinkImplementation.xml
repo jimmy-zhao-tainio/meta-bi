@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessLinkImplementationList>
     <BusinessLinkImplementation Id="default-business-link">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BL_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>

@@ -44,8 +44,12 @@ namespace MetaDataVaultImplementation
         [XmlElement("SnapshotTimestampPrecision")]
         public string SnapshotTimestampPrecision { get; set; } = string.Empty;
 
+        [XmlElement("SchemaName")]
+        public string SchemaName { get; set; } = string.Empty;
+
         [XmlElement("TableNamePattern")]
         public string TableNamePattern { get; set; } = string.Empty;
 
     }
 }
+

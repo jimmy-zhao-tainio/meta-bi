@@ -29,6 +29,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                businessPointInTimeImplementation.SchemaName,
                 ApplyPattern(businessPointInTimeImplementation.TableNamePattern, ("Name", pointInTime.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -115,6 +116,7 @@ public static partial class Converter
         {
             var table = AddTable(
                 context,
+                businessBridgeImplementation.SchemaName,
                 ApplyPattern(businessBridgeImplementation.TableNamePattern, ("Name", bridge.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);

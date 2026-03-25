@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawLinkSatelliteImplementationList>
     <RawLinkSatelliteImplementation Id="default-raw-link-satellite">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>LS_{ParentName}_{Name}</TableNamePattern>
       <ParentForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</ParentForeignKeyNamePattern>
       <ParentHashKeyColumnName>LinkHashKey</ParentHashKeyColumnName>
@@ -21,3 +22,4 @@
     </RawLinkSatelliteImplementation>
   </RawLinkSatelliteImplementationList>
 </MetaDataVaultImplementation>
+

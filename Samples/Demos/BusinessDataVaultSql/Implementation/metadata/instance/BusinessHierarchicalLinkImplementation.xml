@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessHierarchicalLinkImplementationList>
     <BusinessHierarchicalLinkImplementation Id="default-business-hierarchical-link">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BHAL_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
@@ -19,3 +20,4 @@
     </BusinessHierarchicalLinkImplementation>
   </BusinessHierarchicalLinkImplementationList>
 </MetaDataVaultImplementation>
+

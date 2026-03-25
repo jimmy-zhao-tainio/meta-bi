@@ -3,6 +3,7 @@
   <EntityList>
     <Entity name="RawHubImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
@@ -19,6 +20,7 @@
     </Entity>
     <Entity name="RawLinkImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
@@ -36,6 +38,7 @@
     </Entity>
     <Entity name="RawHubSatelliteImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
@@ -55,6 +58,7 @@
     </Entity>
     <Entity name="RawLinkSatelliteImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
@@ -74,6 +78,7 @@
     </Entity>
     <Entity name="BusinessHubImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
@@ -90,6 +95,7 @@
     </Entity>
     <Entity name="BusinessLinkImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
@@ -107,6 +113,7 @@
     </Entity>
     <Entity name="BusinessSameAsLinkImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
@@ -125,6 +132,7 @@
     </Entity>
     <Entity name="BusinessHierarchicalLinkImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
@@ -143,6 +151,7 @@
     </Entity>
     <Entity name="BusinessReferenceImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="HashKeyColumnName" />
         <Property name="HashKeyDataTypeId" />
@@ -158,6 +167,7 @@
       </PropertyList>
     </Entity>    <Entity name="BusinessHubSatelliteImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
@@ -177,6 +187,7 @@
     </Entity>
     <Entity name="BusinessReferenceSatelliteImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
@@ -195,6 +206,7 @@
       </PropertyList>
     </Entity>    <Entity name="BusinessLinkSatelliteImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
@@ -214,6 +226,7 @@
     </Entity>
     <Entity name="BusinessSameAsLinkSatelliteImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
@@ -233,6 +246,7 @@
     </Entity>
     <Entity name="BusinessHierarchicalLinkSatelliteImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
@@ -252,6 +266,7 @@
     </Entity>
     <Entity name="BusinessPointInTimeImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="ParentHashKeyColumnName" />
         <Property name="ParentHashKeyDataTypeId" />
@@ -268,6 +283,7 @@
     </Entity>
     <Entity name="BusinessBridgeImplementation">
       <PropertyList>
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="RootHashKeyColumnName" />
         <Property name="RootHashKeyDataTypeId" />
@@ -292,4 +308,5 @@
     </Entity>
   </EntityList>
 </Model>
+
 

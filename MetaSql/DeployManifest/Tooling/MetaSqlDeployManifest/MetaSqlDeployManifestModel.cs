@@ -28,6 +28,11 @@ namespace MetaSqlDeployManifest
         public List<AddPrimaryKey> AddPrimaryKeyList { get; set; } = new();
         public bool ShouldSerializeAddPrimaryKeyList() => AddPrimaryKeyList.Count > 0;
 
+        [XmlArray("AddSchemaList")]
+        [XmlArrayItem("AddSchema")]
+        public List<AddSchema> AddSchemaList { get; set; } = new();
+        public bool ShouldSerializeAddSchemaList() => AddSchemaList.Count > 0;
+
         [XmlArray("AddTableList")]
         [XmlArrayItem("AddTable")]
         public List<AddTable> AddTableList { get; set; } = new();
@@ -179,6 +184,7 @@ namespace MetaSqlDeployManifest
             model.AddForeignKeyList ??= new List<AddForeignKey>();
             model.AddIndexList ??= new List<AddIndex>();
             model.AddPrimaryKeyList ??= new List<AddPrimaryKey>();
+            model.AddSchemaList ??= new List<AddSchema>();
             model.AddTableList ??= new List<AddTable>();
             model.AddTableColumnList ??= new List<AddTableColumn>();
             model.AlterTableColumnList ??= new List<AlterTableColumn>();
@@ -201,6 +207,7 @@ namespace MetaSqlDeployManifest
             NormalizeAddForeignKeyList(model);
             NormalizeAddIndexList(model);
             NormalizeAddPrimaryKeyList(model);
+            NormalizeAddSchemaList(model);
             NormalizeAddTableList(model);
             NormalizeAddTableColumnList(model);
             NormalizeAlterTableColumnList(model);
@@ -282,6 +289,22 @@ namespace MetaSqlDeployManifest
                     deployManifestListById,
                     row.DeployManifestId,
                     "AddPrimaryKey",
+                    row.Id,
+                    "DeployManifestId");
+            }
+
+            foreach (var row in model.AddSchemaList)
+            {
+                row.DeployManifestId = ResolveRelationshipId(
+                    row.DeployManifestId,
+                    row.DeployManifest?.Id,
+                    "AddSchema",
+                    row.Id,
+                    "DeployManifestId");
+                row.DeployManifest = RequireTarget(
+                    deployManifestListById,
+                    row.DeployManifestId,
+                    "AddSchema",
                     row.Id,
                     "DeployManifestId");
             }
@@ -600,6 +623,17 @@ namespace MetaSqlDeployManifest
                 ArgumentNullException.ThrowIfNull(row);
                 row.Id = RequireIdentity(row.Id, "Entity 'AddTable' contains a row with empty Id.");
                 row.SourceTableId = RequireText(row.SourceTableId, $"Entity 'AddTable' row '{row.Id}' is missing required property 'SourceTableId'.");
+                row.DeployManifestId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeAddSchemaList(MetaSqlDeployManifestModel model)
+        {
+            foreach (var row in model.AddSchemaList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'AddSchema' contains a row with empty Id.");
+                row.SourceSchemaId = RequireText(row.SourceSchemaId, $"Entity 'AddSchema' row '{row.Id}' is missing required property 'SourceSchemaId'.");
                 row.DeployManifestId ??= string.Empty;
             }
         }

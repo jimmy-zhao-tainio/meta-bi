@@ -22,6 +22,7 @@
         <Property name="RootHashKeyColumnName" />
         <Property name="RootHashKeyDataTypeId" />
         <Property name="RootHashKeyLength" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -43,6 +44,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -63,6 +65,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -80,6 +83,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -100,6 +104,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -119,6 +124,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -139,6 +145,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -156,6 +163,7 @@
         <Property name="SnapshotTimestampColumnName" />
         <Property name="SnapshotTimestampDataTypeId" />
         <Property name="SnapshotTimestampPrecision" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -173,6 +181,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -193,6 +202,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -214,6 +224,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -234,6 +245,7 @@
         <Property name="RecordSourceColumnName" isRequired="false" />
         <Property name="RecordSourceDataTypeId" isRequired="false" />
         <Property name="RecordSourceLength" isRequired="false" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -251,6 +263,7 @@
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -271,6 +284,7 @@
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -290,6 +304,7 @@
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>
@@ -310,6 +325,7 @@
         <Property name="RecordSourceColumnName" />
         <Property name="RecordSourceDataTypeId" />
         <Property name="RecordSourceLength" />
+        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>

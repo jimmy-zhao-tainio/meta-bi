@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawLinkImplementationList>
     <RawLinkImplementation Id="default-raw-link">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>L_{Name}</TableNamePattern>
       <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <HubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</HubForeignKeyNamePattern>
@@ -20,3 +21,4 @@
     </RawLinkImplementation>
   </RawLinkImplementationList>
 </MetaDataVaultImplementation>
+

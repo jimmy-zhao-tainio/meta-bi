@@ -79,8 +79,12 @@ namespace MetaDataVaultImplementation
         [XmlElement("RootHashKeyLength")]
         public string RootHashKeyLength { get; set; } = string.Empty;
 
+        [XmlElement("SchemaName")]
+        public string SchemaName { get; set; } = string.Empty;
+
         [XmlElement("TableNamePattern")]
         public string TableNamePattern { get; set; } = string.Empty;
 
     }
 }
+

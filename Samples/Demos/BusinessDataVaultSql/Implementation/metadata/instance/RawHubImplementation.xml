@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawHubImplementationList>
     <RawHubImplementation Id="default-raw-hub">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>H_{Name}</TableNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
       <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>

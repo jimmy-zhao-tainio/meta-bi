@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawHubSatelliteImplementationList>
     <RawHubSatelliteImplementation Id="default-raw-hub-satellite">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>HS_{ParentName}_{Name}</TableNamePattern>
       <ParentForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</ParentForeignKeyNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
@@ -21,3 +22,4 @@
     </RawHubSatelliteImplementation>
   </RawHubSatelliteImplementationList>
 </MetaDataVaultImplementation>
+

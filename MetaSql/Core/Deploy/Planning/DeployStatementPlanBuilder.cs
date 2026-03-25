@@ -10,6 +10,7 @@ internal sealed class DeployStatementPlanBuilder
         MetaSqlModel sourceModel,
         MetaSqlModel liveModel)
     {
+        var sourceSchemasById = sourceModel.SchemaList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var sourceTablesById = sourceModel.TableList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var sourceColumnsById = sourceModel.TableColumnList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var sourcePrimaryKeysById = sourceModel.PrimaryKeyList.ToDictionary(row => row.Id, StringComparer.Ordinal);
@@ -128,6 +129,13 @@ internal sealed class DeployStatementPlanBuilder
             actions.Add(new AlterTableColumnAction(sourceColumn, liveColumn, sourceColumnDetailsByColumnId, liveColumnDetailsByColumnId));
         }
 
+        foreach (var entry in manifestModel.AddSchemaList
+                     .OrderBy(row => row.SourceSchemaId, StringComparer.Ordinal))
+        {
+            var schema = RequireById(sourceSchemasById, entry.SourceSchemaId, "AddSchema.SourceSchemaId");
+            actions.Add(new AddSchemaAction(schema));
+        }
+
         foreach (var tableId in addedTableIds.OrderBy(row => row, StringComparer.Ordinal))
         {
             var table = RequireById(sourceTablesById, tableId, "AddTable.SourceTableId");
@@ -241,7 +249,8 @@ internal sealed class DeployStatementPlanBuilder
 
     private static int CountAdds(MetaSqlDeployManifest.MetaSqlDeployManifestModel manifestModel)
     {
-        return manifestModel.AddTableList.Count +
+        return manifestModel.AddSchemaList.Count +
+               manifestModel.AddTableList.Count +
                manifestModel.AddTableColumnList.Count +
                manifestModel.AddPrimaryKeyList.Count +
                manifestModel.AddForeignKeyList.Count +

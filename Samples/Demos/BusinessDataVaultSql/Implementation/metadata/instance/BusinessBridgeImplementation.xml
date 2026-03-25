@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessBridgeImplementationList>
     <BusinessBridgeImplementation Id="default-business-bridge">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BR_{Name}</TableNamePattern>
       <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
       <RootHashKeyDataTypeId>sqlserver:type:binary</RootHashKeyDataTypeId>

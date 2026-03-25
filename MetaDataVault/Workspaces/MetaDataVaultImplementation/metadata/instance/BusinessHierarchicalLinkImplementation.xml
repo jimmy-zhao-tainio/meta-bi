@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessHierarchicalLinkImplementationList>
     <BusinessHierarchicalLinkImplementation Id="default-business-hierarchical-link">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BHAL_{Name}</TableNamePattern>
       <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <ParentHubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</ParentHubForeignKeyNamePattern>
@@ -22,3 +23,4 @@
     </BusinessHierarchicalLinkImplementation>
   </BusinessHierarchicalLinkImplementationList>
 </MetaDataVaultImplementation>
+

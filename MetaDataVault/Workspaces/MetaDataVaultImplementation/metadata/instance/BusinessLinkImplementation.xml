@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <BusinessLinkImplementationList>
     <BusinessLinkImplementation Id="default-business-link">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>BL_{Name}</TableNamePattern>
       <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
       <HubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</HubForeignKeyNamePattern>
@@ -20,3 +21,4 @@
     </BusinessLinkImplementation>
   </BusinessLinkImplementationList>
 </MetaDataVaultImplementation>
+

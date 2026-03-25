@@ -16,15 +16,17 @@ The current CLI surface is:
 ## Current Command Surface
 
 ```bash
-meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <manifest-path> [--schema <name>] [--table <name>] [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]
-meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value> [--schema <name>] [--table <name>]
+meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <manifest-path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]
+meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>
 ```
 
-`deploy-plan` currently accepts `--source-workspace`, `--connection-string`, `--out`, optional `--schema`, optional `--table`, and object-scoped destructive approvals via repeated CLI args and/or `--approval-file`.
+`deploy-plan` currently accepts `--source-workspace`, `--connection-string`, `--out`, and object-scoped destructive approvals via repeated CLI args and/or `--approval-file`.
 
-`deploy` currently requires `--manifest-workspace`, `--source-workspace`, and `--connection-string`, with optional `--schema` and `--table`.
+`deploy` currently requires `--manifest-workspace`, `--source-workspace`, and `--connection-string`.
 
 If the target database is missing during `deploy-plan`, live is modeled as an empty `MetaSql` workspace and the manifest records that missing-database expectation explicitly.
+Missing live means truly empty: database only, no inferred schemas.
+Filtered subset planning/deploy is not supported; MetaSql always plans and applies against the full source/live contract.
 
 Default policy: live-only data-bearing drift (`Table`, `TableColumn`) is blocked unless exact approvals are supplied.
 Live-only `PrimaryKey`, `ForeignKey`, and `Index` drift is planned as drop actions by default.
@@ -61,7 +63,7 @@ Statement ordering is explicit and deterministic:
 
 1. Drop foreign keys, indexes, primary keys, columns, tables.
 2. Alter columns.
-3. Add tables, columns, primary keys, foreign keys, indexes.
+3. Add schemas, tables, columns, primary keys, foreign keys, indexes.
 
 Shared-object identity matching in `deploy-plan` is based on explicit MetaSql surface keys, not ID intersection:
 
@@ -90,7 +92,8 @@ MetaSql is not yet a general-purpose executor for clustered primary-key replacem
 
 | Change category | Planning support | Deploy support | Current status | Exact condition / notes |
 |---|---|---|---|---|
-| Add table | Yes | Yes | Supported | Planned as `AddTable`; deploy creates table. Dependent PK/FK/Index adds for newly added tables are materialized during planning into explicit `Add*` manifest rows. |
+| Add schema | Yes | Yes | Supported | Planned explicitly as `AddSchema` when source tables require schemas that do not exist in live. Deploy creates schemas only from manifest actions; it does not infer schema creation while rendering tables. |
+| Add table | Yes | Yes | Supported | Planned as `AddTable`; deploy creates table. Dependent schema/PK/FK/Index adds for newly added tables are materialized during planning into explicit manifest rows. |
 | Add column to existing table | Yes | Yes | Supported | Planned as `AddTableColumn`; deploy adds unless whole table is already being created. |
 | Add primary key | Yes | Yes | Supported | Planned as `AddPrimaryKey`; deploy adds from source members. |
 | Add foreign key | Yes | Yes | Supported | Planned as `AddForeignKey`; deploy adds from source members. |

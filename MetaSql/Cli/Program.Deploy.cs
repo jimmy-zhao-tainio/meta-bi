@@ -28,8 +28,6 @@ internal static partial class Program
                         ManifestWorkspacePath = manifestWorkspacePath,
                         SourceWorkspacePath = sourceWorkspacePath,
                         ConnectionString = parse.ConnectionString,
-                        SchemaName = parse.SchemaName,
-                        TableName = parse.TableName,
                     })
                 .ConfigureAwait(false);
 
@@ -61,11 +59,12 @@ internal static partial class Program
     private static void PrintDeployHelp()
     {
         Presenter.WriteInfo("Command: deploy");
-        Presenter.WriteUsage("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value> [--schema <name>] [--table <name>]");
+        Presenter.WriteUsage("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Loads the deploy manifest and source MetaSql workspace.");
         Presenter.WriteInfo("  Refuses when the manifest contains Block entries.");
         Presenter.WriteInfo("  Refuses when source/live instance fingerprints no longer match.");
+        Presenter.WriteInfo("  Always validates and applies the full manifest scope. Filtered subset deploy is not supported.");
         Presenter.WriteInfo("  Applies add/drop/alter/replace operations in one SQL transaction.");
     }
 }

@@ -2,6 +2,7 @@
 <MetaDataVaultImplementation>
   <RawHubSatelliteImplementationList>
     <RawHubSatelliteImplementation Id="default-raw-hub-satellite">
+      <SchemaName>dbo</SchemaName>
       <TableNamePattern>HS_{ParentName}_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
       <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>

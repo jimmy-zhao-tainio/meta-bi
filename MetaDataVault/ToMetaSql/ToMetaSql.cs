@@ -16,7 +16,6 @@ public static partial class Converter
         string pathToNewMetaSqlWorkspace,
         string implementationWorkspacePath,
         string databaseName,
-        string defaultSchemaName = "dbo",
         CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(dataVaultWorkspacePath))
@@ -39,11 +38,6 @@ public static partial class Converter
             throw new ArgumentException("Database name is required.", nameof(databaseName));
         }
 
-        if (string.IsNullOrWhiteSpace(defaultSchemaName))
-        {
-            throw new ArgumentException("Default schema name is required.", nameof(defaultSchemaName));
-        }
-
         var workspaceService = new WorkspaceService();
         var dataVaultWorkspace = await workspaceService.LoadAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
         var implementationModel = await MetaDataVaultImplementationModel.LoadFromXmlWorkspaceAsync(implementationWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
@@ -55,7 +49,6 @@ public static partial class Converter
                     var context = CreateContext(
                         pathToNewMetaSqlWorkspace,
                         databaseName,
-                        defaultSchemaName,
                         implementationModel);
                     var rawModel = await MetaRawDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertRaw(rawModel, context);
@@ -68,7 +61,6 @@ public static partial class Converter
                     var context = CreateContext(
                         pathToNewMetaSqlWorkspace,
                         databaseName,
-                        defaultSchemaName,
                         implementationModel,
                         SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
                     var businessModel = await MetaBusinessDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
@@ -86,7 +78,6 @@ public static partial class Converter
     private static ConversionContext CreateContext(
         string pathToNewMetaSqlWorkspace,
         string databaseName,
-        string defaultSchemaName,
         MetaDataVaultImplementationModel implementationModel,
         SqlServerBusinessTypeLowering? businessTypeLowering = null)
     {
@@ -99,28 +90,58 @@ public static partial class Converter
             Platform = "sqlserver",
         };
 
-        var schema = new Schema
-        {
-            Id = $"{database.Id}.{defaultSchemaName}",
-            Name = defaultSchemaName,
-            DatabaseId = database.Id,
-            Database = database,
-        };
-
         metaSqlModel.DatabaseList.Add(database);
-        metaSqlModel.SchemaList.Add(schema);
+        var schemasByName = new Dictionary<string, Schema>(StringComparer.OrdinalIgnoreCase);
+        foreach (var schemaName in GetSchemaNames(implementationModel))
+        {
+            if (schemasByName.ContainsKey(schemaName))
+            {
+                continue;
+            }
+
+            var schema = new Schema
+            {
+                Id = $"{database.Id}.{schemaName}",
+                Name = schemaName,
+                DatabaseId = database.Id,
+                Database = database,
+            };
+            metaSqlModel.SchemaList.Add(schema);
+            schemasByName[schemaName] = schema;
+        }
 
         return new ConversionContext
         {
             PathToNewMetaSqlWorkspace = pathToNewMetaSqlWorkspace,
             DatabaseName = databaseName,
-            DefaultSchemaName = defaultSchemaName,
             ImplementationModel = implementationModel,
             BusinessTypeLowering = businessTypeLowering,
             MetaSql = metaSqlModel,
             Database = database,
-            DefaultSchema = schema,
+            SchemasByName = schemasByName,
         };
+    }
+
+    private static IEnumerable<string> GetSchemaNames(MetaDataVaultImplementationModel implementationModel)
+    {
+        return implementationModel.BusinessBridgeImplementationList.Select(row => row.SchemaName)
+            .Concat(implementationModel.BusinessHierarchicalLinkImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessHierarchicalLinkSatelliteImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessHubImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessHubSatelliteImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessLinkImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessLinkSatelliteImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessPointInTimeImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessReferenceImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessReferenceSatelliteImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessSameAsLinkImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessSameAsLinkSatelliteImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.RawHubImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.RawHubSatelliteImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.RawLinkImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.RawLinkSatelliteImplementationList.Select(row => row.SchemaName))
+            .Where(row => !string.IsNullOrWhiteSpace(row))
+            .Select(row => row.Trim());
     }
 
     private static Dictionary<string, T> IndexById<T>(IEnumerable<T> rows, Func<T, string> idSelector)
