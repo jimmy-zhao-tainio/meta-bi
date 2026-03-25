@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Meta.Core.Services;
 using MetaSchema.Core;
 
@@ -404,11 +404,10 @@ public sealed partial class CliTests
     private static (int ExitCode, string Output) RunRawCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
-        var cliPath = ResolveCliPath(repoRoot, Path.Combine("MetaDataVault", "Cli", "Raw"), "meta-datavault-raw.dll");
         var startInfo = new ProcessStartInfo
         {
-            FileName = "dotnet",
-            Arguments = $"\"{cliPath}\" {arguments}",
+            FileName = "meta-datavault-raw",
+            Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -469,11 +468,10 @@ public sealed partial class CliTests
     private static (int ExitCode, string Output) RunBusinessCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
-        var cliPath = ResolveCliPath(repoRoot, Path.Combine("MetaDataVault", "Cli", "Business"), "meta-datavault-business.dll");
         var startInfo = new ProcessStartInfo
         {
-            FileName = "dotnet",
-            Arguments = $"\"{cliPath}\" {arguments}",
+            FileName = "meta-datavault-business",
+            Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -481,17 +479,6 @@ public sealed partial class CliTests
             CreateNoWindow = true,
         };
         return RunProcess(startInfo, "Could not start DataVault CLI process.");
-    }
-
-    private static string ResolveCliPath(string repoRoot, string projectDirectory, string executableName)
-    {
-        var cliPath = Path.Combine(repoRoot, projectDirectory, "bin", "Debug", "net8.0", executableName);
-        if (!File.Exists(cliPath))
-        {
-            throw new FileNotFoundException($"Could not find compiled DataVault CLI at '{cliPath}'. Build the requested DataVault CLI before running tests.");
-        }
-
-        return cliPath;
     }
 
     private static string GetRawImplementationWorkspacePath()
@@ -564,6 +551,7 @@ public sealed partial class CliTests
         }
     }
 }
+
 
 
 

@@ -22,8 +22,6 @@
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\ToMetaSql\MetaDataVault.ToMetaSql.csproj" />
     <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
-    <ProjectReference Include="..\Cli\Raw\MetaDataVault.Raw.Cli.csproj" />
-    <ProjectReference Include="..\Cli\Business\MetaDataVault.Business.Cli.csproj" />
   </ItemGroup>
 
 </Project>

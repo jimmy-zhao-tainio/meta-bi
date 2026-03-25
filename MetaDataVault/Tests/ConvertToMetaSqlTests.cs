@@ -1,4 +1,4 @@
-﻿using MetaDataVault.ToMetaSql;
+using MetaDataVault.ToMetaSql;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
 using Meta.Core.Services;
@@ -638,11 +638,10 @@ public sealed class ConvertToMetaSqlTests
     private static (int ExitCode, string Output) RunRawCli(string arguments)
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var cliPath = CliTestSupport.ResolveCliPath(repoRoot, Path.Combine("MetaDataVault", "Cli", "Raw"), "meta-datavault-raw.dll");
         var startInfo = new System.Diagnostics.ProcessStartInfo
         {
-            FileName = "dotnet",
-            Arguments = $"\"{cliPath}\" {arguments}",
+            FileName = "meta-datavault-raw",
+            Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -656,11 +655,10 @@ public sealed class ConvertToMetaSqlTests
     private static (int ExitCode, string Output) RunBusinessCli(string arguments)
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
-        var cliPath = CliTestSupport.ResolveCliPath(repoRoot, Path.Combine("MetaDataVault", "Cli", "Business"), "meta-datavault-business.dll");
         var startInfo = new System.Diagnostics.ProcessStartInfo
         {
-            FileName = "dotnet",
-            Arguments = $"\"{cliPath}\" {arguments}",
+            FileName = "meta-datavault-business",
+            Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -710,4 +708,5 @@ public sealed class ConvertToMetaSqlTests
             string.Equals(currentName, detailName, StringComparison.Ordinal)).Values["Value"];
     }
 }
+
 

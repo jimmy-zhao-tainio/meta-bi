@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cli\MetaSql.Cli.csproj" />
     <ProjectReference Include="..\..\MetaDataVault\ToMetaSql\MetaDataVault.ToMetaSql.csproj" />
     <ProjectReference Include="..\..\MetaDataVault\Tooling\MetaDataVault.Tooling.csproj" />
     <ProjectReference Include="..\Core\MetaSql.Core.csproj" />
