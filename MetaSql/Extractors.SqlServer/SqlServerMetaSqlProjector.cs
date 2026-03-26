@@ -230,6 +230,10 @@ internal static class SqlServerMetaSqlProjector
             Ordinal = row.OrdinalPosition.ToString(CultureInfo.InvariantCulture),
             MetaDataTypeId = MetaDataTypeInstance.BuildDataTypeId("SqlServer", row.DataTypeName),
             IsNullable = row.IsNullable ? "true" : "false",
+            IsIdentity = row.IsIdentity ? "true" : string.Empty,
+            IdentitySeed = string.IsNullOrWhiteSpace(row.IdentitySeed) ? string.Empty : row.IdentitySeed,
+            IdentityIncrement = string.IsNullOrWhiteSpace(row.IdentityIncrement) ? string.Empty : row.IdentityIncrement,
+            ExpressionSql = string.IsNullOrWhiteSpace(row.ExpressionSql) ? string.Empty : row.ExpressionSql,
             TableId = table.Id,
             Table = table,
         };
@@ -319,6 +323,7 @@ internal static class SqlServerMetaSqlProjector
             Name = row.Name,
             IsUnique = row.IsUnique ? "true" : string.Empty,
             IsClustered = row.IsClustered ? "true" : string.Empty,
+            FilterSql = string.IsNullOrWhiteSpace(row.FilterSql) ? string.Empty : row.FilterSql,
             TableId = table.Id,
             Table = table,
         };
@@ -334,11 +339,24 @@ internal static class SqlServerMetaSqlProjector
     }
 
     internal readonly record struct TableRow(string SchemaName, string TableName);
-    internal readonly record struct ColumnRow(string SchemaName, string TableName, string ColumnName, int OrdinalPosition, bool IsNullable, string DataTypeName, int? Length, int? Precision, int? Scale);
+    internal readonly record struct ColumnRow(
+        string SchemaName,
+        string TableName,
+        string ColumnName,
+        int OrdinalPosition,
+        bool IsNullable,
+        string DataTypeName,
+        int? Length,
+        int? Precision,
+        int? Scale,
+        bool IsIdentity = false,
+        string IdentitySeed = "",
+        string IdentityIncrement = "",
+        string ExpressionSql = "");
     internal readonly record struct PrimaryKeyRow(string Name, bool IsClustered);
     internal readonly record struct PrimaryKeyColumnRow(string KeyName, int Ordinal, string ColumnName, bool IsDescending);
     internal readonly record struct ForeignKeyRow(string Name, string TargetSchemaName, string TargetTableName);
     internal readonly record struct ForeignKeyColumnRow(string ForeignKeyName, int Ordinal, string SourceColumnName, string TargetColumnName);
-    internal readonly record struct IndexRow(string Name, bool IsUnique, bool IsClustered);
+    internal readonly record struct IndexRow(string Name, bool IsUnique, bool IsClustered, string FilterSql = "");
     internal readonly record struct IndexColumnRow(string IndexName, int Ordinal, string ColumnName, bool IsDescending, bool IsIncluded);
 }

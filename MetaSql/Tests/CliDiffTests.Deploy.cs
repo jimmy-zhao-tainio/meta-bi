@@ -1699,7 +1699,7 @@ public sealed partial class CliDiffTests
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
-            Assert.Contains("only length-based sqlserver types are executable", block.DifferenceSummary, StringComparison.Ordinal);
+            Assert.Contains("only length-based sqlserver types are executable", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {

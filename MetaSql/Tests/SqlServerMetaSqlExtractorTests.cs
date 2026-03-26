@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql.Tests;
@@ -123,6 +124,49 @@ public sealed class SqlServerMetaSqlExtractorTests
     }
 
     [Fact]
+    public void Project_PreservesIdentityComputedAndFilteredIndexMetadata()
+    {
+        var workspace = SqlServerMetaSqlProjector.Project(
+            newWorkspacePath: "C:\\tmp\\MetaSql",
+            databaseName: "SalesDb",
+            tableRows: [new SqlServerMetaSqlProjector.TableRow("dbo", "Customer")],
+            columnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ColumnRow>>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["dbo.Customer"] =
+                [
+                    new("dbo", "Customer", "CustomerId", 1, false, "int", null, null, null, true, "100", "5"),
+                    new("dbo", "Customer", "CustomerCode", 2, false, "nvarchar", 20, null, null),
+                    new("dbo", "Customer", "CustomerCodeUpper", 3, true, "nvarchar", 20, null, null, false, "", "", "upper([CustomerCode])")
+                ],
+            },
+            primaryKeysByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.PrimaryKeyRow>>(StringComparer.OrdinalIgnoreCase),
+            primaryKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.PrimaryKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
+            foreignKeysByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyRow>>(StringComparer.OrdinalIgnoreCase),
+            foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
+            indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["dbo.Customer"] = [new("IX_Customer_Code_Filtered", false, false, "[CustomerCode] IS NOT NULL")],
+            },
+            indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["dbo.Customer"] = [new("IX_Customer_Code_Filtered", 1, "CustomerCode", false, false)],
+            });
+
+        var columns = workspace.Instance.GetOrCreateEntityRecords("TableColumn");
+        var indexes = workspace.Instance.GetOrCreateEntityRecords("Index");
+
+        var identityColumn = columns.Single(row => row.Id == "SalesDb.dbo.Customer.CustomerId");
+        var computedColumn = columns.Single(row => row.Id == "SalesDb.dbo.Customer.CustomerCodeUpper");
+        var filteredIndex = indexes.Single(row => row.Id == "SalesDb.dbo.Customer.index.IX_Customer_Code_Filtered");
+
+        Assert.Equal("true", identityColumn.Values["IsIdentity"]);
+        Assert.Equal("100", identityColumn.Values["IdentitySeed"]);
+        Assert.Equal("5", identityColumn.Values["IdentityIncrement"]);
+        Assert.Equal("upper([CustomerCode])", computedColumn.Values["ExpressionSql"]);
+        Assert.Equal("[CustomerCode] IS NOT NULL", filteredIndex.Values["FilterSql"]);
+    }
+
+    [Fact]
     public void ExtractMetaSqlWorkspace_RequiresConnectionString()
     {
         var extractor = new SqlServerMetaSqlExtractor();
@@ -132,6 +176,59 @@ public sealed class SqlServerMetaSqlExtractorTests
         }));
 
         Assert.Contains("connection string", exception.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task ExtractMetaSqlWorkspace_LoadsIdentityComputedAndFilteredIndexMetadata()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "live-metasql");
+        var databaseName = $"MetaSqlExtractFidelity_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            CreateDatabase(masterConnectionString, databaseName);
+            ExecuteSql(databaseConnectionString, """
+                IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
+                CREATE TABLE raw.Customer (
+                    CustomerId int IDENTITY(100,5) NOT NULL,
+                    CustomerCode nvarchar(20) NULL,
+                    CustomerCodeUpper AS upper([CustomerCode]),
+                    CONSTRAINT PK_Customer PRIMARY KEY (CustomerId)
+                );
+                CREATE INDEX IX_Customer_Code_Filtered
+                    ON raw.Customer (CustomerCode)
+                    WHERE [CustomerCode] IS NOT NULL;
+                """);
+
+            var extractor = new SqlServerMetaSqlExtractor();
+            extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
+            {
+                NewWorkspacePath = workspacePath,
+                ConnectionString = databaseConnectionString,
+                SchemaName = "raw",
+                TableName = "Customer",
+            });
+
+            var model = await MetaSqlModel.LoadFromXmlWorkspaceAsync(workspacePath, searchUpward: false);
+            var identityColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerId");
+            var computedColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerCodeUpper");
+            var filteredIndex = model.IndexList.Single(row => row.Id == $"{databaseName}.raw.Customer.index.IX_Customer_Code_Filtered");
+
+            Assert.Equal("true", identityColumn.IsIdentity);
+            Assert.Equal("100", identityColumn.IdentitySeed);
+            Assert.Equal("5", identityColumn.IdentityIncrement);
+            Assert.Contains("CustomerCode", computedColumn.ExpressionSql, StringComparison.Ordinal);
+            Assert.Equal("[CustomerCode] IS NOT NULL", filteredIndex.FilterSql);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
     }
 
     [Fact]
@@ -175,5 +272,52 @@ public sealed class SqlServerMetaSqlExtractorTests
 
         Assert.Contains(foreignKeys, row => row.Id == "SalesDb.dbo.Order.fk.FK_Order_Customer");
         Assert.Contains(foreignKeyColumns, row => row.Id == "SalesDb.dbo.Order.fk.FK_Order_Customer.column.1");
+    }
+
+    private static void CreateDatabase(string masterConnectionString, string databaseName)
+    {
+        ExecuteSql(masterConnectionString, $"""
+            IF DB_ID('{databaseName}') IS NOT NULL
+            BEGIN
+                ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                DROP DATABASE [{databaseName}];
+            END;
+            CREATE DATABASE [{databaseName}];
+            """);
+    }
+
+    private static void DropDatabase(string masterConnectionString, string databaseName)
+    {
+        try
+        {
+            ExecuteSql(masterConnectionString, $"""
+                IF DB_ID('{databaseName}') IS NOT NULL
+                BEGIN
+                    ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                    DROP DATABASE [{databaseName}];
+                END;
+                """);
+        }
+        catch
+        {
+            // Cleanup should not hide the original test failure.
+        }
+    }
+
+    private static void ExecuteSql(string connectionString, string sql)
+    {
+        using var connection = new SqlConnection(connectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = sql;
+        command.ExecuteNonQuery();
+    }
+
+    private static void DeleteIfExists(string path)
+    {
+        if (Directory.Exists(path))
+        {
+            Directory.Delete(path, recursive: true);
+        }
     }
 }

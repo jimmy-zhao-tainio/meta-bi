@@ -166,23 +166,39 @@ public sealed class SqlServerMetaSqlExtractor
         using var command = connection.CreateCommand();
         command.CommandText = """
             select
-                c.TABLE_SCHEMA,
-                c.TABLE_NAME,
-                c.COLUMN_NAME,
-                c.ORDINAL_POSITION,
-                c.IS_NULLABLE,
-                c.DATA_TYPE,
-                c.CHARACTER_MAXIMUM_LENGTH,
+                s.name as SchemaName,
+                t.name as TableName,
+                c.name as ColumnName,
+                c.column_id as OrdinalPosition,
+                c.is_nullable,
+                ty.name as DataTypeName,
                 case
-                    when c.DATA_TYPE in ('decimal', 'numeric') then c.NUMERIC_PRECISION
-                    when c.DATA_TYPE in ('time', 'datetime2', 'datetimeoffset') then c.DATETIME_PRECISION
+                    when c.max_length = -1 then -1
+                    when ty.name in ('nchar', 'nvarchar') then c.max_length / 2
+                    else c.max_length
+                end as LengthValue,
+                case
+                    when ty.name in ('decimal', 'numeric') then convert(int, c.precision)
+                    when ty.name in ('time', 'datetime2', 'datetimeoffset') then convert(int, c.scale)
                     else null
                 end as PrecisionValue,
-                c.NUMERIC_SCALE
-            from INFORMATION_SCHEMA.COLUMNS c
-            where c.TABLE_SCHEMA = @schemaName
-              and c.TABLE_NAME = @tableName
-            order by c.ORDINAL_POSITION
+                case
+                    when ty.name in ('decimal', 'numeric') then convert(int, c.scale)
+                    else null
+                end as ScaleValue,
+                c.is_identity,
+                convert(nvarchar(50), ic.seed_value) as IdentitySeed,
+                convert(nvarchar(50), ic.increment_value) as IdentityIncrement,
+                cc.definition as ExpressionSql
+            from sys.tables t
+            join sys.schemas s on s.schema_id = t.schema_id
+            join sys.columns c on c.object_id = t.object_id
+            join sys.types ty on ty.user_type_id = c.user_type_id
+            left join sys.identity_columns ic on ic.object_id = c.object_id and ic.column_id = c.column_id
+            left join sys.computed_columns cc on cc.object_id = c.object_id and cc.column_id = c.column_id
+            where s.name = @schemaName
+              and t.name = @tableName
+            order by c.column_id
             """;
         command.Parameters.Add(new SqlParameter("@schemaName", SqlDbType.NVarChar, 128) { Value = schemaName });
         command.Parameters.Add(new SqlParameter("@tableName", SqlDbType.NVarChar, 128) { Value = tableName });
@@ -196,11 +212,15 @@ public sealed class SqlServerMetaSqlExtractor
                 TableName: reader.GetString(1),
                 ColumnName: reader.GetString(2),
                 OrdinalPosition: ReadInt32(reader, 3),
-                IsNullable: string.Equals(reader.GetString(4), "YES", StringComparison.OrdinalIgnoreCase),
+                IsNullable: ReadBool(reader, 4),
                 DataTypeName: reader.GetString(5),
                 Length: ReadNullableInt(reader, 6),
                 Precision: ReadNullableInt(reader, 7),
-                Scale: ReadNullableInt(reader, 8)));
+                Scale: ReadNullableInt(reader, 8),
+                IsIdentity: ReadBool(reader, 9),
+                IdentitySeed: ReadNullableString(reader, 10),
+                IdentityIncrement: ReadNullableString(reader, 11),
+                ExpressionSql: ReadNullableString(reader, 12)));
         }
 
         return rows;
@@ -350,7 +370,8 @@ public sealed class SqlServerMetaSqlExtractor
             select
                 i.name as IndexName,
                 i.is_unique,
-                case when i.type = 1 then 1 else 0 end as IsClustered
+                case when i.type = 1 then 1 else 0 end as IsClustered,
+                i.filter_definition
             from sys.indexes i
             join sys.tables t on t.object_id = i.object_id
             join sys.schemas s on s.schema_id = t.schema_id
@@ -373,7 +394,8 @@ public sealed class SqlServerMetaSqlExtractor
             rows.Add(new SqlServerMetaSqlProjector.IndexRow(
                 Name: reader.GetString(0),
                 IsUnique: ReadBool(reader, 1),
-                IsClustered: ReadBool(reader, 2)));
+                IsClustered: ReadBool(reader, 2),
+                FilterSql: NormalizeFilterSql(ReadNullableString(reader, 3))));
         }
 
         return rows;
@@ -467,6 +489,55 @@ public sealed class SqlServerMetaSqlExtractor
             int intValue => intValue != 0,
             _ => Convert.ToBoolean(value, System.Globalization.CultureInfo.InvariantCulture),
         };
+    }
+
+    private static string ReadNullableString(SqlDataReader reader, int ordinal)
+    {
+        if (reader.IsDBNull(ordinal))
+        {
+            return string.Empty;
+        }
+
+        return reader.GetString(ordinal);
+    }
+
+    private static string NormalizeFilterSql(string value)
+    {
+        var normalized = value.Trim();
+        while (IsWrappedInSingleOuterParentheses(normalized))
+        {
+            normalized = normalized[1..^1].Trim();
+        }
+
+        return normalized;
+    }
+
+    private static bool IsWrappedInSingleOuterParentheses(string value)
+    {
+        if (value.Length < 2 || value[0] != '(' || value[^1] != ')')
+        {
+            return false;
+        }
+
+        var depth = 0;
+        for (var i = 0; i < value.Length; i++)
+        {
+            var ch = value[i];
+            if (ch == '(')
+            {
+                depth++;
+            }
+            else if (ch == ')')
+            {
+                depth--;
+                if (depth == 0 && i < value.Length - 1)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return depth == 0;
     }
 }
 
