@@ -33,6 +33,7 @@ internal static partial class Program
 
             Presenter.WriteOk(
                 "deploy complete",
+                ("DatabaseCreated", result.DatabaseCreated ? "true" : "false"),
                 ("AppliedAddCount", result.AppliedAddCount.ToString()),
                 ("AppliedDropCount", result.AppliedDropCount.ToString()),
                 ("AppliedAlterCount", result.AppliedAlterCount.ToString()),
@@ -65,6 +66,8 @@ internal static partial class Program
         Presenter.WriteInfo("  Refuses when the manifest contains Block entries.");
         Presenter.WriteInfo("  Refuses when source/live instance fingerprints no longer match.");
         Presenter.WriteInfo("  Always validates and applies the full manifest scope. Filtered subset deploy is not supported.");
-        Presenter.WriteInfo("  Applies add/drop/alter/replace operations in one SQL transaction.");
+        Presenter.WriteInfo("  Creates the database first when the manifest expects a missing database.");
+        Presenter.WriteInfo("  Executes deploy statements without wrapping the full deploy in one SQL transaction.");
+        Presenter.WriteInfo("  If later statements fail after database creation, the database remains and the failure reports that explicitly.");
     }
 }

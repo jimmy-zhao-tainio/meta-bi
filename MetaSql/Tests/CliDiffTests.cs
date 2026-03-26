@@ -160,6 +160,7 @@ public sealed partial class CliDiffTests
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
 
             Assert.Equal(0, deployResult.ExitCode);
+            Assert.Contains("DatabaseCreated: true", deployResult.Output, StringComparison.Ordinal);
             Assert.True(DatabaseExists(masterConnectionString, databaseName));
             Assert.True(SchemaExists(databaseConnectionString, "raw"));
             Assert.True(TableExists(databaseConnectionString, "raw", "H_Customer"));

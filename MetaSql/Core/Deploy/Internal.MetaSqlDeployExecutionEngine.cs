@@ -1,4 +1,5 @@
 using Meta.Core.Services;
+using Meta.Core.Domain;
 using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql;
@@ -16,6 +17,7 @@ internal sealed class MetaSqlDeployExecutionEngine
         CancellationToken cancellationToken = default)
     {
         manifestFingerprintValidator.ValidatePreconditions(request);
+        var databaseCreated = false;
 
         var manifestWorkspacePath = Path.GetFullPath(request.ManifestWorkspacePath);
         var sourceWorkspacePath = Path.GetFullPath(request.SourceWorkspacePath);
@@ -62,6 +64,7 @@ internal sealed class MetaSqlDeployExecutionEngine
 
                 await SqlServerDatabaseRuntime.CreateDatabaseAsync(request.ConnectionString, cancellationToken)
                     .ConfigureAwait(false);
+                databaseCreated = true;
             }
             else if (actualLiveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
             {
@@ -69,13 +72,23 @@ internal sealed class MetaSqlDeployExecutionEngine
                     "Manifest expects an existing live database, but the database does not exist.");
             }
 
-            var extractor = new SqlServerMetaSqlExtractor();
-            var liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
+            Workspace liveWorkspace;
+            if (expectedLiveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
             {
-                NewWorkspacePath = liveWorkspacePath,
-                ConnectionString = request.ConnectionString,
-                AllowEmpty = true,
-            });
+                liveWorkspace = SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
+                    liveWorkspacePath,
+                    SqlServerDatabaseRuntime.RequireDatabaseName(request.ConnectionString));
+            }
+            else
+            {
+                var extractor = new SqlServerMetaSqlExtractor();
+                liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
+                {
+                    NewWorkspacePath = liveWorkspacePath,
+                    ConnectionString = request.ConnectionString,
+                    AllowEmpty = true,
+                });
+            }
             MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
             manifestFingerprintValidator.ValidateLiveFingerprint(root, liveWorkspace);
 
@@ -96,6 +109,7 @@ internal sealed class MetaSqlDeployExecutionEngine
 
             return new MetaSqlDeployResult
             {
+                DatabaseCreated = databaseCreated,
                 AppliedAddCount = statementPlan.AppliedAddCount,
                 AppliedDropCount = statementPlan.AppliedDropCount,
                 AppliedAlterCount = statementPlan.AppliedAlterCount,
@@ -103,6 +117,17 @@ internal sealed class MetaSqlDeployExecutionEngine
                 AppliedReplaceCount = statementPlan.AppliedReplaceCount,
                 ExecutedStatementCount = statements.Count,
             };
+        }
+        catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
+        {
+            if (databaseCreated)
+            {
+                throw new InvalidOperationException(
+                    "Deploy failed after creating the database. Database created before failure.",
+                    ex);
+            }
+
+            throw;
         }
         finally
         {

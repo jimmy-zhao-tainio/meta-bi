@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessReferenceKeyPartDataTypeDetailList>
-    <BusinessReferenceKeyPartDataTypeDetail Id="StatusCodeLength" BusinessReferenceKeyPartId="StatusCode">
-      <Name>Length</Name>
-      <Value>20</Value>
-    </BusinessReferenceKeyPartDataTypeDetail>
-  </BusinessReferenceKeyPartDataTypeDetailList>
-</MetaBusinessDataVault>

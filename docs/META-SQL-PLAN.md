@@ -57,7 +57,9 @@ Difference kinds:
 - live instance fingerprint match
 - expected live database presence (`Missing` vs `Present`)
 
-Then it builds SQL statements from manifest actions and executes in one transaction.
+Then it builds SQL statements from manifest actions and executes them statement-by-statement.
+If the manifest expects a missing database, deploy creates the database first.
+If a later statement fails, earlier applied statements and the created database remain.
 
 Statement ordering is explicit and deterministic:
 
@@ -186,7 +188,7 @@ Current solid base:
 - strict source/live fingerprint validation
 - block refusal
 - explicit statement ordering
-- one transaction
+- no full-deploy transaction
 - narrow but real `AlterTableColumn` support
 - broad add/drop support
 

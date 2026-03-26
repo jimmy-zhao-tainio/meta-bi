@@ -990,6 +990,26 @@ public sealed partial class CliDiffTests
         return result;
     }
 
+    private static bool PrimaryKeyExists(string connectionString, string schemaName, string tableName)
+    {
+        using var connection = new SqlConnection(connectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            SELECT COUNT(1)
+            FROM sys.key_constraints AS kc
+            INNER JOIN sys.tables AS t ON t.object_id = kc.parent_object_id
+            INNER JOIN sys.schemas AS s ON s.schema_id = t.schema_id
+            WHERE kc.type = 'PK'
+              AND s.name = @SchemaName
+              AND t.name = @TableName;
+            """;
+        command.Parameters.AddWithValue("@SchemaName", schemaName);
+        command.Parameters.AddWithValue("@TableName", tableName);
+        var value = command.ExecuteScalar();
+        return Convert.ToInt32(value) > 0;
+    }
+
     private static bool GetPrimaryKeyIsClustered(string connectionString, string schemaName, string tableName)
     {
         using var connection = new SqlConnection(connectionString);

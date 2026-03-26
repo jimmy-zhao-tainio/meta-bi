@@ -203,7 +203,7 @@ public sealed partial class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployCommand_RollsBackWhenSecondForeignKeyReplacementFails()
+    public async Task DeployCommand_LeavesEarlierForeignKeyReplacementAppliedWhenSecondFails()
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -247,8 +247,8 @@ public sealed partial class CliDiffTests
             Assert.Equal(5, deployResult.ExitCode);
             Assert.Contains("SQL deploy failed at statement 4:", deployResult.Output, StringComparison.Ordinal);
 
-            Assert.Equal("ParentA", GetForeignKeyTargetTableName(databaseConnectionString, "FK_ChildA_Parent"));
-            Assert.Equal("ParentA", GetForeignKeyTargetTableName(databaseConnectionString, "FK_ChildB_Parent"));
+            Assert.Equal("ParentB", GetForeignKeyTargetTableName(databaseConnectionString, "FK_ChildA_Parent"));
+            Assert.False(ForeignKeyExists(databaseConnectionString, "FK_ChildB_Parent"));
         }
         finally
         {
@@ -674,7 +674,7 @@ public sealed partial class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployCommand_RollsBackWhenSecondPrimaryKeyReplacementFails()
+    public async Task DeployCommand_LeavesEarlierPrimaryKeyReplacementAppliedWhenSecondFails()
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -733,8 +733,8 @@ public sealed partial class CliDiffTests
             Assert.Equal(5, deployResult.ExitCode);
             Assert.Contains("SQL deploy failed at statement", deployResult.Output, StringComparison.Ordinal);
 
-            Assert.Equal(["KeyA"], GetPrimaryKeyKeyColumns(databaseConnectionString, "raw", "PkRollbackA"));
-            Assert.Equal(["KeyA"], GetPrimaryKeyKeyColumns(databaseConnectionString, "raw", "PkRollbackB"));
+            Assert.Equal(["KeyA", "KeyB"], GetPrimaryKeyKeyColumns(databaseConnectionString, "raw", "PkRollbackA"));
+            Assert.False(PrimaryKeyExists(databaseConnectionString, "raw", "PkRollbackB"));
         }
         finally
         {
@@ -1025,7 +1025,7 @@ public sealed partial class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployCommand_RollsBackWhenSecondIndexReplacementFails()
+    public async Task DeployCommand_LeavesEarlierIndexReplacementAppliedWhenSecondFails()
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -1078,8 +1078,8 @@ public sealed partial class CliDiffTests
             Assert.Equal(5, deployResult.ExitCode);
             Assert.Contains("SQL deploy failed at statement", deployResult.Output, StringComparison.Ordinal);
 
-            Assert.False(GetIndexIsUnique(databaseConnectionString, "IX_IndexRollback_A"));
-            Assert.False(GetIndexIsUnique(databaseConnectionString, "IX_IndexRollback_B"));
+            Assert.True(GetIndexIsUnique(databaseConnectionString, "IX_IndexRollback_A"));
+            Assert.False(IndexExists(databaseConnectionString, "IX_IndexRollback_B"));
         }
         finally
         {
@@ -2177,7 +2177,7 @@ public sealed partial class CliDiffTests
     }
 
     [Fact]
-    public async Task DeployCommand_RollsBackWhenSecondAlterFailsAtApplyTime()
+    public async Task DeployCommand_LeavesEarlierAlterAppliedWhenSecondFailsAtApplyTime()
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -2234,7 +2234,7 @@ public sealed partial class CliDiffTests
             Assert.Equal(5, deployResult.ExitCode);
             Assert.Contains("SQL deploy failed at statement 2:", deployResult.Output, StringComparison.Ordinal);
 
-            Assert.Equal(100, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "H_Customer", "CustomerId"));
+            Assert.Equal(200, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "H_Customer", "CustomerId"));
             Assert.Equal(512, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "H_Customer", "RecordSource"));
         }
         finally

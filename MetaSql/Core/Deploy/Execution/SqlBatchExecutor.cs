@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 namespace MetaSql;
 
 /// <summary>
-/// Executes rendered SQL batches inside the deploy transaction boundary.
+/// Executes rendered SQL batches statement-by-statement using SQL Server autocommit behavior.
 /// </summary>
 internal sealed class SqlBatchExecutor
 {
@@ -19,42 +19,22 @@ internal sealed class SqlBatchExecutor
         using var connection = new SqlConnection(connectionString);
         await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
 
-        using var transaction = connection.BeginTransaction();
-        try
+        for (var i = 0; i < statements.Count; i++)
         {
-            using (var init = connection.CreateCommand())
+            var statement = statements[i];
+            using var command = connection.CreateCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = statement;
+            try
             {
-                init.Transaction = transaction;
-                init.CommandType = CommandType.Text;
-                init.CommandText = "SET XACT_ABORT ON;";
-                await init.ExecuteNonQueryAsync(cancellationToken).ConfigureAwait(false);
+                await command.ExecuteNonQueryAsync(cancellationToken).ConfigureAwait(false);
             }
-
-            for (var i = 0; i < statements.Count; i++)
+            catch (Exception ex)
             {
-                var statement = statements[i];
-                using var command = connection.CreateCommand();
-                command.Transaction = transaction;
-                command.CommandType = CommandType.Text;
-                command.CommandText = statement;
-                try
-                {
-                    await command.ExecuteNonQueryAsync(cancellationToken).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    throw new InvalidOperationException(
-                        $"SQL deploy failed at statement {i + 1}: {statement}",
-                        ex);
-                }
+                throw new InvalidOperationException(
+                    $"SQL deploy failed at statement {i + 1}: {statement}",
+                    ex);
             }
-
-            transaction.Commit();
-        }
-        catch
-        {
-            transaction.Rollback();
-            throw;
         }
     }
 }

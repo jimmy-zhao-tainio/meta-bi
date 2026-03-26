@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessHubSatelliteAttributeDataTypeDetailList>
-    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerProfileNameLength" BusinessHubSatelliteAttributeId="CustomerProfileName">
-      <Name>Length</Name>
-      <Value>200</Value>
-    </BusinessHubSatelliteAttributeDataTypeDetail>
-  </BusinessHubSatelliteAttributeDataTypeDetailList>
-</MetaBusinessDataVault>

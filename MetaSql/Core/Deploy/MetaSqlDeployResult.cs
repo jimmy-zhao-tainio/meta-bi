@@ -2,6 +2,7 @@ namespace MetaSql;
 
 public sealed record MetaSqlDeployResult
 {
+    public required bool DatabaseCreated { get; init; }
     public required int AppliedAddCount { get; init; }
     public required int AppliedDropCount { get; init; }
     public required int AppliedAlterCount { get; init; }

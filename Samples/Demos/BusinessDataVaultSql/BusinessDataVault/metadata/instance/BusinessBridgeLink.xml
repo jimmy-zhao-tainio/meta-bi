@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessBridgeLinkList>
-    <BusinessBridgeLink Id="CustomerOrderTraversal-CustomerOrder" BusinessBridgeId="CustomerOrderTraversal" BusinessLinkId="CustomerOrder">
-      <Ordinal>1</Ordinal>
-      <RoleName>Path</RoleName>
-    </BusinessBridgeLink>
-  </BusinessBridgeLinkList>
-</MetaBusinessDataVault>
