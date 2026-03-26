@@ -15,8 +15,5 @@ namespace MetaSql
         [XmlElement("Name")]
         public string Name { get; set; } = string.Empty;
 
-        [XmlElement("Platform")]
-        public string Platform { get; set; } = string.Empty;
-
     }
 }

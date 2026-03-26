@@ -6,7 +6,8 @@ namespace MetaDataVault.ToMetaSql;
 internal sealed class SqlServerBusinessTypeLowering
 {
     private const string DirectConversionImplementationId = "MetaDataTypeConversion:implementation:direct";
-    private const string SqlServerTypeSystemId = "sqlserver:type-system";
+    private const string MetaTypeSystemId = "Meta";
+    private const string SqlServerTypeSystemId = "SqlServer";
 
     private readonly IReadOnlyDictionary<string, string> _sqlServerTypesByLogicalTypeId;
     private readonly IReadOnlyDictionary<string, DataType> _dataTypesById;
@@ -49,22 +50,23 @@ internal sealed class SqlServerBusinessTypeLowering
         return new SqlServerBusinessTypeLowering(sqlServerTypesByLogicalTypeId, dataTypesById);
     }
 
-    public string LowerOrKeep(string sourceTypeId)
+    public string LowerRequired(string sourceTypeId)
     {
         if (string.IsNullOrWhiteSpace(sourceTypeId))
         {
-            throw new InvalidOperationException("Business column type id is required.");
+            throw new InvalidOperationException("MetaDataVault column type id is required.");
         }
 
         if (!_dataTypesById.TryGetValue(sourceTypeId, out var sourceType))
         {
             throw new InvalidOperationException(
-                $"Business column type '{sourceTypeId}' is not sanctioned in MetaDataType.");
+                $"MetaDataVault column type '{sourceTypeId}' is not sanctioned in MetaDataType.");
         }
 
-        if (string.Equals(sourceType.DataTypeSystemId, SqlServerTypeSystemId, StringComparison.Ordinal))
+        if (!string.Equals(sourceType.DataTypeSystemId, MetaTypeSystemId, StringComparison.Ordinal))
         {
-            return sourceTypeId;
+            throw new InvalidOperationException(
+                $"MetaDataVault column type '{sourceTypeId}' must belong to DataTypeSystem '{MetaTypeSystemId}'.");
         }
 
         if (_sqlServerTypesByLogicalTypeId.TryGetValue(sourceTypeId, out var sqlServerTypeId))
@@ -73,7 +75,7 @@ internal sealed class SqlServerBusinessTypeLowering
         }
 
         throw new InvalidOperationException(
-            $"Business logical type '{sourceTypeId}' has no sanctioned direct SQL Server lowering.");
+            $"MetaDataVault logical type '{sourceTypeId}' has no sanctioned direct SqlServer lowering.");
     }
 
     private static bool IsSqlServerType(IReadOnlyDictionary<string, DataType> dataTypesById, string dataTypeId)

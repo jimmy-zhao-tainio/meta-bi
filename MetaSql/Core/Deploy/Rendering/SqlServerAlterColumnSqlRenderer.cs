@@ -68,7 +68,7 @@ internal sealed class SqlServerAlterColumnSqlRenderer
                 !SqlServerRenderingSupport.IsSqlServerTypeId(liveColumn.MetaDataTypeId))
             {
                 throw new InvalidOperationException(
-                    $"Cannot alter column '{sourceColumn.Id}' because only sqlserver:type:* MetaDataTypeId values are supported.");
+                    $"Cannot alter column '{sourceColumn.Id}' because only MetaDataTypeId values owned by DataTypeSystem 'SqlServer' are supported.");
             }
 
             var sourceTypeName = SqlServerRenderingSupport.GetSqlServerTypeName(sourceColumn.MetaDataTypeId);
@@ -82,7 +82,7 @@ internal sealed class SqlServerAlterColumnSqlRenderer
             if (!SqlServerRenderingSupport.LengthBasedSqlServerTypeNames.Contains(sourceTypeName))
             {
                 throw new InvalidOperationException(
-                    $"Cannot alter column '{sourceColumn.Id}' because only length-based sqlserver type-shape changes are executable in this deploy slice.");
+                    $"Cannot alter column '{sourceColumn.Id}' because only length-based SqlServer type-shape changes are executable in this deploy slice.");
             }
 
             var sourceDetailMap = GetDetailMap(sourceDetailsByColumnId, sourceColumn.Id);

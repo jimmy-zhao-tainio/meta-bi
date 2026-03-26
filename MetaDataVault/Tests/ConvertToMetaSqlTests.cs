@@ -34,7 +34,6 @@ public sealed class ConvertToMetaSqlTests
             Assert.Single(schemas);
             Assert.Equal("RawVault", databases[0].Values["Name"]);
             Assert.Equal("RawVault", databases[0].Id);
-            Assert.Equal("sqlserver", databases[0].Values["Platform"]);
             Assert.Equal("dbo", schemas[0].Values["Name"]);
             Assert.Equal("RawVault.dbo", schemas[0].Id);
             Assert.Empty(sqlWorkspace.Instance.GetOrCreateEntityRecords("Table"));
@@ -72,7 +71,6 @@ public sealed class ConvertToMetaSqlTests
             Assert.Single(schemas);
             Assert.Equal("BusinessVault", databases[0].Values["Name"]);
             Assert.Equal("BusinessVault", databases[0].Id);
-            Assert.Equal("sqlserver", databases[0].Values["Platform"]);
             Assert.Equal("dbo", schemas[0].Values["Name"]);
             Assert.Equal("BusinessVault.dbo", schemas[0].Id);
             Assert.Empty(sqlWorkspace.Instance.GetOrCreateEntityRecords("Table"));
@@ -508,7 +506,7 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
-    public async Task ConvertAsync_BusinessPhysicalSqlServerTypesDoNotRequireConversionWorkspace()
+    public async Task ConvertAsync_BusinessFailsWhenBusinessTypesDoNotBelongToMetaDataTypeSystem()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
         var sourceWorkspacePath = Path.Combine(repoRoot, "MetaDataVault", "Workspaces", "SampleBusinessDataVaultCommerceHelpers");
@@ -552,17 +550,14 @@ public sealed class ConvertToMetaSqlTests
 
             await model.SaveToXmlWorkspaceAsync(workspacePath);
 
-            var sqlWorkspace = await Converter.ConvertAsync(
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
                 targetPath,
                 GetImplementationWorkspacePath(repoRoot),
-                databaseName: "BusinessVault");
+                databaseName: "BusinessVault"));
 
-            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
-            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
-            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BH_Customer").Id, "Identifier").Values["MetaDataTypeId"]);
-            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BHS_Customer_Profile").Id, "CustomerName").Values["MetaDataTypeId"]);
-            Assert.Equal("sqlserver:type:nvarchar", GetColumn(columns, GetTable(tables, "BLS_CustomerOrder_Status").Id, "StatusCode").Values["MetaDataTypeId"]);
+            Assert.Contains("sqlserver:type:nvarchar", error.Message, StringComparison.Ordinal);
+            Assert.Contains("must belong to DataTypeSystem 'Meta'", error.Message, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {
@@ -592,7 +587,7 @@ public sealed class ConvertToMetaSqlTests
                 databaseName: "BusinessVault"));
 
             Assert.Contains("meta:type:Xml", error.Message, StringComparison.Ordinal);
-            Assert.Contains("no sanctioned direct SQL Server lowering", error.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("no sanctioned direct SqlServer lowering", error.Message, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {

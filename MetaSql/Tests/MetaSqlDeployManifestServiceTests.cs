@@ -952,7 +952,6 @@ public sealed class MetaSqlDeployManifestServiceTests
         {
             Id = "SalesDb",
             Name = "SalesDb",
-            Platform = "sqlserver",
         };
         var schema = new Schema
         {
@@ -1044,7 +1043,6 @@ public sealed class MetaSqlDeployManifestServiceTests
         {
             Id = "SalesDb",
             Name = "SalesDb",
-            Platform = "sqlserver",
         };
         var schema = new Schema
         {
@@ -1215,7 +1213,6 @@ public sealed class MetaSqlDeployManifestServiceTests
         {
             Id = "SalesDb",
             Name = "SalesDb",
-            Platform = "sqlserver",
         };
         var schema = new Schema
         {
@@ -1309,7 +1306,6 @@ public sealed class MetaSqlDeployManifestServiceTests
         {
             Id = "SalesDb",
             Name = "SalesDb",
-            Platform = "sqlserver",
         };
         var schema = new Schema
         {
@@ -1503,7 +1499,6 @@ public sealed class MetaSqlDeployManifestServiceTests
         {
             Id = "SalesDb",
             Name = "SalesDb",
-            Platform = "sqlserver",
         };
         var schema = new Schema
         {
@@ -1575,7 +1570,6 @@ public sealed class MetaSqlDeployManifestServiceTests
         {
             Id = "SalesDb",
             Name = "SalesDb",
-            Platform = "sqlserver",
         };
         var schema = new Schema
         {

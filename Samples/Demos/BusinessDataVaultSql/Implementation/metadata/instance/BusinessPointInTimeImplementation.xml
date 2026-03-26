@@ -5,16 +5,16 @@
       <SchemaName>dbo</SchemaName>
       <TableNamePattern>PIT_{Name}</TableNamePattern>
       <ParentHashKeyColumnName>HubHashKey</ParentHashKeyColumnName>
-      <ParentHashKeyDataTypeId>sqlserver:type:binary</ParentHashKeyDataTypeId>
+      <ParentHashKeyDataTypeId>meta:type:Binary</ParentHashKeyDataTypeId>
       <ParentHashKeyLength>16</ParentHashKeyLength>
       <SnapshotTimestampColumnName>SnapshotTimestamp</SnapshotTimestampColumnName>
-      <SnapshotTimestampDataTypeId>sqlserver:type:datetime2</SnapshotTimestampDataTypeId>
+      <SnapshotTimestampDataTypeId>meta:type:DateTime2</SnapshotTimestampDataTypeId>
       <SnapshotTimestampPrecision>7</SnapshotTimestampPrecision>
       <SatelliteReferenceColumnNamePattern>{SatelliteName}LoadTimestamp</SatelliteReferenceColumnNamePattern>
-      <SatelliteReferenceDataTypeId>sqlserver:type:datetime2</SatelliteReferenceDataTypeId>
+      <SatelliteReferenceDataTypeId>meta:type:DateTime2</SatelliteReferenceDataTypeId>
       <SatelliteReferencePrecision>7</SatelliteReferencePrecision>
       <AuditIdColumnName>AuditId</AuditIdColumnName>
-      <AuditIdDataTypeId>sqlserver:type:int</AuditIdDataTypeId>
+      <AuditIdDataTypeId>meta:type:Int32</AuditIdDataTypeId>
     </BusinessPointInTimeImplementation>
   </BusinessPointInTimeImplementationList>
 </MetaDataVaultImplementation>

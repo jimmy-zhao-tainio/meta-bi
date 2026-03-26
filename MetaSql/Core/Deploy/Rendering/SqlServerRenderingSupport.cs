@@ -1,7 +1,16 @@
+using MetaDataType.Instance;
+
 namespace MetaSql;
 
 internal static class SqlServerRenderingSupport
 {
+    private const string SqlServerDataTypeSystemId = "SqlServer";
+    private static readonly IReadOnlyDictionary<string, (string DataTypeSystemId, string Name)> DataTypesById =
+        MetaDataTypeInstance.Default.DataTypeList.ToDictionary(
+            row => row.Id,
+            row => (row.DataTypeSystemId, row.Name),
+            StringComparer.Ordinal);
+
     internal static readonly HashSet<string> LengthBasedSqlServerTypeNames = new(StringComparer.OrdinalIgnoreCase)
     {
         "varchar",
@@ -40,20 +49,7 @@ internal static class SqlServerRenderingSupport
 
     public static string BuildSqlServerTypeSql(string metaDataTypeId, IReadOnlyDictionary<string, string> detailValues)
     {
-        const string prefix = "sqlserver:type:";
-        if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
-            !metaDataTypeId.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-        {
-            throw new InvalidOperationException(
-                $"Unsupported MetaDataTypeId '{metaDataTypeId}'. Deploy only supports sqlserver:type:*.");
-        }
-
-        var typeName = metaDataTypeId[prefix.Length..];
-        if (string.IsNullOrWhiteSpace(typeName))
-        {
-            throw new InvalidOperationException(
-                $"Unsupported MetaDataTypeId '{metaDataTypeId}'. Deploy only supports sqlserver:type:*.");
-        }
+        var typeName = GetRequiredSqlServerTypeName(metaDataTypeId);
 
         return typeName.ToLowerInvariant() switch
         {
@@ -85,20 +81,39 @@ internal static class SqlServerRenderingSupport
 
     public static bool IsSqlServerTypeId(string metaDataTypeId)
     {
-        return !string.IsNullOrWhiteSpace(metaDataTypeId) &&
-               metaDataTypeId.StartsWith("sqlserver:type:", StringComparison.OrdinalIgnoreCase);
+        if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
+            !DataTypesById.TryGetValue(metaDataTypeId, out var dataType))
+        {
+            return false;
+        }
+
+        return string.Equals(dataType.DataTypeSystemId, SqlServerDataTypeSystemId, StringComparison.Ordinal);
     }
 
     public static string GetSqlServerTypeName(string metaDataTypeId)
     {
-        const string prefix = "sqlserver:type:";
         if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
-            !metaDataTypeId.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            !DataTypesById.TryGetValue(metaDataTypeId, out var dataType) ||
+            !string.Equals(dataType.DataTypeSystemId, SqlServerDataTypeSystemId, StringComparison.Ordinal))
         {
             return string.Empty;
         }
 
-        return metaDataTypeId[prefix.Length..];
+        return dataType.Name;
+    }
+
+    private static string GetRequiredSqlServerTypeName(string metaDataTypeId)
+    {
+        if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
+            !DataTypesById.TryGetValue(metaDataTypeId, out var dataType) ||
+            !string.Equals(dataType.DataTypeSystemId, SqlServerDataTypeSystemId, StringComparison.Ordinal) ||
+            string.IsNullOrWhiteSpace(dataType.Name))
+        {
+            throw new InvalidOperationException(
+                $"Unsupported MetaDataTypeId '{metaDataTypeId}'. Deploy only supports MetaDataType values owned by DataTypeSystem 'SqlServer'.");
+        }
+
+        return dataType.Name;
     }
 
     private static string BuildNumericTypeSql(

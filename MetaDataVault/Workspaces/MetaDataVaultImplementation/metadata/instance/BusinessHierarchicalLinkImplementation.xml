@@ -8,18 +8,18 @@
       <ParentHubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</ParentHubForeignKeyNamePattern>
       <ChildHubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</ChildHubForeignKeyNamePattern>
       <HashKeyColumnName>HashKey</HashKeyColumnName>
-      <HashKeyDataTypeId>sqlserver:type:binary</HashKeyDataTypeId>
+      <HashKeyDataTypeId>meta:type:Binary</HashKeyDataTypeId>
       <HashKeyLength>16</HashKeyLength>
       <ParentHashKeyColumnName>ParentHashKey</ParentHashKeyColumnName>
       <ChildHashKeyColumnName>ChildHashKey</ChildHashKeyColumnName>
       <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
-      <LoadTimestampDataTypeId>sqlserver:type:datetime2</LoadTimestampDataTypeId>
+      <LoadTimestampDataTypeId>meta:type:DateTime2</LoadTimestampDataTypeId>
       <LoadTimestampPrecision>7</LoadTimestampPrecision>
       <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
-      <RecordSourceDataTypeId>sqlserver:type:nvarchar</RecordSourceDataTypeId>
+      <RecordSourceDataTypeId>meta:type:String</RecordSourceDataTypeId>
       <RecordSourceLength>256</RecordSourceLength>
       <AuditIdColumnName>AuditId</AuditIdColumnName>
-      <AuditIdDataTypeId>sqlserver:type:int</AuditIdDataTypeId>
+      <AuditIdDataTypeId>meta:type:Int32</AuditIdDataTypeId>
     </BusinessHierarchicalLinkImplementation>
   </BusinessHierarchicalLinkImplementationList>
 </MetaDataVaultImplementation>

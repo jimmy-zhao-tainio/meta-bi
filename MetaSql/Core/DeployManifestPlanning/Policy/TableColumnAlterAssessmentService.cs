@@ -14,11 +14,6 @@ internal sealed class TableColumnAlterAssessmentService
         "IsNullable",
     };
 
-    private static readonly HashSet<string> SupportedSqlServerColumnChangePrefixes = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "sqlserver:type:",
-    };
-
     private static readonly HashSet<string> LengthBasedSqlServerTypeNames = new(StringComparer.OrdinalIgnoreCase)
     {
         "varchar",
@@ -69,7 +64,7 @@ internal sealed class TableColumnAlterAssessmentService
         var liveTypeId = GetValue(liveColumn, "MetaDataTypeId");
         if (!IsSupportedSqlServerType(sourceTypeId) || !IsSupportedSqlServerType(liveTypeId))
         {
-            return (false, false, $"{difference.DisplayName}: AlterTableColumn supports only sqlserver:type:* MetaDataTypeId values.");
+            return (false, false, $"{difference.DisplayName}: AlterTableColumn supports only MetaDataTypeId values owned by DataTypeSystem 'SqlServer'.");
         }
 
         var typeShapeChanged = changedAspects.Contains("MetaDataTypeId", StringComparer.Ordinal) ||
@@ -85,7 +80,7 @@ internal sealed class TableColumnAlterAssessmentService
 
             if (!LengthBasedSqlServerTypeNames.Contains(sourceTypeName))
             {
-                return (false, false, $"{difference.DisplayName}: only length-based sqlserver types are executable for type-shape changes in this slice.");
+                return (false, false, $"{difference.DisplayName}: only length-based SqlServer types are executable for type-shape changes in this slice.");
             }
 
             var sourceDetailMap = GetDetailMap(lookup.SourceColumnDetailsByColumnId, sourceColumn.Id);
@@ -308,32 +303,12 @@ internal sealed class TableColumnAlterAssessmentService
 
     private static bool IsSupportedSqlServerType(string metaDataTypeId)
     {
-        if (string.IsNullOrWhiteSpace(metaDataTypeId))
-        {
-            return false;
-        }
-
-        foreach (var prefix in SupportedSqlServerColumnChangePrefixes)
-        {
-            if (metaDataTypeId.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return SqlServerRenderingSupport.IsSqlServerTypeId(metaDataTypeId);
     }
 
     private static string GetSqlServerTypeName(string metaDataTypeId)
     {
-        const string prefix = "sqlserver:type:";
-        if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
-            !metaDataTypeId.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-        {
-            return string.Empty;
-        }
-
-        return metaDataTypeId[prefix.Length..];
+        return SqlServerRenderingSupport.GetSqlServerTypeName(metaDataTypeId);
     }
 
     private static string BuildColumnBlockerKey(string sourceId, string liveId)

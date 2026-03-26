@@ -36,14 +36,14 @@ public static partial class Converter
                 ApplyPattern(rawHubImplementation.TableNamePattern, ("Name", hub.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            var hashKeyColumn = AddColumn(
+            var hashKeyColumn = AddImplementationColumn(
                 context,
                 table,
                 rawHubImplementation.HashKeyColumnName,
                 rawHubImplementation.HashKeyDataTypeId,
                 "false",
-                reservedColumnNames);
-            AddDetail(context, hashKeyColumn, "Length", rawHubImplementation.HashKeyLength);
+                reservedColumnNames,
+                ("Length", rawHubImplementation.HashKeyLength));
 
             foreach (var keyPart in GetGroup(rawHubKeyPartsByHubId, hub.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
             {
@@ -179,14 +179,14 @@ public static partial class Converter
                 ApplyPattern(rawLinkImplementation.TableNamePattern, ("Name", link.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            var hashKeyColumn = AddColumn(
+            var hashKeyColumn = AddImplementationColumn(
                 context,
                 table,
                 rawLinkImplementation.HashKeyColumnName,
                 rawLinkImplementation.HashKeyDataTypeId,
                 "false",
-                reservedColumnNames);
-            AddDetail(context, hashKeyColumn, "Length", rawLinkImplementation.HashKeyLength);
+                reservedColumnNames,
+                ("Length", rawLinkImplementation.HashKeyLength));
 
             foreach (var linkHub in GetGroup(rawLinkHubsByLinkId, link.Id).OrderBy(row => ParseOrdinal(row.Ordinal)).ThenBy(row => row.Id, StringComparer.Ordinal))
             {
@@ -401,7 +401,7 @@ public static partial class Converter
             context,
             table,
             name,
-            metaDataTypeId,
+            ResolveProjectedMetaDataTypeId(context, metaDataTypeId),
             isNullable,
             reservedColumnNames);
 
@@ -411,6 +411,13 @@ public static partial class Converter
         }
 
         return column;
+    }
+
+    private static string ResolveProjectedMetaDataTypeId(ConversionContext context, string metaDataTypeId)
+    {
+        return context.BusinessTypeLowering is null
+            ? metaDataTypeId
+            : context.BusinessTypeLowering.LowerRequired(metaDataTypeId);
     }
 
     private static TableColumn AddColumn(

@@ -412,7 +412,6 @@ namespace MetaSql
                 row.Id = RequireIdentity(row.Id, "Entity 'Database' contains a row with empty Id.");
                 row.Collation ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'Database' row '{row.Id}' is missing required property 'Name'.");
-                row.Platform = RequireText(row.Platform, $"Entity 'Database' row '{row.Id}' is missing required property 'Platform'.");
             }
         }
 

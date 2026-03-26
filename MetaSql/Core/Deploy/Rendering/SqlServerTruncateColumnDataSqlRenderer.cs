@@ -26,7 +26,7 @@ internal sealed class SqlServerTruncateColumnDataSqlRenderer
             !SqlServerRenderingSupport.IsSqlServerTypeId(liveColumn.MetaDataTypeId))
         {
             throw new InvalidOperationException(
-                $"Cannot truncate column '{sourceColumn.Id}' because only sqlserver:type:* MetaDataTypeId values are supported.");
+                $"Cannot truncate column '{sourceColumn.Id}' because only MetaDataTypeId values owned by DataTypeSystem 'SqlServer' are supported.");
         }
 
         var sourceTypeName = SqlServerRenderingSupport.GetSqlServerTypeName(sourceColumn.MetaDataTypeId);
@@ -40,7 +40,7 @@ internal sealed class SqlServerTruncateColumnDataSqlRenderer
         if (!SqlServerRenderingSupport.LengthBasedSqlServerTypeNames.Contains(sourceTypeName))
         {
             throw new InvalidOperationException(
-                $"Cannot truncate column '{sourceColumn.Id}' because only length-based sqlserver types are supported.");
+                $"Cannot truncate column '{sourceColumn.Id}' because only length-based SqlServer types are supported.");
         }
 
         var detailValues = GetGroup(sourceDetailsByColumnId, sourceColumn.Id)
@@ -58,7 +58,7 @@ internal sealed class SqlServerTruncateColumnDataSqlRenderer
             "varchar" or "char" or "nvarchar" or "nchar" => $"LEFT({columnSql}, {targetLength})",
             "varbinary" or "binary" => $"SUBSTRING({columnSql}, 1, {targetLength})",
             _ => throw new InvalidOperationException(
-                $"Cannot truncate column '{sourceColumn.Id}' because sqlserver type '{sourceTypeName}' is unsupported.")
+                $"Cannot truncate column '{sourceColumn.Id}' because SqlServer type '{sourceTypeName}' is unsupported.")
         };
 
         var maxBytes = string.Equals(sourceTypeName, "nvarchar", StringComparison.OrdinalIgnoreCase) ||

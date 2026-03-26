@@ -4,7 +4,6 @@
       <PropertyList>
         <Property name="Collation" isRequired="false" />
         <Property name="Name" />
-        <Property name="Platform" />
       </PropertyList>
     </Entity>
     <Entity name="ForeignKey">

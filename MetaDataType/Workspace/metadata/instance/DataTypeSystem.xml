@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaDataType>
   <DataTypeSystemList>
-    <DataTypeSystem Id="csharp:type-system">
+    <DataTypeSystem Id="CSharp">
       <Name>CSharp</Name>
     </DataTypeSystem>
-    <DataTypeSystem Id="meta:type-system">
+    <DataTypeSystem Id="Meta">
       <Name>Meta</Name>
     </DataTypeSystem>
-    <DataTypeSystem Id="snowflake:type-system">
+    <DataTypeSystem Id="Snowflake">
       <Name>Snowflake</Name>
     </DataTypeSystem>
-    <DataTypeSystem Id="sqlserver:type-system">
+    <DataTypeSystem Id="SqlServer">
       <Name>SqlServer</Name>
     </DataTypeSystem>
-    <DataTypeSystem Id="ssis:type-system">
+    <DataTypeSystem Id="SSIS">
       <Name>SSIS</Name>
     </DataTypeSystem>
-    <DataTypeSystem Id="synapse:type-system">
+    <DataTypeSystem Id="Synapse">
       <Name>Synapse</Name>
     </DataTypeSystem>
   </DataTypeSystemList>

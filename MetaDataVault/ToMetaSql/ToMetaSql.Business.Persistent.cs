@@ -123,7 +123,7 @@ public static partial class Converter
             throw new InvalidOperationException("Business column type id is required.");
         }
 
-        var resolvedMetaDataTypeId = context.BusinessTypeLowering?.LowerOrKeep(sourceMetaDataTypeId)
+        var resolvedMetaDataTypeId = context.BusinessTypeLowering?.LowerRequired(sourceMetaDataTypeId)
             ?? throw new InvalidOperationException(
                 $"Business logical type '{sourceMetaDataTypeId}' requires a sanctioned SQL Server lowering path.");
 

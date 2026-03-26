@@ -4,7 +4,6 @@
     <Entity name="Database">
       <PropertyList>
         <Property name="Name" />
-        <Property name="Platform" />
         <Property name="Collation" isRequired="false" />
       </PropertyList>
     </Entity>

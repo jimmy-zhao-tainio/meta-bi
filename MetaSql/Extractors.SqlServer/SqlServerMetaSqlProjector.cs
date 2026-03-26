@@ -1,6 +1,7 @@
 using System.Globalization;
 using Meta.Core.Domain;
 using Meta.Core.Services;
+using MetaDataType.Instance;
 
 namespace MetaSql.Extractors.SqlServer;
 
@@ -23,7 +24,6 @@ internal static class SqlServerMetaSqlProjector
         {
             Id = databaseName,
             Name = databaseName,
-            Platform = "sqlserver",
         };
         model.DatabaseList.Add(database);
 
@@ -228,7 +228,7 @@ internal static class SqlServerMetaSqlProjector
             Id = $"{table.Id}.{row.ColumnName}",
             Name = row.ColumnName,
             Ordinal = row.OrdinalPosition.ToString(CultureInfo.InvariantCulture),
-            MetaDataTypeId = $"sqlserver:type:{row.DataTypeName}",
+            MetaDataTypeId = MetaDataTypeInstance.BuildDataTypeId("SqlServer", row.DataTypeName),
             IsNullable = row.IsNullable ? "true" : "false",
             TableId = table.Id,
             Table = table,

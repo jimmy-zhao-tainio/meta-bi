@@ -18,7 +18,6 @@ public static class SqlServerMetaSqlWorkspaceFactory
         {
             Id = databaseName,
             Name = databaseName,
-            Platform = "sqlserver",
         };
         model.DatabaseList.Add(database);
 

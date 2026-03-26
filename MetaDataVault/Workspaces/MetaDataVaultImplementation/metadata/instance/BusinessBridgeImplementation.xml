@@ -6,24 +6,24 @@
       <TableNamePattern>BR_{Name}</TableNamePattern>
       <AnchorHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</AnchorHubForeignKeyNamePattern>
       <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
-      <RootHashKeyDataTypeId>sqlserver:type:binary</RootHashKeyDataTypeId>
+      <RootHashKeyDataTypeId>meta:type:Binary</RootHashKeyDataTypeId>
       <RootHashKeyLength>16</RootHashKeyLength>
       <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>
-      <RelatedHashKeyDataTypeId>sqlserver:type:binary</RelatedHashKeyDataTypeId>
+      <RelatedHashKeyDataTypeId>meta:type:Binary</RelatedHashKeyDataTypeId>
       <RelatedHashKeyLength>16</RelatedHashKeyLength>
       <DepthColumnName>Depth</DepthColumnName>
-      <DepthDataTypeId>sqlserver:type:int</DepthDataTypeId>
+      <DepthDataTypeId>meta:type:Int32</DepthDataTypeId>
       <PathColumnName>Path</PathColumnName>
-      <PathDataTypeId>sqlserver:type:nvarchar</PathDataTypeId>
+      <PathDataTypeId>meta:type:String</PathDataTypeId>
       <PathLength>4000</PathLength>
       <EffectiveFromColumnName>EffectiveFrom</EffectiveFromColumnName>
-      <EffectiveFromDataTypeId>sqlserver:type:datetime2</EffectiveFromDataTypeId>
+      <EffectiveFromDataTypeId>meta:type:DateTime2</EffectiveFromDataTypeId>
       <EffectiveFromPrecision>7</EffectiveFromPrecision>
       <EffectiveToColumnName>EffectiveTo</EffectiveToColumnName>
-      <EffectiveToDataTypeId>sqlserver:type:datetime2</EffectiveToDataTypeId>
+      <EffectiveToDataTypeId>meta:type:DateTime2</EffectiveToDataTypeId>
       <EffectiveToPrecision>7</EffectiveToPrecision>
       <AuditIdColumnName>AuditId</AuditIdColumnName>
-      <AuditIdDataTypeId>sqlserver:type:int</AuditIdDataTypeId>
+      <AuditIdDataTypeId>meta:type:Int32</AuditIdDataTypeId>
     </BusinessBridgeImplementation>
   </BusinessBridgeImplementationList>
 </MetaDataVaultImplementation>

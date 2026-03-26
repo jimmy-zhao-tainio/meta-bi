@@ -14,10 +14,10 @@ public sealed class InstanceTests
         Assert.Contains(
             model.DataTypeList,
             row => string.Equals(row.Id, "sqlserver:type:nvarchar", StringComparison.Ordinal) &&
-                   string.Equals(row.DataTypeSystemId, "sqlserver:type-system", StringComparison.Ordinal));
+                   string.Equals(row.DataTypeSystemId, "SqlServer", StringComparison.Ordinal));
         Assert.Contains(
             model.DataTypeList,
             row => string.Equals(row.Id, "meta:type:String", StringComparison.Ordinal) &&
-                   string.Equals(row.DataTypeSystemId, "meta:type-system", StringComparison.Ordinal));
+                   string.Equals(row.DataTypeSystemId, "Meta", StringComparison.Ordinal));
     }
 }

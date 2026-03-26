@@ -49,7 +49,8 @@ public static partial class Converter
                     var context = CreateContext(
                         pathToNewMetaSqlWorkspace,
                         databaseName,
-                        implementationModel);
+                        implementationModel,
+                        SqlServerBusinessTypeLowering.Create(MetaDataTypeInstance.Default, MetaDataTypeConversionInstance.Default));
                     var rawModel = await MetaRawDataVaultModel.LoadFromXmlWorkspaceAsync(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var metaSqlModel = ConvertRaw(rawModel, context);
                     metaSqlModel.SaveToXmlWorkspace(pathToNewMetaSqlWorkspace);
@@ -87,7 +88,6 @@ public static partial class Converter
         {
             Id = databaseName,
             Name = databaseName,
-            Platform = "sqlserver",
         };
 
         metaSqlModel.DatabaseList.Add(database);

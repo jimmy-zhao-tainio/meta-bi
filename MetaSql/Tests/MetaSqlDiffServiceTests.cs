@@ -66,7 +66,6 @@ public sealed class MetaSqlDiffServiceTests
         {
             Id = "SalesDb",
             Name = "SalesDb",
-            Platform = "sqlserver",
         };
         var schema = new Schema
         {

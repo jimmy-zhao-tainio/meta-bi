@@ -714,3 +714,4 @@ public sealed partial class CliDiffTests
         }
     }
 
+}

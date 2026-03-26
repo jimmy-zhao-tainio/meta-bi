@@ -93,7 +93,6 @@ public sealed class MetaSqlDifferenceServiceTests
         {
             Id = idPrefix,
             Name = "SalesDb",
-            Platform = "sqlserver",
         };
         var schema = new Schema
         {

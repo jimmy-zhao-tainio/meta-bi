@@ -769,6 +769,21 @@ public sealed partial class CliDiffTests
         return Convert.ToInt32(command.ExecuteScalar()) == 1;
     }
 
+    private static bool SchemaExists(string connectionString, string schemaName)
+    {
+        using var connection = new SqlConnection(connectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            SELECT COUNT(*)
+            FROM sys.schemas
+            WHERE name = @SchemaName;
+            """;
+        command.Parameters.AddWithValue("@SchemaName", schemaName);
+        var value = command.ExecuteScalar();
+        return Convert.ToInt32(value) > 0;
+    }
+
     private static bool ColumnExists(string connectionString, string schemaName, string tableName, string columnName)
     {
         using var connection = new SqlConnection(connectionString);

@@ -347,18 +347,20 @@ public sealed class MetaSqlDifferenceFeasibilityService
 
     private static bool IsSqlServerLengthType(string typeId)
     {
-        return string.Equals(typeId, "sqlserver:type:varchar", StringComparison.Ordinal) ||
-               string.Equals(typeId, "sqlserver:type:char", StringComparison.Ordinal) ||
-               string.Equals(typeId, "sqlserver:type:nvarchar", StringComparison.Ordinal) ||
-               string.Equals(typeId, "sqlserver:type:nchar", StringComparison.Ordinal) ||
-               string.Equals(typeId, "sqlserver:type:varbinary", StringComparison.Ordinal) ||
-               string.Equals(typeId, "sqlserver:type:binary", StringComparison.Ordinal);
+        var typeName = SqlServerRenderingSupport.GetSqlServerTypeName(typeId);
+        return string.Equals(typeName, "varchar", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(typeName, "char", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(typeName, "nvarchar", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(typeName, "nchar", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(typeName, "varbinary", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(typeName, "binary", StringComparison.OrdinalIgnoreCase);
     }
 
     private static int GetMaxBytes(string sourceTypeId, int sourceLength)
     {
-        if (string.Equals(sourceTypeId, "sqlserver:type:nvarchar", StringComparison.Ordinal) ||
-            string.Equals(sourceTypeId, "sqlserver:type:nchar", StringComparison.Ordinal))
+        var typeName = SqlServerRenderingSupport.GetSqlServerTypeName(sourceTypeId);
+        if (string.Equals(typeName, "nvarchar", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(typeName, "nchar", StringComparison.OrdinalIgnoreCase))
         {
             return sourceLength * 2;
         }
