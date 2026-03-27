@@ -187,6 +187,7 @@ Current command surface:
 
 Projection note:
 - `generate-metasql` takes physical schema ownership from the sanctioned `MetaDataVaultImplementation` workspace and does not accept a schema override.
+- typed business authoring commands take optional datatype facets inline via `--length`, `--precision`, and `--scale`; the CLI persists the underlying detail rows for you
 
 Representative `add-*` families:
 - `add-bridge*`

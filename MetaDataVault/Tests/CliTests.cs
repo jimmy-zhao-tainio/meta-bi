@@ -23,8 +23,7 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-hub --id ParentNode --name ParentNode");
             RunBusinessAdd(workspacePath, "add-hub --id ChildNode --name ChildNode");
 
-            RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerIdentifier --hub Customer --name Identifier --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-hub-key-part-data-type-detail --id CustomerIdentifierLength --hub-key-part CustomerIdentifier --name Length --value 50");
+            RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerIdentifier --hub Customer --name Identifier --data-type-id meta:type:String --ordinal 1 --length 50");
             RunBusinessAdd(workspacePath, "add-hub-key-part --id OrderIdentifier --hub Order --name Identifier --data-type-id meta:type:String --ordinal 1");
             RunBusinessAdd(workspacePath, "add-hub-key-part --id CustomerAliasIdentifier --hub CustomerAlias --name Identifier --data-type-id meta:type:String --ordinal 1");
 
@@ -36,32 +35,25 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-hierarchical-link --id ParentChild --name ParentChild --parent-hub ParentNode --child-hub ChildNode");
 
             RunBusinessAdd(workspacePath, "add-reference --id StatusCode --name StatusCode");
-            RunBusinessAdd(workspacePath, "add-reference-key-part --id StatusCodeValue --reference StatusCode --name Code --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-reference-key-part-data-type-detail --id StatusCodeValueLength --reference-key-part StatusCodeValue --name Length --value 20");
+            RunBusinessAdd(workspacePath, "add-reference-key-part --id StatusCodeValue --reference StatusCode --name Code --data-type-id meta:type:String --ordinal 1 --length 20");
 
             RunBusinessAdd(workspacePath, "add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile");
-            RunBusinessAdd(workspacePath, "add-hub-satellite-attribute --id CustomerName --hub-satellite CustomerProfile --name CustomerName --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-hub-satellite-attribute-data-type-detail --id CustomerNameLength --hub-satellite-attribute CustomerName --name Length --value 200");
+            RunBusinessAdd(workspacePath, "add-hub-satellite-attribute --id CustomerName --hub-satellite CustomerProfile --name CustomerName --data-type-id meta:type:String --ordinal 1 --length 200");
 
             RunBusinessAdd(workspacePath, "add-link-satellite --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus");
-            RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-link-satellite-attribute-data-type-detail --id CustomerOrderStatusCodeLength --link-satellite-attribute CustomerOrderStatusCode --name Length --value 20");
+            RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String --ordinal 1 --length 20");
 
             RunBusinessAdd(workspacePath, "add-same-as-link-satellite --id CustomerSameAsAliasAudit --same-as-link CustomerSameAsAlias --name CustomerSameAsAliasAudit");
-            RunBusinessAdd(workspacePath, "add-same-as-link-satellite-attribute --id CustomerSameAsAliasReason --same-as-link-satellite CustomerSameAsAliasAudit --name ReasonCode --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-same-as-link-satellite-attribute-data-type-detail --id CustomerSameAsAliasReasonLength --same-as-link-satellite-attribute CustomerSameAsAliasReason --name Length --value 20");
+            RunBusinessAdd(workspacePath, "add-same-as-link-satellite-attribute --id CustomerSameAsAliasReason --same-as-link-satellite CustomerSameAsAliasAudit --name ReasonCode --data-type-id meta:type:String --ordinal 1 --length 20");
 
             RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite --id ParentChildAudit --hierarchical-link ParentChild --name ParentChildAudit");
-            RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite-attribute --id ParentChildRelationshipType --hierarchical-link-satellite ParentChildAudit --name RelationshipType --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite-attribute-data-type-detail --id ParentChildRelationshipTypeLength --hierarchical-link-satellite-attribute ParentChildRelationshipType --name Length --value 30");
+            RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite-attribute --id ParentChildRelationshipType --hierarchical-link-satellite ParentChildAudit --name RelationshipType --data-type-id meta:type:String --ordinal 1 --length 30");
 
             RunBusinessAdd(workspacePath, "add-reference-satellite --id StatusCodeDescriptionSet --reference StatusCode --name StatusCodeDescriptionSet");
-            RunBusinessAdd(workspacePath, "add-reference-satellite-attribute --id StatusCodeDescription --reference-satellite StatusCodeDescriptionSet --name Description --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-reference-satellite-attribute-data-type-detail --id StatusCodeDescriptionLength --reference-satellite-attribute StatusCodeDescription --name Length --value 100");
+            RunBusinessAdd(workspacePath, "add-reference-satellite-attribute --id StatusCodeDescription --reference-satellite StatusCodeDescriptionSet --name Description --data-type-id meta:type:String --ordinal 1 --length 100");
 
             RunBusinessAdd(workspacePath, "add-point-in-time --id CustomerSnapshot --hub Customer --name CustomerSnapshot");
-            RunBusinessAdd(workspacePath, "add-point-in-time-stamp --id CustomerSnapshotBusinessDate --point-in-time CustomerSnapshot --name BusinessDate --data-type-id meta:type:DateTime --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-point-in-time-stamp-data-type-detail --id CustomerSnapshotBusinessDatePrecision --point-in-time-stamp CustomerSnapshotBusinessDate --name Precision --value 7");
+            RunBusinessAdd(workspacePath, "add-point-in-time-stamp --id CustomerSnapshotBusinessDate --point-in-time CustomerSnapshot --name BusinessDate --data-type-id meta:type:DateTime --ordinal 1 --precision 7");
             RunBusinessAdd(workspacePath, "add-point-in-time-hub-satellite --id CustomerSnapshotProfile --point-in-time CustomerSnapshot --hub-satellite CustomerProfile --ordinal 1");
             RunBusinessAdd(workspacePath, "add-point-in-time-link-satellite --id CustomerSnapshotOrderStatus --point-in-time CustomerSnapshot --link-satellite CustomerOrderStatus --ordinal 2");
             RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --anchor-hub Customer --name CustomerOrderTraversal");
@@ -74,6 +66,18 @@ public sealed partial class CliTests
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLink"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessReference"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessBridge"));
+
+            var hubKeyPartDetails = workspace.Instance.GetOrCreateEntityRecords("BusinessHubKeyPartDataTypeDetail");
+            Assert.Contains(hubKeyPartDetails, record =>
+                string.Equals(record.RelationshipIds.GetValueOrDefault("BusinessHubKeyPartId"), "CustomerIdentifier", StringComparison.Ordinal) &&
+                string.Equals(record.Values.GetValueOrDefault("Name"), "Length", StringComparison.Ordinal) &&
+                string.Equals(record.Values.GetValueOrDefault("Value"), "50", StringComparison.Ordinal));
+
+            var pointInTimeStampDetails = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeStampDataTypeDetail");
+            Assert.Contains(pointInTimeStampDetails, record =>
+                string.Equals(record.RelationshipIds.GetValueOrDefault("BusinessPointInTimeStampId"), "CustomerSnapshotBusinessDate", StringComparison.Ordinal) &&
+                string.Equals(record.Values.GetValueOrDefault("Name"), "Precision", StringComparison.Ordinal) &&
+                string.Equals(record.Values.GetValueOrDefault("Value"), "7", StringComparison.Ordinal));
         }
         finally
         {
