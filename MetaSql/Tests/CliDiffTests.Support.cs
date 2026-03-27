@@ -561,6 +561,24 @@ public sealed partial class CliDiffTests
             """);
     }
 
+    private static void CreateTableAndColumnOnlyDataDropFixtureWithDefaultConstraint(string connectionString)
+    {
+        ExecuteSql(connectionString, """
+            IF SCHEMA_ID('raw') IS NULL EXEC('CREATE SCHEMA raw');
+            CREATE TABLE raw.ActiveCase (
+                Id int NOT NULL,
+                KeepCol nvarchar(50) NOT NULL,
+                LegacyCol nvarchar(50) NULL CONSTRAINT DF_ActiveCase_LegacyCol DEFAULT (N'LEG'),
+                CONSTRAINT PK_ActiveCase PRIMARY KEY (Id)
+            );
+            CREATE TABLE raw.LegacyOnly (
+                Id int NOT NULL,
+                Payload nvarchar(50) NOT NULL,
+                CONSTRAINT PK_LegacyOnly PRIMARY KEY (Id)
+            );
+            """);
+    }
+
     private static void CreateParentChildWithForeignKey(string databaseConnectionString)
     {
         ExecuteSql(databaseConnectionString, """

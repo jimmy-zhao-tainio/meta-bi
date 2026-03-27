@@ -40,6 +40,7 @@ internal sealed record ManifestPlanningLookupContext
     public required IReadOnlyDictionary<string, List<GenericRecord>> SourceIndexColumnsByColumnId { get; init; }
     public required IReadOnlyDictionary<string, List<GenericRecord>> LiveIndexColumnsByColumnId { get; init; }
     public required IReadOnlyDictionary<string, List<MetaSqlDifferenceBlocker>> BlockerByColumnPairKey { get; init; }
+    public required IReadOnlyDictionary<string, List<MetaSqlDifferenceBlocker>> BlockerByLiveColumnId { get; init; }
     public required MetaSqlDestructiveApprovalSet ApprovalSet { get; init; }
     public required IReadOnlySet<string> PlannedAddedTableIds { get; init; }
     public required IReadOnlySet<string> PlannedAddedColumnIds { get; init; }

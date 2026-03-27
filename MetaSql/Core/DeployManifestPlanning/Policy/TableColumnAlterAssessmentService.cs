@@ -168,6 +168,41 @@ internal sealed class TableColumnAlterAssessmentService
         return result;
     }
 
+    public Dictionary<string, List<MetaSqlDifferenceBlocker>> BuildLiveColumnBlockerLookup(
+        IReadOnlyList<MetaSqlDifferenceBlocker>? blockers)
+    {
+        var result = new Dictionary<string, List<MetaSqlDifferenceBlocker>>(StringComparer.Ordinal);
+        if (blockers is null)
+        {
+            return result;
+        }
+
+        foreach (var blocker in blockers)
+        {
+            if (blocker.Difference.ObjectKind != MetaSqlObjectKind.TableColumn ||
+                blocker.Difference.DifferenceKind != MetaSqlDifferenceKind.ExtraInLive)
+            {
+                continue;
+            }
+
+            var liveId = blocker.Difference.LiveId ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(liveId))
+            {
+                continue;
+            }
+
+            if (!result.TryGetValue(liveId, out var bucket))
+            {
+                bucket = new List<MetaSqlDifferenceBlocker>();
+                result[liveId] = bucket;
+            }
+
+            bucket.Add(blocker);
+        }
+
+        return result;
+    }
+
     private static List<string> GetChangedColumnAspects(
         GenericRecord sourceColumn,
         GenericRecord liveColumn,

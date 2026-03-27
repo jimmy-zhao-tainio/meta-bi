@@ -102,6 +102,70 @@ public sealed class MetaSqlDeployManifestServiceTests
     }
 
     [Fact]
+    public void BuildManifest_WithExactDataDropColumnApproval_BlocksLiveOnlyColumnDrop_WhenFeasibilityBlockerExists()
+    {
+        var sourceWorkspace = CreateWorkspace(
+            CreateModel(
+                includeSourceOnlyColumn: true,
+                includeLiveOnlyColumn: false,
+                sourceNameLength: 50),
+            "source");
+        var liveWorkspace = CreateWorkspace(
+            CreateModel(
+                includeSourceOnlyColumn: false,
+                includeLiveOnlyColumn: true,
+                sourceNameLength: 100),
+            "live");
+
+        var differenceService = new MetaSqlDifferenceService();
+        var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
+        var droppedColumn = Assert.Single(
+            differences,
+            row => row.ObjectKind == MetaSqlObjectKind.TableColumn &&
+                   row.DifferenceKind == MetaSqlDifferenceKind.ExtraInLive);
+
+        var blockers =
+            new[]
+            {
+                new MetaSqlDifferenceBlocker
+                {
+                    Difference = droppedColumn,
+                    Code = MetaSqlDifferenceBlockerCode.Unspecified,
+                    Reason = $"{droppedColumn.DisplayName}: DROP COLUMN is blocked by live DEFAULT constraint dependency.",
+                }
+            };
+
+        var service = new MetaSqlDeployManifestService();
+        var manifest = service.BuildManifest(
+            sourceWorkspace,
+            liveWorkspace,
+            MetaSqlLiveDatabasePresence.Present,
+            differences,
+            manifestName: "TestManifest",
+            targetDescription: "Scope=raw:*",
+            feasibilityBlockers: blockers,
+            destructiveApprovals:
+            [
+                new MetaSqlDestructiveApproval
+                {
+                    Kind = MetaSqlDestructiveApprovalKind.DataDropColumn,
+                    SchemaName = "dbo",
+                    TableName = "Customer",
+                    ColumnName = "LegacyCode",
+                }
+            ]);
+
+        Assert.Equal(1, manifest.AddCount);
+        Assert.Equal(0, manifest.DropCount);
+        Assert.Equal(1, manifest.AlterCount);
+        Assert.Equal(1, manifest.BlockCount);
+        Assert.False(manifest.IsDeployable);
+        Assert.Empty(manifest.ManifestModel.DropTableColumnList);
+        var block = Assert.Single(manifest.ManifestModel.BlockTableColumnDifferenceList);
+        Assert.Contains("DROP COLUMN is blocked by live DEFAULT constraint dependency", block.DifferenceSummary, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void BuildManifest_WithExactTruncationApproval_EmitsExplicitTruncateAction_WhenOnlyBlockerIsTruncationRisk()
     {
         var sourceWorkspace = CreateWorkspace(

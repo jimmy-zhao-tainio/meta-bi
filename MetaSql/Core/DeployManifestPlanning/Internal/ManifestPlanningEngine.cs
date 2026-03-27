@@ -133,6 +133,7 @@ internal sealed class ManifestPlanningEngine
             SourceIndexColumnsByColumnId = GetGroupedRecords(context.SourceWorkspace, "IndexColumn", "TableColumnId"),
             LiveIndexColumnsByColumnId = GetGroupedRecords(context.LiveWorkspace, "IndexColumn", "TableColumnId"),
             BlockerByColumnPairKey = tableColumnAlterAssessmentService.BuildColumnBlockerLookup(context.FeasibilityBlockers),
+            BlockerByLiveColumnId = tableColumnAlterAssessmentService.BuildLiveColumnBlockerLookup(context.FeasibilityBlockers),
             ApprovalSet = MetaSqlDestructiveApprovalSet.From(context.DestructiveApprovals),
             PlannedAddedTableIds = context.Differences
                 .Where(row => row.ObjectKind == MetaSqlObjectKind.Table && row.DifferenceKind == MetaSqlDifferenceKind.MissingInLive)

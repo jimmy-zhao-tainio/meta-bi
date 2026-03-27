@@ -44,7 +44,10 @@ public sealed class MetaSqlDifferenceFeasibilityService
         var changedColumns = differences
             .Where(row => row.ObjectKind == MetaSqlObjectKind.TableColumn && row.DifferenceKind == MetaSqlDifferenceKind.Different)
             .ToList();
-        if (changedColumns.Count == 0)
+        var droppedColumns = differences
+            .Where(row => row.ObjectKind == MetaSqlObjectKind.TableColumn && row.DifferenceKind == MetaSqlDifferenceKind.ExtraInLive)
+            .ToList();
+        if (changedColumns.Count == 0 && droppedColumns.Count == 0)
         {
             return blockers;
         }
@@ -58,6 +61,43 @@ public sealed class MetaSqlDifferenceFeasibilityService
 
         await using var connection = new SqlConnection(connectionString);
         await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
+
+        foreach (var difference in droppedColumns)
+        {
+            if (string.IsNullOrWhiteSpace(difference.LiveId) ||
+                !liveColumnsById.TryGetValue(difference.LiveId, out var liveColumn))
+            {
+                continue;
+            }
+
+            if (!liveTablesById.TryGetValue(liveColumn.RelationshipIds["TableId"], out var liveTable) ||
+                !liveSchemasById.TryGetValue(liveTable.RelationshipIds["SchemaId"], out var liveSchema))
+            {
+                continue;
+            }
+
+            var schemaName = liveSchema.Values["Name"];
+            var tableName = liveTable.Values["Name"];
+            var columnName = liveColumn.Values["Name"];
+            var dependencyKinds = await GetConstraintDependencyKindsAsync(
+                    connection,
+                    schemaName,
+                    tableName,
+                    columnName,
+                    cancellationToken)
+                .ConfigureAwait(false);
+            if (dependencyKinds.Count == 0)
+            {
+                continue;
+            }
+
+            blockers.Add(new MetaSqlDifferenceBlocker
+            {
+                Difference = difference,
+                Code = MetaSqlDifferenceBlockerCode.Unspecified,
+                Reason = $"{difference.DisplayName}: DROP COLUMN is blocked by live {string.Join("/", dependencyKinds)} constraint dependency.",
+            });
+        }
 
         foreach (var difference in changedColumns)
         {

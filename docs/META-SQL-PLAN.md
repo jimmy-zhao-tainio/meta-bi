@@ -101,7 +101,7 @@ MetaSql is not yet a general-purpose executor for clustered primary-key replacem
 | Add foreign key | Yes | Yes | Supported | Planned as `AddForeignKey`; deploy adds from source members. |
 | Add index | Yes | Yes | Supported | Planned as `AddIndex`; deploy adds from source members. |
 | Drop table | Yes | Yes | Supported with exact approval | Planned as `DropTable` only when planner has exact `DataDropTable(schema.table)` approval. Otherwise blocked with precise missing approval. |
-| Drop column | Yes | Yes | Supported with exact approval | Planned as `DropTableColumn` only when planner has exact `DataDropColumn(schema.table.column)` approval. Otherwise blocked with precise missing approval. |
+| Drop column | Yes | Yes | Supported with exact approval, unless blocked by live dependency risk | Planned as `DropTableColumn` only when planner has exact `DataDropColumn(schema.table.column)` approval. Live `DEFAULT`/`CHECK`/`UNIQUE` dependencies block the drop with a precise reason. |
 | Drop primary key | Yes | Yes | Supported by default | Planned as `DropPrimaryKey`; deploy drops unless whole table is being dropped. |
 | Drop foreign key | Yes | Yes | Supported by default | Planned as `DropForeignKey`; deploy drops before table/column drops. |
 | Drop index | Yes | Yes | Supported by default | Planned as `DropIndex`; deploy drops before PK/column/table drops. |

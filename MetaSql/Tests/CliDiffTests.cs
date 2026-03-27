@@ -773,4 +773,96 @@ public sealed partial class CliDiffTests
         }
     }
 
+    [Fact]
+    public async Task DeployPlanCommand_WithExactDataDropColumnApproval_BlocksLiveOnlyColumnDropWhenDefaultConstraintDependsOnColumn()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var outputPath = Path.Combine(tempRoot, "deploy-manifest");
+        var databaseName = $"MetaSqlDeployDropColumnDefaultBlock_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            CreateTableAndColumnOnlyDataDropFixtureWithDefaultConstraint(databaseConnectionString);
+            await CreateSourceWorkspaceFromLiveAndMutateAsync(
+                sourcePath,
+                databaseConnectionString,
+                "raw",
+                null,
+                model =>
+                {
+                    var schema = model.SchemaList.Single(row => string.Equals(row.Name, "raw", StringComparison.OrdinalIgnoreCase));
+                    var legacyTable = model.TableList.Single(row => row.SchemaId == schema.Id && string.Equals(row.Name, "LegacyOnly", StringComparison.OrdinalIgnoreCase));
+                    var activeTable = model.TableList.Single(row => row.SchemaId == schema.Id && string.Equals(row.Name, "ActiveCase", StringComparison.OrdinalIgnoreCase));
+                    var legacyColumn = model.TableColumnList.Single(row => row.TableId == activeTable.Id && string.Equals(row.Name, "LegacyCol", StringComparison.OrdinalIgnoreCase));
+
+                    var legacyTableId = legacyTable.Id;
+                    var legacyColumnId = legacyColumn.Id;
+
+                    model.TableColumnDataTypeDetailList.RemoveAll(row => row.TableColumnId == legacyColumnId);
+                    model.TableColumnList.RemoveAll(row => row.Id == legacyColumnId);
+
+                    var legacyPrimaryKeyIds = model.PrimaryKeyList
+                        .Where(row => row.TableId == legacyTableId)
+                        .Select(row => row.Id)
+                        .ToHashSet(StringComparer.Ordinal);
+                    model.PrimaryKeyColumnList.RemoveAll(row => legacyPrimaryKeyIds.Contains(row.PrimaryKeyId));
+                    model.PrimaryKeyList.RemoveAll(row => legacyPrimaryKeyIds.Contains(row.Id));
+
+                    var legacyIndexIds = model.IndexList
+                        .Where(row => row.TableId == legacyTableId)
+                        .Select(row => row.Id)
+                        .ToHashSet(StringComparer.Ordinal);
+                    model.IndexColumnList.RemoveAll(row => legacyIndexIds.Contains(row.IndexId));
+                    model.IndexList.RemoveAll(row => legacyIndexIds.Contains(row.Id));
+
+                    var legacyForeignKeyIds = model.ForeignKeyList
+                        .Where(row => row.SourceTableId == legacyTableId || row.TargetTableId == legacyTableId)
+                        .Select(row => row.Id)
+                        .ToHashSet(StringComparer.Ordinal);
+                    model.ForeignKeyColumnList.RemoveAll(row => legacyForeignKeyIds.Contains(row.ForeignKeyId));
+                    model.ForeignKeyList.RemoveAll(row => legacyForeignKeyIds.Contains(row.Id));
+
+                    var legacyColumnIds = model.TableColumnList
+                        .Where(row => row.TableId == legacyTableId)
+                        .Select(row => row.Id)
+                        .ToHashSet(StringComparer.Ordinal);
+                    model.TableColumnDataTypeDetailList.RemoveAll(row => legacyColumnIds.Contains(row.TableColumnId));
+                    model.TableColumnList.RemoveAll(row => legacyColumnIds.Contains(row.Id));
+                    model.TableList.RemoveAll(row => row.Id == legacyTableId);
+                });
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "meta-sql",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-drop-table raw.LegacyOnly --approve-drop-column raw.ActiveCase.LegacyCol --out \"{outputPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
+
+            Assert.Equal(4, result.ExitCode);
+            Assert.Contains("DROP COLUMN is blocked by live DEFAULT constraint dependency", result.Output, StringComparison.Ordinal);
+
+            var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
+            Assert.Single(manifest.DropTableList);
+            Assert.Empty(manifest.DropTableColumnList);
+            var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
+            Assert.Contains("DROP COLUMN is blocked by live DEFAULT constraint dependency", block.DifferenceSummary, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
 }

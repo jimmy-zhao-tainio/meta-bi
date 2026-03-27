@@ -34,6 +34,19 @@ internal sealed class TableColumnDifferencePlanner
                 break;
             case MetaSqlDifferenceKind.ExtraInLive:
             {
+                var liveId = difference.LiveId ?? string.Empty;
+                if (!string.IsNullOrWhiteSpace(liveId) &&
+                    lookup.BlockerByLiveColumnId.TryGetValue(liveId, out var blockers) &&
+                    blockers.Count > 0)
+                {
+                    foreach (var blocker in blockers)
+                    {
+                        delta.BlockCount += manifestBlockFactory.BlockEntry(delta.ManifestModel, delta.Root, difference, blocker.Reason);
+                    }
+
+                    break;
+                }
+
                 var approval = destructiveApprovalAssessmentService.AssessDataDropColumnApproval(
                     difference,
                     lookup.LiveColumnsById,
