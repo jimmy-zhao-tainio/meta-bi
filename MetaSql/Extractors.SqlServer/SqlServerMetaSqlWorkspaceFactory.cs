@@ -5,6 +5,8 @@ namespace MetaSql.Extractors.SqlServer;
 
 public static class SqlServerMetaSqlWorkspaceFactory
 {
+    public const string DefaultSchemaName = "dbo";
+
     public static Workspace CreateEmptyWorkspace(
         string newWorkspacePath,
         string databaseName,
@@ -21,6 +23,10 @@ public static class SqlServerMetaSqlWorkspaceFactory
         };
         model.DatabaseList.Add(database);
 
+        var normalizedSchemaNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            DefaultSchemaName,
+        };
         foreach (var schemaName in schemaNames ?? Array.Empty<string>())
         {
             if (string.IsNullOrWhiteSpace(schemaName))
@@ -28,6 +34,11 @@ public static class SqlServerMetaSqlWorkspaceFactory
                 continue;
             }
 
+            normalizedSchemaNames.Add(schemaName.Trim());
+        }
+
+        foreach (var schemaName in normalizedSchemaNames.OrderBy(name => name, StringComparer.OrdinalIgnoreCase))
+        {
             model.SchemaList.Add(new Schema
             {
                 Id = $"{database.Id}.{schemaName}",

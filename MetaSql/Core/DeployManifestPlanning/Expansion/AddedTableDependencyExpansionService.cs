@@ -1,3 +1,5 @@
+using MetaSql.Extractors.SqlServer;
+
 namespace MetaSql;
 
 /// <summary>
@@ -38,6 +40,12 @@ internal sealed class AddedTableDependencyExpansionService
                      .OrderBy(row => row.Id, StringComparer.Ordinal))
         {
             var sourceSchemaId = sourceTable.RelationshipIds["SchemaId"];
+            if (lookup.SourceSchemasById.TryGetValue(sourceSchemaId, out var sourceSchema) &&
+                string.Equals(sourceSchema.Values["Name"], SqlServerMetaSqlWorkspaceFactory.DefaultSchemaName, StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
             if (liveSchemaIds.Contains(sourceSchemaId) || !addedSchemaIds.Add(sourceSchemaId))
             {
                 continue;
