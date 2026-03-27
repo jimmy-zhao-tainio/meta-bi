@@ -6,7 +6,7 @@
       <RoleName>CustomerOrder</RoleName>
     </BusinessBridgeLink>
     <BusinessBridgeLink Id="CustomerFulfillmentTraversalShipmentOrder" BusinessBridgeId="CustomerFulfillmentTraversal" BusinessLinkId="ShipmentOrder">
-      <Ordinal>2</Ordinal>
+      <Ordinal>3</Ordinal>
       <RoleName>ShipmentOrder</RoleName>
     </BusinessBridgeLink>
   </BusinessBridgeLinkList>

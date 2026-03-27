@@ -226,6 +226,7 @@ namespace MetaDataVaultImplementation
                 row.RelatedHashKeyColumnName = RequireText(row.RelatedHashKeyColumnName, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RelatedHashKeyColumnName'.");
                 row.RelatedHashKeyDataTypeId = RequireText(row.RelatedHashKeyDataTypeId, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RelatedHashKeyDataTypeId'.");
                 row.RelatedHashKeyLength = RequireText(row.RelatedHashKeyLength, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RelatedHashKeyLength'.");
+                row.RelatedHubForeignKeyNamePattern = RequireText(row.RelatedHubForeignKeyNamePattern, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RelatedHubForeignKeyNamePattern'.");
                 row.RootHashKeyColumnName = RequireText(row.RootHashKeyColumnName, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RootHashKeyColumnName'.");
                 row.RootHashKeyDataTypeId = RequireText(row.RootHashKeyDataTypeId, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RootHashKeyDataTypeId'.");
                 row.RootHashKeyLength = RequireText(row.RootHashKeyLength, $"Entity 'BusinessBridgeImplementation' row '{row.Id}' is missing required property 'RootHashKeyLength'.");
@@ -402,10 +403,10 @@ namespace MetaDataVaultImplementation
                 row.SatelliteReferenceColumnNamePattern = RequireText(row.SatelliteReferenceColumnNamePattern, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SatelliteReferenceColumnNamePattern'.");
                 row.SatelliteReferenceDataTypeId = RequireText(row.SatelliteReferenceDataTypeId, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SatelliteReferenceDataTypeId'.");
                 row.SatelliteReferencePrecision = RequireText(row.SatelliteReferencePrecision, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SatelliteReferencePrecision'.");
+                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.SnapshotTimestampColumnName = RequireText(row.SnapshotTimestampColumnName, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SnapshotTimestampColumnName'.");
                 row.SnapshotTimestampDataTypeId = RequireText(row.SnapshotTimestampDataTypeId, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SnapshotTimestampDataTypeId'.");
                 row.SnapshotTimestampPrecision = RequireText(row.SnapshotTimestampPrecision, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SnapshotTimestampPrecision'.");
-                row.SchemaName = RequireText(row.SchemaName, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'SchemaName'.");
                 row.TableNamePattern = RequireText(row.TableNamePattern, $"Entity 'BusinessPointInTimeImplementation' row '{row.Id}' is missing required property 'TableNamePattern'.");
             }
         }
@@ -700,4 +701,3 @@ namespace MetaDataVaultImplementation
         }
     }
 }
-

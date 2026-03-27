@@ -3,43 +3,33 @@
   <BusinessLinkSatelliteList>
     <BusinessLinkSatellite Id="CustomerInvoiceStatus" BusinessLinkId="CustomerInvoice">
       <Name>CustomerInvoiceStatus</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="CustomerOrderStatus" BusinessLinkId="CustomerOrder">
       <Name>CustomerOrderStatus</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="DepartmentCostCenterAssignment" BusinessLinkId="DepartmentCostCenter">
       <Name>DepartmentCostCenterAssignment</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="DepartmentManagerAssignment" BusinessLinkId="DepartmentManager">
       <Name>DepartmentManagerAssignment</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="EmployeeCostCenterAssignment" BusinessLinkId="EmployeeCostCenter">
       <Name>EmployeeCostCenterAssignment</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="EmployeeDepartmentAssignment" BusinessLinkId="EmployeeDepartment">
       <Name>EmployeeDepartmentAssignment</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="InvoiceShipmentTracking" BusinessLinkId="InvoiceShipment">
       <Name>InvoiceShipmentTracking</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="OrderProductLine" BusinessLinkId="OrderProduct">
       <Name>OrderProductLine</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="SupplierInvoiceTerms" BusinessLinkId="SupplierInvoice">
       <Name>SupplierInvoiceTerms</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
     <BusinessLinkSatellite Id="SupplierProductTerms" BusinessLinkId="SupplierProduct">
       <Name>SupplierProductTerms</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessLinkSatellite>
   </BusinessLinkSatelliteList>
 </MetaBusinessDataVault>

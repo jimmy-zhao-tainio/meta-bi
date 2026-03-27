@@ -3,11 +3,9 @@
   <BusinessReferenceSatelliteList>
     <BusinessReferenceSatellite Id="CurrencyCodeDescriptionSet" BusinessReferenceId="CurrencyCode">
       <Name>CurrencyCodeDescriptionSet</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessReferenceSatellite>
     <BusinessReferenceSatellite Id="OrderStatusDescriptionSet" BusinessReferenceId="OrderStatus">
       <Name>OrderStatusDescriptionSet</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessReferenceSatellite>
   </BusinessReferenceSatelliteList>
 </MetaBusinessDataVault>

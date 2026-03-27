@@ -290,16 +290,13 @@ public sealed class ConvertToMetaSqlTests
             Assert.Contains("Path", customerOrderBridgeColumns);
             Assert.Contains("EffectiveFrom", customerOrderBridgeColumns);
             Assert.Contains("EffectiveTo", customerOrderBridgeColumns);
-            Assert.Contains("CustomerIdentifier", customerOrderBridgeColumns);
-            Assert.Contains("OrderIdentifier", customerOrderBridgeColumns);
-            Assert.Contains("CustomerName", customerOrderBridgeColumns);
-            Assert.Contains("StatusCode", customerOrderBridgeColumns);
             Assert.Contains("AuditId", customerOrderBridgeColumns);
 
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BHS_Customer_Profile_BH_Customer", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BLS_CustomerOrder_Status_BL_CustomerOrder", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_PIT_CustomerSnapshot_BH_Customer", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BR_CustomerOrderTraversal_BH_Customer", StringComparison.Ordinal));
+            Assert.Contains(foreignKeys, row => string.Equals(row.Values["Name"], "FK_BR_CustomerOrderTraversal_BH_Order_Related", StringComparison.Ordinal));
             Assert.Contains(foreignKeys, row => row.Id == "BusinessVault.dbo.PIT_CustomerSnapshot.fk.FK_PIT_CustomerSnapshot_BH_Customer");
         }
         finally
@@ -379,9 +376,6 @@ public sealed class ConvertToMetaSqlTests
             Assert.Equal("50", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BH_Customer").Id, "Identifier").Id, "Length"));
             Assert.Equal("200", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BHS_Customer_Profile").Id, "CustomerName").Id, "Length"));
             Assert.Equal("20", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BLS_CustomerOrder_Status").Id, "StatusCode").Id, "Length"));
-            Assert.Equal("50", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BR_CustomerOrderTraversal").Id, "CustomerIdentifier").Id, "Length"));
-            Assert.Equal("200", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BR_CustomerOrderTraversal").Id, "CustomerName").Id, "Length"));
-            Assert.Equal("20", GetDetailValue(details, GetColumn(columns, GetTable(tables, "BR_CustomerOrderTraversal").Id, "StatusCode").Id, "Length"));
         }
         finally
         {
@@ -414,6 +408,45 @@ public sealed class ConvertToMetaSqlTests
         finally
         {
             DeleteDirectoryIfExists(Path.GetDirectoryName(targetPath)!);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_RejectsBusinessBridgeThatDoesNotAlternateLinkAndHub()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            Assert.Equal(0, createResult.ExitCode);
+
+            Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Customer --name Customer").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Order --name Order").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Shipment --name Shipment").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-link --workspace \"{workspacePath}\" --id CustomerOrder --name CustomerOrder").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-link-hub --workspace \"{workspacePath}\" --id CustomerOrderCustomer --link CustomerOrder --hub Customer --ordinal 1 --role-name Customer").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-link-hub --workspace \"{workspacePath}\" --id CustomerOrderOrder --link CustomerOrder --hub Order --ordinal 2 --role-name Order").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-link --workspace \"{workspacePath}\" --id ShipmentOrder --name ShipmentOrder").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-link-hub --workspace \"{workspacePath}\" --id ShipmentOrderShipment --link ShipmentOrder --hub Shipment --ordinal 1 --role-name Shipment").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-link-hub --workspace \"{workspacePath}\" --id ShipmentOrderOrder --link ShipmentOrder --hub Order --ordinal 2 --role-name Order").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-bridge --workspace \"{workspacePath}\" --id CustomerShipmentTraversal --anchor-hub Customer --name CustomerShipmentTraversal").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-bridge-link --workspace \"{workspacePath}\" --id CustomerShipmentTraversalCustomerOrder --bridge CustomerShipmentTraversal --link CustomerOrder --ordinal 1 --role-name CustomerOrder").ExitCode);
+            Assert.Equal(0, RunBusinessCli($"add-bridge-link --workspace \"{workspacePath}\" --id CustomerShipmentTraversalShipmentOrder --bridge CustomerShipmentTraversal --link ShipmentOrder --ordinal 2 --role-name ShipmentOrder").ExitCode);
+
+            var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "BusinessVault"));
+            Assert.Contains("must end with a BusinessBridgeHub", exception.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
         }
     }
 

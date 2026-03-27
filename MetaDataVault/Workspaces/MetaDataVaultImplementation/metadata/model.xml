@@ -307,6 +307,7 @@
         <Property name="SchemaName" />
         <Property name="TableNamePattern" />
         <Property name="AnchorHubForeignKeyNamePattern" />
+        <Property name="RelatedHubForeignKeyNamePattern" />
         <Property name="RootHashKeyColumnName" />
         <Property name="RootHashKeyDataTypeId" />
         <Property name="RootHashKeyLength" />

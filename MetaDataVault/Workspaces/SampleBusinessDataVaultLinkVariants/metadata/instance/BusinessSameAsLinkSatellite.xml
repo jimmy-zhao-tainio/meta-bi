@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <MetaBusinessDataVault>
   <BusinessSameAsLinkSatelliteList>
     <BusinessSameAsLinkSatellite Id="CustomerMatchEvidence" BusinessSameAsLinkId="CustomerMatch">
       <Name>Evidence</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessSameAsLinkSatellite>
   </BusinessSameAsLinkSatelliteList>
 </MetaBusinessDataVault>

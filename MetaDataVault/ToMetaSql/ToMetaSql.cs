@@ -124,9 +124,9 @@ public static partial class Converter
 
     private static IEnumerable<string> GetSchemaNames(MetaDataVaultImplementationModel implementationModel)
     {
-        return implementationModel.BusinessBridgeImplementationList.Select(row => row.SchemaName)
-            .Concat(implementationModel.BusinessHierarchicalLinkImplementationList.Select(row => row.SchemaName))
+        return implementationModel.BusinessHierarchicalLinkImplementationList.Select(row => row.SchemaName)
             .Concat(implementationModel.BusinessHierarchicalLinkSatelliteImplementationList.Select(row => row.SchemaName))
+            .Concat(implementationModel.BusinessBridgeImplementationList.Select(row => row.SchemaName))
             .Concat(implementationModel.BusinessHubImplementationList.Select(row => row.SchemaName))
             .Concat(implementationModel.BusinessHubSatelliteImplementationList.Select(row => row.SchemaName))
             .Concat(implementationModel.BusinessLinkImplementationList.Select(row => row.SchemaName))

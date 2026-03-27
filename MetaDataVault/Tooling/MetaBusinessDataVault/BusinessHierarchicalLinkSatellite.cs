@@ -18,9 +18,6 @@ namespace MetaBusinessDataVault
         [XmlElement("Name")]
         public string Name { get; set; } = string.Empty;
 
-        [XmlElement("SatelliteKind")]
-        public string SatelliteKind { get; set; } = string.Empty;
-
         [XmlIgnore]
         public BusinessHierarchicalLink BusinessHierarchicalLink { get; set; } = null!;
 

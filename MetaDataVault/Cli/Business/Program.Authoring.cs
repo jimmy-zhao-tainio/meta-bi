@@ -31,29 +31,19 @@ internal static partial class Program
             Cmd("add-reference", "BusinessReference", "Add a business reference.", [ new("--name", "Name", true), new("--description", "Description", false) ], []),
             Cmd("add-reference-key-part", "BusinessReferenceKeyPart", "Add a business reference key part.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--reference", "BusinessReferenceId", "BusinessReference") ]),
             Cmd("add-reference-key-part-data-type-detail", "BusinessReferenceKeyPartDataTypeDetail", "Add a business reference key-part datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--reference-key-part", "BusinessReferenceKeyPartId", "BusinessReferenceKeyPart") ]),
-            Cmd("add-hub-satellite", "BusinessHubSatellite", "Add a business hub satellite.", [ new("--name", "Name", true), new("--satellite-kind", "SatelliteKind", true), new("--description", "Description", false) ], [ new("--hub", "BusinessHubId", "BusinessHub") ]),
-            Cmd("add-hub-satellite-key-part", "BusinessHubSatelliteKeyPart", "Add a business hub satellite key part.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--hub-satellite", "BusinessHubSatelliteId", "BusinessHubSatellite") ]),
-            Cmd("add-hub-satellite-key-part-data-type-detail", "BusinessHubSatelliteKeyPartDataTypeDetail", "Add a business hub satellite key-part datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--hub-satellite-key-part", "BusinessHubSatelliteKeyPartId", "BusinessHubSatelliteKeyPart") ]),
+            Cmd("add-hub-satellite", "BusinessHubSatellite", "Add a business hub satellite.", [ new("--name", "Name", true), new("--description", "Description", false) ], [ new("--hub", "BusinessHubId", "BusinessHub") ]),
             Cmd("add-hub-satellite-attribute", "BusinessHubSatelliteAttribute", "Add a business hub satellite attribute.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--hub-satellite", "BusinessHubSatelliteId", "BusinessHubSatellite") ]),
             Cmd("add-hub-satellite-attribute-data-type-detail", "BusinessHubSatelliteAttributeDataTypeDetail", "Add a business hub satellite attribute datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--hub-satellite-attribute", "BusinessHubSatelliteAttributeId", "BusinessHubSatelliteAttribute") ]),
-            Cmd("add-link-satellite", "BusinessLinkSatellite", "Add a business link satellite.", [ new("--name", "Name", true), new("--satellite-kind", "SatelliteKind", true), new("--description", "Description", false) ], [ new("--link", "BusinessLinkId", "BusinessLink") ]),
-            Cmd("add-link-satellite-key-part", "BusinessLinkSatelliteKeyPart", "Add a business link satellite key part.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--link-satellite", "BusinessLinkSatelliteId", "BusinessLinkSatellite") ]),
-            Cmd("add-link-satellite-key-part-data-type-detail", "BusinessLinkSatelliteKeyPartDataTypeDetail", "Add a business link satellite key-part datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--link-satellite-key-part", "BusinessLinkSatelliteKeyPartId", "BusinessLinkSatelliteKeyPart") ]),
+            Cmd("add-link-satellite", "BusinessLinkSatellite", "Add a business link satellite.", [ new("--name", "Name", true), new("--description", "Description", false) ], [ new("--link", "BusinessLinkId", "BusinessLink") ]),
             Cmd("add-link-satellite-attribute", "BusinessLinkSatelliteAttribute", "Add a business link satellite attribute.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--link-satellite", "BusinessLinkSatelliteId", "BusinessLinkSatellite") ]),
             Cmd("add-link-satellite-attribute-data-type-detail", "BusinessLinkSatelliteAttributeDataTypeDetail", "Add a business link satellite attribute datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--link-satellite-attribute", "BusinessLinkSatelliteAttributeId", "BusinessLinkSatelliteAttribute") ]),
-            Cmd("add-same-as-link-satellite", "BusinessSameAsLinkSatellite", "Add a same-as link satellite.", [ new("--name", "Name", true), new("--satellite-kind", "SatelliteKind", true), new("--description", "Description", false) ], [ new("--same-as-link", "BusinessSameAsLinkId", "BusinessSameAsLink") ]),
-            Cmd("add-same-as-link-satellite-key-part", "BusinessSameAsLinkSatelliteKeyPart", "Add a same-as link satellite key part.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--same-as-link-satellite", "BusinessSameAsLinkSatelliteId", "BusinessSameAsLinkSatellite") ]),
-            Cmd("add-same-as-link-satellite-key-part-data-type-detail", "BusinessSameAsLinkSatelliteKeyPartDataTypeDetail", "Add a same-as link satellite key-part datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--same-as-link-satellite-key-part", "BusinessSameAsLinkSatelliteKeyPartId", "BusinessSameAsLinkSatelliteKeyPart") ]),
+            Cmd("add-same-as-link-satellite", "BusinessSameAsLinkSatellite", "Add a same-as link satellite.", [ new("--name", "Name", true), new("--description", "Description", false) ], [ new("--same-as-link", "BusinessSameAsLinkId", "BusinessSameAsLink") ]),
             Cmd("add-same-as-link-satellite-attribute", "BusinessSameAsLinkSatelliteAttribute", "Add a same-as link satellite attribute.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--same-as-link-satellite", "BusinessSameAsLinkSatelliteId", "BusinessSameAsLinkSatellite") ]),
             Cmd("add-same-as-link-satellite-attribute-data-type-detail", "BusinessSameAsLinkSatelliteAttributeDataTypeDetail", "Add a same-as link satellite attribute datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--same-as-link-satellite-attribute", "BusinessSameAsLinkSatelliteAttributeId", "BusinessSameAsLinkSatelliteAttribute") ]),
-            Cmd("add-hierarchical-link-satellite", "BusinessHierarchicalLinkSatellite", "Add a hierarchical link satellite.", [ new("--name", "Name", true), new("--satellite-kind", "SatelliteKind", true), new("--description", "Description", false) ], [ new("--hierarchical-link", "BusinessHierarchicalLinkId", "BusinessHierarchicalLink") ]),
-            Cmd("add-hierarchical-link-satellite-key-part", "BusinessHierarchicalLinkSatelliteKeyPart", "Add a hierarchical link satellite key part.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--hierarchical-link-satellite", "BusinessHierarchicalLinkSatelliteId", "BusinessHierarchicalLinkSatellite") ]),
-            Cmd("add-hierarchical-link-satellite-key-part-data-type-detail", "BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail", "Add a hierarchical link satellite key-part datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--hierarchical-link-satellite-key-part", "BusinessHierarchicalLinkSatelliteKeyPartId", "BusinessHierarchicalLinkSatelliteKeyPart") ]),
+            Cmd("add-hierarchical-link-satellite", "BusinessHierarchicalLinkSatellite", "Add a hierarchical link satellite.", [ new("--name", "Name", true), new("--description", "Description", false) ], [ new("--hierarchical-link", "BusinessHierarchicalLinkId", "BusinessHierarchicalLink") ]),
             Cmd("add-hierarchical-link-satellite-attribute", "BusinessHierarchicalLinkSatelliteAttribute", "Add a hierarchical link satellite attribute.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--hierarchical-link-satellite", "BusinessHierarchicalLinkSatelliteId", "BusinessHierarchicalLinkSatellite") ]),
             Cmd("add-hierarchical-link-satellite-attribute-data-type-detail", "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail", "Add a hierarchical link satellite attribute datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--hierarchical-link-satellite-attribute", "BusinessHierarchicalLinkSatelliteAttributeId", "BusinessHierarchicalLinkSatelliteAttribute") ]),
-            Cmd("add-reference-satellite", "BusinessReferenceSatellite", "Add a business reference satellite.", [ new("--name", "Name", true), new("--satellite-kind", "SatelliteKind", true), new("--description", "Description", false) ], [ new("--reference", "BusinessReferenceId", "BusinessReference") ]),
-            Cmd("add-reference-satellite-key-part", "BusinessReferenceSatelliteKeyPart", "Add a business reference satellite key part.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--reference-satellite", "BusinessReferenceSatelliteId", "BusinessReferenceSatellite") ]),
-            Cmd("add-reference-satellite-key-part-data-type-detail", "BusinessReferenceSatelliteKeyPartDataTypeDetail", "Add a business reference satellite key-part datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--reference-satellite-key-part", "BusinessReferenceSatelliteKeyPartId", "BusinessReferenceSatelliteKeyPart") ]),
+            Cmd("add-reference-satellite", "BusinessReferenceSatellite", "Add a business reference satellite.", [ new("--name", "Name", true), new("--description", "Description", false) ], [ new("--reference", "BusinessReferenceId", "BusinessReference") ]),
             Cmd("add-reference-satellite-attribute", "BusinessReferenceSatelliteAttribute", "Add a business reference satellite attribute.", [ new("--name", "Name", true), new("--data-type-id", "DataTypeId", true), new("--ordinal", "Ordinal", true) ], [ new("--reference-satellite", "BusinessReferenceSatelliteId", "BusinessReferenceSatellite") ]),
             Cmd("add-reference-satellite-attribute-data-type-detail", "BusinessReferenceSatelliteAttributeDataTypeDetail", "Add a business reference satellite attribute datatype detail.", [ new("--name", "Name", true), new("--value", "Value", true) ], [ new("--reference-satellite-attribute", "BusinessReferenceSatelliteAttributeId", "BusinessReferenceSatelliteAttribute") ]),
             Cmd("add-point-in-time", "BusinessPointInTime", "Add a business point-in-time table.", [ new("--name", "Name", true), new("--description", "Description", false) ], [ new("--hub", "BusinessHubId", "BusinessHub") ]),
@@ -62,11 +52,8 @@ internal static partial class Program
             Cmd("add-point-in-time-hub-satellite", "BusinessPointInTimeHubSatellite", "Add a hub-satellite reference to a point-in-time table.", [ new("--ordinal", "Ordinal", true) ], [ new("--point-in-time", "BusinessPointInTimeId", "BusinessPointInTime"), new("--hub-satellite", "BusinessHubSatelliteId", "BusinessHubSatellite") ]),
             Cmd("add-point-in-time-link-satellite", "BusinessPointInTimeLinkSatellite", "Add a link-satellite reference to a point-in-time table.", [ new("--ordinal", "Ordinal", true) ], [ new("--point-in-time", "BusinessPointInTimeId", "BusinessPointInTime"), new("--link-satellite", "BusinessLinkSatelliteId", "BusinessLinkSatellite") ]),
             Cmd("add-bridge", "BusinessBridge", "Add a business bridge.", [ new("--name", "Name", true), new("--description", "Description", false) ], [ new("--anchor-hub", "AnchorHubId", "BusinessHub") ]),
-            Cmd("add-bridge-hub", "BusinessBridgeHub", "Add a hub step to a bridge path.", [ new("--ordinal", "Ordinal", true), new("--role-name", "RoleName", false) ], [ new("--bridge", "BusinessBridgeId", "BusinessBridge"), new("--hub", "BusinessHubId", "BusinessHub") ]),
-            Cmd("add-bridge-link", "BusinessBridgeLink", "Add a link step to a bridge path.", [ new("--ordinal", "Ordinal", true), new("--role-name", "RoleName", false) ], [ new("--bridge", "BusinessBridgeId", "BusinessBridge"), new("--link", "BusinessLinkId", "BusinessLink") ]),
-            Cmd("add-bridge-hub-key-part-projection", "BusinessBridgeHubKeyPartProjection", "Add a hub key-part projection to a bridge.", [ new("--name", "Name", true), new("--ordinal", "Ordinal", true) ], [ new("--bridge", "BusinessBridgeId", "BusinessBridge"), new("--hub-key-part", "BusinessHubKeyPartId", "BusinessHubKeyPart") ]),
-            Cmd("add-bridge-hub-satellite-attribute-projection", "BusinessBridgeHubSatelliteAttributeProjection", "Add a hub satellite attribute projection to a bridge.", [ new("--name", "Name", true), new("--ordinal", "Ordinal", true) ], [ new("--bridge", "BusinessBridgeId", "BusinessBridge"), new("--hub-satellite-attribute", "BusinessHubSatelliteAttributeId", "BusinessHubSatelliteAttribute") ]),
-            Cmd("add-bridge-link-satellite-attribute-projection", "BusinessBridgeLinkSatelliteAttributeProjection", "Add a link satellite attribute projection to a bridge.", [ new("--name", "Name", true), new("--ordinal", "Ordinal", true) ], [ new("--bridge", "BusinessBridgeId", "BusinessBridge"), new("--link-satellite-attribute", "BusinessLinkSatelliteAttributeId", "BusinessLinkSatelliteAttribute") ]),
+            Cmd("add-bridge-link", "BusinessBridgeLink", "Add a business link to an ordered bridge path.", [ new("--ordinal", "Ordinal", true), new("--role-name", "RoleName", false) ], [ new("--bridge", "BusinessBridgeId", "BusinessBridge"), new("--link", "BusinessLinkId", "BusinessLink") ]),
+            Cmd("add-bridge-hub", "BusinessBridgeHub", "Add a business hub to an ordered bridge path.", [ new("--ordinal", "Ordinal", true), new("--role-name", "RoleName", false) ], [ new("--bridge", "BusinessBridgeId", "BusinessBridge"), new("--hub", "BusinessHubId", "BusinessHub") ]),
         };
         return specs.ToDictionary(spec => spec.CommandName, StringComparer.OrdinalIgnoreCase);
     }
@@ -130,7 +117,7 @@ internal static partial class Program
 
     private static ParsedAddCommand ParseAddCommand(AddCommandSpec spec, string[] args, int startIndex)
     {
-        var workspacePath = string.Empty;
+        var workspacePath = ".";
         var recordId = string.Empty;
         var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         var relationships = new List<BusinessDataVaultRelationshipAssignment>();
@@ -176,10 +163,6 @@ internal static partial class Program
             return new ParsedAddCommand(false, workspacePath, recordId, values, relationships, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(workspacePath))
-        {
-            return new ParsedAddCommand(false, workspacePath, recordId, values, relationships, "missing required option --workspace <path>.");
-        }
         if (string.IsNullOrWhiteSpace(recordId))
         {
             return new ParsedAddCommand(false, workspacePath, recordId, values, relationships, "missing required option --id <id>.");
@@ -204,12 +187,13 @@ internal static partial class Program
 
     private static void PrintAddCommandHelp(AddCommandSpec spec)
     {
-        var parts = new List<string> { $"meta-datavault-business {spec.CommandName}", "--workspace <path>", "--id <id>" };
+        var parts = new List<string> { $"meta-datavault-business {spec.CommandName}", "[--workspace <path>]", "--id <id>" };
         parts.AddRange(spec.PropertyOptions.Select(item => item.Required ? $"{item.OptionName} {item.ValueLabel}" : $"[{item.OptionName} {item.ValueLabel}]") );
         parts.AddRange(spec.RelationshipOptions.Select(item => $"{item.OptionName} {item.ValueLabel}"));
         Presenter.WriteInfo($"Command: {spec.CommandName}");
         Presenter.WriteUsage(string.Join(" ", parts));
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo($"  Adds one {spec.EntityName} row to a MetaBusinessDataVault workspace.");
+        Presenter.WriteInfo("  Defaults to the current working directory when --workspace is omitted.");
     }
 }

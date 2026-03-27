@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessBridgeHubSatelliteAttributeProjectionList>
-    <BusinessBridgeHubSatelliteAttributeProjection Id="CustomerOrderTraversal-CustomerName" BusinessBridgeId="CustomerOrderTraversal" BusinessHubSatelliteAttributeId="CustomerProfileName">
-      <Name>CustomerName</Name>
-      <Ordinal>3</Ordinal>
-    </BusinessBridgeHubSatelliteAttributeProjection>
-  </BusinessBridgeHubSatelliteAttributeProjectionList>
-</MetaBusinessDataVault>

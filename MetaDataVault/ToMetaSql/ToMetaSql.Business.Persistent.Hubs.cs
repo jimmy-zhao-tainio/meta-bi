@@ -84,8 +84,6 @@ public static partial class Converter
         MetaBusinessDataVaultModel model,
         ConversionContext context,
         BusinessHubSatelliteImplementation businessHubSatelliteImplementation,
-        IReadOnlyDictionary<string, List<BusinessHubSatelliteKeyPart>> businessHubSatelliteKeyPartsBySatelliteId,
-        IReadOnlyDictionary<string, List<BusinessHubSatelliteKeyPartDataTypeDetail>> businessHubSatelliteKeyPartDetailsByKeyPartId,
         IReadOnlyDictionary<string, List<BusinessHubSatelliteAttribute>> businessHubSatelliteAttributesBySatelliteId,
         IReadOnlyDictionary<string, List<BusinessHubSatelliteAttributeDataTypeDetail>> businessHubSatelliteAttributeDetailsByAttributeId,
         IReadOnlyDictionary<string, Table> hubTablesByHubId,
@@ -111,29 +109,17 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessHubSatelliteImplementation.ParentHashKeyLength));
 
-            var members = GetGroup(businessHubSatelliteKeyPartsBySatelliteId, satellite.Id)
+            var members = GetGroup(businessHubSatelliteAttributesBySatelliteId, satellite.Id)
                 .Select(row => CreateBusinessColumnMember(
                     row.Id,
                     row.Name,
                     row.DataTypeId,
                     row.Ordinal,
                     GetDetailPairs(
-                        businessHubSatelliteKeyPartDetailsByKeyPartId,
+                        businessHubSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
-                        detail => detail.Value)))
-                .Concat(
-                    GetGroup(businessHubSatelliteAttributesBySatelliteId, satellite.Id)
-                        .Select(row => CreateBusinessColumnMember(
-                            row.Id,
-                            row.Name,
-                            row.DataTypeId,
-                            row.Ordinal,
-                            GetDetailPairs(
-                                businessHubSatelliteAttributeDetailsByAttributeId,
-                                row.Id,
-                                detail => detail.Name,
-                                detail => detail.Value))));
+                        detail => detail.Value)));
 
             AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
 

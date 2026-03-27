@@ -17,12 +17,8 @@ public static partial class Converter
         var businessHierarchicalLinkImplementation = RequireSingleImplementation(context.ImplementationModel.BusinessHierarchicalLinkImplementationList, nameof(context.ImplementationModel.BusinessHierarchicalLinkImplementationList));
         var businessHierarchicalLinkSatelliteImplementation = RequireSingleImplementation(context.ImplementationModel.BusinessHierarchicalLinkSatelliteImplementationList, nameof(context.ImplementationModel.BusinessHierarchicalLinkSatelliteImplementationList));
 
-        var businessSameAsLinkSatelliteKeyPartsBySatelliteId = GroupById(model.BusinessSameAsLinkSatelliteKeyPartList, row => row.BusinessSameAsLinkSatelliteId);
-        var businessSameAsLinkSatelliteKeyPartDetailsByKeyPartId = GroupById(model.BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList, row => row.BusinessSameAsLinkSatelliteKeyPartId);
         var businessSameAsLinkSatelliteAttributesBySatelliteId = GroupById(model.BusinessSameAsLinkSatelliteAttributeList, row => row.BusinessSameAsLinkSatelliteId);
         var businessSameAsLinkSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList, row => row.BusinessSameAsLinkSatelliteAttributeId);
-        var businessHierarchicalLinkSatelliteKeyPartsBySatelliteId = GroupById(model.BusinessHierarchicalLinkSatelliteKeyPartList, row => row.BusinessHierarchicalLinkSatelliteId);
-        var businessHierarchicalLinkSatelliteKeyPartDetailsByKeyPartId = GroupById(model.BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList, row => row.BusinessHierarchicalLinkSatelliteKeyPartId);
         var businessHierarchicalLinkSatelliteAttributesBySatelliteId = GroupById(model.BusinessHierarchicalLinkSatelliteAttributeList, row => row.BusinessHierarchicalLinkSatelliteId);
         var businessHierarchicalLinkSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList, row => row.BusinessHierarchicalLinkSatelliteAttributeId);
 
@@ -148,29 +144,17 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessSameAsLinkSatelliteImplementation.ParentHashKeyLength));
 
-            var members = GetGroup(businessSameAsLinkSatelliteKeyPartsBySatelliteId, satellite.Id)
+            var members = GetGroup(businessSameAsLinkSatelliteAttributesBySatelliteId, satellite.Id)
                 .Select(row => CreateBusinessColumnMember(
                     row.Id,
                     row.Name,
                     row.DataTypeId,
                     row.Ordinal,
                     GetDetailPairs(
-                        businessSameAsLinkSatelliteKeyPartDetailsByKeyPartId,
+                        businessSameAsLinkSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
-                        detail => detail.Value)))
-                .Concat(
-                    GetGroup(businessSameAsLinkSatelliteAttributesBySatelliteId, satellite.Id)
-                        .Select(row => CreateBusinessColumnMember(
-                            row.Id,
-                            row.Name,
-                            row.DataTypeId,
-                            row.Ordinal,
-                            GetDetailPairs(
-                                businessSameAsLinkSatelliteAttributeDetailsByAttributeId,
-                                row.Id,
-                                detail => detail.Name,
-                                detail => detail.Value))));
+                        detail => detail.Value)));
 
             AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
 
@@ -341,29 +325,17 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessHierarchicalLinkSatelliteImplementation.ParentHashKeyLength));
 
-            var members = GetGroup(businessHierarchicalLinkSatelliteKeyPartsBySatelliteId, satellite.Id)
+            var members = GetGroup(businessHierarchicalLinkSatelliteAttributesBySatelliteId, satellite.Id)
                 .Select(row => CreateBusinessColumnMember(
                     row.Id,
                     row.Name,
                     row.DataTypeId,
                     row.Ordinal,
                     GetDetailPairs(
-                        businessHierarchicalLinkSatelliteKeyPartDetailsByKeyPartId,
+                        businessHierarchicalLinkSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
-                        detail => detail.Value)))
-                .Concat(
-                    GetGroup(businessHierarchicalLinkSatelliteAttributesBySatelliteId, satellite.Id)
-                        .Select(row => CreateBusinessColumnMember(
-                            row.Id,
-                            row.Name,
-                            row.DataTypeId,
-                            row.Ordinal,
-                            GetDetailPairs(
-                                businessHierarchicalLinkSatelliteAttributeDetailsByAttributeId,
-                                row.Id,
-                                detail => detail.Name,
-                                detail => detail.Value))));
+                        detail => detail.Value)));
 
             AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
 

@@ -3,67 +3,51 @@
   <BusinessHubSatelliteList>
     <BusinessHubSatellite Id="CostCenterBudget" BusinessHubId="CostCenter">
       <Name>CostCenterBudget</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="CostCenterProfile" BusinessHubId="CostCenter">
       <Name>CostCenterProfile</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="CustomerAddress" BusinessHubId="Customer">
       <Name>CustomerAddress</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="CustomerContact" BusinessHubId="Customer">
       <Name>CustomerContact</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="CustomerProfile" BusinessHubId="Customer">
       <Name>CustomerProfile</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="DepartmentOperatingModel" BusinessHubId="Department">
       <Name>DepartmentOperatingModel</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="DepartmentProfile" BusinessHubId="Department">
       <Name>DepartmentProfile</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="EmployeeEmployment" BusinessHubId="Employee">
       <Name>EmployeeEmployment</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="EmployeeProfile" BusinessHubId="Employee">
       <Name>EmployeeProfile</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="InvoiceHeader" BusinessHubId="Invoice">
       <Name>InvoiceHeader</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="OrderHeader" BusinessHubId="Order">
       <Name>OrderHeader</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="ProductCommercial" BusinessHubId="Product">
       <Name>ProductCommercial</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="ProductProfile" BusinessHubId="Product">
       <Name>ProductProfile</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="ShipmentHeader" BusinessHubId="Shipment">
       <Name>ShipmentHeader</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="SupplierCompliance" BusinessHubId="Supplier">
       <Name>SupplierCompliance</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
     <BusinessHubSatellite Id="SupplierProfile" BusinessHubId="Supplier">
       <Name>SupplierProfile</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessHubSatellite>
   </BusinessHubSatelliteList>
 </MetaBusinessDataVault>

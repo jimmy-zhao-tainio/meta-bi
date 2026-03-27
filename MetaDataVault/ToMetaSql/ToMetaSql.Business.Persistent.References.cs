@@ -84,8 +84,6 @@ public static partial class Converter
         MetaBusinessDataVaultModel model,
         ConversionContext context,
         BusinessReferenceSatelliteImplementation businessReferenceSatelliteImplementation,
-        IReadOnlyDictionary<string, List<BusinessReferenceSatelliteKeyPart>> businessReferenceSatelliteKeyPartsBySatelliteId,
-        IReadOnlyDictionary<string, List<BusinessReferenceSatelliteKeyPartDataTypeDetail>> businessReferenceSatelliteKeyPartDetailsByKeyPartId,
         IReadOnlyDictionary<string, List<BusinessReferenceSatelliteAttribute>> businessReferenceSatelliteAttributesBySatelliteId,
         IReadOnlyDictionary<string, List<BusinessReferenceSatelliteAttributeDataTypeDetail>> businessReferenceSatelliteAttributeDetailsByAttributeId,
         IReadOnlyDictionary<string, Table> referenceTablesByReferenceId,
@@ -111,29 +109,17 @@ public static partial class Converter
                 reservedColumnNames,
                 ("Length", businessReferenceSatelliteImplementation.ParentHashKeyLength));
 
-            var members = GetGroup(businessReferenceSatelliteKeyPartsBySatelliteId, satellite.Id)
+            var members = GetGroup(businessReferenceSatelliteAttributesBySatelliteId, satellite.Id)
                 .Select(row => CreateBusinessColumnMember(
                     row.Id,
                     row.Name,
                     row.DataTypeId,
                     row.Ordinal,
                     GetDetailPairs(
-                        businessReferenceSatelliteKeyPartDetailsByKeyPartId,
+                        businessReferenceSatelliteAttributeDetailsByAttributeId,
                         row.Id,
                         detail => detail.Name,
-                        detail => detail.Value)))
-                .Concat(
-                    GetGroup(businessReferenceSatelliteAttributesBySatelliteId, satellite.Id)
-                        .Select(row => CreateBusinessColumnMember(
-                            row.Id,
-                            row.Name,
-                            row.DataTypeId,
-                            row.Ordinal,
-                            GetDetailPairs(
-                                businessReferenceSatelliteAttributeDetailsByAttributeId,
-                                row.Id,
-                                detail => detail.Name,
-                                detail => detail.Value))));
+                        detail => detail.Value)));
 
             AddOrderedBusinessMembers(context, table, reservedColumnNames, members);
 

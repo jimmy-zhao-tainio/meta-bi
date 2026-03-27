@@ -2,29 +2,29 @@
 <MetaDataVaultImplementation>
   <BusinessBridgeImplementationList>
     <BusinessBridgeImplementation Id="default-business-bridge">
-      <SchemaName>dbo</SchemaName>
-      <TableNamePattern>BR_{Name}</TableNamePattern>
       <AnchorHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</AnchorHubForeignKeyNamePattern>
-      <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
-      <RootHashKeyDataTypeId>meta:type:Binary</RootHashKeyDataTypeId>
-      <RootHashKeyLength>16</RootHashKeyLength>
-      <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>
-      <RelatedHashKeyDataTypeId>meta:type:Binary</RelatedHashKeyDataTypeId>
-      <RelatedHashKeyLength>16</RelatedHashKeyLength>
+      <AuditIdColumnName>AuditId</AuditIdColumnName>
+      <AuditIdDataTypeId>meta:type:Int32</AuditIdDataTypeId>
       <DepthColumnName>Depth</DepthColumnName>
       <DepthDataTypeId>meta:type:Int32</DepthDataTypeId>
-      <PathColumnName>Path</PathColumnName>
-      <PathDataTypeId>meta:type:String</PathDataTypeId>
-      <PathLength>4000</PathLength>
       <EffectiveFromColumnName>EffectiveFrom</EffectiveFromColumnName>
       <EffectiveFromDataTypeId>meta:type:DateTime2</EffectiveFromDataTypeId>
       <EffectiveFromPrecision>7</EffectiveFromPrecision>
       <EffectiveToColumnName>EffectiveTo</EffectiveToColumnName>
       <EffectiveToDataTypeId>meta:type:DateTime2</EffectiveToDataTypeId>
       <EffectiveToPrecision>7</EffectiveToPrecision>
-      <AuditIdColumnName>AuditId</AuditIdColumnName>
-      <AuditIdDataTypeId>meta:type:Int32</AuditIdDataTypeId>
+      <PathColumnName>Path</PathColumnName>
+      <PathDataTypeId>meta:type:String</PathDataTypeId>
+      <PathLength>4000</PathLength>
+      <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>
+      <RelatedHashKeyDataTypeId>meta:type:Binary</RelatedHashKeyDataTypeId>
+      <RelatedHashKeyLength>16</RelatedHashKeyLength>
+      <RelatedHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}_Related</RelatedHubForeignKeyNamePattern>
+      <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
+      <RootHashKeyDataTypeId>meta:type:Binary</RootHashKeyDataTypeId>
+      <RootHashKeyLength>16</RootHashKeyLength>
+      <SchemaName>dbo</SchemaName>
+      <TableNamePattern>BR_{Name}</TableNamePattern>
     </BusinessBridgeImplementation>
   </BusinessBridgeImplementationList>
 </MetaDataVaultImplementation>
-

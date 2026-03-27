@@ -3,7 +3,6 @@
   <BusinessSameAsLinkSatelliteList>
     <BusinessSameAsLinkSatellite Id="CustomerSameAsCrmCustomerAudit" BusinessSameAsLinkId="CustomerSameAsCrmCustomer">
       <Name>CustomerSameAsCrmCustomerAudit</Name>
-      <SatelliteKind>standard</SatelliteKind>
     </BusinessSameAsLinkSatellite>
   </BusinessSameAsLinkSatelliteList>
 </MetaBusinessDataVault>

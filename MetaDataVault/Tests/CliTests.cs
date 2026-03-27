@@ -39,33 +39,23 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-reference-key-part --id StatusCodeValue --reference StatusCode --name Code --data-type-id meta:type:String --ordinal 1");
             RunBusinessAdd(workspacePath, "add-reference-key-part-data-type-detail --id StatusCodeValueLength --reference-key-part StatusCodeValue --name Length --value 20");
 
-            RunBusinessAdd(workspacePath, "add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile --satellite-kind standard");
-            RunBusinessAdd(workspacePath, "add-hub-satellite-key-part --id CustomerProfileVersion --hub-satellite CustomerProfile --name VersionId --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-hub-satellite-key-part-data-type-detail --id CustomerProfileVersionLength --hub-satellite-key-part CustomerProfileVersion --name Length --value 10");
+            RunBusinessAdd(workspacePath, "add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile");
             RunBusinessAdd(workspacePath, "add-hub-satellite-attribute --id CustomerName --hub-satellite CustomerProfile --name CustomerName --data-type-id meta:type:String --ordinal 1");
             RunBusinessAdd(workspacePath, "add-hub-satellite-attribute-data-type-detail --id CustomerNameLength --hub-satellite-attribute CustomerName --name Length --value 200");
 
-            RunBusinessAdd(workspacePath, "add-link-satellite --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus --satellite-kind standard");
-            RunBusinessAdd(workspacePath, "add-link-satellite-key-part --id CustomerOrderStatusVersion --link-satellite CustomerOrderStatus --name VersionId --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-link-satellite-key-part-data-type-detail --id CustomerOrderStatusVersionLength --link-satellite-key-part CustomerOrderStatusVersion --name Length --value 10");
+            RunBusinessAdd(workspacePath, "add-link-satellite --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus");
             RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String --ordinal 1");
             RunBusinessAdd(workspacePath, "add-link-satellite-attribute-data-type-detail --id CustomerOrderStatusCodeLength --link-satellite-attribute CustomerOrderStatusCode --name Length --value 20");
 
-            RunBusinessAdd(workspacePath, "add-same-as-link-satellite --id CustomerSameAsAliasAudit --same-as-link CustomerSameAsAlias --name CustomerSameAsAliasAudit --satellite-kind standard");
-            RunBusinessAdd(workspacePath, "add-same-as-link-satellite-key-part --id CustomerSameAsAliasAuditVersion --same-as-link-satellite CustomerSameAsAliasAudit --name VersionId --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-same-as-link-satellite-key-part-data-type-detail --id CustomerSameAsAliasAuditVersionLength --same-as-link-satellite-key-part CustomerSameAsAliasAuditVersion --name Length --value 10");
+            RunBusinessAdd(workspacePath, "add-same-as-link-satellite --id CustomerSameAsAliasAudit --same-as-link CustomerSameAsAlias --name CustomerSameAsAliasAudit");
             RunBusinessAdd(workspacePath, "add-same-as-link-satellite-attribute --id CustomerSameAsAliasReason --same-as-link-satellite CustomerSameAsAliasAudit --name ReasonCode --data-type-id meta:type:String --ordinal 1");
             RunBusinessAdd(workspacePath, "add-same-as-link-satellite-attribute-data-type-detail --id CustomerSameAsAliasReasonLength --same-as-link-satellite-attribute CustomerSameAsAliasReason --name Length --value 20");
 
-            RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite --id ParentChildAudit --hierarchical-link ParentChild --name ParentChildAudit --satellite-kind standard");
-            RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite-key-part --id ParentChildAuditVersion --hierarchical-link-satellite ParentChildAudit --name VersionId --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite-key-part-data-type-detail --id ParentChildAuditVersionLength --hierarchical-link-satellite-key-part ParentChildAuditVersion --name Length --value 10");
+            RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite --id ParentChildAudit --hierarchical-link ParentChild --name ParentChildAudit");
             RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite-attribute --id ParentChildRelationshipType --hierarchical-link-satellite ParentChildAudit --name RelationshipType --data-type-id meta:type:String --ordinal 1");
             RunBusinessAdd(workspacePath, "add-hierarchical-link-satellite-attribute-data-type-detail --id ParentChildRelationshipTypeLength --hierarchical-link-satellite-attribute ParentChildRelationshipType --name Length --value 30");
 
-            RunBusinessAdd(workspacePath, "add-reference-satellite --id StatusCodeDescriptionSet --reference StatusCode --name StatusCodeDescriptionSet --satellite-kind standard");
-            RunBusinessAdd(workspacePath, "add-reference-satellite-key-part --id StatusCodeDescriptionVersion --reference-satellite StatusCodeDescriptionSet --name VersionId --data-type-id meta:type:String --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-reference-satellite-key-part-data-type-detail --id StatusCodeDescriptionVersionLength --reference-satellite-key-part StatusCodeDescriptionVersion --name Length --value 10");
+            RunBusinessAdd(workspacePath, "add-reference-satellite --id StatusCodeDescriptionSet --reference StatusCode --name StatusCodeDescriptionSet");
             RunBusinessAdd(workspacePath, "add-reference-satellite-attribute --id StatusCodeDescription --reference-satellite StatusCodeDescriptionSet --name Description --data-type-id meta:type:String --ordinal 1");
             RunBusinessAdd(workspacePath, "add-reference-satellite-attribute-data-type-detail --id StatusCodeDescriptionLength --reference-satellite-attribute StatusCodeDescription --name Length --value 100");
 
@@ -74,27 +64,75 @@ public sealed partial class CliTests
             RunBusinessAdd(workspacePath, "add-point-in-time-stamp-data-type-detail --id CustomerSnapshotBusinessDatePrecision --point-in-time-stamp CustomerSnapshotBusinessDate --name Precision --value 7");
             RunBusinessAdd(workspacePath, "add-point-in-time-hub-satellite --id CustomerSnapshotProfile --point-in-time CustomerSnapshot --hub-satellite CustomerProfile --ordinal 1");
             RunBusinessAdd(workspacePath, "add-point-in-time-link-satellite --id CustomerSnapshotOrderStatus --point-in-time CustomerSnapshot --link-satellite CustomerOrderStatus --ordinal 2");
-
             RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --anchor-hub Customer --name CustomerOrderTraversal");
-            RunBusinessAdd(workspacePath, "add-bridge-hub --id CustomerOrderTraversalCustomer --bridge CustomerOrderTraversal --hub Customer --ordinal 1 --role-name Customer");
+            RunBusinessAdd(workspacePath, "add-bridge-link --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --link CustomerOrder --ordinal 1 --role-name CustomerOrder");
             RunBusinessAdd(workspacePath, "add-bridge-hub --id CustomerOrderTraversalOrder --bridge CustomerOrderTraversal --hub Order --ordinal 2 --role-name Order");
-            RunBusinessAdd(workspacePath, "add-bridge-link --id CustomerOrderTraversalLink --bridge CustomerOrderTraversal --link CustomerOrder --ordinal 1 --role-name CustomerOrder");
-            RunBusinessAdd(workspacePath, "add-bridge-hub-key-part-projection --id CustomerOrderTraversalCustomerIdentifier --bridge CustomerOrderTraversal --hub-key-part CustomerIdentifier --name CustomerIdentifier --ordinal 1");
-            RunBusinessAdd(workspacePath, "add-bridge-hub-satellite-attribute-projection --id CustomerOrderTraversalCustomerName --bridge CustomerOrderTraversal --hub-satellite-attribute CustomerName --name CustomerName --ordinal 2");
-            RunBusinessAdd(workspacePath, "add-bridge-link-satellite-attribute-projection --id CustomerOrderTraversalStatusCode --bridge CustomerOrderTraversal --link-satellite-attribute CustomerOrderStatusCode --name StatusCode --ordinal 3");
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
-            Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessBridge"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTime"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLink"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessHierarchicalLink"));
             Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessReference"));
+            Assert.Single(workspace.Instance.GetOrCreateEntityRecords("BusinessBridge"));
         }
         finally
         {
             DeleteDirectoryIfExists(root);
         }
     }
+
+    [Fact]
+    public void BusinessAuthoringRejectsSameAsLinkWithIdenticalHubs()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+
+        try
+        {
+            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            Assert.Equal(0, createResult.ExitCode);
+
+            RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
+
+            var result = RunBusinessCli($"add-same-as-link --workspace \"{workspacePath}\" --id CustomerSameAsCustomer --name CustomerSameAsCustomer --primary-hub Customer --equivalent-hub Customer");
+            Assert.NotEqual(0, result.ExitCode);
+            Assert.Contains("distinct PrimaryHubId and EquivalentHubId", result.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public void BusinessAuthoringRejectsDuplicateBridgeOrdinal()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+
+        try
+        {
+            var createResult = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
+            Assert.Equal(0, createResult.ExitCode);
+
+            RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
+            RunBusinessAdd(workspacePath, "add-hub --id Order --name Order");
+            RunBusinessAdd(workspacePath, "add-link --id CustomerOrder --name CustomerOrder");
+            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderCustomer --link CustomerOrder --hub Customer --ordinal 1 --role-name Customer");
+            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderOrder --link CustomerOrder --hub Order --ordinal 2 --role-name Order");
+            RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --anchor-hub Customer --name CustomerOrderTraversal");
+            RunBusinessAdd(workspacePath, "add-bridge-link --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --link CustomerOrder --ordinal 1 --role-name CustomerOrder");
+
+            var result = RunBusinessCli($"add-bridge-hub --workspace \"{workspacePath}\" --id CustomerOrderTraversalOrder --bridge CustomerOrderTraversal --hub Order --ordinal 1 --role-name Order");
+            Assert.NotEqual(0, result.ExitCode);
+            Assert.Contains("Bridge 'CustomerOrderTraversal' already contains ordinal '1'", result.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
     [Fact]
     public async Task RawAuthoringCommands_CoverBaselineAddCommands()
     {

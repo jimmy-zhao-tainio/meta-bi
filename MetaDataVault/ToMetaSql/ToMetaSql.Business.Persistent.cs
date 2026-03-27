@@ -19,19 +19,13 @@ public static partial class Converter
 
         var businessHubKeyPartsByHubId = GroupById(model.BusinessHubKeyPartList, row => row.BusinessHubId);
         var businessHubKeyPartDetailsByKeyPartId = GroupById(model.BusinessHubKeyPartDataTypeDetailList, row => row.BusinessHubKeyPartId);
-        var businessHubSatelliteKeyPartsBySatelliteId = GroupById(model.BusinessHubSatelliteKeyPartList, row => row.BusinessHubSatelliteId);
-        var businessHubSatelliteKeyPartDetailsByKeyPartId = GroupById(model.BusinessHubSatelliteKeyPartDataTypeDetailList, row => row.BusinessHubSatelliteKeyPartId);
         var businessHubSatelliteAttributesBySatelliteId = GroupById(model.BusinessHubSatelliteAttributeList, row => row.BusinessHubSatelliteId);
         var businessHubSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessHubSatelliteAttributeDataTypeDetailList, row => row.BusinessHubSatelliteAttributeId);
         var businessLinkHubsByLinkId = GroupById(model.BusinessLinkHubList, row => row.BusinessLinkId);
-        var businessLinkSatelliteKeyPartsBySatelliteId = GroupById(model.BusinessLinkSatelliteKeyPartList, row => row.BusinessLinkSatelliteId);
-        var businessLinkSatelliteKeyPartDetailsByKeyPartId = GroupById(model.BusinessLinkSatelliteKeyPartDataTypeDetailList, row => row.BusinessLinkSatelliteKeyPartId);
         var businessLinkSatelliteAttributesBySatelliteId = GroupById(model.BusinessLinkSatelliteAttributeList, row => row.BusinessLinkSatelliteId);
         var businessLinkSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessLinkSatelliteAttributeDataTypeDetailList, row => row.BusinessLinkSatelliteAttributeId);
         var businessReferenceKeyPartsByReferenceId = GroupById(model.BusinessReferenceKeyPartList, row => row.BusinessReferenceId);
         var businessReferenceKeyPartDetailsByKeyPartId = GroupById(model.BusinessReferenceKeyPartDataTypeDetailList, row => row.BusinessReferenceKeyPartId);
-        var businessReferenceSatelliteKeyPartsBySatelliteId = GroupById(model.BusinessReferenceSatelliteKeyPartList, row => row.BusinessReferenceSatelliteId);
-        var businessReferenceSatelliteKeyPartDetailsByKeyPartId = GroupById(model.BusinessReferenceSatelliteKeyPartDataTypeDetailList, row => row.BusinessReferenceSatelliteKeyPartId);
         var businessReferenceSatelliteAttributesBySatelliteId = GroupById(model.BusinessReferenceSatelliteAttributeList, row => row.BusinessReferenceSatelliteId);
         var businessReferenceSatelliteAttributeDetailsByAttributeId = GroupById(model.BusinessReferenceSatelliteAttributeDataTypeDetailList, row => row.BusinessReferenceSatelliteAttributeId);
 
@@ -55,8 +49,6 @@ public static partial class Converter
             model,
             context,
             businessHubSatelliteImplementation,
-            businessHubSatelliteKeyPartsBySatelliteId,
-            businessHubSatelliteKeyPartDetailsByKeyPartId,
             businessHubSatelliteAttributesBySatelliteId,
             businessHubSatelliteAttributeDetailsByAttributeId,
             hubTablesByHubId,
@@ -77,8 +69,6 @@ public static partial class Converter
             model,
             context,
             businessLinkSatelliteImplementation,
-            businessLinkSatelliteKeyPartsBySatelliteId,
-            businessLinkSatelliteKeyPartDetailsByKeyPartId,
             businessLinkSatelliteAttributesBySatelliteId,
             businessLinkSatelliteAttributeDetailsByAttributeId,
             linkTablesByLinkId,
@@ -97,8 +87,6 @@ public static partial class Converter
             model,
             context,
             businessReferenceSatelliteImplementation,
-            businessReferenceSatelliteKeyPartsBySatelliteId,
-            businessReferenceSatelliteKeyPartDetailsByKeyPartId,
             businessReferenceSatelliteAttributesBySatelliteId,
             businessReferenceSatelliteAttributeDetailsByAttributeId,
             referenceTablesByReferenceId,

@@ -35,6 +35,9 @@ namespace MetaDataVaultImplementation
         [XmlElement("SatelliteReferencePrecision")]
         public string SatelliteReferencePrecision { get; set; } = string.Empty;
 
+        [XmlElement("SchemaName")]
+        public string SchemaName { get; set; } = string.Empty;
+
         [XmlElement("SnapshotTimestampColumnName")]
         public string SnapshotTimestampColumnName { get; set; } = string.Empty;
 
@@ -44,12 +47,8 @@ namespace MetaDataVaultImplementation
         [XmlElement("SnapshotTimestampPrecision")]
         public string SnapshotTimestampPrecision { get; set; } = string.Empty;
 
-        [XmlElement("SchemaName")]
-        public string SchemaName { get; set; } = string.Empty;
-
         [XmlElement("TableNamePattern")]
         public string TableNamePattern { get; set; } = string.Empty;
 
     }
 }
-

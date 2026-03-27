@@ -89,6 +89,8 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
 
         records.Add(recordToAdd);
 
+        ValidateDomainRules(workspace, request);
+
         var validation = _validationService.Validate(workspace);
         if (validation.HasErrors)
         {
@@ -101,5 +103,59 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
 
         await _workspaceService.SaveAsync(workspace, cancellationToken: cancellationToken).ConfigureAwait(false);
         return workspace;
+    }
+
+    private static void ValidateDomainRules(Workspace workspace, BusinessDataVaultAuthoringRequest request)
+    {
+        if (string.Equals(request.EntityName, "BusinessSameAsLink", StringComparison.Ordinal))
+        {
+            var sameAsLink = workspace.Instance.GetOrCreateEntityRecords("BusinessSameAsLink")
+                .Single(record => string.Equals(record.Id, request.RecordId, StringComparison.Ordinal));
+            sameAsLink.RelationshipIds.TryGetValue("PrimaryHubId", out var primaryHubId);
+            sameAsLink.RelationshipIds.TryGetValue("EquivalentHubId", out var equivalentHubId);
+
+            if (string.Equals(primaryHubId, equivalentHubId, StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException("BusinessSameAsLink requires distinct PrimaryHubId and EquivalentHubId.");
+            }
+        }
+
+        if (string.Equals(request.EntityName, "BusinessBridgeLink", StringComparison.Ordinal) ||
+            string.Equals(request.EntityName, "BusinessBridgeHub", StringComparison.Ordinal))
+        {
+            ValidateBridgeOrdinalUniqueness(workspace, request.EntityName, request.RecordId);
+        }
+    }
+
+    private static void ValidateBridgeOrdinalUniqueness(Workspace workspace, string entityName, string recordId)
+    {
+        var bridgeLinkRecords = workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeLink");
+        var bridgeHubRecords = workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeHub");
+        var sourceRecords = string.Equals(entityName, "BusinessBridgeLink", StringComparison.Ordinal)
+            ? bridgeLinkRecords
+            : bridgeHubRecords;
+
+        var record = sourceRecords.Single(row => string.Equals(row.Id, recordId, StringComparison.Ordinal));
+        if (!record.RelationshipIds.TryGetValue("BusinessBridgeId", out var bridgeId) ||
+            string.IsNullOrWhiteSpace(bridgeId) ||
+            !record.Values.TryGetValue("Ordinal", out var ordinal) ||
+            string.IsNullOrWhiteSpace(ordinal))
+        {
+            return;
+        }
+
+        var duplicateLink = bridgeLinkRecords.Any(row =>
+            !string.Equals(row.Id, recordId, StringComparison.Ordinal) &&
+            string.Equals(row.RelationshipIds.GetValueOrDefault("BusinessBridgeId"), bridgeId, StringComparison.Ordinal) &&
+            string.Equals(row.Values.GetValueOrDefault("Ordinal"), ordinal, StringComparison.Ordinal));
+        var duplicateHub = bridgeHubRecords.Any(row =>
+            !string.Equals(row.Id, recordId, StringComparison.Ordinal) &&
+            string.Equals(row.RelationshipIds.GetValueOrDefault("BusinessBridgeId"), bridgeId, StringComparison.Ordinal) &&
+            string.Equals(row.Values.GetValueOrDefault("Ordinal"), ordinal, StringComparison.Ordinal));
+
+        if (duplicateLink || duplicateHub)
+        {
+            throw new InvalidOperationException($"Bridge '{bridgeId}' already contains ordinal '{ordinal}'. Bridge path ordinals must be unique.");
+        }
     }
 }

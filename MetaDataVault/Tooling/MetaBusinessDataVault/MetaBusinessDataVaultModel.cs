@@ -23,25 +23,10 @@ namespace MetaBusinessDataVault
         public List<BusinessBridgeHub> BusinessBridgeHubList { get; set; } = new();
         public bool ShouldSerializeBusinessBridgeHubList() => BusinessBridgeHubList.Count > 0;
 
-        [XmlArray("BusinessBridgeHubKeyPartProjectionList")]
-        [XmlArrayItem("BusinessBridgeHubKeyPartProjection")]
-        public List<BusinessBridgeHubKeyPartProjection> BusinessBridgeHubKeyPartProjectionList { get; set; } = new();
-        public bool ShouldSerializeBusinessBridgeHubKeyPartProjectionList() => BusinessBridgeHubKeyPartProjectionList.Count > 0;
-
-        [XmlArray("BusinessBridgeHubSatelliteAttributeProjectionList")]
-        [XmlArrayItem("BusinessBridgeHubSatelliteAttributeProjection")]
-        public List<BusinessBridgeHubSatelliteAttributeProjection> BusinessBridgeHubSatelliteAttributeProjectionList { get; set; } = new();
-        public bool ShouldSerializeBusinessBridgeHubSatelliteAttributeProjectionList() => BusinessBridgeHubSatelliteAttributeProjectionList.Count > 0;
-
         [XmlArray("BusinessBridgeLinkList")]
         [XmlArrayItem("BusinessBridgeLink")]
         public List<BusinessBridgeLink> BusinessBridgeLinkList { get; set; } = new();
         public bool ShouldSerializeBusinessBridgeLinkList() => BusinessBridgeLinkList.Count > 0;
-
-        [XmlArray("BusinessBridgeLinkSatelliteAttributeProjectionList")]
-        [XmlArrayItem("BusinessBridgeLinkSatelliteAttributeProjection")]
-        public List<BusinessBridgeLinkSatelliteAttributeProjection> BusinessBridgeLinkSatelliteAttributeProjectionList { get; set; } = new();
-        public bool ShouldSerializeBusinessBridgeLinkSatelliteAttributeProjectionList() => BusinessBridgeLinkSatelliteAttributeProjectionList.Count > 0;
 
         [XmlArray("BusinessHierarchicalLinkList")]
         [XmlArrayItem("BusinessHierarchicalLink")]
@@ -62,16 +47,6 @@ namespace MetaBusinessDataVault
         [XmlArrayItem("BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail")]
         public List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail> BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList { get; set; } = new();
         public bool ShouldSerializeBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList() => BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList.Count > 0;
-
-        [XmlArray("BusinessHierarchicalLinkSatelliteKeyPartList")]
-        [XmlArrayItem("BusinessHierarchicalLinkSatelliteKeyPart")]
-        public List<BusinessHierarchicalLinkSatelliteKeyPart> BusinessHierarchicalLinkSatelliteKeyPartList { get; set; } = new();
-        public bool ShouldSerializeBusinessHierarchicalLinkSatelliteKeyPartList() => BusinessHierarchicalLinkSatelliteKeyPartList.Count > 0;
-
-        [XmlArray("BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList")]
-        [XmlArrayItem("BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail")]
-        public List<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail> BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList { get; set; } = new();
-        public bool ShouldSerializeBusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList() => BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList.Count > 0;
 
         [XmlArray("BusinessHubList")]
         [XmlArrayItem("BusinessHub")]
@@ -103,16 +78,6 @@ namespace MetaBusinessDataVault
         public List<BusinessHubSatelliteAttributeDataTypeDetail> BusinessHubSatelliteAttributeDataTypeDetailList { get; set; } = new();
         public bool ShouldSerializeBusinessHubSatelliteAttributeDataTypeDetailList() => BusinessHubSatelliteAttributeDataTypeDetailList.Count > 0;
 
-        [XmlArray("BusinessHubSatelliteKeyPartList")]
-        [XmlArrayItem("BusinessHubSatelliteKeyPart")]
-        public List<BusinessHubSatelliteKeyPart> BusinessHubSatelliteKeyPartList { get; set; } = new();
-        public bool ShouldSerializeBusinessHubSatelliteKeyPartList() => BusinessHubSatelliteKeyPartList.Count > 0;
-
-        [XmlArray("BusinessHubSatelliteKeyPartDataTypeDetailList")]
-        [XmlArrayItem("BusinessHubSatelliteKeyPartDataTypeDetail")]
-        public List<BusinessHubSatelliteKeyPartDataTypeDetail> BusinessHubSatelliteKeyPartDataTypeDetailList { get; set; } = new();
-        public bool ShouldSerializeBusinessHubSatelliteKeyPartDataTypeDetailList() => BusinessHubSatelliteKeyPartDataTypeDetailList.Count > 0;
-
         [XmlArray("BusinessLinkList")]
         [XmlArrayItem("BusinessLink")]
         public List<BusinessLink> BusinessLinkList { get; set; } = new();
@@ -137,16 +102,6 @@ namespace MetaBusinessDataVault
         [XmlArrayItem("BusinessLinkSatelliteAttributeDataTypeDetail")]
         public List<BusinessLinkSatelliteAttributeDataTypeDetail> BusinessLinkSatelliteAttributeDataTypeDetailList { get; set; } = new();
         public bool ShouldSerializeBusinessLinkSatelliteAttributeDataTypeDetailList() => BusinessLinkSatelliteAttributeDataTypeDetailList.Count > 0;
-
-        [XmlArray("BusinessLinkSatelliteKeyPartList")]
-        [XmlArrayItem("BusinessLinkSatelliteKeyPart")]
-        public List<BusinessLinkSatelliteKeyPart> BusinessLinkSatelliteKeyPartList { get; set; } = new();
-        public bool ShouldSerializeBusinessLinkSatelliteKeyPartList() => BusinessLinkSatelliteKeyPartList.Count > 0;
-
-        [XmlArray("BusinessLinkSatelliteKeyPartDataTypeDetailList")]
-        [XmlArrayItem("BusinessLinkSatelliteKeyPartDataTypeDetail")]
-        public List<BusinessLinkSatelliteKeyPartDataTypeDetail> BusinessLinkSatelliteKeyPartDataTypeDetailList { get; set; } = new();
-        public bool ShouldSerializeBusinessLinkSatelliteKeyPartDataTypeDetailList() => BusinessLinkSatelliteKeyPartDataTypeDetailList.Count > 0;
 
         [XmlArray("BusinessPointInTimeList")]
         [XmlArrayItem("BusinessPointInTime")]
@@ -203,16 +158,6 @@ namespace MetaBusinessDataVault
         public List<BusinessReferenceSatelliteAttributeDataTypeDetail> BusinessReferenceSatelliteAttributeDataTypeDetailList { get; set; } = new();
         public bool ShouldSerializeBusinessReferenceSatelliteAttributeDataTypeDetailList() => BusinessReferenceSatelliteAttributeDataTypeDetailList.Count > 0;
 
-        [XmlArray("BusinessReferenceSatelliteKeyPartList")]
-        [XmlArrayItem("BusinessReferenceSatelliteKeyPart")]
-        public List<BusinessReferenceSatelliteKeyPart> BusinessReferenceSatelliteKeyPartList { get; set; } = new();
-        public bool ShouldSerializeBusinessReferenceSatelliteKeyPartList() => BusinessReferenceSatelliteKeyPartList.Count > 0;
-
-        [XmlArray("BusinessReferenceSatelliteKeyPartDataTypeDetailList")]
-        [XmlArrayItem("BusinessReferenceSatelliteKeyPartDataTypeDetail")]
-        public List<BusinessReferenceSatelliteKeyPartDataTypeDetail> BusinessReferenceSatelliteKeyPartDataTypeDetailList { get; set; } = new();
-        public bool ShouldSerializeBusinessReferenceSatelliteKeyPartDataTypeDetailList() => BusinessReferenceSatelliteKeyPartDataTypeDetailList.Count > 0;
-
         [XmlArray("BusinessSameAsLinkList")]
         [XmlArrayItem("BusinessSameAsLink")]
         public List<BusinessSameAsLink> BusinessSameAsLinkList { get; set; } = new();
@@ -232,16 +177,6 @@ namespace MetaBusinessDataVault
         [XmlArrayItem("BusinessSameAsLinkSatelliteAttributeDataTypeDetail")]
         public List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail> BusinessSameAsLinkSatelliteAttributeDataTypeDetailList { get; set; } = new();
         public bool ShouldSerializeBusinessSameAsLinkSatelliteAttributeDataTypeDetailList() => BusinessSameAsLinkSatelliteAttributeDataTypeDetailList.Count > 0;
-
-        [XmlArray("BusinessSameAsLinkSatelliteKeyPartList")]
-        [XmlArrayItem("BusinessSameAsLinkSatelliteKeyPart")]
-        public List<BusinessSameAsLinkSatelliteKeyPart> BusinessSameAsLinkSatelliteKeyPartList { get; set; } = new();
-        public bool ShouldSerializeBusinessSameAsLinkSatelliteKeyPartList() => BusinessSameAsLinkSatelliteKeyPartList.Count > 0;
-
-        [XmlArray("BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList")]
-        [XmlArrayItem("BusinessSameAsLinkSatelliteKeyPartDataTypeDetail")]
-        public List<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail> BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList { get; set; } = new();
-        public bool ShouldSerializeBusinessSameAsLinkSatelliteKeyPartDataTypeDetailList() => BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList.Count > 0;
 
         public static MetaBusinessDataVaultModel LoadFromXmlWorkspace(
             string workspacePath,
@@ -303,31 +238,22 @@ namespace MetaBusinessDataVault
 
             model.BusinessBridgeList ??= new List<BusinessBridge>();
             model.BusinessBridgeHubList ??= new List<BusinessBridgeHub>();
-            model.BusinessBridgeHubKeyPartProjectionList ??= new List<BusinessBridgeHubKeyPartProjection>();
-            model.BusinessBridgeHubSatelliteAttributeProjectionList ??= new List<BusinessBridgeHubSatelliteAttributeProjection>();
             model.BusinessBridgeLinkList ??= new List<BusinessBridgeLink>();
-            model.BusinessBridgeLinkSatelliteAttributeProjectionList ??= new List<BusinessBridgeLinkSatelliteAttributeProjection>();
             model.BusinessHierarchicalLinkList ??= new List<BusinessHierarchicalLink>();
             model.BusinessHierarchicalLinkSatelliteList ??= new List<BusinessHierarchicalLinkSatellite>();
             model.BusinessHierarchicalLinkSatelliteAttributeList ??= new List<BusinessHierarchicalLinkSatelliteAttribute>();
             model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList ??= new List<BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail>();
-            model.BusinessHierarchicalLinkSatelliteKeyPartList ??= new List<BusinessHierarchicalLinkSatelliteKeyPart>();
-            model.BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList ??= new List<BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail>();
             model.BusinessHubList ??= new List<BusinessHub>();
             model.BusinessHubKeyPartList ??= new List<BusinessHubKeyPart>();
             model.BusinessHubKeyPartDataTypeDetailList ??= new List<BusinessHubKeyPartDataTypeDetail>();
             model.BusinessHubSatelliteList ??= new List<BusinessHubSatellite>();
             model.BusinessHubSatelliteAttributeList ??= new List<BusinessHubSatelliteAttribute>();
             model.BusinessHubSatelliteAttributeDataTypeDetailList ??= new List<BusinessHubSatelliteAttributeDataTypeDetail>();
-            model.BusinessHubSatelliteKeyPartList ??= new List<BusinessHubSatelliteKeyPart>();
-            model.BusinessHubSatelliteKeyPartDataTypeDetailList ??= new List<BusinessHubSatelliteKeyPartDataTypeDetail>();
             model.BusinessLinkList ??= new List<BusinessLink>();
             model.BusinessLinkHubList ??= new List<BusinessLinkHub>();
             model.BusinessLinkSatelliteList ??= new List<BusinessLinkSatellite>();
             model.BusinessLinkSatelliteAttributeList ??= new List<BusinessLinkSatelliteAttribute>();
             model.BusinessLinkSatelliteAttributeDataTypeDetailList ??= new List<BusinessLinkSatelliteAttributeDataTypeDetail>();
-            model.BusinessLinkSatelliteKeyPartList ??= new List<BusinessLinkSatelliteKeyPart>();
-            model.BusinessLinkSatelliteKeyPartDataTypeDetailList ??= new List<BusinessLinkSatelliteKeyPartDataTypeDetail>();
             model.BusinessPointInTimeList ??= new List<BusinessPointInTime>();
             model.BusinessPointInTimeHubSatelliteList ??= new List<BusinessPointInTimeHubSatellite>();
             model.BusinessPointInTimeLinkSatelliteList ??= new List<BusinessPointInTimeLinkSatellite>();
@@ -339,42 +265,29 @@ namespace MetaBusinessDataVault
             model.BusinessReferenceSatelliteList ??= new List<BusinessReferenceSatellite>();
             model.BusinessReferenceSatelliteAttributeList ??= new List<BusinessReferenceSatelliteAttribute>();
             model.BusinessReferenceSatelliteAttributeDataTypeDetailList ??= new List<BusinessReferenceSatelliteAttributeDataTypeDetail>();
-            model.BusinessReferenceSatelliteKeyPartList ??= new List<BusinessReferenceSatelliteKeyPart>();
-            model.BusinessReferenceSatelliteKeyPartDataTypeDetailList ??= new List<BusinessReferenceSatelliteKeyPartDataTypeDetail>();
             model.BusinessSameAsLinkList ??= new List<BusinessSameAsLink>();
             model.BusinessSameAsLinkSatelliteList ??= new List<BusinessSameAsLinkSatellite>();
             model.BusinessSameAsLinkSatelliteAttributeList ??= new List<BusinessSameAsLinkSatelliteAttribute>();
             model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList ??= new List<BusinessSameAsLinkSatelliteAttributeDataTypeDetail>();
-            model.BusinessSameAsLinkSatelliteKeyPartList ??= new List<BusinessSameAsLinkSatelliteKeyPart>();
-            model.BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList ??= new List<BusinessSameAsLinkSatelliteKeyPartDataTypeDetail>();
 
             NormalizeBusinessBridgeList(model);
             NormalizeBusinessBridgeHubList(model);
-            NormalizeBusinessBridgeHubKeyPartProjectionList(model);
-            NormalizeBusinessBridgeHubSatelliteAttributeProjectionList(model);
             NormalizeBusinessBridgeLinkList(model);
-            NormalizeBusinessBridgeLinkSatelliteAttributeProjectionList(model);
             NormalizeBusinessHierarchicalLinkList(model);
             NormalizeBusinessHierarchicalLinkSatelliteList(model);
             NormalizeBusinessHierarchicalLinkSatelliteAttributeList(model);
             NormalizeBusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList(model);
-            NormalizeBusinessHierarchicalLinkSatelliteKeyPartList(model);
-            NormalizeBusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList(model);
             NormalizeBusinessHubList(model);
             NormalizeBusinessHubKeyPartList(model);
             NormalizeBusinessHubKeyPartDataTypeDetailList(model);
             NormalizeBusinessHubSatelliteList(model);
             NormalizeBusinessHubSatelliteAttributeList(model);
             NormalizeBusinessHubSatelliteAttributeDataTypeDetailList(model);
-            NormalizeBusinessHubSatelliteKeyPartList(model);
-            NormalizeBusinessHubSatelliteKeyPartDataTypeDetailList(model);
             NormalizeBusinessLinkList(model);
             NormalizeBusinessLinkHubList(model);
             NormalizeBusinessLinkSatelliteList(model);
             NormalizeBusinessLinkSatelliteAttributeList(model);
             NormalizeBusinessLinkSatelliteAttributeDataTypeDetailList(model);
-            NormalizeBusinessLinkSatelliteKeyPartList(model);
-            NormalizeBusinessLinkSatelliteKeyPartDataTypeDetailList(model);
             NormalizeBusinessPointInTimeList(model);
             NormalizeBusinessPointInTimeHubSatelliteList(model);
             NormalizeBusinessPointInTimeLinkSatelliteList(model);
@@ -386,42 +299,29 @@ namespace MetaBusinessDataVault
             NormalizeBusinessReferenceSatelliteList(model);
             NormalizeBusinessReferenceSatelliteAttributeList(model);
             NormalizeBusinessReferenceSatelliteAttributeDataTypeDetailList(model);
-            NormalizeBusinessReferenceSatelliteKeyPartList(model);
-            NormalizeBusinessReferenceSatelliteKeyPartDataTypeDetailList(model);
             NormalizeBusinessSameAsLinkList(model);
             NormalizeBusinessSameAsLinkSatelliteList(model);
             NormalizeBusinessSameAsLinkSatelliteAttributeList(model);
             NormalizeBusinessSameAsLinkSatelliteAttributeDataTypeDetailList(model);
-            NormalizeBusinessSameAsLinkSatelliteKeyPartList(model);
-            NormalizeBusinessSameAsLinkSatelliteKeyPartDataTypeDetailList(model);
 
             var businessBridgeListById = BuildById(model.BusinessBridgeList, row => row.Id, "BusinessBridge");
             var businessBridgeHubListById = BuildById(model.BusinessBridgeHubList, row => row.Id, "BusinessBridgeHub");
-            var businessBridgeHubKeyPartProjectionListById = BuildById(model.BusinessBridgeHubKeyPartProjectionList, row => row.Id, "BusinessBridgeHubKeyPartProjection");
-            var businessBridgeHubSatelliteAttributeProjectionListById = BuildById(model.BusinessBridgeHubSatelliteAttributeProjectionList, row => row.Id, "BusinessBridgeHubSatelliteAttributeProjection");
             var businessBridgeLinkListById = BuildById(model.BusinessBridgeLinkList, row => row.Id, "BusinessBridgeLink");
-            var businessBridgeLinkSatelliteAttributeProjectionListById = BuildById(model.BusinessBridgeLinkSatelliteAttributeProjectionList, row => row.Id, "BusinessBridgeLinkSatelliteAttributeProjection");
             var businessHierarchicalLinkListById = BuildById(model.BusinessHierarchicalLinkList, row => row.Id, "BusinessHierarchicalLink");
             var businessHierarchicalLinkSatelliteListById = BuildById(model.BusinessHierarchicalLinkSatelliteList, row => row.Id, "BusinessHierarchicalLinkSatellite");
             var businessHierarchicalLinkSatelliteAttributeListById = BuildById(model.BusinessHierarchicalLinkSatelliteAttributeList, row => row.Id, "BusinessHierarchicalLinkSatelliteAttribute");
             var businessHierarchicalLinkSatelliteAttributeDataTypeDetailListById = BuildById(model.BusinessHierarchicalLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail");
-            var businessHierarchicalLinkSatelliteKeyPartListById = BuildById(model.BusinessHierarchicalLinkSatelliteKeyPartList, row => row.Id, "BusinessHierarchicalLinkSatelliteKeyPart");
-            var businessHierarchicalLinkSatelliteKeyPartDataTypeDetailListById = BuildById(model.BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList, row => row.Id, "BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail");
             var businessHubListById = BuildById(model.BusinessHubList, row => row.Id, "BusinessHub");
             var businessHubKeyPartListById = BuildById(model.BusinessHubKeyPartList, row => row.Id, "BusinessHubKeyPart");
             var businessHubKeyPartDataTypeDetailListById = BuildById(model.BusinessHubKeyPartDataTypeDetailList, row => row.Id, "BusinessHubKeyPartDataTypeDetail");
             var businessHubSatelliteListById = BuildById(model.BusinessHubSatelliteList, row => row.Id, "BusinessHubSatellite");
             var businessHubSatelliteAttributeListById = BuildById(model.BusinessHubSatelliteAttributeList, row => row.Id, "BusinessHubSatelliteAttribute");
             var businessHubSatelliteAttributeDataTypeDetailListById = BuildById(model.BusinessHubSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessHubSatelliteAttributeDataTypeDetail");
-            var businessHubSatelliteKeyPartListById = BuildById(model.BusinessHubSatelliteKeyPartList, row => row.Id, "BusinessHubSatelliteKeyPart");
-            var businessHubSatelliteKeyPartDataTypeDetailListById = BuildById(model.BusinessHubSatelliteKeyPartDataTypeDetailList, row => row.Id, "BusinessHubSatelliteKeyPartDataTypeDetail");
             var businessLinkListById = BuildById(model.BusinessLinkList, row => row.Id, "BusinessLink");
             var businessLinkHubListById = BuildById(model.BusinessLinkHubList, row => row.Id, "BusinessLinkHub");
             var businessLinkSatelliteListById = BuildById(model.BusinessLinkSatelliteList, row => row.Id, "BusinessLinkSatellite");
             var businessLinkSatelliteAttributeListById = BuildById(model.BusinessLinkSatelliteAttributeList, row => row.Id, "BusinessLinkSatelliteAttribute");
             var businessLinkSatelliteAttributeDataTypeDetailListById = BuildById(model.BusinessLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessLinkSatelliteAttributeDataTypeDetail");
-            var businessLinkSatelliteKeyPartListById = BuildById(model.BusinessLinkSatelliteKeyPartList, row => row.Id, "BusinessLinkSatelliteKeyPart");
-            var businessLinkSatelliteKeyPartDataTypeDetailListById = BuildById(model.BusinessLinkSatelliteKeyPartDataTypeDetailList, row => row.Id, "BusinessLinkSatelliteKeyPartDataTypeDetail");
             var businessPointInTimeListById = BuildById(model.BusinessPointInTimeList, row => row.Id, "BusinessPointInTime");
             var businessPointInTimeHubSatelliteListById = BuildById(model.BusinessPointInTimeHubSatelliteList, row => row.Id, "BusinessPointInTimeHubSatellite");
             var businessPointInTimeLinkSatelliteListById = BuildById(model.BusinessPointInTimeLinkSatelliteList, row => row.Id, "BusinessPointInTimeLinkSatellite");
@@ -433,14 +333,10 @@ namespace MetaBusinessDataVault
             var businessReferenceSatelliteListById = BuildById(model.BusinessReferenceSatelliteList, row => row.Id, "BusinessReferenceSatellite");
             var businessReferenceSatelliteAttributeListById = BuildById(model.BusinessReferenceSatelliteAttributeList, row => row.Id, "BusinessReferenceSatelliteAttribute");
             var businessReferenceSatelliteAttributeDataTypeDetailListById = BuildById(model.BusinessReferenceSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessReferenceSatelliteAttributeDataTypeDetail");
-            var businessReferenceSatelliteKeyPartListById = BuildById(model.BusinessReferenceSatelliteKeyPartList, row => row.Id, "BusinessReferenceSatelliteKeyPart");
-            var businessReferenceSatelliteKeyPartDataTypeDetailListById = BuildById(model.BusinessReferenceSatelliteKeyPartDataTypeDetailList, row => row.Id, "BusinessReferenceSatelliteKeyPartDataTypeDetail");
             var businessSameAsLinkListById = BuildById(model.BusinessSameAsLinkList, row => row.Id, "BusinessSameAsLink");
             var businessSameAsLinkSatelliteListById = BuildById(model.BusinessSameAsLinkSatelliteList, row => row.Id, "BusinessSameAsLinkSatellite");
             var businessSameAsLinkSatelliteAttributeListById = BuildById(model.BusinessSameAsLinkSatelliteAttributeList, row => row.Id, "BusinessSameAsLinkSatelliteAttribute");
             var businessSameAsLinkSatelliteAttributeDataTypeDetailListById = BuildById(model.BusinessSameAsLinkSatelliteAttributeDataTypeDetailList, row => row.Id, "BusinessSameAsLinkSatelliteAttributeDataTypeDetail");
-            var businessSameAsLinkSatelliteKeyPartListById = BuildById(model.BusinessSameAsLinkSatelliteKeyPartList, row => row.Id, "BusinessSameAsLinkSatelliteKeyPart");
-            var businessSameAsLinkSatelliteKeyPartDataTypeDetailListById = BuildById(model.BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList, row => row.Id, "BusinessSameAsLinkSatelliteKeyPartDataTypeDetail");
 
             foreach (var row in model.BusinessBridgeList)
             {
@@ -490,70 +386,6 @@ namespace MetaBusinessDataVault
                     "BusinessHubId");
             }
 
-            foreach (var row in model.BusinessBridgeHubKeyPartProjectionList)
-            {
-                row.BusinessBridgeId = ResolveRelationshipId(
-                    row.BusinessBridgeId,
-                    row.BusinessBridge?.Id,
-                    "BusinessBridgeHubKeyPartProjection",
-                    row.Id,
-                    "BusinessBridgeId");
-                row.BusinessBridge = RequireTarget(
-                    businessBridgeListById,
-                    row.BusinessBridgeId,
-                    "BusinessBridgeHubKeyPartProjection",
-                    row.Id,
-                    "BusinessBridgeId");
-            }
-
-            foreach (var row in model.BusinessBridgeHubKeyPartProjectionList)
-            {
-                row.BusinessHubKeyPartId = ResolveRelationshipId(
-                    row.BusinessHubKeyPartId,
-                    row.BusinessHubKeyPart?.Id,
-                    "BusinessBridgeHubKeyPartProjection",
-                    row.Id,
-                    "BusinessHubKeyPartId");
-                row.BusinessHubKeyPart = RequireTarget(
-                    businessHubKeyPartListById,
-                    row.BusinessHubKeyPartId,
-                    "BusinessBridgeHubKeyPartProjection",
-                    row.Id,
-                    "BusinessHubKeyPartId");
-            }
-
-            foreach (var row in model.BusinessBridgeHubSatelliteAttributeProjectionList)
-            {
-                row.BusinessBridgeId = ResolveRelationshipId(
-                    row.BusinessBridgeId,
-                    row.BusinessBridge?.Id,
-                    "BusinessBridgeHubSatelliteAttributeProjection",
-                    row.Id,
-                    "BusinessBridgeId");
-                row.BusinessBridge = RequireTarget(
-                    businessBridgeListById,
-                    row.BusinessBridgeId,
-                    "BusinessBridgeHubSatelliteAttributeProjection",
-                    row.Id,
-                    "BusinessBridgeId");
-            }
-
-            foreach (var row in model.BusinessBridgeHubSatelliteAttributeProjectionList)
-            {
-                row.BusinessHubSatelliteAttributeId = ResolveRelationshipId(
-                    row.BusinessHubSatelliteAttributeId,
-                    row.BusinessHubSatelliteAttribute?.Id,
-                    "BusinessBridgeHubSatelliteAttributeProjection",
-                    row.Id,
-                    "BusinessHubSatelliteAttributeId");
-                row.BusinessHubSatelliteAttribute = RequireTarget(
-                    businessHubSatelliteAttributeListById,
-                    row.BusinessHubSatelliteAttributeId,
-                    "BusinessBridgeHubSatelliteAttributeProjection",
-                    row.Id,
-                    "BusinessHubSatelliteAttributeId");
-            }
-
             foreach (var row in model.BusinessBridgeLinkList)
             {
                 row.BusinessBridgeId = ResolveRelationshipId(
@@ -584,38 +416,6 @@ namespace MetaBusinessDataVault
                     "BusinessBridgeLink",
                     row.Id,
                     "BusinessLinkId");
-            }
-
-            foreach (var row in model.BusinessBridgeLinkSatelliteAttributeProjectionList)
-            {
-                row.BusinessBridgeId = ResolveRelationshipId(
-                    row.BusinessBridgeId,
-                    row.BusinessBridge?.Id,
-                    "BusinessBridgeLinkSatelliteAttributeProjection",
-                    row.Id,
-                    "BusinessBridgeId");
-                row.BusinessBridge = RequireTarget(
-                    businessBridgeListById,
-                    row.BusinessBridgeId,
-                    "BusinessBridgeLinkSatelliteAttributeProjection",
-                    row.Id,
-                    "BusinessBridgeId");
-            }
-
-            foreach (var row in model.BusinessBridgeLinkSatelliteAttributeProjectionList)
-            {
-                row.BusinessLinkSatelliteAttributeId = ResolveRelationshipId(
-                    row.BusinessLinkSatelliteAttributeId,
-                    row.BusinessLinkSatelliteAttribute?.Id,
-                    "BusinessBridgeLinkSatelliteAttributeProjection",
-                    row.Id,
-                    "BusinessLinkSatelliteAttributeId");
-                row.BusinessLinkSatelliteAttribute = RequireTarget(
-                    businessLinkSatelliteAttributeListById,
-                    row.BusinessLinkSatelliteAttributeId,
-                    "BusinessBridgeLinkSatelliteAttributeProjection",
-                    row.Id,
-                    "BusinessLinkSatelliteAttributeId");
             }
 
             foreach (var row in model.BusinessHierarchicalLinkList)
@@ -698,38 +498,6 @@ namespace MetaBusinessDataVault
                     "BusinessHierarchicalLinkSatelliteAttributeId");
             }
 
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteKeyPartList)
-            {
-                row.BusinessHierarchicalLinkSatelliteId = ResolveRelationshipId(
-                    row.BusinessHierarchicalLinkSatelliteId,
-                    row.BusinessHierarchicalLinkSatellite?.Id,
-                    "BusinessHierarchicalLinkSatelliteKeyPart",
-                    row.Id,
-                    "BusinessHierarchicalLinkSatelliteId");
-                row.BusinessHierarchicalLinkSatellite = RequireTarget(
-                    businessHierarchicalLinkSatelliteListById,
-                    row.BusinessHierarchicalLinkSatelliteId,
-                    "BusinessHierarchicalLinkSatelliteKeyPart",
-                    row.Id,
-                    "BusinessHierarchicalLinkSatelliteId");
-            }
-
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList)
-            {
-                row.BusinessHierarchicalLinkSatelliteKeyPartId = ResolveRelationshipId(
-                    row.BusinessHierarchicalLinkSatelliteKeyPartId,
-                    row.BusinessHierarchicalLinkSatelliteKeyPart?.Id,
-                    "BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessHierarchicalLinkSatelliteKeyPartId");
-                row.BusinessHierarchicalLinkSatelliteKeyPart = RequireTarget(
-                    businessHierarchicalLinkSatelliteKeyPartListById,
-                    row.BusinessHierarchicalLinkSatelliteKeyPartId,
-                    "BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessHierarchicalLinkSatelliteKeyPartId");
-            }
-
             foreach (var row in model.BusinessHubKeyPartList)
             {
                 row.BusinessHubId = ResolveRelationshipId(
@@ -810,38 +578,6 @@ namespace MetaBusinessDataVault
                     "BusinessHubSatelliteAttributeId");
             }
 
-            foreach (var row in model.BusinessHubSatelliteKeyPartList)
-            {
-                row.BusinessHubSatelliteId = ResolveRelationshipId(
-                    row.BusinessHubSatelliteId,
-                    row.BusinessHubSatellite?.Id,
-                    "BusinessHubSatelliteKeyPart",
-                    row.Id,
-                    "BusinessHubSatelliteId");
-                row.BusinessHubSatellite = RequireTarget(
-                    businessHubSatelliteListById,
-                    row.BusinessHubSatelliteId,
-                    "BusinessHubSatelliteKeyPart",
-                    row.Id,
-                    "BusinessHubSatelliteId");
-            }
-
-            foreach (var row in model.BusinessHubSatelliteKeyPartDataTypeDetailList)
-            {
-                row.BusinessHubSatelliteKeyPartId = ResolveRelationshipId(
-                    row.BusinessHubSatelliteKeyPartId,
-                    row.BusinessHubSatelliteKeyPart?.Id,
-                    "BusinessHubSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessHubSatelliteKeyPartId");
-                row.BusinessHubSatelliteKeyPart = RequireTarget(
-                    businessHubSatelliteKeyPartListById,
-                    row.BusinessHubSatelliteKeyPartId,
-                    "BusinessHubSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessHubSatelliteKeyPartId");
-            }
-
             foreach (var row in model.BusinessLinkHubList)
             {
                 row.BusinessHubId = ResolveRelationshipId(
@@ -920,38 +656,6 @@ namespace MetaBusinessDataVault
                     "BusinessLinkSatelliteAttributeDataTypeDetail",
                     row.Id,
                     "BusinessLinkSatelliteAttributeId");
-            }
-
-            foreach (var row in model.BusinessLinkSatelliteKeyPartList)
-            {
-                row.BusinessLinkSatelliteId = ResolveRelationshipId(
-                    row.BusinessLinkSatelliteId,
-                    row.BusinessLinkSatellite?.Id,
-                    "BusinessLinkSatelliteKeyPart",
-                    row.Id,
-                    "BusinessLinkSatelliteId");
-                row.BusinessLinkSatellite = RequireTarget(
-                    businessLinkSatelliteListById,
-                    row.BusinessLinkSatelliteId,
-                    "BusinessLinkSatelliteKeyPart",
-                    row.Id,
-                    "BusinessLinkSatelliteId");
-            }
-
-            foreach (var row in model.BusinessLinkSatelliteKeyPartDataTypeDetailList)
-            {
-                row.BusinessLinkSatelliteKeyPartId = ResolveRelationshipId(
-                    row.BusinessLinkSatelliteKeyPartId,
-                    row.BusinessLinkSatelliteKeyPart?.Id,
-                    "BusinessLinkSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessLinkSatelliteKeyPartId");
-                row.BusinessLinkSatelliteKeyPart = RequireTarget(
-                    businessLinkSatelliteKeyPartListById,
-                    row.BusinessLinkSatelliteKeyPartId,
-                    "BusinessLinkSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessLinkSatelliteKeyPartId");
             }
 
             foreach (var row in model.BusinessPointInTimeList)
@@ -1146,38 +850,6 @@ namespace MetaBusinessDataVault
                     "BusinessReferenceSatelliteAttributeId");
             }
 
-            foreach (var row in model.BusinessReferenceSatelliteKeyPartList)
-            {
-                row.BusinessReferenceSatelliteId = ResolveRelationshipId(
-                    row.BusinessReferenceSatelliteId,
-                    row.BusinessReferenceSatellite?.Id,
-                    "BusinessReferenceSatelliteKeyPart",
-                    row.Id,
-                    "BusinessReferenceSatelliteId");
-                row.BusinessReferenceSatellite = RequireTarget(
-                    businessReferenceSatelliteListById,
-                    row.BusinessReferenceSatelliteId,
-                    "BusinessReferenceSatelliteKeyPart",
-                    row.Id,
-                    "BusinessReferenceSatelliteId");
-            }
-
-            foreach (var row in model.BusinessReferenceSatelliteKeyPartDataTypeDetailList)
-            {
-                row.BusinessReferenceSatelliteKeyPartId = ResolveRelationshipId(
-                    row.BusinessReferenceSatelliteKeyPartId,
-                    row.BusinessReferenceSatelliteKeyPart?.Id,
-                    "BusinessReferenceSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessReferenceSatelliteKeyPartId");
-                row.BusinessReferenceSatelliteKeyPart = RequireTarget(
-                    businessReferenceSatelliteKeyPartListById,
-                    row.BusinessReferenceSatelliteKeyPartId,
-                    "BusinessReferenceSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessReferenceSatelliteKeyPartId");
-            }
-
             foreach (var row in model.BusinessSameAsLinkList)
             {
                 row.EquivalentHubId = ResolveRelationshipId(
@@ -1258,38 +930,6 @@ namespace MetaBusinessDataVault
                     "BusinessSameAsLinkSatelliteAttributeId");
             }
 
-            foreach (var row in model.BusinessSameAsLinkSatelliteKeyPartList)
-            {
-                row.BusinessSameAsLinkSatelliteId = ResolveRelationshipId(
-                    row.BusinessSameAsLinkSatelliteId,
-                    row.BusinessSameAsLinkSatellite?.Id,
-                    "BusinessSameAsLinkSatelliteKeyPart",
-                    row.Id,
-                    "BusinessSameAsLinkSatelliteId");
-                row.BusinessSameAsLinkSatellite = RequireTarget(
-                    businessSameAsLinkSatelliteListById,
-                    row.BusinessSameAsLinkSatelliteId,
-                    "BusinessSameAsLinkSatelliteKeyPart",
-                    row.Id,
-                    "BusinessSameAsLinkSatelliteId");
-            }
-
-            foreach (var row in model.BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList)
-            {
-                row.BusinessSameAsLinkSatelliteKeyPartId = ResolveRelationshipId(
-                    row.BusinessSameAsLinkSatelliteKeyPartId,
-                    row.BusinessSameAsLinkSatelliteKeyPart?.Id,
-                    "BusinessSameAsLinkSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessSameAsLinkSatelliteKeyPartId");
-                row.BusinessSameAsLinkSatelliteKeyPart = RequireTarget(
-                    businessSameAsLinkSatelliteKeyPartListById,
-                    row.BusinessSameAsLinkSatelliteKeyPartId,
-                    "BusinessSameAsLinkSatelliteKeyPartDataTypeDetail",
-                    row.Id,
-                    "BusinessSameAsLinkSatelliteKeyPartId");
-            }
-
         }
 
         private static void NormalizeBusinessBridgeList(MetaBusinessDataVaultModel model)
@@ -1317,32 +957,6 @@ namespace MetaBusinessDataVault
             }
         }
 
-        private static void NormalizeBusinessBridgeHubKeyPartProjectionList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessBridgeHubKeyPartProjectionList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessBridgeHubKeyPartProjection' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessBridgeHubKeyPartProjection' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BusinessBridgeHubKeyPartProjection' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.BusinessBridgeId ??= string.Empty;
-                row.BusinessHubKeyPartId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessBridgeHubSatelliteAttributeProjectionList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessBridgeHubSatelliteAttributeProjectionList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessBridgeHubSatelliteAttributeProjection' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessBridgeHubSatelliteAttributeProjection' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BusinessBridgeHubSatelliteAttributeProjection' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.BusinessBridgeId ??= string.Empty;
-                row.BusinessHubSatelliteAttributeId ??= string.Empty;
-            }
-        }
-
         private static void NormalizeBusinessBridgeLinkList(MetaBusinessDataVaultModel model)
         {
             foreach (var row in model.BusinessBridgeLinkList)
@@ -1353,19 +967,6 @@ namespace MetaBusinessDataVault
                 row.RoleName ??= string.Empty;
                 row.BusinessBridgeId ??= string.Empty;
                 row.BusinessLinkId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessBridgeLinkSatelliteAttributeProjectionList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessBridgeLinkSatelliteAttributeProjectionList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessBridgeLinkSatelliteAttributeProjection' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessBridgeLinkSatelliteAttributeProjection' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BusinessBridgeLinkSatelliteAttributeProjection' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.BusinessBridgeId ??= string.Empty;
-                row.BusinessLinkSatelliteAttributeId ??= string.Empty;
             }
         }
 
@@ -1390,7 +991,6 @@ namespace MetaBusinessDataVault
                 row.Id = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLinkSatellite' contains a row with empty Id.");
                 row.Description ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'BusinessHierarchicalLinkSatellite' row '{row.Id}' is missing required property 'Name'.");
-                row.SatelliteKind = RequireText(row.SatelliteKind, $"Entity 'BusinessHierarchicalLinkSatellite' row '{row.Id}' is missing required property 'SatelliteKind'.");
                 row.BusinessHierarchicalLinkId ??= string.Empty;
             }
         }
@@ -1417,31 +1017,6 @@ namespace MetaBusinessDataVault
                 row.Name = RequireText(row.Name, $"Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
                 row.Value = RequireText(row.Value, $"Entity 'BusinessHierarchicalLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
                 row.BusinessHierarchicalLinkSatelliteAttributeId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessHierarchicalLinkSatelliteKeyPartList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteKeyPartList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLinkSatelliteKeyPart' contains a row with empty Id.");
-                row.DataTypeId = RequireText(row.DataTypeId, $"Entity 'BusinessHierarchicalLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'DataTypeId'.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessHierarchicalLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BusinessHierarchicalLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.BusinessHierarchicalLinkSatelliteId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetailList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
-                row.Value = RequireText(row.Value, $"Entity 'BusinessHierarchicalLinkSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
-                row.BusinessHierarchicalLinkSatelliteKeyPartId ??= string.Empty;
             }
         }
 
@@ -1489,7 +1064,6 @@ namespace MetaBusinessDataVault
                 row.Id = RequireIdentity(row.Id, "Entity 'BusinessHubSatellite' contains a row with empty Id.");
                 row.Description ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'BusinessHubSatellite' row '{row.Id}' is missing required property 'Name'.");
-                row.SatelliteKind = RequireText(row.SatelliteKind, $"Entity 'BusinessHubSatellite' row '{row.Id}' is missing required property 'SatelliteKind'.");
                 row.BusinessHubId ??= string.Empty;
             }
         }
@@ -1516,31 +1090,6 @@ namespace MetaBusinessDataVault
                 row.Name = RequireText(row.Name, $"Entity 'BusinessHubSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
                 row.Value = RequireText(row.Value, $"Entity 'BusinessHubSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
                 row.BusinessHubSatelliteAttributeId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessHubSatelliteKeyPartList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessHubSatelliteKeyPartList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessHubSatelliteKeyPart' contains a row with empty Id.");
-                row.DataTypeId = RequireText(row.DataTypeId, $"Entity 'BusinessHubSatelliteKeyPart' row '{row.Id}' is missing required property 'DataTypeId'.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessHubSatelliteKeyPart' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BusinessHubSatelliteKeyPart' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.BusinessHubSatelliteId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessHubSatelliteKeyPartDataTypeDetailList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessHubSatelliteKeyPartDataTypeDetailList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessHubSatelliteKeyPartDataTypeDetail' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessHubSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
-                row.Value = RequireText(row.Value, $"Entity 'BusinessHubSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
-                row.BusinessHubSatelliteKeyPartId ??= string.Empty;
             }
         }
 
@@ -1576,7 +1125,6 @@ namespace MetaBusinessDataVault
                 row.Id = RequireIdentity(row.Id, "Entity 'BusinessLinkSatellite' contains a row with empty Id.");
                 row.Description ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'BusinessLinkSatellite' row '{row.Id}' is missing required property 'Name'.");
-                row.SatelliteKind = RequireText(row.SatelliteKind, $"Entity 'BusinessLinkSatellite' row '{row.Id}' is missing required property 'SatelliteKind'.");
                 row.BusinessLinkId ??= string.Empty;
             }
         }
@@ -1603,31 +1151,6 @@ namespace MetaBusinessDataVault
                 row.Name = RequireText(row.Name, $"Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
                 row.Value = RequireText(row.Value, $"Entity 'BusinessLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
                 row.BusinessLinkSatelliteAttributeId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessLinkSatelliteKeyPartList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessLinkSatelliteKeyPartList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessLinkSatelliteKeyPart' contains a row with empty Id.");
-                row.DataTypeId = RequireText(row.DataTypeId, $"Entity 'BusinessLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'DataTypeId'.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BusinessLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.BusinessLinkSatelliteId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessLinkSatelliteKeyPartDataTypeDetailList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessLinkSatelliteKeyPartDataTypeDetailList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessLinkSatelliteKeyPartDataTypeDetail' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessLinkSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
-                row.Value = RequireText(row.Value, $"Entity 'BusinessLinkSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
-                row.BusinessLinkSatelliteKeyPartId ??= string.Empty;
             }
         }
 
@@ -1736,7 +1259,6 @@ namespace MetaBusinessDataVault
                 row.Id = RequireIdentity(row.Id, "Entity 'BusinessReferenceSatellite' contains a row with empty Id.");
                 row.Description ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'BusinessReferenceSatellite' row '{row.Id}' is missing required property 'Name'.");
-                row.SatelliteKind = RequireText(row.SatelliteKind, $"Entity 'BusinessReferenceSatellite' row '{row.Id}' is missing required property 'SatelliteKind'.");
                 row.BusinessReferenceId ??= string.Empty;
             }
         }
@@ -1766,31 +1288,6 @@ namespace MetaBusinessDataVault
             }
         }
 
-        private static void NormalizeBusinessReferenceSatelliteKeyPartList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessReferenceSatelliteKeyPartList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessReferenceSatelliteKeyPart' contains a row with empty Id.");
-                row.DataTypeId = RequireText(row.DataTypeId, $"Entity 'BusinessReferenceSatelliteKeyPart' row '{row.Id}' is missing required property 'DataTypeId'.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessReferenceSatelliteKeyPart' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BusinessReferenceSatelliteKeyPart' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.BusinessReferenceSatelliteId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessReferenceSatelliteKeyPartDataTypeDetailList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessReferenceSatelliteKeyPartDataTypeDetailList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessReferenceSatelliteKeyPartDataTypeDetail' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessReferenceSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
-                row.Value = RequireText(row.Value, $"Entity 'BusinessReferenceSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
-                row.BusinessReferenceSatelliteKeyPartId ??= string.Empty;
-            }
-        }
-
         private static void NormalizeBusinessSameAsLinkList(MetaBusinessDataVaultModel model)
         {
             foreach (var row in model.BusinessSameAsLinkList)
@@ -1812,7 +1309,6 @@ namespace MetaBusinessDataVault
                 row.Id = RequireIdentity(row.Id, "Entity 'BusinessSameAsLinkSatellite' contains a row with empty Id.");
                 row.Description ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'BusinessSameAsLinkSatellite' row '{row.Id}' is missing required property 'Name'.");
-                row.SatelliteKind = RequireText(row.SatelliteKind, $"Entity 'BusinessSameAsLinkSatellite' row '{row.Id}' is missing required property 'SatelliteKind'.");
                 row.BusinessSameAsLinkId ??= string.Empty;
             }
         }
@@ -1839,31 +1335,6 @@ namespace MetaBusinessDataVault
                 row.Name = RequireText(row.Name, $"Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
                 row.Value = RequireText(row.Value, $"Entity 'BusinessSameAsLinkSatelliteAttributeDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
                 row.BusinessSameAsLinkSatelliteAttributeId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessSameAsLinkSatelliteKeyPartList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessSameAsLinkSatelliteKeyPartList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessSameAsLinkSatelliteKeyPart' contains a row with empty Id.");
-                row.DataTypeId = RequireText(row.DataTypeId, $"Entity 'BusinessSameAsLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'DataTypeId'.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessSameAsLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BusinessSameAsLinkSatelliteKeyPart' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.BusinessSameAsLinkSatelliteId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeBusinessSameAsLinkSatelliteKeyPartDataTypeDetailList(MetaBusinessDataVaultModel model)
-        {
-            foreach (var row in model.BusinessSameAsLinkSatelliteKeyPartDataTypeDetailList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BusinessSameAsLinkSatelliteKeyPartDataTypeDetail' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BusinessSameAsLinkSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Name'.");
-                row.Value = RequireText(row.Value, $"Entity 'BusinessSameAsLinkSatelliteKeyPartDataTypeDetail' row '{row.Id}' is missing required property 'Value'.");
-                row.BusinessSameAsLinkSatelliteKeyPartId ??= string.Empty;
             }
         }
 

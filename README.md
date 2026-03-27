@@ -189,12 +189,12 @@ Projection note:
 - `generate-metasql` takes physical schema ownership from the sanctioned `MetaDataVaultImplementation` workspace and does not accept a schema override.
 
 Representative `add-*` families:
+- `add-bridge*`
 - `add-hub*`
 - `add-link*`
 - `add-hierarchical-link*`
 - `add-reference*`
 - `add-same-as-link*`
-- `add-bridge*`
 - `add-point-in-time*`
 
 Example:

@@ -19,6 +19,7 @@
         <Property name="RelatedHashKeyColumnName" />
         <Property name="RelatedHashKeyDataTypeId" />
         <Property name="RelatedHashKeyLength" />
+        <Property name="RelatedHubForeignKeyNamePattern" />
         <Property name="RootHashKeyColumnName" />
         <Property name="RootHashKeyDataTypeId" />
         <Property name="RootHashKeyLength" />
@@ -160,10 +161,10 @@
         <Property name="SatelliteReferenceColumnNamePattern" />
         <Property name="SatelliteReferenceDataTypeId" />
         <Property name="SatelliteReferencePrecision" />
+        <Property name="SchemaName" />
         <Property name="SnapshotTimestampColumnName" />
         <Property name="SnapshotTimestampDataTypeId" />
         <Property name="SnapshotTimestampPrecision" />
-        <Property name="SchemaName" />
         <Property name="TableNamePattern" />
       </PropertyList>
     </Entity>

@@ -70,6 +70,9 @@ namespace MetaDataVaultImplementation
         [XmlElement("RelatedHashKeyLength")]
         public string RelatedHashKeyLength { get; set; } = string.Empty;
 
+        [XmlElement("RelatedHubForeignKeyNamePattern")]
+        public string RelatedHubForeignKeyNamePattern { get; set; } = string.Empty;
+
         [XmlElement("RootHashKeyColumnName")]
         public string RootHashKeyColumnName { get; set; } = string.Empty;
 
@@ -87,4 +90,3 @@ namespace MetaDataVaultImplementation
 
     }
 }
-
