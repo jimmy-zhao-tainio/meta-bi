@@ -333,7 +333,7 @@ internal static partial class Program
         {
             ("help", "Show this help."),
             ("--new-workspace", "Create an empty MetaRawDataVault workspace."),
-            ("from-metaschema", "Materialize a schema-bootstrap raw datavault from a MetaSchema workspace."),
+            ("from-metaschema", "Materialize a raw datavault from a MetaSchema workspace."),
             ("generate-metasql", "Generate a current MetaSql workspace from the current raw datavault workspace."),
             ("add-*", "Add sanctioned MetaRawDataVault rows.")
         });
@@ -348,7 +348,7 @@ internal static partial class Program
         Presenter.WriteInfo("Command: from-metaschema");
         Presenter.WriteUsage("meta-datavault-raw from-metaschema --source-workspace <path> --implementation-workspace <path> --new-workspace <path> [--business-workspace <path>] [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]");
         Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Loads a sanctioned MetaSchema workspace and materializes a schema-bootstrap MetaRawDataVault workspace.");
+        Presenter.WriteInfo("  Loads a sanctioned MetaSchema workspace and materializes a MetaRawDataVault workspace.");
         Presenter.WriteInfo("  Hubs come from source-local primary or unique keys. Links come from MetaSchema table relationships.");
         Presenter.WriteInfo("  MetaDataVaultImplementation is required sanctioned context for the materialization contract.");
         Presenter.WriteInfo("  Views are excluded by default. Use --include-views to keep them in scope.");

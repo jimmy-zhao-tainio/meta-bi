@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AddPrimaryKeyList>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.pk.PK_BHAL_DepartmentHierarchy" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.pk.PK_BHAL_DepartmentHierarchy</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.pk.PK_BH_CostCenter" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.pk.PK_BH_CostCenter</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.pk.PK_BH_CrmCustomer" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.pk.PK_BH_CrmCustomer</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.pk.PK_BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.pk.PK_BH_Customer</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.pk.PK_BH_Department" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.pk.PK_BH_Department</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.pk.PK_BH_Employee" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.pk.PK_BH_Employee</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.pk.PK_BH_Invoice" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.pk.PK_BH_Invoice</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.pk.PK_BH_Order" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.pk.PK_BH_Order</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.pk.PK_BH_Product" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.pk.PK_BH_Product</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.pk.PK_BH_Shipment" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.pk.PK_BH_Shipment</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.pk.PK_BH_Supplier" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.pk.PK_BH_Supplier</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.pk.PK_BL_CustomerInvoice" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.pk.PK_BL_CustomerInvoice</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.pk.PK_BL_CustomerOrder" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.pk.PK_BL_CustomerOrder</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.pk.PK_BL_DepartmentCostCenter" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.pk.PK_BL_DepartmentCostCenter</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.pk.PK_BL_DepartmentManager" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.pk.PK_BL_DepartmentManager</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.pk.PK_BL_EmployeeCostCenter" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.pk.PK_BL_EmployeeCostCenter</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.pk.PK_BL_EmployeeDepartment" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.pk.PK_BL_EmployeeDepartment</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.pk.PK_BL_InvoiceShipment" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.pk.PK_BL_InvoiceShipment</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.pk.PK_BL_OrderInvoice" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.pk.PK_BL_OrderInvoice</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.pk.PK_BL_OrderProduct" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.pk.PK_BL_OrderProduct</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.pk.PK_BL_ShipmentOrder" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.pk.PK_BL_ShipmentOrder</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.pk.PK_BL_SupplierInvoice" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.pk.PK_BL_SupplierInvoice</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.pk.PK_BL_SupplierProduct" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.pk.PK_BL_SupplierProduct</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.pk.PK_BSAL_CustomerSameAsCrmCustomer" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.pk.PK_BSAL_CustomerSameAsCrmCustomer</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.pk.PK_REF_CurrencyCode" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.pk.PK_REF_CurrencyCode</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.pk.PK_REF_OrderStatus" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.pk.PK_REF_OrderStatus</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+  </AddPrimaryKeyList>
+</MetaSqlDeployManifest>

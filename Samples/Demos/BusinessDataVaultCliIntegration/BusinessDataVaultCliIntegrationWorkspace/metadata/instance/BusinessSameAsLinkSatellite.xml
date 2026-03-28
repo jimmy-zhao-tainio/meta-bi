@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSameAsLinkSatelliteList>
+    <BusinessSameAsLinkSatellite Id="CustomerSameAsCrmCustomerAudit" BusinessSameAsLinkId="CustomerSameAsCrmCustomer">
+      <Name>CustomerSameAsCrmCustomerAudit</Name>
+    </BusinessSameAsLinkSatellite>
+  </BusinessSameAsLinkSatelliteList>
+</MetaBusinessDataVault>

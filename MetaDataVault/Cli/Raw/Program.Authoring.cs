@@ -75,7 +75,7 @@ internal static partial class Program
 
     private static ParsedAddCommand ParseAddCommand(AddCommandSpec spec, string[] args, int startIndex)
     {
-        var workspacePath = string.Empty;
+        var workspacePath = ".";
         var recordId = string.Empty;
         var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         var relationships = new List<RawDataVaultRelationshipAssignment>();
@@ -96,7 +96,6 @@ internal static partial class Program
             return new ParsedAddCommand(false, workspacePath, recordId, values, relationships, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(workspacePath)) return new ParsedAddCommand(false, workspacePath, recordId, values, relationships, "missing required option --workspace <path>.");
         if (string.IsNullOrWhiteSpace(recordId)) return new ParsedAddCommand(false, workspacePath, recordId, values, relationships, "missing required option --id <id>.");
         foreach (var prop in spec.PropertyOptions.Where(item => item.Required))
         {
@@ -118,12 +117,13 @@ internal static partial class Program
 
     private static void PrintAddCommandHelp(AddCommandSpec spec)
     {
-        var parts = new List<string> { $"meta-datavault-raw {spec.CommandName}", "--workspace <path>", "--id <id>" };
+        var parts = new List<string> { $"meta-datavault-raw {spec.CommandName}", "[--workspace <path>]", "--id <id>" };
         parts.AddRange(spec.PropertyOptions.Select(item => item.Required ? $"{item.OptionName} {item.ValueLabel}" : $"[{item.OptionName} {item.ValueLabel}]") );
         parts.AddRange(spec.RelationshipOptions.Select(item => $"{item.OptionName} {item.ValueLabel}"));
         Presenter.WriteInfo($"Command: {spec.CommandName}");
         Presenter.WriteUsage(string.Join(" ", parts));
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo($"  Adds one {spec.EntityName} row to a MetaRawDataVault workspace.");
+        Presenter.WriteInfo("  Defaults to the current working directory when --workspace is omitted.");
     }
 }

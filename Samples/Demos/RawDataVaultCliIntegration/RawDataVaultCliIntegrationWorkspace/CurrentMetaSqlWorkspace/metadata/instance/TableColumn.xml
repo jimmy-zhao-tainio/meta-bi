@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableColumnList>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer.CustomerId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerId</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Department.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Department.DepartmentId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>DepartmentId</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Department.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Department.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Department.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee.EmployeeId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>EmployeeId</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice.InvoiceId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>InvoiceId</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Order.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Order.OrderId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>OrderId</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Order.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Order.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Order.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Product.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Product.ProductId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductId</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Product.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Product.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Product.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment.ShipmentId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ShipmentId</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier.SupplierId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SupplierId</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile.HubHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile.CustomerName" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile.EmailAddress" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>EmailAddress</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile.HubHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile.DepartmentName" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>DepartmentName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile.HubHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile.EmployeeName" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>EmployeeName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile.HireDate" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>HireDate</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader.HubHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader.InvoiceDate" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InvoiceDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader.InvoiceAmount" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>InvoiceAmount</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader.HubHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader.OrderDate" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>OrderDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader.OrderAmount" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>OrderAmount</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile.HubHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile.ProductName" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile.ProductCategory" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductCategory</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader.HubHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader.CarrierName" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CarrierName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader.ShipmentDate" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>ShipmentDate</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile.HubHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile.SupplierName" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SupplierName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile.RiskClass" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RiskClass</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment.EmployeeHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>EmployeeHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment.DepartmentHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>DepartmentHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder.InvoiceHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>InvoiceHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder.OrderHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>OrderHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier.InvoiceHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>InvoiceHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier.SupplierHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SupplierHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer.OrderHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>OrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer.CustomerHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier.ProductHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier.SupplierHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SupplierHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder.HashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder.ShipmentHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ShipmentHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder.OrderHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>OrderHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment.LinkHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment.HireDate" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>HireDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount.LinkHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount.InvoiceAmount" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>InvoiceAmount</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus.LinkHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus.OrderStatusCode" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>OrderStatusCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms.LinkHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms.SupplierProductCode" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SupplierProductCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking.LinkHashKey" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking.CarrierName" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CarrierName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking.ShipmentDate" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>ShipmentDate</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking.HashDiff" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking.LoadTimestamp" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking.RecordSource" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking.AuditId" TableId="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+  </TableColumnList>
+</MetaSql>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AddTableList>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.H_Customer" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.H_Customer</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.H_Department" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.H_Department</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.H_Employee" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.H_Employee</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.H_Order" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.H_Order</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.H_Product" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.H_Product</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder" DeployManifestId="DeployManifest:1">
+      <SourceTableId>RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder</SourceTableId>
+    </AddTable>
+  </AddTableList>
+</MetaSqlDeployManifest>

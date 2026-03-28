@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableList>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Customer" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>H_Customer</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Department" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>H_Department</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Employee" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>H_Employee</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Invoice" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>H_Invoice</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Order" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>H_Order</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Product" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>H_Product</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Shipment" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>H_Shipment</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.H_Supplier" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>H_Supplier</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Customer_CustomerProfile" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>HS_Customer_CustomerProfile</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Department_DepartmentProfile" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>HS_Department_DepartmentProfile</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Employee_EmployeeProfile" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>HS_Employee_EmployeeProfile</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Invoice_InvoiceHeader" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>HS_Invoice_InvoiceHeader</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Order_OrderHeader" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>HS_Order_OrderHeader</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Product_ProductProfile" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>HS_Product_ProductProfile</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Shipment_ShipmentHeader" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>HS_Shipment_ShipmentHeader</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.HS_Supplier_SupplierProfile" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>HS_Supplier_SupplierProfile</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.L_EmployeeDepartment" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>L_EmployeeDepartment</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceOrder" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>L_InvoiceOrder</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.L_InvoiceSupplier" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>L_InvoiceSupplier</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.L_OrderCustomer" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>L_OrderCustomer</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ProductSupplier" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>L_ProductSupplier</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.L_ShipmentOrder" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>L_ShipmentOrder</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_EmployeeDepartment_EmployeeDepartmentAssignment" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>LS_EmployeeDepartment_EmployeeDepartmentAssignment</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_InvoiceOrder_InvoiceOrderAmount" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>LS_InvoiceOrder_InvoiceOrderAmount</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_OrderCustomer_OrderCustomerStatus" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>LS_OrderCustomer_OrderCustomerStatus</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ProductSupplier_ProductSupplierTerms" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>LS_ProductSupplier_ProductSupplierTerms</Name>
+    </Table>
+    <Table Id="RawDataVaultCliIntegrationWorkspace.dbo.LS_ShipmentOrder_ShipmentOrderTracking" SchemaId="RawDataVaultCliIntegrationWorkspace.dbo">
+      <Name>LS_ShipmentOrder_ShipmentOrderTracking</Name>
+    </Table>
+  </TableList>
+</MetaSql>

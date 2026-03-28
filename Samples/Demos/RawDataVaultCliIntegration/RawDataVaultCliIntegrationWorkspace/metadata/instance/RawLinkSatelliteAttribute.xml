@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawLinkSatelliteAttributeList>
+    <RawLinkSatelliteAttribute Id="EmployeeDepartmentHireDateAttr" RawLinkSatelliteId="EmployeeDepartmentSat" SourceFieldId="EmployeeHireDateField">
+      <Name>HireDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawLinkSatelliteAttribute>
+    <RawLinkSatelliteAttribute Id="InvoiceOrderAmountAttr" RawLinkSatelliteId="InvoiceOrderSat" SourceFieldId="InvoiceAmountField">
+      <Name>InvoiceAmount</Name>
+      <Ordinal>1</Ordinal>
+    </RawLinkSatelliteAttribute>
+    <RawLinkSatelliteAttribute Id="OrderCustomerStatusAttr" RawLinkSatelliteId="OrderCustomerSat" SourceFieldId="OrderStatusCodeField">
+      <Name>OrderStatusCode</Name>
+      <Ordinal>1</Ordinal>
+    </RawLinkSatelliteAttribute>
+    <RawLinkSatelliteAttribute Id="ShipmentOrderCarrierAttr" RawLinkSatelliteId="ShipmentOrderSat" SourceFieldId="ShipmentCarrierNameField">
+      <Name>CarrierName</Name>
+      <Ordinal>1</Ordinal>
+    </RawLinkSatelliteAttribute>
+    <RawLinkSatelliteAttribute Id="ShipmentOrderDateAttr" RawLinkSatelliteId="ShipmentOrderSat" SourceFieldId="ShipmentDateField">
+      <Name>ShipmentDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawLinkSatelliteAttribute>
+    <RawLinkSatelliteAttribute Id="SupplierProductCodeAttr" RawLinkSatelliteId="ProductSupplierSat" SourceFieldId="SupplierProductCodeField">
+      <Name>SupplierProductCode</Name>
+      <Ordinal>1</Ordinal>
+    </RawLinkSatelliteAttribute>
+  </RawLinkSatelliteAttributeList>
+</MetaRawDataVault>

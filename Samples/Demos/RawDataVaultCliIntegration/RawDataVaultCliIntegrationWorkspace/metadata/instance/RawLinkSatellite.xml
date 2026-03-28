@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawLinkSatelliteList>
+    <RawLinkSatellite Id="EmployeeDepartmentSat" RawLinkId="EmployeeDepartmentLink" SourceTableId="EmployeeTable">
+      <Name>EmployeeDepartmentAssignment</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawLinkSatellite>
+    <RawLinkSatellite Id="InvoiceOrderSat" RawLinkId="InvoiceOrderLink" SourceTableId="InvoiceTable">
+      <Name>InvoiceOrderAmount</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawLinkSatellite>
+    <RawLinkSatellite Id="OrderCustomerSat" RawLinkId="OrderCustomerLink" SourceTableId="OrderTable">
+      <Name>OrderCustomerStatus</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawLinkSatellite>
+    <RawLinkSatellite Id="ProductSupplierSat" RawLinkId="ProductSupplierLink" SourceTableId="ProductTable">
+      <Name>ProductSupplierTerms</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawLinkSatellite>
+    <RawLinkSatellite Id="ShipmentOrderSat" RawLinkId="ShipmentOrderLink" SourceTableId="ShipmentTable">
+      <Name>ShipmentOrderTracking</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawLinkSatellite>
+  </RawLinkSatelliteList>
+</MetaRawDataVault>

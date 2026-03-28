@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AddTableList>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet</SourceTableId>
+    </AddTable>
+    <AddTable Id="AddTable:BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet" DeployManifestId="DeployManifest:1">
+      <SourceTableId>BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet</SourceTableId>
+    </AddTable>
+  </AddTableList>
+</MetaSqlDeployManifest>

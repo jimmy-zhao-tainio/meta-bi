@@ -1,0 +1,2111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableColumnList>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.CostCenterIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CostCenterIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.CrmCustomerIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CrmCustomerIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.CustomerIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.DepartmentIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>DepartmentIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.EmployeeIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>EmployeeIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.InvoiceIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>InvoiceIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.OrderIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>OrderIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.ProductIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.ShipmentIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ShipmentIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.SupplierIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SupplierIdentifier</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.BudgetAmount" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>BudgetAmount</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.FiscalYear" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>FiscalYear</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.CostCenterName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CostCenterName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.CountryCode" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.CityName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CityName</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.EmailAddress" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>EmailAddress</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.PhoneNumber" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>PhoneNumber</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.CustomerName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.CustomerTier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerTier</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.DepartmentType" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>DepartmentType</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.RegionName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RegionName</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.DepartmentName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>DepartmentName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.HireDate" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>HireDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.EmploymentType" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>EmploymentType</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.EmployeeName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>EmployeeName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.InvoiceDate" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>InvoiceDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.InvoiceAmount" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>InvoiceAmount</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.OrderDate" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>OrderDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.OrderAmount" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>OrderAmount</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.BrandName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>BrandName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.LifecycleStatus" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>LifecycleStatus</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.ProductName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.ProductCategory" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductCategory</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.ShipmentDate" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>ShipmentDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.CarrierName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CarrierName</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.RiskClass" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RiskClass</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.TaxIdentifier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TaxIdentifier</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.SupplierName" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SupplierName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.CustomerHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.InvoiceHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>InvoiceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.CustomerHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.OrderHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>OrderHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.DepartmentHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>DepartmentHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.CostCenterHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CostCenterHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.DepartmentHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>DepartmentHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.ManagerEmployeeHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ManagerEmployeeHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.EmployeeHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>EmployeeHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.CostCenterHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CostCenterHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.EmployeeHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>EmployeeHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.DepartmentHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>DepartmentHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.InvoiceHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>InvoiceHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.ShipmentHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ShipmentHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.OrderHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>OrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.InvoiceHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>InvoiceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.OrderHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>OrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.ProductHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.ShipmentHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ShipmentHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.OrderHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>OrderHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.SupplierHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SupplierHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.InvoiceHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>InvoiceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.SupplierHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SupplierHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.ProductHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.BillingStatus" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>BillingStatus</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.OrderStatusCode" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>OrderStatusCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.CurrencyCode" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CurrencyCode</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.AllocationShare" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>AllocationShare</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.StartDate" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>StartDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.AllocationPercentage" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>AllocationPercentage</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.StartDate" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>StartDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.ReceiptDate" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>ReceiptDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.Quantity" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Quantity</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.UnitPrice" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>UnitPrice</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.PaymentTermsCode" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>PaymentTermsCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.LeadTimeDays" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>LeadTimeDays</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.CurrencyCode" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CurrencyCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.OrderStatusCode" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>OrderStatusCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.ReferenceHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ReferenceHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.Description" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Description</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.ReferenceHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ReferenceHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.Description" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Description</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.PrimaryHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>PrimaryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.EquivalentHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>EquivalentHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.MatchConfidence" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>MatchConfidence</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.HashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.ParentHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ParentHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.ChildHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ChildHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.LinkHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>LinkHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.HierarchyLevel" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>HierarchyLevel</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.HashDiff" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.LoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.RecordSource" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.HubHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.SnapshotTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>SnapshotTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.BusinessDate" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>BusinessDate</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.CustomerProfileLoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>CustomerProfileLoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.CustomerOrderStatusLoadTimestamp" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>CustomerOrderStatusLoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.RootHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>RootHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.RelatedHashKey" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>RelatedHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.Depth" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Depth</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.Path" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Path</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.EffectiveFrom" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>EffectiveFrom</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.EffectiveTo" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>EffectiveTo</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.AuditId" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+  </TableColumnList>
+</MetaSql>

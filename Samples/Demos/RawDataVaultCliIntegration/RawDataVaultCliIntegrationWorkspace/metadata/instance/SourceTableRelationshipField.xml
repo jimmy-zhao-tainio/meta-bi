@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <SourceTableRelationshipFieldList>
+    <SourceTableRelationshipField Id="EmployeeDepartmentRelationshipField" SourceFieldId="EmployeeDepartmentIdField" SourceTableRelationshipId="EmployeeDepartmentRelationship" TargetFieldId="DepartmentIdField">
+      <Ordinal>1</Ordinal>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="InvoiceOrderRelationshipField" SourceFieldId="InvoiceOrderIdField" SourceTableRelationshipId="InvoiceOrderRelationship" TargetFieldId="OrderIdField">
+      <Ordinal>1</Ordinal>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="InvoiceSupplierRelationshipField" SourceFieldId="InvoiceSupplierIdField" SourceTableRelationshipId="InvoiceSupplierRelationship" TargetFieldId="SupplierIdField">
+      <Ordinal>1</Ordinal>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="OrderCustomerRelationshipField" SourceFieldId="OrderCustomerIdField" SourceTableRelationshipId="OrderCustomerRelationship" TargetFieldId="CustomerIdField">
+      <Ordinal>1</Ordinal>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="ProductSupplierRelationshipField" SourceFieldId="ProductSupplierIdField" SourceTableRelationshipId="ProductSupplierRelationship" TargetFieldId="SupplierIdField">
+      <Ordinal>1</Ordinal>
+    </SourceTableRelationshipField>
+    <SourceTableRelationshipField Id="ShipmentOrderRelationshipField" SourceFieldId="ShipmentOrderIdField" SourceTableRelationshipId="ShipmentOrderRelationship" TargetFieldId="OrderIdField">
+      <Ordinal>1</Ordinal>
+    </SourceTableRelationshipField>
+  </SourceTableRelationshipFieldList>
+</MetaRawDataVault>

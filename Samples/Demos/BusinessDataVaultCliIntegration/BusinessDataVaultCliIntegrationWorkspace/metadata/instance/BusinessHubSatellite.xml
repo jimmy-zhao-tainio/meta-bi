@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteList>
+    <BusinessHubSatellite Id="CostCenterBudget" BusinessHubId="CostCenter">
+      <Name>CostCenterBudget</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="CostCenterProfile" BusinessHubId="CostCenter">
+      <Name>CostCenterProfile</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="CustomerAddress" BusinessHubId="Customer">
+      <Name>CustomerAddress</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="CustomerContact" BusinessHubId="Customer">
+      <Name>CustomerContact</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="CustomerProfile" BusinessHubId="Customer">
+      <Name>CustomerProfile</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="DepartmentOperatingModel" BusinessHubId="Department">
+      <Name>DepartmentOperatingModel</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="DepartmentProfile" BusinessHubId="Department">
+      <Name>DepartmentProfile</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="EmployeeEmployment" BusinessHubId="Employee">
+      <Name>EmployeeEmployment</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="EmployeeProfile" BusinessHubId="Employee">
+      <Name>EmployeeProfile</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="InvoiceHeader" BusinessHubId="Invoice">
+      <Name>InvoiceHeader</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="OrderHeader" BusinessHubId="Order">
+      <Name>OrderHeader</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="ProductCommercial" BusinessHubId="Product">
+      <Name>ProductCommercial</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="ProductProfile" BusinessHubId="Product">
+      <Name>ProductProfile</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="ShipmentHeader" BusinessHubId="Shipment">
+      <Name>ShipmentHeader</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="SupplierCompliance" BusinessHubId="Supplier">
+      <Name>SupplierCompliance</Name>
+    </BusinessHubSatellite>
+    <BusinessHubSatellite Id="SupplierProfile" BusinessHubId="Supplier">
+      <Name>SupplierProfile</Name>
+    </BusinessHubSatellite>
+  </BusinessHubSatelliteList>
+</MetaBusinessDataVault>

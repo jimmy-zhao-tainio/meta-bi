@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessReferenceSatelliteAttributeDataTypeDetailList>
+    <BusinessReferenceSatelliteAttributeDataTypeDetail Id="CurrencyCodeDescription:datatype-detail:length" BusinessReferenceSatelliteAttributeId="CurrencyCodeDescription">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessReferenceSatelliteAttributeDataTypeDetail>
+    <BusinessReferenceSatelliteAttributeDataTypeDetail Id="OrderStatusDescription:datatype-detail:length" BusinessReferenceSatelliteAttributeId="OrderStatusDescription">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessReferenceSatelliteAttributeDataTypeDetail>
+  </BusinessReferenceSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

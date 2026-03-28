@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrimaryKeyList>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.pk.PK_BH_CostCenter" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter">
+      <Name>PK_BH_CostCenter</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.pk.PK_BH_CrmCustomer" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer">
+      <Name>PK_BH_CrmCustomer</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.pk.PK_BH_Customer" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer">
+      <Name>PK_BH_Customer</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.pk.PK_BH_Department" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department">
+      <Name>PK_BH_Department</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.pk.PK_BH_Employee" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee">
+      <Name>PK_BH_Employee</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.pk.PK_BH_Invoice" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice">
+      <Name>PK_BH_Invoice</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.pk.PK_BH_Order" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order">
+      <Name>PK_BH_Order</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.pk.PK_BH_Product" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product">
+      <Name>PK_BH_Product</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.pk.PK_BH_Shipment" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment">
+      <Name>PK_BH_Shipment</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.pk.PK_BH_Supplier" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier">
+      <Name>PK_BH_Supplier</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.pk.PK_BL_CustomerInvoice" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice">
+      <Name>PK_BL_CustomerInvoice</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.pk.PK_BL_CustomerOrder" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder">
+      <Name>PK_BL_CustomerOrder</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.pk.PK_BL_DepartmentCostCenter" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter">
+      <Name>PK_BL_DepartmentCostCenter</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.pk.PK_BL_DepartmentManager" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager">
+      <Name>PK_BL_DepartmentManager</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.pk.PK_BL_EmployeeCostCenter" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter">
+      <Name>PK_BL_EmployeeCostCenter</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.pk.PK_BL_EmployeeDepartment" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment">
+      <Name>PK_BL_EmployeeDepartment</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.pk.PK_BL_InvoiceShipment" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment">
+      <Name>PK_BL_InvoiceShipment</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.pk.PK_BL_OrderInvoice" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice">
+      <Name>PK_BL_OrderInvoice</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.pk.PK_BL_OrderProduct" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct">
+      <Name>PK_BL_OrderProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.pk.PK_BL_ShipmentOrder" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder">
+      <Name>PK_BL_ShipmentOrder</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.pk.PK_BL_SupplierInvoice" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice">
+      <Name>PK_BL_SupplierInvoice</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.pk.PK_BL_SupplierProduct" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct">
+      <Name>PK_BL_SupplierProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.pk.PK_REF_CurrencyCode" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode">
+      <Name>PK_REF_CurrencyCode</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.pk.PK_REF_OrderStatus" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus">
+      <Name>PK_REF_OrderStatus</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.pk.PK_BSAL_CustomerSameAsCrmCustomer" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer">
+      <Name>PK_BSAL_CustomerSameAsCrmCustomer</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.pk.PK_BHAL_DepartmentHierarchy" TableId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy">
+      <Name>PK_BHAL_DepartmentHierarchy</Name>
+    </PrimaryKey>
+  </PrimaryKeyList>
+</MetaSql>

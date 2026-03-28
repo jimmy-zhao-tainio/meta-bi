@@ -75,7 +75,6 @@ public sealed partial class CliTests
         Assert.Contains("[--ignore-field-suffix <suffix>]", result.Output);
         Assert.Contains("[--include-views]", result.Output);
         Assert.Contains("[--verbose]", result.Output);
-        Assert.Contains("schema-bootstrap", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("primary or unique keys", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("metadatavaultimplementation is required", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("views are excluded by default", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -89,13 +88,14 @@ public sealed partial class CliTests
         var result = RunBusinessCli("generate-metasql --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("--workspace <path>", result.Output);
+        Assert.Contains("[--workspace <path>]", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--database-name <name>", result.Output);
         Assert.Contains("--out <path>", result.Output);
         Assert.Contains("current sanctioned MetaBusinessDataVault workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Target schema comes from the sanctioned MetaDataVaultImplementation workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Does not query any live database", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Defaults to the current working directory when --workspace is omitted", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -113,13 +113,14 @@ public sealed partial class CliTests
         var result = RunRawCli("generate-metasql --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("--workspace <path>", result.Output);
+        Assert.Contains("[--workspace <path>]", result.Output);
         Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--database-name <name>", result.Output);
         Assert.Contains("--out <path>", result.Output);
         Assert.Contains("current sanctioned MetaRawDataVault workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Target schema comes from the sanctioned MetaDataVaultImplementation workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Does not query any live database", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Defaults to the current working directory when --workspace is omitted", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]

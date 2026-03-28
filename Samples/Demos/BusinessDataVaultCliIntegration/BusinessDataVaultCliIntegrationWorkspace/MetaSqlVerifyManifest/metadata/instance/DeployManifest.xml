@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DeployManifestList>
+    <DeployManifest Id="DeployManifest:1">
+      <CreatedUtc>2026-03-27T22:07:55.8006503Z</CreatedUtc>
+      <ExpectedLiveDatabasePresence>Present</ExpectedLiveDatabasePresence>
+      <LiveInstanceFingerprint>1ffadbf06be626e3fab44b6c5d413e93d23ae6208270c8aae6e419c2dda73d3f</LiveInstanceFingerprint>
+      <Name>DeployManifest</Name>
+      <SourceInstanceFingerprint>1ffadbf06be626e3fab44b6c5d413e93d23ae6208270c8aae6e419c2dda73d3f</SourceInstanceFingerprint>
+      <TargetDescription>Scope=(all)</TargetDescription>
+    </DeployManifest>
+  </DeployManifestList>
+</MetaSqlDeployManifest>

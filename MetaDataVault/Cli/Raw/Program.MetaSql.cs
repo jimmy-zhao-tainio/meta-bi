@@ -54,7 +54,8 @@ internal static partial class Program
 
     private static (bool Ok, string WorkspacePath, string ImplementationWorkspacePath, string OutputPath, string DatabaseName, string ErrorMessage) ParseGenerateMetaSqlArgs(string[] args, int startIndex)
     {
-        var workspacePath = string.Empty;
+        var workspacePath = ".";
+        var workspaceSpecified = false;
         var implementationWorkspacePath = string.Empty;
         var outputPath = string.Empty;
         var databaseName = string.Empty;
@@ -65,8 +66,9 @@ internal static partial class Program
             if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
             {
                 if (i + 1 >= args.Length) return (false, workspacePath, implementationWorkspacePath, outputPath, databaseName, "missing value for --workspace.");
-                if (!string.IsNullOrWhiteSpace(workspacePath)) return (false, workspacePath, implementationWorkspacePath, outputPath, databaseName, "--workspace can only be provided once.");
+                if (workspaceSpecified) return (false, workspacePath, implementationWorkspacePath, outputPath, databaseName, "--workspace can only be provided once.");
                 workspacePath = args[++i];
+                workspaceSpecified = true;
                 continue;
             }
             if (string.Equals(arg, "--implementation-workspace", StringComparison.OrdinalIgnoreCase))
@@ -94,7 +96,6 @@ internal static partial class Program
             return (false, workspacePath, implementationWorkspacePath, outputPath, databaseName, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(workspacePath)) return (false, workspacePath, implementationWorkspacePath, outputPath, databaseName, "missing required option --workspace <path>.");
         if (string.IsNullOrWhiteSpace(implementationWorkspacePath)) return (false, workspacePath, implementationWorkspacePath, outputPath, databaseName, "missing required option --implementation-workspace <path>.");
         if (string.IsNullOrWhiteSpace(outputPath)) return (false, workspacePath, implementationWorkspacePath, outputPath, databaseName, "missing required option --out <path>.");
         if (string.IsNullOrWhiteSpace(databaseName)) return (false, workspacePath, implementationWorkspacePath, outputPath, databaseName, "missing required option --database-name <name>.");
@@ -104,11 +105,12 @@ internal static partial class Program
     private static void PrintGenerateMetaSqlHelp()
     {
         Presenter.WriteInfo("Command: generate-metasql");
-        Presenter.WriteUsage("meta-datavault-raw generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --out <path>");
+        Presenter.WriteUsage("meta-datavault-raw generate-metasql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Converts the current sanctioned MetaRawDataVault workspace to a current MetaSql workspace.");
         Presenter.WriteInfo("  Target schema comes from the sanctioned MetaDataVaultImplementation workspace.");
         Presenter.WriteInfo("  Does not query any live database.");
         Presenter.WriteInfo("  Saves the generated current MetaSql workspace at --out.");
+        Presenter.WriteInfo("  Defaults to the current working directory when --workspace is omitted.");
     }
 }

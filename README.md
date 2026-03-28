@@ -229,6 +229,7 @@ meta-sql deploy-plan --source-workspace .\CurrentMetaSql.Workspace --connection-
 meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>"
 ```
 
+
 ## Active Models
 
 Current active BI model families include:

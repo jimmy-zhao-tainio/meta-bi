@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableColumnDataTypeDetailList>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.CostCenterIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.CostCenterIdentifier">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CostCenter.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.CrmCustomerIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.CrmCustomerIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_CrmCustomer.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.CustomerIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.CustomerIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Customer.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.DepartmentIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.DepartmentIdentifier">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Department.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.EmployeeIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.EmployeeIdentifier">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Employee.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.InvoiceIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.InvoiceIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Invoice.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.OrderIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.OrderIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Order.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.ProductIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.ProductIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Product.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.ShipmentIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.ShipmentIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Shipment.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.SupplierIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.SupplierIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BH_Supplier.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.BudgetAmount.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.BudgetAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.BudgetAmount.detail.Scale" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.BudgetAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.CostCenterName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.CostCenterName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.CountryCode.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.CountryCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.CityName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.CityName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.EmailAddress.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.EmailAddress">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.PhoneNumber.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.PhoneNumber">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.CustomerName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.CustomerName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.CustomerTier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.CustomerTier">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.DepartmentType.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.DepartmentType">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.RegionName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.RegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.DepartmentName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.DepartmentName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.EmploymentType.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.EmploymentType">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.EmployeeName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.EmployeeName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.InvoiceAmount.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.InvoiceAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.InvoiceAmount.detail.Scale" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.InvoiceAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.OrderAmount.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.OrderAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.OrderAmount.detail.Scale" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.OrderAmount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.BrandName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.BrandName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.LifecycleStatus.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.LifecycleStatus">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.ProductName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.ProductName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.ProductCategory.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.ProductCategory">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.CarrierName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.CarrierName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.RiskClass.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.RiskClass">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.TaxIdentifier.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.TaxIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.SupplierName.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.SupplierName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.CustomerHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.CustomerHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.InvoiceHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.InvoiceHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.CustomerHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.CustomerHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.OrderHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.OrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.DepartmentHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.DepartmentHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.CostCenterHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.CostCenterHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.DepartmentHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.DepartmentHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.ManagerEmployeeHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.ManagerEmployeeHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.EmployeeHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.EmployeeHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.CostCenterHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.CostCenterHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.EmployeeHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.EmployeeHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.DepartmentHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.DepartmentHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.InvoiceHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.InvoiceHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.ShipmentHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.ShipmentHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.OrderHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.OrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.InvoiceHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.InvoiceHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.OrderHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.OrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.ProductHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.ProductHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.ShipmentHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.ShipmentHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.OrderHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.OrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.SupplierHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.SupplierHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.InvoiceHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.InvoiceHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.SupplierHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.SupplierHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.ProductHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.ProductHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.BillingStatus.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.BillingStatus">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.OrderStatusCode.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.OrderStatusCode">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.CurrencyCode.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.CurrencyCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.AllocationShare.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.AllocationShare">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.AllocationShare.detail.Scale" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.AllocationShare">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.AllocationPercentage.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.AllocationPercentage">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.AllocationPercentage.detail.Scale" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.AllocationPercentage">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.UnitPrice.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.UnitPrice">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.UnitPrice.detail.Scale" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.UnitPrice">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.PaymentTermsCode.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.PaymentTermsCode">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.CurrencyCode.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.CurrencyCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_CurrencyCode.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.OrderStatusCode.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.OrderStatusCode">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.REF_OrderStatus.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.ReferenceHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.ReferenceHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.Description.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.Description">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.ReferenceHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.ReferenceHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.Description.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.Description">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.PrimaryHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.PrimaryHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.EquivalentHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.EquivalentHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.MatchConfidence.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.MatchConfidence">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.MatchConfidence.detail.Scale" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.MatchConfidence">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.HashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.ParentHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.ParentHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.ChildHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.ChildHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.LinkHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.HashDiff.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.LoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.RecordSource.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.HubHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.SnapshotTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.SnapshotTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.CustomerProfileLoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.CustomerProfileLoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.CustomerOrderStatusLoadTimestamp.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.CustomerOrderStatusLoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.RootHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.RootHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.RelatedHashKey.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.RelatedHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.Path.detail.Length" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.Path">
+      <Name>Length</Name>
+      <Value>4000</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.EffectiveFrom.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.EffectiveFrom">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.EffectiveTo.detail.Precision" TableColumnId="BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.EffectiveTo">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+  </TableColumnDataTypeDetailList>
+</MetaSql>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AddForeignKeyList>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.fk.FK_BHALS_DepartmentHierarchy_DepartmentHierarchyInfo_BHAL_DepartmentHierarchy" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHALS_DepartmentHierarchy_DepartmentHierarchyInfo.fk.FK_BHALS_DepartmentHierarchy_DepartmentHierarchyInfo_BHAL_DepartmentHierarchy</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.fk.FK_BHAL_DepartmentHierarchy_BH_Department_ChildHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.fk.FK_BHAL_DepartmentHierarchy_BH_Department_ChildHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.fk.FK_BHAL_DepartmentHierarchy_BH_Department_ParentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHAL_DepartmentHierarchy.fk.FK_BHAL_DepartmentHierarchy_BH_Department_ParentHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.fk.FK_BHS_CostCenter_CostCenterBudget_BH_CostCenter" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterBudget.fk.FK_BHS_CostCenter_CostCenterBudget_BH_CostCenter</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.fk.FK_BHS_CostCenter_CostCenterProfile_BH_CostCenter" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_CostCenter_CostCenterProfile.fk.FK_BHS_CostCenter_CostCenterProfile_BH_CostCenter</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.fk.FK_BHS_Customer_CustomerAddress_BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerAddress.fk.FK_BHS_Customer_CustomerAddress_BH_Customer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.fk.FK_BHS_Customer_CustomerContact_BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerContact.fk.FK_BHS_Customer_CustomerContact_BH_Customer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.fk.FK_BHS_Customer_CustomerProfile_BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Customer_CustomerProfile.fk.FK_BHS_Customer_CustomerProfile_BH_Customer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.fk.FK_BHS_Department_DepartmentOperatingModel_BH_Department" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentOperatingModel.fk.FK_BHS_Department_DepartmentOperatingModel_BH_Department</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.fk.FK_BHS_Department_DepartmentProfile_BH_Department" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Department_DepartmentProfile.fk.FK_BHS_Department_DepartmentProfile_BH_Department</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.fk.FK_BHS_Employee_EmployeeEmployment_BH_Employee" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeEmployment.fk.FK_BHS_Employee_EmployeeEmployment_BH_Employee</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.fk.FK_BHS_Employee_EmployeeProfile_BH_Employee" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Employee_EmployeeProfile.fk.FK_BHS_Employee_EmployeeProfile_BH_Employee</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.fk.FK_BHS_Invoice_InvoiceHeader_BH_Invoice" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Invoice_InvoiceHeader.fk.FK_BHS_Invoice_InvoiceHeader_BH_Invoice</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.fk.FK_BHS_Order_OrderHeader_BH_Order" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Order_OrderHeader.fk.FK_BHS_Order_OrderHeader_BH_Order</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.fk.FK_BHS_Product_ProductCommercial_BH_Product" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductCommercial.fk.FK_BHS_Product_ProductCommercial_BH_Product</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.fk.FK_BHS_Product_ProductProfile_BH_Product" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Product_ProductProfile.fk.FK_BHS_Product_ProductProfile_BH_Product</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.fk.FK_BHS_Shipment_ShipmentHeader_BH_Shipment" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Shipment_ShipmentHeader.fk.FK_BHS_Shipment_ShipmentHeader_BH_Shipment</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.fk.FK_BHS_Supplier_SupplierCompliance_BH_Supplier" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierCompliance.fk.FK_BHS_Supplier_SupplierCompliance_BH_Supplier</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.fk.FK_BHS_Supplier_SupplierProfile_BH_Supplier" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BHS_Supplier_SupplierProfile.fk.FK_BHS_Supplier_SupplierProfile_BH_Supplier</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.fk.FK_BLS_CustomerInvoice_CustomerInvoiceStatus_BL_CustomerInvoice" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerInvoice_CustomerInvoiceStatus.fk.FK_BLS_CustomerInvoice_CustomerInvoiceStatus_BL_CustomerInvoice</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.fk.FK_BLS_CustomerOrder_CustomerOrderStatus_BL_CustomerOrder" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_CustomerOrder_CustomerOrderStatus.fk.FK_BLS_CustomerOrder_CustomerOrderStatus_BL_CustomerOrder</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.fk.FK_BLS_DepartmentCostCenter_DepartmentCostCenterAssignment_BL_DepartmentCostCenter" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentCostCenter_DepartmentCostCenterAssignment.fk.FK_BLS_DepartmentCostCenter_DepartmentCostCenterAssignment_BL_DepartmentCostCenter</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.fk.FK_BLS_DepartmentManager_DepartmentManagerAssignment_BL_DepartmentManager" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_DepartmentManager_DepartmentManagerAssignment.fk.FK_BLS_DepartmentManager_DepartmentManagerAssignment_BL_DepartmentManager</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.fk.FK_BLS_EmployeeCostCenter_EmployeeCostCenterAssignment_BL_EmployeeCostCenter" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeCostCenter_EmployeeCostCenterAssignment.fk.FK_BLS_EmployeeCostCenter_EmployeeCostCenterAssignment_BL_EmployeeCostCenter</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.fk.FK_BLS_EmployeeDepartment_EmployeeDepartmentAssignment_BL_EmployeeDepartment" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_EmployeeDepartment_EmployeeDepartmentAssignment.fk.FK_BLS_EmployeeDepartment_EmployeeDepartmentAssignment_BL_EmployeeDepartment</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.fk.FK_BLS_InvoiceShipment_InvoiceShipmentTracking_BL_InvoiceShipment" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_InvoiceShipment_InvoiceShipmentTracking.fk.FK_BLS_InvoiceShipment_InvoiceShipmentTracking_BL_InvoiceShipment</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.fk.FK_BLS_OrderProduct_OrderProductLine_BL_OrderProduct" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_OrderProduct_OrderProductLine.fk.FK_BLS_OrderProduct_OrderProductLine_BL_OrderProduct</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.fk.FK_BLS_SupplierInvoice_SupplierInvoiceTerms_BL_SupplierInvoice" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierInvoice_SupplierInvoiceTerms.fk.FK_BLS_SupplierInvoice_SupplierInvoiceTerms_BL_SupplierInvoice</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.fk.FK_BLS_SupplierProduct_SupplierProductTerms_BL_SupplierProduct" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BLS_SupplierProduct_SupplierProductTerms.fk.FK_BLS_SupplierProduct_SupplierProductTerms_BL_SupplierProduct</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.fk.FK_BL_CustomerInvoice_BH_Customer_CustomerHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.fk.FK_BL_CustomerInvoice_BH_Customer_CustomerHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.fk.FK_BL_CustomerInvoice_BH_Invoice_InvoiceHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerInvoice.fk.FK_BL_CustomerInvoice_BH_Invoice_InvoiceHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.fk.FK_BL_CustomerOrder_BH_Customer_CustomerHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.fk.FK_BL_CustomerOrder_BH_Customer_CustomerHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.fk.FK_BL_CustomerOrder_BH_Order_OrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_CustomerOrder.fk.FK_BL_CustomerOrder_BH_Order_OrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.fk.FK_BL_DepartmentCostCenter_BH_CostCenter_CostCenterHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.fk.FK_BL_DepartmentCostCenter_BH_CostCenter_CostCenterHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.fk.FK_BL_DepartmentCostCenter_BH_Department_DepartmentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentCostCenter.fk.FK_BL_DepartmentCostCenter_BH_Department_DepartmentHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.fk.FK_BL_DepartmentManager_BH_Department_DepartmentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.fk.FK_BL_DepartmentManager_BH_Department_DepartmentHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.fk.FK_BL_DepartmentManager_BH_Employee_ManagerEmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_DepartmentManager.fk.FK_BL_DepartmentManager_BH_Employee_ManagerEmployeeHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.fk.FK_BL_EmployeeCostCenter_BH_CostCenter_CostCenterHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.fk.FK_BL_EmployeeCostCenter_BH_CostCenter_CostCenterHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.fk.FK_BL_EmployeeCostCenter_BH_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeCostCenter.fk.FK_BL_EmployeeCostCenter_BH_Employee_EmployeeHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.fk.FK_BL_EmployeeDepartment_BH_Department_DepartmentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.fk.FK_BL_EmployeeDepartment_BH_Department_DepartmentHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.fk.FK_BL_EmployeeDepartment_BH_Employee_EmployeeHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_EmployeeDepartment.fk.FK_BL_EmployeeDepartment_BH_Employee_EmployeeHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.fk.FK_BL_InvoiceShipment_BH_Invoice_InvoiceHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.fk.FK_BL_InvoiceShipment_BH_Invoice_InvoiceHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.fk.FK_BL_InvoiceShipment_BH_Shipment_ShipmentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_InvoiceShipment.fk.FK_BL_InvoiceShipment_BH_Shipment_ShipmentHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.fk.FK_BL_OrderInvoice_BH_Invoice_InvoiceHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.fk.FK_BL_OrderInvoice_BH_Invoice_InvoiceHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.fk.FK_BL_OrderInvoice_BH_Order_OrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderInvoice.fk.FK_BL_OrderInvoice_BH_Order_OrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.fk.FK_BL_OrderProduct_BH_Order_OrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.fk.FK_BL_OrderProduct_BH_Order_OrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.fk.FK_BL_OrderProduct_BH_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_OrderProduct.fk.FK_BL_OrderProduct_BH_Product_ProductHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.fk.FK_BL_ShipmentOrder_BH_Order_OrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.fk.FK_BL_ShipmentOrder_BH_Order_OrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.fk.FK_BL_ShipmentOrder_BH_Shipment_ShipmentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_ShipmentOrder.fk.FK_BL_ShipmentOrder_BH_Shipment_ShipmentHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.fk.FK_BL_SupplierInvoice_BH_Invoice_InvoiceHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.fk.FK_BL_SupplierInvoice_BH_Invoice_InvoiceHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.fk.FK_BL_SupplierInvoice_BH_Supplier_SupplierHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierInvoice.fk.FK_BL_SupplierInvoice_BH_Supplier_SupplierHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.fk.FK_BL_SupplierProduct_BH_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.fk.FK_BL_SupplierProduct_BH_Product_ProductHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.fk.FK_BL_SupplierProduct_BH_Supplier_SupplierHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BL_SupplierProduct.fk.FK_BL_SupplierProduct_BH_Supplier_SupplierHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.fk.FK_BR_CustomerFulfillmentTraversal_BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.fk.FK_BR_CustomerFulfillmentTraversal_BH_Customer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.fk.FK_BR_CustomerFulfillmentTraversal_BH_Shipment_Related" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BR_CustomerFulfillmentTraversal.fk.FK_BR_CustomerFulfillmentTraversal_BH_Shipment_Related</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.fk.FK_BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit_BSAL_CustomerSameAsCrmCustomer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit.fk.FK_BSALS_CustomerSameAsCrmCustomer_CustomerSameAsCrmCustomerAudit_BSAL_CustomerSameAsCrmCustomer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.fk.FK_BSAL_CustomerSameAsCrmCustomer_BH_CrmCustomer_EquivalentHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.fk.FK_BSAL_CustomerSameAsCrmCustomer_BH_CrmCustomer_EquivalentHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.fk.FK_BSAL_CustomerSameAsCrmCustomer_BH_Customer_PrimaryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.BSAL_CustomerSameAsCrmCustomer.fk.FK_BSAL_CustomerSameAsCrmCustomer_BH_Customer_PrimaryHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.fk.FK_PIT_CustomerSnapshot_BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.PIT_CustomerSnapshot.fk.FK_PIT_CustomerSnapshot_BH_Customer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.fk.FK_RSAT_CurrencyCode_CurrencyCodeDescriptionSet_REF_CurrencyCode" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_CurrencyCode_CurrencyCodeDescriptionSet.fk.FK_RSAT_CurrencyCode_CurrencyCodeDescriptionSet_REF_CurrencyCode</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.fk.FK_RSAT_OrderStatus_OrderStatusDescriptionSet_REF_OrderStatus" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>BusinessDataVaultCliIntegrationWorkspace.dbo.RSAT_OrderStatus_OrderStatusDescriptionSet.fk.FK_RSAT_OrderStatus_OrderStatusDescriptionSet_REF_OrderStatus</SourceForeignKeyId>
+    </AddForeignKey>
+  </AddForeignKeyList>
+</MetaSqlDeployManifest>
