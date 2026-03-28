@@ -163,23 +163,11 @@ meta-datavault-raw add-link-hub --id EmployeeDepartmentLinkDepartment --link Emp
 meta-datavault-raw add-link-satellite --id EmployeeDepartmentSat --link EmployeeDepartmentLink --source-table EmployeeTable --name EmployeeDepartmentAssignment --satellite-kind standard
 meta-datavault-raw add-link-satellite-attribute --id EmployeeDepartmentHireDateAttr --link-satellite EmployeeDepartmentSat --source-field EmployeeHireDateField --name HireDate --ordinal 1
 
-echo.
-echo Generating current MetaSql from raw workspace...
 meta-datavault-raw generate-metasql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name RawDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
 
-echo Planning MetaSql deploy...
 meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlDeployManifest
 
-echo Deploying MetaSql manifest...
 meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
 
-echo Verifying live schema against current MetaSql...
 meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlVerifyManifest
-
-echo.
-echo Workspace authored: RawDataVaultCliIntegrationWorkspace
-echo Database deployed: RawDataVaultCliIntegrationWorkspace
-echo Current MetaSql workspace: CurrentMetaSqlWorkspace
-echo Deploy manifest: MetaSqlDeployManifest
-echo Verification manifest: MetaSqlVerifyManifest
 

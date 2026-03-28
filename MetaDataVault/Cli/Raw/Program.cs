@@ -67,10 +67,7 @@ internal static partial class Program
         }
 
         await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
-        Presenter.WriteOk(
-            "metarawdatavault workspace created",
-            ("Path", workspacePath),
-            ("Model", workspace.Model.Name));
+        Presenter.WriteOk($"Created {Path.GetFileName(workspacePath)}");
         return 0;
     }
 
@@ -154,42 +151,22 @@ internal static partial class Program
         Directory.CreateDirectory(newWorkspacePath);
         await new WorkspaceService().SaveAsync(rawDataVaultWorkspace).ConfigureAwait(false);
 
-        var details = new List<(string Key, string Value)>
-        {
-            ("MetaSchema Workspace", sourceWorkspacePath),
-            ("MetaDataVaultImplementation Workspace", implementationWorkspacePath),
-            ("Path", newWorkspacePath),
-            ("Model", rawDataVaultWorkspace.Model.Name),
-            ("SourceSystems", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("SourceSystem").Count.ToString()),
-            ("SourceSchemas", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("SourceSchema").Count.ToString()),
-            ("SourceTables", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("SourceTable").Count.ToString()),
-            ("RawHubs", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHub").Count.ToString()),
-            ("RawHubKeyParts", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").Count.ToString()),
-            ("RawLinks", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLink").Count.ToString()),
-            ("RawLinkHubs", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkHub").Count.ToString()),
-            ("RawHubSatellites", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").Count.ToString()),
-            ("RawHubSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").Count.ToString()),
-            ("RawLinkSatellites", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite").Count.ToString()),
-            ("RawLinkSatelliteAttributes", rawDataVaultWorkspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").Count.ToString())
-        };
-        if (!string.IsNullOrWhiteSpace(businessWorkspacePath))
-        {
-            details.Add(("MetaBusiness Workspace", businessWorkspacePath));
-        }
+        Presenter.WriteOk($"Materialized {Path.GetFileName(newWorkspacePath)} from MetaSchema");
         if (parse.IgnoreFieldNames.Count > 0)
         {
-            details.Add(("Ignored Field Names", string.Join(", ", parse.IgnoreFieldNames)));
-        }
-        if (parse.IgnoreFieldSuffixes.Count > 0)
-        {
-            details.Add(("Ignored Field Suffixes", string.Join(", ", parse.IgnoreFieldSuffixes)));
-        }
-        if (parse.IncludeViews)
-        {
-            details.Add(("Included Views", "yes"));
+            Presenter.WriteInfo($"Ignored Field Names: {FormatSummaryList(parse.IgnoreFieldNames)}");
         }
 
-        Presenter.WriteOk("raw datavault materialized from metaschema", details.ToArray());
+        if (parse.IgnoreFieldSuffixes.Count > 0)
+        {
+            Presenter.WriteInfo($"Ignored Field Suffixes: {FormatSummaryList(parse.IgnoreFieldSuffixes)}");
+        }
+
+        if (parse.IncludeViews)
+        {
+            Presenter.WriteInfo("Included Views: yes");
+        }
+
         if (parse.Verbose)
         {
             Presenter.WriteInfo(string.Empty);
@@ -314,6 +291,20 @@ internal static partial class Program
         return string.Equals(value, "help", StringComparison.OrdinalIgnoreCase) ||
                string.Equals(value, "--help", StringComparison.OrdinalIgnoreCase) ||
                string.Equals(value, "-h", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string FormatSummaryList(IEnumerable<string> values)
+    {
+        var materialized = values
+            .Where(value => !string.IsNullOrWhiteSpace(value))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(value => value, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(value => value, StringComparer.Ordinal)
+            .ToList();
+
+        return materialized.Count == 0
+            ? "(none)"
+            : string.Join(", ", materialized);
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

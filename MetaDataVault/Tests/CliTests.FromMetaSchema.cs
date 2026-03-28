@@ -1,4 +1,5 @@
 using Meta.Core.Services;
+using MetaSql;
 using MetaSchema.Core;
 
 namespace MetaDataVault.Tests;
@@ -22,7 +23,7 @@ public sealed partial class CliTests
 
             var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\" --verbose");
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("OK: raw datavault materialized from metaschema", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("OK: Materialized RawDataVault from MetaSchema", result.Output, StringComparison.OrdinalIgnoreCase);
             Assert.Contains("Materialization Summary", result.Output, StringComparison.OrdinalIgnoreCase);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
@@ -290,6 +291,229 @@ public sealed partial class CliTests
 
             var rawHubSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawHubSatelliteAttribute").ToDictionary(record => record.Id, StringComparer.Ordinal);
             Assert.Equal("Description", rawHubSatelliteAttributes["rawhub:3:sat:attr:7"].Values["Name"]);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task FromMetaSchema_DisambiguatesMultipleRelationshipsBetweenSameSourceAndTargetTables()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(root, "MetaSchemaSource");
+        var targetPath = Path.Combine(root, "RawDataVault");
+        var currentMetaSqlPath = Path.Combine(root, "CurrentMetaSql");
+        var implementationPath = GetRawImplementationWorkspacePath();
+
+        try
+        {
+            Directory.CreateDirectory(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+
+            source.Instance.GetOrCreateEntityRecords("System").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "1",
+                SourceShardFileName = "System.xml",
+                Values = { ["Name"] = "Sales" }
+            });
+
+            source.Instance.GetOrCreateEntityRecords("Schema").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "1",
+                SourceShardFileName = "Schema.xml",
+                Values = { ["Name"] = "dbo" },
+                RelationshipIds = { ["SystemId"] = "1" }
+            });
+
+            source.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "1",
+                SourceShardFileName = "Table.xml",
+                Values = { ["Name"] = "DepartmentHierarchy" },
+                RelationshipIds = { ["SchemaId"] = "1" }
+            });
+            source.Instance.GetOrCreateEntityRecords("Table").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "2",
+                SourceShardFileName = "Table.xml",
+                Values = { ["Name"] = "Department" },
+                RelationshipIds = { ["SchemaId"] = "1" }
+            });
+
+            AddMetaSchemaField(source, "1", "1", "DepartmentHierarchyId", "sqlserver:type:int", "1", "false");
+            AddMetaSchemaField(source, "2", "1", "ParentDepartmentId", "sqlserver:type:int", "2", "false");
+            AddMetaSchemaField(source, "3", "1", "ChildDepartmentId", "sqlserver:type:int", "3", "false");
+            AddMetaSchemaField(source, "4", "2", "DepartmentId", "sqlserver:type:int", "1", "false");
+            AddMetaSchemaField(source, "5", "2", "DepartmentName", "sqlserver:type:nvarchar", "2", "true");
+
+            source.Instance.GetOrCreateEntityRecords("TableKey").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "key:1",
+                SourceShardFileName = "TableKey.xml",
+                Values =
+                {
+                    ["Name"] = "PK_DepartmentHierarchy",
+                    ["KeyType"] = "primary"
+                },
+                RelationshipIds = { ["TableId"] = "1" }
+            });
+            source.Instance.GetOrCreateEntityRecords("TableKey").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "key:2",
+                SourceShardFileName = "TableKey.xml",
+                Values =
+                {
+                    ["Name"] = "PK_Department",
+                    ["KeyType"] = "primary"
+                },
+                RelationshipIds = { ["TableId"] = "2" }
+            });
+
+            source.Instance.GetOrCreateEntityRecords("TableKeyField").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "keyf:1",
+                SourceShardFileName = "TableKeyField.xml",
+                Values =
+                {
+                    ["Ordinal"] = "1",
+                    ["FieldName"] = "DepartmentHierarchyId"
+                },
+                RelationshipIds =
+                {
+                    ["TableKeyId"] = "key:1",
+                    ["FieldId"] = "1"
+                }
+            });
+            source.Instance.GetOrCreateEntityRecords("TableKeyField").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "keyf:2",
+                SourceShardFileName = "TableKeyField.xml",
+                Values =
+                {
+                    ["Ordinal"] = "1",
+                    ["FieldName"] = "DepartmentId"
+                },
+                RelationshipIds =
+                {
+                    ["TableKeyId"] = "key:2",
+                    ["FieldId"] = "4"
+                }
+            });
+
+            source.Instance.GetOrCreateEntityRecords("TableRelationship").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "rel:parent",
+                SourceShardFileName = "TableRelationship.xml",
+                Values = { ["Name"] = "FK_DepartmentHierarchy_Department_ParentDepartmentId" },
+                RelationshipIds =
+                {
+                    ["SourceTableId"] = "1",
+                    ["TargetTableId"] = "2"
+                }
+            });
+            source.Instance.GetOrCreateEntityRecords("TableRelationship").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "rel:child",
+                SourceShardFileName = "TableRelationship.xml",
+                Values = { ["Name"] = "FK_DepartmentHierarchy_Department_ChildDepartmentId" },
+                RelationshipIds =
+                {
+                    ["SourceTableId"] = "1",
+                    ["TargetTableId"] = "2"
+                }
+            });
+
+            source.Instance.GetOrCreateEntityRecords("TableRelationshipField").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "relf:parent",
+                SourceShardFileName = "TableRelationshipField.xml",
+                Values = { ["Ordinal"] = "1" },
+                RelationshipIds =
+                {
+                    ["TableRelationshipId"] = "rel:parent",
+                    ["SourceFieldId"] = "2",
+                    ["TargetFieldId"] = "4"
+                }
+            });
+            source.Instance.GetOrCreateEntityRecords("TableRelationshipField").Add(new Meta.Core.Domain.GenericRecord
+            {
+                Id = "relf:child",
+                SourceShardFileName = "TableRelationshipField.xml",
+                Values = { ["Ordinal"] = "1" },
+                RelationshipIds =
+                {
+                    ["TableRelationshipId"] = "rel:child",
+                    ["SourceFieldId"] = "3",
+                    ["TargetFieldId"] = "4"
+                }
+            });
+
+            await new WorkspaceService().SaveAsync(source);
+
+            var fromMetaSchemaResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+            Assert.Equal(0, fromMetaSchemaResult.ExitCode);
+
+            var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
+            var rawLinks = workspace.Instance.GetOrCreateEntityRecords("RawLink").ToDictionary(record => record.Id, StringComparer.Ordinal);
+
+            Assert.Equal("DepartmentHierarchyDepartment_ParentDepartmentId", rawLinks["rawlink:rel:parent"].Values["Name"]);
+            Assert.Equal("DepartmentHierarchyDepartment_ChildDepartmentId", rawLinks["rawlink:rel:child"].Values["Name"]);
+
+            var generateMetaSqlResult = RunRawCli(
+                $"generate-metasql --workspace \"{targetPath}\" --implementation-workspace \"{implementationPath}\" --database-name \"DisambiguatedLinkNaming\" --out \"{currentMetaSqlPath}\"");
+
+            Assert.Equal(0, generateMetaSqlResult.ExitCode);
+            Assert.Contains("OK: Generated CurrentMetaSql", generateMetaSqlResult.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.True(Directory.Exists(currentMetaSqlPath));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task GenerateMetaSql_PrependsUnderscoreWhenSourceColumnsCollideWithRawTechnicalColumns()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(root, "MetaSchemaSource");
+        var targetPath = Path.Combine(root, "RawDataVault");
+        var currentMetaSqlPath = Path.Combine(root, "CurrentMetaSql");
+        var implementationPath = GetRawImplementationWorkspacePath();
+
+        try
+        {
+            Directory.CreateDirectory(sourcePath);
+            var source = MetaSchemaWorkspaces.CreateEmptyMetaSchemaWorkspace(sourcePath);
+            SeedMetaSchema(source);
+            AddMetaSchemaField(source, "6", "2", "AuditId", "sqlserver:type:int", "3", "false");
+            AddMetaSchemaField(source, "7", "2", "LoadTimestamp", "sqlserver:type:datetime2", "4", "false");
+            await new WorkspaceService().SaveAsync(source);
+
+            var fromMetaSchemaResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+            Assert.Equal(0, fromMetaSchemaResult.ExitCode);
+
+            var generateMetaSqlResult = RunRawCli(
+                $"generate-metasql --workspace \"{targetPath}\" --implementation-workspace \"{implementationPath}\" --database-name \"ReservedRawColumnNames\" --out \"{currentMetaSqlPath}\"");
+
+            Assert.Equal(0, generateMetaSqlResult.ExitCode);
+
+            var model = await MetaSqlModel.LoadFromXmlWorkspaceAsync(currentMetaSqlPath, searchUpward: false);
+            var customerSatellite = Assert.Single(model.TableList, row => string.Equals(row.Name, "HS_Customer_Customer", StringComparison.Ordinal));
+            var satelliteColumns = model.TableColumnList
+                .Where(row => string.Equals(row.TableId, customerSatellite.Id, StringComparison.Ordinal))
+                .Select(row => row.Name)
+                .ToHashSet(StringComparer.Ordinal);
+
+            Assert.Contains("AuditId", satelliteColumns);
+            Assert.Contains("_AuditId", satelliteColumns);
+            Assert.DoesNotContain("AuditId_", satelliteColumns);
+
+            Assert.Contains("LoadTimestamp", satelliteColumns);
+            Assert.Contains("_LoadTimestamp", satelliteColumns);
+            Assert.DoesNotContain("LoadTimestamp_", satelliteColumns);
         }
         finally
         {

@@ -40,7 +40,7 @@ internal sealed class MetaSqlDeployExecutionEngine
             if (blockCount > 0)
             {
                 throw new InvalidOperationException(
-                    $"Manifest '{root.Name}' is non-deployable. BlockCount={blockCount}.");
+                    $"Manifest '{root.Name}' is not deployable because it contains {blockCount} block {(blockCount == 1 ? "entry" : "entries")}.");
             }
 
             var workspaceService = new WorkspaceService();

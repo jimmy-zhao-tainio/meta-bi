@@ -96,7 +96,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("Verdict: deployable", result.Output, StringComparison.Ordinal);
+            Assert.Contains("Status: ready to deploy", result.Output, StringComparison.Ordinal);
             Assert.False(DatabaseExists(masterConnectionString, databaseName));
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
@@ -160,7 +160,7 @@ public sealed partial class CliDiffTests
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
 
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("DatabaseCreated: true", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Database: created", deployResult.Output, StringComparison.Ordinal);
             Assert.True(DatabaseExists(masterConnectionString, databaseName));
             Assert.True(SchemaExists(databaseConnectionString, "raw"));
             Assert.True(TableExists(databaseConnectionString, "raw", "H_Customer"));
@@ -276,7 +276,7 @@ public sealed partial class CliDiffTests
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
 
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("DatabaseCreated: true", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Database: created", deployResult.Output, StringComparison.Ordinal);
             Assert.True(TableExists(databaseConnectionString, "dbo", "H_Customer"));
             Assert.True(ColumnExists(databaseConnectionString, "dbo", "H_Customer", "CustomerName"));
         }
@@ -361,8 +361,8 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("deploy-plan complete", result.Output, StringComparison.Ordinal);
-            Assert.Contains("Verdict: deployable", result.Output, StringComparison.Ordinal);
+            Assert.Contains("OK: Created deploy plan", result.Output, StringComparison.Ordinal);
+            Assert.Contains("Status: ready to deploy", result.Output, StringComparison.Ordinal);
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.AddTableColumnList);
@@ -503,9 +503,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("AddCount: 1", result.Output, StringComparison.Ordinal);
-            Assert.Contains("AlterCount: 1", result.Output, StringComparison.Ordinal);
-            Assert.Contains("DropCount: 0", result.Output, StringComparison.Ordinal);
+            AssertPlanChanges(result.Output, "1 to add", "1 to alter");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.AddTableColumnList);
@@ -554,7 +552,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("DropCount: 2", result.Output, StringComparison.Ordinal);
+            AssertPlanChanges(result.Output, "2 to drop");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.DropTableList);
@@ -667,7 +665,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("DropCount: 2", result.Output, StringComparison.Ordinal);
+            AssertPlanChanges(result.Output, "2 to drop");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.DropPrimaryKeyList);

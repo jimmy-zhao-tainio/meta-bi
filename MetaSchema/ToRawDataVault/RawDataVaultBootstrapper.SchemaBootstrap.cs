@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text;
 using MS = global::MetaSchema;
 using MRDV = global::MetaRawDataVault;
 
@@ -301,6 +302,7 @@ public sealed partial class RawDataVaultBootstrapper
         SourceIndex sourceIndex)
     {
         var relationshipReportRows = new List<RelationshipMaterializationReportRow>();
+        var rawLinkNamesByRelationshipId = BuildRawLinkNames(sourceIndex);
 
         foreach (var relationship in sourceIndex.IncludedRelationships)
         {
@@ -324,7 +326,7 @@ public sealed partial class RawDataVaultBootstrapper
             var link = new MRDV.RawLink
             {
                 Id = BuildRawLinkId(relationship.Id),
-                Name = BuildStructuralLinkName(sourceTable, targetTable),
+                Name = rawLinkNamesByRelationshipId[relationship.Id],
                 LinkKind = StandardLinkKind,
                 SourceTableRelationshipId = sourceRelationship.Id,
                 SourceTableRelationship = sourceRelationship,
@@ -430,6 +432,101 @@ public sealed partial class RawDataVaultBootstrapper
     {
         return BuildRoleName(sourceTable, targetTable, isSource: true) +
                BuildRoleName(sourceTable, targetTable, isSource: false);
+    }
+
+    private static IReadOnlyDictionary<string, string> BuildRawLinkNames(SourceIndex sourceIndex)
+    {
+        var namesByRelationshipId = new Dictionary<string, string>(StringComparer.Ordinal);
+
+        foreach (var group in sourceIndex.IncludedRelationships
+                     .GroupBy(relationship => BuildStructuralLinkName(relationship.SourceTable, relationship.TargetTable), StringComparer.Ordinal))
+        {
+            var relationships = group.ToList();
+            if (relationships.Count == 1)
+            {
+                namesByRelationshipId[relationships[0].Id] = group.Key;
+                continue;
+            }
+
+            var reservedNames = new HashSet<string>(StringComparer.Ordinal);
+            foreach (var relationship in relationships)
+            {
+                var preferredName = group.Key + "_" + BuildRelationshipFieldDisambiguator(relationship, sourceIndex);
+                if (reservedNames.Add(preferredName))
+                {
+                    namesByRelationshipId[relationship.Id] = preferredName;
+                    continue;
+                }
+
+                var relationshipName = group.Key + "_" + BuildIdentifierToken(relationship.Name, "Relationship");
+                if (reservedNames.Add(relationshipName))
+                {
+                    namesByRelationshipId[relationship.Id] = relationshipName;
+                    continue;
+                }
+
+                var fallbackName = relationshipName + "_" + BuildIdentifierToken(relationship.Id, "Id");
+                reservedNames.Add(fallbackName);
+                namesByRelationshipId[relationship.Id] = fallbackName;
+            }
+        }
+
+        return namesByRelationshipId;
+    }
+
+    private static string BuildRelationshipFieldDisambiguator(MS.TableRelationship relationship, SourceIndex sourceIndex)
+    {
+        if (!sourceIndex.RelationshipFieldsByRelationshipId.TryGetValue(relationship.Id, out var relationshipFields) ||
+            relationshipFields.Count == 0)
+        {
+            return BuildIdentifierToken(relationship.Name, "Relationship");
+        }
+
+        var sourceFieldNames = relationshipFields
+            .Select(field => sourceIndex.FieldById.TryGetValue(field.SourceFieldId, out var sourceField)
+                ? sourceField.Name
+                : string.Empty)
+            .Where(name => !string.IsNullOrWhiteSpace(name))
+            .ToList();
+
+        if (sourceFieldNames.Count == 0)
+        {
+            return BuildIdentifierToken(relationship.Name, "Relationship");
+        }
+
+        return BuildIdentifierToken(string.Join("_", sourceFieldNames), "Relationship");
+    }
+
+    private static string BuildIdentifierToken(string? value, string fallback)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return fallback;
+        }
+
+        var builder = new StringBuilder();
+        var previousWasSeparator = false;
+
+        foreach (var character in value.Trim())
+        {
+            if (char.IsLetterOrDigit(character))
+            {
+                builder.Append(character);
+                previousWasSeparator = false;
+                continue;
+            }
+
+            if (previousWasSeparator)
+            {
+                continue;
+            }
+
+            builder.Append('_');
+            previousWasSeparator = true;
+        }
+
+        var token = builder.ToString().Trim('_');
+        return string.IsNullOrWhiteSpace(token) ? fallback : token;
     }
 
     private static string BuildRoleName(MS.Table sourceTable, MS.Table targetTable, bool isSource)

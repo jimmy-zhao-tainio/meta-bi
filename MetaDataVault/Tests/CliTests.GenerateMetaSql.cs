@@ -19,7 +19,7 @@ public sealed partial class CliTests
                 $"generate-metasql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"RawGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("raw metasql generated", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("OK: Generated current-metasql", result.Output, StringComparison.OrdinalIgnoreCase);
             Assert.True(Directory.Exists(outputWorkspacePath));
 
             var model = await MetaSqlModel.LoadFromXmlWorkspaceAsync(outputWorkspacePath, searchUpward: false);
@@ -47,7 +47,7 @@ public sealed partial class CliTests
                 $"generate-metasql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"BusinessGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("business metasql generated", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("OK: Generated current-metasql", result.Output, StringComparison.OrdinalIgnoreCase);
             Assert.True(Directory.Exists(outputWorkspacePath));
 
             var model = await MetaSqlModel.LoadFromXmlWorkspaceAsync(outputWorkspacePath, searchUpward: false);

@@ -499,13 +499,13 @@ public sealed partial class CliTests
     {
         var result = RunRawCli($"{command} --workspace \"{workspacePath}\"");
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("OK: raw datavault row added", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("OK: Added ", result.Output, StringComparison.OrdinalIgnoreCase);
     }
     private static void RunBusinessAdd(string workspacePath, string command)
     {
         var result = RunBusinessCli($"{command} --workspace \"{workspacePath}\"");
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("OK: business datavault row added", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("OK: Added ", result.Output, StringComparison.OrdinalIgnoreCase);
     }
     private static (int ExitCode, string Output) RunBusinessCli(string arguments)
     {

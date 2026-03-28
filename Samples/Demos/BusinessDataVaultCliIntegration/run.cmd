@@ -148,23 +148,11 @@ meta-datavault-business add-bridge-hub --id CustomerFulfillmentTraversalOrder --
 meta-datavault-business add-bridge-link --id CustomerFulfillmentTraversalShipmentOrder --bridge CustomerFulfillmentTraversal --link ShipmentOrder --ordinal 3 --role-name ShipmentOrder
 meta-datavault-business add-bridge-hub --id CustomerFulfillmentTraversalShipment --bridge CustomerFulfillmentTraversal --hub Shipment --ordinal 4 --role-name Shipment
 
-echo.
-echo Generating current MetaSql from business workspace...
 meta-datavault-business generate-metasql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name BusinessDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
 
-echo Planning MetaSql deploy...
 meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlDeployManifest
 
-echo Deploying MetaSql manifest...
 meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
 
-echo Verifying live schema against current MetaSql...
 meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlVerifyManifest
-
-echo.
-echo Workspace authored: BusinessDataVaultCliIntegrationWorkspace
-echo Database deployed: BusinessDataVaultCliIntegrationWorkspace
-echo Current MetaSql workspace: CurrentMetaSqlWorkspace
-echo Deploy manifest: MetaSqlDeployManifest
-echo Verification manifest: MetaSqlVerifyManifest
 

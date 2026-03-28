@@ -118,11 +118,7 @@ internal static partial class Program
                 await service.AddRecordAsync(detailRequest).ConfigureAwait(false);
             }
 
-            Presenter.WriteOk(
-                "business datavault row added",
-                ("Workspace", Path.GetFullPath(parse.WorkspacePath)),
-                ("Entity", spec.EntityName),
-                ("Id", parse.RecordId));
+            Presenter.WriteOk($"Added {parse.RecordId} to {spec.EntityName}");
             return 0;
         }
         catch (Exception ex) when (ex is ArgumentException or InvalidOperationException or IOException or UnauthorizedAccessException)

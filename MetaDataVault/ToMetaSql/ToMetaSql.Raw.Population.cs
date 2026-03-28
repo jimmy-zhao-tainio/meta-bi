@@ -36,6 +36,11 @@ public static partial class Converter
                 ApplyPattern(rawHubImplementation.TableNamePattern, ("Name", hub.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var protectedColumnNames = BuildProtectedColumnNames(
+                rawHubImplementation.HashKeyColumnName,
+                rawHubImplementation.LoadTimestampColumnName,
+                rawHubImplementation.RecordSourceColumnName,
+                rawHubImplementation.AuditIdColumnName);
             var hashKeyColumn = AddImplementationColumn(
                 context,
                 table,
@@ -52,7 +57,8 @@ public static partial class Converter
                     table,
                     keyPart.SourceField,
                     reservedColumnNames,
-                    sourceFieldDetailsByFieldId);
+                    sourceFieldDetailsByFieldId,
+                    protectedColumnNames);
             }
 
             AddImplementationColumn(
@@ -102,6 +108,12 @@ public static partial class Converter
                     ("Name", satellite.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var protectedColumnNames = BuildProtectedColumnNames(
+                rawHubSatelliteImplementation.ParentHashKeyColumnName,
+                rawHubSatelliteImplementation.HashDiffColumnName,
+                rawHubSatelliteImplementation.LoadTimestampColumnName,
+                rawHubSatelliteImplementation.RecordSourceColumnName,
+                rawHubSatelliteImplementation.AuditIdColumnName);
             var parentHashKeyColumn = AddImplementationColumn(
                 context,
                 table,
@@ -118,7 +130,8 @@ public static partial class Converter
                     table,
                     attribute.SourceField,
                     reservedColumnNames,
-                    sourceFieldDetailsByFieldId);
+                    sourceFieldDetailsByFieldId,
+                    protectedColumnNames);
             }
 
             AddImplementationColumn(
@@ -262,6 +275,12 @@ public static partial class Converter
                     ("Name", satellite.Name)));
 
             var reservedColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var protectedColumnNames = BuildProtectedColumnNames(
+                rawLinkSatelliteImplementation.ParentHashKeyColumnName,
+                rawLinkSatelliteImplementation.HashDiffColumnName,
+                rawLinkSatelliteImplementation.LoadTimestampColumnName,
+                rawLinkSatelliteImplementation.RecordSourceColumnName,
+                rawLinkSatelliteImplementation.AuditIdColumnName);
             var parentHashKeyColumn = AddImplementationColumn(
                 context,
                 table,
@@ -278,7 +297,8 @@ public static partial class Converter
                     table,
                     attribute.SourceField,
                     reservedColumnNames,
-                    sourceFieldDetailsByFieldId);
+                    sourceFieldDetailsByFieldId,
+                    protectedColumnNames);
             }
 
             AddImplementationColumn(
@@ -370,7 +390,8 @@ public static partial class Converter
         Table table,
         SourceField sourceField,
         HashSet<string> reservedColumnNames,
-        IReadOnlyDictionary<string, List<SourceFieldDataTypeDetail>> sourceFieldDetailsByFieldId)
+        IReadOnlyDictionary<string, List<SourceFieldDataTypeDetail>> sourceFieldDetailsByFieldId,
+        IReadOnlySet<string>? protectedColumnNames = null)
     {
         var column = AddColumn(
             context,
@@ -378,7 +399,8 @@ public static partial class Converter
             sourceField.Name,
             sourceField.DataTypeId,
             sourceField.IsNullable,
-            reservedColumnNames);
+            reservedColumnNames,
+            protectedColumnNames);
 
         foreach (var detail in GetGroup(sourceFieldDetailsByFieldId, sourceField.Id).OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
@@ -426,9 +448,10 @@ public static partial class Converter
         string requestedName,
         string metaDataTypeId,
         string isNullable,
-        HashSet<string> reservedColumnNames)
+        HashSet<string> reservedColumnNames,
+        IReadOnlySet<string>? protectedColumnNames = null)
     {
-        var actualName = ReserveColumnName(reservedColumnNames, requestedName);
+        var actualName = ReserveColumnName(reservedColumnNames, requestedName, protectedColumnNames);
         var id = $"{table.Id}.{actualName}";
         EnsureUniqueId(context.MetaSql.TableColumnList.Select(row => row.Id), id, "table column");
         var ordinal = (context.MetaSql.TableColumnList.Count(row => ReferenceEquals(row.Table, table)) + 1).ToString(CultureInfo.InvariantCulture);
@@ -532,14 +555,26 @@ public static partial class Converter
         }
     }
 
-    private static string ReserveColumnName(HashSet<string> reservedColumnNames, string requestedName)
+    private static HashSet<string> BuildProtectedColumnNames(params string[] names)
+    {
+        return names
+            .Where(name => !string.IsNullOrWhiteSpace(name))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static string ReserveColumnName(
+        HashSet<string> reservedColumnNames,
+        string requestedName,
+        IReadOnlySet<string>? protectedColumnNames = null)
     {
         var actualName = requestedName;
-        while (!reservedColumnNames.Add(actualName))
+        while (reservedColumnNames.Contains(actualName) ||
+               (protectedColumnNames is not null && protectedColumnNames.Contains(actualName)))
         {
-            actualName += "_";
+            actualName = "_" + actualName;
         }
 
+        reservedColumnNames.Add(actualName);
         return actualName;
     }
 

@@ -215,6 +215,18 @@ internal static partial class Program
         Presenter.WriteNext("meta-sql deploy-plan --help");
     }
 
+    private static string FormatActionSummary(params (int Count, string Label)[] actions)
+    {
+        var parts = actions
+            .Where(item => item.Count > 0)
+            .Select(item => $"{item.Count} {item.Label}")
+            .ToList();
+
+        return parts.Count == 0
+            ? "none"
+            : string.Join(", ", parts);
+    }
+
     private static bool TryParseTableScope(
         string value,
         out string schemaName,

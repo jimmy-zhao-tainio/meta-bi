@@ -174,9 +174,7 @@ public sealed class SqlServerSchemaExtractor
                     },
                     relationships => relationships["TableId"] = tableId);
 
-                AddFieldDataTypeDetail(workspace, fieldId, "Length", columnRow.Length);
-                AddFieldDataTypeDetail(workspace, fieldId, "NumericPrecision", columnRow.NumericPrecision);
-                AddFieldDataTypeDetail(workspace, fieldId, "Scale", columnRow.Scale);
+                AddFieldDataTypeDetails(workspace, fieldId, columnRow);
             }
 
             var fieldIdsByColumnName = sourceFieldIdByColumnName;
@@ -360,19 +358,33 @@ public sealed class SqlServerSchemaExtractor
         using var command = connection.CreateCommand();
         command.CommandText = """
             select
-                TABLE_SCHEMA,
-                TABLE_NAME,
-                COLUMN_NAME,
-                ORDINAL_POSITION,
-                IS_NULLABLE,
-                DATA_TYPE,
-                CHARACTER_MAXIMUM_LENGTH,
-                NUMERIC_PRECISION,
-                NUMERIC_SCALE
-            from INFORMATION_SCHEMA.COLUMNS
-            where TABLE_SCHEMA = @schemaName
-              and TABLE_NAME = @tableName
-            order by TABLE_NAME, ORDINAL_POSITION
+                s.name as SchemaName,
+                t.name as TableName,
+                c.name as ColumnName,
+                c.column_id as OrdinalPosition,
+                c.is_nullable,
+                ty.name as DataTypeName,
+                case
+                    when c.max_length = -1 then -1
+                    when ty.name in ('nchar', 'nvarchar') then c.max_length / 2
+                    else c.max_length
+                end as LengthValue,
+                case
+                    when ty.name in ('decimal', 'numeric') then convert(int, c.precision)
+                    when ty.name in ('time', 'datetime2', 'datetimeoffset') then convert(int, c.scale)
+                    else null
+                end as PrecisionValue,
+                case
+                    when ty.name in ('decimal', 'numeric') then convert(int, c.scale)
+                    else null
+                end as ScaleValue
+            from sys.tables t
+            join sys.schemas s on s.schema_id = t.schema_id
+            join sys.columns c on c.object_id = t.object_id
+            join sys.types ty on ty.user_type_id = c.user_type_id
+            where s.name = @schemaName
+              and t.name = @tableName
+            order by t.name, c.column_id
             """;
         command.Parameters.Add(new SqlParameter("@schemaName", SqlDbType.NVarChar, 128) { Value = schemaName });
         command.Parameters.Add(new SqlParameter("@tableName", SqlDbType.NVarChar, 128) { Value = tableName });
@@ -386,10 +398,10 @@ public sealed class SqlServerSchemaExtractor
                 TableName: reader.GetString(1),
                 ColumnName: reader.GetString(2),
                 OrdinalPosition: ReadInt32(reader, 3),
-                IsNullable: string.Equals(reader.GetString(4), "YES", StringComparison.OrdinalIgnoreCase),
+                IsNullable: reader.GetBoolean(4),
                 DataTypeName: reader.GetString(5),
                 Length: ReadNullableInt(reader, 6),
-                NumericPrecision: ReadNullableInt(reader, 7),
+                Precision: ReadNullableInt(reader, 7),
                 Scale: ReadNullableInt(reader, 8)));
         }
 
@@ -642,6 +654,33 @@ public sealed class SqlServerSchemaExtractor
         return "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName + ":field:" + columnName;
     }
 
+    private static void AddFieldDataTypeDetails(Workspace workspace, string fieldId, ColumnRow columnRow)
+    {
+        switch (columnRow.DataTypeName.ToLowerInvariant())
+        {
+            case "char":
+            case "varchar":
+            case "nchar":
+            case "nvarchar":
+            case "binary":
+            case "varbinary":
+                AddFieldDataTypeDetail(workspace, fieldId, "Length", columnRow.Length);
+                break;
+
+            case "decimal":
+            case "numeric":
+                AddFieldDataTypeDetail(workspace, fieldId, "Precision", columnRow.Precision);
+                AddFieldDataTypeDetail(workspace, fieldId, "Scale", columnRow.Scale);
+                break;
+
+            case "time":
+            case "datetime2":
+            case "datetimeoffset":
+                AddFieldDataTypeDetail(workspace, fieldId, "Precision", columnRow.Precision);
+                break;
+        }
+    }
+
     private static void AddFieldDataTypeDetail(Workspace workspace, string fieldId, string detailName, int? detailValue)
     {
         if (!detailValue.HasValue)
@@ -686,7 +725,7 @@ public sealed class SqlServerSchemaExtractor
         bool IsNullable,
         string DataTypeName,
         int? Length,
-        int? NumericPrecision,
+        int? Precision,
         int? Scale);
 
     private readonly record struct ForeignKeyRow(

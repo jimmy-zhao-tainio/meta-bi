@@ -40,7 +40,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("ReplaceCount: 1", result.Output, StringComparison.Ordinal);
+            AssertPlanChanges(result.Output, "1 to replace");
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.ReplaceForeignKeyList);
             Assert.Empty(manifest.BlockForeignKeyDifferenceList);
@@ -139,7 +139,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(5, deployResult.ExitCode);
-            Assert.Contains("Manifest 'DeployManifest' is non-deployable. BlockCount=1.", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Manifest 'DeployManifest' is not deployable because it contains 1 block entry.", deployResult.Output, StringComparison.Ordinal);
             Assert.Equal("ParentA", GetForeignKeyTargetTableName(databaseConnectionString, "FK_Child_Parent"));
         }
         finally
@@ -178,7 +178,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("ReplaceCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to replace");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -192,7 +192,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedReplaceCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 replaced");
             Assert.Equal("ParentB", GetForeignKeyTargetTableName(databaseConnectionString, "FK_Child_Parent"));
         }
         finally
@@ -231,7 +231,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("ReplaceCount: 2", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "2 to replace");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -299,7 +299,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("ReplaceCount: 1", result.Output, StringComparison.Ordinal);
+            AssertPlanChanges(result.Output, "1 to replace");
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.ReplacePrimaryKeyList);
             Assert.Empty(manifest.BlockPrimaryKeyDifferenceList);
@@ -352,7 +352,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("ReplaceCount: 2", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "2 to replace");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Single(manifest.ReplacePrimaryKeyList);
@@ -370,7 +370,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedReplaceCount: 2", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "2 replaced");
             Assert.True(ForeignKeyExists(databaseConnectionString, "FK_ChildPkCase_ParentPkCase"));
             Assert.Equal("ParentPkCase", GetForeignKeyTargetTableName(databaseConnectionString, "FK_ChildPkCase_ParentPkCase"));
             Assert.True(GetPrimaryKeyKeyIsDescending(databaseConnectionString, "raw", "ParentPkCase", "KeyA"));
@@ -598,7 +598,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(5, deployResult.ExitCode);
-            Assert.Contains("Manifest 'DeployManifest' is non-deployable. BlockCount=1.", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Manifest 'DeployManifest' is not deployable because it contains 1 block entry.", deployResult.Output, StringComparison.Ordinal);
             Assert.Equal(["KeyA"], GetPrimaryKeyKeyColumns(databaseConnectionString, "raw", "PkClusteredCase"));
         }
         finally
@@ -648,7 +648,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("ReplaceCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to replace");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -662,7 +662,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedReplaceCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 replaced");
             Assert.Equal(["KeyA", "KeyB"], GetPrimaryKeyKeyColumns(databaseConnectionString, "raw", "PkReplaceCase"));
             Assert.False(GetPrimaryKeyIsClustered(databaseConnectionString, "raw", "PkReplaceCase"));
         }
@@ -717,7 +717,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("ReplaceCount: 2", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "2 to replace");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -783,7 +783,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("ReplaceCount: 1", result.Output, StringComparison.Ordinal);
+            AssertPlanChanges(result.Output, "1 to replace");
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.ReplaceIndexList);
             Assert.Empty(manifest.BlockIndexDifferenceList);
@@ -952,7 +952,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(5, deployResult.ExitCode);
-            Assert.Contains("Manifest 'DeployManifest' is non-deployable. BlockCount=1.", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Manifest 'DeployManifest' is not deployable because it contains 1 block entry.", deployResult.Output, StringComparison.Ordinal);
             Assert.False(GetIndexIsDescending(databaseConnectionString, "IX_IndexClusteredCase_Payload", "Payload"));
         }
         finally
@@ -1000,7 +1000,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("ReplaceCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to replace");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -1014,7 +1014,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedReplaceCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 replaced");
             Assert.True(GetIndexIsUnique(databaseConnectionString, "IX_IndexReplaceCase_Payload"));
         }
         finally
@@ -1062,7 +1062,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("ReplaceCount: 2", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "2 to replace");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -1119,8 +1119,8 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("deploy-plan complete", result.Output, StringComparison.Ordinal);
-            Assert.Contains("AlterCount: 1", result.Output, StringComparison.Ordinal);
+            Assert.Contains("OK: Created deploy plan", result.Output, StringComparison.Ordinal);
+            AssertPlanChanges(result.Output, "1 to alter");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
@@ -1208,7 +1208,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("Verdict: deployable", planResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Status: ready to deploy", planResult.Output, StringComparison.Ordinal);
 
             var deployCommand = new ProcessStartInfo
             {
@@ -1222,7 +1222,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("deploy complete", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("OK: Applied deploy plan", deployResult.Output, StringComparison.Ordinal);
 
             Assert.True(ColumnExists(databaseConnectionString, "raw", "H_Customer", "CustomerName"));
 
@@ -1238,9 +1238,7 @@ public sealed partial class CliDiffTests
             };
             var verifyResult = RunProcess(verifyCommand, "Could not start MetaSql CLI deploy-plan verification process.");
             Assert.Equal(0, verifyResult.ExitCode);
-            Assert.Contains("AddCount: 0", verifyResult.Output, StringComparison.Ordinal);
-            Assert.Contains("DropCount: 0", verifyResult.Output, StringComparison.Ordinal);
-            Assert.Contains("BlockCount: 0", verifyResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Changes: none", verifyResult.Output, StringComparison.Ordinal);
         }
         finally
         {
@@ -1291,7 +1289,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(5, deployResult.ExitCode);
-            Assert.Contains("Manifest 'DeployManifest' is non-deployable. BlockCount=1.", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Manifest 'DeployManifest' is not deployable because it contains 1 block entry.", deployResult.Output, StringComparison.Ordinal);
             Assert.Equal(400, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "H_Customer", "CustomerId"));
         }
         finally
@@ -1330,7 +1328,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("AlterCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to alter");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -1344,7 +1342,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedAlterCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 altered");
 
             Assert.Equal(200, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "H_Customer", "CustomerId"));
             Assert.False(GetColumnNullable(databaseConnectionString, "raw", "H_Customer", "CustomerId"));
@@ -1394,7 +1392,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("AlterCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to alter");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -1408,7 +1406,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedAlterCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 altered");
 
             Assert.Equal(100, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "VarcharCase", "ValueCol"));
         }
@@ -1510,8 +1508,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("AlterCount: 1", planResult.Output, StringComparison.Ordinal);
-            Assert.Contains("TruncateCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to alter", "1 to truncate");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
@@ -1530,8 +1527,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedAlterCount: 1", deployResult.Output, StringComparison.Ordinal);
-            Assert.Contains("AppliedTruncateCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 truncated");
 
             Assert.Equal(50, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "VarcharCase", "ValueCol"));
             Assert.Equal(50, GetValueLength(databaseConnectionString, "raw", "VarcharCase", "ValueCol", 1));
@@ -1632,7 +1628,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("AlterCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to alter");
 
             var deployCommand = new ProcessStartInfo
             {
@@ -1695,11 +1691,15 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(4, planResult.ExitCode);
+            Assert.Contains("Blocked column: raw.DecimalCase.Amount", planResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Source: decimal(20,2) not null", planResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Live: decimal(18,2) not null", planResult.Output, StringComparison.Ordinal);
+            Assert.Contains("Why blocked: type-shape changes are only auto-executable for length-based SqlServer types", planResult.Output, StringComparison.Ordinal);
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
-            Assert.Contains("only length-based sqlserver types are executable", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("type-shape changes are only auto-executable for length-based SqlServer types", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {
@@ -1916,8 +1916,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("AlterCount: 1", planResult.Output, StringComparison.Ordinal);
-            Assert.Contains("ReplaceCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to alter", "1 to replace");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
@@ -1937,8 +1936,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedAlterCount: 1", deployResult.Output, StringComparison.Ordinal);
-            Assert.Contains("AppliedReplaceCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 replaced");
             Assert.Equal(100, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "PkAlterCase", "KeyCol"));
             Assert.Equal(["KeyCol"], GetPrimaryKeyKeyColumns(databaseConnectionString, "raw", "PkAlterCase"));
             Assert.False(GetPrimaryKeyIsClustered(databaseConnectionString, "raw", "PkAlterCase"));
@@ -2002,8 +2000,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("AlterCount: 1", planResult.Output, StringComparison.Ordinal);
-            Assert.Contains("ReplaceCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to alter", "1 to replace");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
@@ -2022,8 +2019,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedAlterCount: 1", deployResult.Output, StringComparison.Ordinal);
-            Assert.Contains("AppliedReplaceCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 replaced");
             Assert.True(GetColumnNullable(databaseConnectionString, "raw", "FkCase", "ParentCode"));
             Assert.True(ForeignKeyExists(databaseConnectionString, "FK_FkCase_ParentCase"));
         }
@@ -2083,8 +2079,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("AlterCount: 1", planResult.Output, StringComparison.Ordinal);
-            Assert.Contains("ReplaceCount: 1", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "1 to alter", "1 to replace");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
@@ -2103,8 +2098,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("AppliedAlterCount: 1", deployResult.Output, StringComparison.Ordinal);
-            Assert.Contains("AppliedReplaceCount: 1", deployResult.Output, StringComparison.Ordinal);
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 replaced");
             Assert.Equal(100, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "IndexCase", "Payload"));
             Assert.True(IndexExists(databaseConnectionString, "IX_IndexCase_Id"));
         }
@@ -2212,7 +2206,7 @@ public sealed partial class CliDiffTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            Assert.Contains("AlterCount: 2", planResult.Output, StringComparison.Ordinal);
+            AssertPlanChanges(planResult.Output, "2 to alter");
 
             var longRecordSource = new string('R', 150);
             ExecuteSql(databaseConnectionString, $"""

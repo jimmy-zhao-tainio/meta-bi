@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
 using MetaSchema.Core;
 
+using Microsoft.Data.SqlClient;
+using MetaSchema.Extractors.SqlServer;
+
 namespace MetaSchema.Tests;
 
 public sealed class CliTests
@@ -182,6 +185,66 @@ public sealed class CliTests
         Assert.DoesNotContain(tableRelationshipField.Properties, property => property.Name == "TargetFieldName");
     }
 
+    [Fact]
+    public void SqlServerExtractor_ExtractsMetaSqlCompatibleFieldTypeDetails()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "MetaSchemaWorkspace");
+        var databaseName = $"MetaSchemaTypeDetails_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            ExecuteSql(databaseConnectionString, """
+                CREATE TABLE dbo.TypeDetailCase
+                (
+                    Id int NOT NULL,
+                    LoadTimestamp datetime2(7) NOT NULL,
+                    Amount decimal(18,2) NOT NULL,
+                    AuditId int NOT NULL,
+                    CONSTRAINT PK_TypeDetailCase PRIMARY KEY (Id)
+                );
+                """);
+
+            var extractor = new SqlServerSchemaExtractor();
+            var workspace = extractor.ExtractMetaSchemaWorkspace(new SqlServerExtractRequest
+            {
+                NewWorkspacePath = workspacePath,
+                ConnectionString = databaseConnectionString,
+                SystemName = databaseName,
+                SchemaName = "dbo",
+                TableName = "TypeDetailCase",
+            });
+
+            var fieldsByName = workspace.Instance
+                .GetOrCreateEntityRecords("Field")
+                .ToDictionary(row => row.Values["Name"], StringComparer.Ordinal);
+            var detailNamesByFieldId = workspace.Instance
+                .GetOrCreateEntityRecords("FieldDataTypeDetail")
+                .GroupBy(row => row.RelationshipIds["FieldId"], StringComparer.Ordinal)
+                .ToDictionary(
+                    group => group.Key,
+                    group => group.ToDictionary(row => row.Values["Name"], row => row.Values["Value"], StringComparer.Ordinal),
+                    StringComparer.Ordinal);
+
+            var loadTimestampDetails = detailNamesByFieldId[fieldsByName["LoadTimestamp"].Id];
+            Assert.Equal("7", loadTimestampDetails["Precision"]);
+
+            var amountDetails = detailNamesByFieldId[fieldsByName["Amount"].Id];
+            Assert.Equal("18", amountDetails["Precision"]);
+            Assert.Equal("2", amountDetails["Scale"]);
+
+            Assert.False(detailNamesByFieldId.ContainsKey(fieldsByName["AuditId"].Id));
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
     private static (int ExitCode, string Output) RunCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
@@ -283,6 +346,39 @@ public sealed class CliTests
         }
 
         throw new InvalidOperationException("Could not locate meta-bi repository root from test base directory.");
+    }
+
+    private static void CreateDatabase(string masterConnectionString, string databaseName)
+    {
+        using var connection = new SqlConnection(masterConnectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = $"IF DB_ID(N'{databaseName.Replace("'", "''", StringComparison.Ordinal)}') IS NULL CREATE DATABASE [{databaseName}]";
+        command.ExecuteNonQuery();
+    }
+
+    private static void DropDatabase(string masterConnectionString, string databaseName)
+    {
+        using var connection = new SqlConnection(masterConnectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = $"""
+            IF DB_ID(N'{databaseName.Replace("'", "''", StringComparison.Ordinal)}') IS NOT NULL
+            BEGIN
+                ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                DROP DATABASE [{databaseName}];
+            END
+            """;
+        command.ExecuteNonQuery();
+    }
+
+    private static void ExecuteSql(string connectionString, string sql)
+    {
+        using var connection = new SqlConnection(connectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = sql;
+        command.ExecuteNonQuery();
     }
 
     private static void DeleteDirectoryIfExists(string path)

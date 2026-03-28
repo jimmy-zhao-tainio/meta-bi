@@ -1220,6 +1220,29 @@ public sealed partial class CliDiffTests
         return (process.ExitCode, output + error);
     }
 
+    private static void AssertOutputLineContains(string output, string prefix, params string[] fragments)
+    {
+        var line = output
+            .Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)
+            .FirstOrDefault(item => item.StartsWith(prefix, StringComparison.Ordinal));
+
+        Assert.False(string.IsNullOrWhiteSpace(line), $"Expected an output line starting with '{prefix}', but none was found in:{Environment.NewLine}{output}");
+        foreach (var fragment in fragments)
+        {
+            Assert.Contains(fragment, line, StringComparison.Ordinal);
+        }
+    }
+
+    private static void AssertPlanChanges(string output, params string[] fragments)
+    {
+        AssertOutputLineContains(output, "Changes:", fragments);
+    }
+
+    private static void AssertAppliedChanges(string output, params string[] fragments)
+    {
+        AssertOutputLineContains(output, "Applied:", fragments);
+    }
+
     private static void DeleteIfExists(string path)
     {
         if (Directory.Exists(path))

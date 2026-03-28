@@ -116,22 +116,7 @@ internal static class Program
 
         await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
 
-        Presenter.WriteOk(
-            "metaschema workspace created",
-            ("Path", workspacePath),
-            ("Model", workspace.Model.Name),
-            ("Systems", workspace.Instance.GetOrCreateEntityRecords("System").Count.ToString()),
-            ("Schemas", workspace.Instance.GetOrCreateEntityRecords("Schema").Count.ToString()),
-            ("Tables", workspace.Instance.GetOrCreateEntityRecords("Table").Count.ToString()),
-            ("Fields", workspace.Instance.GetOrCreateEntityRecords("Field").Count.ToString()),
-            ("TableRelationships", workspace.Instance.GetOrCreateEntityRecords("TableRelationship").Count.ToString()),
-            ("TableRelationshipFields", workspace.Instance.GetOrCreateEntityRecords("TableRelationshipField").Count.ToString()),
-            ("FieldDataTypeDetails", workspace.Instance.GetOrCreateEntityRecords("FieldDataTypeDetail").Count.ToString()),
-            ("DataTypeIds", workspace.Instance.GetOrCreateEntityRecords("Field")
-                .Select(record => record.Values.TryGetValue("DataTypeId", out var typeId) ? typeId : string.Empty)
-                .Where(typeId => !string.IsNullOrWhiteSpace(typeId))
-                .Distinct(StringComparer.Ordinal)
-                .Count().ToString()));
+        Presenter.WriteOk($"Created {Path.GetFileName(workspacePath)}");
         return 0;
     }
 
@@ -259,7 +244,7 @@ internal static class Program
         Presenter.WriteInfo("  Creates a new workspace with the MetaSchema model and validates it.");
         Presenter.WriteInfo("  Scope is controlled by schema/table filters or all-schemas/all-tables discovery switches.");
         Presenter.WriteInfo("  TableRelationship rows are emitted only for enforced and trusted SQL Server foreign keys whose source and target tables are both in scope.");
-        Presenter.WriteInfo("  Field rows carry a scalar DataTypeId plus local FieldDataTypeDetail rows such as Length or NumericPrecision.");
+        Presenter.WriteInfo("  Field rows carry a scalar DataTypeId plus local FieldDataTypeDetail rows such as Length, Precision, or Scale.");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

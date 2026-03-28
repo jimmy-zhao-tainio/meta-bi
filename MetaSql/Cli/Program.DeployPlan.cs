@@ -81,17 +81,22 @@ internal static partial class Program
 
             if (manifest.IsDeployable)
             {
-                Presenter.WriteOk(
-                    "deploy-plan complete",
-                    ("Verdict", "deployable"),
-                    ("AddCount", manifest.AddCount.ToString()),
-                    ("DropCount", manifest.DropCount.ToString()),
-                    ("AlterCount", manifest.AlterCount.ToString()),
-                    ("TruncateCount", manifest.TruncateCount.ToString()),
-                    ("ReplaceCount", manifest.ReplaceCount.ToString()),
-                    ("BlockCount", manifest.BlockCount.ToString()),
-                    ("ApprovalCount", parse.DestructiveApprovals.Count.ToString()),
-                    ("ManifestPath", outputPath));
+                var details = new List<(string Label, string Value)>
+                {
+                    ("Status", "ready to deploy"),
+                    ("Changes", FormatActionSummary(
+                        (manifest.AddCount, "to add"),
+                        (manifest.AlterCount, "to alter"),
+                        (manifest.DropCount, "to drop"),
+                        (manifest.TruncateCount, "to truncate"),
+                        (manifest.ReplaceCount, "to replace"))),
+                };
+                if (parse.DestructiveApprovals.Count > 0)
+                {
+                    details.Add(("Approvals used", parse.DestructiveApprovals.Count.ToString()));
+                }
+
+                Presenter.WriteOk("Created deploy plan", details.ToArray());
                 return 0;
             }
 
@@ -99,7 +104,7 @@ internal static partial class Program
                 "deploy-plan produced a non-deployable manifest.",
                 "review block entries in the manifest output and fix source/live drift.",
                 4,
-                RenderManifestIssues(manifest.ManifestModel, outputPath));
+                RenderManifestIssues(manifest.ManifestModel, outputPath, sourceWorkspace, liveWorkspace));
         }
         catch (Exception ex)
         {
@@ -124,7 +129,9 @@ internal static partial class Program
 
     private static List<string> RenderManifestIssues(
         MetaSqlDeployManifest.MetaSqlDeployManifestModel manifestModel,
-        string outputPath)
+        string outputPath,
+        Workspace sourceWorkspace,
+        Workspace liveWorkspace)
     {
         var lines = new List<string>
         {
@@ -134,9 +141,7 @@ internal static partial class Program
         AddBlockSummaryLines(
             lines,
             manifestModel.BlockTableDifferenceList.Select(row => ("BlockTableDifference", row.DifferenceSummary)));
-        AddBlockSummaryLines(
-            lines,
-            manifestModel.BlockTableColumnDifferenceList.Select(row => ("BlockTableColumnDifference", row.DifferenceSummary)));
+        AddTableColumnBlockLines(lines, manifestModel.BlockTableColumnDifferenceList, sourceWorkspace, liveWorkspace);
         AddBlockSummaryLines(
             lines,
             manifestModel.BlockPrimaryKeyDifferenceList.Select(row => ("BlockPrimaryKeyDifference", row.DifferenceSummary)));
@@ -148,6 +153,54 @@ internal static partial class Program
             manifestModel.BlockIndexDifferenceList.Select(row => ("BlockIndexDifference", row.DifferenceSummary)));
 
         return lines;
+    }
+
+    private static void AddTableColumnBlockLines(
+        List<string> lines,
+        IEnumerable<MetaSqlDeployManifest.BlockTableColumnDifference> rows,
+        Workspace sourceWorkspace,
+        Workspace liveWorkspace)
+    {
+        var sourceColumnsById = BuildRecordIndex(sourceWorkspace, "TableColumn");
+        var liveColumnsById = BuildRecordIndex(liveWorkspace, "TableColumn");
+        var sourceTablesById = BuildRecordIndex(sourceWorkspace, "Table");
+        var liveTablesById = BuildRecordIndex(liveWorkspace, "Table");
+        var sourceSchemasById = BuildRecordIndex(sourceWorkspace, "Schema");
+        var liveSchemasById = BuildRecordIndex(liveWorkspace, "Schema");
+        var sourceDetailsByColumnId = BuildGroupedRecordIndex(sourceWorkspace, "TableColumnDataTypeDetail", "TableColumnId");
+        var liveDetailsByColumnId = BuildGroupedRecordIndex(liveWorkspace, "TableColumnDataTypeDetail", "TableColumnId");
+
+        foreach (var row in rows
+                     .OrderBy(item => item.SourceTableColumnId, StringComparer.Ordinal)
+                     .ThenBy(item => item.LiveTableColumnId, StringComparer.Ordinal)
+                     .ThenBy(item => item.DifferenceSummary, StringComparer.Ordinal))
+        {
+            sourceColumnsById.TryGetValue(row.SourceTableColumnId, out var sourceColumn);
+            liveColumnsById.TryGetValue(row.LiveTableColumnId, out var liveColumn);
+
+            var displayName = FormatBlockedColumnName(
+                sourceColumn,
+                liveColumn,
+                sourceTablesById,
+                liveTablesById,
+                sourceSchemasById,
+                liveSchemasById,
+                row.DifferenceSummary);
+
+            lines.Add($"Blocked column: {displayName}");
+
+            if (sourceColumn is not null)
+            {
+                lines.Add($"  Source: {FormatColumnShape(sourceColumn, sourceDetailsByColumnId)}");
+            }
+
+            if (liveColumn is not null)
+            {
+                lines.Add($"  Live: {FormatColumnShape(liveColumn, liveDetailsByColumnId)}");
+            }
+
+            lines.Add($"  Why blocked: {TrimDisplayPrefix(row.DifferenceSummary, displayName)}");
+        }
     }
 
     private static void AddBlockSummaryLines(
@@ -170,6 +223,149 @@ internal static partial class Program
         }
     }
 
+    private static Dictionary<string, GenericRecord> BuildRecordIndex(Workspace workspace, string entityName)
+    {
+        return workspace.Instance
+            .GetOrCreateEntityRecords(entityName)
+            .ToDictionary(row => row.Id, StringComparer.Ordinal);
+    }
+
+    private static Dictionary<string, List<GenericRecord>> BuildGroupedRecordIndex(
+        Workspace workspace,
+        string entityName,
+        string relationshipName)
+    {
+        return workspace.Instance
+            .GetOrCreateEntityRecords(entityName)
+            .Where(row => row.RelationshipIds.TryGetValue(relationshipName, out var id) && !string.IsNullOrWhiteSpace(id))
+            .GroupBy(row => row.RelationshipIds[relationshipName], StringComparer.Ordinal)
+            .ToDictionary(group => group.Key, group => group.ToList(), StringComparer.Ordinal);
+    }
+
+    private static string FormatBlockedColumnName(
+        GenericRecord? sourceColumn,
+        GenericRecord? liveColumn,
+        IReadOnlyDictionary<string, GenericRecord> sourceTablesById,
+        IReadOnlyDictionary<string, GenericRecord> liveTablesById,
+        IReadOnlyDictionary<string, GenericRecord> sourceSchemasById,
+        IReadOnlyDictionary<string, GenericRecord> liveSchemasById,
+        string fallback)
+    {
+        if (sourceColumn is not null)
+        {
+            return FormatColumnName(sourceColumn, sourceTablesById, sourceSchemasById);
+        }
+
+        if (liveColumn is not null)
+        {
+            return FormatColumnName(liveColumn, liveTablesById, liveSchemasById);
+        }
+
+        var separator = fallback.IndexOf(':');
+        return separator >= 0
+            ? fallback[..separator].Trim()
+            : fallback.Trim();
+    }
+
+    private static string FormatColumnName(
+        GenericRecord column,
+        IReadOnlyDictionary<string, GenericRecord> tablesById,
+        IReadOnlyDictionary<string, GenericRecord> schemasById)
+    {
+        if (!column.RelationshipIds.TryGetValue("TableId", out var tableId) ||
+            !tablesById.TryGetValue(tableId, out var table))
+        {
+            return column.Values.GetValueOrDefault("Name") ?? column.Id;
+        }
+
+        if (!table.RelationshipIds.TryGetValue("SchemaId", out var schemaId) ||
+            !schemasById.TryGetValue(schemaId, out var schema))
+        {
+            return $"{table.Values.GetValueOrDefault("Name")}.{column.Values.GetValueOrDefault("Name")}";
+        }
+
+        return $"{schema.Values.GetValueOrDefault("Name")}.{table.Values.GetValueOrDefault("Name")}.{column.Values.GetValueOrDefault("Name")}";
+    }
+
+    private static string FormatColumnShape(
+        GenericRecord column,
+        IReadOnlyDictionary<string, List<GenericRecord>> detailsByColumnId)
+    {
+        var typeName = GetSqlServerTypeName(column.Values.GetValueOrDefault("MetaDataTypeId"));
+        var detailMap = BuildNormalizedDetailMap(detailsByColumnId, column.Id);
+        var shape = BuildTypeShape(typeName, detailMap);
+        var isNullable = string.Equals(column.Values.GetValueOrDefault("IsNullable"), "true", StringComparison.OrdinalIgnoreCase);
+        return isNullable
+            ? shape + " null"
+            : shape + " not null";
+    }
+
+    private static string BuildTypeShape(string typeName, IReadOnlyDictionary<string, string> detailMap)
+    {
+        if (detailMap.TryGetValue("Length", out var length) && !string.IsNullOrWhiteSpace(length))
+        {
+            var renderedLength = string.Equals(length, "-1", StringComparison.Ordinal) ? "max" : length;
+            return $"{typeName}({renderedLength})";
+        }
+
+        if (detailMap.TryGetValue("Precision", out var precision) && !string.IsNullOrWhiteSpace(precision))
+        {
+            if (detailMap.TryGetValue("Scale", out var scale) && !string.IsNullOrWhiteSpace(scale))
+            {
+                return $"{typeName}({precision},{scale})";
+            }
+
+            return $"{typeName}({precision})";
+        }
+
+        return typeName;
+    }
+
+    private static Dictionary<string, string> BuildNormalizedDetailMap(
+        IReadOnlyDictionary<string, List<GenericRecord>> detailsByColumnId,
+        string columnId)
+    {
+        if (!detailsByColumnId.TryGetValue(columnId, out var rows))
+        {
+            return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
+
+        var map = rows.ToDictionary(
+            row => row.Values.GetValueOrDefault("Name") ?? string.Empty,
+            row => row.Values.GetValueOrDefault("Value") ?? string.Empty,
+            StringComparer.OrdinalIgnoreCase);
+
+        if (!map.ContainsKey("Precision") &&
+            map.TryGetValue("NumericPrecision", out var numericPrecision) &&
+            !string.IsNullOrWhiteSpace(numericPrecision))
+        {
+            map["Precision"] = numericPrecision;
+        }
+
+        return map;
+    }
+
+    private static string GetSqlServerTypeName(string? metaDataTypeId)
+    {
+        if (string.IsNullOrWhiteSpace(metaDataTypeId))
+        {
+            return "(unknown type)";
+        }
+
+        var separator = metaDataTypeId.LastIndexOf(':');
+        return separator >= 0 && separator + 1 < metaDataTypeId.Length
+            ? metaDataTypeId[(separator + 1)..]
+            : metaDataTypeId;
+    }
+
+    private static string TrimDisplayPrefix(string summary, string displayName)
+    {
+        var prefix = displayName + ":";
+        return summary.StartsWith(prefix, StringComparison.Ordinal)
+            ? summary[prefix.Length..].TrimStart()
+            : summary;
+    }
+
     private static void PrintDeployPlanHelp()
     {
         Presenter.WriteInfo("Command: deploy-plan");
@@ -187,7 +383,7 @@ internal static partial class Program
         Presenter.WriteInfo("  Shared primary-key differences become ReplacePrimaryKey when executable; otherwise they are blocked.");
         Presenter.WriteInfo("  Shared foreign-key differences become ReplaceForeignKey when executable; otherwise they are blocked.");
         Presenter.WriteInfo("  Shared index differences become ReplaceIndex when executable; otherwise they are blocked.");
-        Presenter.WriteInfo("  Deployable only when BlockCount = 0.");
+        Presenter.WriteInfo("  Deployable only when there are no block entries.");
     }
 
     private static void DeleteIfExists(string path)

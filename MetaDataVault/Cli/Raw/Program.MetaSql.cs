@@ -29,11 +29,7 @@ internal static partial class Program
                 implementationWorkspacePath,
                 parse.DatabaseName).ConfigureAwait(false);
 
-            Presenter.WriteOk(
-                "raw metasql generated",
-                ("Workspace", workspacePath),
-                ("Database", parse.DatabaseName),
-                ("CurrentMetaSqlWorkspace", outputWorkspacePath));
+            Presenter.WriteOk($"Generated {Path.GetFileName(outputWorkspacePath)}");
             return 0;
         }
         catch (Exception ex)

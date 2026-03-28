@@ -15,7 +15,7 @@ public sealed partial class CliTests
             var result = RunBusinessCli($"--new-workspace \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("OK: metabusinessdatavault workspace created", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("OK: Created BusinessDataVault", result.Output, StringComparison.OrdinalIgnoreCase);
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             Assert.Equal("MetaBusinessDataVault", workspace.Model.Name);
@@ -37,7 +37,7 @@ public sealed partial class CliTests
             var result = RunRawCli($"--new-workspace \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("OK: metarawdatavault workspace created", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("OK: Created RawDataVault", result.Output, StringComparison.OrdinalIgnoreCase);
 
             var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
             Assert.Equal("MetaRawDataVault", workspace.Model.Name);

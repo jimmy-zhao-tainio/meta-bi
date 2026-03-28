@@ -31,15 +31,21 @@ internal static partial class Program
                     })
                 .ConfigureAwait(false);
 
-            Presenter.WriteOk(
-                "deploy complete",
-                ("DatabaseCreated", result.DatabaseCreated ? "true" : "false"),
-                ("AppliedAddCount", result.AppliedAddCount.ToString()),
-                ("AppliedDropCount", result.AppliedDropCount.ToString()),
-                ("AppliedAlterCount", result.AppliedAlterCount.ToString()),
-                ("AppliedTruncateCount", result.AppliedTruncateCount.ToString()),
-                ("AppliedReplaceCount", result.AppliedReplaceCount.ToString()),
-                ("ExecutedStatementCount", result.ExecutedStatementCount.ToString()));
+            var details = new List<(string Label, string Value)>
+            {
+                ("Applied", FormatActionSummary(
+                    (result.AppliedAddCount, "added"),
+                    (result.AppliedAlterCount, "altered"),
+                    (result.AppliedDropCount, "dropped"),
+                    (result.AppliedTruncateCount, "truncated"),
+                    (result.AppliedReplaceCount, "replaced"))),
+            };
+            if (result.DatabaseCreated)
+            {
+                details.Insert(0, ("Database", "created"));
+            }
+
+            Presenter.WriteOk("Applied deploy plan", details.ToArray());
             return 0;
         }
         catch (Exception ex)

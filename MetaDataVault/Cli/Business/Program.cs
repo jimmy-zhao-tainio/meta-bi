@@ -63,10 +63,7 @@ internal static partial class Program
         }
 
         await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
-        Presenter.WriteOk(
-            "metabusinessdatavault workspace created",
-            ("Path", workspacePath),
-            ("Model", workspace.Model.Name));
+        Presenter.WriteOk($"Created {Path.GetFileName(workspacePath)}");
         return 0;
     }
 

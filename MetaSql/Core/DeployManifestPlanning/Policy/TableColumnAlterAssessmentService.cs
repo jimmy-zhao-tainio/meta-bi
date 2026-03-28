@@ -75,19 +75,19 @@ internal sealed class TableColumnAlterAssessmentService
             var liveTypeName = GetSqlServerTypeName(liveTypeId);
             if (!string.Equals(sourceTypeName, liveTypeName, StringComparison.OrdinalIgnoreCase))
             {
-                return (false, false, $"{difference.DisplayName}: type family transitions are blocked in this slice ({liveTypeName} -> {sourceTypeName}).");
+                return (false, false, $"{difference.DisplayName}: type family changes are not auto-executable in this deploy slice ({liveTypeName} -> {sourceTypeName}).");
             }
 
             if (!LengthBasedSqlServerTypeNames.Contains(sourceTypeName))
             {
-                return (false, false, $"{difference.DisplayName}: only length-based SqlServer types are executable for type-shape changes in this slice.");
+                return (false, false, $"{difference.DisplayName}: type-shape changes are only auto-executable for length-based SqlServer types (char, nchar, varchar, nvarchar, binary, varbinary).");
             }
 
             var sourceDetailMap = GetDetailMap(lookup.SourceColumnDetailsByColumnId, sourceColumn.Id);
             var liveDetailMap = GetDetailMap(lookup.LiveColumnDetailsByColumnId, liveColumn.Id);
             if (!HasOnlyLengthDetailChange(sourceDetailMap, liveDetailMap))
             {
-                return (false, false, $"{difference.DisplayName}: only Length detail changes are executable for type-shape changes in this slice.");
+                return (false, false, $"{difference.DisplayName}: type-shape changes are only auto-executable when Length is the only changed detail.");
             }
         }
 
