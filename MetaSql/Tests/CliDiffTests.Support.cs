@@ -1177,7 +1177,7 @@ public sealed partial class CliDiffTests
 
     private static void AddUnsupportedActionKindToManifestModel(string manifestWorkspacePath, string unsupportedEntityName)
     {
-        var modelPath = Path.Combine(manifestWorkspacePath, "metadata", "model.xml");
+        var modelPath = Path.Combine(manifestWorkspacePath, "model.xml");
         var document = XDocument.Load(modelPath);
         var model = document.Root ?? throw new InvalidOperationException("Manifest model.xml root is missing.");
         var entityList = model.Element("EntityList") ?? throw new InvalidOperationException("Manifest model.xml EntityList is missing.");

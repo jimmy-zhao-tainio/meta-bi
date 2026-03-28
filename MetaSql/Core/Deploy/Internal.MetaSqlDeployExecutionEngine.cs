@@ -27,7 +27,11 @@ internal sealed class MetaSqlDeployExecutionEngine
         Directory.CreateDirectory(tempRootPath);
         try
         {
-            manifestContractValidator.Validate(manifestWorkspacePath);
+            var workspaceService = new WorkspaceService();
+            var manifestWorkspace = await workspaceService
+                .LoadAsync(manifestWorkspacePath, searchUpward: false, cancellationToken)
+                .ConfigureAwait(false);
+            manifestContractValidator.Validate(manifestWorkspace);
 
             var manifestModel = await MetaSqlDeployManifest.MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(
                     manifestWorkspacePath,
@@ -43,7 +47,6 @@ internal sealed class MetaSqlDeployExecutionEngine
                     $"Manifest '{root.Name}' is not deployable because it contains {blockCount} block {(blockCount == 1 ? "entry" : "entries")}.");
             }
 
-            var workspaceService = new WorkspaceService();
             var sourceWorkspace = await workspaceService
                 .LoadAsync(sourceWorkspacePath, searchUpward: false, cancellationToken)
                 .ConfigureAwait(false);

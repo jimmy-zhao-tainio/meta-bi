@@ -20,3 +20,8 @@ Metadata.code-workspace
 /meta.pdb
 /artifacts/
 
+# Local demo outputs and generated sample workspaces
+/Samples/Demos/*/run.output
+/Samples/Demos/RawDataVaultFromMetaSchemaCliIntegration/MetaSchemaWorkspace/
+/Samples/Demos/RawDataVaultFromMetaSchemaCliIntegration/RawDataVaultFromMetaSchemaCliIntegrationWorkspace/
+

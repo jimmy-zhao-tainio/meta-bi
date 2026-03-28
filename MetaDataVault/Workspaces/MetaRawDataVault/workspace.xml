@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <MetaWorkspace>
   <WorkspaceList>
     <Workspace Id="1" WorkspaceLayoutId="1" EncodingId="1" NewlinesId="1" EntitiesOrderId="1" PropertiesOrderId="1" RelationshipsOrderId="1" RowsOrderId="2" AttributesOrderId="3">
@@ -8,8 +8,8 @@
   </WorkspaceList>
   <WorkspaceLayoutList>
     <WorkspaceLayout Id="1">
-      <ModelFilePath>metadata/model.xml</ModelFilePath>
-      <InstanceDirPath>metadata/instance</InstanceDirPath>
+      <ModelFilePath>model.xml</ModelFilePath>
+      <InstanceDirPath>instances</InstanceDirPath>
     </WorkspaceLayout>
   </WorkspaceLayoutList>
   <EncodingList>

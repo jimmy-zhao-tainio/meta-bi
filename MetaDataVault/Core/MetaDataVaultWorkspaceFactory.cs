@@ -11,7 +11,7 @@ public static class MetaDataVaultWorkspaceFactory
         ArgumentNullException.ThrowIfNull(model);
 
         var rootPath = Path.GetFullPath(workspaceRootPath);
-        var metadataRootPath = Path.Combine(rootPath, "metadata");
+        var metadataRootPath = rootPath;
 
         return new Workspace
         {

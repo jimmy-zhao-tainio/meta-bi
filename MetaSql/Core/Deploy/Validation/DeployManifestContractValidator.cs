@@ -1,4 +1,4 @@
-using System.Xml.Linq;
+using Meta.Core.Domain;
 
 namespace MetaSql;
 
@@ -33,53 +33,18 @@ internal sealed class DeployManifestContractValidator
         "BlockIndexDifference",
     ];
 
-    public void Validate(string manifestWorkspacePath)
+    public void Validate(Workspace manifestWorkspace)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(manifestWorkspacePath);
+        ArgumentNullException.ThrowIfNull(manifestWorkspace);
 
-        var modelPath = Path.Combine(manifestWorkspacePath, "metadata", "model.xml");
-        if (!File.Exists(modelPath))
+        if (!string.Equals(manifestWorkspace.Model.Name, "MetaSqlDeployManifest", StringComparison.Ordinal))
         {
             throw new InvalidOperationException(
-                $"Deploy manifest metadata model was not found at '{modelPath}'.");
+                $"Deploy manifest workspace must use the MetaSqlDeployManifest model. Actual model: '{manifestWorkspace.Model.Name}'.");
         }
 
-        XDocument document;
-        try
-        {
-            document = XDocument.Load(modelPath);
-        }
-        catch (Exception ex)
-        {
-            throw new InvalidOperationException(
-                $"Deploy manifest metadata model could not be parsed at '{modelPath}'.",
-                ex);
-        }
-
-        var root = document.Root;
-        if (root is null)
-        {
-            throw new InvalidOperationException(
-                $"Deploy manifest metadata model is empty at '{modelPath}'.");
-        }
-
-        var modelName = GetAttribute(root, "name");
-        if (!string.Equals(modelName, "MetaSqlDeployManifest", StringComparison.Ordinal))
-        {
-            throw new InvalidOperationException(
-                $"Deploy manifest model must be 'MetaSqlDeployManifest'. Actual model: '{modelName}'.");
-        }
-
-        var entityList = root.Element("EntityList");
-        if (entityList is null)
-        {
-            throw new InvalidOperationException(
-                "Deploy manifest metadata model is missing EntityList.");
-        }
-
-        var declaredEntityNames = entityList
-            .Elements("Entity")
-            .Select(row => GetAttribute(row, "name"))
+        var declaredEntityNames = manifestWorkspace.Model.Entities
+            .Select(row => row.Name)
             .Where(row => !string.IsNullOrWhiteSpace(row))
             .ToHashSet(StringComparer.Ordinal);
 
@@ -116,17 +81,5 @@ internal sealed class DeployManifestContractValidator
         }
 
         return manifestModel.DeployManifestList[0];
-    }
-
-    private static string GetAttribute(XElement element, string attributeName)
-    {
-        var value = (string?)element.Attribute(attributeName);
-        if (!string.IsNullOrWhiteSpace(value))
-        {
-            return value;
-        }
-
-        var alternateName = char.ToUpperInvariant(attributeName[0]) + attributeName[1..];
-        return (string?)element.Attribute(alternateName) ?? string.Empty;
     }
 }

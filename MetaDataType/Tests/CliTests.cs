@@ -52,11 +52,11 @@ public sealed class CliTests
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: MetaDataType workspace created", result.Output);
             Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
-            Assert.True(File.Exists(Path.Combine(workspacePath, "metadata", "model.xml")));
+            Assert.True(File.Exists(Path.Combine(workspacePath, "model.xml")));
             Assert.Contains("DataTypeSystems: 6", result.Output);
             Assert.Contains("DataTypes:", result.Output);
             
-            var typeXml = File.ReadAllText(Path.Combine(workspacePath, "metadata", "instance", "DataType.xml"));
+            var typeXml = File.ReadAllText(Path.Combine(workspacePath, "instances", "DataType.xml"));
             Assert.Contains("sqlserver:type:nvarchar", typeXml);
         }
         finally

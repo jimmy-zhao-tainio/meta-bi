@@ -17,11 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\Workspaces\MetaRawDataVault\metadata\model.xml">
+    <EmbeddedResource Include="..\Workspaces\MetaRawDataVault\model.xml">
       <Link>Models\MetaRawDataVault.model.xml</Link>
       <LogicalName>MetaDataVault.Core.Models.MetaRawDataVault.model.xml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\Workspaces\MetaBusinessDataVault\metadata\model.xml">
+    <EmbeddedResource Include="..\Workspaces\MetaBusinessDataVault\model.xml">
       <Link>Models\MetaBusinessDataVault.model.xml</Link>
       <LogicalName>MetaDataVault.Core.Models.MetaBusinessDataVault.model.xml</LogicalName>
     </EmbeddedResource>

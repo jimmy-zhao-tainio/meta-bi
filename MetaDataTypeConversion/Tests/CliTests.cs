@@ -36,7 +36,7 @@ public sealed class CliTests
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: MetaDataTypeConversion workspace created", result.Output);
             Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
-            Assert.True(File.Exists(Path.Combine(workspacePath, "metadata", "model.xml")));
+            Assert.True(File.Exists(Path.Combine(workspacePath, "model.xml")));
             Assert.Contains("ConversionImplementations:", result.Output);
             Assert.Contains("DataTypeMappings:", result.Output);
             Assert.DoesNotContain("ConversionImplementations: 0", result.Output);
