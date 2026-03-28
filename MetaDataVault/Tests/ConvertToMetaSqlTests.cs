@@ -132,7 +132,7 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
-    public async Task ConvertAsync_UsesUnderscoreSuffixWhenSourceColumnCollidesWithTechnicalName()
+    public async Task ConvertAsync_UsesUnderscorePrefixWhenSourceColumnCollidesWithTechnicalName()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
@@ -223,7 +223,7 @@ public sealed class ConvertToMetaSqlTests
                 .ToList();
 
             Assert.Contains("HashKey", customerHubColumnNames);
-            Assert.Contains("HashKey_", customerHubColumnNames);
+            Assert.Contains("_HashKey", customerHubColumnNames);
         }
         finally
         {

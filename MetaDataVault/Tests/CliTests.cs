@@ -138,6 +138,55 @@ public sealed partial class CliTests
     }
 
     [Fact]
+    public async Task BusinessAuthoringAppendsOrdinalWhenOmitted()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "BusinessDataVault");
+
+        try
+        {
+            Assert.Equal(0, RunBusinessCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+
+            RunBusinessAdd(workspacePath, "add-hub --id Customer --name Customer");
+            RunBusinessAdd(workspacePath, "add-hub --id Order --name Order");
+            RunBusinessAdd(workspacePath, "add-link --id CustomerOrder --name CustomerOrder");
+            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderCustomer --link CustomerOrder --hub Customer --role-name Customer");
+            RunBusinessAdd(workspacePath, "add-link-hub --id CustomerOrderOrder --link CustomerOrder --hub Order --role-name Order");
+            RunBusinessAdd(workspacePath, "add-hub-satellite --id CustomerProfile --hub Customer --name CustomerProfile");
+            RunBusinessAdd(workspacePath, "add-link-satellite --id CustomerOrderStatus --link CustomerOrder --name CustomerOrderStatus");
+            RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusCode --link-satellite CustomerOrderStatus --name StatusCode --data-type-id meta:type:String");
+            RunBusinessAdd(workspacePath, "add-link-satellite-attribute --id CustomerOrderStatusReason --link-satellite CustomerOrderStatus --name StatusReason --data-type-id meta:type:String");
+            RunBusinessAdd(workspacePath, "add-point-in-time --id CustomerSnapshot --hub Customer --name CustomerSnapshot");
+            RunBusinessAdd(workspacePath, "add-point-in-time-hub-satellite --id CustomerSnapshotProfile --point-in-time CustomerSnapshot --hub-satellite CustomerProfile");
+            RunBusinessAdd(workspacePath, "add-point-in-time-link-satellite --id CustomerSnapshotOrderStatus --point-in-time CustomerSnapshot --link-satellite CustomerOrderStatus");
+            RunBusinessAdd(workspacePath, "add-bridge --id CustomerOrderTraversal --anchor-hub Customer --name CustomerOrderTraversal");
+            RunBusinessAdd(workspacePath, "add-bridge-link --id CustomerOrderTraversalCustomerOrder --bridge CustomerOrderTraversal --link CustomerOrder --role-name CustomerOrder");
+            RunBusinessAdd(workspacePath, "add-bridge-hub --id CustomerOrderTraversalOrder --bridge CustomerOrderTraversal --hub Order --role-name Order");
+
+            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var linkHubs = workspace.Instance.GetOrCreateEntityRecords("BusinessLinkHub").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("BusinessLinkSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var pointInTimeHubSatellites = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeHubSatellite").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var pointInTimeLinkSatellites = workspace.Instance.GetOrCreateEntityRecords("BusinessPointInTimeLinkSatellite").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var bridgeLinks = workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeLink").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var bridgeHubs = workspace.Instance.GetOrCreateEntityRecords("BusinessBridgeHub").ToDictionary(row => row.Id, StringComparer.Ordinal);
+
+            Assert.Equal("1", linkHubs["CustomerOrderCustomer"].Values["Ordinal"]);
+            Assert.Equal("2", linkHubs["CustomerOrderOrder"].Values["Ordinal"]);
+            Assert.Equal("1", linkSatelliteAttributes["CustomerOrderStatusCode"].Values["Ordinal"]);
+            Assert.Equal("2", linkSatelliteAttributes["CustomerOrderStatusReason"].Values["Ordinal"]);
+            Assert.Equal("1", pointInTimeHubSatellites["CustomerSnapshotProfile"].Values["Ordinal"]);
+            Assert.Equal("2", pointInTimeLinkSatellites["CustomerSnapshotOrderStatus"].Values["Ordinal"]);
+            Assert.Equal("1", bridgeLinks["CustomerOrderTraversalCustomerOrder"].Values["Ordinal"]);
+            Assert.Equal("2", bridgeHubs["CustomerOrderTraversalOrder"].Values["Ordinal"]);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
     public async Task RawAuthoringCommands_CoverBaselineAddCommands()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
@@ -182,6 +231,62 @@ public sealed partial class CliTests
             Assert.Equal(2, workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").Count);
             Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawHubSatellite").Count);
             Assert.Equal(1, workspace.Instance.GetOrCreateEntityRecords("RawLinkSatellite").Count);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task RawAuthoringAppendsOrdinalWhenOmitted()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+
+        try
+        {
+            Assert.Equal(0, RunRawCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+
+            RunRawAdd(workspacePath, "add-source-system --id Sales --name Sales");
+            RunRawAdd(workspacePath, "add-source-schema --id dbo --system Sales --name dbo");
+            RunRawAdd(workspacePath, "add-source-table --id CustomerTable --schema dbo --name Customer");
+            RunRawAdd(workspacePath, "add-source-table --id OrderTable --schema dbo --name [Order]");
+            RunRawAdd(workspacePath, "add-source-field --id CustomerIdField --table CustomerTable --name CustomerId --data-type-id sqlserver:type:nvarchar --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field --id CustomerNameField --table CustomerTable --name CustomerName --data-type-id sqlserver:type:nvarchar --is-nullable true");
+            RunRawAdd(workspacePath, "add-source-field --id OrderIdField --table OrderTable --name OrderId --data-type-id sqlserver:type:nvarchar --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field --id OrderCustomerIdField --table OrderTable --name CustomerId --data-type-id sqlserver:type:nvarchar --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-field --id OrderStatusField --table OrderTable --name StatusCode --data-type-id sqlserver:type:nvarchar --is-nullable false");
+            RunRawAdd(workspacePath, "add-source-table-relationship --id OrderCustomerRelationship --source-table OrderTable --target-table CustomerTable --name FK_Order_Customer");
+            RunRawAdd(workspacePath, "add-source-table-relationship-field --id OrderCustomerRelationshipField --relationship OrderCustomerRelationship --source-field OrderCustomerIdField --target-field CustomerIdField");
+            RunRawAdd(workspacePath, "add-hub --id CustomerHub --source-table CustomerTable --name Customer");
+            RunRawAdd(workspacePath, "add-hub --id OrderHub --source-table OrderTable --name Order");
+            RunRawAdd(workspacePath, "add-hub-key-part --id CustomerHubKey --hub CustomerHub --source-field CustomerIdField --name CustomerId");
+            RunRawAdd(workspacePath, "add-hub-satellite --id CustomerProfileSat --hub CustomerHub --source-table CustomerTable --name CustomerProfile --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --source-field CustomerNameField --name CustomerName");
+            RunRawAdd(workspacePath, "add-link --id OrderCustomerLink --source-relationship OrderCustomerRelationship --name OrderCustomer --link-kind standard");
+            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --role-name Order");
+            RunRawAdd(workspacePath, "add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --role-name Customer");
+            RunRawAdd(workspacePath, "add-link-satellite --id OrderCustomerStatusSat --link OrderCustomerLink --source-table OrderTable --name OrderCustomerStatus --satellite-kind standard");
+            RunRawAdd(workspacePath, "add-link-satellite-attribute --id OrderCustomerStatusCodeAttr --link-satellite OrderCustomerStatusSat --source-field OrderStatusField --name StatusCode");
+
+            var workspace = await new WorkspaceService().LoadAsync(workspacePath, searchUpward: false);
+            var sourceFields = workspace.Instance.GetOrCreateEntityRecords("SourceField").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var relationshipFields = workspace.Instance.GetOrCreateEntityRecords("SourceTableRelationshipField").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var hubKeyParts = workspace.Instance.GetOrCreateEntityRecords("RawHubKeyPart").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var linkHubs = workspace.Instance.GetOrCreateEntityRecords("RawLinkHub").ToDictionary(row => row.Id, StringComparer.Ordinal);
+            var linkSatelliteAttributes = workspace.Instance.GetOrCreateEntityRecords("RawLinkSatelliteAttribute").ToDictionary(row => row.Id, StringComparer.Ordinal);
+
+            Assert.Equal("1", sourceFields["CustomerIdField"].Values["Ordinal"]);
+            Assert.Equal("2", sourceFields["CustomerNameField"].Values["Ordinal"]);
+            Assert.Equal("1", sourceFields["OrderIdField"].Values["Ordinal"]);
+            Assert.Equal("2", sourceFields["OrderCustomerIdField"].Values["Ordinal"]);
+            Assert.Equal("3", sourceFields["OrderStatusField"].Values["Ordinal"]);
+            Assert.Equal("1", relationshipFields["OrderCustomerRelationshipField"].Values["Ordinal"]);
+            Assert.Equal("1", hubKeyParts["CustomerHubKey"].Values["Ordinal"]);
+            Assert.Equal("1", linkHubs["OrderCustomerLinkOrder"].Values["Ordinal"]);
+            Assert.Equal("2", linkHubs["OrderCustomerLinkCustomer"].Values["Ordinal"]);
+            Assert.Equal("1", linkSatelliteAttributes["OrderCustomerStatusCodeAttr"].Values["Ordinal"]);
         }
         finally
         {

@@ -131,4 +131,22 @@ public sealed partial class CliTests
         Assert.Equal(1, result.ExitCode);
         Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);
     }
+
+    [Fact]
+    public void BusinessAddCommandHelp_ShowsOrdinalAsOptional()
+    {
+        var result = RunBusinessCli("add-link-hub --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("[--ordinal <value>]", result.Output);
+    }
+
+    [Fact]
+    public void RawAddCommandHelp_ShowsOrdinalAsOptional()
+    {
+        var result = RunRawCli("add-link-hub --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("[--ordinal <value>]", result.Output);
+    }
 }

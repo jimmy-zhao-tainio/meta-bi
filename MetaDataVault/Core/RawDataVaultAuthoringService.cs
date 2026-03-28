@@ -67,8 +67,11 @@ public sealed class RawDataVaultAuthoringService : IRawDataVaultAuthoringService
             }
         }
 
+        var valuesToAdd = new Dictionary<string, string>(request.Values, StringComparer.OrdinalIgnoreCase);
+        OrdinalAssignment.AssignRawOrdinalIfMissing(workspace, entity.Name, valuesToAdd, request.Relationships);
+
         var recordToAdd = new GenericRecord { Id = request.RecordId };
-        foreach (var value in request.Values) recordToAdd.Values[value.Key] = value.Value;
+        foreach (var value in valuesToAdd) recordToAdd.Values[value.Key] = value.Value;
         foreach (var relationship in request.Relationships) recordToAdd.RelationshipIds[relationship.ColumnName] = relationship.TargetRecordId;
         records.Add(recordToAdd);
 

@@ -8,7 +8,7 @@ meta-schema extract sqlserver --new-workspace MetaSchemaWorkspace --connection "
 
 meta-datavault-raw from-metaschema --source-workspace MetaSchemaWorkspace --implementation-workspace ..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --new-workspace RawDataVaultFromMetaSchemaCliIntegrationWorkspace
 
-cd RawDataVaultFromMetaSchemaCliIntegrationWorkspace
+pushd RawDataVaultFromMetaSchemaCliIntegrationWorkspace
 
 meta-datavault-raw generate-metasql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name RawDataVaultFromMetaSchemaCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
 
@@ -17,3 +17,5 @@ meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-str
 meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultFromMetaSchemaCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
 
 meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultFromMetaSchemaCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlVerifyManifest
+
+popd

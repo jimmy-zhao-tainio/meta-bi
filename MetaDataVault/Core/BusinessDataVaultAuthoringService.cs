@@ -72,12 +72,15 @@ public sealed class BusinessDataVaultAuthoringService : IBusinessDataVaultAuthor
             }
         }
 
+        var valuesToAdd = new Dictionary<string, string>(request.Values, StringComparer.OrdinalIgnoreCase);
+        OrdinalAssignment.AssignBusinessOrdinalIfMissing(workspace, entity.Name, valuesToAdd, request.Relationships);
+
         var recordToAdd = new GenericRecord
         {
             Id = request.RecordId,
         };
 
-        foreach (var value in request.Values)
+        foreach (var value in valuesToAdd)
         {
             recordToAdd.Values[value.Key] = value.Value;
         }
