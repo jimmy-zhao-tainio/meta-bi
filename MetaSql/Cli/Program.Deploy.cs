@@ -1,4 +1,5 @@
 using MetaSql;
+using MetaSqlDeployManifest;
 
 internal static partial class Program
 {
@@ -21,6 +22,9 @@ internal static partial class Program
 
         try
         {
+            var manifestModel = await MetaSqlDeployManifestModel
+                .LoadFromXmlWorkspaceAsync(manifestWorkspacePath, searchUpward: false)
+                .ConfigureAwait(false);
             var deployService = new MetaSqlDeployService();
             var result = await deployService.DeployAsync(
                     new MetaSqlDeployRequest
@@ -33,19 +37,14 @@ internal static partial class Program
 
             var details = new List<(string Label, string Value)>
             {
-                ("Applied", FormatActionSummary(
-                    (result.AppliedAddCount, "added"),
-                    (result.AppliedAlterCount, "altered"),
-                    (result.AppliedDropCount, "dropped"),
-                    (result.AppliedTruncateCount, "truncated"),
-                    (result.AppliedReplaceCount, "replaced"))),
+                ("Deployed", FormatManifestDeploySummary(manifestModel)),
             };
             if (result.DatabaseCreated)
             {
                 details.Insert(0, ("Database", "created"));
             }
 
-            Presenter.WriteOk("Applied deploy plan", details.ToArray());
+            Presenter.WriteOk("Deployed changes", details.ToArray());
             return 0;
         }
         catch (Exception ex)

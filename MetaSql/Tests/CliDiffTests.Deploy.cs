@@ -192,7 +192,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 replaced");
+            AssertAppliedChanges(deployResult.Output, "1 replaced", "1 foreign key");
             Assert.Equal("ParentB", GetForeignKeyTargetTableName(databaseConnectionString, "FK_Child_Parent"));
         }
         finally
@@ -370,7 +370,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "2 replaced");
+            AssertAppliedChanges(deployResult.Output, "2 replaced", "1 primary key", "1 foreign key");
             Assert.True(ForeignKeyExists(databaseConnectionString, "FK_ChildPkCase_ParentPkCase"));
             Assert.Equal("ParentPkCase", GetForeignKeyTargetTableName(databaseConnectionString, "FK_ChildPkCase_ParentPkCase"));
             Assert.True(GetPrimaryKeyKeyIsDescending(databaseConnectionString, "raw", "ParentPkCase", "KeyA"));
@@ -1222,7 +1222,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            Assert.Contains("OK: Applied deploy plan", deployResult.Output, StringComparison.Ordinal);
+            Assert.Contains("OK: Deployed changes", deployResult.Output, StringComparison.Ordinal);
 
             Assert.True(ColumnExists(databaseConnectionString, "raw", "H_Customer", "CustomerName"));
 
@@ -1342,7 +1342,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 altered");
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column");
 
             Assert.Equal(200, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "H_Customer", "CustomerId"));
             Assert.False(GetColumnNullable(databaseConnectionString, "raw", "H_Customer", "CustomerId"));
@@ -1406,7 +1406,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 altered");
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column");
 
             Assert.Equal(100, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "VarcharCase", "ValueCol"));
         }
@@ -1527,7 +1527,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 altered", "1 truncated");
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column", "1 truncated", "1 column");
 
             Assert.Equal(50, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "VarcharCase", "ValueCol"));
             Assert.Equal(50, GetValueLength(databaseConnectionString, "raw", "VarcharCase", "ValueCol", 1));
@@ -1936,7 +1936,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 altered", "1 replaced");
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column", "1 replaced", "1 index");
             Assert.Equal(100, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "PkAlterCase", "KeyCol"));
             Assert.Equal(["KeyCol"], GetPrimaryKeyKeyColumns(databaseConnectionString, "raw", "PkAlterCase"));
             Assert.False(GetPrimaryKeyIsClustered(databaseConnectionString, "raw", "PkAlterCase"));
@@ -2019,7 +2019,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 altered", "1 replaced");
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column", "1 replaced", "1 index");
             Assert.True(GetColumnNullable(databaseConnectionString, "raw", "FkCase", "ParentCode"));
             Assert.True(ForeignKeyExists(databaseConnectionString, "FK_FkCase_ParentCase"));
         }
@@ -2098,7 +2098,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 altered", "1 replaced");
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column", "1 replaced", "1 index");
             Assert.Equal(100, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "IndexCase", "Payload"));
             Assert.True(IndexExists(databaseConnectionString, "IX_IndexCase_Id"));
         }

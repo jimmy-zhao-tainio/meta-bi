@@ -84,12 +84,7 @@ internal static partial class Program
                 var details = new List<(string Label, string Value)>
                 {
                     ("Status", "ready to deploy"),
-                    ("Changes", FormatActionSummary(
-                        (manifest.AddCount, "to add"),
-                        (manifest.AlterCount, "to alter"),
-                        (manifest.DropCount, "to drop"),
-                        (manifest.TruncateCount, "to truncate"),
-                        (manifest.ReplaceCount, "to replace"))),
+                    ("Changes", FormatManifestChangeSummary(manifest.ManifestModel)),
                 };
                 if (parse.DestructiveApprovals.Count > 0)
                 {

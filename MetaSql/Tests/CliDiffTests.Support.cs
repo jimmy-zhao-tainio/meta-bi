@@ -1240,7 +1240,7 @@ public sealed partial class CliDiffTests
 
     private static void AssertAppliedChanges(string output, params string[] fragments)
     {
-        AssertOutputLineContains(output, "Applied:", fragments);
+        AssertOutputLineContains(output, "Deployed:", fragments);
     }
 
     private static void DeleteIfExists(string path)

@@ -1,6 +1,7 @@
 using Meta.Core.Presentation;
 using MetaSql;
 using MetaSql.Extractors.SqlServer;
+using MetaSqlDeployManifest;
 using System.Text.Json;
 
 internal static partial class Program
@@ -215,16 +216,135 @@ internal static partial class Program
         Presenter.WriteNext("meta-sql deploy-plan --help");
     }
 
-    private static string FormatActionSummary(params (int Count, string Label)[] actions)
+    private static string FormatManifestChangeSummary(MetaSqlDeployManifestModel manifestModel)
     {
-        var parts = actions
-            .Where(item => item.Count > 0)
-            .Select(item => $"{item.Count} {item.Label}")
+        return FormatActionGroups(
+            BuildActionGroup(
+                total: manifestModel.AddSchemaList.Count +
+                       manifestModel.AddTableList.Count +
+                       manifestModel.AddTableColumnList.Count +
+                       manifestModel.AddPrimaryKeyList.Count +
+                       manifestModel.AddForeignKeyList.Count +
+                       manifestModel.AddIndexList.Count,
+                actionLabel: "to add",
+                (manifestModel.AddSchemaList.Count, "schema", "schemas"),
+                (manifestModel.AddTableList.Count, "table", "tables"),
+                (manifestModel.AddTableColumnList.Count, "column", "columns"),
+                (manifestModel.AddPrimaryKeyList.Count, "primary key", "primary keys"),
+                (manifestModel.AddForeignKeyList.Count, "foreign key", "foreign keys"),
+                (manifestModel.AddIndexList.Count, "index", "indexes")),
+            BuildActionGroup(
+                total: manifestModel.AlterTableColumnList.Count,
+                actionLabel: "to alter",
+                (manifestModel.AlterTableColumnList.Count, "column", "columns")),
+            BuildActionGroup(
+                total: manifestModel.DropTableList.Count +
+                       manifestModel.DropTableColumnList.Count +
+                       manifestModel.DropPrimaryKeyList.Count +
+                       manifestModel.DropForeignKeyList.Count +
+                       manifestModel.DropIndexList.Count,
+                actionLabel: "to drop",
+                (manifestModel.DropTableList.Count, "table", "tables"),
+                (manifestModel.DropTableColumnList.Count, "column", "columns"),
+                (manifestModel.DropPrimaryKeyList.Count, "primary key", "primary keys"),
+                (manifestModel.DropForeignKeyList.Count, "foreign key", "foreign keys"),
+                (manifestModel.DropIndexList.Count, "index", "indexes")),
+            BuildActionGroup(
+                total: manifestModel.TruncateTableColumnDataList.Count,
+                actionLabel: "to truncate",
+                (manifestModel.TruncateTableColumnDataList.Count, "column", "columns")),
+            BuildActionGroup(
+                total: manifestModel.ReplacePrimaryKeyList.Count +
+                       manifestModel.ReplaceForeignKeyList.Count +
+                       manifestModel.ReplaceIndexList.Count,
+                actionLabel: "to replace",
+                (manifestModel.ReplacePrimaryKeyList.Count, "primary key", "primary keys"),
+                (manifestModel.ReplaceForeignKeyList.Count, "foreign key", "foreign keys"),
+                (manifestModel.ReplaceIndexList.Count, "index", "indexes")));
+    }
+
+    private static string FormatManifestDeploySummary(MetaSqlDeployManifestModel manifestModel)
+    {
+        return FormatActionGroups(
+            BuildActionGroup(
+                total: manifestModel.AddSchemaList.Count +
+                       manifestModel.AddTableList.Count +
+                       manifestModel.AddTableColumnList.Count +
+                       manifestModel.AddPrimaryKeyList.Count +
+                       manifestModel.AddForeignKeyList.Count +
+                       manifestModel.AddIndexList.Count,
+                actionLabel: "added",
+                (manifestModel.AddSchemaList.Count, "schema", "schemas"),
+                (manifestModel.AddTableList.Count, "table", "tables"),
+                (manifestModel.AddTableColumnList.Count, "column", "columns"),
+                (manifestModel.AddPrimaryKeyList.Count, "primary key", "primary keys"),
+                (manifestModel.AddForeignKeyList.Count, "foreign key", "foreign keys"),
+                (manifestModel.AddIndexList.Count, "index", "indexes")),
+            BuildActionGroup(
+                total: manifestModel.AlterTableColumnList.Count,
+                actionLabel: "altered",
+                (manifestModel.AlterTableColumnList.Count, "column", "columns")),
+            BuildActionGroup(
+                total: manifestModel.DropTableList.Count +
+                       manifestModel.DropTableColumnList.Count +
+                       manifestModel.DropPrimaryKeyList.Count +
+                       manifestModel.DropForeignKeyList.Count +
+                       manifestModel.DropIndexList.Count,
+                actionLabel: "dropped",
+                (manifestModel.DropTableList.Count, "table", "tables"),
+                (manifestModel.DropTableColumnList.Count, "column", "columns"),
+                (manifestModel.DropPrimaryKeyList.Count, "primary key", "primary keys"),
+                (manifestModel.DropForeignKeyList.Count, "foreign key", "foreign keys"),
+                (manifestModel.DropIndexList.Count, "index", "indexes")),
+            BuildActionGroup(
+                total: manifestModel.TruncateTableColumnDataList.Count,
+                actionLabel: "truncated",
+                (manifestModel.TruncateTableColumnDataList.Count, "column", "columns")),
+            BuildActionGroup(
+                total: manifestModel.ReplacePrimaryKeyList.Count +
+                       manifestModel.ReplaceForeignKeyList.Count +
+                       manifestModel.ReplaceIndexList.Count,
+                actionLabel: "replaced",
+                (manifestModel.ReplacePrimaryKeyList.Count, "primary key", "primary keys"),
+                (manifestModel.ReplaceForeignKeyList.Count, "foreign key", "foreign keys"),
+                (manifestModel.ReplaceIndexList.Count, "index", "indexes")));
+    }
+
+    private static string FormatActionGroups(params string[] groups)
+    {
+        var populatedGroups = groups
+            .Where(group => !string.IsNullOrWhiteSpace(group))
             .ToList();
 
-        return parts.Count == 0
+        return populatedGroups.Count == 0
             ? "none"
-            : string.Join(", ", parts);
+            : string.Join("; ", populatedGroups);
+    }
+
+    private static string BuildActionGroup(
+        int total,
+        string actionLabel,
+        params (int Count, string Singular, string Plural)[] kinds)
+    {
+        if (total <= 0)
+        {
+            return string.Empty;
+        }
+
+        var kindSummary = kinds
+            .Where(kind => kind.Count > 0)
+            .Select(kind => FormatCount(kind.Count, kind.Singular, kind.Plural))
+            .ToList();
+
+        return kindSummary.Count == 0
+            ? $"{total} {actionLabel}"
+            : $"{total} {actionLabel} ({string.Join(", ", kindSummary)})";
+    }
+
+    private static string FormatCount(int count, string singular, string plural)
+    {
+        var noun = count == 1 ? singular : plural;
+        return $"{count} {noun}";
     }
 
     private static bool TryParseTableScope(

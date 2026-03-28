@@ -503,7 +503,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            AssertPlanChanges(result.Output, "1 to add", "1 to alter");
+            AssertPlanChanges(result.Output, "1 to add", "1 column", "1 to alter", "1 column");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.AddTableColumnList);
@@ -552,7 +552,7 @@ public sealed partial class CliDiffTests
             var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
 
             Assert.Equal(0, result.ExitCode);
-            AssertPlanChanges(result.Output, "2 to drop");
+            AssertPlanChanges(result.Output, "2 to drop", "1 table", "1 foreign key");
 
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(outputPath, searchUpward: false);
             Assert.Single(manifest.DropTableList);
