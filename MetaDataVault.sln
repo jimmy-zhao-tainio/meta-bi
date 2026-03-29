@@ -20,8 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.ToMetaSql", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema\Tooling\MetaSchema.Tooling.csproj", "{A44AD474-008C-4E63-ADA4-A4C77F6F888F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.FromMetaSchema", "MetaDataVault\FromMetaSchema\MetaDataVault.FromMetaSchema.csproj", "{398F6198-8F58-4A25-8774-4DFA36C6C8A1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Extractors.SqlServer", "MetaSql\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj", "{A1B88888-AD3A-42C3-8DC8-D4D0525FB2D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Tests", "MetaSql\Tests\MetaSql.Tests.csproj", "{45B96840-4A6A-422A-A525-FD5A9229A7C3}"
@@ -33,6 +31,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Cli", "MetaSql\Cli\MetaSql.Cli.csproj", "{3671CC11-A94E-40CC-B34C-27E755EBA77A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSqlDeployManifest.Tooling", "MetaSql\DeployManifest\Tooling\MetaSqlDeployManifest.Tooling.csproj", "{746307B0-49E9-49C5-A92D-6370BD02533B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Instance", "MetaSchema\Instance\MetaSchema.Instance.csproj", "{4C9CE717-9437-4D9B-8C2D-EB5C0170F272}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaConvert.Cli", "MetaConvert\Cli\MetaConvert.Cli.csproj", "{ABC4FF84-D601-4B79-827A-9671E3AC3541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaRawDataVault.Instance", "MetaDataVault\Instance\MetaRawDataVault.Instance.csproj", "{A586D570-C649-4B69-B306-158BF12E898D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaConvert.SchemaToDataVault", "MetaConvert\SchemaToDataVault\MetaConvert.SchemaToDataVault.csproj", "{D36AF8C6-CF10-4B73-9D8F-54D94CDC93BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,10 +85,6 @@ Global
 		{A44AD474-008C-4E63-ADA4-A4C77F6F888F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A44AD474-008C-4E63-ADA4-A4C77F6F888F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A44AD474-008C-4E63-ADA4-A4C77F6F888F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{398F6198-8F58-4A25-8774-4DFA36C6C8A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{398F6198-8F58-4A25-8774-4DFA36C6C8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{398F6198-8F58-4A25-8774-4DFA36C6C8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{398F6198-8F58-4A25-8774-4DFA36C6C8A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1B88888-AD3A-42C3-8DC8-D4D0525FB2D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1B88888-AD3A-42C3-8DC8-D4D0525FB2D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B88888-AD3A-42C3-8DC8-D4D0525FB2D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -107,5 +109,21 @@ Global
 		{746307B0-49E9-49C5-A92D-6370BD02533B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{746307B0-49E9-49C5-A92D-6370BD02533B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{746307B0-49E9-49C5-A92D-6370BD02533B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C9CE717-9437-4D9B-8C2D-EB5C0170F272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9CE717-9437-4D9B-8C2D-EB5C0170F272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9CE717-9437-4D9B-8C2D-EB5C0170F272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9CE717-9437-4D9B-8C2D-EB5C0170F272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABC4FF84-D601-4B79-827A-9671E3AC3541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABC4FF84-D601-4B79-827A-9671E3AC3541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABC4FF84-D601-4B79-827A-9671E3AC3541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABC4FF84-D601-4B79-827A-9671E3AC3541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A586D570-C649-4B69-B306-158BF12E898D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A586D570-C649-4B69-B306-158BF12E898D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A586D570-C649-4B69-B306-158BF12E898D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A586D570-C649-4B69-B306-158BF12E898D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D36AF8C6-CF10-4B73-9D8F-54D94CDC93BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D36AF8C6-CF10-4B73-9D8F-54D94CDC93BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D36AF8C6-CF10-4B73-9D8F-54D94CDC93BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D36AF8C6-CF10-4B73-9D8F-54D94CDC93BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

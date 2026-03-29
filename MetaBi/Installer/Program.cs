@@ -22,6 +22,7 @@ var tools = new[]
     new ToolSpec("meta-schema.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaSchema", "Cli"), "meta-schema.exe")),
     new ToolSpec("meta-data-type.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaDataType", "Cli"), "meta-data-type.exe")),
     new ToolSpec("meta-data-type-conversion.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaDataTypeConversion", "Cli"), "meta-data-type-conversion.exe")),
+    new ToolSpec("meta-convert.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaConvert", "Cli"), "meta-convert.exe")),
     new ToolSpec("meta-datavault-raw.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaDataVault", "Cli", "Raw"), "meta-datavault-raw.exe")),
     new ToolSpec("meta-datavault-business.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaDataVault", "Cli", "Business"), "meta-datavault-business.exe")),
 };
@@ -37,6 +38,7 @@ if (missing.Length > 0)
                 "Next: dotnet publish MetaSchema\\Cli\\MetaSchema.Cli.csproj -c Debug -r win-x64",
                 "Next: dotnet publish MetaDataType\\Cli\\MetaDataType.Cli.csproj -c Debug -r win-x64",
                 "Next: dotnet publish MetaDataTypeConversion\\Cli\\MetaDataTypeConversion.Cli.csproj -c Debug -r win-x64",
+                "Next: dotnet publish MetaConvert\\Cli\\MetaConvert.Cli.csproj -c Debug -r win-x64",
                 "Next: dotnet publish MetaDataVault\\Cli\\Raw\\MetaDataVault.Raw.Cli.csproj -c Debug -r win-x64",
                 "Next: dotnet publish MetaDataVault\\Cli\\Business\\MetaDataVault.Business.Cli.csproj -c Debug -r win-x64"
             }));

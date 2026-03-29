@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tests", "MetaSch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema\Tooling\MetaSchema.Tooling.csproj", "{B61DF880-CA14-4B7B-B7D1-F2E79D35FB85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Instance", "MetaSchema\Instance\MetaSchema.Instance.csproj", "{483D2D68-AFD8-47FB-B63A-151C74894151}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{B61DF880-CA14-4B7B-B7D1-F2E79D35FB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B61DF880-CA14-4B7B-B7D1-F2E79D35FB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B61DF880-CA14-4B7B-B7D1-F2E79D35FB85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483D2D68-AFD8-47FB-B63A-151C74894151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483D2D68-AFD8-47FB-B63A-151C74894151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483D2D68-AFD8-47FB-B63A-151C74894151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483D2D68-AFD8-47FB-B63A-151C74894151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

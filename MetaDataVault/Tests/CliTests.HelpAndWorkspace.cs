@@ -49,34 +49,31 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public void Help_ShowsFromMetaSchemaCommand()
+    public void Help_DoesNotShowFromMetaSchemaCommand()
     {
         var result = RunRawCli("help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-datavault-raw", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("from-metaschema", result.Output);
+        Assert.DoesNotContain("from-metaschema", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("check-business-materialization", result.Output);
         Assert.Contains("generate-metasql", result.Output);
         Assert.DoesNotContain("generate-sql", result.Output);
     }
 
     [Fact]
-    public void FromMetaSchema_Help_ShowsRequiredOptions()
+    public void MetaConvert_Help_ShowsSchemaToRawDataVaultCommand()
     {
-        var result = RunRawCli("from-metaschema --help");
+        var result = RunMetaConvertCli("schema-to-raw-datavault --help");
 
         Assert.Equal(0, result.ExitCode);
+        Assert.Contains("schema-to-raw-datavault", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--source-workspace <path>", result.Output);
         Assert.Contains("--new-workspace <path>", result.Output);
         Assert.Contains("[--ignore-field-name <name>]", result.Output);
         Assert.Contains("[--ignore-field-suffix <suffix>]", result.Output);
         Assert.Contains("[--include-views]", result.Output);
         Assert.Contains("[--verbose]", result.Output);
-        Assert.Contains("primary or unique keys", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("views are excluded by default", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("compact materialization summary", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("schema-driven and agnostic to source field names", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]

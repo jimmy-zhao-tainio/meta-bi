@@ -6,7 +6,7 @@ popd
 
 meta-schema extract sqlserver --new-workspace MetaSchemaWorkspace --connection "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --system BusinessDataVaultCliIntegrationWorkspace --all-schemas --all-tables
 
-meta-datavault-raw from-metaschema --source-workspace MetaSchemaWorkspace --new-workspace RawDataVaultFromMetaSchemaCliIntegrationWorkspace
+meta-convert schema-to-raw-datavault --source-workspace MetaSchemaWorkspace --new-workspace RawDataVaultFromMetaSchemaCliIntegrationWorkspace
 
 pushd RawDataVaultFromMetaSchemaCliIntegrationWorkspace
 

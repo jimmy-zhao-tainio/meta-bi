@@ -53,7 +53,7 @@ Build the installer:
 dotnet build MetaBi\Installer\MetaBi.Installer.csproj
 ```
 
-Then install the BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-datavault-raw`, `meta-datavault-business`) into `%LOCALAPPDATA%metabin` and add that directory to your user `PATH`:
+Then install the BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-convert`, `meta-datavault-raw`, `meta-datavault-business`) into `%LOCALAPPDATA%metabin` and add that directory to your user `PATH`:
 
 ```cmd
 MetaBi\Installer\bin\publish\win-x64\install-meta-bi.exe
@@ -80,6 +80,7 @@ The long-term repo boundary is:
 - `meta-schema`
 - `meta-data-type`
 - `meta-data-type-conversion`
+- `meta-convert`
 - `meta-datavault-raw`
 - `meta-datavault-business`
 - `meta-sql`
@@ -133,16 +134,29 @@ meta-data-type-conversion check --workspace .\MetaDataTypeConversion.Workspace
 meta-data-type-conversion resolve --workspace .\MetaDataTypeConversion.Workspace --source-data-type meta:type:String
 ```
 
+### meta-convert
+
+Purpose:
+- perform cross-model conversions owned by conversion glue code
+
+Current command surface:
+- `meta-convert help`
+- `meta-convert schema-to-raw-datavault --source-workspace <path> --new-workspace <path> [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
+
+Example:
+
+```cmd
+meta-convert schema-to-raw-datavault --source-workspace .\MetaSchema.Workspace --new-workspace .\MetaRawDataVault.Workspace
+```
+
 ### meta-datavault-raw
 
 Purpose:
 - author sanctioned raw Data Vault workspaces
-- materialize raw DV from `MetaSchema`
 - project raw DV to a current `MetaSql` workspace
 
 Current command surface:
 - `meta-datavault-raw --new-workspace <path>`
-- `meta-datavault-raw from-metaschema --source-workspace <path> --new-workspace <path> [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
 - `meta-datavault-raw generate-metasql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>`
 - `meta-datavault-raw add-*`
 
@@ -170,7 +184,6 @@ Examples:
 
 ```cmd
 meta-datavault-raw --new-workspace .\MetaRawDataVault.Workspace
-meta-datavault-raw from-metaschema --source-workspace .\MetaSchema.Workspace --new-workspace .\MetaRawDataVault.Workspace
 meta-datavault-raw generate-metasql --workspace .\MetaRawDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyVault --out .\out\CurrentMetaSql.Workspace
 ```
 

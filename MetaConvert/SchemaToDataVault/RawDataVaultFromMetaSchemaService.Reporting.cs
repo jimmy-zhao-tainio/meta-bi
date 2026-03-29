@@ -1,6 +1,6 @@
 using MS = global::MetaSchema;
 
-namespace MetaDataVault.FromMetaSchema;
+namespace MetaConvert.SchemaToDataVault;
 
 public sealed partial class RawDataVaultFromMetaSchemaService
 {

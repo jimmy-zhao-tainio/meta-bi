@@ -1,7 +1,7 @@
 using MS = global::MetaSchema;
 using MRDV = global::MetaRawDataVault;
 
-namespace MetaDataVault.FromMetaSchema;
+namespace MetaConvert.SchemaToDataVault;
 
 internal sealed record FromMetaSchemaOptions(
     ISet<string> IgnoredFieldNames,

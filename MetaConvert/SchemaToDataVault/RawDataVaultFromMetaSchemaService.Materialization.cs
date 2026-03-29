@@ -3,10 +3,14 @@ using System.Text;
 using MS = global::MetaSchema;
 using MRDV = global::MetaRawDataVault;
 
-namespace MetaDataVault.FromMetaSchema;
+namespace MetaConvert.SchemaToDataVault;
 
 public sealed partial class RawDataVaultFromMetaSchemaService
 {
+    // Contract: this method defines the full MetaSchema -> MetaRawDataVault
+    // projection surface for raw table families (H_*, HS_*, L_*, LS_*). Any
+    // future expansion of projected raw table families must update lineage
+    // coverage/emission in the same change to avoid pipeline drift.
     private static (FromMetaSchemaDraft Draft, RawDataVaultFromMetaSchemaReport Report) ConvertFromMetaSchema(
         MS.MetaSchemaModel metaSchemaModel,
         FromMetaSchemaOptions options)

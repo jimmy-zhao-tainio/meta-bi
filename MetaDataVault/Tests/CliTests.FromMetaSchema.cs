@@ -20,9 +20,9 @@ public sealed partial class CliTests
             SeedMetaSchema(source);
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --verbose");
+            var result = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --verbose");
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("OK: Materialized RawDataVault from MetaSchema", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("OK: Created RawDataVault", result.Output, StringComparison.OrdinalIgnoreCase);
             Assert.Contains("Summary", result.Output, StringComparison.OrdinalIgnoreCase);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
@@ -57,10 +57,7 @@ public sealed partial class CliTests
 
             var reportPath = Path.Combine(targetPath, "materialization-report.md");
             Assert.False(File.Exists(reportPath));
-            Assert.Contains("Hubs", result.Output);
-            Assert.Contains("dbo.Order -> primary key `PK_Order` -> `OrderId`; satellite attributes: 1", result.Output);
-            Assert.Contains("Links", result.Output);
-            Assert.Contains("OrderCustomer -> Order -> Customer", result.Output);
+            Assert.Contains("Summary", result.Output, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {
@@ -130,12 +127,12 @@ public sealed partial class CliTests
 
             await new WorkspaceService().SaveAsync(source);
 
-            var defaultResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{defaultTargetPath}\"");
+            var defaultResult = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{defaultTargetPath}\"");
             Assert.Equal(0, defaultResult.ExitCode);
 
-            var includeViewsResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{includeViewsTargetPath}\" --include-views");
+            var includeViewsResult = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{includeViewsTargetPath}\" --include-views");
             Assert.Equal(0, includeViewsResult.ExitCode);
-            Assert.Contains("Included Views", includeViewsResult.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("Error:", includeViewsResult.Output, StringComparison.OrdinalIgnoreCase);
 
             var defaultWorkspace = await new WorkspaceService().LoadAsync(defaultTargetPath, searchUpward: false);
             var includeViewsWorkspace = await new WorkspaceService().LoadAsync(includeViewsTargetPath, searchUpward: false);
@@ -166,7 +163,7 @@ public sealed partial class CliTests
             AddMetaSchemaField(source, "6", "1", "AuditId", "sqlserver:type:uniqueidentifier", "4", "false");
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
+            var result = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(0, result.ExitCode);
 
@@ -195,10 +192,10 @@ public sealed partial class CliTests
             AddMetaSchemaField(source, "6", "1", "OrderHashKey", "sqlserver:type:varbinary", "4", "false");
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --ignore-field-suffix HashKey");
+            var result = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --ignore-field-suffix HashKey");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("Ignored Field Suffixes", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("Error:", result.Output, StringComparison.OrdinalIgnoreCase);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
             Assert.Equal(6, workspace.Instance.GetOrCreateEntityRecords("SourceField").Count);
@@ -273,7 +270,7 @@ public sealed partial class CliTests
 
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
+            var result = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(0, result.ExitCode);
 
@@ -446,7 +443,7 @@ public sealed partial class CliTests
 
             await new WorkspaceService().SaveAsync(source);
 
-            var fromMetaSchemaResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
+            var fromMetaSchemaResult = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(0, fromMetaSchemaResult.ExitCode);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
@@ -486,7 +483,7 @@ public sealed partial class CliTests
             AddMetaSchemaField(source, "7", "2", "LoadTimestamp", "sqlserver:type:datetime2", "4", "false");
             await new WorkspaceService().SaveAsync(source);
 
-            var fromMetaSchemaResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
+            var fromMetaSchemaResult = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(0, fromMetaSchemaResult.ExitCode);
 
             var generateMetaSqlResult = RunRawCli(

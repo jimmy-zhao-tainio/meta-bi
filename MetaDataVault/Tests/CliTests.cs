@@ -628,6 +628,23 @@ public sealed partial class CliTests
         return RunProcess(startInfo, "Could not start DataVault CLI process.");
     }
 
+    private static (int ExitCode, string Output) RunMetaConvertCli(string arguments)
+    {
+        var repoRoot = FindRepositoryRoot();
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = "meta-convert",
+            Arguments = arguments,
+            WorkingDirectory = repoRoot,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+        };
+
+        return RunProcess(startInfo, "Could not start MetaConvert CLI process.");
+    }
+
     private static string GetRawImplementationWorkspacePath()
     {
         return Path.Combine(FindRepositoryRoot(), "MetaDataVault", "Workspaces", "MetaDataVaultImplementation");

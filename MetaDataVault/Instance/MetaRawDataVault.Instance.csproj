@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\MetaSchema\Tooling\MetaSchema.Tooling.csproj" />
     <ProjectReference Include="..\Tooling\MetaDataVault.Tooling.csproj" />
   </ItemGroup>
 
