@@ -22,6 +22,8 @@ Metadata.code-workspace
 
 # Local demo outputs and generated sample workspaces
 /Samples/Demos/*/run.output
+/Samples/Demos/BusinessDataVaultCliIntegration/BusinessDataVaultCliIntegrationWorkspace/
+/Samples/Demos/RawDataVaultCliIntegration/RawDataVaultCliIntegrationWorkspace/
 /Samples/Demos/RawDataVaultFromMetaSchemaCliIntegration/MetaSchemaWorkspace/
 /Samples/Demos/RawDataVaultFromMetaSchemaCliIntegration/RawDataVaultFromMetaSchemaCliIntegrationWorkspace/
 

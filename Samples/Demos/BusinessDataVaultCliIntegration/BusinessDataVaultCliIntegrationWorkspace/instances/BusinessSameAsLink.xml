@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessSameAsLinkList>
-    <BusinessSameAsLink Id="CustomerSameAsCrmCustomer" EquivalentHubId="CrmCustomer" PrimaryHubId="Customer">
-      <Name>CustomerSameAsCrmCustomer</Name>
-    </BusinessSameAsLink>
-  </BusinessSameAsLinkList>
-</MetaBusinessDataVault>

@@ -143,7 +143,7 @@ Purpose:
 Current command surface:
 - `meta-datavault-raw --new-workspace <path>`
 - `meta-datavault-raw from-metaschema --source-workspace <path> --new-workspace <path> [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
-- `meta-datavault-raw generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --out <path>`
+- `meta-datavault-raw generate-metasql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>`
 - `meta-datavault-raw add-*`
 
 Projection note:
@@ -183,7 +183,7 @@ Purpose:
 Current command surface:
 - `meta-datavault-business --new-workspace <path>`
 - `meta-datavault-business add-*`
-- `meta-datavault-business generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --out <path>`
+- `meta-datavault-business generate-metasql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>`
 
 Projection note:
 - `generate-metasql` takes physical schema ownership from the sanctioned `MetaDataVaultImplementation` workspace and does not accept a schema override.

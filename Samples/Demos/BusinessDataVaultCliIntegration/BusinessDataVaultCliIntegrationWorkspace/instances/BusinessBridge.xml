@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessBridgeList>
-    <BusinessBridge Id="CustomerFulfillmentTraversal" AnchorHubId="Customer">
-      <Name>CustomerFulfillmentTraversal</Name>
-    </BusinessBridge>
-  </BusinessBridgeList>
-</MetaBusinessDataVault>

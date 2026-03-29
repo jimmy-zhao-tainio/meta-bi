@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaBusinessDataVault>
-  <BusinessPointInTimeLinkSatelliteList>
-    <BusinessPointInTimeLinkSatellite Id="CustomerSnapshotOrderStatus" BusinessLinkSatelliteId="CustomerOrderStatus" BusinessPointInTimeId="CustomerSnapshot">
-      <Ordinal>2</Ordinal>
-    </BusinessPointInTimeLinkSatellite>
-  </BusinessPointInTimeLinkSatelliteList>
-</MetaBusinessDataVault>
