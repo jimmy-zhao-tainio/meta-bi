@@ -1,12 +1,10 @@
-using Meta.Core.Domain;
-using Meta.Core.Services;
 using MRDV = global::MetaRawDataVault;
 
-namespace MetaSchema.ToRawDataVault;
+namespace MetaDataVault.FromMetaSchema;
 
-public sealed partial class RawDataVaultBootstrapper
+public sealed partial class RawDataVaultFromMetaSchemaService
 {
-    private static Workspace CreateWorkspace(SchemaBootstrapDraft draft, string newWorkspacePath)
+    private static MRDV.MetaRawDataVaultModel CreateModel(FromMetaSchemaDraft draft)
     {
         var model = MRDV.MetaRawDataVaultModel.CreateEmpty();
         model.SourceSystemList.AddRange(draft.SourceSystems);
@@ -24,7 +22,6 @@ public sealed partial class RawDataVaultBootstrapper
         model.RawLinkHubList.AddRange(draft.RawLinkHubs);
         model.RawLinkSatelliteList.AddRange(draft.RawLinkSatellites);
         model.RawLinkSatelliteAttributeList.AddRange(draft.RawLinkSatelliteAttributes);
-        model.SaveToXmlWorkspace(newWorkspacePath);
-        return new WorkspaceService().LoadAsync(newWorkspacePath, searchUpward: false).GetAwaiter().GetResult();
+        return model;
     }
 }

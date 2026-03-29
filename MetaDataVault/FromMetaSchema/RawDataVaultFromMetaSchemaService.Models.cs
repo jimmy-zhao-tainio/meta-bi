@@ -1,9 +1,9 @@
 using MS = global::MetaSchema;
 using MRDV = global::MetaRawDataVault;
 
-namespace MetaSchema.ToRawDataVault;
+namespace MetaDataVault.FromMetaSchema;
 
-internal sealed record MetaSchemaBootstrapOptions(
+internal sealed record FromMetaSchemaOptions(
     ISet<string> IgnoredFieldNames,
     ISet<string> IgnoredFieldSuffixes,
     bool IncludeViews);
@@ -27,8 +27,48 @@ internal sealed record RelationshipMaterializationReportRow(
     MS.TableRelationship Relationship,
     MS.Table SourceTable,
     MS.Table TargetTable,
+    string? RawLinkName,
     bool LinkCreated,
     string? SkipReason);
+
+public sealed record RawDataVaultFromMetaSchemaReport(
+    RawDataVaultFromMetaSchemaSummary Summary,
+    IReadOnlyList<RawDataVaultFromMetaSchemaTableReport> Tables,
+    IReadOnlyList<RawDataVaultFromMetaSchemaRelationshipReport> Relationships);
+
+public sealed record RawDataVaultFromMetaSchemaSummary(
+    int SourceSystemCount,
+    int SourceSchemaCount,
+    int SourceTableCount,
+    int SourceRelationshipCount,
+    int RawHubCount,
+    int RawHubKeyPartCount,
+    int RawLinkCount,
+    int RawHubSatelliteCount,
+    int RawHubSatelliteAttributeCount,
+    IReadOnlyList<string> IgnoredFieldNames,
+    IReadOnlyList<string> IgnoredFieldSuffixes,
+    bool IncludeViews);
+
+public sealed record RawDataVaultFromMetaSchemaSelectedKeyReport(
+    string KeyType,
+    string? KeyName,
+    IReadOnlyList<string> FieldNames);
+
+public sealed record RawDataVaultFromMetaSchemaTableReport(
+    string QualifiedTableName,
+    RawDataVaultFromMetaSchemaSelectedKeyReport? SelectedKey,
+    bool HubCreated,
+    int SatelliteAttributeCount,
+    string? Reason);
+
+public sealed record RawDataVaultFromMetaSchemaRelationshipReport(
+    string RawLinkName,
+    string SourceTableName,
+    string TargetTableName,
+    bool LinkCreated,
+    bool NameWasDisambiguated,
+    string? Reason);
 
 internal sealed class SourceIndex
 {
@@ -47,7 +87,7 @@ internal sealed class SourceIndex
     public required ISet<string> RelationshipSourceFieldIds { get; init; }
 }
 
-internal sealed class SchemaBootstrapDraft
+internal sealed class FromMetaSchemaDraft
 {
     public List<MRDV.SourceSystem> SourceSystems { get; } = new();
     public List<MRDV.SourceSchema> SourceSchemas { get; } = new();
@@ -72,6 +112,4 @@ internal sealed class SchemaBootstrapDraft
     public Dictionary<string, MRDV.SourceTableRelationship> SourceRelationshipsById { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, MRDV.RawHub> RawHubsById { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, string> RawHubIdsBySourceTableId { get; } = new(StringComparer.Ordinal);
-
-    public string MaterializationReport { get; set; } = string.Empty;
 }

@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.ToMetaSql", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema\Tooling\MetaSchema.Tooling.csproj", "{A44AD474-008C-4E63-ADA4-A4C77F6F888F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.ToRawDataVault", "MetaSchema\ToRawDataVault\MetaSchema.ToRawDataVault.csproj", "{398F6198-8F58-4A25-8774-4DFA36C6C8A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.FromMetaSchema", "MetaDataVault\FromMetaSchema\MetaDataVault.FromMetaSchema.csproj", "{398F6198-8F58-4A25-8774-4DFA36C6C8A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Extractors.SqlServer", "MetaSql\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj", "{A1B88888-AD3A-42C3-8DC8-D4D0525FB2D1}"
 EndProject

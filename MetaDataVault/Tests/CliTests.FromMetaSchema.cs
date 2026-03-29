@@ -7,12 +7,11 @@ namespace MetaDataVault.Tests;
 public sealed partial class CliTests
 {
     [Fact]
-    public async Task FromMetaSchema_MaterializesSchemaBootstrapRawDataVault()
+    public async Task FromMetaSchema_MaterializesRawDataVault()
     {
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
         var targetPath = Path.Combine(root, "RawDataVault");
-        var implementationPath = GetRawImplementationWorkspacePath();
 
         try
         {
@@ -21,10 +20,10 @@ public sealed partial class CliTests
             SeedMetaSchema(source);
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\" --verbose");
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --verbose");
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: Materialized RawDataVault from MetaSchema", result.Output, StringComparison.OrdinalIgnoreCase);
-            Assert.Contains("Materialization Summary", result.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("Summary", result.Output, StringComparison.OrdinalIgnoreCase);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
             Assert.Equal("MetaRawDataVault", workspace.Model.Name);
@@ -58,11 +57,10 @@ public sealed partial class CliTests
 
             var reportPath = Path.Combine(targetPath, "materialization-report.md");
             Assert.False(File.Exists(reportPath));
-            Assert.Contains("dbo.Order", result.Output);
-            Assert.Contains("selected key: primary key `PK_Order` -> `OrderId`", result.Output);
-            Assert.Contains("satellite attribute count: 1", result.Output);
-            Assert.Contains("OrderCustomer (Order -> Customer)", result.Output);
-            Assert.Contains("link created: yes", result.Output);
+            Assert.Contains("Hubs", result.Output);
+            Assert.Contains("dbo.Order -> primary key `PK_Order` -> `OrderId`; satellite attributes: 1", result.Output);
+            Assert.Contains("Links", result.Output);
+            Assert.Contains("OrderCustomer -> Order -> Customer", result.Output);
         }
         finally
         {
@@ -77,7 +75,6 @@ public sealed partial class CliTests
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
         var defaultTargetPath = Path.Combine(root, "RawDataVault_Default");
         var includeViewsTargetPath = Path.Combine(root, "RawDataVault_WithViews");
-        var implementationPath = GetRawImplementationWorkspacePath();
 
         try
         {
@@ -133,10 +130,10 @@ public sealed partial class CliTests
 
             await new WorkspaceService().SaveAsync(source);
 
-            var defaultResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{defaultTargetPath}\"");
+            var defaultResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{defaultTargetPath}\"");
             Assert.Equal(0, defaultResult.ExitCode);
 
-            var includeViewsResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{includeViewsTargetPath}\" --include-views");
+            var includeViewsResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{includeViewsTargetPath}\" --include-views");
             Assert.Equal(0, includeViewsResult.ExitCode);
             Assert.Contains("Included Views", includeViewsResult.Output, StringComparison.OrdinalIgnoreCase);
 
@@ -160,7 +157,6 @@ public sealed partial class CliTests
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
         var targetPath = Path.Combine(root, "RawDataVault");
-        var implementationPath = GetRawImplementationWorkspacePath();
 
         try
         {
@@ -170,7 +166,7 @@ public sealed partial class CliTests
             AddMetaSchemaField(source, "6", "1", "AuditId", "sqlserver:type:uniqueidentifier", "4", "false");
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(0, result.ExitCode);
 
@@ -190,7 +186,6 @@ public sealed partial class CliTests
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
         var targetPath = Path.Combine(root, "RawDataVault");
-        var implementationPath = GetRawImplementationWorkspacePath();
 
         try
         {
@@ -200,7 +195,7 @@ public sealed partial class CliTests
             AddMetaSchemaField(source, "6", "1", "OrderHashKey", "sqlserver:type:varbinary", "4", "false");
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\" --ignore-field-suffix HashKey");
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\" --ignore-field-suffix HashKey");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ignored Field Suffixes", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -221,7 +216,6 @@ public sealed partial class CliTests
         var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
         var sourcePath = Path.Combine(root, "MetaSchemaSource");
         var targetPath = Path.Combine(root, "RawDataVault");
-        var implementationPath = GetRawImplementationWorkspacePath();
 
         try
         {
@@ -279,7 +273,7 @@ public sealed partial class CliTests
 
             await new WorkspaceService().SaveAsync(source);
 
-            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+            var result = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
 
             Assert.Equal(0, result.ExitCode);
 
@@ -452,7 +446,7 @@ public sealed partial class CliTests
 
             await new WorkspaceService().SaveAsync(source);
 
-            var fromMetaSchemaResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+            var fromMetaSchemaResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(0, fromMetaSchemaResult.ExitCode);
 
             var workspace = await new WorkspaceService().LoadAsync(targetPath, searchUpward: false);
@@ -492,7 +486,7 @@ public sealed partial class CliTests
             AddMetaSchemaField(source, "7", "2", "LoadTimestamp", "sqlserver:type:datetime2", "4", "false");
             await new WorkspaceService().SaveAsync(source);
 
-            var fromMetaSchemaResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --implementation-workspace \"{implementationPath}\" --new-workspace \"{targetPath}\"");
+            var fromMetaSchemaResult = RunRawCli($"from-metaschema --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(0, fromMetaSchemaResult.ExitCode);
 
             var generateMetaSqlResult = RunRawCli(

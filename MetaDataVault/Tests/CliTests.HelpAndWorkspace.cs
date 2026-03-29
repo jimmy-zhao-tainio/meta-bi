@@ -68,17 +68,14 @@ public sealed partial class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--source-workspace <path>", result.Output);
-        Assert.Contains("--implementation-workspace <path>", result.Output);
         Assert.Contains("--new-workspace <path>", result.Output);
-        Assert.Contains("[--business-workspace <path>]", result.Output);
         Assert.Contains("[--ignore-field-name <name>]", result.Output);
         Assert.Contains("[--ignore-field-suffix <suffix>]", result.Output);
         Assert.Contains("[--include-views]", result.Output);
         Assert.Contains("[--verbose]", result.Output);
         Assert.Contains("primary or unique keys", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("metadatavaultimplementation is required", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("views are excluded by default", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("print table and relationship materialization decisions to the console", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("compact materialization summary", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("schema-driven and agnostic to source field names", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 

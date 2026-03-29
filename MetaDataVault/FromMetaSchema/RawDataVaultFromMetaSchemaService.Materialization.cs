@@ -3,17 +3,15 @@ using System.Text;
 using MS = global::MetaSchema;
 using MRDV = global::MetaRawDataVault;
 
-namespace MetaSchema.ToRawDataVault;
+namespace MetaDataVault.FromMetaSchema;
 
-public sealed partial class RawDataVaultBootstrapper
+public sealed partial class RawDataVaultFromMetaSchemaService
 {
-    private static SchemaBootstrapDraft ConvertSchemaBootstrap(
+    private static (FromMetaSchemaDraft Draft, RawDataVaultFromMetaSchemaReport Report) ConvertFromMetaSchema(
         MS.MetaSchemaModel metaSchemaModel,
-        RawDataVaultImplementationModel implementation,
-        MetaSchemaBootstrapOptions options)
+        FromMetaSchemaOptions options)
     {
         ArgumentNullException.ThrowIfNull(metaSchemaModel);
-        ArgumentNullException.ThrowIfNull(implementation);
         ArgumentNullException.ThrowIfNull(options);
 
         var sourceIndex = BuildSourceIndex(metaSchemaModel, options.IncludeViews);
@@ -21,14 +19,14 @@ public sealed partial class RawDataVaultBootstrapper
         var candidateKeyAssessmentsByTableId = AssessCandidateKeys(metaSchemaModel, sourceIndex, options);
         var tableReportRows = MaterializeHubsAndSatellites(draft, sourceIndex, candidateKeyAssessmentsByTableId, options);
         var relationshipReportRows = MaterializeLinks(draft, sourceIndex);
-        draft.MaterializationReport = BuildMaterializationReport(
+        var report = BuildReport(
             draft,
             sourceIndex,
             tableReportRows,
             relationshipReportRows,
             options);
 
-        return draft;
+        return (draft, report);
     }
 
     private static SourceIndex BuildSourceIndex(MS.MetaSchemaModel metaSchemaModel, bool includeViews)
@@ -122,7 +120,7 @@ public sealed partial class RawDataVaultBootstrapper
     private static Dictionary<string, TableKeyAssessment> AssessCandidateKeys(
         MS.MetaSchemaModel metaSchemaModel,
         SourceIndex sourceIndex,
-        MetaSchemaBootstrapOptions options)
+        FromMetaSchemaOptions options)
     {
         var includedTableIds = sourceIndex.IncludedTables.Select(table => table.Id).ToHashSet(StringComparer.Ordinal);
         var includedFieldIds = sourceIndex.IncludedFields.Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
@@ -192,10 +190,10 @@ public sealed partial class RawDataVaultBootstrapper
     }
 
     private static List<TableMaterializationReportRow> MaterializeHubsAndSatellites(
-        SchemaBootstrapDraft draft,
+        FromMetaSchemaDraft draft,
         SourceIndex sourceIndex,
         IReadOnlyDictionary<string, TableKeyAssessment> candidateKeyAssessmentsByTableId,
-        MetaSchemaBootstrapOptions options)
+        FromMetaSchemaOptions options)
     {
         var tableReportRows = new List<TableMaterializationReportRow>();
 
@@ -298,7 +296,7 @@ public sealed partial class RawDataVaultBootstrapper
     }
 
     private static List<RelationshipMaterializationReportRow> MaterializeLinks(
-        SchemaBootstrapDraft draft,
+        FromMetaSchemaDraft draft,
         SourceIndex sourceIndex)
     {
         var relationshipReportRows = new List<RelationshipMaterializationReportRow>();
@@ -317,6 +315,7 @@ public sealed partial class RawDataVaultBootstrapper
                     relationship,
                     sourceTable,
                     targetTable,
+                    null,
                     false,
                     BuildRelationshipSkipReason(sourceHubId, targetHubId, sourceTable, targetTable)));
                 continue;
@@ -359,6 +358,7 @@ public sealed partial class RawDataVaultBootstrapper
                 relationship,
                 sourceTable,
                 targetTable,
+                link.Name,
                 true,
                 null));
         }

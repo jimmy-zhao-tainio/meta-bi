@@ -137,12 +137,12 @@ meta-data-type-conversion resolve --workspace .\MetaDataTypeConversion.Workspace
 
 Purpose:
 - author sanctioned raw Data Vault workspaces
-- bootstrap raw DV from `MetaSchema`
+- materialize raw DV from `MetaSchema`
 - project raw DV to a current `MetaSql` workspace
 
 Current command surface:
 - `meta-datavault-raw --new-workspace <path>`
-- `meta-datavault-raw from-metaschema --source-workspace <path> --implementation-workspace <path> --new-workspace <path> [--business-workspace <path>] [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
+- `meta-datavault-raw from-metaschema --source-workspace <path> --new-workspace <path> [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
 - `meta-datavault-raw generate-metasql --workspace <path> --implementation-workspace <path> --database-name <name> --out <path>`
 - `meta-datavault-raw add-*`
 
@@ -170,7 +170,7 @@ Examples:
 
 ```cmd
 meta-datavault-raw --new-workspace .\MetaRawDataVault.Workspace
-meta-datavault-raw from-metaschema --source-workspace .\MetaSchema.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --new-workspace .\MetaRawDataVault.Workspace
+meta-datavault-raw from-metaschema --source-workspace .\MetaSchema.Workspace --new-workspace .\MetaRawDataVault.Workspace
 meta-datavault-raw generate-metasql --workspace .\MetaRawDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyVault --out .\out\CurrentMetaSql.Workspace
 ```
 

@@ -1,12 +1,12 @@
 using MRDV = global::MetaRawDataVault;
 
-namespace MetaSchema.ToRawDataVault;
+namespace MetaDataVault.FromMetaSchema;
 
-public sealed partial class RawDataVaultBootstrapper
+public sealed partial class RawDataVaultFromMetaSchemaService
 {
-    private static SchemaBootstrapDraft CopySourceStructure(SourceIndex sourceIndex)
+    private static FromMetaSchemaDraft CopySourceStructure(SourceIndex sourceIndex)
     {
-        var draft = new SchemaBootstrapDraft();
+        var draft = new FromMetaSchemaDraft();
 
         foreach (var system in sourceIndex.IncludedSystems)
         {

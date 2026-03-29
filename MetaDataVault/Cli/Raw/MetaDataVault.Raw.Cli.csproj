@@ -22,7 +22,7 @@
     <ProjectReference Include="..\..\..\MetaSql\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
     <ProjectReference Include="..\..\..\MetaSql\Tooling\MetaSql.Tooling.csproj" />
     <ProjectReference Include="..\..\..\MetaSchema\Tooling\MetaSchema.Tooling.csproj" />
-    <ProjectReference Include="..\..\..\MetaSchema\ToRawDataVault\MetaSchema.ToRawDataVault.csproj" />
+    <ProjectReference Include="..\..\FromMetaSchema\MetaDataVault.FromMetaSchema.csproj" />
   </ItemGroup>
 
   <Target
