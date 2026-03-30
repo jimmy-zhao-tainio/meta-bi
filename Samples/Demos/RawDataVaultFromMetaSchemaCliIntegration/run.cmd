@@ -10,7 +10,7 @@ meta-convert schema-to-raw-datavault --source-workspace MetaSchemaWorkspace --ne
 
 pushd RawDataVaultFromMetaSchemaCliIntegrationWorkspace
 
-meta-datavault-raw generate-metasql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name RawDataVaultFromMetaSchemaCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
+meta-convert raw-datavault-to-sql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name RawDataVaultFromMetaSchemaCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
 
 meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultFromMetaSchemaCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlDeployManifest
 

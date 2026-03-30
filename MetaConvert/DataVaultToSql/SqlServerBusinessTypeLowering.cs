@@ -1,7 +1,7 @@
 using MetaDataType;
 using MetaDataTypeConversion;
 
-namespace MetaDataVault.ToMetaSql;
+namespace MetaConvert.DataVaultToSql;
 
 internal sealed class SqlServerBusinessTypeLowering
 {

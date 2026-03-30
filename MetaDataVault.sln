@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.Tooling", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSql.Tooling", "MetaSql\Tooling\MetaSql.Tooling.csproj", "{7EFA7A6E-B84A-430C-8308-0AA11A267E2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataVault.ToMetaSql", "MetaDataVault\ToMetaSql\MetaDataVault.ToMetaSql.csproj", "{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaConvert.DataVaultToSql", "MetaConvert\DataVaultToSql\MetaConvert.DataVaultToSql.csproj", "{2B527C0F-10EE-48A2-84F1-BF469B4D0F1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaSchema.Tooling", "MetaSchema\Tooling\MetaSchema.Tooling.csproj", "{A44AD474-008C-4E63-ADA4-A4C77F6F888F}"
 EndProject

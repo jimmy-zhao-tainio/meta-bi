@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MetaDataVault\ToMetaSql\MetaDataVault.ToMetaSql.csproj" />
+    <ProjectReference Include="..\..\MetaConvert\DataVaultToSql\MetaConvert.DataVaultToSql.csproj" />
     <ProjectReference Include="..\..\MetaDataVault\Tooling\MetaDataVault.Tooling.csproj" />
     <ProjectReference Include="..\Core\MetaSql.Core.csproj" />
     <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />

@@ -631,9 +631,11 @@ public sealed partial class CliTests
     private static (int ExitCode, string Output) RunMetaConvertCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();
+        var localExePath = Path.Combine(repoRoot, "MetaConvert", "Cli", "bin", "Debug", "net8.0", "meta-convert.exe");
+        var fileName = File.Exists(localExePath) ? localExePath : "meta-convert";
         var startInfo = new ProcessStartInfo
         {
-            FileName = "meta-convert",
+            FileName = fileName,
             Arguments = arguments,
             WorkingDirectory = repoRoot,
             RedirectStandardOutput = true,

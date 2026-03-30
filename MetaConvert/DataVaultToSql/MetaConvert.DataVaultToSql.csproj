@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tooling\MetaDataVault.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataVault\Tooling\MetaDataVault.Tooling.csproj" />
     <ProjectReference Include="..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
     <ProjectReference Include="..\..\MetaDataTypeConversion\Instance\MetaDataTypeConversion.Instance.csproj" />
     <ProjectReference Include="..\..\MetaSql\Tooling\MetaSql.Tooling.csproj" />

@@ -163,7 +163,7 @@ meta-datavault-raw add-link-hub --id EmployeeDepartmentLinkDepartment --link Emp
 meta-datavault-raw add-link-satellite --id EmployeeDepartmentSat --link EmployeeDepartmentLink --source-table EmployeeTable --name EmployeeDepartmentAssignment --satellite-kind standard
 meta-datavault-raw add-link-satellite-attribute --id EmployeeDepartmentHireDateAttr --link-satellite EmployeeDepartmentSat --source-field EmployeeHireDateField --name HireDate
 
-meta-datavault-raw generate-metasql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name RawDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
+meta-convert raw-datavault-to-sql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name RawDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
 
 meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlDeployManifest
 

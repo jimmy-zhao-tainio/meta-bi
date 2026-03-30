@@ -2,7 +2,7 @@ using MetaBusinessDataVault;
 using MetaDataVaultImplementation;
 using MetaSql;
 
-namespace MetaDataVault.ToMetaSql;
+namespace MetaConvert.DataVaultToSql;
 
 public static partial class Converter
 {

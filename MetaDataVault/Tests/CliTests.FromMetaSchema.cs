@@ -452,8 +452,8 @@ public sealed partial class CliTests
             Assert.Equal("DepartmentHierarchyDepartment_ParentDepartmentId", rawLinks["rawlink:rel:parent"].Values["Name"]);
             Assert.Equal("DepartmentHierarchyDepartment_ChildDepartmentId", rawLinks["rawlink:rel:child"].Values["Name"]);
 
-            var generateMetaSqlResult = RunRawCli(
-                $"generate-metasql --workspace \"{targetPath}\" --implementation-workspace \"{implementationPath}\" --database-name \"DisambiguatedLinkNaming\" --out \"{currentMetaSqlPath}\"");
+            var generateMetaSqlResult = RunMetaConvertCli(
+                $"raw-datavault-to-sql --workspace \"{targetPath}\" --implementation-workspace \"{implementationPath}\" --database-name \"DisambiguatedLinkNaming\" --out \"{currentMetaSqlPath}\"");
 
             Assert.Equal(0, generateMetaSqlResult.ExitCode);
             Assert.Contains("OK: Generated CurrentMetaSql", generateMetaSqlResult.Output, StringComparison.OrdinalIgnoreCase);
@@ -486,8 +486,8 @@ public sealed partial class CliTests
             var fromMetaSchemaResult = RunMetaConvertCli($"schema-to-raw-datavault --source-workspace \"{sourcePath}\" --new-workspace \"{targetPath}\"");
             Assert.Equal(0, fromMetaSchemaResult.ExitCode);
 
-            var generateMetaSqlResult = RunRawCli(
-                $"generate-metasql --workspace \"{targetPath}\" --implementation-workspace \"{implementationPath}\" --database-name \"ReservedRawColumnNames\" --out \"{currentMetaSqlPath}\"");
+            var generateMetaSqlResult = RunMetaConvertCli(
+                $"raw-datavault-to-sql --workspace \"{targetPath}\" --implementation-workspace \"{implementationPath}\" --database-name \"ReservedRawColumnNames\" --out \"{currentMetaSqlPath}\"");
 
             Assert.Equal(0, generateMetaSqlResult.ExitCode);
 

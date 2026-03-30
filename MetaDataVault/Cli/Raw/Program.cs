@@ -26,11 +26,6 @@ internal static partial class Program
             return await RunAddCommandAsync(addCommand, args).ConfigureAwait(false);
         }
 
-        if (string.Equals(args[0], "generate-metasql", StringComparison.OrdinalIgnoreCase))
-        {
-            return await RunGenerateMetaSqlAsync(args).ConfigureAwait(false);
-        }
-
         return Fail($"unknown command '{args[0]}'.", "meta-datavault-raw help");
     }
 
@@ -121,12 +116,11 @@ internal static partial class Program
         {
             ("help", "Show this help."),
             ("--new-workspace", "Create an empty MetaRawDataVault workspace."),
-            ("generate-metasql", "Generate a current MetaSql workspace from the current raw datavault workspace."),
             ("add-*", "Add sanctioned MetaRawDataVault rows.")
         });
         Presenter.WriteInfo(string.Empty);
         Presenter.WriteCommandCatalog("Authoring commands:", GetAddCommandCatalog().ToList());
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteNext("meta-datavault-raw generate-metasql --help");
+        Presenter.WriteNext("meta-datavault-raw add-hub --help");
     }
 }

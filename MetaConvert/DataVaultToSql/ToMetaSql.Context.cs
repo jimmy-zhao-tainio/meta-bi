@@ -1,7 +1,7 @@
 using MetaDataVaultImplementation;
 using MetaSql;
 
-namespace MetaDataVault.ToMetaSql;
+namespace MetaConvert.DataVaultToSql;
 
 internal sealed class ConversionContext
 {

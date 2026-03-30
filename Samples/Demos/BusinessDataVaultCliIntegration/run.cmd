@@ -148,7 +148,7 @@ meta-datavault-business add-bridge-hub --id CustomerFulfillmentTraversalOrder --
 meta-datavault-business add-bridge-link --id CustomerFulfillmentTraversalShipmentOrder --bridge CustomerFulfillmentTraversal --link ShipmentOrder --role-name ShipmentOrder
 meta-datavault-business add-bridge-hub --id CustomerFulfillmentTraversalShipment --bridge CustomerFulfillmentTraversal --hub Shipment --role-name Shipment
 
-meta-datavault-business generate-metasql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name BusinessDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
+meta-convert business-datavault-to-sql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name BusinessDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
 
 meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlDeployManifest
 

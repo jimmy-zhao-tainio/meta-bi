@@ -142,26 +142,28 @@ Purpose:
 Current command surface:
 - `meta-convert help`
 - `meta-convert schema-to-raw-datavault --source-workspace <path> --new-workspace <path> [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
+- `meta-convert raw-datavault-to-sql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>`
+- `meta-convert business-datavault-to-sql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>`
+
+Projection note:
+- `raw-datavault-to-sql` and `business-datavault-to-sql` take physical schema ownership from the sanctioned `MetaDataVaultImplementation` workspace and do not accept a schema override.
 
 Example:
 
 ```cmd
 meta-convert schema-to-raw-datavault --source-workspace .\MetaSchema.Workspace --new-workspace .\MetaRawDataVault.Workspace
+meta-convert raw-datavault-to-sql --workspace .\MetaRawDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyVault --out .\out\CurrentMetaSql.Workspace
+meta-convert business-datavault-to-sql --workspace .\MetaBusinessDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyBusinessVault --out .\out\CurrentMetaSql.Workspace
 ```
 
 ### meta-datavault-raw
 
 Purpose:
 - author sanctioned raw Data Vault workspaces
-- project raw DV to a current `MetaSql` workspace
 
 Current command surface:
 - `meta-datavault-raw --new-workspace <path>`
-- `meta-datavault-raw generate-metasql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>`
 - `meta-datavault-raw add-*`
-
-Projection note:
-- `generate-metasql` takes physical schema ownership from the sanctioned `MetaDataVaultImplementation` workspace and does not accept a schema override.
 
 Current `add-*` commands:
 - `add-source-system`
@@ -184,22 +186,16 @@ Examples:
 
 ```cmd
 meta-datavault-raw --new-workspace .\MetaRawDataVault.Workspace
-meta-datavault-raw generate-metasql --workspace .\MetaRawDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyVault --out .\out\CurrentMetaSql.Workspace
 ```
 
 ### meta-datavault-business
 
 Purpose:
 - author sanctioned business Data Vault workspaces
-- project business DV to a current `MetaSql` workspace
 
 Current command surface:
 - `meta-datavault-business --new-workspace <path>`
 - `meta-datavault-business add-*`
-- `meta-datavault-business generate-metasql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>`
-
-Projection note:
-- `generate-metasql` takes physical schema ownership from the sanctioned `MetaDataVaultImplementation` workspace and does not accept a schema override.
 - typed business authoring commands take optional datatype facets inline via `--length`, `--precision`, and `--scale`; the CLI persists the underlying detail rows for you
 
 Representative `add-*` families:
@@ -215,7 +211,6 @@ Example:
 
 ```cmd
 meta-datavault-business --new-workspace .\MetaBusinessDataVault.Workspace
-meta-datavault-business generate-metasql --workspace .\MetaBusinessDataVault.Workspace --implementation-workspace .\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name MyBusinessVault --out .\out\CurrentMetaSql.Workspace
 ```
 
 ### meta-sql
@@ -256,9 +251,9 @@ Current active BI model families include:
 
 ## Current Projection Status
 
-- `meta-datavault-raw generate-metasql` is operational:
+- `meta-convert raw-datavault-to-sql` is operational:
   it converts sanctioned raw DV to a current `MetaSql` workspace and does not query any live database.
-- `meta-datavault-business generate-metasql` is operational:
+- `meta-convert business-datavault-to-sql` is operational:
   it converts sanctioned business DV to a current `MetaSql` workspace, applies sanctioned business-type lowering, and does not query any live database.
 
 

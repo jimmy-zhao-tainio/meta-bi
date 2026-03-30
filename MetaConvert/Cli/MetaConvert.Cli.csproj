@@ -18,6 +18,7 @@
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\..\MetaSchema\Instance\MetaSchema.Instance.csproj" />
     <ProjectReference Include="..\..\MetaDataVault\Instance\MetaRawDataVault.Instance.csproj" />
+    <ProjectReference Include="..\DataVaultToSql\MetaConvert.DataVaultToSql.csproj" />
     <ProjectReference Include="..\SchemaToDataVault\MetaConvert.SchemaToDataVault.csproj" />
   </ItemGroup>
 

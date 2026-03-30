@@ -26,11 +26,6 @@ internal static partial class Program
             return await RunAddCommandAsync(addCommand!, args).ConfigureAwait(false);
         }
 
-        if (string.Equals(args[0], "generate-metasql", StringComparison.OrdinalIgnoreCase))
-        {
-            return await RunGenerateMetaSqlAsync(args).ConfigureAwait(false);
-        }
-
         return Fail($"unknown command '{args[0]}'.", "meta-datavault-business help");
     }
 
@@ -113,13 +108,12 @@ internal static partial class Program
         var commands = new List<(string Name, string Description)>
         {
             ("help", "Show this help."),
-            ("--new-workspace", "Create an empty MetaBusinessDataVault workspace."),
-            ("generate-metasql", "Generate a current MetaSql workspace from the current business datavault workspace.")
+            ("--new-workspace", "Create an empty MetaBusinessDataVault workspace.")
         };
         commands.AddRange(GetAddCommandCatalog());
         Presenter.WriteCommandCatalog("Commands:", commands);
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteNext("meta-datavault-business generate-metasql --help");
+        Presenter.WriteNext("meta-datavault-business add-hub --help");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

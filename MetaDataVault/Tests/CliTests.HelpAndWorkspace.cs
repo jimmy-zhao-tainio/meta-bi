@@ -57,8 +57,8 @@ public sealed partial class CliTests
         Assert.Contains("meta-datavault-raw", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("from-metaschema", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("check-business-materialization", result.Output);
-        Assert.Contains("generate-metasql", result.Output);
-        Assert.DoesNotContain("generate-sql", result.Output);
+        Assert.DoesNotContain("generate-metasql", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("raw-datavault-to-sql", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -77,9 +77,9 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public void BusinessGenerateMetaSql_Help_ShowsRequiredOptions()
+    public void BusinessDataVaultToSql_Help_ShowsRequiredOptions()
     {
-        var result = RunBusinessCli("generate-metasql --help");
+        var result = RunMetaConvertCli("business-datavault-to-sql --help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("[--workspace <path>]", result.Output);
@@ -93,18 +93,18 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public void BusinessGenerateMetaSql_RequiresDatabaseName()
+    public void BusinessDataVaultToSql_RequiresDatabaseName()
     {
-        var result = RunBusinessCli("generate-metasql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
+        var result = RunMetaConvertCli("business-datavault-to-sql --workspace C:\\temp\\bdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
 
         Assert.Equal(1, result.ExitCode);
         Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public void GenerateMetaSql_Help_ShowsRequiredOptions()
+    public void RawDataVaultToSql_Help_ShowsRequiredOptions()
     {
-        var result = RunRawCli("generate-metasql --help");
+        var result = RunMetaConvertCli("raw-datavault-to-sql --help");
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("[--workspace <path>]", result.Output);
@@ -118,9 +118,9 @@ public sealed partial class CliTests
     }
 
     [Fact]
-    public void GenerateMetaSql_RequiresDatabaseName()
+    public void RawDataVaultToSql_RequiresDatabaseName()
     {
-        var result = RunRawCli("generate-metasql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
+        var result = RunMetaConvertCli("raw-datavault-to-sql --workspace C:\\temp\\rdv --implementation-workspace C:\\temp\\impl --out C:\\temp\\sql");
 
         Assert.Equal(1, result.ExitCode);
         Assert.Contains("missing required option --database-name", result.Output, StringComparison.OrdinalIgnoreCase);

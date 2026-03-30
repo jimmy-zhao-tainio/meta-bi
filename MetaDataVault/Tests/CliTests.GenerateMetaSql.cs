@@ -15,8 +15,8 @@ public sealed partial class CliTests
 
         try
         {
-            var result = RunRawCli(
-                $"generate-metasql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"RawGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
+            var result = RunMetaConvertCli(
+                $"raw-datavault-to-sql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"RawGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: Generated current-metasql", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -43,8 +43,8 @@ public sealed partial class CliTests
 
         try
         {
-            var result = RunBusinessCli(
-                $"generate-metasql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"BusinessGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
+            var result = RunMetaConvertCli(
+                $"business-datavault-to-sql --workspace \"{sourceWorkspacePath}\" --implementation-workspace \"{implementationWorkspacePath}\" --database-name \"BusinessGenerateMetaSqlTest\" --out \"{outputWorkspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("OK: Generated current-metasql", result.Output, StringComparison.OrdinalIgnoreCase);
