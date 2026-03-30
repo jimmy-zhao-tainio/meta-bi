@@ -1,0 +1,507 @@
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration>call cleanup.cmd  1>nul 2>&1 
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration>meta-datavault-raw --new-workspace RawDataVaultCliIntegrationWorkspace 
+OK: Created RawDataVaultCliIntegrationWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration>pushd RawDataVaultCliIntegrationWorkspace 
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-system --id CRM --name CRM 
+OK: Added CRM to SourceSystem
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-system --id ERP --name ERP 
+OK: Added ERP to SourceSystem
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-system --id FIN --name FIN 
+OK: Added FIN to SourceSystem
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-system --id HR --name HR 
+OK: Added HR to SourceSystem
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-schema --id CrmDbo --system CRM --name dbo 
+OK: Added CrmDbo to SourceSchema
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-schema --id ErpDbo --system ERP --name dbo 
+OK: Added ErpDbo to SourceSchema
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-schema --id FinDbo --system FIN --name dbo 
+OK: Added FinDbo to SourceSchema
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-schema --id HrDbo --system HR --name dbo 
+OK: Added HrDbo to SourceSchema
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table --id CustomerTable --schema CrmDbo --name Customer 
+OK: Added CustomerTable to SourceTable
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table --id ProductTable --schema ErpDbo --name Product 
+OK: Added ProductTable to SourceTable
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table --id SupplierTable --schema FinDbo --name Supplier 
+OK: Added SupplierTable to SourceTable
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table --id OrderTable --schema ErpDbo --name OrderHeader 
+OK: Added OrderTable to SourceTable
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table --id InvoiceTable --schema FinDbo --name Invoice 
+OK: Added InvoiceTable to SourceTable
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table --id ShipmentTable --schema ErpDbo --name Shipment 
+OK: Added ShipmentTable to SourceTable
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table --id EmployeeTable --schema HrDbo --name Employee 
+OK: Added EmployeeTable to SourceTable
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table --id DepartmentTable --schema HrDbo --name Department 
+OK: Added DepartmentTable to SourceTable
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id CustomerIdField --table CustomerTable --name CustomerId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added CustomerIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id CustomerIdLength --field CustomerIdField --name Length --value 50 
+OK: Added CustomerIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id CustomerNameField --table CustomerTable --name CustomerName --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added CustomerNameField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id CustomerNameLength --field CustomerNameField --name Length --value 200 
+OK: Added CustomerNameLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id CustomerEmailField --table CustomerTable --name EmailAddress --data-type-id sqlserver:type:nvarchar --is-nullable true 
+OK: Added CustomerEmailField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id CustomerEmailLength --field CustomerEmailField --name Length --value 200 
+OK: Added CustomerEmailLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id ProductIdField --table ProductTable --name ProductId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added ProductIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id ProductIdLength --field ProductIdField --name Length --value 40 
+OK: Added ProductIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id ProductNameField --table ProductTable --name ProductName --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added ProductNameField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id ProductNameLength --field ProductNameField --name Length --value 200 
+OK: Added ProductNameLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id ProductCategoryField --table ProductTable --name ProductCategory --data-type-id sqlserver:type:nvarchar --is-nullable true 
+OK: Added ProductCategoryField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id ProductCategoryLength --field ProductCategoryField --name Length --value 50 
+OK: Added ProductCategoryLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id ProductSupplierIdField --table ProductTable --name SupplierId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added ProductSupplierIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id ProductSupplierIdLength --field ProductSupplierIdField --name Length --value 40 
+OK: Added ProductSupplierIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id SupplierProductCodeField --table ProductTable --name SupplierProductCode --data-type-id sqlserver:type:nvarchar --is-nullable true 
+OK: Added SupplierProductCodeField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id SupplierProductCodeLength --field SupplierProductCodeField --name Length --value 50 
+OK: Added SupplierProductCodeLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id SupplierIdField --table SupplierTable --name SupplierId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added SupplierIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id SupplierIdLength --field SupplierIdField --name Length --value 40 
+OK: Added SupplierIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id SupplierNameField --table SupplierTable --name SupplierName --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added SupplierNameField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id SupplierNameLength --field SupplierNameField --name Length --value 200 
+OK: Added SupplierNameLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id SupplierRiskClassField --table SupplierTable --name RiskClass --data-type-id sqlserver:type:nvarchar --is-nullable true 
+OK: Added SupplierRiskClassField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id SupplierRiskClassLength --field SupplierRiskClassField --name Length --value 30 
+OK: Added SupplierRiskClassLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id OrderIdField --table OrderTable --name OrderId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added OrderIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id OrderIdLength --field OrderIdField --name Length --value 40 
+OK: Added OrderIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id OrderCustomerIdField --table OrderTable --name CustomerId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added OrderCustomerIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id OrderCustomerIdLength --field OrderCustomerIdField --name Length --value 50 
+OK: Added OrderCustomerIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id OrderDateField --table OrderTable --name OrderDate --data-type-id sqlserver:type:datetime2 --is-nullable false 
+OK: Added OrderDateField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id OrderDatePrecision --field OrderDateField --name Precision --value 7 
+OK: Added OrderDatePrecision to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id OrderAmountField --table OrderTable --name OrderAmount --data-type-id sqlserver:type:decimal --is-nullable false 
+OK: Added OrderAmountField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id OrderAmountPrecision --field OrderAmountField --name Precision --value 18 
+OK: Added OrderAmountPrecision to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id OrderAmountScale --field OrderAmountField --name Scale --value 2 
+OK: Added OrderAmountScale to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id OrderStatusCodeField --table OrderTable --name OrderStatusCode --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added OrderStatusCodeField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id OrderStatusCodeLength --field OrderStatusCodeField --name Length --value 20 
+OK: Added OrderStatusCodeLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id InvoiceIdField --table InvoiceTable --name InvoiceId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added InvoiceIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id InvoiceIdLength --field InvoiceIdField --name Length --value 40 
+OK: Added InvoiceIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id InvoiceOrderIdField --table InvoiceTable --name OrderId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added InvoiceOrderIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id InvoiceOrderIdLength --field InvoiceOrderIdField --name Length --value 40 
+OK: Added InvoiceOrderIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id InvoiceSupplierIdField --table InvoiceTable --name SupplierId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added InvoiceSupplierIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id InvoiceSupplierIdLength --field InvoiceSupplierIdField --name Length --value 40 
+OK: Added InvoiceSupplierIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id InvoiceDateField --table InvoiceTable --name InvoiceDate --data-type-id sqlserver:type:datetime2 --is-nullable false 
+OK: Added InvoiceDateField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id InvoiceDatePrecision --field InvoiceDateField --name Precision --value 7 
+OK: Added InvoiceDatePrecision to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id InvoiceAmountField --table InvoiceTable --name InvoiceAmount --data-type-id sqlserver:type:decimal --is-nullable false 
+OK: Added InvoiceAmountField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id InvoiceAmountPrecision --field InvoiceAmountField --name Precision --value 18 
+OK: Added InvoiceAmountPrecision to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id InvoiceAmountScale --field InvoiceAmountField --name Scale --value 2 
+OK: Added InvoiceAmountScale to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id ShipmentIdField --table ShipmentTable --name ShipmentId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added ShipmentIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id ShipmentIdLength --field ShipmentIdField --name Length --value 40 
+OK: Added ShipmentIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id ShipmentOrderIdField --table ShipmentTable --name OrderId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added ShipmentOrderIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id ShipmentOrderIdLength --field ShipmentOrderIdField --name Length --value 40 
+OK: Added ShipmentOrderIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id ShipmentCarrierNameField --table ShipmentTable --name CarrierName --data-type-id sqlserver:type:nvarchar --is-nullable true 
+OK: Added ShipmentCarrierNameField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id ShipmentCarrierNameLength --field ShipmentCarrierNameField --name Length --value 100 
+OK: Added ShipmentCarrierNameLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id ShipmentDateField --table ShipmentTable --name ShipmentDate --data-type-id sqlserver:type:datetime2 --is-nullable false 
+OK: Added ShipmentDateField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id ShipmentDatePrecision --field ShipmentDateField --name Precision --value 7 
+OK: Added ShipmentDatePrecision to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id EmployeeIdField --table EmployeeTable --name EmployeeId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added EmployeeIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id EmployeeIdLength --field EmployeeIdField --name Length --value 30 
+OK: Added EmployeeIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id EmployeeNameField --table EmployeeTable --name EmployeeName --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added EmployeeNameField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id EmployeeNameLength --field EmployeeNameField --name Length --value 150 
+OK: Added EmployeeNameLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id EmployeeDepartmentIdField --table EmployeeTable --name DepartmentId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added EmployeeDepartmentIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id EmployeeDepartmentIdLength --field EmployeeDepartmentIdField --name Length --value 30 
+OK: Added EmployeeDepartmentIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id EmployeeHireDateField --table EmployeeTable --name HireDate --data-type-id sqlserver:type:datetime2 --is-nullable false 
+OK: Added EmployeeHireDateField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id EmployeeHireDatePrecision --field EmployeeHireDateField --name Precision --value 7 
+OK: Added EmployeeHireDatePrecision to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id DepartmentIdField --table DepartmentTable --name DepartmentId --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added DepartmentIdField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id DepartmentIdLength --field DepartmentIdField --name Length --value 30 
+OK: Added DepartmentIdLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field --id DepartmentNameField --table DepartmentTable --name DepartmentName --data-type-id sqlserver:type:nvarchar --is-nullable false 
+OK: Added DepartmentNameField to SourceField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-field-data-type-detail --id DepartmentNameLength --field DepartmentNameField --name Length --value 150 
+OK: Added DepartmentNameLength to SourceFieldDataTypeDetail
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship --id OrderCustomerRelationship --source-table OrderTable --target-table CustomerTable --name FK_OrderHeader_Customer 
+OK: Added OrderCustomerRelationship to SourceTableRelationship
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship-field --id OrderCustomerRelationshipField --relationship OrderCustomerRelationship --source-field OrderCustomerIdField --target-field CustomerIdField 
+OK: Added OrderCustomerRelationshipField to SourceTableRelationshipField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship --id ProductSupplierRelationship --source-table ProductTable --target-table SupplierTable --name FK_Product_Supplier 
+OK: Added ProductSupplierRelationship to SourceTableRelationship
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship-field --id ProductSupplierRelationshipField --relationship ProductSupplierRelationship --source-field ProductSupplierIdField --target-field SupplierIdField 
+OK: Added ProductSupplierRelationshipField to SourceTableRelationshipField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship --id InvoiceOrderRelationship --source-table InvoiceTable --target-table OrderTable --name FK_Invoice_OrderHeader 
+OK: Added InvoiceOrderRelationship to SourceTableRelationship
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship-field --id InvoiceOrderRelationshipField --relationship InvoiceOrderRelationship --source-field InvoiceOrderIdField --target-field OrderIdField 
+OK: Added InvoiceOrderRelationshipField to SourceTableRelationshipField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship --id InvoiceSupplierRelationship --source-table InvoiceTable --target-table SupplierTable --name FK_Invoice_Supplier 
+OK: Added InvoiceSupplierRelationship to SourceTableRelationship
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship-field --id InvoiceSupplierRelationshipField --relationship InvoiceSupplierRelationship --source-field InvoiceSupplierIdField --target-field SupplierIdField 
+OK: Added InvoiceSupplierRelationshipField to SourceTableRelationshipField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship --id ShipmentOrderRelationship --source-table ShipmentTable --target-table OrderTable --name FK_Shipment_OrderHeader 
+OK: Added ShipmentOrderRelationship to SourceTableRelationship
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship-field --id ShipmentOrderRelationshipField --relationship ShipmentOrderRelationship --source-field ShipmentOrderIdField --target-field OrderIdField 
+OK: Added ShipmentOrderRelationshipField to SourceTableRelationshipField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship --id EmployeeDepartmentRelationship --source-table EmployeeTable --target-table DepartmentTable --name FK_Employee_Department 
+OK: Added EmployeeDepartmentRelationship to SourceTableRelationship
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-source-table-relationship-field --id EmployeeDepartmentRelationshipField --relationship EmployeeDepartmentRelationship --source-field EmployeeDepartmentIdField --target-field DepartmentIdField 
+OK: Added EmployeeDepartmentRelationshipField to SourceTableRelationshipField
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub --id CustomerHub --source-table CustomerTable --name Customer 
+OK: Added CustomerHub to RawHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-key-part --id CustomerHubKey --hub CustomerHub --source-field CustomerIdField --name CustomerId 
+OK: Added CustomerHubKey to RawHubKeyPart
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub --id ProductHub --source-table ProductTable --name Product 
+OK: Added ProductHub to RawHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-key-part --id ProductHubKey --hub ProductHub --source-field ProductIdField --name ProductId 
+OK: Added ProductHubKey to RawHubKeyPart
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub --id SupplierHub --source-table SupplierTable --name Supplier 
+OK: Added SupplierHub to RawHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-key-part --id SupplierHubKey --hub SupplierHub --source-field SupplierIdField --name SupplierId 
+OK: Added SupplierHubKey to RawHubKeyPart
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub --id OrderHub --source-table OrderTable --name Order 
+OK: Added OrderHub to RawHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-key-part --id OrderHubKey --hub OrderHub --source-field OrderIdField --name OrderId 
+OK: Added OrderHubKey to RawHubKeyPart
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub --id InvoiceHub --source-table InvoiceTable --name Invoice 
+OK: Added InvoiceHub to RawHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-key-part --id InvoiceHubKey --hub InvoiceHub --source-field InvoiceIdField --name InvoiceId 
+OK: Added InvoiceHubKey to RawHubKeyPart
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub --id ShipmentHub --source-table ShipmentTable --name Shipment 
+OK: Added ShipmentHub to RawHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-key-part --id ShipmentHubKey --hub ShipmentHub --source-field ShipmentIdField --name ShipmentId 
+OK: Added ShipmentHubKey to RawHubKeyPart
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub --id EmployeeHub --source-table EmployeeTable --name Employee 
+OK: Added EmployeeHub to RawHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-key-part --id EmployeeHubKey --hub EmployeeHub --source-field EmployeeIdField --name EmployeeId 
+OK: Added EmployeeHubKey to RawHubKeyPart
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub --id DepartmentHub --source-table DepartmentTable --name Department 
+OK: Added DepartmentHub to RawHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-key-part --id DepartmentHubKey --hub DepartmentHub --source-field DepartmentIdField --name DepartmentId 
+OK: Added DepartmentHubKey to RawHubKeyPart
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite --id CustomerProfileSat --hub CustomerHub --source-table CustomerTable --name CustomerProfile --satellite-kind standard 
+OK: Added CustomerProfileSat to RawHubSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id CustomerNameAttr --hub-satellite CustomerProfileSat --source-field CustomerNameField --name CustomerName 
+OK: Added CustomerNameAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id CustomerEmailAttr --hub-satellite CustomerProfileSat --source-field CustomerEmailField --name EmailAddress 
+OK: Added CustomerEmailAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite --id ProductProfileSat --hub ProductHub --source-table ProductTable --name ProductProfile --satellite-kind standard 
+OK: Added ProductProfileSat to RawHubSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id ProductNameAttr --hub-satellite ProductProfileSat --source-field ProductNameField --name ProductName 
+OK: Added ProductNameAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id ProductCategoryAttr --hub-satellite ProductProfileSat --source-field ProductCategoryField --name ProductCategory 
+OK: Added ProductCategoryAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite --id SupplierProfileSat --hub SupplierHub --source-table SupplierTable --name SupplierProfile --satellite-kind standard 
+OK: Added SupplierProfileSat to RawHubSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id SupplierNameAttr --hub-satellite SupplierProfileSat --source-field SupplierNameField --name SupplierName 
+OK: Added SupplierNameAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id SupplierRiskClassAttr --hub-satellite SupplierProfileSat --source-field SupplierRiskClassField --name RiskClass 
+OK: Added SupplierRiskClassAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite --id OrderHeaderSat --hub OrderHub --source-table OrderTable --name OrderHeader --satellite-kind standard 
+OK: Added OrderHeaderSat to RawHubSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id OrderDateAttr --hub-satellite OrderHeaderSat --source-field OrderDateField --name OrderDate 
+OK: Added OrderDateAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id OrderAmountAttr --hub-satellite OrderHeaderSat --source-field OrderAmountField --name OrderAmount 
+OK: Added OrderAmountAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite --id InvoiceHeaderSat --hub InvoiceHub --source-table InvoiceTable --name InvoiceHeader --satellite-kind standard 
+OK: Added InvoiceHeaderSat to RawHubSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id InvoiceDateAttr --hub-satellite InvoiceHeaderSat --source-field InvoiceDateField --name InvoiceDate 
+OK: Added InvoiceDateAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id InvoiceAmountAttr --hub-satellite InvoiceHeaderSat --source-field InvoiceAmountField --name InvoiceAmount 
+OK: Added InvoiceAmountAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite --id ShipmentHeaderSat --hub ShipmentHub --source-table ShipmentTable --name ShipmentHeader --satellite-kind standard 
+OK: Added ShipmentHeaderSat to RawHubSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id ShipmentCarrierAttr --hub-satellite ShipmentHeaderSat --source-field ShipmentCarrierNameField --name CarrierName 
+OK: Added ShipmentCarrierAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id ShipmentDateAttr --hub-satellite ShipmentHeaderSat --source-field ShipmentDateField --name ShipmentDate 
+OK: Added ShipmentDateAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite --id EmployeeProfileSat --hub EmployeeHub --source-table EmployeeTable --name EmployeeProfile --satellite-kind standard 
+OK: Added EmployeeProfileSat to RawHubSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id EmployeeNameAttr --hub-satellite EmployeeProfileSat --source-field EmployeeNameField --name EmployeeName 
+OK: Added EmployeeNameAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id EmployeeHireDateAttr --hub-satellite EmployeeProfileSat --source-field EmployeeHireDateField --name HireDate 
+OK: Added EmployeeHireDateAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite --id DepartmentProfileSat --hub DepartmentHub --source-table DepartmentTable --name DepartmentProfile --satellite-kind standard 
+OK: Added DepartmentProfileSat to RawHubSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-hub-satellite-attribute --id DepartmentNameAttr --hub-satellite DepartmentProfileSat --source-field DepartmentNameField --name DepartmentName 
+OK: Added DepartmentNameAttr to RawHubSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link --id OrderCustomerLink --source-relationship OrderCustomerRelationship --name OrderCustomer --link-kind standard 
+OK: Added OrderCustomerLink to RawLink
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id OrderCustomerLinkOrder --link OrderCustomerLink --hub OrderHub --role-name Order 
+OK: Added OrderCustomerLinkOrder to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id OrderCustomerLinkCustomer --link OrderCustomerLink --hub CustomerHub --role-name Customer 
+OK: Added OrderCustomerLinkCustomer to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite --id OrderCustomerSat --link OrderCustomerLink --source-table OrderTable --name OrderCustomerStatus --satellite-kind standard 
+OK: Added OrderCustomerSat to RawLinkSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite-attribute --id OrderCustomerStatusAttr --link-satellite OrderCustomerSat --source-field OrderStatusCodeField --name OrderStatusCode 
+OK: Added OrderCustomerStatusAttr to RawLinkSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link --id ProductSupplierLink --source-relationship ProductSupplierRelationship --name ProductSupplier --link-kind standard 
+OK: Added ProductSupplierLink to RawLink
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id ProductSupplierLinkProduct --link ProductSupplierLink --hub ProductHub --role-name Product 
+OK: Added ProductSupplierLinkProduct to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id ProductSupplierLinkSupplier --link ProductSupplierLink --hub SupplierHub --role-name Supplier 
+OK: Added ProductSupplierLinkSupplier to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite --id ProductSupplierSat --link ProductSupplierLink --source-table ProductTable --name ProductSupplierTerms --satellite-kind standard 
+OK: Added ProductSupplierSat to RawLinkSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite-attribute --id SupplierProductCodeAttr --link-satellite ProductSupplierSat --source-field SupplierProductCodeField --name SupplierProductCode 
+OK: Added SupplierProductCodeAttr to RawLinkSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link --id InvoiceOrderLink --source-relationship InvoiceOrderRelationship --name InvoiceOrder --link-kind standard 
+OK: Added InvoiceOrderLink to RawLink
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id InvoiceOrderLinkInvoice --link InvoiceOrderLink --hub InvoiceHub --role-name Invoice 
+OK: Added InvoiceOrderLinkInvoice to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id InvoiceOrderLinkOrder --link InvoiceOrderLink --hub OrderHub --role-name Order 
+OK: Added InvoiceOrderLinkOrder to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite --id InvoiceOrderSat --link InvoiceOrderLink --source-table InvoiceTable --name InvoiceOrderAmount --satellite-kind standard 
+OK: Added InvoiceOrderSat to RawLinkSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite-attribute --id InvoiceOrderAmountAttr --link-satellite InvoiceOrderSat --source-field InvoiceAmountField --name InvoiceAmount 
+OK: Added InvoiceOrderAmountAttr to RawLinkSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link --id InvoiceSupplierLink --source-relationship InvoiceSupplierRelationship --name InvoiceSupplier --link-kind standard 
+OK: Added InvoiceSupplierLink to RawLink
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id InvoiceSupplierLinkInvoice --link InvoiceSupplierLink --hub InvoiceHub --role-name Invoice 
+OK: Added InvoiceSupplierLinkInvoice to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id InvoiceSupplierLinkSupplier --link InvoiceSupplierLink --hub SupplierHub --role-name Supplier 
+OK: Added InvoiceSupplierLinkSupplier to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link --id ShipmentOrderLink --source-relationship ShipmentOrderRelationship --name ShipmentOrder --link-kind standard 
+OK: Added ShipmentOrderLink to RawLink
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id ShipmentOrderLinkShipment --link ShipmentOrderLink --hub ShipmentHub --role-name Shipment 
+OK: Added ShipmentOrderLinkShipment to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id ShipmentOrderLinkOrder --link ShipmentOrderLink --hub OrderHub --role-name Order 
+OK: Added ShipmentOrderLinkOrder to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite --id ShipmentOrderSat --link ShipmentOrderLink --source-table ShipmentTable --name ShipmentOrderTracking --satellite-kind standard 
+OK: Added ShipmentOrderSat to RawLinkSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite-attribute --id ShipmentOrderCarrierAttr --link-satellite ShipmentOrderSat --source-field ShipmentCarrierNameField --name CarrierName 
+OK: Added ShipmentOrderCarrierAttr to RawLinkSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite-attribute --id ShipmentOrderDateAttr --link-satellite ShipmentOrderSat --source-field ShipmentDateField --name ShipmentDate 
+OK: Added ShipmentOrderDateAttr to RawLinkSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link --id EmployeeDepartmentLink --source-relationship EmployeeDepartmentRelationship --name EmployeeDepartment --link-kind standard 
+OK: Added EmployeeDepartmentLink to RawLink
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id EmployeeDepartmentLinkEmployee --link EmployeeDepartmentLink --hub EmployeeHub --role-name Employee 
+OK: Added EmployeeDepartmentLinkEmployee to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-hub --id EmployeeDepartmentLinkDepartment --link EmployeeDepartmentLink --hub DepartmentHub --role-name Department 
+OK: Added EmployeeDepartmentLinkDepartment to RawLinkHub
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite --id EmployeeDepartmentSat --link EmployeeDepartmentLink --source-table EmployeeTable --name EmployeeDepartmentAssignment --satellite-kind standard 
+OK: Added EmployeeDepartmentSat to RawLinkSatellite
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-datavault-raw add-link-satellite-attribute --id EmployeeDepartmentHireDateAttr --link-satellite EmployeeDepartmentSat --source-field EmployeeHireDateField --name HireDate 
+OK: Added EmployeeDepartmentHireDateAttr to RawLinkSatelliteAttribute
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-convert raw-datavault-to-sql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name RawDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace 
+OK: Generated CurrentMetaSqlWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlDeployManifest 
+OK: Created deploy plan
+Status: ready to deploy
+Changes: 66 to add (27 tables, 14 primary keys, 25 foreign keys)
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" 
+OK: Deployed changes
+Database: created
+Deployed: 66 added (27 tables, 14 primary keys, 25 foreign keys)
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=RawDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlVerifyManifest 
+OK: Created deploy plan
+Status: ready to deploy
+Changes: none
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\RawDataVaultCliIntegration\RawDataVaultCliIntegrationWorkspace>popd
