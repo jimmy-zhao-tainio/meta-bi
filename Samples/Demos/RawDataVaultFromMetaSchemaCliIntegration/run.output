@@ -465,9 +465,9 @@ OK: Created deploy plan
 Status: ready to deploy
 Changes: none
 
-popd
+> popd
 
-popd
+> popd
 
 > meta-schema extract sqlserver --new-workspace MetaSchemaWorkspace --connection "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --system BusinessDataVaultCliIntegrationWorkspace --all-schemas --all-tables 
 OK: Created MetaSchemaWorkspace
