@@ -1,0 +1,585 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3070" height="1770" viewBox="0 0 3070 1770">
+<rect width="100%" height="100%" fill="#ffffff" />
+<text x="36" y="30" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2937">MetaTransformScript entity overview</text>
+<text x="36" y="50" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">Generated from MetaTransformScript/Workspaces/MetaTransformScript/model.xml - 270 entities grouped by role</text>
+<rect x="36" y="36" width="310" height="1116" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="56" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1d4ed8">Query And Script</text>
+<text x="56" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">32 entities</text>
+<rect x="56" y="96" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TransformScript</text>
+<rect x="56" y="128" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">StatementWithCtesAndXmlNamespaces</text>
+<rect x="56" y="160" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SelectStatement</text>
+<rect x="56" y="192" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QueryExpression</text>
+<rect x="56" y="224" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QuerySpecification</text>
+<rect x="56" y="256" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SelectElement</text>
+<rect x="56" y="288" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FromClause</text>
+<rect x="56" y="320" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WhereClause</text>
+<rect x="56" y="352" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowClause</text>
+<rect x="56" y="384" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowDefinition</text>
+<rect x="56" y="416" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowDelimiter</text>
+<rect x="56" y="448" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowFrameClause</text>
+<rect x="56" y="480" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OrderByClause</text>
+<rect x="56" y="512" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OffsetClause</text>
+<rect x="56" y="544" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TopRowFilter</text>
+<rect x="56" y="576" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="592" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BinaryQueryExpression</text>
+<rect x="56" y="608" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CommonTableExpression</text>
+<rect x="56" y="640" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="656" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CompositeGroupingSpecification</text>
+<rect x="56" y="672" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="688" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CubeGroupingSpecification</text>
+<rect x="56" y="704" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="720" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ExpressionGroupingSpecification</text>
+<rect x="56" y="736" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="752" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ExpressionWithSortOrder</text>
+<rect x="56" y="768" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="784" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GrandTotalGroupingSpecification</text>
+<rect x="56" y="800" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="816" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GroupByClause</text>
+<rect x="56" y="832" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="848" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GroupingSetsGroupingSpecification</text>
+<rect x="56" y="864" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="880" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GroupingSpecification</text>
+<rect x="56" y="896" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="912" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">HavingClause</text>
+<rect x="56" y="928" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="944" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">RollupGroupingSpecification</text>
+<rect x="56" y="960" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="976" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TSqlStatement</text>
+<rect x="56" y="992" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="1008" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WithCtesAndXmlNamespaces</text>
+<rect x="56" y="1024" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="1040" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">XmlNamespaces</text>
+<rect x="56" y="1056" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="1072" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">XmlNamespacesAliasElement</text>
+<rect x="56" y="1088" width="270" height="24" rx="6" ry="6" fill="#dbeafe" stroke="#93c5fd" />
+<text x="64" y="1104" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">XmlNamespacesElement</text>
+<rect x="372" y="36" width="310" height="700" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="392" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#166534">Sources And Joins</text>
+<text x="392" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">19 entities</text>
+<rect x="392" y="96" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TableReference</text>
+<rect x="392" y="128" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TableReferenceWithAlias</text>
+<rect x="392" y="160" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TableReferenceWithAliasAndColumns</text>
+<rect x="392" y="192" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">JoinParenthesisTableReference</text>
+<rect x="392" y="224" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">JoinTableReference</text>
+<rect x="392" y="256" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CallTarget</text>
+<rect x="392" y="288" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FullTextTableReference</text>
+<rect x="392" y="320" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GlobalFunctionTableReference</text>
+<rect x="392" y="352" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">InlineDerivedTable</text>
+<rect x="392" y="384" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">MultiPartIdentifierCallTarget</text>
+<rect x="392" y="416" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NamedTableReference</text>
+<rect x="392" y="448" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">PivotedTableReference</text>
+<rect x="392" y="480" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QualifiedJoin</text>
+<rect x="392" y="512" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QueryDerivedTable</text>
+<rect x="392" y="544" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SchemaObjectFunctionTableReference</text>
+<rect x="392" y="576" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="592" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SchemaObjectName</text>
+<rect x="392" y="608" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TableSampleClause</text>
+<rect x="392" y="640" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="656" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">UnpivotedTableReference</text>
+<rect x="392" y="672" width="270" height="24" rx="6" ry="6" fill="#dcfce7" stroke="#86efac" />
+<text x="400" y="688" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">UnqualifiedJoin</text>
+<rect x="708" y="36" width="310" height="1628" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="728" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#b91c1c">Expressions And Predicates</text>
+<text x="728" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">48 entities</text>
+<rect x="728" y="96" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SelectScalarExpression</text>
+<rect x="728" y="128" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SelectStarExpression</text>
+<rect x="728" y="160" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanBinaryExpression</text>
+<rect x="728" y="192" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanComparisonExpression</text>
+<rect x="728" y="224" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanExpression</text>
+<rect x="728" y="256" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanIsNullExpression</text>
+<rect x="728" y="288" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanNotExpression</text>
+<rect x="728" y="320" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanParenthesisExpression</text>
+<rect x="728" y="352" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanTernaryExpression</text>
+<rect x="728" y="384" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ScalarExpression</text>
+<rect x="728" y="416" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ScalarSubquery</text>
+<rect x="728" y="448" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ValueExpression</text>
+<rect x="728" y="480" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FunctionCall</text>
+<rect x="728" y="512" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CaseExpression</text>
+<rect x="728" y="544" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WhenClause</text>
+<rect x="728" y="576" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="592" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">AtTimeZoneCall</text>
+<rect x="728" y="608" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BinaryExpression</text>
+<rect x="728" y="640" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="656" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CastCall</text>
+<rect x="728" y="672" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="688" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CoalesceExpression</text>
+<rect x="728" y="704" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="720" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ColumnReferenceExpression</text>
+<rect x="728" y="736" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="752" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ConvertCall</text>
+<rect x="728" y="768" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="784" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">DistinctPredicate</text>
+<rect x="728" y="800" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="816" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ExistsPredicate</text>
+<rect x="728" y="832" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="848" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FullTextPredicate</text>
+<rect x="728" y="864" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="880" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GlobalVariableExpression</text>
+<rect x="728" y="896" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="912" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">IIfCall</text>
+<rect x="728" y="928" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="944" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">InPredicate</text>
+<rect x="728" y="960" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="976" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">LeftFunctionCall</text>
+<rect x="728" y="992" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1008" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">LikePredicate</text>
+<rect x="728" y="1024" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1040" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NextValueForExpression</text>
+<rect x="728" y="1056" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1072" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NullIfExpression</text>
+<rect x="728" y="1088" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1104" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OverClause</text>
+<rect x="728" y="1120" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1136" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParameterlessCall</text>
+<rect x="728" y="1152" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1168" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParenthesisExpression</text>
+<rect x="728" y="1184" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1200" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParseCall</text>
+<rect x="728" y="1216" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1232" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">PrimaryExpression</text>
+<rect x="728" y="1248" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1264" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QueryParenthesisExpression</text>
+<rect x="728" y="1280" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1296" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">RightFunctionCall</text>
+<rect x="728" y="1312" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1328" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">RowValue</text>
+<rect x="728" y="1344" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1360" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SearchedCaseExpression</text>
+<rect x="728" y="1376" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1392" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SearchedWhenClause</text>
+<rect x="728" y="1408" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1424" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SimpleCaseExpression</text>
+<rect x="728" y="1440" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1456" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SimpleWhenClause</text>
+<rect x="728" y="1472" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1488" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SubqueryComparisonPredicate</text>
+<rect x="728" y="1504" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1520" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryCastCall</text>
+<rect x="728" y="1536" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1552" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryConvertCall</text>
+<rect x="728" y="1568" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1584" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryParseCall</text>
+<rect x="728" y="1600" width="270" height="24" rx="6" ry="6" fill="#fee2e2" stroke="#fca5a5" />
+<text x="736" y="1616" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">UnaryExpression</text>
+<rect x="1044" y="36" width="310" height="540" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="1064" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#92400e">Names, Literals, Types</text>
+<text x="1064" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">14 entities</text>
+<rect x="1064" y="96" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">Identifier</text>
+<rect x="1064" y="128" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">IdentifierOrValueExpression</text>
+<rect x="1064" y="160" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">Literal</text>
+<rect x="1064" y="192" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">DataTypeReference</text>
+<rect x="1064" y="224" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BinaryLiteral</text>
+<rect x="1064" y="256" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">IntegerLiteral</text>
+<rect x="1064" y="288" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">MaxLiteral</text>
+<rect x="1064" y="320" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">MultiPartIdentifier</text>
+<rect x="1064" y="352" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NullLiteral</text>
+<rect x="1064" y="384" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NumericLiteral</text>
+<rect x="1064" y="416" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParameterizedDataTypeReference</text>
+<rect x="1064" y="448" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">RealLiteral</text>
+<rect x="1064" y="480" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SqlDataTypeReference</text>
+<rect x="1064" y="512" width="270" height="24" rx="6" ry="6" fill="#fef3c7" stroke="#fcd34d" />
+<text x="1072" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">StringLiteral</text>
+<rect x="1380" y="36" width="310" height="1436" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="1400" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6d28d9">Link Entities 1</text>
+<text x="1400" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">42 entities</text>
+<rect x="1400" y="96" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TransformScriptObjectIdentifierLink</text>
+<rect x="1400" y="128" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TransformScriptSchemaIdentifierLink</text>
+<rect x="1400" y="160" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TransformScriptSelectStatementLink</text>
+<rect x="1400" y="192" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink</text>
+<rect x="1400" y="224" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SelectStatementQueryExpressionLink</text>
+<rect x="1400" y="256" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QueryExpressionOffsetClauseLink</text>
+<rect x="1400" y="288" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QueryExpressionOrderByClauseLink</text>
+<rect x="1400" y="320" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QuerySpecificationFromClauseLink</text>
+<rect x="1400" y="352" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QuerySpecificationGroupByClauseLink</text>
+<rect x="1400" y="384" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QuerySpecificationHavingClauseLink</text>
+<rect x="1400" y="416" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QuerySpecificationTopRowFilterLink</text>
+<rect x="1400" y="448" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QuerySpecificationWhereClauseLink</text>
+<rect x="1400" y="480" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QuerySpecificationWindowClauseLink</text>
+<rect x="1400" y="512" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SelectScalarExpressionColumnNameLink</text>
+<rect x="1400" y="544" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SelectScalarExpressionExpressionLink</text>
+<rect x="1400" y="576" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="592" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SelectStarExpressionQualifierLink</text>
+<rect x="1400" y="608" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TableReferenceWithAliasAliasLink</text>
+<rect x="1400" y="640" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="656" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">JoinParenthesisTableReferenceJoinLink</text>
+<rect x="1400" y="672" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="688" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">JoinTableReferenceFirstTableReferenceLink</text>
+<rect x="1400" y="704" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="720" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">JoinTableReferenceSecondTableReferenceLink</text>
+<rect x="1400" y="736" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="752" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WhereClauseSearchConditionLink</text>
+<rect x="1400" y="768" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="784" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanBinaryExpressionFirstExpressionLink</text>
+<rect x="1400" y="800" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="816" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanBinaryExpressionSecondExpressionLink</text>
+<rect x="1400" y="832" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="848" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanComparisonExpressionFirstExpressionLink</text>
+<rect x="1400" y="864" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="880" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanComparisonExpressionSecondExpressionLink</text>
+<rect x="1400" y="896" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="912" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanIsNullExpressionExpressionLink</text>
+<rect x="1400" y="928" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="944" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanNotExpressionExpressionLink</text>
+<rect x="1400" y="960" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="976" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanParenthesisExpressionExpressionLink</text>
+<rect x="1400" y="992" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1008" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanTernaryExpressionFirstExpressionLink</text>
+<rect x="1400" y="1024" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1040" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanTernaryExpressionSecondExpressionLink</text>
+<rect x="1400" y="1056" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1072" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BooleanTernaryExpressionThirdExpressionLink</text>
+<rect x="1400" y="1088" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1104" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ScalarSubqueryQueryExpressionLink</text>
+<rect x="1400" y="1120" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1136" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FunctionCallCallTargetLink</text>
+<rect x="1400" y="1152" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1168" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FunctionCallFunctionNameLink</text>
+<rect x="1400" y="1184" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1200" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FunctionCallOverClauseLink</text>
+<rect x="1400" y="1216" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1232" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CaseExpressionElseExpressionLink</text>
+<rect x="1400" y="1248" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1264" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WhenClauseThenExpressionLink</text>
+<rect x="1400" y="1280" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1296" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowDefinitionOrderByClauseLink</text>
+<rect x="1400" y="1312" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1328" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowDefinitionRefWindowNameLink</text>
+<rect x="1400" y="1344" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1360" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowDefinitionWindowFrameClauseLink</text>
+<rect x="1400" y="1376" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1392" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowDefinitionWindowNameLink</text>
+<rect x="1400" y="1408" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1408" y="1424" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowFrameClauseBottomLink</text>
+<rect x="1716" y="36" width="310" height="1436" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="1736" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6d28d9">Link Entities 2</text>
+<text x="1736" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">42 entities</text>
+<rect x="1736" y="96" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowFrameClauseTopLink</text>
+<rect x="1736" y="128" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OffsetClauseFetchExpressionLink</text>
+<rect x="1736" y="160" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OffsetClauseOffsetExpressionLink</text>
+<rect x="1736" y="192" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TopRowFilterExpressionLink</text>
+<rect x="1736" y="224" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">IdentifierOrValueExpressionIdentifierLink</text>
+<rect x="1736" y="256" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">DataTypeReferenceNameLink</text>
+<rect x="1736" y="288" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">AtTimeZoneCallDateValueLink</text>
+<rect x="1736" y="320" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">AtTimeZoneCallTimeZoneLink</text>
+<rect x="1736" y="352" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BinaryExpressionFirstExpressionLink</text>
+<rect x="1736" y="384" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BinaryExpressionSecondExpressionLink</text>
+<rect x="1736" y="416" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BinaryQueryExpressionFirstQueryExpressionLink</text>
+<rect x="1736" y="448" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">BinaryQueryExpressionSecondQueryExpressionLink</text>
+<rect x="1736" y="480" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CastCallDataTypeLink</text>
+<rect x="1736" y="512" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CastCallParameterLink</text>
+<rect x="1736" y="544" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ColumnReferenceExpressionMultiPartIdentifierLink</text>
+<rect x="1736" y="576" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="592" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CommonTableExpressionExpressionNameLink</text>
+<rect x="1736" y="608" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CommonTableExpressionQueryExpressionLink</text>
+<rect x="1736" y="640" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="656" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ConvertCallDataTypeLink</text>
+<rect x="1736" y="672" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="688" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ConvertCallParameterLink</text>
+<rect x="1736" y="704" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="720" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ConvertCallStyleLink</text>
+<rect x="1736" y="736" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="752" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">DistinctPredicateFirstExpressionLink</text>
+<rect x="1736" y="768" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="784" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">DistinctPredicateSecondExpressionLink</text>
+<rect x="1736" y="800" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="816" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ExistsPredicateSubqueryLink</text>
+<rect x="1736" y="832" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="848" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ExpressionGroupingSpecificationExpressionLink</text>
+<rect x="1736" y="864" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="880" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ExpressionWithSortOrderExpressionLink</text>
+<rect x="1736" y="896" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="912" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FullTextPredicateValueLink</text>
+<rect x="1736" y="928" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="944" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FullTextTableReferenceSearchConditionLink</text>
+<rect x="1736" y="960" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="976" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FullTextTableReferenceTableNameLink</text>
+<rect x="1736" y="992" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1008" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GlobalFunctionTableReferenceNameLink</text>
+<rect x="1736" y="1024" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1040" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">HavingClauseSearchConditionLink</text>
+<rect x="1736" y="1056" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1072" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">IIfCallElseExpressionLink</text>
+<rect x="1736" y="1088" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1104" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">IIfCallPredicateLink</text>
+<rect x="1736" y="1120" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1136" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">IIfCallThenExpressionLink</text>
+<rect x="1736" y="1152" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1168" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">InPredicateExpressionLink</text>
+<rect x="1736" y="1184" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1200" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">InPredicateSubqueryLink</text>
+<rect x="1736" y="1216" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1232" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">LikePredicateFirstExpressionLink</text>
+<rect x="1736" y="1248" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1264" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">LikePredicateSecondExpressionLink</text>
+<rect x="1736" y="1280" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1296" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">MultiPartIdentifierCallTargetMultiPartIdentifierLink</text>
+<rect x="1736" y="1312" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1328" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NamedTableReferenceSchemaObjectLink</text>
+<rect x="1736" y="1344" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1360" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NamedTableReferenceTableSampleClauseLink</text>
+<rect x="1736" y="1376" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1392" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NextValueForExpressionSequenceNameLink</text>
+<rect x="1736" y="1408" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="1744" y="1424" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NullIfExpressionFirstExpressionLink</text>
+<rect x="2052" y="36" width="310" height="1372" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="2072" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6d28d9">Link Entities 3</text>
+<text x="2072" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">40 entities</text>
+<rect x="2072" y="96" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">NullIfExpressionSecondExpressionLink</text>
+<rect x="2072" y="128" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OverClauseOrderByClauseLink</text>
+<rect x="2072" y="160" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OverClauseWindowFrameClauseLink</text>
+<rect x="2072" y="192" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OverClauseWindowNameLink</text>
+<rect x="2072" y="224" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParenthesisExpressionExpressionLink</text>
+<rect x="2072" y="256" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParseCallCultureLink</text>
+<rect x="2072" y="288" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParseCallDataTypeLink</text>
+<rect x="2072" y="320" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParseCallStringValueLink</text>
+<rect x="2072" y="352" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">PivotedTableReferenceAggregateFunctionIdentifierLink</text>
+<rect x="2072" y="384" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">PivotedTableReferencePivotColumnLink</text>
+<rect x="2072" y="416" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">PivotedTableReferenceTableReferenceLink</text>
+<rect x="2072" y="448" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">PrimaryExpressionCollationLink</text>
+<rect x="2072" y="480" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QualifiedJoinSearchConditionLink</text>
+<rect x="2072" y="512" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QueryDerivedTableQueryExpressionLink</text>
+<rect x="2072" y="544" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QueryParenthesisExpressionQueryExpressionLink</text>
+<rect x="2072" y="576" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="592" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SchemaObjectFunctionTableReferenceSchemaObjectLink</text>
+<rect x="2072" y="608" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SchemaObjectNameBaseIdentifierLink</text>
+<rect x="2072" y="640" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="656" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SchemaObjectNameSchemaIdentifierLink</text>
+<rect x="2072" y="672" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="688" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SearchedWhenClauseWhenExpressionLink</text>
+<rect x="2072" y="704" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="720" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SimpleCaseExpressionInputExpressionLink</text>
+<rect x="2072" y="736" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="752" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SimpleWhenClauseWhenExpressionLink</text>
+<rect x="2072" y="768" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="784" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SubqueryComparisonPredicateExpressionLink</text>
+<rect x="2072" y="800" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="816" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SubqueryComparisonPredicateSubqueryLink</text>
+<rect x="2072" y="832" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="848" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TableSampleClauseRepeatSeedLink</text>
+<rect x="2072" y="864" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="880" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TableSampleClauseSampleNumberLink</text>
+<rect x="2072" y="896" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="912" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryCastCallDataTypeLink</text>
+<rect x="2072" y="928" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="944" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryCastCallParameterLink</text>
+<rect x="2072" y="960" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="976" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryConvertCallDataTypeLink</text>
+<rect x="2072" y="992" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1008" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryConvertCallParameterLink</text>
+<rect x="2072" y="1024" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1040" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryConvertCallStyleLink</text>
+<rect x="2072" y="1056" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1072" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryParseCallCultureLink</text>
+<rect x="2072" y="1088" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1104" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryParseCallDataTypeLink</text>
+<rect x="2072" y="1120" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1136" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TryParseCallStringValueLink</text>
+<rect x="2072" y="1152" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1168" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">UnaryExpressionExpressionLink</text>
+<rect x="2072" y="1184" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1200" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">UnpivotedTableReferencePivotColumnLink</text>
+<rect x="2072" y="1216" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1232" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">UnpivotedTableReferenceTableReferenceLink</text>
+<rect x="2072" y="1248" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1264" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">UnpivotedTableReferenceValueColumnLink</text>
+<rect x="2072" y="1280" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1296" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WithCtesAndXmlNamespacesXmlNamespacesLink</text>
+<rect x="2072" y="1312" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1328" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">XmlNamespacesAliasElementIdentifierLink</text>
+<rect x="2072" y="1344" width="270" height="24" rx="6" ry="6" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="2080" y="1360" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">XmlNamespacesElementStringLink</text>
+<rect x="2388" y="36" width="310" height="636" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="2408" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#0f766e">Item Entities 1</text>
+<text x="2408" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">17 entities</text>
+<rect x="2408" y="96" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TransformScriptViewColumnsItem</text>
+<rect x="2408" y="128" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">QuerySpecificationSelectElementsItem</text>
+<rect x="2408" y="160" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FromClauseTableReferencesItem</text>
+<rect x="2408" y="192" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">TableReferenceWithAliasAndColumnsColumnsItem</text>
+<rect x="2408" y="224" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FunctionCallParametersItem</text>
+<rect x="2408" y="256" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowClauseWindowDefinitionItem</text>
+<rect x="2408" y="288" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WindowDefinitionPartitionsItem</text>
+<rect x="2408" y="320" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OrderByClauseOrderByElementsItem</text>
+<rect x="2408" y="352" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CoalesceExpressionExpressionsItem</text>
+<rect x="2408" y="384" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CompositeGroupingSpecificationItemsItem</text>
+<rect x="2408" y="416" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">CubeGroupingSpecificationArgumentsItem</text>
+<rect x="2408" y="448" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FullTextPredicateColumnsItem</text>
+<rect x="2408" y="480" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">FullTextTableReferenceColumnsItem</text>
+<rect x="2408" y="512" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GlobalFunctionTableReferenceParametersItem</text>
+<rect x="2408" y="544" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GroupByClauseGroupingSpecificationsItem</text>
+<rect x="2408" y="576" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="592" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">GroupingSetsGroupingSpecificationSetsItem</text>
+<rect x="2408" y="608" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2416" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">InPredicateValuesItem</text>
+<rect x="2724" y="36" width="310" height="604" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="2744" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#0f766e">Item Entities 2</text>
+<text x="2744" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#6b7280">16 entities</text>
+<rect x="2744" y="96" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">InlineDerivedTableRowValuesItem</text>
+<rect x="2744" y="128" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">LeftFunctionCallParametersItem</text>
+<rect x="2744" y="160" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">MultiPartIdentifierIdentifiersItem</text>
+<rect x="2744" y="192" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">OverClausePartitionsItem</text>
+<rect x="2744" y="224" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">ParameterizedDataTypeReferenceParametersItem</text>
+<rect x="2744" y="256" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="272" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">PivotedTableReferenceInColumnsItem</text>
+<rect x="2744" y="288" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">PivotedTableReferenceValueColumnsItem</text>
+<rect x="2744" y="320" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">RightFunctionCallParametersItem</text>
+<rect x="2744" y="352" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">RollupGroupingSpecificationArgumentsItem</text>
+<rect x="2744" y="384" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">RowValueColumnValuesItem</text>
+<rect x="2744" y="416" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="432" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SchemaObjectFunctionTableReferenceParametersItem</text>
+<rect x="2744" y="448" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SearchedCaseExpressionWhenClausesItem</text>
+<rect x="2744" y="480" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="496" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">SimpleCaseExpressionWhenClausesItem</text>
+<rect x="2744" y="512" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="528" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">UnpivotedTableReferenceInColumnsItem</text>
+<rect x="2744" y="544" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">WithCtesAndXmlNamespacesCommonTableExpressionsItem</text>
+<rect x="2744" y="576" width="270" height="24" rx="6" ry="6" fill="#cffafe" stroke="#67e8f9" />
+<text x="2752" y="592" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">XmlNamespacesXmlNamespacesElementsItem</text>
+<text x="36" y="1708" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1f2937">Legend</text>
+<rect x="36" y="1712" width="18" height="12" rx="3" ry="3" fill="#dbeafe" stroke="#93c5fd" />
+<text x="62" y="1722" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">Query/script entities</text>
+<rect x="396" y="1712" width="18" height="12" rx="3" ry="3" fill="#dcfce7" stroke="#86efac" />
+<text x="422" y="1722" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">Table/source entities</text>
+<rect x="756" y="1712" width="18" height="12" rx="3" ry="3" fill="#fee2e2" stroke="#fca5a5" />
+<text x="782" y="1722" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">Expression/predicate entities</text>
+<rect x="36" y="1736" width="18" height="12" rx="3" ry="3" fill="#fef3c7" stroke="#fcd34d" />
+<text x="62" y="1746" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">Names, literals, and type entities</text>
+<rect x="396" y="1736" width="18" height="12" rx="3" ry="3" fill="#ede9fe" stroke="#c4b5fd" />
+<text x="422" y="1746" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">Optional/structured relationship entities</text>
+<rect x="756" y="1736" width="18" height="12" rx="3" ry="3" fill="#cffafe" stroke="#67e8f9" />
+<text x="782" y="1746" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#1f2937">Ordered collection entities</text>
+</svg>

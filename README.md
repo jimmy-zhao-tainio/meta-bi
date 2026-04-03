@@ -243,11 +243,13 @@ meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\
 
 ### meta-transform-script
 
+`MetaTransformScript` provides a canonical, semantically round-trippable SQL `VIEW` syntax model for a supported bounded SQL surface. It can import supported SQL into canonical workspace form, emit semantically equivalent SQL back out, and prove round-trip stability with `meta instance diff`.
+
 Purpose:
-- author and maintain a sanctioned `MetaTransformScript` workspace that captures the supported SQL `VIEW` body subset as modeled XML instances
+- author and maintain a sanctioned `MetaTransformScript` workspace for the supported SQL `VIEW` body subset
 - import supported SQL from files, folders, or inline code into canonical workspace form
-- emit those instances back to semantically equivalent SQL
-- round-trip supported SQL through `SQL -> workspace -> SQL -> workspace` and verify the result with `meta instance diff`
+- emit semantically equivalent SQL back out of that workspace
+- prove the core invariant `SQL -> workspace -> SQL -> workspace` with `meta instance diff`
 
 Current command surface:
 - `meta-transform-script help`
@@ -256,20 +258,46 @@ Current command surface:
 - `meta-transform-script to sql-path [--workspace <path>] --out <path>`
 - `meta-transform-script to sql-code [--workspace <path>] [--name <name>]`
 
-Current model boundary:
+What the model is:
+- this is a canonical syntax model, not a blob store for SQL text
 - the modeled truth is the supported SQL view body, rooted in the `SelectStatement` family
 - `CREATE VIEW` wrapper syntax is treated as an import/export envelope, not as the primary modeled truth
 - wrapper details currently captured in the model are:
   - view schema identifier
   - view object identifier
   - explicit view column list
-- wrapper noise such as `SET ...` and `GO` can be tolerated on import so the CLI can ingest ordinary SQL files from source control or database exports
 - round-trip is semantic, not trivia-preserving:
   - original whitespace
   - comments
   - token offsets
   - exact file formatting
   are not part of the contract
+- binding, type inference, target validation, and lineage are follow-on layers built on top of this syntax model; they do not replace it
+
+Current model boundary:
+- the modeled truth is the supported SQL view body, rooted in the `SelectStatement` family
+- wrapper noise such as `SET ...` and `GO` can be tolerated on import so the CLI can ingest ordinary SQL files from source control or database exports
+- unsupported or excluded surface is rejected explicitly; it is not heuristically approximated
+
+How to read the model graph:
+- the full entity overview in `docs/images/meta-transform-script-entity-graph.svg` is a normalized persisted AST/reference view of the current model
+- it is a reference artifact, not the first conceptual overview
+- giant all-in-one graphs are hard to read for this model family
+- smaller focused subgraphs are the better documentation target over time
+
+Future focused diagrams:
+- Query spine
+- Table/source references
+- Scalar/boolean expressions
+- Grouping/windowing
+
+Reference graph generation:
+- `docs/images/meta-transform-script-entity-graph.svg` is generated from `MetaTransformScript\Workspaces\MetaTransformScript\model.xml`
+- regenerate it with:
+
+```cmd
+python MetaTransformScript\Reference\generate_entity_graph.py
+```
 
 Import behavior:
 - `from sql-path` accepts either:
@@ -384,7 +412,7 @@ Supported SQL surface today:
   - `WITH XMLNAMESPACES`
   - XML method-style calls as exercised in the reference corpus, for example `.value(...)`, `.query(...)`, and `.exist(...)`
 
-Current unsupported or deliberately excluded surface:
+Current unsupported or excluded surface:
 - `OPENJSON`
 - `OPENROWSET`
 - `OPENQUERY`
@@ -398,7 +426,8 @@ Current unsupported or deliberately excluded surface:
 Reference corpus status:
 - `MetaTransformScript\Reference\Corpus` contains the broader working SQL corpus used to pressure the importer/emitter
 - the currently supported reference-corpus round-trip demo uses the supported subset of that corpus and excludes the unsupported surfaces listed above
-- the current supported reference-corpus demo round-trips `32` scripts and then proves equality with `meta instance diff`
+- the current supported reference-corpus demo round-trips `32` scripts through `SQL -> workspace -> SQL -> workspace`
+- the proof point is `meta instance diff` reporting no differences between the original and round-tripped workspaces
 
 Reference corpus demo commands:
 
