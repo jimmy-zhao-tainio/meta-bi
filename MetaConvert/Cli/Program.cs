@@ -1,4 +1,5 @@
 using Meta.Core.Presentation;
+using MetaBi.Cli.Common;
 using MetaConvert.DataVaultToSql;
 using MetaConvert.SchemaToDataVault;
 using MetaRawDataVault.Instance;
@@ -49,12 +50,13 @@ internal static class Program
         }
 
         var sourceWorkspacePath = Path.GetFullPath(parse.SourceWorkspacePath);
-        var targetWorkspacePath = Path.GetFullPath(parse.NewWorkspacePath);
-        if (Directory.Exists(targetWorkspacePath) && Directory.EnumerateFileSystemEntries(targetWorkspacePath).Any())
+        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parse.NewWorkspacePath);
+        if (!targetValidation.Ok)
         {
-            return Fail($"target directory '{targetWorkspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
+            return Fail(targetValidation.ErrorMessage, "choose a new folder or empty the target directory and retry.", 4, targetValidation.Details);
         }
 
+        var targetWorkspacePath = targetValidation.FullPath;
         Directory.CreateDirectory(targetWorkspacePath);
 
         RawDataVaultFromMetaSchemaService.RawDataVaultFromMetaSchemaResult result;

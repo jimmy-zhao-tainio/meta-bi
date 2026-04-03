@@ -9,24 +9,10 @@
     <AssemblyName>meta-schema</AssemblyName>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <UpdateMetaSchemaPublishDir Condition="'$(UpdateMetaSchemaPublishDir)' == ''">true</UpdateMetaSchemaPublishDir>
-    <RepoMetaSchemaPublishDir>$(MSBuildThisFileDirectory)bin\publish\win-x64\</RepoMetaSchemaPublishDir>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\Core\MetaSchema.Core.csproj" />
     <ProjectReference Include="..\Extractors.SqlServer\MetaSchema.Extractors.SqlServer.csproj" />
+    <ProjectReference Include="..\..\Cli\Common\MetaBi.Cli.Common.csproj" />
   </ItemGroup>
-
-  <Target
-    Name="PublishMetaSchemaAfterBuild"
-    AfterTargets="Build"
-    Condition="'$(OS)' == 'Windows_NT' and '$(UpdateMetaSchemaPublishDir)' == 'true' and '$(DesignTimeBuild)' != 'true'">
-    <Message Importance="High" Text="Publishing meta-schema.exe to $(RepoMetaSchemaPublishDir)" />
-    <Exec
-      Command="dotnet publish &quot;$(MSBuildProjectFullPath)&quot; --configuration $(Configuration) -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:UpdateMetaSchemaPublishDir=false -o &quot;$(RepoMetaSchemaPublishDir)&quot;" />
-  </Target>
-
 </Project>

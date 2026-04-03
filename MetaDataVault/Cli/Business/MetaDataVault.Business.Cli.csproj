@@ -9,27 +9,13 @@
     <AssemblyName>meta-datavault-business</AssemblyName>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <UpdateMetaDataVaultBusinessPublishDir Condition="'$(UpdateMetaDataVaultBusinessPublishDir)' == ''">true</UpdateMetaDataVaultBusinessPublishDir>
-    <RepoMetaDataVaultBusinessPublishDir>$(MSBuildThisFileDirectory)bin\publish\win-x64\</RepoMetaDataVaultBusinessPublishDir>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\Cli\Common\MetaBi.Cli.Common.csproj" />
     <ProjectReference Include="..\..\Core\MetaDataVault.Core.csproj" />
     <ProjectReference Include="..\..\..\MetaSql\Core\MetaSql.Core.csproj" />
     <ProjectReference Include="..\..\..\MetaSql\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
     <ProjectReference Include="..\..\..\MetaSql\Tooling\MetaSql.Tooling.csproj" />
   </ItemGroup>
-
-  <Target
-    Name="PublishMetaDataVaultBusinessAfterBuild"
-    AfterTargets="Build"
-    Condition="'$(OS)' == 'Windows_NT' and '$(UpdateMetaDataVaultBusinessPublishDir)' == 'true' and '$(DesignTimeBuild)' != 'true'">
-    <Message Importance="High" Text="Publishing meta-datavault-business.exe to $(RepoMetaDataVaultBusinessPublishDir)" />
-    <Exec
-      Command="dotnet publish &quot;$(MSBuildProjectFullPath)&quot; --configuration $(Configuration) -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:UpdateMetaDataVaultBusinessPublishDir=false -o &quot;$(RepoMetaDataVaultBusinessPublishDir)&quot;" />
-  </Target>
-
 </Project>
 

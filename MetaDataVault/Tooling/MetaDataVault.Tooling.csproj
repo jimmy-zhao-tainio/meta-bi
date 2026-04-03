@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="**\model.xml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="MetaRawDataVault\model.xml" Link="MetaRawDataVault\model.xml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="MetaBusinessDataVault\model.xml" Link="MetaBusinessDataVault\model.xml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="MetaDataVaultImplementation\model.xml" Link="MetaDataVaultImplementation\model.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

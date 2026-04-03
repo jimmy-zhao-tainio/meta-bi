@@ -1,6 +1,7 @@
 using System.Linq;
 using Meta.Core.Presentation;
 using Meta.Core.Services;
+using MetaBi.Cli.Common;
 using MetaSchema.Core;
 using MetaSchema.Extractors.SqlServer;
 
@@ -54,7 +55,13 @@ internal static class Program
             return Fail("missing required option --new-workspace <path>.", "meta-schema extract sqlserver --help");
         }
 
-        var workspacePath = Path.GetFullPath(parseResult.Request.NewWorkspacePath);
+        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parseResult.Request.NewWorkspacePath);
+        if (!targetValidation.Ok)
+        {
+            return Fail(targetValidation.ErrorMessage, "choose a new folder or empty the target directory and retry.", 4, targetValidation.Details);
+        }
+
+        var workspacePath = targetValidation.FullPath;
         if (string.IsNullOrWhiteSpace(parseResult.Request.ConnectionString))
         {
             return Fail("missing required option --connection <connectionString>.", "meta-schema extract sqlserver --help");
@@ -83,11 +90,6 @@ internal static class Program
         if (string.IsNullOrWhiteSpace(parseResult.Request.TableName) && !parseResult.Request.AllTables)
         {
             return Fail("missing required scope option --table <name> or --all-tables.", "meta-schema extract sqlserver --help");
-        }
-
-        if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
-        {
-            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
         }
 
         Directory.CreateDirectory(workspacePath);
@@ -135,6 +137,11 @@ internal static class Program
                     return (false, request, "missing value for --new-workspace.");
                 }
 
+                if (!string.IsNullOrWhiteSpace(request.NewWorkspacePath))
+                {
+                    return (false, request, "--new-workspace can only be provided once.");
+                }
+
                 request.NewWorkspacePath = args[++i];
                 continue;
             }
@@ -146,6 +153,11 @@ internal static class Program
                     return (false, request, "missing value for --connection.");
                 }
 
+                if (!string.IsNullOrWhiteSpace(request.ConnectionString))
+                {
+                    return (false, request, "--connection can only be provided once.");
+                }
+
                 request.ConnectionString = args[++i];
                 continue;
             }
@@ -155,6 +167,11 @@ internal static class Program
                 if (i + 1 >= args.Length)
                 {
                     return (false, request, "missing value for --schema.");
+                }
+
+                if (!string.IsNullOrWhiteSpace(request.SchemaName))
+                {
+                    return (false, request, "--schema can only be provided once.");
                 }
 
                 request.SchemaName = args[++i];
@@ -174,6 +191,11 @@ internal static class Program
                     return (false, request, "missing value for --system.");
                 }
 
+                if (!string.IsNullOrWhiteSpace(request.SystemName))
+                {
+                    return (false, request, "--system can only be provided once.");
+                }
+
                 request.SystemName = args[++i];
                 continue;
             }
@@ -183,6 +205,11 @@ internal static class Program
                 if (i + 1 >= args.Length)
                 {
                     return (false, request, "missing value for --table.");
+                }
+
+                if (!string.IsNullOrWhiteSpace(request.TableName))
+                {
+                    return (false, request, "--table can only be provided once.");
                 }
 
                 request.TableName = args[++i];

@@ -9,26 +9,12 @@
     <AssemblyName>meta-convert</AssemblyName>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <UpdateMetaConvertPublishDir Condition="'$(UpdateMetaConvertPublishDir)' == ''">true</UpdateMetaConvertPublishDir>
-    <RepoMetaConvertPublishDir>$(MSBuildThisFileDirectory)bin\publish\win-x64\</RepoMetaConvertPublishDir>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\Cli\Common\MetaBi.Cli.Common.csproj" />
     <ProjectReference Include="..\..\MetaSchema\Instance\MetaSchema.Instance.csproj" />
     <ProjectReference Include="..\..\MetaDataVault\Instance\MetaRawDataVault.Instance.csproj" />
     <ProjectReference Include="..\DataVaultToSql\MetaConvert.DataVaultToSql.csproj" />
     <ProjectReference Include="..\SchemaToDataVault\MetaConvert.SchemaToDataVault.csproj" />
   </ItemGroup>
-
-  <Target
-    Name="PublishMetaConvertAfterBuild"
-    AfterTargets="Build"
-    Condition="'$(OS)' == 'Windows_NT' and '$(UpdateMetaConvertPublishDir)' == 'true' and '$(DesignTimeBuild)' != 'true'">
-    <Message Importance="High" Text="Publishing meta-convert.exe to $(RepoMetaConvertPublishDir)" />
-    <Exec
-      Command="dotnet publish &quot;$(MSBuildProjectFullPath)&quot; --configuration $(Configuration) -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:UpdateMetaConvertPublishDir=false -o &quot;$(RepoMetaConvertPublishDir)&quot;" />
-  </Target>
-
 </Project>

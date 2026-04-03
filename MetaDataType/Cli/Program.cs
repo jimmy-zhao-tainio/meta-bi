@@ -1,6 +1,7 @@
 using Meta.Core.Domain;
 using Meta.Core.Presentation;
 using Meta.Core.Services;
+using MetaBi.Cli.Common;
 using MetaDataType.Core;
 
 internal static class Program
@@ -37,12 +38,13 @@ internal static class Program
             return Fail(parseResult.ErrorMessage, "meta-data-type init --help");
         }
 
-        var workspacePath = Path.GetFullPath(parseResult.NewWorkspacePath);
-        if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
+        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parseResult.NewWorkspacePath);
+        if (!targetValidation.Ok)
         {
-            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
+            return Fail(targetValidation.ErrorMessage, "choose a new folder or empty the target directory and retry.", 4, targetValidation.Details);
         }
 
+        var workspacePath = targetValidation.FullPath;
         Directory.CreateDirectory(workspacePath);
 
         var workspace = MetaDataTypeWorkspaces.CreateMetaDataTypeWorkspace(workspacePath);

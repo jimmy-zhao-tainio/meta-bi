@@ -7,6 +7,7 @@ This repository currently contains BI-oriented sanctioned models, CLIs, and docs
 - `MetaSchema.*`
 - `MetaDataType.*`
 - `MetaDataTypeConversion.*`
+- `MetaTransform.Workspace`
 - `MetaDataVault.*`
 - `MetaSql.Workspace`
 - `MetaSql.Core`
@@ -245,9 +246,12 @@ Current active BI model families include:
 - `MetaSchema`
 - `MetaDataType`
 - `MetaDataTypeConversion`
+- `MetaTransform`
 - `MetaRawDataVault`
 - `MetaBusinessDataVault`
 - `MetaSql`
+
+`MetaTransform` is currently introduced as a sanctioned workspace model only. CLI and generated tooling are not added yet.
 
 ## Current Projection Status
 

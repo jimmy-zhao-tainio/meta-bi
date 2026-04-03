@@ -2,6 +2,7 @@ using System.Linq;
 using Meta.Core.Domain;
 using Meta.Core.Presentation;
 using Meta.Core.Services;
+using MetaBi.Cli.Common;
 using MetaDataVault.Core;
 
 internal static partial class Program
@@ -39,12 +40,13 @@ internal static partial class Program
             return Fail(parseResult.ErrorMessage, "meta-datavault-business --new-workspace <path>");
         }
 
-        var workspacePath = Path.GetFullPath(parseResult.NewWorkspacePath);
-        if (Directory.Exists(workspacePath) && Directory.EnumerateFileSystemEntries(workspacePath).Any())
+        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parseResult.NewWorkspacePath);
+        if (!targetValidation.Ok)
         {
-            return Fail($"target directory '{workspacePath}' must be empty.", "choose a new folder or empty the target directory and retry.", 4);
+            return Fail(targetValidation.ErrorMessage, "choose a new folder or empty the target directory and retry.", 4, targetValidation.Details);
         }
 
+        var workspacePath = targetValidation.FullPath;
         Directory.CreateDirectory(workspacePath);
         var workspace = MetaDataVaultWorkspaces.CreateEmptyMetaBusinessDataVaultWorkspace(workspacePath);
         var validation = new ValidationService().Validate(workspace);

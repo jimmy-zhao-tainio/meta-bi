@@ -9,23 +9,9 @@
     <AssemblyName>meta-data-type-conversion</AssemblyName>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <UpdateMetaDataTypeConversionPublishDir Condition="'$(UpdateMetaDataTypeConversionPublishDir)' == ''">true</UpdateMetaDataTypeConversionPublishDir>
-    <RepoMetaDataTypeConversionPublishDir>$(MSBuildThisFileDirectory)bin\publish\win-x64\</RepoMetaDataTypeConversionPublishDir>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\Core\MetaDataTypeConversion.Core.csproj" />
+    <ProjectReference Include="..\..\Cli\Common\MetaBi.Cli.Common.csproj" />
   </ItemGroup>
-
-  <Target
-    Name="PublishMetaDataTypeConversionAfterBuild"
-    AfterTargets="Build"
-    Condition="'$(OS)' == 'Windows_NT' and '$(UpdateMetaDataTypeConversionPublishDir)' == 'true' and '$(DesignTimeBuild)' != 'true'">
-    <Message Importance="High" Text="Publishing meta-data-type-conversion.exe to $(RepoMetaDataTypeConversionPublishDir)" />
-    <Exec
-      Command="dotnet publish &quot;$(MSBuildProjectFullPath)&quot; --configuration $(Configuration) -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:UpdateMetaDataTypeConversionPublishDir=false -o &quot;$(RepoMetaDataTypeConversionPublishDir)&quot;" />
-  </Target>
-
 </Project>

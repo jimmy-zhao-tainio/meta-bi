@@ -1,0 +1,16 @@
+using System;
+using System.Xml.Serialization;
+
+namespace MetaTransformScript
+{
+    public sealed class WindowFrameClause
+    {
+        [XmlAttribute("Id")]
+        public string Id { get; set; } = string.Empty;
+
+        [XmlElement("WindowFrameType")]
+        public string WindowFrameType { get; set; } = string.Empty;
+        public bool ShouldSerializeWindowFrameType() => !string.IsNullOrWhiteSpace(WindowFrameType);
+
+    }
+}
