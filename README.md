@@ -259,7 +259,7 @@ Current command surface:
 - `meta-transform-script to sql-code [--workspace <path>] [--name <name>]`
 
 What the model is:
-- this is a canonical syntax model, not a blob store for SQL text
+- this is a canonical syntax model with typed workspace rows for supported SQL structure
 - the modeled truth is the supported SQL view body, rooted in the `SelectStatement` family
 - `CREATE VIEW` wrapper syntax is treated as an import/export envelope, not as the primary modeled truth
 - wrapper details currently captured in the model are:
@@ -312,7 +312,7 @@ Model entity list:
   - `*Link` rows carry optional or structured relationships explicitly
   - `*Item` rows preserve ordered collections explicitly
 
-This is how the model stays structured and round-trippable. It is not SQL text sliced into arbitrary blobs.
+These entities and helper rows are what the workspace persists for the supported SQL structure.
 
 Import behavior:
 - `from sql-path` accepts either:
