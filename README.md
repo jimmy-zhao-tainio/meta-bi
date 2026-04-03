@@ -274,6 +274,46 @@ What the model is:
   are not part of the contract
 - binding, type inference, target validation, and lineage are follow-on layers built on top of this syntax model; they do not replace it
 
+Model entity list:
+- script and statement spine:
+  - `TransformScript`
+  - `TransformScriptSelectStatementLink`
+  - `SelectStatement`
+  - `StatementWithCtesAndXmlNamespaces`
+  - `QueryExpression`
+  - `QuerySpecification`
+  - `CommonTableExpression`
+- source/table side:
+  - `FromClause`
+  - `TableReference`
+  - `NamedTableReference`
+  - `QualifiedJoin`
+  - `QueryDerivedTable`
+  - `PivotedTableReference`
+  - `UnpivotedTableReference`
+  - `FullTextTableReference`
+- expression side:
+  - `SelectElement`
+  - `ScalarExpression`
+  - `BooleanExpression`
+  - `FunctionCall`
+  - `CaseExpression`
+  - `ColumnReferenceExpression`
+  - `ScalarSubquery`
+  - `OverClause`
+  - `WindowDefinition`
+- support entities:
+  - `Identifier`
+  - `MultiPartIdentifier`
+  - `SchemaObjectName`
+  - `Literal`
+  - `DataTypeReference`
+- structural helper entities:
+  - `*Link` rows carry optional or structured relationships explicitly
+  - `*Item` rows preserve ordered collections explicitly
+
+This is how the model stays structured and round-trippable. It is not SQL text sliced into arbitrary blobs.
+
 Import behavior:
 - `from sql-path` accepts either:
   - one `.sql` file
@@ -426,10 +466,23 @@ meta-transform-script to sql-code --name dbo.v_xml_namespaces_and_methods
 popd
 ```
 
-The expected proof point in `run.output` is:
+Captured output excerpt from `Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration\run.output`:
 
 ```text
+> meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptReferenceCorpusWorkspace
+OK: Created MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Scripts: 32
+
+> meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+OK: Created MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Scripts: 32
+
+> meta instance diff MetaTransformScriptReferenceCorpusWorkspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
 Instance diff: no differences.
+Rows: left=4996, right=4996  Properties: left=8348, right=8348
+NotIn: left-not-in-right=0, right-not-in-left=0
 ```
 
 Smaller two-script demo:
@@ -449,6 +502,33 @@ popd
 meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptRoundTripWorkspace
 ```
 
+Captured output excerpt from `Samples\Demos\MetaTransformScriptCliIntegration\run.output`:
+
+```text
+> meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptCliIntegrationWorkspace
+OK: Created MetaTransformScriptCliIntegrationWorkspace
+Import:
+  Scripts: 2
+
+> meta-transform-script to sql-code --name sales.CustomerOrderSummary
+WITH CompletedOrders AS (SELECT
+    c.CustomerId,
+    c.CustomerName,
+    o.OrderId,
+    o.Amount
+FROM sales.Customer AS c
+INNER JOIN sales.[Order] AS o
+    ON o.CustomerId = c.CustomerId
+WHERE o.Status = 'Completed')
+SELECT
+    CompletedOrders.CustomerId,
+    CompletedOrders.CustomerName,
+    COUNT(*) AS OrderCount,
+    SUM(CompletedOrders.Amount) AS TotalAmount
+FROM CompletedOrders
+GROUP BY CompletedOrders.CustomerId, CompletedOrders.CustomerName
+```
+
 Single-file and inline-code examples:
 
 ```cmd
@@ -460,6 +540,12 @@ meta-transform-script to sql-code --workspace .\MetaTransformScript.Workspace --
 meta-transform-script from sql-code --code "select 1 as A" --name dbo.v_inline --new-workspace .\MetaTransformScript.Inline
 meta-transform-script to sql-code --workspace .\MetaTransformScript.Inline --name dbo.v_inline
 ```
+
+Model entity overview:
+
+<a href="docs/images/meta-transform-script-entity-graph.svg">
+  <img src="docs/images/meta-transform-script-entity-graph.svg" alt="MetaTransformScript entity overview" width="100%" />
+</a>
 
 
 ## Active Models
