@@ -274,31 +274,6 @@ What the model is:
   are not part of the contract
 - binding, type inference, target validation, and lineage are follow-on layers built on top of this syntax model; they do not replace it
 
-Current model boundary:
-- the modeled truth is the supported SQL view body, rooted in the `SelectStatement` family
-- wrapper noise such as `SET ...` and `GO` can be tolerated on import so the CLI can ingest ordinary SQL files from source control or database exports
-- unsupported or excluded surface is rejected explicitly; it is not heuristically approximated
-
-How to read the model graph:
-- the full entity overview in `docs/images/meta-transform-script-entity-graph.svg` is a normalized persisted AST/reference view of the current model
-- it is a reference artifact, not the first conceptual overview
-- giant all-in-one graphs are hard to read for this model family
-- smaller focused subgraphs are the better documentation target over time
-
-Future focused diagrams:
-- Query spine
-- Table/source references
-- Scalar/boolean expressions
-- Grouping/windowing
-
-Reference graph generation:
-- `docs/images/meta-transform-script-entity-graph.svg` is generated from `MetaTransformScript\Workspaces\MetaTransformScript\model.xml`
-- regenerate it with:
-
-```cmd
-python MetaTransformScript\Reference\generate_entity_graph.py
-```
-
 Import behavior:
 - `from sql-path` accepts either:
   - one `.sql` file
