@@ -485,68 +485,6 @@ Rows: left=4996, right=4996  Properties: left=8348, right=8348
 NotIn: left-not-in-right=0, right-not-in-left=0
 ```
 
-Smaller two-script demo:
-
-```cmd
-cd Samples\Demos\MetaTransformScriptCliIntegration
-call cleanup.cmd
-
-meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptCliIntegrationWorkspace
-
-pushd MetaTransformScriptCliIntegrationWorkspace
-meta-transform-script to sql-path --out ..\RoundTrippedViews
-meta-transform-script to sql-path --out ..\RoundTrippedViews.sql
-meta-transform-script to sql-code --name sales.CustomerOrderSummary
-popd
-
-meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptRoundTripWorkspace
-```
-
-Captured output excerpt from `Samples\Demos\MetaTransformScriptCliIntegration\run.output`:
-
-```text
-> meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptCliIntegrationWorkspace
-OK: Created MetaTransformScriptCliIntegrationWorkspace
-Import:
-  Scripts: 2
-
-> meta-transform-script to sql-code --name sales.CustomerOrderSummary
-WITH CompletedOrders AS (SELECT
-    c.CustomerId,
-    c.CustomerName,
-    o.OrderId,
-    o.Amount
-FROM sales.Customer AS c
-INNER JOIN sales.[Order] AS o
-    ON o.CustomerId = c.CustomerId
-WHERE o.Status = 'Completed')
-SELECT
-    CompletedOrders.CustomerId,
-    CompletedOrders.CustomerName,
-    COUNT(*) AS OrderCount,
-    SUM(CompletedOrders.Amount) AS TotalAmount
-FROM CompletedOrders
-GROUP BY CompletedOrders.CustomerId, CompletedOrders.CustomerName
-```
-
-Single-file and inline-code examples:
-
-```cmd
-meta-transform-script from sql-path --path .\Views --new-workspace .\MetaTransformScript.Workspace
-meta-transform-script to sql-path --workspace .\MetaTransformScript.Workspace --out .\out\Views
-meta-transform-script to sql-path --workspace .\MetaTransformScript.Workspace --out .\out\Views.sql
-meta-transform-script to sql-code --workspace .\MetaTransformScript.Workspace --name dbo.v_window_functions
-
-meta-transform-script from sql-code --code "select 1 as A" --name dbo.v_inline --new-workspace .\MetaTransformScript.Inline
-meta-transform-script to sql-code --workspace .\MetaTransformScript.Inline --name dbo.v_inline
-```
-
-Model entity overview:
-
-<a href="docs/images/meta-transform-script-entity-graph.svg">
-  <img src="docs/images/meta-transform-script-entity-graph.svg" alt="MetaTransformScript entity overview" width="100%" />
-</a>
-
 
 ## Active Models
 
