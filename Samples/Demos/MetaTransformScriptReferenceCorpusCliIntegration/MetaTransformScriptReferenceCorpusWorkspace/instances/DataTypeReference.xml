@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DataTypeReferenceList>
+    <DataTypeReference Id="DataTypeReference:1" />
+    <DataTypeReference Id="DataTypeReference:2" />
+    <DataTypeReference Id="DataTypeReference:3" />
+    <DataTypeReference Id="DataTypeReference:4" />
+    <DataTypeReference Id="DataTypeReference:5" />
+    <DataTypeReference Id="DataTypeReference:6" />
+    <DataTypeReference Id="DataTypeReference:7" />
+  </DataTypeReferenceList>
+</MetaTransformScript>

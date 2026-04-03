@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuerySpecificationFromClauseLinkList>
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:1" OwnerId="QuerySpecification:1" ValueId="FromClause:1" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:2" OwnerId="QuerySpecification:2" ValueId="FromClause:2" />
+    <QuerySpecificationFromClauseLink Id="QuerySpecificationFromClauseLink:3" OwnerId="QuerySpecification:3" ValueId="FromClause:3" />
+  </QuerySpecificationFromClauseLinkList>
+</MetaTransformScript>

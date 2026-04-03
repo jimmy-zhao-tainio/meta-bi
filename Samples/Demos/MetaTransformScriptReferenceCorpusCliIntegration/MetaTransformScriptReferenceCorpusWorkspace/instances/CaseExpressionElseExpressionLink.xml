@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CaseExpressionElseExpressionLinkList>
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:1" OwnerId="CaseExpression:1" ValueId="ScalarExpression:99" />
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:2" OwnerId="CaseExpression:2" ValueId="ScalarExpression:131" />
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:3" OwnerId="CaseExpression:3" ValueId="ScalarExpression:138" />
+  </CaseExpressionElseExpressionLinkList>
+</MetaTransformScript>

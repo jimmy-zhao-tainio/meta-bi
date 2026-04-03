@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SearchedWhenClauseWhenExpressionLinkList>
+    <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:1" OwnerId="SearchedWhenClause:1" ValueId="BooleanExpression:22" />
+    <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:2" OwnerId="SearchedWhenClause:2" ValueId="BooleanExpression:31" />
+  </SearchedWhenClauseWhenExpressionLinkList>
+</MetaTransformScript>

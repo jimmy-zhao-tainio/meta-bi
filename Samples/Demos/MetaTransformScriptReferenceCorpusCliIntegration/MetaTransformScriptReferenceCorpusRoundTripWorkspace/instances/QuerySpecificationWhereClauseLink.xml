@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuerySpecificationWhereClauseLinkList>
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:1" OwnerId="QuerySpecification:5" ValueId="WhereClause:1" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:2" OwnerId="QuerySpecification:10" ValueId="WhereClause:2" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:3" OwnerId="QuerySpecification:16" ValueId="WhereClause:3" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:4" OwnerId="QuerySpecification:17" ValueId="WhereClause:4" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:5" OwnerId="QuerySpecification:19" ValueId="WhereClause:6" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:6" OwnerId="QuerySpecification:20" ValueId="WhereClause:7" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:7" OwnerId="QuerySpecification:18" ValueId="WhereClause:5" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:8" OwnerId="QuerySpecification:30" ValueId="WhereClause:8" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:9" OwnerId="QuerySpecification:41" ValueId="WhereClause:9" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:10" OwnerId="QuerySpecification:44" ValueId="WhereClause:10" />
+  </QuerySpecificationWhereClauseLinkList>
+</MetaTransformScript>

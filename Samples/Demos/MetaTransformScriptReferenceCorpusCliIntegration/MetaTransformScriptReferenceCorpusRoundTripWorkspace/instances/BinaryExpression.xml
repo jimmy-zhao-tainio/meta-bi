@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BinaryExpressionList>
+    <BinaryExpression Id="BinaryExpression:1" BaseId="ScalarExpression:210">
+      <BinaryExpressionType>Add</BinaryExpressionType>
+    </BinaryExpression>
+  </BinaryExpressionList>
+</MetaTransformScript>

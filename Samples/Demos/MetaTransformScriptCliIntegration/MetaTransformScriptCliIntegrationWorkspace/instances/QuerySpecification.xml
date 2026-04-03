@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuerySpecificationList>
+    <QuerySpecification Id="QuerySpecification:1" BaseId="QueryExpression:1">
+      <UniqueRowFilter>NotSpecified</UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:2" BaseId="QueryExpression:2">
+      <UniqueRowFilter>NotSpecified</UniqueRowFilter>
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:3" BaseId="QueryExpression:3">
+      <UniqueRowFilter>NotSpecified</UniqueRowFilter>
+    </QuerySpecification>
+  </QuerySpecificationList>
+</MetaTransformScript>

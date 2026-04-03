@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BooleanComparisonExpressionList>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:1" BaseId="BooleanExpression:1">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:2" BaseId="BooleanExpression:2">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:3" BaseId="BooleanExpression:3">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:4" BaseId="BooleanExpression:4">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:5" BaseId="BooleanExpression:5">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:6" BaseId="BooleanExpression:6">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:7" BaseId="BooleanExpression:14">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:8" BaseId="BooleanExpression:19">
+      <ComparisonType>GreaterThan</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:9" BaseId="BooleanExpression:20">
+      <ComparisonType>GreaterThan</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:10" BaseId="BooleanExpression:21">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:11" BaseId="BooleanExpression:23">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:12" BaseId="BooleanExpression:27">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:13" BaseId="BooleanExpression:29">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:14" BaseId="BooleanExpression:31">
+      <ComparisonType>GreaterThan</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:15" BaseId="BooleanExpression:32">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:16" BaseId="BooleanExpression:34">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:17" BaseId="BooleanExpression:37">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:18" BaseId="BooleanExpression:38">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+  </BooleanComparisonExpressionList>
+</MetaTransformScript>

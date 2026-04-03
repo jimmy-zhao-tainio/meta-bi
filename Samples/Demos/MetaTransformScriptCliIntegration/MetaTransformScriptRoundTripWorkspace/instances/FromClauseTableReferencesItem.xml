@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FromClauseTableReferencesItemList>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:1" OwnerId="FromClause:1" ValueId="TableReference:1">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:2" OwnerId="FromClause:2" ValueId="TableReference:2">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:3" OwnerId="FromClause:3" ValueId="TableReference:5">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+  </FromClauseTableReferencesItemList>
+</MetaTransformScript>

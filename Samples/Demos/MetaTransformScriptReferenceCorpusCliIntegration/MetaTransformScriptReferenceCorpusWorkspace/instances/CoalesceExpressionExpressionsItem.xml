@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CoalesceExpressionExpressionsItemList>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:1" OwnerId="CoalesceExpression:1" ValueId="ScalarExpression:143">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:2" OwnerId="CoalesceExpression:1" ValueId="ScalarExpression:144">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:3" OwnerId="CoalesceExpression:1" ValueId="ScalarExpression:145">
+      <Ordinal>2</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+  </CoalesceExpressionExpressionsItemList>
+</MetaTransformScript>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WindowDelimiterList>
+    <WindowDelimiter Id="WindowDelimiter:1">
+      <WindowDelimiterType>CurrentRow</WindowDelimiterType>
+    </WindowDelimiter>
+    <WindowDelimiter Id="WindowDelimiter:2">
+      <WindowDelimiterType>UnboundedPreceding</WindowDelimiterType>
+    </WindowDelimiter>
+    <WindowDelimiter Id="WindowDelimiter:3">
+      <WindowDelimiterType>CurrentRow</WindowDelimiterType>
+    </WindowDelimiter>
+    <WindowDelimiter Id="WindowDelimiter:4">
+      <WindowDelimiterType>UnboundedPreceding</WindowDelimiterType>
+    </WindowDelimiter>
+  </WindowDelimiterList>
+</MetaTransformScript>

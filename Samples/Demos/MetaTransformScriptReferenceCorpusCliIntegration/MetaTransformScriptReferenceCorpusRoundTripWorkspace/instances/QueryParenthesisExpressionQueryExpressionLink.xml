@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QueryParenthesisExpressionQueryExpressionLinkList>
+    <QueryParenthesisExpressionQueryExpressionLink Id="QueryParenthesisExpressionQueryExpressionLink:1" OwnerId="QueryParenthesisExpression:1" ValueId="QueryExpression:47" />
+    <QueryParenthesisExpressionQueryExpressionLink Id="QueryParenthesisExpressionQueryExpressionLink:2" OwnerId="QueryParenthesisExpression:2" ValueId="QueryExpression:49" />
+  </QueryParenthesisExpressionQueryExpressionLinkList>
+</MetaTransformScript>

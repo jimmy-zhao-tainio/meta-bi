@@ -75,6 +75,19 @@ internal static class Program
                 });
                 return 0;
             }
+            catch (MetaTransformScriptSqlImportException ex)
+            {
+                return Fail(
+                    GetImportFailureMessage("sql-path", ex.Kind),
+                    GetImportFailureNext("sql-path", ex.Kind),
+                    4,
+                    new[]
+                    {
+                        $"  Path: {Path.GetFullPath(parse.Path)}",
+                        $"  Workspace: {targetValidation.FullPath}",
+                        $"  {ex.Message}"
+                    });
+            }
             catch (Exception ex)
             {
                 return Fail(
@@ -128,6 +141,18 @@ internal static class Program
                     ("Workspace", result.WorkspacePath)
                 });
                 return 0;
+            }
+            catch (MetaTransformScriptSqlImportException ex)
+            {
+                return Fail(
+                    GetImportFailureMessage("sql-code", ex.Kind),
+                    GetImportFailureNext("sql-code", ex.Kind),
+                    4,
+                    new[]
+                    {
+                        $"  Workspace: {targetValidation.FullPath}",
+                        $"  {ex.Message}"
+                    });
             }
             catch (Exception ex)
             {
@@ -475,6 +500,34 @@ internal static class Program
         Presenter.WriteInfo("  Emits the SELECT body only, not the CREATE VIEW wrapper.");
         Presenter.WriteInfo("  If the workspace contains multiple scripts, --name is required.");
     }
+
+    private static string GetImportFailureMessage(
+        string sourceLabel,
+        MetaTransformScriptSqlImportFailureKind kind) =>
+        kind switch
+        {
+            MetaTransformScriptSqlImportFailureKind.SourcePathNotFound => $"{sourceLabel} import source was not found.",
+            MetaTransformScriptSqlImportFailureKind.SourcePathHasNoSqlFiles => $"{sourceLabel} import source does not contain any .sql files.",
+            MetaTransformScriptSqlImportFailureKind.ParseFailed => $"{sourceLabel} parse failed.",
+            MetaTransformScriptSqlImportFailureKind.UnsupportedSql => $"{sourceLabel} import hit unsupported SQL.",
+            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput => $"{sourceLabel} import found unsupported SQL input shape.",
+            _ => $"{sourceLabel} import failed."
+        };
+
+    private static string GetImportFailureNext(
+        string sourceLabel,
+        MetaTransformScriptSqlImportFailureKind kind) =>
+        kind switch
+        {
+            MetaTransformScriptSqlImportFailureKind.SourcePathNotFound => sourceLabel == "sql-path"
+                ? "check the SQL path and retry."
+                : "check the SQL input and retry.",
+            MetaTransformScriptSqlImportFailureKind.SourcePathHasNoSqlFiles => "point --path at a .sql file or a folder that contains .sql files, then retry.",
+            MetaTransformScriptSqlImportFailureKind.ParseFailed => "fix the SQL syntax and retry.",
+            MetaTransformScriptSqlImportFailureKind.UnsupportedSql => "remove unsupported wrapper options or unsupported SQL surface, then retry.",
+            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput => "provide CREATE VIEW wrappers or one bare SELECT per input unit, then retry.",
+            _ => $"check the {sourceLabel} input and retry."
+        };
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
     {

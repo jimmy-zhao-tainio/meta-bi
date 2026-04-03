@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SelectStatementList>
+    <SelectStatement Id="SelectStatement:1" BaseId="StatementWithCtesAndXmlNamespaces:1" />
+    <SelectStatement Id="SelectStatement:2" BaseId="StatementWithCtesAndXmlNamespaces:2" />
+    <SelectStatement Id="SelectStatement:3" BaseId="StatementWithCtesAndXmlNamespaces:3" />
+    <SelectStatement Id="SelectStatement:4" BaseId="StatementWithCtesAndXmlNamespaces:4" />
+    <SelectStatement Id="SelectStatement:5" BaseId="StatementWithCtesAndXmlNamespaces:5" />
+    <SelectStatement Id="SelectStatement:6" BaseId="StatementWithCtesAndXmlNamespaces:6" />
+    <SelectStatement Id="SelectStatement:7" BaseId="StatementWithCtesAndXmlNamespaces:7" />
+    <SelectStatement Id="SelectStatement:8" BaseId="StatementWithCtesAndXmlNamespaces:8" />
+    <SelectStatement Id="SelectStatement:9" BaseId="StatementWithCtesAndXmlNamespaces:9" />
+    <SelectStatement Id="SelectStatement:10" BaseId="StatementWithCtesAndXmlNamespaces:10" />
+    <SelectStatement Id="SelectStatement:11" BaseId="StatementWithCtesAndXmlNamespaces:11" />
+    <SelectStatement Id="SelectStatement:12" BaseId="StatementWithCtesAndXmlNamespaces:12" />
+    <SelectStatement Id="SelectStatement:13" BaseId="StatementWithCtesAndXmlNamespaces:13" />
+    <SelectStatement Id="SelectStatement:14" BaseId="StatementWithCtesAndXmlNamespaces:14" />
+    <SelectStatement Id="SelectStatement:15" BaseId="StatementWithCtesAndXmlNamespaces:15" />
+    <SelectStatement Id="SelectStatement:16" BaseId="StatementWithCtesAndXmlNamespaces:16" />
+    <SelectStatement Id="SelectStatement:17" BaseId="StatementWithCtesAndXmlNamespaces:17" />
+    <SelectStatement Id="SelectStatement:18" BaseId="StatementWithCtesAndXmlNamespaces:18" />
+    <SelectStatement Id="SelectStatement:19" BaseId="StatementWithCtesAndXmlNamespaces:19" />
+    <SelectStatement Id="SelectStatement:20" BaseId="StatementWithCtesAndXmlNamespaces:20" />
+    <SelectStatement Id="SelectStatement:21" BaseId="StatementWithCtesAndXmlNamespaces:21" />
+    <SelectStatement Id="SelectStatement:22" BaseId="StatementWithCtesAndXmlNamespaces:22" />
+    <SelectStatement Id="SelectStatement:23" BaseId="StatementWithCtesAndXmlNamespaces:23" />
+    <SelectStatement Id="SelectStatement:24" BaseId="StatementWithCtesAndXmlNamespaces:24" />
+    <SelectStatement Id="SelectStatement:25" BaseId="StatementWithCtesAndXmlNamespaces:25" />
+    <SelectStatement Id="SelectStatement:26" BaseId="StatementWithCtesAndXmlNamespaces:26" />
+    <SelectStatement Id="SelectStatement:27" BaseId="StatementWithCtesAndXmlNamespaces:27" />
+    <SelectStatement Id="SelectStatement:28" BaseId="StatementWithCtesAndXmlNamespaces:28" />
+    <SelectStatement Id="SelectStatement:29" BaseId="StatementWithCtesAndXmlNamespaces:29" />
+    <SelectStatement Id="SelectStatement:30" BaseId="StatementWithCtesAndXmlNamespaces:30" />
+    <SelectStatement Id="SelectStatement:31" BaseId="StatementWithCtesAndXmlNamespaces:31" />
+    <SelectStatement Id="SelectStatement:32" BaseId="StatementWithCtesAndXmlNamespaces:32" />
+  </SelectStatementList>
+</MetaTransformScript>

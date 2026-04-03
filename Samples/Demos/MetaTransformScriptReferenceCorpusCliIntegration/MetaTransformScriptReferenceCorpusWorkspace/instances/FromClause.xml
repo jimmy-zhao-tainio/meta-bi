@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FromClauseList>
+    <FromClause Id="FromClause:1" />
+    <FromClause Id="FromClause:2" />
+    <FromClause Id="FromClause:3" />
+    <FromClause Id="FromClause:4" />
+    <FromClause Id="FromClause:5" />
+    <FromClause Id="FromClause:6" />
+    <FromClause Id="FromClause:7" />
+    <FromClause Id="FromClause:8" />
+    <FromClause Id="FromClause:9" />
+    <FromClause Id="FromClause:10" />
+    <FromClause Id="FromClause:11" />
+    <FromClause Id="FromClause:12" />
+    <FromClause Id="FromClause:13" />
+    <FromClause Id="FromClause:14" />
+    <FromClause Id="FromClause:15" />
+    <FromClause Id="FromClause:16" />
+    <FromClause Id="FromClause:17" />
+    <FromClause Id="FromClause:18" />
+    <FromClause Id="FromClause:19" />
+    <FromClause Id="FromClause:20" />
+    <FromClause Id="FromClause:21" />
+    <FromClause Id="FromClause:22" />
+    <FromClause Id="FromClause:23" />
+    <FromClause Id="FromClause:24" />
+    <FromClause Id="FromClause:25" />
+    <FromClause Id="FromClause:26" />
+    <FromClause Id="FromClause:27" />
+    <FromClause Id="FromClause:28" />
+    <FromClause Id="FromClause:29" />
+    <FromClause Id="FromClause:30" />
+    <FromClause Id="FromClause:31" />
+    <FromClause Id="FromClause:32" />
+    <FromClause Id="FromClause:33" />
+    <FromClause Id="FromClause:34" />
+    <FromClause Id="FromClause:35" />
+    <FromClause Id="FromClause:36" />
+    <FromClause Id="FromClause:37" />
+    <FromClause Id="FromClause:38" />
+    <FromClause Id="FromClause:39" />
+    <FromClause Id="FromClause:40" />
+    <FromClause Id="FromClause:41" />
+    <FromClause Id="FromClause:42" />
+    <FromClause Id="FromClause:43" />
+    <FromClause Id="FromClause:44" />
+    <FromClause Id="FromClause:45" />
+    <FromClause Id="FromClause:46" />
+    <FromClause Id="FromClause:47" />
+    <FromClause Id="FromClause:48" />
+    <FromClause Id="FromClause:49" />
+    <FromClause Id="FromClause:50" />
+  </FromClauseList>
+</MetaTransformScript>

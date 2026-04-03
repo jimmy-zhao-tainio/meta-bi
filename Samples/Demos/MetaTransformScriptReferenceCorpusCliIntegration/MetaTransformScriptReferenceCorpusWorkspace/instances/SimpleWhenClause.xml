@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SimpleWhenClauseList>
+    <SimpleWhenClause Id="SimpleWhenClause:1" BaseId="WhenClause:2" />
+    <SimpleWhenClause Id="SimpleWhenClause:2" BaseId="WhenClause:3" />
+  </SimpleWhenClauseList>
+</MetaTransformScript>

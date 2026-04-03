@@ -1,0 +1,59 @@
+
+> call cleanup.cmd  1>nul 2>&1 
+
+> meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptReferenceCorpusWorkspace 
+OK: Created MetaTransformScriptReferenceCorpusWorkspace
+Import:
+  Scripts: 32
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusWorkspace
+
+> pushd MetaTransformScriptReferenceCorpusWorkspace 
+
+> meta-transform-script to sql-path --out ..\RoundTrippedViews 
+OK: Exported 32 transform scripts
+Output:
+  Scripts: 32
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration\RoundTrippedViews
+
+> meta-transform-script to sql-path --out ..\RoundTrippedViews.sql 
+OK: Exported 32 transform scripts
+Output:
+  Scripts: 32
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration\RoundTrippedViews.sql
+
+> meta-transform-script to sql-code --name dbo.v_window_functions 
+SELECT
+    s.CustomerId,
+    s.OrderId,
+    SUM(s.Amount) OVER (PARTITION BY s.CustomerId ORDER BY s.OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RunningAmount,
+    AVG(s.Amount) OVER (PARTITION BY s.CustomerId) AS AvgAmount,
+    ROW_NUMBER() OVER (PARTITION BY s.CustomerId ORDER BY s.OrderDate DESC) AS RowNum,
+    LAG(s.Amount, 1, 0) OVER (PARTITION BY s.CustomerId ORDER BY s.OrderDate) AS PrevAmount
+FROM dbo.Sales AS s
+
+> popd
+
+> meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace 
+OK: Created MetaTransformScriptReferenceCorpusRoundTripWorkspace
+Import:
+  Scripts: 32
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+> meta instance diff MetaTransformScriptReferenceCorpusWorkspace MetaTransformScriptReferenceCorpusRoundTripWorkspace 
+Instance diff: no differences.
+DiffWorkspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration\MetaTransformScriptReferenceCorpusRoundTripWorkspace.instance-diff
+Rows: left=4996, right=4996  Properties: left=8348, right=8348
+NotIn: left-not-in-right=0, right-not-in-left=0
+
+> pushd MetaTransformScriptReferenceCorpusRoundTripWorkspace 
+
+> meta-transform-script to sql-code --name dbo.v_xml_namespaces_and_methods 
+WITH XMLNAMESPACES ('urn:test' AS ns)
+SELECT
+    s.Id,
+    s.XmlPayload.value('(/ns:Root/ns:Id/text())[1]', 'int') AS XmlId,
+    s.XmlPayload.query('/ns:Root') AS XmlFragment,
+    s.XmlPayload.exist('/ns:Root') AS HasRoot
+FROM dbo.XmlSource AS s
+
+> popd

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InstanceDiffModelEqual>
+  <DiffList>
+    <Diff Id="1" ModelId="1">
+      <DiffModelVersion>1.0</DiffModelVersion>
+      <Name>instance-diff</Name>
+    </Diff>
+  </DiffList>
+</InstanceDiffModelEqual>

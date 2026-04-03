@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StatementWithCtesAndXmlNamespacesList>
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:1" BaseId="TSqlStatement:1" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:2" BaseId="TSqlStatement:2" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:3" BaseId="TSqlStatement:3" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:4" BaseId="TSqlStatement:4" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:5" BaseId="TSqlStatement:5" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:6" BaseId="TSqlStatement:6" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:7" BaseId="TSqlStatement:7" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:8" BaseId="TSqlStatement:8" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:9" BaseId="TSqlStatement:9" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:10" BaseId="TSqlStatement:10" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:11" BaseId="TSqlStatement:11" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:12" BaseId="TSqlStatement:12" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:13" BaseId="TSqlStatement:13" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:14" BaseId="TSqlStatement:14" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:15" BaseId="TSqlStatement:15" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:16" BaseId="TSqlStatement:16" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:17" BaseId="TSqlStatement:17" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:18" BaseId="TSqlStatement:18" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:19" BaseId="TSqlStatement:19" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:20" BaseId="TSqlStatement:20" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:21" BaseId="TSqlStatement:21" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:22" BaseId="TSqlStatement:22" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:23" BaseId="TSqlStatement:23" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:24" BaseId="TSqlStatement:24" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:25" BaseId="TSqlStatement:25" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:26" BaseId="TSqlStatement:26" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:27" BaseId="TSqlStatement:27" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:28" BaseId="TSqlStatement:28" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:29" BaseId="TSqlStatement:29" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:30" BaseId="TSqlStatement:30" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:31" BaseId="TSqlStatement:31" />
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:32" BaseId="TSqlStatement:32" />
+  </StatementWithCtesAndXmlNamespacesList>
+</MetaTransformScript>

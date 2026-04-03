@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TransformScriptList>
+    <TransformScript Id="TransformScript:1">
+      <Name>sales.CustomerOrderSummary</Name>
+      <SourcePath>001_customer_order_summary.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:2">
+      <Name>reporting.InvoiceWindow</Name>
+      <SourcePath>002_invoice_window.sql</SourcePath>
+    </TransformScript>
+  </TransformScriptList>
+</MetaTransformScript>

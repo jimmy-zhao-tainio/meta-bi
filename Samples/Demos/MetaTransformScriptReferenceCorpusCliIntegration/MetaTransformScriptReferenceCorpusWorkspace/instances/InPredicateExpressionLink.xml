@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <InPredicateExpressionLinkList>
+    <InPredicateExpressionLink Id="InPredicateExpressionLink:1" OwnerId="InPredicate:1" ValueId="ScalarExpression:50" />
+    <InPredicateExpressionLink Id="InPredicateExpressionLink:2" OwnerId="InPredicate:2" ValueId="ScalarExpression:116" />
+  </InPredicateExpressionLinkList>
+</MetaTransformScript>

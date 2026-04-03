@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GlobalFunctionTableReferenceParametersItemList>
+    <GlobalFunctionTableReferenceParametersItem Id="GlobalFunctionTableReferenceParametersItem:1" OwnerId="GlobalFunctionTableReference:1" ValueId="ScalarExpression:252">
+      <Ordinal>0</Ordinal>
+    </GlobalFunctionTableReferenceParametersItem>
+    <GlobalFunctionTableReferenceParametersItem Id="GlobalFunctionTableReferenceParametersItem:2" OwnerId="GlobalFunctionTableReference:1" ValueId="ScalarExpression:253">
+      <Ordinal>1</Ordinal>
+    </GlobalFunctionTableReferenceParametersItem>
+    <GlobalFunctionTableReferenceParametersItem Id="GlobalFunctionTableReferenceParametersItem:3" OwnerId="GlobalFunctionTableReference:2" ValueId="ScalarExpression:255">
+      <Ordinal>0</Ordinal>
+    </GlobalFunctionTableReferenceParametersItem>
+    <GlobalFunctionTableReferenceParametersItem Id="GlobalFunctionTableReferenceParametersItem:4" OwnerId="GlobalFunctionTableReference:2" ValueId="ScalarExpression:256">
+      <Ordinal>1</Ordinal>
+    </GlobalFunctionTableReferenceParametersItem>
+  </GlobalFunctionTableReferenceParametersItemList>
+</MetaTransformScript>

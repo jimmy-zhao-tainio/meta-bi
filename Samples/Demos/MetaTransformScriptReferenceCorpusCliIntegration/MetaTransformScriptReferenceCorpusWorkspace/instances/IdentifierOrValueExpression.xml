@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <IdentifierOrValueExpressionList>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:1">
+      <Value>CustomerName</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:2">
+      <Value>CreatedAtAlias</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:3">
+      <Value>LiteralValue</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:4">
+      <Value>MaxAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:5">
+      <Value>OrderCount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:6">
+      <Value>TotalAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:7">
+      <Value>TotalAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:8">
+      <Value>GroupingRegionId</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:9">
+      <Value>GroupingIdValue</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:10">
+      <Value>TotalAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:11">
+      <Value>TotalAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:12">
+      <Value>MaxAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:13">
+      <Value>HasOrders</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:14">
+      <Value>StatusText</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:15">
+      <Value>AmountBand</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:16">
+      <Value>DisplayName</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:17">
+      <Value>NormalizedCode</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:18">
+      <Value>ActiveAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:19">
+      <Value>PriorityText</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:20">
+      <Value>AmountDecimal</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:21">
+      <Value>ScoreInt</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:22">
+      <Value>CreatedAtText</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:23">
+      <Value>ParsedCreatedAt</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:24">
+      <Value>CollatedCustomerName</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:25">
+      <Value>RunningAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:26">
+      <Value>AvgAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:27">
+      <Value>RowNum</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:28">
+      <Value>PrevAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:29">
+      <Value>RunningAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:30">
+      <Value>AvgAmount</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:31">
+      <Value>Depth</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:32">
+      <Value>XmlId</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:33">
+      <Value>XmlFragment</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:34">
+      <Value>HasRoot</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:35">
+      <Value>NegativeInt</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:36">
+      <Value>PositiveNumeric</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:37">
+      <Value>RealValue</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:38">
+      <Value>BinaryValue</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:39">
+      <Value>NullValue</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:40">
+      <Value>ParsedDate</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:41">
+      <Value>TryParsedNumber</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:42">
+      <Value>LeftValue</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:43">
+      <Value>RightValue</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:44">
+      <Value>CurrentTimestamp</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:45">
+      <Value>CreatedAtUtc</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:46">
+      <Value>CreatedMonth</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:47">
+      <Value>SeqValue</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:48">
+      <Value>SessionId</Value>
+    </IdentifierOrValueExpression>
+    <IdentifierOrValueExpression Id="IdentifierOrValueExpression:49">
+      <Value>MaxText</Value>
+    </IdentifierOrValueExpression>
+  </IdentifierOrValueExpressionList>
+</MetaTransformScript>

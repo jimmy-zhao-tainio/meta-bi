@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GroupByClauseGroupingSpecificationsItemList>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:1" OwnerId="GroupByClause:1" ValueId="GroupingSpecification:1">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:2" OwnerId="GroupByClause:2" ValueId="GroupingSpecification:2">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:3" OwnerId="GroupByClause:3" ValueId="GroupingSpecification:9">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:4" OwnerId="GroupByClause:4" ValueId="GroupingSpecification:12">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+  </GroupByClauseGroupingSpecificationsItemList>
+</MetaTransformScript>

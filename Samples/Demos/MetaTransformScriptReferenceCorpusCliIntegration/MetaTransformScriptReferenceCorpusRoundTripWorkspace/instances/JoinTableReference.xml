@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <JoinTableReferenceList>
+    <JoinTableReference Id="JoinTableReference:1" BaseId="TableReference:2" />
+    <JoinTableReference Id="JoinTableReference:2" BaseId="TableReference:5" />
+    <JoinTableReference Id="JoinTableReference:3" BaseId="TableReference:6" />
+    <JoinTableReference Id="JoinTableReference:4" BaseId="TableReference:7" />
+    <JoinTableReference Id="JoinTableReference:5" BaseId="TableReference:8" />
+    <JoinTableReference Id="JoinTableReference:6" BaseId="TableReference:9" />
+    <JoinTableReference Id="JoinTableReference:7" BaseId="TableReference:16" />
+    <JoinTableReference Id="JoinTableReference:8" BaseId="TableReference:17" />
+    <JoinTableReference Id="JoinTableReference:9" BaseId="TableReference:50" />
+    <JoinTableReference Id="JoinTableReference:10" BaseId="TableReference:68" />
+    <JoinTableReference Id="JoinTableReference:11" BaseId="TableReference:70" />
+  </JoinTableReferenceList>
+</MetaTransformScript>

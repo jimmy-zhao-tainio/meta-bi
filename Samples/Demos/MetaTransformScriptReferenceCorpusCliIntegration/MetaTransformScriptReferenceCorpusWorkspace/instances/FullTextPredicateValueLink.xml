@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FullTextPredicateValueLinkList>
+    <FullTextPredicateValueLink Id="FullTextPredicateValueLink:1" OwnerId="FullTextPredicate:1" ValueId="ValueExpression:56" />
+  </FullTextPredicateValueLinkList>
+</MetaTransformScript>

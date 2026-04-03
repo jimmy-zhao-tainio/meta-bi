@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <JoinTableReferenceFirstTableReferenceLinkList>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:1" OwnerId="JoinTableReference:1" ValueId="TableReference:3" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:2" OwnerId="JoinTableReference:6" ValueId="TableReference:10" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:3" OwnerId="JoinTableReference:5" ValueId="TableReference:9" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:4" OwnerId="JoinTableReference:4" ValueId="TableReference:8" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:5" OwnerId="JoinTableReference:3" ValueId="TableReference:7" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:6" OwnerId="JoinTableReference:2" ValueId="TableReference:6" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:7" OwnerId="JoinTableReference:8" ValueId="TableReference:18" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:8" OwnerId="JoinTableReference:7" ValueId="TableReference:17" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:9" OwnerId="JoinTableReference:9" ValueId="TableReference:51" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:10" OwnerId="JoinTableReference:11" ValueId="TableReference:71" />
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:11" OwnerId="JoinTableReference:10" ValueId="TableReference:69" />
+  </JoinTableReferenceFirstTableReferenceLinkList>
+</MetaTransformScript>

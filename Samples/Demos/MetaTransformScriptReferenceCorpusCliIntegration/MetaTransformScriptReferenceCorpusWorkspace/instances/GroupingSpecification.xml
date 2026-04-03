@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GroupingSpecificationList>
+    <GroupingSpecification Id="GroupingSpecification:1" />
+    <GroupingSpecification Id="GroupingSpecification:2" />
+    <GroupingSpecification Id="GroupingSpecification:3" />
+    <GroupingSpecification Id="GroupingSpecification:4" />
+    <GroupingSpecification Id="GroupingSpecification:5" />
+    <GroupingSpecification Id="GroupingSpecification:6" />
+    <GroupingSpecification Id="GroupingSpecification:7" />
+    <GroupingSpecification Id="GroupingSpecification:8" />
+    <GroupingSpecification Id="GroupingSpecification:9" />
+    <GroupingSpecification Id="GroupingSpecification:10" />
+    <GroupingSpecification Id="GroupingSpecification:11" />
+    <GroupingSpecification Id="GroupingSpecification:12" />
+    <GroupingSpecification Id="GroupingSpecification:13" />
+    <GroupingSpecification Id="GroupingSpecification:14" />
+  </GroupingSpecificationList>
+</MetaTransformScript>

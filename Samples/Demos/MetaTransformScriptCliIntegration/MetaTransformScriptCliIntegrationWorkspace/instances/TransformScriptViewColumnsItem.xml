@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TransformScriptViewColumnsItemList>
+    <TransformScriptViewColumnsItem Id="TransformScriptViewColumnsItem:1" OwnerId="TransformScript:1" ValueId="Identifier:39">
+      <Ordinal>0</Ordinal>
+    </TransformScriptViewColumnsItem>
+    <TransformScriptViewColumnsItem Id="TransformScriptViewColumnsItem:2" OwnerId="TransformScript:1" ValueId="Identifier:40">
+      <Ordinal>1</Ordinal>
+    </TransformScriptViewColumnsItem>
+    <TransformScriptViewColumnsItem Id="TransformScriptViewColumnsItem:3" OwnerId="TransformScript:1" ValueId="Identifier:41">
+      <Ordinal>2</Ordinal>
+    </TransformScriptViewColumnsItem>
+    <TransformScriptViewColumnsItem Id="TransformScriptViewColumnsItem:4" OwnerId="TransformScript:1" ValueId="Identifier:42">
+      <Ordinal>3</Ordinal>
+    </TransformScriptViewColumnsItem>
+  </TransformScriptViewColumnsItemList>
+</MetaTransformScript>

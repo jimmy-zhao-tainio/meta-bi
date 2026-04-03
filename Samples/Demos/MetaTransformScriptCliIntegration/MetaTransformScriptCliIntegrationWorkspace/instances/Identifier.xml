@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <IdentifierList>
+    <Identifier Id="Identifier:1">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CompletedOrders</Value>
+    </Identifier>
+    <Identifier Id="Identifier:2">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>c</Value>
+    </Identifier>
+    <Identifier Id="Identifier:3">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>sales</Value>
+    </Identifier>
+    <Identifier Id="Identifier:4">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Customer</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>o</Value>
+    </Identifier>
+    <Identifier Id="Identifier:6">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>sales</Value>
+    </Identifier>
+    <Identifier Id="Identifier:7">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>Order</Value>
+    </Identifier>
+    <Identifier Id="Identifier:8">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>o</Value>
+    </Identifier>
+    <Identifier Id="Identifier:9">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:10">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>c</Value>
+    </Identifier>
+    <Identifier Id="Identifier:11">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:12">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>c</Value>
+    </Identifier>
+    <Identifier Id="Identifier:13">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:14">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>c</Value>
+    </Identifier>
+    <Identifier Id="Identifier:15">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:16">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>o</Value>
+    </Identifier>
+    <Identifier Id="Identifier:17">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>OrderId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:18">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>o</Value>
+    </Identifier>
+    <Identifier Id="Identifier:19">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Amount</Value>
+    </Identifier>
+    <Identifier Id="Identifier:20">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>o</Value>
+    </Identifier>
+    <Identifier Id="Identifier:21">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Status</Value>
+    </Identifier>
+    <Identifier Id="Identifier:22">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CompletedOrders</Value>
+    </Identifier>
+    <Identifier Id="Identifier:23">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CompletedOrders</Value>
+    </Identifier>
+    <Identifier Id="Identifier:24">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:25">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CompletedOrders</Value>
+    </Identifier>
+    <Identifier Id="Identifier:26">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:27">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CompletedOrders</Value>
+    </Identifier>
+    <Identifier Id="Identifier:28">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:29">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CompletedOrders</Value>
+    </Identifier>
+    <Identifier Id="Identifier:30">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:31">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>OrderCount</Value>
+    </Identifier>
+    <Identifier Id="Identifier:32">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>COUNT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:33">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TotalAmount</Value>
+    </Identifier>
+    <Identifier Id="Identifier:34">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUM</Value>
+    </Identifier>
+    <Identifier Id="Identifier:35">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CompletedOrders</Value>
+    </Identifier>
+    <Identifier Id="Identifier:36">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Amount</Value>
+    </Identifier>
+    <Identifier Id="Identifier:37">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>sales</Value>
+    </Identifier>
+    <Identifier Id="Identifier:38">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerOrderSummary</Value>
+    </Identifier>
+    <Identifier Id="Identifier:39">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:40">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:41">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>OrderCount</Value>
+    </Identifier>
+    <Identifier Id="Identifier:42">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TotalAmount</Value>
+    </Identifier>
+    <Identifier Id="Identifier:43">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:44">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>sales</Value>
+    </Identifier>
+    <Identifier Id="Identifier:45">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Invoice</Value>
+    </Identifier>
+    <Identifier Id="Identifier:46">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:47">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:48">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:49">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>InvoiceId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:50">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:51">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>InvoiceDate</Value>
+    </Identifier>
+    <Identifier Id="Identifier:52">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>RunningAmount</Value>
+    </Identifier>
+    <Identifier Id="Identifier:53">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUM</Value>
+    </Identifier>
+    <Identifier Id="Identifier:54">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:55">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>InvoiceDate</Value>
+    </Identifier>
+    <Identifier Id="Identifier:56">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:57">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:58">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:59">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Amount</Value>
+    </Identifier>
+    <Identifier Id="Identifier:60">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>InvoiceSequence</Value>
+    </Identifier>
+    <Identifier Id="Identifier:61">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ROW_NUMBER</Value>
+    </Identifier>
+    <Identifier Id="Identifier:62">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:63">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>InvoiceDate</Value>
+    </Identifier>
+    <Identifier Id="Identifier:64">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:65">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>InvoiceId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:66">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:67">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CustomerId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:68">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>reporting</Value>
+    </Identifier>
+    <Identifier Id="Identifier:69">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>InvoiceWindow</Value>
+    </Identifier>
+  </IdentifierList>
+</MetaTransformScript>

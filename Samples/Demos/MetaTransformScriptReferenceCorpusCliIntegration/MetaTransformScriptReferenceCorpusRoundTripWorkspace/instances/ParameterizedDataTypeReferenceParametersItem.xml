@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ParameterizedDataTypeReferenceParametersItemList>
+    <ParameterizedDataTypeReferenceParametersItem Id="ParameterizedDataTypeReferenceParametersItem:1" OwnerId="ParameterizedDataTypeReference:1" ValueId="Literal:29">
+      <Ordinal>0</Ordinal>
+    </ParameterizedDataTypeReferenceParametersItem>
+    <ParameterizedDataTypeReferenceParametersItem Id="ParameterizedDataTypeReferenceParametersItem:2" OwnerId="ParameterizedDataTypeReference:1" ValueId="Literal:30">
+      <Ordinal>1</Ordinal>
+    </ParameterizedDataTypeReferenceParametersItem>
+    <ParameterizedDataTypeReferenceParametersItem Id="ParameterizedDataTypeReferenceParametersItem:3" OwnerId="ParameterizedDataTypeReference:3" ValueId="Literal:31">
+      <Ordinal>0</Ordinal>
+    </ParameterizedDataTypeReferenceParametersItem>
+    <ParameterizedDataTypeReferenceParametersItem Id="ParameterizedDataTypeReferenceParametersItem:4" OwnerId="ParameterizedDataTypeReference:6" ValueId="Literal:66">
+      <Ordinal>0</Ordinal>
+    </ParameterizedDataTypeReferenceParametersItem>
+    <ParameterizedDataTypeReferenceParametersItem Id="ParameterizedDataTypeReferenceParametersItem:5" OwnerId="ParameterizedDataTypeReference:6" ValueId="Literal:67">
+      <Ordinal>1</Ordinal>
+    </ParameterizedDataTypeReferenceParametersItem>
+    <ParameterizedDataTypeReferenceParametersItem Id="ParameterizedDataTypeReferenceParametersItem:6" OwnerId="ParameterizedDataTypeReference:7" ValueId="Literal:74">
+      <Ordinal>0</Ordinal>
+    </ParameterizedDataTypeReferenceParametersItem>
+  </ParameterizedDataTypeReferenceParametersItemList>
+</MetaTransformScript>

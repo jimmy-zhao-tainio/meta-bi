@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DataTypeReferenceNameLinkList>
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:1" OwnerId="DataTypeReference:1" ValueId="SchemaObjectName:33" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:2" OwnerId="DataTypeReference:2" ValueId="SchemaObjectName:34" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:3" OwnerId="DataTypeReference:3" ValueId="SchemaObjectName:35" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:4" OwnerId="DataTypeReference:4" ValueId="SchemaObjectName:36" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:5" OwnerId="DataTypeReference:5" ValueId="SchemaObjectName:54" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:6" OwnerId="DataTypeReference:6" ValueId="SchemaObjectName:55" />
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:7" OwnerId="DataTypeReference:7" ValueId="SchemaObjectName:62" />
+  </DataTypeReferenceNameLinkList>
+</MetaTransformScript>

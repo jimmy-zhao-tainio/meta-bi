@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <NamedTableReferenceSchemaObjectLinkList>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:1" OwnerId="NamedTableReference:1" ValueId="SchemaObjectName:1" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:2" OwnerId="NamedTableReference:2" ValueId="SchemaObjectName:2" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:3" OwnerId="NamedTableReference:3" ValueId="SchemaObjectName:3" />
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:4" OwnerId="NamedTableReference:4" ValueId="SchemaObjectName:4" />
+  </NamedTableReferenceSchemaObjectLinkList>
+</MetaTransformScript>

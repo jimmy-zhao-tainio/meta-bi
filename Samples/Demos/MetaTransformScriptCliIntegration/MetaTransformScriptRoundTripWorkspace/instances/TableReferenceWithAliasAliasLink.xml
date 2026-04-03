@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableReferenceWithAliasAliasLinkList>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:1" OwnerId="TableReferenceWithAlias:1" ValueId="Identifier:1" />
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:2" OwnerId="TableReferenceWithAlias:2" ValueId="Identifier:29" />
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:3" OwnerId="TableReferenceWithAlias:3" ValueId="Identifier:32" />
+  </TableReferenceWithAliasAliasLinkList>
+</MetaTransformScript>

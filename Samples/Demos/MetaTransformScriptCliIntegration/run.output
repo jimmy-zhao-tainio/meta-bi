@@ -1,0 +1,61 @@
+
+> call cleanup.cmd  1>nul 2>&1 
+
+> meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptCliIntegrationWorkspace 
+OK: Created MetaTransformScriptCliIntegrationWorkspace
+Import:
+  Scripts: 2
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptCliIntegration\MetaTransformScriptCliIntegrationWorkspace
+
+> pushd MetaTransformScriptCliIntegrationWorkspace 
+
+> meta-transform-script to sql-path --out ..\RoundTrippedViews 
+OK: Exported 2 transform scripts
+Output:
+  Scripts: 2
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptCliIntegration\RoundTrippedViews
+
+> meta-transform-script to sql-path --out ..\RoundTrippedViews.sql 
+OK: Exported 2 transform scripts
+Output:
+  Scripts: 2
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptCliIntegration\RoundTrippedViews.sql
+
+> meta-transform-script to sql-code --name sales.CustomerOrderSummary 
+WITH CompletedOrders AS (SELECT
+    c.CustomerId,
+    c.CustomerName,
+    o.OrderId,
+    o.Amount
+FROM sales.Customer AS c
+INNER JOIN sales.[Order] AS o
+    ON o.CustomerId = c.CustomerId
+WHERE o.Status = 'Completed')
+SELECT
+    CompletedOrders.CustomerId,
+    CompletedOrders.CustomerName,
+    COUNT(*) AS OrderCount,
+    SUM(CompletedOrders.Amount) AS TotalAmount
+FROM CompletedOrders
+GROUP BY CompletedOrders.CustomerId, CompletedOrders.CustomerName
+
+> popd
+
+> meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptRoundTripWorkspace 
+OK: Created MetaTransformScriptRoundTripWorkspace
+Import:
+  Scripts: 2
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformScriptCliIntegration\MetaTransformScriptRoundTripWorkspace
+
+> pushd MetaTransformScriptRoundTripWorkspace 
+
+> meta-transform-script to sql-code --name reporting.InvoiceWindow 
+SELECT
+    i.CustomerId,
+    i.InvoiceId,
+    i.InvoiceDate,
+    SUM(i.Amount) OVER (PARTITION BY i.CustomerId ORDER BY i.InvoiceDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RunningAmount,
+    ROW_NUMBER() OVER (PARTITION BY i.CustomerId ORDER BY i.InvoiceDate DESC, i.InvoiceId DESC) AS InvoiceSequence
+FROM sales.Invoice AS i
+
+> popd

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UnqualifiedJoinList>
+    <UnqualifiedJoin Id="UnqualifiedJoin:1" BaseId="JoinTableReference:2">
+      <UnqualifiedJoinType>CrossJoin</UnqualifiedJoinType>
+    </UnqualifiedJoin>
+    <UnqualifiedJoin Id="UnqualifiedJoin:2" BaseId="JoinTableReference:7">
+      <UnqualifiedJoinType>OuterApply</UnqualifiedJoinType>
+    </UnqualifiedJoin>
+    <UnqualifiedJoin Id="UnqualifiedJoin:3" BaseId="JoinTableReference:8">
+      <UnqualifiedJoinType>CrossApply</UnqualifiedJoinType>
+    </UnqualifiedJoin>
+  </UnqualifiedJoinList>
+</MetaTransformScript>

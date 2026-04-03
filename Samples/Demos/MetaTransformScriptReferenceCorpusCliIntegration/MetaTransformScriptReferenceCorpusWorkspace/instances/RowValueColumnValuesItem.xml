@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RowValueColumnValuesItemList>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1" OwnerId="RowValue:1" ValueId="ScalarExpression:236">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2" OwnerId="RowValue:1" ValueId="ScalarExpression:237">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:3" OwnerId="RowValue:2" ValueId="ScalarExpression:238">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:4" OwnerId="RowValue:2" ValueId="ScalarExpression:239">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+  </RowValueColumnValuesItemList>
+</MetaTransformScript>

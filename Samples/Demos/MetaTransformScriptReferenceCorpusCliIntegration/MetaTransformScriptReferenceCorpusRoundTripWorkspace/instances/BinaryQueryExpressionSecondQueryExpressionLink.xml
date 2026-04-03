@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BinaryQueryExpressionSecondQueryExpressionLinkList>
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:1" OwnerId="BinaryQueryExpression:1" ValueId="QueryExpression:15" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:2" OwnerId="BinaryQueryExpression:5" ValueId="QueryExpression:28" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:3" OwnerId="BinaryQueryExpression:4" ValueId="QueryExpression:29" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:4" OwnerId="BinaryQueryExpression:3" ValueId="QueryExpression:30" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:5" OwnerId="BinaryQueryExpression:2" ValueId="QueryExpression:31" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:6" OwnerId="BinaryQueryExpression:6" ValueId="QueryExpression:38" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:7" OwnerId="BinaryQueryExpression:7" ValueId="QueryExpression:48" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:8" OwnerId="BinaryQueryExpression:8" ValueId="QueryExpression:53" />
+  </BinaryQueryExpressionSecondQueryExpressionLinkList>
+</MetaTransformScript>

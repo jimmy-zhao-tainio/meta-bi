@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableReferenceWithAliasAndColumnsColumnsItemList>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:1" OwnerId="TableReferenceWithAliasAndColumns:5" ValueId="Identifier:547">
+      <Ordinal>0</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+    <TableReferenceWithAliasAndColumnsColumnsItem Id="TableReferenceWithAliasAndColumnsColumnsItem:2" OwnerId="TableReferenceWithAliasAndColumns:5" ValueId="Identifier:548">
+      <Ordinal>1</Ordinal>
+    </TableReferenceWithAliasAndColumnsColumnsItem>
+  </TableReferenceWithAliasAndColumnsColumnsItemList>
+</MetaTransformScript>

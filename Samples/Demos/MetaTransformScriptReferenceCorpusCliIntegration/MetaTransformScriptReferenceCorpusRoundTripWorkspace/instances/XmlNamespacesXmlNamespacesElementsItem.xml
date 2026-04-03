@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <XmlNamespacesXmlNamespacesElementsItemList>
+    <XmlNamespacesXmlNamespacesElementsItem Id="XmlNamespacesXmlNamespacesElementsItem:1" OwnerId="XmlNamespaces:1" ValueId="XmlNamespacesElement:1">
+      <Ordinal>0</Ordinal>
+    </XmlNamespacesXmlNamespacesElementsItem>
+  </XmlNamespacesXmlNamespacesElementsItemList>
+</MetaTransformScript>

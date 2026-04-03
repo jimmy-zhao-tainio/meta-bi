@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CompositeGroupingSpecificationItemsItemList>
+    <CompositeGroupingSpecificationItemsItem Id="CompositeGroupingSpecificationItemsItem:1" OwnerId="CompositeGroupingSpecification:1" ValueId="GroupingSpecification:4">
+      <Ordinal>0</Ordinal>
+    </CompositeGroupingSpecificationItemsItem>
+    <CompositeGroupingSpecificationItemsItem Id="CompositeGroupingSpecificationItemsItem:2" OwnerId="CompositeGroupingSpecification:1" ValueId="GroupingSpecification:5">
+      <Ordinal>1</Ordinal>
+    </CompositeGroupingSpecificationItemsItem>
+    <CompositeGroupingSpecificationItemsItem Id="CompositeGroupingSpecificationItemsItem:3" OwnerId="CompositeGroupingSpecification:2" ValueId="GroupingSpecification:7">
+      <Ordinal>0</Ordinal>
+    </CompositeGroupingSpecificationItemsItem>
+  </CompositeGroupingSpecificationItemsItemList>
+</MetaTransformScript>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ScalarSubqueryQueryExpressionLinkList>
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:1" OwnerId="ScalarSubquery:1" ValueId="QueryExpression:17" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:2" OwnerId="ScalarSubquery:2" ValueId="QueryExpression:18" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:3" OwnerId="ScalarSubquery:3" ValueId="QueryExpression:20" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:4" OwnerId="ScalarSubquery:4" ValueId="QueryExpression:21" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:5" OwnerId="ScalarSubquery:5" ValueId="QueryExpression:22" />
+  </ScalarSubqueryQueryExpressionLinkList>
+</MetaTransformScript>

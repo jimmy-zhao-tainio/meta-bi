@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuerySpecificationSelectElementsItemList>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:1" OwnerId="QuerySpecification:1" ValueId="SelectElement:1">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:2" OwnerId="QuerySpecification:1" ValueId="SelectElement:2">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:3" OwnerId="QuerySpecification:1" ValueId="SelectElement:3">
+      <Ordinal>2</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:4" OwnerId="QuerySpecification:1" ValueId="SelectElement:4">
+      <Ordinal>3</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:5" OwnerId="QuerySpecification:2" ValueId="SelectElement:5">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:6" OwnerId="QuerySpecification:2" ValueId="SelectElement:6">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:7" OwnerId="QuerySpecification:2" ValueId="SelectElement:7">
+      <Ordinal>2</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:8" OwnerId="QuerySpecification:2" ValueId="SelectElement:8">
+      <Ordinal>3</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:9" OwnerId="QuerySpecification:3" ValueId="SelectElement:9">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:10" OwnerId="QuerySpecification:3" ValueId="SelectElement:10">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:11" OwnerId="QuerySpecification:3" ValueId="SelectElement:11">
+      <Ordinal>2</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:12" OwnerId="QuerySpecification:3" ValueId="SelectElement:12">
+      <Ordinal>3</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:13" OwnerId="QuerySpecification:3" ValueId="SelectElement:13">
+      <Ordinal>4</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+  </QuerySpecificationSelectElementsItemList>
+</MetaTransformScript>

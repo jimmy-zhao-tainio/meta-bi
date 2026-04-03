@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SelectScalarExpressionColumnNameLinkList>
+    <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:1" OwnerId="SelectScalarExpression:7" ValueId="IdentifierOrValueExpression:1" />
+    <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:2" OwnerId="SelectScalarExpression:8" ValueId="IdentifierOrValueExpression:2" />
+    <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:3" OwnerId="SelectScalarExpression:12" ValueId="IdentifierOrValueExpression:3" />
+    <SelectScalarExpressionColumnNameLink Id="SelectScalarExpressionColumnNameLink:4" OwnerId="SelectScalarExpression:13" ValueId="IdentifierOrValueExpression:4" />
+  </SelectScalarExpressionColumnNameLinkList>
+</MetaTransformScript>

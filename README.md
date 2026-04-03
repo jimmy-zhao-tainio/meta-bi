@@ -7,7 +7,7 @@ This repository currently contains BI-oriented sanctioned models, CLIs, and docs
 - `MetaSchema.*`
 - `MetaDataType.*`
 - `MetaDataTypeConversion.*`
-- `MetaTransform.Workspace`
+- `MetaTransformScript.*`
 - `MetaDataVault.*`
 - `MetaSql.Workspace`
 - `MetaSql.Core`
@@ -54,11 +54,13 @@ Build the installer:
 dotnet build MetaBi\Installer\MetaBi.Installer.csproj
 ```
 
-Then install the BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-convert`, `meta-datavault-raw`, `meta-datavault-business`) into `%LOCALAPPDATA%metabin` and add that directory to your user `PATH`:
+Then install the packaged BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-convert`, `meta-datavault-raw`, `meta-datavault-business`) into `%LOCALAPPDATA%metabin` and add that directory to your user `PATH`:
 
 ```cmd
 MetaBi\Installer\bin\publish\win-x64\install-meta-bi.exe
 ```
+
+`meta-transform-script` is not yet added to that installer flow. During active development, run it from `MetaTransformScript\Cli\bin\Debug\net8.0` or put that debug bin on your `PATH`.
 
 ## Intent
 
@@ -85,6 +87,7 @@ The long-term repo boundary is:
 - `meta-datavault-raw`
 - `meta-datavault-business`
 - `meta-sql`
+- `meta-transform-script`
 
 ### meta-schema
 
@@ -238,6 +241,222 @@ meta-sql deploy-plan --source-workspace .\CurrentMetaSql.Workspace --connection-
 meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>"
 ```
 
+### meta-transform-script
+
+Purpose:
+- author and maintain a sanctioned `MetaTransformScript` workspace that captures the supported SQL `VIEW` body subset as modeled XML instances
+- import supported SQL from files, folders, or inline code into canonical workspace form
+- emit those instances back to semantically equivalent SQL
+- round-trip supported SQL through `SQL -> workspace -> SQL -> workspace` and verify the result with `meta instance diff`
+
+Current command surface:
+- `meta-transform-script help`
+- `meta-transform-script from sql-path --path <path> --new-workspace <path>`
+- `meta-transform-script from sql-code --code <sql> --new-workspace <path> [--name <name>]`
+- `meta-transform-script to sql-path [--workspace <path>] --out <path>`
+- `meta-transform-script to sql-code [--workspace <path>] [--name <name>]`
+
+Current model boundary:
+- the modeled truth is the supported SQL view body, rooted in the `SelectStatement` family
+- `CREATE VIEW` wrapper syntax is treated as an import/export envelope, not as the primary modeled truth
+- wrapper details currently captured in the model are:
+  - view schema identifier
+  - view object identifier
+  - explicit view column list
+- wrapper noise such as `SET ...` and `GO` can be tolerated on import so the CLI can ingest ordinary SQL files from source control or database exports
+- round-trip is semantic, not trivia-preserving:
+  - original whitespace
+  - comments
+  - token offsets
+  - exact file formatting
+  are not part of the contract
+
+Import behavior:
+- `from sql-path` accepts either:
+  - one `.sql` file
+  - one folder of `.sql` files
+- a single `.sql` file may contain:
+  - one supported bare `SELECT`
+  - one or more supported `CREATE VIEW ... AS ... GO` statements
+  - batches with leading `SET ...` statements
+- explicit view column lists in `CREATE VIEW` are captured and emitted back out
+- `from sql-code` imports SQL text directly and optionally takes `--name` when the input is a bare `SELECT`
+
+Export behavior:
+- `to sql-code` emits the modeled view body only
+- `to sql-path` emits `CREATE VIEW ... AS ... GO`
+- if `--out` ends with `.sql`, all scripts are emitted into one combined file
+- otherwise `--out` is treated as a target folder
+- folder export preserves the original `SourcePath` file names when possible so a re-import can round-trip deterministically
+
+Supported SQL surface today:
+- query roots and composition:
+  - `SELECT`
+  - parenthesized query expressions
+  - common table expressions (`WITH ... AS (...)`)
+  - `WITH XMLNAMESPACES`
+  - `UNION`
+  - `UNION ALL`
+  - `EXCEPT`
+  - `INTERSECT`
+- projection:
+  - named select items
+  - aliases
+  - `*`
+  - qualified `alias.*`
+- table sources:
+  - named table references
+  - aliases
+  - qualified joins
+  - unqualified joins
+  - `CROSS APPLY`
+  - `OUTER APPLY`
+  - query-derived tables
+  - inline `VALUES`
+  - parenthesized joins
+  - schema-object function table references
+  - built-in table functions covered by the reference corpus
+  - `PIVOT`
+  - `UNPIVOT`
+  - `TABLESAMPLE`
+  - full-text table references such as `CONTAINSTABLE` / `FREETEXTTABLE`
+- filtering and predicate forms:
+  - boolean `AND` / `OR`
+  - `NOT`
+  - parenthesized boolean expressions
+  - scalar comparison predicates
+  - `IS NULL` / `IS NOT NULL`
+  - `BETWEEN`
+  - `IN (...)`
+  - `IN (subquery)`
+  - `EXISTS`
+  - subquery comparison predicates with `ANY` / `ALL`
+  - `LIKE`
+  - `IS DISTINCT FROM`
+  - full-text predicates such as `CONTAINS` / `FREETEXT`
+- grouping and aggregation:
+  - `GROUP BY`
+  - `HAVING`
+  - aggregate function calls in projection and other supported expression positions
+  - `GROUPING SETS`
+  - `ROLLUP`
+  - `CUBE`
+  - composite and grand-total grouping shapes covered by the current corpus
+- ordering and row limiting:
+  - query-level `ORDER BY`
+  - `TOP`
+  - `OFFSET ... FETCH`
+  - sort order per element
+- windowing:
+  - `OVER`
+  - `PARTITION BY`
+  - window `ORDER BY`
+  - window frames
+  - named `WINDOW` definitions
+  - windowed aggregate and analytic functions covered by the current corpus
+- scalar/value expression families:
+  - column references
+  - multipart identifiers
+  - string, integer, numeric, money, binary, `NULL`, and `MAX` literal families covered by the current corpus
+  - arithmetic binary expressions
+  - unary expressions
+  - parenthesized expressions
+  - `CASE`
+  - `COALESCE`
+  - `NULLIF`
+  - `IIF`
+  - ordinary function calls
+  - parameterless/system-call style expressions covered by the current corpus
+  - `CAST`
+  - `TRY_CAST`
+  - `CONVERT`
+  - `TRY_CONVERT`
+  - `PARSE`
+  - `TRY_PARSE`
+  - parameterized data type references
+  - primary-expression collation
+  - `AT TIME ZONE`
+  - sequence/global expression cases covered by the current corpus
+- subqueries:
+  - scalar subqueries
+  - correlated subqueries in the supported expression and predicate forms exercised by the corpus
+- XML-in-view support:
+  - `WITH XMLNAMESPACES`
+  - XML method-style calls as exercised in the reference corpus, for example `.value(...)`, `.query(...)`, and `.exist(...)`
+
+Current unsupported or deliberately excluded surface:
+- `OPENJSON`
+- `OPENROWSET`
+- `OPENQUERY`
+- provider/ad-hoc external-source wrapper forms such as the current `OPENROWSET` provider and `OPENDATASOURCE` reference cases
+- `CHANGETABLE`
+- the current ODBC escape-surface reference case
+- `CREATE VIEW` wrapper options
+- `WITH CHECK OPTION`
+- materialized view syntax
+
+Reference corpus status:
+- `MetaTransformScript\Reference\Corpus` contains the broader working SQL corpus used to pressure the importer/emitter
+- the currently supported reference-corpus round-trip demo uses the supported subset of that corpus and excludes the unsupported surfaces listed above
+- the current supported reference-corpus demo round-trips `32` scripts and then proves equality with `meta instance diff`
+
+Reference corpus demo commands:
+
+```cmd
+cd Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration
+call cleanup.cmd
+
+meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptReferenceCorpusWorkspace
+
+pushd MetaTransformScriptReferenceCorpusWorkspace
+meta-transform-script to sql-path --out ..\RoundTrippedViews
+meta-transform-script to sql-path --out ..\RoundTrippedViews.sql
+meta-transform-script to sql-code --name dbo.v_window_functions
+popd
+
+meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+meta instance diff MetaTransformScriptReferenceCorpusWorkspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+pushd MetaTransformScriptReferenceCorpusRoundTripWorkspace
+meta-transform-script to sql-code --name dbo.v_xml_namespaces_and_methods
+popd
+```
+
+The expected proof point in `run.output` is:
+
+```text
+Instance diff: no differences.
+```
+
+Smaller two-script demo:
+
+```cmd
+cd Samples\Demos\MetaTransformScriptCliIntegration
+call cleanup.cmd
+
+meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptCliIntegrationWorkspace
+
+pushd MetaTransformScriptCliIntegrationWorkspace
+meta-transform-script to sql-path --out ..\RoundTrippedViews
+meta-transform-script to sql-path --out ..\RoundTrippedViews.sql
+meta-transform-script to sql-code --name sales.CustomerOrderSummary
+popd
+
+meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptRoundTripWorkspace
+```
+
+Single-file and inline-code examples:
+
+```cmd
+meta-transform-script from sql-path --path .\Views --new-workspace .\MetaTransformScript.Workspace
+meta-transform-script to sql-path --workspace .\MetaTransformScript.Workspace --out .\out\Views
+meta-transform-script to sql-path --workspace .\MetaTransformScript.Workspace --out .\out\Views.sql
+meta-transform-script to sql-code --workspace .\MetaTransformScript.Workspace --name dbo.v_window_functions
+
+meta-transform-script from sql-code --code "select 1 as A" --name dbo.v_inline --new-workspace .\MetaTransformScript.Inline
+meta-transform-script to sql-code --workspace .\MetaTransformScript.Inline --name dbo.v_inline
+```
+
 
 ## Active Models
 
@@ -246,12 +465,12 @@ Current active BI model families include:
 - `MetaSchema`
 - `MetaDataType`
 - `MetaDataTypeConversion`
-- `MetaTransform`
+- `MetaTransformScript`
 - `MetaRawDataVault`
 - `MetaBusinessDataVault`
 - `MetaSql`
 
-`MetaTransform` is currently introduced as a sanctioned workspace model only. CLI and generated tooling are not added yet.
+`MetaTransformScript` is the current sanctioned SQL-script modeling track in this repo. It models the supported SQL `VIEW` body subset, carries selected `CREATE VIEW` envelope fields needed for file-based import/export, and is exercised through the `meta-transform-script` CLI plus the demos under `Samples\Demos\MetaTransformScript*`.
 
 ## Current Projection Status
 

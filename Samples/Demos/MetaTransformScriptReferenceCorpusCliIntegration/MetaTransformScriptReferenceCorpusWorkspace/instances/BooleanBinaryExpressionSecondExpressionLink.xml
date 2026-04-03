@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BooleanBinaryExpressionSecondExpressionLinkList>
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:1" OwnerId="BooleanBinaryExpression:5" ValueId="BooleanExpression:15" />
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:2" OwnerId="BooleanBinaryExpression:4" ValueId="BooleanExpression:16" />
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:3" OwnerId="BooleanBinaryExpression:3" ValueId="BooleanExpression:17" />
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:4" OwnerId="BooleanBinaryExpression:2" ValueId="BooleanExpression:18" />
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:5" OwnerId="BooleanBinaryExpression:1" ValueId="BooleanExpression:19" />
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:6" OwnerId="BooleanBinaryExpression:7" ValueId="BooleanExpression:28" />
+    <BooleanBinaryExpressionSecondExpressionLink Id="BooleanBinaryExpressionSecondExpressionLink:7" OwnerId="BooleanBinaryExpression:6" ValueId="BooleanExpression:30" />
+  </BooleanBinaryExpressionSecondExpressionLinkList>
+</MetaTransformScript>

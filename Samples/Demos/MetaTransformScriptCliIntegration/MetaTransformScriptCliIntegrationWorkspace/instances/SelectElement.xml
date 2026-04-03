@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SelectElementList>
+    <SelectElement Id="SelectElement:1" />
+    <SelectElement Id="SelectElement:2" />
+    <SelectElement Id="SelectElement:3" />
+    <SelectElement Id="SelectElement:4" />
+    <SelectElement Id="SelectElement:5" />
+    <SelectElement Id="SelectElement:6" />
+    <SelectElement Id="SelectElement:7" />
+    <SelectElement Id="SelectElement:8" />
+    <SelectElement Id="SelectElement:9" />
+    <SelectElement Id="SelectElement:10" />
+    <SelectElement Id="SelectElement:11" />
+    <SelectElement Id="SelectElement:12" />
+    <SelectElement Id="SelectElement:13" />
+  </SelectElementList>
+</MetaTransformScript>

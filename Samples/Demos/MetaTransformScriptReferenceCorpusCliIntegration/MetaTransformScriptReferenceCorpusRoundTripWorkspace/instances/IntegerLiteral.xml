@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <IntegerLiteralList>
+    <IntegerLiteral Id="IntegerLiteral:1" BaseId="Literal:3">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:2" BaseId="Literal:4">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:3" BaseId="Literal:9">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:4" BaseId="Literal:10">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:5" BaseId="Literal:11">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:6" BaseId="Literal:12">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:7" BaseId="Literal:13">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:8" BaseId="Literal:21">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:9" BaseId="Literal:24">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:10" BaseId="Literal:25">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:11" BaseId="Literal:29">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:12" BaseId="Literal:30">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:13" BaseId="Literal:31">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:14" BaseId="Literal:32">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:15" BaseId="Literal:33">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:16" BaseId="Literal:34">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:17" BaseId="Literal:35">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:18" BaseId="Literal:36">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:19" BaseId="Literal:37">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:20" BaseId="Literal:38">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:21" BaseId="Literal:39">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:22" BaseId="Literal:40">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:23" BaseId="Literal:46">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:24" BaseId="Literal:48">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:25" BaseId="Literal:50">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:26" BaseId="Literal:51">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:27" BaseId="Literal:52">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:28" BaseId="Literal:53">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:29" BaseId="Literal:58">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:30" BaseId="Literal:66">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:31" BaseId="Literal:67">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:32" BaseId="Literal:70">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:33" BaseId="Literal:72">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+  </IntegerLiteralList>
+</MetaTransformScript>

@@ -153,8 +153,14 @@ public sealed class MetaTransformScriptSqlService
             var script = scripts[i];
             var selectStatement = ResolveSelectStatement(model, script);
             var sql = WrapInCreateViewEnvelope(model, script, emitter.Render(selectStatement));
-            var fileName = BuildUniqueOutputFileName(script.Name, usedFileNames, i + 1);
-            var filePath = Path.Combine(fullOutputPath, fileName);
+            var relativePath = BuildUniqueOutputRelativePath(script, usedFileNames, i + 1);
+            var filePath = Path.Combine(fullOutputPath, relativePath);
+            var fileDirectory = Path.GetDirectoryName(filePath);
+            if (!string.IsNullOrWhiteSpace(fileDirectory))
+            {
+                Directory.CreateDirectory(fileDirectory);
+            }
+
             await File.WriteAllTextAsync(filePath, sql, Encoding.UTF8, cancellationToken).ConfigureAwait(false);
         }
 
@@ -171,7 +177,9 @@ public sealed class MetaTransformScriptSqlService
 
         if (!Directory.Exists(fullPath))
         {
-            throw new InvalidOperationException($"SQL path '{fullPath}' was not found.");
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.SourcePathNotFound,
+                $"SQL path '{fullPath}' was not found.");
         }
 
         var files = Directory.EnumerateFiles(fullPath, "*.sql", SearchOption.TopDirectoryOnly)
@@ -179,7 +187,9 @@ public sealed class MetaTransformScriptSqlService
             .ToArray();
         if (files.Length == 0)
         {
-            throw new InvalidOperationException($"SQL folder '{fullPath}' does not contain any .sql files.");
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.SourcePathHasNoSqlFiles,
+                $"SQL folder '{fullPath}' does not contain any .sql files.");
         }
 
         var documents = new List<MetaTransformScriptSqlDocument>();
@@ -206,7 +216,8 @@ public sealed class MetaTransformScriptSqlService
             var renderedErrors = string.Join(
                 Environment.NewLine,
                 errors.Select(static error => $"  Line {error.Line}, Col {error.Column}: {error.Message}"));
-            throw new InvalidOperationException(
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.ParseFailed,
                 $"SQL parse failed for '{sourceLabel}'.{Environment.NewLine}{renderedErrors}");
         }
 
@@ -221,13 +232,15 @@ public sealed class MetaTransformScriptSqlService
         var selectStatements = ExtractTopLevelStatements<MSDOM.SelectStatement>(fragment).ToArray();
         if (selectStatements.Length == 0)
         {
-            throw new InvalidOperationException(
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
                 $"SQL input '{(string.IsNullOrWhiteSpace(sourcePath) ? "<sql-code>" : sourcePath)}' does not contain a supported SELECT statement or CREATE VIEW wrapper.");
         }
 
         if (selectStatements.Length > 1)
         {
-            throw new InvalidOperationException(
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
                 $"SQL input '{(string.IsNullOrWhiteSpace(sourcePath) ? "<sql-code>" : sourcePath)}' contains multiple bare SELECT statements. Wrap them in CREATE VIEW or split them into separate files.");
         }
 
@@ -265,24 +278,29 @@ public sealed class MetaTransformScriptSqlService
 
         if (createView.SelectStatement is null)
         {
-            throw new InvalidOperationException($"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' is missing a SelectStatement.");
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                $"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' is missing a SelectStatement.");
         }
 
         if (createView.ViewOptions.Count > 0)
         {
-            throw new InvalidOperationException(
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
                 $"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' uses view options. MetaTransformScript import does not support those wrapper options yet.");
         }
 
         if (createView.WithCheckOption)
         {
-            throw new InvalidOperationException(
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
                 $"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' uses WITH CHECK OPTION. MetaTransformScript import does not support that wrapper option yet.");
         }
 
         if (createView.IsMaterialized)
         {
-            throw new InvalidOperationException(
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
                 $"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' uses materialized view syntax that MetaTransformScript does not support.");
         }
     }
@@ -294,16 +312,22 @@ public sealed class MetaTransformScriptSqlService
         ValidateCreateViewEnvelope(createView);
 
         var schemaObjectName = createView.SchemaObjectName
-            ?? throw new InvalidOperationException("CREATE VIEW statement was missing SchemaObjectName.");
+            ?? throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                "CREATE VIEW statement was missing SchemaObjectName.");
         var objectIdentifier = schemaObjectName.BaseIdentifier
-            ?? throw new InvalidOperationException("CREATE VIEW statement was missing the view object identifier.");
+            ?? throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                "CREATE VIEW statement was missing the view object identifier.");
         var schemaIdentifier = schemaObjectName.SchemaIdentifier;
 
         return new MetaTransformScriptSqlDocument(
             FormatSchemaObjectName(schemaObjectName),
             sourcePath,
             createView.SelectStatement
-                ?? throw new InvalidOperationException($"CREATE VIEW '{FormatSchemaObjectName(schemaObjectName)}' did not contain a SelectStatement."),
+                ?? throw new MetaTransformScriptSqlImportException(
+                    MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                    $"CREATE VIEW '{FormatSchemaObjectName(schemaObjectName)}' did not contain a SelectStatement."),
             schemaIdentifier,
             objectIdentifier,
             createView.Columns.ToArray());
@@ -378,9 +402,12 @@ public sealed class MetaTransformScriptSqlService
         return builder.ToString();
     }
 
-    private static string BuildUniqueOutputFileName(string scriptName, ISet<string> usedFileNames, int index)
+    private static string BuildUniqueOutputRelativePath(MTS.TransformScript script, ISet<string> usedRelativePaths, int index)
     {
-        var baseName = SanitizeFileName(string.IsNullOrWhiteSpace(scriptName) ? $"Script{index}" : scriptName);
+        var preferredName = string.IsNullOrWhiteSpace(script.SourcePath)
+            ? script.Name
+            : Path.GetFileName(script.SourcePath.Replace('/', Path.DirectorySeparatorChar).Replace('\\', Path.DirectorySeparatorChar));
+        var baseName = SanitizeFileName(Path.GetFileNameWithoutExtension(preferredName));
         if (string.IsNullOrWhiteSpace(baseName))
         {
             baseName = $"Script{index}";
@@ -388,7 +415,7 @@ public sealed class MetaTransformScriptSqlService
 
         var candidate = baseName + ".sql";
         var suffix = 2;
-        while (!usedFileNames.Add(candidate))
+        while (!usedRelativePaths.Add(candidate))
         {
             candidate = $"{baseName}_{suffix}.sql";
             suffix++;

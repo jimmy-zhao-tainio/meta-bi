@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SelectScalarExpressionExpressionLinkList>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:1" OwnerId="SelectScalarExpression:1" ValueId="ScalarExpression:1" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:2" OwnerId="SelectScalarExpression:2" ValueId="ScalarExpression:2" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:3" OwnerId="SelectScalarExpression:3" ValueId="ScalarExpression:3" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:4" OwnerId="SelectScalarExpression:4" ValueId="ScalarExpression:4" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:5" OwnerId="SelectScalarExpression:5" ValueId="ScalarExpression:8" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:6" OwnerId="SelectScalarExpression:6" ValueId="ScalarExpression:14" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:7" OwnerId="SelectScalarExpression:7" ValueId="ScalarExpression:15" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:8" OwnerId="SelectScalarExpression:8" ValueId="ScalarExpression:16" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:9" OwnerId="SelectScalarExpression:9" ValueId="ScalarExpression:17" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:10" OwnerId="SelectScalarExpression:10" ValueId="ScalarExpression:22" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:11" OwnerId="SelectScalarExpression:11" ValueId="ScalarExpression:23" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:12" OwnerId="SelectScalarExpression:12" ValueId="ScalarExpression:24" />
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:13" OwnerId="SelectScalarExpression:13" ValueId="ScalarExpression:26" />
+  </SelectScalarExpressionExpressionLinkList>
+</MetaTransformScript>

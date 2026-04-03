@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SearchedWhenClauseList>
+    <SearchedWhenClause Id="SearchedWhenClause:1" BaseId="WhenClause:1" />
+    <SearchedWhenClause Id="SearchedWhenClause:2" BaseId="WhenClause:4" />
+  </SearchedWhenClauseList>
+</MetaTransformScript>

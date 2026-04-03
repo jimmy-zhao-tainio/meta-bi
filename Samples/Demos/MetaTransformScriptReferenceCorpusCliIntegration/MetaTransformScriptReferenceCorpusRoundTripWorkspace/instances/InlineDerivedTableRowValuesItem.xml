@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <InlineDerivedTableRowValuesItemList>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1" OwnerId="InlineDerivedTable:1" ValueId="RowValue:1">
+      <Ordinal>0</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:2" OwnerId="InlineDerivedTable:1" ValueId="RowValue:2">
+      <Ordinal>1</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+  </InlineDerivedTableRowValuesItemList>
+</MetaTransformScript>

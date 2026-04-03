@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RollupGroupingSpecificationArgumentsItemList>
+    <RollupGroupingSpecificationArgumentsItem Id="RollupGroupingSpecificationArgumentsItem:1" OwnerId="RollupGroupingSpecification:1" ValueId="GroupingSpecification:10">
+      <Ordinal>0</Ordinal>
+    </RollupGroupingSpecificationArgumentsItem>
+    <RollupGroupingSpecificationArgumentsItem Id="RollupGroupingSpecificationArgumentsItem:2" OwnerId="RollupGroupingSpecification:1" ValueId="GroupingSpecification:11">
+      <Ordinal>1</Ordinal>
+    </RollupGroupingSpecificationArgumentsItem>
+  </RollupGroupingSpecificationArgumentsItemList>
+</MetaTransformScript>

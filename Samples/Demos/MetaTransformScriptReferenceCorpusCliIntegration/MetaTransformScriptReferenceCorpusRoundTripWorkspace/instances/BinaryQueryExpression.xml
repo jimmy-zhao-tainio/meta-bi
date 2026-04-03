@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BinaryQueryExpressionList>
+    <BinaryQueryExpression Id="BinaryQueryExpression:1" BaseId="QueryExpression:13">
+      <All>true</All>
+      <BinaryQueryExpressionType>Union</BinaryQueryExpressionType>
+    </BinaryQueryExpression>
+    <BinaryQueryExpression Id="BinaryQueryExpression:2" BaseId="QueryExpression:23">
+      <All>false</All>
+      <BinaryQueryExpressionType>Intersect</BinaryQueryExpressionType>
+    </BinaryQueryExpression>
+    <BinaryQueryExpression Id="BinaryQueryExpression:3" BaseId="QueryExpression:24">
+      <All>false</All>
+      <BinaryQueryExpressionType>Except</BinaryQueryExpressionType>
+    </BinaryQueryExpression>
+    <BinaryQueryExpression Id="BinaryQueryExpression:4" BaseId="QueryExpression:25">
+      <All>false</All>
+      <BinaryQueryExpressionType>Union</BinaryQueryExpressionType>
+    </BinaryQueryExpression>
+    <BinaryQueryExpression Id="BinaryQueryExpression:5" BaseId="QueryExpression:26">
+      <All>true</All>
+      <BinaryQueryExpressionType>Union</BinaryQueryExpressionType>
+    </BinaryQueryExpression>
+    <BinaryQueryExpression Id="BinaryQueryExpression:6" BaseId="QueryExpression:36">
+      <All>true</All>
+      <BinaryQueryExpressionType>Union</BinaryQueryExpressionType>
+    </BinaryQueryExpression>
+    <BinaryQueryExpression Id="BinaryQueryExpression:7" BaseId="QueryExpression:45">
+      <All>true</All>
+      <BinaryQueryExpressionType>Union</BinaryQueryExpressionType>
+    </BinaryQueryExpression>
+    <BinaryQueryExpression Id="BinaryQueryExpression:8" BaseId="QueryExpression:51">
+      <All>true</All>
+      <BinaryQueryExpressionType>Union</BinaryQueryExpressionType>
+    </BinaryQueryExpression>
+  </BinaryQueryExpressionList>
+</MetaTransformScript>

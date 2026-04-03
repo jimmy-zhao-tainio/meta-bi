@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SchemaObjectNameList>
+    <SchemaObjectName Id="SchemaObjectName:1" BaseId="MultiPartIdentifier:1" />
+    <SchemaObjectName Id="SchemaObjectName:2" BaseId="MultiPartIdentifier:11" />
+    <SchemaObjectName Id="SchemaObjectName:3" BaseId="MultiPartIdentifier:12" />
+    <SchemaObjectName Id="SchemaObjectName:4" BaseId="MultiPartIdentifier:20" />
+  </SchemaObjectNameList>
+</MetaTransformScript>

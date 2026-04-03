@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OverClausePartitionsItemList>
+    <OverClausePartitionsItem Id="OverClausePartitionsItem:1" OwnerId="OverClause:1" ValueId="ScalarExpression:178">
+      <Ordinal>0</Ordinal>
+    </OverClausePartitionsItem>
+    <OverClausePartitionsItem Id="OverClausePartitionsItem:2" OwnerId="OverClause:2" ValueId="ScalarExpression:181">
+      <Ordinal>0</Ordinal>
+    </OverClausePartitionsItem>
+    <OverClausePartitionsItem Id="OverClausePartitionsItem:3" OwnerId="OverClause:3" ValueId="ScalarExpression:185">
+      <Ordinal>0</Ordinal>
+    </OverClausePartitionsItem>
+    <OverClausePartitionsItem Id="OverClausePartitionsItem:4" OwnerId="OverClause:4" ValueId="ScalarExpression:188">
+      <Ordinal>0</Ordinal>
+    </OverClausePartitionsItem>
+  </OverClausePartitionsItemList>
+</MetaTransformScript>

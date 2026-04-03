@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ScalarExpressionList>
+    <ScalarExpression Id="ScalarExpression:1" />
+    <ScalarExpression Id="ScalarExpression:2" />
+    <ScalarExpression Id="ScalarExpression:3" />
+    <ScalarExpression Id="ScalarExpression:4" />
+    <ScalarExpression Id="ScalarExpression:5" />
+    <ScalarExpression Id="ScalarExpression:6" />
+    <ScalarExpression Id="ScalarExpression:7" />
+    <ScalarExpression Id="ScalarExpression:8" />
+    <ScalarExpression Id="ScalarExpression:9" />
+    <ScalarExpression Id="ScalarExpression:10" />
+    <ScalarExpression Id="ScalarExpression:11" />
+    <ScalarExpression Id="ScalarExpression:12" />
+    <ScalarExpression Id="ScalarExpression:13" />
+    <ScalarExpression Id="ScalarExpression:14" />
+    <ScalarExpression Id="ScalarExpression:15" />
+    <ScalarExpression Id="ScalarExpression:16" />
+    <ScalarExpression Id="ScalarExpression:17" />
+    <ScalarExpression Id="ScalarExpression:18" />
+    <ScalarExpression Id="ScalarExpression:19" />
+    <ScalarExpression Id="ScalarExpression:20" />
+    <ScalarExpression Id="ScalarExpression:21" />
+    <ScalarExpression Id="ScalarExpression:22" />
+    <ScalarExpression Id="ScalarExpression:23" />
+    <ScalarExpression Id="ScalarExpression:24" />
+    <ScalarExpression Id="ScalarExpression:25" />
+    <ScalarExpression Id="ScalarExpression:26" />
+    <ScalarExpression Id="ScalarExpression:27" />
+  </ScalarExpressionList>
+</MetaTransformScript>

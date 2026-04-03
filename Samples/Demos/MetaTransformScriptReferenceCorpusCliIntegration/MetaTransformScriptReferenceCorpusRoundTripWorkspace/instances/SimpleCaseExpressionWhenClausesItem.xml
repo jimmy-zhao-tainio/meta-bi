@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SimpleCaseExpressionWhenClausesItemList>
+    <SimpleCaseExpressionWhenClausesItem Id="SimpleCaseExpressionWhenClausesItem:1" OwnerId="SimpleCaseExpression:1" ValueId="SimpleWhenClause:1">
+      <Ordinal>0</Ordinal>
+    </SimpleCaseExpressionWhenClausesItem>
+    <SimpleCaseExpressionWhenClausesItem Id="SimpleCaseExpressionWhenClausesItem:2" OwnerId="SimpleCaseExpression:1" ValueId="SimpleWhenClause:2">
+      <Ordinal>1</Ordinal>
+    </SimpleCaseExpressionWhenClausesItem>
+  </SimpleCaseExpressionWhenClausesItemList>
+</MetaTransformScript>

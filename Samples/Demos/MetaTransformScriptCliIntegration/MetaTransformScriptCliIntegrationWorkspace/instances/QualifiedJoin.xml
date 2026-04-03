@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QualifiedJoinList>
+    <QualifiedJoin Id="QualifiedJoin:1" BaseId="JoinTableReference:1">
+      <JoinHint>None</JoinHint>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+  </QualifiedJoinList>
+</MetaTransformScript>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QueryDerivedTableList>
+    <QueryDerivedTable Id="QueryDerivedTable:1" BaseId="TableReferenceWithAliasAndColumns:2" />
+    <QueryDerivedTable Id="QueryDerivedTable:2" BaseId="TableReferenceWithAliasAndColumns:3" />
+    <QueryDerivedTable Id="QueryDerivedTable:3" BaseId="TableReferenceWithAliasAndColumns:4" />
+  </QueryDerivedTableList>
+</MetaTransformScript>
