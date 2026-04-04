@@ -49,6 +49,63 @@ public sealed class SqlServiceOwnedImportTests
         Assert.Equal(MetaTransformScriptSqlImportFailureKind.ParseFailed, exception.Kind);
     }
 
+    [Theory]
+    [InlineData("001_basic_select.sql")]
+    [InlineData("017_cte.sql")]
+    [InlineData("020_xml_namespaces_and_methods.sql")]
+    [InlineData("044_window_frame_offsets.sql")]
+    [InlineData("045_nested_subqueries.sql")]
+    public void ImportFromSqlPath_UsesOwnedParser_OnSingleFileNoGoSupportedInputs(string fileName)
+    {
+        var sql = LoadCorpus(fileName);
+        var tempFilePath = WriteTempSqlFile(fileName, sql);
+
+        var serviceModel = new MetaTransformScriptSqlService().ImportFromSqlPath(tempFilePath);
+        var parserModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            sql,
+            Path.GetFileName(tempFilePath),
+            Path.GetFileNameWithoutExtension(tempFilePath));
+
+        AssertModelListCountsEqual(parserModel, serviceModel);
+
+        serviceModel = RoundTripWorkspace(serviceModel, "service-path");
+        parserModel = RoundTripWorkspace(parserModel, "parser-path");
+
+        var service = new MetaTransformScriptSqlService();
+        Assert.Equal(service.ExportToSqlCode(parserModel), service.ExportToSqlCode(serviceModel));
+        Assert.Equal(parserModel.TransformScriptList.Single().Name, serviceModel.TransformScriptList.Single().Name);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_UsesLegacyPath_ForWrapperHeavySingleFiles()
+    {
+        var sql = LoadCorpus("040_view_column_list.sql");
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlPath(
+            WriteTempSqlFile("wrapper-heavy.sql", sql));
+
+        var script = Assert.Single(model.TransformScriptList);
+        Assert.Equal("dbo.v_view_column_list", script.Name);
+        Assert.Equal(2, model.TransformScriptViewColumnsItemList.Count);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_FailsExplicitly_ForUnsupportedSingleFileMainlineSql()
+    {
+        const string sql = """
+SELECT
+    c.CustomerId
+FROM sales.Customer AS c
+GROUP BY ALL c.CustomerId
+""";
+
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlPath(
+                WriteTempSqlFile("group-by-all.sql", sql)));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+    }
+
     private static string LoadCorpus(string fileName)
     {
         var path = Path.GetFullPath(Path.Combine(
@@ -88,5 +145,14 @@ public sealed class SqlServiceOwnedImportTests
         Directory.CreateDirectory(workspacePath);
         MetaTransformScriptInstance.SaveToWorkspace(model, workspacePath);
         return MetaTransformScriptInstance.LoadFromWorkspace(workspacePath, searchUpward: false);
+    }
+
+    private static string WriteTempSqlFile(string fileName, string sql)
+    {
+        var directoryPath = Path.Combine(Path.GetTempPath(), "meta-bi", "metatransformscript-tests", Guid.NewGuid().ToString("N"), "sql-path");
+        Directory.CreateDirectory(directoryPath);
+        var filePath = Path.Combine(directoryPath, fileName);
+        File.WriteAllText(filePath, sql);
+        return filePath;
     }
 }

@@ -25,6 +25,11 @@ public sealed class MetaTransformScriptSqlService
         ArgumentException.ThrowIfNullOrWhiteSpace(sqlPath);
 
         var fullPath = Path.GetFullPath(sqlPath);
+        if (File.Exists(fullPath))
+        {
+            return ImportFromSingleSqlFile(fullPath);
+        }
+
         var documents = LoadDocumentsFromSqlPath(fullPath);
         return new MetaTransformScriptSqlMaterializer().Materialize(documents);
     }
@@ -219,6 +224,43 @@ public sealed class MetaTransformScriptSqlService
         return documents;
     }
 
+    private MTS.MetaTransformScriptModel ImportFromSingleSqlFile(string fullPath)
+    {
+        var sql = File.ReadAllText(fullPath);
+        var sourcePath = Path.GetFileName(fullPath);
+        var fallbackName = Path.GetFileNameWithoutExtension(fullPath);
+
+        if (ContainsGoBatchSeparator(sql) || ShouldUseLegacySingleFilePath(sql))
+        {
+            return ImportSingleSqlFileLegacy(sql, sourcePath, fallbackName);
+        }
+
+        try
+        {
+            return new MetaTransformScriptSqlParser().ParseSqlCode(sql, sourcePath, fallbackName);
+        }
+        catch (MetaTransformScriptSqlParserException ex)
+        {
+            var kind = ex.FailureKind switch
+            {
+                MetaTransformScriptSqlParserFailureKind.ParseError => MetaTransformScriptSqlImportFailureKind.ParseFailed,
+                MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax => MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
+                _ => MetaTransformScriptSqlImportFailureKind.InvalidSqlInput
+            };
+
+            throw new MetaTransformScriptSqlImportException(
+                kind,
+                $"SQL import failed for '{sourcePath}'.{Environment.NewLine}  {ex.Message}",
+                ex);
+        }
+    }
+
+    private MTS.MetaTransformScriptModel ImportSingleSqlFileLegacy(string sql, string sourcePath, string fallbackName)
+    {
+        var documents = ParseSqlDocuments(sql, sourcePath, fallbackName);
+        return new MetaTransformScriptSqlMaterializer().Materialize(documents);
+    }
+
     private IReadOnlyList<MetaTransformScriptSqlDocument> ParseSqlDocuments(
         string sql,
         string? sourcePath,
@@ -286,6 +328,27 @@ public sealed class MetaTransformScriptSqlService
         }
 
         return Array.Empty<TStatement>();
+    }
+
+    private static bool ContainsGoBatchSeparator(string sql)
+    {
+        using var reader = new StringReader(sql);
+        while (reader.ReadLine() is { } line)
+        {
+            if (string.Equals(line.Trim(), "GO", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool ShouldUseLegacySingleFilePath(string sql)
+    {
+        var trimmed = sql.TrimStart();
+        return !trimmed.StartsWith("SELECT", StringComparison.OrdinalIgnoreCase)
+            && !trimmed.StartsWith("WITH", StringComparison.OrdinalIgnoreCase);
     }
 
     private static void ValidateCreateViewEnvelope(MSDOM.CreateViewStatement createView)
