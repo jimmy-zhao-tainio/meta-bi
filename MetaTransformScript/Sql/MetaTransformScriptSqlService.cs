@@ -30,8 +30,7 @@ public sealed class MetaTransformScriptSqlService
             return ImportFromSingleSqlFile(fullPath);
         }
 
-        var documents = LoadDocumentsFromSqlPath(fullPath);
-        return new MetaTransformScriptSqlMaterializer().Materialize(documents);
+        return ImportFromSqlDirectory(fullPath);
     }
 
     public MTS.MetaTransformScriptModel ImportFromSqlCode(string sqlCode, string? scriptName = null)
@@ -188,14 +187,8 @@ public sealed class MetaTransformScriptSqlService
         return new ExportToPathResult(scripts.Length, fullOutputPath);
     }
 
-    private IReadOnlyList<MetaTransformScriptSqlDocument> LoadDocumentsFromSqlPath(string fullPath)
+    private MTS.MetaTransformScriptModel ImportFromSqlDirectory(string fullPath)
     {
-        if (File.Exists(fullPath))
-        {
-            var sql = File.ReadAllText(fullPath);
-            return ParseSqlDocuments(sql, Path.GetFileName(fullPath), Path.GetFileNameWithoutExtension(fullPath));
-        }
-
         if (!Directory.Exists(fullPath))
         {
             throw new MetaTransformScriptSqlImportException(
@@ -213,15 +206,9 @@ public sealed class MetaTransformScriptSqlService
                 $"SQL folder '{fullPath}' does not contain any .sql files.");
         }
 
-        var documents = new List<MetaTransformScriptSqlDocument>();
-        foreach (var file in files)
-        {
-            var sql = File.ReadAllText(file);
-            var relativePath = Path.GetRelativePath(fullPath, file).Replace('\\', '/');
-            documents.AddRange(ParseSqlDocuments(sql, relativePath, Path.GetFileNameWithoutExtension(file)));
-        }
-
-        return documents;
+        var combinedSql = CombineSqlFilesIntoLogicalSource(files);
+        var documents = ParseSqlDocuments(combinedSql, sourcePath: null, fallbackName: null);
+        return new MetaTransformScriptSqlMaterializer().Materialize(documents);
     }
 
     private MTS.MetaTransformScriptModel ImportFromSingleSqlFile(string fullPath)
@@ -280,14 +267,22 @@ public sealed class MetaTransformScriptSqlService
         }
 
         var createViews = ExtractTopLevelStatements<MSDOM.CreateViewStatement>(fragment).ToArray();
+        var selectStatements = ExtractTopLevelStatements<MSDOM.SelectStatement>(fragment).ToArray();
+
         if (createViews.Length > 0)
         {
+            if (selectStatements.Length > 0)
+            {
+                throw new MetaTransformScriptSqlImportException(
+                    MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                    $"SQL input '{(string.IsNullOrWhiteSpace(sourcePath) ? "<sql-code>" : sourcePath)}' mixes bare SELECT statements with CREATE VIEW wrappers. Split the inputs so one logical import source uses one top-level shape.");
+            }
+
             return createViews
                 .Select(createView => CreateDocumentFromCreateView(createView, sourcePath))
                 .ToArray();
         }
 
-        var selectStatements = ExtractTopLevelStatements<MSDOM.SelectStatement>(fragment).ToArray();
         if (selectStatements.Length == 0)
         {
             throw new MetaTransformScriptSqlImportException(
@@ -342,6 +337,26 @@ public sealed class MetaTransformScriptSqlService
         }
 
         return false;
+    }
+
+    private static string CombineSqlFilesIntoLogicalSource(IEnumerable<string> files)
+    {
+        var builder = new StringBuilder();
+        var first = true;
+        foreach (var file in files)
+        {
+            if (!first)
+            {
+                builder.AppendLine();
+                builder.AppendLine("GO");
+                builder.AppendLine();
+            }
+
+            builder.Append(File.ReadAllText(file));
+            first = false;
+        }
+
+        return builder.ToString();
     }
 
     private static bool ShouldUseLegacySingleFilePath(string sql)

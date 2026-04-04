@@ -49,15 +49,52 @@ public sealed class SqlServiceOwnedImportTests
         Assert.Equal(MetaTransformScriptSqlImportFailureKind.ParseFailed, exception.Kind);
     }
 
-    [Theory]
-    [InlineData("001_basic_select.sql")]
-    [InlineData("017_cte.sql")]
-    [InlineData("020_xml_namespaces_and_methods.sql")]
-    [InlineData("044_window_frame_offsets.sql")]
-    [InlineData("045_nested_subqueries.sql")]
-    public void ImportFromSqlPath_UsesOwnedParser_OnSingleFileNoGoSupportedInputs(string fileName)
+    public static IEnumerable<object[]> SingleFileOwnedSqlCases()
     {
-        var sql = LoadCorpus(fileName);
+        yield return
+        [
+            "simple-select.sql",
+            """
+SELECT
+    s.CustomerId,
+    s.CustomerName
+FROM dbo.Source AS s
+WHERE s.CustomerId = 1
+"""
+        ];
+
+        yield return
+        [
+            "cte.sql",
+            """
+WITH base_cte AS
+(
+    SELECT
+        s.Id
+    FROM dbo.Source AS s
+)
+SELECT
+    b.Id
+FROM base_cte AS b
+"""
+        ];
+
+        yield return
+        [
+            "xml.sql",
+            """
+WITH XMLNAMESPACES ('urn:test' AS ns)
+SELECT
+    s.XmlPayload.value('(/ns:Root/ns:Id/text())[1]', 'int') AS XmlId
+FROM dbo.XmlSource AS s
+"""
+        ];
+    }
+
+    [Theory]
+    [MemberData(nameof(SingleFileOwnedSqlCases))]
+    public void ImportFromSqlPath_UsesOwnedParser_OnSingleFileNoGoSupportedInputs(string fileName, string sql)
+    {
         var tempFilePath = WriteTempSqlFile(fileName, sql);
 
         var serviceModel = new MetaTransformScriptSqlService().ImportFromSqlPath(tempFilePath);
@@ -104,6 +141,68 @@ GROUP BY ALL c.CustomerId
                 WriteTempSqlFile("group-by-all.sql", sql)));
 
         Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_FolderImport_TreatsFolderAsOneLogicalViewSource()
+    {
+        const string goSplitSql = """
+CREATE VIEW dbo.v_go_one AS
+SELECT
+    1 AS One
+GO
+CREATE VIEW dbo.v_go_two AS
+SELECT
+    2 AS Two
+GO
+""";
+        const string plainWrappedViewSql = """
+CREATE VIEW sales.v_plain AS
+SELECT
+    s.CustomerId,
+    s.CustomerName
+FROM dbo.Source AS s
+WHERE s.CustomerId = 1
+""";
+
+        var folderPath = WriteTempSqlFolder(
+            ("plain.sql", plainWrappedViewSql),
+            ("wrapper.sql", LoadCorpus("040_view_column_list.sql")),
+            ("batches.sql", goSplitSql));
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlPath(folderPath);
+
+        Assert.Equal(4, model.TransformScriptList.Count);
+        Assert.Contains(model.TransformScriptList, static script => string.Equals(script.Name, "sales.v_plain", StringComparison.Ordinal));
+        Assert.Contains(model.TransformScriptList, static script => string.Equals(script.Name, "dbo.v_view_column_list", StringComparison.Ordinal));
+        Assert.Contains(model.TransformScriptList, static script => string.Equals(script.Name, "dbo.v_go_one", StringComparison.Ordinal));
+        Assert.Contains(model.TransformScriptList, static script => string.Equals(script.Name, "dbo.v_go_two", StringComparison.Ordinal));
+        Assert.Equal(2, model.TransformScriptViewColumnsItemList.Count);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_FolderImport_FailsExplicitly_WhenFolderMixesBareSelectAndCreateView()
+    {
+        const string bareSelectSql = """
+SELECT
+    c.CustomerId
+FROM sales.Customer AS c
+""";
+        const string wrappedViewSql = """
+CREATE VIEW dbo.v_folder_wrapped AS
+SELECT
+    s.CustomerId
+FROM dbo.Source AS s
+""";
+
+        var folderPath = WriteTempSqlFolder(
+            ("bare-select.sql", bareSelectSql),
+            ("wrapped.sql", wrappedViewSql));
+
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlPath(folderPath));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.InvalidSqlInput, exception.Kind);
     }
 
     private static string LoadCorpus(string fileName)
@@ -154,5 +253,18 @@ GROUP BY ALL c.CustomerId
         var filePath = Path.Combine(directoryPath, fileName);
         File.WriteAllText(filePath, sql);
         return filePath;
+    }
+
+    private static string WriteTempSqlFolder(params (string FileName, string Sql)[] files)
+    {
+        var directoryPath = Path.Combine(Path.GetTempPath(), "meta-bi", "metatransformscript-tests", Guid.NewGuid().ToString("N"), "sql-folder");
+        Directory.CreateDirectory(directoryPath);
+
+        foreach (var (fileName, sql) in files)
+        {
+            File.WriteAllText(Path.Combine(directoryPath, fileName), sql);
+        }
+
+        return directoryPath;
     }
 }
