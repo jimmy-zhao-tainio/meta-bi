@@ -1,5 +1,6 @@
 using System.Text;
 using MetaTransformScript.Instance;
+using MetaTransformScript.Sql.Parsing;
 using MTS = global::MetaTransformScript;
 using MSDOM = global::Microsoft.SqlServer.TransactSql.ScriptDom;
 
@@ -31,9 +32,24 @@ public sealed class MetaTransformScriptSqlService
     public MTS.MetaTransformScriptModel ImportFromSqlCode(string sqlCode, string? scriptName = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sqlCode);
+        try
+        {
+            return new MetaTransformScriptSqlParser().ParseSqlCode(sqlCode, sourcePath: null, fallbackName: scriptName);
+        }
+        catch (MetaTransformScriptSqlParserException ex)
+        {
+            var kind = ex.FailureKind switch
+            {
+                MetaTransformScriptSqlParserFailureKind.ParseError => MetaTransformScriptSqlImportFailureKind.ParseFailed,
+                MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax => MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
+                _ => MetaTransformScriptSqlImportFailureKind.InvalidSqlInput
+            };
 
-        var documents = ParseSqlDocuments(sqlCode, sourcePath: null, fallbackName: scriptName);
-        return new MetaTransformScriptSqlMaterializer().Materialize(documents);
+            throw new MetaTransformScriptSqlImportException(
+                kind,
+                $"SQL import failed for '<sql-code>'.{Environment.NewLine}  {ex.Message}",
+                ex);
+        }
     }
 
     public async Task<ImportToWorkspaceResult> ImportFromSqlPathToWorkspaceAsync(
