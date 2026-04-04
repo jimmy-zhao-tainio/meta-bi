@@ -1,23 +1,23 @@
-using static MetaTransformScript.Sql.Parsing.MetaTransformScriptOwnedSqlModelBuilder;
+using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
         private BuiltNode ParseXmlNamespacesClause()
         {
             ExpectKeyword("XMLNAMESPACES");
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
 
             var elements = new List<BuiltNode> { ParseXmlNamespacesElement() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 elements.Add(ParseXmlNamespacesElement());
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateXmlNamespaces(elements);
         }
 
@@ -25,7 +25,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         {
             if (MatchKeyword("DEFAULT"))
             {
-                if (Current.Kind != MetaTransformScriptOwnedSqlTokenKind.StringLiteral)
+                if (Current.Kind != MetaTransformScriptSqlTokenKind.StringLiteral)
                 {
                     throw ParseError($"Expected an XML namespace string literal but found '{Current.Text}'.");
                 }
@@ -34,7 +34,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
                 return builder.CreateXmlNamespacesDefaultElement(builder.CreateStringLiteral(defaultLiteralToken.Value));
             }
 
-            if (Current.Kind != MetaTransformScriptOwnedSqlTokenKind.StringLiteral)
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.StringLiteral)
             {
                 throw ParseError($"Expected an XML namespace string literal but found '{Current.Text}'.");
             }

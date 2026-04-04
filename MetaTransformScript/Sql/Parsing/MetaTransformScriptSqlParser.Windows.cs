@@ -1,15 +1,15 @@
-using static MetaTransformScript.Sql.Parsing.MetaTransformScriptOwnedSqlModelBuilder;
+using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
         private BuiltNode ParseWindowClause()
         {
             var windowDefinitions = new List<BuiltNode> { ParseWindowDefinition() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 windowDefinitions.Add(ParseWindowDefinition());
             }
@@ -21,7 +21,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         {
             var windowName = ParseIdentifier().Node;
             ExpectKeyword("AS");
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
 
             BuiltNode? refWindowName = null;
             if (CanStartWindowReferenceName())
@@ -43,7 +43,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
                 windowFrameClause = ParseWindowFrameClause();
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateWindowDefinition(windowName, refWindowName, partitions, orderByClause, windowFrameClause);
         }
 
@@ -51,12 +51,12 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         {
             ExpectKeyword("OVER");
 
-            if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.Identifier)
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.Identifier)
             {
                 return builder.CreateOverClause(windowName: ParseIdentifier().Node);
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
 
             var partitions = ParseOptionalWindowPartitions();
             BuiltNode? orderByClause = null;
@@ -72,7 +72,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
                 windowFrameClause = ParseWindowFrameClause();
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateOverClause(partitions: partitions, orderByClause: orderByClause, windowFrameClause: windowFrameClause);
         }
 
@@ -85,7 +85,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
             ExpectKeyword("BY");
             var partitions = new List<BuiltNode> { ParseScalarExpression() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 partitions.Add(ParseScalarExpression());
             }
@@ -152,14 +152,14 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         }
 
         private bool CanStartWindowOffsetExpression() =>
-            Current.Kind is MetaTransformScriptOwnedSqlTokenKind.NumberLiteral
-                or MetaTransformScriptOwnedSqlTokenKind.Identifier
-                or MetaTransformScriptOwnedSqlTokenKind.OpenParen
-                or MetaTransformScriptOwnedSqlTokenKind.Plus;
+            Current.Kind is MetaTransformScriptSqlTokenKind.NumberLiteral
+                or MetaTransformScriptSqlTokenKind.Identifier
+                or MetaTransformScriptSqlTokenKind.OpenParen
+                or MetaTransformScriptSqlTokenKind.Plus;
 
         private bool CanStartWindowReferenceName()
         {
-            if (Current.Kind != MetaTransformScriptOwnedSqlTokenKind.Identifier)
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.Identifier)
             {
                 return false;
             }

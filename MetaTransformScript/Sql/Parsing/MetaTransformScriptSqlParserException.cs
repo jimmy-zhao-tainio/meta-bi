@@ -1,15 +1,15 @@
 namespace MetaTransformScript.Sql.Parsing;
 
-public enum MetaTransformScriptOwnedSqlParserFailureKind
+public enum MetaTransformScriptSqlParserFailureKind
 {
     ParseError,
     UnsupportedSyntax
 }
 
-public sealed class MetaTransformScriptOwnedSqlParserException : Exception
+public sealed class MetaTransformScriptSqlParserException : Exception
 {
-    public MetaTransformScriptOwnedSqlParserException(
-        MetaTransformScriptOwnedSqlParserFailureKind failureKind,
+    public MetaTransformScriptSqlParserException(
+        MetaTransformScriptSqlParserFailureKind failureKind,
         string message,
         int line,
         int column,
@@ -22,7 +22,7 @@ public sealed class MetaTransformScriptOwnedSqlParserException : Exception
         Offset = offset;
     }
 
-    public MetaTransformScriptOwnedSqlParserFailureKind FailureKind { get; }
+    public MetaTransformScriptSqlParserFailureKind FailureKind { get; }
 
     public int Line { get; }
 

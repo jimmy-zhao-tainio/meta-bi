@@ -34,7 +34,7 @@ public sealed class OwnedParserPhase1Tests
     public void OwnedParser_MatchesCurrentImporter_OnPhase1Corpus(string fileName)
     {
         var sql = LoadCorpus(fileName);
-        var ownedModel = new MetaTransformScriptOwnedSqlParser().ParseSqlCode(sql);
+        var ownedModel = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
         var oracleModel = new MetaTransformScriptSqlService().ImportFromSqlCode(sql);
 
         AssertModelListCountsEqual(oracleModel, ownedModel);
@@ -51,10 +51,10 @@ public sealed class OwnedParserPhase1Tests
     public void OwnedParser_RejectsViewColumnLists_InCurrentSlice()
     {
         var sql = LoadCorpus("040_view_column_list.sql");
-        var exception = Assert.Throws<MetaTransformScriptOwnedSqlParserException>(
-            () => new MetaTransformScriptOwnedSqlParser().ParseSqlCode(sql));
+        var exception = Assert.Throws<MetaTransformScriptSqlParserException>(
+            () => new MetaTransformScriptSqlParser().ParseSqlCode(sql));
 
-        Assert.Equal(MetaTransformScriptOwnedSqlParserFailureKind.UnsupportedSyntax, exception.FailureKind);
+        Assert.Equal(MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax, exception.FailureKind);
     }
 
     private static string LoadCorpus(string fileName)

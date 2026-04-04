@@ -1,10 +1,10 @@
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
-        private MetaTransformScriptOwnedSqlToken Expect(MetaTransformScriptOwnedSqlTokenKind kind)
+        private MetaTransformScriptSqlToken Expect(MetaTransformScriptSqlTokenKind kind)
         {
             if (Current.Kind != kind)
             {
@@ -35,7 +35,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private bool PeekKeyword(string keyword) => IsKeyword(Current, keyword);
 
-        private bool Match(MetaTransformScriptOwnedSqlTokenKind kind)
+        private bool Match(MetaTransformScriptSqlTokenKind kind)
         {
             if (Current.Kind != kind)
             {
@@ -46,19 +46,19 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             return true;
         }
 
-        private bool Peek(MetaTransformScriptOwnedSqlTokenKind kind) =>
+        private bool Peek(MetaTransformScriptSqlTokenKind kind) =>
             Peek().Kind == kind;
 
         private void SkipSemicolons()
         {
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Semicolon))
+            while (Match(MetaTransformScriptSqlTokenKind.Semicolon))
             {
             }
         }
 
         private void ExpectEndOfFile()
         {
-            if (Current.Kind != MetaTransformScriptOwnedSqlTokenKind.EndOfFile)
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.EndOfFile)
             {
                 if (PeekKeyword("GO"))
                 {
@@ -69,7 +69,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             }
         }
 
-        private MetaTransformScriptOwnedSqlToken Advance()
+        private MetaTransformScriptSqlToken Advance()
         {
             var token = Current;
             if (position < tokens.Count - 1)
@@ -80,24 +80,24 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             return token;
         }
 
-        private MetaTransformScriptOwnedSqlToken Peek() => PeekToken(position + 1);
+        private MetaTransformScriptSqlToken Peek() => PeekToken(position + 1);
 
-        private MetaTransformScriptOwnedSqlToken PeekToken(int absolutePosition) =>
+        private MetaTransformScriptSqlToken PeekToken(int absolutePosition) =>
             absolutePosition < tokens.Count ? tokens[absolutePosition] : tokens[^1];
 
-        private MetaTransformScriptOwnedSqlToken Current => tokens[position];
+        private MetaTransformScriptSqlToken Current => tokens[position];
 
-        private static bool IsKeyword(MetaTransformScriptOwnedSqlToken token, string keyword) =>
-            token.Kind == MetaTransformScriptOwnedSqlTokenKind.Identifier
+        private static bool IsKeyword(MetaTransformScriptSqlToken token, string keyword) =>
+            token.Kind == MetaTransformScriptSqlTokenKind.Identifier
             && string.Equals(token.QuoteType, "NotQuoted", StringComparison.Ordinal)
             && string.Equals(token.Value, keyword, StringComparison.OrdinalIgnoreCase);
 
-        private static bool IsKeyword(MetaTransformScriptOwnedSqlToken token, IReadOnlySet<string> keywords) =>
-            token.Kind == MetaTransformScriptOwnedSqlTokenKind.Identifier
+        private static bool IsKeyword(MetaTransformScriptSqlToken token, IReadOnlySet<string> keywords) =>
+            token.Kind == MetaTransformScriptSqlTokenKind.Identifier
             && string.Equals(token.QuoteType, "NotQuoted", StringComparison.Ordinal)
             && keywords.Contains(token.Value);
 
-        private static string RenderIdentifier(MetaTransformScriptOwnedSqlToken token) =>
+        private static string RenderIdentifier(MetaTransformScriptSqlToken token) =>
             token.QuoteType switch
             {
                 "SquareBracket" => "[" + token.Value.Replace("]", "]]", StringComparison.Ordinal) + "]",
@@ -105,12 +105,12 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
                 _ => token.Value
             };
 
-        private MetaTransformScriptOwnedSqlParserException ParseError(string message) =>
-            new(MetaTransformScriptOwnedSqlParserFailureKind.ParseError, message, Current.Line, Current.Column, Current.Offset);
+        private MetaTransformScriptSqlParserException ParseError(string message) =>
+            new(MetaTransformScriptSqlParserFailureKind.ParseError, message, Current.Line, Current.Column, Current.Offset);
 
-        private MetaTransformScriptOwnedSqlParserException Unsupported(string message) =>
-            new(MetaTransformScriptOwnedSqlParserFailureKind.UnsupportedSyntax, message, Current.Line, Current.Column, Current.Offset);
+        private MetaTransformScriptSqlParserException Unsupported(string message) =>
+            new(MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax, message, Current.Line, Current.Column, Current.Offset);
 
-        private sealed record ParsedIdentifier(MetaTransformScriptOwnedSqlToken Token, MetaTransformScriptOwnedSqlModelBuilder.BuiltNode Node);
+        private sealed record ParsedIdentifier(MetaTransformScriptSqlToken Token, MetaTransformScriptSqlModelBuilder.BuiltNode Node);
     }
 }

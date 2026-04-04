@@ -2,7 +2,7 @@ using MetaTransformScript;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-internal sealed partial class MetaTransformScriptOwnedSqlModelBuilder
+internal sealed partial class MetaTransformScriptSqlModelBuilder
 {
     private BuiltNode CreateSelectElementBase()
     {

@@ -3,7 +3,7 @@ using MetaTransformScript;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-internal sealed partial class MetaTransformScriptOwnedSqlModelBuilder
+internal sealed partial class MetaTransformScriptSqlModelBuilder
 {
     public BuiltNode CreateIdentifier(string value, string quoteType)
     {

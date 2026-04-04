@@ -1,8 +1,8 @@
-using static MetaTransformScript.Sql.Parsing.MetaTransformScriptOwnedSqlModelBuilder;
+using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
@@ -27,7 +27,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             ExpectKeyword("VIEW");
 
             var (schemaIdentifier, objectIdentifier, renderedName) = ParseCreateViewName();
-            if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.OpenParen)
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
             {
                 throw Unsupported("CREATE VIEW column lists are not supported in parser phase 1.");
             }
@@ -48,13 +48,13 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateViewName()
         {
             var first = ParseIdentifier();
-            if (!Match(MetaTransformScriptOwnedSqlTokenKind.Dot))
+            if (!Match(MetaTransformScriptSqlTokenKind.Dot))
             {
                 return (null, first, RenderIdentifier(first.Token));
             }
 
             var second = ParseIdentifier();
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.Dot))
+            if (Match(MetaTransformScriptSqlTokenKind.Dot))
             {
                 throw Unsupported("CREATE VIEW names with more than two identifier parts are not supported in parser phase 1.");
             }
@@ -71,7 +71,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
                 if (PeekKeyword("XMLNAMESPACES"))
                 {
                     xmlNamespaces = ParseXmlNamespacesClause();
-                    if (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+                    if (Match(MetaTransformScriptSqlTokenKind.Comma))
                     {
                         commonTableExpressions = ParseCommonTableExpressions();
                     }
@@ -89,7 +89,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         private List<BuiltNode> ParseCommonTableExpressions()
         {
             var commonTableExpressions = new List<BuiltNode> { ParseCommonTableExpression() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 commonTableExpressions.Add(ParseCommonTableExpression());
             }
@@ -101,21 +101,21 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         {
             var expressionName = ParseIdentifier().Node;
             List<BuiltNode>? columns = null;
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.OpenParen))
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
             {
                 columns = new List<BuiltNode> { ParseIdentifier().Node };
-                while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
                 {
                     columns.Add(ParseIdentifier().Node);
                 }
 
-                Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             }
 
             ExpectKeyword("AS");
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var queryExpression = ParseQueryExpression();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateCommonTableExpression(expressionName, queryExpression, columns);
         }
     }

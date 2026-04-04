@@ -1,6 +1,6 @@
 namespace MetaTransformScript.Sql.Parsing;
 
-internal sealed partial class MetaTransformScriptOwnedSqlModelBuilder
+internal sealed partial class MetaTransformScriptSqlModelBuilder
 {
     private readonly MetaTransformScript.MetaTransformScriptModel model = MetaTransformScript.MetaTransformScriptModel.CreateEmpty();
     private readonly Dictionary<string, int> nextIdByEntityName = new(StringComparer.Ordinal);

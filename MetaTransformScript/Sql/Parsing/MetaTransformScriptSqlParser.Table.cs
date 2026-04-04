@@ -1,15 +1,15 @@
-using static MetaTransformScript.Sql.Parsing.MetaTransformScriptOwnedSqlModelBuilder;
+using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
         private BuiltNode ParseFromClause()
         {
             var tableReferences = new List<BuiltNode> { ParseTableReference() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 tableReferences.Add(ParseTableReference());
             }
@@ -104,7 +104,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private BuiltNode ParseTableReferencePrimary()
         {
-            if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.OpenParen)
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
             {
                 return ParseParenthesizedTableReference();
             }
@@ -116,7 +116,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         {
             var schemaObjectName = ParseSchemaObjectName();
 
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.OpenParen))
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
             {
                 return ParseSchemaObjectFunctionTableReference(schemaObjectName);
             }
@@ -138,15 +138,15 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         private BuiltNode ParseSchemaObjectFunctionTableReference(BuiltNode schemaObjectName)
         {
             var parameters = new List<BuiltNode>();
-            if (!Match(MetaTransformScriptOwnedSqlTokenKind.CloseParen))
+            if (!Match(MetaTransformScriptSqlTokenKind.CloseParen))
             {
                 parameters.Add(ParseScalarExpression());
-                while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
                 {
                     parameters.Add(ParseScalarExpression());
                 }
 
-                Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             }
 
             var (alias, columns) = ParseRequiredTableAliasAndColumns();
@@ -155,47 +155,47 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private BuiltNode ParseParenthesizedTableReference()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             if (!PeekKeyword("SELECT"))
             {
                 throw Unsupported("Only query-derived tables are supported in parenthesized table-reference position in parser phase 1.");
             }
 
             var queryExpression = ParseQueryExpression();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             var (alias, columns) = ParseRequiredTableAliasAndColumns();
             return builder.CreateQueryDerivedTable(queryExpression, alias, columns);
         }
 
         private BuiltNode ParsePivotedTableReference(BuiltNode sourceTableReference)
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
 
             var aggregateIdentifierTokens = ParseIdentifierTokenChain();
             var aggregateFunctionIdentifier = builder.CreateMultiPartIdentifier(
                 aggregateIdentifierTokens.Select(token => builder.CreateIdentifier(token.Value, token.QuoteType)).ToArray());
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var valueColumns = new List<BuiltNode> { ParseColumnReferenceExpression() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 valueColumns.Add(ParseColumnReferenceExpression());
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             ExpectKeyword("FOR");
             var pivotColumn = ParseColumnReferenceExpression();
             ExpectKeyword("IN");
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
 
             var inColumns = new List<BuiltNode> { ParseIdentifier().Node };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 inColumns.Add(ParseIdentifier().Node);
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
 
             var alias = ParseRequiredTableAlias();
             return builder.CreatePivotedTableReference(
@@ -209,21 +209,21 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private BuiltNode ParseUnpivotedTableReference(BuiltNode sourceTableReference)
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var valueColumn = ParseIdentifier().Node;
             ExpectKeyword("FOR");
             var pivotColumn = ParseIdentifier().Node;
             ExpectKeyword("IN");
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
 
             var inColumns = new List<BuiltNode> { ParseColumnReferenceExpression() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 inColumns.Add(ParseColumnReferenceExpression());
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
 
             var alias = ParseRequiredTableAlias();
             return builder.CreateUnpivotedTableReference(
@@ -252,15 +252,15 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             }
 
             var columns = new List<BuiltNode>();
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.OpenParen))
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
             {
                 columns.Add(ParseIdentifier().Node);
-                while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
                 {
                     columns.Add(ParseIdentifier().Node);
                 }
 
-                Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             }
 
             return (alias, columns);
@@ -295,13 +295,13 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         private BuiltNode ParseSchemaObjectName()
         {
             var first = ParseIdentifier();
-            if (!Match(MetaTransformScriptOwnedSqlTokenKind.Dot))
+            if (!Match(MetaTransformScriptSqlTokenKind.Dot))
             {
                 return builder.CreateSchemaObjectName(null, first.Node);
             }
 
             var second = ParseIdentifier();
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.Dot))
+            if (Match(MetaTransformScriptSqlTokenKind.Dot))
             {
                 throw Unsupported("Schema object names with more than two identifier parts are not supported in parser phase 1.");
             }

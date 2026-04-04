@@ -1,12 +1,12 @@
-using static MetaTransformScript.Sql.Parsing.MetaTransformScriptOwnedSqlModelBuilder;
+using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
-        private BuiltNode ParseFunctionLikeExpression(IReadOnlyList<MetaTransformScriptOwnedSqlToken> identifiers, BuiltNode? callTarget)
+        private BuiltNode ParseFunctionLikeExpression(IReadOnlyList<MetaTransformScriptSqlToken> identifiers, BuiltNode? callTarget)
         {
             if (identifiers.Count == 0)
             {
@@ -43,26 +43,26 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             };
         }
 
-        private BuiltNode ParseGenericFunctionCall(MetaTransformScriptOwnedSqlToken functionNameToken, BuiltNode? callTarget)
+        private BuiltNode ParseGenericFunctionCall(MetaTransformScriptSqlToken functionNameToken, BuiltNode? callTarget)
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var parameters = new List<BuiltNode>();
-            if (!Match(MetaTransformScriptOwnedSqlTokenKind.CloseParen))
+            if (!Match(MetaTransformScriptSqlTokenKind.CloseParen))
             {
-                if (Match(MetaTransformScriptOwnedSqlTokenKind.Star))
+                if (Match(MetaTransformScriptSqlTokenKind.Star))
                 {
                     parameters.Add(builder.CreateWildcardColumnReferenceExpression());
-                    Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                    Expect(MetaTransformScriptSqlTokenKind.CloseParen);
                 }
                 else
                 {
                     parameters.Add(ParseScalarExpression());
-                    while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+                    while (Match(MetaTransformScriptSqlTokenKind.Comma))
                     {
                         parameters.Add(ParseScalarExpression());
                     }
 
-                    Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                    Expect(MetaTransformScriptSqlTokenKind.CloseParen);
                 }
             }
 
@@ -86,82 +86,82 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private BuiltNode ParseNullIfExpression()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var firstExpression = ParseScalarExpression();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.Comma);
+            Expect(MetaTransformScriptSqlTokenKind.Comma);
             var secondExpression = ParseScalarExpression();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateNullIfExpression(firstExpression, secondExpression);
         }
 
         private BuiltNode ParseIIfCall()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var predicate = ParseBooleanExpression();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.Comma);
+            Expect(MetaTransformScriptSqlTokenKind.Comma);
             var thenExpression = ParseScalarExpression();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.Comma);
+            Expect(MetaTransformScriptSqlTokenKind.Comma);
             var elseExpression = ParseScalarExpression();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateIIfCall(predicate, thenExpression, elseExpression);
         }
 
         private BuiltNode ParseCastCall()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var parameter = ParseScalarExpression();
             ExpectKeyword("AS");
             var dataTypeReference = ParseDataTypeReference();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateCastCall(parameter, dataTypeReference);
         }
 
         private BuiltNode ParseTryCastCall()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var parameter = ParseScalarExpression();
             ExpectKeyword("AS");
             var dataTypeReference = ParseDataTypeReference();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateTryCastCall(parameter, dataTypeReference);
         }
 
         private BuiltNode ParseConvertCall()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var dataTypeReference = ParseDataTypeReference();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.Comma);
+            Expect(MetaTransformScriptSqlTokenKind.Comma);
             var parameter = ParseScalarExpression();
             BuiltNode? style = null;
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            if (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 style = ParseScalarExpression();
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateConvertCall(dataTypeReference, parameter, style);
         }
 
         private BuiltNode ParseTryConvertCall()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var dataTypeReference = ParseDataTypeReference();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.Comma);
+            Expect(MetaTransformScriptSqlTokenKind.Comma);
             var parameter = ParseScalarExpression();
             BuiltNode? style = null;
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            if (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 style = ParseScalarExpression();
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateTryConvertCall(dataTypeReference, parameter, style);
         }
 
         private BuiltNode ParseDataTypeReference()
         {
             var typeNameToken = Current;
-            if (typeNameToken.Kind != MetaTransformScriptOwnedSqlTokenKind.Identifier)
+            if (typeNameToken.Kind != MetaTransformScriptSqlTokenKind.Identifier)
             {
                 throw ParseError($"Expected an identifier but found '{typeNameToken.Text}'.");
             }
@@ -177,15 +177,15 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             };
 
             List<BuiltNode>? parameters = null;
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.OpenParen))
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
             {
                 parameters = new List<BuiltNode> { ParseDataTypeLiteralParameter() };
-                while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
                 {
                     parameters.Add(ParseDataTypeLiteralParameter());
                 }
 
-                Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             }
 
             return builder.CreateSqlDataTypeReference(mappedType, parameters);
@@ -193,7 +193,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private BuiltNode ParseDataTypeLiteralParameter()
         {
-            if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.NumberLiteral)
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.NumberLiteral)
             {
                 var token = Advance();
                 return builder.CreateNumberLiteral(token.Value);
@@ -209,14 +209,14 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private List<BuiltNode> ParseScalarArgumentList()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             var arguments = new List<BuiltNode> { ParseScalarExpression() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
                 arguments.Add(ParseScalarExpression());
             }
 
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return arguments;
         }
 

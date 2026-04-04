@@ -1,9 +1,9 @@
 using MetaTransformScript;
-using static MetaTransformScript.Sql.Parsing.MetaTransformScriptOwnedSqlModelBuilder;
+using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     public MetaTransformScriptModel ParseSqlCode(
         string sqlCode,
@@ -12,8 +12,8 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sqlCode);
 
-        var tokens = new MetaTransformScriptOwnedSqlLexer(sqlCode).Tokenize();
-        var builder = new MetaTransformScriptOwnedSqlModelBuilder();
+        var tokens = new MetaTransformScriptSqlLexer(sqlCode).Tokenize();
+        var builder = new MetaTransformScriptSqlModelBuilder();
         new Parser(tokens, builder, sourcePath, fallbackName).ParseDocument();
         return builder.Build();
     }
@@ -45,15 +45,15 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             "GO"
         };
 
-        private readonly IReadOnlyList<MetaTransformScriptOwnedSqlToken> tokens;
-        private readonly MetaTransformScriptOwnedSqlModelBuilder builder;
+        private readonly IReadOnlyList<MetaTransformScriptSqlToken> tokens;
+        private readonly MetaTransformScriptSqlModelBuilder builder;
         private readonly string? sourcePath;
         private readonly string? fallbackName;
         private int position;
 
         public Parser(
-            IReadOnlyList<MetaTransformScriptOwnedSqlToken> tokens,
-            MetaTransformScriptOwnedSqlModelBuilder builder,
+            IReadOnlyList<MetaTransformScriptSqlToken> tokens,
+            MetaTransformScriptSqlModelBuilder builder,
             string? sourcePath,
             string? fallbackName)
         {

@@ -1,6 +1,6 @@
 namespace MetaTransformScript.Sql.Parsing;
 
-internal enum MetaTransformScriptOwnedSqlTokenKind
+internal enum MetaTransformScriptSqlTokenKind
 {
     Identifier,
     StringLiteral,
@@ -21,8 +21,8 @@ internal enum MetaTransformScriptOwnedSqlTokenKind
     EndOfFile
 }
 
-internal readonly record struct MetaTransformScriptOwnedSqlToken(
-    MetaTransformScriptOwnedSqlTokenKind Kind,
+internal readonly record struct MetaTransformScriptSqlToken(
+    MetaTransformScriptSqlTokenKind Kind,
     string Text,
     string Value,
     string QuoteType,
@@ -30,21 +30,21 @@ internal readonly record struct MetaTransformScriptOwnedSqlToken(
     int Line,
     int Column);
 
-internal sealed class MetaTransformScriptOwnedSqlLexer
+internal sealed class MetaTransformScriptSqlLexer
 {
     private readonly string text;
     private int index;
     private int line = 1;
     private int column = 1;
 
-    public MetaTransformScriptOwnedSqlLexer(string text)
+    public MetaTransformScriptSqlLexer(string text)
     {
         this.text = text ?? throw new ArgumentNullException(nameof(text));
     }
 
-    public IReadOnlyList<MetaTransformScriptOwnedSqlToken> Tokenize()
+    public IReadOnlyList<MetaTransformScriptSqlToken> Tokenize()
     {
-        var tokens = new List<MetaTransformScriptOwnedSqlToken>();
+        var tokens = new List<MetaTransformScriptSqlToken>();
 
         while (true)
         {
@@ -52,8 +52,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
 
             if (IsEnd)
             {
-                tokens.Add(new MetaTransformScriptOwnedSqlToken(
-                    MetaTransformScriptOwnedSqlTokenKind.EndOfFile,
+                tokens.Add(new MetaTransformScriptSqlToken(
+                    MetaTransformScriptSqlTokenKind.EndOfFile,
                     string.Empty,
                     string.Empty,
                     string.Empty,
@@ -68,20 +68,20 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
                 '[' => ReadBracketIdentifier(),
                 '"' => ReadDoubleQuotedIdentifier(),
                 '\'' => ReadStringLiteral(),
-                ',' => ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind.Comma),
-                '.' => ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind.Dot),
-                '*' => ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind.Star),
-                '(' => ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind.OpenParen),
-                ')' => ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind.CloseParen),
-                '+' => ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind.Plus),
-                ';' => ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind.Semicolon),
-                '=' => ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind.Equals),
+                ',' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Comma),
+                '.' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Dot),
+                '*' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Star),
+                '(' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.OpenParen),
+                ')' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.CloseParen),
+                '+' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Plus),
+                ';' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Semicolon),
+                '=' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Equals),
                 '>' => ReadGreaterThan(),
                 '<' => ReadLessThan(),
                 _ when IsIdentifierStart(Current) => ReadIdentifier(),
                 _ when char.IsDigit(Current) => ReadNumberLiteral(),
                 _ => throw Error(
-                    MetaTransformScriptOwnedSqlParserFailureKind.ParseError,
+                    MetaTransformScriptSqlParserFailureKind.ParseError,
                     $"Unexpected character '{Current}'.")
             });
         }
@@ -131,7 +131,7 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
                 if (IsEnd)
                 {
                     throw Error(
-                        MetaTransformScriptOwnedSqlParserFailureKind.ParseError,
+                        MetaTransformScriptSqlParserFailureKind.ParseError,
                         "Unterminated block comment.");
                 }
 
@@ -144,7 +144,7 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         }
     }
 
-    private MetaTransformScriptOwnedSqlToken ReadIdentifier()
+    private MetaTransformScriptSqlToken ReadIdentifier()
     {
         var startOffset = index;
         var startLine = line;
@@ -157,8 +157,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         }
 
         var value = text[startOffset..index];
-        return new MetaTransformScriptOwnedSqlToken(
-            MetaTransformScriptOwnedSqlTokenKind.Identifier,
+        return new MetaTransformScriptSqlToken(
+            MetaTransformScriptSqlTokenKind.Identifier,
             value,
             value,
             "NotQuoted",
@@ -167,7 +167,7 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
             startColumn);
     }
 
-    private MetaTransformScriptOwnedSqlToken ReadBracketIdentifier()
+    private MetaTransformScriptSqlToken ReadBracketIdentifier()
     {
         var startOffset = index;
         var startLine = line;
@@ -188,8 +188,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
                 }
 
                 Advance();
-                return new MetaTransformScriptOwnedSqlToken(
-                    MetaTransformScriptOwnedSqlTokenKind.Identifier,
+                return new MetaTransformScriptSqlToken(
+                    MetaTransformScriptSqlTokenKind.Identifier,
                     text[startOffset..index],
                     builder.ToString(),
                     "SquareBracket",
@@ -203,11 +203,11 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         }
 
         throw Error(
-            MetaTransformScriptOwnedSqlParserFailureKind.ParseError,
+            MetaTransformScriptSqlParserFailureKind.ParseError,
             "Unterminated bracketed identifier.");
     }
 
-    private MetaTransformScriptOwnedSqlToken ReadDoubleQuotedIdentifier()
+    private MetaTransformScriptSqlToken ReadDoubleQuotedIdentifier()
     {
         var startOffset = index;
         var startLine = line;
@@ -228,8 +228,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
                 }
 
                 Advance();
-                return new MetaTransformScriptOwnedSqlToken(
-                    MetaTransformScriptOwnedSqlTokenKind.Identifier,
+                return new MetaTransformScriptSqlToken(
+                    MetaTransformScriptSqlTokenKind.Identifier,
                     text[startOffset..index],
                     builder.ToString(),
                     "DoubleQuote",
@@ -243,11 +243,11 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         }
 
         throw Error(
-            MetaTransformScriptOwnedSqlParserFailureKind.ParseError,
+            MetaTransformScriptSqlParserFailureKind.ParseError,
             "Unterminated double-quoted identifier.");
     }
 
-    private MetaTransformScriptOwnedSqlToken ReadStringLiteral()
+    private MetaTransformScriptSqlToken ReadStringLiteral()
     {
         var startOffset = index;
         var startLine = line;
@@ -268,8 +268,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
                 }
 
                 Advance();
-                return new MetaTransformScriptOwnedSqlToken(
-                    MetaTransformScriptOwnedSqlTokenKind.StringLiteral,
+                return new MetaTransformScriptSqlToken(
+                    MetaTransformScriptSqlTokenKind.StringLiteral,
                     text[startOffset..index],
                     builder.ToString(),
                     string.Empty,
@@ -283,11 +283,11 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         }
 
         throw Error(
-            MetaTransformScriptOwnedSqlParserFailureKind.ParseError,
+            MetaTransformScriptSqlParserFailureKind.ParseError,
             "Unterminated string literal.");
     }
 
-    private MetaTransformScriptOwnedSqlToken ReadNumberLiteral()
+    private MetaTransformScriptSqlToken ReadNumberLiteral()
     {
         var startOffset = index;
         var startLine = line;
@@ -308,8 +308,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         }
 
         var value = text[startOffset..index];
-        return new MetaTransformScriptOwnedSqlToken(
-            MetaTransformScriptOwnedSqlTokenKind.NumberLiteral,
+        return new MetaTransformScriptSqlToken(
+            MetaTransformScriptSqlTokenKind.NumberLiteral,
             value,
             value,
             string.Empty,
@@ -318,9 +318,9 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
             startColumn);
     }
 
-    private MetaTransformScriptOwnedSqlToken ReadSingleCharacterToken(MetaTransformScriptOwnedSqlTokenKind kind)
+    private MetaTransformScriptSqlToken ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind kind)
     {
-        var token = new MetaTransformScriptOwnedSqlToken(
+        var token = new MetaTransformScriptSqlToken(
             kind,
             Current.ToString(),
             Current.ToString(),
@@ -332,7 +332,7 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         return token;
     }
 
-    private MetaTransformScriptOwnedSqlToken ReadGreaterThan()
+    private MetaTransformScriptSqlToken ReadGreaterThan()
     {
         var startOffset = index;
         var startLine = line;
@@ -342,8 +342,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         if (!IsEnd && Current == '=')
         {
             Advance();
-            return new MetaTransformScriptOwnedSqlToken(
-                MetaTransformScriptOwnedSqlTokenKind.GreaterThanOrEqual,
+            return new MetaTransformScriptSqlToken(
+                MetaTransformScriptSqlTokenKind.GreaterThanOrEqual,
                 ">=",
                 ">=",
                 string.Empty,
@@ -352,8 +352,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
                 startColumn);
         }
 
-        return new MetaTransformScriptOwnedSqlToken(
-            MetaTransformScriptOwnedSqlTokenKind.GreaterThan,
+        return new MetaTransformScriptSqlToken(
+            MetaTransformScriptSqlTokenKind.GreaterThan,
             ">",
             ">",
             string.Empty,
@@ -362,7 +362,7 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
             startColumn);
     }
 
-    private MetaTransformScriptOwnedSqlToken ReadLessThan()
+    private MetaTransformScriptSqlToken ReadLessThan()
     {
         var startOffset = index;
         var startLine = line;
@@ -372,8 +372,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         if (!IsEnd && Current == '=')
         {
             Advance();
-            return new MetaTransformScriptOwnedSqlToken(
-                MetaTransformScriptOwnedSqlTokenKind.LessThanOrEqual,
+            return new MetaTransformScriptSqlToken(
+                MetaTransformScriptSqlTokenKind.LessThanOrEqual,
                 "<=",
                 "<=",
                 string.Empty,
@@ -385,8 +385,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
         if (!IsEnd && Current == '>')
         {
             Advance();
-            return new MetaTransformScriptOwnedSqlToken(
-                MetaTransformScriptOwnedSqlTokenKind.NotEqual,
+            return new MetaTransformScriptSqlToken(
+                MetaTransformScriptSqlTokenKind.NotEqual,
                 "<>",
                 "<>",
                 string.Empty,
@@ -395,8 +395,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
                 startColumn);
         }
 
-        return new MetaTransformScriptOwnedSqlToken(
-            MetaTransformScriptOwnedSqlTokenKind.LessThan,
+        return new MetaTransformScriptSqlToken(
+            MetaTransformScriptSqlTokenKind.LessThan,
             "<",
             "<",
             string.Empty,
@@ -443,8 +443,8 @@ internal sealed class MetaTransformScriptOwnedSqlLexer
     private static bool IsIdentifierPart(char value) =>
         char.IsLetterOrDigit(value) || value is '_' or '@' or '#' or '$';
 
-    private MetaTransformScriptOwnedSqlParserException Error(
-        MetaTransformScriptOwnedSqlParserFailureKind failureKind,
+    private MetaTransformScriptSqlParserException Error(
+        MetaTransformScriptSqlParserFailureKind failureKind,
         string message) =>
         new(failureKind, message, line, column, index);
 }

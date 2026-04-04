@@ -1,15 +1,15 @@
-using static MetaTransformScript.Sql.Parsing.MetaTransformScriptOwnedSqlModelBuilder;
+using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
         private BuiltNode ParseScalarExpression()
         {
             var left = ParseScalarPrimary();
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Plus))
+            while (Match(MetaTransformScriptSqlTokenKind.Plus))
             {
                 left = builder.CreateBinaryExpression(left, ParseScalarPrimary(), "Add");
             }
@@ -24,22 +24,22 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
                 return ParseCaseExpression();
             }
 
-            if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.StringLiteral)
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.StringLiteral)
             {
                 var token = Advance();
                 return builder.CreateStringLiteral(token.Value);
             }
 
-            if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.NumberLiteral)
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.NumberLiteral)
             {
                 var token = Advance();
                 return builder.CreateNumberLiteral(token.Value);
             }
 
-            if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.Identifier)
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.Identifier)
             {
                 var identifiers = ParseIdentifierTokenChain();
-                if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.OpenParen)
+                if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
                 {
                     return ParseFunctionLikeExpression(identifiers, callTarget: null);
                 }
@@ -49,16 +49,16 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
                 return ParseTrailingCollation(builder.CreateColumnReferenceExpression(multiPartIdentifier));
             }
 
-            if (Current.Kind == MetaTransformScriptOwnedSqlTokenKind.OpenParen)
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
             {
                 if (PeekKeywordAfterOpenParen("SELECT"))
                 {
                     return ParseScalarSubquery();
                 }
 
-                Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+                Expect(MetaTransformScriptSqlTokenKind.OpenParen);
                 var expression = ParseScalarExpression();
-                Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
                 return ParseTrailingCollation(builder.CreateParenthesisExpression(expression));
             }
 
@@ -67,7 +67,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private bool PeekKeywordAfterOpenParen(string keyword)
         {
-            if (Current.Kind != MetaTransformScriptOwnedSqlTokenKind.OpenParen)
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.OpenParen)
             {
                 return false;
             }
@@ -76,7 +76,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             while (probe < tokens.Count)
             {
                 var token = tokens[probe];
-                if (token.Kind == MetaTransformScriptOwnedSqlTokenKind.Semicolon)
+                if (token.Kind == MetaTransformScriptSqlTokenKind.Semicolon)
                 {
                     probe++;
                     continue;
@@ -129,10 +129,10 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
                 return builder.CreateExistsPredicate(ParseScalarSubquery());
             }
 
-            if (Match(MetaTransformScriptOwnedSqlTokenKind.OpenParen))
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
             {
                 var inner = ParseBooleanExpression();
-                Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
                 return builder.CreateBooleanParenthesisExpression(inner);
             }
 
@@ -152,21 +152,21 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
             if (MatchKeyword("IN"))
             {
-                Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+                Expect(MetaTransformScriptSqlTokenKind.OpenParen);
                 if (PeekKeyword("SELECT"))
                 {
                     var subquery = ParseQueryExpression();
-                    Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                    Expect(MetaTransformScriptSqlTokenKind.CloseParen);
                     return builder.CreateInPredicateSubquery(first, builder.CreateScalarSubquery(subquery), notDefined: false);
                 }
 
                 var values = new List<BuiltNode> { ParseScalarExpression() };
-                while (Match(MetaTransformScriptOwnedSqlTokenKind.Comma))
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
                 {
                     values.Add(ParseScalarExpression());
                 }
 
-                Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
                 return builder.CreateInPredicate(first, values, notDefined: false);
             }
 
@@ -184,12 +184,12 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
             var comparisonType = Current.Kind switch
             {
-                MetaTransformScriptOwnedSqlTokenKind.Equals => "Equals",
-                MetaTransformScriptOwnedSqlTokenKind.GreaterThan => "GreaterThan",
-                MetaTransformScriptOwnedSqlTokenKind.GreaterThanOrEqual => "GreaterThanOrEqualTo",
-                MetaTransformScriptOwnedSqlTokenKind.LessThan => "LessThan",
-                MetaTransformScriptOwnedSqlTokenKind.LessThanOrEqual => "LessThanOrEqualTo",
-                MetaTransformScriptOwnedSqlTokenKind.NotEqual => "NotEqualToBrackets",
+                MetaTransformScriptSqlTokenKind.Equals => "Equals",
+                MetaTransformScriptSqlTokenKind.GreaterThan => "GreaterThan",
+                MetaTransformScriptSqlTokenKind.GreaterThanOrEqual => "GreaterThanOrEqualTo",
+                MetaTransformScriptSqlTokenKind.LessThan => "LessThan",
+                MetaTransformScriptSqlTokenKind.LessThanOrEqual => "LessThanOrEqualTo",
+                MetaTransformScriptSqlTokenKind.NotEqual => "NotEqualToBrackets",
                 _ => string.Empty
             };
 
@@ -217,14 +217,14 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private BuiltNode ParseScalarSubquery()
         {
-            Expect(MetaTransformScriptOwnedSqlTokenKind.OpenParen);
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             if (!PeekKeyword("SELECT"))
             {
                 throw Unsupported("Parenthesized scalar expressions are not supported in parser phase 1.");
             }
 
             var queryExpression = ParseQueryExpression();
-            Expect(MetaTransformScriptOwnedSqlTokenKind.CloseParen);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateScalarSubquery(queryExpression);
         }
 

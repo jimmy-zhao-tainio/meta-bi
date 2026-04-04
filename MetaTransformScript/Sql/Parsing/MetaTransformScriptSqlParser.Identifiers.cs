@@ -1,8 +1,8 @@
-using static MetaTransformScript.Sql.Parsing.MetaTransformScriptOwnedSqlModelBuilder;
+using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
 namespace MetaTransformScript.Sql.Parsing;
 
-public sealed partial class MetaTransformScriptOwnedSqlParser
+public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
@@ -15,9 +15,9 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         private List<ParsedIdentifier> ParseIdentifierChain(bool expectTrailingStar = false)
         {
             var identifiers = new List<ParsedIdentifier> { ParseIdentifier() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Dot))
+            while (Match(MetaTransformScriptSqlTokenKind.Dot))
             {
-                if (expectTrailingStar && Current.Kind == MetaTransformScriptOwnedSqlTokenKind.Star)
+                if (expectTrailingStar && Current.Kind == MetaTransformScriptSqlTokenKind.Star)
                 {
                     break;
                 }
@@ -28,10 +28,10 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             return identifiers;
         }
 
-        private MetaTransformScriptOwnedSqlToken ParseIdentifierToken()
+        private MetaTransformScriptSqlToken ParseIdentifierToken()
         {
             var token = Current;
-            if (token.Kind != MetaTransformScriptOwnedSqlTokenKind.Identifier)
+            if (token.Kind != MetaTransformScriptSqlTokenKind.Identifier)
             {
                 throw ParseError($"Expected an identifier but found '{token.Text}'.");
             }
@@ -40,12 +40,12 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
             return token;
         }
 
-        private List<MetaTransformScriptOwnedSqlToken> ParseIdentifierTokenChain(bool expectTrailingStar = false)
+        private List<MetaTransformScriptSqlToken> ParseIdentifierTokenChain(bool expectTrailingStar = false)
         {
-            var identifiers = new List<MetaTransformScriptOwnedSqlToken> { ParseIdentifierToken() };
-            while (Match(MetaTransformScriptOwnedSqlTokenKind.Dot))
+            var identifiers = new List<MetaTransformScriptSqlToken> { ParseIdentifierToken() };
+            while (Match(MetaTransformScriptSqlTokenKind.Dot))
             {
-                if (expectTrailingStar && Current.Kind == MetaTransformScriptOwnedSqlTokenKind.Star)
+                if (expectTrailingStar && Current.Kind == MetaTransformScriptSqlTokenKind.Star)
                 {
                     break;
                 }
@@ -64,21 +64,21 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
         private bool FormsQualifiedStar()
         {
             var probe = position;
-            if (PeekToken(probe).Kind != MetaTransformScriptOwnedSqlTokenKind.Identifier)
+            if (PeekToken(probe).Kind != MetaTransformScriptSqlTokenKind.Identifier)
             {
                 return false;
             }
 
             probe++;
-            while (PeekToken(probe).Kind == MetaTransformScriptOwnedSqlTokenKind.Dot)
+            while (PeekToken(probe).Kind == MetaTransformScriptSqlTokenKind.Dot)
             {
                 probe++;
-                if (PeekToken(probe).Kind == MetaTransformScriptOwnedSqlTokenKind.Star)
+                if (PeekToken(probe).Kind == MetaTransformScriptSqlTokenKind.Star)
                 {
                     return true;
                 }
 
-                if (PeekToken(probe).Kind != MetaTransformScriptOwnedSqlTokenKind.Identifier)
+                if (PeekToken(probe).Kind != MetaTransformScriptSqlTokenKind.Identifier)
                 {
                     return false;
                 }
@@ -91,7 +91,7 @@ public sealed partial class MetaTransformScriptOwnedSqlParser
 
         private bool CanStartAlias()
         {
-            if (Current.Kind != MetaTransformScriptOwnedSqlTokenKind.Identifier)
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.Identifier)
             {
                 return false;
             }
