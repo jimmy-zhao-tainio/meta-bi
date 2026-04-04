@@ -203,6 +203,11 @@ namespace MetaTransformScript
         public List<CommonTableExpression> CommonTableExpressionList { get; set; } = new();
         public bool ShouldSerializeCommonTableExpressionList() => CommonTableExpressionList.Count > 0;
 
+        [XmlArray("CommonTableExpressionColumnsItemList")]
+        [XmlArrayItem("CommonTableExpressionColumnsItem")]
+        public List<CommonTableExpressionColumnsItem> CommonTableExpressionColumnsItemList { get; set; } = new();
+        public bool ShouldSerializeCommonTableExpressionColumnsItemList() => CommonTableExpressionColumnsItemList.Count > 0;
+
         [XmlArray("CommonTableExpressionExpressionNameLinkList")]
         [XmlArrayItem("CommonTableExpressionExpressionNameLink")]
         public List<CommonTableExpressionExpressionNameLink> CommonTableExpressionExpressionNameLinkList { get; set; } = new();
@@ -1303,6 +1308,11 @@ namespace MetaTransformScript
         public List<WindowDelimiter> WindowDelimiterList { get; set; } = new();
         public bool ShouldSerializeWindowDelimiterList() => WindowDelimiterList.Count > 0;
 
+        [XmlArray("WindowDelimiterOffsetValueLinkList")]
+        [XmlArrayItem("WindowDelimiterOffsetValueLink")]
+        public List<WindowDelimiterOffsetValueLink> WindowDelimiterOffsetValueLinkList { get; set; } = new();
+        public bool ShouldSerializeWindowDelimiterOffsetValueLinkList() => WindowDelimiterOffsetValueLinkList.Count > 0;
+
         [XmlArray("WindowFrameClauseList")]
         [XmlArrayItem("WindowFrameClause")]
         public List<WindowFrameClause> WindowFrameClauseList { get; set; } = new();
@@ -1347,6 +1357,11 @@ namespace MetaTransformScript
         [XmlArrayItem("XmlNamespacesAliasElementIdentifierLink")]
         public List<XmlNamespacesAliasElementIdentifierLink> XmlNamespacesAliasElementIdentifierLinkList { get; set; } = new();
         public bool ShouldSerializeXmlNamespacesAliasElementIdentifierLinkList() => XmlNamespacesAliasElementIdentifierLinkList.Count > 0;
+
+        [XmlArray("XmlNamespacesDefaultElementList")]
+        [XmlArrayItem("XmlNamespacesDefaultElement")]
+        public List<XmlNamespacesDefaultElement> XmlNamespacesDefaultElementList { get; set; } = new();
+        public bool ShouldSerializeXmlNamespacesDefaultElementList() => XmlNamespacesDefaultElementList.Count > 0;
 
         [XmlArray("XmlNamespacesElementList")]
         [XmlArrayItem("XmlNamespacesElement")]
@@ -1459,6 +1474,7 @@ namespace MetaTransformScript
             model.ColumnReferenceExpressionList ??= new List<ColumnReferenceExpression>();
             model.ColumnReferenceExpressionMultiPartIdentifierLinkList ??= new List<ColumnReferenceExpressionMultiPartIdentifierLink>();
             model.CommonTableExpressionList ??= new List<CommonTableExpression>();
+            model.CommonTableExpressionColumnsItemList ??= new List<CommonTableExpressionColumnsItem>();
             model.CommonTableExpressionExpressionNameLinkList ??= new List<CommonTableExpressionExpressionNameLink>();
             model.CommonTableExpressionQueryExpressionLinkList ??= new List<CommonTableExpressionQueryExpressionLink>();
             model.CompositeGroupingSpecificationList ??= new List<CompositeGroupingSpecification>();
@@ -1679,6 +1695,7 @@ namespace MetaTransformScript
             model.WindowDefinitionWindowFrameClauseLinkList ??= new List<WindowDefinitionWindowFrameClauseLink>();
             model.WindowDefinitionWindowNameLinkList ??= new List<WindowDefinitionWindowNameLink>();
             model.WindowDelimiterList ??= new List<WindowDelimiter>();
+            model.WindowDelimiterOffsetValueLinkList ??= new List<WindowDelimiterOffsetValueLink>();
             model.WindowFrameClauseList ??= new List<WindowFrameClause>();
             model.WindowFrameClauseBottomLinkList ??= new List<WindowFrameClauseBottomLink>();
             model.WindowFrameClauseTopLinkList ??= new List<WindowFrameClauseTopLink>();
@@ -1688,6 +1705,7 @@ namespace MetaTransformScript
             model.XmlNamespacesList ??= new List<XmlNamespaces>();
             model.XmlNamespacesAliasElementList ??= new List<XmlNamespacesAliasElement>();
             model.XmlNamespacesAliasElementIdentifierLinkList ??= new List<XmlNamespacesAliasElementIdentifierLink>();
+            model.XmlNamespacesDefaultElementList ??= new List<XmlNamespacesDefaultElement>();
             model.XmlNamespacesElementList ??= new List<XmlNamespacesElement>();
             model.XmlNamespacesElementStringLinkList ??= new List<XmlNamespacesElementStringLink>();
             model.XmlNamespacesXmlNamespacesElementsItemList ??= new List<XmlNamespacesXmlNamespacesElementsItem>();
@@ -1730,6 +1748,7 @@ namespace MetaTransformScript
             NormalizeColumnReferenceExpressionList(model);
             NormalizeColumnReferenceExpressionMultiPartIdentifierLinkList(model);
             NormalizeCommonTableExpressionList(model);
+            NormalizeCommonTableExpressionColumnsItemList(model);
             NormalizeCommonTableExpressionExpressionNameLinkList(model);
             NormalizeCommonTableExpressionQueryExpressionLinkList(model);
             NormalizeCompositeGroupingSpecificationList(model);
@@ -1950,6 +1969,7 @@ namespace MetaTransformScript
             NormalizeWindowDefinitionWindowFrameClauseLinkList(model);
             NormalizeWindowDefinitionWindowNameLinkList(model);
             NormalizeWindowDelimiterList(model);
+            NormalizeWindowDelimiterOffsetValueLinkList(model);
             NormalizeWindowFrameClauseList(model);
             NormalizeWindowFrameClauseBottomLinkList(model);
             NormalizeWindowFrameClauseTopLinkList(model);
@@ -1959,6 +1979,7 @@ namespace MetaTransformScript
             NormalizeXmlNamespacesList(model);
             NormalizeXmlNamespacesAliasElementList(model);
             NormalizeXmlNamespacesAliasElementIdentifierLinkList(model);
+            NormalizeXmlNamespacesDefaultElementList(model);
             NormalizeXmlNamespacesElementList(model);
             NormalizeXmlNamespacesElementStringLinkList(model);
             NormalizeXmlNamespacesXmlNamespacesElementsItemList(model);
@@ -2001,6 +2022,7 @@ namespace MetaTransformScript
             var columnReferenceExpressionListById = BuildById(model.ColumnReferenceExpressionList, row => row.Id, "ColumnReferenceExpression");
             var columnReferenceExpressionMultiPartIdentifierLinkListById = BuildById(model.ColumnReferenceExpressionMultiPartIdentifierLinkList, row => row.Id, "ColumnReferenceExpressionMultiPartIdentifierLink");
             var commonTableExpressionListById = BuildById(model.CommonTableExpressionList, row => row.Id, "CommonTableExpression");
+            var commonTableExpressionColumnsItemListById = BuildById(model.CommonTableExpressionColumnsItemList, row => row.Id, "CommonTableExpressionColumnsItem");
             var commonTableExpressionExpressionNameLinkListById = BuildById(model.CommonTableExpressionExpressionNameLinkList, row => row.Id, "CommonTableExpressionExpressionNameLink");
             var commonTableExpressionQueryExpressionLinkListById = BuildById(model.CommonTableExpressionQueryExpressionLinkList, row => row.Id, "CommonTableExpressionQueryExpressionLink");
             var compositeGroupingSpecificationListById = BuildById(model.CompositeGroupingSpecificationList, row => row.Id, "CompositeGroupingSpecification");
@@ -2221,6 +2243,7 @@ namespace MetaTransformScript
             var windowDefinitionWindowFrameClauseLinkListById = BuildById(model.WindowDefinitionWindowFrameClauseLinkList, row => row.Id, "WindowDefinitionWindowFrameClauseLink");
             var windowDefinitionWindowNameLinkListById = BuildById(model.WindowDefinitionWindowNameLinkList, row => row.Id, "WindowDefinitionWindowNameLink");
             var windowDelimiterListById = BuildById(model.WindowDelimiterList, row => row.Id, "WindowDelimiter");
+            var windowDelimiterOffsetValueLinkListById = BuildById(model.WindowDelimiterOffsetValueLinkList, row => row.Id, "WindowDelimiterOffsetValueLink");
             var windowFrameClauseListById = BuildById(model.WindowFrameClauseList, row => row.Id, "WindowFrameClause");
             var windowFrameClauseBottomLinkListById = BuildById(model.WindowFrameClauseBottomLinkList, row => row.Id, "WindowFrameClauseBottomLink");
             var windowFrameClauseTopLinkListById = BuildById(model.WindowFrameClauseTopLinkList, row => row.Id, "WindowFrameClauseTopLink");
@@ -2230,6 +2253,7 @@ namespace MetaTransformScript
             var xmlNamespacesListById = BuildById(model.XmlNamespacesList, row => row.Id, "XmlNamespaces");
             var xmlNamespacesAliasElementListById = BuildById(model.XmlNamespacesAliasElementList, row => row.Id, "XmlNamespacesAliasElement");
             var xmlNamespacesAliasElementIdentifierLinkListById = BuildById(model.XmlNamespacesAliasElementIdentifierLinkList, row => row.Id, "XmlNamespacesAliasElementIdentifierLink");
+            var xmlNamespacesDefaultElementListById = BuildById(model.XmlNamespacesDefaultElementList, row => row.Id, "XmlNamespacesDefaultElement");
             var xmlNamespacesElementListById = BuildById(model.XmlNamespacesElementList, row => row.Id, "XmlNamespacesElement");
             var xmlNamespacesElementStringLinkListById = BuildById(model.XmlNamespacesElementStringLinkList, row => row.Id, "XmlNamespacesElementStringLink");
             var xmlNamespacesXmlNamespacesElementsItemListById = BuildById(model.XmlNamespacesXmlNamespacesElementsItemList, row => row.Id, "XmlNamespacesXmlNamespacesElementsItem");
@@ -3126,6 +3150,38 @@ namespace MetaTransformScript
                     multiPartIdentifierListById,
                     row.ValueId,
                     "ColumnReferenceExpressionMultiPartIdentifierLink",
+                    row.Id,
+                    "ValueId");
+            }
+
+            foreach (var row in model.CommonTableExpressionColumnsItemList)
+            {
+                row.OwnerId = ResolveRelationshipId(
+                    row.OwnerId,
+                    row.Owner?.Id,
+                    "CommonTableExpressionColumnsItem",
+                    row.Id,
+                    "OwnerId");
+                row.Owner = RequireTarget(
+                    commonTableExpressionListById,
+                    row.OwnerId,
+                    "CommonTableExpressionColumnsItem",
+                    row.Id,
+                    "OwnerId");
+            }
+
+            foreach (var row in model.CommonTableExpressionColumnsItemList)
+            {
+                row.ValueId = ResolveRelationshipId(
+                    row.ValueId,
+                    row.Value?.Id,
+                    "CommonTableExpressionColumnsItem",
+                    row.Id,
+                    "ValueId");
+                row.Value = RequireTarget(
+                    identifierListById,
+                    row.ValueId,
+                    "CommonTableExpressionColumnsItem",
                     row.Id,
                     "ValueId");
             }
@@ -8298,6 +8354,38 @@ namespace MetaTransformScript
                     "ValueId");
             }
 
+            foreach (var row in model.WindowDelimiterOffsetValueLinkList)
+            {
+                row.OwnerId = ResolveRelationshipId(
+                    row.OwnerId,
+                    row.Owner?.Id,
+                    "WindowDelimiterOffsetValueLink",
+                    row.Id,
+                    "OwnerId");
+                row.Owner = RequireTarget(
+                    windowDelimiterListById,
+                    row.OwnerId,
+                    "WindowDelimiterOffsetValueLink",
+                    row.Id,
+                    "OwnerId");
+            }
+
+            foreach (var row in model.WindowDelimiterOffsetValueLinkList)
+            {
+                row.ValueId = ResolveRelationshipId(
+                    row.ValueId,
+                    row.Value?.Id,
+                    "WindowDelimiterOffsetValueLink",
+                    row.Id,
+                    "ValueId");
+                row.Value = RequireTarget(
+                    scalarExpressionListById,
+                    row.ValueId,
+                    "WindowDelimiterOffsetValueLink",
+                    row.Id,
+                    "ValueId");
+            }
+
             foreach (var row in model.WindowFrameClauseBottomLinkList)
             {
                 row.OwnerId = ResolveRelationshipId(
@@ -8472,6 +8560,22 @@ namespace MetaTransformScript
                     "XmlNamespacesAliasElementIdentifierLink",
                     row.Id,
                     "ValueId");
+            }
+
+            foreach (var row in model.XmlNamespacesDefaultElementList)
+            {
+                row.BaseId = ResolveRelationshipId(
+                    row.BaseId,
+                    row.Base?.Id,
+                    "XmlNamespacesDefaultElement",
+                    row.Id,
+                    "BaseId");
+                row.Base = RequireTarget(
+                    xmlNamespacesElementListById,
+                    row.BaseId,
+                    "XmlNamespacesDefaultElement",
+                    row.Id,
+                    "BaseId");
             }
 
             foreach (var row in model.XmlNamespacesElementStringLinkList)
@@ -8946,6 +9050,18 @@ namespace MetaTransformScript
             {
                 ArgumentNullException.ThrowIfNull(row);
                 row.Id = RequireIdentity(row.Id, "Entity 'CommonTableExpression' contains a row with empty Id.");
+            }
+        }
+
+        private static void NormalizeCommonTableExpressionColumnsItemList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.CommonTableExpressionColumnsItemList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'CommonTableExpressionColumnsItem' contains a row with empty Id.");
+                row.Ordinal ??= string.Empty;
+                row.OwnerId ??= string.Empty;
+                row.ValueId ??= string.Empty;
             }
         }
 
@@ -11328,6 +11444,17 @@ namespace MetaTransformScript
             }
         }
 
+        private static void NormalizeWindowDelimiterOffsetValueLinkList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.WindowDelimiterOffsetValueLinkList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'WindowDelimiterOffsetValueLink' contains a row with empty Id.");
+                row.OwnerId ??= string.Empty;
+                row.ValueId ??= string.Empty;
+            }
+        }
+
         private static void NormalizeWindowFrameClauseList(MetaTransformScriptModel model)
         {
             foreach (var row in model.WindowFrameClauseList)
@@ -11419,6 +11546,16 @@ namespace MetaTransformScript
                 row.Id = RequireIdentity(row.Id, "Entity 'XmlNamespacesAliasElementIdentifierLink' contains a row with empty Id.");
                 row.OwnerId ??= string.Empty;
                 row.ValueId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeXmlNamespacesDefaultElementList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.XmlNamespacesDefaultElementList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'XmlNamespacesDefaultElement' contains a row with empty Id.");
+                row.BaseId ??= string.Empty;
             }
         }
 

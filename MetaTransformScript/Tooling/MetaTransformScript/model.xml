@@ -228,6 +228,15 @@
       </RelationshipList>
     </Entity>
     <Entity name="CommonTableExpression" />
+    <Entity name="CommonTableExpressionColumnsItem">
+      <PropertyList>
+        <Property name="Ordinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="CommonTableExpression" role="Owner" />
+        <Relationship entity="Identifier" role="Value" />
+      </RelationshipList>
+    </Entity>
     <Entity name="CommonTableExpressionExpressionNameLink">
       <RelationshipList>
         <Relationship entity="CommonTableExpression" role="Owner" />
@@ -1565,6 +1574,12 @@
         <Property name="WindowDelimiterType" isRequired="false" />
       </PropertyList>
     </Entity>
+    <Entity name="WindowDelimiterOffsetValueLink">
+      <RelationshipList>
+        <Relationship entity="WindowDelimiter" role="Owner" />
+        <Relationship entity="ScalarExpression" role="Value" />
+      </RelationshipList>
+    </Entity>
     <Entity name="WindowFrameClause">
       <PropertyList>
         <Property name="WindowFrameType" isRequired="false" />
@@ -1608,6 +1623,11 @@
       <RelationshipList>
         <Relationship entity="XmlNamespacesAliasElement" role="Owner" />
         <Relationship entity="Identifier" role="Value" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="XmlNamespacesDefaultElement">
+      <RelationshipList>
+        <Relationship entity="XmlNamespacesElement" role="Base" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNamespacesElement" />
