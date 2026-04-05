@@ -48,6 +48,9 @@ public sealed partial class MetaTransformScriptSqlParser
         private BuiltNode ParseGenericFunctionCall(MetaTransformScriptSqlToken functionNameToken, BuiltNode? callTarget)
         {
             Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            var uniqueRowFilter =
+                MatchKeyword("DISTINCT") ? "Distinct" :
+                string.Empty;
             var parameters = new List<BuiltNode>();
             if (!Match(MetaTransformScriptSqlTokenKind.CloseParen))
             {
@@ -69,7 +72,7 @@ public sealed partial class MetaTransformScriptSqlParser
             }
 
             var functionName = builder.CreateIdentifier(functionNameToken.Value, functionNameToken.QuoteType);
-            var functionCall = builder.CreateFunctionCall(functionName, parameters);
+            var functionCall = builder.CreateFunctionCall(functionName, parameters, uniqueRowFilter);
             if (callTarget is not null)
             {
                 functionCall = builder.AttachFunctionCallCallTarget(functionCall, callTarget);

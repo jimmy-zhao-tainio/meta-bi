@@ -262,26 +262,30 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             throw new InvalidOperationException("Phase-1 emitter does not support FunctionCall.WithArrayWrapper=true.");
         }
 
-        if (!string.IsNullOrWhiteSpace(functionCall.UniqueRowFilter) &&
-            !string.Equals(functionCall.UniqueRowFilter, "NotSpecified", StringComparison.Ordinal))
-        {
-            throw new InvalidOperationException($"Phase-1 emitter does not support FunctionCall.UniqueRowFilter='{functionCall.UniqueRowFilter}'.");
-        }
-
         var functionName = RenderIdentifier(GetOwnerLink(model.FunctionCallFunctionNameLinkList, functionCall.Id, "FunctionCall.FunctionName").Value);
         var args = GetOrderedItems(model.FunctionCallParametersItemList, functionCall.Id)
             .Select(row => RenderScalarExpression(row.Value))
             .ToArray();
+        var uniqueRowFilter =
+            string.IsNullOrWhiteSpace(functionCall.UniqueRowFilter) ||
+            string.Equals(functionCall.UniqueRowFilter, "NotSpecified", StringComparison.Ordinal)
+                ? string.Empty
+                : functionCall.UniqueRowFilter switch
+                {
+                    "Distinct" => "DISTINCT ",
+                    _ => throw new InvalidOperationException(
+                        $"Unsupported MetaTransformScript FunctionCall.UniqueRowFilter '{functionCall.UniqueRowFilter}'.")
+                };
 
         var callTargetLink = FindOwnerLink(model.FunctionCallCallTargetLinkList, functionCall.Id);
         var overClauseLink = FindOwnerLink(model.FunctionCallOverClauseLinkList, functionCall.Id);
         if (callTargetLink is not null)
         {
-            var renderedCall = $"{RenderCallTarget(callTargetLink.Value)}.{functionName}({string.Join(", ", args)})";
+            var renderedCall = $"{RenderCallTarget(callTargetLink.Value)}.{functionName}({uniqueRowFilter}{string.Join(", ", args)})";
             return overClauseLink is null ? renderedCall : renderedCall + " " + RenderOverClause(overClauseLink.Value);
         }
 
-        var rendered = $"{functionName}({string.Join(", ", args)})";
+        var rendered = $"{functionName}({uniqueRowFilter}{string.Join(", ", args)})";
         return overClauseLink is null ? rendered : rendered + " " + RenderOverClause(overClauseLink.Value);
     }
 

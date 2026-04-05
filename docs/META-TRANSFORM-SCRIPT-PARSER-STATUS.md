@@ -67,9 +67,11 @@ The following are implemented in the parser and exercised through the current te
 - `FREETEXT`
 - simple arithmetic with `+`
 - unary `+` and `-`
+- parenthesized scalar expressions
 - simple `CASE`
 - generic function calls
 - `CHOOSE` as a generic function call
+- aggregate-level `DISTINCT` such as `COUNT(DISTINCT ...)`
 - `PARSE`
 - `TRY_PARSE`
 - `COALESCE`
@@ -150,6 +152,8 @@ Currently covered by parser/emitter round-trip tests:
 - `043_recursive_cte_column_list.sql`
 - `044_window_frame_offsets.sql`
 - `045_nested_subqueries.sql`
+- `046_aggregate_distinct.sql`
+- `047_parenthesized_scalar_expressions.sql`
 
 ## Current integration proof status
 
@@ -165,5 +169,4 @@ These are rejected explicitly rather than guessed:
 - bare `SELECT` file/folder import on `sql-path` without `CREATE VIEW` wrappers
 - `GROUP BY ALL`
 - unsupported parenthesized table-reference forms outside the currently supported derived-table shape
-- unsupported parenthesized scalar expressions
 - unsupported or malformed non-`SET` auxiliary batches in the import path

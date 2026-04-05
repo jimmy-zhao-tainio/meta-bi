@@ -26,8 +26,6 @@ These are explicit parser/import hard-fails on the current mainline code path.
 
 - `CREATE VIEW` names with more than two identifier parts
   - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Document.cs`
-- parenthesized scalar expressions
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Expressions.cs`
 - unsupported `CROSS ...` table-reference forms beyond the currently handled ones
   - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Table.cs`
 - parenthesized table-reference forms beyond query-derived tables and inline `VALUES` tables
@@ -72,9 +70,6 @@ These are real emitter-side support gaps rather than parser-only gaps.
   - `MetaTransformScript/Sql/MetaTransformScriptSqlEmitter.Query.cs`
 - `FunctionCall.WithArrayWrapper=true`
   - `MetaTransformScript/Sql/MetaTransformScriptSqlEmitter.Expressions.Calls.cs`
-- `FunctionCall.UniqueRowFilter`
-  - this is the important one for aggregate-level `DISTINCT`
-  - `MetaTransformScript/Sql/MetaTransformScriptSqlEmitter.Expressions.Calls.cs`
 
 ## Integrity Guards
 
@@ -94,9 +89,8 @@ They become real work only when:
 
 If work resumes on hardening, the practical order is:
 
-1. Add aggregate-level `DISTINCT` support in parser and emitter.
-2. Decide whether broader batch-envelope shapes beyond `SET` should be owned or explicitly rejected long-term.
-3. Tackle remaining table-reference and scalar-expression gaps only when a supported example needs them.
+1. Decide whether broader batch-envelope shapes beyond `SET` should be owned or explicitly rejected long-term.
+2. Tackle remaining table-reference and scalar-expression gaps only when a supported example needs them.
 
 ## Not Errata
 
@@ -115,3 +109,5 @@ These were explicit concerns earlier, but they are now proven and should not be 
 - `AT TIME ZONE`
 - join-parenthesized table references
 - `NEXT VALUE FOR` and global variables such as `@@SPID`
+- aggregate-level `DISTINCT` such as `COUNT(DISTINCT ...)`
+- parenthesized scalar expressions

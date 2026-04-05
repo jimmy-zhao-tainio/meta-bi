@@ -42,6 +42,8 @@ public sealed class OwnedParserPhase1Tests
     [InlineData("043_recursive_cte_column_list.sql")]
     [InlineData("044_window_frame_offsets.sql")]
     [InlineData("045_nested_subqueries.sql")]
+    [InlineData("046_aggregate_distinct.sql")]
+    [InlineData("047_parenthesized_scalar_expressions.sql")]
     public void ParserRoundTripsSupportedCorpus(string fileName)
     {
         var sql = LoadCorpus(fileName);

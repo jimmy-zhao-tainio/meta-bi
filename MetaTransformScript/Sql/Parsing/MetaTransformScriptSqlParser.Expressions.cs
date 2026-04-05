@@ -176,14 +176,64 @@ public sealed partial class MetaTransformScriptSqlParser
                 return ParseFullTextPredicate();
             }
 
-            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
             {
+                if (FormsParenthesizedScalarComparison())
+                {
+                    return ParseComparisonExpression();
+                }
+
+                Expect(MetaTransformScriptSqlTokenKind.OpenParen);
                 var inner = ParseBooleanExpression();
                 Expect(MetaTransformScriptSqlTokenKind.CloseParen);
                 return builder.CreateBooleanParenthesisExpression(inner);
             }
 
             return ParseComparisonExpression();
+        }
+
+        private bool FormsParenthesizedScalarComparison()
+        {
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.OpenParen)
+            {
+                return false;
+            }
+
+            var depth = 0;
+            for (var probe = position; probe < tokens.Count; probe++)
+            {
+                var kind = tokens[probe].Kind;
+                if (kind == MetaTransformScriptSqlTokenKind.OpenParen)
+                {
+                    depth++;
+                    continue;
+                }
+
+                if (kind != MetaTransformScriptSqlTokenKind.CloseParen)
+                {
+                    continue;
+                }
+
+                depth--;
+                if (depth != 0)
+                {
+                    continue;
+                }
+
+                var next = PeekToken(probe + 1);
+                return next.Kind is MetaTransformScriptSqlTokenKind.Equals
+                    or MetaTransformScriptSqlTokenKind.GreaterThan
+                    or MetaTransformScriptSqlTokenKind.GreaterThanOrEqual
+                    or MetaTransformScriptSqlTokenKind.LessThan
+                    or MetaTransformScriptSqlTokenKind.LessThanOrEqual
+                    or MetaTransformScriptSqlTokenKind.NotEqual
+                    || IsKeyword(next, "BETWEEN")
+                    || IsKeyword(next, "IN")
+                    || IsKeyword(next, "LIKE")
+                    || IsKeyword(next, "IS");
+            }
+
+            return false;
         }
 
         private BuiltNode ParseComparisonExpression()

@@ -136,7 +136,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(ParenthesisExpression), parenthesisExpression.Id));
     }
 
-    public BuiltNode CreateFunctionCall(BuiltNode functionName, IReadOnlyList<BuiltNode> parameters)
+    public BuiltNode CreateFunctionCall(BuiltNode functionName, IReadOnlyList<BuiltNode> parameters, string? uniqueRowFilter = null)
     {
         var scalar = new ScalarExpression
         {
@@ -154,7 +154,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var functionCall = new FunctionCall
         {
             Id = NextId(nameof(FunctionCall)),
-            BaseId = primary.Id
+            BaseId = primary.Id,
+            UniqueRowFilter = uniqueRowFilter ?? string.Empty
         };
         model.FunctionCallList.Add(functionCall);
         model.FunctionCallFunctionNameLinkList.Add(new FunctionCallFunctionNameLink
