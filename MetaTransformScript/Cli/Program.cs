@@ -442,7 +442,7 @@ internal static class Program
         Presenter.WriteInfo("  --new-workspace <path>  Required for import commands.");
         Presenter.WriteInfo("Examples:");
         Presenter.WriteInfo("  meta-transform-script from sql-path --path .\\Views --new-workspace .\\TransformWorkspace");
-        Presenter.WriteInfo("  meta-transform-script from sql-code --code \"select 1 as A\" --new-workspace .\\TransformWorkspace");
+        Presenter.WriteInfo("  meta-transform-script from sql-code --code \"select 1 as A\" --name dbo.v_inline --new-workspace .\\TransformWorkspace");
         Presenter.WriteNext("meta-transform-script from sql-path --help");
     }
 
@@ -470,7 +470,7 @@ internal static class Program
         Presenter.WriteInfo("  SET statements and GO-separated batches are tolerated as long as supported CREATE VIEW statements can be found.");
         Presenter.WriteInfo("  Explicit view column lists are captured.");
         Presenter.WriteInfo("  View options and WITH CHECK OPTION are still rejected.");
-        Presenter.WriteInfo("  Bare SELECT statements are also accepted when the file contains exactly one top-level SELECT.");
+        Presenter.WriteInfo("  Bare SELECT files are not accepted on sql-path import. Use CREATE VIEW wrappers in files.");
     }
 
     private static void PrintFromSqlCodeHelp()
@@ -479,7 +479,7 @@ internal static class Program
         Presenter.WriteUsage("meta-transform-script from sql-code --code <sql> --new-workspace <path> [--name <name>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Imports SQL text directly into a new workspace.");
-        Presenter.WriteInfo("  --name is used when the code is a bare SELECT body without a CREATE VIEW wrapper.");
+        Presenter.WriteInfo("  --name is required when the code is a bare SELECT body without a CREATE VIEW wrapper.");
     }
 
     private static void PrintToSqlPathHelp()
@@ -525,7 +525,7 @@ internal static class Program
             MetaTransformScriptSqlImportFailureKind.SourcePathHasNoSqlFiles => "point --path at a .sql file or a folder that contains .sql files, then retry.",
             MetaTransformScriptSqlImportFailureKind.ParseFailed => "fix the SQL syntax and retry.",
             MetaTransformScriptSqlImportFailureKind.UnsupportedSql => "remove unsupported wrapper options or unsupported SQL surface, then retry.",
-            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput => "provide CREATE VIEW wrappers or one bare SELECT per input unit, then retry.",
+            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput => "provide CREATE VIEW wrappers, or use sql-code with --name for bare SELECT input, then retry.",
             _ => $"check the {sourceLabel} input and retry."
         };
 

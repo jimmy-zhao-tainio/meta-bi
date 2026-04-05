@@ -5,17 +5,36 @@ namespace MetaTransformScript.Sql.Parsing;
 
 public sealed partial class MetaTransformScriptSqlParser
 {
+    internal enum TopLevelStatementShape
+    {
+        BareSelect,
+        CreateView
+    }
+
     public MetaTransformScriptModel ParseSqlCode(
         string sqlCode,
         string? sourcePath = null,
-        string? fallbackName = null)
+        string? bareSelectName = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sqlCode);
 
         var tokens = new MetaTransformScriptSqlLexer(sqlCode).Tokenize();
         var builder = new MetaTransformScriptSqlModelBuilder();
-        new Parser(tokens, builder, sourcePath, fallbackName).ParseDocument();
+        new Parser(tokens, builder, sourcePath, bareSelectName).ParseDocument();
         return builder.Build();
+    }
+
+    internal TopLevelStatementShape ParseSqlCodeIntoBuilder(
+        string sqlCode,
+        MetaTransformScriptSqlModelBuilder builder,
+        string? sourcePath = null,
+        string? bareSelectName = null)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(sqlCode);
+        ArgumentNullException.ThrowIfNull(builder);
+
+        var tokens = new MetaTransformScriptSqlLexer(sqlCode).Tokenize();
+        return new Parser(tokens, builder, sourcePath, bareSelectName).ParseDocument();
     }
 
     private sealed partial class Parser
@@ -48,19 +67,19 @@ public sealed partial class MetaTransformScriptSqlParser
         private readonly IReadOnlyList<MetaTransformScriptSqlToken> tokens;
         private readonly MetaTransformScriptSqlModelBuilder builder;
         private readonly string? sourcePath;
-        private readonly string? fallbackName;
+        private readonly string? bareSelectName;
         private int position;
 
         public Parser(
             IReadOnlyList<MetaTransformScriptSqlToken> tokens,
             MetaTransformScriptSqlModelBuilder builder,
             string? sourcePath,
-            string? fallbackName)
+            string? bareSelectName)
         {
             this.tokens = tokens;
             this.builder = builder;
             this.sourcePath = sourcePath;
-            this.fallbackName = fallbackName;
+            this.bareSelectName = bareSelectName;
         }
     }
 }

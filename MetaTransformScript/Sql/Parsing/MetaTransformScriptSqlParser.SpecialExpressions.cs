@@ -173,7 +173,7 @@ public sealed partial class MetaTransformScriptSqlParser
                 "INT" => "Int",
                 "VARCHAR" => "VarChar",
                 "DATETIME2" => "DateTime2",
-                _ => throw Unsupported($"Data type '{typeNameToken.Value}' is not supported in the owned parser yet.")
+                _ => throw Unsupported($"Data type '{typeNameToken.Value}' is not supported yet.")
             };
 
             List<BuiltNode>? parameters = null;
@@ -201,7 +201,7 @@ public sealed partial class MetaTransformScriptSqlParser
 
             if (PeekKeyword("MAX"))
             {
-                throw Unsupported("MAX data type parameters are not supported in the owned parser yet.");
+                throw Unsupported("MAX data type parameters are not supported yet.");
             }
 
             throw ParseError($"Expected a data type parameter but found '{Current.Text}'.");

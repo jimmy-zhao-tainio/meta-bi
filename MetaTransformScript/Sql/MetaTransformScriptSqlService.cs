@@ -2,22 +2,13 @@ using System.Text;
 using MetaTransformScript.Instance;
 using MetaTransformScript.Sql.Parsing;
 using MTS = global::MetaTransformScript;
-using MSDOM = global::Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace MetaTransformScript.Sql;
 
 public sealed class MetaTransformScriptSqlService
 {
-    private readonly MSDOM.TSqlParser parser;
-
     public MetaTransformScriptSqlService()
-        : this(new MSDOM.TSql170Parser(initialQuotedIdentifiers: true))
     {
-    }
-
-    internal MetaTransformScriptSqlService(MSDOM.TSqlParser parser)
-    {
-        this.parser = parser ?? throw new ArgumentNullException(nameof(parser));
     }
 
     public MTS.MetaTransformScriptModel ImportFromSqlPath(string sqlPath)
@@ -36,24 +27,7 @@ public sealed class MetaTransformScriptSqlService
     public MTS.MetaTransformScriptModel ImportFromSqlCode(string sqlCode, string? scriptName = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sqlCode);
-        try
-        {
-            return new MetaTransformScriptSqlParser().ParseSqlCode(sqlCode, sourcePath: null, fallbackName: scriptName);
-        }
-        catch (MetaTransformScriptSqlParserException ex)
-        {
-            var kind = ex.FailureKind switch
-            {
-                MetaTransformScriptSqlParserFailureKind.ParseError => MetaTransformScriptSqlImportFailureKind.ParseFailed,
-                MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax => MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
-                _ => MetaTransformScriptSqlImportFailureKind.InvalidSqlInput
-            };
-
-            throw new MetaTransformScriptSqlImportException(
-                kind,
-                $"SQL import failed for '<sql-code>'.{Environment.NewLine}  {ex.Message}",
-                ex);
-        }
+        return ImportFromSqlSources([new SqlImportSource(sqlCode, SourcePath: null, BareSelectName: scriptName)]);
     }
 
     public async Task<ImportToWorkspaceResult> ImportFromSqlPathToWorkspaceAsync(
@@ -206,124 +180,176 @@ public sealed class MetaTransformScriptSqlService
                 $"SQL folder '{fullPath}' does not contain any .sql files.");
         }
 
-        var combinedSql = CombineSqlFilesIntoLogicalSource(files);
-        var documents = ParseSqlDocuments(combinedSql, sourcePath: null, fallbackName: null);
-        return new MetaTransformScriptSqlMaterializer().Materialize(documents);
+        return ImportFromSqlSources(files.Select(file => new SqlImportSource(
+            File.ReadAllText(file),
+            SourcePath: Path.GetRelativePath(fullPath, file).Replace('\\', '/'),
+            BareSelectName: null)));
     }
 
     private MTS.MetaTransformScriptModel ImportFromSingleSqlFile(string fullPath)
     {
         var sql = File.ReadAllText(fullPath);
         var sourcePath = Path.GetFileName(fullPath);
-        var fallbackName = Path.GetFileNameWithoutExtension(fullPath);
-
-        if (ContainsGoBatchSeparator(sql) || ShouldUseLegacySingleFilePath(sql))
-        {
-            return ImportSingleSqlFileLegacy(sql, sourcePath, fallbackName);
-        }
-
-        try
-        {
-            return new MetaTransformScriptSqlParser().ParseSqlCode(sql, sourcePath, fallbackName);
-        }
-        catch (MetaTransformScriptSqlParserException ex)
-        {
-            var kind = ex.FailureKind switch
-            {
-                MetaTransformScriptSqlParserFailureKind.ParseError => MetaTransformScriptSqlImportFailureKind.ParseFailed,
-                MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax => MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
-                _ => MetaTransformScriptSqlImportFailureKind.InvalidSqlInput
-            };
-
-            throw new MetaTransformScriptSqlImportException(
-                kind,
-                $"SQL import failed for '{sourcePath}'.{Environment.NewLine}  {ex.Message}",
-                ex);
-        }
+        return ImportFromSqlSources([new SqlImportSource(sql, SourcePath: sourcePath, BareSelectName: null)]);
     }
 
-    private MTS.MetaTransformScriptModel ImportSingleSqlFileLegacy(string sql, string sourcePath, string fallbackName)
+    private MTS.MetaTransformScriptModel ImportFromSqlSources(IEnumerable<SqlImportSource> sources)
     {
-        var documents = ParseSqlDocuments(sql, sourcePath, fallbackName);
-        return new MetaTransformScriptSqlMaterializer().Materialize(documents);
-    }
+        ArgumentNullException.ThrowIfNull(sources);
 
-    private IReadOnlyList<MetaTransformScriptSqlDocument> ParseSqlDocuments(
-        string sql,
-        string? sourcePath,
-        string? fallbackName)
-    {
-        using var reader = new StringReader(sql);
-        var fragment = parser.Parse(reader, out IList<MSDOM.ParseError> errors);
-        if (errors.Count > 0 || fragment is null)
+        var parser = new MetaTransformScriptSqlParser();
+        var builder = new MetaTransformScriptSqlModelBuilder();
+        MetaTransformScriptSqlParser.TopLevelStatementShape? statementShape = null;
+        var parsedStatementCount = 0;
+
+        foreach (var source in sources)
         {
-            var sourceLabel = string.IsNullOrWhiteSpace(sourcePath) ? "<sql-code>" : sourcePath;
-            var renderedErrors = string.Join(
-                Environment.NewLine,
-                errors.Select(static error => $"  Line {error.Line}, Col {error.Column}: {error.Message}"));
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.ParseFailed,
-                $"SQL parse failed for '{sourceLabel}'.{Environment.NewLine}{renderedErrors}");
+            foreach (var batch in SplitSqlBatches(source.Sql, source.SourcePath, source.BareSelectName))
+            {
+                if (string.IsNullOrWhiteSpace(batch.Sql) || IsIgnorableSetBatch(batch.Sql))
+                {
+                    continue;
+                }
+
+                try
+                {
+                    var parsedShape = parser.ParseSqlCodeIntoBuilder(batch.Sql, builder, batch.SourcePath, batch.BareSelectName);
+                    if (statementShape is null)
+                    {
+                        statementShape = parsedShape;
+                    }
+                    else if (statementShape != parsedShape)
+                    {
+                        var sourceLabel = string.IsNullOrWhiteSpace(batch.SourcePath) ? "<sql-code>" : batch.SourcePath;
+                        throw new MetaTransformScriptSqlImportException(
+                            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                            $"SQL input '{sourceLabel}' mixes bare SELECT statements with CREATE VIEW wrappers. Split the inputs so one logical import source uses one top-level shape.");
+                    }
+
+                    parsedStatementCount++;
+                }
+                catch (MetaTransformScriptSqlParserException ex)
+                {
+                    throw CreateImportException(ex, batch.SourcePath);
+                }
+            }
         }
 
-        var createViews = ExtractTopLevelStatements<MSDOM.CreateViewStatement>(fragment).ToArray();
-        var selectStatements = ExtractTopLevelStatements<MSDOM.SelectStatement>(fragment).ToArray();
-
-        if (createViews.Length > 0)
+        if (parsedStatementCount == 0)
         {
-            if (selectStatements.Length > 0)
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                "SQL input did not contain a supported SELECT statement or CREATE VIEW wrapper.");
+        }
+
+        var model = builder.Build();
+        if (statementShape == MetaTransformScriptSqlParser.TopLevelStatementShape.BareSelect && model.TransformScriptList.Count > 1)
+        {
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                "SQL input contains multiple bare SELECT statements. Wrap them in CREATE VIEW or split them into separate files.");
+        }
+
+        return model;
+    }
+
+    private static MetaTransformScriptSqlImportException CreateImportException(
+        MetaTransformScriptSqlParserException exception,
+        string? sourcePath)
+    {
+        var kind = exception.FailureKind switch
+        {
+            MetaTransformScriptSqlParserFailureKind.ParseError => MetaTransformScriptSqlImportFailureKind.ParseFailed,
+            MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax => MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
+            _ => MetaTransformScriptSqlImportFailureKind.InvalidSqlInput
+        };
+
+        return new MetaTransformScriptSqlImportException(
+            kind,
+            $"SQL import failed for '{(string.IsNullOrWhiteSpace(sourcePath) ? "<sql-code>" : sourcePath)}'.{Environment.NewLine}  {exception.Message}",
+            exception);
+    }
+
+    private static IReadOnlyList<SqlImportBatch> SplitSqlBatches(string sql, string? sourcePath, string? bareSelectName)
+    {
+        var batches = new List<SqlImportBatch>();
+        var builder = new StringBuilder();
+        var reader = new StringReader(sql);
+        string? line;
+        while ((line = reader.ReadLine()) is not null)
+        {
+            if (string.Equals(line.Trim(), "GO", StringComparison.OrdinalIgnoreCase))
             {
-                throw new MetaTransformScriptSqlImportException(
-                    MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                    $"SQL input '{(string.IsNullOrWhiteSpace(sourcePath) ? "<sql-code>" : sourcePath)}' mixes bare SELECT statements with CREATE VIEW wrappers. Split the inputs so one logical import source uses one top-level shape.");
+                batches.Add(new SqlImportBatch(builder.ToString(), sourcePath, bareSelectName));
+                builder.Clear();
+                continue;
             }
 
-            return createViews
-                .Select(createView => CreateDocumentFromCreateView(createView, sourcePath))
-                .ToArray();
+            builder.AppendLine(line);
         }
 
-        if (selectStatements.Length == 0)
-        {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                $"SQL input '{(string.IsNullOrWhiteSpace(sourcePath) ? "<sql-code>" : sourcePath)}' does not contain a supported SELECT statement or CREATE VIEW wrapper.");
-        }
-
-        if (selectStatements.Length > 1)
-        {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                $"SQL input '{(string.IsNullOrWhiteSpace(sourcePath) ? "<sql-code>" : sourcePath)}' contains multiple bare SELECT statements. Wrap them in CREATE VIEW or split them into separate files.");
-        }
-
-        return
-        [
-            new MetaTransformScriptSqlDocument(
-                string.IsNullOrWhiteSpace(fallbackName) ? "Script" : fallbackName,
-                sourcePath,
-                selectStatements[0],
-                null,
-                null,
-                [])
-        ];
+        batches.Add(new SqlImportBatch(builder.ToString(), sourcePath, bareSelectName));
+        return batches;
     }
 
-    private static IEnumerable<TStatement> ExtractTopLevelStatements<TStatement>(MSDOM.TSqlFragment fragment)
-        where TStatement : MSDOM.TSqlStatement
+    private static bool IsIgnorableSetBatch(string sql)
     {
-        if (fragment is MSDOM.TSqlScript script)
+        IReadOnlyList<MetaTransformScriptSqlToken> tokens;
+        try
         {
-            return script.Batches.SelectMany(static batch => batch.Statements).OfType<TStatement>();
+            tokens = new MetaTransformScriptSqlLexer(sql).Tokenize();
+        }
+        catch (MetaTransformScriptSqlParserException)
+        {
+            return false;
         }
 
-        if (fragment is TStatement directStatement)
+        var position = 0;
+        var sawSetStatement = false;
+        while (position < tokens.Count)
         {
-            return [directStatement];
+            while (position < tokens.Count && tokens[position].Kind == MetaTransformScriptSqlTokenKind.Semicolon)
+            {
+                position++;
+            }
+
+            if (position >= tokens.Count || tokens[position].Kind == MetaTransformScriptSqlTokenKind.EndOfFile)
+            {
+                return sawSetStatement;
+            }
+
+            if (!IsUnquotedKeyword(tokens[position], "SET"))
+            {
+                return false;
+            }
+
+            sawSetStatement = true;
+            position++;
+            var sawPayloadToken = false;
+            while (position < tokens.Count
+                && tokens[position].Kind != MetaTransformScriptSqlTokenKind.Semicolon
+                && tokens[position].Kind != MetaTransformScriptSqlTokenKind.EndOfFile)
+            {
+                sawPayloadToken = true;
+                position++;
+            }
+
+            if (!sawPayloadToken)
+            {
+                return false;
+            }
         }
 
-        return Array.Empty<TStatement>();
+        return sawSetStatement;
     }
+
+    private static bool IsUnquotedKeyword(MetaTransformScriptSqlToken token, string keyword) =>
+        token.Kind == MetaTransformScriptSqlTokenKind.Identifier
+        && string.Equals(token.QuoteType, "NotQuoted", StringComparison.Ordinal)
+        && string.Equals(token.Value, keyword, StringComparison.OrdinalIgnoreCase);
+
+    private sealed record SqlImportSource(string Sql, string? SourcePath, string? BareSelectName);
+    private sealed record SqlImportBatch(string Sql, string? SourcePath, string? BareSelectName);
 
     private static bool ContainsGoBatchSeparator(string sql)
     {
@@ -337,94 +363,6 @@ public sealed class MetaTransformScriptSqlService
         }
 
         return false;
-    }
-
-    private static string CombineSqlFilesIntoLogicalSource(IEnumerable<string> files)
-    {
-        var builder = new StringBuilder();
-        var first = true;
-        foreach (var file in files)
-        {
-            if (!first)
-            {
-                builder.AppendLine();
-                builder.AppendLine("GO");
-                builder.AppendLine();
-            }
-
-            builder.Append(File.ReadAllText(file));
-            first = false;
-        }
-
-        return builder.ToString();
-    }
-
-    private static bool ShouldUseLegacySingleFilePath(string sql)
-    {
-        var trimmed = sql.TrimStart();
-        return !trimmed.StartsWith("SELECT", StringComparison.OrdinalIgnoreCase)
-            && !trimmed.StartsWith("WITH", StringComparison.OrdinalIgnoreCase);
-    }
-
-    private static void ValidateCreateViewEnvelope(MSDOM.CreateViewStatement createView)
-    {
-        ArgumentNullException.ThrowIfNull(createView);
-
-        if (createView.SelectStatement is null)
-        {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                $"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' is missing a SelectStatement.");
-        }
-
-        if (createView.ViewOptions.Count > 0)
-        {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
-                $"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' uses view options. MetaTransformScript import does not support those wrapper options yet.");
-        }
-
-        if (createView.WithCheckOption)
-        {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
-                $"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' uses WITH CHECK OPTION. MetaTransformScript import does not support that wrapper option yet.");
-        }
-
-        if (createView.IsMaterialized)
-        {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
-                $"CREATE VIEW '{FormatSchemaObjectName(createView.SchemaObjectName)}' uses materialized view syntax that MetaTransformScript does not support.");
-        }
-    }
-
-    private static MetaTransformScriptSqlDocument CreateDocumentFromCreateView(
-        MSDOM.CreateViewStatement createView,
-        string? sourcePath)
-    {
-        ValidateCreateViewEnvelope(createView);
-
-        var schemaObjectName = createView.SchemaObjectName
-            ?? throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                "CREATE VIEW statement was missing SchemaObjectName.");
-        var objectIdentifier = schemaObjectName.BaseIdentifier
-            ?? throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                "CREATE VIEW statement was missing the view object identifier.");
-        var schemaIdentifier = schemaObjectName.SchemaIdentifier;
-
-        return new MetaTransformScriptSqlDocument(
-            FormatSchemaObjectName(schemaObjectName),
-            sourcePath,
-            createView.SelectStatement
-                ?? throw new MetaTransformScriptSqlImportException(
-                    MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                    $"CREATE VIEW '{FormatSchemaObjectName(schemaObjectName)}' did not contain a SelectStatement."),
-            schemaIdentifier,
-            objectIdentifier,
-            createView.Columns.ToArray());
     }
 
     private static MTS.TransformScript ResolveSingleScript(MTS.MetaTransformScriptModel model, string? scriptName)
@@ -528,33 +466,6 @@ public sealed class MetaTransformScriptSqlService
         }
 
         return builder.ToString().Trim().TrimEnd('.');
-    }
-
-    private static string FormatSchemaObjectName(MSDOM.SchemaObjectName? schemaObjectName)
-    {
-        if (schemaObjectName is null || schemaObjectName.Identifiers.Count == 0)
-        {
-            return "<unknown>";
-        }
-
-        return string.Join(".", schemaObjectName.Identifiers.Select(RenderIdentifier));
-    }
-
-    private static string RenderIdentifier(MSDOM.Identifier identifier)
-    {
-        if (string.IsNullOrWhiteSpace(identifier.Value))
-        {
-            return "[]";
-        }
-
-        return identifier.QuoteType.ToString() switch
-        {
-            "SquareBracket" => "[" + identifier.Value.Replace("]", "]]", StringComparison.Ordinal) + "]",
-            "DoubleQuote" => "\"" + identifier.Value.Replace("\"", "\"\"", StringComparison.Ordinal) + "\"",
-            _ => IsPlainIdentifier(identifier.Value)
-                ? identifier.Value
-                : "[" + identifier.Value.Replace("]", "]]", StringComparison.Ordinal) + "]"
-        };
     }
 
     private static bool IsPlainIdentifier(string value)

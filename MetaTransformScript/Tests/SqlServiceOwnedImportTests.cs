@@ -10,14 +10,16 @@ public sealed class SqlServiceOwnedImportTests
     [InlineData("001_basic_select.sql")]
     [InlineData("017_cte.sql")]
     [InlineData("020_xml_namespaces_and_methods.sql")]
+    [InlineData("040_view_column_list.sql")]
     [InlineData("044_window_frame_offsets.sql")]
     [InlineData("045_nested_subqueries.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnSupportedInputs(string fileName)
     {
         var sql = LoadCorpus(fileName);
+        const string bareSelectName = "dbo.v_test";
 
-        var serviceModel = new MetaTransformScriptSqlService().ImportFromSqlCode(sql);
-        var parserModel = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        var serviceModel = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, bareSelectName);
+        var parserModel = new MetaTransformScriptSqlParser().ParseSqlCode(sql, bareSelectName: bareSelectName);
 
         AssertModelListCountsEqual(parserModel, serviceModel);
 
@@ -30,9 +32,13 @@ public sealed class SqlServiceOwnedImportTests
     }
 
     [Fact]
-    public void ImportFromSqlCode_MapsUnsupportedSyntax_ToUnsupportedSql()
+    public void ImportFromSqlCode_RequiresName_ForBareSelectInput()
     {
-        var sql = LoadCorpus("040_view_column_list.sql");
+        const string sql = """
+SELECT
+    c.CustomerId
+FROM sales.Customer AS c
+""";
 
         var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
             () => new MetaTransformScriptSqlService().ImportFromSqlCode(sql));
@@ -41,10 +47,26 @@ public sealed class SqlServiceOwnedImportTests
     }
 
     [Fact]
+    public void ImportFromSqlCode_MapsUnsupportedSyntax_ToUnsupportedSql()
+    {
+        const string sql = """
+SELECT
+    c.CustomerId
+FROM sales.Customer AS c
+GROUP BY ALL c.CustomerId
+""";
+
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_group_by_all"));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+    }
+
+    [Fact]
     public void ImportFromSqlCode_MapsParseErrors_ToParseFailed()
     {
         var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
-            () => new MetaTransformScriptSqlService().ImportFromSqlCode("SELECT * FROM"));
+            () => new MetaTransformScriptSqlService().ImportFromSqlCode("SELECT * FROM", "dbo.v_parse_fail"));
 
         Assert.Equal(MetaTransformScriptSqlImportFailureKind.ParseFailed, exception.Kind);
     }
@@ -53,20 +75,9 @@ public sealed class SqlServiceOwnedImportTests
     {
         yield return
         [
-            "simple-select.sql",
-            """
-SELECT
-    s.CustomerId,
-    s.CustomerName
-FROM dbo.Source AS s
-WHERE s.CustomerId = 1
-"""
-        ];
-
-        yield return
-        [
             "cte.sql",
             """
+CREATE VIEW dbo.v_cte AS
 WITH base_cte AS
 (
     SELECT
@@ -83,6 +94,7 @@ FROM base_cte AS b
         [
             "xml.sql",
             """
+CREATE VIEW dbo.v_xml AS
 WITH XMLNAMESPACES ('urn:test' AS ns)
 SELECT
     s.XmlPayload.value('(/ns:Root/ns:Id/text())[1]', 'int') AS XmlId
@@ -100,8 +112,7 @@ FROM dbo.XmlSource AS s
         var serviceModel = new MetaTransformScriptSqlService().ImportFromSqlPath(tempFilePath);
         var parserModel = new MetaTransformScriptSqlParser().ParseSqlCode(
             sql,
-            Path.GetFileName(tempFilePath),
-            Path.GetFileNameWithoutExtension(tempFilePath));
+            Path.GetFileName(tempFilePath));
 
         AssertModelListCountsEqual(parserModel, serviceModel);
 
@@ -114,7 +125,7 @@ FROM dbo.XmlSource AS s
     }
 
     [Fact]
-    public void ImportFromSqlPath_UsesLegacyPath_ForWrapperHeavySingleFiles()
+    public void ImportFromSqlPath_ParsesCreateViewColumnLists_OnSingleFileInputs()
     {
         var sql = LoadCorpus("040_view_column_list.sql");
 
@@ -124,6 +135,49 @@ FROM dbo.XmlSource AS s
         var script = Assert.Single(model.TransformScriptList);
         Assert.Equal("dbo.v_view_column_list", script.Name);
         Assert.Equal(2, model.TransformScriptViewColumnsItemList.Count);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_FailsExplicitly_ForBareSelectSingleFileInputs()
+    {
+        const string sql = """
+SELECT
+    s.CustomerId
+FROM dbo.Source AS s
+""";
+
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlPath(
+                WriteTempSqlFile("bare-select.sql", sql)));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_ParsesSetAndGoWrappedSingleFileViewScripts()
+    {
+        const string sql = """
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW dbo.v_set_go
+(
+    OutputCustomerId
+)
+AS
+SELECT
+    s.CustomerId
+FROM dbo.Source AS s
+GO
+""";
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlPath(
+            WriteTempSqlFile("set-go.sql", sql));
+
+        var script = Assert.Single(model.TransformScriptList);
+        Assert.Equal("dbo.v_set_go", script.Name);
+        Assert.Single(model.TransformScriptViewColumnsItemList);
     }
 
     [Fact]
@@ -147,6 +201,8 @@ GROUP BY ALL c.CustomerId
     public void ImportFromSqlPath_FolderImport_TreatsFolderAsOneLogicalViewSource()
     {
         const string goSplitSql = """
+SET ANSI_NULLS ON
+GO
 CREATE VIEW dbo.v_go_one AS
 SELECT
     1 AS One
@@ -172,11 +228,12 @@ WHERE s.CustomerId = 1
 
         var model = new MetaTransformScriptSqlService().ImportFromSqlPath(folderPath);
 
-        Assert.Equal(4, model.TransformScriptList.Count);
-        Assert.Contains(model.TransformScriptList, static script => string.Equals(script.Name, "sales.v_plain", StringComparison.Ordinal));
-        Assert.Contains(model.TransformScriptList, static script => string.Equals(script.Name, "dbo.v_view_column_list", StringComparison.Ordinal));
-        Assert.Contains(model.TransformScriptList, static script => string.Equals(script.Name, "dbo.v_go_one", StringComparison.Ordinal));
-        Assert.Contains(model.TransformScriptList, static script => string.Equals(script.Name, "dbo.v_go_two", StringComparison.Ordinal));
+        Assert.Collection(
+            model.TransformScriptList.OrderBy(static script => script.Name, StringComparer.Ordinal).ToArray(),
+            script => Assert.Equal("dbo.v_go_one", script.Name),
+            script => Assert.Equal("dbo.v_go_two", script.Name),
+            script => Assert.Equal("dbo.v_view_column_list", script.Name),
+            script => Assert.Equal("sales.v_plain", script.Name));
         Assert.Equal(2, model.TransformScriptViewColumnsItemList.Count);
     }
 
@@ -202,7 +259,7 @@ FROM dbo.Source AS s
         var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
             () => new MetaTransformScriptSqlService().ImportFromSqlPath(folderPath));
 
-        Assert.Equal(MetaTransformScriptSqlImportFailureKind.InvalidSqlInput, exception.Kind);
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
     }
 
     private static string LoadCorpus(string fileName)

@@ -46,7 +46,7 @@ public sealed partial class MetaTransformScriptSqlParser
             {
                 if (!hasOrderBy)
                 {
-                    throw ParseError("OFFSET requires ORDER BY in the owned parser.");
+                    throw ParseError("OFFSET requires ORDER BY.");
                 }
 
                 currentExpression = builder.AttachOffsetClause(currentExpression, ParseOffsetClause());
@@ -206,7 +206,7 @@ public sealed partial class MetaTransformScriptSqlParser
         {
             if (MatchKeyword("ALL"))
             {
-                throw Unsupported("GROUP BY ALL is not supported in the owned parser yet.");
+                throw Unsupported("GROUP BY ALL is not supported yet.");
             }
 
             var groupingSpecifications = new List<BuiltNode> { builder.CreateExpressionGroupingSpecification(ParseScalarExpression()) };

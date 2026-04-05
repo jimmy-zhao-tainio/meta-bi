@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SqlServer.TransactSql.ScriptDom" Version="170.191.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Instance\MetaTransformScript.Instance.csproj" />
   </ItemGroup>
 

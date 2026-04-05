@@ -199,6 +199,16 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         BuiltNode? objectIdentifier,
         IReadOnlyList<BuiltNode>? viewColumns = null)
     {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new InvalidOperationException("Transform script name cannot be empty.");
+        }
+
+        if (model.TransformScriptList.Any(existing => string.Equals(existing.Name, name, StringComparison.OrdinalIgnoreCase)))
+        {
+            throw new InvalidOperationException($"Transform script '{name}' already exists in this workspace.");
+        }
+
         var row = new TransformScript
         {
             Id = NextId(nameof(TransformScript)),

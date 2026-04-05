@@ -25,34 +25,40 @@ public sealed class OwnedParserPhase1Tests
     [InlineData("018_ordering_and_top.sql")]
     [InlineData("019_offset_fetch.sql")]
     [InlineData("020_xml_namespaces_and_methods.sql")]
+    [InlineData("040_view_column_list.sql")]
     [InlineData("024_query_parentheses.sql")]
     [InlineData("041_xml_namespaces_default.sql")]
     [InlineData("042_cte_column_list.sql")]
     [InlineData("043_recursive_cte_column_list.sql")]
     [InlineData("044_window_frame_offsets.sql")]
     [InlineData("045_nested_subqueries.sql")]
-    public void OwnedParser_MatchesCurrentImporter_OnPhase1Corpus(string fileName)
+    public void ParserRoundTripsSupportedCorpus(string fileName)
     {
         var sql = LoadCorpus(fileName);
-        var ownedModel = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        var oracleModel = new MetaTransformScriptSqlService().ImportFromSqlCode(sql);
-
-        AssertModelListCountsEqual(oracleModel, ownedModel);
-
-        ownedModel = RoundTripWorkspace(ownedModel, "owned");
-        oracleModel = RoundTripWorkspace(oracleModel, "oracle");
+        var parser = new MetaTransformScriptSqlParser();
+        var firstModel = parser.ParseSqlCode(sql, bareSelectName: "dbo.v_test");
+        firstModel = RoundTripWorkspace(firstModel, "first");
 
         var service = new MetaTransformScriptSqlService();
-        Assert.Equal(service.ExportToSqlCode(oracleModel), service.ExportToSqlCode(ownedModel));
-        Assert.Equal(oracleModel.TransformScriptList.Single().Name, ownedModel.TransformScriptList.Single().Name);
+        var firstEmission = service.ExportToSqlCode(firstModel);
+        var secondModel = parser.ParseSqlCode(firstEmission, bareSelectName: "dbo.v_test");
+        secondModel = RoundTripWorkspace(secondModel, "second");
+        var secondEmission = service.ExportToSqlCode(secondModel);
+
+        Assert.Equal(firstEmission, secondEmission);
     }
 
     [Fact]
-    public void OwnedParser_RejectsViewColumnLists_InCurrentSlice()
+    public void ParserRejectsUnsupportedGroupByAll()
     {
-        var sql = LoadCorpus("040_view_column_list.sql");
+        const string sql = """
+SELECT
+    c.CustomerId
+FROM sales.Customer AS c
+GROUP BY ALL c.CustomerId
+""";
         var exception = Assert.Throws<MetaTransformScriptSqlParserException>(
-            () => new MetaTransformScriptSqlParser().ParseSqlCode(sql));
+            () => new MetaTransformScriptSqlParser().ParseSqlCode(sql, bareSelectName: "dbo.v_group_by_all"));
 
         Assert.Equal(MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax, exception.FailureKind);
     }
@@ -70,26 +76,6 @@ public sealed class OwnedParserPhase1Tests
             fileName));
         return File.ReadAllText(path);
     }
-
-    private static void AssertModelListCountsEqual(
-        MetaTransformScriptModel expected,
-        MetaTransformScriptModel actual)
-    {
-        var listProperties = typeof(MetaTransformScriptModel)
-            .GetProperties()
-            .Where(static property => typeof(ICollection).IsAssignableFrom(property.PropertyType))
-            .OrderBy(static property => property.Name, StringComparer.Ordinal);
-
-        foreach (var property in listProperties)
-        {
-            var expectedCount = ((ICollection?)property.GetValue(expected))?.Count ?? 0;
-            var actualCount = ((ICollection?)property.GetValue(actual))?.Count ?? 0;
-            Assert.True(
-                expectedCount == actualCount,
-                $"{property.Name}: expected {expectedCount}, actual {actualCount}");
-        }
-    }
-
     private static MetaTransformScriptModel RoundTripWorkspace(MetaTransformScriptModel model, string label)
     {
         var workspacePath = Path.Combine(Path.GetTempPath(), "meta-bi", "metatransformscript-tests", Guid.NewGuid().ToString("N"), label);

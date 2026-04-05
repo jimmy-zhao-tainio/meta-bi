@@ -6,20 +6,26 @@ public sealed partial class MetaTransformScriptSqlParser
 {
     private sealed partial class Parser
     {
-        public void ParseDocument()
+        public TopLevelStatementShape ParseDocument()
         {
             if (MatchKeyword("CREATE"))
             {
                 ParseCreateViewScript();
-                return;
+                return TopLevelStatementShape.CreateView;
             }
 
             var selectStatement = ParseSelectStatement();
             SkipSemicolons();
             ExpectEndOfFile();
 
-            var scriptName = string.IsNullOrWhiteSpace(fallbackName) ? "Script" : fallbackName!;
+            if (string.IsNullOrWhiteSpace(bareSelectName))
+            {
+                throw Unsupported("Bare SELECT input requires an explicit script name.");
+            }
+
+            var scriptName = bareSelectName!;
             builder.AddTransformScript(scriptName, sourcePath, selectStatement, schemaIdentifier: null, objectIdentifier: null);
+            return TopLevelStatementShape.BareSelect;
         }
 
         private void ParseCreateViewScript()
@@ -27,9 +33,10 @@ public sealed partial class MetaTransformScriptSqlParser
             ExpectKeyword("VIEW");
 
             var (schemaIdentifier, objectIdentifier, renderedName) = ParseCreateViewName();
+            List<BuiltNode>? viewColumns = null;
             if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
             {
-                throw Unsupported("CREATE VIEW column lists are not supported in parser phase 1.");
+                viewColumns = ParseCreateViewColumnList();
             }
 
             ExpectKeyword("AS");
@@ -42,7 +49,8 @@ public sealed partial class MetaTransformScriptSqlParser
                 sourcePath,
                 selectStatement,
                 schemaIdentifier?.Node,
-                objectIdentifier.Node);
+                objectIdentifier.Node,
+                viewColumns);
         }
 
         private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateViewName()
@@ -60,6 +68,19 @@ public sealed partial class MetaTransformScriptSqlParser
             }
 
             return (first, second, $"{RenderIdentifier(first.Token)}.{RenderIdentifier(second.Token)}");
+        }
+
+        private List<BuiltNode> ParseCreateViewColumnList()
+        {
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            var identifiers = new List<BuiltNode> { ParseIdentifier().Node };
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
+            {
+                identifiers.Add(ParseIdentifier().Node);
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            return identifiers;
         }
 
         private BuiltNode ParseSelectStatement()

@@ -15,46 +15,52 @@ It should stay practical and current.
 
 Use this note when:
 
-- replacing the public read/import path with the owned parser
 - deciding which unsupported edges deserve first-class support next
 - separating real feature gaps from integrity-guard exceptions
 
 Do not treat every item here as equally urgent.
 
-## Owned Parser Gaps
+## Parser Gaps
 
-These are explicit owned-parser hard-fails on the current mainline code path.
+These are explicit parser/import hard-fails on the current mainline code path.
 
-- `CREATE VIEW` column lists
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.Document.cs`
 - `CREATE VIEW` names with more than two identifier parts
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.Document.cs`
-- `GO`-separated batches in the owned parser path
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.Infrastructure.cs`
+  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Document.cs`
 - parenthesized scalar expressions
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.Expressions.cs`
+  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Expressions.cs`
 - unsupported `CROSS ...` table-reference forms beyond the currently handled ones
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.Table.cs`
+  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Table.cs`
 - parenthesized table-reference forms beyond query-derived tables
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.Table.cs`
+  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Table.cs`
 - schema object names with more than two parts
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.Table.cs`
+  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Table.cs`
 - some data type names in the special-expression parser
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.SpecialExpressions.cs`
+  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.SpecialExpressions.cs`
 - `MAX` data type parameters
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.SpecialExpressions.cs`
+  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.SpecialExpressions.cs`
+- `GROUPING SETS`
+- `ROLLUP`
+- `CUBE`
+- `GROUPING(...)`
+- `GROUPING_ID(...)`
 - `GROUP BY ALL`
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptOwnedSqlParser.Query.cs`
+  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Query.cs`
 
-## Public Import / Wrapper Gaps
+## Import-Shaping Gaps
 
-These are still explicitly unsupported in the ScriptDOM-backed service import path.
+These are import-shaping limits in the current parser/import flow.
 
+- bare `SELECT` file/folder import on `sql-path`
+  - bare `SELECT` is currently accepted only on `sql-code` with an explicit name
 - `CREATE VIEW ... WITH <view options>`
   - `MetaTransformScript/Sql/MetaTransformScriptSqlService.cs`
 - `WITH CHECK OPTION`
   - `MetaTransformScript/Sql/MetaTransformScriptSqlService.cs`
 - materialized-view syntax
+  - `MetaTransformScript/Sql/MetaTransformScriptSqlService.cs`
+- mixed bare `SELECT` and `CREATE VIEW` top-level shapes in one logical import source
+  - `MetaTransformScript/Sql/MetaTransformScriptSqlService.cs`
+- non-`SET` auxiliary batches before/around supported statements
   - `MetaTransformScript/Sql/MetaTransformScriptSqlService.cs`
 
 ## Emitter Hardening Gaps
@@ -95,11 +101,10 @@ They become real work only when:
 
 If work resumes on hardening, the practical order is:
 
-1. Replace the public import/read path with the owned parser.
+1. Add grouping-set family support (`GROUPING SETS`, `ROLLUP`, `CUBE`, `GROUPING`, `GROUPING_ID`) or remove it from the larger reference-corpus demo set.
 2. Add aggregate-level `DISTINCT` support in parser and emitter.
-3. Add owned-parser support for `GO` batches and wrapper shapes already tolerated by the service path.
-4. Decide whether `CREATE VIEW` column lists belong in the owned parser boundary or remain wrapper-only.
-5. Tackle remaining table-reference and scalar-expression gaps only when a supported example needs them.
+3. Decide whether broader batch-envelope shapes beyond `SET` should be owned or explicitly rejected long-term.
+4. Tackle remaining table-reference and scalar-expression gaps only when a supported example needs them.
 
 ## Not Errata
 

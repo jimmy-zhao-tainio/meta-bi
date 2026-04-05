@@ -1,34 +1,41 @@
-# MetaTransformScript Owned Parser Status
+# MetaTransformScript Parser Status
 
-Current status of the owned SQL parser front end for `MetaTransformScript`.
+Current status of the SQL parser front end for `MetaTransformScript`.
 
 This note is intentionally narrow:
 
-- what the owned parser currently handles
-- what still routes through ScriptDOM temporarily
+- what the parser currently handles
+- what the current verified corpus coverage is
+- what the current integration proof status is
 - what is explicitly unsupported right now
 
 It should stay honest and small.
 
-## Owned parser target
+Remaining gaps are now ordinary parser, emitter, model, or import-shaping errata. They are not hidden parser delegation.
 
-The owned parser targets the canonical `MetaTransformScript` model directly.
+## Parser target
+
+The parser targets the canonical `MetaTransformScript` model directly.
 
 Current intended flow:
 
-- `SQL text -> owned lexer/parser -> MetaTransformScript workspace model -> owned emitter -> semantically equivalent SQL`
+- `SQL text -> lexer/parser -> MetaTransformScript workspace model -> emitter -> semantically equivalent SQL`
 
-Temporary migration reality:
+Current implementation reality:
 
-- CLI/service import still routes through ScriptDOM in `MetaTransformScriptSqlService`
-- ScriptDOM is still used as a comparison oracle in tests while the owned parser replaces the read path slice by slice
+- `MetaTransformScript` no longer uses ScriptDOM in its import/read path
+- `MetaTransformScript` no longer has a ScriptDOM package reference
+- tests no longer depend on a second parser implementation as the product read path
 
-## Implemented owned-parser surface
+## Implemented parser surface
 
-The following are implemented through the owned parser and verified against the current importer on the reference corpus:
+The following are implemented in the parser and exercised through the current tests and service path:
 
 - `CREATE VIEW ... AS ...` envelope for supported body import
-- bare `SELECT` view bodies
+- `CREATE VIEW` column lists
+- bare `SELECT` bodies when an explicit script name is supplied
+- `SET`-only batches on import
+- `GO`-split import batches
 - `SELECT DISTINCT`
 - simple select list
 - `*` and qualified `alias.*`
@@ -83,13 +90,13 @@ The following are implemented through the owned parser and verified against the 
 - window `ORDER BY`
 - current frame forms used by the corpus:
   - `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`
-  - numeric delimiters such as `ROWS 2 PRECEDING`
-  - numeric BETWEEN forms such as `ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING`
-  - simple named-window references
+- numeric delimiters such as `ROWS 2 PRECEDING`
+- numeric BETWEEN forms such as `ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING`
+- simple named-window references
 
-## Verified corpus files
+## Verified corpus coverage
 
-Currently verified against the ScriptDOM importer oracle:
+Currently covered by parser/emitter round-trip tests:
 
 - `001_basic_select.sql`
 - `002_select_star.sql`
@@ -109,6 +116,7 @@ Currently verified against the ScriptDOM importer oracle:
 - `018_ordering_and_top.sql`
 - `019_offset_fetch.sql`
 - `020_xml_namespaces_and_methods.sql`
+- `040_view_column_list.sql`
 - `024_query_parentheses.sql`
 - `041_xml_namespaces_default.sql`
 - `042_cte_column_list.sql`
@@ -116,16 +124,21 @@ Currently verified against the ScriptDOM importer oracle:
 - `044_window_frame_offsets.sql`
 - `045_nested_subqueries.sql`
 
+## Current integration proof status
+
+- `dotnet test MetaTransformScript\Tests\MetaTransformScript.Tests.csproj` currently passes
+- the smaller CLI integration demo currently passes and `meta instance diff` reports no differences
+- the larger reference-corpus CLI demo is currently not a passing supported proof set, because it still includes `009_grouping_sets.sql`, which the parser does not support yet
+
 ## Explicitly unsupported right now
 
-These are rejected explicitly by the owned parser rather than guessed:
+These are rejected explicitly rather than guessed:
 
-- `CREATE VIEW` column lists
+- bare `SELECT` file/folder import on `sql-path` without `CREATE VIEW` wrappers
+- `GROUPING SETS`
+- `ROLLUP`
+- `CUBE`
 - `GROUP BY ALL`
 - unsupported parenthesized table-reference forms outside the currently supported derived-table shape
-- unsupported or malformed `GO`-batch input in the owned parser path
-
-## Known temporary gap
-
-- The public import/read path still uses ScriptDOM.
-- The owned parser is verified through tests, but it is not yet the CLI/service import implementation.
+- unsupported parenthesized scalar expressions
+- unsupported or malformed non-`SET` auxiliary batches in the import path
