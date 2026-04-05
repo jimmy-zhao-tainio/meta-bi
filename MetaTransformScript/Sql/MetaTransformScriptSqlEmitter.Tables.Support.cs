@@ -81,15 +81,8 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderSchemaObjectName(SchemaObjectName schemaObjectName)
     {
-        var parts = new List<string>();
-        var schemaLink = FindOwnerLink(model.SchemaObjectNameSchemaIdentifierLinkList, schemaObjectName.Id);
-        if (schemaLink is not null)
-        {
-            parts.Add(RenderIdentifier(schemaLink.Value));
-        }
-
-        parts.Add(RenderIdentifier(GetOwnerLink(model.SchemaObjectNameBaseIdentifierLinkList, schemaObjectName.Id, "SchemaObjectName.BaseIdentifier").Value));
-        return string.Join(".", parts);
+        var multiPartIdentifier = GetById(model.MultiPartIdentifierList, schemaObjectName.BaseId, "SchemaObjectName.Base");
+        return RenderMultiPartIdentifier(multiPartIdentifier);
     }
 
     private string RenderIdentifierOrValueExpression(IdentifierOrValueExpression value)

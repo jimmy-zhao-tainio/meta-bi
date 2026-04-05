@@ -64,7 +64,7 @@ public sealed partial class MetaTransformScriptSqlParser
             var second = ParseIdentifier();
             if (Match(MetaTransformScriptSqlTokenKind.Dot))
             {
-                throw Unsupported("CREATE VIEW names with more than two identifier parts are not supported in parser phase 1.");
+                throw Unsupported("CREATE VIEW names with more than two identifier parts are not supported.");
             }
 
             return (first, second, $"{RenderIdentifier(first.Token)}.{RenderIdentifier(second.Token)}");

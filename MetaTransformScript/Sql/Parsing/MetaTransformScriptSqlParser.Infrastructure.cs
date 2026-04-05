@@ -62,7 +62,7 @@ public sealed partial class MetaTransformScriptSqlParser
             {
                 if (PeekKeyword("GO"))
                 {
-                    throw Unsupported("GO-separated batches are not supported in parser phase 1.");
+                    throw Unsupported("GO-separated batches are not supported in direct parser input.");
                 }
 
                 throw ParseError($"Unexpected trailing token '{Current.Text}'.");

@@ -28,6 +28,7 @@ public sealed class SqlServiceOwnedImportTests
     [InlineData("048_group_by_all.sql")]
     [InlineData("049_data_type_variants.sql")]
     [InlineData("050_remaining_sanctioned_sqlserver_types.sql")]
+    [InlineData("051_cross_database_names.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnSupportedInputs(string fileName)
     {
         var sql = LoadCorpus(fileName);
@@ -134,6 +135,25 @@ FROM dbo.XmlSource AS s
         var script = Assert.Single(model.TransformScriptList);
         Assert.Equal("dbo.v_view_column_list", script.Name);
         Assert.Equal(2, model.TransformScriptViewColumnsItemList.Count);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_ParsesCrossDatabaseSchemaObjectNames_OnSingleFileInputs()
+    {
+        var sql = LoadCorpus("051_cross_database_names.sql");
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlPath(
+            WriteTempSqlFile("cross-database.sql", sql));
+        model = RoundTripWorkspace(model, "cross-database");
+
+        var script = Assert.Single(model.TransformScriptList);
+        Assert.Equal("dbo.v_cross_database_names", script.Name);
+
+        var emittedSql = new MetaTransformScriptSqlService().ExportToSqlCode(model);
+        Assert.Contains("FROM SalesDb.sales.Customer AS src", emittedSql);
+        Assert.Contains("NEXT VALUE FOR UtilityDb.dbo.CustomerSequence", emittedSql);
+        Assert.Contains("CROSS APPLY UtilityDb.dbo.fnSplit(src.TagList) AS splitItem", emittedSql);
+        Assert.Contains("FROM ArchiveDb.sales.CustomerArchive AS arc", emittedSql);
     }
 
     [Fact]

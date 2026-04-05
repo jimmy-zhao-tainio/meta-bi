@@ -455,7 +455,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
     public BuiltNode CreateSqlDataTypeReference(string sqlDataTypeOption, IReadOnlyList<BuiltNode>? parameters = null)
     {
         var typeIdentifier = CreateIdentifier(RenderSqlDataTypeIdentifierValue(sqlDataTypeOption), "NotQuoted");
-        var schemaObjectName = CreateSchemaObjectName(null, typeIdentifier);
+        var schemaObjectName = CreateSchemaObjectName([typeIdentifier]);
 
         var dataTypeReference = new DataTypeReference
         {

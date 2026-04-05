@@ -323,7 +323,7 @@ public sealed partial class MetaTransformScriptSqlParser
             Expect(MetaTransformScriptSqlTokenKind.OpenParen);
             if (!PeekKeyword("SELECT"))
             {
-                throw Unsupported("Parenthesized scalar expressions are not supported in parser phase 1.");
+                throw Unsupported("This parenthesized scalar expression shape is not supported yet.");
             }
 
             var queryExpression = ParseQueryExpression();

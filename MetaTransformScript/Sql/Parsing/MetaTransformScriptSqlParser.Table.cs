@@ -363,19 +363,8 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private BuiltNode ParseSchemaObjectName()
         {
-            var first = ParseIdentifier();
-            if (!Match(MetaTransformScriptSqlTokenKind.Dot))
-            {
-                return builder.CreateSchemaObjectName(null, first.Node);
-            }
-
-            var second = ParseIdentifier();
-            if (Match(MetaTransformScriptSqlTokenKind.Dot))
-            {
-                throw Unsupported("Schema object names with more than two identifier parts are not supported in parser phase 1.");
-            }
-
-            return builder.CreateSchemaObjectName(first.Node, second.Node);
+            var identifiers = ParseIdentifierChain();
+            return builder.CreateSchemaObjectName(identifiers.Select(static identifier => identifier.Node).ToArray());
         }
     }
 }

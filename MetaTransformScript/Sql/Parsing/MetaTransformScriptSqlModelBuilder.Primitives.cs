@@ -62,12 +62,17 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         return BuiltNode.Create((nameof(MultiPartIdentifier), row.Id));
     }
 
-    public BuiltNode CreateSchemaObjectName(BuiltNode? schemaIdentifier, BuiltNode baseIdentifier)
+    public BuiltNode CreateSchemaObjectName(IReadOnlyList<BuiltNode> identifiers)
     {
-        var multiPart = CreateMultiPartIdentifier(
-            schemaIdentifier is null
-                ? [baseIdentifier]
-                : [schemaIdentifier, baseIdentifier]);
+        ArgumentNullException.ThrowIfNull(identifiers);
+        if (identifiers.Count == 0)
+        {
+            throw new InvalidOperationException("SchemaObjectName requires at least one Identifier.");
+        }
+
+        var multiPart = CreateMultiPartIdentifier(identifiers);
+        var baseIdentifier = identifiers[^1];
+        var schemaIdentifier = identifiers.Count >= 2 ? identifiers[^2] : null;
 
         var row = new SchemaObjectName
         {

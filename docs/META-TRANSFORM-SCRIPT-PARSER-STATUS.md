@@ -130,9 +130,9 @@
 - [x] reference corpus coverage for `048_group_by_all.sql`
 - [x] reference corpus coverage for `049_data_type_variants.sql`
 - [x] reference corpus coverage for `050_remaining_sanctioned_sqlserver_types.sql`
+- [x] reference corpus coverage for `051_cross_database_names.sql`
 
-- [ ] `CREATE VIEW` names with more than two identifier parts
-- [ ] schema object names with more than two parts
+- [x] schema object names with more than two parts
 - [x] broader data type names beyond the current supported set
 - [ ] `CREATE VIEW ... WITH <view options>`
 - [ ] `WITH CHECK OPTION`
