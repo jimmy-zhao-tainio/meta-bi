@@ -224,74 +224,345 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private bool FormsScalarComparison()
         {
-            var checkpoint = position;
-            try
-            {
-                ParseScalarExpression();
-                return Current.Kind is MetaTransformScriptSqlTokenKind.Equals
-                    or MetaTransformScriptSqlTokenKind.GreaterThan
-                    or MetaTransformScriptSqlTokenKind.GreaterThanOrEqual
-                    or MetaTransformScriptSqlTokenKind.LessThan
-                    or MetaTransformScriptSqlTokenKind.LessThanOrEqual
-                    or MetaTransformScriptSqlTokenKind.NotEqual
-                    || IsKeyword(Current, "BETWEEN")
-                    || IsKeyword(Current, "IN")
-                    || IsKeyword(Current, "LIKE")
-                    || IsKeyword(Current, "IS");
-            }
-            catch (MetaTransformScriptSqlParserException)
+            var probe = position;
+            return ProbeScalarExpression(ref probe) && IsScalarComparisonOperator(PeekToken(probe));
+        }
+
+        private bool ProbeScalarExpression(ref int probe)
+        {
+            if (!ProbeScalarTerm(ref probe))
             {
                 return false;
             }
-            finally
+
+            while (PeekToken(probe).Kind is MetaTransformScriptSqlTokenKind.Plus or MetaTransformScriptSqlTokenKind.Minus)
             {
-                position = checkpoint;
+                probe++;
+                if (!ProbeScalarTerm(ref probe))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool ProbeScalarTerm(ref int probe)
+        {
+            if (!ProbeScalarPrimary(ref probe))
+            {
+                return false;
+            }
+
+            while (PeekToken(probe).Kind is MetaTransformScriptSqlTokenKind.Star
+                or MetaTransformScriptSqlTokenKind.Slash
+                or MetaTransformScriptSqlTokenKind.Percent)
+            {
+                probe++;
+                if (!ProbeScalarPrimary(ref probe))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool ProbeScalarPrimary(ref int probe)
+        {
+            var current = PeekToken(probe);
+            if (current.Kind is MetaTransformScriptSqlTokenKind.Plus or MetaTransformScriptSqlTokenKind.Minus)
+            {
+                probe++;
+                return ProbeScalarPrimary(ref probe);
+            }
+
+            if (IsKeyword(current, "CASE"))
+            {
+                if (!ProbeCaseExpression(ref probe))
+                {
+                    return false;
+                }
+
+                ProbeTrailingScalarSuffixes(ref probe);
+                return true;
+            }
+
+            if (IsKeyword(current, "NEXT"))
+            {
+                probe++;
+                if (!IsKeyword(PeekToken(probe), "VALUE"))
+                {
+                    return false;
+                }
+
+                probe++;
+                if (!IsKeyword(PeekToken(probe), "FOR"))
+                {
+                    return false;
+                }
+
+                probe++;
+                if (!ProbeSchemaObjectName(ref probe))
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            if (IsKeyword(current, "NULL") || IsKeyword(current, "CURRENT_TIMESTAMP"))
+            {
+                probe++;
+                return true;
+            }
+
+            if (current.Kind == MetaTransformScriptSqlTokenKind.Identifier &&
+                string.Equals(current.Value, "@@SPID", StringComparison.OrdinalIgnoreCase))
+            {
+                probe++;
+                return true;
+            }
+
+            if (current.Kind is MetaTransformScriptSqlTokenKind.StringLiteral
+                or MetaTransformScriptSqlTokenKind.BinaryLiteral
+                or MetaTransformScriptSqlTokenKind.NumberLiteral)
+            {
+                probe++;
+                return true;
+            }
+
+            if (current.Kind == MetaTransformScriptSqlTokenKind.Identifier)
+            {
+                if (!ProbeIdentifierChain(ref probe))
+                {
+                    return false;
+                }
+
+                if (PeekToken(probe).Kind == MetaTransformScriptSqlTokenKind.OpenParen)
+                {
+                    if (!ConsumeBalancedParentheses(ref probe))
+                    {
+                        return false;
+                    }
+
+                    if (IsKeyword(PeekToken(probe), "OVER"))
+                    {
+                        probe++;
+                        if (PeekToken(probe).Kind == MetaTransformScriptSqlTokenKind.OpenParen)
+                        {
+                            if (!ConsumeBalancedParentheses(ref probe))
+                            {
+                                return false;
+                            }
+                        }
+                        else if (PeekToken(probe).Kind == MetaTransformScriptSqlTokenKind.Identifier)
+                        {
+                            probe++;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                ProbeTrailingScalarSuffixes(ref probe);
+                return true;
+            }
+
+            if (current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
+            {
+                if (PeekKeywordAfterOpenParenAt(probe, "SELECT"))
+                {
+                    return ConsumeBalancedParentheses(ref probe);
+                }
+
+                probe++;
+                if (!ProbeScalarExpression(ref probe))
+                {
+                    return false;
+                }
+
+                if (PeekToken(probe).Kind != MetaTransformScriptSqlTokenKind.CloseParen)
+                {
+                    return false;
+                }
+
+                probe++;
+                ProbeTrailingScalarSuffixes(ref probe);
+                return true;
+            }
+
+            return false;
+        }
+
+        private void ProbeTrailingScalarSuffixes(ref int probe)
+        {
+            while (true)
+            {
+                if (IsKeyword(PeekToken(probe), "COLLATE"))
+                {
+                    probe++;
+                    if (PeekToken(probe).Kind == MetaTransformScriptSqlTokenKind.Identifier)
+                    {
+                        probe++;
+                    }
+
+                    continue;
+                }
+
+                if (IsKeyword(PeekToken(probe), "AT"))
+                {
+                    var checkpoint = probe;
+                    probe++;
+                    if (!IsKeyword(PeekToken(probe), "TIME"))
+                    {
+                        probe = checkpoint;
+                        return;
+                    }
+
+                    probe++;
+                    if (!IsKeyword(PeekToken(probe), "ZONE"))
+                    {
+                        probe = checkpoint;
+                        return;
+                    }
+
+                    probe++;
+                    if (!ProbeScalarExpression(ref probe))
+                    {
+                        probe = checkpoint;
+                        return;
+                    }
+
+                    continue;
+                }
+
+                return;
             }
         }
 
-        private bool FormsParenthesizedScalarComparison()
+        private bool ProbeCaseExpression(ref int probe)
         {
-            if (Current.Kind != MetaTransformScriptSqlTokenKind.OpenParen)
+            if (!IsKeyword(PeekToken(probe), "CASE"))
             {
                 return false;
             }
 
             var depth = 0;
-            for (var probe = position; probe < tokens.Count; probe++)
+            while (probe < tokens.Count)
             {
-                var kind = tokens[probe].Kind;
-                if (kind == MetaTransformScriptSqlTokenKind.OpenParen)
+                var token = PeekToken(probe);
+                if (IsKeyword(token, "CASE"))
                 {
                     depth++;
-                    continue;
                 }
-
-                if (kind != MetaTransformScriptSqlTokenKind.CloseParen)
+                else if (IsKeyword(token, "END"))
                 {
-                    continue;
+                    depth--;
+                    probe++;
+                    return depth == 0;
                 }
 
-                depth--;
-                if (depth != 0)
-                {
-                    continue;
-                }
-
-                var next = PeekToken(probe + 1);
-                return next.Kind is MetaTransformScriptSqlTokenKind.Equals
-                    or MetaTransformScriptSqlTokenKind.GreaterThan
-                    or MetaTransformScriptSqlTokenKind.GreaterThanOrEqual
-                    or MetaTransformScriptSqlTokenKind.LessThan
-                    or MetaTransformScriptSqlTokenKind.LessThanOrEqual
-                    or MetaTransformScriptSqlTokenKind.NotEqual
-                    || IsKeyword(next, "BETWEEN")
-                    || IsKeyword(next, "IN")
-                    || IsKeyword(next, "LIKE")
-                    || IsKeyword(next, "IS");
+                probe++;
             }
 
             return false;
         }
+
+        private bool ProbeSchemaObjectName(ref int probe) =>
+            ProbeIdentifierChain(ref probe);
+
+        private bool ProbeIdentifierChain(ref int probe)
+        {
+            if (PeekToken(probe).Kind != MetaTransformScriptSqlTokenKind.Identifier)
+            {
+                return false;
+            }
+
+            probe++;
+            while (PeekToken(probe).Kind == MetaTransformScriptSqlTokenKind.Dot)
+            {
+                probe++;
+                if (PeekToken(probe).Kind != MetaTransformScriptSqlTokenKind.Identifier)
+                {
+                    return false;
+                }
+
+                probe++;
+            }
+
+            return true;
+        }
+
+        private bool ConsumeBalancedParentheses(ref int probe)
+        {
+            if (PeekToken(probe).Kind != MetaTransformScriptSqlTokenKind.OpenParen)
+            {
+                return false;
+            }
+
+            var depth = 0;
+            while (probe < tokens.Count)
+            {
+                var kind = PeekToken(probe).Kind;
+                if (kind == MetaTransformScriptSqlTokenKind.OpenParen)
+                {
+                    depth++;
+                }
+                else if (kind == MetaTransformScriptSqlTokenKind.CloseParen)
+                {
+                    depth--;
+                    probe++;
+                    if (depth == 0)
+                    {
+                        return true;
+                    }
+
+                    continue;
+                }
+
+                probe++;
+            }
+
+            return false;
+        }
+
+        private bool PeekKeywordAfterOpenParenAt(int probe, string keyword)
+        {
+            if (PeekToken(probe).Kind != MetaTransformScriptSqlTokenKind.OpenParen)
+            {
+                return false;
+            }
+
+            probe++;
+            while (probe < tokens.Count)
+            {
+                var token = PeekToken(probe);
+                if (token.Kind == MetaTransformScriptSqlTokenKind.Semicolon)
+                {
+                    probe++;
+                    continue;
+                }
+
+                return IsKeyword(token, keyword);
+            }
+
+            return false;
+        }
+
+        private bool IsScalarComparisonOperator(MetaTransformScriptSqlToken token) =>
+            token.Kind is MetaTransformScriptSqlTokenKind.Equals
+                or MetaTransformScriptSqlTokenKind.GreaterThan
+                or MetaTransformScriptSqlTokenKind.GreaterThanOrEqual
+                or MetaTransformScriptSqlTokenKind.LessThan
+                or MetaTransformScriptSqlTokenKind.LessThanOrEqual
+                or MetaTransformScriptSqlTokenKind.NotEqual
+            || IsKeyword(token, "BETWEEN")
+            || IsKeyword(token, "IN")
+            || IsKeyword(token, "LIKE")
+            || IsKeyword(token, "IS");
 
         private BuiltNode ParseComparisonExpression()
         {
