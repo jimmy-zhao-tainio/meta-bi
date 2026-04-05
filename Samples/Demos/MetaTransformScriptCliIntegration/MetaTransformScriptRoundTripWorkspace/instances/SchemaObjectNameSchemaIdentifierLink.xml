@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SchemaObjectNameSchemaIdentifierLinkList>
-    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:1" OwnerId="SchemaObjectName:1" ValueId="Identifier:2" />
-    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:2" OwnerId="SchemaObjectName:2" ValueId="Identifier:30" />
-    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:3" OwnerId="SchemaObjectName:3" ValueId="Identifier:33" />
-  </SchemaObjectNameSchemaIdentifierLinkList>
-</MetaTransformScript>

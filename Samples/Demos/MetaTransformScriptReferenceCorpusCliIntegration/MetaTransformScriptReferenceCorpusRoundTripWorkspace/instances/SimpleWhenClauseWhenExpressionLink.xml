@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SimpleWhenClauseWhenExpressionLinkList>
-    <SimpleWhenClauseWhenExpressionLink Id="SimpleWhenClauseWhenExpressionLink:1" OwnerId="SimpleWhenClause:1" ValueId="ScalarExpression:134" />
-    <SimpleWhenClauseWhenExpressionLink Id="SimpleWhenClauseWhenExpressionLink:2" OwnerId="SimpleWhenClause:2" ValueId="ScalarExpression:136" />
-  </SimpleWhenClauseWhenExpressionLinkList>
-</MetaTransformScript>

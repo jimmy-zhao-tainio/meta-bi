@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <CastCallDataTypeLinkList>
-    <CastCallDataTypeLink Id="CastCallDataTypeLink:1" OwnerId="CastCall:1" ValueId="DataTypeReference:1" />
-    <CastCallDataTypeLink Id="CastCallDataTypeLink:2" OwnerId="CastCall:2" ValueId="DataTypeReference:7" />
-  </CastCallDataTypeLinkList>
-</MetaTransformScript>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <CompositeGroupingSpecificationList>
-    <CompositeGroupingSpecification Id="CompositeGroupingSpecification:1" BaseId="GroupingSpecification:3" />
-    <CompositeGroupingSpecification Id="CompositeGroupingSpecification:2" BaseId="GroupingSpecification:6" />
-  </CompositeGroupingSpecificationList>
-</MetaTransformScript>

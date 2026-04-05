@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <MultiPartIdentifierCallTargetList>
-    <MultiPartIdentifierCallTarget Id="MultiPartIdentifierCallTarget:1" BaseId="CallTarget:1" />
-    <MultiPartIdentifierCallTarget Id="MultiPartIdentifierCallTarget:2" BaseId="CallTarget:2" />
-    <MultiPartIdentifierCallTarget Id="MultiPartIdentifierCallTarget:3" BaseId="CallTarget:3" />
-  </MultiPartIdentifierCallTargetList>
-</MetaTransformScript>

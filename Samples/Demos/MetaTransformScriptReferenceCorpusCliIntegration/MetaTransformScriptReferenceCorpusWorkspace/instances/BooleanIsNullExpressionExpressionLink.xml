@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <BooleanIsNullExpressionExpressionLinkList>
-    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:1" OwnerId="BooleanIsNullExpression:1" ValueId="ScalarExpression:56" />
-    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:2" OwnerId="BooleanIsNullExpression:2" ValueId="ScalarExpression:202" />
-  </BooleanIsNullExpressionExpressionLinkList>
-</MetaTransformScript>

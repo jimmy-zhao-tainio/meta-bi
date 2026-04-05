@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <NamedTableReferenceList>
-    <NamedTableReference Id="NamedTableReference:1" BaseId="TableReferenceWithAlias:1" />
-    <NamedTableReference Id="NamedTableReference:2" BaseId="TableReferenceWithAlias:2" />
-    <NamedTableReference Id="NamedTableReference:3" BaseId="TableReferenceWithAlias:3" />
-    <NamedTableReference Id="NamedTableReference:4" BaseId="TableReferenceWithAlias:4" />
-  </NamedTableReferenceList>
-</MetaTransformScript>

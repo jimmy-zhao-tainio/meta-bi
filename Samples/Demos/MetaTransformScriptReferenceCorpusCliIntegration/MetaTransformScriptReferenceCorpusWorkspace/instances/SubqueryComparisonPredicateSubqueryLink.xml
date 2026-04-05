@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SubqueryComparisonPredicateSubqueryLinkList>
-    <SubqueryComparisonPredicateSubqueryLink Id="SubqueryComparisonPredicateSubqueryLink:1" OwnerId="SubqueryComparisonPredicate:1" ValueId="ScalarSubquery:3" />
-    <SubqueryComparisonPredicateSubqueryLink Id="SubqueryComparisonPredicateSubqueryLink:2" OwnerId="SubqueryComparisonPredicate:2" ValueId="ScalarSubquery:4" />
-  </SubqueryComparisonPredicateSubqueryLinkList>
-</MetaTransformScript>

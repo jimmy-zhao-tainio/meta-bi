@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <OverClauseOrderByClauseLinkList>
-    <OverClauseOrderByClauseLink Id="OverClauseOrderByClauseLink:1" OwnerId="OverClause:1" ValueId="OrderByClause:1" />
-    <OverClauseOrderByClauseLink Id="OverClauseOrderByClauseLink:2" OwnerId="OverClause:3" ValueId="OrderByClause:2" />
-    <OverClauseOrderByClauseLink Id="OverClauseOrderByClauseLink:3" OwnerId="OverClause:4" ValueId="OrderByClause:3" />
-  </OverClauseOrderByClauseLinkList>
-</MetaTransformScript>

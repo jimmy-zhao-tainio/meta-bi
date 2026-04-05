@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <WhenClauseThenExpressionLinkList>
-    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:1" OwnerId="WhenClause:1" ValueId="ScalarExpression:100" />
-    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:2" OwnerId="WhenClause:2" ValueId="ScalarExpression:133" />
-    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:3" OwnerId="WhenClause:3" ValueId="ScalarExpression:135" />
-    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:4" OwnerId="WhenClause:4" ValueId="ScalarExpression:139" />
-  </WhenClauseThenExpressionLinkList>
-</MetaTransformScript>

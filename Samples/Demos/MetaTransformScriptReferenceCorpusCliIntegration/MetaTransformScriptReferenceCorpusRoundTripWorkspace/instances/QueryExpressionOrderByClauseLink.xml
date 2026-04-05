@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <QueryExpressionOrderByClauseLinkList>
-    <QueryExpressionOrderByClauseLink Id="QueryExpressionOrderByClauseLink:1" OwnerId="QueryExpression:40" ValueId="OrderByClause:5" />
-    <QueryExpressionOrderByClauseLink Id="QueryExpressionOrderByClauseLink:2" OwnerId="QueryExpression:41" ValueId="OrderByClause:6" />
-  </QueryExpressionOrderByClauseLinkList>
-</MetaTransformScript>

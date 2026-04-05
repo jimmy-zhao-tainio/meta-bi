@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <CommonTableExpressionQueryExpressionLinkList>
-    <CommonTableExpressionQueryExpressionLink Id="CommonTableExpressionQueryExpressionLink:1" OwnerId="CommonTableExpression:1" ValueId="QueryExpression:35" />
-    <CommonTableExpressionQueryExpressionLink Id="CommonTableExpressionQueryExpressionLink:2" OwnerId="CommonTableExpression:2" ValueId="QueryExpression:36" />
-  </CommonTableExpressionQueryExpressionLinkList>
-</MetaTransformScript>

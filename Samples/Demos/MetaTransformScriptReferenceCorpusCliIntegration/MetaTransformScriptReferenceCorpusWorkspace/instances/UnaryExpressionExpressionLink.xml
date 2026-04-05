@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <UnaryExpressionExpressionLinkList>
-    <UnaryExpressionExpressionLink Id="UnaryExpressionExpressionLink:1" OwnerId="UnaryExpression:1" ValueId="ScalarExpression:266" />
-    <UnaryExpressionExpressionLink Id="UnaryExpressionExpressionLink:2" OwnerId="UnaryExpression:2" ValueId="ScalarExpression:268" />
-  </UnaryExpressionExpressionLinkList>
-</MetaTransformScript>

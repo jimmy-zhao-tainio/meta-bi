@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <FunctionCallFunctionNameLinkList>
-    <FunctionCallFunctionNameLink Id="FunctionCallFunctionNameLink:1" OwnerId="FunctionCall:1" ValueId="Identifier:32" />
-    <FunctionCallFunctionNameLink Id="FunctionCallFunctionNameLink:2" OwnerId="FunctionCall:2" ValueId="Identifier:34" />
-    <FunctionCallFunctionNameLink Id="FunctionCallFunctionNameLink:3" OwnerId="FunctionCall:3" ValueId="Identifier:53" />
-    <FunctionCallFunctionNameLink Id="FunctionCallFunctionNameLink:4" OwnerId="FunctionCall:4" ValueId="Identifier:61" />
-  </FunctionCallFunctionNameLinkList>
-</MetaTransformScript>

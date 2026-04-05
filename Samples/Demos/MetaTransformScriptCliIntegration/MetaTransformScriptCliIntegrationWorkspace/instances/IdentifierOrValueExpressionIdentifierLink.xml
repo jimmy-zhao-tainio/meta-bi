@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <IdentifierOrValueExpressionIdentifierLinkList>
-    <IdentifierOrValueExpressionIdentifierLink Id="IdentifierOrValueExpressionIdentifierLink:1" OwnerId="IdentifierOrValueExpression:1" ValueId="Identifier:31" />
-    <IdentifierOrValueExpressionIdentifierLink Id="IdentifierOrValueExpressionIdentifierLink:2" OwnerId="IdentifierOrValueExpression:2" ValueId="Identifier:33" />
-    <IdentifierOrValueExpressionIdentifierLink Id="IdentifierOrValueExpressionIdentifierLink:3" OwnerId="IdentifierOrValueExpression:3" ValueId="Identifier:52" />
-    <IdentifierOrValueExpressionIdentifierLink Id="IdentifierOrValueExpressionIdentifierLink:4" OwnerId="IdentifierOrValueExpression:4" ValueId="Identifier:60" />
-  </IdentifierOrValueExpressionIdentifierLinkList>
-</MetaTransformScript>

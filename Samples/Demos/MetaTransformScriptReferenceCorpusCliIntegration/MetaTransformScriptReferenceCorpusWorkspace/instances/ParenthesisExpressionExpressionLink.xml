@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ParenthesisExpressionExpressionLinkList>
-    <ParenthesisExpressionExpressionLink Id="ParenthesisExpressionExpressionLink:1" OwnerId="ParenthesisExpression:1" ValueId="ScalarExpression:173" />
-    <ParenthesisExpressionExpressionLink Id="ParenthesisExpressionExpressionLink:2" OwnerId="ParenthesisExpression:2" ValueId="ScalarExpression:221" />
-  </ParenthesisExpressionExpressionLinkList>
-</MetaTransformScript>

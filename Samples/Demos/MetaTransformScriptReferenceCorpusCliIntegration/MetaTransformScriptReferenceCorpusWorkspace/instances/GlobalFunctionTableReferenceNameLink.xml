@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <GlobalFunctionTableReferenceNameLinkList>
-    <GlobalFunctionTableReferenceNameLink Id="GlobalFunctionTableReferenceNameLink:1" OwnerId="GlobalFunctionTableReference:1" ValueId="Identifier:590" />
-    <GlobalFunctionTableReferenceNameLink Id="GlobalFunctionTableReferenceNameLink:2" OwnerId="GlobalFunctionTableReference:2" ValueId="Identifier:594" />
-  </GlobalFunctionTableReferenceNameLinkList>
-</MetaTransformScript>

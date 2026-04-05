@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <QueryDerivedTableQueryExpressionLinkList>
-    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:1" OwnerId="QueryDerivedTable:1" ValueId="QueryExpression:5" />
-    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:2" OwnerId="QueryDerivedTable:2" ValueId="QueryExpression:7" />
-    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:3" OwnerId="QueryDerivedTable:3" ValueId="QueryExpression:9" />
-  </QueryDerivedTableQueryExpressionLinkList>
-</MetaTransformScript>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <LikePredicateSecondExpressionLinkList>
-    <LikePredicateSecondExpressionLink Id="LikePredicateSecondExpressionLink:1" OwnerId="LikePredicate:1" ValueId="ScalarExpression:55" />
-  </LikePredicateSecondExpressionLinkList>
-</MetaTransformScript>

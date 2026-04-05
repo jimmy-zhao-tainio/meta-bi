@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <QualifiedJoinSearchConditionLinkList>
-    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:1" OwnerId="QualifiedJoin:1" ValueId="BooleanExpression:1" />
-  </QualifiedJoinSearchConditionLinkList>
-</MetaTransformScript>
