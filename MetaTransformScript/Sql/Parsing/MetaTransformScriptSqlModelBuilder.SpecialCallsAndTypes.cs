@@ -185,6 +185,273 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(TryConvertCall), tryConvertCall.Id));
     }
 
+    public BuiltNode CreateParseCall(BuiltNode stringValue, BuiltNode dataTypeReference, BuiltNode? culture = null)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var parseCall = new ParseCall
+        {
+            Id = NextId(nameof(ParseCall)),
+            BaseId = primary.Id
+        };
+        model.ParseCallList.Add(parseCall);
+        model.ParseCallStringValueLinkList.Add(new ParseCallStringValueLink
+        {
+            Id = NextId(nameof(ParseCallStringValueLink)),
+            OwnerId = parseCall.Id,
+            ValueId = stringValue.GetId(nameof(ScalarExpression))
+        });
+        model.ParseCallDataTypeLinkList.Add(new ParseCallDataTypeLink
+        {
+            Id = NextId(nameof(ParseCallDataTypeLink)),
+            OwnerId = parseCall.Id,
+            ValueId = dataTypeReference.GetId(nameof(DataTypeReference))
+        });
+
+        if (culture is not null)
+        {
+            model.ParseCallCultureLinkList.Add(new ParseCallCultureLink
+            {
+                Id = NextId(nameof(ParseCallCultureLink)),
+                OwnerId = parseCall.Id,
+                ValueId = culture.GetId(nameof(ScalarExpression))
+            });
+        }
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(ParseCall), parseCall.Id));
+    }
+
+    public BuiltNode CreateTryParseCall(BuiltNode stringValue, BuiltNode dataTypeReference, BuiltNode? culture = null)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var tryParseCall = new TryParseCall
+        {
+            Id = NextId(nameof(TryParseCall)),
+            BaseId = primary.Id
+        };
+        model.TryParseCallList.Add(tryParseCall);
+        model.TryParseCallStringValueLinkList.Add(new TryParseCallStringValueLink
+        {
+            Id = NextId(nameof(TryParseCallStringValueLink)),
+            OwnerId = tryParseCall.Id,
+            ValueId = stringValue.GetId(nameof(ScalarExpression))
+        });
+        model.TryParseCallDataTypeLinkList.Add(new TryParseCallDataTypeLink
+        {
+            Id = NextId(nameof(TryParseCallDataTypeLink)),
+            OwnerId = tryParseCall.Id,
+            ValueId = dataTypeReference.GetId(nameof(DataTypeReference))
+        });
+
+        if (culture is not null)
+        {
+            model.TryParseCallCultureLinkList.Add(new TryParseCallCultureLink
+            {
+                Id = NextId(nameof(TryParseCallCultureLink)),
+                OwnerId = tryParseCall.Id,
+                ValueId = culture.GetId(nameof(ScalarExpression))
+            });
+        }
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(TryParseCall), tryParseCall.Id));
+    }
+
+    public BuiltNode CreateAtTimeZoneCall(BuiltNode dateValue, BuiltNode timeZone)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var atTimeZoneCall = new AtTimeZoneCall
+        {
+            Id = NextId(nameof(AtTimeZoneCall)),
+            BaseId = primary.Id
+        };
+        model.AtTimeZoneCallList.Add(atTimeZoneCall);
+        model.AtTimeZoneCallDateValueLinkList.Add(new AtTimeZoneCallDateValueLink
+        {
+            Id = NextId(nameof(AtTimeZoneCallDateValueLink)),
+            OwnerId = atTimeZoneCall.Id,
+            ValueId = dateValue.GetId(nameof(ScalarExpression))
+        });
+        model.AtTimeZoneCallTimeZoneLinkList.Add(new AtTimeZoneCallTimeZoneLink
+        {
+            Id = NextId(nameof(AtTimeZoneCallTimeZoneLink)),
+            OwnerId = atTimeZoneCall.Id,
+            ValueId = timeZone.GetId(nameof(ScalarExpression))
+        });
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(AtTimeZoneCall), atTimeZoneCall.Id));
+    }
+
+    public BuiltNode CreateNextValueForExpression(BuiltNode sequenceName)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var nextValueForExpression = new NextValueForExpression
+        {
+            Id = NextId(nameof(NextValueForExpression)),
+            BaseId = primary.Id
+        };
+        model.NextValueForExpressionList.Add(nextValueForExpression);
+        model.NextValueForExpressionSequenceNameLinkList.Add(new NextValueForExpressionSequenceNameLink
+        {
+            Id = NextId(nameof(NextValueForExpressionSequenceNameLink)),
+            OwnerId = nextValueForExpression.Id,
+            ValueId = sequenceName.GetId(nameof(SchemaObjectName))
+        });
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(NextValueForExpression), nextValueForExpression.Id));
+    }
+
+    public BuiltNode CreateParameterlessCall(string parameterlessCallType)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var parameterlessCall = new ParameterlessCall
+        {
+            Id = NextId(nameof(ParameterlessCall)),
+            BaseId = primary.Id,
+            ParameterlessCallType = parameterlessCallType
+        };
+        model.ParameterlessCallList.Add(parameterlessCall);
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(ParameterlessCall), parameterlessCall.Id));
+    }
+
+    public BuiltNode CreateGlobalVariableExpression(string name)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var valueExpression = new ValueExpression
+        {
+            Id = NextId(nameof(ValueExpression)),
+            BaseId = primary.Id
+        };
+        model.ValueExpressionList.Add(valueExpression);
+
+        var globalVariableExpression = new GlobalVariableExpression
+        {
+            Id = NextId(nameof(GlobalVariableExpression)),
+            BaseId = valueExpression.Id,
+            Name = name
+        };
+        model.GlobalVariableExpressionList.Add(globalVariableExpression);
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(ValueExpression), valueExpression.Id),
+            (nameof(GlobalVariableExpression), globalVariableExpression.Id));
+    }
+
+    public BuiltNode CreateUnaryExpression(BuiltNode expression, string unaryExpressionType)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var unaryExpression = new UnaryExpression
+        {
+            Id = NextId(nameof(UnaryExpression)),
+            BaseId = scalar.Id,
+            UnaryExpressionType = unaryExpressionType
+        };
+        model.UnaryExpressionList.Add(unaryExpression);
+        model.UnaryExpressionExpressionLinkList.Add(new UnaryExpressionExpressionLink
+        {
+            Id = NextId(nameof(UnaryExpressionExpressionLink)),
+            OwnerId = unaryExpression.Id,
+            ValueId = expression.GetId(nameof(ScalarExpression))
+        });
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(UnaryExpression), unaryExpression.Id));
+    }
+
     public BuiltNode CreateSqlDataTypeReference(string sqlDataTypeOption, IReadOnlyList<BuiltNode>? parameters = null)
     {
         var typeIdentifier = CreateIdentifier(RenderSqlDataTypeIdentifierValue(sqlDataTypeOption), "NotQuoted");
@@ -249,7 +516,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         return primaryExpressionNode;
     }
 
-    private static string RenderSqlDataTypeIdentifierValue(string sqlDataTypeOption) =>
+        private static string RenderSqlDataTypeIdentifierValue(string sqlDataTypeOption) =>
         sqlDataTypeOption switch
         {
             "Decimal" => "decimal",

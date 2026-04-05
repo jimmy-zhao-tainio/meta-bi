@@ -132,7 +132,13 @@ public sealed partial class MetaTransformScriptSqlParser
                 alias = ParseIdentifier().Node;
             }
 
-            return builder.CreateNamedTableReference(schemaObjectName, alias);
+            BuiltNode? tableSampleClause = null;
+            if (MatchKeyword("TABLESAMPLE"))
+            {
+                tableSampleClause = ParseTableSampleClause();
+            }
+
+            return builder.CreateNamedTableReference(schemaObjectName, alias, tableSampleClause);
         }
 
         private BuiltNode ParseSchemaObjectFunctionTableReference(BuiltNode schemaObjectName)
@@ -156,15 +162,54 @@ public sealed partial class MetaTransformScriptSqlParser
         private BuiltNode ParseParenthesizedTableReference()
         {
             Expect(MetaTransformScriptSqlTokenKind.OpenParen);
-            if (!PeekKeyword("SELECT"))
+            if (PeekKeyword("SELECT"))
             {
-                throw Unsupported("Only query-derived tables are supported in parenthesized table-reference position in parser phase 1.");
+                var queryExpression = ParseQueryExpression();
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+                var (alias, columns) = ParseRequiredTableAliasAndColumns();
+                return builder.CreateQueryDerivedTable(queryExpression, alias, columns);
             }
 
-            var queryExpression = ParseQueryExpression();
+            if (PeekKeyword("VALUES"))
+            {
+                Advance();
+                var rowValues = new List<BuiltNode> { ParseRowValue() };
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
+                {
+                    rowValues.Add(ParseRowValue());
+                }
+
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+                var (alias, columns) = ParseRequiredTableAliasAndColumns();
+                return builder.CreateInlineDerivedTable(rowValues, alias, columns);
+            }
+
+            var tableReference = ParseTableReference();
             Expect(MetaTransformScriptSqlTokenKind.CloseParen);
-            var (alias, columns) = ParseRequiredTableAliasAndColumns();
-            return builder.CreateQueryDerivedTable(queryExpression, alias, columns);
+
+            try
+            {
+                tableReference.GetId(nameof(JoinTableReference));
+            }
+            catch (InvalidOperationException)
+            {
+                throw Unsupported("Only query-derived tables, inline VALUES tables, and parenthesized join table references are supported in parenthesized table-reference position.");
+            }
+
+            return builder.CreateJoinParenthesisTableReference(tableReference);
+        }
+
+        private BuiltNode ParseRowValue()
+        {
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            var columnValues = new List<BuiltNode> { ParseScalarExpression() };
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
+            {
+                columnValues.Add(ParseScalarExpression());
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            return builder.CreateRowValue(columnValues);
         }
 
         private BuiltNode ParsePivotedTableReference(BuiltNode sourceTableReference)
@@ -290,6 +335,30 @@ public sealed partial class MetaTransformScriptSqlParser
         {
             var multiPartIdentifier = ParseMultiPartIdentifier();
             return builder.CreateColumnReferenceExpression(multiPartIdentifier);
+        }
+
+        private BuiltNode ParseTableSampleClause()
+        {
+            var system = MatchKeyword("SYSTEM");
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            var sampleNumber = ParseScalarExpression();
+
+            var option =
+                MatchKeyword("PERCENT") ? "Percent" :
+                MatchKeyword("ROWS") ? "Rows" :
+                throw ParseError($"Expected PERCENT or ROWS but found '{Current.Text}'.");
+
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+
+            BuiltNode? repeatSeed = null;
+            if (MatchKeyword("REPEATABLE"))
+            {
+                Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+                repeatSeed = ParseScalarExpression();
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            }
+
+            return builder.CreateTableSampleClause(sampleNumber, option, repeatSeed, system);
         }
 
         private BuiltNode ParseSchemaObjectName()

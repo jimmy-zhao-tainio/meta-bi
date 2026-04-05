@@ -5,7 +5,7 @@ namespace MetaTransformScript.Sql.Parsing;
 
 internal sealed partial class MetaTransformScriptSqlModelBuilder
 {
-    public BuiltNode CreateNamedTableReference(BuiltNode schemaObjectName, BuiltNode? alias = null)
+    public BuiltNode CreateNamedTableReference(BuiltNode schemaObjectName, BuiltNode? alias = null, BuiltNode? tableSampleClause = null)
     {
         var tableReference = new TableReference
         {
@@ -43,10 +43,50 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             });
         }
 
+        if (tableSampleClause is not null)
+        {
+            model.NamedTableReferenceTableSampleClauseLinkList.Add(new NamedTableReferenceTableSampleClauseLink
+            {
+                Id = NextId(nameof(NamedTableReferenceTableSampleClauseLink)),
+                OwnerId = named.Id,
+                ValueId = tableSampleClause.GetId(nameof(TableSampleClause))
+            });
+        }
+
         return BuiltNode.Create(
             (nameof(TableReference), tableReference.Id),
             (nameof(TableReferenceWithAlias), aliasBase.Id),
             (nameof(NamedTableReference), named.Id));
+    }
+
+    public BuiltNode CreateTableSampleClause(BuiltNode sampleNumber, string option, BuiltNode? repeatSeed = null, bool system = false)
+    {
+        var tableSampleClause = new TableSampleClause
+        {
+            Id = NextId(nameof(TableSampleClause)),
+            System = system ? "true" : string.Empty,
+            TableSampleClauseOption = option
+        };
+        model.TableSampleClauseList.Add(tableSampleClause);
+
+        model.TableSampleClauseSampleNumberLinkList.Add(new TableSampleClauseSampleNumberLink
+        {
+            Id = NextId(nameof(TableSampleClauseSampleNumberLink)),
+            OwnerId = tableSampleClause.Id,
+            ValueId = sampleNumber.GetId(nameof(ScalarExpression))
+        });
+
+        if (repeatSeed is not null)
+        {
+            model.TableSampleClauseRepeatSeedLinkList.Add(new TableSampleClauseRepeatSeedLink
+            {
+                Id = NextId(nameof(TableSampleClauseRepeatSeedLink)),
+                OwnerId = tableSampleClause.Id,
+                ValueId = repeatSeed.GetId(nameof(ScalarExpression))
+            });
+        }
+
+        return BuiltNode.Create((nameof(TableSampleClause), tableSampleClause.Id));
     }
 
     public BuiltNode CreateSchemaObjectFunctionTableReference(
@@ -189,6 +229,124 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(TableReferenceWithAlias), aliasBase.Id),
             (nameof(TableReferenceWithAliasAndColumns), aliasAndColumns.Id),
             (nameof(QueryDerivedTable), queryDerivedTable.Id));
+    }
+
+    public BuiltNode CreateInlineDerivedTable(
+        IReadOnlyList<BuiltNode> rowValues,
+        BuiltNode alias,
+        IReadOnlyList<BuiltNode>? columns = null)
+    {
+        var tableReference = new TableReference
+        {
+            Id = NextId(nameof(TableReference))
+        };
+        model.TableReferenceList.Add(tableReference);
+
+        var aliasBase = new TableReferenceWithAlias
+        {
+            Id = NextId(nameof(TableReferenceWithAlias)),
+            BaseId = tableReference.Id
+        };
+        model.TableReferenceWithAliasList.Add(aliasBase);
+        model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
+        {
+            Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
+            OwnerId = aliasBase.Id,
+            ValueId = alias.GetId(nameof(Identifier))
+        });
+
+        var aliasAndColumns = new TableReferenceWithAliasAndColumns
+        {
+            Id = NextId(nameof(TableReferenceWithAliasAndColumns)),
+            BaseId = aliasBase.Id
+        };
+        model.TableReferenceWithAliasAndColumnsList.Add(aliasAndColumns);
+
+        if (columns is not null)
+        {
+            for (var ordinal = 0; ordinal < columns.Count; ordinal++)
+            {
+                model.TableReferenceWithAliasAndColumnsColumnsItemList.Add(new TableReferenceWithAliasAndColumnsColumnsItem
+                {
+                    Id = NextId(nameof(TableReferenceWithAliasAndColumnsColumnsItem)),
+                    OwnerId = aliasAndColumns.Id,
+                    ValueId = columns[ordinal].GetId(nameof(Identifier)),
+                    Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+                });
+            }
+        }
+
+        var inlineDerivedTable = new InlineDerivedTable
+        {
+            Id = NextId(nameof(InlineDerivedTable)),
+            BaseId = aliasAndColumns.Id
+        };
+        model.InlineDerivedTableList.Add(inlineDerivedTable);
+
+        for (var ordinal = 0; ordinal < rowValues.Count; ordinal++)
+        {
+            model.InlineDerivedTableRowValuesItemList.Add(new InlineDerivedTableRowValuesItem
+            {
+                Id = NextId(nameof(InlineDerivedTableRowValuesItem)),
+                OwnerId = inlineDerivedTable.Id,
+                ValueId = rowValues[ordinal].GetId(nameof(RowValue)),
+                Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+            });
+        }
+
+        return BuiltNode.Create(
+            (nameof(TableReference), tableReference.Id),
+            (nameof(TableReferenceWithAlias), aliasBase.Id),
+            (nameof(TableReferenceWithAliasAndColumns), aliasAndColumns.Id),
+            (nameof(InlineDerivedTable), inlineDerivedTable.Id));
+    }
+
+    public BuiltNode CreateJoinParenthesisTableReference(BuiltNode join)
+    {
+        var tableReference = new TableReference
+        {
+            Id = NextId(nameof(TableReference))
+        };
+        model.TableReferenceList.Add(tableReference);
+
+        var joinParenthesisTableReference = new JoinParenthesisTableReference
+        {
+            Id = NextId(nameof(JoinParenthesisTableReference)),
+            BaseId = tableReference.Id
+        };
+        model.JoinParenthesisTableReferenceList.Add(joinParenthesisTableReference);
+        model.JoinParenthesisTableReferenceJoinLinkList.Add(new JoinParenthesisTableReferenceJoinLink
+        {
+            Id = NextId(nameof(JoinParenthesisTableReferenceJoinLink)),
+            OwnerId = joinParenthesisTableReference.Id,
+            ValueId = join.GetId(nameof(TableReference))
+        });
+
+        return BuiltNode.Create(
+            (nameof(TableReference), tableReference.Id),
+            (nameof(JoinParenthesisTableReference), joinParenthesisTableReference.Id));
+    }
+
+    public BuiltNode CreateRowValue(IReadOnlyList<BuiltNode> columnValues)
+    {
+        var rowValue = new RowValue
+        {
+            Id = NextId(nameof(RowValue))
+        };
+        model.RowValueList.Add(rowValue);
+
+        for (var ordinal = 0; ordinal < columnValues.Count; ordinal++)
+        {
+            model.RowValueColumnValuesItemList.Add(new RowValueColumnValuesItem
+            {
+                Id = NextId(nameof(RowValueColumnValuesItem)),
+                OwnerId = rowValue.Id,
+                ValueId = columnValues[ordinal].GetId(nameof(ScalarExpression)),
+                Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+            });
+        }
+
+        return BuiltNode.Create((nameof(RowValue), rowValue.Id));
     }
 
     public BuiltNode CreatePivotedTableReference(

@@ -19,9 +19,43 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private BuiltNode ParseScalarPrimary()
         {
+            if (Match(MetaTransformScriptSqlTokenKind.Minus))
+            {
+                return builder.CreateUnaryExpression(ParseScalarPrimary(), "Negative");
+            }
+
+            if (Match(MetaTransformScriptSqlTokenKind.Plus))
+            {
+                return builder.CreateUnaryExpression(ParseScalarPrimary(), "Positive");
+            }
+
             if (PeekKeyword("CASE"))
             {
                 return ParseCaseExpression();
+            }
+
+            if (PeekKeyword("NEXT"))
+            {
+                return ParseNextValueForExpression();
+            }
+
+            if (PeekKeyword("NULL"))
+            {
+                Advance();
+                return builder.CreateNullLiteral();
+            }
+
+            if (PeekKeyword("CURRENT_TIMESTAMP"))
+            {
+                Advance();
+                return builder.CreateParameterlessCall("CurrentTimestamp");
+            }
+
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.Identifier &&
+                string.Equals(Current.Value, "@@SPID", StringComparison.OrdinalIgnoreCase))
+            {
+                var token = Advance();
+                return builder.CreateGlobalVariableExpression(token.Value);
             }
 
             if (Current.Kind == MetaTransformScriptSqlTokenKind.StringLiteral)
@@ -30,10 +64,18 @@ public sealed partial class MetaTransformScriptSqlParser
                 return builder.CreateStringLiteral(token.Value);
             }
 
+            if (Current.Kind == MetaTransformScriptSqlTokenKind.BinaryLiteral)
+            {
+                var token = Advance();
+                return builder.CreateBinaryLiteral(token.Value);
+            }
+
             if (Current.Kind == MetaTransformScriptSqlTokenKind.NumberLiteral)
             {
                 var token = Advance();
-                return builder.CreateNumberLiteral(token.Value);
+                return token.Value.IndexOfAny(['E', 'e']) >= 0
+                    ? builder.CreateRealLiteral(token.Value)
+                    : builder.CreateNumberLiteral(token.Value);
             }
 
             if (Current.Kind == MetaTransformScriptSqlTokenKind.Identifier)
@@ -46,7 +88,7 @@ public sealed partial class MetaTransformScriptSqlParser
 
                 var multiPartIdentifier = builder.CreateMultiPartIdentifier(
                     identifiers.Select(token => builder.CreateIdentifier(token.Value, token.QuoteType)).ToArray());
-                return ParseTrailingCollation(builder.CreateColumnReferenceExpression(multiPartIdentifier));
+                return ParseTrailingScalarSuffixes(builder.CreateColumnReferenceExpression(multiPartIdentifier));
             }
 
             if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
@@ -59,7 +101,7 @@ public sealed partial class MetaTransformScriptSqlParser
                 Expect(MetaTransformScriptSqlTokenKind.OpenParen);
                 var expression = ParseScalarExpression();
                 Expect(MetaTransformScriptSqlTokenKind.CloseParen);
-                return ParseTrailingCollation(builder.CreateParenthesisExpression(expression));
+                return ParseTrailingScalarSuffixes(builder.CreateParenthesisExpression(expression));
             }
 
             throw ParseError($"Expected a scalar expression but found '{Current.Text}'.");
@@ -129,6 +171,11 @@ public sealed partial class MetaTransformScriptSqlParser
                 return builder.CreateExistsPredicate(ParseScalarSubquery());
             }
 
+            if (PeekKeyword("CONTAINS") || PeekKeyword("FREETEXT"))
+            {
+                return ParseFullTextPredicate();
+            }
+
             if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
             {
                 var inner = ParseBooleanExpression();
@@ -178,6 +225,12 @@ public sealed partial class MetaTransformScriptSqlParser
             if (MatchKeyword("IS"))
             {
                 var isNot = MatchKeyword("NOT");
+                if (MatchKeyword("DISTINCT"))
+                {
+                    ExpectKeyword("FROM");
+                    return builder.CreateDistinctPredicate(first, ParseScalarExpression(), isNot);
+                }
+
                 ExpectKeyword("NULL");
                 return builder.CreateBooleanIsNullExpression(first, isNot);
             }
@@ -226,6 +279,61 @@ public sealed partial class MetaTransformScriptSqlParser
             var queryExpression = ParseQueryExpression();
             Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateScalarSubquery(queryExpression);
+        }
+
+        private BuiltNode ParseNextValueForExpression()
+        {
+            ExpectKeyword("NEXT");
+            ExpectKeyword("VALUE");
+            ExpectKeyword("FOR");
+            return builder.CreateNextValueForExpression(ParseSchemaObjectName());
+        }
+
+        private BuiltNode ParseTrailingScalarSuffixes(BuiltNode expression)
+        {
+            expression = ParseTrailingCollation(expression);
+
+            while (MatchKeyword("AT"))
+            {
+                ExpectKeyword("TIME");
+                ExpectKeyword("ZONE");
+                expression = builder.CreateAtTimeZoneCall(expression, ParseScalarExpression());
+                expression = ParseTrailingCollation(expression);
+            }
+
+            return expression;
+        }
+
+        private BuiltNode ParseFullTextPredicate()
+        {
+            var functionType =
+                MatchKeyword("CONTAINS") ? "Contains" :
+                MatchKeyword("FREETEXT") ? "FreeText" :
+                throw ParseError($"Expected CONTAINS or FREETEXT but found '{Current.Text}'.");
+
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+
+            List<BuiltNode> columns;
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
+            {
+                columns = new List<BuiltNode> { ParseColumnReferenceExpression() };
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
+                {
+                    columns.Add(ParseColumnReferenceExpression());
+                }
+
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            }
+            else
+            {
+                columns = new List<BuiltNode> { ParseColumnReferenceExpression() };
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.Comma);
+            var value = ParseScalarExpression();
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+
+            return builder.CreateFullTextPredicate(functionType, columns, value);
         }
 
         private BuiltNode ParseCaseExpression()

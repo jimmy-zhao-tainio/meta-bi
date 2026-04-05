@@ -212,4 +212,192 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(Literal), literal.Id),
             (derivedEntityName, derivedId));
     }
+
+    public BuiltNode CreateRealLiteral(string value)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var valueExpression = new ValueExpression
+        {
+            Id = NextId(nameof(ValueExpression)),
+            BaseId = primary.Id
+        };
+        model.ValueExpressionList.Add(valueExpression);
+
+        var literal = new Literal
+        {
+            Id = NextId(nameof(Literal)),
+            BaseId = valueExpression.Id,
+            LiteralType = "Real",
+            Value = value
+        };
+        model.LiteralList.Add(literal);
+
+        var realLiteral = new RealLiteral
+        {
+            Id = NextId(nameof(RealLiteral)),
+            BaseId = literal.Id,
+            LiteralType = "Real"
+        };
+        model.RealLiteralList.Add(realLiteral);
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(ValueExpression), valueExpression.Id),
+            (nameof(Literal), literal.Id),
+            (nameof(RealLiteral), realLiteral.Id));
+    }
+
+    public BuiltNode CreateBinaryLiteral(string value)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var valueExpression = new ValueExpression
+        {
+            Id = NextId(nameof(ValueExpression)),
+            BaseId = primary.Id
+        };
+        model.ValueExpressionList.Add(valueExpression);
+
+        var literal = new Literal
+        {
+            Id = NextId(nameof(Literal)),
+            BaseId = valueExpression.Id,
+            LiteralType = "Binary",
+            Value = value
+        };
+        model.LiteralList.Add(literal);
+
+        var binaryLiteral = new BinaryLiteral
+        {
+            Id = NextId(nameof(BinaryLiteral)),
+            BaseId = literal.Id,
+            LiteralType = "Binary"
+        };
+        model.BinaryLiteralList.Add(binaryLiteral);
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(ValueExpression), valueExpression.Id),
+            (nameof(Literal), literal.Id),
+            (nameof(BinaryLiteral), binaryLiteral.Id));
+    }
+
+    public BuiltNode CreateNullLiteral()
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var valueExpression = new ValueExpression
+        {
+            Id = NextId(nameof(ValueExpression)),
+            BaseId = primary.Id
+        };
+        model.ValueExpressionList.Add(valueExpression);
+
+        var literal = new Literal
+        {
+            Id = NextId(nameof(Literal)),
+            BaseId = valueExpression.Id,
+            LiteralType = "Null",
+            Value = string.Empty
+        };
+        model.LiteralList.Add(literal);
+
+        var nullLiteral = new NullLiteral
+        {
+            Id = NextId(nameof(NullLiteral)),
+            BaseId = literal.Id,
+            LiteralType = "Null"
+        };
+        model.NullLiteralList.Add(nullLiteral);
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(ValueExpression), valueExpression.Id),
+            (nameof(Literal), literal.Id),
+            (nameof(NullLiteral), nullLiteral.Id));
+    }
+
+    public BuiltNode CreateMaxLiteral()
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var valueExpression = new ValueExpression
+        {
+            Id = NextId(nameof(ValueExpression)),
+            BaseId = primary.Id
+        };
+        model.ValueExpressionList.Add(valueExpression);
+
+        var literal = new Literal
+        {
+            Id = NextId(nameof(Literal)),
+            BaseId = valueExpression.Id,
+            LiteralType = "Max",
+            Value = "max"
+        };
+        model.LiteralList.Add(literal);
+
+        var maxLiteral = new MaxLiteral
+        {
+            Id = NextId(nameof(MaxLiteral)),
+            BaseId = literal.Id,
+            LiteralType = "Max"
+        };
+        model.MaxLiteralList.Add(maxLiteral);
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(ValueExpression), valueExpression.Id),
+            (nameof(Literal), literal.Id),
+            (nameof(MaxLiteral), maxLiteral.Id));
+    }
 }

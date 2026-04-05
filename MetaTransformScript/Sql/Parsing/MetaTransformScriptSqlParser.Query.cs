@@ -209,13 +209,64 @@ public sealed partial class MetaTransformScriptSqlParser
                 throw Unsupported("GROUP BY ALL is not supported yet.");
             }
 
-            var groupingSpecifications = new List<BuiltNode> { builder.CreateExpressionGroupingSpecification(ParseScalarExpression()) };
+            var groupingSpecifications = new List<BuiltNode> { ParseGroupingSpecification() };
             while (Match(MetaTransformScriptSqlTokenKind.Comma))
             {
-                groupingSpecifications.Add(builder.CreateExpressionGroupingSpecification(ParseScalarExpression()));
+                groupingSpecifications.Add(ParseGroupingSpecification());
             }
 
             return builder.CreateGroupByClause(groupingSpecifications);
+        }
+
+        private BuiltNode ParseGroupingSpecification()
+        {
+            if (MatchKeyword("GROUPING"))
+            {
+                ExpectKeyword("SETS");
+                return builder.CreateGroupingSetsGroupingSpecification(ParseGroupingSpecificationList());
+            }
+
+            if (MatchKeyword("ROLLUP"))
+            {
+                return builder.CreateRollupGroupingSpecification(ParseGroupingSpecificationList());
+            }
+
+            if (MatchKeyword("CUBE"))
+            {
+                return builder.CreateCubeGroupingSpecification(ParseGroupingSpecificationList());
+            }
+
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
+            {
+                if (Match(MetaTransformScriptSqlTokenKind.CloseParen))
+                {
+                    return builder.CreateGrandTotalGroupingSpecification();
+                }
+
+                var items = new List<BuiltNode> { ParseGroupingSpecification() };
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
+                {
+                    items.Add(ParseGroupingSpecification());
+                }
+
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+                return builder.CreateCompositeGroupingSpecification(items);
+            }
+
+            return builder.CreateExpressionGroupingSpecification(ParseScalarExpression());
+        }
+
+        private List<BuiltNode> ParseGroupingSpecificationList()
+        {
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            var items = new List<BuiltNode> { ParseGroupingSpecification() };
+            while (Match(MetaTransformScriptSqlTokenKind.Comma))
+            {
+                items.Add(ParseGroupingSpecification());
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            return items;
         }
 
         private BuiltNode ParseSelectElement()
@@ -235,20 +286,27 @@ public sealed partial class MetaTransformScriptSqlParser
             if (Current.Kind == MetaTransformScriptSqlTokenKind.Identifier &&
                 Peek().Kind == MetaTransformScriptSqlTokenKind.Equals)
             {
-                var alias = builder.CreateIdentifierOrValueExpression(ParseIdentifier().Node);
+                var aliasToken = ParseIdentifierToken();
                 Expect(MetaTransformScriptSqlTokenKind.Equals);
-                return builder.CreateSelectScalarExpression(ParseScalarExpression(), alias);
+                var assignedExpression = ParseScalarExpression();
+                var alias = builder.CreateIdentifierOrValueExpression(
+                    builder.CreateIdentifier(aliasToken.Value, aliasToken.QuoteType));
+                return builder.CreateSelectScalarExpression(assignedExpression, alias);
             }
 
             var expression = ParseScalarExpression();
             BuiltNode? aliasNode = null;
             if (MatchKeyword("AS"))
             {
-                aliasNode = builder.CreateIdentifierOrValueExpression(ParseIdentifier().Node);
+                var aliasToken = ParseIdentifierToken();
+                aliasNode = builder.CreateIdentifierOrValueExpression(
+                    builder.CreateIdentifier(aliasToken.Value, aliasToken.QuoteType));
             }
             else if (CanStartAlias())
             {
-                aliasNode = builder.CreateIdentifierOrValueExpression(ParseIdentifier().Node);
+                var aliasToken = ParseIdentifierToken();
+                aliasNode = builder.CreateIdentifierOrValueExpression(
+                    builder.CreateIdentifier(aliasToken.Value, aliasToken.QuoteType));
             }
 
             return builder.CreateSelectScalarExpression(expression, aliasNode);

@@ -5,12 +5,14 @@ internal enum MetaTransformScriptSqlTokenKind
     Identifier,
     StringLiteral,
     NumberLiteral,
+    BinaryLiteral,
     Comma,
     Dot,
     Star,
     OpenParen,
     CloseParen,
     Plus,
+    Minus,
     Equals,
     GreaterThan,
     GreaterThanOrEqual,
@@ -74,6 +76,7 @@ internal sealed class MetaTransformScriptSqlLexer
                 '(' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.OpenParen),
                 ')' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.CloseParen),
                 '+' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Plus),
+                '-' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Minus),
                 ';' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Semicolon),
                 '=' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Equals),
                 '>' => ReadGreaterThan(),
@@ -293,6 +296,33 @@ internal sealed class MetaTransformScriptSqlLexer
         var startLine = line;
         var startColumn = column;
 
+        if (Current == '0' && (Peek(1) is 'x' or 'X'))
+        {
+            Advance();
+            Advance();
+            if (IsEnd || !IsHexDigit(Current))
+            {
+                throw Error(
+                    MetaTransformScriptSqlParserFailureKind.ParseError,
+                    "Expected hexadecimal digits after binary literal prefix.");
+            }
+
+            while (!IsEnd && IsHexDigit(Current))
+            {
+                Advance();
+            }
+
+            var binaryValue = text[startOffset..index];
+            return new MetaTransformScriptSqlToken(
+                MetaTransformScriptSqlTokenKind.BinaryLiteral,
+                binaryValue,
+                binaryValue,
+                string.Empty,
+                startOffset,
+                startLine,
+                startColumn);
+        }
+
         while (!IsEnd && char.IsDigit(Current))
         {
             Advance();
@@ -304,6 +334,29 @@ internal sealed class MetaTransformScriptSqlLexer
             while (!IsEnd && char.IsDigit(Current))
             {
                 Advance();
+            }
+        }
+
+        if (!IsEnd && (Current is 'E' or 'e'))
+        {
+            var exponentStart = index;
+            Advance();
+
+            if (!IsEnd && (Current is '+' or '-'))
+            {
+                Advance();
+            }
+
+            if (IsEnd || !char.IsDigit(Current))
+            {
+                index = exponentStart;
+            }
+            else
+            {
+                while (!IsEnd && char.IsDigit(Current))
+                {
+                    Advance();
+                }
             }
         }
 
@@ -442,6 +495,11 @@ internal sealed class MetaTransformScriptSqlLexer
 
     private static bool IsIdentifierPart(char value) =>
         char.IsLetterOrDigit(value) || value is '_' or '@' or '#' or '$';
+
+    private static bool IsHexDigit(char value) =>
+        value is >= '0' and <= '9'
+        or >= 'a' and <= 'f'
+        or >= 'A' and <= 'F';
 
     private MetaTransformScriptSqlParserException Error(
         MetaTransformScriptSqlParserFailureKind failureKind,

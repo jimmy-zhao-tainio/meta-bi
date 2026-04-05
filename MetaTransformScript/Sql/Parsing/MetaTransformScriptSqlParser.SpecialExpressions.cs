@@ -27,19 +27,21 @@ public sealed partial class MetaTransformScriptSqlParser
 
             if (callTarget is not null)
             {
-                return ParseTrailingCollation(ParseGenericFunctionCall(functionNameToken, callTarget));
+                return ParseTrailingScalarSuffixes(ParseGenericFunctionCall(functionNameToken, callTarget));
             }
 
             return functionNameValue.ToUpperInvariant() switch
             {
-                "COALESCE" => ParseTrailingCollation(ParseCoalesceExpression()),
-                "NULLIF" => ParseTrailingCollation(ParseNullIfExpression()),
-                "IIF" => ParseTrailingCollation(ParseIIfCall()),
-                "CAST" => ParseTrailingCollation(ParseCastCall()),
-                "TRY_CAST" => ParseTrailingCollation(ParseTryCastCall()),
-                "CONVERT" => ParseTrailingCollation(ParseConvertCall()),
-                "TRY_CONVERT" => ParseTrailingCollation(ParseTryConvertCall()),
-                _ => ParseTrailingCollation(ParseGenericFunctionCall(functionNameToken, callTarget: null))
+                "COALESCE" => ParseTrailingScalarSuffixes(ParseCoalesceExpression()),
+                "NULLIF" => ParseTrailingScalarSuffixes(ParseNullIfExpression()),
+                "IIF" => ParseTrailingScalarSuffixes(ParseIIfCall()),
+                "PARSE" => ParseTrailingScalarSuffixes(ParseParseCall()),
+                "TRY_PARSE" => ParseTrailingScalarSuffixes(ParseTryParseCall()),
+                "CAST" => ParseTrailingScalarSuffixes(ParseCastCall()),
+                "TRY_CAST" => ParseTrailingScalarSuffixes(ParseTryCastCall()),
+                "CONVERT" => ParseTrailingScalarSuffixes(ParseConvertCall()),
+                "TRY_CONVERT" => ParseTrailingScalarSuffixes(ParseTryConvertCall()),
+                _ => ParseTrailingScalarSuffixes(ParseGenericFunctionCall(functionNameToken, callTarget: null))
             };
         }
 
@@ -158,6 +160,38 @@ public sealed partial class MetaTransformScriptSqlParser
             return builder.CreateTryConvertCall(dataTypeReference, parameter, style);
         }
 
+        private BuiltNode ParseParseCall()
+        {
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            var stringValue = ParseScalarExpression();
+            ExpectKeyword("AS");
+            var dataTypeReference = ParseDataTypeReference();
+            BuiltNode? culture = null;
+            if (MatchKeyword("USING"))
+            {
+                culture = ParseScalarExpression();
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            return builder.CreateParseCall(stringValue, dataTypeReference, culture);
+        }
+
+        private BuiltNode ParseTryParseCall()
+        {
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            var stringValue = ParseScalarExpression();
+            ExpectKeyword("AS");
+            var dataTypeReference = ParseDataTypeReference();
+            BuiltNode? culture = null;
+            if (MatchKeyword("USING"))
+            {
+                culture = ParseScalarExpression();
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            return builder.CreateTryParseCall(stringValue, dataTypeReference, culture);
+        }
+
         private BuiltNode ParseDataTypeReference()
         {
             var typeNameToken = Current;
@@ -201,7 +235,8 @@ public sealed partial class MetaTransformScriptSqlParser
 
             if (PeekKeyword("MAX"))
             {
-                throw Unsupported("MAX data type parameters are not supported yet.");
+                Advance();
+                return builder.CreateMaxLiteral();
             }
 
             throw ParseError($"Expected a data type parameter but found '{Current.Text}'.");

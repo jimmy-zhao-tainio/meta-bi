@@ -208,6 +208,70 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(LikePredicate), row.Id));
     }
 
+    public BuiltNode CreateDistinctPredicate(BuiltNode firstExpression, BuiltNode secondExpression, bool isNot)
+    {
+        var booleanExpression = CreateBooleanExpressionBase();
+
+        var row = new DistinctPredicate
+        {
+            Id = NextId(nameof(DistinctPredicate)),
+            BaseId = booleanExpression.GetId(nameof(BooleanExpression)),
+            IsNot = isNot ? "true" : string.Empty
+        };
+        model.DistinctPredicateList.Add(row);
+        model.DistinctPredicateFirstExpressionLinkList.Add(new DistinctPredicateFirstExpressionLink
+        {
+            Id = NextId(nameof(DistinctPredicateFirstExpressionLink)),
+            OwnerId = row.Id,
+            ValueId = firstExpression.GetId(nameof(ScalarExpression))
+        });
+        model.DistinctPredicateSecondExpressionLinkList.Add(new DistinctPredicateSecondExpressionLink
+        {
+            Id = NextId(nameof(DistinctPredicateSecondExpressionLink)),
+            OwnerId = row.Id,
+            ValueId = secondExpression.GetId(nameof(ScalarExpression))
+        });
+
+        return BuiltNode.Create(
+            (nameof(BooleanExpression), booleanExpression.GetId(nameof(BooleanExpression))),
+            (nameof(DistinctPredicate), row.Id));
+    }
+
+    public BuiltNode CreateFullTextPredicate(string fullTextFunctionType, IReadOnlyList<BuiltNode> columns, BuiltNode value)
+    {
+        var booleanExpression = CreateBooleanExpressionBase();
+
+        var row = new FullTextPredicate
+        {
+            Id = NextId(nameof(FullTextPredicate)),
+            BaseId = booleanExpression.GetId(nameof(BooleanExpression)),
+            FullTextFunctionType = fullTextFunctionType
+        };
+        model.FullTextPredicateList.Add(row);
+
+        for (var ordinal = 0; ordinal < columns.Count; ordinal++)
+        {
+            model.FullTextPredicateColumnsItemList.Add(new FullTextPredicateColumnsItem
+            {
+                Id = NextId(nameof(FullTextPredicateColumnsItem)),
+                OwnerId = row.Id,
+                ValueId = columns[ordinal].GetId(nameof(ColumnReferenceExpression)),
+                Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+            });
+        }
+
+        model.FullTextPredicateValueLinkList.Add(new FullTextPredicateValueLink
+        {
+            Id = NextId(nameof(FullTextPredicateValueLink)),
+            OwnerId = row.Id,
+            ValueId = value.GetId(nameof(ValueExpression))
+        });
+
+        return BuiltNode.Create(
+            (nameof(BooleanExpression), booleanExpression.GetId(nameof(BooleanExpression))),
+            (nameof(FullTextPredicate), row.Id));
+    }
+
     public BuiltNode CreateInPredicate(BuiltNode expression, IReadOnlyList<BuiltNode> values, bool notDefined)
     {
         var booleanExpression = CreateBooleanExpressionBase();

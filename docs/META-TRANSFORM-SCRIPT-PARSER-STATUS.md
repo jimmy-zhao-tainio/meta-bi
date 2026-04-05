@@ -45,6 +45,8 @@ The following are implemented in the parser and exercised through the current te
 - `PIVOT`
 - `UNPIVOT`
 - derived tables
+- inline `VALUES` tables
+- join-parenthesized table references
 - common table expressions
 - CTE column lists
 - recursive CTE shape when the member queries stay inside the current supported query surface
@@ -55,15 +57,21 @@ The following are implemented in the parser and exercised through the current te
 - `IN (...)`
 - `IN (subquery)`
 - `LIKE`
+- `IS DISTINCT FROM`
 - `IS NULL`, `IS NOT NULL`
 - scalar subqueries
 - nested scalar subqueries inside subqueries
 - `EXISTS`
 - `ALL` / `ANY` subquery comparisons
+- `CONTAINS`
+- `FREETEXT`
 - simple arithmetic with `+`
+- unary `+` and `-`
 - simple `CASE`
 - generic function calls
 - `CHOOSE` as a generic function call
+- `PARSE`
+- `TRY_PARSE`
 - `COALESCE`
 - `NULLIF`
 - `IIF`
@@ -71,16 +79,25 @@ The following are implemented in the parser and exercised through the current te
 - `TRY_CAST`
 - `CONVERT`
 - `TRY_CONVERT`
+- `CURRENT_TIMESTAMP`
+- `NEXT VALUE FOR`
+- global variables such as `@@SPID`
+- signed, scientific, binary, and `NULL` literal forms used by the current corpus
 - primary-expression `COLLATE`
+- `AT TIME ZONE`
 - `WITH XMLNAMESPACES (...)` alias form
 - `WITH XMLNAMESPACES (DEFAULT ...)`
 - method-call targets such as `s.XmlPayload.value(...)`
 - searched `CASE`
 - `GROUP BY`
+- `GROUPING SETS`
+- `ROLLUP`
+- `CUBE`
 - `HAVING`
 - `UNION`, `UNION ALL`, `EXCEPT`, `INTERSECT`
 - query-parenthesized set-op inputs such as `(SELECT ...) UNION ALL (SELECT ...)`
 - `TOP`, `PERCENT`, `WITH TIES`
+- `TABLESAMPLE`
 - query-level `ORDER BY`
 - `OFFSET ... ROWS`
 - `FETCH NEXT/FIRST ... ROWS ONLY`
@@ -106,6 +123,8 @@ Currently covered by parser/emitter round-trip tests:
 - `006_unpivot.sql`
 - `007_where_predicates.sql`
 - `008_group_by_having.sql`
+- `009_grouping_sets.sql`
+- `010_rollup_cube.sql`
 - `011_subqueries_and_correlation.sql`
 - `012_subquery_predicates.sql`
 - `013_set_operations.sql`
@@ -116,8 +135,16 @@ Currently covered by parser/emitter round-trip tests:
 - `018_ordering_and_top.sql`
 - `019_offset_fetch.sql`
 - `020_xml_namespaces_and_methods.sql`
+- `021_inline_values.sql`
+- `023_table_sample.sql`
 - `040_view_column_list.sql`
 - `024_query_parentheses.sql`
+- `025_distinct_predicate.sql`
+- `027_fulltext.sql`
+- `029_literals_and_special_calls.sql`
+- `030_time_zone_extract.sql`
+- `031_join_parentheses.sql`
+- `036_sequence_and_globals.sql`
 - `041_xml_namespaces_default.sql`
 - `042_cte_column_list.sql`
 - `043_recursive_cte_column_list.sql`
@@ -128,16 +155,14 @@ Currently covered by parser/emitter round-trip tests:
 
 - `dotnet test MetaTransformScript\Tests\MetaTransformScript.Tests.csproj` currently passes
 - the smaller CLI integration demo currently passes and `meta instance diff` reports no differences
-- the larger reference-corpus CLI demo is currently not a passing supported proof set, because it still includes `009_grouping_sets.sql`, which the parser does not support yet
+- the larger reference-corpus CLI demo currently passes for the supported 32-script demo set
+- `SQL -> workspace -> SQL -> workspace` is currently stable on that demo set, and `meta instance diff` reports no differences
 
 ## Explicitly unsupported right now
 
 These are rejected explicitly rather than guessed:
 
 - bare `SELECT` file/folder import on `sql-path` without `CREATE VIEW` wrappers
-- `GROUPING SETS`
-- `ROLLUP`
-- `CUBE`
 - `GROUP BY ALL`
 - unsupported parenthesized table-reference forms outside the currently supported derived-table shape
 - unsupported parenthesized scalar expressions

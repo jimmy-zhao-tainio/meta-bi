@@ -30,19 +30,12 @@ These are explicit parser/import hard-fails on the current mainline code path.
   - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Expressions.cs`
 - unsupported `CROSS ...` table-reference forms beyond the currently handled ones
   - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Table.cs`
-- parenthesized table-reference forms beyond query-derived tables
+- parenthesized table-reference forms beyond query-derived tables and inline `VALUES` tables
   - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Table.cs`
 - schema object names with more than two parts
   - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Table.cs`
 - some data type names in the special-expression parser
   - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.SpecialExpressions.cs`
-- `MAX` data type parameters
-  - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.SpecialExpressions.cs`
-- `GROUPING SETS`
-- `ROLLUP`
-- `CUBE`
-- `GROUPING(...)`
-- `GROUPING_ID(...)`
 - `GROUP BY ALL`
   - `MetaTransformScript/Sql/Parsing/MetaTransformScriptSqlParser.Query.cs`
 
@@ -101,10 +94,9 @@ They become real work only when:
 
 If work resumes on hardening, the practical order is:
 
-1. Add grouping-set family support (`GROUPING SETS`, `ROLLUP`, `CUBE`, `GROUPING`, `GROUPING_ID`) or remove it from the larger reference-corpus demo set.
-2. Add aggregate-level `DISTINCT` support in parser and emitter.
-3. Decide whether broader batch-envelope shapes beyond `SET` should be owned or explicitly rejected long-term.
-4. Tackle remaining table-reference and scalar-expression gaps only when a supported example needs them.
+1. Add aggregate-level `DISTINCT` support in parser and emitter.
+2. Decide whether broader batch-envelope shapes beyond `SET` should be owned or explicitly rejected long-term.
+3. Tackle remaining table-reference and scalar-expression gaps only when a supported example needs them.
 
 ## Not Errata
 
@@ -113,3 +105,13 @@ These were explicit concerns earlier, but they are now proven and should not be 
 - recursive named-column CTE shape
 - numeric window frame delimiters
 - true nested scalar subqueries inside subqueries
+- grouping-set family support (`GROUPING SETS`, `ROLLUP`, `CUBE`)
+- inline `VALUES` tables
+- `TABLESAMPLE`
+- `IS DISTINCT FROM`
+- ordinary full-text predicates (`CONTAINS`, `FREETEXT`)
+- signed, scientific, binary, and `NULL` literal forms used by the current corpus
+- `PARSE(...)`, `TRY_PARSE(...)`, and `CURRENT_TIMESTAMP`
+- `AT TIME ZONE`
+- join-parenthesized table references
+- `NEXT VALUE FOR` and global variables such as `@@SPID`
