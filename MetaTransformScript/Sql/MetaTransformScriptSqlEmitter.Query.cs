@@ -176,15 +176,13 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             throw new InvalidOperationException($"Unsupported MetaTransformScript GroupByOption '{groupByClause.GroupByOption}'.");
         }
 
-        if (IsTrue(groupByClause.All))
-        {
-            throw new InvalidOperationException("Phase-1 emitter does not support GROUP BY ALL.");
-        }
-
         var groupingSpecifications = GetOrderedItems(model.GroupByClauseGroupingSpecificationsItemList, groupByClause.Id)
             .Select(row => RenderGroupingSpecification(row.Value))
             .ToArray();
-        return string.Join(", ", groupingSpecifications);
+        var rendered = string.Join(", ", groupingSpecifications);
+        return IsTrue(groupByClause.All)
+            ? "ALL " + rendered
+            : rendered;
     }
 
     private string RenderGroupingSpecification(GroupingSpecification groupingSpecification)

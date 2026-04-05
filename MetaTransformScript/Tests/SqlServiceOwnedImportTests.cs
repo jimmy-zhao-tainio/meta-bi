@@ -25,6 +25,7 @@ public sealed class SqlServiceOwnedImportTests
     [InlineData("045_nested_subqueries.sql")]
     [InlineData("046_aggregate_distinct.sql")]
     [InlineData("047_parenthesized_scalar_expressions.sql")]
+    [InlineData("048_group_by_all.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnSupportedInputs(string fileName)
     {
         var sql = LoadCorpus(fileName);
@@ -54,22 +55,6 @@ FROM sales.Customer AS c
 
         var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
             () => new MetaTransformScriptSqlService().ImportFromSqlCode(sql));
-
-        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
-    }
-
-    [Fact]
-    public void ImportFromSqlCode_MapsUnsupportedSyntax_ToUnsupportedSql()
-    {
-        const string sql = """
-SELECT
-    c.CustomerId
-FROM sales.Customer AS c
-GROUP BY ALL c.CustomerId
-""";
-
-        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
-            () => new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_group_by_all"));
 
         Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
     }
@@ -190,23 +175,6 @@ GO
         var script = Assert.Single(model.TransformScriptList);
         Assert.Equal("dbo.v_set_go", script.Name);
         Assert.Single(model.TransformScriptViewColumnsItemList);
-    }
-
-    [Fact]
-    public void ImportFromSqlPath_FailsExplicitly_ForUnsupportedSingleFileMainlineSql()
-    {
-        const string sql = """
-SELECT
-    c.CustomerId
-FROM sales.Customer AS c
-GROUP BY ALL c.CustomerId
-""";
-
-        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
-            () => new MetaTransformScriptSqlService().ImportFromSqlPath(
-                WriteTempSqlFile("group-by-all.sql", sql)));
-
-        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
     }
 
     [Fact]

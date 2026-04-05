@@ -175,11 +175,12 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(GrandTotalGroupingSpecification), grandTotalGroupingSpecification.Id));
     }
 
-    public BuiltNode CreateGroupByClause(IReadOnlyList<BuiltNode> groupingSpecifications)
+    public BuiltNode CreateGroupByClause(IReadOnlyList<BuiltNode> groupingSpecifications, bool all = false)
     {
         var groupByClause = new GroupByClause
         {
-            Id = NextId(nameof(GroupByClause))
+            Id = NextId(nameof(GroupByClause)),
+            All = all ? "true" : string.Empty
         };
         model.GroupByClauseList.Add(groupByClause);
 

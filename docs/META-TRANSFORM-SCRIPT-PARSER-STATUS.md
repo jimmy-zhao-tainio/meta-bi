@@ -84,7 +84,7 @@
 - [x] `ROLLUP`
 - [x] `CUBE`
 - [x] `HAVING`
-- [ ] `GROUP BY ALL`
+- [x] `GROUP BY ALL`
 - [ ] distributed aggregation grouping specifications in emitter
 
 - [x] window `OVER (...)`
@@ -100,6 +100,7 @@
 - [x] reference corpus coverage through `045_nested_subqueries.sql`
 - [x] reference corpus coverage for `046_aggregate_distinct.sql`
 - [x] reference corpus coverage for `047_parenthesized_scalar_expressions.sql`
+- [x] reference corpus coverage for `048_group_by_all.sql`
 
 - [ ] `CREATE VIEW` names with more than two identifier parts
 - [ ] schema object names with more than two parts

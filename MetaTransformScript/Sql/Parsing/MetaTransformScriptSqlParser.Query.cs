@@ -204,10 +204,7 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private BuiltNode ParseGroupByClause()
         {
-            if (MatchKeyword("ALL"))
-            {
-                throw Unsupported("GROUP BY ALL is not supported yet.");
-            }
+            var all = MatchKeyword("ALL");
 
             var groupingSpecifications = new List<BuiltNode> { ParseGroupingSpecification() };
             while (Match(MetaTransformScriptSqlTokenKind.Comma))
@@ -215,7 +212,7 @@ public sealed partial class MetaTransformScriptSqlParser
                 groupingSpecifications.Add(ParseGroupingSpecification());
             }
 
-            return builder.CreateGroupByClause(groupingSpecifications);
+            return builder.CreateGroupByClause(groupingSpecifications, all);
         }
 
         private BuiltNode ParseGroupingSpecification()

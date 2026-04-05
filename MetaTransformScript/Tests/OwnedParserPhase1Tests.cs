@@ -44,6 +44,7 @@ public sealed class OwnedParserPhase1Tests
     [InlineData("045_nested_subqueries.sql")]
     [InlineData("046_aggregate_distinct.sql")]
     [InlineData("047_parenthesized_scalar_expressions.sql")]
+    [InlineData("048_group_by_all.sql")]
     public void ParserRoundTripsSupportedCorpus(string fileName)
     {
         var sql = LoadCorpus(fileName);
@@ -58,21 +59,6 @@ public sealed class OwnedParserPhase1Tests
         var secondEmission = service.ExportToSqlCode(secondModel);
 
         Assert.Equal(firstEmission, secondEmission);
-    }
-
-    [Fact]
-    public void ParserRejectsUnsupportedGroupByAll()
-    {
-        const string sql = """
-SELECT
-    c.CustomerId
-FROM sales.Customer AS c
-GROUP BY ALL c.CustomerId
-""";
-        var exception = Assert.Throws<MetaTransformScriptSqlParserException>(
-            () => new MetaTransformScriptSqlParser().ParseSqlCode(sql, bareSelectName: "dbo.v_group_by_all"));
-
-        Assert.Equal(MetaTransformScriptSqlParserFailureKind.UnsupportedSyntax, exception.FailureKind);
     }
 
     private static string LoadCorpus(string fileName)
