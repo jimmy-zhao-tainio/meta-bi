@@ -204,14 +204,10 @@ public sealed partial class MetaTransformScriptSqlParser
             }
 
             Advance();
-            var mappedType = typeNameToken.Value.ToUpperInvariant() switch
+            if (!MetaTransformScript.Sql.MetaTransformScriptSqlServerDataTypes.TryMapSqlName(typeNameToken.Value, out var mappedType))
             {
-                "DECIMAL" => "Decimal",
-                "INT" => "Int",
-                "VARCHAR" => "VarChar",
-                "DATETIME2" => "DateTime2",
-                _ => throw Unsupported($"Data type '{typeNameToken.Value}' is not supported yet.")
-            };
+                throw Unsupported($"Data type '{typeNameToken.Value}' is not supported yet.");
+            }
 
             List<BuiltNode>? parameters = null;
             if (Match(MetaTransformScriptSqlTokenKind.OpenParen))

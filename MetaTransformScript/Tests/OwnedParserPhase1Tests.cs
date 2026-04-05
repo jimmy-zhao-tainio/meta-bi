@@ -45,6 +45,8 @@ public sealed class OwnedParserPhase1Tests
     [InlineData("046_aggregate_distinct.sql")]
     [InlineData("047_parenthesized_scalar_expressions.sql")]
     [InlineData("048_group_by_all.sql")]
+    [InlineData("049_data_type_variants.sql")]
+    [InlineData("050_remaining_sanctioned_sqlserver_types.sql")]
     public void ParserRoundTripsSupportedCorpus(string fileName)
     {
         var sql = LoadCorpus(fileName);

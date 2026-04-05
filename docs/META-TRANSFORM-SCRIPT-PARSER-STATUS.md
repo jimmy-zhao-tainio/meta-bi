@@ -79,6 +79,33 @@
 - [x] `AT TIME ZONE`
 - [ ] broader scalar-expression hardening beyond the current supported corpus
 
+- [x] MetaDataType sanctioned SQL Server type: `bigint`
+- [x] MetaDataType sanctioned SQL Server type: `bit`
+- [x] MetaDataType sanctioned SQL Server type: `char`
+- [x] MetaDataType sanctioned SQL Server type: `date`
+- [x] MetaDataType sanctioned SQL Server type: `datetime`
+- [x] MetaDataType sanctioned SQL Server type: `datetime2`
+- [x] MetaDataType sanctioned SQL Server type: `datetimeoffset`
+- [x] MetaDataType sanctioned SQL Server type: `decimal`
+- [x] MetaDataType sanctioned SQL Server type: `float`
+- [x] MetaDataType sanctioned SQL Server type: `int`
+- [x] MetaDataType sanctioned SQL Server type: `nchar`
+- [x] MetaDataType sanctioned SQL Server type: `nvarchar`
+- [x] MetaDataType sanctioned SQL Server type: `smallint`
+- [x] MetaDataType sanctioned SQL Server type: `time`
+- [x] MetaDataType sanctioned SQL Server type: `tinyint`
+- [x] MetaDataType sanctioned SQL Server type: `uniqueidentifier`
+- [x] MetaDataType sanctioned SQL Server type: `varbinary`
+- [x] MetaDataType sanctioned SQL Server type: `varchar`
+- [x] MetaDataType sanctioned SQL Server type: `binary`
+- [x] MetaDataType sanctioned SQL Server type: `geography`
+- [x] MetaDataType sanctioned SQL Server type: `geometry`
+- [x] MetaDataType sanctioned SQL Server type: `hierarchyid`
+- [x] MetaDataType sanctioned SQL Server type: `money`
+- [x] MetaDataType sanctioned SQL Server type: `smallmoney`
+- [x] MetaDataType sanctioned SQL Server type: `sql_variant`
+- [x] MetaDataType sanctioned SQL Server type: `xml`
+
 - [x] `GROUP BY`
 - [x] `GROUPING SETS`
 - [x] `ROLLUP`
@@ -101,10 +128,12 @@
 - [x] reference corpus coverage for `046_aggregate_distinct.sql`
 - [x] reference corpus coverage for `047_parenthesized_scalar_expressions.sql`
 - [x] reference corpus coverage for `048_group_by_all.sql`
+- [x] reference corpus coverage for `049_data_type_variants.sql`
+- [x] reference corpus coverage for `050_remaining_sanctioned_sqlserver_types.sql`
 
 - [ ] `CREATE VIEW` names with more than two identifier parts
 - [ ] schema object names with more than two parts
-- [ ] broader data type names beyond the current supported set
+- [x] broader data type names beyond the current supported set
 - [ ] `CREATE VIEW ... WITH <view options>`
 - [ ] `WITH CHECK OPTION`
 - [ ] materialized-view syntax

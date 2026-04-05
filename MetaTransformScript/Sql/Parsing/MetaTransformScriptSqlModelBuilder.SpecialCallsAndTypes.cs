@@ -517,12 +517,5 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
     }
 
         private static string RenderSqlDataTypeIdentifierValue(string sqlDataTypeOption) =>
-        sqlDataTypeOption switch
-        {
-            "Decimal" => "decimal",
-            "Int" => "int",
-            "VarChar" => "varchar",
-            "DateTime2" => "datetime2",
-            _ => throw new InvalidOperationException($"Unsupported SqlDataTypeOption '{sqlDataTypeOption}'.")
-        };
+            MetaTransformScript.Sql.MetaTransformScriptSqlServerDataTypes.RenderSqlName(sqlDataTypeOption);
 }

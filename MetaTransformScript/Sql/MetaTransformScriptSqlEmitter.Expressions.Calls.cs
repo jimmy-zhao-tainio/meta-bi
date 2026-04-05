@@ -205,12 +205,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private static string RenderSqlDataTypeOption(string sqlDataTypeOption)
     {
-        return sqlDataTypeOption switch
-        {
-            "DateTime2" => "datetime2",
-            "VarChar" => "varchar",
-            _ => sqlDataTypeOption.ToLowerInvariant()
-        };
+        return MetaTransformScriptSqlServerDataTypes.RenderSqlName(sqlDataTypeOption);
     }
 
     private string RenderLiteral(Literal literal)
