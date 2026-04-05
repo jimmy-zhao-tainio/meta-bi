@@ -211,6 +211,14 @@ public sealed class MetaTransformScriptSqlService
                     continue;
                 }
 
+                if (TryGetUnsupportedAuxiliaryBatchKeyword(batch.Sql, out var auxiliaryBatchKeyword))
+                {
+                    var sourceLabel = string.IsNullOrWhiteSpace(batch.SourcePath) ? "<sql-code>" : batch.SourcePath;
+                    throw new MetaTransformScriptSqlImportException(
+                        MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
+                        $"SQL import failed for '{sourceLabel}'.{Environment.NewLine}  Auxiliary batch '{auxiliaryBatchKeyword}' is not supported. Only SET-only auxiliary batches are ignored.");
+                }
+
                 try
                 {
                     var parsedShape = parser.ParseSqlCodeIntoBuilder(batch.Sql, builder, batch.SourcePath, batch.BareSelectName);
@@ -341,6 +349,41 @@ public sealed class MetaTransformScriptSqlService
         }
 
         return sawSetStatement;
+    }
+
+    private static bool TryGetUnsupportedAuxiliaryBatchKeyword(string sql, out string keyword)
+    {
+        keyword = string.Empty;
+
+        IReadOnlyList<MetaTransformScriptSqlToken> tokens;
+        try
+        {
+            tokens = new MetaTransformScriptSqlLexer(sql).Tokenize();
+        }
+        catch (MetaTransformScriptSqlParserException)
+        {
+            return false;
+        }
+
+        var firstToken = tokens.FirstOrDefault(static token =>
+            token.Kind != MetaTransformScriptSqlTokenKind.Semicolon &&
+            token.Kind != MetaTransformScriptSqlTokenKind.EndOfFile);
+
+        if (firstToken.Kind != MetaTransformScriptSqlTokenKind.Identifier)
+        {
+            return false;
+        }
+
+        if (IsUnquotedKeyword(firstToken, "CREATE") ||
+            IsUnquotedKeyword(firstToken, "SELECT") ||
+            IsUnquotedKeyword(firstToken, "WITH") ||
+            IsUnquotedKeyword(firstToken, "SET"))
+        {
+            return false;
+        }
+
+        keyword = firstToken.Value.ToUpperInvariant();
+        return true;
     }
 
     private static bool IsUnquotedKeyword(MetaTransformScriptSqlToken token, string keyword) =>

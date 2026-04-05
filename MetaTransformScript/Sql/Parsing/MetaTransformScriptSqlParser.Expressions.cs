@@ -8,10 +8,40 @@ public sealed partial class MetaTransformScriptSqlParser
     {
         private BuiltNode ParseScalarExpression()
         {
-            var left = ParseScalarPrimary();
-            while (Match(MetaTransformScriptSqlTokenKind.Plus))
+            var left = ParseScalarTerm();
+            while (Current.Kind is MetaTransformScriptSqlTokenKind.Plus or MetaTransformScriptSqlTokenKind.Minus)
             {
-                left = builder.CreateBinaryExpression(left, ParseScalarPrimary(), "Add");
+                var operatorKind = Advance().Kind;
+                var binaryExpressionType = operatorKind switch
+                {
+                    MetaTransformScriptSqlTokenKind.Plus => "Add",
+                    MetaTransformScriptSqlTokenKind.Minus => "Subtract",
+                    _ => throw new InvalidOperationException($"Unexpected scalar additive operator '{operatorKind}'.")
+                };
+
+                left = builder.CreateBinaryExpression(left, ParseScalarTerm(), binaryExpressionType);
+            }
+
+            return left;
+        }
+
+        private BuiltNode ParseScalarTerm()
+        {
+            var left = ParseScalarPrimary();
+            while (Current.Kind is MetaTransformScriptSqlTokenKind.Star
+                or MetaTransformScriptSqlTokenKind.Slash
+                or MetaTransformScriptSqlTokenKind.Percent)
+            {
+                var operatorKind = Advance().Kind;
+                var binaryExpressionType = operatorKind switch
+                {
+                    MetaTransformScriptSqlTokenKind.Star => "Multiply",
+                    MetaTransformScriptSqlTokenKind.Slash => "Divide",
+                    MetaTransformScriptSqlTokenKind.Percent => "Modulo",
+                    _ => throw new InvalidOperationException($"Unexpected scalar multiplicative operator '{operatorKind}'.")
+                };
+
+                left = builder.CreateBinaryExpression(left, ParseScalarPrimary(), binaryExpressionType);
             }
 
             return left;
@@ -178,7 +208,7 @@ public sealed partial class MetaTransformScriptSqlParser
 
             if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
             {
-                if (FormsParenthesizedScalarComparison())
+                if (FormsScalarComparison())
                 {
                     return ParseComparisonExpression();
                 }
@@ -190,6 +220,33 @@ public sealed partial class MetaTransformScriptSqlParser
             }
 
             return ParseComparisonExpression();
+        }
+
+        private bool FormsScalarComparison()
+        {
+            var checkpoint = position;
+            try
+            {
+                ParseScalarExpression();
+                return Current.Kind is MetaTransformScriptSqlTokenKind.Equals
+                    or MetaTransformScriptSqlTokenKind.GreaterThan
+                    or MetaTransformScriptSqlTokenKind.GreaterThanOrEqual
+                    or MetaTransformScriptSqlTokenKind.LessThan
+                    or MetaTransformScriptSqlTokenKind.LessThanOrEqual
+                    or MetaTransformScriptSqlTokenKind.NotEqual
+                    || IsKeyword(Current, "BETWEEN")
+                    || IsKeyword(Current, "IN")
+                    || IsKeyword(Current, "LIKE")
+                    || IsKeyword(Current, "IS");
+            }
+            catch (MetaTransformScriptSqlParserException)
+            {
+                return false;
+            }
+            finally
+            {
+                position = checkpoint;
+            }
         }
 
         private bool FormsParenthesizedScalarComparison()

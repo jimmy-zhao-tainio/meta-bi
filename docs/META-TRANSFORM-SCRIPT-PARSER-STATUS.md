@@ -1,5 +1,9 @@
 # MetaTransformScript Status
 
+Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. They are not hidden parser delegation.
+
+## Implemented And Verified
+
 - [x] ScriptDOM removed from `MetaTransformScript`
 - [x] SQL import/read path uses the `MetaTransformScript` parser
 - [x] SQL emit path uses the `MetaTransformScript` emitter
@@ -11,8 +15,9 @@
 - [x] `CREATE VIEW` column lists
 - [x] `SET`-only batches on import
 - [x] `GO`-split import batches
+- [x] unsupported `CREATE VIEW` wrapper syntax is rejected explicitly
+- [x] unsupported non-`SET` auxiliary batches are rejected explicitly
 - [x] bare `SELECT` import through `sql-code` with explicit name
-- [ ] bare `SELECT` file/folder import through `sql-path`
 
 - [x] `SELECT DISTINCT`
 - [x] aggregate-level `DISTINCT` such as `COUNT(DISTINCT ...)`
@@ -31,8 +36,6 @@
 - [x] `PIVOT`
 - [x] `UNPIVOT`
 - [x] `TABLESAMPLE`
-- [ ] broader unsupported `CROSS ...` table-reference forms
-- [ ] parenthesized table-reference forms beyond the current supported shapes
 
 - [x] common table expressions
 - [x] CTE column lists
@@ -57,6 +60,7 @@
 - [x] parenthesized scalar expressions
 - [x] unary `+` / `-`
 - [x] simple arithmetic with `+`
+- [x] arithmetic with `-`, `*`, `/`, `%`
 - [x] `CASE`
 - [x] `COALESCE`
 - [x] `NULLIF`
@@ -77,34 +81,8 @@
 - [x] `NULL` literal expressions
 - [x] primary-expression `COLLATE`
 - [x] `AT TIME ZONE`
-- [ ] broader scalar-expression hardening beyond the current supported corpus
 
-- [x] MetaDataType sanctioned SQL Server type: `bigint`
-- [x] MetaDataType sanctioned SQL Server type: `bit`
-- [x] MetaDataType sanctioned SQL Server type: `char`
-- [x] MetaDataType sanctioned SQL Server type: `date`
-- [x] MetaDataType sanctioned SQL Server type: `datetime`
-- [x] MetaDataType sanctioned SQL Server type: `datetime2`
-- [x] MetaDataType sanctioned SQL Server type: `datetimeoffset`
-- [x] MetaDataType sanctioned SQL Server type: `decimal`
-- [x] MetaDataType sanctioned SQL Server type: `float`
-- [x] MetaDataType sanctioned SQL Server type: `int`
-- [x] MetaDataType sanctioned SQL Server type: `nchar`
-- [x] MetaDataType sanctioned SQL Server type: `nvarchar`
-- [x] MetaDataType sanctioned SQL Server type: `smallint`
-- [x] MetaDataType sanctioned SQL Server type: `time`
-- [x] MetaDataType sanctioned SQL Server type: `tinyint`
-- [x] MetaDataType sanctioned SQL Server type: `uniqueidentifier`
-- [x] MetaDataType sanctioned SQL Server type: `varbinary`
-- [x] MetaDataType sanctioned SQL Server type: `varchar`
-- [x] MetaDataType sanctioned SQL Server type: `binary`
-- [x] MetaDataType sanctioned SQL Server type: `geography`
-- [x] MetaDataType sanctioned SQL Server type: `geometry`
-- [x] MetaDataType sanctioned SQL Server type: `hierarchyid`
-- [x] MetaDataType sanctioned SQL Server type: `money`
-- [x] MetaDataType sanctioned SQL Server type: `smallmoney`
-- [x] MetaDataType sanctioned SQL Server type: `sql_variant`
-- [x] MetaDataType sanctioned SQL Server type: `xml`
+- [x] MetaDataType sanctioned SQL Server types used by the current parser/emitter type path
 
 - [x] `GROUP BY`
 - [x] `GROUPING SETS`
@@ -112,7 +90,6 @@
 - [x] `CUBE`
 - [x] `HAVING`
 - [x] `GROUP BY ALL`
-- [ ] distributed aggregation grouping specifications in emitter
 
 - [x] window `OVER (...)`
 - [x] named `WINDOW` clause
@@ -124,20 +101,27 @@
 - [x] `WITH XMLNAMESPACES (DEFAULT ...)`
 - [x] XML method-call targets such as `.value(...)`, `.query(...)`, `.exist(...)`
 
-- [x] reference corpus coverage through `045_nested_subqueries.sql`
-- [x] reference corpus coverage for `046_aggregate_distinct.sql`
-- [x] reference corpus coverage for `047_parenthesized_scalar_expressions.sql`
-- [x] reference corpus coverage for `048_group_by_all.sql`
-- [x] reference corpus coverage for `049_data_type_variants.sql`
-- [x] reference corpus coverage for `050_remaining_sanctioned_sqlserver_types.sql`
-- [x] reference corpus coverage for `051_cross_database_names.sql`
-
 - [x] schema object names with more than two parts
-- [x] broader data type names beyond the current supported set
-- [ ] `CREATE VIEW ... WITH <view options>`
-- [ ] `WITH CHECK OPTION`
-- [ ] materialized-view syntax
-- [ ] mixed bare `SELECT` and `CREATE VIEW` shapes in one logical import source
-- [ ] non-`SET` auxiliary batches before/around supported statements
-- [ ] ODBC-escape `LIKE` predicates
+- [x] reference corpus coverage through `051_cross_database_names.sql`
+- [x] reference corpus coverage for `052_arithmetic_operators.sql`
+
+## Mainline Support Gaps We Likely Should Close
+
+- [ ] broader scalar-expression hardening beyond the current arithmetic, call, and case coverage
+- [ ] distributed aggregation grouping specifications in emitter
+
+## Deliberate Non-Support
+
+- [x] bare `SELECT` file/folder import through `sql-path` stays unsupported
+- [x] mixed bare `SELECT` and `CREATE VIEW` shapes in one logical import source stay unsupported
+- [x] non-`SET` auxiliary batches before/around supported statements stay unsupported
+- [x] ODBC-escape `LIKE` predicates stay unsupported
+- [x] arbitrary `CREATE VIEW ... WITH <view options>` stays unsupported unless explicitly whitelisted
+- [x] `WITH CHECK OPTION` stays unsupported unless explicitly justified
+- [x] materialized-view syntax stays unsupported
+
+## Support Only If Justified By Real Use Case
+
+- [ ] broader unsupported `CROSS ...` table-reference forms
+- [ ] parenthesized table-reference forms beyond the current supported shapes
 - [ ] `FunctionCall.WithArrayWrapper=true`

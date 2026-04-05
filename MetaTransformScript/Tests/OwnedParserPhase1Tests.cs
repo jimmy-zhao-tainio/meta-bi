@@ -48,6 +48,7 @@ public sealed class OwnedParserPhase1Tests
     [InlineData("049_data_type_variants.sql")]
     [InlineData("050_remaining_sanctioned_sqlserver_types.sql")]
     [InlineData("051_cross_database_names.sql")]
+    [InlineData("052_arithmetic_operators.sql")]
     public void ParserRoundTripsSupportedCorpus(string fileName)
     {
         var sql = LoadCorpus(fileName);

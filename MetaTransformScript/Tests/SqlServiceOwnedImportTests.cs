@@ -29,6 +29,7 @@ public sealed class SqlServiceOwnedImportTests
     [InlineData("049_data_type_variants.sql")]
     [InlineData("050_remaining_sanctioned_sqlserver_types.sql")]
     [InlineData("051_cross_database_names.sql")]
+    [InlineData("052_arithmetic_operators.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnSupportedInputs(string fileName)
     {
         var sql = LoadCorpus(fileName);
@@ -197,6 +198,67 @@ GO
         var script = Assert.Single(model.TransformScriptList);
         Assert.Equal("dbo.v_set_go", script.Name);
         Assert.Single(model.TransformScriptViewColumnsItemList);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_FailsExplicitly_ForUnsupportedCreateViewOptions()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_schema_bound
+WITH SCHEMABINDING
+AS
+SELECT
+    s.CustomerId
+FROM dbo.Source AS s
+""";
+
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlPath(
+                WriteTempSqlFile("schemabinding.sql", sql)));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+        Assert.Contains("WITH SCHEMABINDING", exception.Message);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_FailsExplicitly_ForWithCheckOption()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_check_option
+AS
+SELECT
+    s.CustomerId
+FROM dbo.Source AS s
+WITH CHECK OPTION
+""";
+
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlPath(
+                WriteTempSqlFile("check-option.sql", sql)));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+        Assert.Contains("WITH CHECK OPTION", exception.Message);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_FailsExplicitly_ForUnsupportedAuxiliaryBatches()
+    {
+        const string sql = """
+USE ReportingDb
+GO
+CREATE VIEW dbo.v_use_batch AS
+SELECT
+    s.CustomerId
+FROM dbo.Source AS s
+GO
+""";
+
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlPath(
+                WriteTempSqlFile("use-batch.sql", sql)));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+        Assert.Contains("Auxiliary batch 'USE' is not supported", exception.Message);
     }
 
     [Fact]

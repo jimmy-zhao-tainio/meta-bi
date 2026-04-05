@@ -39,8 +39,19 @@ public sealed partial class MetaTransformScriptSqlParser
                 viewColumns = ParseCreateViewColumnList();
             }
 
+            if (MatchKeyword("WITH"))
+            {
+                ParseUnsupportedCreateViewOptions();
+            }
+
             ExpectKeyword("AS");
             var selectStatement = ParseSelectStatement();
+
+            if (MatchKeyword("WITH"))
+            {
+                ParseUnsupportedCreateViewTailClause();
+            }
+
             SkipSemicolons();
             ExpectEndOfFile();
 
@@ -51,6 +62,47 @@ public sealed partial class MetaTransformScriptSqlParser
                 schemaIdentifier?.Node,
                 objectIdentifier.Node,
                 viewColumns);
+        }
+
+        private void ParseUnsupportedCreateViewOptions()
+        {
+            var optionNames = ParseCommaSeparatedCreateViewOptionNames();
+            var rendered = optionNames.Count == 0
+                ? "WITH <view options>"
+                : "WITH " + string.Join(", ", optionNames);
+            throw Unsupported($"CREATE VIEW wrapper option clause '{rendered}' is not supported yet.");
+        }
+
+        private List<string> ParseCommaSeparatedCreateViewOptionNames()
+        {
+            var optionNames = new List<string>();
+
+            while (true)
+            {
+                optionNames.Add(ParseCreateViewOptionName());
+                if (!Match(MetaTransformScriptSqlTokenKind.Comma))
+                {
+                    break;
+                }
+            }
+
+            return optionNames;
+        }
+
+        private string ParseCreateViewOptionName()
+        {
+            return ParseIdentifierToken().Value.ToUpperInvariant();
+        }
+
+        private void ParseUnsupportedCreateViewTailClause()
+        {
+            if (MatchKeyword("CHECK"))
+            {
+                ExpectKeyword("OPTION");
+                throw Unsupported("CREATE VIEW tail clause 'WITH CHECK OPTION' is not supported yet.");
+            }
+
+            throw Unsupported($"Unsupported CREATE VIEW tail clause beginning with 'WITH {Current.Value.ToUpperInvariant()}'.");
         }
 
         private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateViewName()

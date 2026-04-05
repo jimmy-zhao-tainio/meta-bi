@@ -15,6 +15,10 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var op = binaryExpression.BinaryExpressionType switch
             {
                 "Add" => "+",
+                "Subtract" => "-",
+                "Multiply" => "*",
+                "Divide" => "/",
+                "Modulo" => "%",
                 _ => throw new InvalidOperationException($"Unsupported MetaTransformScript BinaryExpressionType '{binaryExpression.BinaryExpressionType}'.")
             };
             return $"{left} {op} {right}";
