@@ -32,6 +32,8 @@ public sealed partial class MetaTransformScriptSqlParser
 
             return functionNameValue.ToUpperInvariant() switch
             {
+                "LEFT" => ParseTrailingScalarSuffixes(ParseLeftFunctionCall()),
+                "RIGHT" => ParseTrailingScalarSuffixes(ParseRightFunctionCall()),
                 "COALESCE" => ParseTrailingScalarSuffixes(ParseCoalesceExpression()),
                 "NULLIF" => ParseTrailingScalarSuffixes(ParseNullIfExpression()),
                 "IIF" => ParseTrailingScalarSuffixes(ParseIIfCall()),
@@ -109,6 +111,18 @@ public sealed partial class MetaTransformScriptSqlParser
             var elseExpression = ParseScalarExpression();
             Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return builder.CreateIIfCall(predicate, thenExpression, elseExpression);
+        }
+
+        private BuiltNode ParseLeftFunctionCall()
+        {
+            var arguments = ParseScalarArgumentList();
+            return builder.CreateLeftFunctionCall(arguments);
+        }
+
+        private BuiltNode ParseRightFunctionCall()
+        {
+            var arguments = ParseScalarArgumentList();
+            return builder.CreateRightFunctionCall(arguments);
         }
 
         private BuiltNode ParseCastCall()

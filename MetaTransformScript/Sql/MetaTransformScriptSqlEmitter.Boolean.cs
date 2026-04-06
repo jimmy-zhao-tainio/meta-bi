@@ -55,6 +55,15 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         if (booleanNot is not null)
         {
             var child = GetOwnerLink(model.BooleanNotExpressionExpressionLinkList, booleanNot.Id, "BooleanNotExpression.Expression").Value;
+            if (FindByBaseId(model.BooleanTernaryExpressionList, child.Id) is { } negatedBetween
+                && string.Equals(negatedBetween.TernaryExpressionType, "Between", StringComparison.Ordinal))
+            {
+                var first = RenderScalarExpression(GetOwnerLink(model.BooleanTernaryExpressionFirstExpressionLinkList, negatedBetween.Id, "BooleanTernaryExpression.FirstExpression").Value);
+                var second = RenderScalarExpression(GetOwnerLink(model.BooleanTernaryExpressionSecondExpressionLinkList, negatedBetween.Id, "BooleanTernaryExpression.SecondExpression").Value);
+                var third = RenderScalarExpression(GetOwnerLink(model.BooleanTernaryExpressionThirdExpressionLinkList, negatedBetween.Id, "BooleanTernaryExpression.ThirdExpression").Value);
+                return $"{first} NOT BETWEEN {second} AND {third}";
+            }
+
             return FindByBaseId(model.BooleanParenthesisExpressionList, child.Id) is not null
                 ? $"NOT {RenderBooleanExpression(child)}"
                 : $"NOT ({RenderBooleanExpression(child)})";
@@ -130,7 +139,10 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var first = RenderScalarExpression(GetOwnerLink(model.LikePredicateFirstExpressionLinkList, likePredicate.Id, "LikePredicate.FirstExpression").Value);
             var second = RenderScalarExpression(GetOwnerLink(model.LikePredicateSecondExpressionLinkList, likePredicate.Id, "LikePredicate.SecondExpression").Value);
             var notText = IsTrue(likePredicate.NotDefined) ? " NOT" : string.Empty;
-            return $"{first}{notText} LIKE {second}";
+            var escapeLink = FindOwnerLink(model.LikePredicateEscapeExpressionLinkList, likePredicate.Id);
+            return escapeLink is null
+                ? $"{first}{notText} LIKE {second}"
+                : $"{first}{notText} LIKE {second} ESCAPE {RenderScalarExpression(escapeLink.Value)}";
         }
 
         var fullTextPredicate = FindByBaseId(model.FullTextPredicateList, booleanExpression.Id);

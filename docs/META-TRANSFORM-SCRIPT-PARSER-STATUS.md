@@ -43,9 +43,14 @@ Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. Th
 
 - [x] comparisons
 - [x] `BETWEEN`
+- [x] `NOT BETWEEN`
 - [x] `IN (...)`
+- [x] `NOT IN (...)`
 - [x] `IN (subquery)`
+- [x] `NOT IN (subquery)`
 - [x] `LIKE`
+- [x] `NOT LIKE`
+- [x] `LIKE ... ESCAPE ...`
 - [x] `IS NULL`
 - [x] `IS NOT NULL`
 - [x] `IS DISTINCT FROM`
@@ -65,6 +70,8 @@ Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. Th
 - [x] `COALESCE`
 - [x] `NULLIF`
 - [x] `IIF`
+- [x] `LEFT`
+- [x] `RIGHT`
 - [x] generic function calls
 - [x] `PARSE`
 - [x] `TRY_PARSE`
@@ -104,6 +111,8 @@ Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. Th
 - [x] schema object names with more than two parts
 - [x] reference corpus coverage through `051_cross_database_names.sql`
 - [x] reference corpus coverage for `052_arithmetic_operators.sql`
+- [x] reference corpus coverage for `053_negated_predicates.sql`
+- [x] reference corpus coverage for `054_like_escape.sql`
 
 ## Mainline Support Gaps We Likely Should Close
 

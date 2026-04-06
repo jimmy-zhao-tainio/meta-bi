@@ -673,6 +673,12 @@
         <Relationship entity="BooleanExpression" role="Base" />
       </RelationshipList>
     </Entity>
+    <Entity name="LikePredicateEscapeExpressionLink">
+      <RelationshipList>
+        <Relationship entity="LikePredicate" role="Owner" />
+        <Relationship entity="ScalarExpression" role="Value" />
+      </RelationshipList>
+    </Entity>
     <Entity name="LikePredicateFirstExpressionLink">
       <RelationshipList>
         <Relationship entity="LikePredicate" role="Owner" />

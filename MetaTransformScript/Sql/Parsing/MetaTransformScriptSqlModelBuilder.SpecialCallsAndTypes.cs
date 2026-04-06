@@ -388,6 +388,84 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(ParameterlessCall), parameterlessCall.Id));
     }
 
+    public BuiltNode CreateLeftFunctionCall(IReadOnlyList<BuiltNode> parameters)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var leftFunctionCall = new LeftFunctionCall
+        {
+            Id = NextId(nameof(LeftFunctionCall)),
+            BaseId = primary.Id
+        };
+        model.LeftFunctionCallList.Add(leftFunctionCall);
+
+        for (var ordinal = 0; ordinal < parameters.Count; ordinal++)
+        {
+            model.LeftFunctionCallParametersItemList.Add(new LeftFunctionCallParametersItem
+            {
+                Id = NextId(nameof(LeftFunctionCallParametersItem)),
+                OwnerId = leftFunctionCall.Id,
+                ValueId = parameters[ordinal].GetId(nameof(ScalarExpression)),
+                Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+            });
+        }
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(LeftFunctionCall), leftFunctionCall.Id));
+    }
+
+    public BuiltNode CreateRightFunctionCall(IReadOnlyList<BuiltNode> parameters)
+    {
+        var scalar = new ScalarExpression
+        {
+            Id = NextId(nameof(ScalarExpression))
+        };
+        model.ScalarExpressionList.Add(scalar);
+
+        var primary = new PrimaryExpression
+        {
+            Id = NextId(nameof(PrimaryExpression)),
+            BaseId = scalar.Id
+        };
+        model.PrimaryExpressionList.Add(primary);
+
+        var rightFunctionCall = new RightFunctionCall
+        {
+            Id = NextId(nameof(RightFunctionCall)),
+            BaseId = primary.Id
+        };
+        model.RightFunctionCallList.Add(rightFunctionCall);
+
+        for (var ordinal = 0; ordinal < parameters.Count; ordinal++)
+        {
+            model.RightFunctionCallParametersItemList.Add(new RightFunctionCallParametersItem
+            {
+                Id = NextId(nameof(RightFunctionCallParametersItem)),
+                OwnerId = rightFunctionCall.Id,
+                ValueId = parameters[ordinal].GetId(nameof(ScalarExpression)),
+                Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+            });
+        }
+
+        return BuiltNode.Create(
+            (nameof(ScalarExpression), scalar.Id),
+            (nameof(PrimaryExpression), primary.Id),
+            (nameof(RightFunctionCall), rightFunctionCall.Id));
+    }
+
     public BuiltNode CreateGlobalVariableExpression(string name)
     {
         var scalar = new ScalarExpression

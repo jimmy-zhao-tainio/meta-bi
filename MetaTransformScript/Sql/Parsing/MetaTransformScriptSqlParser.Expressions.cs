@@ -567,6 +567,52 @@ public sealed partial class MetaTransformScriptSqlParser
         private BuiltNode ParseComparisonExpression()
         {
             var first = ParseScalarExpression();
+            if (MatchKeyword("NOT"))
+            {
+                if (MatchKeyword("BETWEEN"))
+                {
+                    var secondBetweenNegated = ParseScalarExpression();
+                    ExpectKeyword("AND");
+                    var thirdBetweenNegated = ParseScalarExpression();
+                    return builder.CreateBooleanNotExpression(
+                        builder.CreateBooleanTernaryExpression(first, secondBetweenNegated, thirdBetweenNegated, "Between"));
+                }
+
+                if (MatchKeyword("IN"))
+                {
+                    Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+                    if (PeekKeyword("SELECT"))
+                    {
+                        var subquery = ParseQueryExpression();
+                        Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+                        return builder.CreateInPredicateSubquery(first, builder.CreateScalarSubquery(subquery), notDefined: true);
+                    }
+
+                    var negatedValues = new List<BuiltNode> { ParseScalarExpression() };
+                    while (Match(MetaTransformScriptSqlTokenKind.Comma))
+                    {
+                        negatedValues.Add(ParseScalarExpression());
+                    }
+
+                    Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+                    return builder.CreateInPredicate(first, negatedValues, notDefined: true);
+                }
+
+                if (MatchKeyword("LIKE"))
+                {
+                    var pattern = ParseScalarExpression();
+                    BuiltNode? escapeExpression = null;
+                    if (MatchKeyword("ESCAPE"))
+                    {
+                        escapeExpression = ParseScalarExpression();
+                    }
+
+                    return builder.CreateLikePredicate(first, pattern, notDefined: true, escapeExpression);
+                }
+
+                throw ParseError($"Expected BETWEEN, IN, or LIKE after NOT but found '{Current.Text}'.");
+            }
+
             if (MatchKeyword("BETWEEN"))
             {
                 var secondBetween = ParseScalarExpression();
@@ -597,7 +643,14 @@ public sealed partial class MetaTransformScriptSqlParser
 
             if (MatchKeyword("LIKE"))
             {
-                return builder.CreateLikePredicate(first, ParseScalarExpression(), notDefined: false);
+                var pattern = ParseScalarExpression();
+                BuiltNode? escapeExpression = null;
+                if (MatchKeyword("ESCAPE"))
+                {
+                    escapeExpression = ParseScalarExpression();
+                }
+
+                return builder.CreateLikePredicate(first, pattern, notDefined: false, escapeExpression);
             }
 
             if (MatchKeyword("IS"))

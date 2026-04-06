@@ -553,6 +553,11 @@ namespace MetaTransformScript
         public List<LikePredicate> LikePredicateList { get; set; } = new();
         public bool ShouldSerializeLikePredicateList() => LikePredicateList.Count > 0;
 
+        [XmlArray("LikePredicateEscapeExpressionLinkList")]
+        [XmlArrayItem("LikePredicateEscapeExpressionLink")]
+        public List<LikePredicateEscapeExpressionLink> LikePredicateEscapeExpressionLinkList { get; set; } = new();
+        public bool ShouldSerializeLikePredicateEscapeExpressionLinkList() => LikePredicateEscapeExpressionLinkList.Count > 0;
+
         [XmlArray("LikePredicateFirstExpressionLinkList")]
         [XmlArrayItem("LikePredicateFirstExpressionLink")]
         public List<LikePredicateFirstExpressionLink> LikePredicateFirstExpressionLinkList { get; set; } = new();
@@ -1544,6 +1549,7 @@ namespace MetaTransformScript
             model.LeftFunctionCallList ??= new List<LeftFunctionCall>();
             model.LeftFunctionCallParametersItemList ??= new List<LeftFunctionCallParametersItem>();
             model.LikePredicateList ??= new List<LikePredicate>();
+            model.LikePredicateEscapeExpressionLinkList ??= new List<LikePredicateEscapeExpressionLink>();
             model.LikePredicateFirstExpressionLinkList ??= new List<LikePredicateFirstExpressionLink>();
             model.LikePredicateSecondExpressionLinkList ??= new List<LikePredicateSecondExpressionLink>();
             model.LiteralList ??= new List<Literal>();
@@ -1818,6 +1824,7 @@ namespace MetaTransformScript
             NormalizeLeftFunctionCallList(model);
             NormalizeLeftFunctionCallParametersItemList(model);
             NormalizeLikePredicateList(model);
+            NormalizeLikePredicateEscapeExpressionLinkList(model);
             NormalizeLikePredicateFirstExpressionLinkList(model);
             NormalizeLikePredicateSecondExpressionLinkList(model);
             NormalizeLiteralList(model);
@@ -2092,6 +2099,7 @@ namespace MetaTransformScript
             var leftFunctionCallListById = BuildById(model.LeftFunctionCallList, row => row.Id, "LeftFunctionCall");
             var leftFunctionCallParametersItemListById = BuildById(model.LeftFunctionCallParametersItemList, row => row.Id, "LeftFunctionCallParametersItem");
             var likePredicateListById = BuildById(model.LikePredicateList, row => row.Id, "LikePredicate");
+            var likePredicateEscapeExpressionLinkListById = BuildById(model.LikePredicateEscapeExpressionLinkList, row => row.Id, "LikePredicateEscapeExpressionLink");
             var likePredicateFirstExpressionLinkListById = BuildById(model.LikePredicateFirstExpressionLinkList, row => row.Id, "LikePredicateFirstExpressionLink");
             var likePredicateSecondExpressionLinkListById = BuildById(model.LikePredicateSecondExpressionLinkList, row => row.Id, "LikePredicateSecondExpressionLink");
             var literalListById = BuildById(model.LiteralList, row => row.Id, "Literal");
@@ -4800,6 +4808,38 @@ namespace MetaTransformScript
                     "LikePredicate",
                     row.Id,
                     "BaseId");
+            }
+
+            foreach (var row in model.LikePredicateEscapeExpressionLinkList)
+            {
+                row.OwnerId = ResolveRelationshipId(
+                    row.OwnerId,
+                    row.Owner?.Id,
+                    "LikePredicateEscapeExpressionLink",
+                    row.Id,
+                    "OwnerId");
+                row.Owner = RequireTarget(
+                    likePredicateListById,
+                    row.OwnerId,
+                    "LikePredicateEscapeExpressionLink",
+                    row.Id,
+                    "OwnerId");
+            }
+
+            foreach (var row in model.LikePredicateEscapeExpressionLinkList)
+            {
+                row.ValueId = ResolveRelationshipId(
+                    row.ValueId,
+                    row.Value?.Id,
+                    "LikePredicateEscapeExpressionLink",
+                    row.Id,
+                    "ValueId");
+                row.Value = RequireTarget(
+                    scalarExpressionListById,
+                    row.ValueId,
+                    "LikePredicateEscapeExpressionLink",
+                    row.Id,
+                    "ValueId");
             }
 
             foreach (var row in model.LikePredicateFirstExpressionLinkList)
@@ -9813,6 +9853,17 @@ namespace MetaTransformScript
                 row.NotDefined ??= string.Empty;
                 row.OdbcEscape ??= string.Empty;
                 row.BaseId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeLikePredicateEscapeExpressionLinkList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.LikePredicateEscapeExpressionLinkList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'LikePredicateEscapeExpressionLink' contains a row with empty Id.");
+                row.OwnerId ??= string.Empty;
+                row.ValueId ??= string.Empty;
             }
         }
 

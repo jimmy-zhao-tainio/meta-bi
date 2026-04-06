@@ -30,6 +30,8 @@ public sealed class SqlServiceOwnedImportTests
     [InlineData("050_remaining_sanctioned_sqlserver_types.sql")]
     [InlineData("051_cross_database_names.sql")]
     [InlineData("052_arithmetic_operators.sql")]
+    [InlineData("053_negated_predicates.sql")]
+    [InlineData("054_like_escape.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnSupportedInputs(string fileName)
     {
         var sql = LoadCorpus(fileName);
@@ -155,6 +157,37 @@ FROM dbo.XmlSource AS s
         Assert.Contains("NEXT VALUE FOR UtilityDb.dbo.CustomerSequence", emittedSql);
         Assert.Contains("CROSS APPLY UtilityDb.dbo.fnSplit(src.TagList) AS splitItem", emittedSql);
         Assert.Contains("FROM ArchiveDb.sales.CustomerArchive AS arc", emittedSql);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_MaterializesLeftAndRightFunctionCalls_AsDedicatedModelShapes()
+    {
+        var sql = LoadCorpus("029_literals_and_special_calls.sql");
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_test");
+
+        Assert.Single(model.LeftFunctionCallList);
+        Assert.Single(model.RightFunctionCallList);
+
+        var leftOrRightFunctionNames = model.FunctionCallFunctionNameLinkList
+            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.ValueId, StringComparison.Ordinal)).Value)
+            .Where(static name => string.Equals(name, "LEFT", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(name, "RIGHT", StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+
+        Assert.Empty(leftOrRightFunctionNames);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_MaterializesLikeEscape_AsDedicatedEscapeLink()
+    {
+        var sql = LoadCorpus("054_like_escape.sql");
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_test");
+
+        Assert.Equal(2, model.LikePredicateList.Count);
+        Assert.Equal(2, model.LikePredicateEscapeExpressionLinkList.Count);
+        Assert.All(model.LikePredicateList, predicate => Assert.False(string.Equals(predicate.OdbcEscape, "true", StringComparison.OrdinalIgnoreCase)));
     }
 
     [Fact]

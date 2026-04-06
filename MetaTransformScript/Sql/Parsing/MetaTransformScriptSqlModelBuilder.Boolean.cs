@@ -179,7 +179,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(BooleanIsNullExpression), row.Id));
     }
 
-    public BuiltNode CreateLikePredicate(BuiltNode firstExpression, BuiltNode secondExpression, bool notDefined)
+    public BuiltNode CreateLikePredicate(BuiltNode firstExpression, BuiltNode secondExpression, bool notDefined, BuiltNode? escapeExpression = null)
     {
         var booleanExpression = CreateBooleanExpressionBase();
 
@@ -202,6 +202,16 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             OwnerId = row.Id,
             ValueId = secondExpression.GetId(nameof(ScalarExpression))
         });
+
+        if (escapeExpression is not null)
+        {
+            model.LikePredicateEscapeExpressionLinkList.Add(new LikePredicateEscapeExpressionLink
+            {
+                Id = NextId(nameof(LikePredicateEscapeExpressionLink)),
+                OwnerId = row.Id,
+                ValueId = escapeExpression.GetId(nameof(ScalarExpression))
+            });
+        }
 
         return BuiltNode.Create(
             (nameof(BooleanExpression), booleanExpression.GetId(nameof(BooleanExpression))),
