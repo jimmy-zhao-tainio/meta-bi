@@ -104,12 +104,92 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private BuiltNode ParseTableReferencePrimary()
         {
+            if (CanStartXmlNodesTableReference())
+            {
+                return ParseXmlNodesTableReference();
+            }
+
             if (Current.Kind == MetaTransformScriptSqlTokenKind.OpenParen)
             {
                 return ParseParenthesizedTableReference();
             }
 
             return ParseNamedOrFunctionTableReference();
+        }
+
+        private bool CanStartXmlNodesTableReference()
+        {
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.Identifier)
+            {
+                return false;
+            }
+
+            var probe = position;
+            if (PeekToken(probe).Kind != MetaTransformScriptSqlTokenKind.Identifier)
+            {
+                return false;
+            }
+
+            probe++;
+            var identifierCount = 1;
+
+            while (PeekToken(probe).Kind == MetaTransformScriptSqlTokenKind.Dot)
+            {
+                if (PeekToken(probe + 1).Kind != MetaTransformScriptSqlTokenKind.Identifier)
+                {
+                    return false;
+                }
+
+                if (identifierCount >= 1
+                    && string.Equals(PeekToken(probe + 1).Value, "nodes", StringComparison.OrdinalIgnoreCase)
+                    && PeekToken(probe + 2).Kind == MetaTransformScriptSqlTokenKind.OpenParen)
+                {
+                    return true;
+                }
+
+                probe += 2;
+                identifierCount++;
+            }
+
+            return false;
+        }
+
+        private BuiltNode ParseXmlNodesTableReference()
+        {
+            var targetIdentifierTokens = new List<MetaTransformScriptSqlToken> { ParseIdentifierToken() };
+            while (Current.Kind == MetaTransformScriptSqlTokenKind.Dot
+                && Peek().Kind == MetaTransformScriptSqlTokenKind.Identifier
+                && !string.Equals(Peek().Value, "nodes", StringComparison.OrdinalIgnoreCase))
+            {
+                Expect(MetaTransformScriptSqlTokenKind.Dot);
+                targetIdentifierTokens.Add(ParseIdentifierToken());
+            }
+
+            var targetExpression = builder.CreateColumnReferenceExpression(
+                builder.CreateMultiPartIdentifier(
+                    targetIdentifierTokens
+                        .Select(token => builder.CreateIdentifier(token.Value, token.QuoteType))
+                        .ToArray()));
+
+            Expect(MetaTransformScriptSqlTokenKind.Dot);
+            var methodName = ParseIdentifierToken();
+            if (!string.Equals(methodName.Value, "nodes", StringComparison.OrdinalIgnoreCase))
+            {
+                throw ParseError($"Expected 'nodes' but found '{methodName.Text}'.");
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.StringLiteral)
+            {
+                throw ParseError($"Expected an XQuery string literal but found '{Current.Text}'.");
+            }
+
+            var xQueryLiteralToken = Advance();
+            var xQueryLiteral = builder.CreateStringLiteral(xQueryLiteralToken.Value);
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+
+            var (alias, columns) = ParseRequiredTableAliasAndColumns();
+            return builder.CreateXmlNodesTableReference(targetExpression, xQueryLiteral, alias, columns);
         }
 
         private BuiltNode ParseNamedOrFunctionTableReference()

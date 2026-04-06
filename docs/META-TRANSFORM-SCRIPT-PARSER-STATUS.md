@@ -103,20 +103,25 @@ Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. Th
 - [x] `PARTITION BY`
 - [x] window `ORDER BY`
 - [x] numeric window frame delimiters used by the current corpus
+- [x] analytic/window functions such as `FIRST_VALUE`, `LAST_VALUE`, `CUME_DIST`, and `PERCENT_RANK`
+- [x] percentile analytic/window functions with `WITHIN GROUP` such as `PERCENTILE_CONT` and `PERCENTILE_DISC`
 
 - [x] `WITH XMLNAMESPACES (...)`
 - [x] `WITH XMLNAMESPACES (DEFAULT ...)`
 - [x] XML method-call targets such as `.value(...)`, `.query(...)`, `.exist(...)`
+- [x] XML `nodes(...)` table sources
 
 - [x] schema object names with more than two parts
 - [x] reference corpus coverage through `051_cross_database_names.sql`
 - [x] reference corpus coverage for `052_arithmetic_operators.sql`
 - [x] reference corpus coverage for `053_negated_predicates.sql`
 - [x] reference corpus coverage for `054_like_escape.sql`
+- [x] reference corpus coverage for `055_xml_nodes.sql`
+- [x] reference corpus coverage for `056_analytic_window_functions.sql`
+- [x] reference corpus coverage for `057_percentile_within_group.sql`
 
 ## Mainline Support Gaps We Likely Should Close
 
-- [ ] broader scalar-expression hardening beyond the current arithmetic, call, and case coverage
 - [ ] distributed aggregation grouping specifications in emitter
 
 ## Deliberate Non-Support

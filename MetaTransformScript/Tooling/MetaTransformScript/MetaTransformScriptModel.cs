@@ -383,6 +383,11 @@ namespace MetaTransformScript
         public List<FunctionCallParametersItem> FunctionCallParametersItemList { get; set; } = new();
         public bool ShouldSerializeFunctionCallParametersItemList() => FunctionCallParametersItemList.Count > 0;
 
+        [XmlArray("FunctionCallWithinGroupOrderByClauseLinkList")]
+        [XmlArrayItem("FunctionCallWithinGroupOrderByClauseLink")]
+        public List<FunctionCallWithinGroupOrderByClauseLink> FunctionCallWithinGroupOrderByClauseLinkList { get; set; } = new();
+        public bool ShouldSerializeFunctionCallWithinGroupOrderByClauseLinkList() => FunctionCallWithinGroupOrderByClauseLinkList.Count > 0;
+
         [XmlArray("GlobalFunctionTableReferenceList")]
         [XmlArrayItem("GlobalFunctionTableReference")]
         public List<GlobalFunctionTableReference> GlobalFunctionTableReferenceList { get; set; } = new();
@@ -1383,6 +1388,21 @@ namespace MetaTransformScript
         public List<XmlNamespacesXmlNamespacesElementsItem> XmlNamespacesXmlNamespacesElementsItemList { get; set; } = new();
         public bool ShouldSerializeXmlNamespacesXmlNamespacesElementsItemList() => XmlNamespacesXmlNamespacesElementsItemList.Count > 0;
 
+        [XmlArray("XmlNodesTableReferenceList")]
+        [XmlArrayItem("XmlNodesTableReference")]
+        public List<XmlNodesTableReference> XmlNodesTableReferenceList { get; set; } = new();
+        public bool ShouldSerializeXmlNodesTableReferenceList() => XmlNodesTableReferenceList.Count > 0;
+
+        [XmlArray("XmlNodesTableReferenceTargetExpressionLinkList")]
+        [XmlArrayItem("XmlNodesTableReferenceTargetExpressionLink")]
+        public List<XmlNodesTableReferenceTargetExpressionLink> XmlNodesTableReferenceTargetExpressionLinkList { get; set; } = new();
+        public bool ShouldSerializeXmlNodesTableReferenceTargetExpressionLinkList() => XmlNodesTableReferenceTargetExpressionLinkList.Count > 0;
+
+        [XmlArray("XmlNodesTableReferenceXQueryStringLinkList")]
+        [XmlArrayItem("XmlNodesTableReferenceXQueryStringLink")]
+        public List<XmlNodesTableReferenceXQueryStringLink> XmlNodesTableReferenceXQueryStringLinkList { get; set; } = new();
+        public bool ShouldSerializeXmlNodesTableReferenceXQueryStringLinkList() => XmlNodesTableReferenceXQueryStringLinkList.Count > 0;
+
         public static MetaTransformScriptModel LoadFromXmlWorkspace(
             string workspacePath,
             bool searchUpward = true)
@@ -1515,6 +1535,7 @@ namespace MetaTransformScript
             model.FunctionCallFunctionNameLinkList ??= new List<FunctionCallFunctionNameLink>();
             model.FunctionCallOverClauseLinkList ??= new List<FunctionCallOverClauseLink>();
             model.FunctionCallParametersItemList ??= new List<FunctionCallParametersItem>();
+            model.FunctionCallWithinGroupOrderByClauseLinkList ??= new List<FunctionCallWithinGroupOrderByClauseLink>();
             model.GlobalFunctionTableReferenceList ??= new List<GlobalFunctionTableReference>();
             model.GlobalFunctionTableReferenceNameLinkList ??= new List<GlobalFunctionTableReferenceNameLink>();
             model.GlobalFunctionTableReferenceParametersItemList ??= new List<GlobalFunctionTableReferenceParametersItem>();
@@ -1715,6 +1736,9 @@ namespace MetaTransformScript
             model.XmlNamespacesElementList ??= new List<XmlNamespacesElement>();
             model.XmlNamespacesElementStringLinkList ??= new List<XmlNamespacesElementStringLink>();
             model.XmlNamespacesXmlNamespacesElementsItemList ??= new List<XmlNamespacesXmlNamespacesElementsItem>();
+            model.XmlNodesTableReferenceList ??= new List<XmlNodesTableReference>();
+            model.XmlNodesTableReferenceTargetExpressionLinkList ??= new List<XmlNodesTableReferenceTargetExpressionLink>();
+            model.XmlNodesTableReferenceXQueryStringLinkList ??= new List<XmlNodesTableReferenceXQueryStringLink>();
 
             NormalizeAtTimeZoneCallList(model);
             NormalizeAtTimeZoneCallDateValueLinkList(model);
@@ -1790,6 +1814,7 @@ namespace MetaTransformScript
             NormalizeFunctionCallFunctionNameLinkList(model);
             NormalizeFunctionCallOverClauseLinkList(model);
             NormalizeFunctionCallParametersItemList(model);
+            NormalizeFunctionCallWithinGroupOrderByClauseLinkList(model);
             NormalizeGlobalFunctionTableReferenceList(model);
             NormalizeGlobalFunctionTableReferenceNameLinkList(model);
             NormalizeGlobalFunctionTableReferenceParametersItemList(model);
@@ -1990,6 +2015,9 @@ namespace MetaTransformScript
             NormalizeXmlNamespacesElementList(model);
             NormalizeXmlNamespacesElementStringLinkList(model);
             NormalizeXmlNamespacesXmlNamespacesElementsItemList(model);
+            NormalizeXmlNodesTableReferenceList(model);
+            NormalizeXmlNodesTableReferenceTargetExpressionLinkList(model);
+            NormalizeXmlNodesTableReferenceXQueryStringLinkList(model);
 
             var atTimeZoneCallListById = BuildById(model.AtTimeZoneCallList, row => row.Id, "AtTimeZoneCall");
             var atTimeZoneCallDateValueLinkListById = BuildById(model.AtTimeZoneCallDateValueLinkList, row => row.Id, "AtTimeZoneCallDateValueLink");
@@ -2065,6 +2093,7 @@ namespace MetaTransformScript
             var functionCallFunctionNameLinkListById = BuildById(model.FunctionCallFunctionNameLinkList, row => row.Id, "FunctionCallFunctionNameLink");
             var functionCallOverClauseLinkListById = BuildById(model.FunctionCallOverClauseLinkList, row => row.Id, "FunctionCallOverClauseLink");
             var functionCallParametersItemListById = BuildById(model.FunctionCallParametersItemList, row => row.Id, "FunctionCallParametersItem");
+            var functionCallWithinGroupOrderByClauseLinkListById = BuildById(model.FunctionCallWithinGroupOrderByClauseLinkList, row => row.Id, "FunctionCallWithinGroupOrderByClauseLink");
             var globalFunctionTableReferenceListById = BuildById(model.GlobalFunctionTableReferenceList, row => row.Id, "GlobalFunctionTableReference");
             var globalFunctionTableReferenceNameLinkListById = BuildById(model.GlobalFunctionTableReferenceNameLinkList, row => row.Id, "GlobalFunctionTableReferenceNameLink");
             var globalFunctionTableReferenceParametersItemListById = BuildById(model.GlobalFunctionTableReferenceParametersItemList, row => row.Id, "GlobalFunctionTableReferenceParametersItem");
@@ -2265,6 +2294,9 @@ namespace MetaTransformScript
             var xmlNamespacesElementListById = BuildById(model.XmlNamespacesElementList, row => row.Id, "XmlNamespacesElement");
             var xmlNamespacesElementStringLinkListById = BuildById(model.XmlNamespacesElementStringLinkList, row => row.Id, "XmlNamespacesElementStringLink");
             var xmlNamespacesXmlNamespacesElementsItemListById = BuildById(model.XmlNamespacesXmlNamespacesElementsItemList, row => row.Id, "XmlNamespacesXmlNamespacesElementsItem");
+            var xmlNodesTableReferenceListById = BuildById(model.XmlNodesTableReferenceList, row => row.Id, "XmlNodesTableReference");
+            var xmlNodesTableReferenceTargetExpressionLinkListById = BuildById(model.XmlNodesTableReferenceTargetExpressionLinkList, row => row.Id, "XmlNodesTableReferenceTargetExpressionLink");
+            var xmlNodesTableReferenceXQueryStringLinkListById = BuildById(model.XmlNodesTableReferenceXQueryStringLinkList, row => row.Id, "XmlNodesTableReferenceXQueryStringLink");
 
             foreach (var row in model.AtTimeZoneCallList)
             {
@@ -4070,6 +4102,38 @@ namespace MetaTransformScript
                     scalarExpressionListById,
                     row.ValueId,
                     "FunctionCallParametersItem",
+                    row.Id,
+                    "ValueId");
+            }
+
+            foreach (var row in model.FunctionCallWithinGroupOrderByClauseLinkList)
+            {
+                row.OwnerId = ResolveRelationshipId(
+                    row.OwnerId,
+                    row.Owner?.Id,
+                    "FunctionCallWithinGroupOrderByClauseLink",
+                    row.Id,
+                    "OwnerId");
+                row.Owner = RequireTarget(
+                    functionCallListById,
+                    row.OwnerId,
+                    "FunctionCallWithinGroupOrderByClauseLink",
+                    row.Id,
+                    "OwnerId");
+            }
+
+            foreach (var row in model.FunctionCallWithinGroupOrderByClauseLinkList)
+            {
+                row.ValueId = ResolveRelationshipId(
+                    row.ValueId,
+                    row.Value?.Id,
+                    "FunctionCallWithinGroupOrderByClauseLink",
+                    row.Id,
+                    "ValueId");
+                row.Value = RequireTarget(
+                    orderByClauseListById,
+                    row.ValueId,
+                    "FunctionCallWithinGroupOrderByClauseLink",
                     row.Id,
                     "ValueId");
             }
@@ -8682,6 +8746,86 @@ namespace MetaTransformScript
                     "ValueId");
             }
 
+            foreach (var row in model.XmlNodesTableReferenceList)
+            {
+                row.BaseId = ResolveRelationshipId(
+                    row.BaseId,
+                    row.Base?.Id,
+                    "XmlNodesTableReference",
+                    row.Id,
+                    "BaseId");
+                row.Base = RequireTarget(
+                    tableReferenceWithAliasAndColumnsListById,
+                    row.BaseId,
+                    "XmlNodesTableReference",
+                    row.Id,
+                    "BaseId");
+            }
+
+            foreach (var row in model.XmlNodesTableReferenceTargetExpressionLinkList)
+            {
+                row.OwnerId = ResolveRelationshipId(
+                    row.OwnerId,
+                    row.Owner?.Id,
+                    "XmlNodesTableReferenceTargetExpressionLink",
+                    row.Id,
+                    "OwnerId");
+                row.Owner = RequireTarget(
+                    xmlNodesTableReferenceListById,
+                    row.OwnerId,
+                    "XmlNodesTableReferenceTargetExpressionLink",
+                    row.Id,
+                    "OwnerId");
+            }
+
+            foreach (var row in model.XmlNodesTableReferenceTargetExpressionLinkList)
+            {
+                row.ValueId = ResolveRelationshipId(
+                    row.ValueId,
+                    row.Value?.Id,
+                    "XmlNodesTableReferenceTargetExpressionLink",
+                    row.Id,
+                    "ValueId");
+                row.Value = RequireTarget(
+                    scalarExpressionListById,
+                    row.ValueId,
+                    "XmlNodesTableReferenceTargetExpressionLink",
+                    row.Id,
+                    "ValueId");
+            }
+
+            foreach (var row in model.XmlNodesTableReferenceXQueryStringLinkList)
+            {
+                row.OwnerId = ResolveRelationshipId(
+                    row.OwnerId,
+                    row.Owner?.Id,
+                    "XmlNodesTableReferenceXQueryStringLink",
+                    row.Id,
+                    "OwnerId");
+                row.Owner = RequireTarget(
+                    xmlNodesTableReferenceListById,
+                    row.OwnerId,
+                    "XmlNodesTableReferenceXQueryStringLink",
+                    row.Id,
+                    "OwnerId");
+            }
+
+            foreach (var row in model.XmlNodesTableReferenceXQueryStringLinkList)
+            {
+                row.ValueId = ResolveRelationshipId(
+                    row.ValueId,
+                    row.Value?.Id,
+                    "XmlNodesTableReferenceXQueryStringLink",
+                    row.Id,
+                    "ValueId");
+                row.Value = RequireTarget(
+                    stringLiteralListById,
+                    row.ValueId,
+                    "XmlNodesTableReferenceXQueryStringLink",
+                    row.Id,
+                    "ValueId");
+            }
+
         }
 
         private static void NormalizeAtTimeZoneCallList(MetaTransformScriptModel model)
@@ -9483,6 +9627,17 @@ namespace MetaTransformScript
                 ArgumentNullException.ThrowIfNull(row);
                 row.Id = RequireIdentity(row.Id, "Entity 'FunctionCallParametersItem' contains a row with empty Id.");
                 row.Ordinal ??= string.Empty;
+                row.OwnerId ??= string.Empty;
+                row.ValueId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeFunctionCallWithinGroupOrderByClauseLinkList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.FunctionCallWithinGroupOrderByClauseLinkList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'FunctionCallWithinGroupOrderByClauseLink' contains a row with empty Id.");
                 row.OwnerId ??= string.Empty;
                 row.ValueId ??= string.Empty;
             }
@@ -11637,6 +11792,38 @@ namespace MetaTransformScript
                 ArgumentNullException.ThrowIfNull(row);
                 row.Id = RequireIdentity(row.Id, "Entity 'XmlNamespacesXmlNamespacesElementsItem' contains a row with empty Id.");
                 row.Ordinal ??= string.Empty;
+                row.OwnerId ??= string.Empty;
+                row.ValueId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeXmlNodesTableReferenceList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.XmlNodesTableReferenceList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'XmlNodesTableReference' contains a row with empty Id.");
+                row.BaseId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeXmlNodesTableReferenceTargetExpressionLinkList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.XmlNodesTableReferenceTargetExpressionLinkList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'XmlNodesTableReferenceTargetExpressionLink' contains a row with empty Id.");
+                row.OwnerId ??= string.Empty;
+                row.ValueId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeXmlNodesTableReferenceXQueryStringLinkList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.XmlNodesTableReferenceXQueryStringLinkList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'XmlNodesTableReferenceXQueryStringLink' contains a row with empty Id.");
                 row.OwnerId ??= string.Empty;
                 row.ValueId ??= string.Empty;
             }

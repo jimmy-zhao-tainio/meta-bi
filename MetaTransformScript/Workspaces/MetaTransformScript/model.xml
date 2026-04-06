@@ -486,6 +486,12 @@
         <Relationship entity="OverClause" role="Value" />
       </RelationshipList>
     </Entity>
+    <Entity name="FunctionCallWithinGroupOrderByClauseLink">
+      <RelationshipList>
+        <Relationship entity="FunctionCall" role="Owner" />
+        <Relationship entity="OrderByClause" role="Value" />
+      </RelationshipList>
+    </Entity>
     <Entity name="FunctionCallParametersItem">
       <PropertyList>
         <Property name="Ordinal" isRequired="false" />
@@ -646,6 +652,23 @@
       <RelationshipList>
         <Relationship entity="InlineDerivedTable" role="Owner" />
         <Relationship entity="RowValue" role="Value" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="XmlNodesTableReference">
+      <RelationshipList>
+        <Relationship entity="TableReferenceWithAliasAndColumns" role="Base" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="XmlNodesTableReferenceTargetExpressionLink">
+      <RelationshipList>
+        <Relationship entity="XmlNodesTableReference" role="Owner" />
+        <Relationship entity="ScalarExpression" role="Value" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="XmlNodesTableReferenceXQueryStringLink">
+      <RelationshipList>
+        <Relationship entity="XmlNodesTableReference" role="Owner" />
+        <Relationship entity="StringLiteral" role="Value" />
       </RelationshipList>
     </Entity>
     <Entity name="IntegerLiteral">

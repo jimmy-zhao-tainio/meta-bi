@@ -32,6 +32,9 @@ public sealed class SqlServiceOwnedImportTests
     [InlineData("052_arithmetic_operators.sql")]
     [InlineData("053_negated_predicates.sql")]
     [InlineData("054_like_escape.sql")]
+    [InlineData("055_xml_nodes.sql")]
+    [InlineData("056_analytic_window_functions.sql")]
+    [InlineData("057_percentile_within_group.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnSupportedInputs(string fileName)
     {
         var sql = LoadCorpus(fileName);
@@ -188,6 +191,28 @@ FROM dbo.XmlSource AS s
         Assert.Equal(2, model.LikePredicateList.Count);
         Assert.Equal(2, model.LikePredicateEscapeExpressionLinkList.Count);
         Assert.All(model.LikePredicateList, predicate => Assert.False(string.Equals(predicate.OdbcEscape, "true", StringComparison.OrdinalIgnoreCase)));
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_MaterializesXmlNodesTableReference_AsDedicatedModelShape()
+    {
+        var sql = LoadCorpus("055_xml_nodes.sql");
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_test");
+
+        Assert.Single(model.XmlNodesTableReferenceList);
+        Assert.Single(model.XmlNodesTableReferenceTargetExpressionLinkList);
+        Assert.Single(model.XmlNodesTableReferenceXQueryStringLinkList);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_MaterializesWithinGroupOrderBy_OnFunctionCalls()
+    {
+        var sql = LoadCorpus("057_percentile_within_group.sql");
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_test");
+
+        Assert.Equal(2, model.FunctionCallWithinGroupOrderByClauseLinkList.Count);
     }
 
     [Fact]

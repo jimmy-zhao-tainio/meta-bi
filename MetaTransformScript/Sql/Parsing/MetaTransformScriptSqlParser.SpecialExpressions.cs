@@ -80,6 +80,17 @@ public sealed partial class MetaTransformScriptSqlParser
                 functionCall = builder.AttachFunctionCallCallTarget(functionCall, callTarget);
             }
 
+            if (MatchKeyword("WITHIN"))
+            {
+                ExpectKeyword("GROUP");
+                Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+                ExpectKeyword("ORDER");
+                ExpectKeyword("BY");
+                var orderByClause = ParseOrderByClause();
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+                functionCall = builder.AttachWithinGroupOrderByClause(functionCall, orderByClause);
+            }
+
             return PeekKeyword("OVER")
                 ? builder.AttachOverClause(functionCall, ParseOverClause())
                 : functionCall;

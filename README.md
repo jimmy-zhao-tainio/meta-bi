@@ -243,13 +243,14 @@ meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\
 
 ### meta-transform-script
 
-`MetaTransformScript` provides a canonical, semantically round-trippable SQL `VIEW` syntax model for a supported bounded SQL surface. It can import supported SQL into canonical workspace form, emit semantically equivalent SQL back out, and prove round-trip stability with `meta instance diff`.
+`MetaTransformScript` provides a canonical, semantically round-trippable SQL `VIEW` syntax model for a supported bounded SQL surface. It imports supported SQL into canonical workspace form, emits semantically equivalent SQL back out, and proves stability through `SQL -> workspace -> SQL -> workspace` plus `meta instance diff`.
 
 Purpose:
 - author and maintain a sanctioned `MetaTransformScript` workspace for the supported SQL `VIEW` body subset
 - import supported SQL from files, folders, or inline code into canonical workspace form
 - emit semantically equivalent SQL back out of that workspace
 - prove the core invariant `SQL -> workspace -> SQL -> workspace` with `meta instance diff`
+- serve as the authored syntax substrate for later binding, type inference, and validation layers
 
 Current command surface:
 - `meta-transform-script help`
@@ -397,6 +398,7 @@ Supported SQL surface today:
   - window frames
   - named `WINDOW` definitions
   - windowed aggregate and analytic functions covered by the current corpus
+  - percentile analytic/window functions with `WITHIN GROUP` such as `PERCENTILE_CONT` and `PERCENTILE_DISC`
 - scalar/value expression families:
   - column references
   - multipart identifiers
@@ -426,6 +428,11 @@ Supported SQL surface today:
 - XML-in-view support:
   - `WITH XMLNAMESPACES`
   - XML method-style calls as exercised in the reference corpus, for example `.value(...)`, `.query(...)`, and `.exist(...)`
+  - XML `nodes(...)` table sources
+
+Current detailed parser/emitter checklist:
+- the exact implemented and verified surface is tracked in [docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md](docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md)
+- remaining items there are ordinary parser/emitter/model/import-shaping gaps
 
 Current unsupported or excluded surface:
 - `OPENJSON`
@@ -441,7 +448,7 @@ Current unsupported or excluded surface:
 Reference corpus status:
 - `MetaTransformScript\Reference\Corpus` contains the broader working SQL corpus used to pressure the importer/emitter
 - the currently supported reference-corpus round-trip demo uses the supported subset of that corpus and excludes the unsupported surfaces listed above
-- the current supported reference-corpus demo round-trips `32` scripts through `SQL -> workspace -> SQL -> workspace`
+- the exact supported parser/emitter surface and proof cases are tracked in `docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md`
 - the proof point is `meta instance diff` reporting no differences between the original and round-tripped workspaces
 
 Reference corpus demo commands:

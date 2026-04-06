@@ -301,6 +301,78 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(InlineDerivedTable), inlineDerivedTable.Id));
     }
 
+    public BuiltNode CreateXmlNodesTableReference(
+        BuiltNode targetExpression,
+        BuiltNode xQueryString,
+        BuiltNode alias,
+        IReadOnlyList<BuiltNode>? columns = null)
+    {
+        var tableReference = new TableReference
+        {
+            Id = NextId(nameof(TableReference))
+        };
+        model.TableReferenceList.Add(tableReference);
+
+        var aliasBase = new TableReferenceWithAlias
+        {
+            Id = NextId(nameof(TableReferenceWithAlias)),
+            BaseId = tableReference.Id
+        };
+        model.TableReferenceWithAliasList.Add(aliasBase);
+        model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
+        {
+            Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
+            OwnerId = aliasBase.Id,
+            ValueId = alias.GetId(nameof(Identifier))
+        });
+
+        var aliasAndColumns = new TableReferenceWithAliasAndColumns
+        {
+            Id = NextId(nameof(TableReferenceWithAliasAndColumns)),
+            BaseId = aliasBase.Id
+        };
+        model.TableReferenceWithAliasAndColumnsList.Add(aliasAndColumns);
+
+        if (columns is not null)
+        {
+            for (var ordinal = 0; ordinal < columns.Count; ordinal++)
+            {
+                model.TableReferenceWithAliasAndColumnsColumnsItemList.Add(new TableReferenceWithAliasAndColumnsColumnsItem
+                {
+                    Id = NextId(nameof(TableReferenceWithAliasAndColumnsColumnsItem)),
+                    OwnerId = aliasAndColumns.Id,
+                    ValueId = columns[ordinal].GetId(nameof(Identifier)),
+                    Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+                });
+            }
+        }
+
+        var xmlNodesTableReference = new XmlNodesTableReference
+        {
+            Id = NextId(nameof(XmlNodesTableReference)),
+            BaseId = aliasAndColumns.Id
+        };
+        model.XmlNodesTableReferenceList.Add(xmlNodesTableReference);
+        model.XmlNodesTableReferenceTargetExpressionLinkList.Add(new XmlNodesTableReferenceTargetExpressionLink
+        {
+            Id = NextId(nameof(XmlNodesTableReferenceTargetExpressionLink)),
+            OwnerId = xmlNodesTableReference.Id,
+            ValueId = targetExpression.GetId(nameof(ScalarExpression))
+        });
+        model.XmlNodesTableReferenceXQueryStringLinkList.Add(new XmlNodesTableReferenceXQueryStringLink
+        {
+            Id = NextId(nameof(XmlNodesTableReferenceXQueryStringLink)),
+            OwnerId = xmlNodesTableReference.Id,
+            ValueId = xQueryString.GetId(nameof(StringLiteral))
+        });
+
+        return BuiltNode.Create(
+            (nameof(TableReference), tableReference.Id),
+            (nameof(TableReferenceWithAlias), aliasBase.Id),
+            (nameof(TableReferenceWithAliasAndColumns), aliasAndColumns.Id),
+            (nameof(XmlNodesTableReference), xmlNodesTableReference.Id));
+    }
+
     public BuiltNode CreateJoinParenthesisTableReference(BuiltNode join)
     {
         var tableReference = new TableReference

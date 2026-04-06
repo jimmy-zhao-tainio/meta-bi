@@ -73,6 +73,24 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             return $"{schemaObject}({string.Join(", ", parameters)}){RenderAliasAndColumns(aliasAndColumnsBase!)}";
         }
 
+        var xmlNodesTableReference = aliasAndColumnsBase is null ? null : FindByBaseId(model.XmlNodesTableReferenceList, aliasAndColumnsBase.Id);
+        if (xmlNodesTableReference is not null)
+        {
+            var targetExpression = RenderScalarExpression(GetOwnerLink(
+                model.XmlNodesTableReferenceTargetExpressionLinkList,
+                xmlNodesTableReference.Id,
+                "XmlNodesTableReference.TargetExpression").Value);
+            var xQueryString = GetOwnerLink(
+                model.XmlNodesTableReferenceXQueryStringLinkList,
+                xmlNodesTableReference.Id,
+                "XmlNodesTableReference.XQueryString").Value;
+            var xQueryLiteral = RenderLiteral(GetById(
+                model.LiteralList,
+                xQueryString.BaseId,
+                "XmlNodesTableReference.XQueryStringBase"));
+            return $"{targetExpression}.nodes({xQueryLiteral}){RenderAliasAndColumns(aliasAndColumnsBase!)}";
+        }
+
         var pivotedTableReference = aliasBase is null ? null : FindByBaseId(model.PivotedTableReferenceList, aliasBase.Id);
         if (pivotedTableReference is not null)
         {

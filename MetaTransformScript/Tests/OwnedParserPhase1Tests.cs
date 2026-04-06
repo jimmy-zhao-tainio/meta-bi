@@ -51,6 +51,9 @@ public sealed class OwnedParserPhase1Tests
     [InlineData("052_arithmetic_operators.sql")]
     [InlineData("053_negated_predicates.sql")]
     [InlineData("054_like_escape.sql")]
+    [InlineData("055_xml_nodes.sql")]
+    [InlineData("056_analytic_window_functions.sql")]
+    [InlineData("057_percentile_within_group.sql")]
     public void ParserRoundTripsSupportedCorpus(string fileName)
     {
         var sql = LoadCorpus(fileName);

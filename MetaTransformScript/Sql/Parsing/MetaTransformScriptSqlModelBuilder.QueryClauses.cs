@@ -285,6 +285,18 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         return BuiltNode.Create((nameof(OffsetClause), offsetClause.Id));
     }
 
+    public BuiltNode AttachWithinGroupOrderByClause(BuiltNode functionCall, BuiltNode orderByClause)
+    {
+        model.FunctionCallWithinGroupOrderByClauseLinkList.Add(new FunctionCallWithinGroupOrderByClauseLink
+        {
+            Id = NextId(nameof(FunctionCallWithinGroupOrderByClauseLink)),
+            OwnerId = functionCall.GetId(nameof(FunctionCall)),
+            ValueId = orderByClause.GetId(nameof(OrderByClause))
+        });
+
+        return functionCall;
+    }
+
     public BuiltNode CreateWhereClause(BuiltNode searchCondition)
     {
         var row = new WhereClause

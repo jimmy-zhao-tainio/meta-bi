@@ -274,13 +274,17 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
         var callTargetLink = FindOwnerLink(model.FunctionCallCallTargetLinkList, functionCall.Id);
         var overClauseLink = FindOwnerLink(model.FunctionCallOverClauseLinkList, functionCall.Id);
+        var withinGroupOrderByClauseLink = FindOwnerLink(model.FunctionCallWithinGroupOrderByClauseLinkList, functionCall.Id);
+        var withinGroupSuffix = withinGroupOrderByClauseLink is null
+            ? string.Empty
+            : $" WITHIN GROUP ({RenderOrderByClause(withinGroupOrderByClauseLink.Value)})";
         if (callTargetLink is not null)
         {
-            var renderedCall = $"{RenderCallTarget(callTargetLink.Value)}.{functionName}({uniqueRowFilter}{string.Join(", ", args)})";
+            var renderedCall = $"{RenderCallTarget(callTargetLink.Value)}.{functionName}({uniqueRowFilter}{string.Join(", ", args)}){withinGroupSuffix}";
             return overClauseLink is null ? renderedCall : renderedCall + " " + RenderOverClause(overClauseLink.Value);
         }
 
-        var rendered = $"{functionName}({uniqueRowFilter}{string.Join(", ", args)})";
+        var rendered = $"{functionName}({uniqueRowFilter}{string.Join(", ", args)}){withinGroupSuffix}";
         return overClauseLink is null ? rendered : rendered + " " + RenderOverClause(overClauseLink.Value);
     }
 
