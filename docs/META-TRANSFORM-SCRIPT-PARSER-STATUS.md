@@ -9,7 +9,7 @@ Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. Th
 - [x] SQL emit path uses the `MetaTransformScript` emitter
 - [x] `SQL -> workspace -> SQL -> workspace` is stable on the current supported demo set
 - [x] `meta instance diff` reports no differences on the current supported demo set
-- [x] `dotnet test MetaTransformScript\Tests\MetaTransformScript.Tests.csproj` passes
+- [x] `dotnet test MetaTransform\Script\Tests\MetaTransformScript.Tests.csproj` passes
 
 - [x] `CREATE VIEW ... AS ...` envelope
 - [x] `CREATE VIEW` column lists

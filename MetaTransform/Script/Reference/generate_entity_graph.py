@@ -223,7 +223,7 @@ def render_svg(entities: list[str]) -> str:
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width:.0f}" height="{height:.0f}" viewBox="0 0 {width:.0f} {height:.0f}">',
         f'<rect width="100%" height="100%" fill="{BACKGROUND}" />',
         f'<text x="{LEFT_MARGIN}" y="30" font-family="{FONT_FAMILY}" font-size="22" font-weight="700" fill="{TEXT}">MetaTransformScript entity overview</text>',
-        f'<text x="{LEFT_MARGIN}" y="50" font-family="{FONT_FAMILY}" font-size="12" fill="{MUTED}">Generated from MetaTransformScript/Workspaces/MetaTransformScript/model.xml - {len(entities)} entities grouped by role</text>',
+        f'<text x="{LEFT_MARGIN}" y="50" font-family="{FONT_FAMILY}" font-size="12" fill="{MUTED}">Generated from MetaTransform/Script/Workspaces/MetaTransformScript/model.xml - {len(entities)} entities grouped by role</text>',
     ]
 
     for panel_index, (title, category, nodes) in enumerate(columns):

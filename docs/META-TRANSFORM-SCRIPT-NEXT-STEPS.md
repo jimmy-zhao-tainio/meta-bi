@@ -95,10 +95,16 @@ Given the existing ecosystem, the obvious answer is that source and target schem
 
 So the operational contract becomes:
 
-`TransformScript + SourceSchema + TargetSchema`  
+`TransformScript + ActiveLanguageProfile + SourceSchema + TargetSchema`  
 `-> binding`  
 `-> inferred output schema`  
 `-> validation result`
+
+The active language profile should resolve by one invariant only:
+
+1. semantic call input override
+2. else `TransformScript.LanguageProfileId`
+3. else explicit failure
 
 That is a strong backend story.
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="MetaTransformBinding">
+  <EntityList>
+    <Entity name="TransformBinding">
+      <PropertyList>
+        <Property name="TransformScriptId" />
+        <Property name="TransformScriptName" isRequired="false" />
+        <Property name="ActiveLanguageProfileId" />
+      </PropertyList>
+    </Entity>
+    <Entity name="TransformBindingFinalRowsetLink">
+      <RelationshipList>
+        <Relationship entity="TransformBinding" role="Owner" />
+        <Relationship entity="BoundRowset" role="Value" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BoundRowset">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DerivationKind" />
+        <Property name="RowsetRole" isRequired="false" />
+        <Property name="SyntaxId" isRequired="false" />
+        <Property name="SourceTableId" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" role="Owner" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BoundRowsetInput">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="InputRole" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BoundRowset" role="Owner" />
+        <Relationship entity="BoundRowset" role="Value" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BoundColumn">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+        <Property name="SourceFieldId" isRequired="false" />
+        <Property name="SourceTableId" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BoundRowset" role="Owner" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BoundTableSource">
+      <PropertyList>
+        <Property name="ExposedName" />
+        <Property name="SyntaxTableReferenceId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" role="Owner" />
+        <Relationship entity="BoundRowset" role="Value" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BoundIssue">
+      <PropertyList>
+        <Property name="Code" />
+        <Property name="Message" />
+        <Property name="Severity" isRequired="false" />
+        <Property name="SyntaxId" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" role="Owner" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

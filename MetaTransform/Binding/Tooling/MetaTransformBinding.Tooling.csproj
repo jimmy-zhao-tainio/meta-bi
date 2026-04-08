@@ -1,17 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>meta-transform-script</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.Adapters" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\..\Cli\Common\MetaBi.Cli.Common.csproj" />
-    <ProjectReference Include="..\Sql\MetaTransformScript.Sql.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Workspaces\MetaTransformBinding\model.xml" Link="model.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

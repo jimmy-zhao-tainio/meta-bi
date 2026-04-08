@@ -60,7 +60,7 @@ Then install the packaged BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-t
 MetaBi\Installer\bin\publish\win-x64\install-meta-bi.exe
 ```
 
-`meta-transform-script` is not yet added to that installer flow. During active development, run it from `MetaTransformScript\Cli\bin\Debug\net8.0` or put that debug bin on your `PATH`.
+`meta-transform-script` is not yet added to that installer flow. During active development, run it from `MetaTransform\Script\Cli\bin\Debug\net8.0` or put that debug bin on your `PATH`.
 
 ## Intent
 
@@ -446,7 +446,7 @@ Current unsupported or excluded surface:
 - materialized view syntax
 
 Reference corpus status:
-- `MetaTransformScript\Reference\Corpus` contains the broader working SQL corpus used to pressure the importer/emitter
+- `MetaTransform\Script\Reference\Corpus` contains the broader working SQL corpus used to pressure the importer/emitter
 - the currently supported reference-corpus round-trip demo uses the supported subset of that corpus and excludes the unsupported surfaces listed above
 - the exact supported parser/emitter surface and proof cases are tracked in `docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md`
 - the proof point is `meta instance diff` reporting no differences between the original and round-tripped workspaces
