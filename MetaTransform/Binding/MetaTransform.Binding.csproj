@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Cli\**\*.cs" />
+    <EmbeddedResource Remove="Cli\**\*" />
+    <None Remove="Cli\**\*" />
     <Compile Remove="Tooling\**\*.cs" />
     <EmbeddedResource Remove="Tooling\**\*" />
     <None Remove="Tooling\**\*" />

@@ -12,6 +12,7 @@ if ([string]::IsNullOrWhiteSpace($MetaConvertBin)) {
 
 $demoPaths = @(
     (Join-Path $PSScriptRoot "BusinessDataVaultCliIntegration"),
+    (Join-Path $PSScriptRoot "MetaTransformBindingCliIntegration"),
     (Join-Path $PSScriptRoot "MetaTransformScriptCliIntegration"),
     (Join-Path $PSScriptRoot "MetaTransformScriptReferenceCorpusCliIntegration"),
     (Join-Path $PSScriptRoot "RawDataVaultCliIntegration"),

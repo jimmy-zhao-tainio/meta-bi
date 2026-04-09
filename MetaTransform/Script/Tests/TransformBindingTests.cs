@@ -686,6 +686,49 @@ GROUP BY s.CustomerId;
         }
     }
 
+    [Fact]
+    public void BindingWorkspaceService_CanMaterializeBindingWorkspaceFromTransformAndSchemaWorkspaces()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var schemaWorkspacePath = Path.Combine(tempRoot, "SchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            schemaModel.SaveToXmlWorkspace(schemaWorkspacePath);
+
+            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                schemaWorkspacePath,
+                bindingWorkspacePath);
+
+            Assert.Equal(bindingWorkspacePath, result.WorkspacePath);
+            Assert.Equal(transformModel.TransformScriptList[0].Name, result.TransformScriptName);
+            Assert.Equal(1, result.TransformBindingCount);
+
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            Assert.Single(reloaded.TransformBindingList);
+            Assert.Single(reloaded.TransformBindingFinalRowsetLinkList);
+            Assert.NotEmpty(reloaded.BoundRowsetList);
+            Assert.NotEmpty(reloaded.BoundColumnList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
     private static MetaTransformScriptModel ParseCorpus(string fileName)
     {
         var path = Path.GetFullPath(Path.Combine(

@@ -1,0 +1,26 @@
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformBindingCliIntegration>call cleanup.cmd  1>nul 2>&1 
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformBindingCliIntegration>meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformBindingCliIntegrationTransformWorkspace 
+OK: Created MetaTransformBindingCliIntegrationTransformWorkspace
+Import:
+  Scripts: 2
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformBindingCliIntegration\MetaTransformBindingCliIntegrationTransformWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformBindingCliIntegration>meta-transform-binding --transform-workspace MetaTransformBindingCliIntegrationTransformWorkspace --schema-workspace SchemaWorkspace --name sales.CustomerOrderSummary --language-profile MetaTransformSqlServer_v1 --new-workspace MetaTransformBindingCliIntegrationBindingWorkspace 
+OK: Created MetaTransformBindingCliIntegrationBindingWorkspace
+Binding:
+  Transform: sales.CustomerOrderSummary
+  Bindings: 1
+  Issues: 0
+  Errors: 0
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformBindingCliIntegration\MetaTransformBindingCliIntegrationBindingWorkspace
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformBindingCliIntegration>meta-transform-binding --transform-workspace MetaTransformBindingCliIntegrationTransformWorkspace --schema-workspace SchemaWorkspace --name reporting.InvoiceWindow --language-profile MetaTransformSqlServer_v1 --new-workspace MetaTransformBindingInvoiceWorkspace 
+OK: Created MetaTransformBindingInvoiceWorkspace
+Binding:
+  Transform: reporting.InvoiceWindow
+  Bindings: 1
+  Issues: 0
+  Errors: 0
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaTransformBindingCliIntegration\MetaTransformBindingInvoiceWorkspace

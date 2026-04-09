@@ -1,0 +1,3 @@
+if exist MetaTransformBindingCliIntegrationTransformWorkspace rmdir /s /q MetaTransformBindingCliIntegrationTransformWorkspace
+if exist MetaTransformBindingCliIntegrationBindingWorkspace rmdir /s /q MetaTransformBindingCliIntegrationBindingWorkspace
+if exist MetaTransformBindingInvoiceWorkspace rmdir /s /q MetaTransformBindingInvoiceWorkspace

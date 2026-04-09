@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldList>
+    <Field Id="demo:field:sales:Customer:CustomerId" TableId="demo:table:sales:Customer">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerId</Name>
+      <Ordinal>0</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Customer:CustomerName" TableId="demo:table:sales:Customer">
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerName</Name>
+      <Ordinal>1</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Order:OrderId" TableId="demo:table:sales:Order">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderId</Name>
+      <Ordinal>0</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Order:CustomerId" TableId="demo:table:sales:Order">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerId</Name>
+      <Ordinal>1</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Order:Amount" TableId="demo:table:sales:Order">
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>Amount</Name>
+      <Ordinal>2</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Order:Status" TableId="demo:table:sales:Order">
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Status</Name>
+      <Ordinal>3</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Invoice:CustomerId" TableId="demo:table:sales:Invoice">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerId</Name>
+      <Ordinal>0</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Invoice:InvoiceId" TableId="demo:table:sales:Invoice">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>InvoiceId</Name>
+      <Ordinal>1</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Invoice:InvoiceDate" TableId="demo:table:sales:Invoice">
+      <MetaDataTypeId>sqlserver:type:date</MetaDataTypeId>
+      <Name>InvoiceDate</Name>
+      <Ordinal>2</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:Invoice:Amount" TableId="demo:table:sales:Invoice">
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>Amount</Name>
+      <Ordinal>3</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:CustomerOrderSummary:CustomerId" TableId="demo:table:sales:CustomerOrderSummary">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerId</Name>
+      <Ordinal>0</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:CustomerOrderSummary:CustomerName" TableId="demo:table:sales:CustomerOrderSummary">
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerName</Name>
+      <Ordinal>1</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:CustomerOrderSummary:OrderCount" TableId="demo:table:sales:CustomerOrderSummary">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderCount</Name>
+      <Ordinal>2</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:sales:CustomerOrderSummary:TotalAmount" TableId="demo:table:sales:CustomerOrderSummary">
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TotalAmount</Name>
+      <Ordinal>3</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:reporting:InvoiceWindow:CustomerId" TableId="demo:table:reporting:InvoiceWindow">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerId</Name>
+      <Ordinal>0</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:reporting:InvoiceWindow:InvoiceId" TableId="demo:table:reporting:InvoiceWindow">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>InvoiceId</Name>
+      <Ordinal>1</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:reporting:InvoiceWindow:InvoiceDate" TableId="demo:table:reporting:InvoiceWindow">
+      <MetaDataTypeId>sqlserver:type:date</MetaDataTypeId>
+      <Name>InvoiceDate</Name>
+      <Ordinal>2</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:reporting:InvoiceWindow:RunningAmount" TableId="demo:table:reporting:InvoiceWindow">
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>RunningAmount</Name>
+      <Ordinal>3</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+    <Field Id="demo:field:reporting:InvoiceWindow:InvoiceSequence" TableId="demo:table:reporting:InvoiceWindow">
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>InvoiceSequence</Name>
+      <Ordinal>4</Ordinal>
+      <IsNullable>false</IsNullable>
+    </Field>
+  </FieldList>
+</MetaSchema>
