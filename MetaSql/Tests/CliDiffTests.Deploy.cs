@@ -1936,7 +1936,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column", "1 replaced", "1 index");
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column", "1 replaced", "1 primary key");
             Assert.Equal(100, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "PkAlterCase", "KeyCol"));
             Assert.Equal(["KeyCol"], GetPrimaryKeyKeyColumns(databaseConnectionString, "raw", "PkAlterCase"));
             Assert.False(GetPrimaryKeyIsClustered(databaseConnectionString, "raw", "PkAlterCase"));
@@ -2019,7 +2019,7 @@ public sealed partial class CliDiffTests
             };
             var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
             Assert.Equal(0, deployResult.ExitCode);
-            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column", "1 replaced", "1 index");
+            AssertAppliedChanges(deployResult.Output, "1 altered", "1 column", "1 replaced", "1 foreign key");
             Assert.True(GetColumnNullable(databaseConnectionString, "raw", "FkCase", "ParentCode"));
             Assert.True(ForeignKeyExists(databaseConnectionString, "FK_FkCase_ParentCase"));
         }
