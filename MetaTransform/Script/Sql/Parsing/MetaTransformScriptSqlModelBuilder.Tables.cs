@@ -89,6 +89,60 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         return BuiltNode.Create((nameof(TableSampleClause), tableSampleClause.Id));
     }
 
+    public BuiltNode CreateGlobalFunctionTableReference(
+        BuiltNode functionName,
+        IReadOnlyList<BuiltNode> parameters,
+        BuiltNode alias)
+    {
+        var tableReference = new TableReference
+        {
+            Id = NextId(nameof(TableReference))
+        };
+        model.TableReferenceList.Add(tableReference);
+
+        var aliasBase = new TableReferenceWithAlias
+        {
+            Id = NextId(nameof(TableReferenceWithAlias)),
+            BaseId = tableReference.Id
+        };
+        model.TableReferenceWithAliasList.Add(aliasBase);
+        model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
+        {
+            Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
+            OwnerId = aliasBase.Id,
+            ValueId = alias.GetId(nameof(Identifier))
+        });
+
+        var functionReference = new GlobalFunctionTableReference
+        {
+            Id = NextId(nameof(GlobalFunctionTableReference)),
+            BaseId = aliasBase.Id
+        };
+        model.GlobalFunctionTableReferenceList.Add(functionReference);
+        model.GlobalFunctionTableReferenceNameLinkList.Add(new GlobalFunctionTableReferenceNameLink
+        {
+            Id = NextId(nameof(GlobalFunctionTableReferenceNameLink)),
+            OwnerId = functionReference.Id,
+            ValueId = functionName.GetId(nameof(Identifier))
+        });
+
+        for (var ordinal = 0; ordinal < parameters.Count; ordinal++)
+        {
+            model.GlobalFunctionTableReferenceParametersItemList.Add(new GlobalFunctionTableReferenceParametersItem
+            {
+                Id = NextId(nameof(GlobalFunctionTableReferenceParametersItem)),
+                OwnerId = functionReference.Id,
+                ValueId = parameters[ordinal].GetId(nameof(ScalarExpression)),
+                Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+            });
+        }
+
+        return BuiltNode.Create(
+            (nameof(TableReference), tableReference.Id),
+            (nameof(TableReferenceWithAlias), aliasBase.Id),
+            (nameof(GlobalFunctionTableReference), functionReference.Id));
+    }
+
     public BuiltNode CreateSchemaObjectFunctionTableReference(
         BuiltNode schemaObjectName,
         IReadOnlyList<BuiltNode> parameters,
@@ -164,6 +218,70 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             (nameof(TableReferenceWithAlias), aliasBase.Id),
             (nameof(TableReferenceWithAliasAndColumns), aliasAndColumns.Id),
             (nameof(SchemaObjectFunctionTableReference), functionReference.Id));
+    }
+
+    public BuiltNode CreateFullTextTableReference(
+        string fullTextFunctionType,
+        BuiltNode tableName,
+        IReadOnlyList<BuiltNode> columns,
+        BuiltNode searchCondition,
+        BuiltNode alias)
+    {
+        var tableReference = new TableReference
+        {
+            Id = NextId(nameof(TableReference))
+        };
+        model.TableReferenceList.Add(tableReference);
+
+        var aliasBase = new TableReferenceWithAlias
+        {
+            Id = NextId(nameof(TableReferenceWithAlias)),
+            BaseId = tableReference.Id
+        };
+        model.TableReferenceWithAliasList.Add(aliasBase);
+        model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
+        {
+            Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
+            OwnerId = aliasBase.Id,
+            ValueId = alias.GetId(nameof(Identifier))
+        });
+
+        var fullTextTableReference = new FullTextTableReference
+        {
+            Id = NextId(nameof(FullTextTableReference)),
+            BaseId = aliasBase.Id,
+            FullTextFunctionType = fullTextFunctionType
+        };
+        model.FullTextTableReferenceList.Add(fullTextTableReference);
+        model.FullTextTableReferenceTableNameLinkList.Add(new FullTextTableReferenceTableNameLink
+        {
+            Id = NextId(nameof(FullTextTableReferenceTableNameLink)),
+            OwnerId = fullTextTableReference.Id,
+            ValueId = tableName.GetId(nameof(SchemaObjectName))
+        });
+
+        for (var ordinal = 0; ordinal < columns.Count; ordinal++)
+        {
+            model.FullTextTableReferenceColumnsItemList.Add(new FullTextTableReferenceColumnsItem
+            {
+                Id = NextId(nameof(FullTextTableReferenceColumnsItem)),
+                OwnerId = fullTextTableReference.Id,
+                ValueId = columns[ordinal].GetId(nameof(ColumnReferenceExpression)),
+                Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+            });
+        }
+
+        model.FullTextTableReferenceSearchConditionLinkList.Add(new FullTextTableReferenceSearchConditionLink
+        {
+            Id = NextId(nameof(FullTextTableReferenceSearchConditionLink)),
+            OwnerId = fullTextTableReference.Id,
+            ValueId = searchCondition.GetId(nameof(ValueExpression))
+        });
+
+        return BuiltNode.Create(
+            (nameof(TableReference), tableReference.Id),
+            (nameof(TableReferenceWithAlias), aliasBase.Id),
+            (nameof(FullTextTableReference), fullTextTableReference.Id));
     }
 
     public BuiltNode CreateQueryDerivedTable(

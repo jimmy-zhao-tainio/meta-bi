@@ -1,0 +1,34 @@
+public sealed class SqlCorpusQueryRoundTripTests
+{
+    [Theory]
+    [InlineData("001_basic_select.sql")]
+    [InlineData("002_select_star.sql")]
+    [InlineData("003_join_variants.sql")]
+    [InlineData("004_apply_sources.sql")]
+    [InlineData("005_pivot.sql")]
+    [InlineData("006_unpivot.sql")]
+    [InlineData("008_group_by_having.sql")]
+    [InlineData("009_grouping_sets.sql")]
+    [InlineData("010_rollup_cube.sql")]
+    [InlineData("011_subqueries_and_correlation.sql")]
+    [InlineData("012_subquery_predicates.sql")]
+    [InlineData("013_set_operations.sql")]
+    [InlineData("017_cte.sql")]
+    [InlineData("018_ordering_and_top.sql")]
+    [InlineData("019_offset_fetch.sql")]
+    [InlineData("021_inline_values.sql")]
+    [InlineData("026_builtin_table_functions.sql")]
+    [InlineData("031_join_parentheses.sql")]
+    [InlineData("024_query_parentheses.sql")]
+    [InlineData("042_cte_column_list.sql")]
+    [InlineData("043_recursive_cte_column_list.sql")]
+    [InlineData("045_nested_subqueries.sql")]
+    [InlineData("048_group_by_all.sql")]
+    [InlineData("058_remaining_aggregate_functions.sql")]
+    [InlineData("063_four_part_names.sql")]
+    [InlineData("065_select_star_plain.sql")]
+    public void ParserAndEmitter_RoundTripQueryCorpus(string fileName)
+    {
+        MetaTransformScriptTestHelper.AssertParserRoundTripsCorpusFile(fileName);
+    }
+}

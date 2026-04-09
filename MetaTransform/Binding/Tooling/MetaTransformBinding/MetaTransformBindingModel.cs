@@ -29,6 +29,11 @@ namespace MetaTransformBinding
         public List<BoundColumn> BoundColumnList { get; set; } = new();
         public bool ShouldSerializeBoundColumnList() => BoundColumnList.Count > 0;
 
+        [XmlArray("BoundColumnReferenceList")]
+        [XmlArrayItem("BoundColumnReference")]
+        public List<BoundColumnReference> BoundColumnReferenceList { get; set; } = new();
+        public bool ShouldSerializeBoundColumnReferenceList() => BoundColumnReferenceList.Count > 0;
+
         [XmlArray("BoundIssueList")]
         [XmlArrayItem("BoundIssue")]
         public List<BoundIssue> BoundIssueList { get; set; } = new();
@@ -118,6 +123,7 @@ namespace MetaTransformBinding
             ArgumentNullException.ThrowIfNull(model);
 
             model.BoundColumnList ??= new List<BoundColumn>();
+            model.BoundColumnReferenceList ??= new List<BoundColumnReference>();
             model.BoundIssueList ??= new List<BoundIssue>();
             model.BoundRowsetList ??= new List<BoundRowset>();
             model.BoundRowsetInputList ??= new List<BoundRowsetInput>();
@@ -126,6 +132,7 @@ namespace MetaTransformBinding
             model.TransformBindingFinalRowsetLinkList ??= new List<TransformBindingFinalRowsetLink>();
 
             NormalizeBoundColumnList(model);
+            NormalizeBoundColumnReferenceList(model);
             NormalizeBoundIssueList(model);
             NormalizeBoundRowsetList(model);
             NormalizeBoundRowsetInputList(model);
@@ -134,6 +141,7 @@ namespace MetaTransformBinding
             NormalizeTransformBindingFinalRowsetLinkList(model);
 
             var boundColumnListById = BuildById(model.BoundColumnList, row => row.Id, "BoundColumn");
+            var boundColumnReferenceListById = BuildById(model.BoundColumnReferenceList, row => row.Id, "BoundColumnReference");
             var boundIssueListById = BuildById(model.BoundIssueList, row => row.Id, "BoundIssue");
             var boundRowsetListById = BuildById(model.BoundRowsetList, row => row.Id, "BoundRowset");
             var boundRowsetInputListById = BuildById(model.BoundRowsetInputList, row => row.Id, "BoundRowsetInput");
@@ -155,6 +163,54 @@ namespace MetaTransformBinding
                     "BoundColumn",
                     row.Id,
                     "OwnerId");
+            }
+
+            foreach (var row in model.BoundColumnReferenceList)
+            {
+                row.OwnerId = ResolveRelationshipId(
+                    row.OwnerId,
+                    row.Owner?.Id,
+                    "BoundColumnReference",
+                    row.Id,
+                    "OwnerId");
+                row.Owner = RequireTarget(
+                    transformBindingListById,
+                    row.OwnerId,
+                    "BoundColumnReference",
+                    row.Id,
+                    "OwnerId");
+            }
+
+            foreach (var row in model.BoundColumnReferenceList)
+            {
+                row.ResolvedTableSourceId = ResolveRelationshipId(
+                    row.ResolvedTableSourceId,
+                    row.ResolvedTableSource?.Id,
+                    "BoundColumnReference",
+                    row.Id,
+                    "ResolvedTableSourceId");
+                row.ResolvedTableSource = RequireTarget(
+                    boundTableSourceListById,
+                    row.ResolvedTableSourceId,
+                    "BoundColumnReference",
+                    row.Id,
+                    "ResolvedTableSourceId");
+            }
+
+            foreach (var row in model.BoundColumnReferenceList)
+            {
+                row.ValueId = ResolveRelationshipId(
+                    row.ValueId,
+                    row.Value?.Id,
+                    "BoundColumnReference",
+                    row.Id,
+                    "ValueId");
+                row.Value = RequireTarget(
+                    boundColumnListById,
+                    row.ValueId,
+                    "BoundColumnReference",
+                    row.Id,
+                    "ValueId");
             }
 
             foreach (var row in model.BoundIssueList)
@@ -298,6 +354,19 @@ namespace MetaTransformBinding
                 row.SourceFieldId ??= string.Empty;
                 row.SourceTableId ??= string.Empty;
                 row.OwnerId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeBoundColumnReferenceList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.BoundColumnReferenceList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'BoundColumnReference' contains a row with empty Id.");
+                row.SyntaxColumnReferenceId = RequireText(row.SyntaxColumnReferenceId, $"Entity 'BoundColumnReference' row '{row.Id}' is missing required property 'SyntaxColumnReferenceId'.");
+                row.OwnerId ??= string.Empty;
+                row.ResolvedTableSourceId ??= string.Empty;
+                row.ValueId ??= string.Empty;
             }
         }
 

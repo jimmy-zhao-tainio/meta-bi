@@ -194,12 +194,14 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private BuiltNode ParseNamedOrFunctionTableReference()
         {
-            var schemaObjectName = ParseSchemaObjectName();
+            var identifiers = ParseIdentifierChain();
 
             if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
             {
-                return ParseSchemaObjectFunctionTableReference(schemaObjectName);
+                return ParseFunctionTableReference(identifiers);
             }
+
+            var schemaObjectName = builder.CreateSchemaObjectName(identifiers.Select(static identifier => identifier.Node).ToArray());
 
             BuiltNode? alias = null;
 
@@ -219,6 +221,71 @@ public sealed partial class MetaTransformScriptSqlParser
             }
 
             return builder.CreateNamedTableReference(schemaObjectName, alias, tableSampleClause);
+        }
+
+        private BuiltNode ParseFunctionTableReference(IReadOnlyList<ParsedIdentifier> identifiers)
+        {
+            if (identifiers.Count == 1)
+            {
+                var functionType =
+                    string.Equals(identifiers[0].Token.Value, "CONTAINSTABLE", StringComparison.OrdinalIgnoreCase) ? "Contains" :
+                    string.Equals(identifiers[0].Token.Value, "FREETEXTTABLE", StringComparison.OrdinalIgnoreCase) ? "FreeText" :
+                    null;
+                if (functionType is not null)
+                {
+                    return ParseFullTextTableReference(functionType);
+                }
+            }
+
+            var parameters = new List<BuiltNode>();
+            if (!Match(MetaTransformScriptSqlTokenKind.CloseParen))
+            {
+                parameters.Add(ParseScalarExpression());
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
+                {
+                    parameters.Add(ParseScalarExpression());
+                }
+
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            }
+
+            var (alias, columns) = ParseRequiredTableAliasAndColumns();
+            if (identifiers.Count == 1 && columns.Count == 0)
+            {
+                return builder.CreateGlobalFunctionTableReference(identifiers[0].Node, parameters, alias);
+            }
+
+            var schemaObjectName = builder.CreateSchemaObjectName(identifiers.Select(static identifier => identifier.Node).ToArray());
+            return builder.CreateSchemaObjectFunctionTableReference(schemaObjectName, parameters, alias, columns);
+        }
+
+        private BuiltNode ParseFullTextTableReference(string functionType)
+        {
+            var tableName = builder.CreateSchemaObjectName(ParseIdentifierChain().Select(static identifier => identifier.Node).ToArray());
+            Expect(MetaTransformScriptSqlTokenKind.Comma);
+
+            List<BuiltNode> columns;
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
+            {
+                columns = new List<BuiltNode> { ParseColumnReferenceExpression() };
+                while (Match(MetaTransformScriptSqlTokenKind.Comma))
+                {
+                    columns.Add(ParseColumnReferenceExpression());
+                }
+
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            }
+            else
+            {
+                columns = new List<BuiltNode> { ParseColumnReferenceExpression() };
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.Comma);
+            var searchCondition = ParseScalarExpression();
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+
+            var alias = ParseRequiredTableAlias();
+            return builder.CreateFullTextTableReference(functionType, tableName, columns, searchCondition, alias);
         }
 
         private BuiltNode ParseSchemaObjectFunctionTableReference(BuiltNode schemaObjectName)

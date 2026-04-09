@@ -23,6 +23,7 @@ internal static class MetaTransformScriptSqlServerDataTypes
             ["nchar"] = "NChar",
             ["numeric"] = "Numeric",
             ["nvarchar"] = "NVarChar",
+            ["real"] = "Real",
             ["smallint"] = "SmallInt",
             ["smallmoney"] = "SmallMoney",
             ["sql_variant"] = "SqlVariant",

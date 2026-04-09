@@ -47,6 +47,16 @@
         <Relationship entity="BoundRowset" role="Owner" />
       </RelationshipList>
     </Entity>
+    <Entity name="BoundColumnReference">
+      <PropertyList>
+        <Property name="SyntaxColumnReferenceId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" role="Owner" />
+        <Relationship entity="BoundColumn" role="Value" />
+        <Relationship entity="BoundTableSource" role="ResolvedTableSource" />
+      </RelationshipList>
+    </Entity>
     <Entity name="BoundTableSource">
       <PropertyList>
         <Property name="ExposedName" />
