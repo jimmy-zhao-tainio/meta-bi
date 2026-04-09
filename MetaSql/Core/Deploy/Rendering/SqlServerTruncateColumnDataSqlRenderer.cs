@@ -26,7 +26,7 @@ internal sealed class SqlServerTruncateColumnDataSqlRenderer
             !SqlServerRenderingSupport.IsSqlServerTypeId(liveColumn.MetaDataTypeId))
         {
             throw new InvalidOperationException(
-                $"Cannot truncate column '{sourceColumn.Id}' because only MetaDataTypeId values owned by DataTypeSystem 'SqlServer' are supported.");
+                $"Cannot truncate column '{sourceColumn.Id}' because only MetaDataTypeId values under DataTypeSystem 'SqlServer' are supported.");
         }
 
         var sourceTypeName = SqlServerRenderingSupport.GetSqlServerTypeName(sourceColumn.MetaDataTypeId);

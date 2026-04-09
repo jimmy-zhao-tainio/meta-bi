@@ -109,14 +109,14 @@ namespace MetaSql
                 return null;
             }
 
-            var directPath = Path.Combine(assemblyDirectory, "model.xml");
-            if (File.Exists(directPath))
+            var namespacedPath = Path.Combine(assemblyDirectory, "MetaSql", "model.xml");
+            if (File.Exists(namespacedPath))
             {
-                return directPath;
+                return namespacedPath;
             }
 
-            var namespacedPath = Path.Combine(assemblyDirectory, "MetaSql", "model.xml");
-            return File.Exists(namespacedPath) ? namespacedPath : null;
+            var directPath = Path.Combine(assemblyDirectory, "model.xml");
+            return File.Exists(directPath) ? directPath : null;
         }
     }
 

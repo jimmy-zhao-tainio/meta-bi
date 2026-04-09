@@ -1,7 +1,7 @@
 call cleanup.cmd >nul 2>&1
 
-meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformBindingCliIntegrationTransformWorkspace
+meta-transform-script from sql-path --path SourceViews --new-workspace TransformWS
 
-meta-transform-binding --transform-workspace MetaTransformBindingCliIntegrationTransformWorkspace --schema-workspace SchemaWorkspace --name sales.CustomerOrderSummary --language-profile MetaTransformSqlServer_v1 --new-workspace MetaTransformBindingCliIntegrationBindingWorkspace
+meta-transform-binding --transform-workspace TransformWS --schema-workspace SchemaWS --name sales.CustomerOrderSummary --target sales.CustomerOrderSummary --new-workspace SummaryBindingWS
 
-meta-transform-binding --transform-workspace MetaTransformBindingCliIntegrationTransformWorkspace --schema-workspace SchemaWorkspace --name reporting.InvoiceWindow --language-profile MetaTransformSqlServer_v1 --new-workspace MetaTransformBindingInvoiceWorkspace
+meta-transform-binding --transform-workspace TransformWS --schema-workspace SchemaWS --name reporting.InvoiceWindow --target reporting.InvoiceWindow --new-workspace InvoiceBindingWS

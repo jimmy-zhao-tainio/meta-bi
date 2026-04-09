@@ -262,7 +262,7 @@ Minimal sanctioned binding model:
 - `BoundRowset`
   - the central semantic object
   - represents a source, intermediate, or final rowset state
-  - owned by one `TransformBinding`
+  - attached to one `TransformBinding`
   - carries derivation kind and producing syntax id when relevant
 
 - `BoundRowsetInput`

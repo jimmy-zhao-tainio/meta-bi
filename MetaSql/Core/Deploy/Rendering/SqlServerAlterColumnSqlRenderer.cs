@@ -68,7 +68,7 @@ internal sealed class SqlServerAlterColumnSqlRenderer
                 !SqlServerRenderingSupport.IsSqlServerTypeId(liveColumn.MetaDataTypeId))
             {
                 throw new InvalidOperationException(
-                    $"Cannot alter column '{sourceColumn.Id}' because only MetaDataTypeId values owned by DataTypeSystem 'SqlServer' are supported.");
+                    $"Cannot alter column '{sourceColumn.Id}' because only MetaDataTypeId values under DataTypeSystem 'SqlServer' are supported.");
             }
 
             var sourceTypeName = SqlServerRenderingSupport.GetSqlServerTypeName(sourceColumn.MetaDataTypeId);

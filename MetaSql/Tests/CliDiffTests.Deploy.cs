@@ -1750,7 +1750,7 @@ public sealed partial class CliDiffTests
             var manifest = await MetaSqlDeployManifestModel.LoadFromXmlWorkspaceAsync(planPath, searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
-            Assert.Contains("supports only MetaDataTypeId values owned by DataTypeSystem 'SqlServer'", block.DifferenceSummary, StringComparison.Ordinal);
+            Assert.Contains("supports only MetaDataTypeId values under DataTypeSystem 'SqlServer'", block.DifferenceSummary, StringComparison.Ordinal);
         }
         finally
         {

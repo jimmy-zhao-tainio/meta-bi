@@ -64,6 +64,16 @@ namespace MetaTransformBinding
         public List<TransformBindingFinalRowsetLink> TransformBindingFinalRowsetLinkList { get; set; } = new();
         public bool ShouldSerializeTransformBindingFinalRowsetLinkList() => TransformBindingFinalRowsetLinkList.Count > 0;
 
+        [XmlArray("TransformBindingSourceList")]
+        [XmlArrayItem("TransformBindingSource")]
+        public List<TransformBindingSource> TransformBindingSourceList { get; set; } = new();
+        public bool ShouldSerializeTransformBindingSourceList() => TransformBindingSourceList.Count > 0;
+
+        [XmlArray("TransformBindingTargetList")]
+        [XmlArrayItem("TransformBindingTarget")]
+        public List<TransformBindingTarget> TransformBindingTargetList { get; set; } = new();
+        public bool ShouldSerializeTransformBindingTargetList() => TransformBindingTargetList.Count > 0;
+
         public static MetaTransformBindingModel LoadFromXmlWorkspace(
             string workspacePath,
             bool searchUpward = true)
@@ -130,6 +140,8 @@ namespace MetaTransformBinding
             model.BoundTableSourceList ??= new List<BoundTableSource>();
             model.TransformBindingList ??= new List<TransformBinding>();
             model.TransformBindingFinalRowsetLinkList ??= new List<TransformBindingFinalRowsetLink>();
+            model.TransformBindingSourceList ??= new List<TransformBindingSource>();
+            model.TransformBindingTargetList ??= new List<TransformBindingTarget>();
 
             NormalizeBoundColumnList(model);
             NormalizeBoundColumnReferenceList(model);
@@ -139,6 +151,8 @@ namespace MetaTransformBinding
             NormalizeBoundTableSourceList(model);
             NormalizeTransformBindingList(model);
             NormalizeTransformBindingFinalRowsetLinkList(model);
+            NormalizeTransformBindingSourceList(model);
+            NormalizeTransformBindingTargetList(model);
 
             var boundColumnListById = BuildById(model.BoundColumnList, row => row.Id, "BoundColumn");
             var boundColumnReferenceListById = BuildById(model.BoundColumnReferenceList, row => row.Id, "BoundColumnReference");
@@ -148,6 +162,8 @@ namespace MetaTransformBinding
             var boundTableSourceListById = BuildById(model.BoundTableSourceList, row => row.Id, "BoundTableSource");
             var transformBindingListById = BuildById(model.TransformBindingList, row => row.Id, "TransformBinding");
             var transformBindingFinalRowsetLinkListById = BuildById(model.TransformBindingFinalRowsetLinkList, row => row.Id, "TransformBindingFinalRowsetLink");
+            var transformBindingSourceListById = BuildById(model.TransformBindingSourceList, row => row.Id, "TransformBindingSource");
+            var transformBindingTargetListById = BuildById(model.TransformBindingTargetList, row => row.Id, "TransformBindingTarget");
 
             foreach (var row in model.BoundColumnList)
             {
@@ -341,6 +357,38 @@ namespace MetaTransformBinding
                     "ValueId");
             }
 
+            foreach (var row in model.TransformBindingSourceList)
+            {
+                row.TransformBindingId = ResolveRelationshipId(
+                    row.TransformBindingId,
+                    row.TransformBinding?.Id,
+                    "TransformBindingSource",
+                    row.Id,
+                    "TransformBindingId");
+                row.TransformBinding = RequireTarget(
+                    transformBindingListById,
+                    row.TransformBindingId,
+                    "TransformBindingSource",
+                    row.Id,
+                    "TransformBindingId");
+            }
+
+            foreach (var row in model.TransformBindingTargetList)
+            {
+                row.TransformBindingId = ResolveRelationshipId(
+                    row.TransformBindingId,
+                    row.TransformBinding?.Id,
+                    "TransformBindingTarget",
+                    row.Id,
+                    "TransformBindingId");
+                row.TransformBinding = RequireTarget(
+                    transformBindingListById,
+                    row.TransformBindingId,
+                    "TransformBindingTarget",
+                    row.Id,
+                    "TransformBindingId");
+            }
+
         }
 
         private static void NormalizeBoundColumnList(MetaTransformBindingModel model)
@@ -445,6 +493,30 @@ namespace MetaTransformBinding
                 row.Id = RequireIdentity(row.Id, "Entity 'TransformBindingFinalRowsetLink' contains a row with empty Id.");
                 row.OwnerId ??= string.Empty;
                 row.ValueId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTransformBindingSourceList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.TransformBindingSourceList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TransformBindingSource' contains a row with empty Id.");
+                row.SqlIdentifier = RequireText(row.SqlIdentifier, $"Entity 'TransformBindingSource' row '{row.Id}' is missing required property 'SqlIdentifier'.");
+                row.TableId = RequireText(row.TableId, $"Entity 'TransformBindingSource' row '{row.Id}' is missing required property 'TableId'.");
+                row.TransformBindingId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTransformBindingTargetList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.TransformBindingTargetList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TransformBindingTarget' contains a row with empty Id.");
+                row.SqlIdentifier = RequireText(row.SqlIdentifier, $"Entity 'TransformBindingTarget' row '{row.Id}' is missing required property 'SqlIdentifier'.");
+                row.TableId = RequireText(row.TableId, $"Entity 'TransformBindingTarget' row '{row.Id}' is missing required property 'TableId'.");
+                row.TransformBindingId ??= string.Empty;
             }
         }
 

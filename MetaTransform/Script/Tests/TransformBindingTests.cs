@@ -693,7 +693,8 @@ GROUP BY s.CustomerId;
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var schemaModel = CreateSourceSchema(
-            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]));
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAt"]));
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
@@ -708,17 +709,155 @@ GROUP BY s.CustomerId;
             var result = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
                 schemaWorkspacePath,
-                bindingWorkspacePath);
+                bindingWorkspacePath,
+                ["dbo.CustomerSummary"]);
 
             Assert.Equal(bindingWorkspacePath, result.WorkspacePath);
             Assert.Equal(transformModel.TransformScriptList[0].Name, result.TransformScriptName);
             Assert.Equal(1, result.TransformBindingCount);
+            Assert.Equal(1, result.SourceCount);
+            Assert.Equal(1, result.TargetCount);
 
             var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
             Assert.Single(reloaded.TransformBindingList);
             Assert.Single(reloaded.TransformBindingFinalRowsetLinkList);
             Assert.NotEmpty(reloaded.BoundRowsetList);
             Assert.NotEmpty(reloaded.BoundColumnList);
+            var source = Assert.Single(reloaded.TransformBindingSourceList);
+            Assert.Equal("dbo.SourceTable", source.SqlIdentifier);
+            Assert.Equal("Table:1", source.TableId);
+            var target = Assert.Single(reloaded.TransformBindingTargetList);
+            Assert.Equal("dbo.CustomerSummary", target.SqlIdentifier);
+            Assert.Equal("Table:2", target.TableId);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindingWorkspaceService_CanResolveThreePartTargetIdentifiers()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var schemaModel = CreateSchema(
+            "Warehouse",
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAt"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var schemaWorkspacePath = Path.Combine(tempRoot, "SchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            schemaModel.SaveToXmlWorkspace(schemaWorkspacePath);
+
+            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                schemaWorkspacePath,
+                bindingWorkspacePath,
+                ["Warehouse.dbo.CustomerSummary"]);
+
+            Assert.Equal(1, result.TargetCount);
+
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var target = Assert.Single(reloaded.TransformBindingTargetList);
+            Assert.Equal("Warehouse.dbo.CustomerSummary", target.SqlIdentifier);
+            Assert.Equal("Table:2", target.TableId);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindingWorkspaceService_CanPersistMultipleTargetsForOneTransform()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("reporting", "CustomerSummaryReplica", ["CustomerId", "CustomerName", "CreatedAt"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var schemaWorkspacePath = Path.Combine(tempRoot, "SchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            schemaModel.SaveToXmlWorkspace(schemaWorkspacePath);
+
+            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                schemaWorkspacePath,
+                bindingWorkspacePath,
+                ["dbo.CustomerSummary", "reporting.CustomerSummaryReplica"]);
+
+            Assert.Equal(2, result.TargetCount);
+
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var targets = reloaded.TransformBindingTargetList
+                .OrderBy(item => item.SqlIdentifier, StringComparer.Ordinal)
+                .ToArray();
+            Assert.Equal(2, targets.Length);
+            Assert.Equal("dbo.CustomerSummary", targets[0].SqlIdentifier);
+            Assert.Equal("Table:2", targets[0].TableId);
+            Assert.Equal("reporting.CustomerSummaryReplica", targets[1].SqlIdentifier);
+            Assert.Equal("Table:3", targets[1].TableId);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindingWorkspaceService_WithFourPartTargetIdentifier_FailsExplicitly()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var schemaModel = CreateSchema(
+            "Warehouse",
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAt"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var schemaWorkspacePath = Path.Combine(tempRoot, "SchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            schemaModel.SaveToXmlWorkspace(schemaWorkspacePath);
+
+            var ex = Assert.Throws<InvalidOperationException>(() => new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                schemaWorkspacePath,
+                bindingWorkspacePath,
+                ["Linked.Warehouse.dbo.CustomerSummary"]));
+
+            Assert.Contains("supports table, schema.table, or database.schema.table", ex.Message);
         }
         finally
         {
@@ -746,11 +885,16 @@ GROUP BY s.CustomerId;
 
     private static MetaSchemaModel CreateSourceSchema(params (string SchemaName, string TableName, string[] Columns)[] tables)
     {
+        return CreateSchema("TestSystem", tables);
+    }
+
+    private static MetaSchemaModel CreateSchema(string systemName, params (string SchemaName, string TableName, string[] Columns)[] tables)
+    {
         var model = MetaSchemaModel.CreateEmpty();
         var system = new MetaSchema.System
         {
             Id = "System:1",
-            Name = "TestSystem"
+            Name = systemName
         };
         model.SystemList.Add(system);
 

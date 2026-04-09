@@ -5,7 +5,9 @@ namespace MetaTransform.Binding;
 
 internal static class TransformBindingModelBuilder
 {
-    public static MetaTransformBindingModel Create(BoundTransform bound)
+    public static MetaTransformBindingModel Create(
+        BoundTransform bound,
+        IReadOnlyList<TransformBindingTargetResolution>? targets = null)
     {
         ArgumentNullException.ThrowIfNull(bound);
 
@@ -20,6 +22,33 @@ internal static class TransformBindingModelBuilder
         };
 
         model.TransformBindingList.Add(bindingRow);
+
+        foreach (var source in bound.BoundTableSources
+                     .Where(item => !string.IsNullOrWhiteSpace(item.SourceTableId))
+                     .GroupBy(item => item.SourceTableId, StringComparer.Ordinal)
+                     .Select(static group => group.First()))
+        {
+            model.TransformBindingSourceList.Add(new TransformBindingSource
+            {
+                Id = $"{bindingId}:source:{model.TransformBindingSourceList.Count + 1}",
+                TransformBindingId = bindingId,
+                SqlIdentifier = source.SqlIdentifier,
+                TableId = source.SourceTableId
+            });
+        }
+
+        foreach (var target in (targets ?? [])
+                     .GroupBy(item => item.TableId, StringComparer.Ordinal)
+                     .Select(static group => group.First()))
+        {
+            model.TransformBindingTargetList.Add(new TransformBindingTarget
+            {
+                Id = $"{bindingId}:target:{model.TransformBindingTargetList.Count + 1}",
+                TransformBindingId = bindingId,
+                SqlIdentifier = target.SqlIdentifier,
+                TableId = target.TableId
+            });
+        }
 
         foreach (var issue in bound.Issues.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
         {

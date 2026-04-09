@@ -128,11 +128,11 @@ internal sealed partial class TransformBindingSession
         int visibleCommonTableExpressionOrdinal)
     {
         var identifierParts = navigator.GetNamedTableReferenceParts(namedTableReference);
-        if (identifierParts.Count is < 1 or > 2)
+        if (identifierParts.Count == 0)
         {
             issues.Add(new TransformBindingIssue(
                 "UnsupportedSchemaObjectNameShape",
-                $"Named table reference '{namedTableReference.Id}' uses {identifierParts.Count} identifier parts; binding supports one-part or two-part names only.",
+                $"Named table reference '{namedTableReference.Id}' does not expose a supported multipart identifier.",
                 namedTableReference.Id));
             return null;
         }
@@ -150,12 +150,15 @@ internal sealed partial class TransformBindingSession
             }
         }
 
-        var resolvedTable = sourceSchemaIndex.ResolveTable(identifierParts, namedTableReference.Id, issues);
-        if (resolvedTable is null)
+        var resolution = schemaTableResolver.ResolveIdentifierParts(identifierParts);
+        if (!resolution.IsResolved)
         {
+            AddSourceTableResolutionIssue(namedTableReference.Id, resolution);
             return null;
         }
 
+        var resolvedTable = resolution.Table!;
+        var sqlIdentifier = resolution.DisplayIdentifier;
         var exposedName = navigator.TryGetTableAlias(tableReference) ?? resolvedTable.TableName;
         var columns = resolvedTable.Fields
             .Select((field, ordinal) => new RuntimeBoundColumn(
@@ -168,7 +171,7 @@ internal sealed partial class TransformBindingSession
 
         var rowset = new RuntimeBoundRowset(
             $"{tableReference.Id}:rowset",
-            $"{resolvedTable.SchemaName}.{resolvedTable.TableName}",
+            resolvedTable.CanonicalSqlIdentifier,
             "Source",
             "Source",
             tableReference.Id,
@@ -181,9 +184,8 @@ internal sealed partial class TransformBindingSession
         var tableSource = new RuntimeBoundTableSource(
             tableReference.Id,
             exposedName,
+            sqlIdentifier,
             resolvedTable.TableId,
-            resolvedTable.SchemaName,
-            resolvedTable.TableName,
             rowset);
 
         TrackTableSource(tableSource);
@@ -221,7 +223,6 @@ internal sealed partial class TransformBindingSession
             exposedName,
             string.Empty,
             string.Empty,
-            definition.Name,
             rowset);
 
         TrackTableSource(tableSource);
@@ -407,7 +408,6 @@ internal sealed partial class TransformBindingSession
             exposedName,
             string.Empty,
             string.Empty,
-            exposedName,
             rowset);
 
         TrackTableSource(tableSource);
@@ -496,7 +496,6 @@ internal sealed partial class TransformBindingSession
             exposedName,
             string.Empty,
             string.Empty,
-            exposedName,
             rowset);
 
         TrackTableSource(tableSource);
@@ -556,7 +555,6 @@ internal sealed partial class TransformBindingSession
             exposedName,
             string.Empty,
             string.Empty,
-            functionName,
             rowset);
 
         TrackTableSource(tableSource);
@@ -603,5 +601,32 @@ internal sealed partial class TransformBindingSession
 
         TrackRowset(rowset);
         return rowset;
+    }
+
+    private void AddSourceTableResolutionIssue(string syntaxId, SchemaTableResolutionResult resolution)
+    {
+        var message = resolution.FailureKind switch
+        {
+            SchemaTableResolutionFailureKind.MissingIdentifier =>
+                $"Source table reference '{syntaxId}' does not expose a supported SQL identifier.",
+            SchemaTableResolutionFailureKind.UnsupportedIdentifierShape =>
+                $"Source table '{resolution.DisplayIdentifier}' uses {resolution.IdentifierParts.Count} identifier parts; binding supports one-part, two-part, or three-part names only.",
+            SchemaTableResolutionFailureKind.NotFound =>
+                $"Source table '{resolution.DisplayIdentifier}' was not found in the sanctioned schema workspace.",
+            SchemaTableResolutionFailureKind.Ambiguous =>
+                $"Source table '{resolution.DisplayIdentifier}' resolves ambiguously in the sanctioned schema workspace.",
+            _ =>
+                $"Source table '{resolution.DisplayIdentifier}' could not be resolved in the sanctioned schema workspace."
+        };
+
+        var code = resolution.FailureKind switch
+        {
+            SchemaTableResolutionFailureKind.MissingIdentifier or SchemaTableResolutionFailureKind.UnsupportedIdentifierShape => "UnsupportedSchemaObjectNameShape",
+            SchemaTableResolutionFailureKind.NotFound => "SourceTableNotFound",
+            SchemaTableResolutionFailureKind.Ambiguous => "SourceTableAmbiguous",
+            _ => "SourceTableResolutionFailed"
+        };
+
+        issues.Add(new TransformBindingIssue(code, message, syntaxId));
     }
 }

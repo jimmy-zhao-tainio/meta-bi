@@ -164,14 +164,14 @@ namespace MetaSqlDeployManifest
                 return null;
             }
 
-            var directPath = Path.Combine(assemblyDirectory, "model.xml");
-            if (File.Exists(directPath))
+            var namespacedPath = Path.Combine(assemblyDirectory, "MetaSqlDeployManifest", "model.xml");
+            if (File.Exists(namespacedPath))
             {
-                return directPath;
+                return namespacedPath;
             }
 
-            var namespacedPath = Path.Combine(assemblyDirectory, "MetaSqlDeployManifest", "model.xml");
-            return File.Exists(namespacedPath) ? namespacedPath : null;
+            var directPath = Path.Combine(assemblyDirectory, "model.xml");
+            return File.Exists(directPath) ? directPath : null;
         }
     }
 

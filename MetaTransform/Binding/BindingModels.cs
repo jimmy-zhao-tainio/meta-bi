@@ -30,9 +30,8 @@ public sealed record RuntimeBoundRowset(
 public sealed record RuntimeBoundTableSource(
     string SyntaxTableReferenceId,
     string ExposedName,
+    string SqlIdentifier,
     string SourceTableId,
-    string SchemaName,
-    string TableName,
     RuntimeBoundRowset Rowset);
 
 public sealed record RuntimeBoundColumnReference(

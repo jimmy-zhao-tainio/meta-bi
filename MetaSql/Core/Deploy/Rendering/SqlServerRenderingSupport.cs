@@ -110,7 +110,7 @@ internal static class SqlServerRenderingSupport
             string.IsNullOrWhiteSpace(dataType.Name))
         {
             throw new InvalidOperationException(
-                $"Unsupported MetaDataTypeId '{metaDataTypeId}'. Deploy only supports MetaDataType values owned by DataTypeSystem 'SqlServer'.");
+                $"Unsupported MetaDataTypeId '{metaDataTypeId}'. Deploy only supports MetaDataType values under DataTypeSystem 'SqlServer'.");
         }
 
         return dataType.Name;

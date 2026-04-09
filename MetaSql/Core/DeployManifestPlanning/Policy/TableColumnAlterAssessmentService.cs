@@ -64,7 +64,7 @@ internal sealed class TableColumnAlterAssessmentService
         var liveTypeId = GetValue(liveColumn, "MetaDataTypeId");
         if (!IsSupportedSqlServerType(sourceTypeId) || !IsSupportedSqlServerType(liveTypeId))
         {
-            return (false, false, $"{difference.DisplayName}: AlterTableColumn supports only MetaDataTypeId values owned by DataTypeSystem 'SqlServer'.");
+            return (false, false, $"{difference.DisplayName}: AlterTableColumn supports only MetaDataTypeId values under DataTypeSystem 'SqlServer'.");
         }
 
         var typeShapeChanged = changedAspects.Contains("MetaDataTypeId", StringComparer.Ordinal) ||

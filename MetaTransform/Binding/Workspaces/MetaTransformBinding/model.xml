@@ -8,6 +8,24 @@
         <Property name="ActiveLanguageProfileId" />
       </PropertyList>
     </Entity>
+    <Entity name="TransformBindingSource">
+      <PropertyList>
+        <Property name="SqlIdentifier" />
+        <Property name="TableId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformBindingTarget">
+      <PropertyList>
+        <Property name="SqlIdentifier" />
+        <Property name="TableId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
+      </RelationshipList>
+    </Entity>
     <Entity name="TransformBindingFinalRowsetLink">
       <RelationshipList>
         <Relationship entity="TransformBinding" role="Owner" />

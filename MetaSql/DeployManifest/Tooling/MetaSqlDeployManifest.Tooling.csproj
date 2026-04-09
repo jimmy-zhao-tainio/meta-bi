@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\Workspace\model.xml" Link="model.xml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Workspace\model.xml" Link="MetaSqlDeployManifest\model.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

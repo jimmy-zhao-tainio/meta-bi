@@ -77,5 +77,23 @@
         <Relationship entity="BoundRowset" role="Value" />
       </RelationshipList>
     </Entity>
+    <Entity name="TransformBindingSource">
+      <PropertyList>
+        <Property name="SqlIdentifier" />
+        <Property name="TableId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformBindingTarget">
+      <PropertyList>
+        <Property name="SqlIdentifier" />
+        <Property name="TableId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
+      </RelationshipList>
+    </Entity>
   </EntityList>
 </Model>

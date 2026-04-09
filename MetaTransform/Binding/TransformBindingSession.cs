@@ -1,4 +1,3 @@
-using System.Globalization;
 using MetaSchema;
 using MetaTransformScript;
 
@@ -7,7 +6,7 @@ namespace MetaTransform.Binding;
 internal sealed partial class TransformBindingSession
 {
     private readonly TransformScriptNavigator navigator;
-    private readonly SourceSchemaIndex sourceSchemaIndex;
+    private readonly MetaSchemaTableResolver schemaTableResolver;
     private readonly List<TransformBindingIssue> issues = [];
     private readonly List<RuntimeBoundTableSource> boundTableSources = [];
     private readonly List<RuntimeBoundColumnReference> boundColumnReferences = [];
@@ -21,7 +20,7 @@ internal sealed partial class TransformBindingSession
         MetaSchemaModel sourceSchema)
     {
         navigator = new TransformScriptNavigator(model);
-        sourceSchemaIndex = new SourceSchemaIndex(sourceSchema);
+        schemaTableResolver = new MetaSchemaTableResolver(sourceSchema);
     }
 
     public BoundTransform BindTransform(
@@ -68,7 +67,7 @@ internal sealed partial class TransformBindingSession
         var topLevelBinding = BindQueryExpression(
             topLevelQueryExpressionId,
             $"{topLevelQueryExpressionId}:output-rowset",
-            transformScript.Name,
+            "FinalOutput",
             "FinalOutput",
             int.MaxValue,
             [],
@@ -176,110 +175,4 @@ internal sealed partial class TransformBindingSession
         Failed
     }
 
-    private sealed record SourceFieldDefinition(
-        string FieldId,
-        string FieldName,
-        int Ordinal);
-
-    private sealed record SourceTableDefinition(
-        string TableId,
-        string SchemaName,
-        string TableName,
-        IReadOnlyList<SourceFieldDefinition> Fields);
-
-    private sealed class SourceSchemaIndex
-    {
-        private readonly IReadOnlyList<SourceTableDefinition> tables;
-
-        public SourceSchemaIndex(MetaSchemaModel model)
-        {
-            var schemaNamesById = model.SchemaList.ToDictionary(item => item.Id, item => item.Name, StringComparer.Ordinal);
-            var fieldRowsByTableId = model.FieldList
-                .GroupBy(item => item.TableId, StringComparer.Ordinal)
-                .ToDictionary(
-                    group => group.Key,
-                    group => group
-                        .OrderBy(item => ParseOrdinal(item.Ordinal))
-                        .ThenBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
-                        .Select(item => new SourceFieldDefinition(item.Id, item.Name, ParseOrdinal(item.Ordinal)))
-                        .ToArray(),
-                    StringComparer.Ordinal);
-
-            tables = model.TableList
-                .Select(item => new SourceTableDefinition(
-                    item.Id,
-                    schemaNamesById.GetValueOrDefault(item.SchemaId) ?? string.Empty,
-                    item.Name,
-                    fieldRowsByTableId.GetValueOrDefault(item.Id) ?? []))
-                .ToArray();
-        }
-
-        public SourceTableDefinition? ResolveTable(
-            IReadOnlyList<string> identifierParts,
-            string syntaxId,
-            List<TransformBindingIssue> issues)
-        {
-            if (identifierParts.Count == 1)
-            {
-                var matches = tables
-                    .Where(item => string.Equals(item.TableName, identifierParts[0], StringComparison.OrdinalIgnoreCase))
-                    .ToArray();
-
-                if (matches.Length == 0)
-                {
-                    issues.Add(new TransformBindingIssue(
-                        "SourceTableNotFound",
-                        $"Source table '{identifierParts[0]}' was not found in the sanctioned source schema.",
-                        syntaxId));
-                    return null;
-                }
-
-                if (matches.Length > 1)
-                {
-                    issues.Add(new TransformBindingIssue(
-                        "SourceTableAmbiguous",
-                        $"Source table '{identifierParts[0]}' resolves ambiguously across schemas.",
-                        syntaxId));
-                    return null;
-                }
-
-                return matches[0];
-            }
-
-            var schemaName = identifierParts[0];
-            var tableName = identifierParts[1];
-            var qualifiedMatches = tables
-                .Where(item =>
-                    string.Equals(item.SchemaName, schemaName, StringComparison.OrdinalIgnoreCase) &&
-                    string.Equals(item.TableName, tableName, StringComparison.OrdinalIgnoreCase))
-                .ToArray();
-
-            if (qualifiedMatches.Length == 0)
-            {
-                issues.Add(new TransformBindingIssue(
-                    "SourceTableNotFound",
-                    $"Source table '{schemaName}.{tableName}' was not found in the sanctioned source schema.",
-                    syntaxId));
-                return null;
-            }
-
-            if (qualifiedMatches.Length > 1)
-            {
-                issues.Add(new TransformBindingIssue(
-                    "SourceTableAmbiguous",
-                    $"Source table '{schemaName}.{tableName}' resolves ambiguously in the sanctioned source schema.",
-                    syntaxId));
-                return null;
-            }
-
-            return qualifiedMatches[0];
-        }
-
-        private static int ParseOrdinal(string ordinal)
-        {
-            return int.TryParse(ordinal, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value)
-                ? value
-                : int.MaxValue;
-        }
-    }
 }

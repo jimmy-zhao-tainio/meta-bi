@@ -21,7 +21,7 @@ Detailed requirements:
 1. Column alter/truncate semantic convergence
 - Planning side must remain the single owner of executable-slice semantics for column changes.
 - Rendering side must stop re-deciding the supported alter/truncate slice.
-- Introduce a shared result/contract owned by planning semantics that renderers can consume.
+- Introduce a shared result/contract produced by planning semantics that renderers can consume.
 - Renderers may perform shallow invariant/assertion checks, but must not contain parallel business-rule classification.
 - Preserve current supported slice and current blocking behavior.
 

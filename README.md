@@ -141,7 +141,7 @@ meta-data-type-conversion resolve --workspace .\MetaDataTypeConversion.Workspace
 ### meta-convert
 
 Purpose:
-- perform cross-model conversions owned by conversion glue code
+- perform cross-model conversions handled by conversion glue code
 
 Current command surface:
 - `meta-convert help`

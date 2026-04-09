@@ -10,12 +10,19 @@ public sealed class TransformBindingWorkspaceService
         string transformWorkspacePath,
         string schemaWorkspacePath,
         string newWorkspacePath,
+        IReadOnlyList<string> targetSqlIdentifiers,
         string? transformScriptName = null,
         string? activeLanguageProfileIdOverride = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(schemaWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
+        ArgumentNullException.ThrowIfNull(targetSqlIdentifiers);
+
+        if (targetSqlIdentifiers.Count == 0)
+        {
+            throw new InvalidOperationException("At least one --target SQL identifier is required.");
+        }
 
         var transformWorkspaceFullPath = Path.GetFullPath(transformWorkspacePath);
         var schemaWorkspaceFullPath = Path.GetFullPath(schemaWorkspacePath);
@@ -24,12 +31,14 @@ public sealed class TransformBindingWorkspaceService
         var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspaceFullPath, searchUpward: false);
         var schemaModel = MetaSchemaModel.LoadFromXmlWorkspace(schemaWorkspaceFullPath, searchUpward: false);
         var transformScript = ResolveSingleScript(transformModel, transformScriptName);
+        var resolvedTargets = ResolveTargets(schemaModel, targetSqlIdentifiers);
 
-        var bindingModel = new TransformBindingService().BindTransformModel(
+        var bound = new TransformBindingService().BindTransform(
             transformModel,
             transformScript,
             schemaModel,
             activeLanguageProfileIdOverride);
+        var bindingModel = TransformBindingModelBuilder.Create(bound, resolvedTargets);
 
         bindingModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);
 
@@ -41,6 +50,8 @@ public sealed class TransformBindingWorkspaceService
             bindingWorkspaceFullPath,
             transformScript.Name,
             bindingModel.TransformBindingList.Count,
+            bindingModel.TransformBindingSourceList.Count,
+            bindingModel.TransformBindingTargetList.Count,
             issueCount,
             errorCount);
     }
@@ -75,6 +86,48 @@ public sealed class TransformBindingWorkspaceService
 
         return scripts[0];
     }
+
+    private static IReadOnlyList<TransformBindingTargetResolution> ResolveTargets(
+        MetaSchemaModel schemaModel,
+        IReadOnlyList<string> targetSqlIdentifiers)
+    {
+        var resolver = new MetaSchemaTableResolver(schemaModel);
+        var targets = new List<TransformBindingTargetResolution>();
+
+        foreach (var targetSqlIdentifier in targetSqlIdentifiers)
+        {
+            var resolution = resolver.ResolveSqlIdentifier(targetSqlIdentifier);
+            if (!resolution.IsResolved)
+            {
+                throw new InvalidOperationException(CreateTargetResolutionErrorMessage(targetSqlIdentifier, resolution));
+            }
+
+            targets.Add(new TransformBindingTargetResolution(
+                targetSqlIdentifier.Trim(),
+                resolution.Table!.TableId));
+        }
+
+        return targets;
+    }
+
+    private static string CreateTargetResolutionErrorMessage(
+        string targetSqlIdentifier,
+        SchemaTableResolutionResult resolution)
+    {
+        return resolution.FailureKind switch
+        {
+            SchemaTableResolutionFailureKind.MissingIdentifier =>
+                $"Target '{targetSqlIdentifier}' does not expose a supported SQL identifier.",
+            SchemaTableResolutionFailureKind.UnsupportedIdentifierShape =>
+                $"Target '{targetSqlIdentifier}' uses {resolution.IdentifierParts.Count} identifier parts; binding supports table, schema.table, or database.schema.table targets only.",
+            SchemaTableResolutionFailureKind.NotFound =>
+                $"Target '{targetSqlIdentifier}' was not found in the sanctioned schema workspace.",
+            SchemaTableResolutionFailureKind.Ambiguous =>
+                $"Target '{targetSqlIdentifier}' resolves ambiguously in the sanctioned schema workspace.",
+            _ =>
+                $"Target '{targetSqlIdentifier}' could not be resolved in the sanctioned schema workspace."
+        };
+    }
 }
 
 public sealed record BindToWorkspaceResult(
@@ -82,5 +135,7 @@ public sealed record BindToWorkspaceResult(
     string WorkspacePath,
     string TransformScriptName,
     int TransformBindingCount,
+    int SourceCount,
+    int TargetCount,
     int IssueCount,
     int ErrorCount);

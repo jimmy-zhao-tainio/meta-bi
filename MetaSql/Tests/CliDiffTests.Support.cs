@@ -1,6 +1,7 @@
 using System.Diagnostics;
-using System.Xml.Linq;
 using Microsoft.Data.SqlClient;
+using Meta.Core.Domain;
+using Meta.Core.Services;
 using MetaSql;
 using MetaSqlDeployManifest;
 using MetaSql.Extractors.SqlServer;
@@ -1177,18 +1178,32 @@ public sealed partial class CliDiffTests
 
     private static void AddUnsupportedActionKindToManifestModel(string manifestWorkspacePath, string unsupportedEntityName)
     {
-        var modelPath = Path.Combine(manifestWorkspacePath, "model.xml");
-        var document = XDocument.Load(modelPath);
-        var model = document.Root ?? throw new InvalidOperationException("Manifest model.xml root is missing.");
-        var entityList = model.Element("EntityList") ?? throw new InvalidOperationException("Manifest model.xml EntityList is missing.");
-        entityList.Add(
-            new XElement("Entity",
-                new XAttribute("name", unsupportedEntityName),
-                new XElement("PropertyList",
-                    new XElement("Property", new XAttribute("name", "UnsupportedId"))),
-                new XElement("RelationshipList",
-                    new XElement("Relationship", new XAttribute("entity", "DeployManifest")))));
-        document.Save(modelPath);
+        var workspaceService = new WorkspaceService();
+        var workspace = workspaceService
+            .LoadAsync(manifestWorkspacePath, searchUpward: false)
+            .GetAwaiter()
+            .GetResult();
+
+        workspace.Model.Entities.Add(new GenericEntity
+        {
+            Name = unsupportedEntityName,
+            Properties =
+            {
+                new GenericProperty
+                {
+                    Name = "UnsupportedId",
+                },
+            },
+            Relationships =
+            {
+                new GenericRelationship
+                {
+                    Entity = "DeployManifest",
+                },
+            },
+        });
+
+        workspaceService.SaveAsync(workspace).GetAwaiter().GetResult();
     }
 
     private static string FindRepositoryRoot()
