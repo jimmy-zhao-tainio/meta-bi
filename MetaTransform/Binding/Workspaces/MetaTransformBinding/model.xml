@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaTransformBinding">
   <EntityList>
     <Entity name="TransformBinding">
@@ -8,84 +8,43 @@
         <Property name="ActiveLanguageProfileId" />
       </PropertyList>
     </Entity>
-    <Entity name="TransformBindingSource">
-      <PropertyList>
-        <Property name="SqlIdentifier" />
-        <Property name="TableId" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="TransformBinding" />
-      </RelationshipList>
-    </Entity>
     <Entity name="TransformBindingTarget">
       <PropertyList>
         <Property name="SqlIdentifier" />
-        <Property name="TableId" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="TransformBinding" />
       </RelationshipList>
     </Entity>
-    <Entity name="TransformBindingFinalRowsetLink">
+    <Entity name="TransformBindingValidation">
       <RelationshipList>
-        <Relationship entity="TransformBinding" role="Owner" />
-        <Relationship entity="BoundRowset" role="Value" />
+        <Relationship entity="TransformBinding" />
       </RelationshipList>
     </Entity>
-    <Entity name="BoundRowset">
+    <Entity name="RowsetSourceValidation">
       <PropertyList>
-        <Property name="Name" />
-        <Property name="DerivationKind" />
-        <Property name="RowsetRole" isRequired="false" />
-        <Property name="SyntaxId" isRequired="false" />
-        <Property name="SourceTableId" isRequired="false" />
+        <Property name="ResolutionKind" />
+        <Property name="ConformanceKind" />
+        <Property name="TableId" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="TransformBinding" role="Owner" />
+        <Relationship entity="TransformBindingValidation" />
+        <Relationship entity="Rowset" />
       </RelationshipList>
     </Entity>
-    <Entity name="BoundRowsetInput">
+    <Entity name="RowsetTargetValidation">
       <PropertyList>
-        <Property name="Ordinal" />
-        <Property name="InputRole" isRequired="false" />
+        <Property name="SqlIdentifier" />
+        <Property name="ResolutionKind" />
+        <Property name="ConformanceKind" />
+        <Property name="TableId" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BoundRowset" role="Owner" />
-        <Relationship entity="BoundRowset" role="Value" />
+        <Relationship entity="TransformBindingValidation" />
+        <Relationship entity="Rowset" />
       </RelationshipList>
     </Entity>
-    <Entity name="BoundColumn">
-      <PropertyList>
-        <Property name="Name" />
-        <Property name="Ordinal" />
-        <Property name="SourceFieldId" isRequired="false" />
-        <Property name="SourceTableId" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="BoundRowset" role="Owner" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BoundColumnReference">
-      <PropertyList>
-        <Property name="SyntaxColumnReferenceId" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="TransformBinding" role="Owner" />
-        <Relationship entity="BoundColumn" role="Value" />
-        <Relationship entity="BoundTableSource" role="ResolvedTableSource" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BoundTableSource">
-      <PropertyList>
-        <Property name="ExposedName" />
-        <Property name="SyntaxTableReferenceId" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="TransformBinding" role="Owner" />
-        <Relationship entity="BoundRowset" role="Value" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="BoundIssue">
+    <Entity name="TransformBindingValidationIssue">
       <PropertyList>
         <Property name="Code" />
         <Property name="Message" />
@@ -93,7 +52,75 @@
         <Property name="SyntaxId" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="TransformBinding" role="Owner" />
+        <Relationship entity="TransformBindingValidation" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OutputRowset">
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
+        <Relationship entity="Rowset" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Rowset">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DerivationKind" />
+        <Property name="RowsetRole" isRequired="false" />
+        <Property name="SyntaxId" isRequired="false" />
+        <Property name="SqlIdentifier" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="SourceTarget">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="InputRole" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Rowset" role="Target" />
+        <Relationship entity="Rowset" role="Source" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Column">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Rowset" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ColumnReference">
+      <PropertyList>
+        <Property name="SyntaxColumnReferenceId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
+        <Relationship entity="Column" />
+        <Relationship entity="TableSource" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableSource">
+      <PropertyList>
+        <Property name="ExposedName" />
+        <Property name="SyntaxTableReferenceId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
+        <Relationship entity="Rowset" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Issue">
+      <PropertyList>
+        <Property name="Code" />
+        <Property name="Message" />
+        <Property name="Severity" isRequired="false" />
+        <Property name="SyntaxId" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformBinding" />
       </RelationshipList>
     </Entity>
   </EntityList>

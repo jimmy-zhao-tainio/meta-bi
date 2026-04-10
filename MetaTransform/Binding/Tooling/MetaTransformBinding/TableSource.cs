@@ -14,16 +14,16 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class BoundTableSource
+    public sealed class TableSource
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
-        [XmlAttribute("OwnerId")]
-        public string OwnerId { get; set; } = string.Empty;
+        [XmlAttribute("RowsetId")]
+        public string RowsetId { get; set; } = string.Empty;
 
-        [XmlAttribute("ValueId")]
-        public string ValueId { get; set; } = string.Empty;
+        [XmlAttribute("TransformBindingId")]
+        public string TransformBindingId { get; set; } = string.Empty;
 
         [XmlElement("ExposedName")]
         public string ExposedName { get; set; } = string.Empty;
@@ -32,10 +32,10 @@ namespace MetaTransformBinding
         public string SyntaxTableReferenceId { get; set; } = string.Empty;
 
         [XmlIgnore]
-        public TransformBinding Owner { get; set; } = null!;
+        public Rowset Rowset { get; set; } = null!;
 
         [XmlIgnore]
-        public BoundRowset Value { get; set; } = null!;
+        public TransformBinding TransformBinding { get; set; } = null!;
 
     }
 }

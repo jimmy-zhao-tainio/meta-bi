@@ -14,22 +14,22 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class TransformBindingFinalRowsetLink
+    public sealed class OutputRowset
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
-        [XmlAttribute("OwnerId")]
-        public string OwnerId { get; set; } = string.Empty;
+        [XmlAttribute("RowsetId")]
+        public string RowsetId { get; set; } = string.Empty;
 
-        [XmlAttribute("ValueId")]
-        public string ValueId { get; set; } = string.Empty;
-
-        [XmlIgnore]
-        public TransformBinding Owner { get; set; } = null!;
+        [XmlAttribute("TransformBindingId")]
+        public string TransformBindingId { get; set; } = string.Empty;
 
         [XmlIgnore]
-        public BoundRowset Value { get; set; } = null!;
+        public Rowset Rowset { get; set; } = null!;
+
+        [XmlIgnore]
+        public TransformBinding TransformBinding { get; set; } = null!;
 
     }
 }

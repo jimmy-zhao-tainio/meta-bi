@@ -14,13 +14,13 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class BoundRowset
+    public sealed class Rowset
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
-        [XmlAttribute("OwnerId")]
-        public string OwnerId { get; set; } = string.Empty;
+        [XmlAttribute("TransformBindingId")]
+        public string TransformBindingId { get; set; } = string.Empty;
 
         [XmlElement("DerivationKind")]
         public string DerivationKind { get; set; } = string.Empty;
@@ -32,16 +32,16 @@ namespace MetaTransformBinding
         public string RowsetRole { get; set; } = string.Empty;
         public bool ShouldSerializeRowsetRole() => !string.IsNullOrWhiteSpace(RowsetRole);
 
-        [XmlElement("SourceTableId")]
-        public string SourceTableId { get; set; } = string.Empty;
-        public bool ShouldSerializeSourceTableId() => !string.IsNullOrWhiteSpace(SourceTableId);
+        [XmlElement("SqlIdentifier")]
+        public string SqlIdentifier { get; set; } = string.Empty;
+        public bool ShouldSerializeSqlIdentifier() => !string.IsNullOrWhiteSpace(SqlIdentifier);
 
         [XmlElement("SyntaxId")]
         public string SyntaxId { get; set; } = string.Empty;
         public bool ShouldSerializeSyntaxId() => !string.IsNullOrWhiteSpace(SyntaxId);
 
         [XmlIgnore]
-        public TransformBinding Owner { get; set; } = null!;
+        public TransformBinding TransformBinding { get; set; } = null!;
 
     }
 }

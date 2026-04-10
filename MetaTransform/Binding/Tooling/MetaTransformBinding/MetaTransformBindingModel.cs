@@ -24,55 +24,70 @@ namespace MetaTransformBinding
     {
         public static MetaTransformBindingModel CreateEmpty() => new();
 
-        [XmlArray("BoundColumnList")]
-        [XmlArrayItem("BoundColumn")]
-        public List<BoundColumn> BoundColumnList { get; set; } = new();
-        public bool ShouldSerializeBoundColumnList() => BoundColumnList.Count > 0;
+        [XmlArray("ColumnList")]
+        [XmlArrayItem("Column")]
+        public List<Column> ColumnList { get; set; } = new();
+        public bool ShouldSerializeColumnList() => ColumnList.Count > 0;
 
-        [XmlArray("BoundColumnReferenceList")]
-        [XmlArrayItem("BoundColumnReference")]
-        public List<BoundColumnReference> BoundColumnReferenceList { get; set; } = new();
-        public bool ShouldSerializeBoundColumnReferenceList() => BoundColumnReferenceList.Count > 0;
+        [XmlArray("ColumnReferenceList")]
+        [XmlArrayItem("ColumnReference")]
+        public List<ColumnReference> ColumnReferenceList { get; set; } = new();
+        public bool ShouldSerializeColumnReferenceList() => ColumnReferenceList.Count > 0;
 
-        [XmlArray("BoundIssueList")]
-        [XmlArrayItem("BoundIssue")]
-        public List<BoundIssue> BoundIssueList { get; set; } = new();
-        public bool ShouldSerializeBoundIssueList() => BoundIssueList.Count > 0;
+        [XmlArray("IssueList")]
+        [XmlArrayItem("Issue")]
+        public List<Issue> IssueList { get; set; } = new();
+        public bool ShouldSerializeIssueList() => IssueList.Count > 0;
 
-        [XmlArray("BoundRowsetList")]
-        [XmlArrayItem("BoundRowset")]
-        public List<BoundRowset> BoundRowsetList { get; set; } = new();
-        public bool ShouldSerializeBoundRowsetList() => BoundRowsetList.Count > 0;
+        [XmlArray("OutputRowsetList")]
+        [XmlArrayItem("OutputRowset")]
+        public List<OutputRowset> OutputRowsetList { get; set; } = new();
+        public bool ShouldSerializeOutputRowsetList() => OutputRowsetList.Count > 0;
 
-        [XmlArray("BoundRowsetInputList")]
-        [XmlArrayItem("BoundRowsetInput")]
-        public List<BoundRowsetInput> BoundRowsetInputList { get; set; } = new();
-        public bool ShouldSerializeBoundRowsetInputList() => BoundRowsetInputList.Count > 0;
+        [XmlArray("RowsetList")]
+        [XmlArrayItem("Rowset")]
+        public List<Rowset> RowsetList { get; set; } = new();
+        public bool ShouldSerializeRowsetList() => RowsetList.Count > 0;
 
-        [XmlArray("BoundTableSourceList")]
-        [XmlArrayItem("BoundTableSource")]
-        public List<BoundTableSource> BoundTableSourceList { get; set; } = new();
-        public bool ShouldSerializeBoundTableSourceList() => BoundTableSourceList.Count > 0;
+        [XmlArray("RowsetSourceValidationList")]
+        [XmlArrayItem("RowsetSourceValidation")]
+        public List<RowsetSourceValidation> RowsetSourceValidationList { get; set; } = new();
+        public bool ShouldSerializeRowsetSourceValidationList() => RowsetSourceValidationList.Count > 0;
+
+        [XmlArray("RowsetTargetValidationList")]
+        [XmlArrayItem("RowsetTargetValidation")]
+        public List<RowsetTargetValidation> RowsetTargetValidationList { get; set; } = new();
+        public bool ShouldSerializeRowsetTargetValidationList() => RowsetTargetValidationList.Count > 0;
+
+        [XmlArray("SourceTargetList")]
+        [XmlArrayItem("SourceTarget")]
+        public List<SourceTarget> SourceTargetList { get; set; } = new();
+        public bool ShouldSerializeSourceTargetList() => SourceTargetList.Count > 0;
+
+        [XmlArray("TableSourceList")]
+        [XmlArrayItem("TableSource")]
+        public List<TableSource> TableSourceList { get; set; } = new();
+        public bool ShouldSerializeTableSourceList() => TableSourceList.Count > 0;
 
         [XmlArray("TransformBindingList")]
         [XmlArrayItem("TransformBinding")]
         public List<TransformBinding> TransformBindingList { get; set; } = new();
         public bool ShouldSerializeTransformBindingList() => TransformBindingList.Count > 0;
 
-        [XmlArray("TransformBindingFinalRowsetLinkList")]
-        [XmlArrayItem("TransformBindingFinalRowsetLink")]
-        public List<TransformBindingFinalRowsetLink> TransformBindingFinalRowsetLinkList { get; set; } = new();
-        public bool ShouldSerializeTransformBindingFinalRowsetLinkList() => TransformBindingFinalRowsetLinkList.Count > 0;
-
-        [XmlArray("TransformBindingSourceList")]
-        [XmlArrayItem("TransformBindingSource")]
-        public List<TransformBindingSource> TransformBindingSourceList { get; set; } = new();
-        public bool ShouldSerializeTransformBindingSourceList() => TransformBindingSourceList.Count > 0;
-
         [XmlArray("TransformBindingTargetList")]
         [XmlArrayItem("TransformBindingTarget")]
         public List<TransformBindingTarget> TransformBindingTargetList { get; set; } = new();
         public bool ShouldSerializeTransformBindingTargetList() => TransformBindingTargetList.Count > 0;
+
+        [XmlArray("TransformBindingValidationList")]
+        [XmlArrayItem("TransformBindingValidation")]
+        public List<TransformBindingValidation> TransformBindingValidationList { get; set; } = new();
+        public bool ShouldSerializeTransformBindingValidationList() => TransformBindingValidationList.Count > 0;
+
+        [XmlArray("TransformBindingValidationIssueList")]
+        [XmlArrayItem("TransformBindingValidationIssue")]
+        public List<TransformBindingValidationIssue> TransformBindingValidationIssueList { get; set; } = new();
+        public bool ShouldSerializeTransformBindingValidationIssueList() => TransformBindingValidationIssueList.Count > 0;
 
         public static MetaTransformBindingModel LoadFromXmlWorkspace(
             string workspacePath,
@@ -132,243 +147,300 @@ namespace MetaTransformBinding
         {
             ArgumentNullException.ThrowIfNull(model);
 
-            model.BoundColumnList ??= new List<BoundColumn>();
-            model.BoundColumnReferenceList ??= new List<BoundColumnReference>();
-            model.BoundIssueList ??= new List<BoundIssue>();
-            model.BoundRowsetList ??= new List<BoundRowset>();
-            model.BoundRowsetInputList ??= new List<BoundRowsetInput>();
-            model.BoundTableSourceList ??= new List<BoundTableSource>();
+            model.ColumnList ??= new List<Column>();
+            model.ColumnReferenceList ??= new List<ColumnReference>();
+            model.IssueList ??= new List<Issue>();
+            model.OutputRowsetList ??= new List<OutputRowset>();
+            model.RowsetList ??= new List<Rowset>();
+            model.RowsetSourceValidationList ??= new List<RowsetSourceValidation>();
+            model.RowsetTargetValidationList ??= new List<RowsetTargetValidation>();
+            model.SourceTargetList ??= new List<SourceTarget>();
+            model.TableSourceList ??= new List<TableSource>();
             model.TransformBindingList ??= new List<TransformBinding>();
-            model.TransformBindingFinalRowsetLinkList ??= new List<TransformBindingFinalRowsetLink>();
-            model.TransformBindingSourceList ??= new List<TransformBindingSource>();
             model.TransformBindingTargetList ??= new List<TransformBindingTarget>();
+            model.TransformBindingValidationList ??= new List<TransformBindingValidation>();
+            model.TransformBindingValidationIssueList ??= new List<TransformBindingValidationIssue>();
 
-            NormalizeBoundColumnList(model);
-            NormalizeBoundColumnReferenceList(model);
-            NormalizeBoundIssueList(model);
-            NormalizeBoundRowsetList(model);
-            NormalizeBoundRowsetInputList(model);
-            NormalizeBoundTableSourceList(model);
+            NormalizeColumnList(model);
+            NormalizeColumnReferenceList(model);
+            NormalizeIssueList(model);
+            NormalizeOutputRowsetList(model);
+            NormalizeRowsetList(model);
+            NormalizeRowsetSourceValidationList(model);
+            NormalizeRowsetTargetValidationList(model);
+            NormalizeSourceTargetList(model);
+            NormalizeTableSourceList(model);
             NormalizeTransformBindingList(model);
-            NormalizeTransformBindingFinalRowsetLinkList(model);
-            NormalizeTransformBindingSourceList(model);
             NormalizeTransformBindingTargetList(model);
+            NormalizeTransformBindingValidationList(model);
+            NormalizeTransformBindingValidationIssueList(model);
 
-            var boundColumnListById = BuildById(model.BoundColumnList, row => row.Id, "BoundColumn");
-            var boundColumnReferenceListById = BuildById(model.BoundColumnReferenceList, row => row.Id, "BoundColumnReference");
-            var boundIssueListById = BuildById(model.BoundIssueList, row => row.Id, "BoundIssue");
-            var boundRowsetListById = BuildById(model.BoundRowsetList, row => row.Id, "BoundRowset");
-            var boundRowsetInputListById = BuildById(model.BoundRowsetInputList, row => row.Id, "BoundRowsetInput");
-            var boundTableSourceListById = BuildById(model.BoundTableSourceList, row => row.Id, "BoundTableSource");
+            var columnListById = BuildById(model.ColumnList, row => row.Id, "Column");
+            var columnReferenceListById = BuildById(model.ColumnReferenceList, row => row.Id, "ColumnReference");
+            var issueListById = BuildById(model.IssueList, row => row.Id, "Issue");
+            var outputRowsetListById = BuildById(model.OutputRowsetList, row => row.Id, "OutputRowset");
+            var rowsetListById = BuildById(model.RowsetList, row => row.Id, "Rowset");
+            var rowsetSourceValidationListById = BuildById(model.RowsetSourceValidationList, row => row.Id, "RowsetSourceValidation");
+            var rowsetTargetValidationListById = BuildById(model.RowsetTargetValidationList, row => row.Id, "RowsetTargetValidation");
+            var sourceTargetListById = BuildById(model.SourceTargetList, row => row.Id, "SourceTarget");
+            var tableSourceListById = BuildById(model.TableSourceList, row => row.Id, "TableSource");
             var transformBindingListById = BuildById(model.TransformBindingList, row => row.Id, "TransformBinding");
-            var transformBindingFinalRowsetLinkListById = BuildById(model.TransformBindingFinalRowsetLinkList, row => row.Id, "TransformBindingFinalRowsetLink");
-            var transformBindingSourceListById = BuildById(model.TransformBindingSourceList, row => row.Id, "TransformBindingSource");
             var transformBindingTargetListById = BuildById(model.TransformBindingTargetList, row => row.Id, "TransformBindingTarget");
+            var transformBindingValidationListById = BuildById(model.TransformBindingValidationList, row => row.Id, "TransformBindingValidation");
+            var transformBindingValidationIssueListById = BuildById(model.TransformBindingValidationIssueList, row => row.Id, "TransformBindingValidationIssue");
 
-            foreach (var row in model.BoundColumnList)
+            foreach (var row in model.ColumnList)
             {
-                row.OwnerId = ResolveRelationshipId(
-                    row.OwnerId,
-                    row.Owner?.Id,
-                    "BoundColumn",
+                row.RowsetId = ResolveRelationshipId(
+                    row.RowsetId,
+                    row.Rowset?.Id,
+                    "Column",
                     row.Id,
-                    "OwnerId");
-                row.Owner = RequireTarget(
-                    boundRowsetListById,
-                    row.OwnerId,
-                    "BoundColumn",
+                    "RowsetId");
+                row.Rowset = RequireTarget(
+                    rowsetListById,
+                    row.RowsetId,
+                    "Column",
                     row.Id,
-                    "OwnerId");
+                    "RowsetId");
             }
 
-            foreach (var row in model.BoundColumnReferenceList)
+            foreach (var row in model.ColumnReferenceList)
             {
-                row.OwnerId = ResolveRelationshipId(
-                    row.OwnerId,
-                    row.Owner?.Id,
-                    "BoundColumnReference",
+                row.ColumnId = ResolveRelationshipId(
+                    row.ColumnId,
+                    row.Column?.Id,
+                    "ColumnReference",
                     row.Id,
-                    "OwnerId");
-                row.Owner = RequireTarget(
-                    transformBindingListById,
-                    row.OwnerId,
-                    "BoundColumnReference",
+                    "ColumnId");
+                row.Column = RequireTarget(
+                    columnListById,
+                    row.ColumnId,
+                    "ColumnReference",
                     row.Id,
-                    "OwnerId");
+                    "ColumnId");
             }
 
-            foreach (var row in model.BoundColumnReferenceList)
+            foreach (var row in model.ColumnReferenceList)
             {
-                row.ResolvedTableSourceId = ResolveRelationshipId(
-                    row.ResolvedTableSourceId,
-                    row.ResolvedTableSource?.Id,
-                    "BoundColumnReference",
+                row.TableSourceId = ResolveRelationshipId(
+                    row.TableSourceId,
+                    row.TableSource?.Id,
+                    "ColumnReference",
                     row.Id,
-                    "ResolvedTableSourceId");
-                row.ResolvedTableSource = RequireTarget(
-                    boundTableSourceListById,
-                    row.ResolvedTableSourceId,
-                    "BoundColumnReference",
+                    "TableSourceId");
+                row.TableSource = RequireTarget(
+                    tableSourceListById,
+                    row.TableSourceId,
+                    "ColumnReference",
                     row.Id,
-                    "ResolvedTableSourceId");
+                    "TableSourceId");
             }
 
-            foreach (var row in model.BoundColumnReferenceList)
-            {
-                row.ValueId = ResolveRelationshipId(
-                    row.ValueId,
-                    row.Value?.Id,
-                    "BoundColumnReference",
-                    row.Id,
-                    "ValueId");
-                row.Value = RequireTarget(
-                    boundColumnListById,
-                    row.ValueId,
-                    "BoundColumnReference",
-                    row.Id,
-                    "ValueId");
-            }
-
-            foreach (var row in model.BoundIssueList)
-            {
-                row.OwnerId = ResolveRelationshipId(
-                    row.OwnerId,
-                    row.Owner?.Id,
-                    "BoundIssue",
-                    row.Id,
-                    "OwnerId");
-                row.Owner = RequireTarget(
-                    transformBindingListById,
-                    row.OwnerId,
-                    "BoundIssue",
-                    row.Id,
-                    "OwnerId");
-            }
-
-            foreach (var row in model.BoundRowsetList)
-            {
-                row.OwnerId = ResolveRelationshipId(
-                    row.OwnerId,
-                    row.Owner?.Id,
-                    "BoundRowset",
-                    row.Id,
-                    "OwnerId");
-                row.Owner = RequireTarget(
-                    transformBindingListById,
-                    row.OwnerId,
-                    "BoundRowset",
-                    row.Id,
-                    "OwnerId");
-            }
-
-            foreach (var row in model.BoundRowsetInputList)
-            {
-                row.OwnerId = ResolveRelationshipId(
-                    row.OwnerId,
-                    row.Owner?.Id,
-                    "BoundRowsetInput",
-                    row.Id,
-                    "OwnerId");
-                row.Owner = RequireTarget(
-                    boundRowsetListById,
-                    row.OwnerId,
-                    "BoundRowsetInput",
-                    row.Id,
-                    "OwnerId");
-            }
-
-            foreach (var row in model.BoundRowsetInputList)
-            {
-                row.ValueId = ResolveRelationshipId(
-                    row.ValueId,
-                    row.Value?.Id,
-                    "BoundRowsetInput",
-                    row.Id,
-                    "ValueId");
-                row.Value = RequireTarget(
-                    boundRowsetListById,
-                    row.ValueId,
-                    "BoundRowsetInput",
-                    row.Id,
-                    "ValueId");
-            }
-
-            foreach (var row in model.BoundTableSourceList)
-            {
-                row.OwnerId = ResolveRelationshipId(
-                    row.OwnerId,
-                    row.Owner?.Id,
-                    "BoundTableSource",
-                    row.Id,
-                    "OwnerId");
-                row.Owner = RequireTarget(
-                    transformBindingListById,
-                    row.OwnerId,
-                    "BoundTableSource",
-                    row.Id,
-                    "OwnerId");
-            }
-
-            foreach (var row in model.BoundTableSourceList)
-            {
-                row.ValueId = ResolveRelationshipId(
-                    row.ValueId,
-                    row.Value?.Id,
-                    "BoundTableSource",
-                    row.Id,
-                    "ValueId");
-                row.Value = RequireTarget(
-                    boundRowsetListById,
-                    row.ValueId,
-                    "BoundTableSource",
-                    row.Id,
-                    "ValueId");
-            }
-
-            foreach (var row in model.TransformBindingFinalRowsetLinkList)
-            {
-                row.OwnerId = ResolveRelationshipId(
-                    row.OwnerId,
-                    row.Owner?.Id,
-                    "TransformBindingFinalRowsetLink",
-                    row.Id,
-                    "OwnerId");
-                row.Owner = RequireTarget(
-                    transformBindingListById,
-                    row.OwnerId,
-                    "TransformBindingFinalRowsetLink",
-                    row.Id,
-                    "OwnerId");
-            }
-
-            foreach (var row in model.TransformBindingFinalRowsetLinkList)
-            {
-                row.ValueId = ResolveRelationshipId(
-                    row.ValueId,
-                    row.Value?.Id,
-                    "TransformBindingFinalRowsetLink",
-                    row.Id,
-                    "ValueId");
-                row.Value = RequireTarget(
-                    boundRowsetListById,
-                    row.ValueId,
-                    "TransformBindingFinalRowsetLink",
-                    row.Id,
-                    "ValueId");
-            }
-
-            foreach (var row in model.TransformBindingSourceList)
+            foreach (var row in model.ColumnReferenceList)
             {
                 row.TransformBindingId = ResolveRelationshipId(
                     row.TransformBindingId,
                     row.TransformBinding?.Id,
-                    "TransformBindingSource",
+                    "ColumnReference",
                     row.Id,
                     "TransformBindingId");
                 row.TransformBinding = RequireTarget(
                     transformBindingListById,
                     row.TransformBindingId,
-                    "TransformBindingSource",
+                    "ColumnReference",
+                    row.Id,
+                    "TransformBindingId");
+            }
+
+            foreach (var row in model.IssueList)
+            {
+                row.TransformBindingId = ResolveRelationshipId(
+                    row.TransformBindingId,
+                    row.TransformBinding?.Id,
+                    "Issue",
+                    row.Id,
+                    "TransformBindingId");
+                row.TransformBinding = RequireTarget(
+                    transformBindingListById,
+                    row.TransformBindingId,
+                    "Issue",
+                    row.Id,
+                    "TransformBindingId");
+            }
+
+            foreach (var row in model.OutputRowsetList)
+            {
+                row.RowsetId = ResolveRelationshipId(
+                    row.RowsetId,
+                    row.Rowset?.Id,
+                    "OutputRowset",
+                    row.Id,
+                    "RowsetId");
+                row.Rowset = RequireTarget(
+                    rowsetListById,
+                    row.RowsetId,
+                    "OutputRowset",
+                    row.Id,
+                    "RowsetId");
+            }
+
+            foreach (var row in model.OutputRowsetList)
+            {
+                row.TransformBindingId = ResolveRelationshipId(
+                    row.TransformBindingId,
+                    row.TransformBinding?.Id,
+                    "OutputRowset",
+                    row.Id,
+                    "TransformBindingId");
+                row.TransformBinding = RequireTarget(
+                    transformBindingListById,
+                    row.TransformBindingId,
+                    "OutputRowset",
+                    row.Id,
+                    "TransformBindingId");
+            }
+
+            foreach (var row in model.RowsetList)
+            {
+                row.TransformBindingId = ResolveRelationshipId(
+                    row.TransformBindingId,
+                    row.TransformBinding?.Id,
+                    "Rowset",
+                    row.Id,
+                    "TransformBindingId");
+                row.TransformBinding = RequireTarget(
+                    transformBindingListById,
+                    row.TransformBindingId,
+                    "Rowset",
+                    row.Id,
+                    "TransformBindingId");
+            }
+
+            foreach (var row in model.RowsetSourceValidationList)
+            {
+                row.RowsetId = ResolveRelationshipId(
+                    row.RowsetId,
+                    row.Rowset?.Id,
+                    "RowsetSourceValidation",
+                    row.Id,
+                    "RowsetId");
+                row.Rowset = RequireTarget(
+                    rowsetListById,
+                    row.RowsetId,
+                    "RowsetSourceValidation",
+                    row.Id,
+                    "RowsetId");
+            }
+
+            foreach (var row in model.RowsetSourceValidationList)
+            {
+                row.TransformBindingValidationId = ResolveRelationshipId(
+                    row.TransformBindingValidationId,
+                    row.TransformBindingValidation?.Id,
+                    "RowsetSourceValidation",
+                    row.Id,
+                    "TransformBindingValidationId");
+                row.TransformBindingValidation = RequireTarget(
+                    transformBindingValidationListById,
+                    row.TransformBindingValidationId,
+                    "RowsetSourceValidation",
+                    row.Id,
+                    "TransformBindingValidationId");
+            }
+
+            foreach (var row in model.RowsetTargetValidationList)
+            {
+                row.RowsetId = ResolveRelationshipId(
+                    row.RowsetId,
+                    row.Rowset?.Id,
+                    "RowsetTargetValidation",
+                    row.Id,
+                    "RowsetId");
+                row.Rowset = RequireTarget(
+                    rowsetListById,
+                    row.RowsetId,
+                    "RowsetTargetValidation",
+                    row.Id,
+                    "RowsetId");
+            }
+
+            foreach (var row in model.RowsetTargetValidationList)
+            {
+                row.TransformBindingValidationId = ResolveRelationshipId(
+                    row.TransformBindingValidationId,
+                    row.TransformBindingValidation?.Id,
+                    "RowsetTargetValidation",
+                    row.Id,
+                    "TransformBindingValidationId");
+                row.TransformBindingValidation = RequireTarget(
+                    transformBindingValidationListById,
+                    row.TransformBindingValidationId,
+                    "RowsetTargetValidation",
+                    row.Id,
+                    "TransformBindingValidationId");
+            }
+
+            foreach (var row in model.SourceTargetList)
+            {
+                row.SourceId = ResolveRelationshipId(
+                    row.SourceId,
+                    row.Source?.Id,
+                    "SourceTarget",
+                    row.Id,
+                    "SourceId");
+                row.Source = RequireTarget(
+                    rowsetListById,
+                    row.SourceId,
+                    "SourceTarget",
+                    row.Id,
+                    "SourceId");
+            }
+
+            foreach (var row in model.SourceTargetList)
+            {
+                row.TargetId = ResolveRelationshipId(
+                    row.TargetId,
+                    row.Target?.Id,
+                    "SourceTarget",
+                    row.Id,
+                    "TargetId");
+                row.Target = RequireTarget(
+                    rowsetListById,
+                    row.TargetId,
+                    "SourceTarget",
+                    row.Id,
+                    "TargetId");
+            }
+
+            foreach (var row in model.TableSourceList)
+            {
+                row.RowsetId = ResolveRelationshipId(
+                    row.RowsetId,
+                    row.Rowset?.Id,
+                    "TableSource",
+                    row.Id,
+                    "RowsetId");
+                row.Rowset = RequireTarget(
+                    rowsetListById,
+                    row.RowsetId,
+                    "TableSource",
+                    row.Id,
+                    "RowsetId");
+            }
+
+            foreach (var row in model.TableSourceList)
+            {
+                row.TransformBindingId = ResolveRelationshipId(
+                    row.TransformBindingId,
+                    row.TransformBinding?.Id,
+                    "TableSource",
+                    row.Id,
+                    "TransformBindingId");
+                row.TransformBinding = RequireTarget(
+                    transformBindingListById,
+                    row.TransformBindingId,
+                    "TableSource",
                     row.Id,
                     "TransformBindingId");
             }
@@ -389,87 +461,157 @@ namespace MetaTransformBinding
                     "TransformBindingId");
             }
 
+            foreach (var row in model.TransformBindingValidationList)
+            {
+                row.TransformBindingId = ResolveRelationshipId(
+                    row.TransformBindingId,
+                    row.TransformBinding?.Id,
+                    "TransformBindingValidation",
+                    row.Id,
+                    "TransformBindingId");
+                row.TransformBinding = RequireTarget(
+                    transformBindingListById,
+                    row.TransformBindingId,
+                    "TransformBindingValidation",
+                    row.Id,
+                    "TransformBindingId");
+            }
+
+            foreach (var row in model.TransformBindingValidationIssueList)
+            {
+                row.TransformBindingValidationId = ResolveRelationshipId(
+                    row.TransformBindingValidationId,
+                    row.TransformBindingValidation?.Id,
+                    "TransformBindingValidationIssue",
+                    row.Id,
+                    "TransformBindingValidationId");
+                row.TransformBindingValidation = RequireTarget(
+                    transformBindingValidationListById,
+                    row.TransformBindingValidationId,
+                    "TransformBindingValidationIssue",
+                    row.Id,
+                    "TransformBindingValidationId");
+            }
+
         }
 
-        private static void NormalizeBoundColumnList(MetaTransformBindingModel model)
+        private static void NormalizeColumnList(MetaTransformBindingModel model)
         {
-            foreach (var row in model.BoundColumnList)
+            foreach (var row in model.ColumnList)
             {
                 ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BoundColumn' contains a row with empty Id.");
-                row.Name = RequireText(row.Name, $"Entity 'BoundColumn' row '{row.Id}' is missing required property 'Name'.");
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BoundColumn' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.SourceFieldId ??= string.Empty;
-                row.SourceTableId ??= string.Empty;
-                row.OwnerId ??= string.Empty;
+                row.Id = RequireIdentity(row.Id, "Entity 'Column' contains a row with empty Id.");
+                row.Name = RequireText(row.Name, $"Entity 'Column' row '{row.Id}' is missing required property 'Name'.");
+                row.Ordinal = RequireText(row.Ordinal, $"Entity 'Column' row '{row.Id}' is missing required property 'Ordinal'.");
+                row.RowsetId ??= string.Empty;
             }
         }
 
-        private static void NormalizeBoundColumnReferenceList(MetaTransformBindingModel model)
+        private static void NormalizeColumnReferenceList(MetaTransformBindingModel model)
         {
-            foreach (var row in model.BoundColumnReferenceList)
+            foreach (var row in model.ColumnReferenceList)
             {
                 ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BoundColumnReference' contains a row with empty Id.");
-                row.SyntaxColumnReferenceId = RequireText(row.SyntaxColumnReferenceId, $"Entity 'BoundColumnReference' row '{row.Id}' is missing required property 'SyntaxColumnReferenceId'.");
-                row.OwnerId ??= string.Empty;
-                row.ResolvedTableSourceId ??= string.Empty;
-                row.ValueId ??= string.Empty;
+                row.Id = RequireIdentity(row.Id, "Entity 'ColumnReference' contains a row with empty Id.");
+                row.SyntaxColumnReferenceId = RequireText(row.SyntaxColumnReferenceId, $"Entity 'ColumnReference' row '{row.Id}' is missing required property 'SyntaxColumnReferenceId'.");
+                row.ColumnId ??= string.Empty;
+                row.TableSourceId ??= string.Empty;
+                row.TransformBindingId ??= string.Empty;
             }
         }
 
-        private static void NormalizeBoundIssueList(MetaTransformBindingModel model)
+        private static void NormalizeIssueList(MetaTransformBindingModel model)
         {
-            foreach (var row in model.BoundIssueList)
+            foreach (var row in model.IssueList)
             {
                 ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BoundIssue' contains a row with empty Id.");
-                row.Code = RequireText(row.Code, $"Entity 'BoundIssue' row '{row.Id}' is missing required property 'Code'.");
-                row.Message = RequireText(row.Message, $"Entity 'BoundIssue' row '{row.Id}' is missing required property 'Message'.");
+                row.Id = RequireIdentity(row.Id, "Entity 'Issue' contains a row with empty Id.");
+                row.Code = RequireText(row.Code, $"Entity 'Issue' row '{row.Id}' is missing required property 'Code'.");
+                row.Message = RequireText(row.Message, $"Entity 'Issue' row '{row.Id}' is missing required property 'Message'.");
                 row.Severity ??= string.Empty;
                 row.SyntaxId ??= string.Empty;
-                row.OwnerId ??= string.Empty;
+                row.TransformBindingId ??= string.Empty;
             }
         }
 
-        private static void NormalizeBoundRowsetList(MetaTransformBindingModel model)
+        private static void NormalizeOutputRowsetList(MetaTransformBindingModel model)
         {
-            foreach (var row in model.BoundRowsetList)
+            foreach (var row in model.OutputRowsetList)
             {
                 ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BoundRowset' contains a row with empty Id.");
-                row.DerivationKind = RequireText(row.DerivationKind, $"Entity 'BoundRowset' row '{row.Id}' is missing required property 'DerivationKind'.");
-                row.Name = RequireText(row.Name, $"Entity 'BoundRowset' row '{row.Id}' is missing required property 'Name'.");
+                row.Id = RequireIdentity(row.Id, "Entity 'OutputRowset' contains a row with empty Id.");
+                row.RowsetId ??= string.Empty;
+                row.TransformBindingId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeRowsetList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.RowsetList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'Rowset' contains a row with empty Id.");
+                row.DerivationKind = RequireText(row.DerivationKind, $"Entity 'Rowset' row '{row.Id}' is missing required property 'DerivationKind'.");
+                row.Name = RequireText(row.Name, $"Entity 'Rowset' row '{row.Id}' is missing required property 'Name'.");
                 row.RowsetRole ??= string.Empty;
-                row.SourceTableId ??= string.Empty;
+                row.SqlIdentifier ??= string.Empty;
                 row.SyntaxId ??= string.Empty;
-                row.OwnerId ??= string.Empty;
+                row.TransformBindingId ??= string.Empty;
             }
         }
 
-        private static void NormalizeBoundRowsetInputList(MetaTransformBindingModel model)
+        private static void NormalizeRowsetSourceValidationList(MetaTransformBindingModel model)
         {
-            foreach (var row in model.BoundRowsetInputList)
+            foreach (var row in model.RowsetSourceValidationList)
             {
                 ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BoundRowsetInput' contains a row with empty Id.");
+                row.Id = RequireIdentity(row.Id, "Entity 'RowsetSourceValidation' contains a row with empty Id.");
+                row.ConformanceKind = RequireText(row.ConformanceKind, $"Entity 'RowsetSourceValidation' row '{row.Id}' is missing required property 'ConformanceKind'.");
+                row.ResolutionKind = RequireText(row.ResolutionKind, $"Entity 'RowsetSourceValidation' row '{row.Id}' is missing required property 'ResolutionKind'.");
+                row.TableId ??= string.Empty;
+                row.RowsetId ??= string.Empty;
+                row.TransformBindingValidationId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeRowsetTargetValidationList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.RowsetTargetValidationList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'RowsetTargetValidation' contains a row with empty Id.");
+                row.ConformanceKind = RequireText(row.ConformanceKind, $"Entity 'RowsetTargetValidation' row '{row.Id}' is missing required property 'ConformanceKind'.");
+                row.ResolutionKind = RequireText(row.ResolutionKind, $"Entity 'RowsetTargetValidation' row '{row.Id}' is missing required property 'ResolutionKind'.");
+                row.SqlIdentifier = RequireText(row.SqlIdentifier, $"Entity 'RowsetTargetValidation' row '{row.Id}' is missing required property 'SqlIdentifier'.");
+                row.TableId ??= string.Empty;
+                row.RowsetId ??= string.Empty;
+                row.TransformBindingValidationId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeSourceTargetList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.SourceTargetList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'SourceTarget' contains a row with empty Id.");
                 row.InputRole ??= string.Empty;
-                row.Ordinal = RequireText(row.Ordinal, $"Entity 'BoundRowsetInput' row '{row.Id}' is missing required property 'Ordinal'.");
-                row.OwnerId ??= string.Empty;
-                row.ValueId ??= string.Empty;
+                row.Ordinal = RequireText(row.Ordinal, $"Entity 'SourceTarget' row '{row.Id}' is missing required property 'Ordinal'.");
+                row.SourceId ??= string.Empty;
+                row.TargetId ??= string.Empty;
             }
         }
 
-        private static void NormalizeBoundTableSourceList(MetaTransformBindingModel model)
+        private static void NormalizeTableSourceList(MetaTransformBindingModel model)
         {
-            foreach (var row in model.BoundTableSourceList)
+            foreach (var row in model.TableSourceList)
             {
                 ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'BoundTableSource' contains a row with empty Id.");
-                row.ExposedName = RequireText(row.ExposedName, $"Entity 'BoundTableSource' row '{row.Id}' is missing required property 'ExposedName'.");
-                row.SyntaxTableReferenceId = RequireText(row.SyntaxTableReferenceId, $"Entity 'BoundTableSource' row '{row.Id}' is missing required property 'SyntaxTableReferenceId'.");
-                row.OwnerId ??= string.Empty;
-                row.ValueId ??= string.Empty;
+                row.Id = RequireIdentity(row.Id, "Entity 'TableSource' contains a row with empty Id.");
+                row.ExposedName = RequireText(row.ExposedName, $"Entity 'TableSource' row '{row.Id}' is missing required property 'ExposedName'.");
+                row.SyntaxTableReferenceId = RequireText(row.SyntaxTableReferenceId, $"Entity 'TableSource' row '{row.Id}' is missing required property 'SyntaxTableReferenceId'.");
+                row.RowsetId ??= string.Empty;
+                row.TransformBindingId ??= string.Empty;
             }
         }
 
@@ -485,29 +627,6 @@ namespace MetaTransformBinding
             }
         }
 
-        private static void NormalizeTransformBindingFinalRowsetLinkList(MetaTransformBindingModel model)
-        {
-            foreach (var row in model.TransformBindingFinalRowsetLinkList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'TransformBindingFinalRowsetLink' contains a row with empty Id.");
-                row.OwnerId ??= string.Empty;
-                row.ValueId ??= string.Empty;
-            }
-        }
-
-        private static void NormalizeTransformBindingSourceList(MetaTransformBindingModel model)
-        {
-            foreach (var row in model.TransformBindingSourceList)
-            {
-                ArgumentNullException.ThrowIfNull(row);
-                row.Id = RequireIdentity(row.Id, "Entity 'TransformBindingSource' contains a row with empty Id.");
-                row.SqlIdentifier = RequireText(row.SqlIdentifier, $"Entity 'TransformBindingSource' row '{row.Id}' is missing required property 'SqlIdentifier'.");
-                row.TableId = RequireText(row.TableId, $"Entity 'TransformBindingSource' row '{row.Id}' is missing required property 'TableId'.");
-                row.TransformBindingId ??= string.Empty;
-            }
-        }
-
         private static void NormalizeTransformBindingTargetList(MetaTransformBindingModel model)
         {
             foreach (var row in model.TransformBindingTargetList)
@@ -515,8 +634,31 @@ namespace MetaTransformBinding
                 ArgumentNullException.ThrowIfNull(row);
                 row.Id = RequireIdentity(row.Id, "Entity 'TransformBindingTarget' contains a row with empty Id.");
                 row.SqlIdentifier = RequireText(row.SqlIdentifier, $"Entity 'TransformBindingTarget' row '{row.Id}' is missing required property 'SqlIdentifier'.");
-                row.TableId = RequireText(row.TableId, $"Entity 'TransformBindingTarget' row '{row.Id}' is missing required property 'TableId'.");
                 row.TransformBindingId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTransformBindingValidationList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.TransformBindingValidationList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TransformBindingValidation' contains a row with empty Id.");
+                row.TransformBindingId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeTransformBindingValidationIssueList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.TransformBindingValidationIssueList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TransformBindingValidationIssue' contains a row with empty Id.");
+                row.Code = RequireText(row.Code, $"Entity 'TransformBindingValidationIssue' row '{row.Id}' is missing required property 'Code'.");
+                row.Message = RequireText(row.Message, $"Entity 'TransformBindingValidationIssue' row '{row.Id}' is missing required property 'Message'.");
+                row.Severity ??= string.Empty;
+                row.SyntaxId ??= string.Empty;
+                row.TransformBindingValidationId ??= string.Empty;
             }
         }
 

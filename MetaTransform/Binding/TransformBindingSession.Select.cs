@@ -4,8 +4,8 @@ namespace MetaTransform.Binding;
 
 internal sealed partial class TransformBindingSession
 {
-    private RuntimeBoundRowset? ComposeInputRowset(
-        IReadOnlyList<RuntimeBoundTableReferenceBinding> tableBindings,
+    private RuntimeRowset? ComposeInputRowset(
+        IReadOnlyList<RuntimeTableReferenceBinding> tableBindings,
         FromClause fromClause)
     {
         if (tableBindings.Count == 0)
@@ -20,15 +20,13 @@ internal sealed partial class TransformBindingSession
 
         var composedColumns = tableBindings
             .SelectMany(item => item.Rowset.Columns)
-            .Select((column, ordinal) => new RuntimeBoundColumn(
+            .Select((column, ordinal) => new RuntimeColumn(
                 $"{fromClause.Id}:column:{ordinal + 1}",
                 column.Name,
-                ordinal,
-                column.SourceFieldId,
-                column.SourceTableId))
+                ordinal))
             .ToArray();
 
-        var fromRowset = new RuntimeBoundRowset(
+        var fromRowset = new RuntimeRowset(
             $"{fromClause.Id}:rowset",
             $"From:{fromClause.Id}",
             "From",
@@ -37,24 +35,24 @@ internal sealed partial class TransformBindingSession
             null,
             composedColumns,
             tableBindings
-                .Select((item, ordinal) => new RuntimeBoundRowsetInput(ordinal, "Input", item.Rowset))
+                .Select((item, ordinal) => new RuntimeRowsetInput(ordinal, "Input", item.Rowset))
                 .ToArray());
 
         TrackRowset(fromRowset);
         return fromRowset;
     }
 
-    private RuntimeBoundRowset BindSelectElements(
+    private RuntimeRowset BindSelectElements(
         QuerySpecification querySpecification,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
         string outputRowsetId,
         string outputRowsetName,
         string? outputRowsetRole,
         IReadOnlyList<string>? expectedOutputColumnNames,
         RuntimeGroupingContext? groupingContext)
     {
-        var outputColumns = new List<RuntimeBoundColumn>();
+        var outputColumns = new List<RuntimeColumn>();
 
         foreach (var item in navigator.GetSelectElements(querySpecification).Select((selectElement, ordinal) => (SelectElement: selectElement, Ordinal: ordinal)))
         {
@@ -87,7 +85,7 @@ internal sealed partial class TransformBindingSession
                 item.SelectElement.Id));
         }
 
-        return new RuntimeBoundRowset(
+        return new RuntimeRowset(
             outputRowsetId,
             outputRowsetName,
             "Projection",
@@ -97,15 +95,15 @@ internal sealed partial class TransformBindingSession
             outputColumns,
             inputRowset is null
                 ? []
-                : [new RuntimeBoundRowsetInput(0, "Input", inputRowset)]);
+                : [new RuntimeRowsetInput(0, "Input", inputRowset)]);
     }
 
     private void BindSelectScalarExpression(
         SelectElement selectElement,
         SelectScalarExpression selectScalarExpression,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset,
-        List<RuntimeBoundColumn> outputColumns,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
+        List<RuntimeColumn> outputColumns,
         RuntimeGroupingContext? groupingContext,
         string? expectedOutputColumnName)
     {
@@ -119,7 +117,7 @@ internal sealed partial class TransformBindingSession
             return;
         }
 
-        RuntimeBoundColumnReference? boundColumnReference = null;
+        RuntimeColumnReference? boundColumnReference = null;
         var directColumnReference = navigator.TryGetDirectColumnReference(scalarExpression);
         if (directColumnReference is not null)
         {
@@ -159,19 +157,17 @@ internal sealed partial class TransformBindingSession
             return;
         }
 
-        outputColumns.Add(new RuntimeBoundColumn(
+        outputColumns.Add(new RuntimeColumn(
             $"{selectElement.Id}:output",
             outputName,
-            outputColumns.Count,
-            boundColumnReference?.ResolvedColumn.SourceFieldId,
-            boundColumnReference?.ResolvedColumn.SourceTableId));
+            outputColumns.Count));
     }
 
     private void BindSelectStarExpression(
         SelectElement selectElement,
         SelectStarExpression selectStarExpression,
-        BoundScope scope,
-        List<RuntimeBoundColumn> outputColumns,
+        BindingScope scope,
+        List<RuntimeColumn> outputColumns,
         RuntimeGroupingContext? groupingContext)
     {
         if (groupingContext is not null)
@@ -184,7 +180,7 @@ internal sealed partial class TransformBindingSession
         }
 
         var qualifierParts = navigator.GetSelectStarQualifierParts(selectStarExpression);
-        IEnumerable<RuntimeBoundTableSource> sourcesToExpand;
+        IEnumerable<RuntimeTableSource> sourcesToExpand;
 
         if (qualifierParts.Count == 0)
         {
@@ -225,23 +221,34 @@ internal sealed partial class TransformBindingSession
             return;
         }
 
+        var unresolvedSourceExpansions = sourcesToExpand
+            .Where(static item => string.Equals(item.Rowset.DerivationKind, "Source", StringComparison.Ordinal) &&
+                                  item.Rowset.Columns.Count == 0)
+            .ToArray();
+        if (unresolvedSourceExpansions.Length > 0)
+        {
+            issues.Add(new TransformBindingIssue(
+                "SelectStarRequiresValidationSchema",
+                $"Select star on '{selectElement.Id}' depends on source rowset shape that Binding does not derive from syntax alone.",
+                selectElement.Id));
+            return;
+        }
+
         foreach (var source in sourcesToExpand)
         {
             foreach (var column in source.Rowset.Columns)
             {
-                outputColumns.Add(new RuntimeBoundColumn(
+                outputColumns.Add(new RuntimeColumn(
                     $"{selectElement.Id}:output:{outputColumns.Count}",
                     column.Name,
-                    outputColumns.Count,
-                    column.SourceFieldId,
-                    column.SourceTableId));
+                    outputColumns.Count));
             }
         }
     }
 
-    private RuntimeBoundColumnReference? BindColumnReference(
+    private RuntimeColumnReference? BindColumnReference(
         ColumnReferenceExpression columnReferenceExpression,
-        BoundScope scope,
+        BindingScope scope,
         RuntimeGroupingContext? groupingContext = null,
         bool withinAggregate = false)
     {
@@ -269,6 +276,31 @@ internal sealed partial class TransformBindingSession
 
             if (matches.Length == 0)
             {
+                var inferableSources = scope.VisibleTableSources
+                    .Where(CanInferSourceColumn)
+                    .ToArray();
+
+                if (inferableSources.Length == 1)
+                {
+                    var inferredColumn = EnsureInferredSourceColumn(inferableSources[0], parts[0]);
+                    return ValidateGroupedColumnReference(
+                        columnReferenceExpression,
+                        parts,
+                        inferredColumn,
+                        inferableSources[0],
+                        groupingContext,
+                        withinAggregate);
+                }
+
+                if (inferableSources.Length > 1)
+                {
+                    issues.Add(new TransformBindingIssue(
+                        "ColumnReferenceRequiresValidationSchema",
+                        $"Column '{parts[0]}' could belong to more than one visible source rowset; Binding cannot resolve it from syntax alone.",
+                        columnReferenceExpression.Id));
+                    return null;
+                }
+
                 issues.Add(new TransformBindingIssue(
                     "ColumnReferenceNotFound",
                     $"Column '{parts[0]}' is not visible in the current query scope.",
@@ -324,6 +356,18 @@ internal sealed partial class TransformBindingSession
 
             if (matchedColumns.Length == 0)
             {
+                if (CanInferSourceColumn(matchedSources[0]))
+                {
+                    var inferredColumn = EnsureInferredSourceColumn(matchedSources[0], parts[1]);
+                    return ValidateGroupedColumnReference(
+                        columnReferenceExpression,
+                        parts,
+                        inferredColumn,
+                        matchedSources[0],
+                        groupingContext,
+                        withinAggregate);
+                }
+
                 issues.Add(new TransformBindingIssue(
                     "QualifiedColumnReferenceNotFound",
                     $"Column '{parts[1]}' is not exposed by table source '{parts[0]}'.",
@@ -356,11 +400,11 @@ internal sealed partial class TransformBindingSession
         return null;
     }
 
-    private RuntimeBoundColumnReference? ValidateGroupedColumnReference(
+    private RuntimeColumnReference? ValidateGroupedColumnReference(
         ColumnReferenceExpression columnReferenceExpression,
         IReadOnlyList<string> parts,
-        RuntimeBoundColumn column,
-        RuntimeBoundTableSource tableSource,
+        RuntimeColumn column,
+        RuntimeTableSource tableSource,
         RuntimeGroupingContext? groupingContext,
         bool withinAggregate)
     {
@@ -377,13 +421,43 @@ internal sealed partial class TransformBindingSession
             }
         }
 
-        return new RuntimeBoundColumnReference(columnReferenceExpression.Id, parts, column, tableSource);
+        return new RuntimeColumnReference(columnReferenceExpression.Id, parts, column, tableSource);
     }
 
     private static string NormalizeColumnReferenceSignature(IReadOnlyList<string> parts) =>
         string.Join(".", parts).Trim().ToUpperInvariant();
 
-    private void TrackRowset(RuntimeBoundRowset rowset)
+    private static bool CanInferSourceColumn(RuntimeTableSource tableSource)
+    {
+        return string.Equals(tableSource.Rowset.DerivationKind, "Source", StringComparison.Ordinal);
+    }
+
+    private static RuntimeColumn EnsureInferredSourceColumn(
+        RuntimeTableSource tableSource,
+        string columnName)
+    {
+        var existingColumn = tableSource.Rowset.Columns
+            .FirstOrDefault(item => string.Equals(item.Name, columnName, StringComparison.OrdinalIgnoreCase));
+        if (existingColumn is not null)
+        {
+            return existingColumn;
+        }
+
+        if (tableSource.Rowset.Columns is not List<RuntimeColumn> mutableColumns)
+        {
+            throw new InvalidOperationException(
+                $"Source rowset '{tableSource.Rowset.Id}' does not expose mutable columns for inferred binding.");
+        }
+
+        var inferredColumn = new RuntimeColumn(
+            $"{tableSource.SyntaxTableReferenceId}:source-column:{mutableColumns.Count + 1}",
+            columnName,
+            mutableColumns.Count);
+        mutableColumns.Add(inferredColumn);
+        return inferredColumn;
+    }
+
+    private void TrackRowset(RuntimeRowset rowset)
     {
         if (boundRowsets.Any(item => string.Equals(item.Id, rowset.Id, StringComparison.Ordinal)))
         {
@@ -393,7 +467,7 @@ internal sealed partial class TransformBindingSession
         boundRowsets.Add(rowset);
     }
 
-    private void TrackTableSource(RuntimeBoundTableSource tableSource)
+    private void TrackTableSource(RuntimeTableSource tableSource)
     {
         if (boundTableSources.Any(item => string.Equals(item.SyntaxTableReferenceId, tableSource.SyntaxTableReferenceId, StringComparison.Ordinal)))
         {

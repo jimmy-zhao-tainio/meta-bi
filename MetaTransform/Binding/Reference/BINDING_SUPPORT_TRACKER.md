@@ -36,11 +36,15 @@ Status meanings:
 - INTERSECT
 - EXCEPT
 - Select scalar expression
-- SELECT *
-- SELECT alias.*
 - GROUP BY
+- GROUP BY ALL
 - HAVING
 - Expression grouping specification
+
+### Structural schema conformance
+
+- Not applicable in Binding itself
+  Current boundary: Binding persists source and target SQL identifiers plus derived rowsets, but schema comparison belongs to Validate
 
 ### Name resolution and expression traversal
 
@@ -92,8 +96,16 @@ Status meanings:
 
 ### Recursive and aggregate semantics
 
+- SELECT *
+- SELECT alias.*
+  Current support: expands from syntax-derived rowsets such as derived tables, CTEs, and other bound query boundaries; base-source star expansion is deferred to Validate because Binding does not derive source schema shape
 - Recursive common table expression
   Current support: rowset shape can stabilize from explicit CTE column aliases or anchor-branch names; deeper recursive semantics are still deferred
+- GROUPING SETS
+- ROLLUP
+- CUBE
+- Composite grouping specification
+- Grand total grouping
 - AVG
 - COUNT
 - COUNT_BIG
@@ -108,6 +120,39 @@ Status meanings:
 - VARP
 - APPROX_COUNT_DISTINCT
   Current support: aggregate arguments are traversed and grouped-query rowset binding exists, but full aggregate output/type semantics are not yet the point of this layer
+- GROUPING
+- GROUPING_ID
+  Current support: advanced grouping specifications are traversed for grouped-rowset visibility, and grouping-function arguments bind through the aggregate call path; full aggregate/output/type semantics are still deferred
+
+### Window and ordered-set traversal
+
+- OVER
+- PARTITION BY
+- Window ORDER BY
+- ROWS frame
+- RANGE frame
+- Named WINDOW clause
+- ROW_NUMBER
+- RANK
+- DENSE_RANK
+- NTILE
+- LEAD
+- LAG
+- FIRST_VALUE
+- LAST_VALUE
+- PERCENT_RANK
+- CUME_DIST
+- PERCENTILE_CONT
+- PERCENTILE_DISC
+  Current support: function arguments, `WITHIN GROUP` orderings, `OVER` partitions/orderings/frame offsets, and named window-definition expressions are traversed for name resolution; full window semantics and explicit window-name validation are still deferred
+
+### Validation seam inside `MetaTransformBinding`
+
+- Source identifier resolution
+- Source column-subset schema conformance
+- Target identifier resolution
+- Final output rowset structural target conformance
+  Current support: validation appends explicit validation rows and validation issues inside `MetaTransformBinding`; target validation currently checks structural count/name and skips SQL identity columns only
 
 ## Deferred
 
@@ -135,32 +180,6 @@ Status meanings:
 
 - DISTINCT predicate
 - Full-text predicate
-- GROUP BY ALL
-- ROLLUP
-- CUBE
-- GROUPING SETS
-- Grand total grouping
-- Composite grouping specification
-- GROUPING
-- GROUPING_ID
-- OVER
-- PARTITION BY
-- Window ORDER BY
-- ROWS frame
-- RANGE frame
-- Named WINDOW clause
-- ROW_NUMBER
-- RANK
-- DENSE_RANK
-- NTILE
-- LEAD
-- LAG
-- FIRST_VALUE
-- LAST_VALUE
-- PERCENT_RANK
-- CUME_DIST
-- PERCENTILE_CONT
-- PERCENTILE_DISC
 - EXTRACT
 - Parameterless call
 - WITH XMLNAMESPACES
@@ -229,6 +248,6 @@ These belong to syntax, wrapping, or later semantic layers, not to binding as a 
 
 If you want the shortest honest summary of Binding today, it is:
 
-- rowset and scope binding is real for named sources, derived tables, CTEs, joins, set operations, correlated subqueries, and basic grouped queries
-- expression traversal is broad enough for current binding work, but window semantics, pivoting, XML, full-text, and most source-special forms are still deferred
+- rowset and scope binding is real for named sources, derived tables, CTEs, joins, set operations, correlated subqueries, and grouped queries including current sanctioned advanced grouping forms and `GROUP BY ALL`
+- expression traversal is broad enough for current binding work, including current sanctioned window and ordered-set clauses; Binding now persists unresolved source/target contracts, and the first Validate slice appends explicit validation rows inside the same semantic workspace
 - some rows that appear in the SQL syntax reference are intentionally not tracked here as standalone binding targets because they belong to syntax ownership or later semantic layers

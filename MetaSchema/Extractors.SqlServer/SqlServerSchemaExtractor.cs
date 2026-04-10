@@ -171,6 +171,18 @@ public sealed class SqlServerSchemaExtractor
                         values["MetaDataTypeId"] = BuildDataTypeId(columnRow.DataTypeName);
                         values["Ordinal"] = columnRow.OrdinalPosition.ToString(System.Globalization.CultureInfo.InvariantCulture);
                         values["IsNullable"] = columnRow.IsNullable ? "true" : "false";
+                        if (columnRow.IsIdentity)
+                        {
+                            values["IsIdentity"] = "true";
+                        }
+                        if (!string.IsNullOrWhiteSpace(columnRow.IdentitySeed))
+                        {
+                            values["IdentitySeed"] = columnRow.IdentitySeed;
+                        }
+                        if (!string.IsNullOrWhiteSpace(columnRow.IdentityIncrement))
+                        {
+                            values["IdentityIncrement"] = columnRow.IdentityIncrement;
+                        }
                     },
                     relationships => relationships["TableId"] = tableId);
 
@@ -377,11 +389,15 @@ public sealed class SqlServerSchemaExtractor
                 case
                     when ty.name in ('decimal', 'numeric') then convert(int, c.scale)
                     else null
-                end as ScaleValue
+                end as ScaleValue,
+                c.is_identity,
+                convert(nvarchar(50), ic.seed_value) as IdentitySeed,
+                convert(nvarchar(50), ic.increment_value) as IdentityIncrement
             from sys.tables t
             join sys.schemas s on s.schema_id = t.schema_id
             join sys.columns c on c.object_id = t.object_id
             join sys.types ty on ty.user_type_id = c.user_type_id
+            left join sys.identity_columns ic on ic.object_id = c.object_id and ic.column_id = c.column_id
             where s.name = @schemaName
               and t.name = @tableName
             order by t.name, c.column_id
@@ -402,7 +418,10 @@ public sealed class SqlServerSchemaExtractor
                 DataTypeName: reader.GetString(5),
                 Length: ReadNullableInt(reader, 6),
                 Precision: ReadNullableInt(reader, 7),
-                Scale: ReadNullableInt(reader, 8)));
+                Scale: ReadNullableInt(reader, 8),
+                IsIdentity: reader.GetBoolean(9),
+                IdentitySeed: ReadNullableString(reader, 10),
+                IdentityIncrement: ReadNullableString(reader, 11)));
         }
 
         return rows;
@@ -576,6 +595,13 @@ public sealed class SqlServerSchemaExtractor
         return value.Value;
     }
 
+    private static string? ReadNullableString(SqlDataReader reader, int ordinal)
+    {
+        return reader.IsDBNull(ordinal)
+            ? null
+            : reader.GetString(ordinal);
+    }
+
     private static string NormalizeTableType(string tableType)
     {
         return tableType switch
@@ -726,7 +752,10 @@ public sealed class SqlServerSchemaExtractor
         string DataTypeName,
         int? Length,
         int? Precision,
-        int? Scale);
+        int? Scale,
+        bool IsIdentity,
+        string? IdentitySeed,
+        string? IdentityIncrement);
 
     private readonly record struct ForeignKeyRow(
         string Name,

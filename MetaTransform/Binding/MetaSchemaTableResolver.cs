@@ -5,6 +5,7 @@ namespace MetaTransform.Binding;
 
 internal sealed class MetaSchemaTableResolver
 {
+    private readonly IReadOnlyDictionary<string, ResolvedSchemaTable> tablesById;
     private readonly IReadOnlyList<ResolvedSchemaTable> tables;
 
     public MetaSchemaTableResolver(MetaSchemaModel model)
@@ -20,7 +21,11 @@ internal sealed class MetaSchemaTableResolver
                 group => group
                     .OrderBy(item => ParseOrdinal(item.Ordinal))
                     .ThenBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
-                    .Select(item => new ResolvedSchemaField(item.Id, item.Name, ParseOrdinal(item.Ordinal)))
+                    .Select(item => new ResolvedSchemaField(
+                        item.Id,
+                        item.Name,
+                        ParseOrdinal(item.Ordinal),
+                        IsTrue(item.IsIdentity)))
                     .ToArray(),
                 StringComparer.Ordinal);
 
@@ -44,6 +49,19 @@ internal sealed class MetaSchemaTableResolver
                     fieldRowsByTableId.GetValueOrDefault(item.Id) ?? []);
             })
             .ToArray();
+
+        tablesById = tables.ToDictionary(item => item.TableId, StringComparer.Ordinal);
+    }
+
+    public bool TryGetTableById(string tableId, out ResolvedSchemaTable? table)
+    {
+        if (string.IsNullOrWhiteSpace(tableId))
+        {
+            table = null;
+            return false;
+        }
+
+        return tablesById.TryGetValue(tableId, out table);
     }
 
     public SchemaTableResolutionResult ResolveIdentifierParts(IReadOnlyList<string> identifierParts)
@@ -167,12 +185,18 @@ internal sealed class MetaSchemaTableResolver
             ? value
             : int.MaxValue;
     }
+
+    private static bool IsTrue(string? value)
+    {
+        return string.Equals(value?.Trim(), "true", StringComparison.OrdinalIgnoreCase);
+    }
 }
 
 internal sealed record ResolvedSchemaField(
     string FieldId,
     string FieldName,
-    int Ordinal);
+    int Ordinal,
+    bool IsIdentity);
 
 internal sealed record ResolvedSchemaTable(
     string TableId,

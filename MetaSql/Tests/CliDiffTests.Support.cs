@@ -242,6 +242,38 @@ public sealed partial class CliDiffTests
         return Task.CompletedTask;
     }
 
+    private static Task CreateSourceWorkspaceWithIdentityTableAsync(string sourcePath, string databaseName)
+    {
+        SqlServerMetaSqlProjector.Project(
+            newWorkspacePath: sourcePath,
+            databaseName: databaseName,
+            tableRows:
+            [
+                new SqlServerMetaSqlProjector.TableRow("raw", "IdentityCase")
+            ],
+            columnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ColumnRow>>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["raw.IdentityCase"] =
+                [
+                    new("raw", "IdentityCase", "Id", 1, false, "int", null, null, null, IsIdentity: true, IdentitySeed: "100", IdentityIncrement: "5"),
+                    new("raw", "IdentityCase", "CustomerName", 2, false, "nvarchar", 100, null, null),
+                ],
+            },
+            primaryKeysByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.PrimaryKeyRow>>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["raw.IdentityCase"] = [new("PK_IdentityCase", true)],
+            },
+            primaryKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.PrimaryKeyColumnRow>>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["raw.IdentityCase"] = [new("PK_IdentityCase", 1, "Id", false)],
+            },
+            foreignKeysByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyRow>>(StringComparer.OrdinalIgnoreCase),
+            foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
+            indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
+            indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
+        return Task.CompletedTask;
+    }
+
     private static Task CreateSourceWorkspaceWithExtraColumnInDboAsync(string sourcePath, string databaseName)
     {
         SqlServerMetaSqlProjector.Project(
@@ -935,6 +967,43 @@ public sealed partial class CliDiffTests
         }
 
         return Convert.ToInt32(value) == 1;
+    }
+
+    private static (bool IsIdentity, string? IdentitySeed, string? IdentityIncrement) GetColumnIdentityMetadata(
+        string connectionString,
+        string schemaName,
+        string tableName,
+        string columnName)
+    {
+        using var connection = new SqlConnection(connectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            SELECT
+                c.is_identity,
+                CONVERT(nvarchar(50), ic.seed_value),
+                CONVERT(nvarchar(50), ic.increment_value)
+            FROM sys.columns AS c
+            INNER JOIN sys.tables AS t ON t.object_id = c.object_id
+            INNER JOIN sys.schemas AS s ON s.schema_id = t.schema_id
+            LEFT JOIN sys.identity_columns AS ic ON ic.object_id = c.object_id AND ic.column_id = c.column_id
+            WHERE s.name = @SchemaName
+              AND t.name = @TableName
+              AND c.name = @ColumnName;
+            """;
+        command.Parameters.AddWithValue("@SchemaName", schemaName);
+        command.Parameters.AddWithValue("@TableName", tableName);
+        command.Parameters.AddWithValue("@ColumnName", columnName);
+        using var reader = command.ExecuteReader();
+        if (!reader.Read())
+        {
+            throw new InvalidOperationException($"Column '{schemaName}.{tableName}.{columnName}' was not found.");
+        }
+
+        return (
+            IsIdentity: reader.GetBoolean(0),
+            IdentitySeed: reader.IsDBNull(1) ? null : reader.GetString(1),
+            IdentityIncrement: reader.IsDBNull(2) ? null : reader.GetString(2));
     }
 
     private static bool TableExists(string connectionString, string schemaName, string tableName)

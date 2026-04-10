@@ -9,6 +9,6 @@ Intended target tables in `SchemaWS`:
 - `sales.CustomerOrderSummary`
 - `reporting.InvoiceWindow`
 
-Current binding infers source tables from the SQL and resolves them against the same schema workspace.
-Current binding also requires explicit `--target` values and resolves those target SQL identifiers against the same schema workspace.
-Later validation should compare each transform's final output rowset against its resolved target table in that same schema workspace.
+Current binding infers source rowset identifiers from the SQL and persists them as SQL identifiers only.
+Current binding also requires explicit `--target` values and persists those target SQL identifiers in the binding workspace.
+Later Validate should compare each transform's source and final output rowsets against `SchemaWS`.

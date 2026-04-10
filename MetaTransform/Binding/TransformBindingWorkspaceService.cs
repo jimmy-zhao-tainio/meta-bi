@@ -1,4 +1,3 @@
-using MetaSchema;
 using MetaTransformBinding;
 using MetaTransformScript;
 
@@ -8,14 +7,12 @@ public sealed class TransformBindingWorkspaceService
 {
     public BindToWorkspaceResult BindToWorkspace(
         string transformWorkspacePath,
-        string schemaWorkspacePath,
         string newWorkspacePath,
         IReadOnlyList<string> targetSqlIdentifiers,
         string? transformScriptName = null,
         string? activeLanguageProfileIdOverride = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(schemaWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
         ArgumentNullException.ThrowIfNull(targetSqlIdentifiers);
 
@@ -25,32 +22,33 @@ public sealed class TransformBindingWorkspaceService
         }
 
         var transformWorkspaceFullPath = Path.GetFullPath(transformWorkspacePath);
-        var schemaWorkspaceFullPath = Path.GetFullPath(schemaWorkspacePath);
         var bindingWorkspaceFullPath = Path.GetFullPath(newWorkspacePath);
 
         var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspaceFullPath, searchUpward: false);
-        var schemaModel = MetaSchemaModel.LoadFromXmlWorkspace(schemaWorkspaceFullPath, searchUpward: false);
         var transformScript = ResolveSingleScript(transformModel, transformScriptName);
-        var resolvedTargets = ResolveTargets(schemaModel, targetSqlIdentifiers);
+        var targets = targetSqlIdentifiers
+            .Select(CreateUnresolvedTarget)
+            .ToArray();
 
         var bound = new TransformBindingService().BindTransform(
             transformModel,
             transformScript,
-            schemaModel,
             activeLanguageProfileIdOverride);
-        var bindingModel = TransformBindingModelBuilder.Create(bound, resolvedTargets);
+        var bindingModel = TransformBindingModelBuilder.Create(bound, targets);
 
         bindingModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);
 
-        var issueCount = bindingModel.BoundIssueList.Count;
-        var errorCount = bindingModel.BoundIssueList.Count(item => string.Equals(item.Severity, "Error", StringComparison.OrdinalIgnoreCase));
+        var issueCount = bindingModel.IssueList.Count;
+        var errorCount = bindingModel.IssueList.Count(item => string.Equals(item.Severity, "Error", StringComparison.OrdinalIgnoreCase));
 
         return new BindToWorkspaceResult(
             bindingModel,
             bindingWorkspaceFullPath,
             transformScript.Name,
             bindingModel.TransformBindingList.Count,
-            bindingModel.TransformBindingSourceList.Count,
+            bindingModel.RowsetList.Count(item =>
+                string.Equals(item.DerivationKind, "Source", StringComparison.OrdinalIgnoreCase) &&
+                !string.IsNullOrWhiteSpace(item.SqlIdentifier)),
             bindingModel.TransformBindingTargetList.Count,
             issueCount,
             errorCount);
@@ -87,47 +85,21 @@ public sealed class TransformBindingWorkspaceService
         return scripts[0];
     }
 
-    private static IReadOnlyList<TransformBindingTargetResolution> ResolveTargets(
-        MetaSchemaModel schemaModel,
-        IReadOnlyList<string> targetSqlIdentifiers)
+    private static TransformBindingTargetResolution CreateUnresolvedTarget(string targetSqlIdentifier)
     {
-        var resolver = new MetaSchemaTableResolver(schemaModel);
-        var targets = new List<TransformBindingTargetResolution>();
+        var trimmed = targetSqlIdentifier?.Trim() ?? string.Empty;
+        var parts = trimmed
+            .Split('.', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
-        foreach (var targetSqlIdentifier in targetSqlIdentifiers)
+        if (parts.Length is < 1 or > 3)
         {
-            var resolution = resolver.ResolveSqlIdentifier(targetSqlIdentifier);
-            if (!resolution.IsResolved)
-            {
-                throw new InvalidOperationException(CreateTargetResolutionErrorMessage(targetSqlIdentifier, resolution));
-            }
-
-            targets.Add(new TransformBindingTargetResolution(
-                targetSqlIdentifier.Trim(),
-                resolution.Table!.TableId));
+            throw new InvalidOperationException(
+                $"Target '{targetSqlIdentifier}' uses {parts.Length} identifier parts; binding supports table, schema.table, or database.schema.table targets only.");
         }
 
-        return targets;
+        return new TransformBindingTargetResolution(trimmed, null);
     }
 
-    private static string CreateTargetResolutionErrorMessage(
-        string targetSqlIdentifier,
-        SchemaTableResolutionResult resolution)
-    {
-        return resolution.FailureKind switch
-        {
-            SchemaTableResolutionFailureKind.MissingIdentifier =>
-                $"Target '{targetSqlIdentifier}' does not expose a supported SQL identifier.",
-            SchemaTableResolutionFailureKind.UnsupportedIdentifierShape =>
-                $"Target '{targetSqlIdentifier}' uses {resolution.IdentifierParts.Count} identifier parts; binding supports table, schema.table, or database.schema.table targets only.",
-            SchemaTableResolutionFailureKind.NotFound =>
-                $"Target '{targetSqlIdentifier}' was not found in the sanctioned schema workspace.",
-            SchemaTableResolutionFailureKind.Ambiguous =>
-                $"Target '{targetSqlIdentifier}' resolves ambiguously in the sanctioned schema workspace.",
-            _ =>
-                $"Target '{targetSqlIdentifier}' could not be resolved in the sanctioned schema workspace."
-        };
-    }
 }
 
 public sealed record BindToWorkspaceResult(

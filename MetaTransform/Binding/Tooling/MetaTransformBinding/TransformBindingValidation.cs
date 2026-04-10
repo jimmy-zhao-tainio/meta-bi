@@ -14,19 +14,13 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class TransformBindingSource
+    public sealed class TransformBindingValidation
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
         [XmlAttribute("TransformBindingId")]
         public string TransformBindingId { get; set; } = string.Empty;
-
-        [XmlElement("SqlIdentifier")]
-        public string SqlIdentifier { get; set; } = string.Empty;
-
-        [XmlElement("TableId")]
-        public string TableId { get; set; } = string.Empty;
 
         [XmlIgnore]
         public TransformBinding TransformBinding { get; set; } = null!;

@@ -61,16 +61,16 @@ You do not need fifty entities. You need a few sharp ones.
 
 Something like:
 
-- `BoundScope`
-- `BoundRowset`
-- `BoundColumn`
-- `BoundReference`
+- `BindingScope`
+- `Rowset`
+- `Column`
+- `ColumnReference`
 - `InferredType`
 - `ValidationIssue`
 
 That is enough to start.
 
-A `BoundRowset` is the important one. Every table reference, derived table, CTE, subquery, and query block should resolve to a rowset with named columns and types. Once you have that, a lot of the rest becomes straightforward.
+A `Rowset` is the important one. Every table reference, derived table, CTE, subquery, and query block should resolve to a rowset with named columns and types. Once you have that, a lot of the rest becomes straightforward.
 
 The correct order of implementation is also important.
 
@@ -108,7 +108,7 @@ The active language profile should resolve by one invariant only:
 
 That is a strong backend story.
 
-The most important acceptance test for this phase is not “we inferred some types.” It is:
+The most important acceptance test for this phase is not â€œwe inferred some types.â€ It is:
 
 for a supported transform with known source and target schemas, the system can either prove the transform is valid, or produce explicit, local validation issues without guessing.
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Model name="MetaTransformScript">
   <EntityList>
     <Entity name="TransformScript">
@@ -10,14 +10,14 @@
     </Entity>
     <Entity name="TransformScriptSchemaIdentifierLink">
       <RelationshipList>
-        <Relationship entity="TransformScript" role="Owner" />
-        <Relationship entity="Identifier" role="Value" />
+        <Relationship entity="TransformScript" />
+        <Relationship entity="Identifier" />
       </RelationshipList>
     </Entity>
     <Entity name="TransformScriptObjectIdentifierLink">
       <RelationshipList>
-        <Relationship entity="TransformScript" role="Owner" />
-        <Relationship entity="Identifier" role="Value" />
+        <Relationship entity="TransformScript" />
+        <Relationship entity="Identifier" />
       </RelationshipList>
     </Entity>
     <Entity name="TransformScriptViewColumnsItem">
@@ -25,31 +25,31 @@
         <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="TransformScript" role="Owner" />
-        <Relationship entity="Identifier" role="Value" />
+        <Relationship entity="TransformScript" />
+        <Relationship entity="Identifier" />
       </RelationshipList>
     </Entity>
     <Entity name="TransformScriptSelectStatementLink">
       <RelationshipList>
-        <Relationship entity="TransformScript" role="Owner" />
-        <Relationship entity="SelectStatement" role="Value" />
+        <Relationship entity="TransformScript" />
+        <Relationship entity="SelectStatement" />
       </RelationshipList>
     </Entity>
     <Entity name="AtTimeZoneCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="AtTimeZoneCallDateValueLink">
       <RelationshipList>
-        <Relationship entity="AtTimeZoneCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="AtTimeZoneCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="AtTimeZoneCallTimeZoneLink">
       <RelationshipList>
-        <Relationship entity="AtTimeZoneCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="AtTimeZoneCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BinaryExpression">
@@ -57,19 +57,19 @@
         <Property name="BinaryExpressionType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Base" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BinaryExpressionFirstExpressionLink">
       <RelationshipList>
-        <Relationship entity="BinaryExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="BinaryExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BinaryExpressionSecondExpressionLink">
       <RelationshipList>
-        <Relationship entity="BinaryExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="BinaryExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BinaryLiteral">
@@ -78,7 +78,7 @@
         <Property name="LiteralType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Literal" role="Base" />
+        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="BinaryQueryExpression">
@@ -87,19 +87,19 @@
         <Property name="BinaryQueryExpressionType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="QueryExpression" role="Base" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BinaryQueryExpressionFirstQueryExpressionLink">
       <RelationshipList>
-        <Relationship entity="BinaryQueryExpression" role="Owner" />
-        <Relationship entity="QueryExpression" role="Value" />
+        <Relationship entity="BinaryQueryExpression" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BinaryQueryExpressionSecondQueryExpressionLink">
       <RelationshipList>
-        <Relationship entity="BinaryQueryExpression" role="Owner" />
-        <Relationship entity="QueryExpression" role="Value" />
+        <Relationship entity="BinaryQueryExpression" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanBinaryExpression">
@@ -107,19 +107,19 @@
         <Property name="BinaryExpressionType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanBinaryExpressionFirstExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanBinaryExpression" role="Owner" />
-        <Relationship entity="BooleanExpression" role="Value" />
+        <Relationship entity="BooleanBinaryExpression" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanBinaryExpressionSecondExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanBinaryExpression" role="Owner" />
-        <Relationship entity="BooleanExpression" role="Value" />
+        <Relationship entity="BooleanBinaryExpression" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanComparisonExpression">
@@ -127,19 +127,19 @@
         <Property name="ComparisonType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanComparisonExpressionFirstExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanComparisonExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="BooleanComparisonExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanComparisonExpressionSecondExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanComparisonExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="BooleanComparisonExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanExpression" />
@@ -148,35 +148,35 @@
         <Property name="IsNot" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanIsNullExpressionExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanIsNullExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="BooleanIsNullExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanNotExpression">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanNotExpressionExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Value" />
-        <Relationship entity="BooleanNotExpression" role="Owner" />
+        <Relationship entity="BooleanExpression" />
+        <Relationship entity="BooleanNotExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanParenthesisExpression">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanParenthesisExpressionExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Value" />
-        <Relationship entity="BooleanParenthesisExpression" role="Owner" />
+        <Relationship entity="BooleanExpression" />
+        <Relationship entity="BooleanParenthesisExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanTernaryExpression">
@@ -184,59 +184,59 @@
         <Property name="TernaryExpressionType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanTernaryExpressionFirstExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanTernaryExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="BooleanTernaryExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanTernaryExpressionSecondExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanTernaryExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="BooleanTernaryExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="BooleanTernaryExpressionThirdExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanTernaryExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="BooleanTernaryExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="CallTarget" />
     <Entity name="CaseExpression">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="CaseExpressionElseExpressionLink">
       <RelationshipList>
-        <Relationship entity="CaseExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="CaseExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="CastCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="CastCallDataTypeLink">
       <RelationshipList>
-        <Relationship entity="CastCall" role="Owner" />
-        <Relationship entity="DataTypeReference" role="Value" />
+        <Relationship entity="CastCall" />
+        <Relationship entity="DataTypeReference" />
       </RelationshipList>
     </Entity>
     <Entity name="CastCallParameterLink">
       <RelationshipList>
-        <Relationship entity="CastCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="CastCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="CoalesceExpression">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="CoalesceExpressionExpressionsItem">
@@ -244,8 +244,8 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="CoalesceExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="CoalesceExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ColumnReferenceExpression">
@@ -253,26 +253,26 @@
         <Property name="ColumnType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ColumnReferenceExpressionMultiPartIdentifierLink">
       <RelationshipList>
-        <Relationship entity="ColumnReferenceExpression" role="Owner" />
-        <Relationship entity="MultiPartIdentifier" role="Value" />
+        <Relationship entity="ColumnReferenceExpression" />
+        <Relationship entity="MultiPartIdentifier" />
       </RelationshipList>
     </Entity>
     <Entity name="CommonTableExpression" />
     <Entity name="CommonTableExpressionExpressionNameLink">
       <RelationshipList>
-        <Relationship entity="CommonTableExpression" role="Owner" />
-        <Relationship entity="Identifier" role="Value" />
+        <Relationship entity="CommonTableExpression" />
+        <Relationship entity="Identifier" />
       </RelationshipList>
     </Entity>
     <Entity name="CommonTableExpressionQueryExpressionLink">
       <RelationshipList>
-        <Relationship entity="CommonTableExpression" role="Owner" />
-        <Relationship entity="QueryExpression" role="Value" />
+        <Relationship entity="CommonTableExpression" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="CommonTableExpressionColumnsItem">
@@ -280,13 +280,13 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="CommonTableExpression" role="Owner" />
-        <Relationship entity="Identifier" role="Value" />
+        <Relationship entity="CommonTableExpression" />
+        <Relationship entity="Identifier" />
       </RelationshipList>
     </Entity>
     <Entity name="CompositeGroupingSpecification">
       <RelationshipList>
-        <Relationship entity="GroupingSpecification" role="Base" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="CompositeGroupingSpecificationItemsItem">
@@ -294,36 +294,36 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="CompositeGroupingSpecification" role="Owner" />
-        <Relationship entity="GroupingSpecification" role="Value" />
+        <Relationship entity="CompositeGroupingSpecification" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="ConvertCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ConvertCallDataTypeLink">
       <RelationshipList>
-        <Relationship entity="ConvertCall" role="Owner" />
-        <Relationship entity="DataTypeReference" role="Value" />
+        <Relationship entity="ConvertCall" />
+        <Relationship entity="DataTypeReference" />
       </RelationshipList>
     </Entity>
     <Entity name="ConvertCallParameterLink">
       <RelationshipList>
-        <Relationship entity="ConvertCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="ConvertCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ConvertCallStyleLink">
       <RelationshipList>
-        <Relationship entity="ConvertCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="ConvertCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="CubeGroupingSpecification">
       <RelationshipList>
-        <Relationship entity="GroupingSpecification" role="Base" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="CubeGroupingSpecificationArgumentsItem">
@@ -331,15 +331,15 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="CubeGroupingSpecification" role="Owner" />
-        <Relationship entity="GroupingSpecification" role="Value" />
+        <Relationship entity="CubeGroupingSpecification" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="DataTypeReference" />
     <Entity name="DataTypeReferenceNameLink">
       <RelationshipList>
-        <Relationship entity="DataTypeReference" role="Owner" />
-        <Relationship entity="SchemaObjectName" role="Value" />
+        <Relationship entity="DataTypeReference" />
+        <Relationship entity="SchemaObjectName" />
       </RelationshipList>
     </Entity>
     <Entity name="DistinctPredicate">
@@ -347,30 +347,30 @@
         <Property name="IsNot" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="DistinctPredicateFirstExpressionLink">
       <RelationshipList>
-        <Relationship entity="DistinctPredicate" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="DistinctPredicate" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="DistinctPredicateSecondExpressionLink">
       <RelationshipList>
-        <Relationship entity="DistinctPredicate" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="DistinctPredicate" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ExistsPredicate">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ExistsPredicateSubqueryLink">
       <RelationshipList>
-        <Relationship entity="ExistsPredicate" role="Owner" />
-        <Relationship entity="ScalarSubquery" role="Value" />
+        <Relationship entity="ExistsPredicate" />
+        <Relationship entity="ScalarSubquery" />
       </RelationshipList>
     </Entity>
     <Entity name="ExpressionGroupingSpecification">
@@ -378,13 +378,13 @@
         <Property name="DistributedAggregation" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="GroupingSpecification" role="Base" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="ExpressionGroupingSpecificationExpressionLink">
       <RelationshipList>
-        <Relationship entity="ExpressionGroupingSpecification" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="ExpressionGroupingSpecification" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ExpressionWithSortOrder">
@@ -394,8 +394,8 @@
     </Entity>
     <Entity name="ExpressionWithSortOrderExpressionLink">
       <RelationshipList>
-        <Relationship entity="ExpressionWithSortOrder" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="ExpressionWithSortOrder" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="FromClause" />
@@ -404,8 +404,8 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="FromClause" role="Owner" />
-        <Relationship entity="TableReference" role="Value" />
+        <Relationship entity="FromClause" />
+        <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="FullTextPredicate">
@@ -413,7 +413,7 @@
         <Property name="FullTextFunctionType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="FullTextPredicateColumnsItem">
@@ -421,14 +421,14 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ColumnReferenceExpression" role="Value" />
-        <Relationship entity="FullTextPredicate" role="Owner" />
+        <Relationship entity="ColumnReferenceExpression" />
+        <Relationship entity="FullTextPredicate" />
       </RelationshipList>
     </Entity>
     <Entity name="FullTextPredicateValueLink">
       <RelationshipList>
-        <Relationship entity="FullTextPredicate" role="Owner" />
-        <Relationship entity="ValueExpression" role="Value" />
+        <Relationship entity="FullTextPredicate" />
+        <Relationship entity="ValueExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="FullTextTableReference">
@@ -436,7 +436,7 @@
         <Property name="FullTextFunctionType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAlias" role="Base" />
+        <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
     <Entity name="FullTextTableReferenceColumnsItem">
@@ -444,20 +444,20 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ColumnReferenceExpression" role="Value" />
-        <Relationship entity="FullTextTableReference" role="Owner" />
+        <Relationship entity="ColumnReferenceExpression" />
+        <Relationship entity="FullTextTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="FullTextTableReferenceSearchConditionLink">
       <RelationshipList>
-        <Relationship entity="FullTextTableReference" role="Owner" />
-        <Relationship entity="ValueExpression" role="Value" />
+        <Relationship entity="FullTextTableReference" />
+        <Relationship entity="ValueExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="FullTextTableReferenceTableNameLink">
       <RelationshipList>
-        <Relationship entity="FullTextTableReference" role="Owner" />
-        <Relationship entity="SchemaObjectName" role="Value" />
+        <Relationship entity="FullTextTableReference" />
+        <Relationship entity="SchemaObjectName" />
       </RelationshipList>
     </Entity>
     <Entity name="FunctionCall">
@@ -466,31 +466,31 @@
         <Property name="WithArrayWrapper" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="FunctionCallCallTargetLink">
       <RelationshipList>
-        <Relationship entity="CallTarget" role="Value" />
-        <Relationship entity="FunctionCall" role="Owner" />
+        <Relationship entity="CallTarget" />
+        <Relationship entity="FunctionCall" />
       </RelationshipList>
     </Entity>
     <Entity name="FunctionCallFunctionNameLink">
       <RelationshipList>
-        <Relationship entity="FunctionCall" role="Owner" />
-        <Relationship entity="Identifier" role="Value" />
+        <Relationship entity="FunctionCall" />
+        <Relationship entity="Identifier" />
       </RelationshipList>
     </Entity>
     <Entity name="FunctionCallOverClauseLink">
       <RelationshipList>
-        <Relationship entity="FunctionCall" role="Owner" />
-        <Relationship entity="OverClause" role="Value" />
+        <Relationship entity="FunctionCall" />
+        <Relationship entity="OverClause" />
       </RelationshipList>
     </Entity>
     <Entity name="FunctionCallWithinGroupOrderByClauseLink">
       <RelationshipList>
-        <Relationship entity="FunctionCall" role="Owner" />
-        <Relationship entity="OrderByClause" role="Value" />
+        <Relationship entity="FunctionCall" />
+        <Relationship entity="OrderByClause" />
       </RelationshipList>
     </Entity>
     <Entity name="FunctionCallParametersItem">
@@ -498,19 +498,19 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="FunctionCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="FunctionCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="GlobalFunctionTableReference">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAlias" role="Base" />
+        <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
     <Entity name="GlobalFunctionTableReferenceNameLink">
       <RelationshipList>
-        <Relationship entity="GlobalFunctionTableReference" role="Owner" />
-        <Relationship entity="Identifier" role="Value" />
+        <Relationship entity="GlobalFunctionTableReference" />
+        <Relationship entity="Identifier" />
       </RelationshipList>
     </Entity>
     <Entity name="GlobalFunctionTableReferenceParametersItem">
@@ -518,8 +518,8 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="GlobalFunctionTableReference" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="GlobalFunctionTableReference" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="GlobalVariableExpression">
@@ -527,12 +527,12 @@
         <Property name="Name" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ValueExpression" role="Base" />
+        <Relationship entity="ValueExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="GrandTotalGroupingSpecification">
       <RelationshipList>
-        <Relationship entity="GroupingSpecification" role="Base" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="GroupByClause">
@@ -546,13 +546,13 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="GroupByClause" role="Owner" />
-        <Relationship entity="GroupingSpecification" role="Value" />
+        <Relationship entity="GroupByClause" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="GroupingSetsGroupingSpecification">
       <RelationshipList>
-        <Relationship entity="GroupingSpecification" role="Base" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="GroupingSetsGroupingSpecificationSetsItem">
@@ -560,39 +560,39 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="GroupingSetsGroupingSpecification" role="Owner" />
-        <Relationship entity="GroupingSpecification" role="Value" />
+        <Relationship entity="GroupingSetsGroupingSpecification" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="GroupingSpecification" />
     <Entity name="HavingClause" />
     <Entity name="HavingClauseSearchConditionLink">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Value" />
-        <Relationship entity="HavingClause" role="Owner" />
+        <Relationship entity="BooleanExpression" />
+        <Relationship entity="HavingClause" />
       </RelationshipList>
     </Entity>
     <Entity name="IIfCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="IIfCallElseExpressionLink">
       <RelationshipList>
-        <Relationship entity="IIfCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="IIfCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="IIfCallPredicateLink">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Value" />
-        <Relationship entity="IIfCall" role="Owner" />
+        <Relationship entity="BooleanExpression" />
+        <Relationship entity="IIfCall" />
       </RelationshipList>
     </Entity>
     <Entity name="IIfCallThenExpressionLink">
       <RelationshipList>
-        <Relationship entity="IIfCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="IIfCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="Identifier">
@@ -608,8 +608,8 @@
     </Entity>
     <Entity name="IdentifierOrValueExpressionIdentifierLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="IdentifierOrValueExpression" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="IdentifierOrValueExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="InPredicate">
@@ -617,19 +617,19 @@
         <Property name="NotDefined" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="InPredicateExpressionLink">
       <RelationshipList>
-        <Relationship entity="InPredicate" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="InPredicate" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="InPredicateSubqueryLink">
       <RelationshipList>
-        <Relationship entity="InPredicate" role="Owner" />
-        <Relationship entity="ScalarSubquery" role="Value" />
+        <Relationship entity="InPredicate" />
+        <Relationship entity="ScalarSubquery" />
       </RelationshipList>
     </Entity>
     <Entity name="InPredicateValuesItem">
@@ -637,13 +637,13 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="InPredicate" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="InPredicate" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="InlineDerivedTable">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAliasAndColumns" role="Base" />
+        <Relationship entity="TableReferenceWithAliasAndColumns" />
       </RelationshipList>
     </Entity>
     <Entity name="InlineDerivedTableRowValuesItem">
@@ -651,25 +651,25 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="InlineDerivedTable" role="Owner" />
-        <Relationship entity="RowValue" role="Value" />
+        <Relationship entity="InlineDerivedTable" />
+        <Relationship entity="RowValue" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNodesTableReference">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAliasAndColumns" role="Base" />
+        <Relationship entity="TableReferenceWithAliasAndColumns" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNodesTableReferenceTargetExpressionLink">
       <RelationshipList>
-        <Relationship entity="XmlNodesTableReference" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="XmlNodesTableReference" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNodesTableReferenceXQueryStringLink">
       <RelationshipList>
-        <Relationship entity="XmlNodesTableReference" role="Owner" />
-        <Relationship entity="StringLiteral" role="Value" />
+        <Relationship entity="XmlNodesTableReference" />
+        <Relationship entity="StringLiteral" />
       </RelationshipList>
     </Entity>
     <Entity name="IntegerLiteral">
@@ -677,40 +677,40 @@
         <Property name="LiteralType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Literal" role="Base" />
+        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="JoinParenthesisTableReference">
       <RelationshipList>
-        <Relationship entity="TableReference" role="Base" />
+        <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="JoinParenthesisTableReferenceJoinLink">
       <RelationshipList>
-        <Relationship entity="JoinParenthesisTableReference" role="Owner" />
-        <Relationship entity="TableReference" role="Value" />
+        <Relationship entity="JoinParenthesisTableReference" />
+        <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="JoinTableReference">
       <RelationshipList>
-        <Relationship entity="TableReference" role="Base" />
+        <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="JoinTableReferenceFirstTableReferenceLink">
       <RelationshipList>
-        <Relationship entity="JoinTableReference" role="Owner" />
-        <Relationship entity="TableReference" role="Value" />
+        <Relationship entity="JoinTableReference" />
+        <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="JoinTableReferenceSecondTableReferenceLink">
       <RelationshipList>
-        <Relationship entity="JoinTableReference" role="Owner" />
-        <Relationship entity="TableReference" role="Value" />
+        <Relationship entity="JoinTableReference" />
+        <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="LeftFunctionCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="LeftFunctionCallParametersItem">
@@ -718,8 +718,8 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="LeftFunctionCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="LeftFunctionCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="LikePredicate">
@@ -728,25 +728,25 @@
         <Property name="OdbcEscape" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="LikePredicateEscapeExpressionLink">
       <RelationshipList>
-        <Relationship entity="LikePredicate" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="LikePredicate" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="LikePredicateFirstExpressionLink">
       <RelationshipList>
-        <Relationship entity="LikePredicate" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="LikePredicate" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="LikePredicateSecondExpressionLink">
       <RelationshipList>
-        <Relationship entity="LikePredicate" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="LikePredicate" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="Literal">
@@ -755,7 +755,7 @@
         <Property name="Value" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ValueExpression" role="Base" />
+        <Relationship entity="ValueExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="MaxLiteral">
@@ -763,7 +763,7 @@
         <Property name="LiteralType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Literal" role="Base" />
+        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="MultiPartIdentifier">
@@ -773,13 +773,13 @@
     </Entity>
     <Entity name="MultiPartIdentifierCallTarget">
       <RelationshipList>
-        <Relationship entity="CallTarget" role="Base" />
+        <Relationship entity="CallTarget" />
       </RelationshipList>
     </Entity>
     <Entity name="MultiPartIdentifierCallTargetMultiPartIdentifierLink">
       <RelationshipList>
-        <Relationship entity="MultiPartIdentifier" role="Value" />
-        <Relationship entity="MultiPartIdentifierCallTarget" role="Owner" />
+        <Relationship entity="MultiPartIdentifier" />
+        <Relationship entity="MultiPartIdentifierCallTarget" />
       </RelationshipList>
     </Entity>
     <Entity name="MultiPartIdentifierIdentifiersItem">
@@ -787,53 +787,53 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="MultiPartIdentifier" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="MultiPartIdentifier" />
       </RelationshipList>
     </Entity>
     <Entity name="NamedTableReference">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAlias" role="Base" />
+        <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
     <Entity name="NamedTableReferenceSchemaObjectLink">
       <RelationshipList>
-        <Relationship entity="NamedTableReference" role="Owner" />
-        <Relationship entity="SchemaObjectName" role="Value" />
+        <Relationship entity="NamedTableReference" />
+        <Relationship entity="SchemaObjectName" />
       </RelationshipList>
     </Entity>
     <Entity name="NamedTableReferenceTableSampleClauseLink">
       <RelationshipList>
-        <Relationship entity="NamedTableReference" role="Owner" />
-        <Relationship entity="TableSampleClause" role="Value" />
+        <Relationship entity="NamedTableReference" />
+        <Relationship entity="TableSampleClause" />
       </RelationshipList>
     </Entity>
     <Entity name="NextValueForExpression">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="NextValueForExpressionSequenceNameLink">
       <RelationshipList>
-        <Relationship entity="NextValueForExpression" role="Owner" />
-        <Relationship entity="SchemaObjectName" role="Value" />
+        <Relationship entity="NextValueForExpression" />
+        <Relationship entity="SchemaObjectName" />
       </RelationshipList>
     </Entity>
     <Entity name="NullIfExpression">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="NullIfExpressionFirstExpressionLink">
       <RelationshipList>
-        <Relationship entity="NullIfExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="NullIfExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="NullIfExpressionSecondExpressionLink">
       <RelationshipList>
-        <Relationship entity="NullIfExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="NullIfExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="NullLiteral">
@@ -841,7 +841,7 @@
         <Property name="LiteralType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Literal" role="Base" />
+        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="NumericLiteral">
@@ -849,7 +849,7 @@
         <Property name="LiteralType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Literal" role="Base" />
+        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="OffsetClause">
@@ -859,14 +859,14 @@
     </Entity>
     <Entity name="OffsetClauseFetchExpressionLink">
       <RelationshipList>
-        <Relationship entity="OffsetClause" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="OffsetClause" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="OffsetClauseOffsetExpressionLink">
       <RelationshipList>
-        <Relationship entity="OffsetClause" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="OffsetClause" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="OrderByClause" />
@@ -875,15 +875,15 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ExpressionWithSortOrder" role="Value" />
-        <Relationship entity="OrderByClause" role="Owner" />
+        <Relationship entity="ExpressionWithSortOrder" />
+        <Relationship entity="OrderByClause" />
       </RelationshipList>
     </Entity>
     <Entity name="OverClause" />
     <Entity name="OverClauseOrderByClauseLink">
       <RelationshipList>
-        <Relationship entity="OrderByClause" role="Value" />
-        <Relationship entity="OverClause" role="Owner" />
+        <Relationship entity="OrderByClause" />
+        <Relationship entity="OverClause" />
       </RelationshipList>
     </Entity>
     <Entity name="OverClausePartitionsItem">
@@ -891,25 +891,25 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="OverClause" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="OverClause" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="OverClauseWindowFrameClauseLink">
       <RelationshipList>
-        <Relationship entity="OverClause" role="Owner" />
-        <Relationship entity="WindowFrameClause" role="Value" />
+        <Relationship entity="OverClause" />
+        <Relationship entity="WindowFrameClause" />
       </RelationshipList>
     </Entity>
     <Entity name="OverClauseWindowNameLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="OverClause" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="OverClause" />
       </RelationshipList>
     </Entity>
     <Entity name="ParameterizedDataTypeReference">
       <RelationshipList>
-        <Relationship entity="DataTypeReference" role="Base" />
+        <Relationship entity="DataTypeReference" />
       </RelationshipList>
     </Entity>
     <Entity name="ParameterizedDataTypeReferenceParametersItem">
@@ -917,8 +917,8 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Literal" role="Value" />
-        <Relationship entity="ParameterizedDataTypeReference" role="Owner" />
+        <Relationship entity="Literal" />
+        <Relationship entity="ParameterizedDataTypeReference" />
       </RelationshipList>
     </Entity>
     <Entity name="ParameterlessCall">
@@ -926,52 +926,52 @@
         <Property name="ParameterlessCallType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ParenthesisExpression">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ParenthesisExpressionExpressionLink">
       <RelationshipList>
-        <Relationship entity="ParenthesisExpression" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="ParenthesisExpression" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ParseCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ParseCallCultureLink">
       <RelationshipList>
-        <Relationship entity="ParseCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="ParseCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ParseCallDataTypeLink">
       <RelationshipList>
-        <Relationship entity="DataTypeReference" role="Value" />
-        <Relationship entity="ParseCall" role="Owner" />
+        <Relationship entity="DataTypeReference" />
+        <Relationship entity="ParseCall" />
       </RelationshipList>
     </Entity>
     <Entity name="ParseCallStringValueLink">
       <RelationshipList>
-        <Relationship entity="ParseCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="ParseCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="PivotedTableReference">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAlias" role="Base" />
+        <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
     <Entity name="PivotedTableReferenceAggregateFunctionIdentifierLink">
       <RelationshipList>
-        <Relationship entity="MultiPartIdentifier" role="Value" />
-        <Relationship entity="PivotedTableReference" role="Owner" />
+        <Relationship entity="MultiPartIdentifier" />
+        <Relationship entity="PivotedTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="PivotedTableReferenceInColumnsItem">
@@ -979,20 +979,20 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="PivotedTableReference" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="PivotedTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="PivotedTableReferencePivotColumnLink">
       <RelationshipList>
-        <Relationship entity="ColumnReferenceExpression" role="Value" />
-        <Relationship entity="PivotedTableReference" role="Owner" />
+        <Relationship entity="ColumnReferenceExpression" />
+        <Relationship entity="PivotedTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="PivotedTableReferenceTableReferenceLink">
       <RelationshipList>
-        <Relationship entity="PivotedTableReference" role="Owner" />
-        <Relationship entity="TableReference" role="Value" />
+        <Relationship entity="PivotedTableReference" />
+        <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="PivotedTableReferenceValueColumnsItem">
@@ -1000,19 +1000,19 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ColumnReferenceExpression" role="Value" />
-        <Relationship entity="PivotedTableReference" role="Owner" />
+        <Relationship entity="ColumnReferenceExpression" />
+        <Relationship entity="PivotedTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="PrimaryExpression">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Base" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="PrimaryExpressionCollationLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="PrimaryExpression" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="QualifiedJoin">
@@ -1021,48 +1021,48 @@
         <Property name="QualifiedJoinType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="JoinTableReference" role="Base" />
+        <Relationship entity="JoinTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="QualifiedJoinSearchConditionLink">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Value" />
-        <Relationship entity="QualifiedJoin" role="Owner" />
+        <Relationship entity="BooleanExpression" />
+        <Relationship entity="QualifiedJoin" />
       </RelationshipList>
     </Entity>
     <Entity name="QueryDerivedTable">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAliasAndColumns" role="Base" />
+        <Relationship entity="TableReferenceWithAliasAndColumns" />
       </RelationshipList>
     </Entity>
     <Entity name="QueryDerivedTableQueryExpressionLink">
       <RelationshipList>
-        <Relationship entity="QueryDerivedTable" role="Owner" />
-        <Relationship entity="QueryExpression" role="Value" />
+        <Relationship entity="QueryDerivedTable" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="QueryExpression" />
     <Entity name="QueryExpressionOffsetClauseLink">
       <RelationshipList>
-        <Relationship entity="OffsetClause" role="Value" />
-        <Relationship entity="QueryExpression" role="Owner" />
+        <Relationship entity="OffsetClause" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="QueryExpressionOrderByClauseLink">
       <RelationshipList>
-        <Relationship entity="OrderByClause" role="Value" />
-        <Relationship entity="QueryExpression" role="Owner" />
+        <Relationship entity="OrderByClause" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="QueryParenthesisExpression">
       <RelationshipList>
-        <Relationship entity="QueryExpression" role="Base" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="QueryParenthesisExpressionQueryExpressionLink">
       <RelationshipList>
-        <Relationship entity="QueryExpression" role="Value" />
-        <Relationship entity="QueryParenthesisExpression" role="Owner" />
+        <Relationship entity="QueryExpression" />
+        <Relationship entity="QueryParenthesisExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="QuerySpecification">
@@ -1070,25 +1070,25 @@
         <Property name="UniqueRowFilter" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="QueryExpression" role="Base" />
+        <Relationship entity="QueryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="QuerySpecificationFromClauseLink">
       <RelationshipList>
-        <Relationship entity="FromClause" role="Value" />
-        <Relationship entity="QuerySpecification" role="Owner" />
+        <Relationship entity="FromClause" />
+        <Relationship entity="QuerySpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="QuerySpecificationGroupByClauseLink">
       <RelationshipList>
-        <Relationship entity="GroupByClause" role="Value" />
-        <Relationship entity="QuerySpecification" role="Owner" />
+        <Relationship entity="GroupByClause" />
+        <Relationship entity="QuerySpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="QuerySpecificationHavingClauseLink">
       <RelationshipList>
-        <Relationship entity="HavingClause" role="Value" />
-        <Relationship entity="QuerySpecification" role="Owner" />
+        <Relationship entity="HavingClause" />
+        <Relationship entity="QuerySpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="QuerySpecificationSelectElementsItem">
@@ -1096,26 +1096,26 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="QuerySpecification" role="Owner" />
-        <Relationship entity="SelectElement" role="Value" />
+        <Relationship entity="QuerySpecification" />
+        <Relationship entity="SelectElement" />
       </RelationshipList>
     </Entity>
     <Entity name="QuerySpecificationTopRowFilterLink">
       <RelationshipList>
-        <Relationship entity="QuerySpecification" role="Owner" />
-        <Relationship entity="TopRowFilter" role="Value" />
+        <Relationship entity="QuerySpecification" />
+        <Relationship entity="TopRowFilter" />
       </RelationshipList>
     </Entity>
     <Entity name="QuerySpecificationWhereClauseLink">
       <RelationshipList>
-        <Relationship entity="QuerySpecification" role="Owner" />
-        <Relationship entity="WhereClause" role="Value" />
+        <Relationship entity="QuerySpecification" />
+        <Relationship entity="WhereClause" />
       </RelationshipList>
     </Entity>
     <Entity name="QuerySpecificationWindowClauseLink">
       <RelationshipList>
-        <Relationship entity="QuerySpecification" role="Owner" />
-        <Relationship entity="WindowClause" role="Value" />
+        <Relationship entity="QuerySpecification" />
+        <Relationship entity="WindowClause" />
       </RelationshipList>
     </Entity>
     <Entity name="RealLiteral">
@@ -1123,12 +1123,12 @@
         <Property name="LiteralType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Literal" role="Base" />
+        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="RightFunctionCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="RightFunctionCallParametersItem">
@@ -1136,13 +1136,13 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="RightFunctionCall" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="RightFunctionCall" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="RollupGroupingSpecification">
       <RelationshipList>
-        <Relationship entity="GroupingSpecification" role="Base" />
+        <Relationship entity="GroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="RollupGroupingSpecificationArgumentsItem">
@@ -1150,8 +1150,8 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="GroupingSpecification" role="Value" />
-        <Relationship entity="RollupGroupingSpecification" role="Owner" />
+        <Relationship entity="GroupingSpecification" />
+        <Relationship entity="RollupGroupingSpecification" />
       </RelationshipList>
     </Entity>
     <Entity name="RowValue" />
@@ -1160,25 +1160,25 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="RowValue" role="Owner" />
-        <Relationship entity="ScalarExpression" role="Value" />
+        <Relationship entity="RowValue" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ScalarExpression" />
     <Entity name="ScalarSubquery">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="ScalarSubqueryQueryExpressionLink">
       <RelationshipList>
-        <Relationship entity="QueryExpression" role="Value" />
-        <Relationship entity="ScalarSubquery" role="Owner" />
+        <Relationship entity="QueryExpression" />
+        <Relationship entity="ScalarSubquery" />
       </RelationshipList>
     </Entity>
     <Entity name="SchemaObjectFunctionTableReference">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAliasAndColumns" role="Base" />
+        <Relationship entity="TableReferenceWithAliasAndColumns" />
       </RelationshipList>
     </Entity>
     <Entity name="SchemaObjectFunctionTableReferenceParametersItem">
@@ -1186,36 +1186,36 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="SchemaObjectFunctionTableReference" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="SchemaObjectFunctionTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="SchemaObjectFunctionTableReferenceSchemaObjectLink">
       <RelationshipList>
-        <Relationship entity="SchemaObjectFunctionTableReference" role="Owner" />
-        <Relationship entity="SchemaObjectName" role="Value" />
+        <Relationship entity="SchemaObjectFunctionTableReference" />
+        <Relationship entity="SchemaObjectName" />
       </RelationshipList>
     </Entity>
     <Entity name="SchemaObjectName">
       <RelationshipList>
-        <Relationship entity="MultiPartIdentifier" role="Base" />
+        <Relationship entity="MultiPartIdentifier" />
       </RelationshipList>
     </Entity>
     <Entity name="SchemaObjectNameBaseIdentifierLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="SchemaObjectName" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="SchemaObjectName" />
       </RelationshipList>
     </Entity>
     <Entity name="SchemaObjectNameSchemaIdentifierLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="SchemaObjectName" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="SchemaObjectName" />
       </RelationshipList>
     </Entity>
     <Entity name="SearchedCaseExpression">
       <RelationshipList>
-        <Relationship entity="CaseExpression" role="Base" />
+        <Relationship entity="CaseExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="SearchedCaseExpressionWhenClausesItem">
@@ -1223,70 +1223,70 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="SearchedCaseExpression" role="Owner" />
-        <Relationship entity="SearchedWhenClause" role="Value" />
+        <Relationship entity="SearchedCaseExpression" />
+        <Relationship entity="SearchedWhenClause" />
       </RelationshipList>
     </Entity>
     <Entity name="SearchedWhenClause">
       <RelationshipList>
-        <Relationship entity="WhenClause" role="Base" />
+        <Relationship entity="WhenClause" />
       </RelationshipList>
     </Entity>
     <Entity name="SearchedWhenClauseWhenExpressionLink">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Value" />
-        <Relationship entity="SearchedWhenClause" role="Owner" />
+        <Relationship entity="BooleanExpression" />
+        <Relationship entity="SearchedWhenClause" />
       </RelationshipList>
     </Entity>
     <Entity name="SelectElement" />
     <Entity name="SelectScalarExpression">
       <RelationshipList>
-        <Relationship entity="SelectElement" role="Base" />
+        <Relationship entity="SelectElement" />
       </RelationshipList>
     </Entity>
     <Entity name="SelectScalarExpressionColumnNameLink">
       <RelationshipList>
-        <Relationship entity="IdentifierOrValueExpression" role="Value" />
-        <Relationship entity="SelectScalarExpression" role="Owner" />
+        <Relationship entity="IdentifierOrValueExpression" />
+        <Relationship entity="SelectScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="SelectScalarExpressionExpressionLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="SelectScalarExpression" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="SelectScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="SelectStarExpression">
       <RelationshipList>
-        <Relationship entity="SelectElement" role="Base" />
+        <Relationship entity="SelectElement" />
       </RelationshipList>
     </Entity>
     <Entity name="SelectStarExpressionQualifierLink">
       <RelationshipList>
-        <Relationship entity="MultiPartIdentifier" role="Value" />
-        <Relationship entity="SelectStarExpression" role="Owner" />
+        <Relationship entity="MultiPartIdentifier" />
+        <Relationship entity="SelectStarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="SelectStatement">
       <RelationshipList>
-        <Relationship entity="StatementWithCtesAndXmlNamespaces" role="Base" />
+        <Relationship entity="StatementWithCtesAndXmlNamespaces" />
       </RelationshipList>
     </Entity>
     <Entity name="SelectStatementQueryExpressionLink">
       <RelationshipList>
-        <Relationship entity="QueryExpression" role="Value" />
-        <Relationship entity="SelectStatement" role="Owner" />
+        <Relationship entity="QueryExpression" />
+        <Relationship entity="SelectStatement" />
       </RelationshipList>
     </Entity>
     <Entity name="SimpleCaseExpression">
       <RelationshipList>
-        <Relationship entity="CaseExpression" role="Base" />
+        <Relationship entity="CaseExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="SimpleCaseExpressionInputExpressionLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="SimpleCaseExpression" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="SimpleCaseExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="SimpleCaseExpressionWhenClausesItem">
@@ -1294,19 +1294,19 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="SimpleCaseExpression" role="Owner" />
-        <Relationship entity="SimpleWhenClause" role="Value" />
+        <Relationship entity="SimpleCaseExpression" />
+        <Relationship entity="SimpleWhenClause" />
       </RelationshipList>
     </Entity>
     <Entity name="SimpleWhenClause">
       <RelationshipList>
-        <Relationship entity="WhenClause" role="Base" />
+        <Relationship entity="WhenClause" />
       </RelationshipList>
     </Entity>
     <Entity name="SimpleWhenClauseWhenExpressionLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="SimpleWhenClause" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="SimpleWhenClause" />
       </RelationshipList>
     </Entity>
     <Entity name="SqlDataTypeReference">
@@ -1314,18 +1314,18 @@
         <Property name="SqlDataTypeOption" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ParameterizedDataTypeReference" role="Base" />
+        <Relationship entity="ParameterizedDataTypeReference" />
       </RelationshipList>
     </Entity>
     <Entity name="StatementWithCtesAndXmlNamespaces">
       <RelationshipList>
-        <Relationship entity="TSqlStatement" role="Base" />
+        <Relationship entity="TSqlStatement" />
       </RelationshipList>
     </Entity>
     <Entity name="StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink">
       <RelationshipList>
-        <Relationship entity="StatementWithCtesAndXmlNamespaces" role="Owner" />
-        <Relationship entity="WithCtesAndXmlNamespaces" role="Value" />
+        <Relationship entity="StatementWithCtesAndXmlNamespaces" />
+        <Relationship entity="WithCtesAndXmlNamespaces" />
       </RelationshipList>
     </Entity>
     <Entity name="StringLiteral">
@@ -1335,7 +1335,7 @@
         <Property name="LiteralType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Literal" role="Base" />
+        <Relationship entity="Literal" />
       </RelationshipList>
     </Entity>
     <Entity name="SubqueryComparisonPredicate">
@@ -1344,19 +1344,19 @@
         <Property name="SubqueryComparisonPredicateType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Base" />
+        <Relationship entity="BooleanExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="SubqueryComparisonPredicateExpressionLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="SubqueryComparisonPredicate" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="SubqueryComparisonPredicate" />
       </RelationshipList>
     </Entity>
     <Entity name="SubqueryComparisonPredicateSubqueryLink">
       <RelationshipList>
-        <Relationship entity="ScalarSubquery" role="Value" />
-        <Relationship entity="SubqueryComparisonPredicate" role="Owner" />
+        <Relationship entity="ScalarSubquery" />
+        <Relationship entity="SubqueryComparisonPredicate" />
       </RelationshipList>
     </Entity>
     <Entity name="TSqlStatement" />
@@ -1366,18 +1366,18 @@
         <Property name="ForPath" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="TableReference" role="Base" />
+        <Relationship entity="TableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="TableReferenceWithAliasAliasLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="TableReferenceWithAlias" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
     <Entity name="TableReferenceWithAliasAndColumns">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAlias" role="Base" />
+        <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
     <Entity name="TableReferenceWithAliasAndColumnsColumnsItem">
@@ -1385,8 +1385,8 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="TableReferenceWithAliasAndColumns" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="TableReferenceWithAliasAndColumns" />
       </RelationshipList>
     </Entity>
     <Entity name="TableSampleClause">
@@ -1397,14 +1397,14 @@
     </Entity>
     <Entity name="TableSampleClauseRepeatSeedLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="TableSampleClause" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TableSampleClause" />
       </RelationshipList>
     </Entity>
     <Entity name="TableSampleClauseSampleNumberLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="TableSampleClause" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TableSampleClause" />
       </RelationshipList>
     </Entity>
     <Entity name="TopRowFilter">
@@ -1416,71 +1416,71 @@
     </Entity>
     <Entity name="TopRowFilterExpressionLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="TopRowFilter" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TopRowFilter" />
       </RelationshipList>
     </Entity>
     <Entity name="TryCastCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="TryCastCallDataTypeLink">
       <RelationshipList>
-        <Relationship entity="DataTypeReference" role="Value" />
-        <Relationship entity="TryCastCall" role="Owner" />
+        <Relationship entity="DataTypeReference" />
+        <Relationship entity="TryCastCall" />
       </RelationshipList>
     </Entity>
     <Entity name="TryCastCallParameterLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="TryCastCall" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TryCastCall" />
       </RelationshipList>
     </Entity>
     <Entity name="TryConvertCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="TryConvertCallDataTypeLink">
       <RelationshipList>
-        <Relationship entity="DataTypeReference" role="Value" />
-        <Relationship entity="TryConvertCall" role="Owner" />
+        <Relationship entity="DataTypeReference" />
+        <Relationship entity="TryConvertCall" />
       </RelationshipList>
     </Entity>
     <Entity name="TryConvertCallParameterLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="TryConvertCall" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TryConvertCall" />
       </RelationshipList>
     </Entity>
     <Entity name="TryConvertCallStyleLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="TryConvertCall" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TryConvertCall" />
       </RelationshipList>
     </Entity>
     <Entity name="TryParseCall">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="TryParseCallCultureLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="TryParseCall" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TryParseCall" />
       </RelationshipList>
     </Entity>
     <Entity name="TryParseCallDataTypeLink">
       <RelationshipList>
-        <Relationship entity="DataTypeReference" role="Value" />
-        <Relationship entity="TryParseCall" role="Owner" />
+        <Relationship entity="DataTypeReference" />
+        <Relationship entity="TryParseCall" />
       </RelationshipList>
     </Entity>
     <Entity name="TryParseCallStringValueLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="TryParseCall" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="TryParseCall" />
       </RelationshipList>
     </Entity>
     <Entity name="UnaryExpression">
@@ -1488,18 +1488,18 @@
         <Property name="UnaryExpressionType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Base" />
+        <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="UnaryExpressionExpressionLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="UnaryExpression" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="UnaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="UnpivotedTableReference">
       <RelationshipList>
-        <Relationship entity="TableReferenceWithAlias" role="Base" />
+        <Relationship entity="TableReferenceWithAlias" />
       </RelationshipList>
     </Entity>
     <Entity name="UnpivotedTableReferenceInColumnsItem">
@@ -1507,26 +1507,26 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ColumnReferenceExpression" role="Value" />
-        <Relationship entity="UnpivotedTableReference" role="Owner" />
+        <Relationship entity="ColumnReferenceExpression" />
+        <Relationship entity="UnpivotedTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="UnpivotedTableReferencePivotColumnLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="UnpivotedTableReference" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="UnpivotedTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="UnpivotedTableReferenceTableReferenceLink">
       <RelationshipList>
-        <Relationship entity="TableReference" role="Value" />
-        <Relationship entity="UnpivotedTableReference" role="Owner" />
+        <Relationship entity="TableReference" />
+        <Relationship entity="UnpivotedTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="UnpivotedTableReferenceValueColumnLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="UnpivotedTableReference" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="UnpivotedTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="UnqualifiedJoin">
@@ -1534,26 +1534,26 @@
         <Property name="UnqualifiedJoinType" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="JoinTableReference" role="Base" />
+        <Relationship entity="JoinTableReference" />
       </RelationshipList>
     </Entity>
     <Entity name="ValueExpression">
       <RelationshipList>
-        <Relationship entity="PrimaryExpression" role="Base" />
+        <Relationship entity="PrimaryExpression" />
       </RelationshipList>
     </Entity>
     <Entity name="WhenClause" />
     <Entity name="WhenClauseThenExpressionLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="WhenClause" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="WhenClause" />
       </RelationshipList>
     </Entity>
     <Entity name="WhereClause" />
     <Entity name="WhereClauseSearchConditionLink">
       <RelationshipList>
-        <Relationship entity="BooleanExpression" role="Value" />
-        <Relationship entity="WhereClause" role="Owner" />
+        <Relationship entity="BooleanExpression" />
+        <Relationship entity="WhereClause" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowClause" />
@@ -1562,15 +1562,15 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="WindowClause" role="Owner" />
-        <Relationship entity="WindowDefinition" role="Value" />
+        <Relationship entity="WindowClause" />
+        <Relationship entity="WindowDefinition" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowDefinition" />
     <Entity name="WindowDefinitionOrderByClauseLink">
       <RelationshipList>
-        <Relationship entity="OrderByClause" role="Value" />
-        <Relationship entity="WindowDefinition" role="Owner" />
+        <Relationship entity="OrderByClause" />
+        <Relationship entity="WindowDefinition" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowDefinitionPartitionsItem">
@@ -1578,26 +1578,26 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="WindowDefinition" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="WindowDefinition" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowDefinitionRefWindowNameLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="WindowDefinition" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="WindowDefinition" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowDefinitionWindowFrameClauseLink">
       <RelationshipList>
-        <Relationship entity="WindowDefinition" role="Owner" />
-        <Relationship entity="WindowFrameClause" role="Value" />
+        <Relationship entity="WindowDefinition" />
+        <Relationship entity="WindowFrameClause" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowDefinitionWindowNameLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="WindowDefinition" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="WindowDefinition" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowDelimiter">
@@ -1607,8 +1607,8 @@
     </Entity>
     <Entity name="WindowDelimiterOffsetValueLink">
       <RelationshipList>
-        <Relationship entity="ScalarExpression" role="Value" />
-        <Relationship entity="WindowDelimiter" role="Owner" />
+        <Relationship entity="ScalarExpression" />
+        <Relationship entity="WindowDelimiter" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowFrameClause">
@@ -1618,14 +1618,14 @@
     </Entity>
     <Entity name="WindowFrameClauseBottomLink">
       <RelationshipList>
-        <Relationship entity="WindowDelimiter" role="Value" />
-        <Relationship entity="WindowFrameClause" role="Owner" />
+        <Relationship entity="WindowDelimiter" />
+        <Relationship entity="WindowFrameClause" />
       </RelationshipList>
     </Entity>
     <Entity name="WindowFrameClauseTopLink">
       <RelationshipList>
-        <Relationship entity="WindowDelimiter" role="Value" />
-        <Relationship entity="WindowFrameClause" role="Owner" />
+        <Relationship entity="WindowDelimiter" />
+        <Relationship entity="WindowFrameClause" />
       </RelationshipList>
     </Entity>
     <Entity name="WithCtesAndXmlNamespaces" />
@@ -1634,38 +1634,38 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="CommonTableExpression" role="Value" />
-        <Relationship entity="WithCtesAndXmlNamespaces" role="Owner" />
+        <Relationship entity="CommonTableExpression" />
+        <Relationship entity="WithCtesAndXmlNamespaces" />
       </RelationshipList>
     </Entity>
     <Entity name="WithCtesAndXmlNamespacesXmlNamespacesLink">
       <RelationshipList>
-        <Relationship entity="WithCtesAndXmlNamespaces" role="Owner" />
-        <Relationship entity="XmlNamespaces" role="Value" />
+        <Relationship entity="WithCtesAndXmlNamespaces" />
+        <Relationship entity="XmlNamespaces" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNamespaces" />
     <Entity name="XmlNamespacesAliasElement">
       <RelationshipList>
-        <Relationship entity="XmlNamespacesElement" role="Base" />
+        <Relationship entity="XmlNamespacesElement" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNamespacesDefaultElement">
       <RelationshipList>
-        <Relationship entity="XmlNamespacesElement" role="Base" />
+        <Relationship entity="XmlNamespacesElement" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNamespacesAliasElementIdentifierLink">
       <RelationshipList>
-        <Relationship entity="Identifier" role="Value" />
-        <Relationship entity="XmlNamespacesAliasElement" role="Owner" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="XmlNamespacesAliasElement" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNamespacesElement" />
     <Entity name="XmlNamespacesElementStringLink">
       <RelationshipList>
-        <Relationship entity="StringLiteral" role="Value" />
-        <Relationship entity="XmlNamespacesElement" role="Owner" />
+        <Relationship entity="StringLiteral" />
+        <Relationship entity="XmlNamespacesElement" />
       </RelationshipList>
     </Entity>
     <Entity name="XmlNamespacesXmlNamespacesElementsItem">
@@ -1673,8 +1673,8 @@
         <Property name="Ordinal" isRequired="false" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="XmlNamespaces" role="Owner" />
-        <Relationship entity="XmlNamespacesElement" role="Value" />
+        <Relationship entity="XmlNamespaces" />
+        <Relationship entity="XmlNamespacesElement" />
       </RelationshipList>
     </Entity>
   </EntityList>

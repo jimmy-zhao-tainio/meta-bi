@@ -6,7 +6,7 @@
         <Property name="Name" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="BusinessHub" role="AnchorHub" />
+        <Relationship entity="BusinessHub" />
       </RelationshipList>
     </Entity>
     <Entity name="BusinessBridgeHub">

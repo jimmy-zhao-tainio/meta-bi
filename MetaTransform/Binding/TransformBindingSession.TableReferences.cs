@@ -4,11 +4,11 @@ namespace MetaTransform.Binding;
 
 internal sealed partial class TransformBindingSession
 {
-    private RuntimeBoundTableReferenceBinding? BindTableReference(
+    private RuntimeTableReferenceBinding? BindTableReference(
         TableReference tableReference,
         int visibleCommonTableExpressionOrdinal,
-        IReadOnlyList<RuntimeBoundTableSource> inheritedVisibleTableSources,
-        RuntimeBoundRowset? inheritedInputRowset)
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources,
+        RuntimeRowset? inheritedInputRowset)
     {
         var namedTableReference = navigator.TryGetNamedTableReference(tableReference);
         if (namedTableReference is not null)
@@ -54,8 +54,8 @@ internal sealed partial class TransformBindingSession
                 string.Equals(joinOperator, "CrossApply", StringComparison.Ordinal) ||
                 string.Equals(joinOperator, "OuterApply", StringComparison.Ordinal);
 
-            RuntimeBoundTableReferenceBinding? first = null;
-            RuntimeBoundTableReferenceBinding? second = null;
+            RuntimeTableReferenceBinding? first = null;
+            RuntimeTableReferenceBinding? second = null;
 
             if (joinChildren.Value.First is not null)
             {
@@ -86,16 +86,14 @@ internal sealed partial class TransformBindingSession
 
             var joinedColumns = first.Rowset.Columns
                 .Concat(second.Rowset.Columns)
-                .Select((column, ordinal) => new RuntimeBoundColumn(
+                .Select((column, ordinal) => new RuntimeColumn(
                     $"{tableReference.Id}:column:{ordinal + 1}",
                     column.Name,
-                    ordinal,
-                    column.SourceFieldId,
-                    column.SourceTableId))
+                    ordinal))
                 .ToArray();
 
             var inputRolePrefix = isApply ? "Apply" : "Join";
-            var joinRowset = new RuntimeBoundRowset(
+            var joinRowset = new RuntimeRowset(
                 $"{tableReference.Id}:rowset",
                 $"{joinOperator ?? "Join"}:{tableReference.Id}",
                 isApply ? "Apply" : "Join",
@@ -104,13 +102,13 @@ internal sealed partial class TransformBindingSession
                 null,
                 joinedColumns,
                 [
-                    new RuntimeBoundRowsetInput(0, $"{inputRolePrefix}Left", first.Rowset),
-                    new RuntimeBoundRowsetInput(1, $"{inputRolePrefix}Right", second.Rowset)
+                    new RuntimeRowsetInput(0, $"{inputRolePrefix}Left", first.Rowset),
+                    new RuntimeRowsetInput(1, $"{inputRolePrefix}Right", second.Rowset)
                 ]);
 
             TrackRowset(joinRowset);
 
-            return new RuntimeBoundTableReferenceBinding(
+            return new RuntimeTableReferenceBinding(
                 joinRowset,
                 first.VisibleTableSources.Concat(second.VisibleTableSources).ToArray());
         }
@@ -122,7 +120,7 @@ internal sealed partial class TransformBindingSession
         return null;
     }
 
-    private RuntimeBoundTableReferenceBinding? BindNamedTableReference(
+    private RuntimeTableReferenceBinding? BindNamedTableReference(
         TableReference tableReference,
         NamedTableReference namedTableReference,
         int visibleCommonTableExpressionOrdinal)
@@ -150,46 +148,30 @@ internal sealed partial class TransformBindingSession
             }
         }
 
-        var resolution = schemaTableResolver.ResolveIdentifierParts(identifierParts);
-        if (!resolution.IsResolved)
-        {
-            AddSourceTableResolutionIssue(namedTableReference.Id, resolution);
-            return null;
-        }
+        var sqlIdentifier = string.Join(".", identifierParts);
+        var exposedName = navigator.TryGetTableAlias(tableReference) ?? identifierParts.Last();
+        var columns = new List<RuntimeColumn>();
 
-        var resolvedTable = resolution.Table!;
-        var sqlIdentifier = resolution.DisplayIdentifier;
-        var exposedName = navigator.TryGetTableAlias(tableReference) ?? resolvedTable.TableName;
-        var columns = resolvedTable.Fields
-            .Select((field, ordinal) => new RuntimeBoundColumn(
-                $"{tableReference.Id}:source-column:{field.FieldId}",
-                field.FieldName,
-                ordinal,
-                field.FieldId,
-                resolvedTable.TableId))
-            .ToArray();
-
-        var rowset = new RuntimeBoundRowset(
+        var rowset = new RuntimeRowset(
             $"{tableReference.Id}:rowset",
-            resolvedTable.CanonicalSqlIdentifier,
+            sqlIdentifier,
             "Source",
             "Source",
             tableReference.Id,
-            resolvedTable.TableId,
+            sqlIdentifier,
             columns,
             []);
 
         TrackRowset(rowset);
 
-        var tableSource = new RuntimeBoundTableSource(
+        var tableSource = new RuntimeTableSource(
             tableReference.Id,
             exposedName,
             sqlIdentifier,
-            resolvedTable.TableId,
             rowset);
 
         TrackTableSource(tableSource);
-        return new RuntimeBoundTableReferenceBinding(rowset, [tableSource]);
+        return new RuntimeTableReferenceBinding(rowset, [tableSource]);
     }
 
     private CommonTableExpressionReferenceBindingResult TryBindCommonTableExpressionReference(
@@ -218,25 +200,24 @@ internal sealed partial class TransformBindingSession
         }
 
         var exposedName = navigator.TryGetTableAlias(tableReference) ?? definition.Name;
-        var tableSource = new RuntimeBoundTableSource(
+        var tableSource = new RuntimeTableSource(
             tableReference.Id,
             exposedName,
-            string.Empty,
             string.Empty,
             rowset);
 
         TrackTableSource(tableSource);
         return CommonTableExpressionReferenceBindingResult.Resolved(
-            new RuntimeBoundTableReferenceBinding(rowset, [tableSource]));
+            new RuntimeTableReferenceBinding(rowset, [tableSource]));
     }
 
-    private RuntimeBoundRowset? BindCommonTableExpression(RuntimeCommonTableExpressionDefinition definition)
+    private RuntimeRowset? BindCommonTableExpression(RuntimeCommonTableExpressionDefinition definition)
     {
         if (commonTableExpressionBindingStateByName.TryGetValue(definition.Name, out var bindingState))
         {
             switch (bindingState)
             {
-                case RuntimeCommonTableExpressionBindingState.Bound:
+                case RuntimeCommonTableExpressionBindingState.Resolved:
                     return commonTableExpressionRowsetByName.GetValueOrDefault(definition.Name);
                 case RuntimeCommonTableExpressionBindingState.Binding:
                     return commonTableExpressionRowsetByName.GetValueOrDefault(definition.Name);
@@ -284,15 +265,13 @@ internal sealed partial class TransformBindingSession
         }
 
         var columns = innerBinding.OutputRowset.Columns
-            .Select((column, ordinal) => new RuntimeBoundColumn(
+            .Select((column, ordinal) => new RuntimeColumn(
                 $"{definition.Id}:column:{ordinal + 1}",
                 expectedOutputColumnNames is null || expectedOutputColumnNames.Count == 0 ? column.Name : expectedOutputColumnNames[ordinal],
-                ordinal,
-                column.SourceFieldId,
-                column.SourceTableId))
+                ordinal))
             .ToArray();
 
-        var rowset = new RuntimeBoundRowset(
+        var rowset = new RuntimeRowset(
             $"{definition.Id}:rowset",
             definition.Name,
             "CommonTableExpression",
@@ -300,19 +279,19 @@ internal sealed partial class TransformBindingSession
             definition.Id,
             null,
             columns,
-            [new RuntimeBoundRowsetInput(0, "Input", innerBinding.OutputRowset)]);
+            [new RuntimeRowsetInput(0, "Input", innerBinding.OutputRowset)]);
 
         TrackRowset(rowset);
-        commonTableExpressionBindingStateByName[definition.Name] = RuntimeCommonTableExpressionBindingState.Bound;
+        commonTableExpressionBindingStateByName[definition.Name] = RuntimeCommonTableExpressionBindingState.Resolved;
         commonTableExpressionRowsetByName[definition.Name] = rowset;
         return rowset;
     }
 
-    private RuntimeBoundRowset CreateCommonTableExpressionPlaceholder(
+    private RuntimeRowset CreateCommonTableExpressionPlaceholder(
         RuntimeCommonTableExpressionDefinition definition,
         IReadOnlyList<string> outputColumnNames)
     {
-        return new RuntimeBoundRowset(
+        return new RuntimeRowset(
             $"{definition.Id}:placeholder-rowset",
             $"{definition.Name}:placeholder",
             "CommonTableExpressionPlaceholder",
@@ -320,22 +299,20 @@ internal sealed partial class TransformBindingSession
             definition.Id,
             null,
             outputColumnNames
-                .Select((columnName, ordinal) => new RuntimeBoundColumn(
+                .Select((columnName, ordinal) => new RuntimeColumn(
                     $"{definition.Id}:placeholder-column:{ordinal + 1}",
                     columnName,
-                    ordinal,
-                    null,
-                    null))
+                    ordinal))
                 .ToArray(),
             []);
     }
 
-    private RuntimeBoundTableReferenceBinding? BindQueryDerivedTable(
+    private RuntimeTableReferenceBinding? BindQueryDerivedTable(
         TableReference tableReference,
         QueryDerivedTable queryDerivedTable,
         int visibleCommonTableExpressionOrdinal,
-        IReadOnlyList<RuntimeBoundTableSource> inheritedVisibleTableSources,
-        RuntimeBoundRowset? inheritedInputRowset)
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources,
+        RuntimeRowset? inheritedInputRowset)
     {
         var queryExpressionId = navigator.TryGetQueryDerivedTableQueryExpressionId(queryDerivedTable);
         if (string.IsNullOrWhiteSpace(queryExpressionId))
@@ -383,15 +360,13 @@ internal sealed partial class TransformBindingSession
         }
 
         var derivedColumns = innerBinding.OutputRowset.Columns
-            .Select((column, ordinal) => new RuntimeBoundColumn(
+            .Select((column, ordinal) => new RuntimeColumn(
                 $"{tableReference.Id}:column:{ordinal + 1}",
                 columnAliases.Count == 0 ? column.Name : columnAliases[ordinal],
-                ordinal,
-                column.SourceFieldId,
-                column.SourceTableId))
+                ordinal))
             .ToArray();
 
-        var rowset = new RuntimeBoundRowset(
+        var rowset = new RuntimeRowset(
             $"{tableReference.Id}:rowset",
             exposedName,
             "DerivedTable",
@@ -399,26 +374,25 @@ internal sealed partial class TransformBindingSession
             tableReference.Id,
             null,
             derivedColumns,
-            [new RuntimeBoundRowsetInput(0, "Input", innerBinding.OutputRowset)]);
+            [new RuntimeRowsetInput(0, "Input", innerBinding.OutputRowset)]);
 
         TrackRowset(rowset);
 
-        var tableSource = new RuntimeBoundTableSource(
+        var tableSource = new RuntimeTableSource(
             tableReference.Id,
             exposedName,
-            string.Empty,
             string.Empty,
             rowset);
 
         TrackTableSource(tableSource);
-        return new RuntimeBoundTableReferenceBinding(rowset, [tableSource]);
+        return new RuntimeTableReferenceBinding(rowset, [tableSource]);
     }
 
-    private RuntimeBoundTableReferenceBinding? BindInlineDerivedTable(
+    private RuntimeTableReferenceBinding? BindInlineDerivedTable(
         TableReference tableReference,
         InlineDerivedTable inlineDerivedTable,
-        IReadOnlyList<RuntimeBoundTableSource> inheritedVisibleTableSources,
-        RuntimeBoundRowset? inheritedInputRowset)
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources,
+        RuntimeRowset? inheritedInputRowset)
     {
         var exposedName = navigator.TryGetTableAlias(tableReference);
         if (string.IsNullOrWhiteSpace(exposedName))
@@ -450,7 +424,7 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var valueScope = new BoundScope(inheritedVisibleTableSources);
+        var valueScope = new BindingScope(inheritedVisibleTableSources);
         var expectedWidth = columnAliases.Count;
         for (var rowOrdinal = 0; rowOrdinal < rowValues.Count; rowOrdinal++)
         {
@@ -471,15 +445,13 @@ internal sealed partial class TransformBindingSession
         }
 
         var columns = columnAliases
-            .Select((columnName, ordinal) => new RuntimeBoundColumn(
+            .Select((columnName, ordinal) => new RuntimeColumn(
                 $"{tableReference.Id}:column:{ordinal + 1}",
                 columnName,
-                ordinal,
-                null,
-                null))
+                ordinal))
             .ToArray();
 
-        var rowset = new RuntimeBoundRowset(
+        var rowset = new RuntimeRowset(
             $"{tableReference.Id}:rowset",
             exposedName,
             "InlineDerivedTable",
@@ -491,21 +463,20 @@ internal sealed partial class TransformBindingSession
 
         TrackRowset(rowset);
 
-        var tableSource = new RuntimeBoundTableSource(
+        var tableSource = new RuntimeTableSource(
             tableReference.Id,
             exposedName,
-            string.Empty,
             string.Empty,
             rowset);
 
         TrackTableSource(tableSource);
-        return new RuntimeBoundTableReferenceBinding(rowset, [tableSource]);
+        return new RuntimeTableReferenceBinding(rowset, [tableSource]);
     }
 
-    private RuntimeBoundTableReferenceBinding? BindSchemaObjectFunctionTableReference(
+    private RuntimeTableReferenceBinding? BindSchemaObjectFunctionTableReference(
         TableReference tableReference,
         SchemaObjectFunctionTableReference functionTableReference,
-        IReadOnlyList<RuntimeBoundTableSource> inheritedVisibleTableSources)
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources)
     {
         var columnAliases = navigator.GetTableReferenceColumnAliases(tableReference);
         if (columnAliases.Count == 0)
@@ -517,7 +488,7 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var parameterScope = new BoundScope(inheritedVisibleTableSources);
+        var parameterScope = new BindingScope(inheritedVisibleTableSources);
         foreach (var parameter in navigator.GetSchemaObjectFunctionTableReferenceParameters(functionTableReference))
         {
             BindScalarExpression(parameter, parameterScope, null, null, false);
@@ -530,15 +501,13 @@ internal sealed partial class TransformBindingSession
         var exposedName = navigator.TryGetTableAlias(tableReference) ?? functionNameParts.LastOrDefault() ?? functionName;
 
         var columns = columnAliases
-            .Select((columnName, ordinal) => new RuntimeBoundColumn(
+            .Select((columnName, ordinal) => new RuntimeColumn(
                 $"{tableReference.Id}:column:{ordinal + 1}",
                 columnName,
-                ordinal,
-                null,
-                null))
+                ordinal))
             .ToArray();
 
-        var rowset = new RuntimeBoundRowset(
+        var rowset = new RuntimeRowset(
             $"{tableReference.Id}:rowset",
             functionName,
             "FunctionTableReference",
@@ -550,21 +519,20 @@ internal sealed partial class TransformBindingSession
 
         TrackRowset(rowset);
 
-        var tableSource = new RuntimeBoundTableSource(
+        var tableSource = new RuntimeTableSource(
             tableReference.Id,
             exposedName,
-            string.Empty,
             string.Empty,
             rowset);
 
         TrackTableSource(tableSource);
-        return new RuntimeBoundTableReferenceBinding(rowset, [tableSource]);
+        return new RuntimeTableReferenceBinding(rowset, [tableSource]);
     }
 
-    private RuntimeBoundRowset? ComposeJoinSideInputRowset(
+    private RuntimeRowset? ComposeJoinSideInputRowset(
         TableReference joinTableReference,
-        RuntimeBoundRowset? inheritedInputRowset,
-        RuntimeBoundRowset? leftRowset)
+        RuntimeRowset? inheritedInputRowset,
+        RuntimeRowset? leftRowset)
     {
         if (inheritedInputRowset is null)
         {
@@ -578,15 +546,13 @@ internal sealed partial class TransformBindingSession
 
         var columns = inheritedInputRowset.Columns
             .Concat(leftRowset.Columns)
-            .Select((column, ordinal) => new RuntimeBoundColumn(
+            .Select((column, ordinal) => new RuntimeColumn(
                 $"{joinTableReference.Id}:apply-input-column:{ordinal + 1}",
                 column.Name,
-                ordinal,
-                column.SourceFieldId,
-                column.SourceTableId))
+                ordinal))
             .ToArray();
 
-        var rowset = new RuntimeBoundRowset(
+        var rowset = new RuntimeRowset(
             $"{joinTableReference.Id}:apply-input-rowset",
             $"ApplyInput:{joinTableReference.Id}",
             "ApplyInput",
@@ -595,38 +561,12 @@ internal sealed partial class TransformBindingSession
             null,
             columns,
             [
-                new RuntimeBoundRowsetInput(0, "OuterScope", inheritedInputRowset),
-                new RuntimeBoundRowsetInput(1, "ApplyLeft", leftRowset)
+                new RuntimeRowsetInput(0, "OuterScope", inheritedInputRowset),
+                new RuntimeRowsetInput(1, "ApplyLeft", leftRowset)
             ]);
 
         TrackRowset(rowset);
         return rowset;
     }
 
-    private void AddSourceTableResolutionIssue(string syntaxId, SchemaTableResolutionResult resolution)
-    {
-        var message = resolution.FailureKind switch
-        {
-            SchemaTableResolutionFailureKind.MissingIdentifier =>
-                $"Source table reference '{syntaxId}' does not expose a supported SQL identifier.",
-            SchemaTableResolutionFailureKind.UnsupportedIdentifierShape =>
-                $"Source table '{resolution.DisplayIdentifier}' uses {resolution.IdentifierParts.Count} identifier parts; binding supports one-part, two-part, or three-part names only.",
-            SchemaTableResolutionFailureKind.NotFound =>
-                $"Source table '{resolution.DisplayIdentifier}' was not found in the sanctioned schema workspace.",
-            SchemaTableResolutionFailureKind.Ambiguous =>
-                $"Source table '{resolution.DisplayIdentifier}' resolves ambiguously in the sanctioned schema workspace.",
-            _ =>
-                $"Source table '{resolution.DisplayIdentifier}' could not be resolved in the sanctioned schema workspace."
-        };
-
-        var code = resolution.FailureKind switch
-        {
-            SchemaTableResolutionFailureKind.MissingIdentifier or SchemaTableResolutionFailureKind.UnsupportedIdentifierShape => "UnsupportedSchemaObjectNameShape",
-            SchemaTableResolutionFailureKind.NotFound => "SourceTableNotFound",
-            SchemaTableResolutionFailureKind.Ambiguous => "SourceTableAmbiguous",
-            _ => "SourceTableResolutionFailed"
-        };
-
-        issues.Add(new TransformBindingIssue(code, message, syntaxId));
-    }
 }

@@ -6,8 +6,8 @@ internal sealed partial class TransformBindingSession
 {
     private void BindScalarExpression(
         ScalarExpression scalarExpression,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
         RuntimeGroupingContext? groupingContext,
         bool withinAggregate)
     {
@@ -80,8 +80,15 @@ internal sealed partial class TransformBindingSession
             var isAggregate = IsAggregateFunctionCall(functionCall);
             foreach (var parameter in navigator.GetFunctionCallParameters(functionCall))
             {
+                if (ShouldSkipFunctionCallParameterBinding(functionCall, parameter))
+                {
+                    continue;
+                }
+
                 BindScalarExpression(parameter, scope, inputRowset, groupingContext, withinAggregate || isAggregate);
             }
+
+            BindFunctionCallWindowClauses(functionCall, scope, inputRowset, groupingContext);
 
             return;
         }
@@ -300,8 +307,8 @@ internal sealed partial class TransformBindingSession
 
     private void BindBooleanExpression(
         BooleanExpression booleanExpression,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
         RuntimeGroupingContext? groupingContext)
     {
         var booleanBinaryExpression = navigator.TryGetBooleanBinaryExpression(booleanExpression);
@@ -417,8 +424,8 @@ internal sealed partial class TransformBindingSession
 
     private void BindSearchedCaseExpression(
         SearchedCaseExpression searchedCaseExpression,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
         RuntimeGroupingContext? groupingContext,
         bool withinAggregate)
     {
@@ -446,8 +453,8 @@ internal sealed partial class TransformBindingSession
 
     private void BindSimpleCaseExpression(
         SimpleCaseExpression simpleCaseExpression,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
         RuntimeGroupingContext? groupingContext,
         bool withinAggregate)
     {
@@ -505,18 +512,45 @@ internal sealed partial class TransformBindingSession
         };
     }
 
+    private bool ShouldSkipFunctionCallParameterBinding(FunctionCall functionCall, ScalarExpression parameter)
+    {
+        var directColumnReference = navigator.TryGetDirectColumnReference(parameter);
+        if (directColumnReference is null)
+        {
+            return false;
+        }
+
+        if (navigator.GetColumnReferenceParts(directColumnReference).Count != 0)
+        {
+            return false;
+        }
+
+        var functionName = navigator.TryGetFunctionCallName(functionCall);
+        if (string.IsNullOrWhiteSpace(functionName))
+        {
+            return false;
+        }
+
+        return functionName.Trim().ToUpperInvariant() switch
+        {
+            "COUNT" => true,
+            "COUNT_BIG" => true,
+            _ => false
+        };
+    }
+
     private void BindScalarSubquery(
         ScalarSubquery scalarSubquery,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset)
+        BindingScope scope,
+        RuntimeRowset? inputRowset)
     {
         BindPredicateSubquery(scalarSubquery, scope, inputRowset, scalarSubquery.Id, requireSingleColumn: true);
     }
 
     private void BindPredicateSubquery(
         ScalarSubquery scalarSubquery,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
         string syntaxId,
         bool requireSingleColumn)
     {

@@ -10,8 +10,8 @@ internal sealed partial class TransformBindingSession
         string outputRowsetName,
         string? outputRowsetRole,
         int visibleCommonTableExpressionOrdinal,
-        IReadOnlyList<RuntimeBoundTableSource> inheritedVisibleTableSources,
-        RuntimeBoundRowset? inheritedInputRowset,
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources,
+        RuntimeRowset? inheritedInputRowset,
         IReadOnlyList<string>? expectedOutputColumnNames)
     {
         var querySpecification = navigator.TryGetQuerySpecification(queryExpressionId);
@@ -55,8 +55,8 @@ internal sealed partial class TransformBindingSession
         string outputRowsetName,
         string? outputRowsetRole,
         int visibleCommonTableExpressionOrdinal,
-        IReadOnlyList<RuntimeBoundTableSource> inheritedVisibleTableSources,
-        RuntimeBoundRowset? inheritedInputRowset,
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources,
+        RuntimeRowset? inheritedInputRowset,
         IReadOnlyList<string>? expectedOutputColumnNames)
     {
         var children = navigator.TryGetBinaryQueryExpressionChildren(binaryQueryExpression);
@@ -105,7 +105,7 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var rowset = new RuntimeBoundRowset(
+        var rowset = new RuntimeRowset(
             outputRowsetId,
             outputRowsetName,
             "SetOperation",
@@ -114,14 +114,14 @@ internal sealed partial class TransformBindingSession
             null,
             outputColumns,
             [
-                new RuntimeBoundRowsetInput(0, "First", firstBinding.OutputRowset),
-                new RuntimeBoundRowsetInput(1, "Second", secondBinding.OutputRowset)
+                new RuntimeRowsetInput(0, "First", firstBinding.OutputRowset),
+                new RuntimeRowsetInput(1, "Second", secondBinding.OutputRowset)
             ]);
 
         TrackRowset(rowset);
 
         return new RuntimeQueryBindingResult(
-            new BoundScope(inheritedVisibleTableSources),
+            new BindingScope(inheritedVisibleTableSources),
             rowset,
             rowset);
     }
@@ -132,11 +132,11 @@ internal sealed partial class TransformBindingSession
         string outputRowsetName,
         string? outputRowsetRole,
         int visibleCommonTableExpressionOrdinal,
-        IReadOnlyList<RuntimeBoundTableSource> inheritedVisibleTableSources,
-        RuntimeBoundRowset? inheritedInputRowset,
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources,
+        RuntimeRowset? inheritedInputRowset,
         IReadOnlyList<string>? expectedOutputColumnNames)
     {
-        var tableBindings = new List<RuntimeBoundTableReferenceBinding>();
+        var tableBindings = new List<RuntimeTableReferenceBinding>();
         var fromClause = navigator.TryGetFromClause(querySpecification);
         foreach (var tableReference in fromClause is null ? [] : navigator.GetTableReferences(fromClause))
         {
@@ -151,7 +151,7 @@ internal sealed partial class TransformBindingSession
             }
         }
 
-        var scope = new BoundScope(
+        var scope = new BindingScope(
             inheritedVisibleTableSources
                 .Concat(tableBindings.SelectMany(item => item.VisibleTableSources))
                 .ToArray());
@@ -173,6 +173,8 @@ internal sealed partial class TransformBindingSession
             BindBooleanExpression(havingSearchCondition, scope, inputRowset, groupingContext);
         }
 
+        BindQueryWindowClause(querySpecification, scope, projectionInputRowset, groupingContext);
+
         var outputRowset = BindSelectElements(querySpecification, scope, projectionInputRowset, outputRowsetId, outputRowsetName, outputRowsetRole, expectedOutputColumnNames, groupingContext);
         TrackRowset(outputRowset);
         return new RuntimeQueryBindingResult(scope, inputRowset, outputRowset);
@@ -180,8 +182,8 @@ internal sealed partial class TransformBindingSession
 
     private RuntimeGroupingContext? BindGrouping(
         QuerySpecification querySpecification,
-        BoundScope scope,
-        RuntimeBoundRowset? inputRowset)
+        BindingScope scope,
+        RuntimeRowset? inputRowset)
     {
         var groupByClause = navigator.TryGetGroupByClause(querySpecification);
         if (groupByClause is null)
@@ -189,64 +191,25 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var groupingKeyColumns = new List<RuntimeBoundColumn>();
+        var isGroupByAll = navigator.IsGroupByAll(groupByClause);
+        var groupingKeyColumns = new List<RuntimeColumn>();
         var groupingKeySignatures = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var emittedGroupingKeySignatures = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         foreach (var groupingSpecification in navigator.GetGroupingSpecifications(groupByClause))
         {
-            var expressionGroupingSpecification = navigator.TryGetExpressionGroupingSpecification(groupingSpecification);
-            if (expressionGroupingSpecification is null)
-            {
-                issues.Add(new TransformBindingIssue(
-                    "UnsupportedGroupingSpecificationShape",
-                    $"GroupingSpecification '{groupingSpecification.Id}' is not yet supported by binding.",
-                    groupingSpecification.Id));
-                continue;
-            }
-
-            var expression = navigator.TryGetExpressionGroupingSpecificationExpression(expressionGroupingSpecification);
-            if (expression is null)
-            {
-                issues.Add(new TransformBindingIssue(
-                    "GroupingSpecificationExpressionMissing",
-                    $"ExpressionGroupingSpecification '{expressionGroupingSpecification.Id}' is missing its scalar expression.",
-                    expressionGroupingSpecification.Id));
-                continue;
-            }
-
-            var directColumnReference = navigator.TryGetDirectColumnReference(expression);
-            if (directColumnReference is null)
-            {
-                BindScalarExpression(expression, scope, inputRowset, null, false);
-                issues.Add(new TransformBindingIssue(
-                    "UnsupportedGroupingExpressionShape",
-                    $"GroupingSpecification '{groupingSpecification.Id}' is not yet supported unless it is a direct column reference.",
-                    groupingSpecification.Id));
-                continue;
-            }
-
-            var boundColumnReference = BindColumnReference(directColumnReference, scope, null, false);
-            if (boundColumnReference is null)
-            {
-                continue;
-            }
-
-            boundColumnReferences.Add(boundColumnReference);
-
-            var signature = NormalizeColumnReferenceSignature(boundColumnReference.IdentifierParts);
-            groupingKeySignatures.Add(signature);
-
-            groupingKeyColumns.Add(new RuntimeBoundColumn(
-                $"{groupingSpecification.Id}:group-column:{groupingKeyColumns.Count + 1}",
-                boundColumnReference.ResolvedColumn.Name,
-                groupingKeyColumns.Count,
-                boundColumnReference.ResolvedColumn.SourceFieldId,
-                boundColumnReference.ResolvedColumn.SourceTableId));
+            BindGroupingSpecification(
+                groupingSpecification,
+                scope,
+                inputRowset,
+                groupingKeyColumns,
+                groupingKeySignatures,
+                emittedGroupingKeySignatures);
         }
 
-        var groupedRowset = new RuntimeBoundRowset(
+        var groupedRowset = new RuntimeRowset(
             $"{querySpecification.Id}:grouped-rowset",
-            $"Grouped:{querySpecification.Id}",
+            isGroupByAll ? $"GroupedAll:{querySpecification.Id}" : $"Grouped:{querySpecification.Id}",
             "Grouping",
             null,
             querySpecification.Id,
@@ -254,16 +217,144 @@ internal sealed partial class TransformBindingSession
             groupingKeyColumns,
             inputRowset is null
                 ? []
-                : [new RuntimeBoundRowsetInput(0, "Input", inputRowset)]);
+                : [new RuntimeRowsetInput(0, "Input", inputRowset)]);
 
         TrackRowset(groupedRowset);
         return new RuntimeGroupingContext(groupedRowset, groupingKeySignatures);
     }
 
-    private RuntimeBoundRowset? ComposeQueryInputRowset(
+    private void BindGroupingSpecification(
+        GroupingSpecification groupingSpecification,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
+        List<RuntimeColumn> groupingKeyColumns,
+        HashSet<string> groupingKeySignatures,
+        HashSet<string> emittedGroupingKeySignatures)
+    {
+        var expressionGroupingSpecification = navigator.TryGetExpressionGroupingSpecification(groupingSpecification);
+        if (expressionGroupingSpecification is not null)
+        {
+            BindExpressionGroupingSpecification(
+                groupingSpecification,
+                expressionGroupingSpecification,
+                scope,
+                inputRowset,
+                groupingKeyColumns,
+                groupingKeySignatures,
+                emittedGroupingKeySignatures);
+            return;
+        }
+
+        var groupingSetsGroupingSpecification = navigator.TryGetGroupingSetsGroupingSpecification(groupingSpecification);
+        if (groupingSetsGroupingSpecification is not null)
+        {
+            foreach (var item in navigator.GetGroupingSets(groupingSetsGroupingSpecification))
+            {
+                BindGroupingSpecification(item, scope, inputRowset, groupingKeyColumns, groupingKeySignatures, emittedGroupingKeySignatures);
+            }
+
+            return;
+        }
+
+        var rollupGroupingSpecification = navigator.TryGetRollupGroupingSpecification(groupingSpecification);
+        if (rollupGroupingSpecification is not null)
+        {
+            foreach (var item in navigator.GetRollupArguments(rollupGroupingSpecification))
+            {
+                BindGroupingSpecification(item, scope, inputRowset, groupingKeyColumns, groupingKeySignatures, emittedGroupingKeySignatures);
+            }
+
+            return;
+        }
+
+        var cubeGroupingSpecification = navigator.TryGetCubeGroupingSpecification(groupingSpecification);
+        if (cubeGroupingSpecification is not null)
+        {
+            foreach (var item in navigator.GetCubeArguments(cubeGroupingSpecification))
+            {
+                BindGroupingSpecification(item, scope, inputRowset, groupingKeyColumns, groupingKeySignatures, emittedGroupingKeySignatures);
+            }
+
+            return;
+        }
+
+        var compositeGroupingSpecification = navigator.TryGetCompositeGroupingSpecification(groupingSpecification);
+        if (compositeGroupingSpecification is not null)
+        {
+            foreach (var item in navigator.GetCompositeGroupingItems(compositeGroupingSpecification))
+            {
+                BindGroupingSpecification(item, scope, inputRowset, groupingKeyColumns, groupingKeySignatures, emittedGroupingKeySignatures);
+            }
+
+            return;
+        }
+
+        if (navigator.IsGrandTotalGroupingSpecification(groupingSpecification))
+        {
+            return;
+        }
+
+        issues.Add(new TransformBindingIssue(
+            "UnsupportedGroupingSpecificationShape",
+            $"GroupingSpecification '{groupingSpecification.Id}' is not yet supported by binding.",
+            groupingSpecification.Id));
+    }
+
+    private void BindExpressionGroupingSpecification(
+        GroupingSpecification groupingSpecification,
+        ExpressionGroupingSpecification expressionGroupingSpecification,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
+        List<RuntimeColumn> groupingKeyColumns,
+        HashSet<string> groupingKeySignatures,
+        HashSet<string> emittedGroupingKeySignatures)
+    {
+        var expression = navigator.TryGetExpressionGroupingSpecificationExpression(expressionGroupingSpecification);
+        if (expression is null)
+        {
+            issues.Add(new TransformBindingIssue(
+                "GroupingSpecificationExpressionMissing",
+                $"ExpressionGroupingSpecification '{expressionGroupingSpecification.Id}' is missing its scalar expression.",
+                expressionGroupingSpecification.Id));
+            return;
+        }
+
+        var directColumnReference = navigator.TryGetDirectColumnReference(expression);
+        if (directColumnReference is null)
+        {
+            BindScalarExpression(expression, scope, inputRowset, null, false);
+            issues.Add(new TransformBindingIssue(
+                "UnsupportedGroupingExpressionShape",
+                $"GroupingSpecification '{groupingSpecification.Id}' is not yet supported unless it is a direct column reference.",
+                groupingSpecification.Id));
+            return;
+        }
+
+        var boundColumnReference = BindColumnReference(directColumnReference, scope, null, false);
+        if (boundColumnReference is null)
+        {
+            return;
+        }
+
+        boundColumnReferences.Add(boundColumnReference);
+
+        var signature = NormalizeColumnReferenceSignature(boundColumnReference.IdentifierParts);
+        groupingKeySignatures.Add(signature);
+        if (!emittedGroupingKeySignatures.Add(signature))
+        {
+            return;
+        }
+
+        groupingKeyColumns.Add(new RuntimeColumn(
+            $"{groupingSpecification.Id}:group-column:{groupingKeyColumns.Count + 1}",
+            boundColumnReference.ResolvedColumn.Name,
+            groupingKeyColumns.Count));
+    }
+
+    private RuntimeRowset? ComposeQueryInputRowset(
         QuerySpecification querySpecification,
-        RuntimeBoundRowset? inheritedInputRowset,
-        RuntimeBoundRowset? localInputRowset)
+        RuntimeRowset? inheritedInputRowset,
+        RuntimeRowset? localInputRowset)
     {
         if (inheritedInputRowset is null)
         {
@@ -277,15 +368,13 @@ internal sealed partial class TransformBindingSession
 
         var columns = inheritedInputRowset.Columns
             .Concat(localInputRowset.Columns)
-            .Select((column, ordinal) => new RuntimeBoundColumn(
+            .Select((column, ordinal) => new RuntimeColumn(
                 $"{querySpecification.Id}:input-column:{ordinal + 1}",
                 column.Name,
-                ordinal,
-                column.SourceFieldId,
-                column.SourceTableId))
+                ordinal))
             .ToArray();
 
-        var rowset = new RuntimeBoundRowset(
+        var rowset = new RuntimeRowset(
             $"{querySpecification.Id}:input-rowset",
             $"Input:{querySpecification.Id}",
             "Input",
@@ -294,18 +383,18 @@ internal sealed partial class TransformBindingSession
             null,
             columns,
             [
-                new RuntimeBoundRowsetInput(0, "OuterScope", inheritedInputRowset),
-                new RuntimeBoundRowsetInput(1, "LocalScope", localInputRowset)
+                new RuntimeRowsetInput(0, "OuterScope", inheritedInputRowset),
+                new RuntimeRowsetInput(1, "LocalScope", localInputRowset)
             ]);
 
         TrackRowset(rowset);
         return rowset;
     }
 
-    private RuntimeBoundColumn[]? ReconcileSetOperationColumns(
+    private RuntimeColumn[]? ReconcileSetOperationColumns(
         BinaryQueryExpression binaryQueryExpression,
-        RuntimeBoundRowset firstRowset,
-        RuntimeBoundRowset secondRowset)
+        RuntimeRowset firstRowset,
+        RuntimeRowset secondRowset)
     {
         if (firstRowset.Columns.Count != secondRowset.Columns.Count)
         {
@@ -328,12 +417,10 @@ internal sealed partial class TransformBindingSession
                         binaryQueryExpression.Id));
                 }
 
-                return new RuntimeBoundColumn(
+                return new RuntimeColumn(
                     $"{binaryQueryExpression.Id}:column:{ordinal + 1}",
                     pair.First.Name,
-                    ordinal,
-                    pair.First.SourceFieldId,
-                    pair.First.SourceTableId);
+                    ordinal);
             })
             .ToArray();
     }

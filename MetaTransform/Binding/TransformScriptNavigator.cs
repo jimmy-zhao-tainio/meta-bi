@@ -5,6 +5,7 @@ namespace MetaTransform.Binding;
 
 internal sealed partial class TransformScriptNavigator
 {
+    private readonly MetaTransformScriptModel model;
     private readonly IReadOnlyDictionary<string, TransformScriptSelectStatementLink> scriptSelectStatementLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, SelectStatement> selectStatementById;
     private readonly IReadOnlyDictionary<string, SelectStatementQueryExpressionLink> selectStatementQueryExpressionLinkByOwnerId;
@@ -151,6 +152,7 @@ internal sealed partial class TransformScriptNavigator
 
     public TransformScriptNavigator(MetaTransformScriptModel model)
     {
+        this.model = model;
         scriptSelectStatementLinkByOwnerId = model.TransformScriptSelectStatementLinkList.ToDictionary(item => item.OwnerId, StringComparer.Ordinal);
         selectStatementById = model.SelectStatementList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         selectStatementQueryExpressionLinkByOwnerId = model.SelectStatementQueryExpressionLinkList.ToDictionary(item => item.OwnerId, StringComparer.Ordinal);

@@ -6,7 +6,7 @@ namespace MetaTransform.Binding;
 internal static class TransformBindingModelBuilder
 {
     public static MetaTransformBindingModel Create(
-        BoundTransform bound,
+        TransformBindingResult bound,
         IReadOnlyList<TransformBindingTargetResolution>? targets = null)
     {
         ArgumentNullException.ThrowIfNull(bound);
@@ -23,39 +23,24 @@ internal static class TransformBindingModelBuilder
 
         model.TransformBindingList.Add(bindingRow);
 
-        foreach (var source in bound.BoundTableSources
-                     .Where(item => !string.IsNullOrWhiteSpace(item.SourceTableId))
-                     .GroupBy(item => item.SourceTableId, StringComparer.Ordinal)
-                     .Select(static group => group.First()))
-        {
-            model.TransformBindingSourceList.Add(new TransformBindingSource
-            {
-                Id = $"{bindingId}:source:{model.TransformBindingSourceList.Count + 1}",
-                TransformBindingId = bindingId,
-                SqlIdentifier = source.SqlIdentifier,
-                TableId = source.SourceTableId
-            });
-        }
-
         foreach (var target in (targets ?? [])
-                     .GroupBy(item => item.TableId, StringComparer.Ordinal)
+                     .GroupBy(item => item.SqlIdentifier, StringComparer.OrdinalIgnoreCase)
                      .Select(static group => group.First()))
         {
             model.TransformBindingTargetList.Add(new TransformBindingTarget
             {
                 Id = $"{bindingId}:target:{model.TransformBindingTargetList.Count + 1}",
                 TransformBindingId = bindingId,
-                SqlIdentifier = target.SqlIdentifier,
-                TableId = target.TableId
+                SqlIdentifier = target.SqlIdentifier
             });
         }
 
         foreach (var issue in bound.Issues.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
         {
-            model.BoundIssueList.Add(new BoundIssue
+            model.IssueList.Add(new Issue
             {
                 Id = $"{bindingId}:issue:{issue.Ordinal + 1}",
-                OwnerId = bindingId,
+                TransformBindingId = bindingId,
                 Code = issue.Item.Code,
                 Message = issue.Item.Message,
                 Severity = "Error",
@@ -63,20 +48,20 @@ internal static class TransformBindingModelBuilder
             });
         }
 
-        foreach (var rowset in bound.BoundRowsets)
+        foreach (var rowset in bound.Rowsets)
         {
             AddRowset(model, bindingId, rowset);
         }
 
-        foreach (var rowset in bound.BoundRowsets)
+        foreach (var rowset in bound.Rowsets)
         {
             foreach (var input in rowset.Inputs)
             {
-                model.BoundRowsetInputList.Add(new BoundRowsetInput
+                model.SourceTargetList.Add(new SourceTarget
                 {
                     Id = $"{rowset.Id}:input:{input.Ordinal + 1}",
-                    OwnerId = rowset.Id,
-                    ValueId = input.Rowset.Id,
+                    TargetId = rowset.Id,
+                    SourceId = input.Rowset.Id,
                     Ordinal = input.Ordinal.ToString(CultureInfo.InvariantCulture),
                     InputRole = input.InputRole ?? string.Empty
                 });
@@ -84,14 +69,14 @@ internal static class TransformBindingModelBuilder
         }
 
         var boundTableSourceIdsBySyntaxTableReferenceId = new Dictionary<string, string>(StringComparer.Ordinal);
-        foreach (var source in bound.BoundTableSources.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
+        foreach (var source in bound.TableSources.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
         {
             var tableSourceId = $"{bindingId}:table-source:{source.Ordinal + 1}";
-            model.BoundTableSourceList.Add(new BoundTableSource
+            model.TableSourceList.Add(new TableSource
             {
                 Id = tableSourceId,
-                OwnerId = bindingId,
-                ValueId = source.Item.Rowset.Id,
+                TransformBindingId = bindingId,
+                RowsetId = source.Item.Rowset.Id,
                 ExposedName = source.Item.ExposedName,
                 SyntaxTableReferenceId = source.Item.SyntaxTableReferenceId
             });
@@ -99,7 +84,7 @@ internal static class TransformBindingModelBuilder
             boundTableSourceIdsBySyntaxTableReferenceId[source.Item.SyntaxTableReferenceId] = tableSourceId;
         }
 
-        foreach (var columnReference in bound.BoundColumnReferences.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
+        foreach (var columnReference in bound.ColumnReferences.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
         {
             if (!boundTableSourceIdsBySyntaxTableReferenceId.TryGetValue(
                 columnReference.Item.ResolvedTableSource.SyntaxTableReferenceId,
@@ -108,23 +93,23 @@ internal static class TransformBindingModelBuilder
                 continue;
             }
 
-            model.BoundColumnReferenceList.Add(new BoundColumnReference
+            model.ColumnReferenceList.Add(new ColumnReference
             {
                 Id = $"{bindingId}:column-reference:{columnReference.Ordinal + 1}",
-                OwnerId = bindingId,
-                ValueId = columnReference.Item.ResolvedColumn.Id,
-                ResolvedTableSourceId = resolvedTableSourceId,
+                TransformBindingId = bindingId,
+                ColumnId = columnReference.Item.ResolvedColumn.Id,
+                TableSourceId = resolvedTableSourceId,
                 SyntaxColumnReferenceId = columnReference.Item.SyntaxColumnReferenceId
             });
         }
 
         if (bound.TopLevelRowset is not null)
         {
-            model.TransformBindingFinalRowsetLinkList.Add(new TransformBindingFinalRowsetLink
+            model.OutputRowsetList.Add(new OutputRowset
             {
                 Id = $"{bindingId}:final-rowset",
-                OwnerId = bindingId,
-                ValueId = bound.TopLevelRowset.Id
+                TransformBindingId = bindingId,
+                RowsetId = bound.TopLevelRowset.Id
             });
         }
 
@@ -134,34 +119,32 @@ internal static class TransformBindingModelBuilder
     private static void AddRowset(
         MetaTransformBindingModel model,
         string bindingId,
-        RuntimeBoundRowset rowset)
+        RuntimeRowset rowset)
     {
-        if (model.BoundRowsetList.Any(item => string.Equals(item.Id, rowset.Id, StringComparison.Ordinal)))
+        if (model.RowsetList.Any(item => string.Equals(item.Id, rowset.Id, StringComparison.Ordinal)))
         {
             return;
         }
 
-        model.BoundRowsetList.Add(new BoundRowset
+        model.RowsetList.Add(new Rowset
         {
             Id = rowset.Id,
-            OwnerId = bindingId,
+            TransformBindingId = bindingId,
             Name = rowset.Name,
             DerivationKind = rowset.DerivationKind,
             RowsetRole = rowset.RowsetRole ?? string.Empty,
             SyntaxId = rowset.SyntaxId ?? string.Empty,
-            SourceTableId = rowset.SourceTableId ?? string.Empty
+            SqlIdentifier = rowset.SqlIdentifier ?? string.Empty
         });
 
         foreach (var column in rowset.Columns)
         {
-            model.BoundColumnList.Add(new BoundColumn
+            model.ColumnList.Add(new Column
             {
                 Id = column.Id,
-                OwnerId = rowset.Id,
+                RowsetId = rowset.Id,
                 Name = column.Name,
-                Ordinal = column.Ordinal.ToString(CultureInfo.InvariantCulture),
-                SourceFieldId = column.SourceFieldId ?? string.Empty,
-                SourceTableId = column.SourceTableId ?? string.Empty
+                Ordinal = column.Ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
     }

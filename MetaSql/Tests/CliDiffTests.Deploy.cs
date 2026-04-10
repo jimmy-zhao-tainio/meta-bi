@@ -1248,6 +1248,78 @@ public sealed partial class CliDiffTests
     }
 
     [Fact]
+    public async Task DeployPlanAndDeploy_HandleIdentityTableAdd()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var planPath = Path.Combine(tempRoot, "deploy-manifest");
+        var verifyPath = Path.Combine(tempRoot, "post-deploy-manifest");
+        var databaseName = $"MetaSqlDeployIdentityAdd_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            await CreateSourceWorkspaceWithIdentityTableAsync(sourcePath, databaseName);
+
+            var planCommand = new ProcessStartInfo
+            {
+                FileName = "meta-sql",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{planPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+            var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
+            Assert.Equal(0, planResult.ExitCode);
+            Assert.Contains("Status: ready to deploy", planResult.Output, StringComparison.Ordinal);
+
+            var deployCommand = new ProcessStartInfo
+            {
+                FileName = "meta-sql",
+                Arguments = $"deploy --manifest-workspace \"{planPath}\" --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+            var deployResult = RunProcess(deployCommand, "Could not start MetaSql CLI deploy process.");
+            Assert.Equal(0, deployResult.ExitCode);
+            Assert.Contains("OK: Deployed changes", deployResult.Output, StringComparison.Ordinal);
+
+            Assert.True(TableExists(databaseConnectionString, "raw", "IdentityCase"));
+            var identityMetadata = GetColumnIdentityMetadata(databaseConnectionString, "raw", "IdentityCase", "Id");
+            Assert.True(identityMetadata.IsIdentity);
+            Assert.Equal("100", identityMetadata.IdentitySeed);
+            Assert.Equal("5", identityMetadata.IdentityIncrement);
+
+            var verifyCommand = new ProcessStartInfo
+            {
+                FileName = "meta-sql",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --out \"{verifyPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+            var verifyResult = RunProcess(verifyCommand, "Could not start MetaSql CLI deploy-plan verification process.");
+            Assert.Equal(0, verifyResult.ExitCode);
+            Assert.Contains("Changes: none", verifyResult.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task DeployCommand_RefusesWhenManifestContainsBlocks()
     {
         var repoRoot = FindRepositoryRoot();

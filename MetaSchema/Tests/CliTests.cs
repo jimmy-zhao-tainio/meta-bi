@@ -164,6 +164,9 @@ public sealed class CliTests
         var tableRelationshipField = Assert.Single(model.Entities, entity => entity.Name == "TableRelationshipField");
         Assert.DoesNotContain(model.Entities, entity => entity.Name == "FieldType");
         Assert.Contains(field.Properties, property => property.Name == "MetaDataTypeId");
+        Assert.Contains(field.Properties, property => property.Name == "IsIdentity");
+        Assert.Contains(field.Properties, property => property.Name == "IdentitySeed");
+        Assert.Contains(field.Properties, property => property.Name == "IdentityIncrement");
         Assert.DoesNotContain(field.Properties, property => property.Name == "Length");
         Assert.DoesNotContain(field.Properties, property => property.Name == "NumericPrecision");
         Assert.DoesNotContain(field.Properties, property => property.Name == "Scale");
@@ -237,6 +240,58 @@ public sealed class CliTests
             Assert.Equal("2", amountDetails["Scale"]);
 
             Assert.False(detailNamesByFieldId.ContainsKey(fieldsByName["AuditId"].Id));
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public void SqlServerExtractor_ExtractsIdentityColumnMetadata()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "MetaSchemaWorkspace");
+        var databaseName = $"MetaSchemaIdentity_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            ExecuteSql(databaseConnectionString, """
+                CREATE TABLE dbo.IdentityCase
+                (
+                    Id int IDENTITY(100,5) NOT NULL,
+                    CustomerName nvarchar(100) NOT NULL,
+                    CONSTRAINT PK_IdentityCase PRIMARY KEY (Id)
+                );
+                """);
+
+            var extractor = new SqlServerSchemaExtractor();
+            var workspace = extractor.ExtractMetaSchemaWorkspace(new SqlServerExtractRequest
+            {
+                NewWorkspacePath = workspacePath,
+                ConnectionString = databaseConnectionString,
+                SystemName = databaseName,
+                SchemaName = "dbo",
+                TableName = "IdentityCase",
+            });
+
+            var fieldsByName = workspace.Instance
+                .GetOrCreateEntityRecords("Field")
+                .ToDictionary(row => row.Values["Name"], StringComparer.Ordinal);
+
+            var identityField = fieldsByName["Id"];
+            Assert.Equal("true", identityField.Values["IsIdentity"]);
+            Assert.Equal("100", identityField.Values["IdentitySeed"]);
+            Assert.Equal("5", identityField.Values["IdentityIncrement"]);
+
+            var nonIdentityField = fieldsByName["CustomerName"];
+            Assert.False(nonIdentityField.Values.ContainsKey("IsIdentity"));
+            Assert.False(nonIdentityField.Values.ContainsKey("IdentitySeed"));
+            Assert.False(nonIdentityField.Values.ContainsKey("IdentityIncrement"));
         }
         finally
         {

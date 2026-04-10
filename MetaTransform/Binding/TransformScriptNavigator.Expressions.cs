@@ -31,8 +31,85 @@ internal sealed partial class TransformScriptNavigator
             .ToArray();
     }
 
+    public bool IsGroupByAll(GroupByClause groupByClause) =>
+        string.Equals(groupByClause.All, "true", StringComparison.OrdinalIgnoreCase);
+
     public ExpressionGroupingSpecification? TryGetExpressionGroupingSpecification(GroupingSpecification groupingSpecification) =>
         expressionGroupingSpecificationByBaseId.GetValueOrDefault(groupingSpecification.Id);
+
+    public GroupingSetsGroupingSpecification? TryGetGroupingSetsGroupingSpecification(GroupingSpecification groupingSpecification)
+    {
+        return model.GroupingSetsGroupingSpecificationList
+            .FirstOrDefault(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+    }
+
+    public IReadOnlyList<GroupingSpecification> GetGroupingSets(GroupingSetsGroupingSpecification groupingSetsGroupingSpecification)
+    {
+        return model.GroupingSetsGroupingSpecificationSetsItemList
+            .Where(item => string.Equals(item.OwnerId, groupingSetsGroupingSpecification.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Where(item => item is not null)
+            .Cast<GroupingSpecification>()
+            .ToArray();
+    }
+
+    public RollupGroupingSpecification? TryGetRollupGroupingSpecification(GroupingSpecification groupingSpecification)
+    {
+        return model.RollupGroupingSpecificationList
+            .FirstOrDefault(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+    }
+
+    public IReadOnlyList<GroupingSpecification> GetRollupArguments(RollupGroupingSpecification rollupGroupingSpecification)
+    {
+        return model.RollupGroupingSpecificationArgumentsItemList
+            .Where(item => string.Equals(item.OwnerId, rollupGroupingSpecification.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Where(item => item is not null)
+            .Cast<GroupingSpecification>()
+            .ToArray();
+    }
+
+    public CubeGroupingSpecification? TryGetCubeGroupingSpecification(GroupingSpecification groupingSpecification)
+    {
+        return model.CubeGroupingSpecificationList
+            .FirstOrDefault(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+    }
+
+    public IReadOnlyList<GroupingSpecification> GetCubeArguments(CubeGroupingSpecification cubeGroupingSpecification)
+    {
+        return model.CubeGroupingSpecificationArgumentsItemList
+            .Where(item => string.Equals(item.OwnerId, cubeGroupingSpecification.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Where(item => item is not null)
+            .Cast<GroupingSpecification>()
+            .ToArray();
+    }
+
+    public CompositeGroupingSpecification? TryGetCompositeGroupingSpecification(GroupingSpecification groupingSpecification)
+    {
+        return model.CompositeGroupingSpecificationList
+            .FirstOrDefault(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+    }
+
+    public IReadOnlyList<GroupingSpecification> GetCompositeGroupingItems(CompositeGroupingSpecification compositeGroupingSpecification)
+    {
+        return model.CompositeGroupingSpecificationItemsItemList
+            .Where(item => string.Equals(item.OwnerId, compositeGroupingSpecification.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Where(item => item is not null)
+            .Cast<GroupingSpecification>()
+            .ToArray();
+    }
+
+    public bool IsGrandTotalGroupingSpecification(GroupingSpecification groupingSpecification)
+    {
+        return model.GrandTotalGroupingSpecificationList
+            .Any(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+    }
 
     public ScalarExpression? TryGetExpressionGroupingSpecificationExpression(ExpressionGroupingSpecification expressionGroupingSpecification)
     {

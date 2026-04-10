@@ -14,16 +14,16 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class BoundRowsetInput
+    public sealed class SourceTarget
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
-        [XmlAttribute("OwnerId")]
-        public string OwnerId { get; set; } = string.Empty;
+        [XmlAttribute("SourceId")]
+        public string SourceId { get; set; } = string.Empty;
 
-        [XmlAttribute("ValueId")]
-        public string ValueId { get; set; } = string.Empty;
+        [XmlAttribute("TargetId")]
+        public string TargetId { get; set; } = string.Empty;
 
         [XmlElement("InputRole")]
         public string InputRole { get; set; } = string.Empty;
@@ -33,10 +33,10 @@ namespace MetaTransformBinding
         public string Ordinal { get; set; } = string.Empty;
 
         [XmlIgnore]
-        public BoundRowset Owner { get; set; } = null!;
+        public Rowset Source { get; set; } = null!;
 
         [XmlIgnore]
-        public BoundRowset Value { get; set; } = null!;
+        public Rowset Target { get; set; } = null!;
 
     }
 }

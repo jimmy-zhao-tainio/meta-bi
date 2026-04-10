@@ -30,6 +30,9 @@
         <Property name="MetaDataTypeId" />
         <Property name="Ordinal" isRequired="false" />
         <Property name="IsNullable" isRequired="false" />
+        <Property name="IsIdentity" isRequired="false" />
+        <Property name="IdentitySeed" isRequired="false" />
+        <Property name="IdentityIncrement" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Table" />

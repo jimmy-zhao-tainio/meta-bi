@@ -25,9 +25,6 @@ namespace MetaTransformBinding
         [XmlElement("SqlIdentifier")]
         public string SqlIdentifier { get; set; } = string.Empty;
 
-        [XmlElement("TableId")]
-        public string TableId { get; set; } = string.Empty;
-
         [XmlIgnore]
         public TransformBinding TransformBinding { get; set; } = null!;
 

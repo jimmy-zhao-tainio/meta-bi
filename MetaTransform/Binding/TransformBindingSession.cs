@@ -1,4 +1,3 @@
-using MetaSchema;
 using MetaTransformScript;
 
 namespace MetaTransform.Binding;
@@ -6,24 +5,21 @@ namespace MetaTransform.Binding;
 internal sealed partial class TransformBindingSession
 {
     private readonly TransformScriptNavigator navigator;
-    private readonly MetaSchemaTableResolver schemaTableResolver;
     private readonly List<TransformBindingIssue> issues = [];
-    private readonly List<RuntimeBoundTableSource> boundTableSources = [];
-    private readonly List<RuntimeBoundColumnReference> boundColumnReferences = [];
-    private readonly List<RuntimeBoundRowset> boundRowsets = [];
+    private readonly List<RuntimeTableSource> boundTableSources = [];
+    private readonly List<RuntimeColumnReference> boundColumnReferences = [];
+    private readonly List<RuntimeRowset> boundRowsets = [];
     private readonly Dictionary<string, RuntimeCommonTableExpressionDefinition> commonTableExpressionDefinitionsByName = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeCommonTableExpressionBindingState> commonTableExpressionBindingStateByName = new(StringComparer.OrdinalIgnoreCase);
-    private readonly Dictionary<string, RuntimeBoundRowset?> commonTableExpressionRowsetByName = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, RuntimeRowset?> commonTableExpressionRowsetByName = new(StringComparer.OrdinalIgnoreCase);
 
     public TransformBindingSession(
-        MetaTransformScriptModel model,
-        MetaSchemaModel sourceSchema)
+        MetaTransformScriptModel model)
     {
         navigator = new TransformScriptNavigator(model);
-        schemaTableResolver = new MetaSchemaTableResolver(sourceSchema);
     }
 
-    public BoundTransform BindTransform(
+    public TransformBindingResult BindTransform(
         TransformScript transformScript,
         string? activeLanguageProfileIdOverride = null)
     {
@@ -82,14 +78,14 @@ internal sealed partial class TransformBindingSession
             topLevelBinding?.OutputRowset);
     }
 
-    private BoundTransform CreateResult(
+    private TransformBindingResult CreateResult(
         TransformScript transformScript,
         string activeLanguageProfileId,
-        BoundScope? topLevelScope,
-        RuntimeBoundRowset? topLevelInputRowset,
-        RuntimeBoundRowset? topLevelRowset)
+        BindingScope? topLevelScope,
+        RuntimeRowset? topLevelInputRowset,
+        RuntimeRowset? topLevelRowset)
     {
-        return new BoundTransform(
+        return new TransformBindingResult(
             transformScript.Id,
             transformScript.Name,
             activeLanguageProfileId,
@@ -129,7 +125,7 @@ internal sealed partial class TransformBindingSession
                 item.Ordinal);
 
             commonTableExpressionDefinitionsByName[name] = definition;
-            commonTableExpressionBindingStateByName[name] = RuntimeCommonTableExpressionBindingState.NotBound;
+            commonTableExpressionBindingStateByName[name] = RuntimeCommonTableExpressionBindingState.NotResolved;
             commonTableExpressionRowsetByName[name] = null;
         }
     }
@@ -148,11 +144,11 @@ internal sealed partial class TransformBindingSession
 
     private readonly record struct CommonTableExpressionReferenceBindingResult(
         bool IsResolved,
-        RuntimeBoundTableReferenceBinding? Binding)
+        RuntimeTableReferenceBinding? Binding)
     {
         public static CommonTableExpressionReferenceBindingResult Unresolved => new(false, null);
 
-        public static CommonTableExpressionReferenceBindingResult Resolved(RuntimeBoundTableReferenceBinding? binding) =>
+        public static CommonTableExpressionReferenceBindingResult Resolved(RuntimeTableReferenceBinding? binding) =>
             new(true, binding);
     }
 
@@ -164,14 +160,14 @@ internal sealed partial class TransformBindingSession
         int Ordinal);
 
     private sealed record RuntimeGroupingContext(
-        RuntimeBoundRowset GroupedRowset,
+        RuntimeRowset GroupedRowset,
         IReadOnlySet<string> GroupingKeySignatures);
 
     private enum RuntimeCommonTableExpressionBindingState
     {
-        NotBound,
+        NotResolved,
         Binding,
-        Bound,
+        Resolved,
         Failed
     }
 

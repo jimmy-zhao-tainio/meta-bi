@@ -14,13 +14,13 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class BoundIssue
+    public sealed class Issue
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
-        [XmlAttribute("OwnerId")]
-        public string OwnerId { get; set; } = string.Empty;
+        [XmlAttribute("TransformBindingId")]
+        public string TransformBindingId { get; set; } = string.Empty;
 
         [XmlElement("Code")]
         public string Code { get; set; } = string.Empty;
@@ -37,7 +37,7 @@ namespace MetaTransformBinding
         public bool ShouldSerializeSyntaxId() => !string.IsNullOrWhiteSpace(SyntaxId);
 
         [XmlIgnore]
-        public TransformBinding Owner { get; set; } = null!;
+        public TransformBinding TransformBinding { get; set; } = null!;
 
     }
 }

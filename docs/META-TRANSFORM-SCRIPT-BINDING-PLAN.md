@@ -9,7 +9,7 @@ This plan is for the first derived semantic layer over that syntax:
 - name resolution
 - rowset-shape derivation
 
-Type inference and target validation come later. They should build on this layer, not replace it.
+Type inference and full target validation come later. They should build on this layer, not replace it.
 
 ## Architectural Invariant
 
@@ -196,6 +196,7 @@ Binding answers:
 - what this name refers to
 - what rowsets are visible here
 - what output rowset this query boundary produces structurally
+- what source rowsets and declared targets the transform names in SQL terms
 
 Language-profile evaluation answers:
 
@@ -210,6 +211,7 @@ Type inference answers:
 
 Validation answers:
 
+- whether bound source rowsets conform to sanctioned source tables
 - whether the inferred output fits the target contract
 - where and why it does not
 
@@ -234,10 +236,10 @@ Phase 1 binding should take:
 
 - one `MetaTransformScript` transform
 - one resolved active language profile
-- one sanctioned source-schema workspace
 
 Not yet:
 
+- source schema
 - target schema
 - type reconciliation rules
 - validation policy
@@ -259,35 +261,35 @@ Minimal sanctioned binding model:
   - carries the resolved active language profile
   - points to the final output rowset
 
-- `BoundRowset`
+- `Rowset`
   - the central semantic object
   - represents a source, intermediate, or final rowset state
   - attached to one `TransformBinding`
   - carries derivation kind and producing syntax id when relevant
 
-- `BoundRowsetInput`
-  - links one derived `BoundRowset` to one of its input rowsets
+- `SourceTarget`
+  - links one derived `Rowset` to one of its input rowsets
   - keeps input order explicit
   - this is where a link entity is appropriate because rowset derivation is graph-shaped and sometimes multi-input
 
-- `BoundColumn`
-  - one ordered column in a `BoundRowset`
+- `Column`
+  - one ordered column in a `Rowset`
   - carries exposed name and source field/table identity when known
 
-- `BoundTableSource`
+- `TableSource`
   - records one visible table-source exposure
-  - binds a `TableReference` syntax node and exposed alias/name to a `BoundRowset`
+  - binds a `TableReference` syntax node and exposed alias/name to a `Rowset`
 
-- `BoundColumnReference`
+- `ColumnReference`
   - records one resolved syntax column reference
-  - links the syntax column reference to its resolved `BoundColumn`
-  - also records the resolved `BoundTableSource`
+  - links the syntax column reference to its resolved `Column`
+  - also records the resolved `TableSource`
 
-- `BoundIssue`
+- `Issue`
   - explicit binding and profile outcomes
 
 Runtime helpers may still exist during implementation, but they are not the product artifact.
-`BoundScope` is a good example of something that should remain implementation scaffolding unless and until we have a clear reason to persist it.
+`BindingScope` is a good example of something that should remain implementation scaffolding unless and until we have a clear reason to persist it.
 
 ## Current Implemented Surface
 
@@ -328,18 +330,33 @@ Implemented now:
   - `AT TIME ZONE`
 - aggregate argument binding when those aggregates are represented through scalar call structure
 - basic expression `GROUP BY` rowset binding
+- `GROUP BY ALL` rowset binding
+- advanced grouping-specification traversal across:
+  - `GROUPING SETS`
+  - `ROLLUP`
+  - `CUBE`
+  - composite grouping specifications
+  - grand total grouping `()`
 - basic `HAVING` traversal over grouped queries
 - explicit grouped-query validation for ungrouped direct column references outside aggregate context
+- window and ordered-set expression traversal across:
+  - `OVER` partitions
+  - `OVER` orderings
+  - `ROWS` / `RANGE` frame offset expressions
+  - query-level named `WINDOW` definitions
+  - `WITHIN GROUP` orderings on generic function calls
+- explicit source declaration capture from named SQL identifiers
+- explicit target declaration capture from supplied SQL identifiers
 
 The persisted binding artifact is also live now:
 
 - `TransformBinding`
-- `BoundRowset`
-- `BoundRowsetInput`
-- `BoundColumn`
-- `BoundTableSource`
-- `BoundColumnReference`
-- `BoundIssue`
+- `Rowset`
+- `SourceTarget`
+- `Column`
+- `TableSource`
+- `ColumnReference`
+- `Issue`
 
 ## Honest Remaining Gaps
 
@@ -347,13 +364,24 @@ Important things that are still not truly implemented:
 
 - profile feature classification beyond active-profile resolution
 - grouping / aggregate output rules
-- advanced grouping forms such as `ROLLUP`, `CUBE`, and `GROUPING SETS`
-- window binding
+- full window semantics and explicit named-window validation
 - broader TVF support beyond script-supplied explicit alias shape
 - deeper recursive semantics beyond rowset-shape stabilization
 - broad nested-subquery support outside the currently implemented predicate/scalar shapes
 - type inference
-- target validation
+- validate currently appends explicit validation result rows inside `MetaTransformBinding` rather than emitting a separate workspace/artifact family
+- source identifier resolution to `MetaSchema.TableId` is implemented in the current Validate slice
+- source column-subset conformance is implemented in the current Validate slice
+- target identifier resolution to `MetaSchema.TableId` is implemented in the current Validate slice
+- target structural count/name validation is implemented in the current Validate slice
+  - SQL identity columns are skipped on the target side
+  - no data type compatibility validation yet
+  - no nullability validation yet
+  - no length / precision / scale validation yet
+  - no sanctioned conversion classification yet
+  - no modeled way to identify platform/system-generated target columns beyond SQL identity
+  - no explicit target write-contract semantics for nullable, defaulted, computed, or platform columns
+  - no source-to-target compatibility outcomes beyond structural rowset checks
 
 So the binder can now explain a lot of rowset and visibility structure, but it is still intentionally shallow in scalar semantics.
 
@@ -379,7 +407,7 @@ Originally out for this first step:
 - windows
 - set-operation reconciliation
 - type inference
-- target validation
+- full target validation
 
 Several of the items above are now implemented and should no longer be treated as active Phase 1 gaps.
 The remaining unsupported shapes should still fail explicitly rather than guessed.
@@ -394,37 +422,43 @@ Set-operation rowset binding is now implemented for query-boundary shape reconci
 Recursive CTE rowset-shape binding is now implemented when the recursive shape can be stabilized from explicit CTE column aliases or anchor-branch output names.
 Deeper recursive semantics still remain outside this phase, but recursive self-reference no longer blocks binding outright.
 Correlated scalar subqueries, `EXISTS`, `IN (subquery)`, and subquery-comparison predicates are now implemented for query-boundary binding and outer-scope name visibility.
-Expression binding still remains intentionally narrow: direct column references, searched `CASE`, and the current sanctioned subquery/predicate shapes are walked, while broader scalar function-expression traversal is still deferred.
+Expression binding still remains intentionally shallow in semantics even though traversal is now broad: direct column references, current scalar shells, supported window/ordered-set clauses, and the current sanctioned subquery/predicate shapes are walked, while type and full function semantics are still deferred.
 
 ## Data Flow
 
-Phase 1 should look like:
+Binding should look like:
 
-`MetaTransformScript + ActiveLanguageProfile + SourceSchema`
+`MetaTransformScript + ActiveLanguageProfile`
 `-> source bound rowsets`
 `-> derived bound rowsets`
 `-> final output rowset`
+
+Validate should look like:
+
+`TransformBinding + MetaSchema`
+`-> source validation outcomes`
+`-> target validation outcomes`
 
 Concrete flow:
 
 1. Read the transform syntax.
 2. Resolve the active language profile using the shared resolver contract.
 3. Classify any encountered profile-sensitive features needed for this semantic pass.
-4. Resolve each simple named table reference against sanctioned source schema truth.
-5. Produce one source `BoundRowset` per resolved table source.
-6. Build the query-block runtime scope from visible table sources and aliases.
-7. Resolve column references against that scope.
-8. Expand `*` and qualified `alias.*` against bound rowsets.
-9. Produce the derived output `BoundRowset` for the `SELECT`.
-10. Persist the result as a `TransformBinding` instance with one distinguished final output rowset.
+4. Produce one source `Rowset` per named SQL source reference.
+5. Build the query-block runtime scope from visible table sources and aliases.
+6. Resolve column references against that scope.
+7. Expand `*` and qualified `alias.*` when the visible rowset shape is derivable from syntax alone.
+8. Produce the derived output `Rowset` for the `SELECT`.
+9. Persist the result as a `TransformBinding` instance with one distinguished final output rowset plus unresolved source/target declarations.
 
 ## Next Recommended Slices
 
 The next clean slices should stay honest about the current boundary:
 
-1. advanced grouping forms such as `ROLLUP`, `CUBE`, and `GROUPING SETS`
-2. profile feature classification beyond profile resolution
-3. type inference handoff
+1. profile feature classification beyond profile resolution
+2. type inference handoff
+3. query modifiers such as `DISTINCT`, `TOP`, `ORDER BY`, and `OFFSET` / `FETCH`
+4. expand Validate beyond the current structural slice over `TransformBinding + MetaSchema`
 
 This keeps rowset and name-resolution truth ahead of type and validation work.
 
@@ -432,11 +466,11 @@ This keeps rowset and name-resolution truth ahead of type and validation work.
 
 1. Define the semantic model/workspace for the binding layer.
 2. Define the shared active-language-profile resolver contract.
-3. Add a binder service that consumes `MetaTransformScript`, active language profile, and source schema.
-4. Bind simple named table references to source tables.
+3. Add a binder service that consumes `MetaTransformScript` and active language profile.
+4. Bind simple named table references to source rowsets named in SQL terms.
 5. Build per-query scope from `FROM` sources and aliases.
 6. Bind simple column references.
-7. Derive select-output columns, including `*` and qualified `alias.*`.
+7. Derive select-output columns, including `*` and qualified `alias.*` when the visible rowset shape is derivable from syntax.
 8. Emit explicit binding issues for unresolved or ambiguous names.
 9. Emit explicit profile outcomes for disallowed or unclassified features encountered during supported semantic passes.
 
@@ -447,11 +481,13 @@ Done enough for the current implemented stage means:
 - semantic analysis resolves one active language profile or fails explicitly
 - a simple single-query view with named table sources binds without guessing
 - a source-less transform can bind to a final output rowset
-- every simple named table reference resolves to a sanctioned source table
+- every simple named table reference produces one explicit source rowset and source declaration
 - every simple column reference either:
   - resolves to exactly one bound column, or
   - produces one explicit binding issue
-- `SELECT *` and `SELECT alias.*` expand to ordered output columns from the bound rowset
+- `SELECT *` and `SELECT alias.*` either:
+  - expand to ordered output columns from a syntax-derived bound rowset, or
+  - produce one explicit binding issue when schema truth would be required
 - the binder derives one output rowset for the top-level query block
 - query-derived tables produce distinct derived rowsets and table-source exposures
 - CTEs produce distinct rowsets and visible names
@@ -459,6 +495,8 @@ Done enough for the current implemented stage means:
 - supported correlated subqueries bind against outer visible scope without smearing that scope into syntax
 - binding results are persisted in a separate semantic artifact, not injected into `MetaTransformScript`
 - the persisted artifact is rowset-centric and can represent zero or more source rowsets flowing into one final output rowset
+- the persisted artifact carries source and target SQL identifiers without pretending schema validation already happened
+- validation can append explicit source/target validation rows and validation issues without mutating binding facts
 - unsupported scalar-expression shapes still fail explicitly rather than silently disappearing
 
 Not done yet:
@@ -466,7 +504,7 @@ Not done yet:
 - real profile feature classification outcomes beyond missing-profile failure
 - broad scalar-expression coverage
 - type inference
-- target validation
+- deeper validate semantics beyond the current structural slice
 
 Representative proof cases:
 
@@ -482,9 +520,13 @@ Representative proof cases:
 - common scalar expression shells such as `CASE`, `COALESCE`, `IIF`, casts, and parenthesized arithmetic
 - aggregate argument binding such as `MAX(o.Amount)` within a supported query boundary
 - basic expression `GROUP BY` with `HAVING`
+- `GROUP BY ALL`
 - recursive CTE with explicit column list
 - recursive CTE with anchor-derived output names
 - `CROSS APPLY` with a correlated derived-table right side
+- direct `OVER (...)` window functions
+- named `WINDOW` definitions
+- `WITHIN GROUP` percentile calls with `OVER (...)`
 
 ## Example Outcomes
 
@@ -499,8 +541,8 @@ FROM sales.Customer AS c
 
 Expected semantic result:
 
-- one `BoundTableSource` for alias `c`
-- one `BoundRowset` for `sales.Customer`
+- one `TableSource` for alias `c`
+- one `Rowset` for `sales.Customer`
 - two bound column references
 - one derived output rowset with:
   - `CustomerId`
@@ -527,6 +569,7 @@ Do not do these yet:
 
 - inferred data types
 - nullability inference
+- source-schema comparison
 - target-schema comparison
 - conversion sanctioning
 - lineage
@@ -538,11 +581,11 @@ Do not do these yet:
 - [x] semantic binding model defined
 - [x] active language profile resolution contract enforced
 - [x] binder service scaffolded
-- [x] named table references bind to source schema
+- [x] named table references bind from SQL identifier shape without requiring schema truth
 - [x] aliases populate query scope
 - [x] simple column references bind
-- [x] `SELECT *` expands from bound rowsets
-- [x] qualified `alias.*` expands from bound rowsets
+- [x] `SELECT *` expands from syntax-derived bound rowsets or fails explicitly when schema truth would be required
+- [x] qualified `alias.*` expands from syntax-derived bound rowsets or fails explicitly when schema truth would be required
 - [x] simple select-output rowset is derived
 - [x] query-derived tables bind as explicit rowset boundaries
 - [x] non-recursive CTE rowsets bind
@@ -557,6 +600,28 @@ Do not do these yet:
 - [x] broader scalar-expression traversal is implemented for the current sanctioned shells
 - [x] aggregate/function argument binding is implemented for scalar call structures
 - [x] basic expression `GROUP BY` rowset binding is implemented
+- [x] `GROUP BY ALL` binding is implemented
 - [x] basic `HAVING` traversal is implemented
-- [ ] advanced grouping forms are implemented
+- [x] window and ordered-set traversal is implemented for the current sanctioned expression shapes
+- [x] advanced grouping forms are implemented for the current sanctioned traversal shapes
+- [ ] `DISTINCT` binding is implemented
+- [ ] `TOP` binding is implemented
+- [ ] query `ORDER BY` binding is implemented
+- [ ] `OFFSET` / `FETCH` binding is implemented
+- [ ] query parenthesis binding is implemented
+- [ ] join parenthesis binding is implemented
+- [ ] built-in and global TVF binding is implemented without script-supplied alias shape
+- [ ] `OPENJSON` / `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` binding is implemented
+- [ ] full-text predicate and table-form binding is implemented
+- [ ] XML namespace / method binding is implemented
+- [ ] `PIVOT` / `UNPIVOT` binding is implemented
+- [ ] data type validation is implemented
+- [ ] nullability validation is implemented
+- [ ] length / precision / scale validation is implemented
+- [ ] sanctioned conversion classification is implemented
+- [ ] platform/system-generated target columns beyond SQL identity can be identified explicitly
+- [ ] target write-contract semantics beyond structural rowset checks are implemented
+- [x] validation result entities are captured explicitly inside `MetaTransformBinding`
+- [x] source and target identifier resolution against `MetaSchema` is implemented in the current Validate slice
+- [x] structural source/target validation is implemented in the current Validate slice
 - [x] representative current proof cases pass

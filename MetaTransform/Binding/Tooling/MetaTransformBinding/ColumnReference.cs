@@ -14,31 +14,31 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class BoundColumnReference
+    public sealed class ColumnReference
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
-        [XmlAttribute("OwnerId")]
-        public string OwnerId { get; set; } = string.Empty;
+        [XmlAttribute("ColumnId")]
+        public string ColumnId { get; set; } = string.Empty;
 
-        [XmlAttribute("ResolvedTableSourceId")]
-        public string ResolvedTableSourceId { get; set; } = string.Empty;
+        [XmlAttribute("TableSourceId")]
+        public string TableSourceId { get; set; } = string.Empty;
 
-        [XmlAttribute("ValueId")]
-        public string ValueId { get; set; } = string.Empty;
+        [XmlAttribute("TransformBindingId")]
+        public string TransformBindingId { get; set; } = string.Empty;
 
         [XmlElement("SyntaxColumnReferenceId")]
         public string SyntaxColumnReferenceId { get; set; } = string.Empty;
 
         [XmlIgnore]
-        public TransformBinding Owner { get; set; } = null!;
+        public Column Column { get; set; } = null!;
 
         [XmlIgnore]
-        public BoundTableSource ResolvedTableSource { get; set; } = null!;
+        public TableSource TableSource { get; set; } = null!;
 
         [XmlIgnore]
-        public BoundColumn Value { get; set; } = null!;
+        public TransformBinding TransformBinding { get; set; } = null!;
 
     }
 }

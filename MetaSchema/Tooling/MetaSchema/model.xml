@@ -2,6 +2,9 @@
   <EntityList>
     <Entity name="Field">
       <PropertyList>
+        <Property name="IdentityIncrement" isRequired="false" />
+        <Property name="IdentitySeed" isRequired="false" />
+        <Property name="IsIdentity" isRequired="false" />
         <Property name="IsNullable" isRequired="false" />
         <Property name="MetaDataTypeId" />
         <Property name="Name" />
