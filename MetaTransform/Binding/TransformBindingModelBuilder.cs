@@ -16,7 +16,7 @@ internal static class TransformBindingModelBuilder
         var bindingRow = new TransformBinding
         {
             Id = bindingId,
-            TransformScriptId = bound.TransformScriptId,
+            MetaTransformScriptTransformScriptId = bound.TransformScriptId,
             TransformScriptName = bound.TransformScriptName,
             ActiveLanguageProfileId = bound.ActiveLanguageProfileId
         };
@@ -32,19 +32,6 @@ internal static class TransformBindingModelBuilder
                 Id = $"{bindingId}:target:{model.TransformBindingTargetList.Count + 1}",
                 TransformBindingId = bindingId,
                 SqlIdentifier = target.SqlIdentifier
-            });
-        }
-
-        foreach (var issue in bound.Issues.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
-        {
-            model.IssueList.Add(new Issue
-            {
-                Id = $"{bindingId}:issue:{issue.Ordinal + 1}",
-                TransformBindingId = bindingId,
-                Code = issue.Item.Code,
-                Message = issue.Item.Message,
-                Severity = "Error",
-                SyntaxId = issue.Item.SyntaxId ?? string.Empty
             });
         }
 
@@ -68,7 +55,7 @@ internal static class TransformBindingModelBuilder
             }
         }
 
-        var boundTableSourceIdsBySyntaxTableReferenceId = new Dictionary<string, string>(StringComparer.Ordinal);
+        var boundTableSourceIdsByMetaTransformScriptTableReferenceId = new Dictionary<string, string>(StringComparer.Ordinal);
         foreach (var source in bound.TableSources.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
         {
             var tableSourceId = $"{bindingId}:table-source:{source.Ordinal + 1}";
@@ -78,15 +65,15 @@ internal static class TransformBindingModelBuilder
                 TransformBindingId = bindingId,
                 RowsetId = source.Item.Rowset.Id,
                 ExposedName = source.Item.ExposedName,
-                SyntaxTableReferenceId = source.Item.SyntaxTableReferenceId
+                MetaTransformScriptTableReferenceId = source.Item.SyntaxTableReferenceId
             });
 
-            boundTableSourceIdsBySyntaxTableReferenceId[source.Item.SyntaxTableReferenceId] = tableSourceId;
+            boundTableSourceIdsByMetaTransformScriptTableReferenceId[source.Item.SyntaxTableReferenceId] = tableSourceId;
         }
 
         foreach (var columnReference in bound.ColumnReferences.Select((item, ordinal) => (Item: item, Ordinal: ordinal)))
         {
-            if (!boundTableSourceIdsBySyntaxTableReferenceId.TryGetValue(
+            if (!boundTableSourceIdsByMetaTransformScriptTableReferenceId.TryGetValue(
                 columnReference.Item.ResolvedTableSource.SyntaxTableReferenceId,
                 out var resolvedTableSourceId))
             {
@@ -99,7 +86,7 @@ internal static class TransformBindingModelBuilder
                 TransformBindingId = bindingId,
                 ColumnId = columnReference.Item.ResolvedColumn.Id,
                 TableSourceId = resolvedTableSourceId,
-                SyntaxColumnReferenceId = columnReference.Item.SyntaxColumnReferenceId
+                MetaTransformScriptColumnReferenceId = columnReference.Item.SyntaxColumnReferenceId
             });
         }
 
@@ -132,8 +119,6 @@ internal static class TransformBindingModelBuilder
             TransformBindingId = bindingId,
             Name = rowset.Name,
             DerivationKind = rowset.DerivationKind,
-            RowsetRole = rowset.RowsetRole ?? string.Empty,
-            SyntaxId = rowset.SyntaxId ?? string.Empty,
             SqlIdentifier = rowset.SqlIdentifier ?? string.Empty
         });
 

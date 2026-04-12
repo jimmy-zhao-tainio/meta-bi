@@ -11,22 +11,11 @@
     </Entity>
     <Entity name="ColumnReference">
       <PropertyList>
-        <Property name="SyntaxColumnReferenceId" />
+        <Property name="MetaTransformScriptColumnReferenceId" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Column" />
         <Relationship entity="TableSource" />
-        <Relationship entity="TransformBinding" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="Issue">
-      <PropertyList>
-        <Property name="Code" />
-        <Property name="Message" />
-        <Property name="Severity" isRequired="false" />
-        <Property name="SyntaxId" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
         <Relationship entity="TransformBinding" />
       </RelationshipList>
     </Entity>
@@ -40,35 +29,10 @@
       <PropertyList>
         <Property name="DerivationKind" />
         <Property name="Name" />
-        <Property name="RowsetRole" isRequired="false" />
         <Property name="SqlIdentifier" isRequired="false" />
-        <Property name="SyntaxId" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="TransformBinding" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="RowsetSourceValidation">
-      <PropertyList>
-        <Property name="ConformanceKind" />
-        <Property name="ResolutionKind" />
-        <Property name="TableId" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="Rowset" />
-        <Relationship entity="TransformBindingValidation" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="RowsetTargetValidation">
-      <PropertyList>
-        <Property name="ConformanceKind" />
-        <Property name="ResolutionKind" />
-        <Property name="SqlIdentifier" />
-        <Property name="TableId" isRequired="false" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="Rowset" />
-        <Relationship entity="TransformBindingValidation" />
       </RelationshipList>
     </Entity>
     <Entity name="SourceTarget">
@@ -84,7 +48,7 @@
     <Entity name="TableSource">
       <PropertyList>
         <Property name="ExposedName" />
-        <Property name="SyntaxTableReferenceId" />
+        <Property name="MetaTransformScriptTableReferenceId" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Rowset" />
@@ -94,7 +58,7 @@
     <Entity name="TransformBinding">
       <PropertyList>
         <Property name="ActiveLanguageProfileId" />
-        <Property name="TransformScriptId" />
+        <Property name="MetaTransformScriptTransformScriptId" />
         <Property name="TransformScriptName" isRequired="false" />
       </PropertyList>
     </Entity>
@@ -106,20 +70,46 @@
         <Relationship entity="TransformBinding" />
       </RelationshipList>
     </Entity>
-    <Entity name="TransformBindingValidation">
+    <Entity name="Validation">
       <RelationshipList>
         <Relationship entity="TransformBinding" />
       </RelationshipList>
     </Entity>
-    <Entity name="TransformBindingValidationIssue">
+    <Entity name="ValidationSourceColumnLink">
       <PropertyList>
-        <Property name="Code" />
-        <Property name="Message" />
-        <Property name="Severity" isRequired="false" />
-        <Property name="SyntaxId" isRequired="false" />
+        <Property name="MetaSchemaFieldId" />
       </PropertyList>
       <RelationshipList>
-        <Relationship entity="TransformBindingValidation" />
+        <Relationship entity="Column" />
+        <Relationship entity="ValidationSourceRowsetLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationSourceRowsetLink">
+      <PropertyList>
+        <Property name="MetaSchemaTableId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Rowset" />
+        <Relationship entity="Validation" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationTargetColumnLink">
+      <PropertyList>
+        <Property name="MetaSchemaFieldId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Column" />
+        <Relationship entity="ValidationTargetRowsetLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationTargetRowsetLink">
+      <PropertyList>
+        <Property name="MetaSchemaTableId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Rowset" />
+        <Relationship entity="TransformBindingTarget" />
+        <Relationship entity="Validation" />
       </RelationshipList>
     </Entity>
   </EntityList>

@@ -38,8 +38,8 @@ public sealed class TransformBindingWorkspaceService
 
         bindingModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);
 
-        var issueCount = bindingModel.IssueList.Count;
-        var errorCount = bindingModel.IssueList.Count(item => string.Equals(item.Severity, "Error", StringComparison.OrdinalIgnoreCase));
+        var issueCount = bound.Issues.Count;
+        var errorCount = issueCount;
 
         return new BindToWorkspaceResult(
             bindingModel,

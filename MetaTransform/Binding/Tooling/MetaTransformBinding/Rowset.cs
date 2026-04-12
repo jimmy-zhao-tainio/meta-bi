@@ -28,17 +28,9 @@ namespace MetaTransformBinding
         [XmlElement("Name")]
         public string Name { get; set; } = string.Empty;
 
-        [XmlElement("RowsetRole")]
-        public string RowsetRole { get; set; } = string.Empty;
-        public bool ShouldSerializeRowsetRole() => !string.IsNullOrWhiteSpace(RowsetRole);
-
         [XmlElement("SqlIdentifier")]
         public string SqlIdentifier { get; set; } = string.Empty;
         public bool ShouldSerializeSqlIdentifier() => !string.IsNullOrWhiteSpace(SqlIdentifier);
-
-        [XmlElement("SyntaxId")]
-        public string SyntaxId { get; set; } = string.Empty;
-        public bool ShouldSerializeSyntaxId() => !string.IsNullOrWhiteSpace(SyntaxId);
 
         [XmlIgnore]
         public TransformBinding TransformBinding { get; set; } = null!;

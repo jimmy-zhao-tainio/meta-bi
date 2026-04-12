@@ -14,7 +14,7 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class TableSource
+    public sealed class ValidationSourceRowsetLink
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
@@ -22,20 +22,17 @@ namespace MetaTransformBinding
         [XmlAttribute("RowsetId")]
         public string RowsetId { get; set; } = string.Empty;
 
-        [XmlAttribute("TransformBindingId")]
-        public string TransformBindingId { get; set; } = string.Empty;
+        [XmlAttribute("ValidationId")]
+        public string ValidationId { get; set; } = string.Empty;
 
-        [XmlElement("ExposedName")]
-        public string ExposedName { get; set; } = string.Empty;
-
-        [XmlElement("MetaTransformScriptTableReferenceId")]
-        public string MetaTransformScriptTableReferenceId { get; set; } = string.Empty;
+        [XmlElement("MetaSchemaTableId")]
+        public string MetaSchemaTableId { get; set; } = string.Empty;
 
         [XmlIgnore]
         public Rowset Rowset { get; set; } = null!;
 
         [XmlIgnore]
-        public TransformBinding TransformBinding { get; set; } = null!;
+        public Validation Validation { get; set; } = null!;
 
     }
 }

@@ -14,15 +14,35 @@ public sealed class TransformBindingValidationService
 
         var resolver = new MetaSchemaTableResolver(schemaModel);
 
-        bindingModel.TransformBindingValidationList.Clear();
-        bindingModel.RowsetSourceValidationList.Clear();
-        bindingModel.RowsetTargetValidationList.Clear();
-        bindingModel.TransformBindingValidationIssueList.Clear();
+        var validations = new List<Validation>();
+        var sourceRowsetLinks = new List<ValidationSourceRowsetLink>();
+        var targetRowsetLinks = new List<ValidationTargetRowsetLink>();
+        var sourceColumnLinks = new List<ValidationSourceColumnLink>();
+        var targetColumnLinks = new List<ValidationTargetColumnLink>();
 
         foreach (var binding in bindingModel.TransformBindingList)
         {
-            ApplyValidation(bindingModel, binding, resolver);
+            ApplyValidation(
+                bindingModel,
+                binding,
+                resolver,
+                validations,
+                sourceRowsetLinks,
+                targetRowsetLinks,
+                sourceColumnLinks,
+                targetColumnLinks);
         }
+
+        bindingModel.ValidationList.Clear();
+        bindingModel.ValidationList.AddRange(validations);
+        bindingModel.ValidationSourceRowsetLinkList.Clear();
+        bindingModel.ValidationSourceRowsetLinkList.AddRange(sourceRowsetLinks);
+        bindingModel.ValidationTargetRowsetLinkList.Clear();
+        bindingModel.ValidationTargetRowsetLinkList.AddRange(targetRowsetLinks);
+        bindingModel.ValidationSourceColumnLinkList.Clear();
+        bindingModel.ValidationSourceColumnLinkList.AddRange(sourceColumnLinks);
+        bindingModel.ValidationTargetColumnLinkList.Clear();
+        bindingModel.ValidationTargetColumnLinkList.AddRange(targetColumnLinks);
 
         return bindingModel;
     }
@@ -30,10 +50,15 @@ public sealed class TransformBindingValidationService
     private static void ApplyValidation(
         MetaTransformBindingModel model,
         TransformBinding binding,
-        MetaSchemaTableResolver resolver)
+        MetaSchemaTableResolver resolver,
+        List<Validation> validations,
+        List<ValidationSourceRowsetLink> sourceRowsetLinks,
+        List<ValidationTargetRowsetLink> targetRowsetLinks,
+        List<ValidationSourceColumnLink> sourceColumnLinks,
+        List<ValidationTargetColumnLink> targetColumnLinks)
     {
         var validationId = $"{binding.Id}:validation";
-        model.TransformBindingValidationList.Add(new TransformBindingValidation
+        validations.Add(new Validation
         {
             Id = validationId,
             TransformBindingId = binding.Id
@@ -55,178 +80,149 @@ public sealed class TransformBindingValidationService
                      string.Equals(item.DerivationKind, "Source", StringComparison.OrdinalIgnoreCase) &&
                      !string.IsNullOrWhiteSpace(item.SqlIdentifier)))
         {
-            AddSourceValidation(model, validationId, sourceRowset, resolver, rowsetColumnsByRowsetId);
+            AddSourceValidation(
+                validationId,
+                sourceRowset,
+                resolver,
+                rowsetColumnsByRowsetId,
+                sourceRowsetLinks,
+                sourceColumnLinks);
         }
 
         foreach (var target in model.TransformBindingTargetList.Where(item => string.Equals(item.TransformBindingId, binding.Id, StringComparison.Ordinal)))
         {
-            AddTargetValidation(model, validationId, target.SqlIdentifier, resolver, finalRowset, rowsetColumnsByRowsetId);
+            AddTargetValidation(
+                validationId,
+                target,
+                resolver,
+                finalRowset,
+                rowsetColumnsByRowsetId,
+                targetRowsetLinks,
+                targetColumnLinks);
         }
     }
 
     private static void AddSourceValidation(
-        MetaTransformBindingModel model,
         string validationId,
         Rowset sourceRowset,
         MetaSchemaTableResolver resolver,
-        IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId)
+        IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId,
+        List<ValidationSourceRowsetLink> sourceRowsetLinks,
+        List<ValidationSourceColumnLink> sourceColumnLinks)
     {
         var sqlIdentifier = sourceRowset.SqlIdentifier;
         var resolution = resolver.ResolveSqlIdentifier(sqlIdentifier);
-        var sourceValidationId = $"{validationId}:source:{model.RowsetSourceValidationList.Count + 1}";
-        var conformanceKind = "NotEvaluated";
-
-        if (resolution.IsResolved)
+        if (!resolution.IsResolved)
         {
-            var actualColumns = rowsetColumnsByRowsetId.GetValueOrDefault(sourceRowset.Id) ?? [];
-            if (actualColumns.Length > 0)
-            {
-                var expectedFieldsByName = resolution.Table!.Fields
-                    .ToDictionary(item => item.FieldName, StringComparer.OrdinalIgnoreCase);
-
-                var missingColumns = actualColumns
-                    .Where(item => !expectedFieldsByName.ContainsKey(item.Name))
-                    .ToArray();
-
-                if (missingColumns.Length == 0)
-                {
-                    conformanceKind = "ColumnSubsetConforms";
-                }
-                else
-                {
-                    conformanceKind = "Mismatch";
-                    foreach (var missingColumn in missingColumns)
-                    {
-                        AddValidationIssue(
-                            model,
-                            validationId,
-                            "SourceRowsetColumnMissingInSchema",
-                            $"Source rowset '{sqlIdentifier}' uses column '{missingColumn.Name}', but that column was not found in the sanctioned schema table '{resolution.Table.CanonicalSqlIdentifier}'.",
-                            "Error",
-                            sourceRowset.SyntaxId);
-                    }
-                }
-            }
-        }
-        else
-        {
-            AddResolutionIssue(model, validationId, true, sqlIdentifier, resolution, sourceRowset.SyntaxId);
+            ThrowResolutionFailure(isSource: true, sqlIdentifier, resolution);
         }
 
-        model.RowsetSourceValidationList.Add(new RowsetSourceValidation
+        var sourceRowsetLinkId = $"{validationId}:source:{sourceRowsetLinks.Count + 1}";
+        sourceRowsetLinks.Add(new ValidationSourceRowsetLink
         {
-            Id = sourceValidationId,
-            TransformBindingValidationId = validationId,
+            Id = sourceRowsetLinkId,
+            ValidationId = validationId,
             RowsetId = sourceRowset.Id,
-            ResolutionKind = MapResolutionKind(resolution.FailureKind),
-            ConformanceKind = conformanceKind,
-            TableId = resolution.Table?.TableId ?? string.Empty
+            MetaSchemaTableId = resolution.Table!.TableId
         });
+
+        var actualColumns = rowsetColumnsByRowsetId.GetValueOrDefault(sourceRowset.Id) ?? [];
+        if (actualColumns.Length == 0)
+        {
+            return;
+        }
+
+        var expectedFieldsByName = resolution.Table.Fields
+            .ToDictionary(item => item.FieldName, StringComparer.OrdinalIgnoreCase);
+
+        foreach (var actualColumn in actualColumns)
+        {
+            if (!expectedFieldsByName.TryGetValue(actualColumn.Name, out var matchedField))
+            {
+                throw new TransformBindingValidationException(
+                    "SourceRowsetColumnMissingInSchema",
+                    $"Source rowset '{sqlIdentifier}' uses column '{actualColumn.Name}', but that column was not found in the sanctioned schema table '{resolution.Table.CanonicalSqlIdentifier}'.");
+            }
+
+            sourceColumnLinks.Add(new ValidationSourceColumnLink
+            {
+                Id = $"{sourceRowsetLinkId}:column:{sourceColumnLinks.Count + 1}",
+                ValidationSourceRowsetLinkId = sourceRowsetLinkId,
+                ColumnId = actualColumn.Id,
+                MetaSchemaFieldId = matchedField.FieldId
+            });
+        }
     }
 
     private static void AddTargetValidation(
-        MetaTransformBindingModel model,
         string validationId,
-        string targetSqlIdentifier,
+        TransformBindingTarget target,
         MetaSchemaTableResolver resolver,
         Rowset? finalRowset,
-        IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId)
+        IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId,
+        List<ValidationTargetRowsetLink> targetRowsetLinks,
+        List<ValidationTargetColumnLink> targetColumnLinks)
     {
+        var targetSqlIdentifier = target.SqlIdentifier;
         var resolution = resolver.ResolveSqlIdentifier(targetSqlIdentifier);
-        var targetValidationId = $"{validationId}:target:{model.RowsetTargetValidationList.Count + 1}";
-        var conformanceKind = "NotEvaluated";
-        Rowset resolvedFinalRowset;
-
         if (!resolution.IsResolved)
         {
-            AddResolutionIssue(model, validationId, false, targetSqlIdentifier, resolution, finalRowset?.SyntaxId);
-            return;
+            ThrowResolutionFailure(isSource: false, targetSqlIdentifier, resolution);
         }
 
         if (finalRowset is null)
         {
-            AddValidationIssue(
-                model,
-                validationId,
+            throw new TransformBindingValidationException(
                 "FinalOutputRowsetMissing",
-                $"Transform binding declares target '{targetSqlIdentifier}', but binding did not produce a final output rowset.",
-                "Error",
-                null);
-            return;
+                $"Transform binding declares target '{targetSqlIdentifier}', but binding did not produce a final output rowset.");
         }
-        resolvedFinalRowset = finalRowset;
-        var actualColumns = rowsetColumnsByRowsetId.GetValueOrDefault(resolvedFinalRowset.Id) ?? [];
+
+        var actualColumns = rowsetColumnsByRowsetId.GetValueOrDefault(finalRowset.Id) ?? [];
         var expectedColumns = resolution.Table!.Fields
             .Where(item => !item.IsIdentity)
             .OrderBy(item => item.Ordinal)
             .ToArray();
 
-        var hasMismatch = false;
-
         if (actualColumns.Length != expectedColumns.Length)
         {
-            hasMismatch = true;
-            AddValidationIssue(
-                model,
-                validationId,
+            throw new TransformBindingValidationException(
                 "TargetRowsetColumnCountMismatch",
-                $"Final output rowset exposes {actualColumns.Length} column(s), but target table '{targetSqlIdentifier}' declares {expectedColumns.Length} non-identity column(s).",
-                "Error",
-                resolvedFinalRowset.SyntaxId);
+                $"Final output rowset exposes {actualColumns.Length} column(s), but target table '{targetSqlIdentifier}' declares {expectedColumns.Length} non-identity column(s).");
         }
 
-        var compareCount = Math.Min(actualColumns.Length, expectedColumns.Length);
-        for (var ordinal = 0; ordinal < compareCount; ordinal++)
+        var targetRowsetLinkId = $"{validationId}:target:{targetRowsetLinks.Count + 1}";
+        targetRowsetLinks.Add(new ValidationTargetRowsetLink
         {
-            if (string.Equals(actualColumns[ordinal].Name, expectedColumns[ordinal].FieldName, StringComparison.OrdinalIgnoreCase))
+            Id = targetRowsetLinkId,
+            ValidationId = validationId,
+            TransformBindingTargetId = target.Id,
+            RowsetId = finalRowset.Id,
+            MetaSchemaTableId = resolution.Table.TableId
+        });
+
+        for (var ordinal = 0; ordinal < actualColumns.Length; ordinal++)
+        {
+            if (!string.Equals(actualColumns[ordinal].Name, expectedColumns[ordinal].FieldName, StringComparison.OrdinalIgnoreCase))
             {
-                continue;
+                throw new TransformBindingValidationException(
+                    "TargetRowsetColumnNameMismatch",
+                    $"Final output rowset for target '{targetSqlIdentifier}' column {ordinal + 1} is '{actualColumns[ordinal].Name}', but the sanctioned schema expects '{expectedColumns[ordinal].FieldName}'.");
             }
 
-            hasMismatch = true;
-            AddValidationIssue(
-                model,
-                validationId,
-                "TargetRowsetColumnNameMismatch",
-                $"Final output rowset for target '{targetSqlIdentifier}' column {ordinal + 1} is '{actualColumns[ordinal].Name}', but the sanctioned schema expects '{expectedColumns[ordinal].FieldName}'.",
-                "Error",
-                resolvedFinalRowset.SyntaxId);
+            targetColumnLinks.Add(new ValidationTargetColumnLink
+            {
+                Id = $"{targetRowsetLinkId}:column:{targetColumnLinks.Count + 1}",
+                ValidationTargetRowsetLinkId = targetRowsetLinkId,
+                ColumnId = actualColumns[ordinal].Id,
+                MetaSchemaFieldId = expectedColumns[ordinal].FieldId
+            });
         }
-
-        conformanceKind = hasMismatch ? "Mismatch" : "Conforms";
-
-        model.RowsetTargetValidationList.Add(new RowsetTargetValidation
-        {
-            Id = targetValidationId,
-            TransformBindingValidationId = validationId,
-            RowsetId = resolvedFinalRowset.Id,
-            SqlIdentifier = targetSqlIdentifier,
-            ResolutionKind = MapResolutionKind(resolution.FailureKind),
-            ConformanceKind = conformanceKind,
-            TableId = resolution.Table?.TableId ?? string.Empty
-        });
     }
 
-    private static Rowset? ResolveFinalRowset(MetaTransformBindingModel model, string bindingId)
-    {
-        var finalLink = model.OutputRowsetList
-            .SingleOrDefault(item => string.Equals(item.TransformBindingId, bindingId, StringComparison.Ordinal));
-
-        if (finalLink is null)
-        {
-            return null;
-        }
-
-        return model.RowsetList.SingleOrDefault(item => string.Equals(item.Id, finalLink.RowsetId, StringComparison.Ordinal));
-    }
-
-    private static void AddResolutionIssue(
-        MetaTransformBindingModel model,
-        string validationId,
+    private static void ThrowResolutionFailure(
         bool isSource,
         string sqlIdentifier,
-        SchemaTableResolutionResult resolution,
-        string? syntaxId)
+        SchemaTableResolutionResult resolution)
     {
         var code = resolution.FailureKind switch
         {
@@ -252,39 +248,20 @@ public sealed class TransformBindingValidationService
                 $"Declared {objectKind} identifier '{sqlIdentifier}' could not be resolved against the sanctioned schema workspace."
         };
 
-        AddValidationIssue(model, validationId, code, message, "Error", syntaxId);
+        throw new TransformBindingValidationException(code, message);
     }
 
-    private static void AddValidationIssue(
-        MetaTransformBindingModel model,
-        string validationId,
-        string code,
-        string message,
-        string severity,
-        string? syntaxId)
+    private static Rowset? ResolveFinalRowset(MetaTransformBindingModel model, string bindingId)
     {
-        model.TransformBindingValidationIssueList.Add(new TransformBindingValidationIssue
-        {
-            Id = $"{validationId}:issue:{model.TransformBindingValidationIssueList.Count + 1}",
-            TransformBindingValidationId = validationId,
-            Code = code,
-            Message = message,
-            Severity = severity,
-            SyntaxId = syntaxId ?? string.Empty
-        });
-    }
+        var finalLink = model.OutputRowsetList
+            .SingleOrDefault(item => string.Equals(item.TransformBindingId, bindingId, StringComparison.Ordinal));
 
-    private static string MapResolutionKind(SchemaTableResolutionFailureKind failureKind)
-    {
-        return failureKind switch
+        if (finalLink is null)
         {
-            SchemaTableResolutionFailureKind.None => "Resolved",
-            SchemaTableResolutionFailureKind.MissingIdentifier => "MissingIdentifier",
-            SchemaTableResolutionFailureKind.UnsupportedIdentifierShape => "UnsupportedIdentifierShape",
-            SchemaTableResolutionFailureKind.NotFound => "NotFound",
-            SchemaTableResolutionFailureKind.Ambiguous => "Ambiguous",
-            _ => failureKind.ToString()
-        };
+            return null;
+        }
+
+        return model.RowsetList.SingleOrDefault(item => string.Equals(item.Id, finalLink.RowsetId, StringComparison.Ordinal));
     }
 
     private static int ParseOrdinal(string ordinal)

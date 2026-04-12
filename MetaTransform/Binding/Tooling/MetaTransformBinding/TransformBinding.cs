@@ -22,8 +22,8 @@ namespace MetaTransformBinding
         [XmlElement("ActiveLanguageProfileId")]
         public string ActiveLanguageProfileId { get; set; } = string.Empty;
 
-        [XmlElement("TransformScriptId")]
-        public string TransformScriptId { get; set; } = string.Empty;
+        [XmlElement("MetaTransformScriptTransformScriptId")]
+        public string MetaTransformScriptTransformScriptId { get; set; } = string.Empty;
 
         [XmlElement("TransformScriptName")]
         public string TransformScriptName { get; set; } = string.Empty;

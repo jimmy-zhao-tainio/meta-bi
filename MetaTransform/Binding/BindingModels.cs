@@ -3,7 +3,7 @@ namespace MetaTransform.Binding;
 public sealed record TransformBindingIssue(
     string Code,
     string Message,
-    string? SyntaxId = null);
+    string? MetaTransformScriptEntityId = null);
 
 public sealed record RuntimeColumn(
     string Id,
@@ -20,7 +20,7 @@ public sealed record RuntimeRowset(
     string Name,
     string DerivationKind,
     string? RowsetRole,
-    string? SyntaxId,
+    string? MetaTransformScriptEntityId,
     string? SqlIdentifier,
     IReadOnlyList<RuntimeColumn> Columns,
     IReadOnlyList<RuntimeRowsetInput> Inputs);

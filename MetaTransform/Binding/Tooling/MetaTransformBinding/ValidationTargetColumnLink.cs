@@ -14,7 +14,7 @@ using System.Xml.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed class ColumnReference
+    public sealed class ValidationTargetColumnLink
     {
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
@@ -22,23 +22,17 @@ namespace MetaTransformBinding
         [XmlAttribute("ColumnId")]
         public string ColumnId { get; set; } = string.Empty;
 
-        [XmlAttribute("TableSourceId")]
-        public string TableSourceId { get; set; } = string.Empty;
+        [XmlAttribute("ValidationTargetRowsetLinkId")]
+        public string ValidationTargetRowsetLinkId { get; set; } = string.Empty;
 
-        [XmlAttribute("TransformBindingId")]
-        public string TransformBindingId { get; set; } = string.Empty;
-
-        [XmlElement("MetaTransformScriptColumnReferenceId")]
-        public string MetaTransformScriptColumnReferenceId { get; set; } = string.Empty;
+        [XmlElement("MetaSchemaFieldId")]
+        public string MetaSchemaFieldId { get; set; } = string.Empty;
 
         [XmlIgnore]
         public Column Column { get; set; } = null!;
 
         [XmlIgnore]
-        public TableSource TableSource { get; set; } = null!;
-
-        [XmlIgnore]
-        public TransformBinding TransformBinding { get; set; } = null!;
+        public ValidationTargetRowsetLink ValidationTargetRowsetLink { get; set; } = null!;
 
     }
 }
