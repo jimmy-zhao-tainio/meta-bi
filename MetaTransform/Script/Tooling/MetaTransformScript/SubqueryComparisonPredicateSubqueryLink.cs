@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public SubqueryComparisonPredicate SubqueryComparisonPredicate { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => SubqueryComparisonPredicateId; set => SubqueryComparisonPredicateId = value; }
-
-        [XmlIgnore]
-        public SubqueryComparisonPredicate Owner { get => SubqueryComparisonPredicate; set => SubqueryComparisonPredicate = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ScalarSubqueryId; set => ScalarSubqueryId = value; }
-
-        [XmlIgnore]
-        public ScalarSubquery Value { get => ScalarSubquery; set => ScalarSubquery = value; }
-
     }
 }

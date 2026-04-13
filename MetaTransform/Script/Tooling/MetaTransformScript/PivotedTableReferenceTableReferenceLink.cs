@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public TableReference TableReference { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => PivotedTableReferenceId; set => PivotedTableReferenceId = value; }
-
-        [XmlIgnore]
-        public PivotedTableReference Owner { get => PivotedTableReference; set => PivotedTableReference = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => TableReferenceId; set => TableReferenceId = value; }
-
-        [XmlIgnore]
-        public TableReference Value { get => TableReference; set => TableReference = value; }
-
     }
 }

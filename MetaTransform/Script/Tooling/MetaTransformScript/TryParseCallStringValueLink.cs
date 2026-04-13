@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public TryParseCall TryParseCall { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => TryParseCallId; set => TryParseCallId = value; }
-
-        [XmlIgnore]
-        public TryParseCall Owner { get => TryParseCall; set => TryParseCall = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ScalarExpressionId; set => ScalarExpressionId = value; }
-
-        [XmlIgnore]
-        public ScalarExpression Value { get => ScalarExpression; set => ScalarExpression = value; }
-
     }
 }

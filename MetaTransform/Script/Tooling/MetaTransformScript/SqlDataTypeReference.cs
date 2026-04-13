@@ -29,12 +29,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public ParameterizedDataTypeReference ParameterizedDataTypeReference { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => ParameterizedDataTypeReferenceId; set => ParameterizedDataTypeReferenceId = value; }
-
-        [XmlIgnore]
-        public ParameterizedDataTypeReference Base { get => ParameterizedDataTypeReference; set => ParameterizedDataTypeReference = value; }
-
     }
 }

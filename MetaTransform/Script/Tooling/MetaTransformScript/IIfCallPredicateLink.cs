@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public IIfCall IIfCall { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => IIfCallId; set => IIfCallId = value; }
-
-        [XmlIgnore]
-        public IIfCall Owner { get => IIfCall; set => IIfCall = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => BooleanExpressionId; set => BooleanExpressionId = value; }
-
-        [XmlIgnore]
-        public BooleanExpression Value { get => BooleanExpression; set => BooleanExpression = value; }
-
     }
 }

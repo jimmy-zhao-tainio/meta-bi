@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public ScalarExpression ScalarExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => ExpressionGroupingSpecificationId; set => ExpressionGroupingSpecificationId = value; }
-
-        [XmlIgnore]
-        public ExpressionGroupingSpecification Owner { get => ExpressionGroupingSpecification; set => ExpressionGroupingSpecification = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ScalarExpressionId; set => ScalarExpressionId = value; }
-
-        [XmlIgnore]
-        public ScalarExpression Value { get => ScalarExpression; set => ScalarExpression = value; }
-
     }
 }

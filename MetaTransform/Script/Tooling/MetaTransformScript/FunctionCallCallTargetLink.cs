@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public FunctionCall FunctionCall { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => FunctionCallId; set => FunctionCallId = value; }
-
-        [XmlIgnore]
-        public FunctionCall Owner { get => FunctionCall; set => FunctionCall = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => CallTargetId; set => CallTargetId = value; }
-
-        [XmlIgnore]
-        public CallTarget Value { get => CallTarget; set => CallTarget = value; }
-
     }
 }

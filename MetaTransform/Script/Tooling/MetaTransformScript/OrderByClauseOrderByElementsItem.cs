@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public OrderByClause OrderByClause { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => OrderByClauseId; set => OrderByClauseId = value; }
-
-        [XmlIgnore]
-        public OrderByClause Owner { get => OrderByClause; set => OrderByClause = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ExpressionWithSortOrderId; set => ExpressionWithSortOrderId = value; }
-
-        [XmlIgnore]
-        public ExpressionWithSortOrder Value { get => ExpressionWithSortOrder; set => ExpressionWithSortOrder = value; }
-
     }
 }

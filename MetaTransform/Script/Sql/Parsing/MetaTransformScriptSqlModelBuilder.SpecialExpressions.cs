@@ -19,28 +19,28 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var caseExpression = new CaseExpression
         {
             Id = NextId(nameof(CaseExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.CaseExpressionList.Add(caseExpression);
 
         var simpleCaseExpression = new SimpleCaseExpression
         {
             Id = NextId(nameof(SimpleCaseExpression)),
-            BaseId = caseExpression.Id
+            CaseExpressionId = caseExpression.Id
         };
         model.SimpleCaseExpressionList.Add(simpleCaseExpression);
         model.SimpleCaseExpressionInputExpressionLinkList.Add(new SimpleCaseExpressionInputExpressionLink
         {
             Id = NextId(nameof(SimpleCaseExpressionInputExpressionLink)),
-            OwnerId = simpleCaseExpression.Id,
-            ValueId = inputExpression.GetId(nameof(ScalarExpression))
+            SimpleCaseExpressionId = simpleCaseExpression.Id,
+            ScalarExpressionId = inputExpression.GetId(nameof(ScalarExpression))
         });
 
         for (var ordinal = 0; ordinal < whenClauses.Count; ordinal++)
@@ -54,28 +54,28 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             var simpleWhenClause = new SimpleWhenClause
             {
                 Id = NextId(nameof(SimpleWhenClause)),
-                BaseId = whenClause.Id
+                WhenClauseId = whenClause.Id
             };
             model.SimpleWhenClauseList.Add(simpleWhenClause);
 
             model.SimpleCaseExpressionWhenClausesItemList.Add(new SimpleCaseExpressionWhenClausesItem
             {
                 Id = NextId(nameof(SimpleCaseExpressionWhenClausesItem)),
-                OwnerId = simpleCaseExpression.Id,
-                ValueId = simpleWhenClause.Id,
+                SimpleCaseExpressionId = simpleCaseExpression.Id,
+                SimpleWhenClauseId = simpleWhenClause.Id,
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
             model.SimpleWhenClauseWhenExpressionLinkList.Add(new SimpleWhenClauseWhenExpressionLink
             {
                 Id = NextId(nameof(SimpleWhenClauseWhenExpressionLink)),
-                OwnerId = simpleWhenClause.Id,
-                ValueId = whenClauses[ordinal].WhenExpression.GetId(nameof(ScalarExpression))
+                SimpleWhenClauseId = simpleWhenClause.Id,
+                ScalarExpressionId = whenClauses[ordinal].WhenExpression.GetId(nameof(ScalarExpression))
             });
             model.WhenClauseThenExpressionLinkList.Add(new WhenClauseThenExpressionLink
             {
                 Id = NextId(nameof(WhenClauseThenExpressionLink)),
-                OwnerId = whenClause.Id,
-                ValueId = whenClauses[ordinal].ThenExpression.GetId(nameof(ScalarExpression))
+                WhenClauseId = whenClause.Id,
+                ScalarExpressionId = whenClauses[ordinal].ThenExpression.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -84,8 +84,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.CaseExpressionElseExpressionLinkList.Add(new CaseExpressionElseExpressionLink
             {
                 Id = NextId(nameof(CaseExpressionElseExpressionLink)),
-                OwnerId = caseExpression.Id,
-                ValueId = elseExpression.GetId(nameof(ScalarExpression))
+                CaseExpressionId = caseExpression.Id,
+                ScalarExpressionId = elseExpression.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -107,14 +107,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var coalesceExpression = new CoalesceExpression
         {
             Id = NextId(nameof(CoalesceExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.CoalesceExpressionList.Add(coalesceExpression);
 
@@ -123,8 +123,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.CoalesceExpressionExpressionsItemList.Add(new CoalesceExpressionExpressionsItem
             {
                 Id = NextId(nameof(CoalesceExpressionExpressionsItem)),
-                OwnerId = coalesceExpression.Id,
-                ValueId = expressions[ordinal].GetId(nameof(ScalarExpression)),
+                CoalesceExpressionId = coalesceExpression.Id,
+                ScalarExpressionId = expressions[ordinal].GetId(nameof(ScalarExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -146,27 +146,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var nullIfExpression = new NullIfExpression
         {
             Id = NextId(nameof(NullIfExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.NullIfExpressionList.Add(nullIfExpression);
         model.NullIfExpressionFirstExpressionLinkList.Add(new NullIfExpressionFirstExpressionLink
         {
             Id = NextId(nameof(NullIfExpressionFirstExpressionLink)),
-            OwnerId = nullIfExpression.Id,
-            ValueId = firstExpression.GetId(nameof(ScalarExpression))
+            NullIfExpressionId = nullIfExpression.Id,
+            ScalarExpressionId = firstExpression.GetId(nameof(ScalarExpression))
         });
         model.NullIfExpressionSecondExpressionLinkList.Add(new NullIfExpressionSecondExpressionLink
         {
             Id = NextId(nameof(NullIfExpressionSecondExpressionLink)),
-            OwnerId = nullIfExpression.Id,
-            ValueId = secondExpression.GetId(nameof(ScalarExpression))
+            NullIfExpressionId = nullIfExpression.Id,
+            ScalarExpressionId = secondExpression.GetId(nameof(ScalarExpression))
         });
 
         return BuiltNode.Create(
@@ -186,33 +186,33 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var iIfCall = new IIfCall
         {
             Id = NextId(nameof(IIfCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.IIfCallList.Add(iIfCall);
         model.IIfCallPredicateLinkList.Add(new IIfCallPredicateLink
         {
             Id = NextId(nameof(IIfCallPredicateLink)),
-            OwnerId = iIfCall.Id,
-            ValueId = predicate.GetId(nameof(BooleanExpression))
+            IIfCallId = iIfCall.Id,
+            BooleanExpressionId = predicate.GetId(nameof(BooleanExpression))
         });
         model.IIfCallThenExpressionLinkList.Add(new IIfCallThenExpressionLink
         {
             Id = NextId(nameof(IIfCallThenExpressionLink)),
-            OwnerId = iIfCall.Id,
-            ValueId = thenExpression.GetId(nameof(ScalarExpression))
+            IIfCallId = iIfCall.Id,
+            ScalarExpressionId = thenExpression.GetId(nameof(ScalarExpression))
         });
         model.IIfCallElseExpressionLinkList.Add(new IIfCallElseExpressionLink
         {
             Id = NextId(nameof(IIfCallElseExpressionLink)),
-            OwnerId = iIfCall.Id,
-            ValueId = elseExpression.GetId(nameof(ScalarExpression))
+            IIfCallId = iIfCall.Id,
+            ScalarExpressionId = elseExpression.GetId(nameof(ScalarExpression))
         });
 
         return BuiltNode.Create(

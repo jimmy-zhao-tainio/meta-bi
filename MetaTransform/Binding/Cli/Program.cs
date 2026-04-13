@@ -41,7 +41,6 @@ internal static class Program
             var result = new TransformBindingWorkspaceService().BindToWorkspace(
                 parse.TransformWorkspacePath,
                 targetValidation.FullPath,
-                parse.Targets,
                 parse.Name,
                 parse.LanguageProfileId ?? DefaultLanguageProfileId);
 
@@ -68,25 +67,23 @@ internal static class Program
         {
             return Task.FromResult(Fail(
                 "binding workspace generation failed.",
-                "check the transform workspace, selected script, target identifiers, and target workspace, then retry.",
+                "check the transform workspace, selected script, and target workspace, then retry.",
                 4,
                 new[]
                 {
                     $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
                     $"  BindingWorkspace: {targetValidation.FullPath}",
-                    $"  Targets: {string.Join(", ", parse.Targets)}",
                     $"  {ex.Message}"
                 }));
         }
     }
 
-    private static (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, IReadOnlyList<string> Targets, string? Name, string? LanguageProfileId, string ErrorMessage) ParseArgs(
+    private static (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, string? Name, string? LanguageProfileId, string ErrorMessage) ParseArgs(
         string[] args,
         int startIndex)
     {
         var transformWorkspacePath = string.Empty;
         var newWorkspacePath = string.Empty;
-        var targets = new List<string>();
         string? name = null;
         string? languageProfileId = null;
 
@@ -96,54 +93,43 @@ internal static class Program
 
             if (string.Equals(arg, "--transform-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "missing value for --transform-workspace.");
-                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "--transform-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "missing value for --transform-workspace.");
+                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "--transform-workspace can only be provided once.");
                 transformWorkspacePath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "missing value for --new-workspace.");
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "--new-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "missing value for --new-workspace.");
+                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "--new-workspace can only be provided once.");
                 newWorkspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--target", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "missing value for --target.");
-
-                var target = args[++i];
-                if (string.IsNullOrWhiteSpace(target)) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "--target value cannot be blank.");
-                targets.Add(target);
                 continue;
             }
 
             if (string.Equals(arg, "--name", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "missing value for --name.");
-                if (!string.IsNullOrWhiteSpace(name)) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "--name can only be provided once.");
+                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "missing value for --name.");
+                if (!string.IsNullOrWhiteSpace(name)) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "--name can only be provided once.");
                 name = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--language-profile", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "missing value for --language-profile.");
-                if (!string.IsNullOrWhiteSpace(languageProfileId)) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "--language-profile can only be provided once.");
+                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "missing value for --language-profile.");
+                if (!string.IsNullOrWhiteSpace(languageProfileId)) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "--language-profile can only be provided once.");
                 languageProfileId = args[++i];
                 continue;
             }
 
-            return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, $"unknown option '{arg}'.");
+            return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "missing required option --transform-workspace <path>.");
-        if (targets.Count == 0) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "missing required option --target <sql-identifier>.");
-        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, "missing required option --new-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "missing required option --transform-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, name, languageProfileId, "missing required option --new-workspace <path>.");
 
-        return (true, transformWorkspacePath, newWorkspacePath, targets, name, languageProfileId, string.Empty);
+        return (true, transformWorkspacePath, newWorkspacePath, name, languageProfileId, string.Empty);
     }
 
     private static bool IsHelpToken(string value)
@@ -155,14 +141,15 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Presenter.WriteUsage("meta-transform-binding --transform-workspace <path> --target <sql-identifier> [--target <sql-identifier> ...] --new-workspace <path> [--name <name>] [--language-profile <id>]");
+        Presenter.WriteUsage("meta-transform-binding --transform-workspace <path> --new-workspace <path> [--name <name>] [--language-profile <id>]");
         Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Provide one or more --target values as table, schema.table, or database.schema.table.");
+        Presenter.WriteInfo("  Target SQL identifier is read from TransformScript.TargetSqlIdentifier.");
+        Presenter.WriteInfo("  Target must be table, schema.table, or database.schema.table.");
         Presenter.WriteInfo("  If the transform workspace contains multiple scripts, --name is required.");
         Presenter.WriteInfo($"  --language-profile defaults to {DefaultLanguageProfileId} for this CLI run.");
         Presenter.WriteInfo("  If provided, --language-profile overrides both that CLI default and TransformScript.LanguageProfileId.");
         Presenter.WriteInfo("Example:");
-        Presenter.WriteInfo("  meta-transform-binding --transform-workspace .\\TransformWorkspace --target sales.CustomerOrderSummary --new-workspace .\\BindingWorkspace");
+        Presenter.WriteInfo("  meta-transform-binding --transform-workspace .\\TransformWorkspace --name sales.CustomerOrderSummary --new-workspace .\\BindingWorkspace");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

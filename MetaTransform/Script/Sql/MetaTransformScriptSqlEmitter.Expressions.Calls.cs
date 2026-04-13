@@ -7,7 +7,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private string RenderCoalesceExpression(CoalesceExpression coalesceExpression)
     {
         var expressions = GetOrderedItems(model.CoalesceExpressionExpressionsItemList, coalesceExpression.Id)
-            .Select(row => RenderScalarExpression(row.Value))
+            .Select(row => RenderScalarExpression(row.ScalarExpression))
             .ToArray();
         return "COALESCE(" + string.Join(", ", expressions) + ")";
     }
@@ -17,11 +17,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var first = RenderScalarExpression(GetOwnerLink(
             model.NullIfExpressionFirstExpressionLinkList,
             nullIfExpression.Id,
-            "NullIfExpression.FirstExpression").Value);
+            "NullIfExpression.FirstExpression").ScalarExpression);
         var second = RenderScalarExpression(GetOwnerLink(
             model.NullIfExpressionSecondExpressionLinkList,
             nullIfExpression.Id,
-            "NullIfExpression.SecondExpression").Value);
+            "NullIfExpression.SecondExpression").ScalarExpression);
         return $"NULLIF({first}, {second})";
     }
 
@@ -30,15 +30,15 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var predicate = RenderBooleanExpression(GetOwnerLink(
             model.IIfCallPredicateLinkList,
             iIfCall.Id,
-            "IIfCall.Predicate").Value);
+            "IIfCall.Predicate").BooleanExpression);
         var thenExpression = RenderScalarExpression(GetOwnerLink(
             model.IIfCallThenExpressionLinkList,
             iIfCall.Id,
-            "IIfCall.ThenExpression").Value);
+            "IIfCall.ThenExpression").ScalarExpression);
         var elseExpression = RenderScalarExpression(GetOwnerLink(
             model.IIfCallElseExpressionLinkList,
             iIfCall.Id,
-            "IIfCall.ElseExpression").Value);
+            "IIfCall.ElseExpression").ScalarExpression);
         return $"IIF({predicate}, {thenExpression}, {elseExpression})";
     }
 
@@ -47,11 +47,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var parameter = RenderScalarExpression(GetOwnerLink(
             model.CastCallParameterLinkList,
             castCall.Id,
-            "CastCall.Parameter").Value);
+            "CastCall.Parameter").ScalarExpression);
         var dataType = RenderDataTypeReference(GetOwnerLink(
             model.CastCallDataTypeLinkList,
             castCall.Id,
-            "CastCall.DataType").Value);
+            "CastCall.DataType").DataTypeReference);
         return $"CAST({parameter} AS {dataType})";
     }
 
@@ -60,11 +60,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var parameter = RenderScalarExpression(GetOwnerLink(
             model.TryCastCallParameterLinkList,
             tryCastCall.Id,
-            "TryCastCall.Parameter").Value);
+            "TryCastCall.Parameter").ScalarExpression);
         var dataType = RenderDataTypeReference(GetOwnerLink(
             model.TryCastCallDataTypeLinkList,
             tryCastCall.Id,
-            "TryCastCall.DataType").Value);
+            "TryCastCall.DataType").DataTypeReference);
         return $"TRY_CAST({parameter} AS {dataType})";
     }
 
@@ -73,15 +73,15 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var dataType = RenderDataTypeReference(GetOwnerLink(
             model.ConvertCallDataTypeLinkList,
             convertCall.Id,
-            "ConvertCall.DataType").Value);
+            "ConvertCall.DataType").DataTypeReference);
         var parameter = RenderScalarExpression(GetOwnerLink(
             model.ConvertCallParameterLinkList,
             convertCall.Id,
-            "ConvertCall.Parameter").Value);
+            "ConvertCall.Parameter").ScalarExpression);
         var styleLink = FindOwnerLink(model.ConvertCallStyleLinkList, convertCall.Id);
         return styleLink is null
             ? $"CONVERT({dataType}, {parameter})"
-            : $"CONVERT({dataType}, {parameter}, {RenderScalarExpression(styleLink.Value)})";
+            : $"CONVERT({dataType}, {parameter}, {RenderScalarExpression(styleLink.ScalarExpression)})";
     }
 
     private string RenderTryConvertCall(TryConvertCall tryConvertCall)
@@ -89,15 +89,15 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var dataType = RenderDataTypeReference(GetOwnerLink(
             model.TryConvertCallDataTypeLinkList,
             tryConvertCall.Id,
-            "TryConvertCall.DataType").Value);
+            "TryConvertCall.DataType").DataTypeReference);
         var parameter = RenderScalarExpression(GetOwnerLink(
             model.TryConvertCallParameterLinkList,
             tryConvertCall.Id,
-            "TryConvertCall.Parameter").Value);
+            "TryConvertCall.Parameter").ScalarExpression);
         var styleLink = FindOwnerLink(model.TryConvertCallStyleLinkList, tryConvertCall.Id);
         return styleLink is null
             ? $"TRY_CONVERT({dataType}, {parameter})"
-            : $"TRY_CONVERT({dataType}, {parameter}, {RenderScalarExpression(styleLink.Value)})";
+            : $"TRY_CONVERT({dataType}, {parameter}, {RenderScalarExpression(styleLink.ScalarExpression)})";
     }
 
     private string RenderParseCall(ParseCall parseCall)
@@ -105,15 +105,15 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var stringValue = RenderScalarExpression(GetOwnerLink(
             model.ParseCallStringValueLinkList,
             parseCall.Id,
-            "ParseCall.StringValue").Value);
+            "ParseCall.StringValue").ScalarExpression);
         var dataType = RenderDataTypeReference(GetOwnerLink(
             model.ParseCallDataTypeLinkList,
             parseCall.Id,
-            "ParseCall.DataType").Value);
+            "ParseCall.DataType").DataTypeReference);
         var cultureLink = FindOwnerLink(model.ParseCallCultureLinkList, parseCall.Id);
         return cultureLink is null
             ? $"PARSE({stringValue} AS {dataType})"
-            : $"PARSE({stringValue} AS {dataType} USING {RenderScalarExpression(cultureLink.Value)})";
+            : $"PARSE({stringValue} AS {dataType} USING {RenderScalarExpression(cultureLink.ScalarExpression)})";
     }
 
     private string RenderTryParseCall(TryParseCall tryParseCall)
@@ -121,21 +121,21 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var stringValue = RenderScalarExpression(GetOwnerLink(
             model.TryParseCallStringValueLinkList,
             tryParseCall.Id,
-            "TryParseCall.StringValue").Value);
+            "TryParseCall.StringValue").ScalarExpression);
         var dataType = RenderDataTypeReference(GetOwnerLink(
             model.TryParseCallDataTypeLinkList,
             tryParseCall.Id,
-            "TryParseCall.DataType").Value);
+            "TryParseCall.DataType").DataTypeReference);
         var cultureLink = FindOwnerLink(model.TryParseCallCultureLinkList, tryParseCall.Id);
         return cultureLink is null
             ? $"TRY_PARSE({stringValue} AS {dataType})"
-            : $"TRY_PARSE({stringValue} AS {dataType} USING {RenderScalarExpression(cultureLink.Value)})";
+            : $"TRY_PARSE({stringValue} AS {dataType} USING {RenderScalarExpression(cultureLink.ScalarExpression)})";
     }
 
     private string RenderLeftFunctionCall(LeftFunctionCall leftFunctionCall)
     {
         var parameters = GetOrderedItems(model.LeftFunctionCallParametersItemList, leftFunctionCall.Id)
-            .Select(row => RenderScalarExpression(row.Value))
+            .Select(row => RenderScalarExpression(row.ScalarExpression))
             .ToArray();
         return "LEFT(" + string.Join(", ", parameters) + ")";
     }
@@ -143,7 +143,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private string RenderRightFunctionCall(RightFunctionCall rightFunctionCall)
     {
         var parameters = GetOrderedItems(model.RightFunctionCallParametersItemList, rightFunctionCall.Id)
-            .Select(row => RenderScalarExpression(row.Value))
+            .Select(row => RenderScalarExpression(row.ScalarExpression))
             .ToArray();
         return "RIGHT(" + string.Join(", ", parameters) + ")";
     }
@@ -153,11 +153,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var dateValue = RenderScalarExpression(GetOwnerLink(
             model.AtTimeZoneCallDateValueLinkList,
             atTimeZoneCall.Id,
-            "AtTimeZoneCall.DateValue").Value);
+            "AtTimeZoneCall.DateValue").ScalarExpression);
         var timeZone = RenderScalarExpression(GetOwnerLink(
             model.AtTimeZoneCallTimeZoneLinkList,
             atTimeZoneCall.Id,
-            "AtTimeZoneCall.TimeZone").Value);
+            "AtTimeZoneCall.TimeZone").ScalarExpression);
         return $"{dateValue} AT TIME ZONE {timeZone}";
     }
 
@@ -166,7 +166,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var sequenceName = RenderSchemaObjectName(GetOwnerLink(
             model.NextValueForExpressionSequenceNameLinkList,
             nextValueForExpression.Id,
-            "NextValueForExpression.SequenceName").Value);
+            "NextValueForExpression.SequenceName").SchemaObjectName);
         return $"NEXT VALUE FOR {sequenceName}";
     }
 
@@ -183,7 +183,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private string RenderDataTypeReference(DataTypeReference dataTypeReference)
     {
         var renderedName = FindOwnerLink(model.DataTypeReferenceNameLinkList, dataTypeReference.Id) is { } nameLink
-            ? RenderSchemaObjectName(nameLink.Value)
+            ? RenderSchemaObjectName(nameLink.SchemaObjectName)
             : FindByBaseId(model.ParameterizedDataTypeReferenceList, dataTypeReference.Id) is { } parameterizedForName
                 && FindByBaseId(model.SqlDataTypeReferenceList, parameterizedForName.Id) is { } sqlDataTypeReference
                     ? RenderSqlDataTypeOption(sqlDataTypeReference.SqlDataTypeOption)
@@ -196,7 +196,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         }
 
         var parameters = GetOrderedItems(model.ParameterizedDataTypeReferenceParametersItemList, parameterizedDataTypeReference.Id)
-            .Select(row => RenderLiteral(row.Value))
+            .Select(row => RenderLiteral(row.Literal))
             .ToArray();
         return parameters.Length == 0
             ? renderedName
@@ -257,9 +257,9 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             throw new InvalidOperationException("Phase-1 emitter does not support FunctionCall.WithArrayWrapper=true.");
         }
 
-        var functionName = RenderIdentifier(GetOwnerLink(model.FunctionCallFunctionNameLinkList, functionCall.Id, "FunctionCall.FunctionName").Value);
+        var functionName = RenderIdentifier(GetOwnerLink(model.FunctionCallFunctionNameLinkList, functionCall.Id, "FunctionCall.FunctionName").Identifier);
         var args = GetOrderedItems(model.FunctionCallParametersItemList, functionCall.Id)
-            .Select(row => RenderScalarExpression(row.Value))
+            .Select(row => RenderScalarExpression(row.ScalarExpression))
             .ToArray();
         var uniqueRowFilter =
             string.IsNullOrWhiteSpace(functionCall.UniqueRowFilter) ||
@@ -277,15 +277,15 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var withinGroupOrderByClauseLink = FindOwnerLink(model.FunctionCallWithinGroupOrderByClauseLinkList, functionCall.Id);
         var withinGroupSuffix = withinGroupOrderByClauseLink is null
             ? string.Empty
-            : $" WITHIN GROUP ({RenderOrderByClause(withinGroupOrderByClauseLink.Value)})";
+            : $" WITHIN GROUP ({RenderOrderByClause(withinGroupOrderByClauseLink.OrderByClause)})";
         if (callTargetLink is not null)
         {
-            var renderedCall = $"{RenderCallTarget(callTargetLink.Value)}.{functionName}({uniqueRowFilter}{string.Join(", ", args)}){withinGroupSuffix}";
-            return overClauseLink is null ? renderedCall : renderedCall + " " + RenderOverClause(overClauseLink.Value);
+            var renderedCall = $"{RenderCallTarget(callTargetLink.CallTarget)}.{functionName}({uniqueRowFilter}{string.Join(", ", args)}){withinGroupSuffix}";
+            return overClauseLink is null ? renderedCall : renderedCall + " " + RenderOverClause(overClauseLink.OverClause);
         }
 
         var rendered = $"{functionName}({uniqueRowFilter}{string.Join(", ", args)}){withinGroupSuffix}";
-        return overClauseLink is null ? rendered : rendered + " " + RenderOverClause(overClauseLink.Value);
+        return overClauseLink is null ? rendered : rendered + " " + RenderOverClause(overClauseLink.OverClause);
     }
 
     private string RenderCallTarget(CallTarget callTarget)
@@ -295,6 +295,6 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         return RenderMultiPartIdentifier(GetOwnerLink(
             model.MultiPartIdentifierCallTargetMultiPartIdentifierLinkList,
             multiPartCallTarget.Id,
-            "MultiPartIdentifierCallTarget.MultiPartIdentifier").Value);
+            "MultiPartIdentifierCallTarget.MultiPartIdentifier").MultiPartIdentifier);
     }
 }

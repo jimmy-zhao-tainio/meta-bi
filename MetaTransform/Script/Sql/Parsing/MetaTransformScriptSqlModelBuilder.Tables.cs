@@ -16,21 +16,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
 
         var named = new NamedTableReference
         {
             Id = NextId(nameof(NamedTableReference)),
-            BaseId = aliasBase.Id
+            TableReferenceWithAliasId = aliasBase.Id
         };
         model.NamedTableReferenceList.Add(named);
         model.NamedTableReferenceSchemaObjectLinkList.Add(new NamedTableReferenceSchemaObjectLink
         {
             Id = NextId(nameof(NamedTableReferenceSchemaObjectLink)),
-            OwnerId = named.Id,
-            ValueId = schemaObjectName.GetId(nameof(SchemaObjectName))
+            NamedTableReferenceId = named.Id,
+            SchemaObjectNameId = schemaObjectName.GetId(nameof(SchemaObjectName))
         });
 
         if (alias is not null)
@@ -38,8 +38,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
             {
                 Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-                OwnerId = aliasBase.Id,
-                ValueId = alias.GetId(nameof(Identifier))
+                TableReferenceWithAliasId = aliasBase.Id,
+                IdentifierId = alias.GetId(nameof(Identifier))
             });
         }
 
@@ -48,8 +48,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.NamedTableReferenceTableSampleClauseLinkList.Add(new NamedTableReferenceTableSampleClauseLink
             {
                 Id = NextId(nameof(NamedTableReferenceTableSampleClauseLink)),
-                OwnerId = named.Id,
-                ValueId = tableSampleClause.GetId(nameof(TableSampleClause))
+                NamedTableReferenceId = named.Id,
+                TableSampleClauseId = tableSampleClause.GetId(nameof(TableSampleClause))
             });
         }
 
@@ -72,8 +72,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.TableSampleClauseSampleNumberLinkList.Add(new TableSampleClauseSampleNumberLink
         {
             Id = NextId(nameof(TableSampleClauseSampleNumberLink)),
-            OwnerId = tableSampleClause.Id,
-            ValueId = sampleNumber.GetId(nameof(ScalarExpression))
+            TableSampleClauseId = tableSampleClause.Id,
+            ScalarExpressionId = sampleNumber.GetId(nameof(ScalarExpression))
         });
 
         if (repeatSeed is not null)
@@ -81,8 +81,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.TableSampleClauseRepeatSeedLinkList.Add(new TableSampleClauseRepeatSeedLink
             {
                 Id = NextId(nameof(TableSampleClauseRepeatSeedLink)),
-                OwnerId = tableSampleClause.Id,
-                ValueId = repeatSeed.GetId(nameof(ScalarExpression))
+                TableSampleClauseId = tableSampleClause.Id,
+                ScalarExpressionId = repeatSeed.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -103,27 +103,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
         model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
         {
             Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-            OwnerId = aliasBase.Id,
-            ValueId = alias.GetId(nameof(Identifier))
+            TableReferenceWithAliasId = aliasBase.Id,
+            IdentifierId = alias.GetId(nameof(Identifier))
         });
 
         var functionReference = new GlobalFunctionTableReference
         {
             Id = NextId(nameof(GlobalFunctionTableReference)),
-            BaseId = aliasBase.Id
+            TableReferenceWithAliasId = aliasBase.Id
         };
         model.GlobalFunctionTableReferenceList.Add(functionReference);
         model.GlobalFunctionTableReferenceNameLinkList.Add(new GlobalFunctionTableReferenceNameLink
         {
             Id = NextId(nameof(GlobalFunctionTableReferenceNameLink)),
-            OwnerId = functionReference.Id,
-            ValueId = functionName.GetId(nameof(Identifier))
+            GlobalFunctionTableReferenceId = functionReference.Id,
+            IdentifierId = functionName.GetId(nameof(Identifier))
         });
 
         for (var ordinal = 0; ordinal < parameters.Count; ordinal++)
@@ -131,8 +131,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.GlobalFunctionTableReferenceParametersItemList.Add(new GlobalFunctionTableReferenceParametersItem
             {
                 Id = NextId(nameof(GlobalFunctionTableReferenceParametersItem)),
-                OwnerId = functionReference.Id,
-                ValueId = parameters[ordinal].GetId(nameof(ScalarExpression)),
+                GlobalFunctionTableReferenceId = functionReference.Id,
+                ScalarExpressionId = parameters[ordinal].GetId(nameof(ScalarExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -158,20 +158,20 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
         model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
         {
             Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-            OwnerId = aliasBase.Id,
-            ValueId = alias.GetId(nameof(Identifier))
+            TableReferenceWithAliasId = aliasBase.Id,
+            IdentifierId = alias.GetId(nameof(Identifier))
         });
 
         var aliasAndColumns = new TableReferenceWithAliasAndColumns
         {
             Id = NextId(nameof(TableReferenceWithAliasAndColumns)),
-            BaseId = aliasBase.Id
+            TableReferenceWithAliasId = aliasBase.Id
         };
         model.TableReferenceWithAliasAndColumnsList.Add(aliasAndColumns);
 
@@ -182,8 +182,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.TableReferenceWithAliasAndColumnsColumnsItemList.Add(new TableReferenceWithAliasAndColumnsColumnsItem
                 {
                     Id = NextId(nameof(TableReferenceWithAliasAndColumnsColumnsItem)),
-                    OwnerId = aliasAndColumns.Id,
-                    ValueId = columns[ordinal].GetId(nameof(Identifier)),
+                    TableReferenceWithAliasAndColumnsId = aliasAndColumns.Id,
+                    IdentifierId = columns[ordinal].GetId(nameof(Identifier)),
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
                 });
             }
@@ -192,14 +192,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var functionReference = new SchemaObjectFunctionTableReference
         {
             Id = NextId(nameof(SchemaObjectFunctionTableReference)),
-            BaseId = aliasAndColumns.Id
+            TableReferenceWithAliasAndColumnsId = aliasAndColumns.Id
         };
         model.SchemaObjectFunctionTableReferenceList.Add(functionReference);
         model.SchemaObjectFunctionTableReferenceSchemaObjectLinkList.Add(new SchemaObjectFunctionTableReferenceSchemaObjectLink
         {
             Id = NextId(nameof(SchemaObjectFunctionTableReferenceSchemaObjectLink)),
-            OwnerId = functionReference.Id,
-            ValueId = schemaObjectName.GetId(nameof(SchemaObjectName))
+            SchemaObjectFunctionTableReferenceId = functionReference.Id,
+            SchemaObjectNameId = schemaObjectName.GetId(nameof(SchemaObjectName))
         });
 
         for (var ordinal = 0; ordinal < parameters.Count; ordinal++)
@@ -207,8 +207,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.SchemaObjectFunctionTableReferenceParametersItemList.Add(new SchemaObjectFunctionTableReferenceParametersItem
             {
                 Id = NextId(nameof(SchemaObjectFunctionTableReferenceParametersItem)),
-                OwnerId = functionReference.Id,
-                ValueId = parameters[ordinal].GetId(nameof(ScalarExpression)),
+                SchemaObjectFunctionTableReferenceId = functionReference.Id,
+                ScalarExpressionId = parameters[ordinal].GetId(nameof(ScalarExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -236,28 +236,28 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
         model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
         {
             Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-            OwnerId = aliasBase.Id,
-            ValueId = alias.GetId(nameof(Identifier))
+            TableReferenceWithAliasId = aliasBase.Id,
+            IdentifierId = alias.GetId(nameof(Identifier))
         });
 
         var fullTextTableReference = new FullTextTableReference
         {
             Id = NextId(nameof(FullTextTableReference)),
-            BaseId = aliasBase.Id,
+            TableReferenceWithAliasId = aliasBase.Id,
             FullTextFunctionType = fullTextFunctionType
         };
         model.FullTextTableReferenceList.Add(fullTextTableReference);
         model.FullTextTableReferenceTableNameLinkList.Add(new FullTextTableReferenceTableNameLink
         {
             Id = NextId(nameof(FullTextTableReferenceTableNameLink)),
-            OwnerId = fullTextTableReference.Id,
-            ValueId = tableName.GetId(nameof(SchemaObjectName))
+            FullTextTableReferenceId = fullTextTableReference.Id,
+            SchemaObjectNameId = tableName.GetId(nameof(SchemaObjectName))
         });
 
         for (var ordinal = 0; ordinal < columns.Count; ordinal++)
@@ -265,8 +265,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.FullTextTableReferenceColumnsItemList.Add(new FullTextTableReferenceColumnsItem
             {
                 Id = NextId(nameof(FullTextTableReferenceColumnsItem)),
-                OwnerId = fullTextTableReference.Id,
-                ValueId = columns[ordinal].GetId(nameof(ColumnReferenceExpression)),
+                FullTextTableReferenceId = fullTextTableReference.Id,
+                ColumnReferenceExpressionId = columns[ordinal].GetId(nameof(ColumnReferenceExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -274,8 +274,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.FullTextTableReferenceSearchConditionLinkList.Add(new FullTextTableReferenceSearchConditionLink
         {
             Id = NextId(nameof(FullTextTableReferenceSearchConditionLink)),
-            OwnerId = fullTextTableReference.Id,
-            ValueId = searchCondition.GetId(nameof(ValueExpression))
+            FullTextTableReferenceId = fullTextTableReference.Id,
+            ValueExpressionId = searchCondition.GetId(nameof(ValueExpression))
         });
 
         return BuiltNode.Create(
@@ -298,20 +298,20 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
         model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
         {
             Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-            OwnerId = aliasBase.Id,
-            ValueId = alias.GetId(nameof(Identifier))
+            TableReferenceWithAliasId = aliasBase.Id,
+            IdentifierId = alias.GetId(nameof(Identifier))
         });
 
         var aliasAndColumns = new TableReferenceWithAliasAndColumns
         {
             Id = NextId(nameof(TableReferenceWithAliasAndColumns)),
-            BaseId = aliasBase.Id
+            TableReferenceWithAliasId = aliasBase.Id
         };
         model.TableReferenceWithAliasAndColumnsList.Add(aliasAndColumns);
 
@@ -322,8 +322,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.TableReferenceWithAliasAndColumnsColumnsItemList.Add(new TableReferenceWithAliasAndColumnsColumnsItem
                 {
                     Id = NextId(nameof(TableReferenceWithAliasAndColumnsColumnsItem)),
-                    OwnerId = aliasAndColumns.Id,
-                    ValueId = columns[ordinal].GetId(nameof(Identifier)),
+                    TableReferenceWithAliasAndColumnsId = aliasAndColumns.Id,
+                    IdentifierId = columns[ordinal].GetId(nameof(Identifier)),
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
                 });
             }
@@ -332,14 +332,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var queryDerivedTable = new QueryDerivedTable
         {
             Id = NextId(nameof(QueryDerivedTable)),
-            BaseId = aliasAndColumns.Id
+            TableReferenceWithAliasAndColumnsId = aliasAndColumns.Id
         };
         model.QueryDerivedTableList.Add(queryDerivedTable);
         model.QueryDerivedTableQueryExpressionLinkList.Add(new QueryDerivedTableQueryExpressionLink
         {
             Id = NextId(nameof(QueryDerivedTableQueryExpressionLink)),
-            OwnerId = queryDerivedTable.Id,
-            ValueId = queryExpression.GetId(nameof(QueryExpression))
+            QueryDerivedTableId = queryDerivedTable.Id,
+            QueryExpressionId = queryExpression.GetId(nameof(QueryExpression))
         });
 
         return BuiltNode.Create(
@@ -363,20 +363,20 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
         model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
         {
             Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-            OwnerId = aliasBase.Id,
-            ValueId = alias.GetId(nameof(Identifier))
+            TableReferenceWithAliasId = aliasBase.Id,
+            IdentifierId = alias.GetId(nameof(Identifier))
         });
 
         var aliasAndColumns = new TableReferenceWithAliasAndColumns
         {
             Id = NextId(nameof(TableReferenceWithAliasAndColumns)),
-            BaseId = aliasBase.Id
+            TableReferenceWithAliasId = aliasBase.Id
         };
         model.TableReferenceWithAliasAndColumnsList.Add(aliasAndColumns);
 
@@ -387,8 +387,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.TableReferenceWithAliasAndColumnsColumnsItemList.Add(new TableReferenceWithAliasAndColumnsColumnsItem
                 {
                     Id = NextId(nameof(TableReferenceWithAliasAndColumnsColumnsItem)),
-                    OwnerId = aliasAndColumns.Id,
-                    ValueId = columns[ordinal].GetId(nameof(Identifier)),
+                    TableReferenceWithAliasAndColumnsId = aliasAndColumns.Id,
+                    IdentifierId = columns[ordinal].GetId(nameof(Identifier)),
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
                 });
             }
@@ -397,7 +397,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var inlineDerivedTable = new InlineDerivedTable
         {
             Id = NextId(nameof(InlineDerivedTable)),
-            BaseId = aliasAndColumns.Id
+            TableReferenceWithAliasAndColumnsId = aliasAndColumns.Id
         };
         model.InlineDerivedTableList.Add(inlineDerivedTable);
 
@@ -406,8 +406,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.InlineDerivedTableRowValuesItemList.Add(new InlineDerivedTableRowValuesItem
             {
                 Id = NextId(nameof(InlineDerivedTableRowValuesItem)),
-                OwnerId = inlineDerivedTable.Id,
-                ValueId = rowValues[ordinal].GetId(nameof(RowValue)),
+                InlineDerivedTableId = inlineDerivedTable.Id,
+                RowValueId = rowValues[ordinal].GetId(nameof(RowValue)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -434,20 +434,20 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
         model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
         {
             Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-            OwnerId = aliasBase.Id,
-            ValueId = alias.GetId(nameof(Identifier))
+            TableReferenceWithAliasId = aliasBase.Id,
+            IdentifierId = alias.GetId(nameof(Identifier))
         });
 
         var aliasAndColumns = new TableReferenceWithAliasAndColumns
         {
             Id = NextId(nameof(TableReferenceWithAliasAndColumns)),
-            BaseId = aliasBase.Id
+            TableReferenceWithAliasId = aliasBase.Id
         };
         model.TableReferenceWithAliasAndColumnsList.Add(aliasAndColumns);
 
@@ -458,8 +458,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.TableReferenceWithAliasAndColumnsColumnsItemList.Add(new TableReferenceWithAliasAndColumnsColumnsItem
                 {
                     Id = NextId(nameof(TableReferenceWithAliasAndColumnsColumnsItem)),
-                    OwnerId = aliasAndColumns.Id,
-                    ValueId = columns[ordinal].GetId(nameof(Identifier)),
+                    TableReferenceWithAliasAndColumnsId = aliasAndColumns.Id,
+                    IdentifierId = columns[ordinal].GetId(nameof(Identifier)),
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
                 });
             }
@@ -468,20 +468,20 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var xmlNodesTableReference = new XmlNodesTableReference
         {
             Id = NextId(nameof(XmlNodesTableReference)),
-            BaseId = aliasAndColumns.Id
+            TableReferenceWithAliasAndColumnsId = aliasAndColumns.Id
         };
         model.XmlNodesTableReferenceList.Add(xmlNodesTableReference);
         model.XmlNodesTableReferenceTargetExpressionLinkList.Add(new XmlNodesTableReferenceTargetExpressionLink
         {
             Id = NextId(nameof(XmlNodesTableReferenceTargetExpressionLink)),
-            OwnerId = xmlNodesTableReference.Id,
-            ValueId = targetExpression.GetId(nameof(ScalarExpression))
+            XmlNodesTableReferenceId = xmlNodesTableReference.Id,
+            ScalarExpressionId = targetExpression.GetId(nameof(ScalarExpression))
         });
         model.XmlNodesTableReferenceXQueryStringLinkList.Add(new XmlNodesTableReferenceXQueryStringLink
         {
             Id = NextId(nameof(XmlNodesTableReferenceXQueryStringLink)),
-            OwnerId = xmlNodesTableReference.Id,
-            ValueId = xQueryString.GetId(nameof(StringLiteral))
+            XmlNodesTableReferenceId = xmlNodesTableReference.Id,
+            StringLiteralId = xQueryString.GetId(nameof(StringLiteral))
         });
 
         return BuiltNode.Create(
@@ -502,14 +502,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var joinParenthesisTableReference = new JoinParenthesisTableReference
         {
             Id = NextId(nameof(JoinParenthesisTableReference)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.JoinParenthesisTableReferenceList.Add(joinParenthesisTableReference);
         model.JoinParenthesisTableReferenceJoinLinkList.Add(new JoinParenthesisTableReferenceJoinLink
         {
             Id = NextId(nameof(JoinParenthesisTableReferenceJoinLink)),
-            OwnerId = joinParenthesisTableReference.Id,
-            ValueId = join.GetId(nameof(TableReference))
+            JoinParenthesisTableReferenceId = joinParenthesisTableReference.Id,
+            TableReferenceId = join.GetId(nameof(TableReference))
         });
 
         return BuiltNode.Create(
@@ -530,8 +530,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.RowValueColumnValuesItemList.Add(new RowValueColumnValuesItem
             {
                 Id = NextId(nameof(RowValueColumnValuesItem)),
-                OwnerId = rowValue.Id,
-                ValueId = columnValues[ordinal].GetId(nameof(ScalarExpression)),
+                RowValueId = rowValue.Id,
+                ScalarExpressionId = columnValues[ordinal].GetId(nameof(ScalarExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -556,39 +556,39 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
         model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
         {
             Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-            OwnerId = aliasBase.Id,
-            ValueId = alias.GetId(nameof(Identifier))
+            TableReferenceWithAliasId = aliasBase.Id,
+            IdentifierId = alias.GetId(nameof(Identifier))
         });
 
         var pivotedTableReference = new PivotedTableReference
         {
             Id = NextId(nameof(PivotedTableReference)),
-            BaseId = aliasBase.Id
+            TableReferenceWithAliasId = aliasBase.Id
         };
         model.PivotedTableReferenceList.Add(pivotedTableReference);
         model.PivotedTableReferenceTableReferenceLinkList.Add(new PivotedTableReferenceTableReferenceLink
         {
             Id = NextId(nameof(PivotedTableReferenceTableReferenceLink)),
-            OwnerId = pivotedTableReference.Id,
-            ValueId = sourceTableReference.GetId(nameof(TableReference))
+            PivotedTableReferenceId = pivotedTableReference.Id,
+            TableReferenceId = sourceTableReference.GetId(nameof(TableReference))
         });
         model.PivotedTableReferenceAggregateFunctionIdentifierLinkList.Add(new PivotedTableReferenceAggregateFunctionIdentifierLink
         {
             Id = NextId(nameof(PivotedTableReferenceAggregateFunctionIdentifierLink)),
-            OwnerId = pivotedTableReference.Id,
-            ValueId = aggregateFunctionIdentifier.GetId(nameof(MultiPartIdentifier))
+            PivotedTableReferenceId = pivotedTableReference.Id,
+            MultiPartIdentifierId = aggregateFunctionIdentifier.GetId(nameof(MultiPartIdentifier))
         });
         model.PivotedTableReferencePivotColumnLinkList.Add(new PivotedTableReferencePivotColumnLink
         {
             Id = NextId(nameof(PivotedTableReferencePivotColumnLink)),
-            OwnerId = pivotedTableReference.Id,
-            ValueId = pivotColumn.GetId(nameof(ColumnReferenceExpression))
+            PivotedTableReferenceId = pivotedTableReference.Id,
+            ColumnReferenceExpressionId = pivotColumn.GetId(nameof(ColumnReferenceExpression))
         });
 
         for (var ordinal = 0; ordinal < valueColumns.Count; ordinal++)
@@ -596,8 +596,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.PivotedTableReferenceValueColumnsItemList.Add(new PivotedTableReferenceValueColumnsItem
             {
                 Id = NextId(nameof(PivotedTableReferenceValueColumnsItem)),
-                OwnerId = pivotedTableReference.Id,
-                ValueId = valueColumns[ordinal].GetId(nameof(ColumnReferenceExpression)),
+                PivotedTableReferenceId = pivotedTableReference.Id,
+                ColumnReferenceExpressionId = valueColumns[ordinal].GetId(nameof(ColumnReferenceExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -607,8 +607,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.PivotedTableReferenceInColumnsItemList.Add(new PivotedTableReferenceInColumnsItem
             {
                 Id = NextId(nameof(PivotedTableReferenceInColumnsItem)),
-                OwnerId = pivotedTableReference.Id,
-                ValueId = inColumns[ordinal].GetId(nameof(Identifier)),
+                PivotedTableReferenceId = pivotedTableReference.Id,
+                IdentifierId = inColumns[ordinal].GetId(nameof(Identifier)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -635,39 +635,39 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasBase = new TableReferenceWithAlias
         {
             Id = NextId(nameof(TableReferenceWithAlias)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.TableReferenceWithAliasList.Add(aliasBase);
         model.TableReferenceWithAliasAliasLinkList.Add(new TableReferenceWithAliasAliasLink
         {
             Id = NextId(nameof(TableReferenceWithAliasAliasLink)),
-            OwnerId = aliasBase.Id,
-            ValueId = alias.GetId(nameof(Identifier))
+            TableReferenceWithAliasId = aliasBase.Id,
+            IdentifierId = alias.GetId(nameof(Identifier))
         });
 
         var unpivotedTableReference = new UnpivotedTableReference
         {
             Id = NextId(nameof(UnpivotedTableReference)),
-            BaseId = aliasBase.Id
+            TableReferenceWithAliasId = aliasBase.Id
         };
         model.UnpivotedTableReferenceList.Add(unpivotedTableReference);
         model.UnpivotedTableReferenceTableReferenceLinkList.Add(new UnpivotedTableReferenceTableReferenceLink
         {
             Id = NextId(nameof(UnpivotedTableReferenceTableReferenceLink)),
-            OwnerId = unpivotedTableReference.Id,
-            ValueId = sourceTableReference.GetId(nameof(TableReference))
+            UnpivotedTableReferenceId = unpivotedTableReference.Id,
+            TableReferenceId = sourceTableReference.GetId(nameof(TableReference))
         });
         model.UnpivotedTableReferenceValueColumnLinkList.Add(new UnpivotedTableReferenceValueColumnLink
         {
             Id = NextId(nameof(UnpivotedTableReferenceValueColumnLink)),
-            OwnerId = unpivotedTableReference.Id,
-            ValueId = valueColumn.GetId(nameof(Identifier))
+            UnpivotedTableReferenceId = unpivotedTableReference.Id,
+            IdentifierId = valueColumn.GetId(nameof(Identifier))
         });
         model.UnpivotedTableReferencePivotColumnLinkList.Add(new UnpivotedTableReferencePivotColumnLink
         {
             Id = NextId(nameof(UnpivotedTableReferencePivotColumnLink)),
-            OwnerId = unpivotedTableReference.Id,
-            ValueId = pivotColumn.GetId(nameof(Identifier))
+            UnpivotedTableReferenceId = unpivotedTableReference.Id,
+            IdentifierId = pivotColumn.GetId(nameof(Identifier))
         });
 
         for (var ordinal = 0; ordinal < inColumns.Count; ordinal++)
@@ -675,8 +675,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.UnpivotedTableReferenceInColumnsItemList.Add(new UnpivotedTableReferenceInColumnsItem
             {
                 Id = NextId(nameof(UnpivotedTableReferenceInColumnsItem)),
-                OwnerId = unpivotedTableReference.Id,
-                ValueId = inColumns[ordinal].GetId(nameof(ColumnReferenceExpression)),
+                UnpivotedTableReferenceId = unpivotedTableReference.Id,
+                ColumnReferenceExpressionId = inColumns[ordinal].GetId(nameof(ColumnReferenceExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -698,34 +698,34 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var joinBase = new JoinTableReference
         {
             Id = NextId(nameof(JoinTableReference)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.JoinTableReferenceList.Add(joinBase);
 
         var qualified = new QualifiedJoin
         {
             Id = NextId(nameof(QualifiedJoin)),
-            BaseId = joinBase.Id,
+            JoinTableReferenceId = joinBase.Id,
             QualifiedJoinType = joinType
         };
         model.QualifiedJoinList.Add(qualified);
         model.JoinTableReferenceFirstTableReferenceLinkList.Add(new JoinTableReferenceFirstTableReferenceLink
         {
             Id = NextId(nameof(JoinTableReferenceFirstTableReferenceLink)),
-            OwnerId = joinBase.Id,
-            ValueId = firstTableReference.GetId(nameof(TableReference))
+            JoinTableReferenceId = joinBase.Id,
+            TableReferenceId = firstTableReference.GetId(nameof(TableReference))
         });
         model.JoinTableReferenceSecondTableReferenceLinkList.Add(new JoinTableReferenceSecondTableReferenceLink
         {
             Id = NextId(nameof(JoinTableReferenceSecondTableReferenceLink)),
-            OwnerId = joinBase.Id,
-            ValueId = secondTableReference.GetId(nameof(TableReference))
+            JoinTableReferenceId = joinBase.Id,
+            TableReferenceId = secondTableReference.GetId(nameof(TableReference))
         });
         model.QualifiedJoinSearchConditionLinkList.Add(new QualifiedJoinSearchConditionLink
         {
             Id = NextId(nameof(QualifiedJoinSearchConditionLink)),
-            OwnerId = qualified.Id,
-            ValueId = searchCondition.GetId(nameof(BooleanExpression))
+            QualifiedJoinId = qualified.Id,
+            BooleanExpressionId = searchCondition.GetId(nameof(BooleanExpression))
         });
 
         return BuiltNode.Create(
@@ -745,28 +745,28 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var joinBase = new JoinTableReference
         {
             Id = NextId(nameof(JoinTableReference)),
-            BaseId = tableReference.Id
+            TableReferenceId = tableReference.Id
         };
         model.JoinTableReferenceList.Add(joinBase);
 
         var unqualified = new UnqualifiedJoin
         {
             Id = NextId(nameof(UnqualifiedJoin)),
-            BaseId = joinBase.Id,
+            JoinTableReferenceId = joinBase.Id,
             UnqualifiedJoinType = joinType
         };
         model.UnqualifiedJoinList.Add(unqualified);
         model.JoinTableReferenceFirstTableReferenceLinkList.Add(new JoinTableReferenceFirstTableReferenceLink
         {
             Id = NextId(nameof(JoinTableReferenceFirstTableReferenceLink)),
-            OwnerId = joinBase.Id,
-            ValueId = firstTableReference.GetId(nameof(TableReference))
+            JoinTableReferenceId = joinBase.Id,
+            TableReferenceId = firstTableReference.GetId(nameof(TableReference))
         });
         model.JoinTableReferenceSecondTableReferenceLinkList.Add(new JoinTableReferenceSecondTableReferenceLink
         {
             Id = NextId(nameof(JoinTableReferenceSecondTableReferenceLink)),
-            OwnerId = joinBase.Id,
-            ValueId = secondTableReference.GetId(nameof(TableReference))
+            JoinTableReferenceId = joinBase.Id,
+            TableReferenceId = secondTableReference.GetId(nameof(TableReference))
         });
 
         return BuiltNode.Create(
@@ -788,8 +788,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.FromClauseTableReferencesItemList.Add(new FromClauseTableReferencesItem
             {
                 Id = NextId(nameof(FromClauseTableReferencesItem)),
-                OwnerId = row.Id,
-                ValueId = tableReferences[ordinal].GetId(nameof(TableReference)),
+                FromClauseId = row.Id,
+                TableReferenceId = tableReferences[ordinal].GetId(nameof(TableReference)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }

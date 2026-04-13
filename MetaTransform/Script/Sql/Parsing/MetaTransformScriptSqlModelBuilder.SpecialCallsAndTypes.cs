@@ -16,27 +16,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var castCall = new CastCall
         {
             Id = NextId(nameof(CastCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.CastCallList.Add(castCall);
         model.CastCallParameterLinkList.Add(new CastCallParameterLink
         {
             Id = NextId(nameof(CastCallParameterLink)),
-            OwnerId = castCall.Id,
-            ValueId = parameter.GetId(nameof(ScalarExpression))
+            CastCallId = castCall.Id,
+            ScalarExpressionId = parameter.GetId(nameof(ScalarExpression))
         });
         model.CastCallDataTypeLinkList.Add(new CastCallDataTypeLink
         {
             Id = NextId(nameof(CastCallDataTypeLink)),
-            OwnerId = castCall.Id,
-            ValueId = dataTypeReference.GetId(nameof(DataTypeReference))
+            CastCallId = castCall.Id,
+            DataTypeReferenceId = dataTypeReference.GetId(nameof(DataTypeReference))
         });
 
         return BuiltNode.Create(
@@ -56,27 +56,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var tryCastCall = new TryCastCall
         {
             Id = NextId(nameof(TryCastCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.TryCastCallList.Add(tryCastCall);
         model.TryCastCallParameterLinkList.Add(new TryCastCallParameterLink
         {
             Id = NextId(nameof(TryCastCallParameterLink)),
-            OwnerId = tryCastCall.Id,
-            ValueId = parameter.GetId(nameof(ScalarExpression))
+            TryCastCallId = tryCastCall.Id,
+            ScalarExpressionId = parameter.GetId(nameof(ScalarExpression))
         });
         model.TryCastCallDataTypeLinkList.Add(new TryCastCallDataTypeLink
         {
             Id = NextId(nameof(TryCastCallDataTypeLink)),
-            OwnerId = tryCastCall.Id,
-            ValueId = dataTypeReference.GetId(nameof(DataTypeReference))
+            TryCastCallId = tryCastCall.Id,
+            DataTypeReferenceId = dataTypeReference.GetId(nameof(DataTypeReference))
         });
 
         return BuiltNode.Create(
@@ -96,27 +96,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var convertCall = new ConvertCall
         {
             Id = NextId(nameof(ConvertCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ConvertCallList.Add(convertCall);
         model.ConvertCallDataTypeLinkList.Add(new ConvertCallDataTypeLink
         {
             Id = NextId(nameof(ConvertCallDataTypeLink)),
-            OwnerId = convertCall.Id,
-            ValueId = dataTypeReference.GetId(nameof(DataTypeReference))
+            ConvertCallId = convertCall.Id,
+            DataTypeReferenceId = dataTypeReference.GetId(nameof(DataTypeReference))
         });
         model.ConvertCallParameterLinkList.Add(new ConvertCallParameterLink
         {
             Id = NextId(nameof(ConvertCallParameterLink)),
-            OwnerId = convertCall.Id,
-            ValueId = parameter.GetId(nameof(ScalarExpression))
+            ConvertCallId = convertCall.Id,
+            ScalarExpressionId = parameter.GetId(nameof(ScalarExpression))
         });
 
         if (style is not null)
@@ -124,8 +124,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.ConvertCallStyleLinkList.Add(new ConvertCallStyleLink
             {
                 Id = NextId(nameof(ConvertCallStyleLink)),
-                OwnerId = convertCall.Id,
-                ValueId = style.GetId(nameof(ScalarExpression))
+                ConvertCallId = convertCall.Id,
+                ScalarExpressionId = style.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -146,27 +146,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var tryConvertCall = new TryConvertCall
         {
             Id = NextId(nameof(TryConvertCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.TryConvertCallList.Add(tryConvertCall);
         model.TryConvertCallDataTypeLinkList.Add(new TryConvertCallDataTypeLink
         {
             Id = NextId(nameof(TryConvertCallDataTypeLink)),
-            OwnerId = tryConvertCall.Id,
-            ValueId = dataTypeReference.GetId(nameof(DataTypeReference))
+            TryConvertCallId = tryConvertCall.Id,
+            DataTypeReferenceId = dataTypeReference.GetId(nameof(DataTypeReference))
         });
         model.TryConvertCallParameterLinkList.Add(new TryConvertCallParameterLink
         {
             Id = NextId(nameof(TryConvertCallParameterLink)),
-            OwnerId = tryConvertCall.Id,
-            ValueId = parameter.GetId(nameof(ScalarExpression))
+            TryConvertCallId = tryConvertCall.Id,
+            ScalarExpressionId = parameter.GetId(nameof(ScalarExpression))
         });
 
         if (style is not null)
@@ -174,8 +174,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.TryConvertCallStyleLinkList.Add(new TryConvertCallStyleLink
             {
                 Id = NextId(nameof(TryConvertCallStyleLink)),
-                OwnerId = tryConvertCall.Id,
-                ValueId = style.GetId(nameof(ScalarExpression))
+                TryConvertCallId = tryConvertCall.Id,
+                ScalarExpressionId = style.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -196,27 +196,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var parseCall = new ParseCall
         {
             Id = NextId(nameof(ParseCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ParseCallList.Add(parseCall);
         model.ParseCallStringValueLinkList.Add(new ParseCallStringValueLink
         {
             Id = NextId(nameof(ParseCallStringValueLink)),
-            OwnerId = parseCall.Id,
-            ValueId = stringValue.GetId(nameof(ScalarExpression))
+            ParseCallId = parseCall.Id,
+            ScalarExpressionId = stringValue.GetId(nameof(ScalarExpression))
         });
         model.ParseCallDataTypeLinkList.Add(new ParseCallDataTypeLink
         {
             Id = NextId(nameof(ParseCallDataTypeLink)),
-            OwnerId = parseCall.Id,
-            ValueId = dataTypeReference.GetId(nameof(DataTypeReference))
+            ParseCallId = parseCall.Id,
+            DataTypeReferenceId = dataTypeReference.GetId(nameof(DataTypeReference))
         });
 
         if (culture is not null)
@@ -224,8 +224,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.ParseCallCultureLinkList.Add(new ParseCallCultureLink
             {
                 Id = NextId(nameof(ParseCallCultureLink)),
-                OwnerId = parseCall.Id,
-                ValueId = culture.GetId(nameof(ScalarExpression))
+                ParseCallId = parseCall.Id,
+                ScalarExpressionId = culture.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -246,27 +246,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var tryParseCall = new TryParseCall
         {
             Id = NextId(nameof(TryParseCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.TryParseCallList.Add(tryParseCall);
         model.TryParseCallStringValueLinkList.Add(new TryParseCallStringValueLink
         {
             Id = NextId(nameof(TryParseCallStringValueLink)),
-            OwnerId = tryParseCall.Id,
-            ValueId = stringValue.GetId(nameof(ScalarExpression))
+            TryParseCallId = tryParseCall.Id,
+            ScalarExpressionId = stringValue.GetId(nameof(ScalarExpression))
         });
         model.TryParseCallDataTypeLinkList.Add(new TryParseCallDataTypeLink
         {
             Id = NextId(nameof(TryParseCallDataTypeLink)),
-            OwnerId = tryParseCall.Id,
-            ValueId = dataTypeReference.GetId(nameof(DataTypeReference))
+            TryParseCallId = tryParseCall.Id,
+            DataTypeReferenceId = dataTypeReference.GetId(nameof(DataTypeReference))
         });
 
         if (culture is not null)
@@ -274,8 +274,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.TryParseCallCultureLinkList.Add(new TryParseCallCultureLink
             {
                 Id = NextId(nameof(TryParseCallCultureLink)),
-                OwnerId = tryParseCall.Id,
-                ValueId = culture.GetId(nameof(ScalarExpression))
+                TryParseCallId = tryParseCall.Id,
+                ScalarExpressionId = culture.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -296,27 +296,27 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var atTimeZoneCall = new AtTimeZoneCall
         {
             Id = NextId(nameof(AtTimeZoneCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.AtTimeZoneCallList.Add(atTimeZoneCall);
         model.AtTimeZoneCallDateValueLinkList.Add(new AtTimeZoneCallDateValueLink
         {
             Id = NextId(nameof(AtTimeZoneCallDateValueLink)),
-            OwnerId = atTimeZoneCall.Id,
-            ValueId = dateValue.GetId(nameof(ScalarExpression))
+            AtTimeZoneCallId = atTimeZoneCall.Id,
+            ScalarExpressionId = dateValue.GetId(nameof(ScalarExpression))
         });
         model.AtTimeZoneCallTimeZoneLinkList.Add(new AtTimeZoneCallTimeZoneLink
         {
             Id = NextId(nameof(AtTimeZoneCallTimeZoneLink)),
-            OwnerId = atTimeZoneCall.Id,
-            ValueId = timeZone.GetId(nameof(ScalarExpression))
+            AtTimeZoneCallId = atTimeZoneCall.Id,
+            ScalarExpressionId = timeZone.GetId(nameof(ScalarExpression))
         });
 
         return BuiltNode.Create(
@@ -336,21 +336,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var nextValueForExpression = new NextValueForExpression
         {
             Id = NextId(nameof(NextValueForExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.NextValueForExpressionList.Add(nextValueForExpression);
         model.NextValueForExpressionSequenceNameLinkList.Add(new NextValueForExpressionSequenceNameLink
         {
             Id = NextId(nameof(NextValueForExpressionSequenceNameLink)),
-            OwnerId = nextValueForExpression.Id,
-            ValueId = sequenceName.GetId(nameof(SchemaObjectName))
+            NextValueForExpressionId = nextValueForExpression.Id,
+            SchemaObjectNameId = sequenceName.GetId(nameof(SchemaObjectName))
         });
 
         return BuiltNode.Create(
@@ -370,14 +370,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var parameterlessCall = new ParameterlessCall
         {
             Id = NextId(nameof(ParameterlessCall)),
-            BaseId = primary.Id,
+            PrimaryExpressionId = primary.Id,
             ParameterlessCallType = parameterlessCallType
         };
         model.ParameterlessCallList.Add(parameterlessCall);
@@ -399,14 +399,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var leftFunctionCall = new LeftFunctionCall
         {
             Id = NextId(nameof(LeftFunctionCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.LeftFunctionCallList.Add(leftFunctionCall);
 
@@ -415,8 +415,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.LeftFunctionCallParametersItemList.Add(new LeftFunctionCallParametersItem
             {
                 Id = NextId(nameof(LeftFunctionCallParametersItem)),
-                OwnerId = leftFunctionCall.Id,
-                ValueId = parameters[ordinal].GetId(nameof(ScalarExpression)),
+                LeftFunctionCallId = leftFunctionCall.Id,
+                ScalarExpressionId = parameters[ordinal].GetId(nameof(ScalarExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -438,14 +438,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var rightFunctionCall = new RightFunctionCall
         {
             Id = NextId(nameof(RightFunctionCall)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.RightFunctionCallList.Add(rightFunctionCall);
 
@@ -454,8 +454,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.RightFunctionCallParametersItemList.Add(new RightFunctionCallParametersItem
             {
                 Id = NextId(nameof(RightFunctionCallParametersItem)),
-                OwnerId = rightFunctionCall.Id,
-                ValueId = parameters[ordinal].GetId(nameof(ScalarExpression)),
+                RightFunctionCallId = rightFunctionCall.Id,
+                ScalarExpressionId = parameters[ordinal].GetId(nameof(ScalarExpression)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -477,21 +477,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var valueExpression = new ValueExpression
         {
             Id = NextId(nameof(ValueExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ValueExpressionList.Add(valueExpression);
 
         var globalVariableExpression = new GlobalVariableExpression
         {
             Id = NextId(nameof(GlobalVariableExpression)),
-            BaseId = valueExpression.Id,
+            ValueExpressionId = valueExpression.Id,
             Name = name
         };
         model.GlobalVariableExpressionList.Add(globalVariableExpression);
@@ -514,15 +514,15 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var unaryExpression = new UnaryExpression
         {
             Id = NextId(nameof(UnaryExpression)),
-            BaseId = scalar.Id,
+            ScalarExpressionId = scalar.Id,
             UnaryExpressionType = unaryExpressionType
         };
         model.UnaryExpressionList.Add(unaryExpression);
         model.UnaryExpressionExpressionLinkList.Add(new UnaryExpressionExpressionLink
         {
             Id = NextId(nameof(UnaryExpressionExpressionLink)),
-            OwnerId = unaryExpression.Id,
-            ValueId = expression.GetId(nameof(ScalarExpression))
+            UnaryExpressionId = unaryExpression.Id,
+            ScalarExpressionId = expression.GetId(nameof(ScalarExpression))
         });
 
         return BuiltNode.Create(
@@ -543,21 +543,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.DataTypeReferenceNameLinkList.Add(new DataTypeReferenceNameLink
         {
             Id = NextId(nameof(DataTypeReferenceNameLink)),
-            OwnerId = dataTypeReference.Id,
-            ValueId = schemaObjectName.GetId(nameof(SchemaObjectName))
+            DataTypeReferenceId = dataTypeReference.Id,
+            SchemaObjectNameId = schemaObjectName.GetId(nameof(SchemaObjectName))
         });
 
         var parameterizedDataTypeReference = new ParameterizedDataTypeReference
         {
             Id = NextId(nameof(ParameterizedDataTypeReference)),
-            BaseId = dataTypeReference.Id
+            DataTypeReferenceId = dataTypeReference.Id
         };
         model.ParameterizedDataTypeReferenceList.Add(parameterizedDataTypeReference);
 
         var sqlDataTypeReference = new SqlDataTypeReference
         {
             Id = NextId(nameof(SqlDataTypeReference)),
-            BaseId = parameterizedDataTypeReference.Id,
+            ParameterizedDataTypeReferenceId = parameterizedDataTypeReference.Id,
             SqlDataTypeOption = sqlDataTypeOption
         };
         model.SqlDataTypeReferenceList.Add(sqlDataTypeReference);
@@ -569,8 +569,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.ParameterizedDataTypeReferenceParametersItemList.Add(new ParameterizedDataTypeReferenceParametersItem
                 {
                     Id = NextId(nameof(ParameterizedDataTypeReferenceParametersItem)),
-                    OwnerId = parameterizedDataTypeReference.Id,
-                    ValueId = parameters[ordinal].GetId(nameof(Literal)),
+                    ParameterizedDataTypeReferenceId = parameterizedDataTypeReference.Id,
+                    LiteralId = parameters[ordinal].GetId(nameof(Literal)),
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
                 });
             }
@@ -587,8 +587,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.PrimaryExpressionCollationLinkList.Add(new PrimaryExpressionCollationLink
         {
             Id = NextId(nameof(PrimaryExpressionCollationLink)),
-            OwnerId = primaryExpressionNode.GetId(nameof(PrimaryExpression)),
-            ValueId = collationIdentifier.GetId(nameof(Identifier))
+            PrimaryExpressionId = primaryExpressionNode.GetId(nameof(PrimaryExpression)),
+            IdentifierId = collationIdentifier.GetId(nameof(Identifier))
         });
 
         return primaryExpressionNode;

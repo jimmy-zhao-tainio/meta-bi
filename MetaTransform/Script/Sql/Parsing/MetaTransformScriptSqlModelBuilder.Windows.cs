@@ -18,8 +18,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.WindowClauseWindowDefinitionItemList.Add(new WindowClauseWindowDefinitionItem
             {
                 Id = NextId(nameof(WindowClauseWindowDefinitionItem)),
-                OwnerId = windowClause.Id,
-                ValueId = windowDefinitions[ordinal].GetId(nameof(WindowDefinition)),
+                WindowClauseId = windowClause.Id,
+                WindowDefinitionId = windowDefinitions[ordinal].GetId(nameof(WindowDefinition)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -42,8 +42,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.WindowDefinitionWindowNameLinkList.Add(new WindowDefinitionWindowNameLink
         {
             Id = NextId(nameof(WindowDefinitionWindowNameLink)),
-            OwnerId = windowDefinition.Id,
-            ValueId = windowName.GetId(nameof(Identifier))
+            WindowDefinitionId = windowDefinition.Id,
+            IdentifierId = windowName.GetId(nameof(Identifier))
         });
 
         if (refWindowName is not null)
@@ -51,8 +51,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.WindowDefinitionRefWindowNameLinkList.Add(new WindowDefinitionRefWindowNameLink
             {
                 Id = NextId(nameof(WindowDefinitionRefWindowNameLink)),
-                OwnerId = windowDefinition.Id,
-                ValueId = refWindowName.GetId(nameof(Identifier))
+                WindowDefinitionId = windowDefinition.Id,
+                IdentifierId = refWindowName.GetId(nameof(Identifier))
             });
         }
 
@@ -63,8 +63,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.WindowDefinitionPartitionsItemList.Add(new WindowDefinitionPartitionsItem
                 {
                     Id = NextId(nameof(WindowDefinitionPartitionsItem)),
-                    OwnerId = windowDefinition.Id,
-                    ValueId = partitions[ordinal].GetId(nameof(ScalarExpression)),
+                    WindowDefinitionId = windowDefinition.Id,
+                    ScalarExpressionId = partitions[ordinal].GetId(nameof(ScalarExpression)),
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
                 });
             }
@@ -75,8 +75,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.WindowDefinitionOrderByClauseLinkList.Add(new WindowDefinitionOrderByClauseLink
             {
                 Id = NextId(nameof(WindowDefinitionOrderByClauseLink)),
-                OwnerId = windowDefinition.Id,
-                ValueId = orderByClause.GetId(nameof(OrderByClause))
+                WindowDefinitionId = windowDefinition.Id,
+                OrderByClauseId = orderByClause.GetId(nameof(OrderByClause))
             });
         }
 
@@ -85,8 +85,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.WindowDefinitionWindowFrameClauseLinkList.Add(new WindowDefinitionWindowFrameClauseLink
             {
                 Id = NextId(nameof(WindowDefinitionWindowFrameClauseLink)),
-                OwnerId = windowDefinition.Id,
-                ValueId = windowFrameClause.GetId(nameof(WindowFrameClause))
+                WindowDefinitionId = windowDefinition.Id,
+                WindowFrameClauseId = windowFrameClause.GetId(nameof(WindowFrameClause))
             });
         }
 
@@ -107,8 +107,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.WindowDelimiterOffsetValueLinkList.Add(new WindowDelimiterOffsetValueLink
             {
                 Id = NextId(nameof(WindowDelimiterOffsetValueLink)),
-                OwnerId = windowDelimiter.Id,
-                ValueId = offsetValue.GetId(nameof(ScalarExpression))
+                WindowDelimiterId = windowDelimiter.Id,
+                ScalarExpressionId = offsetValue.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -126,8 +126,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.WindowFrameClauseTopLinkList.Add(new WindowFrameClauseTopLink
         {
             Id = NextId(nameof(WindowFrameClauseTopLink)),
-            OwnerId = windowFrameClause.Id,
-            ValueId = top.GetId(nameof(WindowDelimiter))
+            WindowFrameClauseId = windowFrameClause.Id,
+            WindowDelimiterId = top.GetId(nameof(WindowDelimiter))
         });
 
         if (bottom is not null)
@@ -135,8 +135,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.WindowFrameClauseBottomLinkList.Add(new WindowFrameClauseBottomLink
             {
                 Id = NextId(nameof(WindowFrameClauseBottomLink)),
-                OwnerId = windowFrameClause.Id,
-                ValueId = bottom.GetId(nameof(WindowDelimiter))
+                WindowFrameClauseId = windowFrameClause.Id,
+                WindowDelimiterId = bottom.GetId(nameof(WindowDelimiter))
             });
         }
 
@@ -160,8 +160,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.OverClauseWindowNameLinkList.Add(new OverClauseWindowNameLink
             {
                 Id = NextId(nameof(OverClauseWindowNameLink)),
-                OwnerId = overClause.Id,
-                ValueId = windowName.GetId(nameof(Identifier))
+                OverClauseId = overClause.Id,
+                IdentifierId = windowName.GetId(nameof(Identifier))
             });
         }
 
@@ -172,8 +172,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.OverClausePartitionsItemList.Add(new OverClausePartitionsItem
                 {
                     Id = NextId(nameof(OverClausePartitionsItem)),
-                    OwnerId = overClause.Id,
-                    ValueId = partitions[ordinal].GetId(nameof(ScalarExpression)),
+                    OverClauseId = overClause.Id,
+                    ScalarExpressionId = partitions[ordinal].GetId(nameof(ScalarExpression)),
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
                 });
             }
@@ -184,8 +184,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.OverClauseOrderByClauseLinkList.Add(new OverClauseOrderByClauseLink
             {
                 Id = NextId(nameof(OverClauseOrderByClauseLink)),
-                OwnerId = overClause.Id,
-                ValueId = orderByClause.GetId(nameof(OrderByClause))
+                OverClauseId = overClause.Id,
+                OrderByClauseId = orderByClause.GetId(nameof(OrderByClause))
             });
         }
 
@@ -194,8 +194,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.OverClauseWindowFrameClauseLinkList.Add(new OverClauseWindowFrameClauseLink
             {
                 Id = NextId(nameof(OverClauseWindowFrameClauseLink)),
-                OwnerId = overClause.Id,
-                ValueId = windowFrameClause.GetId(nameof(WindowFrameClause))
+                OverClauseId = overClause.Id,
+                WindowFrameClauseId = windowFrameClause.GetId(nameof(WindowFrameClause))
             });
         }
 
@@ -207,8 +207,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.FunctionCallOverClauseLinkList.Add(new FunctionCallOverClauseLink
         {
             Id = NextId(nameof(FunctionCallOverClauseLink)),
-            OwnerId = functionCall.GetId(nameof(FunctionCall)),
-            ValueId = overClause.GetId(nameof(OverClause))
+            FunctionCallId = functionCall.GetId(nameof(FunctionCall)),
+            OverClauseId = overClause.GetId(nameof(OverClause))
         });
 
         return functionCall;

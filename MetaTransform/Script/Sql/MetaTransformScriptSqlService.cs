@@ -1,4 +1,5 @@
 using System.Text;
+using System.Reflection;
 using MetaTransformScript.Instance;
 using MetaTransformScript.Sql.Parsing;
 using MTS = global::MetaTransformScript;
@@ -79,6 +80,7 @@ public sealed class MetaTransformScriptSqlService
     public string ExportToSqlCode(MTS.MetaTransformScriptModel model, string? scriptName = null)
     {
         ArgumentNullException.ThrowIfNull(model);
+        EnsureModelIsBound(model);
 
         var script = ResolveSingleScript(model, scriptName);
         var emitter = new MetaTransformScriptSqlEmitter(model);
@@ -111,6 +113,7 @@ public sealed class MetaTransformScriptSqlService
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
         cancellationToken.ThrowIfCancellationRequested();
+        EnsureModelIsBound(model);
 
         var scripts = model.TransformScriptList.ToArray();
         if (scripts.Length == 0)
@@ -259,6 +262,13 @@ public sealed class MetaTransformScriptSqlService
         }
 
         return model;
+    }
+
+    private static void EnsureModelIsBound(MTS.MetaTransformScriptModel model)
+    {
+        var modelFactoryType = typeof(MTS.MetaTransformScriptModel).Assembly.GetType("MetaTransformScript.MetaTransformScriptModelFactory");
+        var bindMethod = modelFactoryType?.GetMethod("Bind", BindingFlags.Static | BindingFlags.NonPublic);
+        bindMethod?.Invoke(null, [model]);
     }
 
     private static MetaTransformScriptSqlImportException CreateImportException(
@@ -438,10 +448,10 @@ public sealed class MetaTransformScriptSqlService
 
     private static MTS.SelectStatement ResolveSelectStatement(MTS.MetaTransformScriptModel model, MTS.TransformScript script)
     {
-        var link = model.TransformScriptSelectStatementLinkList.SingleOrDefault(item => string.Equals(item.OwnerId, script.Id, StringComparison.Ordinal))
+        var link = model.TransformScriptSelectStatementLinkList.SingleOrDefault(item => string.Equals(item.TransformScriptId, script.Id, StringComparison.Ordinal))
             ?? throw new InvalidOperationException($"Transform script '{script.Name}' is missing its SelectStatement link.");
-        return model.SelectStatementList.SingleOrDefault(item => string.Equals(item.Id, link.ValueId, StringComparison.Ordinal))
-            ?? throw new InvalidOperationException($"Transform script '{script.Name}' points to a missing SelectStatement '{link.ValueId}'.");
+        return model.SelectStatementList.SingleOrDefault(item => string.Equals(item.Id, link.SelectStatementId, StringComparison.Ordinal))
+            ?? throw new InvalidOperationException($"Transform script '{script.Name}' points to a missing SelectStatement '{link.SelectStatementId}'.");
     }
 
     private static void EnsureTargetDirectoryIsEmpty(string targetDirectoryPath)
@@ -537,9 +547,14 @@ public sealed class MetaTransformScriptSqlService
 
     private static string ResolveCreateViewName(MTS.MetaTransformScriptModel model, MTS.TransformScript script)
     {
+        if (!string.IsNullOrWhiteSpace(script.TargetSqlIdentifier))
+        {
+            return script.TargetSqlIdentifier;
+        }
+
         var objectIdentifier = ResolveOptionalIdentifier(
             model,
-            model.TransformScriptObjectIdentifierLinkList.SingleOrDefault(item => string.Equals(item.OwnerId, script.Id, StringComparison.Ordinal)));
+            model.TransformScriptObjectIdentifierLinkList.SingleOrDefault(item => string.Equals(item.TransformScriptId, script.Id, StringComparison.Ordinal)));
         if (objectIdentifier is null)
         {
             if (string.IsNullOrWhiteSpace(script.Name))
@@ -552,7 +567,7 @@ public sealed class MetaTransformScriptSqlService
 
         var schemaIdentifier = ResolveOptionalIdentifier(
             model,
-            model.TransformScriptSchemaIdentifierLinkList.SingleOrDefault(item => string.Equals(item.OwnerId, script.Id, StringComparison.Ordinal)));
+            model.TransformScriptSchemaIdentifierLinkList.SingleOrDefault(item => string.Equals(item.TransformScriptId, script.Id, StringComparison.Ordinal)));
 
         return schemaIdentifier is null
             ? RenderIdentifierFromModel(objectIdentifier)
@@ -562,9 +577,9 @@ public sealed class MetaTransformScriptSqlService
     private static string RenderViewColumnList(MTS.MetaTransformScriptModel model, MTS.TransformScript script)
     {
         var columns = model.TransformScriptViewColumnsItemList
-            .Where(item => string.Equals(item.OwnerId, script.Id, StringComparison.Ordinal))
+            .Where(item => string.Equals(item.TransformScriptId, script.Id, StringComparison.Ordinal))
             .OrderBy(item => ParseOrdinal(item.Ordinal))
-            .Select(item => ResolveIdentifier(model, item.ValueId))
+            .Select(item => ResolveIdentifier(model, item.IdentifierId))
             .Select(RenderIdentifierFromModel)
             .ToArray();
 
@@ -598,8 +613,8 @@ public sealed class MetaTransformScriptSqlService
             return null;
         }
 
-        var valueId = (string?)link.GetType().GetProperty("ValueId")?.GetValue(link);
-        return string.IsNullOrWhiteSpace(valueId) ? null : ResolveIdentifier(model, valueId);
+        var identifierId = (string?)link.GetType().GetProperty("IdentifierId")?.GetValue(link);
+        return string.IsNullOrWhiteSpace(identifierId) ? null : ResolveIdentifier(model, identifierId);
     }
 
     private static MTS.Identifier ResolveIdentifier(MTS.MetaTransformScriptModel model, string valueId)

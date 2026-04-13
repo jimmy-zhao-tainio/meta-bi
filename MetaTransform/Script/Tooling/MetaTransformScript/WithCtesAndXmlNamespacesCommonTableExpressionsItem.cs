@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public WithCtesAndXmlNamespaces WithCtesAndXmlNamespaces { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => WithCtesAndXmlNamespacesId; set => WithCtesAndXmlNamespacesId = value; }
-
-        [XmlIgnore]
-        public WithCtesAndXmlNamespaces Owner { get => WithCtesAndXmlNamespaces; set => WithCtesAndXmlNamespaces = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => CommonTableExpressionId; set => CommonTableExpressionId = value; }
-
-        [XmlIgnore]
-        public CommonTableExpression Value { get => CommonTableExpression; set => CommonTableExpression = value; }
-
     }
 }

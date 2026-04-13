@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public XmlNodesTableReference XmlNodesTableReference { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => XmlNodesTableReferenceId; set => XmlNodesTableReferenceId = value; }
-
-        [XmlIgnore]
-        public XmlNodesTableReference Owner { get => XmlNodesTableReference; set => XmlNodesTableReference = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ScalarExpressionId; set => ScalarExpressionId = value; }
-
-        [XmlIgnore]
-        public ScalarExpression Value { get => ScalarExpression; set => ScalarExpression = value; }
-
     }
 }

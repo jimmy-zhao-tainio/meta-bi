@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public SearchedWhenClause SearchedWhenClause { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => SearchedCaseExpressionId; set => SearchedCaseExpressionId = value; }
-
-        [XmlIgnore]
-        public SearchedCaseExpression Owner { get => SearchedCaseExpression; set => SearchedCaseExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => SearchedWhenClauseId; set => SearchedWhenClauseId = value; }
-
-        [XmlIgnore]
-        public SearchedWhenClause Value { get => SearchedWhenClause; set => SearchedWhenClause = value; }
-
     }
 }

@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public TableSampleClause TableSampleClause { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => NamedTableReferenceId; set => NamedTableReferenceId = value; }
-
-        [XmlIgnore]
-        public NamedTableReference Owner { get => NamedTableReference; set => NamedTableReference = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => TableSampleClauseId; set => TableSampleClauseId = value; }
-
-        [XmlIgnore]
-        public TableSampleClause Value { get => TableSampleClause; set => TableSampleClause = value; }
-
     }
 }

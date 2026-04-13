@@ -30,5 +30,8 @@ namespace MetaTransformScript
         public string SourcePath { get; set; } = string.Empty;
         public bool ShouldSerializeSourcePath() => !string.IsNullOrWhiteSpace(SourcePath);
 
+        [XmlElement("TargetSqlIdentifier")]
+        public string TargetSqlIdentifier { get; set; } = string.Empty;
+
     }
 }

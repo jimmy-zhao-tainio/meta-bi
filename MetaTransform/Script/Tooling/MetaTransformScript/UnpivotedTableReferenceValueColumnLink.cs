@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public UnpivotedTableReference UnpivotedTableReference { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => UnpivotedTableReferenceId; set => UnpivotedTableReferenceId = value; }
-
-        [XmlIgnore]
-        public UnpivotedTableReference Owner { get => UnpivotedTableReference; set => UnpivotedTableReference = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => IdentifierId; set => IdentifierId = value; }
-
-        [XmlIgnore]
-        public Identifier Value { get => Identifier; set => Identifier = value; }
-
     }
 }

@@ -29,12 +29,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public GroupingSpecification GroupingSpecification { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => GroupingSpecificationId; set => GroupingSpecificationId = value; }
-
-        [XmlIgnore]
-        public GroupingSpecification Base { get => GroupingSpecification; set => GroupingSpecification = value; }
-
     }
 }

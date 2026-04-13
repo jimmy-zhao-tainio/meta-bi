@@ -33,12 +33,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public JoinTableReference JoinTableReference { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => JoinTableReferenceId; set => JoinTableReferenceId = value; }
-
-        [XmlIgnore]
-        public JoinTableReference Base { get => JoinTableReference; set => JoinTableReference = value; }
-
     }
 }

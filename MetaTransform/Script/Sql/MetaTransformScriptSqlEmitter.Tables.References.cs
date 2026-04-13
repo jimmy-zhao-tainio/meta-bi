@@ -7,7 +7,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private string RenderFromClause(FromClause fromClause)
     {
         var tableReferences = GetOrderedItems(model.FromClauseTableReferencesItemList, fromClause.Id)
-            .Select(row => RenderTableReference(row.Value))
+            .Select(row => RenderTableReference(row.TableReference))
             .ToArray();
         return string.Join(", ", tableReferences);
     }
@@ -19,19 +19,19 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var namedTableReference = FindByBaseId(model.NamedTableReferenceList, aliasBase?.Id ?? tableReference.Id);
         if (namedTableReference is not null)
         {
-            var schemaObject = GetOwnerLink(model.NamedTableReferenceSchemaObjectLinkList, namedTableReference.Id, "NamedTableReference.SchemaObject").Value;
+            var schemaObject = GetOwnerLink(model.NamedTableReferenceSchemaObjectLinkList, namedTableReference.Id, "NamedTableReference.SchemaObject").SchemaObjectName;
             var rendered = RenderSchemaObjectName(schemaObject);
 
             var aliasLink = aliasBase is null ? null : FindOwnerLink(model.TableReferenceWithAliasAliasLinkList, aliasBase.Id);
             if (aliasLink is not null)
             {
-                rendered += " AS " + RenderIdentifier(aliasLink.Value);
+                rendered += " AS " + RenderIdentifier(aliasLink.Identifier);
             }
 
             var tableSampleClauseLink = FindOwnerLink(model.NamedTableReferenceTableSampleClauseLinkList, namedTableReference.Id);
             if (tableSampleClauseLink is not null)
             {
-                rendered += " " + RenderTableSampleClause(tableSampleClauseLink.Value);
+                rendered += " " + RenderTableSampleClause(tableSampleClauseLink.TableSampleClause);
             }
 
             return rendered;
@@ -43,9 +43,9 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var functionName = RenderIdentifier(GetOwnerLink(
                 model.GlobalFunctionTableReferenceNameLinkList,
                 globalFunctionTableReference.Id,
-                "GlobalFunctionTableReference.Name").Value);
+                "GlobalFunctionTableReference.Name").Identifier);
             var parameters = GetOrderedItems(model.GlobalFunctionTableReferenceParametersItemList, globalFunctionTableReference.Id)
-                .Select(row => RenderScalarExpression(row.Value))
+                .Select(row => RenderScalarExpression(row.ScalarExpression))
                 .ToArray();
 
             var rendered = $"{functionName}({string.Join(", ", parameters)})";
@@ -54,7 +54,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var aliasLink = FindOwnerLink(model.TableReferenceWithAliasAliasLinkList, aliasOwner.Id);
             if (aliasLink is not null)
             {
-                rendered += " AS " + RenderIdentifier(aliasLink.Value);
+                rendered += " AS " + RenderIdentifier(aliasLink.Identifier);
             }
 
             return rendered;
@@ -66,9 +66,9 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var schemaObject = RenderSchemaObjectName(GetOwnerLink(
                 model.SchemaObjectFunctionTableReferenceSchemaObjectLinkList,
                 schemaObjectFunctionTableReference.Id,
-                "SchemaObjectFunctionTableReference.SchemaObject").Value);
+                "SchemaObjectFunctionTableReference.SchemaObject").SchemaObjectName);
             var parameters = GetOrderedItems(model.SchemaObjectFunctionTableReferenceParametersItemList, schemaObjectFunctionTableReference.Id)
-                .Select(row => RenderScalarExpression(row.Value))
+                .Select(row => RenderScalarExpression(row.ScalarExpression))
                 .ToArray();
             return $"{schemaObject}({string.Join(", ", parameters)}){RenderAliasAndColumns(aliasAndColumnsBase!)}";
         }
@@ -79,14 +79,14 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var targetExpression = RenderScalarExpression(GetOwnerLink(
                 model.XmlNodesTableReferenceTargetExpressionLinkList,
                 xmlNodesTableReference.Id,
-                "XmlNodesTableReference.TargetExpression").Value);
+                "XmlNodesTableReference.TargetExpression").ScalarExpression);
             var xQueryString = GetOwnerLink(
                 model.XmlNodesTableReferenceXQueryStringLinkList,
                 xmlNodesTableReference.Id,
-                "XmlNodesTableReference.XQueryString").Value;
+                "XmlNodesTableReference.XQueryString").StringLiteral;
             var xQueryLiteral = RenderLiteral(GetById(
                 model.LiteralList,
-                xQueryString.BaseId,
+                xQueryString.LiteralId,
                 "XmlNodesTableReference.XQueryStringBase"));
             return $"{targetExpression}.nodes({xQueryLiteral}){RenderAliasAndColumns(aliasAndColumnsBase!)}";
         }
@@ -97,20 +97,20 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var source = RenderTableReference(GetOwnerLink(
                 model.PivotedTableReferenceTableReferenceLinkList,
                 pivotedTableReference.Id,
-                "PivotedTableReference.TableReference").Value);
+                "PivotedTableReference.TableReference").TableReference);
             var aggregateFunction = RenderMultiPartIdentifier(GetOwnerLink(
                 model.PivotedTableReferenceAggregateFunctionIdentifierLinkList,
                 pivotedTableReference.Id,
-                "PivotedTableReference.AggregateFunctionIdentifier").Value);
+                "PivotedTableReference.AggregateFunctionIdentifier").MultiPartIdentifier);
             var valueColumns = GetOrderedItems(model.PivotedTableReferenceValueColumnsItemList, pivotedTableReference.Id)
-                .Select(row => RenderColumnReferenceExpression(row.Value))
+                .Select(row => RenderColumnReferenceExpression(row.ColumnReferenceExpression))
                 .ToArray();
             var pivotColumn = RenderColumnReferenceExpression(GetOwnerLink(
                 model.PivotedTableReferencePivotColumnLinkList,
                 pivotedTableReference.Id,
-                "PivotedTableReference.PivotColumn").Value);
+                "PivotedTableReference.PivotColumn").ColumnReferenceExpression);
             var inColumns = GetOrderedItems(model.PivotedTableReferenceInColumnsItemList, pivotedTableReference.Id)
-                .Select(row => RenderIdentifier(row.Value))
+                .Select(row => RenderIdentifier(row.Identifier))
                 .ToArray();
 
             if (valueColumns.Length == 0)
@@ -128,7 +128,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var aliasLink = FindOwnerLink(model.TableReferenceWithAliasAliasLinkList, aliasOwner.Id)
                 ?? throw new InvalidOperationException($"PivotedTableReference '{pivotedTableReference.Id}' was missing an alias.");
 
-            return $"{source}{Environment.NewLine}PIVOT{Environment.NewLine}({Environment.NewLine}    {aggregateFunction}({string.Join(", ", valueColumns)}){Environment.NewLine}    FOR {pivotColumn} IN ({string.Join(", ", inColumns)}){Environment.NewLine}) AS {RenderIdentifier(aliasLink.Value)}";
+            return $"{source}{Environment.NewLine}PIVOT{Environment.NewLine}({Environment.NewLine}    {aggregateFunction}({string.Join(", ", valueColumns)}){Environment.NewLine}    FOR {pivotColumn} IN ({string.Join(", ", inColumns)}){Environment.NewLine}) AS {RenderIdentifier(aliasLink.Identifier)}";
         }
 
         var unpivotedTableReference = aliasBase is null ? null : FindByBaseId(model.UnpivotedTableReferenceList, aliasBase.Id);
@@ -137,17 +137,17 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var source = RenderTableReference(GetOwnerLink(
                 model.UnpivotedTableReferenceTableReferenceLinkList,
                 unpivotedTableReference.Id,
-                "UnpivotedTableReference.TableReference").Value);
+                "UnpivotedTableReference.TableReference").TableReference);
             var valueColumn = RenderIdentifier(GetOwnerLink(
                 model.UnpivotedTableReferenceValueColumnLinkList,
                 unpivotedTableReference.Id,
-                "UnpivotedTableReference.ValueColumn").Value);
+                "UnpivotedTableReference.ValueColumn").Identifier);
             var pivotColumn = RenderIdentifier(GetOwnerLink(
                 model.UnpivotedTableReferencePivotColumnLinkList,
                 unpivotedTableReference.Id,
-                "UnpivotedTableReference.PivotColumn").Value);
+                "UnpivotedTableReference.PivotColumn").Identifier);
             var inColumns = GetOrderedItems(model.UnpivotedTableReferenceInColumnsItemList, unpivotedTableReference.Id)
-                .Select(row => RenderColumnReferenceExpression(row.Value))
+                .Select(row => RenderColumnReferenceExpression(row.ColumnReferenceExpression))
                 .ToArray();
 
             if (inColumns.Length == 0)
@@ -160,7 +160,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var aliasLink = FindOwnerLink(model.TableReferenceWithAliasAliasLinkList, aliasOwner.Id)
                 ?? throw new InvalidOperationException($"UnpivotedTableReference '{unpivotedTableReference.Id}' was missing an alias.");
 
-            return $"{source}{Environment.NewLine}UNPIVOT{Environment.NewLine}({Environment.NewLine}    {valueColumn} FOR {pivotColumn} IN ({string.Join(", ", inColumns)}){Environment.NewLine}) AS {RenderIdentifier(aliasLink.Value)}";
+            return $"{source}{Environment.NewLine}UNPIVOT{Environment.NewLine}({Environment.NewLine}    {valueColumn} FOR {pivotColumn} IN ({string.Join(", ", inColumns)}){Environment.NewLine}) AS {RenderIdentifier(aliasLink.Identifier)}";
         }
 
         var fullTextTableReference = aliasBase is null ? null : FindByBaseId(model.FullTextTableReferenceList, aliasBase.Id);
@@ -176,14 +176,14 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var tableName = RenderSchemaObjectName(GetOwnerLink(
                 model.FullTextTableReferenceTableNameLinkList,
                 fullTextTableReference.Id,
-                "FullTextTableReference.TableName").Value);
+                "FullTextTableReference.TableName").SchemaObjectName);
             var columns = GetOrderedItems(model.FullTextTableReferenceColumnsItemList, fullTextTableReference.Id)
-                .Select(row => RenderColumnReferenceExpression(row.Value))
+                .Select(row => RenderColumnReferenceExpression(row.ColumnReferenceExpression))
                 .ToArray();
             var searchCondition = RenderValueExpression(GetOwnerLink(
                 model.FullTextTableReferenceSearchConditionLinkList,
                 fullTextTableReference.Id,
-                "FullTextTableReference.SearchCondition").Value);
+                "FullTextTableReference.SearchCondition").ValueExpression);
 
             var rendered = $"{functionName}({tableName}, {RenderFullTextColumns(columns)}, {searchCondition})";
             var aliasOwner = aliasBase
@@ -191,7 +191,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var aliasLink = FindOwnerLink(model.TableReferenceWithAliasAliasLinkList, aliasOwner.Id);
             if (aliasLink is not null)
             {
-                rendered += " AS " + RenderIdentifier(aliasLink.Value);
+                rendered += " AS " + RenderIdentifier(aliasLink.Identifier);
             }
 
             return rendered;
@@ -203,7 +203,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var queryExpression = RenderQueryExpression(GetOwnerLink(
                 model.QueryDerivedTableQueryExpressionLinkList,
                 queryDerivedTable.Id,
-                "QueryDerivedTable.QueryExpression").Value);
+                "QueryDerivedTable.QueryExpression").QueryExpression);
             return $"({Environment.NewLine}{queryExpression}{Environment.NewLine}){RenderAliasAndColumns(aliasAndColumnsBase!)}";
         }
 
@@ -211,7 +211,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         if (inlineDerivedTable is not null)
         {
             var rowValues = GetOrderedItems(model.InlineDerivedTableRowValuesItemList, inlineDerivedTable.Id)
-                .Select(row => RenderRowValue(row.Value))
+                .Select(row => RenderRowValue(row.RowValue))
                 .ToArray();
             return $"({Environment.NewLine}VALUES{Environment.NewLine}    {string.Join("," + Environment.NewLine + "    ", rowValues)}{Environment.NewLine}){RenderAliasAndColumns(aliasAndColumnsBase!)}";
         }
@@ -222,15 +222,15 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var join = GetOwnerLink(
                 model.JoinParenthesisTableReferenceJoinLinkList,
                 joinParenthesisTableReference.Id,
-                "JoinParenthesisTableReference.Join").Value;
+                "JoinParenthesisTableReference.Join").TableReference;
             return "(" + RenderTableReference(join) + ")";
         }
 
         var joinTableReference = FindByBaseId(model.JoinTableReferenceList, tableReference.Id)
             ?? throw new InvalidOperationException($"Unsupported MetaTransformScript TableReference id '{tableReference.Id}'.");
 
-        var first = RenderTableReference(GetOwnerLink(model.JoinTableReferenceFirstTableReferenceLinkList, joinTableReference.Id, "JoinTableReference.FirstTableReference").Value);
-        var second = RenderTableReference(GetOwnerLink(model.JoinTableReferenceSecondTableReferenceLinkList, joinTableReference.Id, "JoinTableReference.SecondTableReference").Value);
+        var first = RenderTableReference(GetOwnerLink(model.JoinTableReferenceFirstTableReferenceLinkList, joinTableReference.Id, "JoinTableReference.FirstTableReference").TableReference);
+        var second = RenderTableReference(GetOwnerLink(model.JoinTableReferenceSecondTableReferenceLinkList, joinTableReference.Id, "JoinTableReference.SecondTableReference").TableReference);
 
         var qualifiedJoin = FindByBaseId(model.QualifiedJoinList, joinTableReference.Id);
         if (qualifiedJoin is not null)
@@ -243,7 +243,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
                 "FullOuter" => "FULL OUTER JOIN",
                 _ => throw new InvalidOperationException($"Unsupported MetaTransformScript QualifiedJoinType '{qualifiedJoin.QualifiedJoinType}'.")
             };
-            var predicate = RenderBooleanExpression(GetOwnerLink(model.QualifiedJoinSearchConditionLinkList, qualifiedJoin.Id, "QualifiedJoin.SearchCondition").Value);
+            var predicate = RenderBooleanExpression(GetOwnerLink(model.QualifiedJoinSearchConditionLinkList, qualifiedJoin.Id, "QualifiedJoin.SearchCondition").BooleanExpression);
             return $"{first}{Environment.NewLine}{joinText} {second}{Environment.NewLine}    ON {predicate}";
         }
 

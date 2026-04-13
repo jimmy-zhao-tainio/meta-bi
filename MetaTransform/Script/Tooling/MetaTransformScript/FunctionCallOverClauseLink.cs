@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public OverClause OverClause { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => FunctionCallId; set => FunctionCallId = value; }
-
-        [XmlIgnore]
-        public FunctionCall Owner { get => FunctionCall; set => FunctionCall = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => OverClauseId; set => OverClauseId = value; }
-
-        [XmlIgnore]
-        public OverClause Value { get => OverClause; set => OverClause = value; }
-
     }
 }

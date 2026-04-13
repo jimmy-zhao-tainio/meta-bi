@@ -865,6 +865,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
@@ -876,8 +877,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 
             var result = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                bindingWorkspacePath,
-                ["dbo.CustomerSummary"]);
+                bindingWorkspacePath);
 
             Assert.Equal(bindingWorkspacePath, result.WorkspacePath);
             Assert.Equal(transformModel.TransformScriptList[0].Name, result.TransformScriptName);
@@ -912,6 +912,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "Warehouse.dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
@@ -923,8 +924,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 
             var result = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                bindingWorkspacePath,
-                ["Warehouse.dbo.CustomerSummary"]);
+                bindingWorkspacePath);
 
             Assert.Equal(1, result.TargetCount);
             Assert.Equal(0, result.IssueCount);
@@ -947,6 +947,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
@@ -958,8 +959,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 
             var result = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                bindingWorkspacePath,
-                ["dbo.CustomerSummary"]);
+                bindingWorkspacePath);
 
             Assert.Equal(0, result.IssueCount);
             Assert.Equal(0, result.ErrorCount);
@@ -977,34 +977,62 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     }
 
     [Fact]
-    public void BindingWorkspaceService_CanPersistMultipleTargetsForOneTransform()
+    public void BindingWorkspaceService_CanRepresentSameScriptBodyWithDifferentTargetsByDuplicatingTransformScriptRows()
     {
-        var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        const string sql = """
+CREATE VIEW sales.CustomerSummary AS
+SELECT
+    s.CustomerId,
+    s.CustomerName,
+    s.CreatedAt AS CreatedAtAlias,
+    1 AS LiteralValue
+FROM dbo.SourceTable AS s;
+GO
+CREATE VIEW reporting.CustomerSummaryReplica AS
+SELECT
+    s.CustomerId,
+    s.CustomerName,
+    s.CreatedAt AS CreatedAtAlias,
+    1 AS LiteralValue
+FROM dbo.SourceTable AS s;
+GO
+""";
+        var transformModel = new MetaTransformScript.Sql.MetaTransformScriptSqlService().ImportFromSqlCode(sql);
+        Assert.Equal(2, transformModel.TransformScriptList.Count);
+        Assert.All(
+            transformModel.TransformScriptList,
+            script => script.LanguageProfileId = "MetaTransformSqlServer_v1");
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
-        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+        var summaryBindingWorkspacePath = Path.Combine(tempRoot, "SummaryBindingWorkspace");
+        var replicaBindingWorkspacePath = Path.Combine(tempRoot, "ReplicaBindingWorkspace");
 
         try
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var result = new TransformBindingWorkspaceService().BindToWorkspace(
+            var summaryResult = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                bindingWorkspacePath,
-                ["dbo.CustomerSummary", "reporting.CustomerSummaryReplica"]);
+                summaryBindingWorkspacePath,
+                transformScriptName: "sales.CustomerSummary");
 
-            Assert.Equal(2, result.TargetCount);
-            Assert.Equal(0, result.IssueCount);
+            Assert.Equal(1, summaryResult.TargetCount);
+            Assert.Equal(0, summaryResult.IssueCount);
 
-            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
-            var targets = reloaded.TransformBindingTargetList
-                .OrderBy(item => item.SqlIdentifier, StringComparer.Ordinal)
-                .ToArray();
-            Assert.Equal(2, targets.Length);
-            Assert.Equal("dbo.CustomerSummary", targets[0].SqlIdentifier);
-            Assert.Equal("reporting.CustomerSummaryReplica", targets[1].SqlIdentifier);
+            var summaryReloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(summaryBindingWorkspacePath, searchUpward: false);
+            Assert.Equal("sales.CustomerSummary", Assert.Single(summaryReloaded.TransformBindingTargetList).SqlIdentifier);
+
+            var replicaResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                replicaBindingWorkspacePath,
+                transformScriptName: "reporting.CustomerSummaryReplica");
+
+            Assert.Equal(1, replicaResult.TargetCount);
+            Assert.Equal(0, replicaResult.IssueCount);
+
+            var replicaReloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(replicaBindingWorkspacePath, searchUpward: false);
+            Assert.Equal("reporting.CustomerSummaryReplica", Assert.Single(replicaReloaded.TransformBindingTargetList).SqlIdentifier);
         }
         finally
         {
@@ -1020,6 +1048,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "Linked.Warehouse.dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
@@ -1031,8 +1060,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 
             var ex = Assert.Throws<InvalidOperationException>(() => new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                bindingWorkspacePath,
-                ["Linked.Warehouse.dbo.CustomerSummary"]));
+                bindingWorkspacePath));
 
             Assert.Contains("supports table, schema.table, or database.schema.table", ex.Message);
         }
@@ -1050,6 +1078,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
@@ -1061,8 +1090,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 
             var result = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                bindingWorkspacePath,
-                ["dbo.CustomerSummary"]);
+                bindingWorkspacePath);
 
             Assert.Equal(0, result.IssueCount);
             Assert.Equal(0, result.ErrorCount);
@@ -1083,6 +1111,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
@@ -1104,8 +1133,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 
             var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"),
-                ["dbo.CustomerSummary"]);
+                Path.Combine(tempRoot, "BindingWorkspace"));
 
             var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel);
 
@@ -1138,6 +1166,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
@@ -1152,8 +1181,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 
             var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"),
-                ["dbo.CustomerSummary"]);
+                Path.Combine(tempRoot, "BindingWorkspace"));
 
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
                 new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
@@ -1174,6 +1202,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
@@ -1189,8 +1218,7 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 
             var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"),
-                ["dbo.CustomerSummary"]);
+                Path.Combine(tempRoot, "BindingWorkspace"));
 
             var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel);
             validated.SaveToXmlWorkspace(validatedWorkspacePath);

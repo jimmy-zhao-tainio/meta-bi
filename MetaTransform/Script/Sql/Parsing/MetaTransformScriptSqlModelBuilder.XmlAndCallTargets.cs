@@ -18,8 +18,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.XmlNamespacesXmlNamespacesElementsItemList.Add(new XmlNamespacesXmlNamespacesElementsItem
             {
                 Id = NextId(nameof(XmlNamespacesXmlNamespacesElementsItem)),
-                OwnerId = xmlNamespaces.Id,
-                ValueId = xmlNamespaceElements[ordinal].GetId(nameof(XmlNamespacesElement)),
+                XmlNamespacesId = xmlNamespaces.Id,
+                XmlNamespacesElementId = xmlNamespaceElements[ordinal].GetId(nameof(XmlNamespacesElement)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -37,8 +37,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.XmlNamespacesElementStringLinkList.Add(new XmlNamespacesElementStringLink
         {
             Id = NextId(nameof(XmlNamespacesElementStringLink)),
-            OwnerId = xmlNamespacesElement.Id,
-            ValueId = stringLiteral.GetId(nameof(StringLiteral))
+            XmlNamespacesElementId = xmlNamespacesElement.Id,
+            StringLiteralId = stringLiteral.GetId(nameof(StringLiteral))
         });
 
         if (aliasIdentifier is null)
@@ -49,14 +49,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var aliasElement = new XmlNamespacesAliasElement
         {
             Id = NextId(nameof(XmlNamespacesAliasElement)),
-            BaseId = xmlNamespacesElement.Id
+            XmlNamespacesElementId = xmlNamespacesElement.Id
         };
         model.XmlNamespacesAliasElementList.Add(aliasElement);
         model.XmlNamespacesAliasElementIdentifierLinkList.Add(new XmlNamespacesAliasElementIdentifierLink
         {
             Id = NextId(nameof(XmlNamespacesAliasElementIdentifierLink)),
-            OwnerId = aliasElement.Id,
-            ValueId = aliasIdentifier.GetId(nameof(Identifier))
+            XmlNamespacesAliasElementId = aliasElement.Id,
+            IdentifierId = aliasIdentifier.GetId(nameof(Identifier))
         });
 
         return BuiltNode.Create(
@@ -74,14 +74,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.XmlNamespacesElementStringLinkList.Add(new XmlNamespacesElementStringLink
         {
             Id = NextId(nameof(XmlNamespacesElementStringLink)),
-            OwnerId = xmlNamespacesElement.Id,
-            ValueId = stringLiteral.GetId(nameof(StringLiteral))
+            XmlNamespacesElementId = xmlNamespacesElement.Id,
+            StringLiteralId = stringLiteral.GetId(nameof(StringLiteral))
         });
 
         var defaultElement = new XmlNamespacesDefaultElement
         {
             Id = NextId(nameof(XmlNamespacesDefaultElement)),
-            BaseId = xmlNamespacesElement.Id
+            XmlNamespacesElementId = xmlNamespacesElement.Id
         };
         model.XmlNamespacesDefaultElementList.Add(defaultElement);
 
@@ -101,14 +101,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var multiPartIdentifierCallTarget = new MultiPartIdentifierCallTarget
         {
             Id = NextId(nameof(MultiPartIdentifierCallTarget)),
-            BaseId = callTarget.Id
+            CallTargetId = callTarget.Id
         };
         model.MultiPartIdentifierCallTargetList.Add(multiPartIdentifierCallTarget);
         model.MultiPartIdentifierCallTargetMultiPartIdentifierLinkList.Add(new MultiPartIdentifierCallTargetMultiPartIdentifierLink
         {
             Id = NextId(nameof(MultiPartIdentifierCallTargetMultiPartIdentifierLink)),
-            OwnerId = multiPartIdentifierCallTarget.Id,
-            ValueId = multiPartIdentifier.GetId(nameof(MultiPartIdentifier))
+            MultiPartIdentifierCallTargetId = multiPartIdentifierCallTarget.Id,
+            MultiPartIdentifierId = multiPartIdentifier.GetId(nameof(MultiPartIdentifier))
         });
 
         return BuiltNode.Create(
@@ -121,8 +121,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.FunctionCallCallTargetLinkList.Add(new FunctionCallCallTargetLink
         {
             Id = NextId(nameof(FunctionCallCallTargetLink)),
-            OwnerId = functionCall.GetId(nameof(FunctionCall)),
-            ValueId = callTarget.GetId(nameof(CallTarget))
+            FunctionCallId = functionCall.GetId(nameof(FunctionCall)),
+            CallTargetId = callTarget.GetId(nameof(CallTarget))
         });
 
         return functionCall;

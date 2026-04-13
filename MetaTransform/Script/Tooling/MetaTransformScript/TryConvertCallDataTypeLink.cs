@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public TryConvertCall TryConvertCall { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => TryConvertCallId; set => TryConvertCallId = value; }
-
-        [XmlIgnore]
-        public TryConvertCall Owner { get => TryConvertCall; set => TryConvertCall = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => DataTypeReferenceId; set => DataTypeReferenceId = value; }
-
-        [XmlIgnore]
-        public DataTypeReference Value { get => DataTypeReference; set => DataTypeReference = value; }
-
     }
 }

@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public MultiPartIdentifier MultiPartIdentifier { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => ColumnReferenceExpressionId; set => ColumnReferenceExpressionId = value; }
-
-        [XmlIgnore]
-        public ColumnReferenceExpression Owner { get => ColumnReferenceExpression; set => ColumnReferenceExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => MultiPartIdentifierId; set => MultiPartIdentifierId = value; }
-
-        [XmlIgnore]
-        public MultiPartIdentifier Value { get => MultiPartIdentifier; set => MultiPartIdentifier = value; }
-
     }
 }

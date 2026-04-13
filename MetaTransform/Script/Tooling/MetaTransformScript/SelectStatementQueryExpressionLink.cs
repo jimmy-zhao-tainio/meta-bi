@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public SelectStatement SelectStatement { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => SelectStatementId; set => SelectStatementId = value; }
-
-        [XmlIgnore]
-        public SelectStatement Owner { get => SelectStatement; set => SelectStatement = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => QueryExpressionId; set => QueryExpressionId = value; }
-
-        [XmlIgnore]
-        public QueryExpression Value { get => QueryExpression; set => QueryExpression = value; }
-
     }
 }

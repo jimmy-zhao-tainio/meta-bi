@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public DataTypeReference DataTypeReference { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => ConvertCallId; set => ConvertCallId = value; }
-
-        [XmlIgnore]
-        public ConvertCall Owner { get => ConvertCall; set => ConvertCall = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => DataTypeReferenceId; set => DataTypeReferenceId = value; }
-
-        [XmlIgnore]
-        public DataTypeReference Value { get => DataTypeReference; set => DataTypeReference = value; }
-
     }
 }

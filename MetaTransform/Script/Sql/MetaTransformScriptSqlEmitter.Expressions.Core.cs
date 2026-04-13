@@ -10,8 +10,8 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var binaryExpression = FindByBaseId(model.BinaryExpressionList, scalarExpression.Id);
         if (binaryExpression is not null)
         {
-            var left = RenderScalarExpression(GetOwnerLink(model.BinaryExpressionFirstExpressionLinkList, binaryExpression.Id, "BinaryExpression.FirstExpression").Value);
-            var right = RenderScalarExpression(GetOwnerLink(model.BinaryExpressionSecondExpressionLinkList, binaryExpression.Id, "BinaryExpression.SecondExpression").Value);
+            var left = RenderScalarExpression(GetOwnerLink(model.BinaryExpressionFirstExpressionLinkList, binaryExpression.Id, "BinaryExpression.FirstExpression").ScalarExpression);
+            var right = RenderScalarExpression(GetOwnerLink(model.BinaryExpressionSecondExpressionLinkList, binaryExpression.Id, "BinaryExpression.SecondExpression").ScalarExpression);
             var op = binaryExpression.BinaryExpressionType switch
             {
                 "Add" => "+",
@@ -30,7 +30,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var expression = RenderScalarExpression(GetOwnerLink(
                 model.UnaryExpressionExpressionLinkList,
                 unaryExpression.Id,
-                "UnaryExpression.Expression").Value);
+                "UnaryExpression.Expression").ScalarExpression);
             var op = unaryExpression.UnaryExpressionType switch
             {
                 "Negative" => "-",
@@ -59,7 +59,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             rendered = "(" + RenderScalarExpression(GetOwnerLink(
                 model.ParenthesisExpressionExpressionLinkList,
                 parenthesisExpression.Id,
-                "ParenthesisExpression.Expression").Value) + ")";
+                "ParenthesisExpression.Expression").ScalarExpression) + ")";
         }
         else if (FindByBaseId(model.CaseExpressionList, primaryExpression.Id) is { } caseExpression)
         {
@@ -152,7 +152,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var collationLink = FindOwnerLink(model.PrimaryExpressionCollationLinkList, primaryExpression.Id);
         return collationLink is null
             ? rendered
-            : rendered + " COLLATE " + RenderIdentifier(collationLink.Value);
+            : rendered + " COLLATE " + RenderIdentifier(collationLink.Identifier);
     }
 
     private string RenderScalarSubquery(ScalarSubquery scalarSubquery)
@@ -160,7 +160,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var queryExpression = GetOwnerLink(
             model.ScalarSubqueryQueryExpressionLinkList,
             scalarSubquery.Id,
-            "ScalarSubquery.QueryExpression").Value;
+            "ScalarSubquery.QueryExpression").QueryExpression;
         return "(" + RenderQueryExpression(queryExpression) + ")";
     }
 
@@ -169,7 +169,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var multiPartIdentifierLink = FindOwnerLink(model.ColumnReferenceExpressionMultiPartIdentifierLinkList, columnReference.Id);
         if (multiPartIdentifierLink is not null)
         {
-            return RenderMultiPartIdentifier(multiPartIdentifierLink.Value);
+            return RenderMultiPartIdentifier(multiPartIdentifierLink.MultiPartIdentifier);
         }
 
         if (string.Equals(columnReference.ColumnType, "Wildcard", StringComparison.Ordinal))
@@ -199,22 +199,22 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderSimpleCaseExpression(SimpleCaseExpression simpleCaseExpression)
     {
-        var caseExpression = GetById(model.CaseExpressionList, simpleCaseExpression.BaseId, "SimpleCaseExpression.Base");
+        var caseExpression = GetById(model.CaseExpressionList, simpleCaseExpression.CaseExpressionId, "SimpleCaseExpression.Base");
         var inputExpression = RenderScalarExpression(GetOwnerLink(
             model.SimpleCaseExpressionInputExpressionLinkList,
             simpleCaseExpression.Id,
-            "SimpleCaseExpression.InputExpression").Value);
+            "SimpleCaseExpression.InputExpression").ScalarExpression);
         var whenClauses = GetOrderedItems(model.SimpleCaseExpressionWhenClausesItemList, simpleCaseExpression.Id)
-            .Select(row => RenderSimpleWhenClause(row.Value))
+            .Select(row => RenderSimpleWhenClause(row.SimpleWhenClause))
             .ToArray();
         return RenderCaseExpression("CASE " + inputExpression, whenClauses, caseExpression);
     }
 
     private string RenderSearchedCaseExpression(SearchedCaseExpression searchedCaseExpression)
     {
-        var caseExpression = GetById(model.CaseExpressionList, searchedCaseExpression.BaseId, "SearchedCaseExpression.Base");
+        var caseExpression = GetById(model.CaseExpressionList, searchedCaseExpression.CaseExpressionId, "SearchedCaseExpression.Base");
         var whenClauses = GetOrderedItems(model.SearchedCaseExpressionWhenClausesItemList, searchedCaseExpression.Id)
-            .Select(row => RenderSearchedWhenClause(row.Value))
+            .Select(row => RenderSearchedWhenClause(row.SearchedWhenClause))
             .ToArray();
         return RenderCaseExpression("CASE", whenClauses, caseExpression);
     }
@@ -239,7 +239,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         if (elseExpressionLink is not null)
         {
             builder.Append("    ELSE ");
-            builder.AppendLine(RenderScalarExpression(elseExpressionLink.Value));
+            builder.AppendLine(RenderScalarExpression(elseExpressionLink.ScalarExpression));
         }
 
         builder.Append("END");
@@ -248,29 +248,29 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderSimpleWhenClause(SimpleWhenClause simpleWhenClause)
     {
-        var whenClause = GetById(model.WhenClauseList, simpleWhenClause.BaseId, "SimpleWhenClause.Base");
+        var whenClause = GetById(model.WhenClauseList, simpleWhenClause.WhenClauseId, "SimpleWhenClause.Base");
         var whenExpression = RenderScalarExpression(GetOwnerLink(
             model.SimpleWhenClauseWhenExpressionLinkList,
             simpleWhenClause.Id,
-            "SimpleWhenClause.WhenExpression").Value);
+            "SimpleWhenClause.WhenExpression").ScalarExpression);
         var thenExpression = RenderScalarExpression(GetOwnerLink(
             model.WhenClauseThenExpressionLinkList,
             whenClause.Id,
-            "WhenClause.ThenExpression").Value);
+            "WhenClause.ThenExpression").ScalarExpression);
         return $"WHEN {whenExpression} THEN {thenExpression}";
     }
 
     private string RenderSearchedWhenClause(SearchedWhenClause searchedWhenClause)
     {
-        var whenClause = GetById(model.WhenClauseList, searchedWhenClause.BaseId, "SearchedWhenClause.Base");
+        var whenClause = GetById(model.WhenClauseList, searchedWhenClause.WhenClauseId, "SearchedWhenClause.Base");
         var whenExpression = RenderBooleanExpression(GetOwnerLink(
             model.SearchedWhenClauseWhenExpressionLinkList,
             searchedWhenClause.Id,
-            "SearchedWhenClause.WhenExpression").Value);
+            "SearchedWhenClause.WhenExpression").BooleanExpression);
         var thenExpression = RenderScalarExpression(GetOwnerLink(
             model.WhenClauseThenExpressionLinkList,
             whenClause.Id,
-            "WhenClause.ThenExpression").Value);
+            "WhenClause.ThenExpression").ScalarExpression);
         return $"WHEN {whenExpression} THEN {thenExpression}";
     }
 }

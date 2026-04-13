@@ -25,12 +25,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public SelectElement SelectElement { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => SelectElementId; set => SelectElementId = value; }
-
-        [XmlIgnore]
-        public SelectElement Base { get => SelectElement; set => SelectElement = value; }
-
     }
 }

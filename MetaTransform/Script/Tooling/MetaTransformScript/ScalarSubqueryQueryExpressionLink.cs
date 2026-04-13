@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public ScalarSubquery ScalarSubquery { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => ScalarSubqueryId; set => ScalarSubqueryId = value; }
-
-        [XmlIgnore]
-        public ScalarSubquery Owner { get => ScalarSubquery; set => ScalarSubquery = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => QueryExpressionId; set => QueryExpressionId = value; }
-
-        [XmlIgnore]
-        public QueryExpression Value { get => QueryExpression; set => QueryExpression = value; }
-
     }
 }

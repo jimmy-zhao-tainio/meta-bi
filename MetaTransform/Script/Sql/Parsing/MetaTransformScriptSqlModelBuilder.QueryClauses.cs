@@ -16,14 +16,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var expressionGroupingSpecification = new ExpressionGroupingSpecification
         {
             Id = NextId(nameof(ExpressionGroupingSpecification)),
-            BaseId = groupingSpecification.Id
+            GroupingSpecificationId = groupingSpecification.Id
         };
         model.ExpressionGroupingSpecificationList.Add(expressionGroupingSpecification);
         model.ExpressionGroupingSpecificationExpressionLinkList.Add(new ExpressionGroupingSpecificationExpressionLink
         {
             Id = NextId(nameof(ExpressionGroupingSpecificationExpressionLink)),
-            OwnerId = expressionGroupingSpecification.Id,
-            ValueId = expression.GetId(nameof(ScalarExpression))
+            ExpressionGroupingSpecificationId = expressionGroupingSpecification.Id,
+            ScalarExpressionId = expression.GetId(nameof(ScalarExpression))
         });
 
         return BuiltNode.Create(
@@ -42,7 +42,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var groupingSetsGroupingSpecification = new GroupingSetsGroupingSpecification
         {
             Id = NextId(nameof(GroupingSetsGroupingSpecification)),
-            BaseId = groupingSpecification.Id
+            GroupingSpecificationId = groupingSpecification.Id
         };
         model.GroupingSetsGroupingSpecificationList.Add(groupingSetsGroupingSpecification);
 
@@ -51,8 +51,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.GroupingSetsGroupingSpecificationSetsItemList.Add(new GroupingSetsGroupingSpecificationSetsItem
             {
                 Id = NextId(nameof(GroupingSetsGroupingSpecificationSetsItem)),
-                OwnerId = groupingSetsGroupingSpecification.Id,
-                ValueId = sets[ordinal].GetId(nameof(GroupingSpecification)),
+                GroupingSetsGroupingSpecificationId = groupingSetsGroupingSpecification.Id,
+                GroupingSpecificationId = sets[ordinal].GetId(nameof(GroupingSpecification)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -73,7 +73,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var rollupGroupingSpecification = new RollupGroupingSpecification
         {
             Id = NextId(nameof(RollupGroupingSpecification)),
-            BaseId = groupingSpecification.Id
+            GroupingSpecificationId = groupingSpecification.Id
         };
         model.RollupGroupingSpecificationList.Add(rollupGroupingSpecification);
 
@@ -82,8 +82,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.RollupGroupingSpecificationArgumentsItemList.Add(new RollupGroupingSpecificationArgumentsItem
             {
                 Id = NextId(nameof(RollupGroupingSpecificationArgumentsItem)),
-                OwnerId = rollupGroupingSpecification.Id,
-                ValueId = arguments[ordinal].GetId(nameof(GroupingSpecification)),
+                RollupGroupingSpecificationId = rollupGroupingSpecification.Id,
+                GroupingSpecificationId = arguments[ordinal].GetId(nameof(GroupingSpecification)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -104,7 +104,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var cubeGroupingSpecification = new CubeGroupingSpecification
         {
             Id = NextId(nameof(CubeGroupingSpecification)),
-            BaseId = groupingSpecification.Id
+            GroupingSpecificationId = groupingSpecification.Id
         };
         model.CubeGroupingSpecificationList.Add(cubeGroupingSpecification);
 
@@ -113,8 +113,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.CubeGroupingSpecificationArgumentsItemList.Add(new CubeGroupingSpecificationArgumentsItem
             {
                 Id = NextId(nameof(CubeGroupingSpecificationArgumentsItem)),
-                OwnerId = cubeGroupingSpecification.Id,
-                ValueId = arguments[ordinal].GetId(nameof(GroupingSpecification)),
+                CubeGroupingSpecificationId = cubeGroupingSpecification.Id,
+                GroupingSpecificationId = arguments[ordinal].GetId(nameof(GroupingSpecification)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -135,7 +135,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var compositeGroupingSpecification = new CompositeGroupingSpecification
         {
             Id = NextId(nameof(CompositeGroupingSpecification)),
-            BaseId = groupingSpecification.Id
+            GroupingSpecificationId = groupingSpecification.Id
         };
         model.CompositeGroupingSpecificationList.Add(compositeGroupingSpecification);
 
@@ -144,8 +144,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.CompositeGroupingSpecificationItemsItemList.Add(new CompositeGroupingSpecificationItemsItem
             {
                 Id = NextId(nameof(CompositeGroupingSpecificationItemsItem)),
-                OwnerId = compositeGroupingSpecification.Id,
-                ValueId = items[ordinal].GetId(nameof(GroupingSpecification)),
+                CompositeGroupingSpecificationId = compositeGroupingSpecification.Id,
+                GroupingSpecificationId = items[ordinal].GetId(nameof(GroupingSpecification)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -166,7 +166,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var grandTotalGroupingSpecification = new GrandTotalGroupingSpecification
         {
             Id = NextId(nameof(GrandTotalGroupingSpecification)),
-            BaseId = groupingSpecification.Id
+            GroupingSpecificationId = groupingSpecification.Id
         };
         model.GrandTotalGroupingSpecificationList.Add(grandTotalGroupingSpecification);
 
@@ -189,8 +189,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.GroupByClauseGroupingSpecificationsItemList.Add(new GroupByClauseGroupingSpecificationsItem
             {
                 Id = NextId(nameof(GroupByClauseGroupingSpecificationsItem)),
-                OwnerId = groupByClause.Id,
-                ValueId = groupingSpecifications[ordinal].GetId(nameof(GroupingSpecification)),
+                GroupByClauseId = groupByClause.Id,
+                GroupingSpecificationId = groupingSpecifications[ordinal].GetId(nameof(GroupingSpecification)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -210,8 +210,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.TopRowFilterExpressionLinkList.Add(new TopRowFilterExpressionLink
         {
             Id = NextId(nameof(TopRowFilterExpressionLink)),
-            OwnerId = topRowFilter.Id,
-            ValueId = expression.GetId(nameof(ScalarExpression))
+            TopRowFilterId = topRowFilter.Id,
+            ScalarExpressionId = expression.GetId(nameof(ScalarExpression))
         });
 
         return BuiltNode.Create((nameof(TopRowFilter), topRowFilter.Id));
@@ -228,8 +228,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.ExpressionWithSortOrderExpressionLinkList.Add(new ExpressionWithSortOrderExpressionLink
         {
             Id = NextId(nameof(ExpressionWithSortOrderExpressionLink)),
-            OwnerId = expressionWithSortOrder.Id,
-            ValueId = expression.GetId(nameof(ScalarExpression))
+            ExpressionWithSortOrderId = expressionWithSortOrder.Id,
+            ScalarExpressionId = expression.GetId(nameof(ScalarExpression))
         });
 
         return BuiltNode.Create((nameof(ExpressionWithSortOrder), expressionWithSortOrder.Id));
@@ -248,8 +248,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.OrderByClauseOrderByElementsItemList.Add(new OrderByClauseOrderByElementsItem
             {
                 Id = NextId(nameof(OrderByClauseOrderByElementsItem)),
-                OwnerId = orderByClause.Id,
-                ValueId = orderByElements[ordinal].GetId(nameof(ExpressionWithSortOrder)),
+                OrderByClauseId = orderByClause.Id,
+                ExpressionWithSortOrderId = orderByElements[ordinal].GetId(nameof(ExpressionWithSortOrder)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -268,8 +268,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.OffsetClauseOffsetExpressionLinkList.Add(new OffsetClauseOffsetExpressionLink
         {
             Id = NextId(nameof(OffsetClauseOffsetExpressionLink)),
-            OwnerId = offsetClause.Id,
-            ValueId = offsetExpression.GetId(nameof(ScalarExpression))
+            OffsetClauseId = offsetClause.Id,
+            ScalarExpressionId = offsetExpression.GetId(nameof(ScalarExpression))
         });
 
         if (fetchExpression is not null)
@@ -277,8 +277,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.OffsetClauseFetchExpressionLinkList.Add(new OffsetClauseFetchExpressionLink
             {
                 Id = NextId(nameof(OffsetClauseFetchExpressionLink)),
-                OwnerId = offsetClause.Id,
-                ValueId = fetchExpression.GetId(nameof(ScalarExpression))
+                OffsetClauseId = offsetClause.Id,
+                ScalarExpressionId = fetchExpression.GetId(nameof(ScalarExpression))
             });
         }
 
@@ -290,8 +290,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.FunctionCallWithinGroupOrderByClauseLinkList.Add(new FunctionCallWithinGroupOrderByClauseLink
         {
             Id = NextId(nameof(FunctionCallWithinGroupOrderByClauseLink)),
-            OwnerId = functionCall.GetId(nameof(FunctionCall)),
-            ValueId = orderByClause.GetId(nameof(OrderByClause))
+            FunctionCallId = functionCall.GetId(nameof(FunctionCall)),
+            OrderByClauseId = orderByClause.GetId(nameof(OrderByClause))
         });
 
         return functionCall;
@@ -307,8 +307,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.WhereClauseSearchConditionLinkList.Add(new WhereClauseSearchConditionLink
         {
             Id = NextId(nameof(WhereClauseSearchConditionLink)),
-            OwnerId = row.Id,
-            ValueId = searchCondition.GetId(nameof(BooleanExpression))
+            WhereClauseId = row.Id,
+            BooleanExpressionId = searchCondition.GetId(nameof(BooleanExpression))
         });
         return BuiltNode.Create((nameof(WhereClause), row.Id));
     }
@@ -323,8 +323,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.HavingClauseSearchConditionLinkList.Add(new HavingClauseSearchConditionLink
         {
             Id = NextId(nameof(HavingClauseSearchConditionLink)),
-            OwnerId = row.Id,
-            ValueId = searchCondition.GetId(nameof(BooleanExpression))
+            HavingClauseId = row.Id,
+            BooleanExpressionId = searchCondition.GetId(nameof(BooleanExpression))
         });
         return BuiltNode.Create((nameof(HavingClause), row.Id));
     }
@@ -348,7 +348,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var specification = new QuerySpecification
         {
             Id = NextId(nameof(QuerySpecification)),
-            BaseId = queryExpression.Id,
+            QueryExpressionId = queryExpression.Id,
             UniqueRowFilter = uniqueRowFilter ?? string.Empty
         };
         model.QuerySpecificationList.Add(specification);
@@ -358,8 +358,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.QuerySpecificationSelectElementsItemList.Add(new QuerySpecificationSelectElementsItem
             {
                 Id = NextId(nameof(QuerySpecificationSelectElementsItem)),
-                OwnerId = specification.Id,
-                ValueId = selectElements[ordinal].GetId(nameof(SelectElement)),
+                QuerySpecificationId = specification.Id,
+                SelectElementId = selectElements[ordinal].GetId(nameof(SelectElement)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -369,8 +369,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.QuerySpecificationFromClauseLinkList.Add(new QuerySpecificationFromClauseLink
             {
                 Id = NextId(nameof(QuerySpecificationFromClauseLink)),
-                OwnerId = specification.Id,
-                ValueId = fromClause.GetId(nameof(FromClause))
+                QuerySpecificationId = specification.Id,
+                FromClauseId = fromClause.GetId(nameof(FromClause))
             });
         }
 
@@ -379,8 +379,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.QuerySpecificationWhereClauseLinkList.Add(new QuerySpecificationWhereClauseLink
             {
                 Id = NextId(nameof(QuerySpecificationWhereClauseLink)),
-                OwnerId = specification.Id,
-                ValueId = whereClause.GetId(nameof(WhereClause))
+                QuerySpecificationId = specification.Id,
+                WhereClauseId = whereClause.GetId(nameof(WhereClause))
             });
         }
 
@@ -389,8 +389,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.QuerySpecificationGroupByClauseLinkList.Add(new QuerySpecificationGroupByClauseLink
             {
                 Id = NextId(nameof(QuerySpecificationGroupByClauseLink)),
-                OwnerId = specification.Id,
-                ValueId = groupByClause.GetId(nameof(GroupByClause))
+                QuerySpecificationId = specification.Id,
+                GroupByClauseId = groupByClause.GetId(nameof(GroupByClause))
             });
         }
 
@@ -399,8 +399,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.QuerySpecificationHavingClauseLinkList.Add(new QuerySpecificationHavingClauseLink
             {
                 Id = NextId(nameof(QuerySpecificationHavingClauseLink)),
-                OwnerId = specification.Id,
-                ValueId = havingClause.GetId(nameof(HavingClause))
+                QuerySpecificationId = specification.Id,
+                HavingClauseId = havingClause.GetId(nameof(HavingClause))
             });
         }
 
@@ -409,8 +409,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.QuerySpecificationTopRowFilterLinkList.Add(new QuerySpecificationTopRowFilterLink
             {
                 Id = NextId(nameof(QuerySpecificationTopRowFilterLink)),
-                OwnerId = specification.Id,
-                ValueId = topRowFilter.GetId(nameof(TopRowFilter))
+                QuerySpecificationId = specification.Id,
+                TopRowFilterId = topRowFilter.GetId(nameof(TopRowFilter))
             });
         }
 
@@ -419,8 +419,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.QuerySpecificationWindowClauseLinkList.Add(new QuerySpecificationWindowClauseLink
             {
                 Id = NextId(nameof(QuerySpecificationWindowClauseLink)),
-                OwnerId = specification.Id,
-                ValueId = windowClause.GetId(nameof(WindowClause))
+                QuerySpecificationId = specification.Id,
+                WindowClauseId = windowClause.GetId(nameof(WindowClause))
             });
         }
 
@@ -434,8 +434,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.QueryExpressionOffsetClauseLinkList.Add(new QueryExpressionOffsetClauseLink
         {
             Id = NextId(nameof(QueryExpressionOffsetClauseLink)),
-            OwnerId = queryExpression.GetId(nameof(QueryExpression)),
-            ValueId = offsetClause.GetId(nameof(OffsetClause))
+            QueryExpressionId = queryExpression.GetId(nameof(QueryExpression)),
+            OffsetClauseId = offsetClause.GetId(nameof(OffsetClause))
         });
 
         return queryExpression;

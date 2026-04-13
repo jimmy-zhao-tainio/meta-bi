@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public RowValue RowValue { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => InlineDerivedTableId; set => InlineDerivedTableId = value; }
-
-        [XmlIgnore]
-        public InlineDerivedTable Owner { get => InlineDerivedTable; set => InlineDerivedTable = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => RowValueId; set => RowValueId = value; }
-
-        [XmlIgnore]
-        public RowValue Value { get => RowValue; set => RowValue = value; }
-
     }
 }

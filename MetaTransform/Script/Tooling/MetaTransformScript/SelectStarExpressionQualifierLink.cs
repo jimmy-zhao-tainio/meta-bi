@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public SelectStarExpression SelectStarExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => SelectStarExpressionId; set => SelectStarExpressionId = value; }
-
-        [XmlIgnore]
-        public SelectStarExpression Owner { get => SelectStarExpression; set => SelectStarExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => MultiPartIdentifierId; set => MultiPartIdentifierId = value; }
-
-        [XmlIgnore]
-        public MultiPartIdentifier Value { get => MultiPartIdentifier; set => MultiPartIdentifier = value; }
-
     }
 }

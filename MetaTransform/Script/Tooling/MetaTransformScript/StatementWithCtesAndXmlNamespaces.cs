@@ -25,12 +25,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public TSqlStatement TSqlStatement { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => TSqlStatementId; set => TSqlStatementId = value; }
-
-        [XmlIgnore]
-        public TSqlStatement Base { get => TSqlStatement; set => TSqlStatement = value; }
-
     }
 }

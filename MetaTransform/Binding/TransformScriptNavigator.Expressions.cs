@@ -13,7 +13,7 @@ internal sealed partial class TransformScriptNavigator
             return null;
         }
 
-        return groupByClauseById.GetValueOrDefault(link.ValueId);
+        return groupByClauseById.GetValueOrDefault(link.GroupByClauseId);
     }
 
     public IReadOnlyList<GroupingSpecification> GetGroupingSpecifications(GroupByClause groupByClause)
@@ -25,7 +25,7 @@ internal sealed partial class TransformScriptNavigator
 
         return items
             .OrderBy(item => ParseOrdinal(item.Ordinal))
-            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.GroupingSpecificationId))
             .Where(item => item is not null)
             .Cast<GroupingSpecification>()
             .ToArray();
@@ -40,15 +40,15 @@ internal sealed partial class TransformScriptNavigator
     public GroupingSetsGroupingSpecification? TryGetGroupingSetsGroupingSpecification(GroupingSpecification groupingSpecification)
     {
         return model.GroupingSetsGroupingSpecificationList
-            .FirstOrDefault(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+            .FirstOrDefault(item => string.Equals(item.GroupingSpecificationId, groupingSpecification.Id, StringComparison.Ordinal));
     }
 
     public IReadOnlyList<GroupingSpecification> GetGroupingSets(GroupingSetsGroupingSpecification groupingSetsGroupingSpecification)
     {
         return model.GroupingSetsGroupingSpecificationSetsItemList
-            .Where(item => string.Equals(item.OwnerId, groupingSetsGroupingSpecification.Id, StringComparison.Ordinal))
+            .Where(item => string.Equals(item.GroupingSetsGroupingSpecificationId, groupingSetsGroupingSpecification.Id, StringComparison.Ordinal))
             .OrderBy(item => ParseOrdinal(item.Ordinal))
-            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.GroupingSpecificationId))
             .Where(item => item is not null)
             .Cast<GroupingSpecification>()
             .ToArray();
@@ -57,15 +57,15 @@ internal sealed partial class TransformScriptNavigator
     public RollupGroupingSpecification? TryGetRollupGroupingSpecification(GroupingSpecification groupingSpecification)
     {
         return model.RollupGroupingSpecificationList
-            .FirstOrDefault(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+            .FirstOrDefault(item => string.Equals(item.GroupingSpecificationId, groupingSpecification.Id, StringComparison.Ordinal));
     }
 
     public IReadOnlyList<GroupingSpecification> GetRollupArguments(RollupGroupingSpecification rollupGroupingSpecification)
     {
         return model.RollupGroupingSpecificationArgumentsItemList
-            .Where(item => string.Equals(item.OwnerId, rollupGroupingSpecification.Id, StringComparison.Ordinal))
+            .Where(item => string.Equals(item.RollupGroupingSpecificationId, rollupGroupingSpecification.Id, StringComparison.Ordinal))
             .OrderBy(item => ParseOrdinal(item.Ordinal))
-            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.GroupingSpecificationId))
             .Where(item => item is not null)
             .Cast<GroupingSpecification>()
             .ToArray();
@@ -74,15 +74,15 @@ internal sealed partial class TransformScriptNavigator
     public CubeGroupingSpecification? TryGetCubeGroupingSpecification(GroupingSpecification groupingSpecification)
     {
         return model.CubeGroupingSpecificationList
-            .FirstOrDefault(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+            .FirstOrDefault(item => string.Equals(item.GroupingSpecificationId, groupingSpecification.Id, StringComparison.Ordinal));
     }
 
     public IReadOnlyList<GroupingSpecification> GetCubeArguments(CubeGroupingSpecification cubeGroupingSpecification)
     {
         return model.CubeGroupingSpecificationArgumentsItemList
-            .Where(item => string.Equals(item.OwnerId, cubeGroupingSpecification.Id, StringComparison.Ordinal))
+            .Where(item => string.Equals(item.CubeGroupingSpecificationId, cubeGroupingSpecification.Id, StringComparison.Ordinal))
             .OrderBy(item => ParseOrdinal(item.Ordinal))
-            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.GroupingSpecificationId))
             .Where(item => item is not null)
             .Cast<GroupingSpecification>()
             .ToArray();
@@ -91,15 +91,15 @@ internal sealed partial class TransformScriptNavigator
     public CompositeGroupingSpecification? TryGetCompositeGroupingSpecification(GroupingSpecification groupingSpecification)
     {
         return model.CompositeGroupingSpecificationList
-            .FirstOrDefault(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+            .FirstOrDefault(item => string.Equals(item.GroupingSpecificationId, groupingSpecification.Id, StringComparison.Ordinal));
     }
 
     public IReadOnlyList<GroupingSpecification> GetCompositeGroupingItems(CompositeGroupingSpecification compositeGroupingSpecification)
     {
         return model.CompositeGroupingSpecificationItemsItemList
-            .Where(item => string.Equals(item.OwnerId, compositeGroupingSpecification.Id, StringComparison.Ordinal))
+            .Where(item => string.Equals(item.CompositeGroupingSpecificationId, compositeGroupingSpecification.Id, StringComparison.Ordinal))
             .OrderBy(item => ParseOrdinal(item.Ordinal))
-            .Select(item => groupingSpecificationById.GetValueOrDefault(item.ValueId))
+            .Select(item => groupingSpecificationById.GetValueOrDefault(item.GroupingSpecificationId))
             .Where(item => item is not null)
             .Cast<GroupingSpecification>()
             .ToArray();
@@ -108,13 +108,13 @@ internal sealed partial class TransformScriptNavigator
     public bool IsGrandTotalGroupingSpecification(GroupingSpecification groupingSpecification)
     {
         return model.GrandTotalGroupingSpecificationList
-            .Any(item => string.Equals(item.BaseId, groupingSpecification.Id, StringComparison.Ordinal));
+            .Any(item => string.Equals(item.GroupingSpecificationId, groupingSpecification.Id, StringComparison.Ordinal));
     }
 
     public ScalarExpression? TryGetExpressionGroupingSpecificationExpression(ExpressionGroupingSpecification expressionGroupingSpecification)
     {
         return expressionGroupingSpecificationExpressionLinkByOwnerId.TryGetValue(expressionGroupingSpecification.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -125,13 +125,13 @@ internal sealed partial class TransformScriptNavigator
             return null;
         }
 
-        if (!whereClauseById.TryGetValue(whereClauseLink.ValueId, out var whereClause))
+        if (!whereClauseById.TryGetValue(whereClauseLink.WhereClauseId, out var whereClause))
         {
             return null;
         }
 
         return whereClauseSearchConditionLinkByOwnerId.TryGetValue(whereClause.Id, out var searchConditionLink)
-            ? new BooleanExpression { Id = searchConditionLink.ValueId }
+            ? new BooleanExpression { Id = searchConditionLink.BooleanExpressionId }
             : null;
     }
 
@@ -142,13 +142,13 @@ internal sealed partial class TransformScriptNavigator
             return null;
         }
 
-        if (!havingClauseById.TryGetValue(havingClauseLink.ValueId, out var havingClause))
+        if (!havingClauseById.TryGetValue(havingClauseLink.HavingClauseId, out var havingClause))
         {
             return null;
         }
 
         return havingClauseSearchConditionLinkByOwnerId.TryGetValue(havingClause.Id, out var searchConditionLink)
-            ? new BooleanExpression { Id = searchConditionLink.ValueId }
+            ? new BooleanExpression { Id = searchConditionLink.BooleanExpressionId }
             : null;
     }
 
@@ -165,7 +165,7 @@ internal sealed partial class TransformScriptNavigator
     public string? TryGetScalarSubqueryQueryExpressionId(ScalarSubquery scalarSubquery)
     {
         return scalarSubqueryQueryExpressionLinkByOwnerId.TryGetValue(scalarSubquery.Id, out var link)
-            ? link.ValueId
+            ? link.QueryExpressionId
             : null;
     }
 
@@ -181,8 +181,8 @@ internal sealed partial class TransformScriptNavigator
         }
 
         return (
-            scalarExpressionById.GetValueOrDefault(firstLink.ValueId),
-            scalarExpressionById.GetValueOrDefault(secondLink.ValueId));
+            scalarExpressionById.GetValueOrDefault(firstLink.ScalarExpressionId),
+            scalarExpressionById.GetValueOrDefault(secondLink.ScalarExpressionId));
     }
 
     public UnaryExpression? TryGetUnaryExpression(ScalarExpression scalarExpression) =>
@@ -191,7 +191,7 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetUnaryExpressionOperand(UnaryExpression unaryExpression)
     {
         return unaryExpressionExpressionLinkByOwnerId.TryGetValue(unaryExpression.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -208,7 +208,7 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetParenthesisExpressionOperand(ParenthesisExpression parenthesisExpression)
     {
         return parenthesisExpressionExpressionLinkByOwnerId.TryGetValue(parenthesisExpression.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -230,7 +230,7 @@ internal sealed partial class TransformScriptNavigator
     public string? TryGetFunctionCallName(FunctionCall functionCall)
     {
         return functionCallFunctionNameLinkByOwnerId.TryGetValue(functionCall.Id, out var link)
-            ? identifierById.GetValueOrDefault(link.ValueId)?.Value
+            ? identifierById.GetValueOrDefault(link.IdentifierId)?.Value
             : null;
     }
 
@@ -311,8 +311,8 @@ internal sealed partial class TransformScriptNavigator
         }
 
         return (
-            scalarExpressionById.GetValueOrDefault(firstLink.ValueId),
-            scalarExpressionById.GetValueOrDefault(secondLink.ValueId));
+            scalarExpressionById.GetValueOrDefault(firstLink.ScalarExpressionId),
+            scalarExpressionById.GetValueOrDefault(secondLink.ScalarExpressionId));
     }
 
     public IIfCall? TryGetIIfCall(ScalarExpression scalarExpression)
@@ -328,21 +328,21 @@ internal sealed partial class TransformScriptNavigator
     public BooleanExpression? TryGetIIfPredicate(IIfCall iIfCall)
     {
         return iIfCallPredicateLinkByOwnerId.TryGetValue(iIfCall.Id, out var link)
-            ? new BooleanExpression { Id = link.ValueId }
+            ? new BooleanExpression { Id = link.BooleanExpressionId }
             : null;
     }
 
     public ScalarExpression? TryGetIIfThenExpression(IIfCall iIfCall)
     {
         return iIfCallThenExpressionLinkByOwnerId.TryGetValue(iIfCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetIIfElseExpression(IIfCall iIfCall)
     {
         return iIfCallElseExpressionLinkByOwnerId.TryGetValue(iIfCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -370,7 +370,7 @@ internal sealed partial class TransformScriptNavigator
 
         return items
             .OrderBy(item => ParseOrdinal(item.Ordinal))
-            .Select(item => searchedWhenClauseById.GetValueOrDefault(item.ValueId))
+            .Select(item => searchedWhenClauseById.GetValueOrDefault(item.SearchedWhenClauseId))
             .Where(item => item is not null)
             .Cast<SearchedWhenClause>()
             .ToArray();
@@ -379,21 +379,21 @@ internal sealed partial class TransformScriptNavigator
     public BooleanExpression? TryGetSearchedWhenClauseCondition(SearchedWhenClause searchedWhenClause)
     {
         return searchedWhenClauseWhenExpressionLinkByOwnerId.TryGetValue(searchedWhenClause.Id, out var link)
-            ? new BooleanExpression { Id = link.ValueId }
+            ? new BooleanExpression { Id = link.BooleanExpressionId }
             : null;
     }
 
     public ScalarExpression? TryGetWhenClauseThenExpression(SearchedWhenClause whenClause)
     {
-        return whenClauseThenExpressionLinkByOwnerId.TryGetValue(whenClause.BaseId, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+        return whenClauseThenExpressionLinkByOwnerId.TryGetValue(whenClause.WhenClauseId, out var link)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetCaseElseExpression(SearchedCaseExpression searchedCaseExpression)
     {
-        return caseExpressionElseExpressionLinkByOwnerId.TryGetValue(searchedCaseExpression.BaseId, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+        return caseExpressionElseExpressionLinkByOwnerId.TryGetValue(searchedCaseExpression.CaseExpressionId, out var link)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -415,7 +415,7 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetSimpleCaseInputExpression(SimpleCaseExpression simpleCaseExpression)
     {
         return simpleCaseExpressionInputExpressionLinkByOwnerId.TryGetValue(simpleCaseExpression.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -428,7 +428,7 @@ internal sealed partial class TransformScriptNavigator
 
         return items
             .OrderBy(item => ParseOrdinal(item.Ordinal))
-            .Select(item => simpleWhenClauseById.GetValueOrDefault(item.ValueId))
+            .Select(item => simpleWhenClauseById.GetValueOrDefault(item.SimpleWhenClauseId))
             .Where(item => item is not null)
             .Cast<SimpleWhenClause>()
             .ToArray();
@@ -437,21 +437,21 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetSimpleWhenClauseWhenExpression(SimpleWhenClause simpleWhenClause)
     {
         return simpleWhenClauseWhenExpressionLinkByOwnerId.TryGetValue(simpleWhenClause.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetWhenClauseThenExpression(SimpleWhenClause whenClause)
     {
-        return whenClauseThenExpressionLinkByOwnerId.TryGetValue(whenClause.BaseId, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+        return whenClauseThenExpressionLinkByOwnerId.TryGetValue(whenClause.WhenClauseId, out var link)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetCaseElseExpression(SimpleCaseExpression simpleCaseExpression)
     {
-        return caseExpressionElseExpressionLinkByOwnerId.TryGetValue(simpleCaseExpression.BaseId, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+        return caseExpressionElseExpressionLinkByOwnerId.TryGetValue(simpleCaseExpression.CaseExpressionId, out var link)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -468,7 +468,7 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetCastCallParameter(CastCall castCall)
     {
         return castCallParameterLinkByOwnerId.TryGetValue(castCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -485,14 +485,14 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetConvertCallParameter(ConvertCall convertCall)
     {
         return convertCallParameterLinkByOwnerId.TryGetValue(convertCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetConvertCallStyle(ConvertCall convertCall)
     {
         return convertCallStyleLinkByOwnerId.TryGetValue(convertCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -509,7 +509,7 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetTryCastCallParameter(TryCastCall tryCastCall)
     {
         return tryCastCallParameterLinkByOwnerId.TryGetValue(tryCastCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -526,14 +526,14 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetTryConvertCallParameter(TryConvertCall tryConvertCall)
     {
         return tryConvertCallParameterLinkByOwnerId.TryGetValue(tryConvertCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetTryConvertCallStyle(TryConvertCall tryConvertCall)
     {
         return tryConvertCallStyleLinkByOwnerId.TryGetValue(tryConvertCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -550,14 +550,14 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetParseCallStringValue(ParseCall parseCall)
     {
         return parseCallStringValueLinkByOwnerId.TryGetValue(parseCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetParseCallCulture(ParseCall parseCall)
     {
         return parseCallCultureLinkByOwnerId.TryGetValue(parseCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -574,14 +574,14 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetTryParseCallStringValue(TryParseCall tryParseCall)
     {
         return tryParseCallStringValueLinkByOwnerId.TryGetValue(tryParseCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetTryParseCallCulture(TryParseCall tryParseCall)
     {
         return tryParseCallCultureLinkByOwnerId.TryGetValue(tryParseCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -598,14 +598,14 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetAtTimeZoneDateValue(AtTimeZoneCall atTimeZoneCall)
     {
         return atTimeZoneCallDateValueLinkByOwnerId.TryGetValue(atTimeZoneCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarExpression? TryGetAtTimeZoneTimeZone(AtTimeZoneCall atTimeZoneCall)
     {
         return atTimeZoneCallTimeZoneLinkByOwnerId.TryGetValue(atTimeZoneCall.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
@@ -620,7 +620,7 @@ internal sealed partial class TransformScriptNavigator
             return null;
         }
 
-        return (new BooleanExpression { Id = firstLink.ValueId }, new BooleanExpression { Id = secondLink.ValueId });
+        return (new BooleanExpression { Id = firstLink.BooleanExpressionId }, new BooleanExpression { Id = secondLink.BooleanExpressionId });
     }
 
     public BooleanComparisonExpression? TryGetBooleanComparisonExpression(BooleanExpression booleanExpression) =>
@@ -635,8 +635,8 @@ internal sealed partial class TransformScriptNavigator
         }
 
         return (
-            scalarExpressionById.GetValueOrDefault(firstLink.ValueId),
-            scalarExpressionById.GetValueOrDefault(secondLink.ValueId));
+            scalarExpressionById.GetValueOrDefault(firstLink.ScalarExpressionId),
+            scalarExpressionById.GetValueOrDefault(secondLink.ScalarExpressionId));
     }
 
     public BooleanNotExpression? TryGetBooleanNotExpression(BooleanExpression booleanExpression) =>
@@ -645,7 +645,7 @@ internal sealed partial class TransformScriptNavigator
     public BooleanExpression? TryGetBooleanNotExpressionOperand(BooleanNotExpression booleanNotExpression)
     {
         return booleanNotExpressionExpressionLinkByOwnerId.TryGetValue(booleanNotExpression.Id, out var link)
-            ? new BooleanExpression { Id = link.ValueId }
+            ? new BooleanExpression { Id = link.BooleanExpressionId }
             : null;
     }
 
@@ -655,7 +655,7 @@ internal sealed partial class TransformScriptNavigator
     public BooleanExpression? TryGetBooleanParenthesisExpressionOperand(BooleanParenthesisExpression booleanParenthesisExpression)
     {
         return booleanParenthesisExpressionExpressionLinkByOwnerId.TryGetValue(booleanParenthesisExpression.Id, out var link)
-            ? new BooleanExpression { Id = link.ValueId }
+            ? new BooleanExpression { Id = link.BooleanExpressionId }
             : null;
     }
 
@@ -665,7 +665,7 @@ internal sealed partial class TransformScriptNavigator
     public ScalarSubquery? TryGetExistsPredicateSubquery(ExistsPredicate existsPredicate)
     {
         return existsPredicateSubqueryLinkByOwnerId.TryGetValue(existsPredicate.Id, out var link)
-            ? scalarSubqueryByPrimaryExpressionId.Values.FirstOrDefault(item => string.Equals(item.Id, link.ValueId, StringComparison.Ordinal))
+            ? scalarSubqueryByPrimaryExpressionId.Values.FirstOrDefault(item => string.Equals(item.Id, link.ScalarSubqueryId, StringComparison.Ordinal))
             : null;
     }
 
@@ -675,14 +675,14 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetInPredicateExpression(InPredicate inPredicate)
     {
         return inPredicateExpressionLinkByOwnerId.TryGetValue(inPredicate.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarSubquery? TryGetInPredicateSubquery(InPredicate inPredicate)
     {
         return inPredicateSubqueryLinkByOwnerId.TryGetValue(inPredicate.Id, out var link)
-            ? scalarSubqueryByPrimaryExpressionId.Values.FirstOrDefault(item => string.Equals(item.Id, link.ValueId, StringComparison.Ordinal))
+            ? scalarSubqueryByPrimaryExpressionId.Values.FirstOrDefault(item => string.Equals(item.Id, link.ScalarSubqueryId, StringComparison.Ordinal))
             : null;
     }
 
@@ -692,14 +692,14 @@ internal sealed partial class TransformScriptNavigator
     public ScalarExpression? TryGetSubqueryComparisonPredicateExpression(SubqueryComparisonPredicate subqueryComparisonPredicate)
     {
         return subqueryComparisonPredicateExpressionLinkByOwnerId.TryGetValue(subqueryComparisonPredicate.Id, out var link)
-            ? scalarExpressionById.GetValueOrDefault(link.ValueId)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
             : null;
     }
 
     public ScalarSubquery? TryGetSubqueryComparisonPredicateSubquery(SubqueryComparisonPredicate subqueryComparisonPredicate)
     {
         return subqueryComparisonPredicateSubqueryLinkByOwnerId.TryGetValue(subqueryComparisonPredicate.Id, out var link)
-            ? scalarSubqueryByPrimaryExpressionId.Values.FirstOrDefault(item => string.Equals(item.Id, link.ValueId, StringComparison.Ordinal))
+            ? scalarSubqueryByPrimaryExpressionId.Values.FirstOrDefault(item => string.Equals(item.Id, link.ScalarSubqueryId, StringComparison.Ordinal))
             : null;
     }
 
@@ -714,7 +714,7 @@ internal sealed partial class TransformScriptNavigator
 
         return items
             .OrderBy(item => ParseOrdinal((string?)item!.GetType().GetProperty("Ordinal")?.GetValue(item) ?? string.Empty))
-            .Select(item => scalarExpressionById.GetValueOrDefault((string?)item!.GetType().GetProperty("ValueId")?.GetValue(item) ?? string.Empty))
+            .Select(item => scalarExpressionById.GetValueOrDefault((string?)item!.GetType().GetProperty("ScalarExpressionId")?.GetValue(item) ?? string.Empty))
             .Where(item => item is not null)
             .Cast<ScalarExpression>()
             .ToArray();

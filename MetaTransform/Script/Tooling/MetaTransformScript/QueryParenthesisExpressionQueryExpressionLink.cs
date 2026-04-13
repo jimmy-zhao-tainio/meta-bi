@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public QueryParenthesisExpression QueryParenthesisExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => QueryParenthesisExpressionId; set => QueryParenthesisExpressionId = value; }
-
-        [XmlIgnore]
-        public QueryParenthesisExpression Owner { get => QueryParenthesisExpression; set => QueryParenthesisExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => QueryExpressionId; set => QueryExpressionId = value; }
-
-        [XmlIgnore]
-        public QueryExpression Value { get => QueryExpression; set => QueryExpression = value; }
-
     }
 }

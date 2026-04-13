@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public TopRowFilter TopRowFilter { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => QuerySpecificationId; set => QuerySpecificationId = value; }
-
-        [XmlIgnore]
-        public QuerySpecification Owner { get => QuerySpecification; set => QuerySpecification = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => TopRowFilterId; set => TopRowFilterId = value; }
-
-        [XmlIgnore]
-        public TopRowFilter Value { get => TopRowFilter; set => TopRowFilter = value; }
-
     }
 }

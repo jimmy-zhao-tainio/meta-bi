@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public BooleanParenthesisExpression BooleanParenthesisExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => BooleanParenthesisExpressionId; set => BooleanParenthesisExpressionId = value; }
-
-        [XmlIgnore]
-        public BooleanParenthesisExpression Owner { get => BooleanParenthesisExpression; set => BooleanParenthesisExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => BooleanExpressionId; set => BooleanExpressionId = value; }
-
-        [XmlIgnore]
-        public BooleanExpression Value { get => BooleanExpression; set => BooleanExpression = value; }
-
     }
 }

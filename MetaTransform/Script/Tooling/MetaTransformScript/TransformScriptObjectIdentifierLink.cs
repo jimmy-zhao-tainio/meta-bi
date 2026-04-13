@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public TransformScript TransformScript { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => TransformScriptId; set => TransformScriptId = value; }
-
-        [XmlIgnore]
-        public TransformScript Owner { get => TransformScript; set => TransformScript = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => IdentifierId; set => IdentifierId = value; }
-
-        [XmlIgnore]
-        public Identifier Value { get => Identifier; set => Identifier = value; }
-
     }
 }

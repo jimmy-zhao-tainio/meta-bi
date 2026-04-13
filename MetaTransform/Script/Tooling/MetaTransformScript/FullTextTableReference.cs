@@ -29,12 +29,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public TableReferenceWithAlias TableReferenceWithAlias { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => TableReferenceWithAliasId; set => TableReferenceWithAliasId = value; }
-
-        [XmlIgnore]
-        public TableReferenceWithAlias Base { get => TableReferenceWithAlias; set => TableReferenceWithAlias = value; }
-
     }
 }

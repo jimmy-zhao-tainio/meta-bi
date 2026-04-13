@@ -21,14 +21,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var row = new SelectScalarExpression
         {
             Id = NextId(nameof(SelectScalarExpression)),
-            BaseId = selectElement.GetId(nameof(SelectElement))
+            SelectElementId = selectElement.GetId(nameof(SelectElement))
         };
         model.SelectScalarExpressionList.Add(row);
         model.SelectScalarExpressionExpressionLinkList.Add(new SelectScalarExpressionExpressionLink
         {
             Id = NextId(nameof(SelectScalarExpressionExpressionLink)),
-            OwnerId = row.Id,
-            ValueId = expression.GetId(nameof(ScalarExpression))
+            SelectScalarExpressionId = row.Id,
+            ScalarExpressionId = expression.GetId(nameof(ScalarExpression))
         });
 
         if (columnName is not null)
@@ -36,8 +36,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.SelectScalarExpressionColumnNameLinkList.Add(new SelectScalarExpressionColumnNameLink
             {
                 Id = NextId(nameof(SelectScalarExpressionColumnNameLink)),
-                OwnerId = row.Id,
-                ValueId = columnName.GetId(nameof(IdentifierOrValueExpression))
+                SelectScalarExpressionId = row.Id,
+                IdentifierOrValueExpressionId = columnName.GetId(nameof(IdentifierOrValueExpression))
             });
         }
 
@@ -53,7 +53,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var row = new SelectStarExpression
         {
             Id = NextId(nameof(SelectStarExpression)),
-            BaseId = selectElement.GetId(nameof(SelectElement))
+            SelectElementId = selectElement.GetId(nameof(SelectElement))
         };
         model.SelectStarExpressionList.Add(row);
 
@@ -62,8 +62,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.SelectStarExpressionQualifierLinkList.Add(new SelectStarExpressionQualifierLink
             {
                 Id = NextId(nameof(SelectStarExpressionQualifierLink)),
-                OwnerId = row.Id,
-                ValueId = qualifier.GetId(nameof(MultiPartIdentifier))
+                SelectStarExpressionId = row.Id,
+                MultiPartIdentifierId = qualifier.GetId(nameof(MultiPartIdentifier))
             });
         }
 

@@ -33,12 +33,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public Literal Literal { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => LiteralId; set => LiteralId = value; }
-
-        [XmlIgnore]
-        public Literal Base { get => Literal; set => Literal = value; }
-
     }
 }

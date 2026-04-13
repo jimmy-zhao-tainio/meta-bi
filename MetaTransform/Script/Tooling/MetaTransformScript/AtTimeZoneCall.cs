@@ -25,12 +25,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public PrimaryExpression PrimaryExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => PrimaryExpressionId; set => PrimaryExpressionId = value; }
-
-        [XmlIgnore]
-        public PrimaryExpression Base { get => PrimaryExpression; set => PrimaryExpression = value; }
-
     }
 }

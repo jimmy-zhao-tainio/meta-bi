@@ -25,12 +25,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public MultiPartIdentifier MultiPartIdentifier { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => MultiPartIdentifierId; set => MultiPartIdentifierId = value; }
-
-        [XmlIgnore]
-        public MultiPartIdentifier Base { get => MultiPartIdentifier; set => MultiPartIdentifier = value; }
-
     }
 }

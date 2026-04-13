@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public QualifiedJoin QualifiedJoin { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => QualifiedJoinId; set => QualifiedJoinId = value; }
-
-        [XmlIgnore]
-        public QualifiedJoin Owner { get => QualifiedJoin; set => QualifiedJoin = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => BooleanExpressionId; set => BooleanExpressionId = value; }
-
-        [XmlIgnore]
-        public BooleanExpression Value { get => BooleanExpression; set => BooleanExpression = value; }
-
     }
 }

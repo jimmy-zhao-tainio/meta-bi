@@ -4,6 +4,7 @@
     <Entity name="TransformScript">
       <PropertyList>
         <Property name="Name" />
+        <Property name="TargetSqlIdentifier" />
         <Property name="LanguageProfileId" isRequired="false" />
         <Property name="SourcePath" isRequired="false" />
       </PropertyList>

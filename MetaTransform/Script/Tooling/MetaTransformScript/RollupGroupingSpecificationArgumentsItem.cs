@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public RollupGroupingSpecification RollupGroupingSpecification { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => RollupGroupingSpecificationId; set => RollupGroupingSpecificationId = value; }
-
-        [XmlIgnore]
-        public RollupGroupingSpecification Owner { get => RollupGroupingSpecification; set => RollupGroupingSpecification = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => GroupingSpecificationId; set => GroupingSpecificationId = value; }
-
-        [XmlIgnore]
-        public GroupingSpecification Value { get => GroupingSpecification; set => GroupingSpecification = value; }
-
     }
 }

@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public ValueExpression ValueExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => FullTextPredicateId; set => FullTextPredicateId = value; }
-
-        [XmlIgnore]
-        public FullTextPredicate Owner { get => FullTextPredicate; set => FullTextPredicate = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ValueExpressionId; set => ValueExpressionId = value; }
-
-        [XmlIgnore]
-        public ValueExpression Value { get => ValueExpression; set => ValueExpression = value; }
-
     }
 }

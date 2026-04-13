@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public IdentifierOrValueExpression IdentifierOrValueExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => IdentifierOrValueExpressionId; set => IdentifierOrValueExpressionId = value; }
-
-        [XmlIgnore]
-        public IdentifierOrValueExpression Owner { get => IdentifierOrValueExpression; set => IdentifierOrValueExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => IdentifierId; set => IdentifierId = value; }
-
-        [XmlIgnore]
-        public Identifier Value { get => Identifier; set => Identifier = value; }
-
     }
 }

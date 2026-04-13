@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public ParseCall ParseCall { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => ParseCallId; set => ParseCallId = value; }
-
-        [XmlIgnore]
-        public ParseCall Owner { get => ParseCall; set => ParseCall = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => DataTypeReferenceId; set => DataTypeReferenceId = value; }
-
-        [XmlIgnore]
-        public DataTypeReference Value { get => DataTypeReference; set => DataTypeReference = value; }
-
     }
 }

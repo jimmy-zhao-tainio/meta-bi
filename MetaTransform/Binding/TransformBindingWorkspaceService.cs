@@ -8,33 +8,24 @@ public sealed class TransformBindingWorkspaceService
     public BindToWorkspaceResult BindToWorkspace(
         string transformWorkspacePath,
         string newWorkspacePath,
-        IReadOnlyList<string> targetSqlIdentifiers,
         string? transformScriptName = null,
         string? activeLanguageProfileIdOverride = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
-        ArgumentNullException.ThrowIfNull(targetSqlIdentifiers);
-
-        if (targetSqlIdentifiers.Count == 0)
-        {
-            throw new InvalidOperationException("At least one --target SQL identifier is required.");
-        }
 
         var transformWorkspaceFullPath = Path.GetFullPath(transformWorkspacePath);
         var bindingWorkspaceFullPath = Path.GetFullPath(newWorkspacePath);
 
         var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspaceFullPath, searchUpward: false);
         var transformScript = ResolveSingleScript(transformModel, transformScriptName);
-        var targets = targetSqlIdentifiers
-            .Select(CreateUnresolvedTarget)
-            .ToArray();
+        var target = CreateTargetFromTransformScript(transformScript);
 
         var bound = new TransformBindingService().BindTransform(
             transformModel,
             transformScript,
             activeLanguageProfileIdOverride);
-        var bindingModel = TransformBindingModelBuilder.Create(bound, targets);
+        var bindingModel = TransformBindingModelBuilder.Create(bound, [target]);
 
         bindingModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);
 
@@ -85,16 +76,16 @@ public sealed class TransformBindingWorkspaceService
         return scripts[0];
     }
 
-    private static TransformBindingTargetResolution CreateUnresolvedTarget(string targetSqlIdentifier)
+    private static TransformBindingTargetResolution CreateTargetFromTransformScript(TransformScript transformScript)
     {
-        var trimmed = targetSqlIdentifier?.Trim() ?? string.Empty;
+        var trimmed = transformScript.TargetSqlIdentifier?.Trim() ?? string.Empty;
         var parts = trimmed
             .Split('.', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
         if (parts.Length is < 1 or > 3)
         {
             throw new InvalidOperationException(
-                $"Target '{targetSqlIdentifier}' uses {parts.Length} identifier parts; binding supports table, schema.table, or database.schema.table targets only.");
+                $"Transform script '{transformScript.Name}' target '{transformScript.TargetSqlIdentifier}' uses {parts.Length} identifier parts; binding supports table, schema.table, or database.schema.table targets only.");
         }
 
         return new TransformBindingTargetResolution(trimmed, null);

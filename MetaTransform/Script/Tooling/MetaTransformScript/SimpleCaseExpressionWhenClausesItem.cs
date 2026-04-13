@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public SimpleWhenClause SimpleWhenClause { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => SimpleCaseExpressionId; set => SimpleCaseExpressionId = value; }
-
-        [XmlIgnore]
-        public SimpleCaseExpression Owner { get => SimpleCaseExpression; set => SimpleCaseExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => SimpleWhenClauseId; set => SimpleWhenClauseId = value; }
-
-        [XmlIgnore]
-        public SimpleWhenClause Value { get => SimpleWhenClause; set => SimpleWhenClause = value; }
-
     }
 }

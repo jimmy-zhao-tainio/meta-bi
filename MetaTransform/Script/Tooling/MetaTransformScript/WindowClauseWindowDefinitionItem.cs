@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public WindowDefinition WindowDefinition { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => WindowClauseId; set => WindowClauseId = value; }
-
-        [XmlIgnore]
-        public WindowClause Owner { get => WindowClause; set => WindowClause = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => WindowDefinitionId; set => WindowDefinitionId = value; }
-
-        [XmlIgnore]
-        public WindowDefinition Value { get => WindowDefinition; set => WindowDefinition = value; }
-
     }
 }

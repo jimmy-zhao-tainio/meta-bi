@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public QueryExpression QueryExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => QueryExpressionId; set => QueryExpressionId = value; }
-
-        [XmlIgnore]
-        public QueryExpression Owner { get => QueryExpression; set => QueryExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => OffsetClauseId; set => OffsetClauseId = value; }
-
-        [XmlIgnore]
-        public OffsetClause Value { get => OffsetClause; set => OffsetClause = value; }
-
     }
 }

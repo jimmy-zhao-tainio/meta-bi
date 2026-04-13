@@ -12,14 +12,14 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var xmlNamespacesLink = FindOwnerLink(model.WithCtesAndXmlNamespacesXmlNamespacesLinkList, withCtes.Id);
         if (xmlNamespacesLink is not null)
         {
-            var xmlParts = GetOrderedItems(model.XmlNamespacesXmlNamespacesElementsItemList, xmlNamespacesLink.Value.Id)
-                .Select(row => RenderXmlNamespacesElement(row.Value))
+            var xmlParts = GetOrderedItems(model.XmlNamespacesXmlNamespacesElementsItemList, xmlNamespacesLink.XmlNamespaces.Id)
+                .Select(row => RenderXmlNamespacesElement(row.XmlNamespacesElement))
                 .ToArray();
             parts.Add("XMLNAMESPACES (" + string.Join(", ", xmlParts) + ")");
         }
 
         var ctes = GetOrderedItems(model.WithCtesAndXmlNamespacesCommonTableExpressionsItemList, withCtes.Id)
-            .Select(row => RenderCommonTableExpression(row.Value))
+            .Select(row => RenderCommonTableExpression(row.CommonTableExpression))
             .ToArray();
         parts.AddRange(ctes);
 
@@ -28,10 +28,10 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderCommonTableExpression(CommonTableExpression cte)
     {
-        var name = RenderIdentifier(GetOwnerLink(model.CommonTableExpressionExpressionNameLinkList, cte.Id, "CommonTableExpression.ExpressionName").Value);
-        var queryExpression = GetOwnerLink(model.CommonTableExpressionQueryExpressionLinkList, cte.Id, "CommonTableExpression.QueryExpression").Value;
+        var name = RenderIdentifier(GetOwnerLink(model.CommonTableExpressionExpressionNameLinkList, cte.Id, "CommonTableExpression.ExpressionName").Identifier);
+        var queryExpression = GetOwnerLink(model.CommonTableExpressionQueryExpressionLinkList, cte.Id, "CommonTableExpression.QueryExpression").QueryExpression;
         var columns = GetOrderedItems(model.CommonTableExpressionColumnsItemList, cte.Id)
-            .Select(row => RenderIdentifier(row.Value))
+            .Select(row => RenderIdentifier(row.Identifier))
             .ToArray();
         var columnList = columns.Length == 0
             ? string.Empty
@@ -53,8 +53,8 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var binaryQueryExpression = FindByBaseId(model.BinaryQueryExpressionList, queryExpression.Id);
             if (binaryQueryExpression is not null)
             {
-                var first = RenderQueryExpression(GetOwnerLink(model.BinaryQueryExpressionFirstQueryExpressionLinkList, binaryQueryExpression.Id, "BinaryQueryExpression.FirstQueryExpression").Value);
-                var second = RenderQueryExpression(GetOwnerLink(model.BinaryQueryExpressionSecondQueryExpressionLinkList, binaryQueryExpression.Id, "BinaryQueryExpression.SecondQueryExpression").Value);
+                var first = RenderQueryExpression(GetOwnerLink(model.BinaryQueryExpressionFirstQueryExpressionLinkList, binaryQueryExpression.Id, "BinaryQueryExpression.FirstQueryExpression").QueryExpression);
+                var second = RenderQueryExpression(GetOwnerLink(model.BinaryQueryExpressionSecondQueryExpressionLinkList, binaryQueryExpression.Id, "BinaryQueryExpression.SecondQueryExpression").QueryExpression);
                 var operatorText = binaryQueryExpression.BinaryQueryExpressionType switch
                 {
                     "Union" when IsTrue(binaryQueryExpression.All) => "UNION ALL",
@@ -74,7 +74,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
                     var child = GetOwnerLink(
                         model.QueryParenthesisExpressionQueryExpressionLinkList,
                         queryParenthesisExpression.Id,
-                        "QueryParenthesisExpression.QueryExpression").Value;
+                        "QueryParenthesisExpression.QueryExpression").QueryExpression;
                     renderedCore = "(" + RenderQueryExpression(child) + ")";
                 }
                 else
@@ -87,13 +87,13 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var orderByClauseLink = FindOwnerLink(model.QueryExpressionOrderByClauseLinkList, queryExpression.Id);
         if (orderByClauseLink is not null)
         {
-            renderedCore += Environment.NewLine + RenderOrderByClause(orderByClauseLink.Value);
+            renderedCore += Environment.NewLine + RenderOrderByClause(orderByClauseLink.OrderByClause);
         }
 
         var offsetClauseLink = FindOwnerLink(model.QueryExpressionOffsetClauseLinkList, queryExpression.Id);
         if (offsetClauseLink is not null)
         {
-            renderedCore += Environment.NewLine + RenderOffsetClause(offsetClauseLink.Value);
+            renderedCore += Environment.NewLine + RenderOffsetClause(offsetClauseLink.OffsetClause);
         }
 
         return renderedCore;
@@ -115,11 +115,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         if (topRowFilterLink is not null)
         {
             builder.Append(' ');
-            builder.Append(RenderTopRowFilter(topRowFilterLink.Value));
+            builder.Append(RenderTopRowFilter(topRowFilterLink.TopRowFilter));
         }
 
         var selectElements = GetOrderedItems(model.QuerySpecificationSelectElementsItemList, querySpecification.Id)
-            .Select(row => RenderSelectElement(row.Value))
+            .Select(row => RenderSelectElement(row.SelectElement))
             .ToArray();
 
         builder.AppendLine();
@@ -131,7 +131,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         {
             builder.AppendLine();
             builder.Append("FROM ");
-            builder.Append(RenderFromClause(fromClauseLink.Value));
+            builder.Append(RenderFromClause(fromClauseLink.FromClause));
         }
 
         var whereClauseLink = FindOwnerLink(model.QuerySpecificationWhereClauseLinkList, querySpecification.Id);
@@ -139,7 +139,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         {
             builder.AppendLine();
             builder.Append("WHERE ");
-            builder.Append(RenderBooleanExpression(GetOwnerLink(model.WhereClauseSearchConditionLinkList, whereClauseLink.Value.Id, "WhereClause.SearchCondition").Value));
+            builder.Append(RenderBooleanExpression(GetOwnerLink(model.WhereClauseSearchConditionLinkList, whereClauseLink.WhereClause.Id, "WhereClause.SearchCondition").BooleanExpression));
         }
 
         var groupByClauseLink = FindOwnerLink(model.QuerySpecificationGroupByClauseLinkList, querySpecification.Id);
@@ -147,7 +147,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         {
             builder.AppendLine();
             builder.Append("GROUP BY ");
-            builder.Append(RenderGroupByClause(groupByClauseLink.Value));
+            builder.Append(RenderGroupByClause(groupByClauseLink.GroupByClause));
         }
 
         var havingClauseLink = FindOwnerLink(model.QuerySpecificationHavingClauseLinkList, querySpecification.Id);
@@ -155,14 +155,14 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         {
             builder.AppendLine();
             builder.Append("HAVING ");
-            builder.Append(RenderBooleanExpression(GetOwnerLink(model.HavingClauseSearchConditionLinkList, havingClauseLink.Value.Id, "HavingClause.SearchCondition").Value));
+            builder.Append(RenderBooleanExpression(GetOwnerLink(model.HavingClauseSearchConditionLinkList, havingClauseLink.HavingClause.Id, "HavingClause.SearchCondition").BooleanExpression));
         }
 
         var windowClauseLink = FindOwnerLink(model.QuerySpecificationWindowClauseLinkList, querySpecification.Id);
         if (windowClauseLink is not null)
         {
             builder.AppendLine();
-            builder.Append(RenderWindowClause(windowClauseLink.Value));
+            builder.Append(RenderWindowClause(windowClauseLink.WindowClause));
         }
 
         return builder.ToString();
@@ -177,7 +177,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         }
 
         var groupingSpecifications = GetOrderedItems(model.GroupByClauseGroupingSpecificationsItemList, groupByClause.Id)
-            .Select(row => RenderGroupingSpecification(row.Value))
+            .Select(row => RenderGroupingSpecification(row.GroupingSpecification))
             .ToArray();
         var rendered = string.Join(", ", groupingSpecifications);
         return IsTrue(groupByClause.All)
@@ -198,14 +198,14 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             return RenderScalarExpression(GetOwnerLink(
                 model.ExpressionGroupingSpecificationExpressionLinkList,
                 expressionGroupingSpecification.Id,
-                "ExpressionGroupingSpecification.Expression").Value);
+                "ExpressionGroupingSpecification.Expression").ScalarExpression);
         }
 
         var groupingSetsGroupingSpecification = FindByBaseId(model.GroupingSetsGroupingSpecificationList, groupingSpecification.Id);
         if (groupingSetsGroupingSpecification is not null)
         {
             var sets = GetOrderedItems(model.GroupingSetsGroupingSpecificationSetsItemList, groupingSetsGroupingSpecification.Id)
-                .Select(row => RenderGroupingSpecification(row.Value))
+                .Select(row => RenderGroupingSpecification(row.GroupingSpecification))
                 .ToArray();
             return "GROUPING SETS (" + string.Join(", ", sets) + ")";
         }
@@ -214,7 +214,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         if (rollupGroupingSpecification is not null)
         {
             var arguments = GetOrderedItems(model.RollupGroupingSpecificationArgumentsItemList, rollupGroupingSpecification.Id)
-                .Select(row => RenderGroupingSpecification(row.Value))
+                .Select(row => RenderGroupingSpecification(row.GroupingSpecification))
                 .ToArray();
             return "ROLLUP (" + string.Join(", ", arguments) + ")";
         }
@@ -223,7 +223,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         if (cubeGroupingSpecification is not null)
         {
             var arguments = GetOrderedItems(model.CubeGroupingSpecificationArgumentsItemList, cubeGroupingSpecification.Id)
-                .Select(row => RenderGroupingSpecification(row.Value))
+                .Select(row => RenderGroupingSpecification(row.GroupingSpecification))
                 .ToArray();
             return "CUBE (" + string.Join(", ", arguments) + ")";
         }
@@ -232,7 +232,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         if (compositeGroupingSpecification is not null)
         {
             var items = GetOrderedItems(model.CompositeGroupingSpecificationItemsItemList, compositeGroupingSpecification.Id)
-                .Select(row => RenderGroupingSpecification(row.Value))
+                .Select(row => RenderGroupingSpecification(row.GroupingSpecification))
                 .ToArray();
             return "(" + string.Join(", ", items) + ")";
         }
@@ -248,24 +248,24 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private string RenderWindowClause(WindowClause windowClause)
     {
         var definitions = GetOrderedItems(model.WindowClauseWindowDefinitionItemList, windowClause.Id)
-            .Select(row => RenderWindowDefinition(row.Value))
+            .Select(row => RenderWindowDefinition(row.WindowDefinition))
             .ToArray();
         return "WINDOW" + Environment.NewLine + "    " + string.Join("," + Environment.NewLine + "    ", definitions);
     }
 
     private string RenderWindowDefinition(WindowDefinition windowDefinition)
     {
-        var name = RenderIdentifier(GetOwnerLink(model.WindowDefinitionWindowNameLinkList, windowDefinition.Id, "WindowDefinition.WindowName").Value);
+        var name = RenderIdentifier(GetOwnerLink(model.WindowDefinitionWindowNameLinkList, windowDefinition.Id, "WindowDefinition.WindowName").Identifier);
         var parts = new List<string>();
 
         var refWindowNameLink = FindOwnerLink(model.WindowDefinitionRefWindowNameLinkList, windowDefinition.Id);
         if (refWindowNameLink is not null)
         {
-            parts.Add(RenderIdentifier(refWindowNameLink.Value));
+            parts.Add(RenderIdentifier(refWindowNameLink.Identifier));
         }
 
         var partitions = GetOrderedItems(model.WindowDefinitionPartitionsItemList, windowDefinition.Id)
-            .Select(row => RenderScalarExpression(row.Value))
+            .Select(row => RenderScalarExpression(row.ScalarExpression))
             .ToArray();
         if (partitions.Length > 0)
         {
@@ -275,13 +275,13 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var orderByClauseLink = FindOwnerLink(model.WindowDefinitionOrderByClauseLinkList, windowDefinition.Id);
         if (orderByClauseLink is not null)
         {
-            parts.Add(RenderOrderByClause(orderByClauseLink.Value));
+            parts.Add(RenderOrderByClause(orderByClauseLink.OrderByClause));
         }
 
         var windowFrameClauseLink = FindOwnerLink(model.WindowDefinitionWindowFrameClauseLinkList, windowDefinition.Id);
         if (windowFrameClauseLink is not null)
         {
-            parts.Add(RenderWindowFrameClause(windowFrameClauseLink.Value));
+            parts.Add(RenderWindowFrameClause(windowFrameClauseLink.WindowFrameClause));
         }
 
         if (parts.Count == 0)
@@ -299,11 +299,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var windowNameLink = FindOwnerLink(model.OverClauseWindowNameLinkList, overClause.Id);
         if (windowNameLink is not null)
         {
-            parts.Add(RenderIdentifier(windowNameLink.Value));
+            parts.Add(RenderIdentifier(windowNameLink.Identifier));
         }
 
         var partitions = GetOrderedItems(model.OverClausePartitionsItemList, overClause.Id)
-            .Select(row => RenderScalarExpression(row.Value))
+            .Select(row => RenderScalarExpression(row.ScalarExpression))
             .ToArray();
         if (partitions.Length > 0)
         {
@@ -313,13 +313,13 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var orderByClauseLink = FindOwnerLink(model.OverClauseOrderByClauseLinkList, overClause.Id);
         if (orderByClauseLink is not null)
         {
-            parts.Add(RenderOrderByClause(orderByClauseLink.Value));
+            parts.Add(RenderOrderByClause(orderByClauseLink.OrderByClause));
         }
 
         var windowFrameClauseLink = FindOwnerLink(model.OverClauseWindowFrameClauseLinkList, overClause.Id);
         if (windowFrameClauseLink is not null)
         {
-            parts.Add(RenderWindowFrameClause(windowFrameClauseLink.Value));
+            parts.Add(RenderWindowFrameClause(windowFrameClauseLink.WindowFrameClause));
         }
 
         if (parts.Count == 1 && windowNameLink is not null && partitions.Length == 0 && orderByClauseLink is null && windowFrameClauseLink is null)
@@ -338,7 +338,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private string RenderOrderByClause(OrderByClause orderByClause)
     {
         var elements = GetOrderedItems(model.OrderByClauseOrderByElementsItemList, orderByClause.Id)
-            .Select(row => RenderExpressionWithSortOrder(row.Value))
+            .Select(row => RenderExpressionWithSortOrder(row.ExpressionWithSortOrder))
             .ToArray();
         return "ORDER BY " + string.Join(", ", elements);
     }
@@ -348,7 +348,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var rendered = RenderScalarExpression(GetOwnerLink(
             model.ExpressionWithSortOrderExpressionLinkList,
             expressionWithSortOrder.Id,
-            "ExpressionWithSortOrder.Expression").Value);
+            "ExpressionWithSortOrder.Expression").ScalarExpression);
 
         return expressionWithSortOrder.SortOrder switch
         {
@@ -369,7 +369,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var expression = RenderScalarExpression(GetOwnerLink(
             model.TopRowFilterExpressionLinkList,
             topRowFilter.Id,
-            "TopRowFilter.Expression").Value);
+            "TopRowFilter.Expression").ScalarExpression);
 
         var builder = new StringBuilder();
         builder.Append("TOP ");
@@ -398,13 +398,13 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var offsetExpression = RenderScalarExpression(GetOwnerLink(
             model.OffsetClauseOffsetExpressionLinkList,
             offsetClause.Id,
-            "OffsetClause.OffsetExpression").Value);
+            "OffsetClause.OffsetExpression").ScalarExpression);
         var rendered = "OFFSET " + offsetExpression + " ROWS";
 
         var fetchExpressionLink = FindOwnerLink(model.OffsetClauseFetchExpressionLinkList, offsetClause.Id);
         if (fetchExpressionLink is not null)
         {
-            rendered += " FETCH NEXT " + RenderScalarExpression(fetchExpressionLink.Value) + " ROWS ONLY";
+            rendered += " FETCH NEXT " + RenderScalarExpression(fetchExpressionLink.ScalarExpression) + " ROWS ONLY";
         }
 
         return rendered;
@@ -419,11 +419,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             _ => throw new InvalidOperationException($"Unsupported MetaTransformScript WindowFrameType '{windowFrameClause.WindowFrameType}'.")
         };
 
-        var top = RenderWindowDelimiter(GetOwnerLink(model.WindowFrameClauseTopLinkList, windowFrameClause.Id, "WindowFrameClause.Top").Value);
+        var top = RenderWindowDelimiter(GetOwnerLink(model.WindowFrameClauseTopLinkList, windowFrameClause.Id, "WindowFrameClause.Top").WindowDelimiter);
         var bottomLink = FindOwnerLink(model.WindowFrameClauseBottomLinkList, windowFrameClause.Id);
         return bottomLink is null
             ? $"{frameType} {top}"
-            : $"{frameType} BETWEEN {top} AND {RenderWindowDelimiter(bottomLink.Value)}";
+            : $"{frameType} BETWEEN {top} AND {RenderWindowDelimiter(bottomLink.WindowDelimiter)}";
     }
 
     private string RenderWindowDelimiter(WindowDelimiter windowDelimiter)
@@ -435,11 +435,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             "ValuePreceding" => RenderScalarExpression(GetOwnerLink(
                 model.WindowDelimiterOffsetValueLinkList,
                 windowDelimiter.Id,
-                "WindowDelimiter.OffsetValue").Value) + " PRECEDING",
+                "WindowDelimiter.OffsetValue").ScalarExpression) + " PRECEDING",
             "ValueFollowing" => RenderScalarExpression(GetOwnerLink(
                 model.WindowDelimiterOffsetValueLinkList,
                 windowDelimiter.Id,
-                "WindowDelimiter.OffsetValue").Value) + " FOLLOWING",
+                "WindowDelimiter.OffsetValue").ScalarExpression) + " FOLLOWING",
             "UnboundedFollowing" => "UNBOUNDED FOLLOWING",
             _ => throw new InvalidOperationException($"Unsupported MetaTransformScript WindowDelimiterType '{windowDelimiter.WindowDelimiterType}'.")
         };

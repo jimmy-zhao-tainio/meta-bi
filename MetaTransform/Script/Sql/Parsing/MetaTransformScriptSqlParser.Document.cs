@@ -24,7 +24,7 @@ public sealed partial class MetaTransformScriptSqlParser
             }
 
             var scriptName = bareSelectName!;
-            builder.AddTransformScript(scriptName, sourcePath, selectStatement, schemaIdentifier: null, objectIdentifier: null);
+            builder.AddTransformScript(scriptName, scriptName, sourcePath, selectStatement, schemaIdentifier: null, objectIdentifier: null);
             return TopLevelStatementShape.BareSelect;
         }
 
@@ -56,6 +56,7 @@ public sealed partial class MetaTransformScriptSqlParser
             ExpectEndOfFile();
 
             builder.AddTransformScript(
+                renderedName,
                 renderedName,
                 sourcePath,
                 selectStatement,

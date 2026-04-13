@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public BooleanExpression BooleanExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => BooleanBinaryExpressionId; set => BooleanBinaryExpressionId = value; }
-
-        [XmlIgnore]
-        public BooleanBinaryExpression Owner { get => BooleanBinaryExpression; set => BooleanBinaryExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => BooleanExpressionId; set => BooleanExpressionId = value; }
-
-        [XmlIgnore]
-        public BooleanExpression Value { get => BooleanExpression; set => BooleanExpression = value; }
-
     }
 }

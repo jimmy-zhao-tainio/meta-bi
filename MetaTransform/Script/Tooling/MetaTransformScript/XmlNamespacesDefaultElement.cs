@@ -25,12 +25,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public XmlNamespacesElement XmlNamespacesElement { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => XmlNamespacesElementId; set => XmlNamespacesElementId = value; }
-
-        [XmlIgnore]
-        public XmlNamespacesElement Base { get => XmlNamespacesElement; set => XmlNamespacesElement = value; }
-
     }
 }

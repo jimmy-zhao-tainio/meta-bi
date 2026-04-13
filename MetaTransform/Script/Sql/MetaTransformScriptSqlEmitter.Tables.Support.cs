@@ -13,7 +13,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             var qualifierLink = FindOwnerLink(model.SelectStarExpressionQualifierLinkList, selectStarExpression.Id);
             return qualifierLink is null
                 ? "*"
-                : RenderMultiPartIdentifier(qualifierLink.Value) + ".*";
+                : RenderMultiPartIdentifier(qualifierLink.MultiPartIdentifier) + ".*";
         }
 
         var selectScalarExpression = FindByBaseId(model.SelectScalarExpressionList, selectElement.Id)
@@ -22,12 +22,12 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var expression = RenderScalarExpression(GetOwnerLink(
             model.SelectScalarExpressionExpressionLinkList,
             selectScalarExpression.Id,
-            "SelectScalarExpression.Expression").Value);
+            "SelectScalarExpression.Expression").ScalarExpression);
 
         var columnNameLink = FindOwnerLink(model.SelectScalarExpressionColumnNameLinkList, selectScalarExpression.Id);
         if (columnNameLink is not null)
         {
-            return $"{expression} AS {RenderIdentifierOrValueExpression(columnNameLink.Value)}";
+            return $"{expression} AS {RenderIdentifierOrValueExpression(columnNameLink.IdentifierOrValueExpression)}";
         }
 
         return expression;
@@ -36,7 +36,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private string RenderRowValue(RowValue rowValue)
     {
         var values = GetOrderedItems(model.RowValueColumnValuesItemList, rowValue.Id)
-            .Select(row => RenderScalarExpression(row.Value))
+            .Select(row => RenderScalarExpression(row.ScalarExpression))
             .ToArray();
         return "(" + string.Join(", ", values) + ")";
     }
@@ -46,7 +46,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var sampleNumber = RenderScalarExpression(GetOwnerLink(
             model.TableSampleClauseSampleNumberLinkList,
             tableSampleClause.Id,
-            "TableSampleClause.SampleNumber").Value);
+            "TableSampleClause.SampleNumber").ScalarExpression);
         var option = tableSampleClause.TableSampleClauseOption switch
         {
             "Percent" => "PERCENT",
@@ -72,7 +72,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         if (repeatSeedLink is not null)
         {
             builder.Append(" REPEATABLE (");
-            builder.Append(RenderScalarExpression(repeatSeedLink.Value));
+            builder.Append(RenderScalarExpression(repeatSeedLink.ScalarExpression));
             builder.Append(')');
         }
 
@@ -81,7 +81,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderSchemaObjectName(SchemaObjectName schemaObjectName)
     {
-        var multiPartIdentifier = GetById(model.MultiPartIdentifierList, schemaObjectName.BaseId, "SchemaObjectName.Base");
+        var multiPartIdentifier = GetById(model.MultiPartIdentifierList, schemaObjectName.MultiPartIdentifierId, "SchemaObjectName.Base");
         return RenderMultiPartIdentifier(multiPartIdentifier);
     }
 
@@ -90,7 +90,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var identifierLink = FindOwnerLink(model.IdentifierOrValueExpressionIdentifierLinkList, value.Id);
         if (identifierLink is not null)
         {
-            return RenderIdentifier(identifierLink.Value);
+            return RenderIdentifier(identifierLink.Identifier);
         }
 
         if (!string.IsNullOrWhiteSpace(value.Value))
@@ -104,7 +104,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     private string RenderMultiPartIdentifier(MultiPartIdentifier multiPartIdentifier)
     {
         var parts = GetOrderedItems(model.MultiPartIdentifierIdentifiersItemList, multiPartIdentifier.Id)
-            .Select(row => RenderIdentifier(row.Value))
+            .Select(row => RenderIdentifier(row.Identifier))
             .ToArray();
         return string.Join(".", parts);
     }
@@ -119,8 +119,8 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderXmlNamespacesElement(XmlNamespacesElement element)
     {
-        var literal = GetOwnerLink(model.XmlNamespacesElementStringLinkList, element.Id, "XmlNamespacesElement.String").Value;
-        var literalBase = GetById(model.LiteralList, literal.BaseId, "XmlNamespacesElement.StringLiteralBase");
+        var literal = GetOwnerLink(model.XmlNamespacesElementStringLinkList, element.Id, "XmlNamespacesElement.String").StringLiteral;
+        var literalBase = GetById(model.LiteralList, literal.LiteralId, "XmlNamespacesElement.StringLiteralBase");
         var renderedLiteral = RenderLiteral(literalBase);
 
         var defaultElement = FindByBaseId(model.XmlNamespacesDefaultElementList, element.Id);
@@ -132,7 +132,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var aliasElement = FindByBaseId(model.XmlNamespacesAliasElementList, element.Id);
         if (aliasElement is not null)
         {
-            var alias = RenderIdentifier(GetOwnerLink(model.XmlNamespacesAliasElementIdentifierLinkList, aliasElement.Id, "XmlNamespacesAliasElement.Identifier").Value);
+            var alias = RenderIdentifier(GetOwnerLink(model.XmlNamespacesAliasElementIdentifierLinkList, aliasElement.Id, "XmlNamespacesAliasElement.Identifier").Identifier);
             return $"{renderedLiteral} AS {alias}";
         }
 
@@ -141,17 +141,17 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderAliasAndColumns(TableReferenceWithAliasAndColumns aliasAndColumns)
     {
-        var aliasBase = GetById(model.TableReferenceWithAliasList, aliasAndColumns.BaseId, "TableReferenceWithAliasAndColumns.Base");
+        var aliasBase = GetById(model.TableReferenceWithAliasList, aliasAndColumns.TableReferenceWithAliasId, "TableReferenceWithAliasAndColumns.Base");
         var aliasLink = FindOwnerLink(model.TableReferenceWithAliasAliasLinkList, aliasBase.Id)
             ?? throw new InvalidOperationException(
                 $"TableReferenceWithAliasAndColumns '{aliasAndColumns.Id}' was missing an alias.");
 
         var columns = GetOrderedItems(model.TableReferenceWithAliasAndColumnsColumnsItemList, aliasAndColumns.Id)
-            .Select(row => RenderIdentifier(row.Value))
+            .Select(row => RenderIdentifier(row.Identifier))
             .ToArray();
 
         return columns.Length == 0
-            ? " AS " + RenderIdentifier(aliasLink.Value)
-            : " AS " + RenderIdentifier(aliasLink.Value) + "(" + string.Join(", ", columns) + ")";
+            ? " AS " + RenderIdentifier(aliasLink.Identifier)
+            : " AS " + RenderIdentifier(aliasLink.Identifier) + "(" + string.Join(", ", columns) + ")";
     }
 }

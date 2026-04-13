@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public PivotedTableReference PivotedTableReference { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => PivotedTableReferenceId; set => PivotedTableReferenceId = value; }
-
-        [XmlIgnore]
-        public PivotedTableReference Owner { get => PivotedTableReference; set => PivotedTableReference = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ColumnReferenceExpressionId; set => ColumnReferenceExpressionId = value; }
-
-        [XmlIgnore]
-        public ColumnReferenceExpression Value { get => ColumnReferenceExpression; set => ColumnReferenceExpression = value; }
-
     }
 }

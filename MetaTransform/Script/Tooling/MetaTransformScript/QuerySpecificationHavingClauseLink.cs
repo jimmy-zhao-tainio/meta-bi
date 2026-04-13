@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public QuerySpecification QuerySpecification { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => QuerySpecificationId; set => QuerySpecificationId = value; }
-
-        [XmlIgnore]
-        public QuerySpecification Owner { get => QuerySpecification; set => QuerySpecification = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => HavingClauseId; set => HavingClauseId = value; }
-
-        [XmlIgnore]
-        public HavingClause Value { get => HavingClause; set => HavingClause = value; }
-
     }
 }

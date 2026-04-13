@@ -75,6 +75,7 @@ public sealed class SqlServiceImportExportTests
         var service = new MetaTransformScriptSqlService();
         Assert.Equal(service.ExportToSqlCode(parserModel), service.ExportToSqlCode(serviceModel));
         Assert.Equal(parserModel.TransformScriptList.Single().Name, serviceModel.TransformScriptList.Single().Name);
+        Assert.Equal(parserModel.TransformScriptList.Single().TargetSqlIdentifier, serviceModel.TransformScriptList.Single().TargetSqlIdentifier);
     }
 
     [Fact]
@@ -90,6 +91,21 @@ FROM sales.Customer AS c
             () => new MetaTransformScriptSqlService().ImportFromSqlCode(sql));
 
         Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_BareSelect_UsesScriptNameAsTargetSqlIdentifier()
+    {
+        const string sql = """
+SELECT
+    c.CustomerId
+FROM sales.Customer AS c
+""";
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_inline_target");
+        var script = Assert.Single(model.TransformScriptList);
+        Assert.Equal("dbo.v_inline_target", script.Name);
+        Assert.Equal("dbo.v_inline_target", script.TargetSqlIdentifier);
     }
 
     [Fact]
@@ -164,6 +180,7 @@ FROM dbo.XmlSource AS s
 
         var script = Assert.Single(model.TransformScriptList);
         Assert.Equal("dbo.v_view_column_list", script.Name);
+        Assert.Equal("dbo.v_view_column_list", script.TargetSqlIdentifier);
         Assert.Equal(2, model.TransformScriptViewColumnsItemList.Count);
     }
 
@@ -215,7 +232,7 @@ FROM dbo.XmlSource AS s
         Assert.Single(model.RightFunctionCallList);
 
         var leftOrRightFunctionNames = model.FunctionCallFunctionNameLinkList
-            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.ValueId, StringComparison.Ordinal)).Value)
+            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.IdentifierId, StringComparison.Ordinal)).Value)
             .Where(static name => string.Equals(name, "LEFT", StringComparison.OrdinalIgnoreCase)
                 || string.Equals(name, "RIGHT", StringComparison.OrdinalIgnoreCase))
             .ToArray();
@@ -258,7 +275,7 @@ FROM dbo.XmlSource AS s
         Assert.Empty(model.SchemaObjectFunctionTableReferenceList);
 
         var functionNames = model.GlobalFunctionTableReferenceNameLinkList
-            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.ValueId, StringComparison.Ordinal)).Value)
+            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.IdentifierId, StringComparison.Ordinal)).Value)
             .OrderBy(static value => value, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
@@ -283,7 +300,7 @@ FROM dbo.XmlSource AS s
         var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_test");
 
         var functionNames = model.FunctionCallFunctionNameLinkList
-            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.ValueId, StringComparison.Ordinal)).Value)
+            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.IdentifierId, StringComparison.Ordinal)).Value)
             .OrderBy(static value => value, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
@@ -317,14 +334,14 @@ FROM dbo.XmlSource AS s
             windowFrameClause => Assert.Equal("Range", windowFrameClause.WindowFrameType));
 
         var topDelimiterTypes = model.WindowFrameClauseTopLinkList
-            .Select(link => model.WindowDelimiterList.Single(windowDelimiter => string.Equals(windowDelimiter.Id, link.ValueId, StringComparison.Ordinal)).WindowDelimiterType)
+            .Select(link => model.WindowDelimiterList.Single(windowDelimiter => string.Equals(windowDelimiter.Id, link.WindowDelimiterId, StringComparison.Ordinal)).WindowDelimiterType)
             .OrderBy(static value => value, StringComparer.Ordinal)
             .ToArray();
 
         Assert.Equal(["CurrentRow", "UnboundedPreceding"], topDelimiterTypes);
 
         var bottomDelimiterTypes = model.WindowFrameClauseBottomLinkList
-            .Select(link => model.WindowDelimiterList.Single(windowDelimiter => string.Equals(windowDelimiter.Id, link.ValueId, StringComparison.Ordinal)).WindowDelimiterType)
+            .Select(link => model.WindowDelimiterList.Single(windowDelimiter => string.Equals(windowDelimiter.Id, link.WindowDelimiterId, StringComparison.Ordinal)).WindowDelimiterType)
             .ToArray();
 
         Assert.Equal(["CurrentRow"], bottomDelimiterTypes);
@@ -395,7 +412,7 @@ FROM dbo.XmlSource AS s
         var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_test");
 
         var functionNames = model.FunctionCallFunctionNameLinkList
-            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.ValueId, StringComparison.Ordinal)).Value)
+            .Select(link => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, link.IdentifierId, StringComparison.Ordinal)).Value)
             .OrderBy(static value => value, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
@@ -410,6 +427,42 @@ FROM dbo.XmlSource AS s
             functionNames,
             StringComparer.OrdinalIgnoreCase);
         Assert.Equal(5, model.FunctionCallOverClauseLinkList.Count);
+    }
+
+    [Fact]
+    public async Task ExportToSqlPath_UsesTransformScriptTargetSqlIdentifier()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_original_target
+AS
+SELECT
+    s.CustomerId
+FROM dbo.Source AS s
+""";
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql);
+        var script = Assert.Single(model.TransformScriptList);
+        script.TargetSqlIdentifier = "reporting.v_overridden_target";
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Script.Tests", Guid.NewGuid().ToString("N"));
+        var outputFilePath = Path.Combine(tempRoot, "out.sql");
+
+        try
+        {
+            Directory.CreateDirectory(tempRoot);
+            await service.ExportToSqlPathAsync(model, outputFilePath);
+
+            var emitted = await File.ReadAllTextAsync(outputFilePath);
+            Assert.Contains("CREATE VIEW reporting.v_overridden_target", emitted);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
     }
 
     [Fact]
@@ -452,6 +505,7 @@ GO
 
         var script = Assert.Single(model.TransformScriptList);
         Assert.Equal("dbo.v_set_go", script.Name);
+        Assert.Equal("dbo.v_set_go", script.TargetSqlIdentifier);
         Assert.Single(model.TransformScriptViewColumnsItemList);
     }
 

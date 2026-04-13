@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public UnaryExpression UnaryExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => UnaryExpressionId; set => UnaryExpressionId = value; }
-
-        [XmlIgnore]
-        public UnaryExpression Owner { get => UnaryExpression; set => UnaryExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ScalarExpressionId; set => ScalarExpressionId = value; }
-
-        [XmlIgnore]
-        public ScalarExpression Value { get => ScalarExpression; set => ScalarExpression = value; }
-
     }
 }

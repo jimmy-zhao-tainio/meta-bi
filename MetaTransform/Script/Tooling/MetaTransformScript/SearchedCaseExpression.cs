@@ -25,12 +25,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public CaseExpression CaseExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => CaseExpressionId; set => CaseExpressionId = value; }
-
-        [XmlIgnore]
-        public CaseExpression Base { get => CaseExpression; set => CaseExpression = value; }
-
     }
 }

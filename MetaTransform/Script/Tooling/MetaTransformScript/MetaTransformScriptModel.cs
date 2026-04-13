@@ -11253,6 +11253,7 @@ namespace MetaTransformScript
                 row.LanguageProfileId ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'TransformScript' row '{row.Id}' is missing required property 'Name'.");
                 row.SourcePath ??= string.Empty;
+                row.TargetSqlIdentifier = RequireText(row.TargetSqlIdentifier, $"Entity 'TransformScript' row '{row.Id}' is missing required property 'TargetSqlIdentifier'.");
             }
         }
 

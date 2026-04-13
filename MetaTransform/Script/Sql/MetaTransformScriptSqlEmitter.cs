@@ -16,16 +16,16 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     {
         var builder = new StringBuilder();
 
-        var statementBase = GetById(model.StatementWithCtesAndXmlNamespacesList, root.BaseId, "SelectStatement.Base");
+        var statementBase = GetById(model.StatementWithCtesAndXmlNamespacesList, root.StatementWithCtesAndXmlNamespacesId, "SelectStatement.Base");
         var withCtesLink = FindOwnerLink(model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList, statementBase.Id);
         if (withCtesLink is not null)
         {
-            builder.Append(RenderWithClause(withCtesLink.Value));
+            builder.Append(RenderWithClause(withCtesLink.WithCtesAndXmlNamespaces));
             builder.AppendLine();
         }
 
         var queryExpressionLink = GetOwnerLink(model.SelectStatementQueryExpressionLinkList, root.Id, "SelectStatement.QueryExpression");
-        builder.Append(RenderQueryExpression(queryExpressionLink.Value));
+        builder.Append(RenderQueryExpression(queryExpressionLink.QueryExpression));
         return builder.ToString();
     }
 }

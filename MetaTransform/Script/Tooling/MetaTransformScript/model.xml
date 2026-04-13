@@ -1372,6 +1372,7 @@
         <Property name="LanguageProfileId" isRequired="false" />
         <Property name="Name" />
         <Property name="SourcePath" isRequired="false" />
+        <Property name="TargetSqlIdentifier" />
       </PropertyList>
     </Entity>
     <Entity name="TransformScriptObjectIdentifierLink">

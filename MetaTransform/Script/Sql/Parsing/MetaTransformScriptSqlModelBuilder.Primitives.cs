@@ -27,8 +27,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.IdentifierOrValueExpressionIdentifierLinkList.Add(new IdentifierOrValueExpressionIdentifierLink
         {
             Id = NextId(nameof(IdentifierOrValueExpressionIdentifierLink)),
-            OwnerId = row.Id,
-            ValueId = identifier.GetId(nameof(Identifier))
+            IdentifierOrValueExpressionId = row.Id,
+            IdentifierId = identifier.GetId(nameof(Identifier))
         });
         return BuiltNode.Create((nameof(IdentifierOrValueExpression), row.Id));
     }
@@ -53,8 +53,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.MultiPartIdentifierIdentifiersItemList.Add(new MultiPartIdentifierIdentifiersItem
             {
                 Id = NextId(nameof(MultiPartIdentifierIdentifiersItem)),
-                OwnerId = row.Id,
-                ValueId = identifiers[ordinal].GetId(nameof(Identifier)),
+                MultiPartIdentifierId = row.Id,
+                IdentifierId = identifiers[ordinal].GetId(nameof(Identifier)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -77,14 +77,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var row = new SchemaObjectName
         {
             Id = NextId(nameof(SchemaObjectName)),
-            BaseId = multiPart.GetId(nameof(MultiPartIdentifier))
+            MultiPartIdentifierId = multiPart.GetId(nameof(MultiPartIdentifier))
         };
         model.SchemaObjectNameList.Add(row);
         model.SchemaObjectNameBaseIdentifierLinkList.Add(new SchemaObjectNameBaseIdentifierLink
         {
             Id = NextId(nameof(SchemaObjectNameBaseIdentifierLink)),
-            OwnerId = row.Id,
-            ValueId = baseIdentifier.GetId(nameof(Identifier))
+            SchemaObjectNameId = row.Id,
+            IdentifierId = baseIdentifier.GetId(nameof(Identifier))
         });
 
         if (schemaIdentifier is not null)
@@ -92,8 +92,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.SchemaObjectNameSchemaIdentifierLinkList.Add(new SchemaObjectNameSchemaIdentifierLink
             {
                 Id = NextId(nameof(SchemaObjectNameSchemaIdentifierLink)),
-                OwnerId = row.Id,
-                ValueId = schemaIdentifier.GetId(nameof(Identifier))
+                SchemaObjectNameId = row.Id,
+                IdentifierId = schemaIdentifier.GetId(nameof(Identifier))
             });
         }
 
@@ -113,21 +113,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var valueExpression = new ValueExpression
         {
             Id = NextId(nameof(ValueExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ValueExpressionList.Add(valueExpression);
 
         var literal = new Literal
         {
             Id = NextId(nameof(Literal)),
-            BaseId = valueExpression.Id,
+            ValueExpressionId = valueExpression.Id,
             LiteralType = "String",
             Value = value
         };
@@ -136,7 +136,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var stringLiteral = new StringLiteral
         {
             Id = NextId(nameof(StringLiteral)),
-            BaseId = literal.Id,
+            LiteralId = literal.Id,
             LiteralType = "String",
             IsNational = isNational ? "true" : string.Empty
         };
@@ -161,14 +161,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var valueExpression = new ValueExpression
         {
             Id = NextId(nameof(ValueExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ValueExpressionList.Add(valueExpression);
 
@@ -177,7 +177,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var literal = new Literal
         {
             Id = NextId(nameof(Literal)),
-            BaseId = valueExpression.Id,
+            ValueExpressionId = valueExpression.Id,
             LiteralType = literalType,
             Value = value
         };
@@ -191,7 +191,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             var row = new IntegerLiteral
             {
                 Id = NextId(nameof(IntegerLiteral)),
-                BaseId = literal.Id,
+                LiteralId = literal.Id,
                 LiteralType = literalType
             };
             derivedId = row.Id;
@@ -203,7 +203,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             var row = new NumericLiteral
             {
                 Id = NextId(nameof(NumericLiteral)),
-                BaseId = literal.Id,
+                LiteralId = literal.Id,
                 LiteralType = literalType
             };
             derivedId = row.Id;
@@ -229,21 +229,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var valueExpression = new ValueExpression
         {
             Id = NextId(nameof(ValueExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ValueExpressionList.Add(valueExpression);
 
         var literal = new Literal
         {
             Id = NextId(nameof(Literal)),
-            BaseId = valueExpression.Id,
+            ValueExpressionId = valueExpression.Id,
             LiteralType = "Real",
             Value = value
         };
@@ -252,7 +252,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var realLiteral = new RealLiteral
         {
             Id = NextId(nameof(RealLiteral)),
-            BaseId = literal.Id,
+            LiteralId = literal.Id,
             LiteralType = "Real"
         };
         model.RealLiteralList.Add(realLiteral);
@@ -276,21 +276,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var valueExpression = new ValueExpression
         {
             Id = NextId(nameof(ValueExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ValueExpressionList.Add(valueExpression);
 
         var literal = new Literal
         {
             Id = NextId(nameof(Literal)),
-            BaseId = valueExpression.Id,
+            ValueExpressionId = valueExpression.Id,
             LiteralType = "Binary",
             Value = value
         };
@@ -299,7 +299,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var binaryLiteral = new BinaryLiteral
         {
             Id = NextId(nameof(BinaryLiteral)),
-            BaseId = literal.Id,
+            LiteralId = literal.Id,
             LiteralType = "Binary"
         };
         model.BinaryLiteralList.Add(binaryLiteral);
@@ -323,21 +323,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var valueExpression = new ValueExpression
         {
             Id = NextId(nameof(ValueExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ValueExpressionList.Add(valueExpression);
 
         var literal = new Literal
         {
             Id = NextId(nameof(Literal)),
-            BaseId = valueExpression.Id,
+            ValueExpressionId = valueExpression.Id,
             LiteralType = "Null",
             Value = string.Empty
         };
@@ -346,7 +346,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var nullLiteral = new NullLiteral
         {
             Id = NextId(nameof(NullLiteral)),
-            BaseId = literal.Id,
+            LiteralId = literal.Id,
             LiteralType = "Null"
         };
         model.NullLiteralList.Add(nullLiteral);
@@ -370,21 +370,21 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var primary = new PrimaryExpression
         {
             Id = NextId(nameof(PrimaryExpression)),
-            BaseId = scalar.Id
+            ScalarExpressionId = scalar.Id
         };
         model.PrimaryExpressionList.Add(primary);
 
         var valueExpression = new ValueExpression
         {
             Id = NextId(nameof(ValueExpression)),
-            BaseId = primary.Id
+            PrimaryExpressionId = primary.Id
         };
         model.ValueExpressionList.Add(valueExpression);
 
         var literal = new Literal
         {
             Id = NextId(nameof(Literal)),
-            BaseId = valueExpression.Id,
+            ValueExpressionId = valueExpression.Id,
             LiteralType = "Max",
             Value = "max"
         };
@@ -393,7 +393,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var maxLiteral = new MaxLiteral
         {
             Id = NextId(nameof(MaxLiteral)),
-            BaseId = literal.Id,
+            LiteralId = literal.Id,
             LiteralType = "Max"
         };
         model.MaxLiteralList.Add(maxLiteral);

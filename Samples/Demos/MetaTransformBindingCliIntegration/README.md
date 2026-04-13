@@ -10,5 +10,5 @@ Intended target tables in `SchemaWS`:
 - `reporting.InvoiceWindow`
 
 Current binding infers source rowset identifiers from the SQL and persists them as SQL identifiers only.
-Current binding also requires explicit `--target` values and persists those target SQL identifiers in the binding workspace.
+Current binding reads each target SQL identifier from `TransformScript.TargetSqlIdentifier` and persists that target in the binding workspace.
 Later Validate should compare each transform's source and final output rowsets against `SchemaWS`.

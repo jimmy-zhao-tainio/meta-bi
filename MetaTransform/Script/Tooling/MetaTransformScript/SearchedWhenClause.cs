@@ -25,12 +25,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public WhenClause WhenClause { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => WhenClauseId; set => WhenClauseId = value; }
-
-        [XmlIgnore]
-        public WhenClause Base { get => WhenClause; set => WhenClause = value; }
-
     }
 }

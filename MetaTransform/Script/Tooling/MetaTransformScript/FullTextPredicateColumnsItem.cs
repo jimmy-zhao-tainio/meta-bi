@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public FullTextPredicate FullTextPredicate { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => FullTextPredicateId; set => FullTextPredicateId = value; }
-
-        [XmlIgnore]
-        public FullTextPredicate Owner { get => FullTextPredicate; set => FullTextPredicate = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ColumnReferenceExpressionId; set => ColumnReferenceExpressionId = value; }
-
-        [XmlIgnore]
-        public ColumnReferenceExpression Value { get => ColumnReferenceExpression; set => ColumnReferenceExpression = value; }
-
     }
 }

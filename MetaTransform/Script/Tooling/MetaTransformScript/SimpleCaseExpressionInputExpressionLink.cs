@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public SimpleCaseExpression SimpleCaseExpression { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => SimpleCaseExpressionId; set => SimpleCaseExpressionId = value; }
-
-        [XmlIgnore]
-        public SimpleCaseExpression Owner { get => SimpleCaseExpression; set => SimpleCaseExpression = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ScalarExpressionId; set => ScalarExpressionId = value; }
-
-        [XmlIgnore]
-        public ScalarExpression Value { get => ScalarExpression; set => ScalarExpression = value; }
-
     }
 }

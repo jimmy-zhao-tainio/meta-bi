@@ -25,12 +25,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public CallTarget CallTarget { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string BaseId { get => CallTargetId; set => CallTargetId = value; }
-
-        [XmlIgnore]
-        public CallTarget Base { get => CallTarget; set => CallTarget = value; }
-
     }
 }

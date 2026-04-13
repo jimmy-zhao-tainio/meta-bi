@@ -35,18 +35,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public FullTextTableReference FullTextTableReference { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => FullTextTableReferenceId; set => FullTextTableReferenceId = value; }
-
-        [XmlIgnore]
-        public FullTextTableReference Owner { get => FullTextTableReference; set => FullTextTableReference = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ColumnReferenceExpressionId; set => ColumnReferenceExpressionId = value; }
-
-        [XmlIgnore]
-        public ColumnReferenceExpression Value { get => ColumnReferenceExpression; set => ColumnReferenceExpression = value; }
-
     }
 }

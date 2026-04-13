@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public SchemaObjectName SchemaObjectName { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => FullTextTableReferenceId; set => FullTextTableReferenceId = value; }
-
-        [XmlIgnore]
-        public FullTextTableReference Owner { get => FullTextTableReference; set => FullTextTableReference = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => SchemaObjectNameId; set => SchemaObjectNameId = value; }
-
-        [XmlIgnore]
-        public SchemaObjectName Value { get => SchemaObjectName; set => SchemaObjectName = value; }
-
     }
 }

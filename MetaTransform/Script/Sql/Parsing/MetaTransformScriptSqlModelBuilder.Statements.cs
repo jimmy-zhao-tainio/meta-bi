@@ -18,14 +18,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.CommonTableExpressionExpressionNameLinkList.Add(new CommonTableExpressionExpressionNameLink
         {
             Id = NextId(nameof(CommonTableExpressionExpressionNameLink)),
-            OwnerId = commonTableExpression.Id,
-            ValueId = expressionName.GetId(nameof(Identifier))
+            CommonTableExpressionId = commonTableExpression.Id,
+            IdentifierId = expressionName.GetId(nameof(Identifier))
         });
         model.CommonTableExpressionQueryExpressionLinkList.Add(new CommonTableExpressionQueryExpressionLink
         {
             Id = NextId(nameof(CommonTableExpressionQueryExpressionLink)),
-            OwnerId = commonTableExpression.Id,
-            ValueId = queryExpression.GetId(nameof(QueryExpression))
+            CommonTableExpressionId = commonTableExpression.Id,
+            QueryExpressionId = queryExpression.GetId(nameof(QueryExpression))
         });
 
         for (var ordinal = 0; columns is not null && ordinal < columns.Count; ordinal++)
@@ -33,8 +33,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.CommonTableExpressionColumnsItemList.Add(new CommonTableExpressionColumnsItem
             {
                 Id = NextId(nameof(CommonTableExpressionColumnsItem)),
-                OwnerId = commonTableExpression.Id,
-                ValueId = columns[ordinal].GetId(nameof(Identifier)),
+                CommonTableExpressionId = commonTableExpression.Id,
+                IdentifierId = columns[ordinal].GetId(nameof(Identifier)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }
@@ -56,7 +56,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var statementWithCtes = new StatementWithCtesAndXmlNamespaces
         {
             Id = NextId(nameof(StatementWithCtesAndXmlNamespaces)),
-            BaseId = sqlStatement.Id
+            TSqlStatementId = sqlStatement.Id
         };
         model.StatementWithCtesAndXmlNamespacesList.Add(statementWithCtes);
 
@@ -70,8 +70,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList.Add(new StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink
             {
                 Id = NextId(nameof(StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink)),
-                OwnerId = statementWithCtes.Id,
-                ValueId = withCtesAndXmlNamespaces.Id
+                StatementWithCtesAndXmlNamespacesId = statementWithCtes.Id,
+                WithCtesAndXmlNamespacesId = withCtesAndXmlNamespaces.Id
             });
 
             if (xmlNamespaces is not null)
@@ -79,8 +79,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.WithCtesAndXmlNamespacesXmlNamespacesLinkList.Add(new WithCtesAndXmlNamespacesXmlNamespacesLink
                 {
                     Id = NextId(nameof(WithCtesAndXmlNamespacesXmlNamespacesLink)),
-                    OwnerId = withCtesAndXmlNamespaces.Id,
-                    ValueId = xmlNamespaces.GetId(nameof(XmlNamespaces))
+                    WithCtesAndXmlNamespacesId = withCtesAndXmlNamespaces.Id,
+                    XmlNamespacesId = xmlNamespaces.GetId(nameof(XmlNamespaces))
                 });
             }
 
@@ -89,8 +89,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                 model.WithCtesAndXmlNamespacesCommonTableExpressionsItemList.Add(new WithCtesAndXmlNamespacesCommonTableExpressionsItem
                 {
                     Id = NextId(nameof(WithCtesAndXmlNamespacesCommonTableExpressionsItem)),
-                    OwnerId = withCtesAndXmlNamespaces.Id,
-                    ValueId = commonTableExpressions[ordinal].GetId(nameof(CommonTableExpression)),
+                    WithCtesAndXmlNamespacesId = withCtesAndXmlNamespaces.Id,
+                    CommonTableExpressionId = commonTableExpressions[ordinal].GetId(nameof(CommonTableExpression)),
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
                 });
             }
@@ -99,14 +99,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var selectStatement = new SelectStatement
         {
             Id = NextId(nameof(SelectStatement)),
-            BaseId = statementWithCtes.Id
+            StatementWithCtesAndXmlNamespacesId = statementWithCtes.Id
         };
         model.SelectStatementList.Add(selectStatement);
         model.SelectStatementQueryExpressionLinkList.Add(new SelectStatementQueryExpressionLink
         {
             Id = NextId(nameof(SelectStatementQueryExpressionLink)),
-            OwnerId = selectStatement.Id,
-            ValueId = queryExpression.GetId(nameof(QueryExpression))
+            SelectStatementId = selectStatement.Id,
+            QueryExpressionId = queryExpression.GetId(nameof(QueryExpression))
         });
 
         return BuiltNode.Create(
@@ -130,7 +130,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var binaryQueryExpression = new BinaryQueryExpression
         {
             Id = NextId(nameof(BinaryQueryExpression)),
-            BaseId = queryExpression.Id,
+            QueryExpressionId = queryExpression.Id,
             BinaryQueryExpressionType = binaryQueryExpressionType,
             All = all ? "true" : string.Empty
         };
@@ -138,14 +138,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.BinaryQueryExpressionFirstQueryExpressionLinkList.Add(new BinaryQueryExpressionFirstQueryExpressionLink
         {
             Id = NextId(nameof(BinaryQueryExpressionFirstQueryExpressionLink)),
-            OwnerId = binaryQueryExpression.Id,
-            ValueId = firstQueryExpression.GetId(nameof(QueryExpression))
+            BinaryQueryExpressionId = binaryQueryExpression.Id,
+            QueryExpressionId = firstQueryExpression.GetId(nameof(QueryExpression))
         });
         model.BinaryQueryExpressionSecondQueryExpressionLinkList.Add(new BinaryQueryExpressionSecondQueryExpressionLink
         {
             Id = NextId(nameof(BinaryQueryExpressionSecondQueryExpressionLink)),
-            OwnerId = binaryQueryExpression.Id,
-            ValueId = secondQueryExpression.GetId(nameof(QueryExpression))
+            BinaryQueryExpressionId = binaryQueryExpression.Id,
+            QueryExpressionId = secondQueryExpression.GetId(nameof(QueryExpression))
         });
 
         return BuiltNode.Create(
@@ -164,14 +164,14 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         var queryParenthesisExpression = new QueryParenthesisExpression
         {
             Id = NextId(nameof(QueryParenthesisExpression)),
-            BaseId = parent.Id
+            QueryExpressionId = parent.Id
         };
         model.QueryParenthesisExpressionList.Add(queryParenthesisExpression);
         model.QueryParenthesisExpressionQueryExpressionLinkList.Add(new QueryParenthesisExpressionQueryExpressionLink
         {
             Id = NextId(nameof(QueryParenthesisExpressionQueryExpressionLink)),
-            OwnerId = queryParenthesisExpression.Id,
-            ValueId = queryExpression.GetId(nameof(QueryExpression))
+            QueryParenthesisExpressionId = queryParenthesisExpression.Id,
+            QueryExpressionId = queryExpression.GetId(nameof(QueryExpression))
         });
 
         return BuiltNode.Create(
@@ -184,8 +184,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         model.QueryExpressionOrderByClauseLinkList.Add(new QueryExpressionOrderByClauseLink
         {
             Id = NextId(nameof(QueryExpressionOrderByClauseLink)),
-            OwnerId = queryExpression.GetId(nameof(QueryExpression)),
-            ValueId = orderByClause.GetId(nameof(OrderByClause))
+            QueryExpressionId = queryExpression.GetId(nameof(QueryExpression)),
+            OrderByClauseId = orderByClause.GetId(nameof(OrderByClause))
         });
 
         return queryExpression;
@@ -193,6 +193,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
 
     public void AddTransformScript(
         string name,
+        string targetSqlIdentifier,
         string? sourcePath,
         BuiltNode selectStatement,
         BuiltNode? schemaIdentifier,
@@ -209,18 +210,24 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             throw new InvalidOperationException($"Transform script '{name}' already exists in this workspace.");
         }
 
+        if (string.IsNullOrWhiteSpace(targetSqlIdentifier))
+        {
+            throw new InvalidOperationException("Transform script target SQL identifier cannot be empty.");
+        }
+
         var row = new TransformScript
         {
             Id = NextId(nameof(TransformScript)),
             Name = name,
+            TargetSqlIdentifier = targetSqlIdentifier,
             SourcePath = sourcePath ?? string.Empty
         };
         model.TransformScriptList.Add(row);
         model.TransformScriptSelectStatementLinkList.Add(new TransformScriptSelectStatementLink
         {
             Id = NextId(nameof(TransformScriptSelectStatementLink)),
-            OwnerId = row.Id,
-            ValueId = selectStatement.GetId(nameof(SelectStatement))
+            TransformScriptId = row.Id,
+            SelectStatementId = selectStatement.GetId(nameof(SelectStatement))
         });
 
         if (schemaIdentifier is not null)
@@ -228,8 +235,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.TransformScriptSchemaIdentifierLinkList.Add(new TransformScriptSchemaIdentifierLink
             {
                 Id = NextId(nameof(TransformScriptSchemaIdentifierLink)),
-                OwnerId = row.Id,
-                ValueId = schemaIdentifier.GetId(nameof(Identifier))
+                TransformScriptId = row.Id,
+                IdentifierId = schemaIdentifier.GetId(nameof(Identifier))
             });
         }
 
@@ -238,8 +245,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.TransformScriptObjectIdentifierLinkList.Add(new TransformScriptObjectIdentifierLink
             {
                 Id = NextId(nameof(TransformScriptObjectIdentifierLink)),
-                OwnerId = row.Id,
-                ValueId = objectIdentifier.GetId(nameof(Identifier))
+                TransformScriptId = row.Id,
+                IdentifierId = objectIdentifier.GetId(nameof(Identifier))
             });
         }
 
@@ -253,8 +260,8 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             model.TransformScriptViewColumnsItemList.Add(new TransformScriptViewColumnsItem
             {
                 Id = NextId(nameof(TransformScriptViewColumnsItem)),
-                OwnerId = row.Id,
-                ValueId = viewColumns[ordinal].GetId(nameof(Identifier)),
+                TransformScriptId = row.Id,
+                IdentifierId = viewColumns[ordinal].GetId(nameof(Identifier)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }

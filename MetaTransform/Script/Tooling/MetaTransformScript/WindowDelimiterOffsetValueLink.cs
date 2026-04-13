@@ -31,18 +31,5 @@ namespace MetaTransformScript
         [XmlIgnore]
         public WindowDelimiter WindowDelimiter { get; set; } = null!;
 
-        // Compatibility aliases for legacy Owner/Value/Base naming.
-        [XmlIgnore]
-        public string OwnerId { get => WindowDelimiterId; set => WindowDelimiterId = value; }
-
-        [XmlIgnore]
-        public WindowDelimiter Owner { get => WindowDelimiter; set => WindowDelimiter = value; }
-
-        [XmlIgnore]
-        public string ValueId { get => ScalarExpressionId; set => ScalarExpressionId = value; }
-
-        [XmlIgnore]
-        public ScalarExpression Value { get => ScalarExpression; set => ScalarExpression = value; }
-
     }
 }
