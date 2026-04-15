@@ -10,8 +10,19 @@ public sealed partial class MetaTransformScriptSqlParser
         {
             if (MatchKeyword("CREATE"))
             {
-                ParseCreateViewScript();
-                return TopLevelStatementShape.CreateView;
+                if (PeekKeyword("VIEW"))
+                {
+                    ParseCreateViewScript();
+                    return TopLevelStatementShape.CreateWrappedSelect;
+                }
+
+                if (PeekKeyword("FUNCTION"))
+                {
+                    ParseCreateInlineTableValuedFunctionScript();
+                    return TopLevelStatementShape.CreateWrappedSelect;
+                }
+
+                throw Unsupported($"CREATE wrapper '{Current.Value.ToUpperInvariant()}' is not supported yet.");
             }
 
             var selectStatement = ParseSelectStatement();
@@ -62,19 +73,75 @@ public sealed partial class MetaTransformScriptSqlParser
                 selectStatement,
                 schemaIdentifier?.Node,
                 objectIdentifier.Node,
-                viewColumns);
+                viewColumns,
+                scriptObjectKind: "View");
+        }
+
+        private void ParseCreateInlineTableValuedFunctionScript()
+        {
+            ExpectKeyword("FUNCTION");
+
+            var (schemaIdentifier, objectIdentifier, renderedName) = ParseCreateFunctionName();
+            var functionParameters = ParseCreateFunctionParameters();
+
+            ExpectKeyword("RETURNS");
+            if (!MatchKeyword("TABLE"))
+            {
+                throw Unsupported("Only inline table-valued CREATE FUNCTION wrappers are supported (RETURNS TABLE).");
+            }
+
+            if (MatchKeyword("WITH"))
+            {
+                ParseUnsupportedCreateFunctionOptions();
+            }
+
+            ExpectKeyword("AS");
+            ExpectKeyword("RETURN");
+
+            BuiltNode selectStatement;
+            if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
+            {
+                selectStatement = ParseSelectStatement();
+                Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            }
+            else
+            {
+                selectStatement = ParseSelectStatement();
+            }
+
+            SkipSemicolons();
+            ExpectEndOfFile();
+
+            builder.AddTransformScript(
+                renderedName,
+                renderedName,
+                sourcePath,
+                selectStatement,
+                schemaIdentifier?.Node,
+                objectIdentifier.Node,
+                scriptObjectKind: "InlineTableValuedFunction",
+                functionParameters: functionParameters);
         }
 
         private void ParseUnsupportedCreateViewOptions()
         {
-            var optionNames = ParseCommaSeparatedCreateViewOptionNames();
+            var optionNames = ParseCommaSeparatedOptionNames();
             var rendered = optionNames.Count == 0
                 ? "WITH <view options>"
                 : "WITH " + string.Join(", ", optionNames);
             throw Unsupported($"CREATE VIEW wrapper option clause '{rendered}' is not supported yet.");
         }
 
-        private List<string> ParseCommaSeparatedCreateViewOptionNames()
+        private void ParseUnsupportedCreateFunctionOptions()
+        {
+            var optionNames = ParseCommaSeparatedOptionNames();
+            var rendered = optionNames.Count == 0
+                ? "WITH <function options>"
+                : "WITH " + string.Join(", ", optionNames);
+            throw Unsupported($"CREATE FUNCTION wrapper option clause '{rendered}' is not supported yet.");
+        }
+
+        private List<string> ParseCommaSeparatedOptionNames()
         {
             var optionNames = new List<string>();
 
@@ -108,6 +175,16 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateViewName()
         {
+            return ParseCreateObjectName("VIEW");
+        }
+
+        private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateFunctionName()
+        {
+            return ParseCreateObjectName("FUNCTION");
+        }
+
+        private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateObjectName(string objectType)
+        {
             var first = ParseIdentifier();
             if (!Match(MetaTransformScriptSqlTokenKind.Dot))
             {
@@ -117,7 +194,7 @@ public sealed partial class MetaTransformScriptSqlParser
             var second = ParseIdentifier();
             if (Match(MetaTransformScriptSqlTokenKind.Dot))
             {
-                throw Unsupported("CREATE VIEW names with more than two identifier parts are not supported.");
+                throw Unsupported($"CREATE {objectType} names with more than two identifier parts are not supported.");
             }
 
             return (first, second, $"{RenderIdentifier(first.Token)}.{RenderIdentifier(second.Token)}");
@@ -134,6 +211,46 @@ public sealed partial class MetaTransformScriptSqlParser
 
             Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             return identifiers;
+        }
+
+        private List<(BuiltNode ParameterName, BuiltNode DataTypeReference)> ParseCreateFunctionParameters()
+        {
+            Expect(MetaTransformScriptSqlTokenKind.OpenParen);
+            var parameters = new List<(BuiltNode ParameterName, BuiltNode DataTypeReference)>();
+            if (Match(MetaTransformScriptSqlTokenKind.CloseParen))
+            {
+                return parameters;
+            }
+
+            while (true)
+            {
+                var parameterName = ParseIdentifier();
+                if (!parameterName.Token.Value.StartsWith('@'))
+                {
+                    throw Unsupported("CREATE FUNCTION parameters must be declared as @variables.");
+                }
+
+                var dataTypeReference = ParseDataTypeReference();
+                if (Match(MetaTransformScriptSqlTokenKind.Equals))
+                {
+                    throw Unsupported("CREATE FUNCTION parameter default values are not supported yet.");
+                }
+
+                if (MatchKeyword("READONLY"))
+                {
+                    throw Unsupported("CREATE FUNCTION READONLY parameters are not supported yet.");
+                }
+
+                parameters.Add((parameterName.Node, dataTypeReference));
+
+                if (!Match(MetaTransformScriptSqlTokenKind.Comma))
+                {
+                    break;
+                }
+            }
+
+            Expect(MetaTransformScriptSqlTokenKind.CloseParen);
+            return parameters;
         }
 
         private BuiltNode ParseSelectStatement()

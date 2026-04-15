@@ -1371,9 +1371,20 @@
       <PropertyList>
         <Property name="LanguageProfileId" isRequired="false" />
         <Property name="Name" />
+        <Property name="ScriptObjectKind" isRequired="false" />
         <Property name="SourcePath" isRequired="false" />
         <Property name="TargetSqlIdentifier" />
       </PropertyList>
+    </Entity>
+    <Entity name="TransformScriptFunctionParametersItem">
+      <PropertyList>
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataTypeReference" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
     </Entity>
     <Entity name="TransformScriptObjectIdentifierLink">
       <RelationshipList>

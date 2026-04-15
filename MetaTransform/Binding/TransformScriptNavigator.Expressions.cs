@@ -277,6 +277,28 @@ internal sealed partial class TransformScriptNavigator
         return parameterlessCallByPrimaryExpressionId.GetValueOrDefault(primaryExpression.Id);
     }
 
+    public NextValueForExpression? TryGetNextValueForExpression(ScalarExpression scalarExpression)
+    {
+        if (!primaryExpressionByScalarExpressionId.TryGetValue(scalarExpression.Id, out var primaryExpression))
+        {
+            return null;
+        }
+
+        return model.NextValueForExpressionList
+            .FirstOrDefault(item => string.Equals(item.PrimaryExpressionId, primaryExpression.Id, StringComparison.Ordinal));
+    }
+
+    public bool IsValueExpression(ScalarExpression scalarExpression)
+    {
+        if (!primaryExpressionByScalarExpressionId.TryGetValue(scalarExpression.Id, out var primaryExpression))
+        {
+            return false;
+        }
+
+        return model.ValueExpressionList
+            .Any(item => string.Equals(item.PrimaryExpressionId, primaryExpression.Id, StringComparison.Ordinal));
+    }
+
     public CoalesceExpression? TryGetCoalesceExpression(ScalarExpression scalarExpression)
     {
         if (!primaryExpressionByScalarExpressionId.TryGetValue(scalarExpression.Id, out var primaryExpression))
@@ -639,6 +661,132 @@ internal sealed partial class TransformScriptNavigator
             scalarExpressionById.GetValueOrDefault(secondLink.ScalarExpressionId));
     }
 
+    public BooleanTernaryExpression? TryGetBooleanTernaryExpression(BooleanExpression booleanExpression)
+    {
+        return model.BooleanTernaryExpressionList
+            .FirstOrDefault(item => string.Equals(item.BooleanExpressionId, booleanExpression.Id, StringComparison.Ordinal));
+    }
+
+    public (ScalarExpression? First, ScalarExpression? Second, ScalarExpression? Third)? TryGetBooleanTernaryExpressionOperands(BooleanTernaryExpression booleanTernaryExpression)
+    {
+        var firstLink = model.BooleanTernaryExpressionFirstExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.BooleanTernaryExpressionId, booleanTernaryExpression.Id, StringComparison.Ordinal));
+        var secondLink = model.BooleanTernaryExpressionSecondExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.BooleanTernaryExpressionId, booleanTernaryExpression.Id, StringComparison.Ordinal));
+        var thirdLink = model.BooleanTernaryExpressionThirdExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.BooleanTernaryExpressionId, booleanTernaryExpression.Id, StringComparison.Ordinal));
+
+        if (firstLink is null || secondLink is null || thirdLink is null)
+        {
+            return null;
+        }
+
+        return (
+            scalarExpressionById.GetValueOrDefault(firstLink.ScalarExpressionId),
+            scalarExpressionById.GetValueOrDefault(secondLink.ScalarExpressionId),
+            scalarExpressionById.GetValueOrDefault(thirdLink.ScalarExpressionId));
+    }
+
+    public BooleanIsNullExpression? TryGetBooleanIsNullExpression(BooleanExpression booleanExpression)
+    {
+        return model.BooleanIsNullExpressionList
+            .FirstOrDefault(item => string.Equals(item.BooleanExpressionId, booleanExpression.Id, StringComparison.Ordinal));
+    }
+
+    public ScalarExpression? TryGetBooleanIsNullExpressionOperand(BooleanIsNullExpression booleanIsNullExpression)
+    {
+        var link = model.BooleanIsNullExpressionExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.BooleanIsNullExpressionId, booleanIsNullExpression.Id, StringComparison.Ordinal));
+        return link is null
+            ? null
+            : scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId);
+    }
+
+    public LikePredicate? TryGetLikePredicate(BooleanExpression booleanExpression)
+    {
+        return model.LikePredicateList
+            .FirstOrDefault(item => string.Equals(item.BooleanExpressionId, booleanExpression.Id, StringComparison.Ordinal));
+    }
+
+    public (ScalarExpression? First, ScalarExpression? Second)? TryGetLikePredicateOperands(LikePredicate likePredicate)
+    {
+        var firstLink = model.LikePredicateFirstExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.LikePredicateId, likePredicate.Id, StringComparison.Ordinal));
+        var secondLink = model.LikePredicateSecondExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.LikePredicateId, likePredicate.Id, StringComparison.Ordinal));
+
+        if (firstLink is null || secondLink is null)
+        {
+            return null;
+        }
+
+        return (
+            scalarExpressionById.GetValueOrDefault(firstLink.ScalarExpressionId),
+            scalarExpressionById.GetValueOrDefault(secondLink.ScalarExpressionId));
+    }
+
+    public ScalarExpression? TryGetLikePredicateEscapeExpression(LikePredicate likePredicate)
+    {
+        var link = model.LikePredicateEscapeExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.LikePredicateId, likePredicate.Id, StringComparison.Ordinal));
+        return link is null
+            ? null
+            : scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId);
+    }
+
+    public DistinctPredicate? TryGetDistinctPredicate(BooleanExpression booleanExpression)
+    {
+        return model.DistinctPredicateList
+            .FirstOrDefault(item => string.Equals(item.BooleanExpressionId, booleanExpression.Id, StringComparison.Ordinal));
+    }
+
+    public (ScalarExpression? First, ScalarExpression? Second)? TryGetDistinctPredicateOperands(DistinctPredicate distinctPredicate)
+    {
+        var firstLink = model.DistinctPredicateFirstExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.DistinctPredicateId, distinctPredicate.Id, StringComparison.Ordinal));
+        var secondLink = model.DistinctPredicateSecondExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.DistinctPredicateId, distinctPredicate.Id, StringComparison.Ordinal));
+
+        if (firstLink is null || secondLink is null)
+        {
+            return null;
+        }
+
+        return (
+            scalarExpressionById.GetValueOrDefault(firstLink.ScalarExpressionId),
+            scalarExpressionById.GetValueOrDefault(secondLink.ScalarExpressionId));
+    }
+
+    public FullTextPredicate? TryGetFullTextPredicate(BooleanExpression booleanExpression)
+    {
+        return model.FullTextPredicateList
+            .FirstOrDefault(item => string.Equals(item.BooleanExpressionId, booleanExpression.Id, StringComparison.Ordinal));
+    }
+
+    public IReadOnlyList<ColumnReferenceExpression> GetFullTextPredicateColumns(FullTextPredicate fullTextPredicate)
+    {
+        return model.FullTextPredicateColumnsItemList
+            .Where(item => string.Equals(item.FullTextPredicateId, fullTextPredicate.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => model.ColumnReferenceExpressionList
+                .FirstOrDefault(column => string.Equals(column.Id, item.ColumnReferenceExpressionId, StringComparison.Ordinal)))
+            .Where(item => item is not null)
+            .Cast<ColumnReferenceExpression>()
+            .ToArray();
+    }
+
+    public ScalarExpression? TryGetFullTextPredicateValueExpression(FullTextPredicate fullTextPredicate)
+    {
+        var link = model.FullTextPredicateValueLinkList
+            .FirstOrDefault(item => string.Equals(item.FullTextPredicateId, fullTextPredicate.Id, StringComparison.Ordinal));
+        if (link is null)
+        {
+            return null;
+        }
+
+        return TryGetScalarExpressionFromValueExpressionId(link.ValueExpressionId);
+    }
+
     public BooleanNotExpression? TryGetBooleanNotExpression(BooleanExpression booleanExpression) =>
         booleanNotExpressionByBaseId.GetValueOrDefault(booleanExpression.Id);
 
@@ -686,6 +834,17 @@ internal sealed partial class TransformScriptNavigator
             : null;
     }
 
+    public IReadOnlyList<ScalarExpression> GetInPredicateValues(InPredicate inPredicate)
+    {
+        return model.InPredicateValuesItemList
+            .Where(item => string.Equals(item.InPredicateId, inPredicate.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => scalarExpressionById.GetValueOrDefault(item.ScalarExpressionId))
+            .Where(item => item is not null)
+            .Cast<ScalarExpression>()
+            .ToArray();
+    }
+
     public SubqueryComparisonPredicate? TryGetSubqueryComparisonPredicate(BooleanExpression booleanExpression) =>
         subqueryComparisonPredicateByBaseId.GetValueOrDefault(booleanExpression.Id);
 
@@ -718,5 +877,24 @@ internal sealed partial class TransformScriptNavigator
             .Where(item => item is not null)
             .Cast<ScalarExpression>()
             .ToArray();
+    }
+
+    private ScalarExpression? TryGetScalarExpressionFromValueExpressionId(string valueExpressionId)
+    {
+        var valueExpression = model.ValueExpressionList
+            .FirstOrDefault(item => string.Equals(item.Id, valueExpressionId, StringComparison.Ordinal));
+        if (valueExpression is null)
+        {
+            return null;
+        }
+
+        var primaryExpression = model.PrimaryExpressionList
+            .FirstOrDefault(item => string.Equals(item.Id, valueExpression.PrimaryExpressionId, StringComparison.Ordinal));
+        if (primaryExpression is null)
+        {
+            return null;
+        }
+
+        return scalarExpressionById.GetValueOrDefault(primaryExpression.ScalarExpressionId);
     }
 }

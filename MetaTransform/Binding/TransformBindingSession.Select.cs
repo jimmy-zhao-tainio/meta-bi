@@ -267,6 +267,11 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
+        if (TryBindFunctionParameterReference(columnReferenceExpression, parts))
+        {
+            return null;
+        }
+
         if (parts.Count == 1)
         {
             var matches = scope.VisibleTableSources
@@ -398,6 +403,41 @@ internal sealed partial class TransformBindingSession
             $"ColumnReferenceExpression '{columnReferenceExpression.Id}' uses {parts.Count} identifier parts; binding supports one-part or two-part references only.",
             columnReferenceExpression.Id));
         return null;
+    }
+
+    private bool TryBindFunctionParameterReference(
+        ColumnReferenceExpression columnReferenceExpression,
+        IReadOnlyList<string> identifierParts)
+    {
+        if (identifierParts.Count != 1)
+        {
+            return false;
+        }
+
+        var name = identifierParts[0].Trim();
+        if (!name.StartsWith("@", StringComparison.Ordinal))
+        {
+            return false;
+        }
+
+        if (isInlineTableValuedFunction)
+        {
+            if (!activeTransformFunctionParameterNames.Contains(name))
+            {
+                issues.Add(new TransformBindingIssue(
+                    "FunctionParameterReferenceNotFound",
+                    $"Function parameter '{name}' is referenced but not declared on the active inline TVF transform script.",
+                    columnReferenceExpression.Id));
+            }
+
+            return true;
+        }
+
+        issues.Add(new TransformBindingIssue(
+            "ScalarVariableReferenceNotSupported",
+            $"Scalar variable reference '{name}' is not currently supported outside inline TVF parameter binding.",
+            columnReferenceExpression.Id));
+        return true;
     }
 
     private RuntimeColumnReference? ValidateGroupedColumnReference(

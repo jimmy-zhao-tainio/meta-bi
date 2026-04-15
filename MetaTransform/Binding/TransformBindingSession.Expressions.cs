@@ -120,6 +120,16 @@ internal sealed partial class TransformBindingSession
             return;
         }
 
+        if (navigator.TryGetNextValueForExpression(scalarExpression) is not null)
+        {
+            return;
+        }
+
+        if (navigator.IsValueExpression(scalarExpression))
+        {
+            return;
+        }
+
         var coalesceExpression = navigator.TryGetCoalesceExpression(scalarExpression);
         if (coalesceExpression is not null)
         {
@@ -303,6 +313,10 @@ internal sealed partial class TransformBindingSession
             return;
         }
 
+        issues.Add(new TransformBindingIssue(
+            "UnsupportedScalarExpressionShape",
+            $"ScalarExpression '{scalarExpression.Id}' is not yet supported by binding traversal.",
+            scalarExpression.Id));
     }
 
     private void BindBooleanExpression(
@@ -375,6 +389,110 @@ internal sealed partial class TransformBindingSession
             return;
         }
 
+        var booleanTernaryExpression = navigator.TryGetBooleanTernaryExpression(booleanExpression);
+        if (booleanTernaryExpression is not null)
+        {
+            var operands = navigator.TryGetBooleanTernaryExpressionOperands(booleanTernaryExpression);
+            if (operands is not null)
+            {
+                if (operands.Value.First is not null)
+                {
+                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, false);
+                }
+
+                if (operands.Value.Second is not null)
+                {
+                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, false);
+                }
+
+                if (operands.Value.Third is not null)
+                {
+                    BindScalarExpression(operands.Value.Third, scope, inputRowset, groupingContext, false);
+                }
+            }
+
+            return;
+        }
+
+        var booleanIsNullExpression = navigator.TryGetBooleanIsNullExpression(booleanExpression);
+        if (booleanIsNullExpression is not null)
+        {
+            var operand = navigator.TryGetBooleanIsNullExpressionOperand(booleanIsNullExpression);
+            if (operand is not null)
+            {
+                BindScalarExpression(operand, scope, inputRowset, groupingContext, false);
+            }
+
+            return;
+        }
+
+        var likePredicate = navigator.TryGetLikePredicate(booleanExpression);
+        if (likePredicate is not null)
+        {
+            var operands = navigator.TryGetLikePredicateOperands(likePredicate);
+            if (operands is not null)
+            {
+                if (operands.Value.First is not null)
+                {
+                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, false);
+                }
+
+                if (operands.Value.Second is not null)
+                {
+                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, false);
+                }
+            }
+
+            var escapeExpression = navigator.TryGetLikePredicateEscapeExpression(likePredicate);
+            if (escapeExpression is not null)
+            {
+                BindScalarExpression(escapeExpression, scope, inputRowset, groupingContext, false);
+            }
+
+            return;
+        }
+
+        var distinctPredicate = navigator.TryGetDistinctPredicate(booleanExpression);
+        if (distinctPredicate is not null)
+        {
+            var operands = navigator.TryGetDistinctPredicateOperands(distinctPredicate);
+            if (operands is not null)
+            {
+                if (operands.Value.First is not null)
+                {
+                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, false);
+                }
+
+                if (operands.Value.Second is not null)
+                {
+                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, false);
+                }
+            }
+
+            return;
+        }
+
+        var fullTextPredicate = navigator.TryGetFullTextPredicate(booleanExpression);
+        if (fullTextPredicate is not null)
+        {
+            foreach (var column in navigator.GetFullTextPredicateColumns(fullTextPredicate))
+            {
+                var boundColumnReference = BindColumnReference(column, scope, groupingContext, withinAggregate: false);
+                if (boundColumnReference is not null)
+                {
+                    boundColumnReferences.Add(boundColumnReference);
+                }
+            }
+
+            var valueExpression = navigator.TryGetFullTextPredicateValueExpression(fullTextPredicate);
+            if (valueExpression is not null)
+            {
+                BindScalarExpression(valueExpression, scope, inputRowset, groupingContext, false);
+            }
+
+            return;
+        }
+
         var existsPredicate = navigator.TryGetExistsPredicate(booleanExpression);
         if (existsPredicate is not null)
         {
@@ -394,6 +512,11 @@ internal sealed partial class TransformBindingSession
             if (expression is not null)
             {
                 BindScalarExpression(expression, scope, inputRowset, groupingContext, false);
+            }
+
+            foreach (var value in navigator.GetInPredicateValues(inPredicate))
+            {
+                BindScalarExpression(value, scope, inputRowset, groupingContext, false);
             }
 
             var subquery = navigator.TryGetInPredicateSubquery(inPredicate);
@@ -419,7 +542,14 @@ internal sealed partial class TransformBindingSession
             {
                 BindPredicateSubquery(subquery, scope, inputRowset, subqueryComparisonPredicate.Id, requireSingleColumn: true);
             }
+
+            return;
         }
+
+        issues.Add(new TransformBindingIssue(
+            "UnsupportedBooleanExpressionShape",
+            $"BooleanExpression '{booleanExpression.Id}' is not yet supported by binding traversal.",
+            booleanExpression.Id));
     }
 
     private void BindSearchedCaseExpression(

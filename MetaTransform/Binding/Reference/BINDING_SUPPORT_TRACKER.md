@@ -27,6 +27,7 @@ Status meanings:
 - CROSS JOIN
 - CROSS APPLY
 - OUTER APPLY
+- Join parentheses
 
 ### Query-boundary and rowset composition
 
@@ -40,6 +41,16 @@ Status meanings:
 - GROUP BY ALL
 - HAVING
 - Expression grouping specification
+
+### Query modifiers and wrappers
+
+- DISTINCT
+- TOP
+- ORDER BY
+- OFFSET
+- FETCH
+- Query parentheses
+  Current support: query-level modifiers and wrappers are traversed for name binding, including `TOP ... WITH TIES` ordering requirements and output-alias references in query-level `ORDER BY`; these constructs do not mutate rowset shape in Binding
 
 ### Structural schema conformance
 
@@ -56,6 +67,8 @@ Status meanings:
 - LIKE
 - LIKE ESCAPE
 - IS NULL
+- DISTINCT predicate
+- Full-text predicate (`CONTAINS`, `FREETEXT`)
 - Negated predicate
 - Boolean AND
 - Boolean OR
@@ -80,8 +93,12 @@ Status meanings:
 - TRY_PARSE
 - LEFT
 - RIGHT
+- NEXT VALUE FOR
+- Parameterless call (`CURRENT_TIMESTAMP`)
 - AT TIME ZONE
 - COLLATE
+- Inline TVF parameter references (`@Param`)
+  Current support: inline TVF wrapper parameters are treated as scalar inputs in expression binding and are not inferred as source-rowset columns
 
 ## Partial
 
@@ -89,10 +106,18 @@ Status meanings:
 
 - Schema object table-valued function
   Current support: requires script-supplied column alias list
+- Built-in table-valued function
+- Global table-valued function
+  Current support: sanctioned global TVF shapes currently infer rowsets by function name (`OPENJSON`, `GENERATE_SERIES`, `STRING_SPLIT`); other global TVFs remain explicit binding gaps
+- OPENJSON
+  Current support: infers default `key` / `value` / `type` rowset shape from the script call; `WITH (...)` schema-driven shape is not yet modeled in binding
 - Table-valued function alias
   Current support: follows the currently supported TVF shapes
 - Table-valued function column alias list
   Current support: this is the sanctioned shape-enabler for current TVF binding
+- PIVOT
+- UNPIVOT
+  Current support: binds pivot/unpivot rowset shape when input shape is syntax-derived (for example from a derived table or CTE projection); direct base-source input remains an explicit binding gap because full source shape is not available from syntax alone
 
 ### Recursive and aggregate semantics
 
@@ -152,18 +177,11 @@ Status meanings:
 - Source column-subset schema conformance
 - Target identifier resolution
 - Final output rowset structural target conformance
-  Current support: validation appends explicit validation rows and validation issues inside `MetaTransformBinding`; target validation currently checks structural count/name and skips SQL identity columns only
+  Current support: validation appends explicit validation link rows inside `MetaTransformBinding` and fails hard on any mismatch; target validation currently checks structural count/name and skips SQL identity columns only
 
 ## Deferred
 
 ### Query modifiers and wrappers
-
-- DISTINCT
-- TOP
-- ORDER BY
-- OFFSET
-- FETCH
-- Query parentheses
 
 ### Additional sources
 
@@ -172,22 +190,14 @@ Status meanings:
 - OPENQUERY
 - Ad hoc data source
 - CHANGETABLE
-- Built-in table-valued function
-- Global table-valued function
-- Join parentheses
 
 ### Predicate and function families not yet bound explicitly
 
-- DISTINCT predicate
-- Full-text predicate
 - EXTRACT
-- Parameterless call
 - WITH XMLNAMESPACES
 - Default XML namespace
 - XML methods
 - XML NODES
-- PIVOT
-- UNPIVOT
 - TABLESAMPLE
 - CONTAINS
 - FREETEXT

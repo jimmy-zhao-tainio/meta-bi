@@ -15,15 +15,31 @@ internal static class Program
             return Task.FromResult(0);
         }
 
-        return RunAsync(args);
+        if (string.Equals(args[0], "bind", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunBindAsync(args, startIndex: 1);
+        }
+
+        if (string.Equals(args[0], "validate", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunValidateAsync(args, startIndex: 1);
+        }
+
+        return Task.FromResult(Fail($"unknown command '{args[0]}'.", "meta-transform-binding help"));
     }
 
-    private static Task<int> RunAsync(string[] args)
+    private static Task<int> RunBindAsync(string[] args, int startIndex)
     {
-        var parse = ParseArgs(args, startIndex: 0);
+        if (args.Length == startIndex || (args.Length > startIndex && IsHelpToken(args[startIndex])))
+        {
+            PrintBindHelp();
+            return Task.FromResult(0);
+        }
+
+        var parse = ParseBindArgs(args, startIndex);
         if (!parse.Ok)
         {
-            return Task.FromResult(Fail(parse.ErrorMessage, "meta-transform-binding --help"));
+            return Task.FromResult(Fail(parse.ErrorMessage, "meta-transform-binding bind --help"));
         }
 
         var targetValidation = CliNewWorkspaceTargetValidator.Validate(parse.NewWorkspacePath);
@@ -78,7 +94,80 @@ internal static class Program
         }
     }
 
-    private static (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, string? Name, string? LanguageProfileId, string ErrorMessage) ParseArgs(
+    private static Task<int> RunValidateAsync(string[] args, int startIndex)
+    {
+        if (args.Length == startIndex || (args.Length > startIndex && IsHelpToken(args[startIndex])))
+        {
+            PrintValidateHelp();
+            return Task.FromResult(0);
+        }
+
+        var parse = ParseValidateArgs(args, startIndex);
+        if (!parse.Ok)
+        {
+            return Task.FromResult(Fail(parse.ErrorMessage, "meta-transform-binding validate --help"));
+        }
+
+        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parse.NewWorkspacePath);
+        if (!targetValidation.Ok)
+        {
+            return Task.FromResult(Fail(
+                targetValidation.ErrorMessage,
+                "choose a new folder or empty the target directory and retry.",
+                4,
+                targetValidation.Details));
+        }
+
+        try
+        {
+            var result = new TransformBindingValidationWorkspaceService().ValidateWorkspace(
+                parse.BindingWorkspacePath,
+                parse.SchemaWorkspacePath,
+                targetValidation.FullPath);
+
+            Presenter.WriteOk($"Created {Path.GetFileName(result.WorkspacePath)}");
+            Presenter.WriteKeyValueBlock("Validation", new[]
+            {
+                ("Bindings", result.TransformBindingCount.ToString()),
+                ("SourceRowsets", result.SourceRowsetValidationCount.ToString()),
+                ("TargetRowsets", result.TargetRowsetValidationCount.ToString()),
+                ("SourceColumns", result.SourceColumnValidationCount.ToString()),
+                ("TargetColumns", result.TargetColumnValidationCount.ToString()),
+                ("Workspace", result.WorkspacePath)
+            });
+            return Task.FromResult(0);
+        }
+        catch (TransformBindingValidationException ex)
+        {
+            return Task.FromResult(Fail(
+                "validation failed.",
+                "fix the schema or transform contract mismatch and retry.",
+                5,
+                new[]
+                {
+                    $"  BindingWorkspace: {Path.GetFullPath(parse.BindingWorkspacePath)}",
+                    $"  SchemaWorkspace: {Path.GetFullPath(parse.SchemaWorkspacePath)}",
+                    $"  Code: {ex.Code}",
+                    $"  {ex.Message}"
+                }));
+        }
+        catch (Exception ex)
+        {
+            return Task.FromResult(Fail(
+                "validation workspace generation failed.",
+                "check the binding workspace, schema workspace, and target workspace, then retry.",
+                4,
+                new[]
+                {
+                    $"  BindingWorkspace: {Path.GetFullPath(parse.BindingWorkspacePath)}",
+                    $"  SchemaWorkspace: {Path.GetFullPath(parse.SchemaWorkspacePath)}",
+                    $"  ValidatedWorkspace: {targetValidation.FullPath}",
+                    $"  {ex.Message}"
+                }));
+        }
+    }
+
+    private static (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, string? Name, string? LanguageProfileId, string ErrorMessage) ParseBindArgs(
         string[] args,
         int startIndex)
     {
@@ -132,6 +221,52 @@ internal static class Program
         return (true, transformWorkspacePath, newWorkspacePath, name, languageProfileId, string.Empty);
     }
 
+    private static (bool Ok, string BindingWorkspacePath, string SchemaWorkspacePath, string NewWorkspacePath, string ErrorMessage) ParseValidateArgs(
+        string[] args,
+        int startIndex)
+    {
+        var bindingWorkspacePath = string.Empty;
+        var schemaWorkspacePath = string.Empty;
+        var newWorkspacePath = string.Empty;
+
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+
+            if (string.Equals(arg, "--binding-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing value for --binding-workspace.");
+                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "--binding-workspace can only be provided once.");
+                bindingWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--schema-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing value for --schema-workspace.");
+                if (!string.IsNullOrWhiteSpace(schemaWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "--schema-workspace can only be provided once.");
+                schemaWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing value for --new-workspace.");
+                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "--new-workspace can only be provided once.");
+                newWorkspacePath = args[++i];
+                continue;
+            }
+
+            return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, $"unknown option '{arg}'.");
+        }
+
+        if (string.IsNullOrWhiteSpace(bindingWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing required option --binding-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(schemaWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing required option --schema-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing required option --new-workspace <path>.");
+
+        return (true, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, string.Empty);
+    }
+
     private static bool IsHelpToken(string value)
     {
         return string.Equals(value, "help", StringComparison.OrdinalIgnoreCase)
@@ -141,15 +276,44 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Presenter.WriteUsage("meta-transform-binding --transform-workspace <path> --new-workspace <path> [--name <name>] [--language-profile <id>]");
+        Presenter.WriteUsage("meta-transform-binding <command> [options]");
+        Presenter.WriteInfo(string.Empty);
+        Presenter.WriteCommandCatalog(
+            "Commands:",
+            new[]
+            {
+                ("bind", "Bind one transform script into a new binding workspace."),
+                ("validate", "Validate a binding workspace against a schema workspace into a new workspace."),
+                ("help", "Show this help.")
+            });
+        Presenter.WriteNext("meta-transform-binding bind --help");
+        Presenter.WriteNext("meta-transform-binding validate --help");
+    }
+
+    private static void PrintBindHelp()
+    {
+        Presenter.WriteInfo("Command: bind");
+        Presenter.WriteUsage("meta-transform-binding bind --transform-workspace <path> --new-workspace <path> [--name <name>] [--language-profile <id>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Target SQL identifier is read from TransformScript.TargetSqlIdentifier.");
         Presenter.WriteInfo("  Target must be table, schema.table, or database.schema.table.");
         Presenter.WriteInfo("  If the transform workspace contains multiple scripts, --name is required.");
         Presenter.WriteInfo($"  --language-profile defaults to {DefaultLanguageProfileId} for this CLI run.");
         Presenter.WriteInfo("  If provided, --language-profile overrides both that CLI default and TransformScript.LanguageProfileId.");
+        Presenter.WriteInfo("Examples:");
+        Presenter.WriteInfo("  meta-transform-binding bind --transform-workspace .\\TransformWorkspace --name sales.CustomerOrderSummary --new-workspace .\\BindingWorkspace");
+    }
+
+    private static void PrintValidateHelp()
+    {
+        Presenter.WriteInfo("Command: validate");
+        Presenter.WriteUsage("meta-transform-binding validate --binding-workspace <path> --schema-workspace <path> --new-workspace <path>");
+        Presenter.WriteInfo("Notes:");
+        Presenter.WriteInfo("  Validate resolves source and target SQL identifiers against the schema workspace.");
+        Presenter.WriteInfo("  Validate fails hard on any mismatch or ambiguous/not-found identifier.");
+        Presenter.WriteInfo("  Output is a new binding workspace containing explicit validation link rows.");
         Presenter.WriteInfo("Example:");
-        Presenter.WriteInfo("  meta-transform-binding --transform-workspace .\\TransformWorkspace --name sales.CustomerOrderSummary --new-workspace .\\BindingWorkspace");
+        Presenter.WriteInfo("  meta-transform-binding validate --binding-workspace .\\BindingWorkspace --schema-workspace .\\SchemaWorkspace --new-workspace .\\ValidatedBindingWorkspace");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

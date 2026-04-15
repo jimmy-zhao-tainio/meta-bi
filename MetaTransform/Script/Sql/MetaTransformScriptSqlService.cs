@@ -134,7 +134,7 @@ public sealed class MetaTransformScriptSqlService
 
             var combinedSql = string.Join(
                 Environment.NewLine,
-                scripts.Select(script => WrapInCreateViewEnvelope(model, script, emitter.Render(ResolveSelectStatement(model, script)))));
+                scripts.Select(script => WrapInCreateEnvelope(model, script, emitter.Render(ResolveSelectStatement(model, script)))));
             await File.WriteAllTextAsync(fullOutputPath, combinedSql, Encoding.UTF8, cancellationToken).ConfigureAwait(false);
             return new ExportToPathResult(scripts.Length, fullOutputPath);
         }
@@ -149,7 +149,7 @@ public sealed class MetaTransformScriptSqlService
 
             var script = scripts[i];
             var selectStatement = ResolveSelectStatement(model, script);
-            var sql = WrapInCreateViewEnvelope(model, script, emitter.Render(selectStatement));
+            var sql = WrapInCreateEnvelope(model, script, emitter.Render(selectStatement));
             var relativePath = BuildUniqueOutputRelativePath(script, usedFileNames, i + 1);
             var filePath = Path.Combine(fullOutputPath, relativePath);
             var fileDirectory = Path.GetDirectoryName(filePath);
@@ -234,7 +234,7 @@ public sealed class MetaTransformScriptSqlService
                         var sourceLabel = string.IsNullOrWhiteSpace(batch.SourcePath) ? "<sql-code>" : batch.SourcePath;
                         throw new MetaTransformScriptSqlImportException(
                             MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                            $"SQL input '{sourceLabel}' mixes bare SELECT statements with CREATE VIEW wrappers. Split the inputs so one logical import source uses one top-level shape.");
+                            $"SQL input '{sourceLabel}' mixes bare SELECT statements with CREATE VIEW/CREATE FUNCTION wrappers. Split the inputs so one logical import source uses one top-level shape.");
                     }
 
                     parsedStatementCount++;
@@ -250,7 +250,7 @@ public sealed class MetaTransformScriptSqlService
         {
             throw new MetaTransformScriptSqlImportException(
                 MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                "SQL input did not contain a supported SELECT statement or CREATE VIEW wrapper.");
+                "SQL input did not contain a supported SELECT statement, CREATE VIEW wrapper, or inline CREATE FUNCTION wrapper.");
         }
 
         var model = builder.Build();
@@ -467,15 +467,33 @@ public sealed class MetaTransformScriptSqlService
         }
     }
 
+    private static string WrapInCreateEnvelope(MTS.MetaTransformScriptModel model, MTS.TransformScript script, string bodySql)
+    {
+        var scriptObjectKind = ResolveScriptObjectKind(script);
+        return scriptObjectKind switch
+        {
+            "View" => WrapInCreateViewEnvelope(model, script, bodySql),
+            "InlineTableValuedFunction" => WrapInCreateInlineTableValuedFunctionEnvelope(model, script, bodySql),
+            _ => throw new InvalidOperationException($"Unsupported TransformScript.ScriptObjectKind '{scriptObjectKind}'.")
+        };
+    }
+
+    private static string ResolveScriptObjectKind(MTS.TransformScript script)
+    {
+        return string.IsNullOrWhiteSpace(script.ScriptObjectKind)
+            ? "View"
+            : script.ScriptObjectKind;
+    }
+
     private static string WrapInCreateViewEnvelope(MTS.MetaTransformScriptModel model, MTS.TransformScript script, string bodySql)
     {
         var trimmedBody = bodySql.Trim();
-        var createViewName = ResolveCreateViewName(model, script);
+        var createObjectName = ResolveCreateObjectName(model, script);
         var columnList = RenderViewColumnList(model, script);
 
         var builder = new StringBuilder();
         builder.Append("CREATE VIEW ");
-        builder.AppendLine(createViewName);
+        builder.AppendLine(createObjectName);
         if (!string.IsNullOrWhiteSpace(columnList))
         {
             builder.AppendLine(columnList);
@@ -483,6 +501,34 @@ public sealed class MetaTransformScriptSqlService
 
         builder.AppendLine("AS");
         builder.AppendLine(trimmedBody);
+        builder.AppendLine("GO");
+        return builder.ToString();
+    }
+
+    private static string WrapInCreateInlineTableValuedFunctionEnvelope(
+        MTS.MetaTransformScriptModel model,
+        MTS.TransformScript script,
+        string bodySql)
+    {
+        var createObjectName = ResolveCreateObjectName(model, script);
+        var parameterList = RenderFunctionParameterList(model, script);
+        var trimmedBody = bodySql.Trim();
+
+        var builder = new StringBuilder();
+        builder.Append("CREATE FUNCTION ");
+        builder.AppendLine(createObjectName);
+        builder.AppendLine(parameterList);
+        builder.AppendLine("RETURNS TABLE");
+        builder.AppendLine("AS");
+        builder.AppendLine("RETURN");
+        builder.AppendLine("(");
+        foreach (var line in SplitLines(trimmedBody))
+        {
+            builder.Append("    ");
+            builder.AppendLine(line);
+        }
+
+        builder.AppendLine(")");
         builder.AppendLine("GO");
         return builder.ToString();
     }
@@ -545,7 +591,7 @@ public sealed class MetaTransformScriptSqlService
         return true;
     }
 
-    private static string ResolveCreateViewName(MTS.MetaTransformScriptModel model, MTS.TransformScript script)
+    private static string ResolveCreateObjectName(MTS.MetaTransformScriptModel model, MTS.TransformScript script)
     {
         if (!string.IsNullOrWhiteSpace(script.TargetSqlIdentifier))
         {
@@ -572,6 +618,41 @@ public sealed class MetaTransformScriptSqlService
         return schemaIdentifier is null
             ? RenderIdentifierFromModel(objectIdentifier)
             : $"{RenderIdentifierFromModel(schemaIdentifier)}.{RenderIdentifierFromModel(objectIdentifier)}";
+    }
+
+    private static string RenderFunctionParameterList(MTS.MetaTransformScriptModel model, MTS.TransformScript script)
+    {
+        var parameters = model.TransformScriptFunctionParametersItemList
+            .Where(item => string.Equals(item.TransformScriptId, script.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .ToArray();
+
+        if (parameters.Length == 0)
+        {
+            return "()";
+        }
+
+        var builder = new StringBuilder();
+        builder.AppendLine("(");
+        for (var i = 0; i < parameters.Length; i++)
+        {
+            var parameter = parameters[i];
+            var parameterName = RenderIdentifierFromModel(ResolveIdentifier(model, parameter.IdentifierId));
+            var dataType = RenderDataTypeReference(model, ResolveDataTypeReference(model, parameter.DataTypeReferenceId));
+            builder.Append("    ");
+            builder.Append(parameterName);
+            builder.Append(' ');
+            builder.Append(dataType);
+            if (i < parameters.Length - 1)
+            {
+                builder.Append(',');
+            }
+
+            builder.AppendLine();
+        }
+
+        builder.Append(')');
+        return builder.ToString();
     }
 
     private static string RenderViewColumnList(MTS.MetaTransformScriptModel model, MTS.TransformScript script)
@@ -604,6 +685,106 @@ public sealed class MetaTransformScriptSqlService
 
         builder.Append(')');
         return builder.ToString();
+    }
+
+    private static MTS.DataTypeReference ResolveDataTypeReference(MTS.MetaTransformScriptModel model, string dataTypeReferenceId)
+    {
+        return model.DataTypeReferenceList.SingleOrDefault(item => string.Equals(item.Id, dataTypeReferenceId, StringComparison.Ordinal))
+            ?? throw new InvalidOperationException($"DataTypeReference '{dataTypeReferenceId}' was not found.");
+    }
+
+    private static string RenderDataTypeReference(MTS.MetaTransformScriptModel model, MTS.DataTypeReference dataTypeReference)
+    {
+        string renderedName;
+
+        var nameLink = model.DataTypeReferenceNameLinkList
+            .SingleOrDefault(item => string.Equals(item.DataTypeReferenceId, dataTypeReference.Id, StringComparison.Ordinal));
+        if (nameLink is not null)
+        {
+            renderedName = RenderSchemaObjectName(model, nameLink.SchemaObjectNameId);
+        }
+        else
+        {
+            var parameterizedDataTypeReference = model.ParameterizedDataTypeReferenceList
+                .SingleOrDefault(item => string.Equals(item.DataTypeReferenceId, dataTypeReference.Id, StringComparison.Ordinal));
+            if (parameterizedDataTypeReference is null)
+            {
+                throw new InvalidOperationException($"Unsupported DataTypeReference '{dataTypeReference.Id}'.");
+            }
+
+            var sqlDataTypeReference = model.SqlDataTypeReferenceList
+                .SingleOrDefault(item => string.Equals(item.ParameterizedDataTypeReferenceId, parameterizedDataTypeReference.Id, StringComparison.Ordinal))
+                ?? throw new InvalidOperationException($"SqlDataTypeReference for '{parameterizedDataTypeReference.Id}' was not found.");
+            renderedName = MetaTransformScriptSqlServerDataTypes.RenderSqlName(sqlDataTypeReference.SqlDataTypeOption);
+
+            var parameters = model.ParameterizedDataTypeReferenceParametersItemList
+                .Where(item => string.Equals(item.ParameterizedDataTypeReferenceId, parameterizedDataTypeReference.Id, StringComparison.Ordinal))
+                .OrderBy(item => ParseOrdinal(item.Ordinal))
+                .Select(item => RenderLiteral(model, item.LiteralId))
+                .ToArray();
+
+            return parameters.Length == 0
+                ? renderedName
+                : renderedName + "(" + string.Join(", ", parameters) + ")";
+        }
+
+        var parameterizedByName = model.ParameterizedDataTypeReferenceList
+            .SingleOrDefault(item => string.Equals(item.DataTypeReferenceId, dataTypeReference.Id, StringComparison.Ordinal));
+        if (parameterizedByName is null)
+        {
+            return renderedName;
+        }
+
+        var renderedParameters = model.ParameterizedDataTypeReferenceParametersItemList
+            .Where(item => string.Equals(item.ParameterizedDataTypeReferenceId, parameterizedByName.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => RenderLiteral(model, item.LiteralId))
+            .ToArray();
+        return renderedParameters.Length == 0
+            ? renderedName
+            : renderedName + "(" + string.Join(", ", renderedParameters) + ")";
+    }
+
+    private static string RenderSchemaObjectName(MTS.MetaTransformScriptModel model, string schemaObjectNameId)
+    {
+        var schemaObjectName = model.SchemaObjectNameList.SingleOrDefault(item => string.Equals(item.Id, schemaObjectNameId, StringComparison.Ordinal))
+            ?? throw new InvalidOperationException($"SchemaObjectName '{schemaObjectNameId}' was not found.");
+
+        var parts = model.MultiPartIdentifierIdentifiersItemList
+            .Where(item => string.Equals(item.MultiPartIdentifierId, schemaObjectName.MultiPartIdentifierId, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => RenderIdentifierFromModel(ResolveIdentifier(model, item.IdentifierId)))
+            .ToArray();
+
+        if (parts.Length == 0)
+        {
+            throw new InvalidOperationException($"SchemaObjectName '{schemaObjectNameId}' had no identifier parts.");
+        }
+
+        return string.Join(".", parts);
+    }
+
+    private static string RenderLiteral(MTS.MetaTransformScriptModel model, string literalId)
+    {
+        var literal = model.LiteralList.SingleOrDefault(item => string.Equals(item.Id, literalId, StringComparison.Ordinal))
+            ?? throw new InvalidOperationException($"Literal '{literalId}' was not found.");
+
+        if (model.MaxLiteralList.Any(item => string.Equals(item.LiteralId, literal.Id, StringComparison.Ordinal)))
+        {
+            return "max";
+        }
+
+        return literal.Value;
+    }
+
+    private static IEnumerable<string> SplitLines(string text)
+    {
+        using var reader = new StringReader(text);
+        string? line;
+        while ((line = reader.ReadLine()) is not null)
+        {
+            yield return line;
+        }
     }
 
     private static MTS.Identifier? ResolveOptionalIdentifier(MTS.MetaTransformScriptModel model, object? link)

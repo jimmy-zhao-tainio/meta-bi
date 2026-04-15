@@ -59,6 +59,7 @@ public sealed class SqlServiceImportExportTests
     [InlineData("063_four_part_names.sql")]
     [InlineData("064_remaining_data_types.sql")]
     [InlineData("065_select_star_plain.sql")]
+    [InlineData("066_inline_tvf.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnAuditedCorpus(string fileName)
     {
         var sql = MetaTransformScriptTestHelper.LoadCorpus(fileName);
@@ -182,6 +183,28 @@ FROM dbo.XmlSource AS s
         Assert.Equal("dbo.v_view_column_list", script.Name);
         Assert.Equal("dbo.v_view_column_list", script.TargetSqlIdentifier);
         Assert.Equal(2, model.TransformScriptViewColumnsItemList.Count);
+    }
+
+    [Fact]
+    public void ImportFromSqlPath_ParsesInlineTableValuedFunctionWrappers()
+    {
+        var sql = MetaTransformScriptTestHelper.LoadCorpus("066_inline_tvf.sql");
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlPath(
+            MetaTransformScriptTestHelper.WriteTempSqlFile("inline-tvf.sql", sql));
+
+        var script = Assert.Single(model.TransformScriptList);
+        Assert.Equal("dbo.fn_customer_orders", script.Name);
+        Assert.Equal("InlineTableValuedFunction", script.ScriptObjectKind);
+        Assert.Equal("dbo.fn_customer_orders", script.TargetSqlIdentifier);
+        Assert.Empty(model.TransformScriptViewColumnsItemList);
+        Assert.Equal(2, model.TransformScriptFunctionParametersItemList.Count);
+
+        var parameterNames = model.TransformScriptFunctionParametersItemList
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, item.IdentifierId, StringComparison.Ordinal)).Value)
+            .ToArray();
+        Assert.Equal(["@CustomerId", "@FromDate"], parameterNames);
     }
 
     [Fact]
@@ -463,6 +486,66 @@ FROM dbo.Source AS s
                 Directory.Delete(tempRoot, recursive: true);
             }
         }
+    }
+
+    [Fact]
+    public async Task ExportToSqlPath_EmitsCreateFunctionEnvelope_ForInlineTvf()
+    {
+        var sql = MetaTransformScriptTestHelper.LoadCorpus("066_inline_tvf.sql");
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql);
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Script.Tests", Guid.NewGuid().ToString("N"));
+        var outputFilePath = Path.Combine(tempRoot, "tvf-out.sql");
+
+        try
+        {
+            Directory.CreateDirectory(tempRoot);
+            await service.ExportToSqlPathAsync(model, outputFilePath);
+
+            var emitted = await File.ReadAllTextAsync(outputFilePath);
+            Assert.Contains("CREATE FUNCTION dbo.fn_customer_orders", emitted);
+            Assert.Contains("RETURNS TABLE", emitted);
+            Assert.Contains("RETURN", emitted);
+            Assert.Contains("@CustomerId int", emitted);
+            Assert.Contains("@FromDate date", emitted);
+            Assert.DoesNotContain("CREATE VIEW", emitted);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_FailsExplicitly_ForNonInlineTvfWrapper()
+    {
+        const string sql = """
+CREATE FUNCTION dbo.fn_non_inline
+(
+    @CustomerId int
+)
+RETURNS @Output TABLE
+(
+    CustomerId int
+)
+AS
+BEGIN
+    INSERT INTO @Output (CustomerId)
+    SELECT
+        @CustomerId;
+    RETURN;
+END
+""";
+
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlCode(sql));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+        Assert.Contains("inline table-valued", exception.Message);
     }
 
     [Fact]

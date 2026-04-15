@@ -37,72 +37,6 @@ internal static class Program
 
         var service = new MetaTransformScriptSqlService();
 
-        if (string.Equals(args[1], "sql-path", StringComparison.OrdinalIgnoreCase))
-        {
-            if (args.Length >= 3 && IsHelpToken(args[2]))
-            {
-                PrintFromSqlPathHelp();
-                return 0;
-            }
-
-            var parse = ParseFromSqlPathArgs(args, 2);
-            if (!parse.Ok)
-            {
-                return Fail(parse.ErrorMessage, "meta-transform-script from sql-path --help");
-            }
-
-            var targetValidation = CliNewWorkspaceTargetValidator.Validate(parse.NewWorkspacePath);
-            if (!targetValidation.Ok)
-            {
-                return Fail(
-                    targetValidation.ErrorMessage,
-                    "choose a new folder or empty the target directory and retry.",
-                    4,
-                    targetValidation.Details);
-            }
-
-            try
-            {
-                var result = await service.ImportFromSqlPathToWorkspaceAsync(
-                    parse.Path,
-                    targetValidation.FullPath).ConfigureAwait(false);
-
-                Presenter.WriteOk($"Created {Path.GetFileName(result.WorkspacePath)}");
-                Presenter.WriteKeyValueBlock("Import", new[]
-                {
-                    ("Scripts", result.ScriptCount.ToString()),
-                    ("Workspace", result.WorkspacePath)
-                });
-                return 0;
-            }
-            catch (MetaTransformScriptSqlImportException ex)
-            {
-                return Fail(
-                    GetImportFailureMessage("sql-path", ex.Kind),
-                    GetImportFailureNext("sql-path", ex.Kind),
-                    4,
-                    new[]
-                    {
-                        $"  Path: {Path.GetFullPath(parse.Path)}",
-                        $"  Workspace: {targetValidation.FullPath}",
-                        $"  {ex.Message}"
-                    });
-            }
-            catch (Exception ex)
-            {
-                return Fail(
-                    "sql-path import failed.",
-                    "check the SQL path and target workspace, then retry.",
-                    4,
-                    new[]
-                    {
-                        $"  Path: {Path.GetFullPath(parse.Path)}",
-                        $"  Workspace: {targetValidation.FullPath}",
-                        $"  {ex.Message}"
-                    });
-            }
-        }
-
         if (string.Equals(args[1], "sql-code", StringComparison.OrdinalIgnoreCase))
         {
             if (args.Length >= 3 && IsHelpToken(args[2]))
@@ -266,38 +200,6 @@ internal static class Program
         return Fail($"unknown target '{args[1]}'.", "meta-transform-script to --help");
     }
 
-    private static (bool Ok, string Path, string NewWorkspacePath, string ErrorMessage) ParseFromSqlPathArgs(string[] args, int startIndex)
-    {
-        var path = string.Empty;
-        var newWorkspacePath = string.Empty;
-
-        for (var i = startIndex; i < args.Length; i++)
-        {
-            var arg = args[i];
-            if (string.Equals(arg, "--path", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return (false, path, newWorkspacePath, "missing value for --path.");
-                if (!string.IsNullOrWhiteSpace(path)) return (false, path, newWorkspacePath, "--path can only be provided once.");
-                path = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return (false, path, newWorkspacePath, "missing value for --new-workspace.");
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, path, newWorkspacePath, "--new-workspace can only be provided once.");
-                newWorkspacePath = args[++i];
-                continue;
-            }
-
-            return (false, path, newWorkspacePath, $"unknown option '{arg}'.");
-        }
-
-        if (string.IsNullOrWhiteSpace(path)) return (false, path, newWorkspacePath, "missing required option --path <path>.");
-        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, path, newWorkspacePath, "missing required option --new-workspace <path>.");
-        return (true, path, newWorkspacePath, string.Empty);
-    }
-
     private static (bool Ok, string Code, string NewWorkspacePath, string? Name, string ErrorMessage) ParseFromSqlCodeArgs(string[] args, int startIndex)
     {
         var code = string.Empty;
@@ -419,7 +321,7 @@ internal static class Program
             "Commands:",
             new[]
             {
-                ("from", "Import SQL files or SQL code into a new workspace."),
+                ("from", "Import SQL code into a new workspace."),
                 ("to", "Emit SQL files or SQL code from a MetaTransformScript workspace."),
                 ("help", "Show this help.")
             });
@@ -435,15 +337,13 @@ internal static class Program
             "Sources:",
             new[]
             {
-                ("sql-path", "Import one .sql file or a folder of .sql files into a new workspace."),
                 ("sql-code", "Import SQL text into a new workspace.")
             });
         Presenter.WriteInfo("Common option:");
         Presenter.WriteInfo("  --new-workspace <path>  Required for import commands.");
         Presenter.WriteInfo("Examples:");
-        Presenter.WriteInfo("  meta-transform-script from sql-path --path .\\Views --new-workspace .\\TransformWorkspace");
         Presenter.WriteInfo("  meta-transform-script from sql-code --code \"select 1 as A\" --name dbo.v_inline --new-workspace .\\TransformWorkspace");
-        Presenter.WriteNext("meta-transform-script from sql-path --help");
+        Presenter.WriteNext("meta-transform-script from sql-code --help");
     }
 
     private static void PrintToHelp()
@@ -454,23 +354,10 @@ internal static class Program
             "Targets:",
             new[]
             {
-                ("sql-path", "Emit CREATE VIEW scripts to a file or folder."),
+                ("sql-path", "Emit CREATE VIEW/CREATE FUNCTION scripts to a file or folder."),
                 ("sql-code", "Emit one transform script body as SQL text.")
             });
         Presenter.WriteNext("meta-transform-script to sql-path --help");
-    }
-
-    private static void PrintFromSqlPathHelp()
-    {
-        Presenter.WriteInfo("Command: from sql-path");
-        Presenter.WriteUsage("meta-transform-script from sql-path --path <path> --new-workspace <path>");
-        Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Accepts either one .sql file or a folder of .sql files.");
-        Presenter.WriteInfo("  CREATE VIEW wrappers are accepted as envelopes.");
-        Presenter.WriteInfo("  SET statements and GO-separated batches are tolerated as long as supported CREATE VIEW statements can be found.");
-        Presenter.WriteInfo("  Explicit view column lists are captured.");
-        Presenter.WriteInfo("  View options and WITH CHECK OPTION are still rejected.");
-        Presenter.WriteInfo("  Bare SELECT files are not accepted on sql-path import. Use CREATE VIEW wrappers in files.");
     }
 
     private static void PrintFromSqlCodeHelp()
@@ -479,7 +366,7 @@ internal static class Program
         Presenter.WriteUsage("meta-transform-script from sql-code --code <sql> --new-workspace <path> [--name <name>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Imports SQL text directly into a new workspace.");
-        Presenter.WriteInfo("  --name is required when the code is a bare SELECT body without a CREATE VIEW wrapper.");
+        Presenter.WriteInfo("  --name is required when the code is a bare SELECT body without a CREATE VIEW/CREATE FUNCTION wrapper.");
     }
 
     private static void PrintToSqlPathHelp()
@@ -487,7 +374,7 @@ internal static class Program
         Presenter.WriteInfo("Command: to sql-path");
         Presenter.WriteUsage("meta-transform-script to sql-path [--workspace <path>] --out <path>");
         Presenter.WriteInfo("Notes:");
-        Presenter.WriteInfo("  Emits CREATE VIEW wrappers plus GO separators.");
+        Presenter.WriteInfo("  Emits CREATE VIEW/CREATE FUNCTION wrappers plus GO separators.");
         Presenter.WriteInfo("  If --out ends with .sql, all scripts are emitted into one file.");
         Presenter.WriteInfo("  Otherwise --out is treated as a target folder and must be empty or missing.");
     }
@@ -525,7 +412,7 @@ internal static class Program
             MetaTransformScriptSqlImportFailureKind.SourcePathHasNoSqlFiles => "point --path at a .sql file or a folder that contains .sql files, then retry.",
             MetaTransformScriptSqlImportFailureKind.ParseFailed => "fix the SQL syntax and retry.",
             MetaTransformScriptSqlImportFailureKind.UnsupportedSql => "remove unsupported wrapper options or unsupported SQL surface, then retry.",
-            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput => "provide CREATE VIEW wrappers, or use sql-code with --name for bare SELECT input, then retry.",
+            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput => "provide CREATE VIEW/CREATE FUNCTION wrappers, or use sql-code with --name for bare SELECT input, then retry.",
             _ => $"check the {sourceLabel} input and retry."
         };
 

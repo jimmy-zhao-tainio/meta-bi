@@ -1139,6 +1139,11 @@ namespace MetaTransformScript
         public List<TransformScript> TransformScriptList { get; set; } = new();
         public bool ShouldSerializeTransformScriptList() => TransformScriptList.Count > 0;
 
+        [XmlArray("TransformScriptFunctionParametersItemList")]
+        [XmlArrayItem("TransformScriptFunctionParametersItem")]
+        public List<TransformScriptFunctionParametersItem> TransformScriptFunctionParametersItemList { get; set; } = new();
+        public bool ShouldSerializeTransformScriptFunctionParametersItemList() => TransformScriptFunctionParametersItemList.Count > 0;
+
         [XmlArray("TransformScriptObjectIdentifierLinkList")]
         [XmlArrayItem("TransformScriptObjectIdentifierLink")]
         public List<TransformScriptObjectIdentifierLink> TransformScriptObjectIdentifierLinkList { get; set; } = new();
@@ -1695,6 +1700,7 @@ namespace MetaTransformScript
             model.TopRowFilterList ??= new List<TopRowFilter>();
             model.TopRowFilterExpressionLinkList ??= new List<TopRowFilterExpressionLink>();
             model.TransformScriptList ??= new List<TransformScript>();
+            model.TransformScriptFunctionParametersItemList ??= new List<TransformScriptFunctionParametersItem>();
             model.TransformScriptObjectIdentifierLinkList ??= new List<TransformScriptObjectIdentifierLink>();
             model.TransformScriptSchemaIdentifierLinkList ??= new List<TransformScriptSchemaIdentifierLink>();
             model.TransformScriptSelectStatementLinkList ??= new List<TransformScriptSelectStatementLink>();
@@ -1974,6 +1980,7 @@ namespace MetaTransformScript
             NormalizeTopRowFilterList(model);
             NormalizeTopRowFilterExpressionLinkList(model);
             NormalizeTransformScriptList(model);
+            NormalizeTransformScriptFunctionParametersItemList(model);
             NormalizeTransformScriptObjectIdentifierLinkList(model);
             NormalizeTransformScriptSchemaIdentifierLinkList(model);
             NormalizeTransformScriptSelectStatementLinkList(model);
@@ -2253,6 +2260,7 @@ namespace MetaTransformScript
             var topRowFilterListById = BuildById(model.TopRowFilterList, row => row.Id, "TopRowFilter");
             var topRowFilterExpressionLinkListById = BuildById(model.TopRowFilterExpressionLinkList, row => row.Id, "TopRowFilterExpressionLink");
             var transformScriptListById = BuildById(model.TransformScriptList, row => row.Id, "TransformScript");
+            var transformScriptFunctionParametersItemListById = BuildById(model.TransformScriptFunctionParametersItemList, row => row.Id, "TransformScriptFunctionParametersItem");
             var transformScriptObjectIdentifierLinkListById = BuildById(model.TransformScriptObjectIdentifierLinkList, row => row.Id, "TransformScriptObjectIdentifierLink");
             var transformScriptSchemaIdentifierLinkListById = BuildById(model.TransformScriptSchemaIdentifierLinkList, row => row.Id, "TransformScriptSchemaIdentifierLink");
             var transformScriptSelectStatementLinkListById = BuildById(model.TransformScriptSelectStatementLinkList, row => row.Id, "TransformScriptSelectStatementLink");
@@ -7557,6 +7565,54 @@ namespace MetaTransformScript
                     "TopRowFilterId");
             }
 
+            foreach (var row in model.TransformScriptFunctionParametersItemList)
+            {
+                row.DataTypeReferenceId = ResolveRelationshipId(
+                    row.DataTypeReferenceId,
+                    row.DataTypeReference?.Id,
+                    "TransformScriptFunctionParametersItem",
+                    row.Id,
+                    "DataTypeReferenceId");
+                row.DataTypeReference = RequireTarget(
+                    dataTypeReferenceListById,
+                    row.DataTypeReferenceId,
+                    "TransformScriptFunctionParametersItem",
+                    row.Id,
+                    "DataTypeReferenceId");
+            }
+
+            foreach (var row in model.TransformScriptFunctionParametersItemList)
+            {
+                row.IdentifierId = ResolveRelationshipId(
+                    row.IdentifierId,
+                    row.Identifier?.Id,
+                    "TransformScriptFunctionParametersItem",
+                    row.Id,
+                    "IdentifierId");
+                row.Identifier = RequireTarget(
+                    identifierListById,
+                    row.IdentifierId,
+                    "TransformScriptFunctionParametersItem",
+                    row.Id,
+                    "IdentifierId");
+            }
+
+            foreach (var row in model.TransformScriptFunctionParametersItemList)
+            {
+                row.TransformScriptId = ResolveRelationshipId(
+                    row.TransformScriptId,
+                    row.TransformScript?.Id,
+                    "TransformScriptFunctionParametersItem",
+                    row.Id,
+                    "TransformScriptId");
+                row.TransformScript = RequireTarget(
+                    transformScriptListById,
+                    row.TransformScriptId,
+                    "TransformScriptFunctionParametersItem",
+                    row.Id,
+                    "TransformScriptId");
+            }
+
             foreach (var row in model.TransformScriptObjectIdentifierLinkList)
             {
                 row.IdentifierId = ResolveRelationshipId(
@@ -11252,8 +11308,22 @@ namespace MetaTransformScript
                 row.Id = RequireIdentity(row.Id, "Entity 'TransformScript' contains a row with empty Id.");
                 row.LanguageProfileId ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'TransformScript' row '{row.Id}' is missing required property 'Name'.");
+                row.ScriptObjectKind ??= string.Empty;
                 row.SourcePath ??= string.Empty;
                 row.TargetSqlIdentifier = RequireText(row.TargetSqlIdentifier, $"Entity 'TransformScript' row '{row.Id}' is missing required property 'TargetSqlIdentifier'.");
+            }
+        }
+
+        private static void NormalizeTransformScriptFunctionParametersItemList(MetaTransformScriptModel model)
+        {
+            foreach (var row in model.TransformScriptFunctionParametersItemList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'TransformScriptFunctionParametersItem' contains a row with empty Id.");
+                row.Ordinal = RequireText(row.Ordinal, $"Entity 'TransformScriptFunctionParametersItem' row '{row.Id}' is missing required property 'Ordinal'.");
+                row.DataTypeReferenceId ??= string.Empty;
+                row.IdentifierId ??= string.Empty;
+                row.TransformScriptId ??= string.Empty;
             }
         }
 

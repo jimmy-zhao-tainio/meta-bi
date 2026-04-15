@@ -198,7 +198,9 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         BuiltNode selectStatement,
         BuiltNode? schemaIdentifier,
         BuiltNode? objectIdentifier,
-        IReadOnlyList<BuiltNode>? viewColumns = null)
+        IReadOnlyList<BuiltNode>? viewColumns = null,
+        string? scriptObjectKind = null,
+        IReadOnlyList<(BuiltNode ParameterName, BuiltNode DataTypeReference)>? functionParameters = null)
     {
         if (string.IsNullOrWhiteSpace(name))
         {
@@ -219,6 +221,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         {
             Id = NextId(nameof(TransformScript)),
             Name = name,
+            ScriptObjectKind = scriptObjectKind ?? string.Empty,
             TargetSqlIdentifier = targetSqlIdentifier,
             SourcePath = sourcePath ?? string.Empty
         };
@@ -250,18 +253,34 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             });
         }
 
-        if (viewColumns is null)
+        if (viewColumns is not null)
+        {
+            for (var ordinal = 0; ordinal < viewColumns.Count; ordinal++)
+            {
+                model.TransformScriptViewColumnsItemList.Add(new TransformScriptViewColumnsItem
+                {
+                    Id = NextId(nameof(TransformScriptViewColumnsItem)),
+                    TransformScriptId = row.Id,
+                    IdentifierId = viewColumns[ordinal].GetId(nameof(Identifier)),
+                    Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
+                });
+            }
+        }
+
+        if (functionParameters is null)
         {
             return;
         }
 
-        for (var ordinal = 0; ordinal < viewColumns.Count; ordinal++)
+        for (var ordinal = 0; ordinal < functionParameters.Count; ordinal++)
         {
-            model.TransformScriptViewColumnsItemList.Add(new TransformScriptViewColumnsItem
+            var parameter = functionParameters[ordinal];
+            model.TransformScriptFunctionParametersItemList.Add(new TransformScriptFunctionParametersItem
             {
-                Id = NextId(nameof(TransformScriptViewColumnsItem)),
+                Id = NextId(nameof(TransformScriptFunctionParametersItem)),
                 TransformScriptId = row.Id,
-                IdentifierId = viewColumns[ordinal].GetId(nameof(Identifier)),
+                IdentifierId = parameter.ParameterName.GetId(nameof(Identifier)),
+                DataTypeReferenceId = parameter.DataTypeReference.GetId(nameof(DataTypeReference)),
                 Ordinal = ordinal.ToString(CultureInfo.InvariantCulture)
             });
         }

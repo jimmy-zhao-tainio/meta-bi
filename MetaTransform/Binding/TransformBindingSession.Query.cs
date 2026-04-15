@@ -17,7 +17,7 @@ internal sealed partial class TransformBindingSession
         var querySpecification = navigator.TryGetQuerySpecification(queryExpressionId);
         if (querySpecification is not null)
         {
-            return BindQuerySpecification(
+            var querySpecificationBinding = BindQuerySpecification(
                 querySpecification,
                 outputRowsetId,
                 outputRowsetName,
@@ -26,12 +26,14 @@ internal sealed partial class TransformBindingSession
                 inheritedVisibleTableSources,
                 inheritedInputRowset,
                 expectedOutputColumnNames);
+            BindQueryExpressionModifiers(queryExpressionId, querySpecification, querySpecificationBinding);
+            return querySpecificationBinding;
         }
 
         var binaryQueryExpression = navigator.TryGetBinaryQueryExpression(queryExpressionId);
         if (binaryQueryExpression is not null)
         {
-            return BindBinaryQueryExpression(
+            var binaryExpressionBinding = BindBinaryQueryExpression(
                 binaryQueryExpression,
                 outputRowsetId,
                 outputRowsetName,
@@ -40,6 +42,34 @@ internal sealed partial class TransformBindingSession
                 inheritedVisibleTableSources,
                 inheritedInputRowset,
                 expectedOutputColumnNames);
+            BindQueryExpressionModifiers(queryExpressionId, null, binaryExpressionBinding);
+            return binaryExpressionBinding;
+        }
+
+        var queryParenthesisExpression = navigator.TryGetQueryParenthesisExpression(queryExpressionId);
+        if (queryParenthesisExpression is not null)
+        {
+            var innerQueryExpressionId = navigator.TryGetQueryParenthesisExpressionInnerQueryExpressionId(queryParenthesisExpression);
+            if (string.IsNullOrWhiteSpace(innerQueryExpressionId))
+            {
+                issues.Add(new TransformBindingIssue(
+                    "QueryParenthesisExpressionInnerQueryMissing",
+                    $"QueryParenthesisExpression '{queryParenthesisExpression.Id}' is missing its inner query expression.",
+                    queryParenthesisExpression.Id));
+                return null;
+            }
+
+            var innerBinding = BindQueryExpression(
+                innerQueryExpressionId,
+                outputRowsetId,
+                outputRowsetName,
+                outputRowsetRole,
+                visibleCommonTableExpressionOrdinal,
+                inheritedVisibleTableSources,
+                inheritedInputRowset,
+                expectedOutputColumnNames);
+            BindQueryExpressionModifiers(queryExpressionId, null, innerBinding);
+            return innerBinding;
         }
 
         issues.Add(new TransformBindingIssue(
@@ -47,6 +77,164 @@ internal sealed partial class TransformBindingSession
             $"QueryExpression '{queryExpressionId}' is not yet supported by binding.",
             queryExpressionId));
         return null;
+    }
+
+    private void BindQueryExpressionModifiers(
+        string queryExpressionId,
+        QuerySpecification? querySpecification,
+        RuntimeQueryBindingResult? binding)
+    {
+        if (binding is null)
+        {
+            return;
+        }
+
+        var queryLevelOrderByClause = navigator.TryGetQueryExpressionOrderByClause(queryExpressionId);
+
+        if (querySpecification is not null)
+        {
+            BindUniqueRowFilter(querySpecification);
+
+            var topRowFilter = navigator.TryGetTopRowFilter(querySpecification);
+            if (topRowFilter is not null)
+            {
+                BindTopRowFilter(topRowFilter, binding.Scope, binding.InputRowset, queryLevelOrderByClause is not null);
+            }
+        }
+
+        if (queryLevelOrderByClause is not null)
+        {
+            BindQueryOrderByClause(
+                queryLevelOrderByClause,
+                binding.Scope,
+                binding.InputRowset,
+                binding.OutputRowset);
+        }
+
+        var offsetClause = navigator.TryGetQueryExpressionOffsetClause(queryExpressionId);
+        if (offsetClause is not null)
+        {
+            BindOffsetClause(
+                offsetClause,
+                binding.Scope,
+                binding.InputRowset,
+                queryLevelOrderByClause is not null);
+        }
+    }
+
+    private void BindUniqueRowFilter(QuerySpecification querySpecification)
+    {
+        if (navigator.HasUnsupportedUniqueRowFilter(querySpecification))
+        {
+            issues.Add(new TransformBindingIssue(
+                "UnsupportedUniqueRowFilter",
+                $"QuerySpecification '{querySpecification.Id}' uses unsupported unique row filter '{querySpecification.UniqueRowFilter}'.",
+                querySpecification.Id));
+        }
+    }
+
+    private void BindTopRowFilter(
+        TopRowFilter topRowFilter,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
+        bool hasQueryLevelOrderBy)
+    {
+        var topExpression = navigator.TryGetTopRowFilterExpression(topRowFilter);
+        if (topExpression is null)
+        {
+            issues.Add(new TransformBindingIssue(
+                "TopRowFilterExpressionMissing",
+                $"TopRowFilter '{topRowFilter.Id}' is missing its expression.",
+                topRowFilter.Id));
+        }
+        else
+        {
+            BindScalarExpression(topExpression, scope, inputRowset, groupingContext: null, withinAggregate: false);
+        }
+
+        if (navigator.IsTopRowFilterWithTies(topRowFilter) && !hasQueryLevelOrderBy)
+        {
+            issues.Add(new TransformBindingIssue(
+                "TopWithTiesRequiresOrderBy",
+                $"TopRowFilter '{topRowFilter.Id}' uses WITH TIES without a query-level ORDER BY clause.",
+                topRowFilter.Id));
+        }
+    }
+
+    private void BindQueryOrderByClause(
+        OrderByClause orderByClause,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
+        RuntimeRowset outputRowset)
+    {
+        foreach (var orderByElement in navigator.GetOrderByElements(orderByClause))
+        {
+            var expression = navigator.TryGetExpressionWithSortOrderExpression(orderByElement);
+            if (expression is null)
+            {
+                continue;
+            }
+
+            if (TryResolveQueryOrderByOutputAlias(expression, outputRowset))
+            {
+                continue;
+            }
+
+            BindScalarExpression(expression, scope, inputRowset, groupingContext: null, withinAggregate: false);
+        }
+    }
+
+    private bool TryResolveQueryOrderByOutputAlias(
+        ScalarExpression expression,
+        RuntimeRowset outputRowset)
+    {
+        var directColumnReference = navigator.TryGetDirectColumnReference(expression);
+        if (directColumnReference is null)
+        {
+            return false;
+        }
+
+        var parts = navigator.GetColumnReferenceParts(directColumnReference);
+        if (parts.Count != 1)
+        {
+            return false;
+        }
+
+        return outputRowset.Columns.Any(item => string.Equals(item.Name, parts[0], StringComparison.OrdinalIgnoreCase));
+    }
+
+    private void BindOffsetClause(
+        OffsetClause offsetClause,
+        BindingScope scope,
+        RuntimeRowset? inputRowset,
+        bool hasQueryLevelOrderBy)
+    {
+        if (!hasQueryLevelOrderBy)
+        {
+            issues.Add(new TransformBindingIssue(
+                "OffsetClauseRequiresOrderBy",
+                $"OffsetClause '{offsetClause.Id}' requires a query-level ORDER BY clause.",
+                offsetClause.Id));
+        }
+
+        var offsetExpression = navigator.TryGetOffsetClauseOffsetExpression(offsetClause);
+        if (offsetExpression is null)
+        {
+            issues.Add(new TransformBindingIssue(
+                "OffsetClauseOffsetExpressionMissing",
+                $"OffsetClause '{offsetClause.Id}' is missing its offset expression.",
+                offsetClause.Id));
+        }
+        else
+        {
+            BindScalarExpression(offsetExpression, scope, inputRowset, groupingContext: null, withinAggregate: false);
+        }
+
+        var fetchExpression = navigator.TryGetOffsetClauseFetchExpression(offsetClause);
+        if (fetchExpression is not null)
+        {
+            BindScalarExpression(fetchExpression, scope, inputRowset, groupingContext: null, withinAggregate: false);
+        }
     }
 
     private RuntimeQueryBindingResult? BindBinaryQueryExpression(

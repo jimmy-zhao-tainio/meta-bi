@@ -3,6 +3,7 @@
   <EntityList>
     <Entity name="TransformScript">
       <PropertyList>
+        <Property name="ScriptObjectKind" isRequired="false" />
         <Property name="Name" />
         <Property name="TargetSqlIdentifier" />
         <Property name="LanguageProfileId" isRequired="false" />
@@ -28,6 +29,16 @@
       <RelationshipList>
         <Relationship entity="TransformScript" />
         <Relationship entity="Identifier" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformScriptFunctionParametersItem">
+      <PropertyList>
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformScript" />
+        <Relationship entity="Identifier" />
+        <Relationship entity="DataTypeReference" />
       </RelationshipList>
     </Entity>
     <Entity name="TransformScriptSelectStatementLink">

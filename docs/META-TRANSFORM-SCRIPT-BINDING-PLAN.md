@@ -285,8 +285,8 @@ Minimal sanctioned binding model:
   - links the syntax column reference to its resolved `Column`
   - also records the resolved `TableSource`
 
-- `Issue`
-  - explicit binding and profile outcomes
+- binding/profile issues remain runtime outcomes for now
+  - they are not persisted as rows in `MetaTransformBinding`
 
 Runtime helpers may still exist during implementation, but they are not the product artifact.
 `BindingScope` is a good example of something that should remain implementation scaffolding unless and until we have a clear reason to persist it.
@@ -311,6 +311,7 @@ Implemented now:
 - set-operation rowset binding for `UNION`, `UNION ALL`, `INTERSECT`, and `EXCEPT`
 - lateral `CROSS APPLY` / `OUTER APPLY` with a query-derived-table right side
 - schema-object function table references when the script supplies explicit column aliases
+- `PIVOT` / `UNPIVOT` table references when their input rowset shape is syntax-derived
 - correlated scalar subqueries
 - correlated `EXISTS`
 - correlated `IN (subquery)`
@@ -318,6 +319,7 @@ Implemented now:
 - scalar-expression traversal across common expression shells such as:
   - binary and unary expressions
   - parenthesized scalar expressions
+  - value/special scalar leaves (`CURRENT_TIMESTAMP`, `NEXT VALUE FOR`, current sanctioned globals, and literals)
   - generic function-call parameter lists
   - `LEFT` / `RIGHT`
   - searched and simple `CASE`
@@ -345,8 +347,18 @@ Implemented now:
   - `ROWS` / `RANGE` frame offset expressions
   - query-level named `WINDOW` definitions
   - `WITHIN GROUP` orderings on generic function calls
+- query-level modifier traversal across:
+  - `DISTINCT`
+  - `TOP`
+  - query-level `ORDER BY`
+  - `OFFSET` / `FETCH`
+  - explicit `TOP ... WITH TIES` guard requiring query-level `ORDER BY`
 - explicit source declaration capture from named SQL identifiers
 - explicit target declaration capture from supplied SQL identifiers
+- sanctioned global TVF output-shape inference for:
+  - `OPENJSON` (default `key` / `value` / `type`)
+  - `GENERATE_SERIES` (`value`)
+  - `STRING_SPLIT` (`value`)
 
 The persisted binding artifact is also live now:
 
@@ -356,7 +368,8 @@ The persisted binding artifact is also live now:
 - `Column`
 - `TableSource`
 - `ColumnReference`
-- `Issue`
+- `TransformBindingTarget`
+- validation link entities (`Validation*`) produced by Validate
 
 ## Honest Remaining Gaps
 
@@ -366,6 +379,8 @@ Important things that are still not truly implemented:
 - grouping / aggregate output rules
 - full window semantics and explicit named-window validation
 - broader TVF support beyond script-supplied explicit alias shape
+  - current sanctioned global TVF coverage is intentionally narrow and name-based
+- `PIVOT` / `UNPIVOT` directly over base source rowsets where full source shape is not derivable from syntax alone
 - deeper recursive semantics beyond rowset-shape stabilization
 - broad nested-subquery support outside the currently implemented predicate/scalar shapes
 - type inference
@@ -423,6 +438,7 @@ Recursive CTE rowset-shape binding is now implemented when the recursive shape c
 Deeper recursive semantics still remain outside this phase, but recursive self-reference no longer blocks binding outright.
 Correlated scalar subqueries, `EXISTS`, `IN (subquery)`, and subquery-comparison predicates are now implemented for query-boundary binding and outer-scope name visibility.
 Expression binding still remains intentionally shallow in semantics even though traversal is now broad: direct column references, current scalar shells, supported window/ordered-set clauses, and the current sanctioned subquery/predicate shapes are walked, while type and full function semantics are still deferred.
+Modeled predicate families such as `BETWEEN`, `IN (...)`, `LIKE` (including `ESCAPE`), `IS NULL`, `IS DISTINCT FROM`, and full-text predicates (`CONTAINS` / `FREETEXT`) are now traversed for name resolution.
 
 ## Data Flow
 
@@ -457,7 +473,7 @@ The next clean slices should stay honest about the current boundary:
 
 1. profile feature classification beyond profile resolution
 2. type inference handoff
-3. query modifiers such as `DISTINCT`, `TOP`, `ORDER BY`, and `OFFSET` / `FETCH`
+3. broader table-source coverage (`OPENJSON`, `OPENROWSET`, `OPENQUERY`, `CHANGETABLE`, and TVF shapes without script-supplied alias shape)
 4. expand Validate beyond the current structural slice over `TransformBinding + MetaSchema`
 
 This keeps rowset and name-resolution truth ahead of type and validation work.
@@ -496,7 +512,7 @@ Done enough for the current implemented stage means:
 - binding results are persisted in a separate semantic artifact, not injected into `MetaTransformScript`
 - the persisted artifact is rowset-centric and can represent zero or more source rowsets flowing into one final output rowset
 - the persisted artifact carries source and target SQL identifiers without pretending schema validation already happened
-- validation can append explicit source/target validation rows and validation issues without mutating binding facts
+- validation appends explicit source/target validation rows and fails hard on mismatch without mutating binding facts
 - unsupported scalar-expression shapes still fail explicitly rather than silently disappearing
 
 Not done yet:
@@ -595,26 +611,26 @@ Do not do these yet:
 - [x] correlated predicate/scalar subquery binding works for the currently sanctioned shapes
 - [x] unresolved names produce explicit binding issues
 - [x] ambiguous names produce explicit binding issues
-- [ ] disallowed profile features produce explicit semantic outcomes
-- [ ] unclassified profile features produce explicit semantic outcomes
 - [x] broader scalar-expression traversal is implemented for the current sanctioned shells
+- [x] modeled predicate traversal for `BETWEEN`, `IN (...)`, `LIKE` / `ESCAPE`, `IS NULL`, and `IS DISTINCT FROM` is implemented
 - [x] aggregate/function argument binding is implemented for scalar call structures
 - [x] basic expression `GROUP BY` rowset binding is implemented
 - [x] `GROUP BY ALL` binding is implemented
 - [x] basic `HAVING` traversal is implemented
 - [x] window and ordered-set traversal is implemented for the current sanctioned expression shapes
 - [x] advanced grouping forms are implemented for the current sanctioned traversal shapes
-- [ ] `DISTINCT` binding is implemented
-- [ ] `TOP` binding is implemented
-- [ ] query `ORDER BY` binding is implemented
-- [ ] `OFFSET` / `FETCH` binding is implemented
-- [ ] query parenthesis binding is implemented
-- [ ] join parenthesis binding is implemented
+- [x] `DISTINCT` binding is implemented
+- [x] `TOP` binding is implemented
+- [x] query `ORDER BY` binding is implemented
+- [x] `OFFSET` / `FETCH` binding is implemented
+- [x] query parenthesis binding is implemented
+- [x] join parenthesis binding is implemented
 - [ ] built-in and global TVF binding is implemented without script-supplied alias shape
 - [ ] `OPENJSON` / `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` binding is implemented
-- [ ] full-text predicate and table-form binding is implemented
+- [x] full-text predicate traversal (`CONTAINS` / `FREETEXT`) is implemented
+- [ ] full-text table-form binding (`CONTAINSTABLE` / `FREETEXTTABLE`) is implemented
 - [ ] XML namespace / method binding is implemented
-- [ ] `PIVOT` / `UNPIVOT` binding is implemented
+- [x] `PIVOT` / `UNPIVOT` binding is implemented for syntax-derived input rowsets
 - [ ] data type validation is implemented
 - [ ] nullability validation is implemented
 - [ ] length / precision / scale validation is implemented

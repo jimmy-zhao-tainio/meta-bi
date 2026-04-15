@@ -365,6 +365,104 @@ FROM
     }
 
     [Fact]
+    public void BindPivotTableReference_DerivesPivotRowsetAndFinalProjection()
+    {
+        var model = ParseCorpus("005_pivot.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Sales", ["CustomerId", "CategoryCode", "Amount"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+        Assert.False(bound.HasErrors);
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var pivotRowset = Assert.Single(bindingModel.RowsetList, item => item.DerivationKind == "Pivot");
+        var pivotColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == pivotRowset.Id)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["CustomerId", "A", "B"], pivotColumns);
+
+        var finalLink = Assert.Single(bindingModel.OutputRowsetList);
+        var finalColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == finalLink.RowsetId)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["CustomerId", "A", "B"], finalColumns);
+    }
+
+    [Fact]
+    public void BindUnpivotTableReference_DerivesUnpivotRowsetAndFinalProjection()
+    {
+        var model = ParseCorpus("006_unpivot.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "PivotSource", ["CustomerId", "A", "B"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+        Assert.False(bound.HasErrors);
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var unpivotRowset = Assert.Single(bindingModel.RowsetList, item => item.DerivationKind == "Unpivot");
+        var unpivotColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == unpivotRowset.Id)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["CustomerId", "CategoryCode", "Amount"], unpivotColumns);
+
+        var finalLink = Assert.Single(bindingModel.OutputRowsetList);
+        var finalColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == finalLink.RowsetId)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["CustomerId", "CategoryCode", "Amount"], finalColumns);
+    }
+
+    [Fact]
+    public void BindQueryParentheses_BindsParenthesizedSetBranches()
+    {
+        var model = ParseCorpus("024_query_parentheses.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id", "Code"]),
+            ("dbo", "Target", ["Id", "Code"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.NotNull(bound.TopLevelRowset);
+        Assert.Equal("SetOperation", bound.TopLevelRowset!.DerivationKind);
+        Assert.Equal(["Id", "Code"], bound.TopLevelRowset.Columns.Select(item => item.Name).ToArray());
+        Assert.Equal(4, bound.ColumnReferences.Count);
+    }
+
+    [Fact]
+    public void BindJoinParentheses_BindsParenthesizedJoinTableReference()
+    {
+        var model = ParseCorpus("031_join_parentheses.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "A", ["Id", "BId", "CId"]),
+            ("dbo", "B", ["Id"]),
+            ("dbo", "C", ["Id", "Name"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.NotNull(bound.TopLevelRowset);
+        Assert.Equal(["Id", "Name"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
+        Assert.Contains(bound.Rowsets, item => item.DerivationKind == "Join");
+    }
+
+    [Fact]
     public void BindCrossApplyQueryDerivedTable_CanResolveOuterScopeColumns()
     {
         var sql = """
@@ -458,6 +556,37 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
     }
 
     [Fact]
+    public void BindOpenJson_CanInferDefaultOutputShapeFromScript()
+    {
+        var model = ParseCorpus("022_openjson.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "JsonSource", ["Id", "JsonPayload"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.NotNull(bound.TopLevelRowset);
+        Assert.Equal(["Id", "key", "value", "type"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
+        Assert.Equal(5, bound.ColumnReferences.Count);
+    }
+
+    [Fact]
+    public void BindBuiltInGlobalFunctionTableReferences_CanBindSanctionedShapes()
+    {
+        var model = ParseCorpus("026_builtin_table_functions.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var bound = new TransformBindingService().BindSingleTransform(model, CreateSourceSchema());
+
+        Assert.False(bound.HasErrors);
+        Assert.NotNull(bound.TopLevelRowset);
+        Assert.Equal(["value"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
+        Assert.Equal(2, bound.ColumnReferences.Count);
+    }
+
+    [Fact]
     public void BindCorrelatedScalarSubqueryAndExists_PreservesCorrelationBinding()
     {
         var model = ParseCorpus("011_subqueries_and_correlation.sql");
@@ -511,6 +640,103 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
             .Select(item => item.Name)
             .ToArray();
         Assert.Equal(["Id"], finalColumns);
+    }
+
+    [Fact]
+    public void BindWherePredicates_TraversesBetweenInLikeAndIsNull()
+    {
+        var model = ParseCorpus("007_where_predicates.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id", "Status", "Amount", "Code", "Name", "DeletedAt", "Score"]));
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var resolvedColumnNames = bindingModel.ColumnReferenceList
+            .Select(item => bindingModel.ColumnList.Single(column => column.Id == item.ColumnId).Name)
+            .ToArray();
+
+        Assert.Equal(7, resolvedColumnNames.Length);
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Id", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Status", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Amount", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Code", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Name", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "DeletedAt", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Score", StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void BindDistinctPredicate_TraversesBothOperands()
+    {
+        var model = ParseCorpus("025_distinct_predicate.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id", "Code", "LegacyCode"]));
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var resolvedColumnNames = bindingModel.ColumnReferenceList
+            .Select(item => bindingModel.ColumnList.Single(column => column.Id == item.ColumnId).Name)
+            .ToArray();
+
+        Assert.Equal(3, resolvedColumnNames.Length);
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Id", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Code", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "LegacyCode", StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void BindContainsPredicate_TraversesFullTextColumnReference()
+    {
+        var model = ParseCorpus("027_fulltext.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Products", ["ProductId", "Description"]));
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var resolvedColumnNames = bindingModel.ColumnReferenceList
+            .Select(item => bindingModel.ColumnList.Single(column => column.Id == item.ColumnId).Name)
+            .ToArray();
+
+        Assert.Equal(2, resolvedColumnNames.Length);
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "ProductId", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Description", StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void BindFreeTextPredicate_TraversesFullTextColumnReference()
+    {
+        var model = ParseCorpus("061_freetext.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Products", ["ProductId", "Description"]));
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var resolvedColumnNames = bindingModel.ColumnReferenceList
+            .Select(item => bindingModel.ColumnList.Single(column => column.Id == item.ColumnId).Name)
+            .ToArray();
+
+        Assert.Equal(2, resolvedColumnNames.Length);
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "ProductId", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Description", StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void BindSequenceAndGlobalExpressions_AreAcceptedAsScalarLeaves()
+    {
+        var model = ParseCorpus("036_sequence_and_globals.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", []));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.Empty(bound.ColumnReferences);
     }
 
     [Fact]
@@ -827,6 +1053,77 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
         Assert.Equal(5, resolvedColumnNames.Length);
         Assert.Equal(3, resolvedColumnNames.Count(item => string.Equals(item, "CustomerId", StringComparison.Ordinal)));
         Assert.Equal(2, resolvedColumnNames.Count(item => string.Equals(item, "Amount", StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void BindQueryModifiers_DistinctTopOrderBy_BindsWithoutRowsetShapeMutation()
+    {
+        var sql = """
+CREATE VIEW dbo.v_distinct_top_ordered AS
+SELECT DISTINCT TOP (100) PERCENT WITH TIES
+    s.Id AS SourceId,
+    s.OrderDate
+FROM dbo.Source AS s
+ORDER BY
+    SourceId ASC,
+    s.OrderDate DESC;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id", "OrderDate"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.DoesNotContain(bound.Issues, item => item.Code == "TopWithTiesRequiresOrderBy");
+        Assert.False(bound.HasErrors);
+        Assert.NotNull(bound.TopLevelRowset);
+        var finalColumns = bound.TopLevelRowset!.Columns
+            .OrderBy(item => item.Ordinal)
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["SourceId", "OrderDate"], finalColumns);
+
+        Assert.Equal(3, bound.ColumnReferences.Count);
+    }
+
+    [Fact]
+    public void BindQueryModifiers_OffsetFetch_TraversesOrderingAndOffsetExpressions()
+    {
+        var model = ParseCorpus("019_offset_fetch.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id", "OrderDate"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.Equal(3, bound.ColumnReferences.Count);
+    }
+
+    [Fact]
+    public void BindTopWithTiesWithoutOrderBy_ProducesExplicitIssue()
+    {
+        var sql = """
+CREATE VIEW dbo.v_top_without_order AS
+SELECT TOP (5) WITH TIES
+    s.Id
+FROM dbo.Source AS s;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.Contains(bound.Issues, item => item.Code == "TopWithTiesRequiresOrderBy");
+        Assert.True(bound.HasErrors);
     }
 
     [Fact]
@@ -1198,6 +1495,145 @@ GO
     }
 
     [Fact]
+    public void ValidationService_WithAmbiguousOnePartSourceIdentifier_FailsHard()
+    {
+        var sql = """
+CREATE VIEW dbo.v_ambiguous_source AS
+SELECT
+    s.CustomerId
+FROM SourceTable AS s;
+""";
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId"]),
+            ("sales", "SourceTable", ["CustomerId"]),
+            ("dbo", "CustomerSummary", ["CustomerId"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
+            Assert.Equal("SourceSchemaTableAmbiguous", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithAmbiguousOnePartTargetIdentifier_FailsHard()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]),
+            ("reporting", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
+            Assert.Equal("TargetSchemaTableAmbiguous", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationWorkspaceService_CanMaterializeValidatedWorkspaceFromBindingAndSchemaWorkspaces()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerSummaryId", "CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        var identityField = Assert.Single(schemaModel.FieldList, item =>
+            string.Equals(item.TableId, "Table:2", StringComparison.Ordinal) &&
+            string.Equals(item.Name, "CustomerSummaryId", StringComparison.Ordinal));
+        identityField.IsIdentity = "true";
+        identityField.IdentitySeed = "1";
+        identityField.IdentityIncrement = "1";
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+        var schemaWorkspacePath = Path.Combine(tempRoot, "SchemaWorkspace");
+        var validatedWorkspacePath = Path.Combine(tempRoot, "ValidatedBindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            schemaModel.SaveToXmlWorkspace(schemaWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                bindingWorkspacePath);
+            Assert.Equal(0, bindingResult.ErrorCount);
+
+            var result = new TransformBindingValidationWorkspaceService().ValidateWorkspace(
+                bindingWorkspacePath,
+                schemaWorkspacePath,
+                validatedWorkspacePath);
+
+            Assert.Equal(1, result.TransformBindingCount);
+            Assert.Equal(1, result.SourceRowsetValidationCount);
+            Assert.Equal(1, result.TargetRowsetValidationCount);
+            Assert.Equal(3, result.SourceColumnValidationCount);
+            Assert.Equal(4, result.TargetColumnValidationCount);
+
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(validatedWorkspacePath, searchUpward: false);
+            Assert.Single(reloaded.ValidationList);
+            Assert.Single(reloaded.ValidationSourceRowsetLinkList);
+            Assert.Single(reloaded.ValidationTargetRowsetLinkList);
+            Assert.Equal(3, reloaded.ValidationSourceColumnLinkList.Count);
+            Assert.Equal(4, reloaded.ValidationTargetColumnLinkList.Count);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void ValidationService_CanRoundTripValidationRowsAsWorkspaceArtifact()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
@@ -1237,6 +1673,72 @@ GO
                 Directory.Delete(tempRoot, recursive: true);
             }
         }
+    }
+
+    [Fact]
+    public void BindInlineTableValuedFunction_WiresSourceRowsetsWithoutTreatingParametersAsSourceColumns()
+    {
+        var model = ParseCorpus("066_inline_tvf.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("sales", "CustomerOrder", ["CustomerId", "OrderDate", "OrderAmount"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.DoesNotContain(bound.Issues, item => item.Code == "FunctionParameterReferenceNotFound");
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var sourceRowset = Assert.Single(bindingModel.RowsetList, item => item.DerivationKind == "Source");
+        var sourceColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == sourceRowset.Id)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+
+        Assert.Equal(["CustomerId", "OrderDate", "OrderAmount"], sourceColumns);
+        Assert.DoesNotContain(sourceColumns, static item => item.StartsWith("@", StringComparison.Ordinal));
+
+        var finalLink = Assert.Single(bindingModel.OutputRowsetList);
+        var finalColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == finalLink.RowsetId)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["CustomerId", "OrderDate", "OrderAmount"], finalColumns);
+    }
+
+    [Fact]
+    public void BindInlineTableValuedFunction_WithUnknownParameterReference_ProducesExplicitIssue()
+    {
+        const string sql = """
+CREATE FUNCTION dbo.fn_bad_parameter
+(
+    @CustomerId int
+)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT
+        o.CustomerId
+    FROM sales.CustomerOrder AS o
+    WHERE o.CustomerId = @MissingParameter
+);
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("sales", "CustomerOrder", ["CustomerId"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        var issue = Assert.Single(bound.Issues, item => item.Code == "FunctionParameterReferenceNotFound");
+        Assert.Contains("@MissingParameter", issue.Message);
+        Assert.True(bound.HasErrors);
     }
 
     private static MetaTransformScriptModel ParseCorpus(string fileName)

@@ -10,6 +10,7 @@ internal sealed partial class TransformScriptNavigator
 
     private readonly MetaTransformScriptModel model;
     private readonly IReadOnlyDictionary<string, TransformScriptSelectStatementLink> scriptSelectStatementLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, List<TransformScriptFunctionParametersItem>> scriptFunctionParametersByOwnerId;
     private readonly IReadOnlyDictionary<string, SelectStatement> selectStatementById;
     private readonly IReadOnlyDictionary<string, SelectStatementQueryExpressionLink> selectStatementQueryExpressionLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink> statementWithCtesLinkByOwnerId;
@@ -21,6 +22,8 @@ internal sealed partial class TransformScriptNavigator
     private readonly IReadOnlyDictionary<string, List<CommonTableExpressionColumnsItem>> commonTableExpressionColumnsByOwnerId;
     private readonly IReadOnlyDictionary<string, QuerySpecification> querySpecificationByQueryExpressionId;
     private readonly IReadOnlyDictionary<string, BinaryQueryExpression> binaryQueryExpressionByQueryExpressionId;
+    private readonly IReadOnlyDictionary<string, QueryParenthesisExpression> queryParenthesisExpressionByQueryExpressionId;
+    private readonly IReadOnlyDictionary<string, QueryParenthesisExpressionQueryExpressionLink> queryParenthesisExpressionQueryExpressionLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, BinaryQueryExpressionFirstQueryExpressionLink> binaryQueryExpressionFirstQueryExpressionLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, BinaryQueryExpressionSecondQueryExpressionLink> binaryQueryExpressionSecondQueryExpressionLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, QuerySpecificationFromClauseLink> fromClauseLinkByOwnerId;
@@ -50,6 +53,9 @@ internal sealed partial class TransformScriptNavigator
     private readonly IReadOnlyDictionary<string, List<InlineDerivedTableRowValuesItem>> inlineDerivedTableRowValuesByOwnerId;
     private readonly IReadOnlyDictionary<string, RowValue> rowValueById;
     private readonly IReadOnlyDictionary<string, List<RowValueColumnValuesItem>> rowValueColumnValuesByOwnerId;
+    private readonly IReadOnlyDictionary<string, GlobalFunctionTableReference> globalFunctionTableReferenceByBaseId;
+    private readonly IReadOnlyDictionary<string, GlobalFunctionTableReferenceNameLink> globalFunctionTableReferenceNameLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, List<GlobalFunctionTableReferenceParametersItem>> globalFunctionTableReferenceParametersByOwnerId;
     private readonly IReadOnlyDictionary<string, SchemaObjectFunctionTableReference> schemaObjectFunctionTableReferenceByBaseId;
     private readonly IReadOnlyDictionary<string, SchemaObjectFunctionTableReferenceSchemaObjectLink> schemaObjectFunctionTableReferenceSchemaObjectLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, List<SchemaObjectFunctionTableReferenceParametersItem>> schemaObjectFunctionTableReferenceParametersByOwnerId;
@@ -59,6 +65,8 @@ internal sealed partial class TransformScriptNavigator
     private readonly IReadOnlyDictionary<string, List<MultiPartIdentifierIdentifiersItem>> multiPartIdentifierItemsByOwnerId;
     private readonly IReadOnlyDictionary<string, Identifier> identifierById;
     private readonly IReadOnlyDictionary<string, JoinTableReference> joinTableReferenceByTableReferenceId;
+    private readonly IReadOnlyDictionary<string, JoinParenthesisTableReference> joinParenthesisTableReferenceByTableReferenceId;
+    private readonly IReadOnlyDictionary<string, JoinParenthesisTableReferenceJoinLink> joinParenthesisTableReferenceJoinLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, QualifiedJoin> qualifiedJoinByBaseId;
     private readonly IReadOnlyDictionary<string, UnqualifiedJoin> unqualifiedJoinByBaseId;
     private readonly IReadOnlyDictionary<string, JoinTableReferenceFirstTableReferenceLink> joinFirstTableReferenceLinkByOwnerId;
@@ -157,6 +165,7 @@ internal sealed partial class TransformScriptNavigator
     {
         this.model = model;
         scriptSelectStatementLinkByOwnerId = model.TransformScriptSelectStatementLinkList.ToDictionary(item => item.TransformScriptId, StringComparer.Ordinal);
+        scriptFunctionParametersByOwnerId = GroupByOwner(model.TransformScriptFunctionParametersItemList);
         selectStatementById = model.SelectStatementList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         selectStatementQueryExpressionLinkByOwnerId = model.SelectStatementQueryExpressionLinkList.ToDictionary(item => item.SelectStatementId, StringComparer.Ordinal);
         statementWithCtesLinkByOwnerId = model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList.ToDictionary(item => item.StatementWithCtesAndXmlNamespacesId, StringComparer.Ordinal);
@@ -168,6 +177,8 @@ internal sealed partial class TransformScriptNavigator
         commonTableExpressionColumnsByOwnerId = GroupByOwner(model.CommonTableExpressionColumnsItemList);
         querySpecificationByQueryExpressionId = model.QuerySpecificationList.ToDictionary(item => item.QueryExpressionId, StringComparer.Ordinal);
         binaryQueryExpressionByQueryExpressionId = model.BinaryQueryExpressionList.ToDictionary(item => item.QueryExpressionId, StringComparer.Ordinal);
+        queryParenthesisExpressionByQueryExpressionId = model.QueryParenthesisExpressionList.ToDictionary(item => item.QueryExpressionId, StringComparer.Ordinal);
+        queryParenthesisExpressionQueryExpressionLinkByOwnerId = model.QueryParenthesisExpressionQueryExpressionLinkList.ToDictionary(item => item.QueryParenthesisExpressionId, StringComparer.Ordinal);
         binaryQueryExpressionFirstQueryExpressionLinkByOwnerId = model.BinaryQueryExpressionFirstQueryExpressionLinkList.ToDictionary(item => item.BinaryQueryExpressionId, StringComparer.Ordinal);
         binaryQueryExpressionSecondQueryExpressionLinkByOwnerId = model.BinaryQueryExpressionSecondQueryExpressionLinkList.ToDictionary(item => item.BinaryQueryExpressionId, StringComparer.Ordinal);
         fromClauseLinkByOwnerId = model.QuerySpecificationFromClauseLinkList.ToDictionary(item => item.QuerySpecificationId, StringComparer.Ordinal);
@@ -197,6 +208,9 @@ internal sealed partial class TransformScriptNavigator
         inlineDerivedTableRowValuesByOwnerId = GroupByOwner(model.InlineDerivedTableRowValuesItemList);
         rowValueById = model.RowValueList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         rowValueColumnValuesByOwnerId = GroupByOwner(model.RowValueColumnValuesItemList);
+        globalFunctionTableReferenceByBaseId = model.GlobalFunctionTableReferenceList.ToDictionary(item => item.TableReferenceWithAliasId, StringComparer.Ordinal);
+        globalFunctionTableReferenceNameLinkByOwnerId = model.GlobalFunctionTableReferenceNameLinkList.ToDictionary(item => item.GlobalFunctionTableReferenceId, StringComparer.Ordinal);
+        globalFunctionTableReferenceParametersByOwnerId = GroupByOwner(model.GlobalFunctionTableReferenceParametersItemList);
         schemaObjectFunctionTableReferenceByBaseId = model.SchemaObjectFunctionTableReferenceList.ToDictionary(item => item.TableReferenceWithAliasAndColumnsId, StringComparer.Ordinal);
         schemaObjectFunctionTableReferenceSchemaObjectLinkByOwnerId = model.SchemaObjectFunctionTableReferenceSchemaObjectLinkList.ToDictionary(item => item.SchemaObjectFunctionTableReferenceId, StringComparer.Ordinal);
         schemaObjectFunctionTableReferenceParametersByOwnerId = GroupByOwner(model.SchemaObjectFunctionTableReferenceParametersItemList);
@@ -206,6 +220,8 @@ internal sealed partial class TransformScriptNavigator
         multiPartIdentifierItemsByOwnerId = GroupByOwner(model.MultiPartIdentifierIdentifiersItemList);
         identifierById = model.IdentifierList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         joinTableReferenceByTableReferenceId = model.JoinTableReferenceList.ToDictionary(item => item.TableReferenceId, StringComparer.Ordinal);
+        joinParenthesisTableReferenceByTableReferenceId = model.JoinParenthesisTableReferenceList.ToDictionary(item => item.TableReferenceId, StringComparer.Ordinal);
+        joinParenthesisTableReferenceJoinLinkByOwnerId = model.JoinParenthesisTableReferenceJoinLinkList.ToDictionary(item => item.JoinParenthesisTableReferenceId, StringComparer.Ordinal);
         qualifiedJoinByBaseId = model.QualifiedJoinList.ToDictionary(item => item.JoinTableReferenceId, StringComparer.Ordinal);
         unqualifiedJoinByBaseId = model.UnqualifiedJoinList.ToDictionary(item => item.JoinTableReferenceId, StringComparer.Ordinal);
         joinFirstTableReferenceLinkByOwnerId = model.JoinTableReferenceFirstTableReferenceLinkList.ToDictionary(item => item.JoinTableReferenceId, StringComparer.Ordinal);
@@ -309,6 +325,28 @@ internal sealed partial class TransformScriptNavigator
         }
 
         return selectStatementById.GetValueOrDefault(link.SelectStatementId);
+    }
+
+    public string GetTransformScriptObjectKind(TransformScript script)
+    {
+        return string.IsNullOrWhiteSpace(script.ScriptObjectKind)
+            ? "View"
+            : script.ScriptObjectKind.Trim();
+    }
+
+    public IReadOnlyList<string> GetTransformScriptFunctionParameterNames(TransformScript script)
+    {
+        if (!scriptFunctionParametersByOwnerId.TryGetValue(script.Id, out var items))
+        {
+            return [];
+        }
+
+        return items
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => identifierById.GetValueOrDefault(item.IdentifierId)?.Value)
+            .Where(item => !string.IsNullOrWhiteSpace(item))
+            .Cast<string>()
+            .ToArray();
     }
 
     public string? TryGetSelectStatementQueryExpressionId(SelectStatement selectStatement)
@@ -447,6 +485,38 @@ internal sealed partial class TransformScriptNavigator
         }
 
         return queryDerivedTableByBaseId.GetValueOrDefault(aliasAndColumnsBase.Id);
+    }
+
+    public GlobalFunctionTableReference? TryGetGlobalFunctionTableReference(TableReference tableReference)
+    {
+        if (!tableReferenceWithAliasByTableReferenceId.TryGetValue(tableReference.Id, out var aliasBase))
+        {
+            return null;
+        }
+
+        return globalFunctionTableReferenceByBaseId.GetValueOrDefault(aliasBase.Id);
+    }
+
+    public string? TryGetGlobalFunctionTableReferenceName(GlobalFunctionTableReference functionTableReference)
+    {
+        return globalFunctionTableReferenceNameLinkByOwnerId.TryGetValue(functionTableReference.Id, out var link)
+            ? identifierById.GetValueOrDefault(link.IdentifierId)?.Value
+            : null;
+    }
+
+    public IReadOnlyList<ScalarExpression> GetGlobalFunctionTableReferenceParameters(GlobalFunctionTableReference functionTableReference)
+    {
+        if (!globalFunctionTableReferenceParametersByOwnerId.TryGetValue(functionTableReference.Id, out var items))
+        {
+            return [];
+        }
+
+        return items
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => scalarExpressionById.GetValueOrDefault(item.ScalarExpressionId))
+            .Where(item => item is not null)
+            .Cast<ScalarExpression>()
+            .ToArray();
     }
 
     public SchemaObjectFunctionTableReference? TryGetSchemaObjectFunctionTableReference(TableReference tableReference)

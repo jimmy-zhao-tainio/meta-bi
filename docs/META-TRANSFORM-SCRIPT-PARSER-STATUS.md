@@ -12,6 +12,7 @@ Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. Th
 - [x] `dotnet test MetaTransform\Script\Tests\MetaTransformScript.Tests.csproj` passes
 
 - [x] `CREATE VIEW ... AS ...` envelope
+- [x] inline `CREATE FUNCTION ... RETURNS TABLE ... AS RETURN (...)` envelope
 - [x] `CREATE VIEW` column lists
 - [x] `SET`-only batches on import
 - [x] `GO`-split import batches
@@ -126,13 +127,14 @@ Remaining gaps are ordinary parser, emitter, model, or import-shaping errata. Th
 
 ## Deliberate Non-Support
 
-- [x] bare `SELECT` file/folder import through `sql-path` stays unsupported
+- [x] bare `SELECT` import without explicit `--name` stays unsupported
 - [x] mixed bare `SELECT` and `CREATE VIEW` shapes in one logical import source stay unsupported
 - [x] non-`SET` auxiliary batches before/around supported statements stay unsupported
 - [x] ODBC-escape `LIKE` predicates stay unsupported
 - [x] arbitrary `CREATE VIEW ... WITH <view options>` stays unsupported unless explicitly whitelisted
 - [x] `WITH CHECK OPTION` stays unsupported unless explicitly justified
 - [x] materialized-view syntax stays unsupported
+- [x] non-inline `CREATE FUNCTION` wrappers stay unsupported
 
 ## Support Only If Justified By Real Use Case
 

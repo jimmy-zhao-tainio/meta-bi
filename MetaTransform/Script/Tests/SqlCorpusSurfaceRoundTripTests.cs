@@ -13,6 +13,7 @@ public sealed class SqlCorpusSurfaceRoundTripTests
     [InlineData("028_fulltext_table.sql")]
     [InlineData("062_freetext_table.sql")]
     [InlineData("064_remaining_data_types.sql")]
+    [InlineData("066_inline_tvf.sql")]
     public void ParserAndEmitter_RoundTripSurfaceCorpus(string fileName)
     {
         MetaTransformScriptTestHelper.AssertParserRoundTripsCorpusFile(fileName);

@@ -1,6 +1,6 @@
 call cleanup.cmd >nul 2>&1
 
-meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptReferenceCorpusWorkspace
+powershell -NoProfile -Command "$sql = (Get-ChildItem -Path 'SourceViews\\*.sql' | Sort-Object Name | ForEach-Object { Get-Content -Raw $_.FullName }) -join [Environment]::NewLine; meta-transform-script from sql-code --code $sql --new-workspace MetaTransformScriptReferenceCorpusWorkspace"
 
 pushd MetaTransformScriptReferenceCorpusWorkspace
 
@@ -10,7 +10,7 @@ meta-transform-script to sql-code --name dbo.v_window_functions
 
 popd
 
-meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+powershell -NoProfile -Command "$sql = (Get-ChildItem -Path 'RoundTrippedViews\\*.sql' | Sort-Object Name | ForEach-Object { Get-Content -Raw $_.FullName }) -join [Environment]::NewLine; meta-transform-script from sql-code --code $sql --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace"
 
 meta instance diff MetaTransformScriptReferenceCorpusWorkspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
 

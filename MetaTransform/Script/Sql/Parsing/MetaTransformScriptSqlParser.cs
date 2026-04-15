@@ -8,7 +8,7 @@ public sealed partial class MetaTransformScriptSqlParser
     internal enum TopLevelStatementShape
     {
         BareSelect,
-        CreateView
+        CreateWrappedSelect
     }
 
     public MetaTransformScriptModel ParseSqlCode(

@@ -26,6 +26,10 @@ namespace MetaTransformScript
         [XmlElement("Name")]
         public string Name { get; set; } = string.Empty;
 
+        [XmlElement("ScriptObjectKind")]
+        public string ScriptObjectKind { get; set; } = string.Empty;
+        public bool ShouldSerializeScriptObjectKind() => !string.IsNullOrWhiteSpace(ScriptObjectKind);
+
         [XmlElement("SourcePath")]
         public string SourcePath { get; set; } = string.Empty;
         public bool ShouldSerializeSourcePath() => !string.IsNullOrWhiteSpace(SourcePath);

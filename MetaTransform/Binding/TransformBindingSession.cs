@@ -9,6 +9,8 @@ internal sealed partial class TransformBindingSession
     private readonly List<RuntimeTableSource> boundTableSources = [];
     private readonly List<RuntimeColumnReference> boundColumnReferences = [];
     private readonly List<RuntimeRowset> boundRowsets = [];
+    private readonly HashSet<string> activeTransformFunctionParameterNames = new(StringComparer.OrdinalIgnoreCase);
+    private bool isInlineTableValuedFunction;
     private readonly Dictionary<string, RuntimeCommonTableExpressionDefinition> commonTableExpressionDefinitionsByName = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeCommonTableExpressionBindingState> commonTableExpressionBindingStateByName = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeRowset?> commonTableExpressionRowsetByName = new(StringComparer.OrdinalIgnoreCase);
@@ -34,6 +36,14 @@ internal sealed partial class TransformBindingSession
                 transformScript.Id));
 
             return CreateResult(transformScript, activeLanguageProfileId, null, null, null);
+        }
+
+        var scriptObjectKind = navigator.GetTransformScriptObjectKind(transformScript);
+        isInlineTableValuedFunction = string.Equals(scriptObjectKind, "InlineTableValuedFunction", StringComparison.OrdinalIgnoreCase);
+        activeTransformFunctionParameterNames.Clear();
+        foreach (var functionParameterName in navigator.GetTransformScriptFunctionParameterNames(transformScript))
+        {
+            activeTransformFunctionParameterNames.Add(functionParameterName);
         }
 
         var selectStatement = navigator.TryGetSelectStatement(transformScript);
