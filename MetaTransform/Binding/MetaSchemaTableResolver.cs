@@ -14,6 +14,12 @@ internal sealed class MetaSchemaTableResolver
 
         var systemNamesById = model.SystemList.ToDictionary(item => item.Id, item => item.Name, StringComparer.Ordinal);
         var schemaRowsById = model.SchemaList.ToDictionary(item => item.Id, StringComparer.Ordinal);
+        var dataTypeDetailsByFieldId = model.FieldDataTypeDetailList
+            .GroupBy(item => item.FieldId, StringComparer.Ordinal)
+            .ToDictionary(
+                group => group.Key,
+                ResolveDataTypeDetail,
+                StringComparer.Ordinal);
         var fieldRowsByTableId = model.FieldList
             .GroupBy(item => item.TableId, StringComparer.Ordinal)
             .ToDictionary(
@@ -21,12 +27,20 @@ internal sealed class MetaSchemaTableResolver
                 group => group
                     .OrderBy(item => ParseOrdinal(item.Ordinal))
                     .ThenBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
-                    .Select(item => new ResolvedSchemaField(
-                        item.Id,
-                        item.Name,
-                        ParseOrdinal(item.Ordinal),
-                        item.MetaDataTypeId,
-                        IsTrue(item.IsIdentity)))
+                    .Select(item =>
+                    {
+                        var dataTypeDetail = dataTypeDetailsByFieldId.GetValueOrDefault(item.Id);
+                        return new ResolvedSchemaField(
+                            item.Id,
+                            item.Name,
+                            ParseOrdinal(item.Ordinal),
+                            item.MetaDataTypeId,
+                            IsTrue(item.IsIdentity),
+                            ParseOptionalBool(item.IsNullable),
+                            dataTypeDetail.Length,
+                            dataTypeDetail.Precision,
+                            dataTypeDetail.Scale);
+                    })
                     .ToArray(),
                 StringComparer.Ordinal);
 
@@ -191,6 +205,62 @@ internal sealed class MetaSchemaTableResolver
     {
         return string.Equals(value?.Trim(), "true", StringComparison.OrdinalIgnoreCase);
     }
+
+    private static bool? ParseOptionalBool(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return null;
+        }
+
+        if (bool.TryParse(value.Trim(), out var parsed))
+        {
+            return parsed;
+        }
+
+        return null;
+    }
+
+    private static (int? Length, int? Precision, int? Scale) ResolveDataTypeDetail(
+        IGrouping<string, FieldDataTypeDetail> details)
+    {
+        int? length = null;
+        int? precision = null;
+        int? scale = null;
+
+        foreach (var detail in details)
+        {
+            if (string.Equals(detail.Name, "Length", StringComparison.OrdinalIgnoreCase))
+            {
+                length = ParseOptionalInt(detail.Value);
+            }
+            else if (string.Equals(detail.Name, "Precision", StringComparison.OrdinalIgnoreCase))
+            {
+                precision = ParseOptionalInt(detail.Value);
+            }
+            else if (string.Equals(detail.Name, "Scale", StringComparison.OrdinalIgnoreCase))
+            {
+                scale = ParseOptionalInt(detail.Value);
+            }
+        }
+
+        return (length, precision, scale);
+    }
+
+    private static int? ParseOptionalInt(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return null;
+        }
+
+        if (int.TryParse(value.Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed))
+        {
+            return parsed;
+        }
+
+        return null;
+    }
 }
 
 internal sealed record ResolvedSchemaField(
@@ -198,7 +268,11 @@ internal sealed record ResolvedSchemaField(
     string FieldName,
     int Ordinal,
     string MetaDataTypeId,
-    bool IsIdentity);
+    bool IsIdentity,
+    bool? IsNullable,
+    int? Length,
+    int? Precision,
+    int? Scale);
 
 internal sealed record ResolvedSchemaTable(
     string TableId,

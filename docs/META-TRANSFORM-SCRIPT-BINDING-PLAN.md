@@ -390,9 +390,9 @@ Important things that are still not truly implemented:
 - target identifier resolution to `MetaSchema.TableId` is implemented in the current Validate slice
 - target structural count/name validation is implemented in the current Validate slice
   - SQL identity columns are skipped on the target side
-  - no data type compatibility validation yet
-  - no nullability validation yet
-  - no length / precision / scale validation yet
+  - sanctioned data type compatibility and deterministic name-aligned source/target conformance are implemented through `MetaDataTypeConversionService`
+  - deterministic name-aligned nullability conformance is implemented for unique source-to-target column mappings
+  - deterministic name-aligned length / precision / scale conformance is implemented for unique source-to-target column mappings when both sides expose type details
   - no sanctioned conversion classification yet
   - no modeled way to identify platform/system-generated target columns beyond SQL identity
   - no explicit target write-contract semantics for nullable, defaulted, computed, or platform columns
@@ -634,8 +634,8 @@ Do not do these yet:
 - [x] `EXTRACT` traversal is implemented without treating date-part tokens as column references
 - [x] `TABLESAMPLE` sample/repeat expression traversal is implemented
 - [x] data type validation is implemented through `MetaDataTypeConversionService` for sanctioned schema types and deterministic name-aligned source/target conformance
-- [ ] nullability validation is implemented
-- [ ] length / precision / scale validation is implemented
+- [x] nullability validation is implemented for deterministic name-aligned source/target column mappings
+- [x] length / precision / scale validation is implemented for deterministic name-aligned source/target column mappings when both sides expose type details
 - [ ] sanctioned conversion classification is implemented
 - [ ] platform/system-generated target columns beyond SQL identity can be identified explicitly
 - [ ] target write-contract semantics beyond structural rowset checks are implemented

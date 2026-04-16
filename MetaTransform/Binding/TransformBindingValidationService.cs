@@ -203,6 +203,10 @@ public sealed class TransformBindingValidationService
             candidates.Add(new ResolvedSourceColumnType(
                 actualColumn.Name,
                 canonicalMetaTypeId,
+                matchedField.IsNullable,
+                matchedField.Length,
+                matchedField.Precision,
+                matchedField.Scale,
                 $"{resolution.Table.CanonicalSqlIdentifier}.{matchedField.FieldName}"));
         }
     }
@@ -287,6 +291,43 @@ public sealed class TransformBindingValidationService
                         "TargetColumnTypeConformanceMismatch",
                         $"Final output column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from source '{sourceCandidate.SourceDisplayName}' with canonical type '{sourceCandidate.CanonicalMetaDataTypeId}', but target field '{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}' resolves to canonical type '{targetCanonicalMetaTypeId}'.");
                 }
+
+                if (sourceCandidate.IsNullable == true && expectedColumns[ordinal].IsNullable == false)
+                {
+                    throw new TransformBindingValidationException(
+                        "TargetColumnNullabilityConformanceMismatch",
+                        $"Final output column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from source '{sourceCandidate.SourceDisplayName}' as nullable, but target field '{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}' is non-nullable.");
+                }
+
+                ValidateTypeDetailConformance(
+                    detailName: "Length",
+                    mismatchCode: "TargetColumnLengthConformanceMismatch",
+                    sourceDetail: sourceCandidate.Length,
+                    targetDetail: expectedColumns[ordinal].Length,
+                    outputColumnName,
+                    targetSqlIdentifier,
+                    sourceCandidate.SourceDisplayName,
+                    targetFieldDisplayName: $"{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}");
+
+                ValidateTypeDetailConformance(
+                    detailName: "Precision",
+                    mismatchCode: "TargetColumnPrecisionConformanceMismatch",
+                    sourceDetail: sourceCandidate.Precision,
+                    targetDetail: expectedColumns[ordinal].Precision,
+                    outputColumnName,
+                    targetSqlIdentifier,
+                    sourceCandidate.SourceDisplayName,
+                    targetFieldDisplayName: $"{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}");
+
+                ValidateTypeDetailConformance(
+                    detailName: "Scale",
+                    mismatchCode: "TargetColumnScaleConformanceMismatch",
+                    sourceDetail: sourceCandidate.Scale,
+                    targetDetail: expectedColumns[ordinal].Scale,
+                    outputColumnName,
+                    targetSqlIdentifier,
+                    sourceCandidate.SourceDisplayName,
+                    targetFieldDisplayName: $"{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}");
             }
 
             targetColumnLinks.Add(new ValidationTargetColumnLink
@@ -379,8 +420,37 @@ public sealed class TransformBindingValidationService
         }
     }
 
+    private static void ValidateTypeDetailConformance(
+        string detailName,
+        string mismatchCode,
+        int? sourceDetail,
+        int? targetDetail,
+        string outputColumnName,
+        string targetSqlIdentifier,
+        string sourceDisplayName,
+        string targetFieldDisplayName)
+    {
+        if (!sourceDetail.HasValue || !targetDetail.HasValue)
+        {
+            return;
+        }
+
+        if (sourceDetail.Value <= targetDetail.Value)
+        {
+            return;
+        }
+
+        throw new TransformBindingValidationException(
+            mismatchCode,
+            $"Final output column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from source '{sourceDisplayName}' with {detailName} '{sourceDetail.Value}', but target field '{targetFieldDisplayName}' declares {detailName} '{targetDetail.Value}'.");
+    }
+
     private sealed record ResolvedSourceColumnType(
         string ColumnName,
         string CanonicalMetaDataTypeId,
+        bool? IsNullable,
+        int? Length,
+        int? Precision,
+        int? Scale,
         string SourceDisplayName);
 }

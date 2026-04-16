@@ -1727,6 +1727,168 @@ GO
     }
 
     [Fact]
+    public void ValidationService_WithTargetNullabilityConformanceMismatch_FailsHard()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldIsNullable(schemaModel, "Table:1", "CustomerId", true);
+        SetFieldIsNullable(schemaModel, "Table:2", "CustomerId", false);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
+            Assert.Equal("TargetColumnNullabilityConformanceMismatch", ex.Code);
+            Assert.Contains("CustomerId", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithTargetLengthConformanceMismatch_FailsHard()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerName", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerName", "sqlserver:type:nvarchar");
+        SetFieldDataTypeDetail(schemaModel, "Table:1", "CustomerName", "Length", 100);
+        SetFieldDataTypeDetail(schemaModel, "Table:2", "CustomerName", "Length", 50);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
+            Assert.Equal("TargetColumnLengthConformanceMismatch", ex.Code);
+            Assert.Contains("CustomerName", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithTargetPrecisionConformanceMismatch_FailsHard()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:decimal");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:decimal");
+        SetFieldDataTypeDetail(schemaModel, "Table:1", "CustomerId", "Precision", 18);
+        SetFieldDataTypeDetail(schemaModel, "Table:2", "CustomerId", "Precision", 10);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
+            Assert.Equal("TargetColumnPrecisionConformanceMismatch", ex.Code);
+            Assert.Contains("CustomerId", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithTargetScaleConformanceMismatch_FailsHard()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:decimal");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:decimal");
+        SetFieldDataTypeDetail(schemaModel, "Table:1", "CustomerId", "Scale", 6);
+        SetFieldDataTypeDetail(schemaModel, "Table:2", "CustomerId", "Scale", 2);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
+            Assert.Equal("TargetColumnScaleConformanceMismatch", ex.Code);
+            Assert.Contains("CustomerId", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void ValidationService_WithUnsanctionedSourceFieldType_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
@@ -2074,6 +2236,7 @@ RETURN
                     TableId = tableId,
                     Name = table.Columns[i],
                     MetaDataTypeId = "sqlserver:type:int",
+                    IsNullable = "false",
                     Ordinal = i.ToString()
                 });
             }
@@ -2088,6 +2251,45 @@ RETURN
             string.Equals(item.TableId, tableId, StringComparison.Ordinal) &&
             string.Equals(item.Name, fieldName, StringComparison.Ordinal));
         field.MetaDataTypeId = metaDataTypeId;
+    }
+
+    private static void SetFieldIsNullable(MetaSchemaModel schemaModel, string tableId, string fieldName, bool isNullable)
+    {
+        var field = Assert.Single(schemaModel.FieldList, item =>
+            string.Equals(item.TableId, tableId, StringComparison.Ordinal) &&
+            string.Equals(item.Name, fieldName, StringComparison.Ordinal));
+        field.IsNullable = isNullable ? "true" : "false";
+    }
+
+    private static void SetFieldDataTypeDetail(
+        MetaSchemaModel schemaModel,
+        string tableId,
+        string fieldName,
+        string detailName,
+        int detailValue)
+    {
+        var field = Assert.Single(schemaModel.FieldList, item =>
+            string.Equals(item.TableId, tableId, StringComparison.Ordinal) &&
+            string.Equals(item.Name, fieldName, StringComparison.Ordinal));
+
+        var existing = schemaModel.FieldDataTypeDetailList
+            .SingleOrDefault(item =>
+                string.Equals(item.FieldId, field.Id, StringComparison.Ordinal) &&
+                string.Equals(item.Name, detailName, StringComparison.OrdinalIgnoreCase));
+
+        if (existing is not null)
+        {
+            existing.Value = detailValue.ToString();
+            return;
+        }
+
+        schemaModel.FieldDataTypeDetailList.Add(new FieldDataTypeDetail
+        {
+            Id = $"FieldDataTypeDetail:{schemaModel.FieldDataTypeDetailList.Count + 1}",
+            FieldId = field.Id,
+            Name = detailName,
+            Value = detailValue.ToString()
+        });
     }
 }
 
