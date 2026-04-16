@@ -25,6 +25,7 @@ internal sealed class MetaSchemaTableResolver
                         item.Id,
                         item.Name,
                         ParseOrdinal(item.Ordinal),
+                        item.MetaDataTypeId,
                         IsTrue(item.IsIdentity)))
                     .ToArray(),
                 StringComparer.Ordinal);
@@ -196,6 +197,7 @@ internal sealed record ResolvedSchemaField(
     string FieldId,
     string FieldName,
     int Ordinal,
+    string MetaDataTypeId,
     bool IsIdentity);
 
 internal sealed record ResolvedSchemaTable(

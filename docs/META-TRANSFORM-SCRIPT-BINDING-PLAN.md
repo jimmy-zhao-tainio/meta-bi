@@ -633,7 +633,7 @@ Do not do these yet:
 - [x] `PIVOT` / `UNPIVOT` binding is implemented for syntax-derived input rowsets
 - [x] `EXTRACT` traversal is implemented without treating date-part tokens as column references
 - [x] `TABLESAMPLE` sample/repeat expression traversal is implemented
-- [ ] data type validation is implemented
+- [x] data type validation is implemented through `MetaDataTypeConversionService` for sanctioned schema types and deterministic name-aligned source/target conformance
 - [ ] nullability validation is implemented
 - [ ] length / precision / scale validation is implemented
 - [ ] sanctioned conversion classification is implemented

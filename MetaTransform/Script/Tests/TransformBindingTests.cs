@@ -1683,6 +1683,88 @@ GO
     }
 
     [Fact]
+    public void ValidationService_WithTargetTypeConformanceMismatch_FailsHard()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:int");
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerName", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CreatedAt", "sqlserver:type:datetime");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerName", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CreatedAtAlias", "sqlserver:type:datetime");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "LiteralValue", "sqlserver:type:int");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
+            Assert.Equal("TargetColumnTypeConformanceMismatch", ex.Code);
+            Assert.Contains("CustomerId", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithUnsanctionedSourceFieldType_FailsHard()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "custom:type:unsupported");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
+            Assert.Equal("SourceSchemaFieldMetaDataTypeNotSanctioned", ex.Code);
+            Assert.Contains("custom:type:unsupported", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void ValidationService_WithAmbiguousOnePartSourceIdentifier_FailsHard()
     {
         var sql = """
@@ -1998,6 +2080,14 @@ RETURN
         }
 
         return model;
+    }
+
+    private static void SetFieldMetaDataTypeId(MetaSchemaModel schemaModel, string tableId, string fieldName, string metaDataTypeId)
+    {
+        var field = Assert.Single(schemaModel.FieldList, item =>
+            string.Equals(item.TableId, tableId, StringComparison.Ordinal) &&
+            string.Equals(item.Name, fieldName, StringComparison.Ordinal));
+        field.MetaDataTypeId = metaDataTypeId;
     }
 }
 
