@@ -763,6 +763,69 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
     }
 
     [Fact]
+    public void BindXmlMethodCallTargets_TraversesReceiverColumnReferences()
+    {
+        var model = ParseCorpus("020_xml_namespaces_and_methods.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "XmlSource", ["Id", "XmlPayload"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+        Assert.False(bound.HasErrors);
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var resolvedColumnNames = bindingModel.ColumnReferenceList
+            .Select(item => bindingModel.ColumnList.Single(column => column.Id == item.ColumnId).Name)
+            .ToArray();
+
+        Assert.Equal(4, resolvedColumnNames.Length);
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Id", StringComparison.Ordinal)));
+        Assert.Equal(3, resolvedColumnNames.Count(item => string.Equals(item, "XmlPayload", StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void BindXmlNodesTableReference_DerivesApplyRightRowsetAndBindsMethodTarget()
+    {
+        var model = ParseCorpus("055_xml_nodes.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "XmlSource", ["Id", "XmlPayload"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+        Assert.False(bound.HasErrors);
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var xmlNodesRowset = Assert.Single(bindingModel.RowsetList, item => item.DerivationKind == "FunctionTableReference" && item.Name.StartsWith("XMLNODES:", StringComparison.Ordinal));
+        var xmlNodesColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == xmlNodesRowset.Id)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["Item"], xmlNodesColumns);
+
+        var xmlNodesSource = Assert.Single(bindingModel.TableSourceList, item => item.RowsetId == xmlNodesRowset.Id);
+        Assert.Equal("n", xmlNodesSource.ExposedName);
+
+        var finalLink = Assert.Single(bindingModel.OutputRowsetList);
+        var finalColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == finalLink.RowsetId)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["Id", "ItemCode"], finalColumns);
+
+        var resolvedColumnNames = bindingModel.ColumnReferenceList
+            .Select(item => bindingModel.ColumnList.Single(column => column.Id == item.ColumnId).Name)
+            .ToArray();
+        Assert.Equal(3, resolvedColumnNames.Length);
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Id", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "XmlPayload", StringComparison.Ordinal)));
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Item", StringComparison.Ordinal)));
+    }
+
+    [Fact]
     public void BindSequenceAndGlobalExpressions_AreAcceptedAsScalarLeaves()
     {
         var model = ParseCorpus("036_sequence_and_globals.sql");

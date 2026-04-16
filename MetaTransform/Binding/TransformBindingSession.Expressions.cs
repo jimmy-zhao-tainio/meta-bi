@@ -78,6 +78,31 @@ internal sealed partial class TransformBindingSession
         if (functionCall is not null)
         {
             var isAggregate = IsAggregateFunctionCall(functionCall);
+            if (navigator.HasFunctionCallCallTarget(functionCall))
+            {
+                var callTargetParts = navigator.GetFunctionCallCallTargetParts(functionCall);
+                if (callTargetParts.Count == 0)
+                {
+                    issues.Add(new TransformBindingIssue(
+                        "UnsupportedFunctionCallTargetShape",
+                        $"Function call '{functionCall.Id}' uses a call target shape that is not yet supported by binding.",
+                        functionCall.Id));
+                }
+                else
+                {
+                    var boundCallTarget = BindColumnReferenceFromIdentifierParts(
+                        callTargetParts,
+                        $"{functionCall.Id}:call-target",
+                        scope,
+                        groupingContext,
+                        withinAggregate || isAggregate);
+                    if (boundCallTarget is not null)
+                    {
+                        boundColumnReferences.Add(boundCallTarget);
+                    }
+                }
+            }
+
             foreach (var parameter in navigator.GetFunctionCallParameters(functionCall))
             {
                 if (ShouldSkipFunctionCallParameterBinding(functionCall, parameter))

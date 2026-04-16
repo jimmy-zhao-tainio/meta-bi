@@ -253,6 +253,21 @@ internal sealed partial class TransformBindingSession
         bool withinAggregate = false)
     {
         var parts = navigator.GetColumnReferenceParts(columnReferenceExpression);
+        return BindColumnReferenceFromIdentifierParts(
+            parts,
+            columnReferenceExpression.Id,
+            scope,
+            groupingContext,
+            withinAggregate);
+    }
+
+    private RuntimeColumnReference? BindColumnReferenceFromIdentifierParts(
+        IReadOnlyList<string> parts,
+        string syntaxEntityId,
+        BindingScope scope,
+        RuntimeGroupingContext? groupingContext,
+        bool withinAggregate)
+    {
         if (parts.Count == 0)
         {
             if (withinAggregate)
@@ -262,12 +277,12 @@ internal sealed partial class TransformBindingSession
 
             issues.Add(new TransformBindingIssue(
                 "ColumnReferenceMissingIdentifier",
-                $"ColumnReferenceExpression '{columnReferenceExpression.Id}' is missing its multipart identifier.",
-                columnReferenceExpression.Id));
+                $"Column reference '{syntaxEntityId}' is missing its multipart identifier.",
+                syntaxEntityId));
             return null;
         }
 
-        if (TryBindFunctionParameterReference(columnReferenceExpression, parts))
+        if (TryBindFunctionParameterReference(syntaxEntityId, parts))
         {
             return null;
         }
@@ -289,7 +304,7 @@ internal sealed partial class TransformBindingSession
                 {
                     var inferredColumn = EnsureInferredSourceColumn(inferableSources[0], parts[0]);
                     return ValidateGroupedColumnReference(
-                        columnReferenceExpression,
+                        syntaxEntityId,
                         parts,
                         inferredColumn,
                         inferableSources[0],
@@ -302,14 +317,14 @@ internal sealed partial class TransformBindingSession
                     issues.Add(new TransformBindingIssue(
                         "ColumnReferenceRequiresValidationSchema",
                         $"Column '{parts[0]}' could belong to more than one visible source rowset; Binding cannot resolve it from syntax alone.",
-                        columnReferenceExpression.Id));
+                        syntaxEntityId));
                     return null;
                 }
 
                 issues.Add(new TransformBindingIssue(
                     "ColumnReferenceNotFound",
                     $"Column '{parts[0]}' is not visible in the current query scope.",
-                    columnReferenceExpression.Id));
+                    syntaxEntityId));
                 return null;
             }
 
@@ -318,12 +333,12 @@ internal sealed partial class TransformBindingSession
                 issues.Add(new TransformBindingIssue(
                     "ColumnReferenceAmbiguous",
                     $"Column '{parts[0]}' resolves ambiguously across visible table sources.",
-                    columnReferenceExpression.Id));
+                    syntaxEntityId));
                 return null;
             }
 
             return ValidateGroupedColumnReference(
-                columnReferenceExpression,
+                syntaxEntityId,
                 parts,
                 matches[0].Column,
                 matches[0].Source,
@@ -342,7 +357,7 @@ internal sealed partial class TransformBindingSession
                 issues.Add(new TransformBindingIssue(
                     "ColumnQualifierNotFound",
                     $"Column qualifier '{parts[0]}' is not visible in the current query scope.",
-                    columnReferenceExpression.Id));
+                    syntaxEntityId));
                 return null;
             }
 
@@ -351,7 +366,7 @@ internal sealed partial class TransformBindingSession
                 issues.Add(new TransformBindingIssue(
                     "ColumnQualifierAmbiguous",
                     $"Column qualifier '{parts[0]}' matches more than one visible table source.",
-                    columnReferenceExpression.Id));
+                    syntaxEntityId));
                 return null;
             }
 
@@ -365,7 +380,7 @@ internal sealed partial class TransformBindingSession
                 {
                     var inferredColumn = EnsureInferredSourceColumn(matchedSources[0], parts[1]);
                     return ValidateGroupedColumnReference(
-                        columnReferenceExpression,
+                        syntaxEntityId,
                         parts,
                         inferredColumn,
                         matchedSources[0],
@@ -376,7 +391,7 @@ internal sealed partial class TransformBindingSession
                 issues.Add(new TransformBindingIssue(
                     "QualifiedColumnReferenceNotFound",
                     $"Column '{parts[1]}' is not exposed by table source '{parts[0]}'.",
-                    columnReferenceExpression.Id));
+                    syntaxEntityId));
                 return null;
             }
 
@@ -385,12 +400,12 @@ internal sealed partial class TransformBindingSession
                 issues.Add(new TransformBindingIssue(
                     "QualifiedColumnReferenceAmbiguous",
                     $"Column '{parts[1]}' resolves ambiguously within table source '{parts[0]}'.",
-                    columnReferenceExpression.Id));
+                    syntaxEntityId));
                 return null;
             }
 
             return ValidateGroupedColumnReference(
-                columnReferenceExpression,
+                syntaxEntityId,
                 parts,
                 matchedColumns[0],
                 matchedSources[0],
@@ -400,13 +415,13 @@ internal sealed partial class TransformBindingSession
 
         issues.Add(new TransformBindingIssue(
             "UnsupportedColumnReferenceShape",
-            $"ColumnReferenceExpression '{columnReferenceExpression.Id}' uses {parts.Count} identifier parts; binding supports one-part or two-part references only.",
-            columnReferenceExpression.Id));
+            $"Column reference '{syntaxEntityId}' uses {parts.Count} identifier parts; binding supports one-part or two-part references only.",
+            syntaxEntityId));
         return null;
     }
 
     private bool TryBindFunctionParameterReference(
-        ColumnReferenceExpression columnReferenceExpression,
+        string syntaxEntityId,
         IReadOnlyList<string> identifierParts)
     {
         if (identifierParts.Count != 1)
@@ -427,7 +442,7 @@ internal sealed partial class TransformBindingSession
                 issues.Add(new TransformBindingIssue(
                     "FunctionParameterReferenceNotFound",
                     $"Function parameter '{name}' is referenced but not declared on the active inline TVF transform script.",
-                    columnReferenceExpression.Id));
+                    syntaxEntityId));
             }
 
             return true;
@@ -436,12 +451,12 @@ internal sealed partial class TransformBindingSession
         issues.Add(new TransformBindingIssue(
             "ScalarVariableReferenceNotSupported",
             $"Scalar variable reference '{name}' is not currently supported outside inline TVF parameter binding.",
-            columnReferenceExpression.Id));
+            syntaxEntityId));
         return true;
     }
 
     private RuntimeColumnReference? ValidateGroupedColumnReference(
-        ColumnReferenceExpression columnReferenceExpression,
+        string syntaxEntityId,
         IReadOnlyList<string> parts,
         RuntimeColumn column,
         RuntimeTableSource tableSource,
@@ -456,12 +471,12 @@ internal sealed partial class TransformBindingSession
                 issues.Add(new TransformBindingIssue(
                     "UngroupedColumnReference",
                     $"Column reference '{string.Join(".", parts)}' is not part of the grouped key set and is used outside an aggregate context.",
-                    columnReferenceExpression.Id));
+                    syntaxEntityId));
                 return null;
             }
         }
 
-        return new RuntimeColumnReference(columnReferenceExpression.Id, parts, column, tableSource);
+        return new RuntimeColumnReference(syntaxEntityId, parts, column, tableSource);
     }
 
     private static string NormalizeColumnReferenceSignature(IReadOnlyList<string> parts) =>

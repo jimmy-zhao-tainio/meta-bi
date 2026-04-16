@@ -4,6 +4,31 @@ namespace MetaTransform.Binding;
 
 internal sealed partial class TransformScriptNavigator
 {
+    public XmlNodesTableReference? TryGetXmlNodesTableReference(TableReference tableReference)
+    {
+        if (!tableReferenceWithAliasByTableReferenceId.TryGetValue(tableReference.Id, out var aliasBase))
+        {
+            return null;
+        }
+
+        if (!tableReferenceWithAliasAndColumnsByBaseId.TryGetValue(aliasBase.Id, out var aliasAndColumnsBase))
+        {
+            return null;
+        }
+
+        return model.XmlNodesTableReferenceList
+            .FirstOrDefault(item => string.Equals(item.TableReferenceWithAliasAndColumnsId, aliasAndColumnsBase.Id, StringComparison.Ordinal));
+    }
+
+    public ScalarExpression? TryGetXmlNodesTableReferenceTargetExpression(XmlNodesTableReference xmlNodesTableReference)
+    {
+        var link = model.XmlNodesTableReferenceTargetExpressionLinkList
+            .FirstOrDefault(item => string.Equals(item.XmlNodesTableReferenceId, xmlNodesTableReference.Id, StringComparison.Ordinal));
+        return link is null
+            ? null
+            : scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId);
+    }
+
     public FullTextTableReference? TryGetFullTextTableReference(TableReference tableReference)
     {
         if (!tableReferenceWithAliasByTableReferenceId.TryGetValue(tableReference.Id, out var aliasBase))

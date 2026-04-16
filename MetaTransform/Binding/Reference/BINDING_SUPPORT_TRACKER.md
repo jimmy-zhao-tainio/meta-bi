@@ -122,6 +122,14 @@ Status meanings:
 - UNPIVOT
   Current support: binds pivot/unpivot rowset shape when input shape is syntax-derived (for example from a derived table or CTE projection); direct base-source input remains an explicit binding gap because full source shape is not available from syntax alone
 
+### XML traversal and sources
+
+- WITH XMLNAMESPACES
+- Default XML namespace
+- XML methods
+- XML NODES
+  Current support: function-call targets are traversed for multi-part receiver binding (for example `s.XmlPayload.value(...)`), and XML nodes table references bind as function rowsets when script column aliases are present; XQuery/namespace semantic validation is deferred
+
 ### Recursive and aggregate semantics
 
 - SELECT *
@@ -197,10 +205,6 @@ Status meanings:
 ### Predicate and function families not yet bound explicitly
 
 - EXTRACT
-- WITH XMLNAMESPACES
-- Default XML namespace
-- XML methods
-- XML NODES
 - TABLESAMPLE
 - ODBC scalar function escape
 

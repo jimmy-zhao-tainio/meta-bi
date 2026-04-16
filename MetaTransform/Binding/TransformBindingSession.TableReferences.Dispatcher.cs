@@ -59,6 +59,16 @@ internal sealed partial class TransformBindingSession
                 inheritedInputRowset);
         }
 
+        var xmlNodesTableReference = navigator.TryGetXmlNodesTableReference(tableReference);
+        if (xmlNodesTableReference is not null)
+        {
+            return BindXmlNodesTableReference(
+                tableReference,
+                xmlNodesTableReference,
+                inheritedVisibleTableSources,
+                inheritedInputRowset);
+        }
+
         var fullTextTableReference = navigator.TryGetFullTextTableReference(tableReference);
         if (fullTextTableReference is not null)
         {

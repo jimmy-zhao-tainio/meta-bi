@@ -629,7 +629,7 @@ Do not do these yet:
 - [ ] `OPENJSON` / `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` binding is implemented
 - [x] full-text predicate traversal (`CONTAINS` / `FREETEXT`) is implemented
 - [x] full-text table-form binding (`CONTAINSTABLE` / `FREETEXTTABLE`) is implemented
-- [ ] XML namespace / method binding is implemented
+- [x] XML namespace / method binding is implemented
 - [x] `PIVOT` / `UNPIVOT` binding is implemented for syntax-derived input rowsets
 - [ ] data type validation is implemented
 - [ ] nullability validation is implemented

@@ -234,6 +234,35 @@ internal sealed partial class TransformScriptNavigator
             : null;
     }
 
+    public bool HasFunctionCallCallTarget(FunctionCall functionCall)
+    {
+        return model.FunctionCallCallTargetLinkList
+            .Any(item => string.Equals(item.FunctionCallId, functionCall.Id, StringComparison.Ordinal));
+    }
+
+    public IReadOnlyList<string> GetFunctionCallCallTargetParts(FunctionCall functionCall)
+    {
+        var callTargetLink = model.FunctionCallCallTargetLinkList
+            .FirstOrDefault(item => string.Equals(item.FunctionCallId, functionCall.Id, StringComparison.Ordinal));
+        if (callTargetLink is null)
+        {
+            return [];
+        }
+
+        var multiPartIdentifierCallTarget = model.MultiPartIdentifierCallTargetList
+            .FirstOrDefault(item => string.Equals(item.CallTargetId, callTargetLink.CallTargetId, StringComparison.Ordinal));
+        if (multiPartIdentifierCallTarget is null)
+        {
+            return [];
+        }
+
+        var multiPartIdentifierLink = model.MultiPartIdentifierCallTargetMultiPartIdentifierLinkList
+            .FirstOrDefault(item => string.Equals(item.MultiPartIdentifierCallTargetId, multiPartIdentifierCallTarget.Id, StringComparison.Ordinal));
+        return multiPartIdentifierLink is null
+            ? []
+            : GetMultiPartIdentifierParts(multiPartIdentifierLink.MultiPartIdentifierId);
+    }
+
     public bool HasFunctionCallOverClause(FunctionCall functionCall) =>
         functionCallOverClauseLinkByOwnerId.ContainsKey(functionCall.Id);
 

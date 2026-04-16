@@ -4,6 +4,65 @@ namespace MetaTransform.Binding;
 
 internal sealed partial class TransformBindingSession
 {
+    private RuntimeTableReferenceBinding? BindXmlNodesTableReference(
+        TableReference tableReference,
+        XmlNodesTableReference xmlNodesTableReference,
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources,
+        RuntimeRowset? inheritedInputRowset)
+    {
+        var targetExpression = navigator.TryGetXmlNodesTableReferenceTargetExpression(xmlNodesTableReference);
+        if (targetExpression is null)
+        {
+            issues.Add(new TransformBindingIssue(
+                "XmlNodesTableReferenceTargetExpressionMissing",
+                $"XML nodes table reference '{xmlNodesTableReference.Id}' does not expose its target expression.",
+                tableReference.Id));
+            return null;
+        }
+
+        var parameterScope = new BindingScope(inheritedVisibleTableSources);
+        BindScalarExpression(targetExpression, parameterScope, inheritedInputRowset, null, false);
+
+        var columnAliases = navigator.GetTableReferenceColumnAliases(tableReference);
+        if (columnAliases.Count == 0)
+        {
+            issues.Add(new TransformBindingIssue(
+                "XmlNodesTableReferenceColumnAliasesRequired",
+                $"XML nodes table reference '{xmlNodesTableReference.Id}' does not expose column aliases, so its rowset shape is not yet sanctioned for binding.",
+                tableReference.Id));
+            return null;
+        }
+
+        var columns = columnAliases
+            .Select((columnName, ordinal) => new RuntimeColumn(
+                $"{tableReference.Id}:column:{ordinal + 1}",
+                columnName,
+                ordinal))
+            .ToArray();
+
+        var rowset = new RuntimeRowset(
+            $"{tableReference.Id}:rowset",
+            $"XMLNODES:{tableReference.Id}",
+            "FunctionTableReference",
+            null,
+            tableReference.Id,
+            null,
+            columns,
+            []);
+
+        TrackRowset(rowset);
+
+        var exposedName = navigator.TryGetTableAlias(tableReference) ?? "XmlNodes";
+        var tableSource = new RuntimeTableSource(
+            tableReference.Id,
+            exposedName,
+            string.Empty,
+            rowset);
+
+        TrackTableSource(tableSource);
+        return new RuntimeTableReferenceBinding(rowset, [tableSource]);
+    }
+
     private RuntimeTableReferenceBinding? BindFullTextTableReference(
         TableReference tableReference,
         FullTextTableReference fullTextTableReference,
