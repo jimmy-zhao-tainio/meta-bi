@@ -146,14 +146,6 @@ internal sealed partial class TransformBindingSession
         IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources)
     {
         var columnAliases = navigator.GetTableReferenceColumnAliases(tableReference);
-        if (columnAliases.Count == 0)
-        {
-            issues.Add(new TransformBindingIssue(
-                "FunctionTableReferenceColumnAliasesRequired",
-                $"Function table reference '{functionTableReference.Id}' does not expose column aliases, so its rowset shape is not yet sanctioned for binding.",
-                tableReference.Id));
-            return null;
-        }
 
         var parameterScope = new BindingScope(inheritedVisibleTableSources);
         foreach (var parameter in navigator.GetSchemaObjectFunctionTableReferenceParameters(functionTableReference))
@@ -167,12 +159,15 @@ internal sealed partial class TransformBindingSession
             : string.Join(".", functionNameParts);
         var exposedName = navigator.TryGetTableAlias(tableReference) ?? functionNameParts.LastOrDefault() ?? functionName;
 
-        var columns = columnAliases
-            .Select((columnName, ordinal) => new RuntimeColumn(
-                $"{tableReference.Id}:column:{ordinal + 1}",
-                columnName,
-                ordinal))
-            .ToArray();
+        IReadOnlyList<RuntimeColumn> columns =
+            columnAliases.Count == 0
+                ? new List<RuntimeColumn>()
+                : columnAliases
+                    .Select((columnName, ordinal) => new RuntimeColumn(
+                        $"{tableReference.Id}:column:{ordinal + 1}",
+                        columnName,
+                        ordinal))
+                    .ToArray();
 
         var rowset = new RuntimeRowset(
             $"{tableReference.Id}:rowset",
@@ -218,21 +213,15 @@ internal sealed partial class TransformBindingSession
         }
 
         var inferredColumnNames = TryInferGlobalFunctionOutputColumns(functionName);
-        if (inferredColumnNames.Count == 0)
-        {
-            issues.Add(new TransformBindingIssue(
-                "GlobalFunctionTableReferenceOutputShapeNotSupported",
-                $"Global function table reference '{functionName}' does not yet have a sanctioned output rowset shape in binding.",
-                tableReference.Id));
-            return null;
-        }
-
-        var columns = inferredColumnNames
-            .Select((columnName, ordinal) => new RuntimeColumn(
-                $"{tableReference.Id}:column:{ordinal + 1}",
-                columnName,
-                ordinal))
-            .ToArray();
+        IReadOnlyList<RuntimeColumn> columns =
+            inferredColumnNames.Count == 0
+                ? new List<RuntimeColumn>()
+                : inferredColumnNames
+                    .Select((columnName, ordinal) => new RuntimeColumn(
+                        $"{tableReference.Id}:column:{ordinal + 1}",
+                        columnName,
+                        ordinal))
+                    .ToArray();
 
         var rowset = new RuntimeRowset(
             $"{tableReference.Id}:rowset",

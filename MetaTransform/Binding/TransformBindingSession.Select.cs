@@ -222,7 +222,7 @@ internal sealed partial class TransformBindingSession
         }
 
         var unresolvedSourceExpansions = sourcesToExpand
-            .Where(static item => string.Equals(item.Rowset.DerivationKind, "Source", StringComparison.Ordinal) &&
+            .Where(static item => CanInferSourceColumn(item) &&
                                   item.Rowset.Columns.Count == 0)
             .ToArray();
         if (unresolvedSourceExpansions.Length > 0)
@@ -484,7 +484,13 @@ internal sealed partial class TransformBindingSession
 
     private static bool CanInferSourceColumn(RuntimeTableSource tableSource)
     {
-        return string.Equals(tableSource.Rowset.DerivationKind, "Source", StringComparison.Ordinal);
+        if (string.Equals(tableSource.Rowset.DerivationKind, "Source", StringComparison.Ordinal))
+        {
+            return true;
+        }
+
+        return string.Equals(tableSource.Rowset.DerivationKind, "FunctionTableReference", StringComparison.Ordinal) &&
+               tableSource.Rowset.Columns.Count == 0;
     }
 
     private static RuntimeColumn EnsureInferredSourceColumn(

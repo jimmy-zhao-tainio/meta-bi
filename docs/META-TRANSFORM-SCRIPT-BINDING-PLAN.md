@@ -625,7 +625,7 @@ Do not do these yet:
 - [x] `OFFSET` / `FETCH` binding is implemented
 - [x] query parenthesis binding is implemented
 - [x] join parenthesis binding is implemented
-- [ ] built-in and global TVF binding is implemented without script-supplied alias shape
+- [x] built-in and global TVF binding is implemented without script-supplied alias shape
 - [x] `OPENJSON` default-shape binding is implemented
 - [x] full-text predicate traversal (`CONTAINS` / `FREETEXT`) is implemented
 - [x] full-text table-form binding (`CONTAINSTABLE` / `FREETEXTTABLE`) is implemented

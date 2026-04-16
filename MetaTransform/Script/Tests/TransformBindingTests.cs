@@ -540,7 +540,7 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
     }
 
     [Fact]
-    public void BindCrossApplyFunctionTableReference_WithoutColumnAliases_ProducesExplicitIssue()
+    public void BindCrossApplyFunctionTableReference_WithoutColumnAliases_InfersReferencedColumns()
     {
         var model = ParseCorpus("004_apply_sources.sql");
         model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
@@ -550,9 +550,17 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
             ("dbo", "Orders", ["Amount", "SourceId"]));
 
         var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+        Assert.False(bound.HasErrors);
 
-        Assert.Contains(bound.Issues, item => item.Code == "FunctionTableReferenceColumnAliasesRequired");
-        Assert.True(bound.HasErrors);
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var functionRowset = Assert.Single(bindingModel.RowsetList, item => item.DerivationKind == "FunctionTableReference");
+        var functionColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == functionRowset.Id)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+
+        Assert.Equal(["ValueText"], functionColumns);
     }
 
     [Fact]
@@ -584,6 +592,32 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
         Assert.NotNull(bound.TopLevelRowset);
         Assert.Equal(["value"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
         Assert.Equal(2, bound.ColumnReferences.Count);
+    }
+
+    [Fact]
+    public void BindUnknownGlobalFunctionTableReference_InfersReferencedColumns()
+    {
+        var sql = """
+CREATE VIEW dbo.v_unknown_global_function AS
+SELECT
+    g.SomeColumn
+FROM SomeGlobalTableFunction(1) AS g;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var bound = new TransformBindingService().BindSingleTransform(model, CreateSourceSchema());
+        Assert.False(bound.HasErrors);
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, CreateSourceSchema());
+        var functionRowset = Assert.Single(bindingModel.RowsetList, item => item.DerivationKind == "FunctionTableReference");
+        var functionColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == functionRowset.Id)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["SomeColumn"], functionColumns);
     }
 
     [Fact]

@@ -108,10 +108,10 @@ Status meanings:
 ### Function-rowset binding
 
 - Schema object table-valued function
-  Current support: requires script-supplied column alias list
+  Current support: binds with script-supplied column aliases when present; without aliases, rowset columns can be inferred from bound column references and `SELECT *` remains a Validate-time shape concern
 - Built-in table-valued function
 - Global table-valued function
-  Current support: sanctioned global TVF shapes currently infer rowsets by function name (`OPENJSON`, `GENERATE_SERIES`, `STRING_SPLIT`); other global TVFs remain explicit binding gaps
+  Current support: sanctioned global TVF shapes infer rowsets by function name (`OPENJSON`, `GENERATE_SERIES`, `STRING_SPLIT`); unknown/global shapes bind as schema-deferred rowsets and infer columns from bound references
 - OPENJSON
   Current support: infers default `key` / `value` / `type` rowset shape from the script call; `WITH (...)` schema-driven shape is not yet modeled in binding
 - CONTAINSTABLE
@@ -120,7 +120,7 @@ Status meanings:
 - Table-valued function alias
   Current support: follows the currently supported TVF shapes
 - Table-valued function column alias list
-  Current support: this is the sanctioned shape-enabler for current TVF binding
+  Current support: aliases are honored when provided; they are no longer required for binding to proceed
 - PIVOT
 - UNPIVOT
   Current support: binds pivot/unpivot rowset shape when input shape is syntax-derived (for example from a derived table or CTE projection); direct base-source input remains an explicit binding gap because full source shape is not available from syntax alone
