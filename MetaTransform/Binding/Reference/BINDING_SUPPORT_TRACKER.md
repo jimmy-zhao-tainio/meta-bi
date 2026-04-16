@@ -111,6 +111,9 @@ Status meanings:
   Current support: sanctioned global TVF shapes currently infer rowsets by function name (`OPENJSON`, `GENERATE_SERIES`, `STRING_SPLIT`); other global TVFs remain explicit binding gaps
 - OPENJSON
   Current support: infers default `key` / `value` / `type` rowset shape from the script call; `WITH (...)` schema-driven shape is not yet modeled in binding
+- CONTAINSTABLE
+- FREETEXTTABLE
+  Current support: binds table-form full-text references as function rowsets with sanctioned `KEY` / `RANK` columns and traverses the search-condition expression; table-name/column-argument schema conformance remains a Validate concern
 - Table-valued function alias
   Current support: follows the currently supported TVF shapes
 - Table-valued function column alias list
@@ -199,10 +202,6 @@ Status meanings:
 - XML methods
 - XML NODES
 - TABLESAMPLE
-- CONTAINS
-- FREETEXT
-- CONTAINSTABLE
-- FREETEXTTABLE
 - ODBC scalar function escape
 
 ## Not Applicable

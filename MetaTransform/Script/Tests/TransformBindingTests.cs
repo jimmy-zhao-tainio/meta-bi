@@ -724,6 +724,44 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
         Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Description", StringComparison.Ordinal)));
     }
 
+    [Theory]
+    [InlineData("028_fulltext_table.sql")]
+    [InlineData("062_freetext_table.sql")]
+    public void BindFullTextTableReference_DerivesKeyRankFunctionRowset(string corpusFile)
+    {
+        var model = ParseCorpus(corpusFile);
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Products", ["ProductId", "Description"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+        Assert.False(bound.HasErrors);
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var functionRowset = Assert.Single(bindingModel.RowsetList, item => item.DerivationKind == "FunctionTableReference");
+        var functionColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == functionRowset.Id)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["KEY", "RANK"], functionColumns);
+
+        var functionSource = Assert.Single(bindingModel.TableSourceList, item => item.RowsetId == functionRowset.Id);
+        Assert.Equal("ft", functionSource.ExposedName);
+        Assert.True(string.IsNullOrWhiteSpace(functionRowset.SqlIdentifier));
+
+        var finalLink = Assert.Single(bindingModel.OutputRowsetList);
+        var finalColumns = bindingModel.ColumnList
+            .Where(item => item.RowsetId == finalLink.RowsetId)
+            .OrderBy(item => int.Parse(item.Ordinal))
+            .Select(item => item.Name)
+            .ToArray();
+        Assert.Equal(["KEY", "RANK"], finalColumns);
+
+        Assert.Equal(2, bindingModel.ColumnReferenceList.Count);
+    }
+
     [Fact]
     public void BindSequenceAndGlobalExpressions_AreAcceptedAsScalarLeaves()
     {

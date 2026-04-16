@@ -4,6 +4,58 @@ namespace MetaTransform.Binding;
 
 internal sealed partial class TransformScriptNavigator
 {
+    public FullTextTableReference? TryGetFullTextTableReference(TableReference tableReference)
+    {
+        if (!tableReferenceWithAliasByTableReferenceId.TryGetValue(tableReference.Id, out var aliasBase))
+        {
+            return null;
+        }
+
+        return model.FullTextTableReferenceList
+            .FirstOrDefault(item => string.Equals(item.TableReferenceWithAliasId, aliasBase.Id, StringComparison.Ordinal));
+    }
+
+    public IReadOnlyList<string> GetFullTextTableReferenceTableNameParts(FullTextTableReference fullTextTableReference)
+    {
+        var link = model.FullTextTableReferenceTableNameLinkList
+            .FirstOrDefault(item => string.Equals(item.FullTextTableReferenceId, fullTextTableReference.Id, StringComparison.Ordinal));
+        if (link is null)
+        {
+            return [];
+        }
+
+        if (!schemaObjectNameById.TryGetValue(link.SchemaObjectNameId, out var schemaObjectName))
+        {
+            return [];
+        }
+
+        return GetMultiPartIdentifierParts(schemaObjectName.MultiPartIdentifierId);
+    }
+
+    public IReadOnlyList<ColumnReferenceExpression> GetFullTextTableReferenceColumns(FullTextTableReference fullTextTableReference)
+    {
+        return model.FullTextTableReferenceColumnsItemList
+            .Where(item => string.Equals(item.FullTextTableReferenceId, fullTextTableReference.Id, StringComparison.Ordinal))
+            .OrderBy(item => ParseOrdinal(item.Ordinal))
+            .Select(item => model.ColumnReferenceExpressionList
+                .FirstOrDefault(column => string.Equals(column.Id, item.ColumnReferenceExpressionId, StringComparison.Ordinal)))
+            .Where(item => item is not null)
+            .Cast<ColumnReferenceExpression>()
+            .ToArray();
+    }
+
+    public ScalarExpression? TryGetFullTextTableReferenceSearchCondition(FullTextTableReference fullTextTableReference)
+    {
+        var link = model.FullTextTableReferenceSearchConditionLinkList
+            .FirstOrDefault(item => string.Equals(item.FullTextTableReferenceId, fullTextTableReference.Id, StringComparison.Ordinal));
+        if (link is null)
+        {
+            return null;
+        }
+
+        return TryGetScalarExpressionFromValueExpressionId(link.ValueExpressionId);
+    }
+
     public PivotedTableReference? TryGetPivotedTableReference(TableReference tableReference)
     {
         if (!tableReferenceWithAliasByTableReferenceId.TryGetValue(tableReference.Id, out var aliasBase))

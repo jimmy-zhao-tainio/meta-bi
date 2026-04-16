@@ -628,7 +628,7 @@ Do not do these yet:
 - [ ] built-in and global TVF binding is implemented without script-supplied alias shape
 - [ ] `OPENJSON` / `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` binding is implemented
 - [x] full-text predicate traversal (`CONTAINS` / `FREETEXT`) is implemented
-- [ ] full-text table-form binding (`CONTAINSTABLE` / `FREETEXTTABLE`) is implemented
+- [x] full-text table-form binding (`CONTAINSTABLE` / `FREETEXTTABLE`) is implemented
 - [ ] XML namespace / method binding is implemented
 - [x] `PIVOT` / `UNPIVOT` binding is implemented for syntax-derived input rowsets
 - [ ] data type validation is implemented

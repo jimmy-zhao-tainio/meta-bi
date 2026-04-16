@@ -4,6 +4,83 @@ namespace MetaTransform.Binding;
 
 internal sealed partial class TransformBindingSession
 {
+    private RuntimeTableReferenceBinding? BindFullTextTableReference(
+        TableReference tableReference,
+        FullTextTableReference fullTextTableReference,
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources)
+    {
+        var tableNameParts = navigator.GetFullTextTableReferenceTableNameParts(fullTextTableReference);
+        if (tableNameParts.Count == 0)
+        {
+            issues.Add(new TransformBindingIssue(
+                "FullTextTableReferenceTableNameMissing",
+                $"Full-text table reference '{fullTextTableReference.Id}' does not expose a supported source table name.",
+                tableReference.Id));
+            return null;
+        }
+
+        foreach (var columnReference in navigator.GetFullTextTableReferenceColumns(fullTextTableReference))
+        {
+            if (navigator.GetColumnReferenceParts(columnReference).Count == 0)
+            {
+                issues.Add(new TransformBindingIssue(
+                    "FullTextTableReferenceColumnMissingIdentifier",
+                    $"Full-text table reference '{fullTextTableReference.Id}' includes a column argument without an identifier.",
+                    columnReference.Id));
+                return null;
+            }
+        }
+
+        var parameterScope = new BindingScope(inheritedVisibleTableSources);
+        var searchCondition = navigator.TryGetFullTextTableReferenceSearchCondition(fullTextTableReference);
+        if (searchCondition is null)
+        {
+            issues.Add(new TransformBindingIssue(
+                "FullTextTableReferenceSearchConditionMissing",
+                $"Full-text table reference '{fullTextTableReference.Id}' does not expose its search condition expression.",
+                tableReference.Id));
+            return null;
+        }
+
+        BindScalarExpression(searchCondition, parameterScope, null, null, false);
+
+        var functionName = TryResolveFullTextTableFunctionName(fullTextTableReference.FullTextFunctionType);
+        if (functionName is null)
+        {
+            issues.Add(new TransformBindingIssue(
+                "FullTextTableReferenceFunctionTypeUnsupported",
+                $"Full-text table reference '{fullTextTableReference.Id}' has unsupported FullTextFunctionType '{fullTextTableReference.FullTextFunctionType}'.",
+                tableReference.Id));
+            return null;
+        }
+
+        var sourceSqlIdentifier = string.Join(".", tableNameParts);
+        var rowset = new RuntimeRowset(
+            $"{tableReference.Id}:rowset",
+            $"{functionName}({sourceSqlIdentifier})",
+            "FunctionTableReference",
+            null,
+            tableReference.Id,
+            string.Empty,
+            [
+                new RuntimeColumn($"{tableReference.Id}:column:1", "KEY", 0),
+                new RuntimeColumn($"{tableReference.Id}:column:2", "RANK", 1)
+            ],
+            []);
+
+        TrackRowset(rowset);
+
+        var exposedName = navigator.TryGetTableAlias(tableReference) ?? functionName;
+        var tableSource = new RuntimeTableSource(
+            tableReference.Id,
+            exposedName,
+            string.Empty,
+            rowset);
+
+        TrackTableSource(tableSource);
+        return new RuntimeTableReferenceBinding(rowset, [tableSource]);
+    }
+
     private RuntimeTableReferenceBinding? BindSchemaObjectFunctionTableReference(
         TableReference tableReference,
         SchemaObjectFunctionTableReference functionTableReference,
@@ -129,6 +206,16 @@ internal sealed partial class TransformBindingSession
             "GENERATE_SERIES" => ["value"],
             "STRING_SPLIT" => ["value"],
             _ => []
+        };
+    }
+
+    private static string? TryResolveFullTextTableFunctionName(string functionType)
+    {
+        return functionType.Trim() switch
+        {
+            "Contains" => "CONTAINSTABLE",
+            "FreeText" => "FREETEXTTABLE",
+            _ => null
         };
     }
 }
