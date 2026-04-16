@@ -388,15 +388,19 @@ Important things that are still not truly implemented:
 - source identifier resolution to `MetaSchema.TableId` is implemented in the current Validate slice
 - source column-subset conformance is implemented in the current Validate slice
 - target identifier resolution to `MetaSchema.TableId` is implemented in the current Validate slice
-- target structural count/name validation is implemented in the current Validate slice
+- target write-contract validation is implemented in the current Validate slice
   - SQL identity columns are skipped on the target side
+  - final output columns are matched to writable non-identity target fields by name
+  - duplicate target field mappings are rejected
+  - output columns not found on writable target fields are rejected
+  - writable nullable target fields may be omitted from final output
+  - writable required target fields must be present in final output
   - sanctioned data type compatibility and deterministic name-aligned source/target conformance are implemented through `MetaDataTypeConversionService`
   - deterministic name-aligned nullability conformance is implemented for unique source-to-target column mappings
   - deterministic name-aligned length / precision / scale conformance is implemented for unique source-to-target column mappings when both sides expose type details
   - sanctioned conversion classification is persisted as explicit target-column type entities: `ValidationTargetColumnTypeExact`, `ValidationTargetColumnTypeSanctionedConversion`, and `ValidationTargetColumnTypeNotClassified`
   - Validate supports explicit target-column exclusion through `--ignore-target-columns` (strict: ignored names must exist as non-identity target fields) and persists each applied ignore as `ValidationTargetIgnoredColumn`
-  - no explicit target write-contract semantics for nullable, defaulted, computed, or platform columns
-  - no source-to-target compatibility outcomes beyond structural rowset checks
+  - source-to-target compatibility outcomes are persisted via explicit target-column type entities
 
 So the binder can now explain a lot of rowset and visibility structure, but it is still intentionally shallow in scalar semantics.
 
@@ -638,7 +642,7 @@ Do not do these yet:
 - [x] length / precision / scale validation is implemented for deterministic name-aligned source/target column mappings when both sides expose type details
 - [x] sanctioned conversion classification is implemented
 - [x] platform/system-generated target columns beyond SQL identity can be identified explicitly via `--ignore-target-columns`
-- [ ] target write-contract semantics beyond structural rowset checks are implemented
+- [x] target write-contract semantics beyond structural rowset checks are implemented
 - [x] `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` are explicitly tracked as out-of-scope for Binding
 - [x] validation result entities are captured explicitly inside `MetaTransformBinding`
 - [x] source and target identifier resolution against `MetaSchema` is implemented in the current Validate slice
