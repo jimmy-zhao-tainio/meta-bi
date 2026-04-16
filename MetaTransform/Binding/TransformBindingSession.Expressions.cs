@@ -103,9 +103,11 @@ internal sealed partial class TransformBindingSession
                 }
             }
 
-            foreach (var parameter in navigator.GetFunctionCallParameters(functionCall))
+            var functionParameters = navigator.GetFunctionCallParameters(functionCall);
+            for (var parameterOrdinal = 0; parameterOrdinal < functionParameters.Count; parameterOrdinal++)
             {
-                if (ShouldSkipFunctionCallParameterBinding(functionCall, parameter))
+                var parameter = functionParameters[parameterOrdinal];
+                if (ShouldSkipFunctionCallParameterBinding(functionCall, parameter, parameterOrdinal))
                 {
                     continue;
                 }
@@ -667,15 +669,10 @@ internal sealed partial class TransformBindingSession
         };
     }
 
-    private bool ShouldSkipFunctionCallParameterBinding(FunctionCall functionCall, ScalarExpression parameter)
+    private bool ShouldSkipFunctionCallParameterBinding(FunctionCall functionCall, ScalarExpression parameter, int parameterOrdinal)
     {
         var directColumnReference = navigator.TryGetDirectColumnReference(parameter);
         if (directColumnReference is null)
-        {
-            return false;
-        }
-
-        if (navigator.GetColumnReferenceParts(directColumnReference).Count != 0)
         {
             return false;
         }
@@ -686,10 +683,49 @@ internal sealed partial class TransformBindingSession
             return false;
         }
 
-        return functionName.Trim().ToUpperInvariant() switch
+        var normalizedFunctionName = functionName.Trim().ToUpperInvariant();
+        var parts = navigator.GetColumnReferenceParts(directColumnReference);
+
+        if (normalizedFunctionName == "EXTRACT" &&
+            parameterOrdinal == 0 &&
+            parts.Count == 1 &&
+            IsExtractDatePartToken(parts[0]))
+        {
+            return true;
+        }
+
+        if (parts.Count != 0)
+        {
+            return false;
+        }
+
+        return normalizedFunctionName switch
         {
             "COUNT" => true,
             "COUNT_BIG" => true,
+            _ => false
+        };
+    }
+
+    private static bool IsExtractDatePartToken(string token)
+    {
+        return token.Trim().ToUpperInvariant() switch
+        {
+            "YEAR" => true,
+            "QUARTER" => true,
+            "MONTH" => true,
+            "DAYOFYEAR" => true,
+            "DAY" => true,
+            "WEEK" => true,
+            "WEEKDAY" => true,
+            "HOUR" => true,
+            "MINUTE" => true,
+            "SECOND" => true,
+            "MILLISECOND" => true,
+            "MICROSECOND" => true,
+            "NANOSECOND" => true,
+            "TZOFFSET" => true,
+            "ISO_WEEK" => true,
             _ => false
         };
     }

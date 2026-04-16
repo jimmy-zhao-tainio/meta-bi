@@ -60,6 +60,10 @@ internal sealed partial class TransformScriptNavigator
     private readonly IReadOnlyDictionary<string, SchemaObjectFunctionTableReferenceSchemaObjectLink> schemaObjectFunctionTableReferenceSchemaObjectLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, List<SchemaObjectFunctionTableReferenceParametersItem>> schemaObjectFunctionTableReferenceParametersByOwnerId;
     private readonly IReadOnlyDictionary<string, NamedTableReferenceSchemaObjectLink> namedTableReferenceSchemaObjectLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, NamedTableReferenceTableSampleClauseLink> namedTableReferenceTableSampleClauseLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, TableSampleClause> tableSampleClauseById;
+    private readonly IReadOnlyDictionary<string, TableSampleClauseSampleNumberLink> tableSampleClauseSampleNumberLinkByOwnerId;
+    private readonly IReadOnlyDictionary<string, TableSampleClauseRepeatSeedLink> tableSampleClauseRepeatSeedLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, SchemaObjectName> schemaObjectNameById;
     private readonly IReadOnlyDictionary<string, MultiPartIdentifier> multiPartIdentifierById;
     private readonly IReadOnlyDictionary<string, List<MultiPartIdentifierIdentifiersItem>> multiPartIdentifierItemsByOwnerId;
@@ -215,6 +219,10 @@ internal sealed partial class TransformScriptNavigator
         schemaObjectFunctionTableReferenceSchemaObjectLinkByOwnerId = model.SchemaObjectFunctionTableReferenceSchemaObjectLinkList.ToDictionary(item => item.SchemaObjectFunctionTableReferenceId, StringComparer.Ordinal);
         schemaObjectFunctionTableReferenceParametersByOwnerId = GroupByOwner(model.SchemaObjectFunctionTableReferenceParametersItemList);
         namedTableReferenceSchemaObjectLinkByOwnerId = model.NamedTableReferenceSchemaObjectLinkList.ToDictionary(item => item.NamedTableReferenceId, StringComparer.Ordinal);
+        namedTableReferenceTableSampleClauseLinkByOwnerId = model.NamedTableReferenceTableSampleClauseLinkList.ToDictionary(item => item.NamedTableReferenceId, StringComparer.Ordinal);
+        tableSampleClauseById = model.TableSampleClauseList.ToDictionary(item => item.Id, StringComparer.Ordinal);
+        tableSampleClauseSampleNumberLinkByOwnerId = model.TableSampleClauseSampleNumberLinkList.ToDictionary(item => item.TableSampleClauseId, StringComparer.Ordinal);
+        tableSampleClauseRepeatSeedLinkByOwnerId = model.TableSampleClauseRepeatSeedLinkList.ToDictionary(item => item.TableSampleClauseId, StringComparer.Ordinal);
         schemaObjectNameById = model.SchemaObjectNameList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         multiPartIdentifierById = model.MultiPartIdentifierList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         multiPartIdentifierItemsByOwnerId = GroupByOwner(model.MultiPartIdentifierIdentifiersItemList);
@@ -711,6 +719,42 @@ internal sealed partial class TransformScriptNavigator
         }
 
         return GetMultiPartIdentifierParts(schemaObjectName.MultiPartIdentifierId);
+    }
+
+    public ScalarExpression? TryGetNamedTableReferenceTableSampleNumber(NamedTableReference namedTableReference)
+    {
+        var tableSampleClause = TryGetNamedTableReferenceTableSampleClause(namedTableReference);
+        if (tableSampleClause is null)
+        {
+            return null;
+        }
+
+        return tableSampleClauseSampleNumberLinkByOwnerId.TryGetValue(tableSampleClause.Id, out var link)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
+            : null;
+    }
+
+    public ScalarExpression? TryGetNamedTableReferenceTableSampleRepeatSeed(NamedTableReference namedTableReference)
+    {
+        var tableSampleClause = TryGetNamedTableReferenceTableSampleClause(namedTableReference);
+        if (tableSampleClause is null)
+        {
+            return null;
+        }
+
+        return tableSampleClauseRepeatSeedLinkByOwnerId.TryGetValue(tableSampleClause.Id, out var link)
+            ? scalarExpressionById.GetValueOrDefault(link.ScalarExpressionId)
+            : null;
+    }
+
+    private TableSampleClause? TryGetNamedTableReferenceTableSampleClause(NamedTableReference namedTableReference)
+    {
+        if (!namedTableReferenceTableSampleClauseLinkByOwnerId.TryGetValue(namedTableReference.Id, out var link))
+        {
+            return null;
+        }
+
+        return tableSampleClauseById.GetValueOrDefault(link.TableSampleClauseId);
     }
 
     public IReadOnlyList<SelectElement> GetSelectElements(QuerySpecification querySpecification)

@@ -473,7 +473,7 @@ The next clean slices should stay honest about the current boundary:
 
 1. profile feature classification beyond profile resolution
 2. type inference handoff
-3. broader table-source coverage (`OPENJSON`, `OPENROWSET`, `OPENQUERY`, `CHANGETABLE`, and TVF shapes without script-supplied alias shape)
+3. broader sanctioned table-source coverage (remaining TVF shapes without script-supplied alias shape; `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` are intentionally out-of-scope)
 4. expand Validate beyond the current structural slice over `TransformBinding + MetaSchema`
 
 This keeps rowset and name-resolution truth ahead of type and validation work.
@@ -626,17 +626,20 @@ Do not do these yet:
 - [x] query parenthesis binding is implemented
 - [x] join parenthesis binding is implemented
 - [ ] built-in and global TVF binding is implemented without script-supplied alias shape
-- [ ] `OPENJSON` / `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` binding is implemented
+- [x] `OPENJSON` default-shape binding is implemented
 - [x] full-text predicate traversal (`CONTAINS` / `FREETEXT`) is implemented
 - [x] full-text table-form binding (`CONTAINSTABLE` / `FREETEXTTABLE`) is implemented
 - [x] XML namespace / method binding is implemented
 - [x] `PIVOT` / `UNPIVOT` binding is implemented for syntax-derived input rowsets
+- [x] `EXTRACT` traversal is implemented without treating date-part tokens as column references
+- [x] `TABLESAMPLE` sample/repeat expression traversal is implemented
 - [ ] data type validation is implemented
 - [ ] nullability validation is implemented
 - [ ] length / precision / scale validation is implemented
 - [ ] sanctioned conversion classification is implemented
 - [ ] platform/system-generated target columns beyond SQL identity can be identified explicitly
 - [ ] target write-contract semantics beyond structural rowset checks are implemented
+- [x] `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` are explicitly tracked as out-of-scope for Binding
 - [x] validation result entities are captured explicitly inside `MetaTransformBinding`
 - [x] source and target identifier resolution against `MetaSchema` is implemented in the current Validate slice
 - [x] structural source/target validation is implemented in the current Validate slice

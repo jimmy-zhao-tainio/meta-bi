@@ -826,6 +826,59 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
     }
 
     [Fact]
+    public void BindExtractFunction_DoesNotTreatDatePartTokenAsColumnReference()
+    {
+        var model = ParseCorpus("030_time_zone_extract.sql");
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id", "CreatedAt"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+        Assert.False(bound.HasErrors);
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var resolvedColumnNames = bindingModel.ColumnReferenceList
+            .Select(item => bindingModel.ColumnList.Single(column => column.Id == item.ColumnId).Name)
+            .ToArray();
+
+        Assert.Equal(3, resolvedColumnNames.Length);
+        Assert.Equal(1, resolvedColumnNames.Count(item => string.Equals(item, "Id", StringComparison.Ordinal)));
+        Assert.Equal(2, resolvedColumnNames.Count(item => string.Equals(item, "CreatedAt", StringComparison.Ordinal)));
+        Assert.DoesNotContain(resolvedColumnNames, item => string.Equals(item, "MONTH", StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void BindTableSampleExpressions_TraversesSampleNumberAndRepeatSeed()
+    {
+        var sql = """
+CREATE VIEW dbo.v_tablesample_traversal AS
+SELECT
+    a.Id
+FROM dbo.A AS a
+CROSS APPLY dbo.B AS b TABLESAMPLE (a.Id PERCENT) REPEATABLE (a.Id);
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "A", ["Id"]),
+            ("dbo", "B", ["Id"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+        Assert.False(bound.HasErrors);
+
+        var bindingModel = new TransformBindingService().BindSingleTransformModel(model, sourceSchema);
+        var resolvedColumnNames = bindingModel.ColumnReferenceList
+            .Select(item => bindingModel.ColumnList.Single(column => column.Id == item.ColumnId).Name)
+            .ToArray();
+
+        Assert.Equal(3, resolvedColumnNames.Length);
+        Assert.Equal(3, resolvedColumnNames.Count(item => string.Equals(item, "Id", StringComparison.Ordinal)));
+    }
+
+    [Fact]
     public void BindSequenceAndGlobalExpressions_AreAcceptedAsScalarLeaves()
     {
         var model = ParseCorpus("036_sequence_and_globals.sql");

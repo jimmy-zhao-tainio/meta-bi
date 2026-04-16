@@ -7,7 +7,8 @@ internal sealed partial class TransformBindingSession
     private RuntimeTableReferenceBinding? BindNamedTableReference(
         TableReference tableReference,
         NamedTableReference namedTableReference,
-        int visibleCommonTableExpressionOrdinal)
+        int visibleCommonTableExpressionOrdinal,
+        IReadOnlyList<RuntimeTableSource> inheritedVisibleTableSources)
     {
         var identifierParts = navigator.GetNamedTableReferenceParts(namedTableReference);
         if (identifierParts.Count == 0)
@@ -29,6 +30,22 @@ internal sealed partial class TransformBindingSession
             if (commonTableExpressionBinding.IsResolved)
             {
                 return commonTableExpressionBinding.Binding;
+            }
+        }
+
+        var tableSampleNumber = navigator.TryGetNamedTableReferenceTableSampleNumber(namedTableReference);
+        var tableSampleRepeatSeed = navigator.TryGetNamedTableReferenceTableSampleRepeatSeed(namedTableReference);
+        if (tableSampleNumber is not null || tableSampleRepeatSeed is not null)
+        {
+            var tableSampleScope = new BindingScope(inheritedVisibleTableSources);
+            if (tableSampleNumber is not null)
+            {
+                BindScalarExpression(tableSampleNumber, tableSampleScope, null, groupingContext: null, withinAggregate: false);
+            }
+
+            if (tableSampleRepeatSeed is not null)
+            {
+                BindScalarExpression(tableSampleRepeatSeed, tableSampleScope, null, groupingContext: null, withinAggregate: false);
             }
         }
 

@@ -13,7 +13,11 @@ internal sealed partial class TransformBindingSession
         var namedTableReference = navigator.TryGetNamedTableReference(tableReference);
         if (namedTableReference is not null)
         {
-            return BindNamedTableReference(tableReference, namedTableReference, visibleCommonTableExpressionOrdinal);
+            return BindNamedTableReference(
+                tableReference,
+                namedTableReference,
+                visibleCommonTableExpressionOrdinal,
+                inheritedVisibleTableSources);
         }
 
         var queryDerivedTable = navigator.TryGetQueryDerivedTable(tableReference);

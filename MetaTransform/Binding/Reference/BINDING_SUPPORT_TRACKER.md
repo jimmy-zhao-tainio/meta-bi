@@ -25,6 +25,8 @@ Status meanings:
 - RIGHT OUTER JOIN
 - FULL OUTER JOIN
 - CROSS JOIN
+- TABLESAMPLE
+  Current support: sample-number and repeat-seed expressions are traversed for name resolution; rowset shape is unchanged in Binding
 - CROSS APPLY
 - OUTER APPLY
 - Join parentheses
@@ -93,6 +95,7 @@ Status meanings:
 - TRY_PARSE
 - LEFT
 - RIGHT
+- EXTRACT
 - NEXT VALUE FOR
 - Parameterless call (`CURRENT_TIMESTAMP`)
 - AT TIME ZONE
@@ -194,19 +197,16 @@ Status meanings:
 
 ### Query modifiers and wrappers
 
-### Additional sources
+### Predicate and function families not yet bound explicitly
 
-- OPENJSON
+- ODBC scalar function escape
+
+## Out Of Scope (Not Planned)
+
 - OPENROWSET
 - OPENQUERY
 - Ad hoc data source
 - CHANGETABLE
-
-### Predicate and function families not yet bound explicitly
-
-- EXTRACT
-- TABLESAMPLE
-- ODBC scalar function escape
 
 ## Not Applicable
 
