@@ -27,11 +27,13 @@ public sealed class TransformBindingValidationService
 
     public MetaTransformBindingModel ApplyValidation(
         MetaTransformBindingModel bindingModel,
-        MetaSchemaModel schemaModel)
+        MetaSchemaModel schemaModel,
+        TransformBindingValidationOptions? options = null)
     {
         ArgumentNullException.ThrowIfNull(bindingModel);
         ArgumentNullException.ThrowIfNull(schemaModel);
 
+        var resolvedOptions = options ?? TransformBindingValidationOptions.Default;
         var resolver = new MetaSchemaTableResolver(schemaModel);
 
         var validations = new List<Validation>();
@@ -39,6 +41,10 @@ public sealed class TransformBindingValidationService
         var targetRowsetLinks = new List<ValidationTargetRowsetLink>();
         var sourceColumnLinks = new List<ValidationSourceColumnLink>();
         var targetColumnLinks = new List<ValidationTargetColumnLink>();
+        var targetColumnTypeExactRows = new List<ValidationTargetColumnTypeExact>();
+        var targetColumnTypeSanctionedConversionRows = new List<ValidationTargetColumnTypeSanctionedConversion>();
+        var targetColumnTypeNotClassifiedRows = new List<ValidationTargetColumnTypeNotClassified>();
+        var targetIgnoredColumnRows = new List<ValidationTargetIgnoredColumn>();
 
         foreach (var binding in bindingModel.TransformBindingList)
         {
@@ -46,13 +52,18 @@ public sealed class TransformBindingValidationService
                 bindingModel,
                 binding,
                 resolver,
+                resolvedOptions,
                 dataTypeConversionService,
                 dataTypeConversionWorkspace,
                 validations,
                 sourceRowsetLinks,
                 targetRowsetLinks,
                 sourceColumnLinks,
-                targetColumnLinks);
+                targetColumnLinks,
+                targetColumnTypeExactRows,
+                targetColumnTypeSanctionedConversionRows,
+                targetColumnTypeNotClassifiedRows,
+                targetIgnoredColumnRows);
         }
 
         bindingModel.ValidationList.Clear();
@@ -65,6 +76,14 @@ public sealed class TransformBindingValidationService
         bindingModel.ValidationSourceColumnLinkList.AddRange(sourceColumnLinks);
         bindingModel.ValidationTargetColumnLinkList.Clear();
         bindingModel.ValidationTargetColumnLinkList.AddRange(targetColumnLinks);
+        bindingModel.ValidationTargetColumnTypeExactList.Clear();
+        bindingModel.ValidationTargetColumnTypeExactList.AddRange(targetColumnTypeExactRows);
+        bindingModel.ValidationTargetColumnTypeSanctionedConversionList.Clear();
+        bindingModel.ValidationTargetColumnTypeSanctionedConversionList.AddRange(targetColumnTypeSanctionedConversionRows);
+        bindingModel.ValidationTargetColumnTypeNotClassifiedList.Clear();
+        bindingModel.ValidationTargetColumnTypeNotClassifiedList.AddRange(targetColumnTypeNotClassifiedRows);
+        bindingModel.ValidationTargetIgnoredColumnList.Clear();
+        bindingModel.ValidationTargetIgnoredColumnList.AddRange(targetIgnoredColumnRows);
 
         return bindingModel;
     }
@@ -73,13 +92,18 @@ public sealed class TransformBindingValidationService
         MetaTransformBindingModel model,
         TransformBinding binding,
         MetaSchemaTableResolver resolver,
+        TransformBindingValidationOptions options,
         IMetaDataTypeConversionService dataTypeConversionService,
         Workspace dataTypeConversionWorkspace,
         List<Validation> validations,
         List<ValidationSourceRowsetLink> sourceRowsetLinks,
         List<ValidationTargetRowsetLink> targetRowsetLinks,
         List<ValidationSourceColumnLink> sourceColumnLinks,
-        List<ValidationTargetColumnLink> targetColumnLinks)
+        List<ValidationTargetColumnLink> targetColumnLinks,
+        List<ValidationTargetColumnTypeExact> targetColumnTypeExactRows,
+        List<ValidationTargetColumnTypeSanctionedConversion> targetColumnTypeSanctionedConversionRows,
+        List<ValidationTargetColumnTypeNotClassified> targetColumnTypeNotClassifiedRows,
+        List<ValidationTargetIgnoredColumn> targetIgnoredColumnRows)
     {
         var validationId = $"{binding.Id}:validation";
         validations.Add(new Validation
@@ -123,13 +147,18 @@ public sealed class TransformBindingValidationService
                 validationId,
                 target,
                 resolver,
+                options.IgnoredTargetColumnNames,
                 dataTypeConversionService,
                 dataTypeConversionWorkspace,
                 finalRowset,
                 rowsetColumnsByRowsetId,
                 sourceColumnTypeCandidatesByName,
                 targetRowsetLinks,
-                targetColumnLinks);
+                targetColumnLinks,
+                targetColumnTypeExactRows,
+                targetColumnTypeSanctionedConversionRows,
+                targetColumnTypeNotClassifiedRows,
+                targetIgnoredColumnRows);
         }
     }
 
@@ -178,7 +207,7 @@ public sealed class TransformBindingValidationService
                     $"Source rowset '{sqlIdentifier}' uses column '{actualColumn.Name}', but that column was not found in the sanctioned schema table '{resolution.Table.CanonicalSqlIdentifier}'.");
             }
 
-            var canonicalMetaTypeId = ResolveCanonicalMetaDataTypeId(
+            var sourceMetaDataTypeResolution = ResolveMetaDataTypeResolution(
                 dataTypeConversionService,
                 dataTypeConversionWorkspace,
                 matchedField.MetaDataTypeId,
@@ -202,7 +231,8 @@ public sealed class TransformBindingValidationService
 
             candidates.Add(new ResolvedSourceColumnType(
                 actualColumn.Name,
-                canonicalMetaTypeId,
+                sourceMetaDataTypeResolution.SourceDataTypeId,
+                sourceMetaDataTypeResolution.TargetDataTypeId,
                 matchedField.IsNullable,
                 matchedField.Length,
                 matchedField.Precision,
@@ -215,13 +245,18 @@ public sealed class TransformBindingValidationService
         string validationId,
         TransformBindingTarget target,
         MetaSchemaTableResolver resolver,
+        IReadOnlySet<string> ignoredTargetColumnNames,
         IMetaDataTypeConversionService dataTypeConversionService,
         Workspace dataTypeConversionWorkspace,
         Rowset? finalRowset,
         IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId,
         IReadOnlyDictionary<string, List<ResolvedSourceColumnType>> sourceColumnTypeCandidatesByName,
         List<ValidationTargetRowsetLink> targetRowsetLinks,
-        List<ValidationTargetColumnLink> targetColumnLinks)
+        List<ValidationTargetColumnLink> targetColumnLinks,
+        List<ValidationTargetColumnTypeExact> targetColumnTypeExactRows,
+        List<ValidationTargetColumnTypeSanctionedConversion> targetColumnTypeSanctionedConversionRows,
+        List<ValidationTargetColumnTypeNotClassified> targetColumnTypeNotClassifiedRows,
+        List<ValidationTargetIgnoredColumn> targetIgnoredColumnRows)
     {
         var targetSqlIdentifier = target.SqlIdentifier;
         var resolution = resolver.ResolveSqlIdentifier(targetSqlIdentifier);
@@ -238,9 +273,28 @@ public sealed class TransformBindingValidationService
         }
 
         var actualColumns = rowsetColumnsByRowsetId.GetValueOrDefault(finalRowset.Id) ?? [];
-        var expectedColumns = resolution.Table!.Fields
+        var allNonIdentityExpectedColumns = resolution.Table!.Fields
             .Where(item => !item.IsIdentity)
             .OrderBy(item => item.Ordinal)
+            .ToArray();
+        var expectedColumnsByName = allNonIdentityExpectedColumns
+            .ToDictionary(item => item.FieldName, StringComparer.OrdinalIgnoreCase);
+        var ignoredTargetFields = new List<ResolvedSchemaField>();
+
+        foreach (var ignoredColumnName in ignoredTargetColumnNames)
+        {
+            if (!expectedColumnsByName.TryGetValue(ignoredColumnName, out var ignoredField))
+            {
+                throw new TransformBindingValidationException(
+                    "TargetIgnoredColumnNotFound",
+                    $"Ignored target column '{ignoredColumnName}' was not found as a non-identity field on target table '{resolution.Table.CanonicalSqlIdentifier}'.");
+            }
+
+            ignoredTargetFields.Add(ignoredField);
+        }
+
+        var expectedColumns = allNonIdentityExpectedColumns
+            .Where(item => !ignoredTargetColumnNames.Contains(item.FieldName))
             .ToArray();
 
         if (actualColumns.Length != expectedColumns.Length)
@@ -260,6 +314,16 @@ public sealed class TransformBindingValidationService
             MetaSchemaTableId = resolution.Table.TableId
         });
 
+        foreach (var ignoredField in ignoredTargetFields.OrderBy(item => item.Ordinal))
+        {
+            targetIgnoredColumnRows.Add(new ValidationTargetIgnoredColumn
+            {
+                Id = $"{targetRowsetLinkId}:ignored:{targetIgnoredColumnRows.Count + 1}",
+                ValidationTargetRowsetLinkId = targetRowsetLinkId,
+                MetaSchemaFieldId = ignoredField.FieldId
+            });
+        }
+
         for (var ordinal = 0; ordinal < actualColumns.Length; ordinal++)
         {
             if (!string.Equals(actualColumns[ordinal].Name, expectedColumns[ordinal].FieldName, StringComparison.OrdinalIgnoreCase))
@@ -269,7 +333,7 @@ public sealed class TransformBindingValidationService
                     $"Final output rowset for target '{targetSqlIdentifier}' column {ordinal + 1} is '{actualColumns[ordinal].Name}', but the sanctioned schema expects '{expectedColumns[ordinal].FieldName}'.");
             }
 
-            var targetCanonicalMetaTypeId = ResolveCanonicalMetaDataTypeId(
+            var targetMetaDataTypeResolution = ResolveMetaDataTypeResolution(
                 dataTypeConversionService,
                 dataTypeConversionWorkspace,
                 expectedColumns[ordinal].MetaDataTypeId,
@@ -278,18 +342,21 @@ public sealed class TransformBindingValidationService
                 $"Target schema field '{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}'");
 
             var outputColumnName = actualColumns[ordinal].Name;
+            var targetColumnTypeAssessment = TargetColumnTypeAssessment.NotClassified;
+            var sourceMetaDataTypeIdForCompatibility = string.Empty;
             if (sourceColumnTypeCandidatesByName.TryGetValue(outputColumnName, out var sourceCandidates) &&
                 sourceCandidates.Count == 1)
             {
                 var sourceCandidate = sourceCandidates[0];
+                sourceMetaDataTypeIdForCompatibility = sourceCandidate.SourceMetaDataTypeId;
                 if (!string.Equals(
                         sourceCandidate.CanonicalMetaDataTypeId,
-                        targetCanonicalMetaTypeId,
+                        targetMetaDataTypeResolution.TargetDataTypeId,
                         StringComparison.Ordinal))
                 {
                     throw new TransformBindingValidationException(
                         "TargetColumnTypeConformanceMismatch",
-                        $"Final output column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from source '{sourceCandidate.SourceDisplayName}' with canonical type '{sourceCandidate.CanonicalMetaDataTypeId}', but target field '{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}' resolves to canonical type '{targetCanonicalMetaTypeId}'.");
+                        $"Final output column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from source '{sourceCandidate.SourceDisplayName}' with canonical type '{sourceCandidate.CanonicalMetaDataTypeId}', but target field '{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}' resolves to canonical type '{targetMetaDataTypeResolution.TargetDataTypeId}'.");
                 }
 
                 if (sourceCandidate.IsNullable == true && expectedColumns[ordinal].IsNullable == false)
@@ -328,6 +395,10 @@ public sealed class TransformBindingValidationService
                     targetSqlIdentifier,
                     sourceCandidate.SourceDisplayName,
                     targetFieldDisplayName: $"{resolution.Table.CanonicalSqlIdentifier}.{expectedColumns[ordinal].FieldName}");
+
+                targetColumnTypeAssessment = ClassifyDataTypeConformance(
+                    sourceCandidate.SourceMetaDataTypeId,
+                    targetMetaDataTypeResolution.SourceDataTypeId);
             }
 
             targetColumnLinks.Add(new ValidationTargetColumnLink
@@ -337,6 +408,16 @@ public sealed class TransformBindingValidationService
                 ColumnId = actualColumns[ordinal].Id,
                 MetaSchemaFieldId = expectedColumns[ordinal].FieldId
             });
+
+            var targetColumnLink = targetColumnLinks[^1];
+            AppendTargetColumnTypeAssessment(
+                targetColumnTypeAssessment,
+                targetColumnLink.Id,
+                sourceMetaDataTypeIdForCompatibility,
+                targetMetaDataTypeResolution.SourceDataTypeId,
+                targetColumnTypeExactRows,
+                targetColumnTypeSanctionedConversionRows,
+                targetColumnTypeNotClassifiedRows);
         }
     }
 
@@ -392,7 +473,7 @@ public sealed class TransformBindingValidationService
             : int.MaxValue;
     }
 
-    private static string ResolveCanonicalMetaDataTypeId(
+    private static DataTypeMappingResolution ResolveMetaDataTypeResolution(
         IMetaDataTypeConversionService dataTypeConversionService,
         Workspace dataTypeConversionWorkspace,
         string metaDataTypeId,
@@ -409,8 +490,7 @@ public sealed class TransformBindingValidationService
 
         try
         {
-            var resolution = dataTypeConversionService.Resolve(dataTypeConversionWorkspace, metaDataTypeId.Trim());
-            return resolution.TargetDataTypeId;
+            return dataTypeConversionService.Resolve(dataTypeConversionWorkspace, metaDataTypeId.Trim());
         }
         catch (Exception ex) when (ex is InvalidOperationException or ArgumentException)
         {
@@ -445,8 +525,72 @@ public sealed class TransformBindingValidationService
             $"Final output column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from source '{sourceDisplayName}' with {detailName} '{sourceDetail.Value}', but target field '{targetFieldDisplayName}' declares {detailName} '{targetDetail.Value}'.");
     }
 
+    private static TargetColumnTypeAssessment ClassifyDataTypeConformance(
+        string sourceMetaDataTypeId,
+        string targetMetaDataTypeId)
+    {
+        return string.Equals(sourceMetaDataTypeId, targetMetaDataTypeId, StringComparison.OrdinalIgnoreCase)
+            ? TargetColumnTypeAssessment.Exact
+            : TargetColumnTypeAssessment.SanctionedConversion;
+    }
+
+    private static void AppendTargetColumnTypeAssessment(
+        TargetColumnTypeAssessment assessment,
+        string validationTargetColumnLinkId,
+        string sourceMetaDataTypeId,
+        string targetMetaDataTypeId,
+        List<ValidationTargetColumnTypeExact> targetColumnTypeExactRows,
+        List<ValidationTargetColumnTypeSanctionedConversion> targetColumnTypeSanctionedConversionRows,
+        List<ValidationTargetColumnTypeNotClassified> targetColumnTypeNotClassifiedRows)
+    {
+        switch (assessment)
+        {
+            case TargetColumnTypeAssessment.Exact:
+                targetColumnTypeExactRows.Add(new ValidationTargetColumnTypeExact
+                {
+                    Id = $"{validationTargetColumnLinkId}:type-exact",
+                    ValidationTargetColumnLinkId = validationTargetColumnLinkId,
+                    SourceMetaDataTypeId = sourceMetaDataTypeId,
+                    TargetMetaDataTypeId = targetMetaDataTypeId
+                });
+                return;
+
+            case TargetColumnTypeAssessment.SanctionedConversion:
+                targetColumnTypeSanctionedConversionRows.Add(new ValidationTargetColumnTypeSanctionedConversion
+                {
+                    Id = $"{validationTargetColumnLinkId}:type-sanctioned-conversion",
+                    ValidationTargetColumnLinkId = validationTargetColumnLinkId,
+                    SourceMetaDataTypeId = sourceMetaDataTypeId,
+                    TargetMetaDataTypeId = targetMetaDataTypeId
+                });
+                return;
+
+            case TargetColumnTypeAssessment.NotClassified:
+                targetColumnTypeNotClassifiedRows.Add(new ValidationTargetColumnTypeNotClassified
+                {
+                    Id = $"{validationTargetColumnLinkId}:type-not-classified",
+                    ValidationTargetColumnLinkId = validationTargetColumnLinkId,
+                    TargetMetaDataTypeId = targetMetaDataTypeId
+                });
+                return;
+
+            default:
+                throw new TransformBindingValidationException(
+                    "TargetColumnTypeAssessmentUnknown",
+                    $"Unknown target-column type assessment '{assessment}'.");
+        }
+    }
+
+    private enum TargetColumnTypeAssessment
+    {
+        Exact,
+        SanctionedConversion,
+        NotClassified
+    }
+
     private sealed record ResolvedSourceColumnType(
         string ColumnName,
+        string SourceMetaDataTypeId,
         string CanonicalMetaDataTypeId,
         bool? IsNullable,
         int? Length,

@@ -123,7 +123,8 @@ internal static class Program
             var result = new TransformBindingValidationWorkspaceService().ValidateWorkspace(
                 parse.BindingWorkspacePath,
                 parse.SchemaWorkspacePath,
-                targetValidation.FullPath);
+                targetValidation.FullPath,
+                TransformBindingValidationOptions.Create(parse.IgnoredTargetColumns));
 
             Presenter.WriteOk($"Created {Path.GetFileName(result.WorkspacePath)}");
             Presenter.WriteKeyValueBlock("Validation", new[]
@@ -133,6 +134,7 @@ internal static class Program
                 ("TargetRowsets", result.TargetRowsetValidationCount.ToString()),
                 ("SourceColumns", result.SourceColumnValidationCount.ToString()),
                 ("TargetColumns", result.TargetColumnValidationCount.ToString()),
+                ("IgnoredTargetColumns", parse.IgnoredTargetColumns.Length.ToString()),
                 ("Workspace", result.WorkspacePath)
             });
             return Task.FromResult(0);
@@ -221,13 +223,14 @@ internal static class Program
         return (true, transformWorkspacePath, newWorkspacePath, name, languageProfileId, string.Empty);
     }
 
-    private static (bool Ok, string BindingWorkspacePath, string SchemaWorkspacePath, string NewWorkspacePath, string ErrorMessage) ParseValidateArgs(
+    private static (bool Ok, string BindingWorkspacePath, string SchemaWorkspacePath, string NewWorkspacePath, string[] IgnoredTargetColumns, string ErrorMessage) ParseValidateArgs(
         string[] args,
         int startIndex)
     {
         var bindingWorkspacePath = string.Empty;
         var schemaWorkspacePath = string.Empty;
         var newWorkspacePath = string.Empty;
+        var ignoredTargetColumns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         for (var i = startIndex; i < args.Length; i++)
         {
@@ -235,36 +238,58 @@ internal static class Program
 
             if (string.Equals(arg, "--binding-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing value for --binding-workspace.");
-                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "--binding-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing value for --binding-workspace.");
+                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "--binding-workspace can only be provided once.");
                 bindingWorkspacePath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--schema-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing value for --schema-workspace.");
-                if (!string.IsNullOrWhiteSpace(schemaWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "--schema-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing value for --schema-workspace.");
+                if (!string.IsNullOrWhiteSpace(schemaWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "--schema-workspace can only be provided once.");
                 schemaWorkspacePath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing value for --new-workspace.");
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "--new-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing value for --new-workspace.");
+                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "--new-workspace can only be provided once.");
                 newWorkspacePath = args[++i];
                 continue;
             }
 
-            return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, $"unknown option '{arg}'.");
+            if (string.Equals(arg, "--ignore-target-columns", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing value for --ignore-target-columns.");
+                var raw = args[++i];
+                if (string.IsNullOrWhiteSpace(raw))
+                {
+                    return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "value for --ignore-target-columns cannot be blank.");
+                }
+
+                foreach (var name in raw.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
+                {
+                    ignoredTargetColumns.Add(name);
+                }
+
+                if (ignoredTargetColumns.Count == 0)
+                {
+                    return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "value for --ignore-target-columns must include at least one column name.");
+                }
+
+                continue;
+            }
+
+            return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(bindingWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing required option --binding-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(schemaWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing required option --schema-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, "missing required option --new-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(bindingWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing required option --binding-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(schemaWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing required option --schema-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing required option --new-workspace <path>.");
 
-        return (true, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, string.Empty);
+        return (true, bindingWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), string.Empty);
     }
 
     private static bool IsHelpToken(string value)
@@ -307,13 +332,16 @@ internal static class Program
     private static void PrintValidateHelp()
     {
         Presenter.WriteInfo("Command: validate");
-        Presenter.WriteUsage("meta-transform-binding validate --binding-workspace <path> --schema-workspace <path> --new-workspace <path>");
+        Presenter.WriteUsage("meta-transform-binding validate --binding-workspace <path> --schema-workspace <path> --new-workspace <path> [--ignore-target-columns <col[,col...]>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Validate resolves source and target SQL identifiers against the schema workspace.");
         Presenter.WriteInfo("  Validate fails hard on any mismatch or ambiguous/not-found identifier.");
+        Presenter.WriteInfo("  --ignore-target-columns excludes named non-identity target columns from target conformance checks.");
+        Presenter.WriteInfo("  Ignored names must exist on each target table or validation fails explicitly.");
         Presenter.WriteInfo("  Output is a new binding workspace containing explicit validation link rows.");
         Presenter.WriteInfo("Example:");
         Presenter.WriteInfo("  meta-transform-binding validate --binding-workspace .\\BindingWorkspace --schema-workspace .\\SchemaWorkspace --new-workspace .\\ValidatedBindingWorkspace");
+        Presenter.WriteInfo("  meta-transform-binding validate --binding-workspace .\\BindingWorkspace --schema-workspace .\\SchemaWorkspace --new-workspace .\\ValidatedBindingWorkspace --ignore-target-columns LoadUtc,RunId");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

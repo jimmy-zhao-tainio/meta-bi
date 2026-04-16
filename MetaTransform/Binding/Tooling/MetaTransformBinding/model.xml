@@ -102,6 +102,40 @@
         <Relationship entity="ValidationTargetRowsetLink" />
       </RelationshipList>
     </Entity>
+    <Entity name="ValidationTargetColumnTypeExact">
+      <PropertyList>
+        <Property name="SourceMetaDataTypeId" />
+        <Property name="TargetMetaDataTypeId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetColumnLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationTargetColumnTypeNotClassified">
+      <PropertyList>
+        <Property name="TargetMetaDataTypeId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetColumnLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationTargetColumnTypeSanctionedConversion">
+      <PropertyList>
+        <Property name="SourceMetaDataTypeId" />
+        <Property name="TargetMetaDataTypeId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetColumnLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationTargetIgnoredColumn">
+      <PropertyList>
+        <Property name="MetaSchemaFieldId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetRowsetLink" />
+      </RelationshipList>
+    </Entity>
     <Entity name="ValidationTargetRowsetLink">
       <PropertyList>
         <Property name="MetaSchemaTableId" />

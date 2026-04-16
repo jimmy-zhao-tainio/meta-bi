@@ -1635,6 +1635,10 @@ GO
 
             Assert.Equal(3, validated.ValidationSourceColumnLinkList.Count);
             Assert.Equal(4, validated.ValidationTargetColumnLinkList.Count);
+            Assert.Equal(2, validated.ValidationTargetColumnTypeExactList.Count);
+            Assert.Empty(validated.ValidationTargetColumnTypeSanctionedConversionList);
+            Assert.Equal(2, validated.ValidationTargetColumnTypeNotClassifiedList.Count);
+            Assert.Empty(validated.ValidationTargetIgnoredColumnList);
 
         }
         finally
@@ -1683,6 +1687,96 @@ GO
     }
 
     [Fact]
+    public void ValidationService_WithIgnoredTargetColumns_AllowsPlatformColumns()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue", "LoadUtc"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var validated = new TransformBindingValidationService().ApplyValidation(
+                bindingResult.Model,
+                schemaModel,
+                TransformBindingValidationOptions.Create(["LoadUtc"]));
+
+            Assert.Equal(4, validated.ValidationTargetColumnLinkList.Count);
+            var ignoredTargetColumn = Assert.Single(validated.ValidationTargetIgnoredColumnList);
+
+            var loadUtcField = Assert.Single(schemaModel.FieldList, item =>
+                string.Equals(item.TableId, "Table:2", StringComparison.Ordinal) &&
+                string.Equals(item.Name, "LoadUtc", StringComparison.Ordinal));
+            Assert.Equal(loadUtcField.Id, ignoredTargetColumn.MetaSchemaFieldId);
+
+            var targetRowsetValidation = Assert.Single(validated.ValidationTargetRowsetLinkList);
+            Assert.Equal(targetRowsetValidation.Id, ignoredTargetColumn.ValidationTargetRowsetLinkId);
+
+            Assert.DoesNotContain(
+                validated.ValidationTargetColumnLinkList,
+                item => string.Equals(item.MetaSchemaFieldId, loadUtcField.Id, StringComparison.Ordinal));
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithUnknownIgnoredTargetColumn_FailsHard()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(
+                    bindingResult.Model,
+                    schemaModel,
+                    TransformBindingValidationOptions.Create(["DoesNotExist"])));
+            Assert.Equal("TargetIgnoredColumnNotFound", ex.Code);
+            Assert.Contains("DoesNotExist", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void ValidationService_WithTargetTypeConformanceMismatch_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
@@ -1716,6 +1810,57 @@ GO
                 new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel));
             Assert.Equal("TargetColumnTypeConformanceMismatch", ex.Code);
             Assert.Contains("CustomerId", ex.Message);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithSanctionedTypeConversion_RecordsConformanceKind()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:smallmoney");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:decimal");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel);
+            var targetColumnLinks = validated.ValidationTargetColumnLinkList;
+            Assert.Equal(4, targetColumnLinks.Count);
+            Assert.Single(validated.ValidationTargetColumnTypeExactList);
+            Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList);
+            Assert.Equal(2, validated.ValidationTargetColumnTypeNotClassifiedList.Count);
+
+            var customerIdColumn = Assert.Single(bindingResult.Model.ColumnList, item =>
+                string.Equals(item.Name, "CustomerId", StringComparison.Ordinal) &&
+                string.Equals(item.RowsetId, bindingResult.Model.OutputRowsetList[0].RowsetId, StringComparison.Ordinal));
+            var customerIdTargetColumnLink = Assert.Single(targetColumnLinks, item =>
+                string.Equals(item.ColumnId, customerIdColumn.Id, StringComparison.Ordinal));
+            var customerIdCompatibility = Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList, item =>
+                string.Equals(item.ValidationTargetColumnLinkId, customerIdTargetColumnLink.Id, StringComparison.Ordinal));
+            Assert.Equal("sqlserver:type:smallmoney", customerIdCompatibility.SourceMetaDataTypeId);
+            Assert.Equal("sqlserver:type:decimal", customerIdCompatibility.TargetMetaDataTypeId);
         }
         finally
         {

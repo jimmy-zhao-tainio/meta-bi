@@ -17,3 +17,7 @@ Current binding reads each target SQL identifier from `TransformScript.TargetSql
 - ambiguous one/two/three-part identifiers
 - source column subset mismatches
 - final output/target structural mismatches
+
+Optional:
+- `--ignore-target-columns <col[,col...]>` excludes named non-identity target columns from target conformance checks.
+- ignored names must exist on each target table or validation fails with `TargetIgnoredColumnNotFound`.

@@ -192,7 +192,7 @@ Status meanings:
 - Target identifier resolution
 - Final output rowset structural target conformance
 - Data type sanctioning/conformance through `MetaDataTypeConversion`
-  Current support: validation appends explicit validation link rows inside `MetaTransformBinding` and fails hard on any mismatch; target validation checks structural count/name (skipping SQL identity columns), validates schema field MetaDataTypeIds via `MetaDataTypeConversionService`, and performs deterministic name-aligned source-to-target canonical type, nullability, and length/precision/scale conformance checks when both sides expose those type details
+  Current support: validation appends explicit validation link rows inside `MetaTransformBinding` and fails hard on any mismatch; target validation checks structural count/name (skipping SQL identity columns), supports explicit target-column exclusion via `--ignore-target-columns` (strict: ignored names must exist as non-identity target fields), persists each applied ignore as `ValidationTargetIgnoredColumn`, validates schema field MetaDataTypeIds via `MetaDataTypeConversionService`, performs deterministic name-aligned source-to-target canonical type, nullability, and length/precision/scale checks when both sides expose those type details, and persists type-assessment intent as explicit entities: `ValidationTargetColumnTypeExact`, `ValidationTargetColumnTypeSanctionedConversion`, and `ValidationTargetColumnTypeNotClassified`
 
 ## Deferred
 

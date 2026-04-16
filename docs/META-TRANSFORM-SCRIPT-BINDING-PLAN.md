@@ -393,8 +393,8 @@ Important things that are still not truly implemented:
   - sanctioned data type compatibility and deterministic name-aligned source/target conformance are implemented through `MetaDataTypeConversionService`
   - deterministic name-aligned nullability conformance is implemented for unique source-to-target column mappings
   - deterministic name-aligned length / precision / scale conformance is implemented for unique source-to-target column mappings when both sides expose type details
-  - no sanctioned conversion classification yet
-  - no modeled way to identify platform/system-generated target columns beyond SQL identity
+  - sanctioned conversion classification is persisted as explicit target-column type entities: `ValidationTargetColumnTypeExact`, `ValidationTargetColumnTypeSanctionedConversion`, and `ValidationTargetColumnTypeNotClassified`
+  - Validate supports explicit target-column exclusion through `--ignore-target-columns` (strict: ignored names must exist as non-identity target fields) and persists each applied ignore as `ValidationTargetIgnoredColumn`
   - no explicit target write-contract semantics for nullable, defaulted, computed, or platform columns
   - no source-to-target compatibility outcomes beyond structural rowset checks
 
@@ -636,8 +636,8 @@ Do not do these yet:
 - [x] data type validation is implemented through `MetaDataTypeConversionService` for sanctioned schema types and deterministic name-aligned source/target conformance
 - [x] nullability validation is implemented for deterministic name-aligned source/target column mappings
 - [x] length / precision / scale validation is implemented for deterministic name-aligned source/target column mappings when both sides expose type details
-- [ ] sanctioned conversion classification is implemented
-- [ ] platform/system-generated target columns beyond SQL identity can be identified explicitly
+- [x] sanctioned conversion classification is implemented
+- [x] platform/system-generated target columns beyond SQL identity can be identified explicitly via `--ignore-target-columns`
 - [ ] target write-contract semantics beyond structural rowset checks are implemented
 - [x] `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` are explicitly tracked as out-of-scope for Binding
 - [x] validation result entities are captured explicitly inside `MetaTransformBinding`

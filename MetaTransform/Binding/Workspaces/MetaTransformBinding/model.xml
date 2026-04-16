@@ -40,6 +40,14 @@
         <Relationship entity="TransformBindingTarget" />
       </RelationshipList>
     </Entity>
+    <Entity name="ValidationTargetIgnoredColumn">
+      <PropertyList>
+        <Property name="MetaSchemaFieldId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetRowsetLink" />
+      </RelationshipList>
+    </Entity>
     <Entity name="ValidationSourceColumnLink">
       <PropertyList>
         <Property name="MetaSchemaFieldId" />
@@ -56,6 +64,32 @@
       <RelationshipList>
         <Relationship entity="ValidationTargetRowsetLink" />
         <Relationship entity="Column" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationTargetColumnTypeExact">
+      <PropertyList>
+        <Property name="SourceMetaDataTypeId" />
+        <Property name="TargetMetaDataTypeId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetColumnLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationTargetColumnTypeSanctionedConversion">
+      <PropertyList>
+        <Property name="SourceMetaDataTypeId" />
+        <Property name="TargetMetaDataTypeId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetColumnLink" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ValidationTargetColumnTypeNotClassified">
+      <PropertyList>
+        <Property name="TargetMetaDataTypeId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ValidationTargetColumnLink" />
       </RelationshipList>
     </Entity>
     <Entity name="OutputRowset">

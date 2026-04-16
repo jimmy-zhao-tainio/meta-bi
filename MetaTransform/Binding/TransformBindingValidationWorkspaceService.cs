@@ -8,7 +8,8 @@ public sealed class TransformBindingValidationWorkspaceService
     public ValidateWorkspaceResult ValidateWorkspace(
         string bindingWorkspacePath,
         string schemaWorkspacePath,
-        string newWorkspacePath)
+        string newWorkspacePath,
+        TransformBindingValidationOptions? options = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(bindingWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(schemaWorkspacePath);
@@ -21,7 +22,10 @@ public sealed class TransformBindingValidationWorkspaceService
         var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspaceFullPath, searchUpward: false);
         var schemaModel = MetaSchemaModel.LoadFromXmlWorkspace(schemaWorkspaceFullPath, searchUpward: false);
 
-        var validated = new TransformBindingValidationService().ApplyValidation(bindingModel, schemaModel);
+        var validated = new TransformBindingValidationService().ApplyValidation(
+            bindingModel,
+            schemaModel,
+            options ?? TransformBindingValidationOptions.Default);
         validated.SaveToXmlWorkspace(validatedWorkspaceFullPath);
 
         return new ValidateWorkspaceResult(

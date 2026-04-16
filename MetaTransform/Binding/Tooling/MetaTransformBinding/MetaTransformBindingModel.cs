@@ -84,6 +84,26 @@ namespace MetaTransformBinding
         public List<ValidationTargetColumnLink> ValidationTargetColumnLinkList { get; set; } = new();
         public bool ShouldSerializeValidationTargetColumnLinkList() => ValidationTargetColumnLinkList.Count > 0;
 
+        [XmlArray("ValidationTargetColumnTypeExactList")]
+        [XmlArrayItem("ValidationTargetColumnTypeExact")]
+        public List<ValidationTargetColumnTypeExact> ValidationTargetColumnTypeExactList { get; set; } = new();
+        public bool ShouldSerializeValidationTargetColumnTypeExactList() => ValidationTargetColumnTypeExactList.Count > 0;
+
+        [XmlArray("ValidationTargetColumnTypeNotClassifiedList")]
+        [XmlArrayItem("ValidationTargetColumnTypeNotClassified")]
+        public List<ValidationTargetColumnTypeNotClassified> ValidationTargetColumnTypeNotClassifiedList { get; set; } = new();
+        public bool ShouldSerializeValidationTargetColumnTypeNotClassifiedList() => ValidationTargetColumnTypeNotClassifiedList.Count > 0;
+
+        [XmlArray("ValidationTargetColumnTypeSanctionedConversionList")]
+        [XmlArrayItem("ValidationTargetColumnTypeSanctionedConversion")]
+        public List<ValidationTargetColumnTypeSanctionedConversion> ValidationTargetColumnTypeSanctionedConversionList { get; set; } = new();
+        public bool ShouldSerializeValidationTargetColumnTypeSanctionedConversionList() => ValidationTargetColumnTypeSanctionedConversionList.Count > 0;
+
+        [XmlArray("ValidationTargetIgnoredColumnList")]
+        [XmlArrayItem("ValidationTargetIgnoredColumn")]
+        public List<ValidationTargetIgnoredColumn> ValidationTargetIgnoredColumnList { get; set; } = new();
+        public bool ShouldSerializeValidationTargetIgnoredColumnList() => ValidationTargetIgnoredColumnList.Count > 0;
+
         [XmlArray("ValidationTargetRowsetLinkList")]
         [XmlArrayItem("ValidationTargetRowsetLink")]
         public List<ValidationTargetRowsetLink> ValidationTargetRowsetLinkList { get; set; } = new();
@@ -159,6 +179,10 @@ namespace MetaTransformBinding
             model.ValidationSourceColumnLinkList ??= new List<ValidationSourceColumnLink>();
             model.ValidationSourceRowsetLinkList ??= new List<ValidationSourceRowsetLink>();
             model.ValidationTargetColumnLinkList ??= new List<ValidationTargetColumnLink>();
+            model.ValidationTargetColumnTypeExactList ??= new List<ValidationTargetColumnTypeExact>();
+            model.ValidationTargetColumnTypeNotClassifiedList ??= new List<ValidationTargetColumnTypeNotClassified>();
+            model.ValidationTargetColumnTypeSanctionedConversionList ??= new List<ValidationTargetColumnTypeSanctionedConversion>();
+            model.ValidationTargetIgnoredColumnList ??= new List<ValidationTargetIgnoredColumn>();
             model.ValidationTargetRowsetLinkList ??= new List<ValidationTargetRowsetLink>();
 
             NormalizeColumnList(model);
@@ -173,6 +197,10 @@ namespace MetaTransformBinding
             NormalizeValidationSourceColumnLinkList(model);
             NormalizeValidationSourceRowsetLinkList(model);
             NormalizeValidationTargetColumnLinkList(model);
+            NormalizeValidationTargetColumnTypeExactList(model);
+            NormalizeValidationTargetColumnTypeNotClassifiedList(model);
+            NormalizeValidationTargetColumnTypeSanctionedConversionList(model);
+            NormalizeValidationTargetIgnoredColumnList(model);
             NormalizeValidationTargetRowsetLinkList(model);
 
             var columnListById = BuildById(model.ColumnList, row => row.Id, "Column");
@@ -187,6 +215,10 @@ namespace MetaTransformBinding
             var validationSourceColumnLinkListById = BuildById(model.ValidationSourceColumnLinkList, row => row.Id, "ValidationSourceColumnLink");
             var validationSourceRowsetLinkListById = BuildById(model.ValidationSourceRowsetLinkList, row => row.Id, "ValidationSourceRowsetLink");
             var validationTargetColumnLinkListById = BuildById(model.ValidationTargetColumnLinkList, row => row.Id, "ValidationTargetColumnLink");
+            var validationTargetColumnTypeExactListById = BuildById(model.ValidationTargetColumnTypeExactList, row => row.Id, "ValidationTargetColumnTypeExact");
+            var validationTargetColumnTypeNotClassifiedListById = BuildById(model.ValidationTargetColumnTypeNotClassifiedList, row => row.Id, "ValidationTargetColumnTypeNotClassified");
+            var validationTargetColumnTypeSanctionedConversionListById = BuildById(model.ValidationTargetColumnTypeSanctionedConversionList, row => row.Id, "ValidationTargetColumnTypeSanctionedConversion");
+            var validationTargetIgnoredColumnListById = BuildById(model.ValidationTargetIgnoredColumnList, row => row.Id, "ValidationTargetIgnoredColumn");
             var validationTargetRowsetLinkListById = BuildById(model.ValidationTargetRowsetLinkList, row => row.Id, "ValidationTargetRowsetLink");
 
             foreach (var row in model.ColumnList)
@@ -493,6 +525,70 @@ namespace MetaTransformBinding
                     "ValidationTargetRowsetLinkId");
             }
 
+            foreach (var row in model.ValidationTargetColumnTypeExactList)
+            {
+                row.ValidationTargetColumnLinkId = ResolveRelationshipId(
+                    row.ValidationTargetColumnLinkId,
+                    row.ValidationTargetColumnLink?.Id,
+                    "ValidationTargetColumnTypeExact",
+                    row.Id,
+                    "ValidationTargetColumnLinkId");
+                row.ValidationTargetColumnLink = RequireTarget(
+                    validationTargetColumnLinkListById,
+                    row.ValidationTargetColumnLinkId,
+                    "ValidationTargetColumnTypeExact",
+                    row.Id,
+                    "ValidationTargetColumnLinkId");
+            }
+
+            foreach (var row in model.ValidationTargetColumnTypeNotClassifiedList)
+            {
+                row.ValidationTargetColumnLinkId = ResolveRelationshipId(
+                    row.ValidationTargetColumnLinkId,
+                    row.ValidationTargetColumnLink?.Id,
+                    "ValidationTargetColumnTypeNotClassified",
+                    row.Id,
+                    "ValidationTargetColumnLinkId");
+                row.ValidationTargetColumnLink = RequireTarget(
+                    validationTargetColumnLinkListById,
+                    row.ValidationTargetColumnLinkId,
+                    "ValidationTargetColumnTypeNotClassified",
+                    row.Id,
+                    "ValidationTargetColumnLinkId");
+            }
+
+            foreach (var row in model.ValidationTargetColumnTypeSanctionedConversionList)
+            {
+                row.ValidationTargetColumnLinkId = ResolveRelationshipId(
+                    row.ValidationTargetColumnLinkId,
+                    row.ValidationTargetColumnLink?.Id,
+                    "ValidationTargetColumnTypeSanctionedConversion",
+                    row.Id,
+                    "ValidationTargetColumnLinkId");
+                row.ValidationTargetColumnLink = RequireTarget(
+                    validationTargetColumnLinkListById,
+                    row.ValidationTargetColumnLinkId,
+                    "ValidationTargetColumnTypeSanctionedConversion",
+                    row.Id,
+                    "ValidationTargetColumnLinkId");
+            }
+
+            foreach (var row in model.ValidationTargetIgnoredColumnList)
+            {
+                row.ValidationTargetRowsetLinkId = ResolveRelationshipId(
+                    row.ValidationTargetRowsetLinkId,
+                    row.ValidationTargetRowsetLink?.Id,
+                    "ValidationTargetIgnoredColumn",
+                    row.Id,
+                    "ValidationTargetRowsetLinkId");
+                row.ValidationTargetRowsetLink = RequireTarget(
+                    validationTargetRowsetLinkListById,
+                    row.ValidationTargetRowsetLinkId,
+                    "ValidationTargetIgnoredColumn",
+                    row.Id,
+                    "ValidationTargetRowsetLinkId");
+            }
+
             foreach (var row in model.ValidationTargetRowsetLinkList)
             {
                 row.RowsetId = ResolveRelationshipId(
@@ -683,6 +779,52 @@ namespace MetaTransformBinding
                 row.Id = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnLink' contains a row with empty Id.");
                 row.MetaSchemaFieldId = RequireText(row.MetaSchemaFieldId, $"Entity 'ValidationTargetColumnLink' row '{row.Id}' is missing required property 'MetaSchemaFieldId'.");
                 row.ColumnId ??= string.Empty;
+                row.ValidationTargetRowsetLinkId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeValidationTargetColumnTypeExactList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.ValidationTargetColumnTypeExactList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnTypeExact' contains a row with empty Id.");
+                row.SourceMetaDataTypeId = RequireText(row.SourceMetaDataTypeId, $"Entity 'ValidationTargetColumnTypeExact' row '{row.Id}' is missing required property 'SourceMetaDataTypeId'.");
+                row.TargetMetaDataTypeId = RequireText(row.TargetMetaDataTypeId, $"Entity 'ValidationTargetColumnTypeExact' row '{row.Id}' is missing required property 'TargetMetaDataTypeId'.");
+                row.ValidationTargetColumnLinkId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeValidationTargetColumnTypeNotClassifiedList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.ValidationTargetColumnTypeNotClassifiedList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnTypeNotClassified' contains a row with empty Id.");
+                row.TargetMetaDataTypeId = RequireText(row.TargetMetaDataTypeId, $"Entity 'ValidationTargetColumnTypeNotClassified' row '{row.Id}' is missing required property 'TargetMetaDataTypeId'.");
+                row.ValidationTargetColumnLinkId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeValidationTargetColumnTypeSanctionedConversionList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.ValidationTargetColumnTypeSanctionedConversionList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'ValidationTargetColumnTypeSanctionedConversion' contains a row with empty Id.");
+                row.SourceMetaDataTypeId = RequireText(row.SourceMetaDataTypeId, $"Entity 'ValidationTargetColumnTypeSanctionedConversion' row '{row.Id}' is missing required property 'SourceMetaDataTypeId'.");
+                row.TargetMetaDataTypeId = RequireText(row.TargetMetaDataTypeId, $"Entity 'ValidationTargetColumnTypeSanctionedConversion' row '{row.Id}' is missing required property 'TargetMetaDataTypeId'.");
+                row.ValidationTargetColumnLinkId ??= string.Empty;
+            }
+        }
+
+        private static void NormalizeValidationTargetIgnoredColumnList(MetaTransformBindingModel model)
+        {
+            foreach (var row in model.ValidationTargetIgnoredColumnList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                row.Id = RequireIdentity(row.Id, "Entity 'ValidationTargetIgnoredColumn' contains a row with empty Id.");
+                row.MetaSchemaFieldId = RequireText(row.MetaSchemaFieldId, $"Entity 'ValidationTargetIgnoredColumn' row '{row.Id}' is missing required property 'MetaSchemaFieldId'.");
                 row.ValidationTargetRowsetLinkId ??= string.Empty;
             }
         }
