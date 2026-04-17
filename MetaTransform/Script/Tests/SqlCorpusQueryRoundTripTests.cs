@@ -27,6 +27,7 @@ public sealed class SqlCorpusQueryRoundTripTests
     [InlineData("058_remaining_aggregate_functions.sql")]
     [InlineData("063_four_part_names.sql")]
     [InlineData("065_select_star_plain.sql")]
+    [InlineData("068_parenthesized_set_derived_table.sql")]
     public void ParserAndEmitter_RoundTripQueryCorpus(string fileName)
     {
         MetaTransformScriptTestHelper.AssertParserRoundTripsCorpusFile(fileName);

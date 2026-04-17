@@ -60,6 +60,8 @@ public sealed class SqlServiceImportExportTests
     [InlineData("064_remaining_data_types.sql")]
     [InlineData("065_select_star_plain.sql")]
     [InlineData("066_inline_tvf.sql")]
+    [InlineData("067_backtick_identifiers.sql")]
+    [InlineData("068_parenthesized_set_derived_table.sql")]
     public void ImportFromSqlCode_MatchesDirectParser_OnAuditedCorpus(string fileName)
     {
         var sql = MetaTransformScriptTestHelper.LoadCorpus(fileName);
@@ -450,6 +452,53 @@ FROM dbo.XmlSource AS s
             functionNames,
             StringComparer.OrdinalIgnoreCase);
         Assert.Equal(5, model.FunctionCallOverClauseLinkList.Count);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_BacktickQuotedIdentifiers_AreAcceptedAndExportedAsBracketQuoted()
+    {
+        var sql = MetaTransformScriptTestHelper.LoadCorpus("067_backtick_identifiers.sql");
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql, "dbo.v_test");
+        var emitted = service.ExportToSqlCode(model);
+
+        Assert.Contains("[order count]", emitted);
+        Assert.Contains("[total shipping cost]", emitted);
+        Assert.Contains("[total net profit]", emitted);
+        Assert.DoesNotContain("`order count`", emitted);
+    }
+
+    [Fact]
+    public void ExportToSqlCode_SupportsAllCurrentComparisonOperators()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_comparison_ops AS
+SELECT
+    s.CustomerId
+FROM dbo.Source AS s
+WHERE s.Score >= 10
+  AND s.Rank < 20
+  AND s.Age <= 65
+  AND s.Status <> 0
+  AND s.Score >= ANY (SELECT
+      o.Score
+  FROM dbo.Other AS o)
+  AND s.Age <= ALL (SELECT
+      o.Age
+  FROM dbo.Other AS o)
+""";
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql);
+        var emitted = service.ExportToSqlCode(model);
+
+        Assert.Contains("s.Score >= 10", emitted);
+        Assert.Contains("s.Rank < 20", emitted);
+        Assert.Contains("s.Age <= 65", emitted);
+        Assert.Contains("s.Status <> 0", emitted);
+        Assert.Contains("s.Score >= ANY", emitted);
+        Assert.Contains("s.Age <= ALL", emitted);
     }
 
     [Fact]

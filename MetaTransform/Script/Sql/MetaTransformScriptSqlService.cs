@@ -959,6 +959,8 @@ public sealed class MetaTransformScriptSqlService
 
         return string.Equals(identifier.QuoteType, "SquareBracket", StringComparison.Ordinal)
             ? "[" + identifier.Value.Replace("]", "]]", StringComparison.Ordinal) + "]"
+            : !string.IsNullOrWhiteSpace(identifier.QuoteType) && string.Equals(identifier.QuoteType, "Backtick", StringComparison.Ordinal)
+                ? "[" + identifier.Value.Replace("]", "]]", StringComparison.Ordinal) + "]"
             : !string.IsNullOrWhiteSpace(identifier.QuoteType) && string.Equals(identifier.QuoteType, "DoubleQuote", StringComparison.Ordinal)
                 ? "\"" + identifier.Value.Replace("\"", "\"\"", StringComparison.Ordinal) + "\""
                 : IsPlainIdentifier(identifier.Value)

@@ -71,6 +71,7 @@ internal sealed class MetaTransformScriptSqlLexer
             {
                 '[' => ReadBracketIdentifier(),
                 '"' => ReadDoubleQuotedIdentifier(),
+                '`' => ReadBacktickQuotedIdentifier(),
                 '\'' => ReadStringLiteral(),
                 ',' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Comma),
                 '.' => ReadSingleCharacterToken(MetaTransformScriptSqlTokenKind.Dot),
@@ -252,6 +253,46 @@ internal sealed class MetaTransformScriptSqlLexer
         throw Error(
             MetaTransformScriptSqlParserFailureKind.ParseError,
             "Unterminated double-quoted identifier.");
+    }
+
+    private MetaTransformScriptSqlToken ReadBacktickQuotedIdentifier()
+    {
+        var startOffset = index;
+        var startLine = line;
+        var startColumn = column;
+        Advance();
+
+        var builder = new System.Text.StringBuilder();
+        while (!IsEnd)
+        {
+            if (Current == '`')
+            {
+                if (Peek(1) == '`')
+                {
+                    builder.Append('`');
+                    Advance();
+                    Advance();
+                    continue;
+                }
+
+                Advance();
+                return new MetaTransformScriptSqlToken(
+                    MetaTransformScriptSqlTokenKind.Identifier,
+                    text[startOffset..index],
+                    builder.ToString(),
+                    "Backtick",
+                    startOffset,
+                    startLine,
+                    startColumn);
+            }
+
+            builder.Append(Current);
+            Advance();
+        }
+
+        throw Error(
+            MetaTransformScriptSqlParserFailureKind.ParseError,
+            "Unterminated backtick-quoted identifier.");
     }
 
     private MetaTransformScriptSqlToken ReadStringLiteral()

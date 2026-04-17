@@ -102,6 +102,7 @@ public sealed partial class MetaTransformScriptSqlParser
             {
                 "SquareBracket" => "[" + token.Value.Replace("]", "]]", StringComparison.Ordinal) + "]",
                 "DoubleQuote" => "\"" + token.Value.Replace("\"", "\"\"", StringComparison.Ordinal) + "\"",
+                "Backtick" => "`" + token.Value.Replace("`", "``", StringComparison.Ordinal) + "`",
                 _ => token.Value
             };
 

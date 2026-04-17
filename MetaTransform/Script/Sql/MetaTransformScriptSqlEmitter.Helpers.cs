@@ -124,6 +124,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             return "[" + identifier.Value.Replace("]", "]]", StringComparison.Ordinal) + "]";
         }
 
+        if (string.Equals(identifier.QuoteType, "Backtick", StringComparison.Ordinal))
+        {
+            return "[" + identifier.Value.Replace("]", "]]", StringComparison.Ordinal) + "]";
+        }
+
         if (!string.IsNullOrWhiteSpace(identifier.QuoteType) &&
             !string.Equals(identifier.QuoteType, "NotQuoted", StringComparison.Ordinal))
         {

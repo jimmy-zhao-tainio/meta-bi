@@ -309,7 +309,7 @@ public sealed partial class MetaTransformScriptSqlParser
         private BuiltNode ParseParenthesizedTableReference()
         {
             Expect(MetaTransformScriptSqlTokenKind.OpenParen);
-            if (PeekKeyword("SELECT"))
+            if (CanStartParenthesizedQueryDerivedTable())
             {
                 var queryExpression = ParseQueryExpression();
                 Expect(MetaTransformScriptSqlTokenKind.CloseParen);
@@ -344,6 +344,21 @@ public sealed partial class MetaTransformScriptSqlParser
             }
 
             return builder.CreateJoinParenthesisTableReference(tableReference);
+        }
+
+        private bool CanStartParenthesizedQueryDerivedTable()
+        {
+            if (PeekKeyword("SELECT") || PeekKeyword("WITH"))
+            {
+                return true;
+            }
+
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.OpenParen)
+            {
+                return false;
+            }
+
+            return PeekKeywordAfterOpenParen("SELECT") || PeekKeywordAfterOpenParen("WITH");
         }
 
         private BuiltNode ParseRowValue()

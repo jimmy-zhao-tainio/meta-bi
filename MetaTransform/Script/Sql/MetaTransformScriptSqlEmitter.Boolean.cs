@@ -184,6 +184,10 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         {
             "Equals" => "=",
             "GreaterThan" => ">",
+            "GreaterThanOrEqualTo" => ">=",
+            "LessThan" => "<",
+            "LessThanOrEqualTo" => "<=",
+            "NotEqualToBrackets" => "<>",
             _ => throw new InvalidOperationException($"Unsupported MetaTransformScript ComparisonType '{comparisonType}'.")
         };
     }
