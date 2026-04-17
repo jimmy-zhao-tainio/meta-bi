@@ -1,4 +1,8 @@
 # Current Gaps (From `run.cmd`)
 
-- No current parser/emitter failures in this demo harness (`q01`-`q20`).
-- Keep this file as the rolling gap register; add the next failing shape here as soon as it appears.
+- Coverage: `q01`-`q99`
+- Current result: `96/99` scripts imported; exports succeeded for imported scripts.
+
+- `q72` import fails: `Unexpected trailing token 'join'.`
+- `q75` import fails: `Expected CloseParen but found 'JOIN'.`
+- `q78` import fails: `Expected CloseParen but found 'join'.`

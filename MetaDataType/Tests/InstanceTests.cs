@@ -19,5 +19,13 @@ public sealed class InstanceTests
             model.DataTypeList,
             row => string.Equals(row.Id, "meta:type:String", StringComparison.Ordinal) &&
                    string.Equals(row.DataTypeSystemId, "Meta", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeList,
+            row => string.Equals(row.Id, "sqlserver:type:numeric", StringComparison.Ordinal) &&
+                   string.Equals(row.DataTypeSystemId, "SqlServer", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeList,
+            row => string.Equals(row.Id, "sqlserver:type:real", StringComparison.Ordinal) &&
+                   string.Equals(row.DataTypeSystemId, "SqlServer", StringComparison.Ordinal));
     }
 }

@@ -1,6 +1,7 @@
 using MetaTransformScript;
 using MetaTransformScript.Sql;
 using MetaTransformScript.Sql.Parsing;
+using MetaDataType.Instance;
 
 public sealed class SqlServiceImportExportTests
 {
@@ -427,6 +428,193 @@ FROM dbo.XmlSource AS s
                 "TinyInt"
             ],
             sqlDataTypeOptions);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_SupportsAllSanctionedSqlServerDataTypes_FromMetaDataType()
+    {
+        var sanctionedSqlServerTypeNames = MetaDataTypeInstance.Default.DataTypeList
+            .Where(row =>
+                string.Equals(row.DataTypeSystemId, "SqlServer", StringComparison.Ordinal) &&
+                !string.IsNullOrWhiteSpace(row.Name))
+            .Select(row => row.Name.Trim())
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(static value => value, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        var projectionLines = sanctionedSqlServerTypeNames
+            .Select(static (typeName, ordinal) => $"    CAST(s.ValueText AS {typeName}) AS TypeValue{ordinal}")
+            .ToArray();
+        var sql = """
+CREATE VIEW dbo.v_sanctioned_types AS
+SELECT
+"""
+            + string.Join("," + Environment.NewLine, projectionLines)
+            + Environment.NewLine
+            + """
+FROM dbo.Source AS s;
+""";
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql);
+
+        Assert.Equal(sanctionedSqlServerTypeNames.Length, model.SqlDataTypeReferenceList.Count);
+
+        var emitted = service.ExportToSqlCode(model);
+        Assert.Contains("CAST(s.ValueText AS numeric)", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CAST(s.ValueText AS real)", emitted, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_MapsIntegerAliasToInt_AndEmitsCanonicalInt()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_integer_alias AS
+SELECT
+    CAST(s.CustomerId AS integer) AS CustomerIdAsInteger
+FROM dbo.Source AS s
+WHERE CAST(s.CustomerId AS integer) >= 0
+""";
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql);
+        var sqlDataTypeOptions = model.SqlDataTypeReferenceList
+            .Select(row => row.SqlDataTypeOption)
+            .ToArray();
+
+        Assert.All(sqlDataTypeOptions, option => Assert.Equal("Int", option));
+
+        var emitted = service.ExportToSqlCode(model);
+        Assert.Contains("CAST(s.CustomerId AS int)", emitted);
+        Assert.DoesNotContain("AS integer", emitted, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_MapsSysnameAliasToNVarChar128_AndEmitsCanonicalType()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_sysname_alias AS
+SELECT
+    CAST(s.ObjectName AS sysname) AS ObjectName
+FROM dbo.Source AS s
+""";
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql);
+
+        var sqlDataType = Assert.Single(model.SqlDataTypeReferenceList);
+        Assert.Equal("NVarChar", sqlDataType.SqlDataTypeOption);
+
+        var parameterized = Assert.Single(
+            model.ParameterizedDataTypeReferenceList,
+            row => string.Equals(row.Id, sqlDataType.ParameterizedDataTypeReferenceId, StringComparison.Ordinal));
+        Assert.Single(
+            model.ParameterizedDataTypeReferenceParametersItemList,
+            row => string.Equals(row.ParameterizedDataTypeReferenceId, parameterized.Id, StringComparison.Ordinal));
+
+        var emitted = service.ExportToSqlCode(model);
+        Assert.Contains("CAST(s.ObjectName AS nvarchar(128))", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("AS sysname", emitted, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void ImportFromSqlCode_MapsMultiTokenTypeAliases_ToCanonicalSqlServerTypes()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_multi_token_type_aliases AS
+SELECT
+    CAST(s.NameText AS character varying(40)) AS NameValue,
+    CAST(s.CodeText AS char varying(10)) AS CodeValue,
+    CAST(s.JsonText AS national character varying(max)) AS JsonValue,
+    CAST(s.TagText AS national char varying(60)) AS TagValue,
+    CAST(s.ShortCode AS national character(12)) AS ShortCodeValue,
+    CAST(s.ShortName AS national char(8)) AS ShortNameValue,
+    CAST(s.ScoreText AS double precision) AS ScoreValue,
+    CAST(s.AmountText AS dec(18, 4)) AS AmountValue
+FROM dbo.Source AS s
+""";
+
+        var service = new MetaTransformScriptSqlService();
+        var model = service.ImportFromSqlCode(sql);
+        var emitted = service.ExportToSqlCode(model);
+
+        Assert.Contains("CAST(s.NameText AS varchar(40))", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CAST(s.CodeText AS varchar(10))", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CAST(s.JsonText AS nvarchar(max))", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CAST(s.TagText AS nvarchar(60))", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CAST(s.ShortCode AS nchar(12))", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CAST(s.ShortName AS nchar(8))", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CAST(s.ScoreText AS float)", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CAST(s.AmountText AS decimal(18, 4))", emitted, StringComparison.OrdinalIgnoreCase);
+
+        Assert.DoesNotContain("character varying", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("char varying", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("national character varying", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("national char varying", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("double precision", emitted, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain(" dec(", emitted, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void ImportFromSqlFile_ParsesInlineTvfParameters_WithMultiTokenTypeAliases()
+    {
+        const string sql = """
+CREATE FUNCTION dbo.fn_alias_parameters
+(
+    @DisplayName national character varying(128),
+    @ShortName national char varying(64),
+    @Score double precision
+)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT
+        @DisplayName AS DisplayName,
+        @ShortName AS ShortName,
+        @Score AS Score
+)
+""";
+
+        var model = new MetaTransformScriptSqlService().ImportFromSqlFile(
+            MetaTransformScriptTestHelper.WriteTempSqlFile("inline-tvf-alias-parameters.sql", sql));
+
+        var script = Assert.Single(model.TransformScriptList);
+        Assert.Equal("InlineTableValuedFunction", script.ScriptObjectKind);
+        Assert.Equal(3, model.TransformScriptFunctionParametersItemList.Count);
+
+        var dataTypeOptions = model.TransformScriptFunctionParametersItemList
+            .Select(item =>
+            {
+                var parameterized = Assert.Single(
+                    model.ParameterizedDataTypeReferenceList,
+                    row => string.Equals(row.DataTypeReferenceId, item.DataTypeReferenceId, StringComparison.Ordinal));
+                var sqlDataType = Assert.Single(
+                    model.SqlDataTypeReferenceList,
+                    row => string.Equals(row.ParameterizedDataTypeReferenceId, parameterized.Id, StringComparison.Ordinal));
+                return sqlDataType.SqlDataTypeOption;
+            })
+            .OrderBy(static value => value, StringComparer.Ordinal)
+            .ToArray();
+
+        Assert.Equal(["Float", "NVarChar", "NVarChar"], dataTypeOptions);
+
+        var nvarcharParameterizedReferenceIds = model.TransformScriptFunctionParametersItemList
+            .Select(item => model.ParameterizedDataTypeReferenceList.Single(
+                row => string.Equals(row.DataTypeReferenceId, item.DataTypeReferenceId, StringComparison.Ordinal)))
+            .Where(parameterizedReference => model.SqlDataTypeReferenceList.Any(sqlDataType =>
+                string.Equals(sqlDataType.ParameterizedDataTypeReferenceId, parameterizedReference.Id, StringComparison.Ordinal) &&
+                string.Equals(sqlDataType.SqlDataTypeOption, "NVarChar", StringComparison.Ordinal)))
+            .Select(parameterizedReference => parameterizedReference.Id)
+            .OrderBy(static value => value, StringComparer.Ordinal)
+            .ToArray();
+
+        Assert.Equal(2, nvarcharParameterizedReferenceIds.Length);
+        Assert.All(
+            nvarcharParameterizedReferenceIds,
+            id => Assert.Single(
+                model.ParameterizedDataTypeReferenceParametersItemList,
+                row => string.Equals(row.ParameterizedDataTypeReferenceId, id, StringComparison.Ordinal)));
     }
 
     [Fact]

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Instance\MetaTransformScript.Instance.csproj" />
+    <ProjectReference Include="..\..\..\MetaDataType\Instance\MetaDataType.Instance.csproj" />
   </ItemGroup>
 
 </Project>

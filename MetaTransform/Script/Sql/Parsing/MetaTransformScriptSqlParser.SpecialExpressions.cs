@@ -222,22 +222,12 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private BuiltNode ParseDataTypeReference()
         {
-            var typeNameToken = Current;
-            if (typeNameToken.Kind != MetaTransformScriptSqlTokenKind.Identifier)
-            {
-                throw ParseError($"Expected an identifier but found '{typeNameToken.Text}'.");
-            }
-
-            Advance();
-            if (!MetaTransformScript.Sql.MetaTransformScriptSqlServerDataTypes.TryMapSqlName(typeNameToken.Value, out var mappedType))
-            {
-                throw Unsupported($"Data type '{typeNameToken.Value}' is not supported yet.");
-            }
+            var (typeName, mappedType) = ParseSupportedDataTypeName();
 
             List<BuiltNode>? parameters = null;
             if (Match(MetaTransformScriptSqlTokenKind.OpenParen))
             {
-                parameters = new List<BuiltNode> { ParseDataTypeLiteralParameter() };
+                parameters = [ParseDataTypeLiteralParameter()];
                 while (Match(MetaTransformScriptSqlTokenKind.Comma))
                 {
                     parameters.Add(ParseDataTypeLiteralParameter());
@@ -245,8 +235,60 @@ public sealed partial class MetaTransformScriptSqlParser
 
                 Expect(MetaTransformScriptSqlTokenKind.CloseParen);
             }
+            else
+            {
+                var defaultParameters = MetaTransformScript.Sql.MetaTransformScriptSqlServerDataTypes
+                    .GetDefaultParametersForSqlName(typeName);
+                if (defaultParameters.Count > 0)
+                {
+                    parameters = defaultParameters
+                        .Select(builder.CreateNumberLiteral)
+                        .ToList();
+                }
+            }
 
             return builder.CreateSqlDataTypeReference(mappedType, parameters);
+        }
+
+        private (string TypeName, string MappedType) ParseSupportedDataTypeName()
+        {
+            if (Current.Kind != MetaTransformScriptSqlTokenKind.Identifier)
+            {
+                throw ParseError($"Expected an identifier but found '{Current.Text}'.");
+            }
+
+            var candidateParts = new List<string>();
+            var bestMatchedTokenCount = 0;
+            var bestMappedType = string.Empty;
+            var scanPosition = position;
+
+            while (scanPosition < tokens.Count &&
+                   tokens[scanPosition].Kind == MetaTransformScriptSqlTokenKind.Identifier)
+            {
+                candidateParts.Add(tokens[scanPosition].Value);
+                var candidateName = string.Join(" ", candidateParts);
+                if (MetaTransformScript.Sql.MetaTransformScriptSqlServerDataTypes.TryMapSqlName(candidateName, out var mappedType))
+                {
+                    bestMatchedTokenCount = candidateParts.Count;
+                    bestMappedType = mappedType;
+                }
+
+                scanPosition++;
+            }
+
+            var attemptedTypeName = string.Join(" ", candidateParts);
+            if (bestMatchedTokenCount == 0)
+            {
+                throw Unsupported($"Data type '{attemptedTypeName}' is not supported yet.");
+            }
+
+            var matchedTypeName = string.Join(" ", candidateParts.Take(bestMatchedTokenCount));
+            for (var ordinal = 0; ordinal < bestMatchedTokenCount; ordinal++)
+            {
+                Advance();
+            }
+
+            return (matchedTypeName, bestMappedType);
         }
 
         private BuiltNode ParseDataTypeLiteralParameter()

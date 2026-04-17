@@ -17,5 +17,15 @@ public sealed class InstanceTests
             row => string.Equals(row.SourceDataTypeId, "meta:type:String", StringComparison.Ordinal) &&
                    string.Equals(row.TargetDataTypeId, "sqlserver:type:nvarchar", StringComparison.Ordinal) &&
                    string.Equals(row.ConversionImplementationId, "MetaDataTypeConversion:implementation:direct", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:numeric", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "meta:type:Decimal", StringComparison.Ordinal) &&
+                   string.Equals(row.ConversionImplementationId, "MetaDataTypeConversion:implementation:direct", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:real", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "meta:type:Single", StringComparison.Ordinal) &&
+                   string.Equals(row.ConversionImplementationId, "MetaDataTypeConversion:implementation:direct", StringComparison.Ordinal));
     }
 }

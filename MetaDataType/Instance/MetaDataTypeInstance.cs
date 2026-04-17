@@ -120,6 +120,8 @@ public static class MetaDataTypeInstance
         new("SqlServer", "money", "Numeric"),
         new("SqlServer", "nchar", "Text"),
         new("SqlServer", "nvarchar", "Text"),
+        new("SqlServer", "numeric", "Numeric"),
+        new("SqlServer", "real", "Numeric"),
         new("SqlServer", "smallint", "Numeric"),
         new("SqlServer", "smallmoney", "Numeric"),
         new("SqlServer", "sql_variant", "Structured"),

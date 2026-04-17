@@ -41,6 +41,14 @@
       <SourceDataTypeId>sqlserver:type:float</SourceDataTypeId>
       <TargetDataTypeId>meta:type:Double</TargetDataTypeId>
     </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:numeric" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:numeric</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Decimal</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:real" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:real</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Single</TargetDataTypeId>
+    </DataTypeMapping>
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:geography" ConversionImplementationId="MetaDataTypeConversion:implementation:structural">
       <SourceDataTypeId>sqlserver:type:geography</SourceDataTypeId>
       <TargetDataTypeId>meta:type:geography</TargetDataTypeId>
@@ -152,6 +160,10 @@
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:meta:Double" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
       <SourceDataTypeId>meta:type:Double</SourceDataTypeId>
       <TargetDataTypeId>sqlserver:type:float</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:meta:Single" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>meta:type:Single</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:real</TargetDataTypeId>
     </DataTypeMapping>
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:meta:Time" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
       <SourceDataTypeId>meta:type:Time</SourceDataTypeId>

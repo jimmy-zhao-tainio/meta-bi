@@ -2,7 +2,7 @@
 
 `meta-bi` is the BI stack that sits on top of the generic `meta` foundation.
 
-This repository currently contains BI-oriented sanctioned models, CLIs, and docs:
+This repository contains BI-oriented sanctioned models, CLIs, and docs:
 
 - `MetaSchema.*`
 - `MetaDataType.*`
@@ -14,11 +14,11 @@ This repository currently contains BI-oriented sanctioned models, CLIs, and docs
 
 It also contains BI architecture notes in `docs/`.
 
-## Current dependency boundary
+## Dependency Boundary
 
 This repository now consumes the generic foundation through an internal NuGet package boundary instead of source-level project references.
 
-Current direct foundation package dependency:
+Direct foundation package dependency:
 
 - `Meta.Core`
 
@@ -60,7 +60,7 @@ Then install the packaged BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-t
 MetaBi\Installer\bin\publish\win-x64\install-meta-bi.exe
 ```
 
-`meta-transform-script` is not yet added to that installer flow. During active development, run it from `MetaTransform\Script\Cli\bin\Debug\net8.0` or put that debug bin on your `PATH`.
+`meta-transform-script` and `meta-transform-binding` are not part of the installer flow. Run them from `MetaTransform\Script\Cli\bin\Debug\net8.0` and `MetaTransform\Binding\Cli\bin\Debug\net8.0`, or put both debug bins on your `PATH`.
 
 ## Intent
 
@@ -78,7 +78,7 @@ The long-term repo boundary is:
 
 ## CLI Guide
 
-`meta-bi` currently ships these operator-facing CLIs:
+`meta-bi` ships these operator-facing CLIs:
 
 - `meta-schema`
 - `meta-data-type`
@@ -88,13 +88,14 @@ The long-term repo boundary is:
 - `meta-datavault-business`
 - `meta-sql`
 - `meta-transform-script`
+- `meta-transform-binding`
 
 ### meta-schema
 
 Purpose:
 - extract a sanctioned `MetaSchema` workspace from a live SQL Server schema
 
-Current command surface:
+Command surface:
 - `meta-schema help`
 - `meta-schema extract sqlserver --new-workspace <path> --connection <connectionString> --system <name> (--schema <name> | --all-schemas) (--table <name> | --all-tables)`
 
@@ -109,7 +110,7 @@ meta-schema extract sqlserver --new-workspace .\MetaSchema.Workspace --connectio
 Purpose:
 - bootstrap sanctioned `MetaDataType` workspaces
 
-Current command surface:
+Command surface:
 - `meta-data-type help`
 - `meta-data-type init --new-workspace <path>`
 
@@ -125,7 +126,7 @@ Purpose:
 - author and validate sanctioned type-conversion workspaces
 - resolve one source data type through the sanctioned conversion graph
 
-Current command surface:
+Command surface:
 - `meta-data-type-conversion help`
 - `meta-data-type-conversion init --new-workspace <path>`
 - `meta-data-type-conversion check --workspace <path>`
@@ -143,7 +144,7 @@ meta-data-type-conversion resolve --workspace .\MetaDataTypeConversion.Workspace
 Purpose:
 - perform cross-model conversions handled by conversion glue code
 
-Current command surface:
+Command surface:
 - `meta-convert help`
 - `meta-convert schema-to-raw-datavault --source-workspace <path> --new-workspace <path> [--ignore-field-name <name>]... [--ignore-field-suffix <suffix>]... [--include-views] [--verbose]`
 - `meta-convert raw-datavault-to-sql [--workspace <path>] --implementation-workspace <path> --database-name <name> --out <path>`
@@ -165,11 +166,11 @@ meta-convert business-datavault-to-sql --workspace .\MetaBusinessDataVault.Works
 Purpose:
 - author sanctioned raw Data Vault workspaces
 
-Current command surface:
+Command surface:
 - `meta-datavault-raw --new-workspace <path>`
 - `meta-datavault-raw add-*`
 
-Current `add-*` commands:
+`add-*` commands:
 - `add-source-system`
 - `add-source-schema`
 - `add-source-table`
@@ -197,7 +198,7 @@ meta-datavault-raw --new-workspace .\MetaRawDataVault.Workspace
 Purpose:
 - author sanctioned business Data Vault workspaces
 
-Current command surface:
+Command surface:
 - `meta-datavault-business --new-workspace <path>`
 - `meta-datavault-business add-*`
 - typed business authoring commands take optional datatype facets inline via `--length`, `--precision`, and `--scale`; the CLI persists the underlying detail rows for you
@@ -222,7 +223,7 @@ meta-datavault-business --new-workspace .\MetaBusinessDataVault.Workspace
 Purpose:
 - plan and apply manifest-driven SQL Server deployment from sanctioned `MetaSql` workspaces
 
-Current command surface:
+Command surface:
 - `meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]`
 - `meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>`
 
@@ -252,7 +253,7 @@ Purpose:
 - prove the core invariant `SQL -> workspace -> SQL -> workspace` with `meta instance diff`
 - serve as the authored syntax substrate for later binding, type inference, and validation layers
 
-Current command surface:
+Command surface:
 - `meta-transform-script help`
 - `meta-transform-script from sql-file --path <file.sql> --target <sql-identifier> (--new-workspace <path> | --workspace <path>)`
 - `meta-transform-script from sql-code --code <sql> --target <sql-identifier> (--new-workspace <path> | --workspace <path>) [--name <name>]`
@@ -263,7 +264,7 @@ What the model is:
 - this is a canonical syntax model with typed workspace rows for supported SQL structure
 - the modeled truth is the supported SQL view body, rooted in the `SelectStatement` family
 - `CREATE VIEW` wrapper syntax is treated as an import/export envelope, not as the primary modeled truth
-- wrapper details currently captured in the model are:
+- wrapper details captured in the model are:
   - view schema identifier
   - view object identifier
   - explicit view column list
@@ -385,7 +386,7 @@ Supported SQL surface today:
   - `GROUPING SETS`
   - `ROLLUP`
   - `CUBE`
-  - composite and grand-total grouping shapes covered by the current corpus
+  - composite and grand-total grouping shapes covered by the corpus
 - ordering and row limiting:
   - query-level `ORDER BY`
   - `TOP`
@@ -397,12 +398,12 @@ Supported SQL surface today:
   - window `ORDER BY`
   - window frames
   - named `WINDOW` definitions
-  - windowed aggregate and analytic functions covered by the current corpus
+  - windowed aggregate and analytic functions covered by the corpus
   - percentile analytic/window functions with `WITHIN GROUP` such as `PERCENTILE_CONT` and `PERCENTILE_DISC`
 - scalar/value expression families:
   - column references
   - multipart identifiers
-  - string, integer, numeric, money, binary, `NULL`, and `MAX` literal families covered by the current corpus
+  - string, integer, numeric, money, binary, `NULL`, and `MAX` literal families covered by the corpus
   - arithmetic binary expressions
   - unary expressions
   - parenthesized expressions
@@ -411,7 +412,7 @@ Supported SQL surface today:
   - `NULLIF`
   - `IIF`
   - ordinary function calls
-  - parameterless/system-call style expressions covered by the current corpus
+  - parameterless/system-call style expressions covered by the corpus
   - `CAST`
   - `TRY_CAST`
   - `CONVERT`
@@ -421,7 +422,7 @@ Supported SQL surface today:
   - parameterized data type references
   - primary-expression collation
   - `AT TIME ZONE`
-  - sequence/global expression cases covered by the current corpus
+  - sequence/global expression cases covered by the corpus
 - subqueries:
   - scalar subqueries
   - correlated subqueries in the supported expression and predicate forms exercised by the corpus
@@ -430,24 +431,29 @@ Supported SQL surface today:
   - XML method-style calls as exercised in the reference corpus, for example `.value(...)`, `.query(...)`, and `.exist(...)`
   - XML `nodes(...)` table sources
 
-Current detailed parser/emitter checklist:
-- the exact implemented and verified surface is tracked in [docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md](docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md)
-- remaining items there are ordinary parser/emitter/model/import-shaping gaps
+Data type alias note:
+- import accepts selected SQL Server type aliases in supported type-reference positions
+- aliases are normalized to sanctioned canonical SQL type names in the model and emitter output
+- examples: `integer -> int`, `sysname -> nvarchar(128)`, `character varying -> varchar`, `double precision -> float`, `national character varying -> nvarchar`
 
-Current unsupported or excluded surface:
+Detailed parser/emitter checklist:
+- the exact implemented and verified surface is tracked in [docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md](docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md)
+- open items there are ordinary parser/emitter/model/import-shaping gaps
+
+Unsupported or Excluded Surface:
 - `OPENJSON`
 - `OPENROWSET`
 - `OPENQUERY`
-- provider/ad-hoc external-source wrapper forms such as the current `OPENROWSET` provider and `OPENDATASOURCE` reference cases
+- provider/ad-hoc external-source wrapper forms such as `OPENROWSET` provider and `OPENDATASOURCE` reference cases
 - `CHANGETABLE`
-- the current ODBC escape-surface reference case
+- the ODBC escape-surface reference case
 - `CREATE VIEW` wrapper options
 - `WITH CHECK OPTION`
 - materialized view syntax
 
 Reference corpus status:
-- `MetaTransform\Script\Reference\Corpus` contains the broader working SQL corpus used to pressure the importer/emitter
-- the currently supported reference-corpus round-trip demo uses the supported subset of that corpus and excludes the unsupported surfaces listed above
+- `MetaTransform\Script\Reference\Corpus` contains the broader SQL corpus used to pressure the importer/emitter
+- the reference-corpus round-trip demo uses the supported subset of that corpus and excludes the unsupported surfaces listed above
 - the exact supported parser/emitter surface and proof cases are tracked in `docs/META-TRANSFORM-SCRIPT-PARSER-STATUS.md`
 - the proof point is `meta instance diff` reporting no differences between the original and round-tripped workspaces
 
@@ -492,30 +498,40 @@ Rows: left=4996, right=4996  Properties: left=8348, right=8348
 NotIn: left-not-in-right=0, right-not-in-left=0
 ```
 
+### meta-transform-binding
 
-## Active Models
+`MetaTransformBinding` is the binding/validation layer on top of `MetaTransformScript`.
 
-Current active BI model families include:
+Purpose:
+- bind one transform script into an explicit binding workspace (`rowsets`, `columns`, source/target SQL identifiers, binding issues)
+- validate that binding workspace against one `MetaSchema` workspace
+- fail hard on contract mismatches and persist explicit validation link rows in the validated workspace
 
-- `MetaSchema`
-- `MetaDataType`
-- `MetaDataTypeConversion`
-- `MetaTransformScript`
-- `MetaRawDataVault`
-- `MetaBusinessDataVault`
-- `MetaSql`
+Command surface:
+- `meta-transform-binding help`
+- `meta-transform-binding bind --transform-workspace <path> --new-workspace <path> [--name <name>] [--language-profile <id>]`
+- `meta-transform-binding validate --binding-workspace <path> --schema-workspace <path> --new-workspace <path> [--ignore-target-columns <col[,col...]>]`
 
-`MetaTransformScript` is the current sanctioned SQL-script modeling track in this repo. It models the supported SQL `VIEW` body subset, carries selected `CREATE VIEW` envelope fields needed for file-based import/export, and is exercised through the `meta-transform-script` CLI plus the demos under `Samples\Demos\MetaTransformScript*`.
+Behavior summary:
+- `bind` reads the target SQL identifier from `TransformScript.TargetSqlIdentifier`
+- if a transform workspace contains multiple scripts, `bind` requires `--name`
+- `--language-profile` defaults to `MetaTransformSqlServer_v1` for the CLI run
+- `validate` resolves source and target SQL identifiers against the schema workspace and fails on missing/ambiguous resolution
+- `validate` enforces target write-contract shape using non-identity target fields
+- `--ignore-target-columns` excludes named non-identity target columns from target conformance checks; unknown names fail explicitly
 
-## Current Projection Status
+Examples:
 
-- `meta-convert raw-datavault-to-sql` is operational:
-  it converts sanctioned raw DV to a current `MetaSql` workspace and does not query any live database.
-- `meta-convert business-datavault-to-sql` is operational:
-  it converts sanctioned business DV to a current `MetaSql` workspace, applies sanctioned business-type lowering, and does not query any live database.
+```cmd
+meta-transform-binding bind --transform-workspace .\TransformWS --name sales.CustomerOrderSummary --new-workspace .\SummaryBindingWS
+meta-transform-binding validate --binding-workspace .\SummaryBindingWS --schema-workspace .\SchemaWS --new-workspace .\SummaryValidatedWS
 
+meta-transform-binding bind --transform-workspace .\TransformWS --name reporting.InvoiceWindow --new-workspace .\InvoiceBindingWS
+meta-transform-binding validate --binding-workspace .\InvoiceBindingWS --schema-workspace .\SchemaWS --new-workspace .\InvoiceValidatedWS --ignore-target-columns LoadUtc,RunId
+```
 
-
-
+See also:
+- `Samples\Demos\MetaTransformBindingCliIntegration\run.cmd`
+- `Samples\Demos\MetaTransformBindingCliIntegration\README.md`
 
 

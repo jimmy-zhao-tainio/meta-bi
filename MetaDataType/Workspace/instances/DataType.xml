@@ -298,6 +298,14 @@
       <Category>Text</Category>
       <Name>nvarchar</Name>
     </DataType>
+    <DataType Id="sqlserver:type:numeric" DataTypeSystemId="SqlServer">
+      <Category>Numeric</Category>
+      <Name>numeric</Name>
+    </DataType>
+    <DataType Id="sqlserver:type:real" DataTypeSystemId="SqlServer">
+      <Category>Numeric</Category>
+      <Name>real</Name>
+    </DataType>
     <DataType Id="sqlserver:type:smallint" DataTypeSystemId="SqlServer">
       <Category>Numeric</Category>
       <Name>smallint</Name>
