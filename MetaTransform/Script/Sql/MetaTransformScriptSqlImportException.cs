@@ -3,7 +3,6 @@ namespace MetaTransformScript.Sql;
 public enum MetaTransformScriptSqlImportFailureKind
 {
     SourcePathNotFound,
-    SourcePathHasNoSqlFiles,
     ParseFailed,
     UnsupportedSql,
     InvalidSqlInput

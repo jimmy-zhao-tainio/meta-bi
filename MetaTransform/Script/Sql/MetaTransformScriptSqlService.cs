@@ -12,17 +12,26 @@ public sealed class MetaTransformScriptSqlService
     {
     }
 
-    public MTS.MetaTransformScriptModel ImportFromSqlPath(string sqlPath)
+    public MTS.MetaTransformScriptModel ImportFromSqlFile(string sqlFilePath)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(sqlPath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(sqlFilePath);
 
-        var fullPath = Path.GetFullPath(sqlPath);
-        if (File.Exists(fullPath))
+        var fullPath = Path.GetFullPath(sqlFilePath);
+        if (!File.Exists(fullPath))
         {
-            return ImportFromSingleSqlFile(fullPath);
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.SourcePathNotFound,
+                $"SQL file '{fullPath}' was not found.");
         }
 
-        return ImportFromSqlDirectory(fullPath);
+        if (!string.Equals(Path.GetExtension(fullPath), ".sql", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                $"SQL file '{fullPath}' must use a .sql extension.");
+        }
+
+        return ImportFromSingleSqlFile(fullPath);
     }
 
     public MTS.MetaTransformScriptModel ImportFromSqlCode(string sqlCode, string? scriptName = null)
@@ -31,12 +40,13 @@ public sealed class MetaTransformScriptSqlService
         return ImportFromSqlSources([new SqlImportSource(sqlCode, SourcePath: null, BareSelectName: scriptName)]);
     }
 
-    public async Task<ImportToWorkspaceResult> ImportFromSqlPathToWorkspaceAsync(
-        string sqlPath,
+    public async Task<ImportToWorkspaceResult> ImportSingleSqlFileToWorkspaceAsync(
+        string sqlFilePath,
+        string targetSqlIdentifier,
         string newWorkspacePath,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(sqlPath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(sqlFilePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -44,7 +54,8 @@ public sealed class MetaTransformScriptSqlService
         EnsureTargetDirectoryIsEmpty(workspaceFullPath);
         Directory.CreateDirectory(workspaceFullPath);
 
-        var model = ImportFromSqlPath(sqlPath);
+        var model = ImportFromSqlFile(sqlFilePath);
+        ApplySingleScriptTarget(model, targetSqlIdentifier);
         await MetaTransformScriptInstance.SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken).ConfigureAwait(false);
 
         return new ImportToWorkspaceResult(model, model.TransformScriptList.Count, workspaceFullPath);
@@ -52,6 +63,7 @@ public sealed class MetaTransformScriptSqlService
 
     public async Task<ImportToWorkspaceResult> ImportFromSqlCodeToWorkspaceAsync(
         string sqlCode,
+        string targetSqlIdentifier,
         string newWorkspacePath,
         string? scriptName = null,
         CancellationToken cancellationToken = default)
@@ -65,9 +77,54 @@ public sealed class MetaTransformScriptSqlService
         Directory.CreateDirectory(workspaceFullPath);
 
         var model = ImportFromSqlCode(sqlCode, scriptName);
+        ApplySingleScriptTarget(model, targetSqlIdentifier);
         await MetaTransformScriptInstance.SaveToWorkspaceAsync(model, workspaceFullPath, cancellationToken).ConfigureAwait(false);
 
         return new ImportToWorkspaceResult(model, model.TransformScriptList.Count, workspaceFullPath);
+    }
+
+    public async Task<ImportToWorkspaceResult> AddSqlFileToWorkspaceAsync(
+        string sqlFilePath,
+        string targetSqlIdentifier,
+        string workspacePath,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(sqlFilePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+
+        var fileFullPath = Path.GetFullPath(sqlFilePath);
+        if (!File.Exists(fileFullPath))
+        {
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.SourcePathNotFound,
+                $"SQL file '{fileFullPath}' was not found.");
+        }
+
+        var sql = await File.ReadAllTextAsync(fileFullPath, cancellationToken).ConfigureAwait(false);
+        return await AddSqlSourcesToWorkspaceAsync(
+                [new SqlImportSource(sql, SourcePath: Path.GetFileName(fileFullPath), BareSelectName: null)],
+                targetSqlIdentifier,
+                workspacePath,
+                cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    public async Task<ImportToWorkspaceResult> AddSqlCodeToWorkspaceAsync(
+        string sqlCode,
+        string targetSqlIdentifier,
+        string workspacePath,
+        string? scriptName = null,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(sqlCode);
+        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+
+        return await AddSqlSourcesToWorkspaceAsync(
+                [new SqlImportSource(sqlCode, SourcePath: null, BareSelectName: scriptName)],
+                targetSqlIdentifier,
+                workspacePath,
+                cancellationToken)
+            .ConfigureAwait(false);
     }
 
     public string ExportToSqlCode(string workspacePath, string? scriptName = null)
@@ -164,36 +221,125 @@ public sealed class MetaTransformScriptSqlService
         return new ExportToPathResult(scripts.Length, fullOutputPath);
     }
 
-    private MTS.MetaTransformScriptModel ImportFromSqlDirectory(string fullPath)
-    {
-        if (!Directory.Exists(fullPath))
-        {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.SourcePathNotFound,
-                $"SQL path '{fullPath}' was not found.");
-        }
-
-        var files = Directory.EnumerateFiles(fullPath, "*.sql", SearchOption.TopDirectoryOnly)
-            .OrderBy(static path => path, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-        if (files.Length == 0)
-        {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.SourcePathHasNoSqlFiles,
-                $"SQL folder '{fullPath}' does not contain any .sql files.");
-        }
-
-        return ImportFromSqlSources(files.Select(file => new SqlImportSource(
-            File.ReadAllText(file),
-            SourcePath: Path.GetRelativePath(fullPath, file).Replace('\\', '/'),
-            BareSelectName: null)));
-    }
-
     private MTS.MetaTransformScriptModel ImportFromSingleSqlFile(string fullPath)
     {
         var sql = File.ReadAllText(fullPath);
         var sourcePath = Path.GetFileName(fullPath);
         return ImportFromSqlSources([new SqlImportSource(sql, SourcePath: sourcePath, BareSelectName: null)]);
+    }
+
+    private async Task<ImportToWorkspaceResult> AddSqlSourcesToWorkspaceAsync(
+        IEnumerable<SqlImportSource> sources,
+        string targetSqlIdentifier,
+        string workspacePath,
+        CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(sources);
+        cancellationToken.ThrowIfCancellationRequested();
+
+        var workspaceFullPath = Path.GetFullPath(workspacePath);
+        var model = await MetaTransformScriptInstance.LoadFromWorkspaceAsync(
+            workspaceFullPath,
+            searchUpward: false,
+            cancellationToken).ConfigureAwait(false);
+
+        var existingScriptIds = model.TransformScriptList
+            .Select(static item => item.Id)
+            .ToHashSet(StringComparer.Ordinal);
+
+        var parser = new MetaTransformScriptSqlParser();
+        var builder = new MetaTransformScriptSqlModelBuilder(model);
+        MetaTransformScriptSqlParser.TopLevelStatementShape? statementShape = null;
+        var parsedStatementCount = 0;
+
+        foreach (var source in sources)
+        {
+            foreach (var batch in SplitSqlBatches(source.Sql, source.SourcePath, source.BareSelectName))
+            {
+                if (string.IsNullOrWhiteSpace(batch.Sql) || IsIgnorableSetBatch(batch.Sql))
+                {
+                    continue;
+                }
+
+                if (TryGetUnsupportedAuxiliaryBatchKeyword(batch.Sql, out var auxiliaryBatchKeyword))
+                {
+                    var sourceLabel = string.IsNullOrWhiteSpace(batch.SourcePath) ? "<sql-code>" : batch.SourcePath;
+                    throw new MetaTransformScriptSqlImportException(
+                        MetaTransformScriptSqlImportFailureKind.UnsupportedSql,
+                        $"SQL import failed for '{sourceLabel}'.{Environment.NewLine}  Auxiliary batch '{auxiliaryBatchKeyword}' is not supported. Only SET-only auxiliary batches are ignored.");
+                }
+
+                try
+                {
+                    var parsedShape = parser.ParseSqlCodeIntoBuilder(batch.Sql, builder, batch.SourcePath, batch.BareSelectName);
+                    if (statementShape is null)
+                    {
+                        statementShape = parsedShape;
+                    }
+                    else if (statementShape != parsedShape)
+                    {
+                        var sourceLabel = string.IsNullOrWhiteSpace(batch.SourcePath) ? "<sql-code>" : batch.SourcePath;
+                        throw new MetaTransformScriptSqlImportException(
+                            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                            $"SQL input '{sourceLabel}' mixes bare SELECT statements with CREATE VIEW/CREATE FUNCTION wrappers. Split the inputs so one logical import source uses one top-level shape.");
+                    }
+
+                    parsedStatementCount++;
+                }
+                catch (MetaTransformScriptSqlParserException ex)
+                {
+                    throw CreateImportException(ex, batch.SourcePath);
+                }
+            }
+        }
+
+        if (parsedStatementCount == 0)
+        {
+            throw new MetaTransformScriptSqlImportException(
+                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                "SQL input did not contain a supported SELECT statement, CREATE VIEW wrapper, or inline CREATE FUNCTION wrapper.");
+        }
+
+        var merged = builder.Build();
+        var addedScripts = merged.TransformScriptList
+            .Where(item => !existingScriptIds.Contains(item.Id))
+            .ToArray();
+        if (addedScripts.Length != 1)
+        {
+            throw new InvalidOperationException(
+                $"Expected exactly one transform script from add operation, but found {addedScripts.Length}.");
+        }
+
+        addedScripts[0].TargetSqlIdentifier = NormalizeTargetSqlIdentifier(targetSqlIdentifier);
+        await MetaTransformScriptInstance.SaveToWorkspaceAsync(merged, workspaceFullPath, cancellationToken).ConfigureAwait(false);
+        return new ImportToWorkspaceResult(merged, merged.TransformScriptList.Count, workspaceFullPath);
+    }
+
+    private static void ApplySingleScriptTarget(MTS.MetaTransformScriptModel model, string targetSqlIdentifier)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        var script = model.TransformScriptList.Count switch
+        {
+            1 => model.TransformScriptList[0],
+            _ => throw new InvalidOperationException(
+                $"Expected exactly one transform script for this import operation, but found {model.TransformScriptList.Count}.")
+        };
+        script.TargetSqlIdentifier = NormalizeTargetSqlIdentifier(targetSqlIdentifier);
+    }
+
+    private static string NormalizeTargetSqlIdentifier(string targetSqlIdentifier)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetSqlIdentifier);
+
+        var trimmed = targetSqlIdentifier.Trim();
+        var parts = trimmed.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (parts.Length is < 1 or > 3)
+        {
+            throw new InvalidOperationException(
+                $"target SQL identifier '{targetSqlIdentifier}' uses {parts.Length} identifier parts; expected table, schema.table, or database.schema.table.");
+        }
+
+        return trimmed;
     }
 
     private MTS.MetaTransformScriptModel ImportFromSqlSources(IEnumerable<SqlImportSource> sources)

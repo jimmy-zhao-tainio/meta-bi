@@ -247,15 +247,15 @@ meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\
 
 Purpose:
 - author and maintain a sanctioned `MetaTransformScript` workspace for the supported SQL `VIEW` body subset
-- import supported SQL from files, folders, or inline code into canonical workspace form
+- import supported SQL from files or inline code into canonical workspace form
 - emit semantically equivalent SQL back out of that workspace
 - prove the core invariant `SQL -> workspace -> SQL -> workspace` with `meta instance diff`
 - serve as the authored syntax substrate for later binding, type inference, and validation layers
 
 Current command surface:
 - `meta-transform-script help`
-- `meta-transform-script from sql-path --path <path> --new-workspace <path>`
-- `meta-transform-script from sql-code --code <sql> --new-workspace <path> [--name <name>]`
+- `meta-transform-script from sql-file --path <file.sql> --target <sql-identifier> (--new-workspace <path> | --workspace <path>)`
+- `meta-transform-script from sql-code --code <sql> --target <sql-identifier> (--new-workspace <path> | --workspace <path>) [--name <name>]`
 - `meta-transform-script to sql-path [--workspace <path>] --out <path>`
 - `meta-transform-script to sql-code [--workspace <path>] [--name <name>]`
 
@@ -316,15 +316,15 @@ Model entity list:
 These entities and helper rows are what the workspace persists for the supported SQL structure.
 
 Import behavior:
-- `from sql-path` accepts either:
-  - one `.sql` file
-  - one folder of `.sql` files
-- a single `.sql` file may contain:
+- `from sql-file` accepts one `.sql` file per command invocation
+- each import command requires explicit `--target <sql-identifier>`
+- use `--new-workspace` for the first script and `--workspace` to append subsequent scripts one-by-one
+- a `.sql` file may contain:
   - one supported bare `SELECT`
   - one or more supported `CREATE VIEW ... AS ... GO` statements
   - batches with leading `SET ...` statements
 - explicit view column lists in `CREATE VIEW` are captured and emitted back out
-- `from sql-code` imports SQL text directly and optionally takes `--name` when the input is a bare `SELECT`
+- `from sql-code` imports SQL text directly, requires explicit `--target`, and optionally takes `--name` when the input is a bare `SELECT`
 
 Export behavior:
 - `to sql-code` emits the modeled view body only
@@ -457,7 +457,7 @@ Reference corpus demo commands:
 cd Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration
 call cleanup.cmd
 
-meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptReferenceCorpusWorkspace
+meta-transform-script from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusWorkspace
 
 pushd MetaTransformScriptReferenceCorpusWorkspace
 meta-transform-script to sql-path --out ..\RoundTrippedViews
@@ -465,7 +465,7 @@ meta-transform-script to sql-path --out ..\RoundTrippedViews.sql
 meta-transform-script to sql-code --name dbo.v_window_functions
 popd
 
-meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+meta-transform-script from sql-file --path RoundTrippedViews\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
 meta instance diff MetaTransformScriptReferenceCorpusWorkspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
 
 pushd MetaTransformScriptReferenceCorpusRoundTripWorkspace
@@ -476,12 +476,12 @@ popd
 Captured output excerpt from `Samples\Demos\MetaTransformScriptReferenceCorpusCliIntegration\run.output`:
 
 ```text
-> meta-transform-script from sql-path --path SourceViews --new-workspace MetaTransformScriptReferenceCorpusWorkspace
+> meta-transform-script from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusWorkspace
 OK: Created MetaTransformScriptReferenceCorpusWorkspace
 Import:
   Scripts: 32
 
-> meta-transform-script from sql-path --path RoundTrippedViews --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+> meta-transform-script from sql-file --path RoundTrippedViews\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
 OK: Created MetaTransformScriptReferenceCorpusRoundTripWorkspace
 Import:
   Scripts: 32

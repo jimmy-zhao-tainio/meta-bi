@@ -648,6 +648,3 @@ Do not do these yet:
 - [x] source and target identifier resolution against `MetaSchema` is implemented in the current Validate slice
 - [x] structural source/target validation is implemented in the current Validate slice
 - [x] representative current proof cases pass
-- [x] deterministic generated CLI scenario harness is in place for `meta-transform-script` -> `meta-transform-binding bind` -> `meta-transform-binding validate`
-  - default PR lane scenario count is configurable via `META_TRANSFORM_CLI_PR_SCENARIO_COUNT` (default `64`)
-  - thousand-lane run is gated by `META_TRANSFORM_CLI_ENABLE_THOUSAND_LANE=1` and configurable via `META_TRANSFORM_CLI_THOUSAND_SCENARIO_COUNT` (default `2000`)

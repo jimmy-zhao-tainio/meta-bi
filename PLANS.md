@@ -300,7 +300,7 @@ Fork the current bounded SQL view-body proof into a sanctioned `MetaTransformScr
 
 1. Keep the copied bounded syntax model stable under the new `MetaTransformScript` name.
 2. Harden the SQL service surface:
-   - `from sql-path`
+   - `from sql-file`
    - `from sql-code`
    - `to sql-path`
    - `to sql-code`

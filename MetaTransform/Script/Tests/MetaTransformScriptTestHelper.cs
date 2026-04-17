@@ -65,23 +65,10 @@ internal static class MetaTransformScriptTestHelper
 
     public static string WriteTempSqlFile(string fileName, string sql)
     {
-        var directoryPath = Path.Combine(Path.GetTempPath(), "meta-bi", "metatransformscript-tests", Guid.NewGuid().ToString("N"), "sql-path");
+        var directoryPath = Path.Combine(Path.GetTempPath(), "meta-bi", "metatransformscript-tests", Guid.NewGuid().ToString("N"), "sql-file");
         Directory.CreateDirectory(directoryPath);
         var filePath = Path.Combine(directoryPath, fileName);
         File.WriteAllText(filePath, sql);
         return filePath;
-    }
-
-    public static string WriteTempSqlFolder(params (string FileName, string Sql)[] files)
-    {
-        var directoryPath = Path.Combine(Path.GetTempPath(), "meta-bi", "metatransformscript-tests", Guid.NewGuid().ToString("N"), "sql-folder");
-        Directory.CreateDirectory(directoryPath);
-
-        foreach (var (fileName, sql) in files)
-        {
-            File.WriteAllText(Path.Combine(directoryPath, fileName), sql);
-        }
-
-        return directoryPath;
     }
 }

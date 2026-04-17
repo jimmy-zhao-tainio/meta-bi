@@ -1,6 +1,7 @@
 call cleanup.cmd >nul 2>&1
 
-powershell -NoProfile -Command "$sql = (Get-ChildItem -Path 'SourceViews\\*.sql' | Sort-Object Name | ForEach-Object { Get-Content -Raw $_.FullName }) -join [Environment]::NewLine; meta-transform-script from sql-code --code $sql --new-workspace MetaTransformScriptCliIntegrationWorkspace"
+meta-transform-script from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --new-workspace MetaTransformScriptCliIntegrationWorkspace
+meta-transform-script from sql-file --path SourceViews\002_invoice_window\view.sql --target reporting.InvoiceWindow --workspace MetaTransformScriptCliIntegrationWorkspace
 
 pushd MetaTransformScriptCliIntegrationWorkspace
 
@@ -10,7 +11,8 @@ meta-transform-script to sql-code --name sales.CustomerOrderSummary
 
 popd
 
-powershell -NoProfile -Command "$sql = (Get-ChildItem -Path 'RoundTrippedViews\\*.sql' | Sort-Object Name | ForEach-Object { Get-Content -Raw $_.FullName }) -join [Environment]::NewLine; meta-transform-script from sql-code --code $sql --new-workspace MetaTransformScriptRoundTripWorkspace"
+meta-transform-script from sql-file --path RoundTrippedViews\view.sql --target sales.CustomerOrderSummary --new-workspace MetaTransformScriptRoundTripWorkspace
+meta-transform-script from sql-file --path RoundTrippedViews\view_2.sql --target reporting.InvoiceWindow --workspace MetaTransformScriptRoundTripWorkspace
 
 pushd MetaTransformScriptRoundTripWorkspace
 

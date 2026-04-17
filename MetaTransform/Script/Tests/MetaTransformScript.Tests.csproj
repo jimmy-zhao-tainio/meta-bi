@@ -19,8 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\\Cli\\MetaTransformScript.Cli.csproj" />
-    <ProjectReference Include="..\\..\\Binding\\Cli\\MetaTransformBinding.Cli.csproj" />
     <ProjectReference Include="..\\Sql\\MetaTransformScript.Sql.csproj" />
     <ProjectReference Include="..\\..\\Binding\\MetaTransform.Binding.csproj" />
   </ItemGroup>
