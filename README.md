@@ -503,31 +503,29 @@ NotIn: left-not-in-right=0, right-not-in-left=0
 `MetaTransformBinding` is the binding/validation layer on top of `MetaTransformScript`.
 
 Purpose:
-- bind one transform script into an explicit binding workspace (`rowsets`, `columns`, source/target SQL identifiers, binding issues)
-- validate that binding workspace against one `MetaSchema` workspace
-- fail hard on contract mismatches and persist explicit validation link rows in the validated workspace
+- bind one transform script into an explicit binding workspace (`rowsets`, `columns`, source/target SQL identifiers)
+- validate against one `MetaSchema` workspace in the same command
+- fail hard on contract mismatches and persist explicit validation link rows in the resulting workspace
 
 Command surface:
 - `meta-transform-binding help`
-- `meta-transform-binding bind --transform-workspace <path> --new-workspace <path> [--name <name>] [--language-profile <id>]`
-- `meta-transform-binding validate --binding-workspace <path> --schema-workspace <path> --new-workspace <path> [--ignore-target-columns <col[,col...]>]`
+- `meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--name <name>] [--language-profile <id>] [--ignore-target-columns <col[,col...]>]`
 
 Behavior summary:
 - `bind` reads the target SQL identifier from `TransformScript.TargetSqlIdentifier`
+- `bind` resolves source and target SQL identifiers against the schema workspace and fails on missing/ambiguous resolution
+- `bind` enforces target write-contract shape using non-identity target fields
 - if a transform workspace contains multiple scripts, `bind` requires `--name`
 - `--language-profile` defaults to `MetaTransformSqlServer_v1` for the CLI run
-- `validate` resolves source and target SQL identifiers against the schema workspace and fails on missing/ambiguous resolution
-- `validate` enforces target write-contract shape using non-identity target fields
 - `--ignore-target-columns` excludes named non-identity target columns from target conformance checks; unknown names fail explicitly
+- bind is atomic: if binding or validation fails, no output workspace is created
 
 Examples:
 
 ```cmd
-meta-transform-binding bind --transform-workspace .\TransformWS --name sales.CustomerOrderSummary --new-workspace .\SummaryBindingWS
-meta-transform-binding validate --binding-workspace .\SummaryBindingWS --schema-workspace .\SchemaWS --new-workspace .\SummaryValidatedWS
+meta-transform-binding bind --transform-workspace .\TransformWS --schema-workspace .\SchemaWS --name sales.CustomerOrderSummary --new-workspace .\SummaryBindingWS
 
-meta-transform-binding bind --transform-workspace .\TransformWS --name reporting.InvoiceWindow --new-workspace .\InvoiceBindingWS
-meta-transform-binding validate --binding-workspace .\InvoiceBindingWS --schema-workspace .\SchemaWS --new-workspace .\InvoiceValidatedWS --ignore-target-columns LoadUtc,RunId
+meta-transform-binding bind --transform-workspace .\TransformWS --schema-workspace .\SchemaWS --name reporting.InvoiceWindow --new-workspace .\InvoiceBindingWS --ignore-target-columns LoadUtc,RunId
 ```
 
 See also:

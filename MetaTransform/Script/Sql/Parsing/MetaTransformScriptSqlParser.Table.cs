@@ -44,6 +44,14 @@ public sealed partial class MetaTransformScriptSqlParser
                     continue;
                 }
 
+                if (MatchKeyword("JOIN"))
+                {
+                    var right = ParseTableReferencePrimary();
+                    ExpectKeyword("ON");
+                    currentReference = builder.CreateQualifiedJoin(currentReference, right, "Inner", ParseBooleanExpression());
+                    continue;
+                }
+
                 if (MatchKeyword("LEFT"))
                 {
                     MatchKeyword("OUTER");

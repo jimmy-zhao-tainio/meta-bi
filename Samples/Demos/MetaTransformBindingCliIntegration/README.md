@@ -9,10 +9,9 @@ Intended target tables in `SchemaWS`:
 - `sales.CustomerOrderSummary`
 - `reporting.InvoiceWindow`
 
-Current binding infers source rowset identifiers from the SQL and persists them as SQL identifiers only.
-Current binding reads each target SQL identifier from `TransformScript.TargetSqlIdentifier` and persists that target in the binding workspace.
+Binding infers source rowset identifiers from SQL and reads each target SQL identifier from `TransformScript.TargetSqlIdentifier`.
 
-`meta-transform-binding validate` then resolves those source/target SQL identifiers against `SchemaWS` and hard-fails on:
+`meta-transform-binding bind` resolves those source/target SQL identifiers against `SchemaWS` and hard-fails on:
 - missing source/target tables
 - ambiguous one/two/three-part identifiers
 - source column subset mismatches
@@ -21,3 +20,4 @@ Current binding reads each target SQL identifier from `TransformScript.TargetSql
 Optional:
 - `--ignore-target-columns <col[,col...]>` excludes named non-identity target columns from target conformance checks.
 - ignored names must exist on each target table or validation fails with `TargetIgnoredColumnNotFound`.
+- bind is atomic: if binding or validation fails, no binding workspace is created.
