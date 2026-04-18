@@ -74,7 +74,6 @@ public sealed class TransformBindingCorpusClassificationTests
                 continue;
             }
 
-            model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
             var result = new TransformBindingService().BindSingleTransform(model);
             if (!result.HasErrors)

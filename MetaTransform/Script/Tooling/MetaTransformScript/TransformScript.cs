@@ -19,10 +19,6 @@ namespace MetaTransformScript
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
-        [XmlElement("LanguageProfileId")]
-        public string LanguageProfileId { get; set; } = string.Empty;
-        public bool ShouldSerializeLanguageProfileId() => !string.IsNullOrWhiteSpace(LanguageProfileId);
-
         [XmlElement("Name")]
         public string Name { get; set; } = string.Empty;
 

@@ -4,7 +4,6 @@ using MetaTransform.Binding;
 
 internal static class Program
 {
-    private const string DefaultLanguageProfileId = "MetaTransformSqlServer_v1";
     private static readonly ConsolePresenter Presenter = new();
 
     static Task<int> Main(string[] args)
@@ -54,8 +53,7 @@ internal static class Program
                 parse.SchemaWorkspacePath,
                 targetValidation.FullPath,
                 parse.Name,
-                parse.LanguageProfileId ?? DefaultLanguageProfileId,
-                TransformBindingValidationOptions.Create(parse.IgnoredTargetColumns));
+                validationOptions: TransformBindingValidationOptions.Create(parse.IgnoredTargetColumns));
 
             Presenter.WriteOk($"Created {Path.GetFileName(result.WorkspacePath)}");
             Presenter.WriteKeyValueBlock("Binding", new[]
@@ -110,7 +108,6 @@ internal static class Program
         string SchemaWorkspacePath,
         string NewWorkspacePath,
         string? Name,
-        string? LanguageProfileId,
         string[] IgnoredTargetColumns,
         string ErrorMessage) ParseBindArgs(
         string[] args,
@@ -120,7 +117,6 @@ internal static class Program
         var schemaWorkspacePath = string.Empty;
         var newWorkspacePath = string.Empty;
         string? name = null;
-        string? languageProfileId = null;
         var ignoredTargetColumns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         for (var i = startIndex; i < args.Length; i++)
@@ -131,12 +127,12 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing value for --transform-workspace.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "missing value for --transform-workspace.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(transformWorkspacePath))
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "--transform-workspace can only be provided once.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "--transform-workspace can only be provided once.");
                 }
 
                 transformWorkspacePath = args[++i];
@@ -147,12 +143,12 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing value for --schema-workspace.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "missing value for --schema-workspace.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(schemaWorkspacePath))
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "--schema-workspace can only be provided once.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "--schema-workspace can only be provided once.");
                 }
 
                 schemaWorkspacePath = args[++i];
@@ -163,12 +159,12 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing value for --new-workspace.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "missing value for --new-workspace.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(newWorkspacePath))
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "--new-workspace can only be provided once.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "--new-workspace can only be provided once.");
                 }
 
                 newWorkspacePath = args[++i];
@@ -179,31 +175,15 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing value for --name.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "missing value for --name.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(name))
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "--name can only be provided once.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "--name can only be provided once.");
                 }
 
                 name = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--language-profile", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length)
-                {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing value for --language-profile.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(languageProfileId))
-                {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "--language-profile can only be provided once.");
-                }
-
-                languageProfileId = args[++i];
                 continue;
             }
 
@@ -211,13 +191,13 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing value for --ignore-target-columns.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "missing value for --ignore-target-columns.");
                 }
 
                 var raw = args[++i];
                 if (string.IsNullOrWhiteSpace(raw))
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "value for --ignore-target-columns cannot be blank.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "value for --ignore-target-columns cannot be blank.");
                 }
 
                 foreach (var value in raw.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
@@ -227,31 +207,31 @@ internal static class Program
 
                 if (ignoredTargetColumns.Count == 0)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "value for --ignore-target-columns must include at least one column name.");
+                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "value for --ignore-target-columns must include at least one column name.");
                 }
 
                 continue;
             }
 
-            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), $"unknown option '{arg}'.");
+            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), $"unknown option '{arg}'.");
         }
 
         if (string.IsNullOrWhiteSpace(transformWorkspacePath))
         {
-            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing required option --transform-workspace <path>.");
+            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "missing required option --transform-workspace <path>.");
         }
 
         if (string.IsNullOrWhiteSpace(schemaWorkspacePath))
         {
-            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing required option --schema-workspace <path>.");
+            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "missing required option --schema-workspace <path>.");
         }
 
         if (string.IsNullOrWhiteSpace(newWorkspacePath))
         {
-            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), "missing required option --new-workspace <path>.");
+            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), "missing required option --new-workspace <path>.");
         }
 
-        return (true, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, languageProfileId, ignoredTargetColumns.ToArray(), string.Empty);
+        return (true, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, name, ignoredTargetColumns.ToArray(), string.Empty);
     }
 
     private static bool IsHelpToken(string value)
@@ -278,15 +258,13 @@ internal static class Program
     private static void PrintBindHelp()
     {
         Presenter.WriteInfo("Command: bind");
-        Presenter.WriteUsage("meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--name <name>] [--language-profile <id>] [--ignore-target-columns <col[,col...]>]");
+        Presenter.WriteUsage("meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--name <name>] [--ignore-target-columns <col[,col...]>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  bind is atomic: it binds and validates in one run.");
         Presenter.WriteInfo("  If binding or validation fails, no binding workspace is created.");
         Presenter.WriteInfo("  Target SQL identifier is read from TransformScript.TargetSqlIdentifier.");
         Presenter.WriteInfo("  Target must be table, schema.table, or database.schema.table.");
         Presenter.WriteInfo("  If the transform workspace contains multiple scripts, --name is required.");
-        Presenter.WriteInfo($"  --language-profile defaults to {DefaultLanguageProfileId} for this CLI run.");
-        Presenter.WriteInfo("  If provided, --language-profile overrides both that CLI default and TransformScript.LanguageProfileId.");
         Presenter.WriteInfo("  --ignore-target-columns excludes named non-identity target columns from target conformance checks.");
         Presenter.WriteInfo("  Ignored names must exist on each target table or bind fails explicitly.");
         Presenter.WriteInfo("Example:");

@@ -6,7 +6,6 @@
         <Property name="ScriptObjectKind" isRequired="false" />
         <Property name="Name" />
         <Property name="TargetSqlIdentifier" />
-        <Property name="LanguageProfileId" isRequired="false" />
         <Property name="SourcePath" isRequired="false" />
       </PropertyList>
     </Entity>

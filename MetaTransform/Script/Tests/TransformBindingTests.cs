@@ -10,7 +10,6 @@ public sealed class TransformBindingTests
     public void BindSimpleSelectWithAliasesAndLiteralAlias_DerivesExpectedOutputRowset()
     {
         var model = ParseCorpus("001_basic_select.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]));
@@ -29,7 +28,6 @@ public sealed class TransformBindingTests
     public void BindSelectStarAcrossJoinedNamedSources_RequiresValidationSchemaForSourceShape()
     {
         var model = ParseCorpus("002_select_star.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Customers", ["CustomerId", "CustomerName"]),
@@ -54,7 +52,6 @@ INNER JOIN dbo.[Order] AS o
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Customer", ["Id", "CustomerId"]),
@@ -64,21 +61,6 @@ INNER JOIN dbo.[Order] AS o
 
         var issue = Assert.Single(bound.Issues, item => item.Code == "ColumnReferenceRequiresValidationSchema");
         Assert.Equal("ColumnReferenceRequiresValidationSchema", issue.Code);
-    }
-
-    [Fact]
-    public void BindWithoutResolvedLanguageProfile_FailsExplicitly()
-    {
-        var model = ParseCorpus("001_basic_select.sql");
-        var sourceSchema = CreateSourceSchema(
-            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]));
-
-        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
-
-        var issue = Assert.Single(bound.Issues);
-        Assert.Equal("ActiveLanguageProfileMissing", issue.Code);
-        Assert.Null(bound.TopLevelScope);
-        Assert.Null(bound.TopLevelRowset);
     }
 
     [Fact]
@@ -92,7 +74,6 @@ SELECT
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var bindingModel = new TransformBindingService().BindSingleTransformModel(model, CreateSourceSchema());
 
@@ -114,7 +95,6 @@ SELECT
     public void BindSimpleSelect_EmitsBindingModelWithFinalOutputRowset()
     {
         var model = ParseCorpus("001_basic_select.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]));
@@ -147,7 +127,6 @@ SELECT
     public void BindJoinedSources_EmitsIntermediateJoinRowsetGraph()
     {
         var model = ParseCorpus("002_select_star.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Customers", ["CustomerId", "CustomerName"]),
@@ -189,7 +168,6 @@ FROM
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Customers", ["CustomerId", "CustomerName"]));
@@ -213,7 +191,6 @@ FROM
     public void BindInlineDerivedTable_EmitsInlineDerivedRowsetAndFinalProjection()
     {
         var model = ParseCorpus("021_inline_values.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var bindingModel = new TransformBindingService().BindSingleTransformModel(model, CreateSourceSchema());
 
@@ -255,7 +232,6 @@ FROM
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var bound = new TransformBindingService().BindSingleTransform(model, CreateSourceSchema());
 
@@ -267,7 +243,6 @@ FROM
     public void BindCommonTableExpressionWithColumnAliases_EmitsCteRowsetAndFinalProjection()
     {
         var model = ParseCorpus("042_cte_column_list.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId", "Amount"]));
@@ -294,7 +269,6 @@ FROM
     public void BindRecursiveCommonTableExpression_DerivesRecursiveCteRowsetShape()
     {
         var model = ParseCorpus("043_recursive_cte_column_list.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var bindingModel = new TransformBindingService().BindSingleTransformModel(model, CreateSourceSchema());
 
@@ -319,7 +293,6 @@ FROM
     public void BindRecursiveCommonTableExpression_WithoutExplicitColumnList_DerivesAnchorNamedShape()
     {
         var model = ParseCorpus("017_cte.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "ParentId"]));
@@ -339,7 +312,6 @@ FROM
     public void BindSetOperations_DerivesSetOperationRowsetsAndFinalOutput()
     {
         var model = ParseCorpus("013_set_operations.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "A", ["Id", "Code"]),
@@ -368,7 +340,6 @@ FROM
     public void BindPivotTableReference_DerivesPivotRowsetAndFinalProjection()
     {
         var model = ParseCorpus("005_pivot.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId", "CategoryCode", "Amount"]));
@@ -398,7 +369,6 @@ FROM
     public void BindUnpivotTableReference_DerivesUnpivotRowsetAndFinalProjection()
     {
         var model = ParseCorpus("006_unpivot.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "PivotSource", ["CustomerId", "A", "B"]));
@@ -428,7 +398,6 @@ FROM
     public void BindQueryParentheses_BindsParenthesizedSetBranches()
     {
         var model = ParseCorpus("024_query_parentheses.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "Code"]),
@@ -447,7 +416,6 @@ FROM
     public void BindJoinParentheses_BindsParenthesizedJoinTableReference()
     {
         var model = ParseCorpus("031_join_parentheses.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "A", ["Id", "BId", "CId"]),
@@ -479,7 +447,6 @@ CROSS APPLY
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "SourceTable", ["Id", "CsvValue"]));
@@ -520,7 +487,6 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "SourceTable", ["Id", "CsvValue"]));
@@ -543,7 +509,6 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
     public void BindCrossApplyFunctionTableReference_WithoutColumnAliases_InfersReferencedColumns()
     {
         var model = ParseCorpus("004_apply_sources.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "SourceTable", ["Id", "CsvValue"]),
@@ -567,7 +532,6 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
     public void BindOpenJson_CanInferDefaultOutputShapeFromScript()
     {
         var model = ParseCorpus("022_openjson.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "JsonSource", ["Id", "JsonPayload"]));
@@ -584,7 +548,6 @@ CROSS APPLY dbo.fnSplit(s.CsvValue) AS splitItem(ValueText);
     public void BindBuiltInGlobalFunctionTableReferences_CanBindSanctionedShapes()
     {
         var model = ParseCorpus("026_builtin_table_functions.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var bound = new TransformBindingService().BindSingleTransform(model, CreateSourceSchema());
 
@@ -605,7 +568,6 @@ FROM SomeGlobalTableFunction(1) AS g;
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var bound = new TransformBindingService().BindSingleTransform(model, CreateSourceSchema());
         Assert.False(bound.HasErrors);
@@ -624,7 +586,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindCorrelatedScalarSubqueryAndExists_PreservesCorrelationBinding()
     {
         var model = ParseCorpus("011_subqueries_and_correlation.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Customers", ["CustomerId"]),
@@ -657,7 +618,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindSubqueryPredicates_BindsCorrelatedAndUncorrelatedPredicateSubqueries()
     {
         var model = ParseCorpus("012_subquery_predicates.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "Amount", "Code", "GroupId"]),
@@ -680,7 +640,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindWherePredicates_TraversesBetweenInLikeAndIsNull()
     {
         var model = ParseCorpus("007_where_predicates.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "Status", "Amount", "Code", "Name", "DeletedAt", "Score"]));
@@ -704,7 +663,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindDistinctPredicate_TraversesBothOperands()
     {
         var model = ParseCorpus("025_distinct_predicate.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "Code", "LegacyCode"]));
@@ -724,7 +682,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindContainsPredicate_TraversesFullTextColumnReference()
     {
         var model = ParseCorpus("027_fulltext.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Products", ["ProductId", "Description"]));
@@ -743,7 +700,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindFreeTextPredicate_TraversesFullTextColumnReference()
     {
         var model = ParseCorpus("061_freetext.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Products", ["ProductId", "Description"]));
@@ -764,7 +720,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindFullTextTableReference_DerivesKeyRankFunctionRowset(string corpusFile)
     {
         var model = ParseCorpus(corpusFile);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Products", ["ProductId", "Description"]));
@@ -800,7 +755,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindXmlMethodCallTargets_TraversesReceiverColumnReferences()
     {
         var model = ParseCorpus("020_xml_namespaces_and_methods.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "XmlSource", ["Id", "XmlPayload"]));
@@ -822,7 +776,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindXmlNodesTableReference_DerivesApplyRightRowsetAndBindsMethodTarget()
     {
         var model = ParseCorpus("055_xml_nodes.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "XmlSource", ["Id", "XmlPayload"]));
@@ -863,7 +816,6 @@ FROM SomeGlobalTableFunction(1) AS g;
     public void BindExtractFunction_DoesNotTreatDatePartTokenAsColumnReference()
     {
         var model = ParseCorpus("030_time_zone_extract.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "CreatedAt"]));
@@ -894,7 +846,6 @@ CROSS APPLY dbo.B AS b TABLESAMPLE (a.Id PERCENT) REPEATABLE (a.Id);
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "A", ["Id"]),
@@ -916,7 +867,6 @@ CROSS APPLY dbo.B AS b TABLESAMPLE (a.Id PERCENT) REPEATABLE (a.Id);
     public void BindSequenceAndGlobalExpressions_AreAcceptedAsScalarLeaves()
     {
         var model = ParseCorpus("036_sequence_and_globals.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", []));
@@ -931,7 +881,6 @@ CROSS APPLY dbo.B AS b TABLESAMPLE (a.Id PERCENT) REPEATABLE (a.Id);
     public void BindValueExpressions_BindsThroughCommonScalarExpressionShells()
     {
         var model = ParseCorpus("014_value_expressions.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "Status", "Amount", "PreferredName", "LegalName", "Code", "IsActive", "Priority", "Score", "CreatedAt", "CreatedAtText", "CustomerName"]));
@@ -955,7 +904,6 @@ CROSS APPLY dbo.B AS b TABLESAMPLE (a.Id PERCENT) REPEATABLE (a.Id);
     public void BindParenthesizedScalarExpressions_BindsInnerArithmeticAndCastArguments()
     {
         var model = ParseCorpus("047_parenthesized_scalar_expressions.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["Amount"]));
@@ -969,7 +917,6 @@ CROSS APPLY dbo.B AS b TABLESAMPLE (a.Id PERCENT) REPEATABLE (a.Id);
     public void BindNestedScalarSubqueries_BindsAggregateArgumentsInsideNestedQueryBoundaries()
     {
         var model = ParseCorpus("045_nested_subqueries.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Customer", ["CustomerId"]),
@@ -992,7 +939,6 @@ CROSS APPLY dbo.B AS b TABLESAMPLE (a.Id PERCENT) REPEATABLE (a.Id);
     public void BindGroupByHaving_EmitsGroupedRowsetAndFinalProjection()
     {
         var model = ParseCorpus("008_group_by_having.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId", "Amount"]));
@@ -1032,7 +978,6 @@ GROUP BY s.CustomerId;
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId", "Amount"]));
@@ -1047,7 +992,6 @@ GROUP BY s.CustomerId;
     public void BindGroupingSets_TraversesCompositeAndGrandTotalGroupingSpecifications()
     {
         var model = ParseCorpus("009_grouping_sets.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["RegionId", "CustomerId", "Amount"]));
@@ -1085,7 +1029,6 @@ GROUP BY ROLLUP (s.RegionId, s.CustomerId);
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["RegionId", "CustomerId", "Amount"]));
@@ -1115,7 +1058,6 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["RegionId", "CustomerId", "Amount"]));
@@ -1135,7 +1077,6 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     public void BindGroupByAll_BindsSameGroupedVisibilityContract()
     {
         var model = ParseCorpus("048_group_by_all.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId"]));
@@ -1164,7 +1105,6 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     public void BindWindowFunctions_TraversesPartitionAndOrderExpressions()
     {
         var model = ParseCorpus("015_window_functions.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId", "OrderId", "Amount", "OrderDate"]));
@@ -1186,7 +1126,6 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     public void BindNamedWindowClause_TraversesWindowDefinitions()
     {
         var model = ParseCorpus("016_named_window.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId", "Amount", "OrderDate"]));
@@ -1207,7 +1146,6 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     public void BindRangeWindowFrames_TraversesWindowOrderExpressions()
     {
         var model = ParseCorpus("059_range_window_frames.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId", "Amount"]));
@@ -1227,7 +1165,6 @@ GROUP BY CUBE (s.RegionId, s.CustomerId);
     public void BindPercentileWithinGroup_TraversesWithinGroupAndOverExpressions()
     {
         var model = ParseCorpus("057_percentile_within_group.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Sales", ["CustomerId", "Amount"]));
@@ -1258,7 +1195,6 @@ ORDER BY
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "OrderDate"]));
@@ -1281,7 +1217,6 @@ ORDER BY
     public void BindQueryModifiers_OffsetFetch_TraversesOrderingAndOffsetExpressions()
     {
         var model = ParseCorpus("019_offset_fetch.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id", "OrderDate"]));
@@ -1303,7 +1238,6 @@ FROM dbo.Source AS s;
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "Source", ["Id"]));
@@ -1318,7 +1252,6 @@ FROM dbo.Source AS s;
     public void BindingModel_CanRoundTripAsWorkspaceArtifact()
     {
         var model = ParseCorpus("001_basic_select.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]));
@@ -1349,7 +1282,6 @@ FROM dbo.Source AS s;
     public void BindingWorkspaceService_CanMaterializeBindingWorkspaceFromTransformWorkspaceOnly()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
@@ -1396,7 +1328,6 @@ FROM dbo.Source AS s;
     public void BindingWorkspaceService_CanResolveThreePartTargetIdentifiers()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "Warehouse.dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
@@ -1431,7 +1362,6 @@ FROM dbo.Source AS s;
     public void BindingWorkspaceService_PersistsUnresolvedTargetsWithoutSchemaValidation()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
@@ -1486,7 +1416,7 @@ GO
         Assert.Equal(2, transformModel.TransformScriptList.Count);
         Assert.All(
             transformModel.TransformScriptList,
-            script => script.LanguageProfileId = "MetaTransformSqlServer_v1");
+            script => Assert.False(string.IsNullOrWhiteSpace(script.TargetSqlIdentifier)));
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
@@ -1532,7 +1462,6 @@ GO
     public void BindingWorkspaceService_WithFourPartTargetIdentifier_FailsExplicitly()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "Linked.Warehouse.dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
@@ -1562,7 +1491,6 @@ GO
     public void BindingWorkspaceService_DoesNotPerformTargetSchemaValidation()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
@@ -1595,7 +1523,6 @@ GO
     public void ValidationService_ResolvesSourceAndTargetIdentifiersAndRecordsConformance()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1654,7 +1581,6 @@ GO
     public void ValidationService_WithTargetMismatch_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1690,7 +1616,6 @@ GO
     public void ValidationService_WithIgnoredTargetColumns_AllowsPlatformColumns()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1741,7 +1666,6 @@ GO
     public void ValidationService_WithNullableTargetColumnOmitted_PassesWriteContract()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1779,7 +1703,6 @@ GO
     public void ValidationService_WithRequiredTargetColumnMissing_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1816,7 +1739,6 @@ GO
     public void ValidationService_WithUnknownIgnoredTargetColumn_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1855,7 +1777,6 @@ GO
     public void ValidationService_WithTargetTypeConformanceMismatch_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1899,7 +1820,6 @@ GO
     public void ValidationService_WithSanctionedTypeConversion_RecordsConformanceKind()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1950,7 +1870,6 @@ GO
     public void ValidationService_WithTargetNullabilityConformanceMismatch_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -1989,7 +1908,6 @@ GO
     public void ValidationService_WithTargetLengthConformanceMismatch_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -2030,7 +1948,6 @@ GO
     public void ValidationService_WithTargetPrecisionConformanceMismatch_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -2071,7 +1988,6 @@ GO
     public void ValidationService_WithTargetScaleConformanceMismatch_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -2112,7 +2028,6 @@ GO
     public void ValidationService_WithUnsanctionedSourceFieldType_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -2156,7 +2071,6 @@ SELECT
 FROM SourceTable AS s;
 """;
         var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -2192,7 +2106,6 @@ FROM SourceTable AS s;
     public void ValidationService_WithAmbiguousOnePartTargetIdentifier_FailsHard()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -2228,7 +2141,6 @@ FROM SourceTable AS s;
     public void ValidationWorkspaceService_CanMaterializeValidatedWorkspaceFromBindingAndSchemaWorkspaces()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -2289,7 +2201,6 @@ FROM SourceTable AS s;
     public void ValidationService_CanRoundTripValidationRowsAsWorkspaceArtifact()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
-        transformModel.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
         transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
 
         var schemaModel = CreateSourceSchema(
@@ -2331,7 +2242,6 @@ FROM SourceTable AS s;
     public void BindInlineTableValuedFunction_WiresSourceRowsetsWithoutTreatingParametersAsSourceColumns()
     {
         var model = ParseCorpus("066_inline_tvf.sql");
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("sales", "CustomerOrder", ["CustomerId", "OrderDate", "OrderAmount"]));
@@ -2381,7 +2291,6 @@ RETURN
 """;
 
         var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
-        model.TransformScriptList[0].LanguageProfileId = "MetaTransformSqlServer_v1";
 
         var sourceSchema = CreateSourceSchema(
             ("sales", "CustomerOrder", ["CustomerId"]));

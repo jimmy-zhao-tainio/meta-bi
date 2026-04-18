@@ -17,8 +17,7 @@ internal static class TransformBindingModelBuilder
         {
             Id = bindingId,
             MetaTransformScriptTransformScriptId = bound.TransformScriptId,
-            TransformScriptName = bound.TransformScriptName,
-            ActiveLanguageProfileId = bound.ActiveLanguageProfileId
+            TransformScriptName = bound.TransformScriptName
         };
 
         model.TransformBindingList.Add(bindingRow);

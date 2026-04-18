@@ -509,14 +509,13 @@ Purpose:
 
 Command surface:
 - `meta-transform-binding help`
-- `meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--name <name>] [--language-profile <id>] [--ignore-target-columns <col[,col...]>]`
+- `meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--name <name>] [--ignore-target-columns <col[,col...]>]`
 
 Behavior summary:
 - `bind` reads the target SQL identifier from `TransformScript.TargetSqlIdentifier`
 - `bind` resolves source and target SQL identifiers against the schema workspace and fails on missing/ambiguous resolution
 - `bind` enforces target write-contract shape using non-identity target fields
 - if a transform workspace contains multiple scripts, `bind` requires `--name`
-- `--language-profile` defaults to `MetaTransformSqlServer_v1` for the CLI run
 - `--ignore-target-columns` excludes named non-identity target columns from target conformance checks; unknown names fail explicitly
 - bind is atomic: if binding or validation fails, no output workspace is created
 

@@ -11,7 +11,6 @@ public sealed class TransformBindingWorkspaceService
         string schemaWorkspacePath,
         string newWorkspacePath,
         string? transformScriptName = null,
-        string? activeLanguageProfileIdOverride = null,
         TransformBindingValidationOptions? validationOptions = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
@@ -29,8 +28,7 @@ public sealed class TransformBindingWorkspaceService
 
         var bound = new TransformBindingService().BindTransform(
             transformModel,
-            transformScript,
-            activeLanguageProfileIdOverride);
+            transformScript);
 
         if (bound.HasErrors)
         {
@@ -70,8 +68,7 @@ public sealed class TransformBindingWorkspaceService
     public BindToWorkspaceResult BindToWorkspace(
         string transformWorkspacePath,
         string newWorkspacePath,
-        string? transformScriptName = null,
-        string? activeLanguageProfileIdOverride = null)
+        string? transformScriptName = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
@@ -85,8 +82,7 @@ public sealed class TransformBindingWorkspaceService
 
         var bound = new TransformBindingService().BindTransform(
             transformModel,
-            transformScript,
-            activeLanguageProfileIdOverride);
+            transformScript);
         var bindingModel = TransformBindingModelBuilder.Create(bound, [target]);
 
         bindingModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);

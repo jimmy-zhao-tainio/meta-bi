@@ -1369,7 +1369,6 @@
     </Entity>
     <Entity name="TransformScript">
       <PropertyList>
-        <Property name="LanguageProfileId" isRequired="false" />
         <Property name="Name" />
         <Property name="ScriptObjectKind" isRequired="false" />
         <Property name="SourcePath" isRequired="false" />

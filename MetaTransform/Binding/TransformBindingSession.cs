@@ -22,21 +22,9 @@ internal sealed partial class TransformBindingSession
     }
 
     public TransformBindingResult BindTransform(
-        TransformScript transformScript,
-        string? activeLanguageProfileIdOverride = null)
+        TransformScript transformScript)
     {
         ArgumentNullException.ThrowIfNull(transformScript);
-
-        var activeLanguageProfileId = ResolveActiveLanguageProfile(transformScript, activeLanguageProfileIdOverride);
-        if (string.IsNullOrWhiteSpace(activeLanguageProfileId))
-        {
-            issues.Add(new TransformBindingIssue(
-                "ActiveLanguageProfileMissing",
-                $"TransformScript '{transformScript.Name}' does not resolve an active language profile.",
-                transformScript.Id));
-
-            return CreateResult(transformScript, activeLanguageProfileId, null, null, null);
-        }
 
         var scriptObjectKind = navigator.GetTransformScriptObjectKind(transformScript);
         isInlineTableValuedFunction = string.Equals(scriptObjectKind, "InlineTableValuedFunction", StringComparison.OrdinalIgnoreCase);
@@ -54,7 +42,7 @@ internal sealed partial class TransformBindingSession
                 $"TransformScript '{transformScript.Name}' is missing its SelectStatement link.",
                 transformScript.Id));
 
-            return CreateResult(transformScript, activeLanguageProfileId, null, null, null);
+            return CreateResult(transformScript, null, null, null);
         }
 
         InitializeCommonTableExpressions(selectStatement);
@@ -67,7 +55,7 @@ internal sealed partial class TransformBindingSession
                 $"SelectStatement '{selectStatement.Id}' is missing its QueryExpression link.",
                 selectStatement.Id));
 
-            return CreateResult(transformScript, activeLanguageProfileId, null, null, null);
+            return CreateResult(transformScript, null, null, null);
         }
 
         var topLevelBinding = BindQueryExpression(
@@ -82,7 +70,6 @@ internal sealed partial class TransformBindingSession
 
         return CreateResult(
             transformScript,
-            activeLanguageProfileId,
             topLevelBinding?.Scope,
             topLevelBinding?.InputRowset,
             topLevelBinding?.OutputRowset);
@@ -90,7 +77,6 @@ internal sealed partial class TransformBindingSession
 
     private TransformBindingResult CreateResult(
         TransformScript transformScript,
-        string activeLanguageProfileId,
         BindingScope? topLevelScope,
         RuntimeRowset? topLevelInputRowset,
         RuntimeRowset? topLevelRowset)
@@ -98,7 +84,6 @@ internal sealed partial class TransformBindingSession
         return new TransformBindingResult(
             transformScript.Id,
             transformScript.Name,
-            activeLanguageProfileId,
             topLevelScope,
             topLevelInputRowset,
             topLevelRowset,
@@ -138,18 +123,6 @@ internal sealed partial class TransformBindingSession
             commonTableExpressionBindingStateByName[name] = RuntimeCommonTableExpressionBindingState.NotResolved;
             commonTableExpressionRowsetByName[name] = null;
         }
-    }
-
-    private static string ResolveActiveLanguageProfile(TransformScript transformScript, string? activeLanguageProfileIdOverride)
-    {
-        if (!string.IsNullOrWhiteSpace(activeLanguageProfileIdOverride))
-        {
-            return activeLanguageProfileIdOverride.Trim();
-        }
-
-        return string.IsNullOrWhiteSpace(transformScript.LanguageProfileId)
-            ? string.Empty
-            : transformScript.LanguageProfileId.Trim();
     }
 
     private readonly record struct CommonTableExpressionReferenceBindingResult(

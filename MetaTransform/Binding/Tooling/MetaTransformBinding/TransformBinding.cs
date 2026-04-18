@@ -19,9 +19,6 @@ namespace MetaTransformBinding
         [XmlAttribute("Id")]
         public string Id { get; set; } = string.Empty;
 
-        [XmlElement("ActiveLanguageProfileId")]
-        public string ActiveLanguageProfileId { get; set; } = string.Empty;
-
         [XmlElement("MetaTransformScriptTransformScriptId")]
         public string MetaTransformScriptTransformScriptId { get; set; } = string.Empty;
 

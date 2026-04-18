@@ -23,22 +23,6 @@ Keep this invariant across all phases:
 Never reverse that direction.
 Never smear semantic facts back into syntax entities.
 
-## Active Language Profile Invariant
-
-Binding and later semantic phases must evaluate one transform under one resolved active language profile.
-
-Resolution rule:
-
-1. semantic call input override
-2. else `TransformScript.LanguageProfileId`
-3. else explicit failure
-
-Additional rules:
-
-- no semantic phase may invent a default profile
-- binder, inference, and validation must use the same resolver contract
-- profile admissibility is a separate semantic contract over syntax, not a property of syntax nodes themselves
-
 ## Phase Map
 
 Phase 1 is detailed and executable below.
@@ -198,12 +182,6 @@ Binding answers:
 - what output rowset this query boundary produces structurally
 - what source rowsets and declared targets the transform names in SQL terms
 
-Language-profile evaluation answers:
-
-- which profile is active for this semantic pass
-- whether a present syntax feature is admitted by that profile
-- whether the feature is unclassified by that profile
-
 Type inference answers:
 
 - what type and nullability a bound expression or output column has
@@ -235,7 +213,6 @@ This is enough to prove the semantic direction without dragging in full recursiv
 Phase 1 binding should take:
 
 - one `MetaTransformScript` transform
-- one resolved active language profile
 
 Not yet:
 
@@ -258,7 +235,6 @@ Minimal sanctioned binding model:
 
 - `TransformBinding`
   - one binding result per transform
-  - carries the resolved active language profile
   - points to the final output rowset
 
 - `Rowset`
@@ -297,7 +273,6 @@ The binder is now beyond the original Phase 1 spine.
 
 Implemented now:
 
-- active language profile resolution with explicit failure when unresolved
 - source-less transforms
 - named table references and aliases
 - direct column references
@@ -430,7 +405,6 @@ Originally out for this first step:
 
 Several of the items above are now implemented and should no longer be treated as active Phase 1 gaps.
 The remaining unsupported shapes should still fail explicitly rather than guessed.
-If a present construct is disallowed by the active language profile, or not classified by that profile, Phase 1 should emit that explicit profile outcome instead of collapsing it into generic unsupported binding.
 
 Basic non-correlated query-derived tables in `FROM` are now the first implemented slice of Phase 2.
 Basic non-recursive `WITH` CTEs that resolve to a single bindable query boundary are also now implemented.
@@ -448,7 +422,6 @@ Modeled predicate families such as `BETWEEN`, `IN (...)`, `LIKE` (including `ESC
 
 Binding should look like:
 
-`MetaTransformScript + ActiveLanguageProfile`
 `-> source bound rowsets`
 `-> derived bound rowsets`
 `-> final output rowset`
@@ -462,7 +435,6 @@ Validate should look like:
 Concrete flow:
 
 1. Read the transform syntax.
-2. Resolve the active language profile using the shared resolver contract.
 3. Classify any encountered profile-sensitive features needed for this semantic pass.
 4. Produce one source `Rowset` per named SQL source reference.
 5. Build the query-block runtime scope from visible table sources and aliases.
@@ -485,8 +457,6 @@ This keeps rowset and name-resolution truth ahead of type and validation work.
 ## Implementation Order
 
 1. Define the semantic model/workspace for the binding layer.
-2. Define the shared active-language-profile resolver contract.
-3. Add a binder service that consumes `MetaTransformScript` and active language profile.
 4. Bind simple named table references to source rowsets named in SQL terms.
 5. Build per-query scope from `FROM` sources and aliases.
 6. Bind simple column references.
@@ -498,7 +468,6 @@ This keeps rowset and name-resolution truth ahead of type and validation work.
 
 Done enough for the current implemented stage means:
 
-- semantic analysis resolves one active language profile or fails explicitly
 - a simple single-query view with named table sources binds without guessing
 - a source-less transform can bind to a final output rowset
 - every simple named table reference produces one explicit source rowset and source declaration
@@ -599,7 +568,6 @@ Do not do these yet:
 ## Tracking Checklist
 
 - [x] semantic binding model defined
-- [x] active language profile resolution contract enforced
 - [x] binder service scaffolded
 - [x] named table references bind from SQL identifier shape without requiring schema truth
 - [x] aliases populate query scope

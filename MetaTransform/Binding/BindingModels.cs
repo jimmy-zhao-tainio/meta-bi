@@ -52,7 +52,6 @@ internal sealed record RuntimeQueryBindingResult(
 public sealed record TransformBindingResult(
     string TransformScriptId,
     string TransformScriptName,
-    string ActiveLanguageProfileId,
     BindingScope? TopLevelScope,
     RuntimeRowset? TopLevelInputRowset,
     RuntimeRowset? TopLevelRowset,

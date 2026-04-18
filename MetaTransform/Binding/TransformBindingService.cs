@@ -8,52 +8,46 @@ public sealed class TransformBindingService
 {
     public MetaTransformBindingModel BindSingleTransformModel(
         MetaTransformScriptModel model,
-        MetaSchemaModel sourceSchema,
-        string? activeLanguageProfileIdOverride = null)
+        MetaSchemaModel sourceSchema)
     {
         ArgumentNullException.ThrowIfNull(sourceSchema);
-        return BindSingleTransformModel(model, activeLanguageProfileIdOverride);
+        return BindSingleTransformModel(model);
     }
 
     public MetaTransformBindingModel BindSingleTransformModel(
-        MetaTransformScriptModel model,
-        string? activeLanguageProfileIdOverride = null)
+        MetaTransformScriptModel model)
     {
-        var bound = BindSingleTransform(model, activeLanguageProfileIdOverride);
+        var bound = BindSingleTransform(model);
         return TransformBindingModelBuilder.Create(bound);
     }
 
     public MetaTransformBindingModel BindTransformModel(
         MetaTransformScriptModel model,
         TransformScript transformScript,
-        MetaSchemaModel sourceSchema,
-        string? activeLanguageProfileIdOverride = null)
+        MetaSchemaModel sourceSchema)
     {
         ArgumentNullException.ThrowIfNull(sourceSchema);
-        return BindTransformModel(model, transformScript, activeLanguageProfileIdOverride);
+        return BindTransformModel(model, transformScript);
     }
 
     public MetaTransformBindingModel BindTransformModel(
         MetaTransformScriptModel model,
-        TransformScript transformScript,
-        string? activeLanguageProfileIdOverride = null)
+        TransformScript transformScript)
     {
-        var bound = BindTransform(model, transformScript, activeLanguageProfileIdOverride);
+        var bound = BindTransform(model, transformScript);
         return TransformBindingModelBuilder.Create(bound);
     }
 
     public TransformBindingResult BindSingleTransform(
         MetaTransformScriptModel model,
-        MetaSchemaModel sourceSchema,
-        string? activeLanguageProfileIdOverride = null)
+        MetaSchemaModel sourceSchema)
     {
         ArgumentNullException.ThrowIfNull(sourceSchema);
-        return BindSingleTransform(model, activeLanguageProfileIdOverride);
+        return BindSingleTransform(model);
     }
 
     public TransformBindingResult BindSingleTransform(
-        MetaTransformScriptModel model,
-        string? activeLanguageProfileIdOverride = null)
+        MetaTransformScriptModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
 
@@ -63,28 +57,26 @@ public sealed class TransformBindingService
                 $"Expected exactly one TransformScript row but found {model.TransformScriptList.Count}.");
         }
 
-        return BindTransform(model, model.TransformScriptList[0], activeLanguageProfileIdOverride);
+        return BindTransform(model, model.TransformScriptList[0]);
     }
 
     public TransformBindingResult BindTransform(
         MetaTransformScriptModel model,
         TransformScript transformScript,
-        MetaSchemaModel sourceSchema,
-        string? activeLanguageProfileIdOverride = null)
+        MetaSchemaModel sourceSchema)
     {
         ArgumentNullException.ThrowIfNull(sourceSchema);
-        return BindTransform(model, transformScript, activeLanguageProfileIdOverride);
+        return BindTransform(model, transformScript);
     }
 
     public TransformBindingResult BindTransform(
         MetaTransformScriptModel model,
-        TransformScript transformScript,
-        string? activeLanguageProfileIdOverride = null)
+        TransformScript transformScript)
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(transformScript);
 
         var session = new TransformBindingSession(model);
-        return session.BindTransform(transformScript, activeLanguageProfileIdOverride);
+        return session.BindTransform(transformScript);
     }
 }

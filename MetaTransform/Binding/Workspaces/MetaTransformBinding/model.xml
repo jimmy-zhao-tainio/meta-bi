@@ -5,7 +5,6 @@
       <PropertyList>
         <Property name="MetaTransformScriptTransformScriptId" />
         <Property name="TransformScriptName" isRequired="false" />
-        <Property name="ActiveLanguageProfileId" />
       </PropertyList>
     </Entity>
     <Entity name="TransformBindingTarget">

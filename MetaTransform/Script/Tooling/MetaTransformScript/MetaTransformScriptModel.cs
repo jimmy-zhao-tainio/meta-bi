@@ -11306,7 +11306,6 @@ namespace MetaTransformScript
             {
                 ArgumentNullException.ThrowIfNull(row);
                 row.Id = RequireIdentity(row.Id, "Entity 'TransformScript' contains a row with empty Id.");
-                row.LanguageProfileId ??= string.Empty;
                 row.Name = RequireText(row.Name, $"Entity 'TransformScript' row '{row.Id}' is missing required property 'Name'.");
                 row.ScriptObjectKind ??= string.Empty;
                 row.SourcePath ??= string.Empty;

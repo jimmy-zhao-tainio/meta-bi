@@ -720,7 +720,6 @@ namespace MetaTransformBinding
             {
                 ArgumentNullException.ThrowIfNull(row);
                 row.Id = RequireIdentity(row.Id, "Entity 'TransformBinding' contains a row with empty Id.");
-                row.ActiveLanguageProfileId = RequireText(row.ActiveLanguageProfileId, $"Entity 'TransformBinding' row '{row.Id}' is missing required property 'ActiveLanguageProfileId'.");
                 row.MetaTransformScriptTransformScriptId = RequireText(row.MetaTransformScriptTransformScriptId, $"Entity 'TransformBinding' row '{row.Id}' is missing required property 'MetaTransformScriptTransformScriptId'.");
                 row.TransformScriptName ??= string.Empty;
             }
