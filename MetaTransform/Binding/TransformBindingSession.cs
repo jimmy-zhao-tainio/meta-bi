@@ -1,4 +1,5 @@
 using MetaTransformScript;
+using MetaSchema;
 
 namespace MetaTransform.Binding;
 
@@ -9,16 +10,29 @@ internal sealed partial class TransformBindingSession
     private readonly List<RuntimeTableSource> boundTableSources = [];
     private readonly List<RuntimeColumnReference> boundColumnReferences = [];
     private readonly List<RuntimeRowset> boundRowsets = [];
+    private readonly Stack<IReadOnlySet<string>> orderByOutputAliasScopeStack = [];
     private readonly HashSet<string> activeTransformFunctionParameterNames = new(StringComparer.OrdinalIgnoreCase);
     private bool isInlineTableValuedFunction;
     private readonly Dictionary<string, RuntimeCommonTableExpressionDefinition> commonTableExpressionDefinitionsByName = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeCommonTableExpressionBindingState> commonTableExpressionBindingStateByName = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeRowset?> commonTableExpressionRowsetByName = new(StringComparer.OrdinalIgnoreCase);
+    private readonly MetaSchemaTableResolver? sourceSchemaResolver;
 
     public TransformBindingSession(
         MetaTransformScriptModel model)
+        : this(model, sourceSchema: null)
+    {
+    }
+
+    public TransformBindingSession(
+        MetaTransformScriptModel model,
+        MetaSchemaModel? sourceSchema)
     {
         navigator = new TransformScriptNavigator(model);
+        if (sourceSchema is not null)
+        {
+            sourceSchemaResolver = new MetaSchemaTableResolver(sourceSchema);
+        }
     }
 
     public TransformBindingResult BindTransform(
@@ -66,7 +80,7 @@ internal sealed partial class TransformBindingSession
             int.MaxValue,
             [],
             null,
-            null);
+            ResolveExpectedOutputColumnNames(transformScript));
 
         return CreateResult(
             transformScript,
@@ -123,6 +137,46 @@ internal sealed partial class TransformBindingSession
             commonTableExpressionBindingStateByName[name] = RuntimeCommonTableExpressionBindingState.NotResolved;
             commonTableExpressionRowsetByName[name] = null;
         }
+    }
+
+    private IReadOnlyList<string>? ResolveExpectedOutputColumnNames(TransformScript transformScript)
+    {
+        if (sourceSchemaResolver is null)
+        {
+            return null;
+        }
+
+        var targetSqlIdentifier = transformScript.TargetSqlIdentifier?.Trim();
+        if (string.IsNullOrWhiteSpace(targetSqlIdentifier))
+        {
+            return null;
+        }
+
+        var targetResolution = sourceSchemaResolver.ResolveSqlIdentifier(targetSqlIdentifier);
+        if (!targetResolution.IsResolved || targetResolution.Table is null)
+        {
+            return null;
+        }
+
+        var expectedColumns = targetResolution.Table.Fields
+            .Where(static item => !item.IsIdentity)
+            .OrderBy(static item => item.Ordinal)
+            .Select(static item => item.FieldName)
+            .ToArray();
+
+        return expectedColumns.Length == 0
+            ? null
+            : expectedColumns;
+    }
+
+    private bool IsOrderByOutputAliasReference(string identifier)
+    {
+        if (orderByOutputAliasScopeStack.Count == 0)
+        {
+            return false;
+        }
+
+        return orderByOutputAliasScopeStack.Peek().Contains(identifier);
     }
 
     private readonly record struct CommonTableExpressionReferenceBindingResult(

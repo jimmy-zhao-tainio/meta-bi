@@ -40,7 +40,10 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var scope = new BindingScope(inheritedVisibleTableSources.Concat(sourceBinding.VisibleTableSources).ToArray());
+        var localVisibleTableSources = sourceBinding.VisibleTableSources.ToArray();
+        var scope = new BindingScope(
+            localVisibleTableSources.Concat(inheritedVisibleTableSources).ToArray(),
+            localVisibleTableSources.Length);
 
         var valueColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var valueColumnReference in navigator.GetPivotedTableReferenceValueColumns(pivotedTableReference))
@@ -181,7 +184,10 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var scope = new BindingScope(inheritedVisibleTableSources.Concat(sourceBinding.VisibleTableSources).ToArray());
+        var localVisibleTableSources = sourceBinding.VisibleTableSources.ToArray();
+        var scope = new BindingScope(
+            localVisibleTableSources.Concat(inheritedVisibleTableSources).ToArray(),
+            localVisibleTableSources.Length);
         var inColumnNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var inColumnReference in navigator.GetUnpivotedTableReferenceInColumns(unpivotedTableReference))
         {

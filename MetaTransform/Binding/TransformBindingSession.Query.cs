@@ -167,20 +167,33 @@ internal sealed partial class TransformBindingSession
         RuntimeRowset? inputRowset,
         RuntimeRowset outputRowset)
     {
-        foreach (var orderByElement in navigator.GetOrderByElements(orderByClause))
+        var outputAliasNames = outputRowset.Columns
+            .Select(item => item.Name)
+            .Where(static item => !string.IsNullOrWhiteSpace(item))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        orderByOutputAliasScopeStack.Push(outputAliasNames);
+        try
         {
-            var expression = navigator.TryGetExpressionWithSortOrderExpression(orderByElement);
-            if (expression is null)
+            foreach (var orderByElement in navigator.GetOrderByElements(orderByClause))
             {
-                continue;
-            }
+                var expression = navigator.TryGetExpressionWithSortOrderExpression(orderByElement);
+                if (expression is null)
+                {
+                    continue;
+                }
 
-            if (TryResolveQueryOrderByOutputAlias(expression, outputRowset))
-            {
-                continue;
-            }
+                if (TryResolveQueryOrderByOutputAlias(expression, outputRowset))
+                {
+                    continue;
+                }
 
-            BindScalarExpression(expression, scope, inputRowset, groupingContext: null, withinAggregate: false);
+                BindScalarExpression(expression, scope, inputRowset, groupingContext: null, withinAggregate: false);
+            }
+        }
+        finally
+        {
+            orderByOutputAliasScopeStack.Pop();
         }
     }
 
@@ -339,10 +352,14 @@ internal sealed partial class TransformBindingSession
             }
         }
 
+        var localVisibleTableSources = tableBindings
+            .SelectMany(item => item.VisibleTableSources)
+            .ToArray();
         var scope = new BindingScope(
-            inheritedVisibleTableSources
-                .Concat(tableBindings.SelectMany(item => item.VisibleTableSources))
-                .ToArray());
+            localVisibleTableSources
+                .Concat(inheritedVisibleTableSources)
+                .ToArray(),
+            localVisibleTableSources.Length);
 
         var localInputRowset = fromClause is null ? null : ComposeInputRowset(tableBindings, fromClause);
         var inputRowset = ComposeQueryInputRowset(querySpecification, inheritedInputRowset, localInputRowset);
@@ -508,34 +525,68 @@ internal sealed partial class TransformBindingSession
         }
 
         var directColumnReference = navigator.TryGetDirectColumnReference(expression);
-        if (directColumnReference is null)
+        if (directColumnReference is not null)
         {
-            BindScalarExpression(expression, scope, inputRowset, null, false);
-            issues.Add(new TransformBindingIssue(
-                "UnsupportedGroupingExpressionShape",
-                $"GroupingSpecification '{groupingSpecification.Id}' is not yet supported unless it is a direct column reference.",
-                groupingSpecification.Id));
+            var boundColumnReference = BindColumnReference(directColumnReference, scope, null, false);
+            if (boundColumnReference is null)
+            {
+                return;
+            }
+
+            boundColumnReferences.Add(boundColumnReference);
+
+            var signature = NormalizeColumnReferenceSignature(boundColumnReference.IdentifierParts);
+            groupingKeySignatures.Add(signature);
+            if (!emittedGroupingKeySignatures.Add(signature))
+            {
+                return;
+            }
+
+            groupingKeyColumns.Add(new RuntimeColumn(
+                $"{groupingSpecification.Id}:group-column:{groupingKeyColumns.Count + 1}",
+                boundColumnReference.ResolvedColumn.Name,
+                groupingKeyColumns.Count));
             return;
         }
 
-        var boundColumnReference = BindColumnReference(directColumnReference, scope, null, false);
-        if (boundColumnReference is null)
+        var capturedReferenceStart = boundColumnReferences.Count;
+        BindScalarExpression(expression, scope, inputRowset, null, false);
+        var capturedReferences = boundColumnReferences
+            .Skip(capturedReferenceStart)
+            .ToArray();
+
+        if (capturedReferences.Length == 0)
         {
+            var expressionSignature = $"EXPR:{expression.Id}";
+            groupingKeySignatures.Add(expressionSignature);
+            if (!emittedGroupingKeySignatures.Add(expressionSignature))
+            {
+                return;
+            }
+
+            groupingKeyColumns.Add(new RuntimeColumn(
+                $"{groupingSpecification.Id}:group-column:{groupingKeyColumns.Count + 1}",
+                $"GroupExpr{groupingKeyColumns.Count + 1}",
+                groupingKeyColumns.Count));
             return;
         }
 
-        boundColumnReferences.Add(boundColumnReference);
+        foreach (var capturedReference in capturedReferences)
+        {
+            var signature = NormalizeColumnReferenceSignature(capturedReference.IdentifierParts);
+            groupingKeySignatures.Add(signature);
+        }
 
-        var signature = NormalizeColumnReferenceSignature(boundColumnReference.IdentifierParts);
-        groupingKeySignatures.Add(signature);
-        if (!emittedGroupingKeySignatures.Add(signature))
+        var outputColumnName = capturedReferences[0].ResolvedColumn.Name;
+        var outputSignature = NormalizeColumnReferenceSignature(capturedReferences[0].IdentifierParts);
+        if (!emittedGroupingKeySignatures.Add(outputSignature))
         {
             return;
         }
 
         groupingKeyColumns.Add(new RuntimeColumn(
             $"{groupingSpecification.Id}:group-column:{groupingKeyColumns.Count + 1}",
-            boundColumnReference.ResolvedColumn.Name,
+            outputColumnName,
             groupingKeyColumns.Count));
     }
 
@@ -595,21 +646,10 @@ internal sealed partial class TransformBindingSession
 
         return firstRowset.Columns
             .Zip(secondRowset.Columns, (firstColumn, secondColumn) => (First: firstColumn, Second: secondColumn))
-            .Select((pair, ordinal) =>
-            {
-                if (!string.Equals(pair.First.Name, pair.Second.Name, StringComparison.OrdinalIgnoreCase))
-                {
-                    issues.Add(new TransformBindingIssue(
-                        "SetOperationColumnNameMismatch",
-                        $"BinaryQueryExpression '{binaryQueryExpression.Id}' column {ordinal + 1} is named '{pair.First.Name}' on the first input and '{pair.Second.Name}' on the second input.",
-                        binaryQueryExpression.Id));
-                }
-
-                return new RuntimeColumn(
-                    $"{binaryQueryExpression.Id}:column:{ordinal + 1}",
-                    pair.First.Name,
-                    ordinal);
-            })
+            .Select((pair, ordinal) => new RuntimeColumn(
+                $"{binaryQueryExpression.Id}:column:{ordinal + 1}",
+                pair.First.Name,
+                ordinal))
             .ToArray();
     }
 

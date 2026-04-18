@@ -150,11 +150,7 @@ internal sealed partial class TransformBindingSession
 
         if (string.IsNullOrWhiteSpace(outputName))
         {
-            issues.Add(new TransformBindingIssue(
-                "UnsupportedSelectOutputName",
-                $"SelectElement '{selectElement.Id}' does not currently expose a supported output name in binding.",
-                selectElement.Id));
-            return;
+            outputName = $"Expr{outputColumns.Count + 1}";
         }
 
         outputColumns.Add(new RuntimeColumn(
@@ -180,28 +176,22 @@ internal sealed partial class TransformBindingSession
         }
 
         var qualifierParts = navigator.GetSelectStarQualifierParts(selectStarExpression);
+        var localVisibleTableSources = GetLocalVisibleTableSources(scope);
+        var inheritedVisibleTableSources = GetInheritedVisibleTableSources(scope);
         IEnumerable<RuntimeTableSource> sourcesToExpand;
 
         if (qualifierParts.Count == 0)
         {
-            sourcesToExpand = scope.VisibleTableSources;
+            sourcesToExpand = localVisibleTableSources.Length > 0
+                ? localVisibleTableSources
+                : scope.VisibleTableSources;
         }
         else if (qualifierParts.Count == 1)
         {
-            var matchedSources = scope.VisibleTableSources
+            var matchedLocalSources = localVisibleTableSources
                 .Where(item => string.Equals(item.ExposedName, qualifierParts[0], StringComparison.OrdinalIgnoreCase))
                 .ToArray();
-
-            if (matchedSources.Length == 0)
-            {
-                issues.Add(new TransformBindingIssue(
-                    "SelectStarQualifierNotFound",
-                    $"Select star qualifier '{qualifierParts[0]}' does not match any visible table source.",
-                    selectStarExpression.Id));
-                return;
-            }
-
-            if (matchedSources.Length > 1)
+            if (matchedLocalSources.Length > 1)
             {
                 issues.Add(new TransformBindingIssue(
                     "SelectStarQualifierAmbiguous",
@@ -210,7 +200,36 @@ internal sealed partial class TransformBindingSession
                 return;
             }
 
-            sourcesToExpand = matchedSources;
+            if (matchedLocalSources.Length == 1)
+            {
+                sourcesToExpand = matchedLocalSources;
+            }
+            else
+            {
+                var matchedInheritedSources = inheritedVisibleTableSources
+                    .Where(item => string.Equals(item.ExposedName, qualifierParts[0], StringComparison.OrdinalIgnoreCase))
+                    .ToArray();
+
+                if (matchedInheritedSources.Length == 0)
+                {
+                    issues.Add(new TransformBindingIssue(
+                        "SelectStarQualifierNotFound",
+                        $"Select star qualifier '{qualifierParts[0]}' does not match any visible table source.",
+                        selectStarExpression.Id));
+                    return;
+                }
+
+                if (matchedInheritedSources.Length > 1)
+                {
+                    issues.Add(new TransformBindingIssue(
+                        "SelectStarQualifierAmbiguous",
+                        $"Select star qualifier '{qualifierParts[0]}' matches more than one visible table source.",
+                        selectStarExpression.Id));
+                    return;
+                }
+
+                sourcesToExpand = matchedInheritedSources;
+            }
         }
         else
         {
@@ -287,48 +306,21 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
+        if (parts.Count == 1 && IsOrderByOutputAliasReference(parts[0]))
+        {
+            return null;
+        }
+
+        var localVisibleTableSources = GetLocalVisibleTableSources(scope);
+        var inheritedVisibleTableSources = GetInheritedVisibleTableSources(scope);
+
         if (parts.Count == 1)
         {
-            var matches = scope.VisibleTableSources
+            var localMatches = localVisibleTableSources
                 .SelectMany(source => source.Rowset.Columns.Select(column => (Source: source, Column: column)))
                 .Where(item => string.Equals(item.Column.Name, parts[0], StringComparison.OrdinalIgnoreCase))
                 .ToArray();
-
-            if (matches.Length == 0)
-            {
-                var inferableSources = scope.VisibleTableSources
-                    .Where(CanInferSourceColumn)
-                    .ToArray();
-
-                if (inferableSources.Length == 1)
-                {
-                    var inferredColumn = EnsureInferredSourceColumn(inferableSources[0], parts[0]);
-                    return ValidateGroupedColumnReference(
-                        syntaxEntityId,
-                        parts,
-                        inferredColumn,
-                        inferableSources[0],
-                        groupingContext,
-                        withinAggregate);
-                }
-
-                if (inferableSources.Length > 1)
-                {
-                    issues.Add(new TransformBindingIssue(
-                        "ColumnReferenceRequiresValidationSchema",
-                        $"Column '{parts[0]}' could belong to more than one visible source rowset; Binding cannot resolve it from syntax alone.",
-                        syntaxEntityId));
-                    return null;
-                }
-
-                issues.Add(new TransformBindingIssue(
-                    "ColumnReferenceNotFound",
-                    $"Column '{parts[0]}' is not visible in the current query scope.",
-                    syntaxEntityId));
-                return null;
-            }
-
-            if (matches.Length > 1)
+            if (localMatches.Length > 1)
             {
                 issues.Add(new TransformBindingIssue(
                     "ColumnReferenceAmbiguous",
@@ -337,37 +329,115 @@ internal sealed partial class TransformBindingSession
                 return null;
             }
 
-            return ValidateGroupedColumnReference(
-                syntaxEntityId,
-                parts,
-                matches[0].Column,
-                matches[0].Source,
-                groupingContext,
-                withinAggregate);
-        }
+            if (localMatches.Length == 1)
+            {
+                return ValidateGroupedColumnReference(
+                    syntaxEntityId,
+                    parts,
+                    localMatches[0].Column,
+                    localMatches[0].Source,
+                    groupingContext,
+                    withinAggregate);
+            }
 
-        if (parts.Count == 2)
-        {
-            var matchedSources = scope.VisibleTableSources
-                .Where(item => string.Equals(item.ExposedName, parts[0], StringComparison.OrdinalIgnoreCase))
+            var inheritedMatches = inheritedVisibleTableSources
+                .SelectMany(source => source.Rowset.Columns.Select(column => (Source: source, Column: column)))
+                .Where(item => string.Equals(item.Column.Name, parts[0], StringComparison.OrdinalIgnoreCase))
                 .ToArray();
-
-            if (matchedSources.Length == 0)
+            if (inheritedMatches.Length > 1)
             {
                 issues.Add(new TransformBindingIssue(
-                    "ColumnQualifierNotFound",
-                    $"Column qualifier '{parts[0]}' is not visible in the current query scope.",
+                    "ColumnReferenceAmbiguous",
+                    $"Column '{parts[0]}' resolves ambiguously across visible table sources.",
                     syntaxEntityId));
                 return null;
             }
 
-            if (matchedSources.Length > 1)
+            if (inheritedMatches.Length == 1)
+            {
+                return ValidateGroupedColumnReference(
+                    syntaxEntityId,
+                    parts,
+                    inheritedMatches[0].Column,
+                    inheritedMatches[0].Source,
+                    groupingContext,
+                    withinAggregate);
+            }
+
+            if (TryInferColumnReferenceFromSources(
+                    syntaxEntityId,
+                    parts,
+                    localVisibleTableSources,
+                    groupingContext,
+                    withinAggregate,
+                    out var inferredLocalReference))
+            {
+                return inferredLocalReference;
+            }
+
+            if (TryInferColumnReferenceFromSources(
+                    syntaxEntityId,
+                    parts,
+                    inheritedVisibleTableSources,
+                    groupingContext,
+                    withinAggregate,
+                    out var inferredInheritedReference))
+            {
+                return inferredInheritedReference;
+            }
+
+            issues.Add(new TransformBindingIssue(
+                "ColumnReferenceNotFound",
+                $"Column '{parts[0]}' is not visible in the current query scope.",
+                syntaxEntityId));
+            return null;
+        }
+
+        if (parts.Count == 2)
+        {
+            var matchedLocalSources = localVisibleTableSources
+                .Where(item => string.Equals(item.ExposedName, parts[0], StringComparison.OrdinalIgnoreCase))
+                .ToArray();
+
+            RuntimeTableSource[] matchedSources;
+            if (matchedLocalSources.Length > 1)
             {
                 issues.Add(new TransformBindingIssue(
                     "ColumnQualifierAmbiguous",
                     $"Column qualifier '{parts[0]}' matches more than one visible table source.",
                     syntaxEntityId));
                 return null;
+            }
+
+            if (matchedLocalSources.Length == 1)
+            {
+                matchedSources = matchedLocalSources;
+            }
+            else
+            {
+                var matchedInheritedSources = inheritedVisibleTableSources
+                    .Where(item => string.Equals(item.ExposedName, parts[0], StringComparison.OrdinalIgnoreCase))
+                    .ToArray();
+
+                if (matchedInheritedSources.Length == 0)
+                {
+                    issues.Add(new TransformBindingIssue(
+                        "ColumnQualifierNotFound",
+                        $"Column qualifier '{parts[0]}' is not visible in the current query scope.",
+                        syntaxEntityId));
+                    return null;
+                }
+
+                if (matchedInheritedSources.Length > 1)
+                {
+                    issues.Add(new TransformBindingIssue(
+                        "ColumnQualifierAmbiguous",
+                        $"Column qualifier '{parts[0]}' matches more than one visible table source.",
+                        syntaxEntityId));
+                    return null;
+                }
+
+                matchedSources = matchedInheritedSources;
             }
 
             var matchedColumns = matchedSources[0].Rowset.Columns
@@ -378,6 +448,16 @@ internal sealed partial class TransformBindingSession
             {
                 if (CanInferSourceColumn(matchedSources[0]))
                 {
+                    if (sourceSchemaResolver is not null &&
+                        matchedSources[0].Rowset.Columns.Count > 0)
+                    {
+                        issues.Add(new TransformBindingIssue(
+                            "QualifiedColumnReferenceNotFound",
+                            $"Column '{parts[1]}' is not exposed by table source '{parts[0]}'.",
+                            syntaxEntityId));
+                        return null;
+                    }
+
                     var inferredColumn = EnsureInferredSourceColumn(matchedSources[0], parts[1]);
                     return ValidateGroupedColumnReference(
                         syntaxEntityId,
@@ -477,6 +557,113 @@ internal sealed partial class TransformBindingSession
         }
 
         return new RuntimeColumnReference(syntaxEntityId, parts, column, tableSource);
+    }
+
+    private bool TryInferColumnReferenceFromSources(
+        string syntaxEntityId,
+        IReadOnlyList<string> parts,
+        IReadOnlyList<RuntimeTableSource> candidateSources,
+        RuntimeGroupingContext? groupingContext,
+        bool withinAggregate,
+        out RuntimeColumnReference? inferredColumnReference)
+    {
+        inferredColumnReference = null;
+
+        if (candidateSources.Count == 0)
+        {
+            return false;
+        }
+
+        var inferableSources = candidateSources
+            .Where(CanInferSourceColumn)
+            .ToArray();
+        if (inferableSources.Length == 0)
+        {
+            return false;
+        }
+
+        var unresolvedInferableSources = inferableSources
+            .Where(static item => item.Rowset.Columns.Count == 0)
+            .ToArray();
+
+        if (sourceSchemaResolver is not null)
+        {
+            if (unresolvedInferableSources.Length == 1)
+            {
+                var inferredColumn = EnsureInferredSourceColumn(unresolvedInferableSources[0], parts[0]);
+                inferredColumnReference = ValidateGroupedColumnReference(
+                    syntaxEntityId,
+                    parts,
+                    inferredColumn,
+                    unresolvedInferableSources[0],
+                    groupingContext,
+                    withinAggregate);
+                return true;
+            }
+
+            if (unresolvedInferableSources.Length > 1)
+            {
+                issues.Add(new TransformBindingIssue(
+                    "ColumnReferenceRequiresValidationSchema",
+                    $"Column '{parts[0]}' could belong to more than one visible source rowset; Binding cannot resolve it from syntax alone.",
+                    syntaxEntityId));
+                return true;
+            }
+
+            return false;
+        }
+
+        if (inferableSources.Length == 1)
+        {
+            var inferredColumn = EnsureInferredSourceColumn(inferableSources[0], parts[0]);
+            inferredColumnReference = ValidateGroupedColumnReference(
+                syntaxEntityId,
+                parts,
+                inferredColumn,
+                inferableSources[0],
+                groupingContext,
+                withinAggregate);
+            return true;
+        }
+
+        if (inferableSources.Length > 1)
+        {
+            issues.Add(new TransformBindingIssue(
+                "ColumnReferenceRequiresValidationSchema",
+                $"Column '{parts[0]}' could belong to more than one visible source rowset; Binding cannot resolve it from syntax alone.",
+                syntaxEntityId));
+            return true;
+        }
+
+        return false;
+    }
+
+    private static RuntimeTableSource[] GetLocalVisibleTableSources(BindingScope scope)
+    {
+        var localCount = Math.Clamp(
+            scope.LocalVisibleTableSourceCount,
+            0,
+            scope.VisibleTableSources.Count);
+        if (localCount == 0)
+        {
+            return [];
+        }
+
+        return scope.VisibleTableSources.Take(localCount).ToArray();
+    }
+
+    private static RuntimeTableSource[] GetInheritedVisibleTableSources(BindingScope scope)
+    {
+        var localCount = Math.Clamp(
+            scope.LocalVisibleTableSourceCount,
+            0,
+            scope.VisibleTableSources.Count);
+        if (localCount >= scope.VisibleTableSources.Count)
+        {
+            return [];
+        }
+
+        return scope.VisibleTableSources.Skip(localCount).ToArray();
     }
 
     private static string NormalizeColumnReferenceSignature(IReadOnlyList<string> parts) =>

@@ -296,12 +296,16 @@ public sealed class TransformBindingValidationService
         var writeCandidateColumns = allNonIdentityExpectedColumns
             .Where(item => !ignoredTargetColumnNames.Contains(item.FieldName))
             .ToArray();
+        var actualWriteColumns = actualColumns
+            .Where(item => !IsAnonymousSyntheticOutputColumn(item, expectedColumnsByName))
+            .Where(item => !IsDuplicateOutputColumnName(item, actualColumns))
+            .ToArray();
 
-        if (actualColumns.Length > writeCandidateColumns.Length)
+        if (actualWriteColumns.Length > writeCandidateColumns.Length)
         {
             throw new TransformBindingValidationException(
                 "TargetRowsetColumnCountMismatch",
-                $"Final output rowset exposes {actualColumns.Length} column(s), but target table '{targetSqlIdentifier}' declares {writeCandidateColumns.Length} non-identity column(s).");
+                $"Final output rowset exposes {actualWriteColumns.Length} write-contracted column(s), but target table '{targetSqlIdentifier}' declares {writeCandidateColumns.Length} non-identity column(s).");
         }
 
         var targetRowsetLinkId = $"{validationId}:target:{targetRowsetLinks.Count + 1}";
@@ -328,13 +332,13 @@ public sealed class TransformBindingValidationService
             .ToDictionary(item => item.FieldName, StringComparer.OrdinalIgnoreCase);
         var matchedWriteCandidateFieldIds = new HashSet<string>(StringComparer.Ordinal);
 
-        for (var ordinal = 0; ordinal < actualColumns.Length; ordinal++)
+        for (var ordinal = 0; ordinal < actualWriteColumns.Length; ordinal++)
         {
-            if (!writeCandidateColumnsByName.TryGetValue(actualColumns[ordinal].Name, out var matchedTargetField))
+            if (!writeCandidateColumnsByName.TryGetValue(actualWriteColumns[ordinal].Name, out var matchedTargetField))
             {
                 throw new TransformBindingValidationException(
                     "TargetOutputColumnNotInSchema",
-                    $"Final output rowset for target '{targetSqlIdentifier}' includes column '{actualColumns[ordinal].Name}', but no writable non-identity target field with that name exists.");
+                    $"Final output rowset for target '{targetSqlIdentifier}' includes column '{actualWriteColumns[ordinal].Name}', but no writable non-identity target field with that name exists.");
             }
 
             if (!matchedWriteCandidateFieldIds.Add(matchedTargetField.FieldId))
@@ -352,7 +356,7 @@ public sealed class TransformBindingValidationService
                 "TargetSchemaFieldMetaDataTypeNotSanctioned",
                 $"Target schema field '{resolution.Table.CanonicalSqlIdentifier}.{matchedTargetField.FieldName}'");
 
-            var outputColumnName = actualColumns[ordinal].Name;
+            var outputColumnName = actualWriteColumns[ordinal].Name;
             var targetColumnTypeAssessment = TargetColumnTypeAssessment.NotClassified;
             var sourceMetaDataTypeIdForCompatibility = string.Empty;
             if (sourceColumnTypeCandidatesByName.TryGetValue(outputColumnName, out var sourceCandidates) &&
@@ -360,10 +364,9 @@ public sealed class TransformBindingValidationService
             {
                 var sourceCandidate = sourceCandidates[0];
                 sourceMetaDataTypeIdForCompatibility = sourceCandidate.SourceMetaDataTypeId;
-                if (!string.Equals(
+                if (!IsCanonicalTypeConformant(
                         sourceCandidate.CanonicalMetaDataTypeId,
-                        targetMetaDataTypeResolution.TargetDataTypeId,
-                        StringComparison.Ordinal))
+                        targetMetaDataTypeResolution.TargetDataTypeId))
                 {
                     throw new TransformBindingValidationException(
                         "TargetColumnTypeConformanceMismatch",
@@ -416,7 +419,7 @@ public sealed class TransformBindingValidationService
             {
                 Id = $"{targetRowsetLinkId}:column:{targetColumnLinks.Count + 1}",
                 ValidationTargetRowsetLinkId = targetRowsetLinkId,
-                ColumnId = actualColumns[ordinal].Id,
+                ColumnId = actualWriteColumns[ordinal].Id,
                 MetaSchemaFieldId = matchedTargetField.FieldId
             });
 
@@ -549,9 +552,74 @@ public sealed class TransformBindingValidationService
             $"Final output column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from source '{sourceDisplayName}' with {detailName} '{sourceDetail.Value}', but target field '{targetFieldDisplayName}' declares {detailName} '{targetDetail.Value}'.");
     }
 
+    private static bool IsAnonymousSyntheticOutputColumn(
+        Column outputColumn,
+        IReadOnlyDictionary<string, ResolvedSchemaField> expectedColumnsByName)
+    {
+        if (expectedColumnsByName.ContainsKey(outputColumn.Name))
+        {
+            return false;
+        }
+
+        return IsSyntheticExpressionOutputName(outputColumn.Name);
+    }
+
+    private static bool IsSyntheticExpressionOutputName(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name) ||
+            !name.StartsWith("Expr", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        var suffix = name.Substring(4);
+        return suffix.Length > 0 && suffix.All(char.IsDigit);
+    }
+
+    private static bool IsDuplicateOutputColumnName(Column outputColumn, IReadOnlyList<Column> allOutputColumns)
+    {
+        var firstMatch = allOutputColumns
+            .FirstOrDefault(item => string.Equals(item.Name, outputColumn.Name, StringComparison.OrdinalIgnoreCase));
+        if (firstMatch is null)
+        {
+            return false;
+        }
+
+        return !string.Equals(firstMatch.Id, outputColumn.Id, StringComparison.Ordinal);
+    }
+
     private static bool IsRequiredWriteColumn(ResolvedSchemaField field)
     {
         return field.IsNullable != true;
+    }
+
+    private static bool IsCanonicalTypeConformant(
+        string sourceCanonicalMetaDataTypeId,
+        string targetCanonicalMetaDataTypeId)
+    {
+        if (string.Equals(sourceCanonicalMetaDataTypeId, targetCanonicalMetaDataTypeId, StringComparison.Ordinal))
+        {
+            return true;
+        }
+
+        var targetIsUnicodeStringFamily =
+            string.Equals(targetCanonicalMetaDataTypeId, "meta:type:String", StringComparison.Ordinal) ||
+            string.Equals(targetCanonicalMetaDataTypeId, "meta:type:StringFixedLength", StringComparison.Ordinal);
+        if (!targetIsUnicodeStringFamily)
+        {
+            return false;
+        }
+
+        // SQL Server workflows frequently widen to Unicode text in view/result metadata.
+        // Treat selected source canonical families as sanctioned conversions to Unicode targets.
+        return sourceCanonicalMetaDataTypeId switch
+        {
+            "meta:type:AnsiString" => true,
+            "meta:type:AnsiStringFixedLength" => true,
+            "meta:type:Int32" => true,
+            "meta:type:Decimal" => true,
+            _ => false
+        };
     }
 
     private static TargetColumnTypeAssessment ClassifyDataTypeConformance(

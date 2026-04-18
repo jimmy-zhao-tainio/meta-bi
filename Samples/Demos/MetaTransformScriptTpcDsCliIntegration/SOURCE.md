@@ -20,3 +20,4 @@
 
 - This demo is a parser/import corpus slice for `MetaTransformScript`.
 - It is not a claim of benchmark-fidelity execution semantics.
+- `SchemaWS` is checked in as a one-off schema snapshot for this corpus and reused as the demo schema contract.

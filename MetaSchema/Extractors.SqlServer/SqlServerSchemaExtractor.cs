@@ -371,7 +371,7 @@ public sealed class SqlServerSchemaExtractor
         command.CommandText = """
             select
                 s.name as SchemaName,
-                t.name as TableName,
+                o.name as TableName,
                 c.name as ColumnName,
                 c.column_id as OrdinalPosition,
                 c.is_nullable,
@@ -393,14 +393,15 @@ public sealed class SqlServerSchemaExtractor
                 c.is_identity,
                 convert(nvarchar(50), ic.seed_value) as IdentitySeed,
                 convert(nvarchar(50), ic.increment_value) as IdentityIncrement
-            from sys.tables t
-            join sys.schemas s on s.schema_id = t.schema_id
-            join sys.columns c on c.object_id = t.object_id
+            from sys.objects o
+            join sys.schemas s on s.schema_id = o.schema_id
+            join sys.columns c on c.object_id = o.object_id
             join sys.types ty on ty.user_type_id = c.user_type_id
             left join sys.identity_columns ic on ic.object_id = c.object_id and ic.column_id = c.column_id
             where s.name = @schemaName
-              and t.name = @tableName
-            order by t.name, c.column_id
+              and o.name = @tableName
+              and o.type in ('U', 'V')
+            order by o.name, c.column_id
             """;
         command.Parameters.Add(new SqlParameter("@schemaName", SqlDbType.NVarChar, 128) { Value = schemaName });
         command.Parameters.Add(new SqlParameter("@tableName", SqlDbType.NVarChar, 128) { Value = tableName });

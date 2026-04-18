@@ -11,7 +11,8 @@ public sealed class TransformBindingService
         MetaSchemaModel sourceSchema)
     {
         ArgumentNullException.ThrowIfNull(sourceSchema);
-        return BindSingleTransformModel(model);
+        var bound = BindSingleTransform(model, sourceSchema);
+        return TransformBindingModelBuilder.Create(bound);
     }
 
     public MetaTransformBindingModel BindSingleTransformModel(
@@ -27,7 +28,8 @@ public sealed class TransformBindingService
         MetaSchemaModel sourceSchema)
     {
         ArgumentNullException.ThrowIfNull(sourceSchema);
-        return BindTransformModel(model, transformScript);
+        var bound = BindTransform(model, transformScript, sourceSchema);
+        return TransformBindingModelBuilder.Create(bound);
     }
 
     public MetaTransformBindingModel BindTransformModel(
@@ -43,7 +45,15 @@ public sealed class TransformBindingService
         MetaSchemaModel sourceSchema)
     {
         ArgumentNullException.ThrowIfNull(sourceSchema);
-        return BindSingleTransform(model);
+        ArgumentNullException.ThrowIfNull(model);
+
+        if (model.TransformScriptList.Count != 1)
+        {
+            throw new InvalidOperationException(
+                $"Expected exactly one TransformScript row but found {model.TransformScriptList.Count}.");
+        }
+
+        return BindTransform(model, model.TransformScriptList[0], sourceSchema);
     }
 
     public TransformBindingResult BindSingleTransform(
@@ -66,7 +76,11 @@ public sealed class TransformBindingService
         MetaSchemaModel sourceSchema)
     {
         ArgumentNullException.ThrowIfNull(sourceSchema);
-        return BindTransform(model, transformScript);
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentNullException.ThrowIfNull(transformScript);
+
+        var session = new TransformBindingSession(model, sourceSchema);
+        return session.BindTransform(transformScript);
     }
 
     public TransformBindingResult BindTransform(

@@ -300,6 +300,63 @@ public sealed class CliTests
         }
     }
 
+    [Fact]
+    public void SqlServerExtractor_ExtractsViewColumns()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "MetaSchemaWorkspace");
+        var databaseName = $"MetaSchemaViewColumns_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            ExecuteSql(databaseConnectionString, """
+                CREATE TABLE dbo.ViewSource
+                (
+                    SourceId int NOT NULL,
+                    SourceName nvarchar(50) NOT NULL
+                );
+                """);
+            ExecuteSql(databaseConnectionString, """
+                CREATE VIEW dbo.ViewCase
+                AS
+                SELECT
+                    SourceId,
+                    SourceName AS AliasName
+                FROM dbo.ViewSource;
+                """);
+
+            var extractor = new SqlServerSchemaExtractor();
+            var workspace = extractor.ExtractMetaSchemaWorkspace(new SqlServerExtractRequest
+            {
+                NewWorkspacePath = workspacePath,
+                ConnectionString = databaseConnectionString,
+                SystemName = databaseName,
+                SchemaName = "dbo",
+                TableName = "ViewCase",
+            });
+
+            var table = Assert.Single(workspace.Instance.GetOrCreateEntityRecords("Table"));
+            Assert.Equal("ViewCase", table.Values["Name"]);
+            Assert.Equal("View", table.Values["ObjectType"]);
+
+            var fieldsByName = workspace.Instance
+                .GetOrCreateEntityRecords("Field")
+                .ToDictionary(row => row.Values["Name"], StringComparer.Ordinal);
+
+            Assert.Equal(2, fieldsByName.Count);
+            Assert.Contains("SourceId", fieldsByName.Keys);
+            Assert.Contains("AliasName", fieldsByName.Keys);
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
     private static (int ExitCode, string Output) RunCli(string arguments)
     {
         var repoRoot = FindRepositoryRoot();

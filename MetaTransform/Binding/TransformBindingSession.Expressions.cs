@@ -194,7 +194,7 @@ internal sealed partial class TransformBindingSession
             var predicate = navigator.TryGetIIfPredicate(iIfCall);
             if (predicate is not null)
             {
-                BindBooleanExpression(predicate, scope, inputRowset, groupingContext);
+                BindBooleanExpression(predicate, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             var thenExpression = navigator.TryGetIIfThenExpression(iIfCall);
@@ -350,7 +350,8 @@ internal sealed partial class TransformBindingSession
         BooleanExpression booleanExpression,
         BindingScope scope,
         RuntimeRowset? inputRowset,
-        RuntimeGroupingContext? groupingContext)
+        RuntimeGroupingContext? groupingContext,
+        bool withinAggregate = false)
     {
         var booleanBinaryExpression = navigator.TryGetBooleanBinaryExpression(booleanExpression);
         if (booleanBinaryExpression is not null)
@@ -360,12 +361,12 @@ internal sealed partial class TransformBindingSession
             {
                 if (children.Value.First is not null)
                 {
-                    BindBooleanExpression(children.Value.First, scope, inputRowset, groupingContext);
+                    BindBooleanExpression(children.Value.First, scope, inputRowset, groupingContext, withinAggregate);
                 }
 
                 if (children.Value.Second is not null)
                 {
-                    BindBooleanExpression(children.Value.Second, scope, inputRowset, groupingContext);
+                    BindBooleanExpression(children.Value.Second, scope, inputRowset, groupingContext, withinAggregate);
                 }
             }
 
@@ -378,7 +379,7 @@ internal sealed partial class TransformBindingSession
             var operand = navigator.TryGetBooleanNotExpressionOperand(booleanNotExpression);
             if (operand is not null)
             {
-                BindBooleanExpression(operand, scope, inputRowset, groupingContext);
+                BindBooleanExpression(operand, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             return;
@@ -390,7 +391,7 @@ internal sealed partial class TransformBindingSession
             var operand = navigator.TryGetBooleanParenthesisExpressionOperand(booleanParenthesisExpression);
             if (operand is not null)
             {
-                BindBooleanExpression(operand, scope, inputRowset, groupingContext);
+                BindBooleanExpression(operand, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             return;
@@ -404,12 +405,12 @@ internal sealed partial class TransformBindingSession
             {
                 if (operands.Value.First is not null)
                 {
-                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, withinAggregate);
                 }
 
                 if (operands.Value.Second is not null)
                 {
-                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, withinAggregate);
                 }
             }
 
@@ -424,17 +425,17 @@ internal sealed partial class TransformBindingSession
             {
                 if (operands.Value.First is not null)
                 {
-                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, withinAggregate);
                 }
 
                 if (operands.Value.Second is not null)
                 {
-                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, withinAggregate);
                 }
 
                 if (operands.Value.Third is not null)
                 {
-                    BindScalarExpression(operands.Value.Third, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.Third, scope, inputRowset, groupingContext, withinAggregate);
                 }
             }
 
@@ -447,7 +448,7 @@ internal sealed partial class TransformBindingSession
             var operand = navigator.TryGetBooleanIsNullExpressionOperand(booleanIsNullExpression);
             if (operand is not null)
             {
-                BindScalarExpression(operand, scope, inputRowset, groupingContext, false);
+                BindScalarExpression(operand, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             return;
@@ -461,19 +462,19 @@ internal sealed partial class TransformBindingSession
             {
                 if (operands.Value.First is not null)
                 {
-                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, withinAggregate);
                 }
 
                 if (operands.Value.Second is not null)
                 {
-                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, withinAggregate);
                 }
             }
 
             var escapeExpression = navigator.TryGetLikePredicateEscapeExpression(likePredicate);
             if (escapeExpression is not null)
             {
-                BindScalarExpression(escapeExpression, scope, inputRowset, groupingContext, false);
+                BindScalarExpression(escapeExpression, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             return;
@@ -487,12 +488,12 @@ internal sealed partial class TransformBindingSession
             {
                 if (operands.Value.First is not null)
                 {
-                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.First, scope, inputRowset, groupingContext, withinAggregate);
                 }
 
                 if (operands.Value.Second is not null)
                 {
-                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, false);
+                    BindScalarExpression(operands.Value.Second, scope, inputRowset, groupingContext, withinAggregate);
                 }
             }
 
@@ -504,7 +505,7 @@ internal sealed partial class TransformBindingSession
         {
             foreach (var column in navigator.GetFullTextPredicateColumns(fullTextPredicate))
             {
-                var boundColumnReference = BindColumnReference(column, scope, groupingContext, withinAggregate: false);
+                var boundColumnReference = BindColumnReference(column, scope, groupingContext, withinAggregate);
                 if (boundColumnReference is not null)
                 {
                     boundColumnReferences.Add(boundColumnReference);
@@ -514,7 +515,7 @@ internal sealed partial class TransformBindingSession
             var valueExpression = navigator.TryGetFullTextPredicateValueExpression(fullTextPredicate);
             if (valueExpression is not null)
             {
-                BindScalarExpression(valueExpression, scope, inputRowset, groupingContext, false);
+                BindScalarExpression(valueExpression, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             return;
@@ -538,12 +539,12 @@ internal sealed partial class TransformBindingSession
             var expression = navigator.TryGetInPredicateExpression(inPredicate);
             if (expression is not null)
             {
-                BindScalarExpression(expression, scope, inputRowset, groupingContext, false);
+                BindScalarExpression(expression, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             foreach (var value in navigator.GetInPredicateValues(inPredicate))
             {
-                BindScalarExpression(value, scope, inputRowset, groupingContext, false);
+                BindScalarExpression(value, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             var subquery = navigator.TryGetInPredicateSubquery(inPredicate);
@@ -561,7 +562,7 @@ internal sealed partial class TransformBindingSession
             var expression = navigator.TryGetSubqueryComparisonPredicateExpression(subqueryComparisonPredicate);
             if (expression is not null)
             {
-                BindScalarExpression(expression, scope, inputRowset, groupingContext, false);
+                BindScalarExpression(expression, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             var subquery = navigator.TryGetSubqueryComparisonPredicateSubquery(subqueryComparisonPredicate);
@@ -591,7 +592,7 @@ internal sealed partial class TransformBindingSession
             var whenCondition = navigator.TryGetSearchedWhenClauseCondition(whenClause);
             if (whenCondition is not null)
             {
-                BindBooleanExpression(whenCondition, scope, inputRowset, groupingContext);
+                BindBooleanExpression(whenCondition, scope, inputRowset, groupingContext, withinAggregate);
             }
 
             var thenExpression = navigator.TryGetWhenClauseThenExpression(whenClause);
@@ -658,13 +659,25 @@ internal sealed partial class TransformBindingSession
 
         return functionName.Trim().ToUpperInvariant() switch
         {
+            "APPROX_COUNT_DISTINCT" => true,
             "AVG" => true,
+            "CHECKSUM_AGG" => true,
             "COUNT" => true,
+            "COUNT_BIG" => true,
             "GROUPING" => true,
             "GROUPING_ID" => true,
             "MAX" => true,
             "MIN" => true,
+            "STDEV" => true,
+            "STDEVP" => true,
+            "STDDEV_SAMP" => true,
+            "STDDEV_POP" => true,
+            "STRING_AGG" => true,
             "SUM" => true,
+            "VAR" => true,
+            "VARP" => true,
+            "VAR_SAMP" => true,
+            "VAR_POP" => true,
             _ => false
         };
     }
@@ -686,10 +699,10 @@ internal sealed partial class TransformBindingSession
         var normalizedFunctionName = functionName.Trim().ToUpperInvariant();
         var parts = navigator.GetColumnReferenceParts(directColumnReference);
 
-        if (normalizedFunctionName == "EXTRACT" &&
-            parameterOrdinal == 0 &&
+        if (parameterOrdinal == 0 &&
             parts.Count == 1 &&
-            IsExtractDatePartToken(parts[0]))
+            IsDatePartToken(parts[0]) &&
+            IsDatePartFunctionName(normalizedFunctionName))
         {
             return true;
         }
@@ -707,23 +720,62 @@ internal sealed partial class TransformBindingSession
         };
     }
 
-    private static bool IsExtractDatePartToken(string token)
+    private static bool IsDatePartFunctionName(string functionName)
+    {
+        return functionName switch
+        {
+            "DATEADD" => true,
+            "DATEDIFF" => true,
+            "DATEDIFF_BIG" => true,
+            "DATENAME" => true,
+            "DATEPART" => true,
+            "DATETRUNC" => true,
+            "EXTRACT" => true,
+            _ => false
+        };
+    }
+
+    private static bool IsDatePartToken(string token)
     {
         return token.Trim().ToUpperInvariant() switch
         {
             "YEAR" => true,
+            "YY" => true,
+            "YYYY" => true,
             "QUARTER" => true,
+            "QQ" => true,
+            "Q" => true,
             "MONTH" => true,
+            "MM" => true,
+            "M" => true,
             "DAYOFYEAR" => true,
+            "DY" => true,
+            "Y" => true,
             "DAY" => true,
+            "DD" => true,
+            "D" => true,
             "WEEK" => true,
+            "WK" => true,
+            "WW" => true,
+            "ISOWK" => true,
+            "ISOWW" => true,
             "WEEKDAY" => true,
+            "DW" => true,
+            "W" => true,
             "HOUR" => true,
+            "HH" => true,
             "MINUTE" => true,
+            "MI" => true,
+            "N" => true,
             "SECOND" => true,
+            "SS" => true,
+            "S" => true,
             "MILLISECOND" => true,
+            "MS" => true,
             "MICROSECOND" => true,
+            "MCS" => true,
             "NANOSECOND" => true,
+            "NS" => true,
             "TZOFFSET" => true,
             "ISO_WEEK" => true,
             _ => false

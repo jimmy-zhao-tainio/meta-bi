@@ -38,7 +38,8 @@ public sealed record RuntimeColumnReference(
     RuntimeTableSource ResolvedTableSource);
 
 public sealed record BindingScope(
-    IReadOnlyList<RuntimeTableSource> VisibleTableSources);
+    IReadOnlyList<RuntimeTableSource> VisibleTableSources,
+    int LocalVisibleTableSourceCount = 0);
 
 internal sealed record RuntimeTableReferenceBinding(
     RuntimeRowset Rowset,

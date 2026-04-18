@@ -8,6 +8,15 @@ Current status: full `q01`-`q99` import and SQL export roundtrip succeeds.
 
 See [CURRENT_GAPS.md](./CURRENT_GAPS.md) for the latest known failures from this demo run.
 
+## Schema Snapshot
+
+`SchemaWS` is checked in as a one-off snapshot and is treated as the persisted schema contract for this demo.
+It includes:
+- TPC-DS source tables used by the corpus.
+- `tpcds.v_q01`..`tpcds.v_q99` target tables.
+
+The demo does not re-extract schema on each run.
+
 ## Run
 
 ```cmd

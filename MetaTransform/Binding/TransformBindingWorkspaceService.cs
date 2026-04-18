@@ -23,7 +23,7 @@ public sealed class TransformBindingWorkspaceService
         var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspaceFullPath, searchUpward: false);
         var schemaModel = MetaSchemaModel.LoadFromXmlWorkspace(schemaWorkspaceFullPath, searchUpward: false);
         var transformScripts = ResolveScripts(transformModel);
-        var packages = BindTransformScripts(transformModel, transformScripts);
+        var packages = BindTransformScripts(transformModel, transformScripts, schemaModel);
         EnsureBindingSucceeded(packages);
         var bindingModel = BuildCombinedBindingModel(packages);
         var validatedModel = new TransformBindingValidationService().ApplyValidation(
@@ -111,7 +111,8 @@ public sealed class TransformBindingWorkspaceService
 
     private static List<ScriptBindingPackage> BindTransformScripts(
         MetaTransformScriptModel transformModel,
-        IReadOnlyList<TransformScript> transformScripts)
+        IReadOnlyList<TransformScript> transformScripts,
+        MetaSchemaModel? sourceSchema = null)
     {
         var bindingService = new TransformBindingService();
         var packages = new List<ScriptBindingPackage>(transformScripts.Count);
@@ -119,7 +120,9 @@ public sealed class TransformBindingWorkspaceService
         foreach (var transformScript in transformScripts)
         {
             var target = CreateTargetFromTransformScript(transformScript);
-            var bound = bindingService.BindTransform(transformModel, transformScript);
+            var bound = sourceSchema is null
+                ? bindingService.BindTransform(transformModel, transformScript)
+                : bindingService.BindTransform(transformModel, transformScript, sourceSchema);
             packages.Add(new ScriptBindingPackage(transformScript, bound, target));
         }
 

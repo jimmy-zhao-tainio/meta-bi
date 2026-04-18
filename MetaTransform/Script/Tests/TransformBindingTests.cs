@@ -25,7 +25,7 @@ public sealed class TransformBindingTests
     }
 
     [Fact]
-    public void BindSelectStarAcrossJoinedNamedSources_RequiresValidationSchemaForSourceShape()
+    public void BindSelectStarAcrossJoinedNamedSources_WithSchema_DerivesStarOutputColumns()
     {
         var model = ParseCorpus("002_select_star.sql");
 
@@ -35,8 +35,11 @@ public sealed class TransformBindingTests
 
         var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
 
-        Assert.Contains(bound.Issues, item => item.Code == "SelectStarRequiresValidationSchema");
-        Assert.True(bound.HasErrors);
+        Assert.False(bound.HasErrors);
+        Assert.NotNull(bound.TopLevelRowset);
+        Assert.Equal(
+            ["CustomerId", "CustomerName", "OrderId"],
+            bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
     }
 
     [Fact]
@@ -59,8 +62,229 @@ INNER JOIN dbo.[Order] AS o
 
         var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
 
-        var issue = Assert.Single(bound.Issues, item => item.Code == "ColumnReferenceRequiresValidationSchema");
-        Assert.Equal("ColumnReferenceRequiresValidationSchema", issue.Code);
+        var issue = Assert.Single(bound.Issues, item => item.Code == "ColumnReferenceAmbiguous");
+        Assert.Equal("ColumnReferenceAmbiguous", issue.Code);
+    }
+
+    [Fact]
+    public void BindDateAddDatePartToken_DoesNotResolveDatePartAsColumn()
+    {
+        var sql = """
+CREATE VIEW dbo.v_dateadd AS
+SELECT
+    DATEADD(day, 1, s.CreatedAt) AS NextDate
+FROM dbo.SourceTable AS s;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CreatedAt"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.DoesNotContain(
+            bound.ColumnReferences,
+            item => item.IdentifierParts.Count == 1 &&
+                    string.Equals(item.IdentifierParts[0], "day", StringComparison.OrdinalIgnoreCase));
+        Assert.Equal(["NextDate"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
+    }
+
+    [Fact]
+    public void BindDateDiffDatePartToken_DoesNotResolveDatePartAsColumn()
+    {
+        var sql = """
+CREATE VIEW dbo.v_datediff AS
+SELECT
+    DATEDIFF(day, s.StartDate, s.EndDate) AS DayDelta
+FROM dbo.SourceTable AS s;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "SourceTable", ["StartDate", "EndDate"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.DoesNotContain(
+            bound.ColumnReferences,
+            item => item.IdentifierParts.Count == 1 &&
+                    string.Equals(item.IdentifierParts[0], "day", StringComparison.OrdinalIgnoreCase));
+        Assert.Equal(["DayDelta"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
+    }
+
+    [Fact]
+    public void BindSelectWithoutAlias_UsesTargetSchemaColumnNameWhenAvailable()
+    {
+        var sql = """
+CREATE VIEW dbo.v_target_named AS
+SELECT
+    SUM(s.Amount)
+FROM dbo.Sales AS s;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Sales", ["Amount"]),
+            ("dbo", "v_target_named", ["TotalAmount"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.Equal(["TotalAmount"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
+    }
+
+    [Fact]
+    public void BindCorrelatedSubquery_UnqualifiedInnerColumn_ResolvesInnerScopeFirst()
+    {
+        var sql = """
+CREATE VIEW dbo.v_correlated AS
+WITH returns_cte AS
+(
+    SELECT
+        r.StoreId,
+        r.CustomerId,
+        r.ReturnAmount
+    FROM dbo.StoreReturns AS r
+)
+SELECT
+    c.CustomerId
+FROM returns_cte AS c
+WHERE c.ReturnAmount >
+(
+    SELECT AVG(ReturnAmount)
+    FROM returns_cte AS c2
+    WHERE c2.StoreId = c.StoreId
+);
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "StoreReturns", ["StoreId", "CustomerId", "ReturnAmount"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.DoesNotContain(bound.Issues, item => item.Code == "ColumnReferenceAmbiguous");
+        Assert.False(bound.HasErrors);
+    }
+
+    [Fact]
+    public void BindOrderByCase_UsesSelectAliasReferenceWithinExpression()
+    {
+        var sql = """
+CREATE VIEW dbo.v_order_alias AS
+SELECT
+    s.Id + 1 AS lochierarchy
+FROM dbo.Source AS s
+ORDER BY
+    CASE WHEN lochierarchy > 0 THEN lochierarchy END;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.DoesNotContain(bound.Issues, item => item.Code == "ColumnReferenceNotFound");
+        Assert.False(bound.HasErrors);
+    }
+
+    [Fact]
+    public void BindGroupedAggregateCasePredicate_DoesNotRequireGroupedColumnsInsideAggregateArgument()
+    {
+        var sql = """
+CREATE VIEW dbo.v_grouped_case AS
+SELECT
+    s.GroupId,
+    SUM(CASE WHEN s.Flag = 1 THEN s.Amount ELSE 0 END) AS FlaggedAmount
+FROM dbo.Source AS s
+GROUP BY s.GroupId;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["GroupId", "Flag", "Amount"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.DoesNotContain(bound.Issues, item => item.Code == "UngroupedColumnReference");
+        Assert.False(bound.HasErrors);
+    }
+
+    [Fact]
+    public void BindSelectScalarWithoutAlias_UsesDeterministicFallbackOutputName()
+    {
+        var sql = """
+CREATE VIEW dbo.v_expr_name AS
+SELECT
+    s.Id + 1
+FROM dbo.Source AS s;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Id"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.Equal(["Expr1"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
+    }
+
+    [Fact]
+    public void BindGroupByScalarExpression_DoesNotProduceUnsupportedGroupingExpressionIssue()
+    {
+        var sql = """
+CREATE VIEW dbo.v_group_expr AS
+SELECT
+    LEFT(s.Name, 3) AS NamePrefix,
+    COUNT(*) AS Cnt
+FROM dbo.Source AS s
+GROUP BY LEFT(s.Name, 3);
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Source", ["Name"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.DoesNotContain(bound.Issues, item => item.Code == "UnsupportedGroupingExpressionShape");
+        Assert.DoesNotContain(bound.Issues, item => item.Code == "UngroupedColumnReference");
+        Assert.False(bound.HasErrors);
+    }
+
+    [Fact]
+    public void BindGroupedStatisticalAggregate_DoesNotTreatAggregateArgumentAsUngrouped()
+    {
+        var sql = """
+CREATE VIEW dbo.v_group_stat AS
+SELECT
+    s.CategoryId,
+    STDDEV_SAMP(s.Amount) / AVG(s.Amount) AS Cov
+FROM dbo.Sales AS s
+GROUP BY s.CategoryId;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "Sales", ["CategoryId", "Amount"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.DoesNotContain(bound.Issues, item => item.Code == "UngroupedColumnReference");
+        Assert.False(bound.HasErrors);
     }
 
     [Fact]
@@ -334,6 +558,33 @@ FROM
             .Select(item => item.Name)
             .ToArray();
         Assert.Equal(["Id", "Code"], finalColumns);
+    }
+
+    [Fact]
+    public void BindSetOperation_WithDifferentInputColumnAliases_UsesFirstInputColumnNames()
+    {
+        var sql = """
+CREATE VIEW dbo.v_set_alias AS
+SELECT
+    a.Id AS BrandId
+FROM dbo.A AS a
+UNION ALL
+SELECT
+    b.Id AS ItemBrandId
+FROM dbo.B AS b;
+""";
+
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+
+        var sourceSchema = CreateSourceSchema(
+            ("dbo", "A", ["Id"]),
+            ("dbo", "B", ["Id"]));
+
+        var bound = new TransformBindingService().BindSingleTransform(model, sourceSchema);
+
+        Assert.False(bound.HasErrors);
+        Assert.NotNull(bound.TopLevelRowset);
+        Assert.Equal(["BrandId"], bound.TopLevelRowset!.Columns.Select(item => item.Name).ToArray());
     }
 
     [Fact]
@@ -1604,6 +1855,91 @@ GO
     }
 
     [Fact]
+    public void ValidationService_WithAnonymousExprOutputs_ValidatesNamedWriteColumnsOnly()
+    {
+        var sql = """
+CREATE VIEW dbo.v_expr_target AS
+SELECT
+    s.CustomerId AS CustomerId,
+    s.CreatedAt + 1
+FROM dbo.SourceTable AS s;
+""";
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel);
+            Assert.Single(validated.ValidationTargetColumnLinkList);
+            Assert.Equal("CustomerId", Assert.Single(bindingResult.Model.ColumnList, item =>
+                string.Equals(item.Id, validated.ValidationTargetColumnLinkList[0].ColumnId, StringComparison.Ordinal)).Name);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithDuplicateOutputColumnNames_UsesFirstWriteMapping()
+    {
+        var sql = """
+CREATE VIEW dbo.v_dup_target AS
+SELECT
+    a.CustomerId,
+    b.CustomerId
+FROM dbo.SourceA AS a
+INNER JOIN dbo.SourceB AS b
+    ON b.CustomerId = a.CustomerId;
+""";
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(sql);
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceA", ["CustomerId"]),
+            ("dbo", "SourceB", ["CustomerId"]),
+            ("dbo", "CustomerSummary", ["CustomerId"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel);
+            Assert.Single(validated.ValidationTargetColumnLinkList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void ValidationService_WithIgnoredTargetColumns_AllowsPlatformColumns()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
@@ -1777,7 +2113,7 @@ GO
         SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:int");
         SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerName", "sqlserver:type:nvarchar");
         SetFieldMetaDataTypeId(schemaModel, "Table:1", "CreatedAt", "sqlserver:type:datetime");
-        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:nvarchar");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:datetime");
         SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerName", "sqlserver:type:nvarchar");
         SetFieldMetaDataTypeId(schemaModel, "Table:2", "CreatedAtAlias", "sqlserver:type:datetime");
         SetFieldMetaDataTypeId(schemaModel, "Table:2", "LiteralValue", "sqlserver:type:int");
@@ -1847,6 +2183,98 @@ GO
                 string.Equals(item.ValidationTargetColumnLinkId, customerIdTargetColumnLink.Id, StringComparison.Ordinal));
             Assert.Equal("sqlserver:type:smallmoney", customerIdCompatibility.SourceMetaDataTypeId);
             Assert.Equal("sqlserver:type:decimal", customerIdCompatibility.TargetMetaDataTypeId);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithAnsiStringToUnicodeTarget_RecordsSanctionedConversion()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:char");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:nvarchar");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel);
+            var targetColumnLinks = validated.ValidationTargetColumnLinkList;
+            var customerIdColumn = Assert.Single(bindingResult.Model.ColumnList, item =>
+                string.Equals(item.Name, "CustomerId", StringComparison.Ordinal) &&
+                string.Equals(item.RowsetId, bindingResult.Model.OutputRowsetList[0].RowsetId, StringComparison.Ordinal));
+            var customerIdTargetColumnLink = Assert.Single(targetColumnLinks, item =>
+                string.Equals(item.ColumnId, customerIdColumn.Id, StringComparison.Ordinal));
+            var customerIdCompatibility = Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList, item =>
+                string.Equals(item.ValidationTargetColumnLinkId, customerIdTargetColumnLink.Id, StringComparison.Ordinal));
+
+            Assert.Equal("sqlserver:type:char", customerIdCompatibility.SourceMetaDataTypeId);
+            Assert.Equal("sqlserver:type:nvarchar", customerIdCompatibility.TargetMetaDataTypeId);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithNumericToUnicodeTarget_RecordsSanctionedConversion()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        transformModel.TransformScriptList[0].TargetSqlIdentifier = "dbo.CustomerSummary";
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:int");
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:nvarchar");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel);
+            var targetColumnLinks = validated.ValidationTargetColumnLinkList;
+            var customerIdColumn = Assert.Single(bindingResult.Model.ColumnList, item =>
+                string.Equals(item.Name, "CustomerId", StringComparison.Ordinal) &&
+                string.Equals(item.RowsetId, bindingResult.Model.OutputRowsetList[0].RowsetId, StringComparison.Ordinal));
+            var customerIdTargetColumnLink = Assert.Single(targetColumnLinks, item =>
+                string.Equals(item.ColumnId, customerIdColumn.Id, StringComparison.Ordinal));
+            var customerIdCompatibility = Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList, item =>
+                string.Equals(item.ValidationTargetColumnLinkId, customerIdTargetColumnLink.Id, StringComparison.Ordinal));
+
+            Assert.Equal("sqlserver:type:int", customerIdCompatibility.SourceMetaDataTypeId);
+            Assert.Equal("sqlserver:type:nvarchar", customerIdCompatibility.TargetMetaDataTypeId);
         }
         finally
         {

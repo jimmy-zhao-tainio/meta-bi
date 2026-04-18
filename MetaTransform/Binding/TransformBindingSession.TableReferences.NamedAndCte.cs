@@ -52,6 +52,22 @@ internal sealed partial class TransformBindingSession
         var sqlIdentifier = string.Join(".", identifierParts);
         var exposedName = navigator.TryGetTableAlias(tableReference) ?? identifierParts.Last();
         var columns = new List<RuntimeColumn>();
+        if (sourceSchemaResolver is not null)
+        {
+            var sourceResolution = sourceSchemaResolver.ResolveSqlIdentifier(sqlIdentifier);
+            if (sourceResolution.IsResolved)
+            {
+                foreach (var field in sourceResolution.Table!.Fields
+                             .OrderBy(item => item.Ordinal)
+                             .ThenBy(item => item.FieldName, StringComparer.OrdinalIgnoreCase))
+                {
+                    columns.Add(new RuntimeColumn(
+                        $"{tableReference.Id}:source-column:{columns.Count + 1}",
+                        field.FieldName,
+                        columns.Count));
+                }
+            }
+        }
 
         var rowset = new RuntimeRowset(
             $"{tableReference.Id}:rowset",
