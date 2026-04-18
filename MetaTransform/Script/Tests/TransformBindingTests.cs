@@ -1297,7 +1297,7 @@ FROM dbo.Source AS s;
                 bindingWorkspacePath);
 
             Assert.Equal(bindingWorkspacePath, result.WorkspacePath);
-            Assert.Equal(transformModel.TransformScriptList[0].Name, result.TransformScriptName);
+            Assert.Equal(1, result.TransformScriptCount);
             Assert.Equal(1, result.TransformBindingCount);
             Assert.Equal(1, result.SourceCount);
             Assert.Equal(1, result.TargetCount);
@@ -1420,34 +1420,25 @@ GO
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
-        var summaryBindingWorkspacePath = Path.Combine(tempRoot, "SummaryBindingWorkspace");
-        var replicaBindingWorkspacePath = Path.Combine(tempRoot, "ReplicaBindingWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
 
         try
         {
             transformModel.SaveToXmlWorkspace(transformWorkspacePath);
 
-            var summaryResult = new TransformBindingWorkspaceService().BindToWorkspace(
+            var result = new TransformBindingWorkspaceService().BindToWorkspace(
                 transformWorkspacePath,
-                summaryBindingWorkspacePath,
-                transformScriptName: "sales.CustomerSummary");
+                bindingWorkspacePath);
 
-            Assert.Equal(1, summaryResult.TargetCount);
-            Assert.Equal(0, summaryResult.IssueCount);
+            Assert.Equal(2, result.TransformScriptCount);
+            Assert.Equal(2, result.TransformBindingCount);
+            Assert.Equal(2, result.TargetCount);
+            Assert.Equal(0, result.IssueCount);
 
-            var summaryReloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(summaryBindingWorkspacePath, searchUpward: false);
-            Assert.Equal("sales.CustomerSummary", Assert.Single(summaryReloaded.TransformBindingTargetList).SqlIdentifier);
-
-            var replicaResult = new TransformBindingWorkspaceService().BindToWorkspace(
-                transformWorkspacePath,
-                replicaBindingWorkspacePath,
-                transformScriptName: "reporting.CustomerSummaryReplica");
-
-            Assert.Equal(1, replicaResult.TargetCount);
-            Assert.Equal(0, replicaResult.IssueCount);
-
-            var replicaReloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(replicaBindingWorkspacePath, searchUpward: false);
-            Assert.Equal("reporting.CustomerSummaryReplica", Assert.Single(replicaReloaded.TransformBindingTargetList).SqlIdentifier);
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            Assert.Equal(2, reloaded.TransformBindingTargetList.Count);
+            Assert.Contains(reloaded.TransformBindingTargetList, item => string.Equals(item.SqlIdentifier, "sales.CustomerSummary", StringComparison.Ordinal));
+            Assert.Contains(reloaded.TransformBindingTargetList, item => string.Equals(item.SqlIdentifier, "reporting.CustomerSummaryReplica", StringComparison.Ordinal));
         }
         finally
         {

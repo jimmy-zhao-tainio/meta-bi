@@ -10,6 +10,7 @@ Intended target tables in `SchemaWS`:
 - `reporting.InvoiceWindow`
 
 Binding infers source rowset identifiers from SQL and reads each target SQL identifier from `TransformScript.TargetSqlIdentifier`.
+`meta-transform-binding bind` processes all transform scripts in `TransformWS` into one binding workspace.
 
 `meta-transform-binding bind` resolves those source/target SQL identifiers against `SchemaWS` and hard-fails on:
 - missing source/target tables

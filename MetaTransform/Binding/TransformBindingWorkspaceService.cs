@@ -10,7 +10,6 @@ public sealed class TransformBindingWorkspaceService
         string transformWorkspacePath,
         string schemaWorkspacePath,
         string newWorkspacePath,
-        string? transformScriptName = null,
         TransformBindingValidationOptions? validationOptions = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
@@ -23,24 +22,10 @@ public sealed class TransformBindingWorkspaceService
 
         var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspaceFullPath, searchUpward: false);
         var schemaModel = MetaSchemaModel.LoadFromXmlWorkspace(schemaWorkspaceFullPath, searchUpward: false);
-        var transformScript = ResolveSingleScript(transformModel, transformScriptName);
-        var target = CreateTargetFromTransformScript(transformScript);
-
-        var bound = new TransformBindingService().BindTransform(
-            transformModel,
-            transformScript);
-
-        if (bound.HasErrors)
-        {
-            var firstError = bound.Issues.FirstOrDefault();
-            var errorMessage = firstError is null
-                ? "Binding produced one or more errors."
-                : $"{firstError.Code}: {firstError.Message}";
-
-            throw new TransformBindingValidationException("BindingFailed", errorMessage);
-        }
-
-        var bindingModel = TransformBindingModelBuilder.Create(bound, [target]);
+        var transformScripts = ResolveScripts(transformModel);
+        var packages = BindTransformScripts(transformModel, transformScripts);
+        EnsureBindingSucceeded(packages);
+        var bindingModel = BuildCombinedBindingModel(packages);
         var validatedModel = new TransformBindingValidationService().ApplyValidation(
             bindingModel,
             schemaModel,
@@ -51,7 +36,7 @@ public sealed class TransformBindingWorkspaceService
         return new BindToWorkspaceResult(
             validatedModel,
             bindingWorkspaceFullPath,
-            transformScript.Name,
+            packages.Count,
             validatedModel.TransformBindingList.Count,
             validatedModel.RowsetList.Count(item =>
                 string.Equals(item.DerivationKind, "Source", StringComparison.OrdinalIgnoreCase) &&
@@ -67,8 +52,7 @@ public sealed class TransformBindingWorkspaceService
 
     public BindToWorkspaceResult BindToWorkspace(
         string transformWorkspacePath,
-        string newWorkspacePath,
-        string? transformScriptName = null)
+        string newWorkspacePath)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
@@ -77,23 +61,19 @@ public sealed class TransformBindingWorkspaceService
         var bindingWorkspaceFullPath = Path.GetFullPath(newWorkspacePath);
 
         var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspaceFullPath, searchUpward: false);
-        var transformScript = ResolveSingleScript(transformModel, transformScriptName);
-        var target = CreateTargetFromTransformScript(transformScript);
-
-        var bound = new TransformBindingService().BindTransform(
-            transformModel,
-            transformScript);
-        var bindingModel = TransformBindingModelBuilder.Create(bound, [target]);
+        var transformScripts = ResolveScripts(transformModel);
+        var packages = BindTransformScripts(transformModel, transformScripts);
+        var bindingModel = BuildCombinedBindingModel(packages);
 
         bindingModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);
 
-        var issueCount = bound.Issues.Count;
+        var issueCount = packages.Sum(item => item.Bound.Issues.Count);
         var errorCount = issueCount;
 
         return new BindToWorkspaceResult(
             bindingModel,
             bindingWorkspaceFullPath,
-            transformScript.Name,
+            packages.Count,
             bindingModel.TransformBindingList.Count,
             bindingModel.RowsetList.Count(item =>
                 string.Equals(item.DerivationKind, "Source", StringComparison.OrdinalIgnoreCase) &&
@@ -103,7 +83,7 @@ public sealed class TransformBindingWorkspaceService
             errorCount);
     }
 
-    private static TransformScript ResolveSingleScript(MetaTransformScriptModel model, string? transformScriptName)
+    private static TransformScript[] ResolveScripts(MetaTransformScriptModel model)
     {
         var scripts = model.TransformScriptList.ToArray();
         if (scripts.Length == 0)
@@ -111,27 +91,7 @@ public sealed class TransformBindingWorkspaceService
             throw new InvalidOperationException("MetaTransformScript workspace does not contain any TransformScript rows.");
         }
 
-        if (!string.IsNullOrWhiteSpace(transformScriptName))
-        {
-            var matches = scripts
-                .Where(script => string.Equals(script.Name, transformScriptName, StringComparison.OrdinalIgnoreCase))
-                .ToArray();
-
-            return matches.Length switch
-            {
-                0 => throw new InvalidOperationException($"Transform script '{transformScriptName}' was not found."),
-                > 1 => throw new InvalidOperationException($"Transform script name '{transformScriptName}' is ambiguous."),
-                _ => matches[0]
-            };
-        }
-
-        if (scripts.Length != 1)
-        {
-            throw new InvalidOperationException(
-                $"Workspace contains {scripts.Length} transform scripts. Use --name to select which one to bind.");
-        }
-
-        return scripts[0];
+        return scripts;
     }
 
     private static TransformBindingTargetResolution CreateTargetFromTransformScript(TransformScript transformScript)
@@ -149,12 +109,96 @@ public sealed class TransformBindingWorkspaceService
         return new TransformBindingTargetResolution(trimmed, null);
     }
 
+    private static List<ScriptBindingPackage> BindTransformScripts(
+        MetaTransformScriptModel transformModel,
+        IReadOnlyList<TransformScript> transformScripts)
+    {
+        var bindingService = new TransformBindingService();
+        var packages = new List<ScriptBindingPackage>(transformScripts.Count);
+
+        foreach (var transformScript in transformScripts)
+        {
+            var target = CreateTargetFromTransformScript(transformScript);
+            var bound = bindingService.BindTransform(transformModel, transformScript);
+            packages.Add(new ScriptBindingPackage(transformScript, bound, target));
+        }
+
+        return packages;
+    }
+
+    private static void EnsureBindingSucceeded(IReadOnlyList<ScriptBindingPackage> packages)
+    {
+        foreach (var package in packages)
+        {
+            if (!package.Bound.HasErrors)
+            {
+                continue;
+            }
+
+            var firstError = package.Bound.Issues.FirstOrDefault();
+            var errorMessage = firstError is null
+                ? $"Transform script '{package.TransformScript.Name}' produced one or more binding errors."
+                : $"Transform script '{package.TransformScript.Name}' failed binding with {firstError.Code}: {firstError.Message}";
+
+            throw new TransformBindingValidationException("BindingFailed", errorMessage);
+        }
+    }
+
+    private static MetaTransformBindingModel BuildCombinedBindingModel(IReadOnlyList<ScriptBindingPackage> packages)
+    {
+        var model = MetaTransformBindingModel.CreateEmpty();
+
+        foreach (var package in packages)
+        {
+            var partial = TransformBindingModelBuilder.Create(package.Bound, [package.Target]);
+            MergeById(model.TransformBindingList, partial.TransformBindingList, static item => item.Id, "TransformBinding", package.TransformScript.Name);
+            MergeById(model.TransformBindingTargetList, partial.TransformBindingTargetList, static item => item.Id, "TransformBindingTarget", package.TransformScript.Name);
+            MergeById(model.RowsetList, partial.RowsetList, static item => item.Id, "Rowset", package.TransformScript.Name);
+            MergeById(model.SourceTargetList, partial.SourceTargetList, static item => item.Id, "SourceTarget", package.TransformScript.Name);
+            MergeById(model.ColumnList, partial.ColumnList, static item => item.Id, "Column", package.TransformScript.Name);
+            MergeById(model.ColumnReferenceList, partial.ColumnReferenceList, static item => item.Id, "ColumnReference", package.TransformScript.Name);
+            MergeById(model.TableSourceList, partial.TableSourceList, static item => item.Id, "TableSource", package.TransformScript.Name);
+            MergeById(model.OutputRowsetList, partial.OutputRowsetList, static item => item.Id, "OutputRowset", package.TransformScript.Name);
+        }
+
+        return model;
+    }
+
+    private static void MergeById<T>(
+        List<T> destination,
+        IReadOnlyList<T> source,
+        Func<T, string> idSelector,
+        string entityName,
+        string transformScriptName)
+    {
+        var seen = destination
+            .Select(idSelector)
+            .ToHashSet(StringComparer.Ordinal);
+
+        foreach (var item in source)
+        {
+            var id = idSelector(item);
+            if (!seen.Add(id))
+            {
+                throw new InvalidOperationException(
+                    $"Binding merge produced duplicate {entityName} Id '{id}' while processing transform script '{transformScriptName}'.");
+            }
+
+            destination.Add(item);
+        }
+    }
+
+    private sealed record ScriptBindingPackage(
+        TransformScript TransformScript,
+        TransformBindingResult Bound,
+        TransformBindingTargetResolution Target);
+
 }
 
 public sealed record BindToWorkspaceResult(
     MetaTransformBindingModel Model,
     string WorkspacePath,
-    string TransformScriptName,
+    int TransformScriptCount,
     int TransformBindingCount,
     int SourceCount,
     int TargetCount,

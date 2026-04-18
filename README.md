@@ -509,22 +509,22 @@ Purpose:
 
 Command surface:
 - `meta-transform-binding help`
-- `meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--name <name>] [--ignore-target-columns <col[,col...]>]`
+- `meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--ignore-target-columns <col[,col...]>]`
 
 Behavior summary:
 - `bind` reads the target SQL identifier from `TransformScript.TargetSqlIdentifier`
 - `bind` resolves source and target SQL identifiers against the schema workspace and fails on missing/ambiguous resolution
 - `bind` enforces target write-contract shape using non-identity target fields
-- if a transform workspace contains multiple scripts, `bind` requires `--name`
+- `bind` processes all transform scripts in the transform workspace
 - `--ignore-target-columns` excludes named non-identity target columns from target conformance checks; unknown names fail explicitly
 - bind is atomic: if binding or validation fails, no output workspace is created
 
 Examples:
 
 ```cmd
-meta-transform-binding bind --transform-workspace .\TransformWS --schema-workspace .\SchemaWS --name sales.CustomerOrderSummary --new-workspace .\SummaryBindingWS
+meta-transform-binding bind --transform-workspace .\TransformWS --schema-workspace .\SchemaWS --new-workspace .\BindingWS
 
-meta-transform-binding bind --transform-workspace .\TransformWS --schema-workspace .\SchemaWS --name reporting.InvoiceWindow --new-workspace .\InvoiceBindingWS --ignore-target-columns LoadUtc,RunId
+meta-transform-binding bind --transform-workspace .\TransformWS --schema-workspace .\SchemaWS --new-workspace .\BindingWS --ignore-target-columns LoadUtc,RunId
 ```
 
 See also:
