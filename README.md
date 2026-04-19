@@ -500,11 +500,11 @@ NotIn: left-not-in-right=0, right-not-in-left=0
 
 ### meta-transform-binding
 
-`MetaTransformBinding` is the binding/validation layer on top of `MetaTransformScript`.
+`MetaTransformBinding` is the binding contract layer on top of `MetaTransformScript`.
 
 Purpose:
-- bind transform scripts into an explicit binding workspace (`rowsets`, `columns`, source/target SQL identifiers)
-- validate sources and targets against explicit schema workspaces in the same command
+- bind all transform scripts in a transform workspace into an explicit binding workspace (`rowsets`, `columns`, source/target SQL identifiers)
+- validate source and target contracts against explicit schema workspaces in the same command
 - fail hard on contract mismatches and persist explicit validation link rows in the resulting workspace
 
 Command surface:
@@ -514,13 +514,18 @@ Command surface:
 Behavior summary:
 - `bind` reads the target SQL identifier from `TransformScript.TargetSqlIdentifier`
 - source identifiers resolve against source schema workspaces; target identifiers resolve against the target schema workspace
-- `--execute-system` defines execution context for one/two-part source identifiers
+- source identifier resolution is explicit:
+  - `system.schema.table` resolves directly
+  - `schema.table` resolves as `<execute-system>.<schema>.<table>`
+  - `table` resolves as `<execute-system>.<execute-system-default-schema-name>.<table>`
+- `--execute-system` is required and must be represented in provided source schema workspaces when one/two-part source identifiers exist
 - if any one-part source identifier exists, `--execute-system-default-schema-name` is required
 - each source/target schema workspace must contain exactly one system
 - `bind` enforces target write-contract shape using non-identity target fields
 - `bind` processes all transform scripts in the transform workspace
 - `--ignore-target-columns` excludes named non-identity target columns from target conformance checks; unknown names fail explicitly
 - bind is atomic: if binding or validation fails, no output workspace is created
+- scale proof is included in `Samples\Demos\MetaTransformScriptTpcDsCliIntegration\run.cmd`, which imports and binds TPC-DS `q01`-`q99` in one workspace run
 
 Examples:
 
@@ -533,5 +538,6 @@ meta-transform-binding bind --transform-workspace .\TransformWS --source-schema 
 See also:
 - `Samples\Demos\MetaTransformBindingCliIntegration\run.cmd`
 - `Samples\Demos\MetaTransformBindingCliIntegration\README.md`
+- `Samples\Demos\MetaTransformScriptTpcDsCliIntegration\run.cmd`
 
 
