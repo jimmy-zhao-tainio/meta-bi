@@ -25,6 +25,8 @@ var tools = new[]
     new ToolSpec("meta-convert.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaConvert", "Cli"), "meta-convert.exe")),
     new ToolSpec("meta-datavault-raw.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaDataVault", "Cli", "Raw"), "meta-datavault-raw.exe")),
     new ToolSpec("meta-datavault-business.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaDataVault", "Cli", "Business"), "meta-datavault-business.exe")),
+    new ToolSpec("meta-transform-script.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaTransform", "Script", "Cli"), "meta-transform-script.exe")),
+    new ToolSpec("meta-transform-binding.exe", ResolvePublishDirectory(repoRoot, Path.Combine("MetaTransform", "Binding", "Cli"), "meta-transform-binding.exe")),
 };
 
 var missing = tools.Where(tool => tool.SourceDirectory is null).ToArray();
@@ -40,7 +42,9 @@ if (missing.Length > 0)
                 "Next: dotnet publish MetaDataTypeConversion\\Cli\\MetaDataTypeConversion.Cli.csproj -c Debug -r win-x64",
                 "Next: dotnet publish MetaConvert\\Cli\\MetaConvert.Cli.csproj -c Debug -r win-x64",
                 "Next: dotnet publish MetaDataVault\\Cli\\Raw\\MetaDataVault.Raw.Cli.csproj -c Debug -r win-x64",
-                "Next: dotnet publish MetaDataVault\\Cli\\Business\\MetaDataVault.Business.Cli.csproj -c Debug -r win-x64"
+                "Next: dotnet publish MetaDataVault\\Cli\\Business\\MetaDataVault.Business.Cli.csproj -c Debug -r win-x64",
+                "Next: dotnet publish MetaTransform\\Script\\Cli\\MetaTransformScript.Cli.csproj -c Debug -r win-x64",
+                "Next: dotnet publish MetaTransform\\Binding\\Cli\\MetaTransformBinding.Cli.csproj -c Debug -r win-x64"
             }));
     return 1;
 }

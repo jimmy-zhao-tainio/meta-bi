@@ -1,14 +1,10 @@
 param(
     [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path,
-    [string]$MetaConvertBin = "",
+    [string]$ExtraCliPath = "",
     [switch]$NoNormalize
 )
 
 $ErrorActionPreference = "Stop"
-
-if ([string]::IsNullOrWhiteSpace($MetaConvertBin)) {
-    $MetaConvertBin = Join-Path $RepoRoot "MetaConvert\Cli\bin\Debug\net8.0"
-}
 
 $demoPaths = @(
     (Join-Path $PSScriptRoot "BusinessDataVaultCliIntegration"),
@@ -25,7 +21,13 @@ foreach ($demoPath in $demoPaths) {
         throw "Missing run.cmd at '$runCmdPath'."
     }
 
-    $captureCommand = "set PATH=$MetaConvertBin;%PATH% && cd /d $demoPath && run.cmd > run.output 2>&1"
+    $captureCommand = if ([string]::IsNullOrWhiteSpace($ExtraCliPath)) {
+        "cd /d $demoPath && run.cmd > run.output 2>&1"
+    }
+    else {
+        "set ""PATH=$ExtraCliPath;%PATH%"" && cd /d $demoPath && run.cmd > run.output 2>&1"
+    }
+
     Write-Host "Capturing output for $demoPath"
     & cmd /c $captureCommand
     if ($LASTEXITCODE -ne 0) {

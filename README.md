@@ -8,6 +8,7 @@ This repository contains BI-oriented sanctioned models, CLIs, and docs:
 - `MetaDataType.*`
 - `MetaDataTypeConversion.*`
 - `MetaTransformScript.*`
+- `MetaTransformBinding.*`
 - `MetaDataVault.*`
 - `MetaSql.Workspace`
 - `MetaSql.Core`
@@ -44,6 +45,8 @@ dotnet build MetaSchema.sln
 dotnet build MetaDataType.sln
 dotnet build MetaDataTypeConversion.sln
 dotnet build MetaDataVault.sln
+dotnet build MetaTransform\Script\Tests\MetaTransformScript.Tests.csproj
+dotnet build MetaTransform\Binding\Cli\MetaTransformBinding.Cli.csproj
 ```
 
 This keeps BI work from silently editing foundation code and makes the boundary explicit.
@@ -54,13 +57,14 @@ Build the installer:
 dotnet build MetaBi\Installer\MetaBi.Installer.csproj
 ```
 
-Then install the packaged BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-convert`, `meta-datavault-raw`, `meta-datavault-business`) into `%LOCALAPPDATA%metabin` and add that directory to your user `PATH`:
+Then install the packaged BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-convert`, `meta-datavault-raw`, `meta-datavault-business`, `meta-transform-script`, `meta-transform-binding`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
 
 ```cmd
 MetaBi\Installer\bin\publish\win-x64\install-meta-bi.exe
 ```
 
-`meta-transform-script` and `meta-transform-binding` are not part of the installer flow. Run them from `MetaTransform\Script\Cli\bin\Debug\net8.0` and `MetaTransform\Binding\Cli\bin\Debug\net8.0`, or put both debug bins on your `PATH`.
+The installer copies published CLI payloads from the current `meta-bi` checkout into `%LOCALAPPDATA%\meta\bin`.
+If install reports missing binaries, publish the CLI projects first (for example `dotnet publish MetaTransform\Script\Cli\MetaTransformScript.Cli.csproj -c Debug -r win-x64` and `dotnet publish MetaTransform\Binding\Cli\MetaTransformBinding.Cli.csproj -c Debug -r win-x64`).
 
 ## Intent
 
@@ -69,12 +73,20 @@ The long-term repo boundary is:
 - `meta`: generic foundation (`Meta.Core`, `meta`, `MetaWeave`, `meta-weave`, generic metamodels)
 - `meta-bi`: sanctioned BI models and BI-specific CLIs/tooling
 
-## Included solution files
+## Included Build Entry Points
 
+Top-level solution files:
 - `MetaSchema.sln`
 - `MetaDataType.sln`
 - `MetaDataTypeConversion.sln`
 - `MetaDataVault.sln`
+
+Project-first stacks (built via `.csproj` entry points):
+- `MetaTransform\Script\Cli\MetaTransformScript.Cli.csproj`
+- `MetaTransform\Script\Tests\MetaTransformScript.Tests.csproj`
+- `MetaTransform\Binding\Cli\MetaTransformBinding.Cli.csproj`
+- `MetaSql\Cli\MetaSql.Cli.csproj`
+- `MetaSql\Tests\MetaSql.Tests.csproj`
 
 ## CLI Guide
 
