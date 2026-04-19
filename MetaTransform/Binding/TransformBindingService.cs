@@ -83,6 +83,28 @@ public sealed class TransformBindingService
         return session.BindTransform(transformScript);
     }
 
+    internal TransformBindingResult BindTransform(
+        MetaTransformScriptModel model,
+        TransformScript transformScript,
+        MetaSchemaTableResolver sourceSchemaResolver,
+        MetaSchemaTableResolver targetSchemaResolver,
+        string executeSystemName,
+        string executeSystemDefaultSchemaName)
+    {
+        ArgumentNullException.ThrowIfNull(sourceSchemaResolver);
+        ArgumentNullException.ThrowIfNull(targetSchemaResolver);
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentNullException.ThrowIfNull(transformScript);
+
+        var session = new TransformBindingSession(
+            model,
+            sourceSchemaResolver,
+            targetSchemaResolver,
+            executeSystemName,
+            executeSystemDefaultSchemaName);
+        return session.BindTransform(transformScript);
+    }
+
     public TransformBindingResult BindTransform(
         MetaTransformScriptModel model,
         TransformScript transformScript)

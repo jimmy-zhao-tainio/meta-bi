@@ -48,11 +48,19 @@ internal static class Program
 
         try
         {
+            var options = TransformBindingValidationOptions.Create(
+                parse.IgnoredTargetColumns,
+                parse.ExecuteSystemName,
+                parse.ExecuteSystemDefaultSchemaName);
+
             var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                 parse.TransformWorkspacePath,
-                parse.SchemaWorkspacePath,
+                parse.SourceSchemaWorkspacePaths,
+                parse.TargetSchemaWorkspacePath,
+                parse.ExecuteSystemName,
+                parse.ExecuteSystemDefaultSchemaName,
                 targetValidation.FullPath,
-                validationOptions: TransformBindingValidationOptions.Create(parse.IgnoredTargetColumns));
+                validationOptions: options);
 
             Presenter.WriteOk($"Created {Path.GetFileName(result.WorkspacePath)}");
             Presenter.WriteKeyValueBlock("Binding", new[]
@@ -80,7 +88,10 @@ internal static class Program
                 new[]
                 {
                     $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
-                    $"  SchemaWorkspace: {Path.GetFullPath(parse.SchemaWorkspacePath)}",
+                    $"  SourceSchemas: {string.Join(", ", parse.SourceSchemaWorkspacePaths.Select(Path.GetFullPath))}",
+                    $"  TargetSchema: {Path.GetFullPath(parse.TargetSchemaWorkspacePath)}",
+                    $"  ExecuteSystem: {parse.ExecuteSystemName}",
+                    $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
                     $"  Code: {ex.Code}",
                     $"  {ex.Message}"
                 }));
@@ -89,12 +100,15 @@ internal static class Program
         {
             return Task.FromResult(Fail(
                 "binding workspace generation failed.",
-                "check the transform workspace, schema workspace, and target workspace, then retry.",
+                "check transform/source-schema/target-schema inputs and retry.",
                 4,
                 new[]
                 {
                     $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
-                    $"  SchemaWorkspace: {Path.GetFullPath(parse.SchemaWorkspacePath)}",
+                    $"  SourceSchemas: {string.Join(", ", parse.SourceSchemaWorkspacePaths.Select(Path.GetFullPath))}",
+                    $"  TargetSchema: {Path.GetFullPath(parse.TargetSchemaWorkspacePath)}",
+                    $"  ExecuteSystem: {parse.ExecuteSystemName}",
+                    $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
                     $"  BindingWorkspace: {targetValidation.FullPath}",
                     $"  {ex.Message}"
                 }));
@@ -104,7 +118,10 @@ internal static class Program
     private static (
         bool Ok,
         string TransformWorkspacePath,
-        string SchemaWorkspacePath,
+        string[] SourceSchemaWorkspacePaths,
+        string TargetSchemaWorkspacePath,
+        string ExecuteSystemName,
+        string ExecuteSystemDefaultSchemaName,
         string NewWorkspacePath,
         string[] IgnoredTargetColumns,
         string ErrorMessage) ParseBindArgs(
@@ -112,7 +129,10 @@ internal static class Program
         int startIndex)
     {
         var transformWorkspacePath = string.Empty;
-        var schemaWorkspacePath = string.Empty;
+        var sourceSchemaWorkspacePaths = new List<string>();
+        var targetSchemaWorkspacePath = string.Empty;
+        var executeSystemName = string.Empty;
+        var executeSystemDefaultSchemaName = string.Empty;
         var newWorkspacePath = string.Empty;
         var ignoredTargetColumns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
@@ -124,31 +144,155 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing value for --transform-workspace.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "missing value for --transform-workspace.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(transformWorkspacePath))
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "--transform-workspace can only be provided once.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "--transform-workspace can only be provided once.");
                 }
 
                 transformWorkspacePath = args[++i];
                 continue;
             }
 
-            if (string.Equals(arg, "--schema-workspace", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(arg, "--source-schema", StringComparison.OrdinalIgnoreCase))
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing value for --schema-workspace.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "missing value for --source-schema.");
                 }
 
-                if (!string.IsNullOrWhiteSpace(schemaWorkspacePath))
+                sourceSchemaWorkspacePaths.Add(args[++i]);
+                continue;
+            }
+
+            if (string.Equals(arg, "--target-schema", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "--schema-workspace can only be provided once.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "missing value for --target-schema.");
                 }
 
-                schemaWorkspacePath = args[++i];
+                if (!string.IsNullOrWhiteSpace(targetSchemaWorkspacePath))
+                {
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "--target-schema can only be provided once.");
+                }
+
+                targetSchemaWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--execute-system", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length)
+                {
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "missing value for --execute-system.");
+                }
+
+                if (!string.IsNullOrWhiteSpace(executeSystemName))
+                {
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "--execute-system can only be provided once.");
+                }
+
+                executeSystemName = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--execute-system-default-schema-name", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length)
+                {
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "missing value for --execute-system-default-schema-name.");
+                }
+
+                if (!string.IsNullOrWhiteSpace(executeSystemDefaultSchemaName))
+                {
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "--execute-system-default-schema-name can only be provided once.");
+                }
+
+                executeSystemDefaultSchemaName = args[++i];
                 continue;
             }
 
@@ -156,12 +300,30 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing value for --new-workspace.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "missing value for --new-workspace.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(newWorkspacePath))
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "--new-workspace can only be provided once.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "--new-workspace can only be provided once.");
                 }
 
                 newWorkspacePath = args[++i];
@@ -172,13 +334,31 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing value for --ignore-target-columns.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "missing value for --ignore-target-columns.");
                 }
 
                 var raw = args[++i];
                 if (string.IsNullOrWhiteSpace(raw))
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "value for --ignore-target-columns cannot be blank.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "value for --ignore-target-columns cannot be blank.");
                 }
 
                 foreach (var value in raw.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
@@ -188,31 +368,113 @@ internal static class Program
 
                 if (ignoredTargetColumns.Count == 0)
                 {
-                    return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "value for --ignore-target-columns must include at least one column name.");
+                    return (
+                        false,
+                        transformWorkspacePath,
+                        sourceSchemaWorkspacePaths.ToArray(),
+                        targetSchemaWorkspacePath,
+                        executeSystemName,
+                        executeSystemDefaultSchemaName,
+                        newWorkspacePath,
+                        ignoredTargetColumns.ToArray(),
+                        "value for --ignore-target-columns must include at least one column name.");
                 }
 
                 continue;
             }
 
-            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), $"unknown option '{arg}'.");
+            return (
+                false,
+                transformWorkspacePath,
+                sourceSchemaWorkspacePaths.ToArray(),
+                targetSchemaWorkspacePath,
+                executeSystemName,
+                executeSystemDefaultSchemaName,
+                newWorkspacePath,
+                ignoredTargetColumns.ToArray(),
+                $"unknown option '{arg}'.");
         }
 
         if (string.IsNullOrWhiteSpace(transformWorkspacePath))
         {
-            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing required option --transform-workspace <path>.");
+            return (
+                false,
+                transformWorkspacePath,
+                sourceSchemaWorkspacePaths.ToArray(),
+                targetSchemaWorkspacePath,
+                executeSystemName,
+                executeSystemDefaultSchemaName,
+                newWorkspacePath,
+                ignoredTargetColumns.ToArray(),
+                "missing required option --transform-workspace <path>.");
         }
 
-        if (string.IsNullOrWhiteSpace(schemaWorkspacePath))
+        if (sourceSchemaWorkspacePaths.Count == 0)
         {
-            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing required option --schema-workspace <path>.");
+            return (
+                false,
+                transformWorkspacePath,
+                sourceSchemaWorkspacePaths.ToArray(),
+                targetSchemaWorkspacePath,
+                executeSystemName,
+                executeSystemDefaultSchemaName,
+                newWorkspacePath,
+                ignoredTargetColumns.ToArray(),
+                "missing required option --source-schema <path>.");
+        }
+
+        if (string.IsNullOrWhiteSpace(targetSchemaWorkspacePath))
+        {
+            return (
+                false,
+                transformWorkspacePath,
+                sourceSchemaWorkspacePaths.ToArray(),
+                targetSchemaWorkspacePath,
+                executeSystemName,
+                executeSystemDefaultSchemaName,
+                newWorkspacePath,
+                ignoredTargetColumns.ToArray(),
+                "missing required option --target-schema <path>.");
+        }
+
+        if (string.IsNullOrWhiteSpace(executeSystemName))
+        {
+            return (
+                false,
+                transformWorkspacePath,
+                sourceSchemaWorkspacePaths.ToArray(),
+                targetSchemaWorkspacePath,
+                executeSystemName,
+                executeSystemDefaultSchemaName,
+                newWorkspacePath,
+                ignoredTargetColumns.ToArray(),
+                "missing required option --execute-system <name>.");
         }
 
         if (string.IsNullOrWhiteSpace(newWorkspacePath))
         {
-            return (false, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), "missing required option --new-workspace <path>.");
+            return (
+                false,
+                transformWorkspacePath,
+                sourceSchemaWorkspacePaths.ToArray(),
+                targetSchemaWorkspacePath,
+                executeSystemName,
+                executeSystemDefaultSchemaName,
+                newWorkspacePath,
+                ignoredTargetColumns.ToArray(),
+                "missing required option --new-workspace <path>.");
         }
 
-        return (true, transformWorkspacePath, schemaWorkspacePath, newWorkspacePath, ignoredTargetColumns.ToArray(), string.Empty);
+        return (
+            true,
+            transformWorkspacePath,
+            sourceSchemaWorkspacePaths.ToArray(),
+            targetSchemaWorkspacePath,
+            executeSystemName,
+            executeSystemDefaultSchemaName,
+            newWorkspacePath,
+            ignoredTargetColumns.ToArray(),
+            string.Empty);
     }
 
     private static bool IsHelpToken(string value)
@@ -230,7 +492,7 @@ internal static class Program
             "Commands:",
             new[]
             {
-                ("bind", "Bind one transform script and validate it against schema into a new workspace."),
+                ("bind", "Bind all transform scripts and validate against source/target schema contracts into a new workspace."),
                 ("help", "Show this help.")
             });
         Presenter.WriteNext("meta-transform-binding bind --help");
@@ -239,18 +501,21 @@ internal static class Program
     private static void PrintBindHelp()
     {
         Presenter.WriteInfo("Command: bind");
-        Presenter.WriteUsage("meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--ignore-target-columns <col[,col...]>]");
+        Presenter.WriteUsage("meta-transform-binding bind --transform-workspace <path> --source-schema <path> [--source-schema <path> ...] --target-schema <path> --execute-system <name> --new-workspace <path> [--execute-system-default-schema-name <schema>] [--ignore-target-columns <col[,col...]>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  bind is atomic: it binds and validates in one run.");
         Presenter.WriteInfo("  If binding or validation fails, no binding workspace is created.");
         Presenter.WriteInfo("  bind processes all transform scripts in the transform workspace.");
         Presenter.WriteInfo("  Target SQL identifier is read from TransformScript.TargetSqlIdentifier.");
-        Presenter.WriteInfo("  Target must be table, schema.table, or database.schema.table.");
+        Presenter.WriteInfo("  Source schema workspaces are repeatable; target schema workspace is single.");
+        Presenter.WriteInfo("  Every schema workspace must contain exactly one system.");
+        Presenter.WriteInfo("  --execute-system defines execution context for one/two-part source identifiers.");
+        Presenter.WriteInfo("  --execute-system-default-schema-name is required when any one-part source identifier exists.");
         Presenter.WriteInfo("  --ignore-target-columns excludes named non-identity target columns from target conformance checks.");
         Presenter.WriteInfo("  Ignored names must exist on each target table or bind fails explicitly.");
         Presenter.WriteInfo("Example:");
-        Presenter.WriteInfo("  meta-transform-binding bind --transform-workspace .\\TransformWorkspace --schema-workspace .\\SchemaWorkspace --new-workspace .\\BindingWorkspace");
-        Presenter.WriteInfo("  meta-transform-binding bind --transform-workspace .\\TransformWorkspace --schema-workspace .\\SchemaWorkspace --new-workspace .\\BindingWorkspace --ignore-target-columns LoadUtc,RunId");
+        Presenter.WriteInfo("  meta-transform-binding bind --transform-workspace .\\TransformWS --source-schema .\\SourceSchemaWS --target-schema .\\TargetSchemaWS --execute-system SalesDb --new-workspace .\\BindingWS");
+        Presenter.WriteInfo("  meta-transform-binding bind --transform-workspace .\\TransformWS --source-schema .\\SalesSchemaWS --source-schema .\\ReferenceSchemaWS --target-schema .\\WarehouseSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\\BindingWS --ignore-target-columns LoadUtc,RunId");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

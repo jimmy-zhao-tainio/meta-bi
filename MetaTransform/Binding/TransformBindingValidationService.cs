@@ -27,14 +27,17 @@ public sealed class TransformBindingValidationService
 
     public MetaTransformBindingModel ApplyValidation(
         MetaTransformBindingModel bindingModel,
-        MetaSchemaModel schemaModel,
+        MetaSchemaModel sourceSchemaModel,
+        MetaSchemaModel targetSchemaModel,
         TransformBindingValidationOptions? options = null)
     {
         ArgumentNullException.ThrowIfNull(bindingModel);
-        ArgumentNullException.ThrowIfNull(schemaModel);
+        ArgumentNullException.ThrowIfNull(sourceSchemaModel);
+        ArgumentNullException.ThrowIfNull(targetSchemaModel);
 
         var resolvedOptions = options ?? TransformBindingValidationOptions.Default;
-        var resolver = new MetaSchemaTableResolver(schemaModel);
+        var sourceResolver = new MetaSchemaTableResolver(sourceSchemaModel);
+        var targetResolver = new MetaSchemaTableResolver(targetSchemaModel);
 
         var validations = new List<Validation>();
         var sourceRowsetLinks = new List<ValidationSourceRowsetLink>();
@@ -51,7 +54,8 @@ public sealed class TransformBindingValidationService
             ApplyValidation(
                 bindingModel,
                 binding,
-                resolver,
+                sourceResolver,
+                targetResolver,
                 resolvedOptions,
                 dataTypeConversionService,
                 dataTypeConversionWorkspace,
@@ -91,7 +95,8 @@ public sealed class TransformBindingValidationService
     private static void ApplyValidation(
         MetaTransformBindingModel model,
         TransformBinding binding,
-        MetaSchemaTableResolver resolver,
+        MetaSchemaTableResolver sourceResolver,
+        MetaSchemaTableResolver targetResolver,
         TransformBindingValidationOptions options,
         IMetaDataTypeConversionService dataTypeConversionService,
         Workspace dataTypeConversionWorkspace,
@@ -132,7 +137,8 @@ public sealed class TransformBindingValidationService
             AddSourceValidation(
                 validationId,
                 sourceRowset,
-                resolver,
+                sourceResolver,
+                options,
                 dataTypeConversionService,
                 dataTypeConversionWorkspace,
                 rowsetColumnsByRowsetId,
@@ -146,7 +152,7 @@ public sealed class TransformBindingValidationService
             AddTargetValidation(
                 validationId,
                 target,
-                resolver,
+                targetResolver,
                 options.IgnoredTargetColumnNames,
                 dataTypeConversionService,
                 dataTypeConversionWorkspace,
@@ -165,7 +171,8 @@ public sealed class TransformBindingValidationService
     private static void AddSourceValidation(
         string validationId,
         Rowset sourceRowset,
-        MetaSchemaTableResolver resolver,
+        MetaSchemaTableResolver sourceResolver,
+        TransformBindingValidationOptions options,
         IMetaDataTypeConversionService dataTypeConversionService,
         Workspace dataTypeConversionWorkspace,
         IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId,
@@ -174,7 +181,7 @@ public sealed class TransformBindingValidationService
         List<ValidationSourceColumnLink> sourceColumnLinks)
     {
         var sqlIdentifier = sourceRowset.SqlIdentifier;
-        var resolution = resolver.ResolveSqlIdentifier(sqlIdentifier);
+        var resolution = ResolveSourceSchemaIdentifier(sourceResolver, options, sqlIdentifier);
         if (!resolution.IsResolved)
         {
             ThrowResolutionFailure(isSource: true, sqlIdentifier, resolution);
@@ -478,6 +485,51 @@ public sealed class TransformBindingValidationService
         };
 
         throw new TransformBindingValidationException(code, message);
+    }
+
+    private static SchemaTableResolutionResult ResolveSourceSchemaIdentifier(
+        MetaSchemaTableResolver sourceResolver,
+        TransformBindingValidationOptions options,
+        string sqlIdentifier)
+    {
+        var executeSystemName = options.ExecuteSystemName?.Trim() ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(executeSystemName))
+        {
+            return sourceResolver.ResolveSqlIdentifier(sqlIdentifier);
+        }
+
+        var expanded = SourceSqlIdentifierExpansion.Expand(
+            sqlIdentifier,
+            executeSystemName,
+            options.ExecuteSystemDefaultSchemaName);
+
+        if (!expanded.IsSuccess)
+        {
+            throw new TransformBindingValidationException(
+                expanded.FailureKind switch
+                {
+                    SourceSqlIdentifierExpansionFailureKind.MissingIdentifier => "SourceSchemaIdentifierMissing",
+                    SourceSqlIdentifierExpansionFailureKind.MissingExecuteSystem => "SourceSchemaExecuteSystemMissing",
+                    SourceSqlIdentifierExpansionFailureKind.MissingDefaultSchemaName => "SourceSchemaExecuteSystemDefaultSchemaNameMissing",
+                    SourceSqlIdentifierExpansionFailureKind.UnsupportedIdentifierShape => "SourceSchemaIdentifierShapeUnsupported",
+                    _ => "SourceSchemaResolutionFailed"
+                },
+                expanded.FailureKind switch
+                {
+                    SourceSqlIdentifierExpansionFailureKind.MissingIdentifier =>
+                        $"Declared source identifier '{sqlIdentifier}' is blank and cannot be resolved against the sanctioned source schema workspace(s).",
+                    SourceSqlIdentifierExpansionFailureKind.MissingExecuteSystem =>
+                        $"Declared source identifier '{sqlIdentifier}' requires --execute-system for source-schema resolution.",
+                    SourceSqlIdentifierExpansionFailureKind.MissingDefaultSchemaName =>
+                        $"Declared source identifier '{sqlIdentifier}' is one-part and requires --execute-system-default-schema-name for source-schema resolution.",
+                    SourceSqlIdentifierExpansionFailureKind.UnsupportedIdentifierShape =>
+                        $"Declared source identifier '{sqlIdentifier}' uses an unsupported identifier shape for source-schema resolution.",
+                    _ =>
+                        $"Declared source identifier '{sqlIdentifier}' could not be expanded for source-schema resolution."
+                });
+        }
+
+        return sourceResolver.ResolveIdentifierParts(expanded.ExpandedIdentifierParts);
     }
 
     private static Rowset? ResolveFinalRowset(MetaTransformBindingModel model, string bindingId)

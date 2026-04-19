@@ -7,24 +7,29 @@ public sealed class TransformBindingValidationWorkspaceService
 {
     public ValidateWorkspaceResult ValidateWorkspace(
         string bindingWorkspacePath,
-        string schemaWorkspacePath,
+        string sourceSchemaWorkspacePath,
+        string targetSchemaWorkspacePath,
         string newWorkspacePath,
         TransformBindingValidationOptions? options = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(bindingWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(schemaWorkspacePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourceSchemaWorkspacePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetSchemaWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
 
         var bindingWorkspaceFullPath = Path.GetFullPath(bindingWorkspacePath);
-        var schemaWorkspaceFullPath = Path.GetFullPath(schemaWorkspacePath);
+        var sourceSchemaWorkspaceFullPath = Path.GetFullPath(sourceSchemaWorkspacePath);
+        var targetSchemaWorkspaceFullPath = Path.GetFullPath(targetSchemaWorkspacePath);
         var validatedWorkspaceFullPath = Path.GetFullPath(newWorkspacePath);
 
         var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspaceFullPath, searchUpward: false);
-        var schemaModel = MetaSchemaModel.LoadFromXmlWorkspace(schemaWorkspaceFullPath, searchUpward: false);
+        var sourceSchemaModel = MetaSchemaModel.LoadFromXmlWorkspace(sourceSchemaWorkspaceFullPath, searchUpward: false);
+        var targetSchemaModel = MetaSchemaModel.LoadFromXmlWorkspace(targetSchemaWorkspaceFullPath, searchUpward: false);
 
         var validated = new TransformBindingValidationService().ApplyValidation(
             bindingModel,
-            schemaModel,
+            sourceSchemaModel,
+            targetSchemaModel,
             options ?? TransformBindingValidationOptions.Default);
         validated.SaveToXmlWorkspace(validatedWorkspaceFullPath);
 

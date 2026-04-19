@@ -503,17 +503,20 @@ NotIn: left-not-in-right=0, right-not-in-left=0
 `MetaTransformBinding` is the binding/validation layer on top of `MetaTransformScript`.
 
 Purpose:
-- bind one transform script into an explicit binding workspace (`rowsets`, `columns`, source/target SQL identifiers)
-- validate against one `MetaSchema` workspace in the same command
+- bind transform scripts into an explicit binding workspace (`rowsets`, `columns`, source/target SQL identifiers)
+- validate sources and targets against explicit schema workspaces in the same command
 - fail hard on contract mismatches and persist explicit validation link rows in the resulting workspace
 
 Command surface:
 - `meta-transform-binding help`
-- `meta-transform-binding bind --transform-workspace <path> --schema-workspace <path> --new-workspace <path> [--ignore-target-columns <col[,col...]>]`
+- `meta-transform-binding bind --transform-workspace <path> --source-schema <path> [--source-schema <path> ...] --target-schema <path> --execute-system <name> --new-workspace <path> [--execute-system-default-schema-name <schema>] [--ignore-target-columns <col[,col...]>]`
 
 Behavior summary:
 - `bind` reads the target SQL identifier from `TransformScript.TargetSqlIdentifier`
-- `bind` resolves source and target SQL identifiers against the schema workspace and fails on missing/ambiguous resolution
+- source identifiers resolve against source schema workspaces; target identifiers resolve against the target schema workspace
+- `--execute-system` defines execution context for one/two-part source identifiers
+- if any one-part source identifier exists, `--execute-system-default-schema-name` is required
+- each source/target schema workspace must contain exactly one system
 - `bind` enforces target write-contract shape using non-identity target fields
 - `bind` processes all transform scripts in the transform workspace
 - `--ignore-target-columns` excludes named non-identity target columns from target conformance checks; unknown names fail explicitly
@@ -522,9 +525,9 @@ Behavior summary:
 Examples:
 
 ```cmd
-meta-transform-binding bind --transform-workspace .\TransformWS --schema-workspace .\SchemaWS --new-workspace .\BindingWS
+meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SourceSchemaWS --target-schema .\TargetSchemaWS --execute-system WarehouseDb --new-workspace .\BindingWS
 
-meta-transform-binding bind --transform-workspace .\TransformWS --schema-workspace .\SchemaWS --new-workspace .\BindingWS --ignore-target-columns LoadUtc,RunId
+meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SalesSchemaWS --source-schema .\ReferenceSchemaWS --target-schema .\WarehouseSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\BindingWS --ignore-target-columns LoadUtc,RunId
 ```
 
 See also:

@@ -17,6 +17,9 @@ internal sealed partial class TransformBindingSession
     private readonly Dictionary<string, RuntimeCommonTableExpressionBindingState> commonTableExpressionBindingStateByName = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeRowset?> commonTableExpressionRowsetByName = new(StringComparer.OrdinalIgnoreCase);
     private readonly MetaSchemaTableResolver? sourceSchemaResolver;
+    private readonly MetaSchemaTableResolver? targetSchemaResolver;
+    private readonly string executeSystemName;
+    private readonly string executeSystemDefaultSchemaName;
 
     public TransformBindingSession(
         MetaTransformScriptModel model)
@@ -27,12 +30,27 @@ internal sealed partial class TransformBindingSession
     public TransformBindingSession(
         MetaTransformScriptModel model,
         MetaSchemaModel? sourceSchema)
+        : this(
+            model,
+            sourceSchema is null ? null : new MetaSchemaTableResolver(sourceSchema),
+            targetSchemaResolver: sourceSchema is null ? null : new MetaSchemaTableResolver(sourceSchema),
+            executeSystemName: string.Empty,
+            executeSystemDefaultSchemaName: string.Empty)
+    {
+    }
+
+    internal TransformBindingSession(
+        MetaTransformScriptModel model,
+        MetaSchemaTableResolver? sourceSchemaResolver,
+        MetaSchemaTableResolver? targetSchemaResolver,
+        string? executeSystemName,
+        string? executeSystemDefaultSchemaName)
     {
         navigator = new TransformScriptNavigator(model);
-        if (sourceSchema is not null)
-        {
-            sourceSchemaResolver = new MetaSchemaTableResolver(sourceSchema);
-        }
+        this.sourceSchemaResolver = sourceSchemaResolver;
+        this.targetSchemaResolver = targetSchemaResolver;
+        this.executeSystemName = executeSystemName?.Trim() ?? string.Empty;
+        this.executeSystemDefaultSchemaName = executeSystemDefaultSchemaName?.Trim() ?? string.Empty;
     }
 
     public TransformBindingResult BindTransform(
@@ -152,7 +170,7 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var targetResolution = sourceSchemaResolver.ResolveSqlIdentifier(targetSqlIdentifier);
+        var targetResolution = (targetSchemaResolver ?? sourceSchemaResolver).ResolveSqlIdentifier(targetSqlIdentifier);
         if (!targetResolution.IsResolved || targetResolution.Table is null)
         {
             return null;
@@ -177,6 +195,61 @@ internal sealed partial class TransformBindingSession
         }
 
         return orderByOutputAliasScopeStack.Peek().Contains(identifier);
+    }
+
+    private SchemaTableResolutionResult ResolveSourceSchemaIdentifier(string sqlIdentifier)
+    {
+        if (sourceSchemaResolver is null)
+        {
+            return new SchemaTableResolutionResult(
+                [],
+                sqlIdentifier,
+                null,
+                SchemaTableResolutionFailureKind.NotFound);
+        }
+
+        if (string.IsNullOrWhiteSpace(executeSystemName))
+        {
+            return sourceSchemaResolver.ResolveSqlIdentifier(sqlIdentifier);
+        }
+
+        var expanded = SourceSqlIdentifierExpansion.Expand(
+            sqlIdentifier,
+            executeSystemName,
+            executeSystemDefaultSchemaName);
+        if (!expanded.IsSuccess)
+        {
+            issues.Add(new TransformBindingIssue(
+                expanded.FailureKind switch
+                {
+                    SourceSqlIdentifierExpansionFailureKind.MissingIdentifier => "SourceSchemaIdentifierMissing",
+                    SourceSqlIdentifierExpansionFailureKind.MissingExecuteSystem => "SourceSchemaExecuteSystemMissing",
+                    SourceSqlIdentifierExpansionFailureKind.MissingDefaultSchemaName => "SourceSchemaExecuteSystemDefaultSchemaNameMissing",
+                    SourceSqlIdentifierExpansionFailureKind.UnsupportedIdentifierShape => "SourceSchemaIdentifierShapeUnsupported",
+                    _ => "SourceSchemaResolutionFailed"
+                },
+                expanded.FailureKind switch
+                {
+                    SourceSqlIdentifierExpansionFailureKind.MissingIdentifier =>
+                        $"Source identifier '{sqlIdentifier}' is blank and cannot be resolved.",
+                    SourceSqlIdentifierExpansionFailureKind.MissingExecuteSystem =>
+                        $"Source identifier '{sqlIdentifier}' requires execute-system context.",
+                    SourceSqlIdentifierExpansionFailureKind.MissingDefaultSchemaName =>
+                        $"Source identifier '{sqlIdentifier}' requires execute-system-default-schema-name because it is one-part.",
+                    SourceSqlIdentifierExpansionFailureKind.UnsupportedIdentifierShape =>
+                        $"Source identifier '{sqlIdentifier}' uses an unsupported identifier shape.",
+                    _ =>
+                        $"Source identifier '{sqlIdentifier}' could not be resolved."
+                }));
+
+            return new SchemaTableResolutionResult(
+                [],
+                sqlIdentifier,
+                null,
+                SchemaTableResolutionFailureKind.UnsupportedIdentifierShape);
+        }
+
+        return sourceSchemaResolver.ResolveIdentifierParts(expanded.ExpandedIdentifierParts);
     }
 
     private readonly record struct CommonTableExpressionReferenceBindingResult(

@@ -100,6 +100,8 @@ meta-transform-script from sql-file --path SourceViews\097_q97\view.sql --target
 meta-transform-script from sql-file --path SourceViews\098_q98\view.sql --target tpcds.v_q98 --workspace TransformWS
 meta-transform-script from sql-file --path SourceViews\099_q99\view.sql --target tpcds.v_q99 --workspace TransformWS
 
+meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system TpcDsSnapshot --execute-system-default-schema-name dbo --new-workspace BindingWS
+
 pushd TransformWS
 
 meta-transform-script to sql-path --out ..\RoundTrippedViews

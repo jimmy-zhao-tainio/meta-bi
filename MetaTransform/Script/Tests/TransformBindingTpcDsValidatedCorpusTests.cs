@@ -110,7 +110,10 @@ public sealed class TransformBindingTpcDsValidatedCorpusTests
 
                     var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                         transformWorkspacePath,
+                        new[] { schemaWorkspacePath },
                         schemaWorkspacePath,
+                        executeSystemName: "LocalSystem",
+                        executeSystemDefaultSchemaName: "dbo",
                         bindingWorkspacePath);
 
                     if (result.TransformBindingCount != 1)

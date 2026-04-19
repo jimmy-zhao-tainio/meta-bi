@@ -54,7 +54,7 @@ internal sealed partial class TransformBindingSession
         var columns = new List<RuntimeColumn>();
         if (sourceSchemaResolver is not null)
         {
-            var sourceResolution = sourceSchemaResolver.ResolveSqlIdentifier(sqlIdentifier);
+            var sourceResolution = ResolveSourceSchemaIdentifier(sqlIdentifier);
             if (sourceResolution.IsResolved)
             {
                 foreach (var field in sourceResolution.Table!.Fields
