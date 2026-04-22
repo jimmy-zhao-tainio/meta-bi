@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using Microsoft.Data.SqlClient;
 using Meta.Core.Domain;
 using Meta.Core.Services;
@@ -1292,6 +1293,8 @@ public sealed partial class CliDiffTests
     }
     private static (int ExitCode, string Output) RunProcess(ProcessStartInfo startInfo, string errorMessage)
     {
+        RewriteConnectionArguments(startInfo);
+
         using var process = new Process { StartInfo = startInfo };
         if (!process.Start())
         {
@@ -1302,6 +1305,25 @@ public sealed partial class CliDiffTests
         var error = process.StandardError.ReadToEnd();
         process.WaitForExit();
         return (process.ExitCode, output + error);
+    }
+
+    private static void RewriteConnectionArguments(ProcessStartInfo startInfo)
+    {
+        const string Pattern = "(?<=^|\\s)--connection-string\\s+\"([^\"]*)\"";
+        var match = Regex.Match(startInfo.Arguments, Pattern, RegexOptions.IgnoreCase);
+        if (!match.Success)
+        {
+            return;
+        }
+
+        var environmentVariableName = "META_SQL_TEST_" + Guid.NewGuid().ToString("N").ToUpperInvariant();
+        startInfo.Environment[environmentVariableName] = match.Groups[1].Value;
+        startInfo.Arguments = Regex.Replace(
+            startInfo.Arguments,
+            Pattern,
+            $"--connection-env {environmentVariableName}",
+            RegexOptions.IgnoreCase,
+            TimeSpan.FromSeconds(1));
     }
 
     private static void AssertOutputLineContains(string output, string prefix, params string[] fragments)

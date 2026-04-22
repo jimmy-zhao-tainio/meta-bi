@@ -1,4 +1,5 @@
 call cleanup.cmd >nul 2>&1
+@set "META_BI_BUSINESS_DV_SQL=Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
 
 meta-datavault-business --new-workspace BusinessDataVaultCliIntegrationWorkspace
 pushd BusinessDataVaultCliIntegrationWorkspace
@@ -150,11 +151,11 @@ meta-datavault-business add-bridge-hub --id CustomerFulfillmentTraversalShipment
 
 meta-convert business-datavault-to-sql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name BusinessDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace
 
-meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlDeployManifest
+meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-env META_BI_BUSINESS_DV_SQL --out MetaSqlDeployManifest
 
-meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false"
+meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-env META_BI_BUSINESS_DV_SQL
 
-meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlVerifyManifest
+meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-env META_BI_BUSINESS_DV_SQL --out MetaSqlVerifyManifest
 
 popd
 

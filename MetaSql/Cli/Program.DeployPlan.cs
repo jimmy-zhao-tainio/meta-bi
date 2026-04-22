@@ -1,5 +1,6 @@
 using MetaSql;
 using MetaSql.Extractors.SqlServer;
+using Meta.Core.Connections;
 using Meta.Core.Services;
 using Meta.Core.Domain;
 
@@ -24,6 +25,17 @@ internal static partial class Program
             return Fail("missing required option --out <path>.", "meta-sql deploy-plan --help");
         }
 
+        string connectionString;
+        try
+        {
+            connectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(
+                parse.ConnectionEnvironmentVariableName);
+        }
+        catch (ConnectionEnvironmentVariableException exception)
+        {
+            return Fail(exception.Message, "meta-sql deploy-plan --help");
+        }
+
         var sourceWorkspacePath = Path.GetFullPath(parse.SourceWorkspacePath);
         var outputPath = Path.GetFullPath(parse.OutputPath);
         var tempRootPath = Path.Combine(Path.GetTempPath(), "MetaSql.Cli", "deploy-plan", Guid.NewGuid().ToString("N"));
@@ -37,14 +49,14 @@ internal static partial class Program
             var sourceWorkspace = await workspaceService.LoadAsync(sourceWorkspacePath, searchUpward: false).ConfigureAwait(false);
 
             var liveDatabasePresence = await SqlServerDatabaseRuntime
-                .GetPresenceAsync(parse.ConnectionString)
+                .GetPresenceAsync(connectionString)
                 .ConfigureAwait(false);
             Workspace liveWorkspace;
             if (liveDatabasePresence == MetaSqlLiveDatabasePresence.Missing)
             {
                 liveWorkspace = SqlServerMetaSqlWorkspaceFactory.CreateEmptyWorkspace(
                     liveRuntimePath,
-                    SqlServerDatabaseRuntime.RequireDatabaseName(parse.ConnectionString));
+                    SqlServerDatabaseRuntime.RequireDatabaseName(connectionString));
             }
             else
             {
@@ -52,7 +64,7 @@ internal static partial class Program
                 liveWorkspace = extractor.ExtractMetaSqlWorkspace(new SqlServerExtractRequest
                 {
                     NewWorkspacePath = liveRuntimePath,
-                    ConnectionString = parse.ConnectionString,
+                    ConnectionString = connectionString,
                     AllowEmpty = true,
                 });
             }
@@ -64,7 +76,7 @@ internal static partial class Program
                     differences,
                     sourceWorkspace,
                     liveWorkspace,
-                    parse.ConnectionString)
+                    connectionString)
                 .ConfigureAwait(false);
 
             var manifestService = new MetaSqlDeployManifestService();
@@ -111,6 +123,7 @@ internal static partial class Program
                 {
                     $"  SourceWorkspace: {sourceWorkspacePath}",
                     $"  ManifestPath: {outputPath}",
+                    $"  {ConnectionEnvironmentVariableResolver.FormatReference(parse.ConnectionEnvironmentVariableName)}",
                     $"  {ex.Message}",
                 });
         }
@@ -364,10 +377,11 @@ internal static partial class Program
     private static void PrintDeployPlanHelp()
     {
         Presenter.WriteInfo("Command: deploy-plan");
-        Presenter.WriteUsage("meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]");
+        Presenter.WriteUsage("meta-sql deploy-plan --source-workspace <path> --connection-env <name> --out <path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Loads the source MetaSql workspace.");
         Presenter.WriteInfo("  Extracts the live SQL Server schema to MetaSql.");
+        Presenter.WriteInfo("  --connection-env names the environment variable that contains the SQL Server connection string.");
         Presenter.WriteInfo("  Always plans against the full source workspace and full live database. Filtered subset deploy is not supported.");
         Presenter.WriteInfo("  Creates a deploy manifest with Add/Drop/Truncate/Alter/Replace/Block entries.");
         Presenter.WriteInfo("  DataDropTable and DataDropColumn require exact object-scoped approvals.");

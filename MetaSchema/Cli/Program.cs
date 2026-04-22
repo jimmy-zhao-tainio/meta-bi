@@ -1,4 +1,5 @@
 using System.Linq;
+using Meta.Core.Connections;
 using Meta.Core.Presentation;
 using Meta.Core.Services;
 using MetaBi.Cli.Common;
@@ -62,9 +63,9 @@ internal static class Program
         }
 
         var workspacePath = targetValidation.FullPath;
-        if (string.IsNullOrWhiteSpace(parseResult.Request.ConnectionString))
+        if (string.IsNullOrWhiteSpace(parseResult.ConnectionEnvironmentVariableName))
         {
-            return Fail("missing required option --connection <connectionString>.", "meta-schema extract sqlserver --help");
+            return Fail("missing required option --connection-env <name>.", "meta-schema extract sqlserver --help");
         }
 
         if (string.IsNullOrWhiteSpace(parseResult.Request.SystemName))
@@ -92,7 +93,15 @@ internal static class Program
             return Fail("missing required scope option --table <name> or --all-tables.", "meta-schema extract sqlserver --help");
         }
 
-        Directory.CreateDirectory(workspacePath);
+        try
+        {
+            parseResult.Request.ConnectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(
+                parseResult.ConnectionEnvironmentVariableName);
+        }
+        catch (ConnectionEnvironmentVariableException exception)
+        {
+            return Fail(exception.Message, "meta-schema extract sqlserver --help");
+        }
 
         Meta.Core.Domain.Workspace workspace;
         try
@@ -122,11 +131,12 @@ internal static class Program
         return 0;
     }
 
-    private static (bool Ok, SqlServerExtractRequest Request, string ErrorMessage) ParseSqlServerExtractOptions(
+    private static (bool Ok, SqlServerExtractRequest Request, string ConnectionEnvironmentVariableName, string ErrorMessage) ParseSqlServerExtractOptions(
         string[] args,
         int startIndex)
     {
         var request = new SqlServerExtractRequest();
+        var connectionEnvironmentVariableName = string.Empty;
         for (var i = startIndex; i < args.Length; i++)
         {
             var arg = args[i];
@@ -134,31 +144,31 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, request, "missing value for --new-workspace.");
+                    return (false, request, connectionEnvironmentVariableName, "missing value for --new-workspace.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(request.NewWorkspacePath))
                 {
-                    return (false, request, "--new-workspace can only be provided once.");
+                    return (false, request, connectionEnvironmentVariableName, "--new-workspace can only be provided once.");
                 }
 
                 request.NewWorkspacePath = args[++i];
                 continue;
             }
 
-            if (string.Equals(arg, "--connection", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(arg, "--connection-env", StringComparison.OrdinalIgnoreCase))
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, request, "missing value for --connection.");
+                    return (false, request, connectionEnvironmentVariableName, "missing value for --connection-env.");
                 }
 
-                if (!string.IsNullOrWhiteSpace(request.ConnectionString))
+                if (!string.IsNullOrWhiteSpace(connectionEnvironmentVariableName))
                 {
-                    return (false, request, "--connection can only be provided once.");
+                    return (false, request, connectionEnvironmentVariableName, "--connection-env can only be provided once.");
                 }
 
-                request.ConnectionString = args[++i];
+                connectionEnvironmentVariableName = args[++i];
                 continue;
             }
 
@@ -166,12 +176,12 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, request, "missing value for --schema.");
+                    return (false, request, connectionEnvironmentVariableName, "missing value for --schema.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(request.SchemaName))
                 {
-                    return (false, request, "--schema can only be provided once.");
+                    return (false, request, connectionEnvironmentVariableName, "--schema can only be provided once.");
                 }
 
                 request.SchemaName = args[++i];
@@ -188,12 +198,12 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, request, "missing value for --system.");
+                    return (false, request, connectionEnvironmentVariableName, "missing value for --system.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(request.SystemName))
                 {
-                    return (false, request, "--system can only be provided once.");
+                    return (false, request, connectionEnvironmentVariableName, "--system can only be provided once.");
                 }
 
                 request.SystemName = args[++i];
@@ -204,12 +214,12 @@ internal static class Program
             {
                 if (i + 1 >= args.Length)
                 {
-                    return (false, request, "missing value for --table.");
+                    return (false, request, connectionEnvironmentVariableName, "missing value for --table.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(request.TableName))
                 {
-                    return (false, request, "--table can only be provided once.");
+                    return (false, request, connectionEnvironmentVariableName, "--table can only be provided once.");
                 }
 
                 request.TableName = args[++i];
@@ -222,10 +232,10 @@ internal static class Program
                 continue;
             }
 
-            return (false, request, $"unknown option '{arg}'.");
+            return (false, request, connectionEnvironmentVariableName, $"unknown option '{arg}'.");
         }
 
-        return (true, request, string.Empty);
+        return (true, request, connectionEnvironmentVariableName, string.Empty);
     }
 
     private static bool IsHelpToken(string value)
@@ -266,9 +276,10 @@ internal static class Program
     private static void PrintExtractSqlServerHelp()
     {
         Presenter.WriteInfo("Command: extract sqlserver");
-        Presenter.WriteUsage("meta-schema extract sqlserver --new-workspace <path> --connection <connectionString> --system <name> (--schema <name> | --all-schemas) (--table <name> | --all-tables)");
+        Presenter.WriteUsage("meta-schema extract sqlserver --new-workspace <path> --connection-env <name> --system <name> (--schema <name> | --all-schemas) (--table <name> | --all-tables)");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Creates a new workspace with the MetaSchema model and validates it.");
+        Presenter.WriteInfo("  --connection-env names the environment variable that contains the SQL Server connection string.");
         Presenter.WriteInfo("  Scope is controlled by schema/table filters or all-schemas/all-tables discovery switches.");
         Presenter.WriteInfo("  TableRelationship rows are emitted only for enforced and trusted SQL Server foreign keys whose source and target tables are both in scope.");
         Presenter.WriteInfo("  Field rows carry a scalar DataTypeId plus local FieldDataTypeDetail rows such as Length, Precision, or Scale.");

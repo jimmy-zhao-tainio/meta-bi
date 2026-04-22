@@ -109,12 +109,14 @@ Purpose:
 
 Command surface:
 - `meta-schema help`
-- `meta-schema extract sqlserver --new-workspace <path> --connection <connectionString> --system <name> (--schema <name> | --all-schemas) (--table <name> | --all-tables)`
+- `meta-schema extract sqlserver --new-workspace <path> --connection-env <name> --system <name> (--schema <name> | --all-schemas) (--table <name> | --all-tables)`
 
 Example:
 
+`--connection-env` names the shell-visible environment variable that contains the SQL Server connection string.
+
 ```cmd
-meta-schema extract sqlserver --new-workspace .\MetaSchema.Workspace --connection "<connectionString>" --system MySystem --schema dbo --all-tables
+meta-schema extract sqlserver --new-workspace .\MetaSchema.Workspace --connection-env META_SQL_DEV --system MySystem --schema dbo --all-tables
 ```
 
 ### meta-data-type
@@ -236,8 +238,8 @@ Purpose:
 - plan and apply manifest-driven SQL Server deployment from sanctioned `MetaSql` workspaces
 
 Command surface:
-- `meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]`
-- `meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>`
+- `meta-sql deploy-plan --source-workspace <path> --connection-env <name> --out <path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]`
+- `meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-env <name>`
 
 Behavior summary:
 - `deploy-plan` extracts live schema when the target database exists, otherwise treats live as truly empty and writes a deploy manifest against that empty live state
@@ -249,9 +251,11 @@ Behavior summary:
 
 Examples:
 
+`--connection-env` names the shell-visible environment variable that contains the target SQL Server connection string.
+
 ```cmd
-meta-sql deploy-plan --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>" --out .\out\deploy-manifest
-meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\CurrentMetaSql.Workspace --connection-string "<connectionString>"
+meta-sql deploy-plan --source-workspace .\CurrentMetaSql.Workspace --connection-env META_SQL_DEV --out .\out\deploy-manifest
+meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\CurrentMetaSql.Workspace --connection-env META_SQL_DEV
 ```
 
 ### meta-transform-script

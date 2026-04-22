@@ -29,7 +29,7 @@ public sealed partial class CliDiffTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Command: deploy-plan", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <path>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql deploy-plan --source-workspace <path> --connection-env <name> --out <path>", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-table", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-drop-column", result.Output, StringComparison.Ordinal);
         Assert.Contains("--approve-truncate-column", result.Output, StringComparison.Ordinal);
@@ -61,9 +61,46 @@ public sealed partial class CliDiffTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Command: deploy", result.Output, StringComparison.Ordinal);
-        Assert.Contains("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-env <name>", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--schema", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("--table", result.Output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void DeployPlanCommand_FailsWhenConnectionEnvironmentVariableIsMissing()
+    {
+        var repoRoot = FindRepositoryRoot();
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
+        var sourcePath = Path.Combine(tempRoot, "source-metasql");
+        var outputPath = Path.Combine(tempRoot, "deploy-manifest");
+        var environmentVariableName = "META_SQL_TEST_" + Guid.NewGuid().ToString("N").ToUpperInvariant();
+        var originalValue = Environment.GetEnvironmentVariable(environmentVariableName);
+
+        try
+        {
+            Environment.SetEnvironmentVariable(environmentVariableName, null);
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "meta-sql",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-env {environmentVariableName} --out \"{outputPath}\"",
+                WorkingDirectory = repoRoot,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
+
+            Assert.Equal(1, result.ExitCode);
+            Assert.Contains($"Error: Connection environment variable '{environmentVariableName}' was not found.", result.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            Environment.SetEnvironmentVariable(environmentVariableName, originalValue);
+            DeleteIfExists(tempRoot);
+        }
     }
 
     [Fact]

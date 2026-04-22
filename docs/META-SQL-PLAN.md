@@ -16,13 +16,15 @@ The current CLI surface is:
 ## Current Command Surface
 
 ```bash
-meta-sql deploy-plan --source-workspace <path> --connection-string <value> --out <manifest-path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]
-meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>
+meta-sql deploy-plan --source-workspace <path> --connection-env <name> --out <manifest-path> [--approve-drop-table <schema.table>] [--approve-drop-column <schema.table.column>] [--approve-truncate-column <schema.table.column>] [--approval-file <path>]
+meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-env <name>
 ```
 
-`deploy-plan` currently accepts `--source-workspace`, `--connection-string`, `--out`, and object-scoped destructive approvals via repeated CLI args and/or `--approval-file`.
+`deploy-plan` currently accepts `--source-workspace`, `--connection-env`, `--out`, and object-scoped destructive approvals via repeated CLI args and/or `--approval-file`.
 
-`deploy` currently requires `--manifest-workspace`, `--source-workspace`, and `--connection-string`.
+`deploy` currently requires `--manifest-workspace`, `--source-workspace`, and `--connection-env`.
+
+`--connection-env` names the shell-visible environment variable that contains the target SQL Server connection string.
 
 If the target database is missing during `deploy-plan`, live is modeled as an empty `MetaSql` workspace and the manifest records that missing-database expectation explicitly.
 Missing live means truly empty: database only, no inferred schemas.

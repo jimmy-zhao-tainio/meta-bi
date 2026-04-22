@@ -444,17 +444,17 @@ OK: Added CustomerFulfillmentTraversalShipment to BusinessBridgeHub
 > meta-convert business-datavault-to-sql --implementation-workspace ..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name BusinessDataVaultCliIntegrationWorkspace --out CurrentMetaSqlWorkspace 
 OK: Generated CurrentMetaSqlWorkspace
 
-> meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlDeployManifest 
+> meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-env META_BI_BUSINESS_DV_SQL --out MetaSqlDeployManifest 
 OK: Created deploy plan
 Status: ready to deploy
 Changes: 145 to add (58 tables, 26 primary keys, 61 foreign keys)
 
-> meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" 
+> meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-env META_BI_BUSINESS_DV_SQL 
 OK: Deployed changes
 Database: created
 Deployed: 145 added (58 tables, 26 primary keys, 61 foreign keys)
 
-> meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-string "Server=.;Database=BusinessDataVaultCliIntegrationWorkspace;Integrated Security=true;TrustServerCertificate=true;Encrypt=false" --out MetaSqlVerifyManifest 
+> meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-env META_BI_BUSINESS_DV_SQL --out MetaSqlVerifyManifest 
 OK: Created deploy plan
 Status: ready to deploy
 Changes: none

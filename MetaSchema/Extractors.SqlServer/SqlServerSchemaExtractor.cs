@@ -17,7 +17,7 @@ public sealed class SqlServerSchemaExtractor
 
         if (string.IsNullOrWhiteSpace(request.ConnectionString))
         {
-            throw new InvalidOperationException("extract sqlserver requires --connection <connectionString>.");
+            throw new InvalidOperationException("extract sqlserver requires a connection string.");
         }
 
         if (string.IsNullOrWhiteSpace(request.SystemName))

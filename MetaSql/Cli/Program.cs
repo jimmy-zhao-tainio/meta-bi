@@ -1,4 +1,5 @@
 using Meta.Core.Presentation;
+using Meta.Core.Connections;
 using MetaSql;
 using MetaSql.Extractors.SqlServer;
 using MetaSqlDeployManifest;
@@ -29,11 +30,11 @@ internal static partial class Program
         return Fail($"unknown command '{args[0]}'.", "meta-sql help");
     }
 
-    private static (bool Ok, string SourceWorkspacePath, string OutputPath, string ConnectionString, IReadOnlyList<MetaSqlDestructiveApproval> DestructiveApprovals, string ErrorMessage) ParseDiffLikeArgs(string[] args, int startIndex)
+    private static (bool Ok, string SourceWorkspacePath, string OutputPath, string ConnectionEnvironmentVariableName, IReadOnlyList<MetaSqlDestructiveApproval> DestructiveApprovals, string ErrorMessage) ParseDiffLikeArgs(string[] args, int startIndex)
     {
         var sourceWorkspacePath = string.Empty;
         var outputPath = string.Empty;
-        var connectionString = string.Empty;
+        var connectionEnvironmentVariableName = string.Empty;
         string? approvalFilePath = null;
         var explicitApprovals = new List<MetaSqlDestructiveApproval>();
 
@@ -42,35 +43,35 @@ internal static partial class Program
             var arg = args[i];
             if (string.Equals(arg, "--source-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing value for --source-workspace.");
-                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "--source-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing value for --source-workspace.");
+                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "--source-workspace can only be provided once.");
                 sourceWorkspacePath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--out", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing value for --out.");
-                if (!string.IsNullOrWhiteSpace(outputPath)) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "--out can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing value for --out.");
+                if (!string.IsNullOrWhiteSpace(outputPath)) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "--out can only be provided once.");
                 outputPath = args[++i];
                 continue;
             }
 
-            if (string.Equals(arg, "--connection-string", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(arg, "--connection-env", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing value for --connection-string.");
-                if (!string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "--connection-string can only be provided once.");
-                connectionString = args[++i];
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing value for --connection-env.");
+                if (!string.IsNullOrWhiteSpace(connectionEnvironmentVariableName)) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "--connection-env can only be provided once.");
+                connectionEnvironmentVariableName = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--approve-drop-table", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing value for --approve-drop-table.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing value for --approve-drop-table.");
                 var value = args[++i];
                 if (!TryParseTableScope(value, out var approvedSchema, out var approvedTable))
                 {
-                    return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, $"invalid table scope '{value}' for --approve-drop-table. Expected <schema>.<table>.");
+                    return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, $"invalid table scope '{value}' for --approve-drop-table. Expected <schema>.<table>.");
                 }
 
                 explicitApprovals.Add(new MetaSqlDestructiveApproval
@@ -84,11 +85,11 @@ internal static partial class Program
 
             if (string.Equals(arg, "--approve-drop-column", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing value for --approve-drop-column.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing value for --approve-drop-column.");
                 var value = args[++i];
                 if (!TryParseColumnScope(value, out var approvedSchema, out var approvedTable, out var approvedColumn))
                 {
-                    return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, $"invalid column scope '{value}' for --approve-drop-column. Expected <schema>.<table>.<column>.");
+                    return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, $"invalid column scope '{value}' for --approve-drop-column. Expected <schema>.<table>.<column>.");
                 }
 
                 explicitApprovals.Add(new MetaSqlDestructiveApproval
@@ -103,11 +104,11 @@ internal static partial class Program
 
             if (string.Equals(arg, "--approve-truncate-column", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing value for --approve-truncate-column.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing value for --approve-truncate-column.");
                 var value = args[++i];
                 if (!TryParseColumnScope(value, out var approvedSchema, out var approvedTable, out var approvedColumn))
                 {
-                    return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, $"invalid column scope '{value}' for --approve-truncate-column. Expected <schema>.<table>.<column>.");
+                    return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, $"invalid column scope '{value}' for --approve-truncate-column. Expected <schema>.<table>.<column>.");
                 }
 
                 explicitApprovals.Add(new MetaSqlDestructiveApproval
@@ -122,17 +123,17 @@ internal static partial class Program
 
             if (string.Equals(arg, "--approval-file", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing value for --approval-file.");
-                if (!string.IsNullOrWhiteSpace(approvalFilePath)) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "--approval-file can only be provided once.");
+                if (i + 1 >= args.Length) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing value for --approval-file.");
+                if (!string.IsNullOrWhiteSpace(approvalFilePath)) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "--approval-file can only be provided once.");
                 approvalFilePath = args[++i];
                 continue;
             }
 
-            return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, $"unknown option '{arg}'.");
+            return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing required option --source-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(connectionString)) return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, "missing required option --connection-string <value>.");
+        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing required option --source-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(connectionEnvironmentVariableName)) return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, "missing required option --connection-env <name>.");
 
         if (!string.IsNullOrWhiteSpace(approvalFilePath))
         {
@@ -143,54 +144,54 @@ internal static partial class Program
             }
             catch (Exception ex)
             {
-                return (false, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, ex.Message);
+                return (false, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, ex.Message);
             }
         }
 
-        return (true, sourceWorkspacePath, outputPath, connectionString, explicitApprovals, string.Empty);
+        return (true, sourceWorkspacePath, outputPath, connectionEnvironmentVariableName, explicitApprovals, string.Empty);
     }
 
-    private static (bool Ok, string ManifestWorkspacePath, string SourceWorkspacePath, string ConnectionString, string ErrorMessage) ParseDeployArgs(string[] args, int startIndex)
+    private static (bool Ok, string ManifestWorkspacePath, string SourceWorkspacePath, string ConnectionEnvironmentVariableName, string ErrorMessage) ParseDeployArgs(string[] args, int startIndex)
     {
         var manifestWorkspacePath = string.Empty;
         var sourceWorkspacePath = string.Empty;
-        var connectionString = string.Empty;
+        var connectionEnvironmentVariableName = string.Empty;
 
         for (var i = startIndex; i < args.Length; i++)
         {
             var arg = args[i];
             if (string.Equals(arg, "--manifest-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "missing value for --manifest-workspace.");
-                if (!string.IsNullOrWhiteSpace(manifestWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "--manifest-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "missing value for --manifest-workspace.");
+                if (!string.IsNullOrWhiteSpace(manifestWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "--manifest-workspace can only be provided once.");
                 manifestWorkspacePath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--source-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "missing value for --source-workspace.");
-                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "--source-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "missing value for --source-workspace.");
+                if (!string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "--source-workspace can only be provided once.");
                 sourceWorkspacePath = args[++i];
                 continue;
             }
 
-            if (string.Equals(arg, "--connection-string", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(arg, "--connection-env", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "missing value for --connection-string.");
-                if (!string.IsNullOrWhiteSpace(connectionString)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "--connection-string can only be provided once.");
-                connectionString = args[++i];
+                if (i + 1 >= args.Length) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "missing value for --connection-env.");
+                if (!string.IsNullOrWhiteSpace(connectionEnvironmentVariableName)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "--connection-env can only be provided once.");
+                connectionEnvironmentVariableName = args[++i];
                 continue;
             }
 
-            return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, $"unknown option '{arg}'.");
+            return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, $"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(manifestWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "missing required option --manifest-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "missing required option --source-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(connectionString)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionString, "missing required option --connection-string <value>.");
+        if (string.IsNullOrWhiteSpace(manifestWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "missing required option --manifest-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(sourceWorkspacePath)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "missing required option --source-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(connectionEnvironmentVariableName)) return (false, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, "missing required option --connection-env <name>.");
 
-        return (true, manifestWorkspacePath, sourceWorkspacePath, connectionString, string.Empty);
+        return (true, manifestWorkspacePath, sourceWorkspacePath, connectionEnvironmentVariableName, string.Empty);
     }
 
     private static bool IsHelpToken(string value)

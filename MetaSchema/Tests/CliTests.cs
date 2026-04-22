@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using MetaSchema.Core;
+using System.Text.RegularExpressions;
 
 using Microsoft.Data.SqlClient;
 using MetaSchema.Extractors.SqlServer;
@@ -25,7 +26,7 @@ public sealed class CliTests
 
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("--new-workspace <path>", result.Output);
-        Assert.Contains("--connection <connectionString>", result.Output);
+        Assert.Contains("--connection-env <name>", result.Output);
         Assert.Contains("--system", result.Output);
         Assert.Contains("<name>", result.Output);
         Assert.Contains("--schema <name>", result.Output);
@@ -52,7 +53,7 @@ public sealed class CliTests
             var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --system TestSystem --schema dbo --table Cube");
 
             Assert.Equal(1, result.ExitCode);
-            Assert.Contains("Error: missing required option --connection <connectionString>.", result.Output);
+            Assert.Contains("Error: missing required option --connection-env <name>.", result.Output);
             Assert.False(Directory.Exists(workspacePath));
         }
         finally
@@ -75,6 +76,30 @@ public sealed class CliTests
         }
         finally
         {
+            DeleteDirectoryIfExists(workspacePath);
+        }
+    }
+
+    [Fact]
+    public void ExtractSqlServer_FailsWhenConnectionEnvironmentVariableIsMissing()
+    {
+        var workspacePath = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
+        var environmentVariableName = "META_SCHEMA_TEST_" + Guid.NewGuid().ToString("N").ToUpperInvariant();
+        var originalValue = Environment.GetEnvironmentVariable(environmentVariableName);
+
+        try
+        {
+            Environment.SetEnvironmentVariable(environmentVariableName, null);
+
+            var result = RunCli($"extract sqlserver --new-workspace \"{workspacePath}\" --connection-env {environmentVariableName} --system TestSystem --schema dbo --table Cube");
+
+            Assert.Equal(1, result.ExitCode);
+            Assert.Contains($"Error: Connection environment variable '{environmentVariableName}' was not found.", result.Output);
+            Assert.False(Directory.Exists(workspacePath));
+        }
+        finally
+        {
+            Environment.SetEnvironmentVariable(environmentVariableName, originalValue);
             DeleteDirectoryIfExists(workspacePath);
         }
     }
@@ -371,8 +396,28 @@ public sealed class CliTests
             UseShellExecute = false,
             CreateNoWindow = true,
         };
+        RewriteConnectionArguments(startInfo);
 
         return RunProcess(startInfo, "Could not start meta-schema CLI process.");
+    }
+
+    private static void RewriteConnectionArguments(ProcessStartInfo startInfo)
+    {
+        const string Pattern = "(?<=^|\\s)--connection\\s+\"([^\"]*)\"";
+        var match = Regex.Match(startInfo.Arguments, Pattern, RegexOptions.IgnoreCase);
+        if (!match.Success)
+        {
+            return;
+        }
+
+        var environmentVariableName = "META_SCHEMA_TEST_" + Guid.NewGuid().ToString("N").ToUpperInvariant();
+        startInfo.Environment[environmentVariableName] = match.Groups[1].Value;
+        startInfo.Arguments = Regex.Replace(
+            startInfo.Arguments,
+            Pattern,
+            $"--connection-env {environmentVariableName}",
+            RegexOptions.IgnoreCase,
+            TimeSpan.FromSeconds(1));
     }
 
     private static (int ExitCode, string Output) RunProcess(ProcessStartInfo startInfo, string errorMessage)

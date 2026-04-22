@@ -1,4 +1,5 @@
 using MetaSql;
+using Meta.Core.Connections;
 using MetaSqlDeployManifest;
 
 internal static partial class Program
@@ -20,6 +21,17 @@ internal static partial class Program
         var manifestWorkspacePath = Path.GetFullPath(parse.ManifestWorkspacePath);
         var sourceWorkspacePath = Path.GetFullPath(parse.SourceWorkspacePath);
 
+        string connectionString;
+        try
+        {
+            connectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(
+                parse.ConnectionEnvironmentVariableName);
+        }
+        catch (ConnectionEnvironmentVariableException exception)
+        {
+            return Fail(exception.Message, "meta-sql deploy --help");
+        }
+
         try
         {
             var manifestModel = await MetaSqlDeployManifestModel
@@ -31,7 +43,7 @@ internal static partial class Program
                     {
                         ManifestWorkspacePath = manifestWorkspacePath,
                         SourceWorkspacePath = sourceWorkspacePath,
-                        ConnectionString = parse.ConnectionString,
+                        ConnectionString = connectionString,
                     })
                 .ConfigureAwait(false);
 
@@ -57,6 +69,7 @@ internal static partial class Program
                 {
                     $"  ManifestWorkspace: {manifestWorkspacePath}",
                     $"  SourceWorkspace: {sourceWorkspacePath}",
+                    $"  {ConnectionEnvironmentVariableResolver.FormatReference(parse.ConnectionEnvironmentVariableName)}",
                     $"  {ex.Message}",
                 });
         }
@@ -65,9 +78,10 @@ internal static partial class Program
     private static void PrintDeployHelp()
     {
         Presenter.WriteInfo("Command: deploy");
-        Presenter.WriteUsage("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-string <value>");
+        Presenter.WriteUsage("meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connection-env <name>");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Loads the deploy manifest and source MetaSql workspace.");
+        Presenter.WriteInfo("  --connection-env names the environment variable that contains the SQL Server connection string.");
         Presenter.WriteInfo("  Refuses when the manifest contains Block entries.");
         Presenter.WriteInfo("  Refuses when source/live instance fingerprints no longer match.");
         Presenter.WriteInfo("  Always validates and applies the full manifest scope. Filtered subset deploy is not supported.");
