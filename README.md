@@ -57,14 +57,14 @@ Build the installer:
 dotnet build MetaBi\Installer\MetaBi.Installer.csproj
 ```
 
-Then install the packaged BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-convert`, `meta-datavault-raw`, `meta-datavault-business`, `meta-transform-script`, `meta-transform-binding`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
+Then install the packaged BI CLIs (`meta-schema`, `meta-data-type`, `meta-data-type-conversion`, `meta-convert`, `meta-datavault-raw`, `meta-datavault-business`, `meta-pipeline`, `meta-transform-script`, `meta-transform-binding`) into `%LOCALAPPDATA%\meta\bin` and add that directory to your user `PATH`:
 
 ```cmd
 MetaBi\Installer\bin\publish\win-x64\install-meta-bi.exe
 ```
 
 The installer copies published CLI payloads from the current `meta-bi` checkout into `%LOCALAPPDATA%\meta\bin`.
-If install reports missing binaries, publish the CLI projects first (for example `dotnet publish MetaTransform\Script\Cli\MetaTransformScript.Cli.csproj -c Debug -r win-x64` and `dotnet publish MetaTransform\Binding\Cli\MetaTransformBinding.Cli.csproj -c Debug -r win-x64`).
+If install reports missing binaries, publish the CLI projects first (for example `dotnet publish MetaPipeline\Cli\MetaPipeline.Cli.csproj -c Debug -r win-x64`, `dotnet publish MetaTransform\Script\Cli\MetaTransformScript.Cli.csproj -c Debug -r win-x64`, and `dotnet publish MetaTransform\Binding\Cli\MetaTransformBinding.Cli.csproj -c Debug -r win-x64`).
 
 ## Intent
 
@@ -85,6 +85,8 @@ Project-first stacks (built via `.csproj` entry points):
 - `MetaTransform\Script\Cli\MetaTransformScript.Cli.csproj`
 - `MetaTransform\Script\Tests\MetaTransformScript.Tests.csproj`
 - `MetaTransform\Binding\Cli\MetaTransformBinding.Cli.csproj`
+- `MetaPipeline\Cli\MetaPipeline.Cli.csproj`
+- `MetaPipeline\Tests\MetaPipeline.Tests.csproj`
 - `MetaSql\Cli\MetaSql.Cli.csproj`
 - `MetaSql\Tests\MetaSql.Tests.csproj`
 
@@ -98,6 +100,7 @@ Project-first stacks (built via `.csproj` entry points):
 - `meta-convert`
 - `meta-datavault-raw`
 - `meta-datavault-business`
+- `meta-pipeline`
 - `meta-sql`
 - `meta-transform-script`
 - `meta-transform-binding`
@@ -256,6 +259,30 @@ Examples:
 ```cmd
 meta-sql deploy-plan --source-workspace .\CurrentMetaSql.Workspace --connection-env META_SQL_DEV --out .\out\deploy-manifest
 meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\CurrentMetaSql.Workspace --connection-env META_SQL_DEV
+```
+
+### meta-pipeline
+
+Purpose:
+- execute one bound `MetaTransformScript` as a real data-moving transfer
+- keep stage 1 centered on SQL Server source read, bounded row buffering, and SQL Server target write
+
+Command surface:
+- `meta-pipeline help`
+- `meta-pipeline transfer sqlserver --transform-workspace <path> --binding-workspace <path> --script <name> --source-connection-env <name> --target-connection-env <name> [--target <sql-identifier>] [--batch-size <n>]`
+
+Behavior summary:
+- `transfer sqlserver` resolves one explicitly named transform binding from the binding workspace
+- the command emits the transform SQL body from the transform workspace, executes that query against the source SQL Server connection, buffers rows in bounded batches, and bulk-copies each batch into the bound target table on the target SQL Server connection
+- `--source-connection-env` and `--target-connection-env` name shell-visible environment variables; the command resolves them to connection strings at runtime
+- `--script` is always required because stage 1 transfer executes one transform script per run
+- if the selected binding contains multiple targets, `--target` is required
+- stage 1 transfer supports parameterless transform scripts and one selected target per run
+
+Example:
+
+```cmd
+meta-pipeline transfer sqlserver --transform-workspace .\TransformWS --binding-workspace .\BindingWS --source-connection-env META_PIPELINE_SOURCE --target-connection-env META_PIPELINE_TARGET --script dbo.v_customer_load
 ```
 
 ### meta-transform-script

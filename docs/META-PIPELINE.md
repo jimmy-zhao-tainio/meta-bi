@@ -18,10 +18,13 @@ The stage 1 pipeline unit is centered on:
 - one `TransformScript` instance
 - one `TransformBinding` instance
 - the `MetaSchema` workspace context that the binding depends on
-- the runtime machinery needed to execute that combination honestly
+- the runtime machinery needed to read, buffer, and bulk-write that combination honestly
 
 The transform is the core.
 The binding is the guarantee.
+
+Every stage 1 run names the transform script explicitly.
+If that binding exposes multiple targets, the run also names the target explicitly.
 
 This is a narrower center than generic ETL or orchestration language.
 Stage 1 is about making this unit real before widening the support claim.

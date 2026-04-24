@@ -8,6 +8,7 @@ $ErrorActionPreference = "Stop"
 
 $demoPaths = @(
     (Join-Path $PSScriptRoot "BusinessDataVaultCliIntegration"),
+    (Join-Path $PSScriptRoot "MetaPipelineSqlServerCliIntegration"),
     (Join-Path $PSScriptRoot "MetaTransformBindingCliIntegration"),
     (Join-Path $PSScriptRoot "MetaTransformScriptCliIntegration"),
     (Join-Path $PSScriptRoot "MetaTransformScriptReferenceCorpusCliIntegration"),
