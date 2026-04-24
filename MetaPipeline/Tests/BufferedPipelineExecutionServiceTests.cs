@@ -2,12 +2,12 @@ using System.Runtime.CompilerServices;
 
 namespace MetaPipeline.Tests;
 
-public sealed class BufferedPipelineTransferServiceTests
+public sealed class BufferedPipelineExecutionServiceTests
 {
     [Fact]
-    public async Task TransferAsync_ForwardsBufferedBatchesAndCountsRows()
+    public async Task ExecuteAsync_ForwardsBufferedBatchesAndCountsRows()
     {
-        var source = new FakeBatchSource(
+        var source = new FakeRowStreamSource(
             [
                 new PipelineColumn("CustomerId", 1),
                 new PipelineColumn("CustomerName", 2),
@@ -25,7 +25,7 @@ public sealed class BufferedPipelineTransferServiceTests
             ]);
         var writer = new RecordingBatchWriter();
 
-        var result = await new BufferedPipelineTransferService().TransferAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
 
         Assert.True(result.Succeeded);
         Assert.Equal(string.Empty, result.FailureMessage);
@@ -36,9 +36,9 @@ public sealed class BufferedPipelineTransferServiceTests
     }
 
     [Fact]
-    public async Task TransferAsync_WhenBatchShapeDoesNotMatchColumns_ReturnsFailedResultBeforeWritingBatch()
+    public async Task ExecuteAsync_WhenBatchShapeDoesNotMatchColumns_ReturnsFailedResultBeforeWritingBatch()
     {
-        var source = new FakeBatchSource(
+        var source = new FakeRowStreamSource(
             [
                 new PipelineColumn("CustomerId", 1),
                 new PipelineColumn("CustomerName", 2),
@@ -55,7 +55,7 @@ public sealed class BufferedPipelineTransferServiceTests
             ]);
         var writer = new RecordingBatchWriter();
 
-        var result = await new BufferedPipelineTransferService().TransferAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
 
         Assert.False(result.Succeeded);
         Assert.Equal(1, result.RowCount);
@@ -65,9 +65,9 @@ public sealed class BufferedPipelineTransferServiceTests
     }
 
     [Fact]
-    public async Task TransferAsync_WhenWriterFails_ReturnsCompletedProgressBeforeFailure()
+    public async Task ExecuteAsync_WhenWriterFails_ReturnsCompletedProgressBeforeFailure()
     {
-        var source = new FakeBatchSource(
+        var source = new FakeRowStreamSource(
             [
                 new PipelineColumn("CustomerId", 1),
             ],
@@ -77,7 +77,7 @@ public sealed class BufferedPipelineTransferServiceTests
             ]);
         var writer = new FailingSecondBatchWriter();
 
-        var result = await new BufferedPipelineTransferService().TransferAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
 
         Assert.False(result.Succeeded);
         Assert.Equal(1, result.RowCount);
@@ -85,11 +85,11 @@ public sealed class BufferedPipelineTransferServiceTests
         Assert.Contains("simulated writer failure", result.FailureMessage, StringComparison.Ordinal);
     }
 
-    private sealed class FakeBatchSource : IPipelineBatchSource
+    private sealed class FakeRowStreamSource : IPipelineRowStreamSource
     {
         private readonly IReadOnlyList<PipelineDataBatch> batches;
 
-        public FakeBatchSource(
+        public FakeRowStreamSource(
             IReadOnlyList<PipelineColumn> columns,
             IReadOnlyList<PipelineDataBatch> batches)
         {
@@ -110,7 +110,7 @@ public sealed class BufferedPipelineTransferServiceTests
         }
     }
 
-    private sealed class RecordingBatchWriter : IPipelineBatchWriter
+    private sealed class RecordingBatchWriter : IPipelineRowStreamWriter
     {
         public List<PipelineDataBatch> Batches { get; } = new();
 
@@ -121,7 +121,7 @@ public sealed class BufferedPipelineTransferServiceTests
         }
     }
 
-    private sealed class FailingSecondBatchWriter : IPipelineBatchWriter
+    private sealed class FailingSecondBatchWriter : IPipelineRowStreamWriter
     {
         private int callCount;
 

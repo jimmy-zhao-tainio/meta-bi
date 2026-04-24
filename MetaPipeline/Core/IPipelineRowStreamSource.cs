@@ -1,6 +1,6 @@
 namespace MetaPipeline;
 
-public interface IPipelineBatchSource
+public interface IPipelineRowStreamSource
 {
     IReadOnlyList<PipelineColumn> Columns { get; }
 

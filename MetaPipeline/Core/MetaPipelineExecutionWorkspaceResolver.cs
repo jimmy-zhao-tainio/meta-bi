@@ -5,11 +5,11 @@ using MetaTransformScript.Sql;
 
 namespace MetaPipeline;
 
-public sealed class MetaPipelineTransferWorkspaceResolver
+public sealed class MetaPipelineExecutionWorkspaceResolver
 {
     private readonly MetaTransformScriptSqlService sqlService = new();
 
-    public MetaPipelineTransferDefinition Resolve(
+    public MetaPipelineExecutionDefinition Resolve(
         string transformWorkspacePath,
         string bindingWorkspacePath,
         string transformScriptName,
@@ -35,7 +35,7 @@ public sealed class MetaPipelineTransferWorkspaceResolver
         var columns = ResolveOrderedColumns(bindingModel, outputRowset);
         var sourceSql = sqlService.ExportToSqlCode(transformModel, transformScript.Name);
 
-        return new MetaPipelineTransferDefinition(
+        return new MetaPipelineExecutionDefinition(
             transformScript.Id,
             transformScript.Name,
             sourceSql,
@@ -109,7 +109,7 @@ public sealed class MetaPipelineTransferWorkspaceResolver
         if (parameterCount > 0)
         {
             throw new MetaPipelineConfigurationException(
-                $"Transform script '{transformScript.Name}' has function parameters. Stage 1 transfer supports parameterless transform scripts only.");
+                $"Transform script '{transformScript.Name}' has function parameters. Stage 1 execute supports parameterless transform scripts only.");
         }
     }
 
@@ -174,7 +174,7 @@ public sealed class MetaPipelineTransferWorkspaceResolver
             0 => throw new MetaPipelineConfigurationException(
                 $"Transform binding '{binding.TransformScriptName}' does not contain an output rowset."),
             > 1 => throw new MetaPipelineConfigurationException(
-                $"Transform binding '{binding.TransformScriptName}' contains multiple output rowsets. Stage 1 transfer supports exactly one output rowset."),
+                $"Transform binding '{binding.TransformScriptName}' contains multiple output rowsets. Stage 1 execute supports exactly one output rowset."),
             _ => outputRowsets[0],
         };
     }

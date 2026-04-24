@@ -17,7 +17,7 @@ meta-transform-script from sql-file --path TransformScripts\customer_load.sql --
 meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system MetaPipelineSqlServerCliIntegration --new-workspace BindingWS
 @if errorlevel 1 exit /b %errorlevel%
 
-%META_PIPELINE% transfer sqlserver --transform-workspace TransformWS --binding-workspace BindingWS --script dbo.v_customer_load --source-connection-env META_PIPELINE_DEMO_SOURCE_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --batch-size 2
+%META_PIPELINE% execute sqlserver --transform-workspace TransformWS --binding-workspace BindingWS --script dbo.v_customer_load --source-connection-env META_PIPELINE_DEMO_SOURCE_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --batch-size 2
 @if errorlevel 1 exit /b %errorlevel%
 
 sqlcmd -S . -d MetaPipelineSqlServerCliIntegration -b -Q "SET NOCOUNT ON; SELECT CustomerId, CustomerName, TotalAmount FROM dbo.TargetCustomer ORDER BY CustomerId;"

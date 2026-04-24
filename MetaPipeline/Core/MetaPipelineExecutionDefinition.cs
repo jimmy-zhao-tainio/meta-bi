@@ -1,6 +1,6 @@
 namespace MetaPipeline;
 
-public sealed record MetaPipelineTransferDefinition(
+public sealed record MetaPipelineExecutionDefinition(
     string TransformScriptId,
     string TransformScriptName,
     string SourceSql,

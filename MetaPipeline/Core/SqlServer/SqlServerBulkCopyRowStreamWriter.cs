@@ -3,7 +3,7 @@ using System.Data;
 
 namespace MetaPipeline;
 
-public sealed class SqlServerPipelineTargetWriter : IPipelineBatchWriter, IAsyncDisposable
+public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter, IAsyncDisposable
 {
     private readonly string connectionString;
     private readonly string destinationTableName;
@@ -11,7 +11,7 @@ public sealed class SqlServerPipelineTargetWriter : IPipelineBatchWriter, IAsync
     private SqlConnection? connection;
     private bool disposed;
 
-    public SqlServerPipelineTargetWriter(
+    public SqlServerBulkCopyRowStreamWriter(
         string connectionString,
         string targetSqlIdentifier,
         IReadOnlyList<PipelineColumn> columns)

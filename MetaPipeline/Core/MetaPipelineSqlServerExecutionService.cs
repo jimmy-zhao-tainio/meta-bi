@@ -1,20 +1,20 @@
 namespace MetaPipeline;
 
-public sealed class MetaPipelineSqlServerTransferService
+public sealed class MetaPipelineSqlServerExecutionService
 {
-    private readonly MetaPipelineTransferWorkspaceResolver workspaceResolver;
-    private readonly BufferedPipelineTransferService bufferedTransferService;
+    private readonly MetaPipelineExecutionWorkspaceResolver workspaceResolver;
+    private readonly BufferedPipelineExecutionService bufferedExecutionService;
 
-    public MetaPipelineSqlServerTransferService(
-        MetaPipelineTransferWorkspaceResolver? workspaceResolver = null,
-        BufferedPipelineTransferService? bufferedTransferService = null)
+    public MetaPipelineSqlServerExecutionService(
+        MetaPipelineExecutionWorkspaceResolver? workspaceResolver = null,
+        BufferedPipelineExecutionService? bufferedExecutionService = null)
     {
-        this.workspaceResolver = workspaceResolver ?? new MetaPipelineTransferWorkspaceResolver();
-        this.bufferedTransferService = bufferedTransferService ?? new BufferedPipelineTransferService();
+        this.workspaceResolver = workspaceResolver ?? new MetaPipelineExecutionWorkspaceResolver();
+        this.bufferedExecutionService = bufferedExecutionService ?? new BufferedPipelineExecutionService();
     }
 
-    public async Task<MetaPipelineTransferResult> TransferAsync(
-        MetaPipelineSqlServerTransferRequest request,
+    public async Task<MetaPipelineExecutionResult> ExecuteAsync(
+        MetaPipelineSqlServerExecutionRequest request,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
@@ -41,31 +41,31 @@ public sealed class MetaPipelineSqlServerTransferService
             request.TransformScriptName,
             request.TargetSqlIdentifier);
 
-        var source = new SqlServerPipelineBatchSource(
+        var source = new SqlServerTransformRowStreamSource(
             request.SourceConnectionString,
             definition.SourceSql,
             definition.Columns,
             request.BatchSize);
-        await using var writer = new SqlServerPipelineTargetWriter(
+        await using var writer = new SqlServerBulkCopyRowStreamWriter(
             request.TargetConnectionString,
             definition.TargetSqlIdentifier,
             definition.Columns);
 
-        var transfer = await bufferedTransferService.TransferAsync(
+        var execution = await bufferedExecutionService.ExecuteAsync(
             source,
             writer,
             cancellationToken).ConfigureAwait(false);
 
         var completedAtUtc = DateTimeOffset.UtcNow;
-        return new MetaPipelineTransferResult(
-            transfer.Succeeded ? MetaPipelineTransferStatus.Succeeded : MetaPipelineTransferStatus.Failed,
+        return new MetaPipelineExecutionResult(
+            execution.Succeeded ? MetaPipelineExecutionStatus.Succeeded : MetaPipelineExecutionStatus.Failed,
             definition.TransformScriptName,
             definition.TargetSqlIdentifier,
             definition.Columns.Count,
-            transfer.RowCount,
-            transfer.BatchCount,
+            execution.RowCount,
+            execution.BatchCount,
             startedAtUtc,
             completedAtUtc,
-            transfer.FailureMessage);
+            execution.FailureMessage);
     }
 }

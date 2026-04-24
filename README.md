@@ -1,4 +1,4 @@
-﻿# meta-bi
+# meta-bi
 
 `meta-bi` is the BI stack that sits on top of the generic `meta` foundation.
 
@@ -264,25 +264,25 @@ meta-sql deploy --manifest-workspace .\out\deploy-manifest --source-workspace .\
 ### meta-pipeline
 
 Purpose:
-- execute one bound `MetaTransformScript` as a real data-moving transfer
+- execute one bound `MetaTransformScript` and write its row stream
 - keep stage 1 centered on SQL Server source read, bounded row buffering, and SQL Server target write
 
 Command surface:
 - `meta-pipeline help`
-- `meta-pipeline transfer sqlserver --transform-workspace <path> --binding-workspace <path> --script <name> --source-connection-env <name> --target-connection-env <name> [--target <sql-identifier>] [--batch-size <n>]`
+- `meta-pipeline execute sqlserver --transform-workspace <path> --binding-workspace <path> --script <name> --source-connection-env <name> --target-connection-env <name> [--target <sql-identifier>] [--batch-size <n>]`
 
 Behavior summary:
-- `transfer sqlserver` resolves one explicitly named transform binding from the binding workspace
+- `execute sqlserver` resolves one explicitly named transform binding from the binding workspace
 - the command emits the transform SQL body from the transform workspace, executes that query against the source SQL Server connection, buffers rows in bounded batches, and bulk-copies each batch into the bound target table on the target SQL Server connection
 - `--source-connection-env` and `--target-connection-env` name shell-visible environment variables; the command resolves them to connection strings at runtime
-- `--script` is always required because stage 1 transfer executes one transform script per run
+- `--script` is always required because stage 1 runs one transform script per execution
 - if the selected binding contains multiple targets, `--target` is required
-- stage 1 transfer supports parameterless transform scripts and one selected target per run
+- stage 1 execution supports parameterless transform scripts and one selected target per run
 
 Example:
 
 ```cmd
-meta-pipeline transfer sqlserver --transform-workspace .\TransformWS --binding-workspace .\BindingWS --source-connection-env META_PIPELINE_SOURCE --target-connection-env META_PIPELINE_TARGET --script dbo.v_customer_load
+meta-pipeline execute sqlserver --transform-workspace .\TransformWS --binding-workspace .\BindingWS --source-connection-env META_PIPELINE_SOURCE --target-connection-env META_PIPELINE_TARGET --script dbo.v_customer_load
 ```
 
 ### meta-transform-script

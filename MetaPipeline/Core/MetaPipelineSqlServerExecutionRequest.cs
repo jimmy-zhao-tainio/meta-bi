@@ -1,6 +1,6 @@
 namespace MetaPipeline;
 
-public sealed record MetaPipelineSqlServerTransferRequest(
+public sealed record MetaPipelineSqlServerExecutionRequest(
     string TransformWorkspacePath,
     string BindingWorkspacePath,
     string SourceConnectionString,

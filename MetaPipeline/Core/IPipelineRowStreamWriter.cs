@@ -1,6 +1,6 @@
 namespace MetaPipeline;
 
-public interface IPipelineBatchWriter
+public interface IPipelineRowStreamWriter
 {
     Task WriteBatchAsync(PipelineDataBatch batch, CancellationToken cancellationToken = default);
 }

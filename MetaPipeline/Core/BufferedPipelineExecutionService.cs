@@ -1,10 +1,10 @@
 namespace MetaPipeline;
 
-public sealed class BufferedPipelineTransferService
+public sealed class BufferedPipelineExecutionService
 {
-    public async Task<BufferedPipelineTransferResult> TransferAsync(
-        IPipelineBatchSource source,
-        IPipelineBatchWriter writer,
+    public async Task<BufferedPipelineExecutionResult> ExecuteAsync(
+        IPipelineRowStreamSource source,
+        IPipelineRowStreamWriter writer,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -31,7 +31,7 @@ public sealed class BufferedPipelineTransferService
                 batchCount++;
             }
 
-            return BufferedPipelineTransferResult.Success(rowCount, batchCount);
+            return BufferedPipelineExecutionResult.Success(rowCount, batchCount);
         }
         catch (OperationCanceledException)
         {
@@ -39,7 +39,7 @@ public sealed class BufferedPipelineTransferService
         }
         catch (Exception ex)
         {
-            return BufferedPipelineTransferResult.Failed(rowCount, batchCount, ex.Message);
+            return BufferedPipelineExecutionResult.Failed(rowCount, batchCount, ex.Message);
         }
     }
 
@@ -66,15 +66,15 @@ public sealed class BufferedPipelineTransferService
     }
 }
 
-public sealed record BufferedPipelineTransferResult(
+public sealed record BufferedPipelineExecutionResult(
     long RowCount,
     int BatchCount,
     bool Succeeded,
     string FailureMessage)
 {
-    public static BufferedPipelineTransferResult Success(long rowCount, int batchCount) =>
+    public static BufferedPipelineExecutionResult Success(long rowCount, int batchCount) =>
         new(rowCount, batchCount, true, string.Empty);
 
-    public static BufferedPipelineTransferResult Failed(long rowCount, int batchCount, string failureMessage) =>
+    public static BufferedPipelineExecutionResult Failed(long rowCount, int batchCount, string failureMessage) =>
         new(rowCount, batchCount, false, failureMessage);
 }

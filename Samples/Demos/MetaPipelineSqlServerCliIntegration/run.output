@@ -29,9 +29,9 @@ Binding:
   IgnoredTargetColumns: 0
   Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration\BindingWS
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>..\..\..\MetaPipeline\Cli\bin\Debug\net8.0\meta-pipeline.exe transfer sqlserver --transform-workspace TransformWS --binding-workspace BindingWS --script dbo.v_customer_load --source-connection-env META_PIPELINE_DEMO_SOURCE_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --batch-size 2 
-OK: Transferred 3 rows
-Transfer:
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>..\..\..\MetaPipeline\Cli\bin\Debug\net8.0\meta-pipeline.exe execute sqlserver --transform-workspace TransformWS --binding-workspace BindingWS --script dbo.v_customer_load --source-connection-env META_PIPELINE_DEMO_SOURCE_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --batch-size 2 
+OK: Executed 3 rows
+Execution:
   Status: Succeeded
   Script: dbo.v_customer_load
   Target: dbo.TargetCustomer

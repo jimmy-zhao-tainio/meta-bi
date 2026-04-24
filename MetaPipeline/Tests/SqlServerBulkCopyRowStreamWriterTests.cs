@@ -1,12 +1,12 @@
 namespace MetaPipeline.Tests;
 
-public sealed class SqlServerPipelineTargetWriterTests
+public sealed class SqlServerBulkCopyRowStreamWriterTests
 {
     [Fact]
     public void Constructor_WhenColumnsContainDuplicateNames_FailsBeforeOpeningConnection()
     {
         var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
-            new SqlServerPipelineTargetWriter(
+            new SqlServerBulkCopyRowStreamWriter(
                 "Server=.;Database=DoesNotOpen;Integrated Security=true;TrustServerCertificate=true;Encrypt=false",
                 "dbo.Target",
                 [
@@ -21,7 +21,7 @@ public sealed class SqlServerPipelineTargetWriterTests
     public void Constructor_WhenColumnNameIsBlank_FailsBeforeOpeningConnection()
     {
         var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
-            new SqlServerPipelineTargetWriter(
+            new SqlServerBulkCopyRowStreamWriter(
                 "Server=.;Database=DoesNotOpen;Integrated Security=true;TrustServerCertificate=true;Encrypt=false",
                 "dbo.Target",
                 [

@@ -4,7 +4,7 @@ using MetaTransformScript.Sql;
 
 namespace MetaPipeline.Tests;
 
-public sealed class MetaPipelineTransferWorkspaceResolverTests
+public sealed class MetaPipelineExecutionWorkspaceResolverTests
 {
     [Fact]
     public async Task Resolve_WhenScriptIsBlank_RequiresExplicitScript()
@@ -37,7 +37,7 @@ public sealed class MetaPipelineTransferWorkspaceResolverTests
                 new BindingSeed("binding:2", second, "dbo.CustomerTargetTwo", ["CustomerId"]));
 
             var exception = Assert.Throws<ArgumentException>(() =>
-                new MetaPipelineTransferWorkspaceResolver().Resolve(transformWorkspacePath, bindingWorkspacePath, string.Empty));
+                new MetaPipelineExecutionWorkspaceResolver().Resolve(transformWorkspacePath, bindingWorkspacePath, string.Empty));
 
             Assert.Contains("transformScriptName", exception.Message, StringComparison.Ordinal);
         }
@@ -69,7 +69,7 @@ public sealed class MetaPipelineTransferWorkspaceResolverTests
                 bindingWorkspacePath,
                 new BindingSeed("binding:1", script, "warehouse.CustomerLoad", ["CustomerName", "CustomerId"], [1, 0]));
 
-            var result = new MetaPipelineTransferWorkspaceResolver().Resolve(
+            var result = new MetaPipelineExecutionWorkspaceResolver().Resolve(
                 transformWorkspacePath,
                 bindingWorkspacePath,
                 "dbo.v_customer_load");
@@ -118,7 +118,7 @@ public sealed class MetaPipelineTransferWorkspaceResolverTests
                 new BindingSeed("binding:1", script, "warehouse.CustomerLoad", ["CustomerId"]));
 
             var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
-                new MetaPipelineTransferWorkspaceResolver().Resolve(
+                new MetaPipelineExecutionWorkspaceResolver().Resolve(
                     transformWorkspacePath,
                     bindingWorkspacePath,
                     "dbo.fn_customer"));
@@ -154,7 +154,7 @@ public sealed class MetaPipelineTransferWorkspaceResolverTests
                 new BindingSeed("binding:1", script, ["warehouse.CustomerLoad", "warehouse.CustomerLoadReplica"], ["CustomerId"]));
 
             var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
-                new MetaPipelineTransferWorkspaceResolver().Resolve(
+                new MetaPipelineExecutionWorkspaceResolver().Resolve(
                     transformWorkspacePath,
                     bindingWorkspacePath,
                     "dbo.v_customer_load"));
@@ -189,7 +189,7 @@ public sealed class MetaPipelineTransferWorkspaceResolverTests
                 bindingWorkspacePath,
                 new BindingSeed("binding:1", script, ["warehouse.CustomerLoad", "warehouse.CustomerLoadReplica"], ["CustomerId"]));
 
-            var result = new MetaPipelineTransferWorkspaceResolver().Resolve(
+            var result = new MetaPipelineExecutionWorkspaceResolver().Resolve(
                 transformWorkspacePath,
                 bindingWorkspacePath,
                 "dbo.v_customer_load",

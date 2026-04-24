@@ -3,13 +3,13 @@ using Microsoft.Data.SqlClient;
 
 namespace MetaPipeline;
 
-public sealed class SqlServerPipelineBatchSource : IPipelineBatchSource
+public sealed class SqlServerTransformRowStreamSource : IPipelineRowStreamSource
 {
     private readonly string connectionString;
     private readonly string sql;
     private readonly int batchSize;
 
-    public SqlServerPipelineBatchSource(
+    public SqlServerTransformRowStreamSource(
         string connectionString,
         string sql,
         IReadOnlyList<PipelineColumn> columns,

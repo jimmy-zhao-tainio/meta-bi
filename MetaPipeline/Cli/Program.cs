@@ -13,19 +13,19 @@ internal static class Program
             return 0;
         }
 
-        if (string.Equals(args[0], "transfer", StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(args[0], "execute", StringComparison.OrdinalIgnoreCase))
         {
-            return await RunTransferAsync(args).ConfigureAwait(false);
+            return await RunExecuteAsync(args).ConfigureAwait(false);
         }
 
         return Fail($"unknown command '{args[0]}'.", "meta-pipeline help");
     }
 
-    private static async Task<int> RunTransferAsync(string[] args)
+    private static async Task<int> RunExecuteAsync(string[] args)
     {
         if (args.Length == 1 || IsHelpToken(args[1]))
         {
-            PrintTransferHelp();
+            PrintExecuteHelp();
             return 0;
         }
 
@@ -33,14 +33,14 @@ internal static class Program
         {
             if (args.Length >= 3 && IsHelpToken(args[2]))
             {
-                PrintTransferSqlServerHelp();
+                PrintExecuteSqlServerHelp();
                 return 0;
             }
 
-            var parse = ParseTransferSqlServerArgs(args, 2);
+            var parse = ParseExecuteSqlServerArgs(args, 2);
             if (!parse.Ok)
             {
-                return Fail(parse.ErrorMessage, "meta-pipeline transfer sqlserver --help");
+                return Fail(parse.ErrorMessage, "meta-pipeline execute sqlserver --help");
             }
 
             try
@@ -48,8 +48,8 @@ internal static class Program
                 var sourceConnectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(parse.SourceConnectionEnvironmentVariableName);
                 var targetConnectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(parse.TargetConnectionEnvironmentVariableName);
 
-                var result = await new MetaPipeline.MetaPipelineSqlServerTransferService().TransferAsync(
-                    new MetaPipeline.MetaPipelineSqlServerTransferRequest(
+                var result = await new MetaPipeline.MetaPipelineSqlServerExecutionService().ExecuteAsync(
+                    new MetaPipeline.MetaPipelineSqlServerExecutionRequest(
                         parse.TransformWorkspacePath,
                         parse.BindingWorkspacePath,
                         sourceConnectionString,
@@ -61,7 +61,7 @@ internal static class Program
                 if (!result.Succeeded)
                 {
                     return Fail(
-                        "sqlserver transfer failed.",
+                        "sqlserver execution failed.",
                         "check the selected script, target, and reachable databases, then retry.",
                         4,
                         new[]
@@ -74,8 +74,8 @@ internal static class Program
                         });
                 }
 
-                Presenter.WriteOk($"Transferred {result.RowCount} row{(result.RowCount == 1 ? string.Empty : "s")}");
-                Presenter.WriteKeyValueBlock("Transfer", new[]
+                Presenter.WriteOk($"Executed {result.RowCount} row{(result.RowCount == 1 ? string.Empty : "s")}");
+                Presenter.WriteKeyValueBlock("Execution", new[]
                 {
                     ("Status", result.Status.ToString()),
                     ("Script", result.TransformScriptName),
@@ -105,7 +105,7 @@ internal static class Program
             catch (Exception ex)
             {
                 return Fail(
-                    "sqlserver transfer failed.",
+                    "sqlserver execution failed.",
                     "check the workspaces, connection environment variables, and reachable databases, then retry.",
                     4,
                     new[]
@@ -119,7 +119,7 @@ internal static class Program
             }
         }
 
-        return Fail($"unknown transfer target '{args[1]}'.", "meta-pipeline transfer --help");
+        return Fail($"unknown execute target '{args[1]}'.", "meta-pipeline execute --help");
     }
 
     private static (
@@ -131,7 +131,7 @@ internal static class Program
         string TransformScriptName,
         string? TargetSqlIdentifier,
         int BatchSize,
-        string ErrorMessage) ParseTransferSqlServerArgs(
+        string ErrorMessage) ParseExecuteSqlServerArgs(
         string[] args,
         int startIndex)
     {
@@ -260,40 +260,40 @@ internal static class Program
             "Commands:",
             new[]
             {
-                ("transfer", "Execute one bound data-moving transfer."),
+                ("execute", "Execute one bound transform script and write its row stream."),
                 ("help", "Show this help."),
             });
         Presenter.WriteInfo(string.Empty);
-        Presenter.WriteNext("meta-pipeline transfer --help");
+        Presenter.WriteNext("meta-pipeline execute --help");
     }
 
-    private static void PrintTransferHelp()
+    private static void PrintExecuteHelp()
     {
-        Presenter.WriteInfo("Command: transfer");
-        Presenter.WriteUsage("meta-pipeline transfer <target> [options]");
+        Presenter.WriteInfo("Command: execute");
+        Presenter.WriteUsage("meta-pipeline execute <target> [options]");
         Presenter.WriteCommandCatalog(
             "Targets:",
             new[]
             {
                 ("sqlserver", "Execute one bound transform script from SQL Server source to SQL Server target."),
             });
-        Presenter.WriteNext("meta-pipeline transfer sqlserver --help");
+        Presenter.WriteNext("meta-pipeline execute sqlserver --help");
     }
 
-    private static void PrintTransferSqlServerHelp()
+    private static void PrintExecuteSqlServerHelp()
     {
-        Presenter.WriteInfo("Command: transfer sqlserver");
-        Presenter.WriteUsage("meta-pipeline transfer sqlserver --transform-workspace <path> --binding-workspace <path> --script <name> --source-connection-env <name> --target-connection-env <name> [--target <sql-identifier>] [--batch-size <n>]");
+        Presenter.WriteInfo("Command: execute sqlserver");
+        Presenter.WriteUsage("meta-pipeline execute sqlserver --transform-workspace <path> --binding-workspace <path> --script <name> --source-connection-env <name> --target-connection-env <name> [--target <sql-identifier>] [--batch-size <n>]");
         Presenter.WriteInfo("Notes:");
         Presenter.WriteInfo("  Executes one bound transform script using SQL Server source read and SQL Server target write.");
-        Presenter.WriteInfo("  --script is always required because stage 1 transfer executes one transform script per run.");
+        Presenter.WriteInfo("  --script is always required because stage 1 runs one transform script per execution.");
         Presenter.WriteInfo("  If the selected binding contains multiple targets, --target is required.");
         Presenter.WriteInfo("  --source-connection-env and --target-connection-env name shell-visible environment variables.");
         Presenter.WriteInfo("  The command resolves those variable names to connection strings at runtime.");
-        Presenter.WriteInfo("  Stage 1 transfer supports parameterless transform scripts and one selected target per run.");
+        Presenter.WriteInfo("  Stage 1 execution supports parameterless transform scripts and one selected target per run.");
         Presenter.WriteInfo("  --batch-size is the bounded in-memory row buffer size. Default: 1000.");
         Presenter.WriteInfo("Example:");
-        Presenter.WriteInfo("  meta-pipeline transfer sqlserver --transform-workspace .\\TransformWS --binding-workspace .\\BindingWS --source-connection-env SOURCE_DB --target-connection-env TARGET_DB --script dbo.v_customer_load");
+        Presenter.WriteInfo("  meta-pipeline execute sqlserver --transform-workspace .\\TransformWS --binding-workspace .\\BindingWS --source-connection-env SOURCE_DB --target-connection-env TARGET_DB --script dbo.v_customer_load");
     }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)

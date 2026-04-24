@@ -1,7 +1,7 @@
 namespace MetaPipeline;
 
-public sealed record MetaPipelineTransferResult(
-    MetaPipelineTransferStatus Status,
+public sealed record MetaPipelineExecutionResult(
+    MetaPipelineExecutionStatus Status,
     string TransformScriptName,
     string TargetSqlIdentifier,
     int ColumnCount,
@@ -11,10 +11,10 @@ public sealed record MetaPipelineTransferResult(
     DateTimeOffset CompletedAtUtc,
     string FailureMessage)
 {
-    public bool Succeeded => Status == MetaPipelineTransferStatus.Succeeded;
+    public bool Succeeded => Status == MetaPipelineExecutionStatus.Succeeded;
 }
 
-public enum MetaPipelineTransferStatus
+public enum MetaPipelineExecutionStatus
 {
     Succeeded,
     Failed,
