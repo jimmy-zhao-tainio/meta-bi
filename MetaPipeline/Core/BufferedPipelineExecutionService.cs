@@ -4,18 +4,18 @@ public sealed class BufferedPipelineExecutionService
 {
     public async Task<BufferedPipelineExecutionResult> ExecuteAsync(
         IPipelineRowStreamSource source,
-        IPipelineRowStreamWriter writer,
+        IPipelineTargetWriteOperation targetWriteOperation,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(writer);
+        ArgumentNullException.ThrowIfNull(targetWriteOperation);
 
         long rowCount = 0;
         var batchCount = 0;
 
         try
         {
-            source.Shape.EnsureCompatibleWith(writer.Shape, "target writer shape");
+            source.Shape.EnsureCompatibleWith(targetWriteOperation.Shape, "target write operation shape");
         }
         catch (OperationCanceledException)
         {
@@ -27,6 +27,23 @@ public sealed class BufferedPipelineExecutionService
                 rowCount,
                 batchCount,
                 PipelineExecutionFailureStage.ShapeValidation,
+                ex.Message);
+        }
+
+        try
+        {
+            await targetWriteOperation.BeginAsync(cancellationToken).ConfigureAwait(false);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            return BufferedPipelineExecutionResult.Failed(
+                rowCount,
+                batchCount,
+                PipelineExecutionFailureStage.TargetWrite,
                 ex.Message);
         }
 
@@ -84,7 +101,7 @@ public sealed class BufferedPipelineExecutionService
 
             try
             {
-                await writer.WriteBatchAsync(batch, cancellationToken).ConfigureAwait(false);
+                await targetWriteOperation.WriteBatchAsync(batch, cancellationToken).ConfigureAwait(false);
             }
             catch (OperationCanceledException)
             {
@@ -101,6 +118,23 @@ public sealed class BufferedPipelineExecutionService
 
             rowCount += batch.RowCount;
             batchCount++;
+        }
+
+        try
+        {
+            await targetWriteOperation.CompleteAsync(cancellationToken).ConfigureAwait(false);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            return BufferedPipelineExecutionResult.Failed(
+                rowCount,
+                batchCount,
+                PipelineExecutionFailureStage.TargetWrite,
+                ex.Message);
         }
 
         return BufferedPipelineExecutionResult.Success(rowCount, batchCount);

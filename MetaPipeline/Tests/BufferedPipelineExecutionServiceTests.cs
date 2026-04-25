@@ -19,17 +19,19 @@ public sealed class BufferedPipelineExecutionServiceTests
                     new object?[] { 3, "C" },
                 ],
             ]);
-        var writer = new RecordingBatchWriter(shape);
+        var targetWriteOperation = new RecordingTargetWriteOperation(shape);
 
-        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, targetWriteOperation);
 
         Assert.True(result.Succeeded);
         Assert.Equal(PipelineExecutionFailureStage.None, result.FailureStage);
         Assert.Equal(string.Empty, result.FailureMessage);
         Assert.Equal(3, result.RowCount);
         Assert.Equal(2, result.BatchCount);
-        Assert.Equal(2, writer.Batches.Count);
-        Assert.Equal(3, writer.Batches.Sum(static batch => batch.RowCount));
+        Assert.True(targetWriteOperation.Began);
+        Assert.True(targetWriteOperation.Completed);
+        Assert.Equal(2, targetWriteOperation.Batches.Count);
+        Assert.Equal(3, targetWriteOperation.Batches.Sum(static batch => batch.RowCount));
     }
 
     [Fact]
@@ -46,20 +48,20 @@ public sealed class BufferedPipelineExecutionServiceTests
                     new object?[] { 2 },
                 ],
             ]);
-        var writer = new RecordingBatchWriter(shape);
+        var targetWriteOperation = new RecordingTargetWriteOperation(shape);
 
-        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, targetWriteOperation);
 
         Assert.False(result.Succeeded);
         Assert.Equal(PipelineExecutionFailureStage.SourceRead, result.FailureStage);
         Assert.Equal(1, result.RowCount);
         Assert.Equal(1, result.BatchCount);
         Assert.Contains("expects 2", result.FailureMessage, StringComparison.Ordinal);
-        Assert.Single(writer.Batches);
+        Assert.Single(targetWriteOperation.Batches);
     }
 
     [Fact]
-    public async Task ExecuteAsync_WhenWriterFails_ReturnsCompletedProgressBeforeFailure()
+    public async Task ExecuteAsync_WhenTargetWriteFails_ReturnsCompletedProgressBeforeFailure()
     {
         var shape = CreateShape("CustomerId");
         var source = new FakeRowStreamSource(
@@ -68,19 +70,19 @@ public sealed class BufferedPipelineExecutionServiceTests
                 [new object?[] { 1 }],
                 [new object?[] { 2 }],
             ]);
-        var writer = new FailingSecondBatchWriter(shape);
+        var targetWriteOperation = new FailingSecondBatchTargetWriteOperation(shape);
 
-        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, targetWriteOperation);
 
         Assert.False(result.Succeeded);
         Assert.Equal(PipelineExecutionFailureStage.TargetWrite, result.FailureStage);
         Assert.Equal(1, result.RowCount);
         Assert.Equal(1, result.BatchCount);
-        Assert.Contains("simulated writer failure", result.FailureMessage, StringComparison.Ordinal);
+        Assert.Contains("simulated target write failure", result.FailureMessage, StringComparison.Ordinal);
     }
 
     [Fact]
-    public async Task ExecuteAsync_WhenWriterShapeDoesNotMatchSourceShape_ReturnsShapeValidationFailureBeforeReading()
+    public async Task ExecuteAsync_WhenTargetWriteShapeDoesNotMatchSourceShape_ReturnsShapeValidationFailureBeforeReading()
     {
         var sourceShape = CreateShape("CustomerId");
         var writerShape = CreateShape("OtherId");
@@ -89,16 +91,17 @@ public sealed class BufferedPipelineExecutionServiceTests
             [
                 [new object?[] { 1 }],
             ]);
-        var writer = new RecordingBatchWriter(writerShape);
+        var targetWriteOperation = new RecordingTargetWriteOperation(writerShape);
 
-        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, targetWriteOperation);
 
         Assert.False(result.Succeeded);
         Assert.Equal(PipelineExecutionFailureStage.ShapeValidation, result.FailureStage);
         Assert.Equal(0, result.RowCount);
         Assert.Equal(0, result.BatchCount);
-        Assert.Contains("target writer shape", result.FailureMessage, StringComparison.Ordinal);
-        Assert.Empty(writer.Batches);
+        Assert.Contains("target write operation shape", result.FailureMessage, StringComparison.Ordinal);
+        Assert.False(targetWriteOperation.Began);
+        Assert.Empty(targetWriteOperation.Batches);
     }
 
     [Fact]
@@ -112,16 +115,16 @@ public sealed class BufferedPipelineExecutionServiceTests
                 new PipelineDataBatch(sourceShape, [new object?[] { 1 }]),
                 new PipelineDataBatch(batchShape, [new object?[] { 2 }]),
             ]);
-        var writer = new RecordingBatchWriter(sourceShape);
+        var targetWriteOperation = new RecordingTargetWriteOperation(sourceShape);
 
-        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, targetWriteOperation);
 
         Assert.False(result.Succeeded);
         Assert.Equal(PipelineExecutionFailureStage.ShapeValidation, result.FailureStage);
         Assert.Equal(1, result.RowCount);
         Assert.Equal(1, result.BatchCount);
         Assert.Contains("batch 2 shape", result.FailureMessage, StringComparison.Ordinal);
-        Assert.Single(writer.Batches);
+        Assert.Single(targetWriteOperation.Batches);
     }
 
     [Fact]
@@ -129,15 +132,56 @@ public sealed class BufferedPipelineExecutionServiceTests
     {
         var shape = CreateShape("CustomerId");
         var source = new FailingSecondBatchSource(shape);
-        var writer = new RecordingBatchWriter(shape);
+        var targetWriteOperation = new RecordingTargetWriteOperation(shape);
 
-        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, writer);
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, targetWriteOperation);
 
         Assert.False(result.Succeeded);
         Assert.Equal(PipelineExecutionFailureStage.SourceRead, result.FailureStage);
         Assert.Equal(1, result.RowCount);
         Assert.Equal(1, result.BatchCount);
         Assert.Contains("simulated source failure", result.FailureMessage, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_WhenTargetWriteBeginFails_ReturnsTargetWriteFailureBeforeReading()
+    {
+        var shape = CreateShape("CustomerId");
+        var source = new FakeRowStreamSource(
+            shape,
+            [
+                [new object?[] { 1 }],
+            ]);
+        var targetWriteOperation = new FailingBeginTargetWriteOperation(shape);
+
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, targetWriteOperation);
+
+        Assert.False(result.Succeeded);
+        Assert.Equal(PipelineExecutionFailureStage.TargetWrite, result.FailureStage);
+        Assert.Equal(0, result.RowCount);
+        Assert.Equal(0, result.BatchCount);
+        Assert.Contains("simulated begin failure", result.FailureMessage, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_WhenTargetWriteCompleteFails_ReturnsTargetWriteFailureWithCompletedProgress()
+    {
+        var shape = CreateShape("CustomerId");
+        var source = new FakeRowStreamSource(
+            shape,
+            [
+                [new object?[] { 1 }],
+                [new object?[] { 2 }],
+            ]);
+        var targetWriteOperation = new FailingCompleteTargetWriteOperation(shape);
+
+        var result = await new BufferedPipelineExecutionService().ExecuteAsync(source, targetWriteOperation);
+
+        Assert.False(result.Succeeded);
+        Assert.Equal(PipelineExecutionFailureStage.TargetWrite, result.FailureStage);
+        Assert.Equal(2, result.RowCount);
+        Assert.Equal(2, result.BatchCount);
+        Assert.Contains("simulated complete failure", result.FailureMessage, StringComparison.Ordinal);
     }
 
     private static PipelineRowStreamShape CreateShape(params string[] columnNames)
@@ -198,45 +242,109 @@ public sealed class BufferedPipelineExecutionServiceTests
         }
     }
 
-    private sealed class RecordingBatchWriter : IPipelineRowStreamWriter
+    private class RecordingTargetWriteOperation : IPipelineTargetWriteOperation
     {
-        public RecordingBatchWriter(PipelineRowStreamShape shape)
+        public RecordingTargetWriteOperation(PipelineRowStreamShape shape)
         {
             Shape = shape;
         }
 
+        public string Name => "RecordingTargetWrite";
+
         public PipelineRowStreamShape Shape { get; }
 
         public List<PipelineDataBatch> Batches { get; } = new();
+
+        public bool Began { get; private set; }
+
+        public bool Completed { get; private set; }
+
+        public ValueTask BeginAsync(CancellationToken cancellationToken = default)
+        {
+            Began = true;
+            return ValueTask.CompletedTask;
+        }
 
         public Task WriteBatchAsync(PipelineDataBatch batch, CancellationToken cancellationToken = default)
         {
             Batches.Add(batch);
             return Task.CompletedTask;
         }
+
+        public virtual ValueTask CompleteAsync(CancellationToken cancellationToken = default)
+        {
+            Completed = true;
+            return ValueTask.CompletedTask;
+        }
+
+        public ValueTask DisposeAsync() => ValueTask.CompletedTask;
     }
 
-    private sealed class FailingSecondBatchWriter : IPipelineRowStreamWriter
+    private sealed class FailingSecondBatchTargetWriteOperation : IPipelineTargetWriteOperation
     {
         private int callCount;
 
-        public FailingSecondBatchWriter(PipelineRowStreamShape shape)
+        public FailingSecondBatchTargetWriteOperation(PipelineRowStreamShape shape)
         {
             Shape = shape;
         }
 
+        public string Name => "FailingSecondBatchTargetWrite";
+
         public PipelineRowStreamShape Shape { get; }
+
+        public ValueTask BeginAsync(CancellationToken cancellationToken = default) =>
+            ValueTask.CompletedTask;
 
         public Task WriteBatchAsync(PipelineDataBatch batch, CancellationToken cancellationToken = default)
         {
             callCount++;
             if (callCount == 2)
             {
-                throw new InvalidOperationException("simulated writer failure");
+                throw new InvalidOperationException("simulated target write failure");
             }
 
             return Task.CompletedTask;
         }
+
+        public ValueTask CompleteAsync(CancellationToken cancellationToken = default) =>
+            ValueTask.CompletedTask;
+
+        public ValueTask DisposeAsync() => ValueTask.CompletedTask;
+    }
+
+    private sealed class FailingBeginTargetWriteOperation : IPipelineTargetWriteOperation
+    {
+        public FailingBeginTargetWriteOperation(PipelineRowStreamShape shape)
+        {
+            Shape = shape;
+        }
+
+        public string Name => "FailingBeginTargetWrite";
+
+        public PipelineRowStreamShape Shape { get; }
+
+        public ValueTask BeginAsync(CancellationToken cancellationToken = default) =>
+            throw new InvalidOperationException("simulated begin failure");
+
+        public Task WriteBatchAsync(PipelineDataBatch batch, CancellationToken cancellationToken = default) =>
+            Task.CompletedTask;
+
+        public ValueTask CompleteAsync(CancellationToken cancellationToken = default) =>
+            ValueTask.CompletedTask;
+
+        public ValueTask DisposeAsync() => ValueTask.CompletedTask;
+    }
+
+    private sealed class FailingCompleteTargetWriteOperation : RecordingTargetWriteOperation
+    {
+        public FailingCompleteTargetWriteOperation(PipelineRowStreamShape shape)
+            : base(shape)
+        {
+        }
+
+        public override ValueTask CompleteAsync(CancellationToken cancellationToken = default) =>
+            throw new InvalidOperationException("simulated complete failure");
     }
 
     private sealed class FailingSecondBatchSource : IPipelineRowStreamSource

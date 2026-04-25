@@ -68,6 +68,7 @@ internal static class Program
                         {
                             $"  Script: {result.TransformScriptName}",
                             $"  Target: {result.TargetSqlIdentifier}",
+                            $"  TargetWrite: {result.TargetWriteOperationName}",
                             $"  CompletedRows: {result.RowCount}",
                             $"  CompletedBatches: {result.BatchCount}",
                             $"  FailureStage: {result.FailureStage}",
@@ -81,6 +82,7 @@ internal static class Program
                     ("Status", result.Status.ToString()),
                     ("Script", result.TransformScriptName),
                     ("Target", result.TargetSqlIdentifier),
+                    ("TargetWrite", result.TargetWriteOperationName),
                     ("Columns", result.ColumnCount.ToString()),
                     ("Rows", result.RowCount.ToString()),
                     ("Batches", result.BatchCount.ToString()),

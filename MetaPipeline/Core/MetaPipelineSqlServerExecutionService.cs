@@ -46,14 +46,14 @@ public sealed class MetaPipelineSqlServerExecutionService
             definition.SourceSql,
             definition.RowStreamShape,
             request.BatchSize);
-        await using var writer = new SqlServerBulkCopyRowStreamWriter(
+        await using var targetWriteOperation = new SqlServerBulkInsertTargetWriteOperation(
             request.TargetConnectionString,
             definition.TargetSqlIdentifier,
             definition.RowStreamShape);
 
         var execution = await bufferedExecutionService.ExecuteAsync(
             source,
-            writer,
+            targetWriteOperation,
             cancellationToken).ConfigureAwait(false);
 
         var completedAtUtc = DateTimeOffset.UtcNow;
@@ -61,6 +61,7 @@ public sealed class MetaPipelineSqlServerExecutionService
             execution.Succeeded ? MetaPipelineExecutionStatus.Succeeded : MetaPipelineExecutionStatus.Failed,
             definition.TransformScriptName,
             definition.TargetSqlIdentifier,
+            targetWriteOperation.Name,
             definition.RowStreamShape.ColumnCount,
             execution.RowCount,
             execution.BatchCount,

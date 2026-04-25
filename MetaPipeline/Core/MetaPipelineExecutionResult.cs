@@ -4,6 +4,7 @@ public sealed record MetaPipelineExecutionResult(
     MetaPipelineExecutionStatus Status,
     string TransformScriptName,
     string TargetSqlIdentifier,
+    string TargetWriteOperationName,
     int ColumnCount,
     long RowCount,
     int BatchCount,

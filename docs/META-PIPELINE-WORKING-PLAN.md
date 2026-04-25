@@ -21,7 +21,8 @@ The implemented stage 1 slice is:
 - SQL Server transform execution as a source row stream
 - explicit row-stream shape shared by source, buffers, and writer
 - bounded in-memory row buffers
-- SQL Server bulk-copy insert into the selected target
+- explicit target write operation seam
+- SQL Server bulk-copy insert as the first target write operation
 - in-memory execution result with row count, batch count, status, failure stage, and failure message
 
 The CLI surface is:
@@ -37,15 +38,15 @@ Keep these axes separate so one dimension does not accidentally own the others:
 - Source transform: execute the selected `TransformScript`; source-side delta logic can live inside the transform script when the user models it there.
 - Binding guarantee: confirm the transform result shape matches the selected target shape before writing.
 - Row stream: keep shape, read, buffer, and write mechanics reusable across task kinds.
-- Target write strategy: the current strategy is bulk insert; later strategies may include truncate-plus-insert, merge/upsert, SCD handling, Data Vault loads, or other modeled write tasks.
+- Target write strategy: the current operation is bulk insert; later operations may include truncate-plus-insert, merge/upsert, SCD handling, Data Vault loads, or other modeled write tasks.
 - Task chain: a pipeline can become an ordered list of plain declared tasks, but the first concrete task remains transform execution followed by a target write.
 - Runtime result: report completed rows/batches and where a failure occurred without introducing an operational database yet.
 - Evidence: keep minimal, non-secret execution evidence now; richer replay, audit, and recovery are later features.
 
 ## Near-term moves
 
-- Keep hardening the row stream and bulk writer as reusable execution primitives.
-- Make target write strategy explicit once there is a second concrete writer or task, not before.
+- Keep hardening the row stream and target write operation seam as reusable execution primitives.
+- Add another target write operation only when a concrete demo or model need forces it.
 - Add a simple pre/post task only when a real demo or model need forces it.
 - Delay a sanctioned `MetaPipeline` XML model until the task shape is clear enough to model honestly.
 - Keep operation database, resumability, scheduling, and intelligent orchestration out of the core slice for now.
