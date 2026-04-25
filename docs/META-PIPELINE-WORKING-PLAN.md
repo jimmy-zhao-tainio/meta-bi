@@ -1,0 +1,59 @@
+# MetaPipeline Working Plan
+
+This is the near-term steering note for growing `MetaPipeline` without turning the first SQL Server bulk insert into the whole design.
+
+## Boundary
+
+`MetaPipeline` executes declared pipeline work.
+
+An orchestrator may later decide which pipeline to execute, when to execute it, and for which target.
+That intelligence sits above `MetaPipeline`.
+
+The execution layer should stay plain: validate declared work, read a transform row stream, buffer it, write it, and report what happened.
+
+## Current executable slice
+
+The implemented stage 1 slice is:
+
+- one explicit `TransformScript`
+- one matching `TransformBinding`
+- one selected target when the binding exposes more than one
+- SQL Server transform execution as a source row stream
+- explicit row-stream shape shared by source, buffers, and writer
+- bounded in-memory row buffers
+- SQL Server bulk-copy insert into the selected target
+- in-memory execution result with row count, batch count, status, failure stage, and failure message
+
+The CLI surface is:
+
+```text
+meta-pipeline execute sqlserver --transform-workspace <path> --binding-workspace <path> --script <name> --source-connection-env <name> --target-connection-env <name> [--target <sql-identifier>] [--batch-size <n>]
+```
+
+## Growth axes
+
+Keep these axes separate so one dimension does not accidentally own the others:
+
+- Source transform: execute the selected `TransformScript`; source-side delta logic can live inside the transform script when the user models it there.
+- Binding guarantee: confirm the transform result shape matches the selected target shape before writing.
+- Row stream: keep shape, read, buffer, and write mechanics reusable across task kinds.
+- Target write strategy: the current strategy is bulk insert; later strategies may include truncate-plus-insert, merge/upsert, SCD handling, Data Vault loads, or other modeled write tasks.
+- Task chain: a pipeline can become an ordered list of plain declared tasks, but the first concrete task remains transform execution followed by a target write.
+- Runtime result: report completed rows/batches and where a failure occurred without introducing an operational database yet.
+- Evidence: keep minimal, non-secret execution evidence now; richer replay, audit, and recovery are later features.
+
+## Near-term moves
+
+- Keep hardening the row stream and bulk writer as reusable execution primitives.
+- Make target write strategy explicit once there is a second concrete writer or task, not before.
+- Add a simple pre/post task only when a real demo or model need forces it.
+- Delay a sanctioned `MetaPipeline` XML model until the task shape is clear enough to model honestly.
+- Keep operation database, resumability, scheduling, and intelligent orchestration out of the core slice for now.
+
+## Anti-goals
+
+- Do not put orchestrator decision-making inside `MetaPipeline`.
+- Do not require generic ordering or watermark semantics for arbitrary SQL transforms.
+- Do not broaden stage 1 source support beyond database sources supported by the current `MetaSchema` path.
+- Do not store connection strings in sanctioned metadata or artifacts.
+- Do not encode SCD, delta, or Data Vault taxonomies before there is a concrete modeled task that needs them.

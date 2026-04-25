@@ -62,5 +62,6 @@ Users and devops systems are responsible for populating those variables before i
 
 - `META-LOAD.md` is the broad concern inventory.
 - `META-PIPELINE.md` is the compact grounding note for the first `MetaPipeline` slice.
+- `META-PIPELINE-WORKING-PLAN.md` is the near-term steering note for growing the executable core without absorbing orchestration policy.
 
 If later stages widen into orchestration or richer semantics, they should build on this nucleus rather than replace it.

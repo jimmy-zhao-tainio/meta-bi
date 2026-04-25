@@ -40,7 +40,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
             transformScript.Name,
             sourceSql,
             target.SqlIdentifier,
-            columns);
+            new PipelineRowStreamShape(columns));
     }
 
     private static TransformBinding ResolveBinding(

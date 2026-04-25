@@ -12,18 +12,12 @@ public sealed class SqlServerTransformRowStreamSource : IPipelineRowStreamSource
     public SqlServerTransformRowStreamSource(
         string connectionString,
         string sql,
-        IReadOnlyList<PipelineColumn> columns,
+        PipelineRowStreamShape shape,
         int batchSize)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(connectionString);
         ArgumentException.ThrowIfNullOrWhiteSpace(sql);
-        ArgumentNullException.ThrowIfNull(columns);
-
-        if (columns.Count == 0)
-        {
-            throw new MetaPipelineConfigurationException(
-                "Source reader requires at least one bound output column.");
-        }
+        ArgumentNullException.ThrowIfNull(shape);
 
         if (batchSize <= 0)
         {
@@ -34,10 +28,10 @@ public sealed class SqlServerTransformRowStreamSource : IPipelineRowStreamSource
         this.connectionString = connectionString;
         this.sql = sql;
         this.batchSize = batchSize;
-        Columns = columns;
+        Shape = shape;
     }
 
-    public IReadOnlyList<PipelineColumn> Columns { get; }
+    public PipelineRowStreamShape Shape { get; }
 
     public async IAsyncEnumerable<PipelineDataBatch> ReadBatchesAsync(
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
@@ -73,28 +67,28 @@ public sealed class SqlServerTransformRowStreamSource : IPipelineRowStreamSource
             rows.Add(values);
             if (rows.Count >= batchSize)
             {
-                yield return new PipelineDataBatch(rows.ToArray());
+                yield return new PipelineDataBatch(Shape, rows.ToArray());
                 rows = new List<object?[]>(batchSize);
             }
         }
 
         if (rows.Count > 0)
         {
-            yield return new PipelineDataBatch(rows.ToArray());
+            yield return new PipelineDataBatch(Shape, rows.ToArray());
         }
     }
 
     private void ValidateReaderShape(SqlDataReader reader)
     {
-        if (reader.FieldCount != Columns.Count)
+        if (reader.FieldCount != Shape.ColumnCount)
         {
             throw new MetaPipelineConfigurationException(
-                $"Source result column count {reader.FieldCount} does not match bound target column count {Columns.Count}.");
+                $"Source result column count {reader.FieldCount} does not match bound target column count {Shape.ColumnCount}.");
         }
 
-        for (var ordinal = 0; ordinal < Columns.Count; ordinal++)
+        for (var ordinal = 0; ordinal < Shape.ColumnCount; ordinal++)
         {
-            var expected = Columns[ordinal];
+            var expected = Shape.Columns[ordinal];
             var actual = reader.GetName(ordinal);
             if (!string.Equals(actual, expected.Name, StringComparison.OrdinalIgnoreCase))
             {

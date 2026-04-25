@@ -15,23 +15,7 @@ public sealed class BufferedPipelineExecutionService
 
         try
         {
-            await foreach (var batch in source.ReadBatchesAsync(cancellationToken).ConfigureAwait(false))
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                if (batch.RowCount == 0)
-                {
-                    continue;
-                }
-
-                ValidateBatchShape(batch, source.Columns.Count, batchCount + 1);
-
-                await writer.WriteBatchAsync(batch, cancellationToken).ConfigureAwait(false);
-                rowCount += batch.RowCount;
-                batchCount++;
-            }
-
-            return BufferedPipelineExecutionResult.Success(rowCount, batchCount);
+            source.Shape.EnsureCompatibleWith(writer.Shape, "target writer shape");
         }
         catch (OperationCanceledException)
         {
@@ -39,30 +23,87 @@ public sealed class BufferedPipelineExecutionService
         }
         catch (Exception ex)
         {
-            return BufferedPipelineExecutionResult.Failed(rowCount, batchCount, ex.Message);
-        }
-    }
-
-    private static void ValidateBatchShape(
-        PipelineDataBatch batch,
-        int expectedColumnCount,
-        int batchOrdinal)
-    {
-        if (expectedColumnCount <= 0)
-        {
-            throw new MetaPipelineConfigurationException(
-                "Pipeline source must expose at least one column.");
+            return BufferedPipelineExecutionResult.Failed(
+                rowCount,
+                batchCount,
+                PipelineExecutionFailureStage.ShapeValidation,
+                ex.Message);
         }
 
-        for (var rowIndex = 0; rowIndex < batch.Rows.Count; rowIndex++)
+        await using var batches = source
+            .ReadBatchesAsync(cancellationToken)
+            .GetAsyncEnumerator(cancellationToken);
+
+        while (true)
         {
-            var row = batch.Rows[rowIndex];
-            if (row.Length != expectedColumnCount)
+            PipelineDataBatch batch;
+            try
             {
-                throw new MetaPipelineConfigurationException(
-                    $"Batch {batchOrdinal} row {rowIndex + 1} contains {row.Length} values but the pipeline shape expects {expectedColumnCount}.");
+                cancellationToken.ThrowIfCancellationRequested();
+                if (!await batches.MoveNextAsync().ConfigureAwait(false))
+                {
+                    break;
+                }
+
+                batch = batches.Current;
             }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                return BufferedPipelineExecutionResult.Failed(
+                    rowCount,
+                    batchCount,
+                    PipelineExecutionFailureStage.SourceRead,
+                    ex.Message);
+            }
+
+            if (batch.RowCount == 0)
+            {
+                continue;
+            }
+
+            try
+            {
+                source.Shape.EnsureCompatibleWith(batch.Shape, $"batch {batchCount + 1} shape");
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                return BufferedPipelineExecutionResult.Failed(
+                    rowCount,
+                    batchCount,
+                    PipelineExecutionFailureStage.ShapeValidation,
+                    ex.Message);
+            }
+
+            try
+            {
+                await writer.WriteBatchAsync(batch, cancellationToken).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                return BufferedPipelineExecutionResult.Failed(
+                    rowCount,
+                    batchCount,
+                    PipelineExecutionFailureStage.TargetWrite,
+                    ex.Message);
+            }
+
+            rowCount += batch.RowCount;
+            batchCount++;
         }
+
+        return BufferedPipelineExecutionResult.Success(rowCount, batchCount);
     }
 }
 
@@ -70,11 +111,24 @@ public sealed record BufferedPipelineExecutionResult(
     long RowCount,
     int BatchCount,
     bool Succeeded,
+    PipelineExecutionFailureStage FailureStage,
     string FailureMessage)
 {
     public static BufferedPipelineExecutionResult Success(long rowCount, int batchCount) =>
-        new(rowCount, batchCount, true, string.Empty);
+        new(rowCount, batchCount, true, PipelineExecutionFailureStage.None, string.Empty);
 
-    public static BufferedPipelineExecutionResult Failed(long rowCount, int batchCount, string failureMessage) =>
-        new(rowCount, batchCount, false, failureMessage);
+    public static BufferedPipelineExecutionResult Failed(
+        long rowCount,
+        int batchCount,
+        PipelineExecutionFailureStage failureStage,
+        string failureMessage) =>
+        new(rowCount, batchCount, false, failureStage, failureMessage);
+}
+
+public enum PipelineExecutionFailureStage
+{
+    None,
+    SourceRead,
+    ShapeValidation,
+    TargetWrite,
 }

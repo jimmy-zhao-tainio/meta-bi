@@ -2,7 +2,7 @@ namespace MetaPipeline;
 
 public interface IPipelineRowStreamSource
 {
-    IReadOnlyList<PipelineColumn> Columns { get; }
+    PipelineRowStreamShape Shape { get; }
 
     IAsyncEnumerable<PipelineDataBatch> ReadBatchesAsync(CancellationToken cancellationToken = default);
 }

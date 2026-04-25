@@ -3,31 +3,34 @@ namespace MetaPipeline.Tests;
 public sealed class SqlServerBulkCopyRowStreamWriterTests
 {
     [Fact]
-    public void Constructor_WhenColumnsContainDuplicateNames_FailsBeforeOpeningConnection()
+    public async Task Constructor_UsesProvidedShapeWithoutOpeningConnection()
     {
-        var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
-            new SqlServerBulkCopyRowStreamWriter(
-                "Server=.;Database=DoesNotOpen;Integrated Security=true;TrustServerCertificate=true;Encrypt=false",
-                "dbo.Target",
-                [
-                    new PipelineColumn("CustomerId", 1),
-                    new PipelineColumn("customerid", 2),
-                ]));
+        var shape = new PipelineRowStreamShape(
+            [
+                new PipelineColumn("CustomerId", 1),
+                new PipelineColumn("CustomerName", 2),
+            ]);
 
-        Assert.Contains("duplicate column names", exception.Message, StringComparison.OrdinalIgnoreCase);
+        var writer = new SqlServerBulkCopyRowStreamWriter(
+            "Server=.;Database=DoesNotOpen;Integrated Security=true;TrustServerCertificate=true;Encrypt=false",
+            "dbo.Target",
+            shape);
+
+        await using (writer)
+        {
+            Assert.Same(shape, writer.Shape);
+        }
     }
 
     [Fact]
-    public void Constructor_WhenColumnNameIsBlank_FailsBeforeOpeningConnection()
+    public void Constructor_WhenTargetIdentifierIsBlank_FailsBeforeOpeningConnection()
     {
-        var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
+        var exception = Assert.Throws<ArgumentException>(() =>
             new SqlServerBulkCopyRowStreamWriter(
                 "Server=.;Database=DoesNotOpen;Integrated Security=true;TrustServerCertificate=true;Encrypt=false",
-                "dbo.Target",
-                [
-                    new PipelineColumn(" ", 1),
-                ]));
+                " ",
+                new PipelineRowStreamShape([new PipelineColumn("CustomerId", 1)])));
 
-        Assert.Contains("blank name", exception.Message, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("targetSqlIdentifier", exception.Message, StringComparison.Ordinal);
     }
 }

@@ -9,6 +9,7 @@ public sealed record MetaPipelineExecutionResult(
     int BatchCount,
     DateTimeOffset StartedAtUtc,
     DateTimeOffset CompletedAtUtc,
+    PipelineExecutionFailureStage FailureStage,
     string FailureMessage)
 {
     public bool Succeeded => Status == MetaPipelineExecutionStatus.Succeeded;

@@ -44,12 +44,12 @@ public sealed class MetaPipelineSqlServerExecutionService
         var source = new SqlServerTransformRowStreamSource(
             request.SourceConnectionString,
             definition.SourceSql,
-            definition.Columns,
+            definition.RowStreamShape,
             request.BatchSize);
         await using var writer = new SqlServerBulkCopyRowStreamWriter(
             request.TargetConnectionString,
             definition.TargetSqlIdentifier,
-            definition.Columns);
+            definition.RowStreamShape);
 
         var execution = await bufferedExecutionService.ExecuteAsync(
             source,
@@ -61,11 +61,12 @@ public sealed class MetaPipelineSqlServerExecutionService
             execution.Succeeded ? MetaPipelineExecutionStatus.Succeeded : MetaPipelineExecutionStatus.Failed,
             definition.TransformScriptName,
             definition.TargetSqlIdentifier,
-            definition.Columns.Count,
+            definition.RowStreamShape.ColumnCount,
             execution.RowCount,
             execution.BatchCount,
             startedAtUtc,
             completedAtUtc,
+            execution.FailureStage,
             execution.FailureMessage);
     }
 }

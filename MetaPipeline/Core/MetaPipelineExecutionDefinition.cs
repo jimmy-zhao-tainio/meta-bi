@@ -5,4 +5,7 @@ public sealed record MetaPipelineExecutionDefinition(
     string TransformScriptName,
     string SourceSql,
     string TargetSqlIdentifier,
-    IReadOnlyList<PipelineColumn> Columns);
+    PipelineRowStreamShape RowStreamShape)
+{
+    public IReadOnlyList<PipelineColumn> Columns => RowStreamShape.Columns;
+}

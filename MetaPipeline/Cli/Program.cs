@@ -70,6 +70,7 @@ internal static class Program
                             $"  Target: {result.TargetSqlIdentifier}",
                             $"  CompletedRows: {result.RowCount}",
                             $"  CompletedBatches: {result.BatchCount}",
+                            $"  FailureStage: {result.FailureStage}",
                             $"  Failure: {result.FailureMessage}",
                         });
                 }
