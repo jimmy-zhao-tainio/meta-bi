@@ -5,6 +5,7 @@ public sealed record MetaPipelineSqlServerExecutionRequest(
     string BindingWorkspacePath,
     string SourceConnectionString,
     string TargetConnectionString,
-    string TransformScriptName,
+    string TransformScriptId,
+    string TransformBindingId,
     string? TargetSqlIdentifier = null,
     int BatchSize = 1000);

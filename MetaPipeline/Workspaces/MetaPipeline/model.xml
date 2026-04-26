@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="MetaPipeline">
+  <EntityList>
+    <Entity name="Pipeline">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="ConnectionReference">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="EnvironmentVariableName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Pipeline" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PipelineTask">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Pipeline" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TaskDependency">
+      <RelationshipList>
+        <Relationship entity="Pipeline" />
+        <Relationship entity="PipelineTask" role="Predecessor" />
+        <Relationship entity="PipelineTask" role="Successor" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RowStream">
+      <PropertyList>
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Pipeline" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RowStreamColumn">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="RowStream" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RowStreamProducer">
+      <RelationshipList>
+        <Relationship entity="PipelineTask" />
+        <Relationship entity="RowStream" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RowStreamConsumer">
+      <RelationshipList>
+        <Relationship entity="PipelineTask" />
+        <Relationship entity="RowStream" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransformExecutionTask">
+      <PropertyList>
+        <Property name="TransformScriptId" />
+        <Property name="TransformBindingId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="PipelineTask" />
+        <Relationship entity="ConnectionReference" role="SourceConnectionReference" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TargetWriteTask">
+      <RelationshipList>
+        <Relationship entity="PipelineTask" />
+        <Relationship entity="ConnectionReference" role="TargetConnectionReference" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="InsertRowsTargetWriteTask">
+      <PropertyList>
+        <Property name="TargetSqlIdentifier" />
+        <Property name="BatchSize" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TargetWriteTask" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

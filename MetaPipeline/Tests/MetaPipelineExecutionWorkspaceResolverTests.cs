@@ -7,7 +7,7 @@ namespace MetaPipeline.Tests;
 public sealed class MetaPipelineExecutionWorkspaceResolverTests
 {
     [Fact]
-    public async Task Resolve_WhenScriptIsBlank_RequiresExplicitScript()
+    public async Task ResolveByIds_WhenScriptIdIsBlank_RequiresExplicitScriptId()
     {
         var tempRoot = CreateTempRoot();
         var transformWorkspacePath = Path.Combine(tempRoot, "transform");
@@ -37,9 +37,9 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 new BindingSeed("binding:2", second, "dbo.CustomerTargetTwo", ["CustomerId"]));
 
             var exception = Assert.Throws<ArgumentException>(() =>
-                new MetaPipelineExecutionWorkspaceResolver().Resolve(transformWorkspacePath, bindingWorkspacePath, string.Empty));
+                new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(transformWorkspacePath, bindingWorkspacePath, string.Empty, "binding:1"));
 
-            Assert.Contains("transformScriptName", exception.Message, StringComparison.Ordinal);
+            Assert.Contains("transformScriptId", exception.Message, StringComparison.Ordinal);
         }
         finally
         {
@@ -69,12 +69,15 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 bindingWorkspacePath,
                 new BindingSeed("binding:1", script, "warehouse.CustomerLoad", ["CustomerName", "CustomerId"], [1, 0]));
 
-            var result = new MetaPipelineExecutionWorkspaceResolver().Resolve(
+            var result = new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(
                 transformWorkspacePath,
                 bindingWorkspacePath,
-                "dbo.v_customer_load");
+                script.Id,
+                "binding:1");
 
             Assert.Equal("dbo.v_customer_load", result.TransformScriptName);
+            Assert.Equal(script.Id, result.TransformScriptId);
+            Assert.Equal("binding:1", result.TransformBindingId);
             Assert.Equal("warehouse.CustomerLoad", result.TargetSqlIdentifier);
             Assert.Collection(
                 result.Columns,
@@ -118,10 +121,11 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 new BindingSeed("binding:1", script, "warehouse.CustomerLoad", ["CustomerId"]));
 
             var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
-                new MetaPipelineExecutionWorkspaceResolver().Resolve(
+                new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(
                     transformWorkspacePath,
                     bindingWorkspacePath,
-                    "dbo.fn_customer"));
+                    script.Id,
+                    "binding:1"));
 
             Assert.Contains("parameterless transform scripts only", exception.Message, StringComparison.OrdinalIgnoreCase);
         }
@@ -154,10 +158,11 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 new BindingSeed("binding:1", script, ["warehouse.CustomerLoad", "warehouse.CustomerLoadReplica"], ["CustomerId"]));
 
             var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
-                new MetaPipelineExecutionWorkspaceResolver().Resolve(
+                new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(
                     transformWorkspacePath,
                     bindingWorkspacePath,
-                    "dbo.v_customer_load"));
+                    script.Id,
+                    "binding:1"));
 
             Assert.Contains("Use --target", exception.Message, StringComparison.Ordinal);
         }
@@ -189,10 +194,11 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 bindingWorkspacePath,
                 new BindingSeed("binding:1", script, ["warehouse.CustomerLoad", "warehouse.CustomerLoadReplica"], ["CustomerId"]));
 
-            var result = new MetaPipelineExecutionWorkspaceResolver().Resolve(
+            var result = new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(
                 transformWorkspacePath,
                 bindingWorkspacePath,
-                "dbo.v_customer_load",
+                script.Id,
+                "binding:1",
                 "warehouse.CustomerLoadReplica");
 
             Assert.Equal("warehouse.CustomerLoadReplica", result.TargetSqlIdentifier);

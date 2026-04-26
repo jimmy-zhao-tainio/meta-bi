@@ -1,21 +1,21 @@
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>call cleanup.cmd  1>nul 2>&1 
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>call cleanup.cmd  1>nul 2>&1
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>sqlcmd -S . -d master -b -i setup.sql 
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>sqlcmd -S . -d master -b -i setup.sql
 Changed database context to 'MetaPipelineSqlServerCliIntegration'.
 
 (3 rows affected)
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-schema extract sqlserver --new-workspace SchemaWS --connection-env META_PIPELINE_DEMO_SOURCE_SQL --system MetaPipelineSqlServerCliIntegration --all-schemas --all-tables 
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-schema extract sqlserver --new-workspace SchemaWS --connection-env META_PIPELINE_DEMO_SOURCE_SQL --system MetaPipelineSqlServerCliIntegration --all-schemas --all-tables
 OK: Created SchemaWS
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-script from sql-file --path TransformScripts\customer_load.sql --target dbo.TargetCustomer --new-workspace TransformWS 
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-script from sql-file --path TransformScripts\customer_load.sql --target dbo.TargetCustomer --new-workspace TransformWS
 OK: Created TransformWS
 Import:
   Scripts: 1
   Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration\TransformWS
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system MetaPipelineSqlServerCliIntegration --new-workspace BindingWS 
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system MetaPipelineSqlServerCliIntegration --new-workspace BindingWS
 OK: Created BindingWS
 Binding:
   Scripts: 1
@@ -29,9 +29,55 @@ Binding:
   IgnoredTargetColumns: 0
   Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration\BindingWS
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>..\..\..\MetaPipeline\Cli\bin\Debug\net8.0\meta-pipeline.exe execute sqlserver --transform-workspace TransformWS --binding-workspace BindingWS --script dbo.v_customer_load --source-connection-env META_PIPELINE_DEMO_SOURCE_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --batch-size 2 
-OK: Executed 3 rows
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>..\..\..\MetaPipeline\Cli\bin\Debug\net8.0\meta-pipeline.exe init --new-workspace PipelineWS
+OK: Created PipelineWS
+MetaPipeline:
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration\PipelineWS
+  Pipelines: 0
+  Tasks: 0
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>..\..\..\MetaPipeline\Cli\bin\Debug\net8.0\meta-pipeline.exe add-pipeline --workspace PipelineWS --name CustomerLoad --description "Load customer totals"
+OK: Added pipeline
+MetaPipeline:
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration\PipelineWS
+  Pipeline: CustomerLoad
+  Tasks: 0
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>..\..\..\MetaPipeline\Cli\bin\Debug\net8.0\meta-pipeline.exe add-transform --workspace PipelineWS --pipeline CustomerLoad --task load-customers --transform-workspace TransformWS --binding-workspace BindingWS --transform-script-id TransformScript:1 --transform-binding-id TransformScript:1:binding --source-connection-ref source --source-connection-env META_PIPELINE_DEMO_SOURCE_SQL --target-connection-ref target --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --target dbo.TargetCustomer --batch-size 2
+OK: Added transform pipeline tasks
+MetaPipeline:
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration\PipelineWS
+  Pipeline: CustomerLoad
+  TransformTask: load-customers
+  TargetWriteTask: load-customers.target-write
+  TargetWrite: InsertRows
+  RowStream: load-customers.rows
+  Columns: 3
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>..\..\..\MetaPipeline\Cli\bin\Debug\net8.0\meta-pipeline.exe inspect --workspace PipelineWS
+OK: Loaded MetaPipeline workspace
+MetaPipeline:
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration\PipelineWS
+  Pipelines: 1
+  Tasks: 2
+  Connections: 2
+  RowStreams: 1
+  RowStreamColumns: 3
+  Dependencies: 1
+Pipeline: CustomerLoad:
+  Id: CustomerLoad
+  Tasks: 2
+  1. load-customers [TransformExecution]
+  2. load-customers.target-write [TargetWrite:InsertRows]
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>..\..\..\MetaPipeline\Cli\bin\Debug\net8.0\meta-pipeline.exe execute --workspace PipelineWS --pipeline CustomerLoad --task load-customers --transform-workspace TransformWS --binding-workspace BindingWS
+OK: Executed pipeline task load-customers
 Execution:
+  Pipeline: CustomerLoad
+  Task: load-customers
+  TargetWriteTask: load-customers.target-write
+  TargetWrite: InsertRows
+  TargetWriteRealization: SqlServerBulkInsert
   Status: Succeeded
   Script: dbo.v_customer_load
   Target: dbo.TargetCustomer
@@ -39,8 +85,8 @@ Execution:
   Rows: 3
   Batches: 2
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>sqlcmd -S . -d MetaPipelineSqlServerCliIntegration -b -Q "SET NOCOUNT ON; SELECT CustomerId, CustomerName, TotalAmount FROM dbo.TargetCustomer ORDER BY CustomerId;" 
-CustomerId  CustomerName                                                                                         TotalAmount         
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>sqlcmd -S . -d MetaPipelineSqlServerCliIntegration -b -Q "SET NOCOUNT ON; SELECT CustomerId, CustomerName, TotalAmount FROM dbo.TargetCustomer ORDER BY CustomerId;"
+CustomerId  CustomerName                                                                                         TotalAmount
 ----------- ---------------------------------------------------------------------------------------------------- --------------------
           1 Acme North                                                                                                         125.50
           2 Beacon Retail                                                                                                      980.00

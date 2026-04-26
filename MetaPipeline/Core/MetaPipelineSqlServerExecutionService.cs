@@ -35,10 +35,11 @@ public sealed class MetaPipelineSqlServerExecutionService
             throw new MetaPipelineConfigurationException("Batch size must be greater than zero.");
         }
 
-        var definition = workspaceResolver.Resolve(
+        var definition = workspaceResolver.ResolveByIds(
             request.TransformWorkspacePath,
             request.BindingWorkspacePath,
-            request.TransformScriptName,
+            request.TransformScriptId,
+            request.TransformBindingId,
             request.TargetSqlIdentifier);
 
         var source = new SqlServerTransformRowStreamSource(

@@ -11,7 +11,9 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\Cli\Common\MetaBi.Cli.Common.csproj" />
     <ProjectReference Include="..\Core\MetaPipeline.Core.csproj" />
+    <ProjectReference Include="..\Tooling\MetaPipeline.Tooling.csproj" />
   </ItemGroup>
 
 </Project>

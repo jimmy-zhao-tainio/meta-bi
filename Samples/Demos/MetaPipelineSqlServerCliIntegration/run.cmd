@@ -17,7 +17,19 @@ meta-transform-script from sql-file --path TransformScripts\customer_load.sql --
 meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system MetaPipelineSqlServerCliIntegration --new-workspace BindingWS
 @if errorlevel 1 exit /b %errorlevel%
 
-%META_PIPELINE% execute sqlserver --transform-workspace TransformWS --binding-workspace BindingWS --script dbo.v_customer_load --source-connection-env META_PIPELINE_DEMO_SOURCE_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --batch-size 2
+%META_PIPELINE% init --new-workspace PipelineWS
+@if errorlevel 1 exit /b %errorlevel%
+
+%META_PIPELINE% add-pipeline --workspace PipelineWS --name CustomerLoad --description "Load customer totals"
+@if errorlevel 1 exit /b %errorlevel%
+
+%META_PIPELINE% add-transform --workspace PipelineWS --pipeline CustomerLoad --task load-customers --transform-workspace TransformWS --binding-workspace BindingWS --transform-script-id TransformScript:1 --transform-binding-id TransformScript:1:binding --source-connection-ref source --source-connection-env META_PIPELINE_DEMO_SOURCE_SQL --target-connection-ref target --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --target dbo.TargetCustomer --batch-size 2
+@if errorlevel 1 exit /b %errorlevel%
+
+%META_PIPELINE% inspect --workspace PipelineWS
+@if errorlevel 1 exit /b %errorlevel%
+
+%META_PIPELINE% execute --workspace PipelineWS --pipeline CustomerLoad --task load-customers --transform-workspace TransformWS --binding-workspace BindingWS
 @if errorlevel 1 exit /b %errorlevel%
 
 sqlcmd -S . -d MetaPipelineSqlServerCliIntegration -b -Q "SET NOCOUNT ON; SELECT CustomerId, CustomerName, TotalAmount FROM dbo.TargetCustomer ORDER BY CustomerId;"

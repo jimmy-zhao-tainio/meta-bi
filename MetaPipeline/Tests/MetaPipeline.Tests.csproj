@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cli\MetaPipeline.Cli.csproj" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\Core\MetaPipeline.Core.csproj" />
+    <ProjectReference Include="..\Tooling\MetaPipeline.Tooling.csproj" />
   </ItemGroup>
 
 </Project>

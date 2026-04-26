@@ -9,15 +9,17 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
 {
     private readonly MetaTransformScriptSqlService sqlService = new();
 
-    public MetaPipelineExecutionDefinition Resolve(
+    public MetaPipelineExecutionDefinition ResolveByIds(
         string transformWorkspacePath,
         string bindingWorkspacePath,
-        string transformScriptName,
+        string transformScriptId,
+        string transformBindingId,
         string? targetSqlIdentifier = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(bindingWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptId);
+        ArgumentException.ThrowIfNullOrWhiteSpace(transformBindingId);
 
         var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(
             Path.GetFullPath(bindingWorkspacePath),
@@ -26,10 +28,31 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
             Path.GetFullPath(transformWorkspacePath),
             searchUpward: false);
 
-        var binding = ResolveBinding(bindingModel, transformScriptName);
-        var transformScript = ResolveTransformScript(transformModel, binding);
+        var transformScript = ResolveTransformScriptById(transformModel, transformScriptId);
+        var binding = ResolveBindingById(bindingModel, transformBindingId);
+        if (!string.Equals(binding.MetaTransformScriptTransformScriptId, transformScript.Id, StringComparison.Ordinal))
+        {
+            throw new MetaPipelineConfigurationException(
+                $"Transform binding id '{binding.Id}' does not reference transform script id '{transformScript.Id}'.");
+        }
+
         EnsureTransformScriptIsSupported(transformModel, transformScript);
 
+        return CreateDefinition(
+            transformModel,
+            bindingModel,
+            transformScript,
+            binding,
+            targetSqlIdentifier);
+    }
+
+    private MetaPipelineExecutionDefinition CreateDefinition(
+        MTS.MetaTransformScriptModel transformModel,
+        MetaTransformBindingModel bindingModel,
+        MTS.TransformScript transformScript,
+        TransformBinding binding,
+        string? targetSqlIdentifier)
+    {
         var target = ResolveTarget(bindingModel, binding, targetSqlIdentifier);
         var outputRowset = ResolveSingleOutputRowset(bindingModel, binding);
         var columns = ResolveOrderedColumns(bindingModel, outputRowset);
@@ -38,43 +61,37 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         return new MetaPipelineExecutionDefinition(
             transformScript.Id,
             transformScript.Name,
+            binding.Id,
             sourceSql,
             target.SqlIdentifier,
             new PipelineRowStreamShape(columns));
     }
 
-    private static TransformBinding ResolveBinding(
+    private static TransformBinding ResolveBindingById(
         MetaTransformBindingModel bindingModel,
-        string transformScriptName)
+        string transformBindingId)
     {
-        var bindings = bindingModel.TransformBindingList.ToArray();
-        if (bindings.Length == 0)
-        {
-            throw new MetaPipelineConfigurationException(
-                "Binding workspace does not contain any TransformBinding rows.");
-        }
-
-        var matches = bindings
-            .Where(item => string.Equals(item.TransformScriptName, transformScriptName, StringComparison.OrdinalIgnoreCase))
+        var matches = bindingModel.TransformBindingList
+            .Where(item => string.Equals(item.Id, transformBindingId, StringComparison.Ordinal))
             .ToArray();
 
         return matches.Length switch
         {
             0 => throw new MetaPipelineConfigurationException(
-                $"Transform script '{transformScriptName}' was not found in the binding workspace."),
+                $"Transform binding id '{transformBindingId}' was not found in the binding workspace."),
             > 1 => throw new MetaPipelineConfigurationException(
-                $"Transform script name '{transformScriptName}' is ambiguous in the binding workspace."),
+                $"Transform binding id '{transformBindingId}' is ambiguous in the binding workspace."),
             _ => matches[0],
         };
     }
 
-    private static MTS.TransformScript ResolveTransformScript(
+    private static MTS.TransformScript ResolveTransformScriptById(
         MTS.MetaTransformScriptModel transformModel,
-        TransformBinding binding)
+        string transformScriptId)
     {
         var transformScripts = transformModel.TransformScriptList.ToArray();
         var matchesById = transformScripts
-            .Where(item => string.Equals(item.Id, binding.MetaTransformScriptTransformScriptId, StringComparison.Ordinal))
+            .Where(item => string.Equals(item.Id, transformScriptId, StringComparison.Ordinal))
             .ToArray();
 
         if (matchesById.Length == 1)
@@ -85,11 +102,11 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         if (matchesById.Length > 1)
         {
             throw new MetaPipelineConfigurationException(
-                $"Transform script id '{binding.MetaTransformScriptTransformScriptId}' is ambiguous in the transform workspace.");
+                $"Transform script id '{transformScriptId}' is ambiguous in the transform workspace.");
         }
 
         throw new MetaPipelineConfigurationException(
-            $"Transform script '{binding.TransformScriptName}' referenced by the binding workspace was not found in the transform workspace.");
+            $"Transform script id '{transformScriptId}' was not found in the transform workspace.");
     }
 
     private static void EnsureTransformScriptIsSupported(
@@ -125,7 +142,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         if (targets.Length == 0)
         {
             throw new MetaPipelineConfigurationException(
-                $"Transform binding '{binding.TransformScriptName}' does not contain a target.");
+                $"Transform binding id '{binding.Id}' does not contain a target.");
         }
 
         foreach (var target in targets)
@@ -133,7 +150,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
             if (string.IsNullOrWhiteSpace(target.SqlIdentifier))
             {
                 throw new MetaPipelineConfigurationException(
-                    $"Transform binding '{binding.TransformScriptName}' contains a blank target SQL identifier.");
+                    $"Transform binding id '{binding.Id}' contains a blank target SQL identifier.");
             }
         }
 
@@ -146,9 +163,9 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
             return matches.Length switch
             {
                 0 => throw new MetaPipelineConfigurationException(
-                    $"Target '{targetSqlIdentifier}' was not found for transform binding '{binding.TransformScriptName}'."),
+                    $"Target '{targetSqlIdentifier}' was not found for transform binding id '{binding.Id}'."),
                 > 1 => throw new MetaPipelineConfigurationException(
-                    $"Target '{targetSqlIdentifier}' is ambiguous for transform binding '{binding.TransformScriptName}'."),
+                    $"Target '{targetSqlIdentifier}' is ambiguous for transform binding id '{binding.Id}'."),
                 _ => matches[0],
             };
         }
@@ -157,7 +174,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         {
             1 => targets[0],
             _ => throw new MetaPipelineConfigurationException(
-                $"Transform binding '{binding.TransformScriptName}' contains multiple targets. Use --target <sql-identifier> to select one."),
+                $"Transform binding id '{binding.Id}' contains multiple targets. Use --target <sql-identifier> to select one."),
         };
     }
 
@@ -172,9 +189,9 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         return outputRowsets.Length switch
         {
             0 => throw new MetaPipelineConfigurationException(
-                $"Transform binding '{binding.TransformScriptName}' does not contain an output rowset."),
+                $"Transform binding id '{binding.Id}' does not contain an output rowset."),
             > 1 => throw new MetaPipelineConfigurationException(
-                $"Transform binding '{binding.TransformScriptName}' contains multiple output rowsets. Stage 1 execute supports exactly one output rowset."),
+                $"Transform binding id '{binding.Id}' contains multiple output rowsets. Stage 1 execute supports exactly one output rowset."),
             _ => outputRowsets[0],
         };
     }
