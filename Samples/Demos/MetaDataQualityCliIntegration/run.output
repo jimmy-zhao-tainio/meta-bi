@@ -1,0 +1,106 @@
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>call cleanup.cmd  1>nul 2>&1
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-sql execute --connection-env META_DQ_DEMO_MASTER_SQL --file setup.sql
+Changed database context to 'MetaDataQualityCliIntegration'.
+OK: Executed SQL
+Batches: 12
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-sql execute --connection-env META_DQ_DEMO_SOURCE_SQL --file SourceViews\001_customer_order_coverage\view.sql
+OK: Executed SQL
+Batches: 3
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-sql execute --connection-env META_DQ_DEMO_SOURCE_SQL --file SourceViews\002_customer_invoice_composite\view.sql
+OK: Executed SQL
+Batches: 3
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-transform-script from sql-file --path SourceViews\001_customer_order_coverage\view.sql --target dq.CustomerOrderCoverage --new-workspace TransformWS
+OK: Created TransformWS
+Import:
+  Scripts: 1
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-transform-script from sql-file --path SourceViews\002_customer_invoice_composite\view.sql --target dq.CustomerInvoiceComposite --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 2
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-data-quality from-transform-workspace --transform-workspace TransformWS --new-workspace DataQualityWS
+OK: Created DataQualityWS
+MetaDataQuality can create SQL views that return rows to investigate.
+  Views ready to create: 3
+
+Run This First:
+  meta-data-quality promote --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration\DataQualityWS" --all
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration\DataQualityWS" --out DataQualityViews.sql
+
+Review The Results:
+  Run the generated views and decide whether the reported rows are real data-quality issues.
+  Some rows may be valid for your business rules; keep the views that reveal useful problems.
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-data-quality inspect --workspace DataQualityWS
+OK: Loaded MetaDataQuality workspace
+
+MetaDataQuality can create SQL views that return rows to investigate.
+  Views ready to create: 3
+
+Why These Views Exist:
+  MetaDataQuality found joins in the transform workspace.
+  The generated views check whether the data behind those joins behaves as expected.
+
+The Views Check For:
+  Missing referenced rows: a row may point to related data that is not present.
+  Unexpected NULLs from outer joins: an optional join may leave related columns empty.
+
+Relationships Checked:
+  1. sales.Customer joined with sales.Order
+     Keys: c.CustomerId = o.CustomerId; c.RegionId = o.RegionId
+     Views: Missing referenced rows, Unexpected NULLs from outer joins
+  2. sales.Customer joined with sales.Invoice
+     Keys: c.CustomerId = ib.CustomerId; c.RegionId = ib.RegionId
+     Views: Missing referenced rows
+
+Corpus Inference:
+  Relationships observed: 2
+  Dominant relationship patterns: 0
+  Column equivalence edges: 4
+  Minority join-pattern candidates: 0
+  Incomplete-composite candidates: 0
+  Suspicious-extra-predicate candidates: 0
+  Missing-common-filter candidates: 0
+  Minority column-equivalence candidates: 0
+  Optionality-drift (inner vs usually optional): 0
+  Optionality-drift (left vs usually mandatory): 0
+  Implied fanout-risk candidates: 0
+  Implied output-duplicate-risk candidates: 0
+
+Run This First:
+  meta-data-quality promote --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration\DataQualityWS" --all
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration\DataQualityWS" --out DataQualityViews.sql
+
+Review The Results:
+  Run the generated views and decide whether the reported rows are real data-quality issues.
+  Some rows may be valid for your business rules; keep the views that reveal useful problems.
+
+Need to exclude a few candidates? meta-data-quality inspect --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration\DataQualityWS" --show-cases --show-candidate-ids
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-data-quality promote --workspace DataQualityWS --all
+OK: Promoted 3 data quality candidates
+  Candidates promoted for SQL: 3
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration\DataQualityWS" --out DataQualityViews.sql
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-convert data-quality-to-sql --workspace DataQualityWS --out DataQualityViews.sql
+OK: Generated 3 data quality view scripts, 1 review dashboard, and MetaDQ operational SQL (2 tables, 2 procedure).
+Output:
+  DataQualityViews: 3
+  Dashboard: dq.v_DataQualityReview
+  MetaDQTables: 2
+  MetaDQProcedures: 2
+  Scripts: 5
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration\DataQualityViews.sql
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityCliIntegration>meta-sql execute --connection-env META_DQ_DEMO_SOURCE_SQL --file DataQualityViews.sql
+OK: Executed SQL
+Batches: 9

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <BusinessHierarchicalLinkImplementationList>
+    <BusinessHierarchicalLinkImplementation Id="default-business-hierarchical-link">
+      <SchemaName>dbo</SchemaName>
+      <TableNamePattern>BHAL_{Name}</TableNamePattern>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
+      <ParentHubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</ParentHubForeignKeyNamePattern>
+      <ChildHubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</ChildHubForeignKeyNamePattern>
+      <HashKeyColumnName>HashKey</HashKeyColumnName>
+      <HashKeyDataTypeId>meta:type:Binary</HashKeyDataTypeId>
+      <HashKeyLength>16</HashKeyLength>
+      <ParentHashKeyColumnName>ParentHashKey</ParentHashKeyColumnName>
+      <ChildHashKeyColumnName>ChildHashKey</ChildHashKeyColumnName>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataTypeId>meta:type:DateTime2</LoadTimestampDataTypeId>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
+      <LoadTimestampDefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</LoadTimestampDefaultExpressionSql>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataTypeId>meta:type:String</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
+      <AuditIdColumnName>AuditId</AuditIdColumnName>
+      <AuditIdDataTypeId>meta:type:Int64</AuditIdDataTypeId>
+      <AuditIdDefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</AuditIdDefaultExpressionSql>
+    </BusinessHierarchicalLinkImplementation>
+  </BusinessHierarchicalLinkImplementationList>
+</MetaDataVaultImplementation>

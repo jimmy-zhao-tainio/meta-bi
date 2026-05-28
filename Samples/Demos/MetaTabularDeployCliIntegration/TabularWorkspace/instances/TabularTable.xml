@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularTableList>
+    <TabularTable Id="Date" TabularModelId="Commerce">
+      <DataCategory>Time</DataCategory>
+      <Name>Date</Name>
+    </TabularTable>
+    <TabularTable Id="Sales" TabularModelId="Commerce">
+      <Name>Sales</Name>
+    </TabularTable>
+  </TabularTableList>
+</MetaTabular>

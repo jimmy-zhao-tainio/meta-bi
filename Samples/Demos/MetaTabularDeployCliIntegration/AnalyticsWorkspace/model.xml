@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="MetaAnalytics">
+  <EntityList>
+    <Entity name="AggregationBehavior">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Function" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Measure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="AnalyticsModel">
+      <PropertyList>
+        <Property name="DefaultCulture" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+    <Entity name="Attribute">
+      <PropertyList>
+        <Property name="DataCategory" isRequired="false" />
+        <Property name="DataTypeId" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Expression" isRequired="false" />
+        <Property name="ExpressionLanguage" isRequired="false" />
+        <Property name="FormatString" isRequired="false" />
+        <Property name="IsHidden" isRequired="false" />
+        <Property name="IsKey" isRequired="false" />
+        <Property name="IsNullable" isRequired="false" />
+        <Property name="Kind" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+        <Property name="SourceName" isRequired="false" />
+        <Property name="SummarizeBy" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="AttributePermission">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="MetadataPermission" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Attribute" />
+        <Relationship entity="SecurityRole" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="AttributeRelationship">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="RelationshipType" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Attribute" role="ChildAttribute" />
+        <Relationship entity="Attribute" role="ParentAttribute" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="AttributeTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Attribute" />
+        <Relationship entity="Culture" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Culture">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="AnalyticsModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DataSource">
+      <PropertyList>
+        <Property name="ConnectionReference" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Provider" isRequired="false" />
+        <Property name="SourceKind" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="AnalyticsModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Hierarchy">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="DisplayFolder" isRequired="false" />
+        <Property name="IsHidden" isRequired="false" />
+        <Property name="Kind" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="HierarchyLevel">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Attribute" />
+        <Relationship entity="Hierarchy" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="HierarchyTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="Hierarchy" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Measure">
+      <PropertyList>
+        <Property name="DataTypeId" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="DisplayFolder" isRequired="false" />
+        <Property name="FormatString" isRequired="false" />
+        <Property name="IsHidden" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Attribute" role="SourceAttribute" />
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MeasureTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="Measure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Perspective">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="AnalyticsModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveAttribute">
+      <RelationshipList>
+        <Relationship entity="Attribute" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveHierarchy">
+      <RelationshipList>
+        <Relationship entity="Hierarchy" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveMeasure">
+      <RelationshipList>
+        <Relationship entity="Measure" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveTable">
+      <RelationshipList>
+        <Relationship entity="Perspective" />
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Relationship">
+      <PropertyList>
+        <Property name="Cardinality" />
+        <Property name="CrossFilterDirection" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="IsActive" isRequired="false" />
+        <Property name="IsRequired" isRequired="false" />
+        <Property name="Name" />
+        <Property name="RelationshipKind" />
+        <Property name="RoleName" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Attribute" role="FromAttribute" />
+        <Relationship entity="Table" role="FromTable" />
+        <Relationship entity="Attribute" role="GranularityAttribute" isRequired="false" />
+        <Relationship entity="Table" role="IntermediateTable" isRequired="false" />
+        <Relationship entity="Attribute" role="ToAttribute" />
+        <Relationship entity="Table" role="ToTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RoleFilter">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Expression" />
+        <Property name="ExpressionLanguage" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="SecurityRole" />
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RoleMember">
+      <PropertyList>
+        <Property name="MemberKind" isRequired="false" />
+        <Property name="MemberName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="SecurityRole" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="SecurityRole">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Permission" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="AnalyticsModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="SortByAttribute">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Attribute" role="SortAttribute" />
+        <Relationship entity="Attribute" role="SourceAttribute" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Table">
+      <PropertyList>
+        <Property name="DataCategory" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="DisplayFolder" isRequired="false" />
+        <Property name="IsHidden" isRequired="false" />
+        <Property name="Kind" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="AnalyticsModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TablePermission">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="MetadataPermission" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="SecurityRole" />
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TableTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="Table" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

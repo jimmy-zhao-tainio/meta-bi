@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="MetaTabular">
+  <EntityList>
+    <Entity name="TabularModel">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="CompatibilityLevel" isRequired="false" />
+        <Property name="DefaultCulture" isRequired="false" />
+        <Property name="DefaultDataView" isRequired="false" />
+        <Property name="Collation" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="TabularDataSource">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Provider" isRequired="false" />
+        <Property name="ConnectionReference" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularTable">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataCategory" isRequired="false" />
+        <Property name="IsHidden" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularColumn">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="DataTypeId" />
+        <Property name="Ordinal" />
+        <Property name="SourceName" isRequired="false" />
+        <Property name="Expression" isRequired="false" />
+        <Property name="IsKey" isRequired="false" />
+        <Property name="IsNullable" isRequired="false" />
+        <Property name="IsHidden" isRequired="false" />
+        <Property name="FormatString" isRequired="false" />
+        <Property name="SummarizeBy" isRequired="false" />
+        <Property name="DataCategory" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularSortByColumn">
+      <RelationshipList>
+        <Relationship entity="TabularColumn" role="SourceColumn" />
+        <Relationship entity="TabularColumn" role="SortColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularHierarchy">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="IsHidden" isRequired="false" />
+        <Property name="DisplayFolder" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularHierarchyLevel">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularHierarchy" />
+        <Relationship entity="TabularColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularRelationship">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Cardinality" />
+        <Property name="CrossFilterDirection" isRequired="false" />
+        <Property name="IsActive" isRequired="false" />
+        <Property name="IsRequired" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularTable" role="FromTable" />
+        <Relationship entity="TabularColumn" role="FromColumn" />
+        <Relationship entity="TabularTable" role="ToTable" />
+        <Relationship entity="TabularColumn" role="ToColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularMeasure">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Expression" isRequired="false" />
+        <Property name="FormatString" isRequired="false" />
+        <Property name="DisplayFolder" isRequired="false" />
+        <Property name="IsHidden" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularKpi">
+      <PropertyList>
+        <Property name="TargetExpression" isRequired="false" />
+        <Property name="StatusExpression" isRequired="false" />
+        <Property name="TrendExpression" isRequired="false" />
+        <Property name="StatusGraphic" isRequired="false" />
+        <Property name="TrendGraphic" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularMeasure" role="BaseMeasure" />
+        <Relationship entity="TabularMeasure" role="TargetMeasure" isRequired="false" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularCalculationGroup">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Precedence" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularCalculationItem">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+        <Property name="Expression" />
+        <Property name="FormatStringExpression" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularCalculationGroup" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPartition">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+        <Property name="Mode" isRequired="false" />
+        <Property name="Expression" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularTable" />
+        <Relationship entity="TabularDataSource" isRequired="false" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPerspective">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPerspectiveTable">
+      <RelationshipList>
+        <Relationship entity="TabularPerspective" />
+        <Relationship entity="TabularTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPerspectiveColumn">
+      <RelationshipList>
+        <Relationship entity="TabularPerspective" />
+        <Relationship entity="TabularColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPerspectiveHierarchy">
+      <RelationshipList>
+        <Relationship entity="TabularPerspective" />
+        <Relationship entity="TabularHierarchy" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPerspectiveMeasure">
+      <RelationshipList>
+        <Relationship entity="TabularPerspective" />
+        <Relationship entity="TabularMeasure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPerspectiveKpi">
+      <RelationshipList>
+        <Relationship entity="TabularPerspective" />
+        <Relationship entity="TabularKpi" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPerspectiveCalculationGroup">
+      <RelationshipList>
+        <Relationship entity="TabularPerspective" />
+        <Relationship entity="TabularCalculationGroup" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularSecurityRole">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Permission" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularRoleMember">
+      <PropertyList>
+        <Property name="MemberName" />
+        <Property name="MemberId" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularSecurityRole" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularRoleFilter">
+      <PropertyList>
+        <Property name="Expression" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularSecurityRole" />
+        <Relationship entity="TabularTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularTablePermission">
+      <PropertyList>
+        <Property name="MetadataPermission" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularSecurityRole" />
+        <Relationship entity="TabularTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularColumnPermission">
+      <PropertyList>
+        <Property name="MetadataPermission" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularSecurityRole" />
+        <Relationship entity="TabularColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularCulture">
+      <PropertyList>
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularModel" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularTableTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularCulture" />
+        <Relationship entity="TabularTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularColumnTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularCulture" />
+        <Relationship entity="TabularColumn" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularHierarchyTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularCulture" />
+        <Relationship entity="TabularHierarchy" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularMeasureTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularCulture" />
+        <Relationship entity="TabularMeasure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularPerspectiveTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularCulture" />
+        <Relationship entity="TabularPerspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TabularKpiTranslation">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TabularCulture" />
+        <Relationship entity="TabularKpi" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

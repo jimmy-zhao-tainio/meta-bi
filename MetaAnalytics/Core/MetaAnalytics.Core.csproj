@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\Workspaces\MetaAnalytics\model.xml">
+      <Link>Models\MetaAnalytics.model.xml</Link>
+      <LogicalName>MetaAnalytics.Core.Models.MetaAnalytics.model.xml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

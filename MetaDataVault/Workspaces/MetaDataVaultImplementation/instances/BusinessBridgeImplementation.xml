@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <BusinessBridgeImplementationList>
+    <BusinessBridgeImplementation Id="default-business-bridge">
+      <AnchorHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}</AnchorHubForeignKeyNamePattern>
+      <AuditIdColumnName>AuditId</AuditIdColumnName>
+      <AuditIdDataTypeId>meta:type:Int64</AuditIdDataTypeId>
+      <AuditIdDefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</AuditIdDefaultExpressionSql>
+      <DepthColumnName>Depth</DepthColumnName>
+      <DepthDataTypeId>meta:type:Int32</DepthDataTypeId>
+      <EffectiveFromColumnName>EffectiveFrom</EffectiveFromColumnName>
+      <EffectiveFromDataTypeId>meta:type:DateTime2</EffectiveFromDataTypeId>
+      <EffectiveFromPrecision>7</EffectiveFromPrecision>
+      <EffectiveToColumnName>EffectiveTo</EffectiveToColumnName>
+      <EffectiveToDataTypeId>meta:type:DateTime2</EffectiveToDataTypeId>
+      <EffectiveToPrecision>7</EffectiveToPrecision>
+      <PathColumnName>Path</PathColumnName>
+      <PathDataTypeId>meta:type:String</PathDataTypeId>
+      <PathLength>4000</PathLength>
+      <RelatedHashKeyColumnName>RelatedHashKey</RelatedHashKeyColumnName>
+      <RelatedHashKeyDataTypeId>meta:type:Binary</RelatedHashKeyDataTypeId>
+      <RelatedHashKeyLength>16</RelatedHashKeyLength>
+      <RelatedHubForeignKeyNamePattern>FK_{TableName}_{ParentTableName}_Related</RelatedHubForeignKeyNamePattern>
+      <RootHashKeyColumnName>RootHashKey</RootHashKeyColumnName>
+      <RootHashKeyDataTypeId>meta:type:Binary</RootHashKeyDataTypeId>
+      <RootHashKeyLength>16</RootHashKeyLength>
+      <SchemaName>dbo</SchemaName>
+      <TableNamePattern>BR_{Name}</TableNamePattern>
+    </BusinessBridgeImplementation>
+  </BusinessBridgeImplementationList>
+</MetaDataVaultImplementation>

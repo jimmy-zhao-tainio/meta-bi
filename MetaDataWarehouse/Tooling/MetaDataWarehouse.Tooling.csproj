@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Adapters" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="MetaDataWarehouse\model.xml" Link="MetaDataWarehouse\model.xml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="MetaDataWarehouseImplementation\model.xml" Link="MetaDataWarehouseImplementation\model.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

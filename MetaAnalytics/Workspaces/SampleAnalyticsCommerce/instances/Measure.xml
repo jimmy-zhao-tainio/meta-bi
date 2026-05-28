@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <MeasureList>
+    <Measure Id="measure:sales-amount" SourceAttributeId="table:sales:attribute:SalesAmount" TableId="table:sales">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Sales</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Sales Amount</Name>
+    </Measure>
+    <Measure Id="measure:quantity" SourceAttributeId="table:sales:attribute:Quantity" TableId="table:sales">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <DisplayFolder>Sales</DisplayFolder>
+      <FormatString>#,0</FormatString>
+      <Name>Quantity</Name>
+    </Measure>
+    <Measure Id="measure:sales-target" SourceAttributeId="table:sales:attribute:SalesTarget" TableId="table:sales">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <DisplayFolder>Sales</DisplayFolder>
+      <FormatString>#,0.00</FormatString>
+      <Name>Sales Target</Name>
+    </Measure>
+  </MeasureList>
+</MetaAnalytics>

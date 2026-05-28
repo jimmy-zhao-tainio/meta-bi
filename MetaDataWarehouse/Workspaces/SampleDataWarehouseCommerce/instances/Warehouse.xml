@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <WarehouseList>
+    <Warehouse Id="warehouse:commerce">
+      <Description>Sample commerce dimensional warehouse.</Description>
+      <Name>Commerce</Name>
+    </Warehouse>
+  </WarehouseList>
+</MetaDataWarehouse>

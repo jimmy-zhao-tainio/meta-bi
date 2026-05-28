@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="MetaDataQuality">
+  <EntityList>
+    <Entity name="DataQualityCandidate">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Status" />
+        <Property name="Rationale" isRequired="false" />
+        <Property name="Assumptions" isRequired="false" />
+        <Property name="SqlTemplate" isRequired="false" />
+      </PropertyList>
+    </Entity>
+    <Entity name="CorpusRelationship">
+      <PropertyList>
+        <Property name="CanonicalUndirectedSignature" />
+        <Property name="CanonicalSideAObjectName" />
+        <Property name="CanonicalSideBObjectName" />
+        <Property name="OccurrenceCount" />
+        <Property name="TransformCount" />
+      </PropertyList>
+    </Entity>
+    <Entity name="CorpusRelationshipPattern">
+      <PropertyList>
+        <Property name="CanonicalKeyPartSetSignature" />
+        <Property name="RepresentativeDirectionalSignature" />
+        <Property name="KeyPartCount" />
+        <Property name="OccurrenceCount" />
+        <Property name="TransformCount" />
+        <Property name="OccurrenceRatio" />
+        <Property name="IsDominant" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="CorpusRelationship" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="CorpusRelationshipPatternOccurrenceLink">
+      <RelationshipList>
+        <Relationship entity="CorpusRelationshipPattern" />
+        <Relationship entity="JoinPatternOccurrence" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="CorpusColumnEquivalence">
+      <PropertyList>
+        <Property name="CanonicalUndirectedSignature" />
+        <Property name="CanonicalSideAColumnName" />
+        <Property name="CanonicalSideBColumnName" />
+        <Property name="OccurrenceCount" />
+        <Property name="TransformCount" />
+      </PropertyList>
+    </Entity>
+    <Entity name="CorpusColumnEquivalenceOccurrenceLink">
+      <RelationshipList>
+        <Relationship entity="CorpusColumnEquivalence" />
+        <Relationship entity="JoinPatternOccurrence" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DataQualityCandidateEvidence">
+      <PropertyList>
+        <Property name="EvidenceType" />
+        <Property name="OccurrenceCount" />
+        <Property name="TransformCount" />
+        <Property name="DistinctTransformCount" />
+        <Property name="DistinctSourceTransformCount" />
+        <Property name="DistinctSourceObjectCount" />
+        <Property name="DistinctRelationshipPatternCount" />
+        <Property name="EffectiveTransformCount" />
+        <Property name="ConsensusRatio" />
+        <Property name="OutlierRatio" />
+        <Property name="EvidenceQuality" />
+        <Property name="ConfidenceBand" />
+        <Property name="ConfidenceReason" />
+        <Property name="EvidenceDiversitySummary" />
+        <Property name="Explanation" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationship" />
+        <Relationship entity="CorpusRelationshipPattern" isRequired="false" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JoinPattern">
+      <PropertyList>
+        <Property name="CanonicalSignature" />
+        <Property name="QualifiedJoinType" isRequired="false" />
+        <Property name="ContainsEqualityPredicate" />
+        <Property name="EqualityPredicateCount" />
+      </PropertyList>
+    </Entity>
+    <Entity name="JoinPatternKeyPart">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="BooleanComparisonExpressionId" />
+        <Property name="FirstExpressionId" />
+        <Property name="SecondExpressionId" />
+        <Property name="FirstExpressionDisplay" isRequired="false" />
+        <Property name="SecondExpressionDisplay" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="JoinPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JoinPatternOccurrence">
+      <PropertyList>
+        <Property name="TransformScriptId" />
+        <Property name="TransformScriptName" />
+        <Property name="QueryExpressionId" />
+        <Property name="QuerySpecificationId" />
+        <Property name="JoinTableReferenceId" />
+        <Property name="QualifiedJoinId" />
+        <Property name="SearchConditionBooleanExpressionId" isRequired="false" />
+        <Property name="FirstTableReferenceId" isRequired="false" />
+        <Property name="SecondTableReferenceId" isRequired="false" />
+        <Property name="ScopePath" isRequired="false" />
+        <Property name="CteId" isRequired="false" />
+        <Property name="CteName" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="JoinPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JoinPatternOccurrenceBaseTable">
+      <PropertyList>
+        <Property name="JoinInputTableReferenceId" />
+        <Property name="BaseTableReferenceId" />
+        <Property name="BaseNamedTableReferenceId" />
+        <Property name="BaseSchemaObjectNameId" />
+        <Property name="BaseObjectName" />
+        <Property name="ResolutionDepth" />
+        <Property name="ResolutionPath" isRequired="false" />
+        <Property name="ResolvedInCteId" isRequired="false" />
+        <Property name="ResolvedInCteName" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="JoinPatternOccurrence" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JoinPatternOccurrenceSignal">
+      <PropertyList>
+        <Property name="SignalKind" />
+        <Property name="SourceCandidateKind" />
+        <Property name="Explanation" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="JoinPatternOccurrence" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FilterPredicateObservation">
+      <PropertyList>
+        <Property name="BaseObjectName" />
+        <Property name="PredicateSignature" />
+        <Property name="PredicateDisplay" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="JoinPatternOccurrence" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DataQualityCandidateJoinPatternLink">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="JoinPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JoinOrphan">
+      <PropertyList>
+        <Property name="EqualityPredicateCount" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OuterJoinNullExpansion">
+      <PropertyList>
+        <Property name="OuterJoinCount" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JoinMultiplicityExplosion">
+      <PropertyList>
+        <Property name="EqualityPredicateCount" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OutputDuplicateRisk">
+      <PropertyList>
+        <Property name="QualifiedJoinCount" />
+        <Property name="HasDistinct" />
+        <Property name="HasGroupBy" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MinorityJoinPattern">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" role="DominantPattern" />
+        <Relationship entity="CorpusRelationshipPattern" role="OutlierPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="IncompleteCompositeJoin">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" role="DominantPattern" />
+        <Relationship entity="CorpusRelationshipPattern" role="OutlierPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="SuspiciousExtraJoinPredicate">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" role="DominantPattern" />
+        <Relationship entity="CorpusRelationshipPattern" role="OutlierPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MissingCommonFilter">
+      <PropertyList>
+        <Property name="BaseObjectName" />
+        <Property name="CommonPredicateSignature" />
+        <Property name="CommonPredicateDisplay" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" role="DominantPattern" />
+        <Relationship entity="CorpusRelationshipPattern" role="OutlierPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MinorityColumnEquivalence">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusColumnEquivalence" role="DominantEquivalence" />
+        <Relationship entity="CorpusColumnEquivalence" role="OutlierEquivalence" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="InnerJoinAgainstUsuallyOptionalRelationship">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="LeftJoinAgainstUsuallyMandatoryRelationship">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ImpliedForeignKeyMissingReference">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" role="DominantPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ImpliedUniqueKeyViolation">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" role="DominantPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ImpliedJoinFanoutRisk">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" role="DominantPattern" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ImpliedOutputDuplicateRisk">
+      <RelationshipList>
+        <Relationship entity="DataQualityCandidate" />
+        <Relationship entity="CorpusRelationshipPattern" role="DominantPattern" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

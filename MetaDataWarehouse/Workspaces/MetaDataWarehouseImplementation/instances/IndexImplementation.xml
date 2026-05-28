@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouseImplementation>
+  <IndexImplementationList>
+    <IndexImplementation Id="default-dimension-business-key-index">
+      <AppliesToBridgeTables>false</AppliesToBridgeTables>
+      <AppliesToDimensionTables>true</AppliesToDimensionTables>
+      <AppliesToFactTables>false</AppliesToFactTables>
+      <ColumnNamePattern>{ColumnName}</ColumnNamePattern>
+      <IsClustered>false</IsClustered>
+      <IsUnique>false</IsUnique>
+      <NamePattern>IX_{TableName}_{ColumnName}</NamePattern>
+      <Ordinal>10</Ordinal>
+    </IndexImplementation>
+    <IndexImplementation Id="default-fact-date-index">
+      <AppliesToBridgeTables>false</AppliesToBridgeTables>
+      <AppliesToDimensionTables>false</AppliesToDimensionTables>
+      <AppliesToFactTables>true</AppliesToFactTables>
+      <ColumnNamePattern>{ColumnName}</ColumnNamePattern>
+      <IsClustered>false</IsClustered>
+      <IsUnique>false</IsUnique>
+      <NamePattern>IX_{TableName}_{ColumnName}</NamePattern>
+      <Ordinal>20</Ordinal>
+    </IndexImplementation>
+  </IndexImplementationList>
+</MetaDataWarehouseImplementation>

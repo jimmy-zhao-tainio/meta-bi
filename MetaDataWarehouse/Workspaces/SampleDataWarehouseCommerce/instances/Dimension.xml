@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DimensionList>
+    <Dimension Id="dimension:date" WarehouseId="warehouse:commerce">
+      <Name>Date</Name>
+    </Dimension>
+    <Dimension Id="dimension:customer" WarehouseId="warehouse:commerce">
+      <Name>Customer</Name>
+    </Dimension>
+    <Dimension Id="dimension:product" WarehouseId="warehouse:commerce">
+      <Name>Product</Name>
+    </Dimension>
+    <Dimension Id="dimension:customer-demographics" WarehouseId="warehouse:commerce">
+      <Name>CustomerDemographics</Name>
+    </Dimension>
+    <Dimension Id="dimension:fiscal-calendar" WarehouseId="warehouse:commerce">
+      <Name>FiscalCalendar</Name>
+    </Dimension>
+  </DimensionList>
+</MetaDataWarehouse>

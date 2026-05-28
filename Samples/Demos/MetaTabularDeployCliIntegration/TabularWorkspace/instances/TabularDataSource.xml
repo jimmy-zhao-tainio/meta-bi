@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularDataSourceList>
+    <TabularDataSource Id="Warehouse" TabularModelId="Commerce">
+      <ConnectionReference>COMMERCE_DW</ConnectionReference>
+      <Name>Warehouse</Name>
+      <Provider>SqlServer</Provider>
+    </TabularDataSource>
+  </TabularDataSourceList>
+</MetaTabular>

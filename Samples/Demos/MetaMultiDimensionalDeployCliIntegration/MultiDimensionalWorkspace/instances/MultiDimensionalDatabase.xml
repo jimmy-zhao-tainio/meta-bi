@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMultiDimensional>
+  <MultiDimensionalDatabaseList>
+    <MultiDimensionalDatabase Id="Commerce">
+      <DefaultLanguage>en-US</DefaultLanguage>
+      <Name>Commerce</Name>
+    </MultiDimensionalDatabase>
+  </MultiDimensionalDatabaseList>
+</MetaMultiDimensional>

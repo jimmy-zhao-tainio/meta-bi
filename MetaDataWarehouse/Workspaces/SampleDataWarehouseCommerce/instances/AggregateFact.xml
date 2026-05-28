@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <AggregateFactList>
+    <AggregateFact Id="aggregate:monthly-sales-summary" AggregatedFactId="fact:monthly-sales-summary" SourceFactId="fact:sales-order">
+    </AggregateFact>
+  </AggregateFactList>
+</MetaDataWarehouse>

@@ -1,0 +1,97 @@
+using Meta.Core.Connections;
+using Meta.Core.Presentation.Cli;
+
+internal static partial class Program
+{
+    private static async Task<int> RunCreatePipelineDbAsync(string[] args, int startIndex)
+    {
+        var parse = ParseCreatePipelineDbArgs(args, startIndex);
+        if (!parse.Ok)
+        {
+            return Fail(parse.ErrorMessage, HelpCommand("create-pipeline-db"));
+        }
+
+        try
+        {
+            var connectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(
+                parse.PipelineDbConnectionEnvironmentVariableName);
+            using (var activity = CliActivityLine.Start("Creating"))
+            {
+                await new MetaPipeline.MetaPipelineOperationalDbStore(connectionString)
+                    .CreateDatabaseAndBootstrapAsync(parse.PipelineDbName)
+                    .ConfigureAwait(false);
+
+                activity.Succeed();
+            }
+
+            return 0;
+        }
+        catch (ConnectionEnvironmentVariableException ex)
+        {
+            return Fail(
+                "Cannot create MetaPipeline operational DB.",
+                "set the named connection environment variable and retry.",
+                4,
+                [$"  {ex.Message}"]);
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "Cannot create MetaPipeline operational DB.",
+                "check the connection environment variable, database name, and SQL Server permissions, then retry.",
+                4,
+                new[]
+                {
+                    $"  ConnectionEnv: {parse.PipelineDbConnectionEnvironmentVariableName}",
+                    $"  Database: {parse.PipelineDbName}",
+                    $"  {ex.Message}",
+                });
+        }
+    }
+
+    private static async Task<int> RunPrunePipelineDbAsync(string[] args, int startIndex)
+    {
+        var parse = ParsePrunePipelineDbArgs(args, startIndex);
+        if (!parse.Ok)
+        {
+            return Fail(parse.ErrorMessage, HelpCommand("prune-pipeline-db"));
+        }
+
+        try
+        {
+            var connectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(
+                parse.PipelineDbConnectionEnvironmentVariableName);
+            using (var activity = CliActivityLine.Start(parse.DryRun ? "Checking" : "Pruning"))
+            {
+                await new MetaPipeline.MetaPipelineOperationalDbStore(connectionString)
+                    .PruneAsync(parse.RetentionDays, parse.DryRun)
+                    .ConfigureAwait(false);
+
+                activity.Succeed();
+            }
+
+            return 0;
+        }
+        catch (ConnectionEnvironmentVariableException ex)
+        {
+            return Fail(
+                "Cannot prune MetaPipeline operational DB.",
+                "set the named pipeline DB connection environment variable and retry.",
+                4,
+                [$"  {ex.Message}"]);
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "Cannot prune MetaPipeline operational DB.",
+                "check the pipeline DB connection environment variable, schema, and SQL Server permissions, then retry.",
+                4,
+                new[]
+                {
+                    $"  ConnectionEnv: {parse.PipelineDbConnectionEnvironmentVariableName}",
+                    $"  RetentionDays: {parse.RetentionDays}",
+                    $"  {ex.Message}",
+                });
+        }
+    }
+}

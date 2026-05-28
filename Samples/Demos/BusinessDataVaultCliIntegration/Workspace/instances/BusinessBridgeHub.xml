@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessBridgeHubList>
+    <BusinessBridgeHub Id="CustomerFulfillmentTraversalOrder" BusinessBridgeId="CustomerFulfillmentTraversal" BusinessHubId="Order">
+      <Ordinal>2</Ordinal>
+      <RoleName>Order</RoleName>
+    </BusinessBridgeHub>
+    <BusinessBridgeHub Id="CustomerFulfillmentTraversalShipment" BusinessBridgeId="CustomerFulfillmentTraversal" BusinessHubId="Shipment">
+      <Ordinal>4</Ordinal>
+      <RoleName>Shipment</RoleName>
+    </BusinessBridgeHub>
+  </BusinessBridgeHubList>
+</MetaBusinessDataVault>

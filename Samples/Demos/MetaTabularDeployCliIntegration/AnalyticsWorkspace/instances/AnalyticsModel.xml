@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AnalyticsModelList>
+    <AnalyticsModel Id="Commerce">
+      <DefaultCulture>en-US</DefaultCulture>
+      <Name>Commerce</Name>
+    </AnalyticsModel>
+  </AnalyticsModelList>
+</MetaAnalytics>

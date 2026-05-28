@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <PerspectiveTableList>
+    <PerspectiveTable Id="perspective:sales:table:date" PerspectiveId="perspective:sales" TableId="table:date">
+    </PerspectiveTable>
+    <PerspectiveTable Id="perspective:sales:table:customer" PerspectiveId="perspective:sales" TableId="table:customer">
+    </PerspectiveTable>
+    <PerspectiveTable Id="perspective:sales:table:product" PerspectiveId="perspective:sales" TableId="table:product">
+    </PerspectiveTable>
+    <PerspectiveTable Id="perspective:sales:table:sales" PerspectiveId="perspective:sales" TableId="table:sales">
+    </PerspectiveTable>
+  </PerspectiveTableList>
+</MetaAnalytics>

@@ -1,0 +1,5 @@
+if exist MetaTransformScriptReferenceCorpusWorkspace rmdir /s /q MetaTransformScriptReferenceCorpusWorkspace
+if exist MetaTransformScriptReferenceCorpusRoundTripWorkspace rmdir /s /q MetaTransformScriptReferenceCorpusRoundTripWorkspace
+if exist MetaTransformScriptReferenceCorpusRoundTripWorkspace.instance-diff rmdir /s /q MetaTransformScriptReferenceCorpusRoundTripWorkspace.instance-diff
+if exist RoundTrippedViews rmdir /s /q RoundTrippedViews
+if exist RoundTrippedViews.sql del /q RoundTrippedViews.sql

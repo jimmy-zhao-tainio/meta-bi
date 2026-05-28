@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MetaAnalytics\Instance\MetaAnalytics.Instance.csproj" />
+    <ProjectReference Include="..\..\MetaMultiDimensional\Instance\MetaMultiDimensional.Instance.csproj" />
+  </ItemGroup>
+
+</Project>

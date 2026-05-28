@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DimensionAttributeList>
+    <DimensionAttribute Id="dimension:date:attribute:CalendarDateKey" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>CalendarDateKey</Name>
+      <Ordinal>0</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:Date" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Date</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>CalendarDate</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:MonthName" DimensionId="dimension:date">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>MonthName</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:date:attribute:FiscalYear" DimensionId="dimension:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>FiscalYear</Name>
+      <Ordinal>30</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer:attribute:CustomerNumber" DimensionId="dimension:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>CustomerNumber</Name>
+      <Ordinal>0</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer:attribute:CustomerName" DimensionId="dimension:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>CustomerName</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer:attribute:CustomerTier" DimensionId="dimension:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>CustomerTier</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:ProductNumber" DimensionId="dimension:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>ProductNumber</Name>
+      <Ordinal>0</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:ProductName" DimensionId="dimension:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>ProductName</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:product:attribute:ProductCategory" DimensionId="dimension:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>ProductCategory</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer-demographics:attribute:CustomerDemographicsCode" DimensionId="dimension:customer-demographics">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>CustomerDemographicsCode</Name>
+      <Ordinal>0</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer-demographics:attribute:AgeBand" DimensionId="dimension:customer-demographics">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>AgeBand</Name>
+      <Ordinal>10</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:customer-demographics:attribute:IncomeBand" DimensionId="dimension:customer-demographics">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>IncomeBand</Name>
+      <Ordinal>20</Ordinal>
+    </DimensionAttribute>
+    <DimensionAttribute Id="dimension:fiscal-calendar:attribute:FiscalCalendarCode" DimensionId="dimension:fiscal-calendar">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>FiscalCalendarCode</Name>
+      <Ordinal>0</Ordinal>
+    </DimensionAttribute>
+  </DimensionAttributeList>
+</MetaDataWarehouse>

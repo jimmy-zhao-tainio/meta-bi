@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularCalculationGroupList>
+    <TabularCalculationGroup Id="TimeIntelligence" TabularModelId="Commerce">
+      <Name>Time Intelligence</Name>
+      <Precedence>10</Precedence>
+    </TabularCalculationGroup>
+  </TabularCalculationGroupList>
+</MetaTabular>

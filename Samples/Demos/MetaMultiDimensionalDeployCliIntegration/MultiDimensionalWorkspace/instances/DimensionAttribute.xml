@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMultiDimensional>
+  <DimensionAttributeList>
+    <DimensionAttribute Id="DateKey" DimensionId="Date">
+      <AttributeHierarchyEnabled>true</AttributeHierarchyEnabled>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsKey>true</IsKey>
+      <Name>DateKey</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>DateKey</SourceName>
+      <Usage>Key</Usage>
+    </DimensionAttribute>
+  </DimensionAttributeList>
+</MetaMultiDimensional>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouseImplementation>
+  <DimensionTableImplementationList>
+    <DimensionTableImplementation Id="default-dimension-table">
+      <AttributeColumnPattern>{Name}</AttributeColumnPattern>
+      <BusinessKeyColumnPattern>{PartName}</BusinessKeyColumnPattern>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
+      <SchemaName>dw</SchemaName>
+      <SurrogateKeyColumnName>{Name}Key</SurrogateKeyColumnName>
+      <SurrogateKeyDataTypeId>meta:type:Int64</SurrogateKeyDataTypeId>
+      <TableNamePattern>Dim_{Name}</TableNamePattern>
+    </DimensionTableImplementation>
+  </DimensionTableImplementationList>
+</MetaDataWarehouseImplementation>

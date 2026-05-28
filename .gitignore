@@ -1,0 +1,60 @@
+# Build outputs
+**/bin/
+**/obj/
+bin/
+obj/
+
+# Local tooling/cache
+.meta/
+.meta-schema/
+.vs/
+.vscode/
+*.user
+*.suo
+*.tmp
+
+# Local workspace file
+Metadata.code-workspace
+
+# Local published CLI and build output
+/meta.exe
+/meta.pdb
+/artifacts/
+
+# Local demo generated sample workspaces
+/Samples/Demos/BusinessDataVaultCliIntegration/BusinessDataVaultCliIntegrationWorkspace/
+/Samples/Demos/RawDataVaultCliIntegration/RawDataVaultCliIntegrationWorkspace/
+/Samples/Demos/RawDataVaultFromMetaSchemaCliIntegration/MetaSchemaWorkspace/
+/Samples/Demos/RawDataVaultFromMetaSchemaCliIntegration/RawDataVaultFromMetaSchemaCliIntegrationWorkspace/
+/Samples/Demos/MetaTransformScriptCliIntegration/MetaTransformScriptCliIntegrationWorkspace/
+/Samples/Demos/MetaTransformScriptCliIntegration/MetaTransformScriptRoundTripWorkspace/
+/Samples/Demos/MetaTransformScriptCliIntegration/MetaTransformScriptRoundTripWorkspace.instance-diff/
+/Samples/Demos/MetaTransformScriptCliIntegration/RoundTrippedViews/
+/Samples/Demos/MetaTransformScriptCliIntegration/RoundTrippedViews.sql
+/Samples/Demos/MetaTransformScriptReferenceCorpusCliIntegration/MetaTransformScriptReferenceCorpusWorkspace/
+/Samples/Demos/MetaTransformScriptReferenceCorpusCliIntegration/MetaTransformScriptReferenceCorpusRoundTripWorkspace/
+/Samples/Demos/MetaTransformScriptReferenceCorpusCliIntegration/MetaTransformScriptReferenceCorpusRoundTripWorkspace.instance-diff/
+/Samples/Demos/MetaTransformScriptReferenceCorpusCliIntegration/RoundTrippedViews/
+/Samples/Demos/MetaTransformScriptReferenceCorpusCliIntegration/RoundTrippedViews.sql
+/Samples/Demos/MetaDataQualityCliIntegration/DataQualityViews.sql
+/Samples/Demos/MetaDataQualityCliIntegration/DataQualityWS/
+/Samples/Demos/MetaDataQualityCliIntegration/TransformWS/
+/Samples/Demos/MetaDataWarehouseCliIntegration/MetaDataWarehouseCliIntegrationWorkspace/
+/Samples/Demos/MetaDataWarehouseCliIntegration/CurrentMetaSqlWorkspace/
+/Samples/Demos/MetaAnalyticsCliIntegration/MetaAnalyticsCliIntegrationWorkspace/
+/Samples/Demos/MetaOrchestrationCliIntegration/SchemaWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/TransformWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/BindingWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/CompletePipelineWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/CompleteOrchestrationWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/CompleteScheduleWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/PolicyPipelineWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/PolicyOrchestrationWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/PolicyScheduleWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/InvalidPipelineWS/
+/Samples/Demos/MetaOrchestrationCliIntegration/InvalidOrchestrationWS/
+/Samples/Demos/MetaTabularConvertCliIntegration/AnalyticsWorkspace/
+/Samples/Demos/MetaTabularConvertCliIntegration/TabularWorkspace/
+/Samples/Demos/MetaMultiDimensionalConvertCliIntegration/AnalyticsWorkspace/
+/Samples/Demos/MetaMultiDimensionalConvertCliIntegration/MultiDimensionalWorkspace/
+/Samples/Demos/ProductShowcase/

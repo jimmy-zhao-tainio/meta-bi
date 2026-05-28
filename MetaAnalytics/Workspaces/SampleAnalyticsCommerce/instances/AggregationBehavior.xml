@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AggregationBehaviorList>
+    <AggregationBehavior Id="aggregation:sales-amount" MeasureId="measure:sales-amount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="aggregation:quantity" MeasureId="measure:quantity">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="aggregation:sales-target" MeasureId="measure:sales-target">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+  </AggregationBehaviorList>
+</MetaAnalytics>

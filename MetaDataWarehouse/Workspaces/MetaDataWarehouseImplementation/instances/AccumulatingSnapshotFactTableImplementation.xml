@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouseImplementation>
+  <AccumulatingSnapshotFactTableImplementationList>
+    <AccumulatingSnapshotFactTableImplementation Id="default-accumulating-snapshot-fact">
+      <MilestoneDateColumnPattern>{DateRoleName}Date</MilestoneDateColumnPattern>
+      <MilestoneDateDataTypeId>meta:type:Date</MilestoneDateDataTypeId>
+    </AccumulatingSnapshotFactTableImplementation>
+  </AccumulatingSnapshotFactTableImplementationList>
+</MetaDataWarehouseImplementation>

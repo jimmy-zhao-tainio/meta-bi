@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <OutriggerDimensionList>
+    <OutriggerDimension Id="outrigger:date:fiscal-calendar" ChildDimensionId="dimension:fiscal-calendar" ParentDimensionId="dimension:date">
+      <IsRequired>false</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>FiscalCalendar</RoleName>
+    </OutriggerDimension>
+  </OutriggerDimensionList>
+</MetaDataWarehouse>

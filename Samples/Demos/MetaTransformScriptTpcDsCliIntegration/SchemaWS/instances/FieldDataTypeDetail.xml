@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FieldDataTypeDetailList>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_amt:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_amt">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_amt:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_amt">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_amt_inc_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_amt_inc_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_amt_inc_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_amt_inc_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_fee:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_fee">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_fee:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_fee">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_ship_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_ship_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_ship_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_return_ship_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_refunded_cash:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_refunded_cash">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_refunded_cash:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_refunded_cash">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_reversed_charge:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_reversed_charge">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_reversed_charge:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_reversed_charge">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_store_credit:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_store_credit">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_store_credit:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_store_credit">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_net_loss:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_net_loss">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_returns:field:sr_net_loss:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_returns:field:sr_net_loss">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_date_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_date_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_day_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_day_name">
+      <Name>Length</Name>
+      <Value>9</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_quarter_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_quarter_name">
+      <Name>Length</Name>
+      <Value>6</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_holiday:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_holiday">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_weekend:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_weekend">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_following_holiday:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_following_holiday">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_current_day:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_current_day">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_current_week:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_current_week">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_current_month:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_current_month">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_current_quarter:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_current_quarter">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:date_dim:field:d_current_year:detail:Length" FieldId="table:TpcDsSnapshot:dbo:date_dim:field:d_current_year">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_store_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_store_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_store_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_store_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_hours:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_hours">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_manager:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_manager">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_geography_class:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_geography_class">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_market_desc:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_market_desc">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_market_manager:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_market_manager">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_division_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_division_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_company_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_company_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_street_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_street_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_street_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_street_name">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_street_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_street_type">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_suite_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_suite_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_city:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_city">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_county:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_county">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_state:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_state">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_zip:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_zip">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_country:detail:Length" FieldId="table:TpcDsSnapshot:dbo:store:field:s_country">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_gmt_offset:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store:field:s_gmt_offset">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_gmt_offset:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store:field:s_gmt_offset">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_tax_precentage:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store:field:s_tax_precentage">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store:field:s_tax_precentage:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store:field:s_tax_precentage">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_customer_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_customer_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_salutation:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_salutation">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_first_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_first_name">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_last_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_last_name">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_preferred_cust_flag:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_preferred_cust_flag">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_birth_country:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_birth_country">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_login:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_login">
+      <Name>Length</Name>
+      <Value>13</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_email_address:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_email_address">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer:field:c_last_review_date:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer:field:c_last_review_date">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_wholesale_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_wholesale_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_wholesale_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_wholesale_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_list_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_list_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_list_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_list_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_sales_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_sales_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_sales_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_sales_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_discount_amt:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_discount_amt">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_discount_amt:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_discount_amt">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_sales_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_sales_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_sales_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_sales_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_wholesale_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_wholesale_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_wholesale_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_wholesale_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_list_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_list_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_list_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_list_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_coupon_amt:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_coupon_amt">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_coupon_amt:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_coupon_amt">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_ship_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_ship_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_ship_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_ext_ship_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_ship:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_ship">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_ship:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_ship">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_ship_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_ship_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_ship_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_paid_inc_ship_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_profit:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_profit">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_profit:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_sales:field:ws_net_profit">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_wholesale_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_wholesale_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_wholesale_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_wholesale_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_list_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_list_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_list_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_list_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_sales_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_sales_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_sales_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_sales_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_discount_amt:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_discount_amt">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_discount_amt:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_discount_amt">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_sales_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_sales_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_sales_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_sales_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_wholesale_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_wholesale_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_wholesale_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_wholesale_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_list_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_list_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_list_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_list_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_coupon_amt:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_coupon_amt">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_coupon_amt:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_coupon_amt">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_ship_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_ship_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_ship_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_ext_ship_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_ship:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_ship">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_ship:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_ship">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_ship_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_ship_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_ship_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_paid_inc_ship_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_profit:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_profit">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_profit:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_sales:field:cs_net_profit">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_wholesale_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_wholesale_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_wholesale_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_wholesale_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_list_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_list_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_list_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_list_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_sales_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_sales_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_sales_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_sales_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_discount_amt:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_discount_amt">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_discount_amt:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_discount_amt">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_sales_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_sales_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_sales_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_sales_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_wholesale_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_wholesale_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_wholesale_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_wholesale_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_list_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_list_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_list_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_list_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_ext_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_coupon_amt:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_coupon_amt">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_coupon_amt:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_coupon_amt">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_paid:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_paid">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_paid:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_paid">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_paid_inc_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_paid_inc_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_paid_inc_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_paid_inc_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_profit:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_profit">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_profit:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:store_sales:field:ss_net_profit">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_item_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_item_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_item_desc:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_item_desc">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_current_price:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:item:field:i_current_price">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_current_price:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:item:field:i_current_price">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_wholesale_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:item:field:i_wholesale_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_wholesale_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:item:field:i_wholesale_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_brand:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_brand">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_class:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_class">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_category:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_category">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_manufact:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_manufact">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_size:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_size">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_formulation:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_formulation">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_color:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_color">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_units:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_units">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_container:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_container">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:item:field:i_product_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:item:field:i_product_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_amount:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_amount">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_amount:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_amount">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_amt_inc_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_amt_inc_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_amt_inc_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_amt_inc_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_fee:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_fee">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_fee:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_fee">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_ship_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_ship_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_ship_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_return_ship_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_refunded_cash:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_refunded_cash">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_refunded_cash:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_refunded_cash">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_reversed_charge:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_reversed_charge">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_reversed_charge:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_reversed_charge">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_store_credit:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_store_credit">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_store_credit:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_store_credit">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_net_loss:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_net_loss">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_net_loss:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:catalog_returns:field:cr_net_loss">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_page:field:cp_catalog_page_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:catalog_page:field:cp_catalog_page_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_page:field:cp_department:detail:Length" FieldId="table:TpcDsSnapshot:dbo:catalog_page:field:cp_department">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_page:field:cp_description:detail:Length" FieldId="table:TpcDsSnapshot:dbo:catalog_page:field:cp_description">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:catalog_page:field:cp_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:catalog_page:field:cp_type">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_amt:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_amt">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_amt:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_amt">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_amt_inc_tax:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_amt_inc_tax">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_amt_inc_tax:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_amt_inc_tax">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_fee:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_fee">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_fee:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_fee">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_ship_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_ship_cost">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_ship_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_return_ship_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_refunded_cash:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_refunded_cash">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_refunded_cash:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_refunded_cash">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_reversed_charge:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_reversed_charge">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_reversed_charge:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_reversed_charge">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_account_credit:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_account_credit">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_account_credit:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_account_credit">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_net_loss:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_net_loss">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_returns:field:wr_net_loss:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_returns:field:wr_net_loss">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_site_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_site_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_class:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_class">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_manager:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_manager">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_mkt_class:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_mkt_class">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_mkt_desc:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_mkt_desc">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_market_manager:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_market_manager">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_company_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_company_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_street_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_street_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_street_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_street_name">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_street_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_street_type">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_suite_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_suite_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_city:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_city">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_county:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_county">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_state:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_state">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_zip:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_zip">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_country:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_country">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_gmt_offset:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_gmt_offset">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_gmt_offset:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_gmt_offset">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_tax_percentage:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_tax_percentage">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_site:field:web_tax_percentage:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:web_site:field:web_tax_percentage">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_address_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_address_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_street_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_street_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_street_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_street_name">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_street_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_street_type">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_suite_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_suite_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_city:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_city">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_county:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_county">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_state:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_state">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_zip:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_zip">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_country:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_country">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_gmt_offset:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_gmt_offset">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_gmt_offset:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_gmt_offset">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_address:field:ca_location_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_address:field:ca_location_type">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_demographics:field:cd_gender:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_demographics:field:cd_gender">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_demographics:field:cd_marital_status:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_demographics:field:cd_marital_status">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_demographics:field:cd_education_status:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_demographics:field:cd_education_status">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:customer_demographics:field:cd_credit_rating:detail:Length" FieldId="table:TpcDsSnapshot:dbo:customer_demographics:field:cd_credit_rating">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_promo_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_promo_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_cost:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_cost">
+      <Name>Precision</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_cost:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_cost">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_promo_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_promo_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_dmail:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_dmail">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_email:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_email">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_catalog:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_catalog">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_tv:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_tv">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_radio:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_radio">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_press:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_press">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_event:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_event">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_demo:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_demo">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_channel_details:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_channel_details">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_purpose:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_purpose">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:promotion:field:p_discount_active:detail:Length" FieldId="table:TpcDsSnapshot:dbo:promotion:field:p_discount_active">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:reason:field:r_reason_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:reason:field:r_reason_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:reason:field:r_reason_desc:detail:Length" FieldId="table:TpcDsSnapshot:dbo:reason:field:r_reason_desc">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:household_demographics:field:hd_buy_potential:detail:Length" FieldId="table:TpcDsSnapshot:dbo:household_demographics:field:hd_buy_potential">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_call_center_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_call_center_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_class:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_class">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_hours:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_hours">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_manager:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_manager">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_mkt_class:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_mkt_class">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_mkt_desc:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_mkt_desc">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_market_manager:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_market_manager">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_division_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_division_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_company_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_company_name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_street_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_street_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_street_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_street_name">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_street_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_street_type">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_suite_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_suite_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_city:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_city">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_county:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_county">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_state:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_state">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_zip:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_zip">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_country:detail:Length" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_country">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_gmt_offset:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_gmt_offset">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_gmt_offset:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_gmt_offset">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_tax_percentage:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_tax_percentage">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:call_center:field:cc_tax_percentage:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:call_center:field:cc_tax_percentage">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_warehouse_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_warehouse_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_warehouse_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_warehouse_name">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_street_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_street_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_street_name:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_street_name">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_street_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_street_type">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_suite_number:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_suite_number">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_city:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_city">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_county:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_county">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_state:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_state">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_zip:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_zip">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_country:detail:Length" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_country">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_gmt_offset:detail:Precision" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_gmt_offset">
+      <Name>Precision</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:warehouse:field:w_gmt_offset:detail:Scale" FieldId="table:TpcDsSnapshot:dbo:warehouse:field:w_gmt_offset">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:ship_mode:field:sm_ship_mode_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:ship_mode:field:sm_ship_mode_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:ship_mode:field:sm_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:ship_mode:field:sm_type">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:ship_mode:field:sm_code:detail:Length" FieldId="table:TpcDsSnapshot:dbo:ship_mode:field:sm_code">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:ship_mode:field:sm_carrier:detail:Length" FieldId="table:TpcDsSnapshot:dbo:ship_mode:field:sm_carrier">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:ship_mode:field:sm_contract:detail:Length" FieldId="table:TpcDsSnapshot:dbo:ship_mode:field:sm_contract">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:time_dim:field:t_time_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:time_dim:field:t_time_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:time_dim:field:t_am_pm:detail:Length" FieldId="table:TpcDsSnapshot:dbo:time_dim:field:t_am_pm">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:time_dim:field:t_shift:detail:Length" FieldId="table:TpcDsSnapshot:dbo:time_dim:field:t_shift">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:time_dim:field:t_sub_shift:detail:Length" FieldId="table:TpcDsSnapshot:dbo:time_dim:field:t_sub_shift">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:time_dim:field:t_meal_time:detail:Length" FieldId="table:TpcDsSnapshot:dbo:time_dim:field:t_meal_time">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_page:field:wp_web_page_id:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_page:field:wp_web_page_id">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_page:field:wp_autogen_flag:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_page:field:wp_autogen_flag">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_page:field:wp_url:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_page:field:wp_url">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="table:TpcDsSnapshot:dbo:web_page:field:wp_type:detail:Length" FieldId="table:TpcDsSnapshot:dbo:web_page:field:wp_type">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+  </FieldDataTypeDetailList>
+</MetaSchema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <SourceTableList>
+    <SourceTable Id="CustomerTable" SourceSchemaId="CrmDbo">
+      <Name>Customer</Name>
+    </SourceTable>
+    <SourceTable Id="DepartmentTable" SourceSchemaId="HrDbo">
+      <Name>Department</Name>
+    </SourceTable>
+    <SourceTable Id="EmployeeTable" SourceSchemaId="HrDbo">
+      <Name>Employee</Name>
+    </SourceTable>
+    <SourceTable Id="InvoiceTable" SourceSchemaId="FinDbo">
+      <Name>Invoice</Name>
+    </SourceTable>
+    <SourceTable Id="OrderTable" SourceSchemaId="ErpDbo">
+      <Name>OrderHeader</Name>
+    </SourceTable>
+    <SourceTable Id="ProductTable" SourceSchemaId="ErpDbo">
+      <Name>Product</Name>
+    </SourceTable>
+    <SourceTable Id="ShipmentTable" SourceSchemaId="ErpDbo">
+      <Name>Shipment</Name>
+    </SourceTable>
+    <SourceTable Id="SupplierTable" SourceSchemaId="FinDbo">
+      <Name>Supplier</Name>
+    </SourceTable>
+  </SourceTableList>
+</MetaRawDataVault>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataVaultImplementation>
+  <RawLinkImplementationList>
+    <RawLinkImplementation Id="default-raw-link">
+      <SchemaName>dbo</SchemaName>
+      <TableNamePattern>L_{Name}</TableNamePattern>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
+      <HubForeignKeyNamePattern>FK_{TableName}_{TargetTableName}_{SourceColumnName}</HubForeignKeyNamePattern>
+      <HashKeyColumnName>HashKey</HashKeyColumnName>
+      <HashKeyDataTypeId>meta:type:Binary</HashKeyDataTypeId>
+      <HashKeyLength>16</HashKeyLength>
+      <EndHashKeyColumnPattern>{RoleName}HashKey</EndHashKeyColumnPattern>
+      <LoadTimestampColumnName>LoadTimestamp</LoadTimestampColumnName>
+      <LoadTimestampDataTypeId>meta:type:DateTime2</LoadTimestampDataTypeId>
+      <LoadTimestampPrecision>7</LoadTimestampPrecision>
+      <LoadTimestampDefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</LoadTimestampDefaultExpressionSql>
+      <RecordSourceColumnName>RecordSource</RecordSourceColumnName>
+      <RecordSourceDataTypeId>meta:type:String</RecordSourceDataTypeId>
+      <RecordSourceLength>256</RecordSourceLength>
+      <AuditIdColumnName>AuditId</AuditIdColumnName>
+      <AuditIdDataTypeId>meta:type:Int64</AuditIdDataTypeId>
+      <AuditIdDefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</AuditIdDefaultExpressionSql>
+    </RawLinkImplementation>
+  </RawLinkImplementationList>
+</MetaDataVaultImplementation>

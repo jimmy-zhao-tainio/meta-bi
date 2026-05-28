@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularCalculationItemList>
+    <TabularCalculationItem Id="TimeYtd" TabularCalculationGroupId="TimeIntelligence">
+      <Expression>CALCULATE(SELECTEDMEASURE(), DATESYTD('Date'[DateKey]))</Expression>
+      <Name>YTD</Name>
+      <Ordinal>10</Ordinal>
+    </TabularCalculationItem>
+  </TabularCalculationItemList>
+</MetaTabular>

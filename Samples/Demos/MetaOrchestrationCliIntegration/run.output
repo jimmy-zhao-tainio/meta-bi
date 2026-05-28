@@ -1,0 +1,142 @@
+Preparing shared MetaOrchestration demo workspace...
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-sql execute --connection-env META_ORCHESTRATION_DEMO_ADMIN_SQL --file setup.sql
+Changed database context to 'MetaOrchestrationCliIntegration'.
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline create-pipeline-db --pipeline-db-connection-env META_ORCHESTRATION_DEMO_ADMIN_SQL --pipeline-db-name MetaOrchestrationCliIntegration
+Creating...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-schema extract sqlserver --new-workspace SchemaWS --connection-env META_ORCHESTRATION_DEMO_SQL --system MetaOrchestrationCliIntegration --all-schemas --all-tables
+Extracting...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\stage_customer.sql --target dbo.StageCustomer --new-workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\stage_order.sql --target dbo.StageOrder --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\dim_customer.sql --target dbo.DimCustomer --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\fact_sales.sql --target dbo.FactSales --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\refresh_rates_truncate.sql --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\refresh_rates_load.sql --target dbo.WorkExchangeRate --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\private_scratch_cleanup.sql --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\truncate_shared_stage.sql --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\read_shared_stage.sql --target dbo.DimCustomer --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\shared_writer_a.sql --target dbo.SharedLanding --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\shared_writer_b.sql --target dbo.SharedLanding --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\update_shared_landing.sql --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\merge_shared_landing.sql --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\failure_handler.sql --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\independent_failure_seed.sql --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-script from sql-file --path TransformScripts\independent_failure_followup.sql --workspace TransformWS
+Importing...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system MetaOrchestrationCliIntegration --new-workspace BindingWS
+Binding...Ok
+Running complete DAG execution scenario...
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline --new-workspace CompletePipelineWS
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-pipeline --workspace CompletePipelineWS --name LoadStageCustomer
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-step --workspace CompletePipelineWS --pipeline LoadStageCustomer --step-name load-stage-customer --script dbo.v_stage_customer --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL --target-connection-env META_ORCHESTRATION_DEMO_SQL --target dbo.StageCustomer
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-pipeline --workspace CompletePipelineWS --name LoadStageOrder
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-step --workspace CompletePipelineWS --pipeline LoadStageOrder --step-name load-stage-order --script dbo.v_stage_order --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL --target-connection-env META_ORCHESTRATION_DEMO_SQL --target dbo.StageOrder
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-pipeline --workspace CompletePipelineWS --name LoadDimCustomer
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-step --workspace CompletePipelineWS --pipeline LoadDimCustomer --step-name load-dim-customer --script dbo.v_dim_customer --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL --target-connection-env META_ORCHESTRATION_DEMO_SQL --target dbo.DimCustomer
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-pipeline --workspace CompletePipelineWS --name LoadFactSales
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-step --workspace CompletePipelineWS --pipeline LoadFactSales --step-name load-fact-sales --script dbo.v_fact_sales --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL --target-connection-env META_ORCHESTRATION_DEMO_SQL --target dbo.FactSales
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-pipeline --workspace CompletePipelineWS --name RefreshExchangeRates
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-step --workspace CompletePipelineWS --pipeline RefreshExchangeRates --step-name reset-work-rates --script refresh_rates_truncate --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-step --workspace CompletePipelineWS --pipeline RefreshExchangeRates --step-name load-work-rates --script dbo.v_work_exchange_rate --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL --target-connection-env META_ORCHESTRATION_DEMO_SQL --target dbo.WorkExchangeRate
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-pipeline --workspace CompletePipelineWS --name CleanupPrivateScratch
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-pipeline add-step --workspace CompletePipelineWS --pipeline CleanupPrivateScratch --step-name cleanup-private-scratch --script private_scratch_cleanup --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_ORCHESTRATION_DEMO_SQL
+Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-orchestration --pipeline-workspace CompletePipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace CompleteOrchestrationWS
+Creating...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-orchestration inspect --workspace CompleteOrchestrationWS
+MetaOrchestration:
+  Plan: Default
+  DagStatus: Complete
+  DeterminismStatus: Deterministic
+  SynchronizationStatus: Complete
+  Pipelines: 6
+  Objects: 9
+  TaskProfiles: 7
+  TaskEffects: 13
+  TaskDependencies: 4
+  PipelineDependencies: 3
+  TaskOrderingResolutions: 0
+  LockCompatibilityPolicies: 0
+  RunPlans: 0
+  PlannedTasks: 0
+  Issues: 0
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-orchestration refresh-run-plan --workspace CompleteOrchestrationWS
+Building...Ok
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-orchestration inspect-run-plan --workspace CompleteOrchestrationWS
+DefaultRunPlan
++-- CleanupPrivateScratch.cleanup-private-scratch
++-- LoadStageCustomer.load-stage-customer
++-- LoadStageOrder.load-stage-order
++-- RefreshExchangeRates.reset-work-rates
++-- LoadDimCustomer.load-dim-customer
++-- RefreshExchangeRates.load-work-rates
+`-- LoadFactSales.load-fact-sales
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationCliIntegration>meta-orchestration execute --workspace CompleteOrchestrationWS --pipeline-workspace CompletePipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --pipeline-db-connection-env META_ORCHESTRATION_DEMO_SQL --max-degree-of-parallelism 2
+Ok

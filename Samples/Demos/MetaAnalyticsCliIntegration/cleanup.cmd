@@ -1,0 +1,1 @@
+if exist MetaAnalyticsCliIntegrationWorkspace rmdir /s /q MetaAnalyticsCliIntegrationWorkspace

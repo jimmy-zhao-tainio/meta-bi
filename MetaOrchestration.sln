@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetaOrchestration", "MetaOrchestration", "{20546D24-FFAD-416B-B62D-840FC7AA7B92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaOrchestration.Tooling", "MetaOrchestration\Tooling\MetaOrchestration.Tooling.csproj", "{E09B4389-C370-46D0-A01D-1C464F3D6597}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaOrchestration.Core", "MetaOrchestration\Core\MetaOrchestration.Core.csproj", "{84F4EEFB-DACE-4E3F-8748-3DAC21DB4938}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaOrchestration.Cli", "MetaOrchestration\Cli\MetaOrchestration.Cli.csproj", "{95D86CF8-5384-4A4A-827B-9644E8941BA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaOrchestration.Tests", "MetaOrchestration\Tests\MetaOrchestration.Tests.csproj", "{B35FF738-7EF0-46FB-AAD5-F59FE434231C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E09B4389-C370-46D0-A01D-1C464F3D6597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E09B4389-C370-46D0-A01D-1C464F3D6597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E09B4389-C370-46D0-A01D-1C464F3D6597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E09B4389-C370-46D0-A01D-1C464F3D6597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84F4EEFB-DACE-4E3F-8748-3DAC21DB4938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F4EEFB-DACE-4E3F-8748-3DAC21DB4938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F4EEFB-DACE-4E3F-8748-3DAC21DB4938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84F4EEFB-DACE-4E3F-8748-3DAC21DB4938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95D86CF8-5384-4A4A-827B-9644E8941BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95D86CF8-5384-4A4A-827B-9644E8941BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95D86CF8-5384-4A4A-827B-9644E8941BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95D86CF8-5384-4A4A-827B-9644E8941BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B35FF738-7EF0-46FB-AAD5-F59FE434231C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B35FF738-7EF0-46FB-AAD5-F59FE434231C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B35FF738-7EF0-46FB-AAD5-F59FE434231C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B35FF738-7EF0-46FB-AAD5-F59FE434231C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E09B4389-C370-46D0-A01D-1C464F3D6597} = {20546D24-FFAD-416B-B62D-840FC7AA7B92}
+		{84F4EEFB-DACE-4E3F-8748-3DAC21DB4938} = {20546D24-FFAD-416B-B62D-840FC7AA7B92}
+		{95D86CF8-5384-4A4A-827B-9644E8941BA4} = {20546D24-FFAD-416B-B62D-840FC7AA7B92}
+		{B35FF738-7EF0-46FB-AAD5-F59FE434231C} = {20546D24-FFAD-416B-B62D-840FC7AA7B92}
+	EndGlobalSection
+EndGlobal

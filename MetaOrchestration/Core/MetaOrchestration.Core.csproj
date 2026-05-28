@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tooling\MetaOrchestration.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaPipeline\Tooling\MetaPipeline.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableList>
+    <Table Id="table:TpcDsSnapshot:dbo:store_returns" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>store_returns</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:date_dim" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>date_dim</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:store" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>store</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:customer" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>customer</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q01" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q01</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:web_sales" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>web_sales</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:catalog_sales" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>catalog_sales</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q02" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q02</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:store_sales" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>store_sales</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:item" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>item</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q03" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q03</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q04" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q04</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:catalog_returns" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>catalog_returns</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:catalog_page" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>catalog_page</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:web_returns" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>web_returns</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:web_site" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>web_site</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q05" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q05</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:customer_address" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>customer_address</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q06" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q06</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:customer_demographics" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>customer_demographics</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:promotion" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>promotion</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q07" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q07</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q08" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q08</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:reason" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>reason</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q09" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q09</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q10" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q10</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q11" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q11</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q12" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q12</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:household_demographics" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>household_demographics</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q13" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q13</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q14" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q14</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q15" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q15</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:call_center" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>call_center</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q16" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q16</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q17" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q17</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q18" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q18</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q19" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q19</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q20" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q20</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:inventory" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>inventory</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:warehouse" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>warehouse</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q21" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q21</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q22" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q22</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q23" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q23</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q24" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q24</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q25" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q25</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q26" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q26</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q27" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q27</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q28" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q28</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q29" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q29</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q30" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q30</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q31" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q31</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q32" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q32</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q33" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q33</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q34" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q34</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q35" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q35</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q36" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q36</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q37" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q37</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q38" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q38</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q39" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q39</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q40" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q40</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q41" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q41</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q42" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q42</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q43" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q43</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q44" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q44</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q45" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q45</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q46" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q46</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q47" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q47</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q48" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q48</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q49" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q49</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q50" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q50</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q51" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q51</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q52" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q52</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q53" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q53</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q54" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q54</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q55" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q55</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q56" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q56</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q57" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q57</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q58" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q58</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q59" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q59</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q60" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q60</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q61" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q61</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:ship_mode" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>ship_mode</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q62" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q62</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q63" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q63</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:income_band" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>income_band</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q64" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q64</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q65" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q65</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:time_dim" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>time_dim</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q66" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q66</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q67" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q67</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q68" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q68</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q69" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q69</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q70" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q70</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q71" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q71</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q72" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q72</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q73" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q73</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q74" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q74</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q75" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q75</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q76" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q76</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:dbo:web_page" SchemaId="schema:TpcDsSnapshot:dbo">
+      <Name>web_page</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q77" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q77</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q78" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q78</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q79" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q79</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q80" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q80</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q81" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q81</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q82" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q82</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q83" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q83</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q84" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q84</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q85" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q85</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q86" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q86</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q87" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q87</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q88" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q88</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q89" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q89</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q90" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q90</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q91" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q91</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q92" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q92</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q93" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q93</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q94" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q94</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q95" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q95</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q96" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q96</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q97" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q97</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q98" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q98</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="table:TpcDsSnapshot:tpcds:v_q99" SchemaId="schema:TpcDsSnapshot:tpcds">
+      <Name>v_q99</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+  </TableList>
+</MetaSchema>

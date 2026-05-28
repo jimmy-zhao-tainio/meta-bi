@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DegenerateDimensionList>
+    <DegenerateDimension Id="fact:sales-order:degenerate:OrderNumber" FactId="fact:sales-order">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>OrderNumber</Name>
+      <Ordinal>10</Ordinal>
+    </DegenerateDimension>
+  </DegenerateDimensionList>
+</MetaDataWarehouse>

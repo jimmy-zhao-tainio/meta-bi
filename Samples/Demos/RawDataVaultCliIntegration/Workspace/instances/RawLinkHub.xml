@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawLinkHubList>
+    <RawLinkHub Id="EmployeeDepartmentLinkDepartment" RawHubId="DepartmentHub" RawLinkId="EmployeeDepartmentLink">
+      <Ordinal>2</Ordinal>
+      <RoleName>Department</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="EmployeeDepartmentLinkEmployee" RawHubId="EmployeeHub" RawLinkId="EmployeeDepartmentLink">
+      <Ordinal>1</Ordinal>
+      <RoleName>Employee</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="InvoiceOrderLinkInvoice" RawHubId="InvoiceHub" RawLinkId="InvoiceOrderLink">
+      <Ordinal>1</Ordinal>
+      <RoleName>Invoice</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="InvoiceOrderLinkOrder" RawHubId="OrderHub" RawLinkId="InvoiceOrderLink">
+      <Ordinal>2</Ordinal>
+      <RoleName>Order</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="InvoiceSupplierLinkInvoice" RawHubId="InvoiceHub" RawLinkId="InvoiceSupplierLink">
+      <Ordinal>1</Ordinal>
+      <RoleName>Invoice</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="InvoiceSupplierLinkSupplier" RawHubId="SupplierHub" RawLinkId="InvoiceSupplierLink">
+      <Ordinal>2</Ordinal>
+      <RoleName>Supplier</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="OrderCustomerLinkCustomer" RawHubId="CustomerHub" RawLinkId="OrderCustomerLink">
+      <Ordinal>2</Ordinal>
+      <RoleName>Customer</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="OrderCustomerLinkOrder" RawHubId="OrderHub" RawLinkId="OrderCustomerLink">
+      <Ordinal>1</Ordinal>
+      <RoleName>Order</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="ProductSupplierLinkProduct" RawHubId="ProductHub" RawLinkId="ProductSupplierLink">
+      <Ordinal>1</Ordinal>
+      <RoleName>Product</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="ProductSupplierLinkSupplier" RawHubId="SupplierHub" RawLinkId="ProductSupplierLink">
+      <Ordinal>2</Ordinal>
+      <RoleName>Supplier</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="ShipmentOrderLinkOrder" RawHubId="OrderHub" RawLinkId="ShipmentOrderLink">
+      <Ordinal>2</Ordinal>
+      <RoleName>Order</RoleName>
+    </RawLinkHub>
+    <RawLinkHub Id="ShipmentOrderLinkShipment" RawHubId="ShipmentHub" RawLinkId="ShipmentOrderLink">
+      <Ordinal>1</Ordinal>
+      <RoleName>Shipment</RoleName>
+    </RawLinkHub>
+  </RawLinkHubList>
+</MetaRawDataVault>

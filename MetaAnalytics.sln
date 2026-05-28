@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetaAnalytics", "MetaAnalytics", "{9FB3B3A1-706B-4A03-9464-4D89BBFDD277}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaAnalytics.Tooling", "MetaAnalytics\Tooling\MetaAnalytics.Tooling.csproj", "{B16F683B-2021-4A5B-AC8F-3B51AD823021}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaAnalytics.Instance", "MetaAnalytics\Instance\MetaAnalytics.Instance.csproj", "{050A431D-2053-4266-B1F0-89C41387B1C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaAnalytics.Core", "MetaAnalytics\Core\MetaAnalytics.Core.csproj", "{03BADAD2-5423-4890-AAA2-0AD850297738}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaAnalytics.Cli", "MetaAnalytics\Cli\MetaAnalytics.Cli.csproj", "{7E1E97E0-2A19-4B37-A7FC-BCD175E695AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaAnalytics.Tests", "MetaAnalytics\Tests\MetaAnalytics.Tests.csproj", "{DD776887-B28F-48D7-B598-4257978DD0B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B16F683B-2021-4A5B-AC8F-3B51AD823021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B16F683B-2021-4A5B-AC8F-3B51AD823021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B16F683B-2021-4A5B-AC8F-3B51AD823021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B16F683B-2021-4A5B-AC8F-3B51AD823021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{050A431D-2053-4266-B1F0-89C41387B1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{050A431D-2053-4266-B1F0-89C41387B1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{050A431D-2053-4266-B1F0-89C41387B1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{050A431D-2053-4266-B1F0-89C41387B1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03BADAD2-5423-4890-AAA2-0AD850297738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03BADAD2-5423-4890-AAA2-0AD850297738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03BADAD2-5423-4890-AAA2-0AD850297738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03BADAD2-5423-4890-AAA2-0AD850297738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1E97E0-2A19-4B37-A7FC-BCD175E695AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1E97E0-2A19-4B37-A7FC-BCD175E695AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1E97E0-2A19-4B37-A7FC-BCD175E695AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1E97E0-2A19-4B37-A7FC-BCD175E695AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD776887-B28F-48D7-B598-4257978DD0B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD776887-B28F-48D7-B598-4257978DD0B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD776887-B28F-48D7-B598-4257978DD0B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD776887-B28F-48D7-B598-4257978DD0B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B16F683B-2021-4A5B-AC8F-3B51AD823021} = {9FB3B3A1-706B-4A03-9464-4D89BBFDD277}
+		{050A431D-2053-4266-B1F0-89C41387B1C3} = {9FB3B3A1-706B-4A03-9464-4D89BBFDD277}
+		{03BADAD2-5423-4890-AAA2-0AD850297738} = {9FB3B3A1-706B-4A03-9464-4D89BBFDD277}
+		{7E1E97E0-2A19-4B37-A7FC-BCD175E695AA} = {9FB3B3A1-706B-4A03-9464-4D89BBFDD277}
+		{DD776887-B28F-48D7-B598-4257978DD0B0} = {9FB3B3A1-706B-4A03-9464-4D89BBFDD277}
+	EndGlobalSection
+EndGlobal

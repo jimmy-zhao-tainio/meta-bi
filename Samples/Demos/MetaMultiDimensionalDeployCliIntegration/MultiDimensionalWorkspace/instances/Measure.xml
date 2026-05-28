@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMultiDimensional>
+  <MeasureList>
+    <Measure Id="SalesAmount" MeasureGroupId="Sales:measure-group">
+      <AggregateFunction>Sum</AggregateFunction>
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <FormatString>#,0.00</FormatString>
+      <Name>Sales Amount</Name>
+      <SourceName>SalesAmount</SourceName>
+    </Measure>
+  </MeasureList>
+</MetaMultiDimensional>

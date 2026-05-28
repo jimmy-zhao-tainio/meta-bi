@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMultiDimensional>
+  <CubeList>
+    <Cube Id="Commerce:cube" MultiDimensionalDatabaseId="Commerce">
+      <Name>Commerce</Name>
+    </Cube>
+  </CubeList>
+</MetaMultiDimensional>

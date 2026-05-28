@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <DataSourceList>
+    <DataSource Id="Warehouse" AnalyticsModelId="Commerce">
+      <ConnectionReference>COMMERCE_DW</ConnectionReference>
+      <Name>Warehouse</Name>
+      <Provider>SqlServer</Provider>
+      <SourceKind>Relational</SourceKind>
+    </DataSource>
+  </DataSourceList>
+</MetaAnalytics>

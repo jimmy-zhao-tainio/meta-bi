@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SystemList>
+    <System Id="demo:system:MetaTransformBindingCliIntegration">
+      <Name>MetaTransformBindingCliIntegration</Name>
+      <Description>Sample schema workspace for MetaTransform binding CLI integration.</Description>
+    </System>
+  </SystemList>
+</MetaSchema>

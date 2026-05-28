@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactMeasureList>
+    <FactMeasure Id="fact:sales-order:measure:Quantity" FactId="fact:sales-order">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Quantity</Name>
+      <Ordinal>10</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-order:measure:SalesAmount" FactId="fact:sales-order">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>SalesAmount</Name>
+      <Ordinal>20</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:inventory-snapshot:measure:OnHandQuantity" FactId="fact:inventory-snapshot">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>OnHandQuantity</Name>
+      <Ordinal>10</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:order-fulfillment:measure:DaysToShip" FactId="fact:order-fulfillment">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>DaysToShip</Name>
+      <Ordinal>10</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:monthly-sales-summary:measure:SalesAmount" FactId="fact:monthly-sales-summary">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>SalesAmount</Name>
+      <Ordinal>10</Ordinal>
+    </FactMeasure>
+  </FactMeasureList>
+</MetaDataWarehouse>

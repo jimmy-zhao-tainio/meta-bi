@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SchemaList>
+    <Schema Id="schema:TpcDsSnapshot:dbo" SystemId="system:TpcDsSnapshot">
+      <Name>dbo</Name>
+    </Schema>
+    <Schema Id="schema:TpcDsSnapshot:tpcds" SystemId="system:TpcDsSnapshot">
+      <Name>tpcds</Name>
+    </Schema>
+  </SchemaList>
+</MetaSchema>

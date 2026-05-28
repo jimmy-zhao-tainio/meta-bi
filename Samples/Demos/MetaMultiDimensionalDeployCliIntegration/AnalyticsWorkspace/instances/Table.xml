@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <TableList>
+    <Table Id="Date" AnalyticsModelId="Commerce">
+      <DataCategory>Time</DataCategory>
+      <Kind>Dimension</Kind>
+      <Name>Date</Name>
+    </Table>
+    <Table Id="Sales" AnalyticsModelId="Commerce">
+      <Kind>Fact</Kind>
+      <Name>Sales</Name>
+    </Table>
+  </TableList>
+</MetaAnalytics>

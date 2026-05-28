@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AnalyticsModelList>
+    <AnalyticsModel Id="model:commerce">
+      <DefaultCulture>en-US</DefaultCulture>
+      <Description>Sample conceptual analytics model over the commerce warehouse.</Description>
+      <Name>Commerce Analytics</Name>
+    </AnalyticsModel>
+  </AnalyticsModelList>
+</MetaAnalytics>

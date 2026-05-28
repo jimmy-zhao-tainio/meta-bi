@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DimensionBusinessKeyPartList>
+    <DimensionBusinessKeyPart Id="dimension:date:business-key:part:1" DimensionAttributeId="dimension:date:attribute:CalendarDateKey" DimensionBusinessKeyId="dimension:date:business-key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:customer:business-key:part:1" DimensionAttributeId="dimension:customer:attribute:CustomerNumber" DimensionBusinessKeyId="dimension:customer:business-key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:product:business-key:part:1" DimensionAttributeId="dimension:product:attribute:ProductNumber" DimensionBusinessKeyId="dimension:product:business-key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:customer-demographics:business-key:part:1" DimensionAttributeId="dimension:customer-demographics:attribute:CustomerDemographicsCode" DimensionBusinessKeyId="dimension:customer-demographics:business-key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:fiscal-calendar:business-key:part:1" DimensionAttributeId="dimension:fiscal-calendar:attribute:FiscalCalendarCode" DimensionBusinessKeyId="dimension:fiscal-calendar:business-key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+  </DimensionBusinessKeyPartList>
+</MetaDataWarehouse>

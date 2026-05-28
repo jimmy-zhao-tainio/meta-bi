@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMultiDimensional>
+  <CubeActionList>
+    <CubeAction Id="SalesDrillthrough" CubeId="Commerce:cube">
+      <ActionType>DrillThrough</ActionType>
+      <Expression>DRILLTHROUGH</Expression>
+      <Name>Sales Drillthrough</Name>
+      <TargetKind>Cells</TargetKind>
+    </CubeAction>
+  </CubeActionList>
+</MetaMultiDimensional>

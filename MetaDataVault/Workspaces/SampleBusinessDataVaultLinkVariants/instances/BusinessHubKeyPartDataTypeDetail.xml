@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubKeyPartDataTypeDetailList>
+    <BusinessHubKeyPartDataTypeDetail Id="CustomerIdentifierLength" BusinessHubKeyPartId="CustomerIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="EmployeeIdentifierLength" BusinessHubKeyPartId="EmployeeIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+  </BusinessHubKeyPartDataTypeDetailList>
+</MetaBusinessDataVault>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AttributeList>
+    <Attribute Id="table:date:attribute:DateKey" TableId="table:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <Name>DateKey</Name>
+      <Ordinal>10</Ordinal>
+    </Attribute>
+    <Attribute Id="table:date:attribute:CalendarDate" TableId="table:date">
+      <DataTypeId>meta:type:Date</DataTypeId>
+      <IsHidden>false</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>CalendarDate</Name>
+      <Ordinal>20</Ordinal>
+    </Attribute>
+    <Attribute Id="table:date:attribute:CalendarYear" TableId="table:date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsHidden>false</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>CalendarYear</Name>
+      <Ordinal>30</Ordinal>
+    </Attribute>
+    <Attribute Id="table:date:attribute:MonthName" TableId="table:date">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsHidden>false</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>MonthName</Name>
+      <Ordinal>40</Ordinal>
+    </Attribute>
+    <Attribute Id="table:customer:attribute:CustomerKey" TableId="table:customer">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <Name>CustomerKey</Name>
+      <Ordinal>10</Ordinal>
+    </Attribute>
+    <Attribute Id="table:customer:attribute:CustomerName" TableId="table:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsHidden>false</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>Customer Name</Name>
+      <Ordinal>20</Ordinal>
+    </Attribute>
+    <Attribute Id="table:customer:attribute:CustomerTier" TableId="table:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsHidden>false</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>Customer Tier</Name>
+      <Ordinal>30</Ordinal>
+    </Attribute>
+    <Attribute Id="table:customer:attribute:Region" TableId="table:customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsHidden>false</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>Region</Name>
+      <Ordinal>40</Ordinal>
+    </Attribute>
+    <Attribute Id="table:product:attribute:ProductKey" TableId="table:product">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <Name>ProductKey</Name>
+      <Ordinal>10</Ordinal>
+    </Attribute>
+    <Attribute Id="table:product:attribute:ProductName" TableId="table:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsHidden>false</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>Product Name</Name>
+      <Ordinal>20</Ordinal>
+    </Attribute>
+    <Attribute Id="table:product:attribute:ProductCategory" TableId="table:product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsHidden>false</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>Category</Name>
+      <Ordinal>30</Ordinal>
+    </Attribute>
+    <Attribute Id="table:sales:attribute:OrderDateKey" TableId="table:sales">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>OrderDateKey</Name>
+      <Ordinal>10</Ordinal>
+    </Attribute>
+    <Attribute Id="table:sales:attribute:CustomerKey" TableId="table:sales">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>CustomerKey</Name>
+      <Ordinal>20</Ordinal>
+    </Attribute>
+    <Attribute Id="table:sales:attribute:ProductKey" TableId="table:sales">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>ProductKey</Name>
+      <Ordinal>30</Ordinal>
+    </Attribute>
+    <Attribute Id="table:sales:attribute:Quantity" TableId="table:sales">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>Quantity</Name>
+      <Ordinal>40</Ordinal>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="table:sales:attribute:SalesAmount" TableId="table:sales">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>Sales Amount</Name>
+      <Ordinal>50</Ordinal>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="table:sales:attribute:SalesTarget" TableId="table:sales">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>false</IsKey>
+      <Name>Sales Target</Name>
+      <Ordinal>60</Ordinal>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+  </AttributeList>
+</MetaAnalytics>

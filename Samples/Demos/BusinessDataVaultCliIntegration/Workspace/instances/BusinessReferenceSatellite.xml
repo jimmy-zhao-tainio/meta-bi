@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessReferenceSatelliteList>
+    <BusinessReferenceSatellite Id="CurrencyCodeDescriptionSet" BusinessReferenceId="CurrencyCode">
+      <Name>CurrencyCodeDescriptionSet</Name>
+    </BusinessReferenceSatellite>
+    <BusinessReferenceSatellite Id="OrderStatusDescriptionSet" BusinessReferenceId="OrderStatus">
+      <Name>OrderStatusDescriptionSet</Name>
+    </BusinessReferenceSatellite>
+  </BusinessReferenceSatelliteList>
+</MetaBusinessDataVault>

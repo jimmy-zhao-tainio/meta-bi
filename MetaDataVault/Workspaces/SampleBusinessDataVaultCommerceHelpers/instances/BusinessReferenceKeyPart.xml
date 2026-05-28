@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessReferenceKeyPartList>
+    <BusinessReferenceKeyPart Id="StatusCode" BusinessReferenceId="Status">
+      <Name>StatusCode</Name>
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Ordinal>1</Ordinal>
+    </BusinessReferenceKeyPart>
+  </BusinessReferenceKeyPartList>
+</MetaBusinessDataVault>

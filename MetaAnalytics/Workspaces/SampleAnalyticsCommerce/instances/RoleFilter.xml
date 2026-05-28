@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <RoleFilterList>
+    <RoleFilter Id="role-filter:sales-region-reader:customer" SecurityRoleId="role:sales-region-reader" TableId="table:customer">
+      <Expression>Customer[Region] = LOOKUPVALUE(UserRegion[Region], UserRegion[UserName], USERNAME())</Expression>
+      <ExpressionLanguage>DAX</ExpressionLanguage>
+    </RoleFilter>
+  </RoleFilterList>
+</MetaAnalytics>

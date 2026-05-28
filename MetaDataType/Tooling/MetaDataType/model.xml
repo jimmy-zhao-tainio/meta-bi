@@ -1,0 +1,21 @@
+<Model name="MetaDataType">
+  <EntityList>
+    <Entity name="DataType">
+      <PropertyList>
+        <Property name="Category" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="IsCanonical" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataTypeSystem" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DataTypeSystem">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+  </EntityList>
+</Model>

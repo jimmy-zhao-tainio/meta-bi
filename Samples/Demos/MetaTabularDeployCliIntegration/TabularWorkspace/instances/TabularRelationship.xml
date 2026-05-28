@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularRelationshipList>
+    <TabularRelationship Id="SalesOrderDate" FromColumnId="OrderDateKey" FromTableId="Sales" ToColumnId="DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <IsActive>true</IsActive>
+      <Name>OrderDate</Name>
+    </TabularRelationship>
+  </TabularRelationshipList>
+</MetaTabular>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Cli\**\*.cs" />
+    <EmbeddedResource Remove="Cli\**\*" />
+    <None Remove="Cli\**\*" />
+    <Compile Remove="Tooling\**\*.cs" />
+    <EmbeddedResource Remove="Tooling\**\*" />
+    <None Remove="Tooling\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include=".\Tooling\MetaTransformBinding.Tooling.csproj" />
+    <ProjectReference Include="..\Script\Tooling\MetaTransformScript.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaSchema\Tooling\MetaSchema.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
+  </ItemGroup>
+
+</Project>

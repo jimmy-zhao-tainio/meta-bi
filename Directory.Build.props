@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <MetaFoundationPackageVersion>0.1.0-internal.9</MetaFoundationPackageVersion>
+    <MetaSuiteVersion Condition="'$(MetaSuiteVersion)' == ''">2026.05.28.5</MetaSuiteVersion>
+    <InformationalVersion Condition="'$(InformationalVersion)' == ''">$(MetaSuiteVersion)</InformationalVersion>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+</Project>

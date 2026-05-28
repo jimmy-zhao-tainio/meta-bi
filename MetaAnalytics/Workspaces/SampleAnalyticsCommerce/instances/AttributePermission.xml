@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AttributePermissionList>
+    <AttributePermission Id="attribute-permission:sales-region-reader:customer-tier" AttributeId="table:customer:attribute:CustomerTier" SecurityRoleId="role:sales-region-reader">
+      <MetadataPermission>None</MetadataPermission>
+    </AttributePermission>
+  </AttributePermissionList>
+</MetaAnalytics>

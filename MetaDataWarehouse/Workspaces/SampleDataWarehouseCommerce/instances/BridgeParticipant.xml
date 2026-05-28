@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <BridgeParticipantList>
+    <BridgeParticipant Id="bridge-participant:customer-group:customer" BridgeTableId="bridge:customer-group" DimensionId="dimension:customer">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>Customer</RoleName>
+    </BridgeParticipant>
+  </BridgeParticipantList>
+</MetaDataWarehouse>

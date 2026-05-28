@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouseImplementation>
+  <PeriodicSnapshotFactTableImplementationList>
+    <PeriodicSnapshotFactTableImplementation Id="default-periodic-snapshot-fact">
+      <PeriodDataTypeId>meta:type:Date</PeriodDataTypeId>
+      <PeriodEndColumnName>PeriodEndDate</PeriodEndColumnName>
+      <PeriodStartColumnName>PeriodStartDate</PeriodStartColumnName>
+    </PeriodicSnapshotFactTableImplementation>
+  </PeriodicSnapshotFactTableImplementationList>
+</MetaDataWarehouseImplementation>

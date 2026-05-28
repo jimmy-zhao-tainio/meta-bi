@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <HierarchyTranslationList>
+    <HierarchyTranslation Id="translation:sv-SE:hierarchy:calendar" CultureId="culture:sv-SE" HierarchyId="hierarchy:date:calendar">
+      <Caption>Kalender</Caption>
+    </HierarchyTranslation>
+  </HierarchyTranslationList>
+</MetaAnalytics>

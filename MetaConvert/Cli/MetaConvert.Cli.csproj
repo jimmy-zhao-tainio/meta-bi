@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>meta-convert</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\MetaSchema\Instance\MetaSchema.Instance.csproj" />
+    <ProjectReference Include="..\..\MetaDataVault\Instance\MetaRawDataVault.Instance.csproj" />
+    <ProjectReference Include="..\..\MetaDataQuality\Tooling\MetaDataQuality.Tooling.csproj" />
+    <ProjectReference Include="..\DataVaultToSql\MetaConvert.DataVaultToSql.csproj" />
+    <ProjectReference Include="..\DataWarehouseToSql\MetaConvert.DataWarehouseToSql.csproj" />
+    <ProjectReference Include="..\DataQualityToSql\MetaConvert.DataQualityToSql.csproj" />
+    <ProjectReference Include="..\AnalyticsToTabular\MetaConvert.AnalyticsToTabular.csproj" />
+    <ProjectReference Include="..\AnalyticsToMultiDimensional\MetaConvert.AnalyticsToMultiDimensional.csproj" />
+    <ProjectReference Include="..\SchemaToDataVault\MetaConvert.SchemaToDataVault.csproj" />
+  </ItemGroup>
+</Project>

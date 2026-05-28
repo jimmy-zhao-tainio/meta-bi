@@ -1,0 +1,167 @@
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>call cleanup.cmd  1>nul 2>&1
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-sql execute --connection-env META_PIPELINE_DEMO_PIPELINE_DB_ADMIN_SQL --file setup.sql
+Changed database context to 'MetaPipelineSqlServerCliIntegration'.
+OK: Executed SQL
+Batches: 26
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-schema extract sqlserver --new-workspace SchemaWS --connection-env META_PIPELINE_DEMO_EXECUTION_SQL --system MetaPipelineSqlServerCliIntegration --all-schemas --all-tables
+OK: Created SchemaWS
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-script from sql-file --path TransformScripts\truncate_target.sql --new-workspace TransformWS
+OK: Created TransformWS
+Import:
+  Scripts: 1
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-script from sql-file --path TransformScripts\insert_customers.sql --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 2
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-script from sql-file --path TransformScripts\update_customers.sql --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 3
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-script from sql-file --path TransformScripts\merge_customers.sql --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 4
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-script from sql-file --path TransformScripts\delete_customers.sql --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 5
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-script from sql-file --path TransformScripts\customer_load.sql --target dbo.TargetCustomer --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 6
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system MetaPipelineSqlServerCliIntegration --ignore-target-columns AuditId,InsertDateTime2 --new-workspace BindingWS
+OK: Created BindingWS
+Binding:
+  Scripts: 6
+  Bindings: 6
+  Sources: 3
+  Targets: 6
+  SourceRowsets: 3
+  TargetRowsets: 6
+  SourceColumns: 9
+  TargetColumns: 3
+  IgnoredTargetColumns: 2
+  DataTypeConversionWorkspace: <default>
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline --new-workspace PipelineWS
+OK: Created PipelineWS
+MetaPipeline:
+  Pipelines: 0
+  Tasks: 0
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-pipeline --workspace PipelineWS --name CustomerLoad --description "Load customer totals"
+OK: Added pipeline
+MetaPipeline:
+  Pipeline: CustomerLoad
+  Tasks: 0
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name truncate-target --script truncate_target --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+OK: Added pipeline step
+MetaPipeline:
+  Pipeline: CustomerLoad
+  Step: truncate-target
+  Script: truncate_target
+  Binding: TransformScript:1:binding
+  StatementKind: Mutation
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name insert-customers --script insert_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+OK: Added pipeline step
+MetaPipeline:
+  Pipeline: CustomerLoad
+  Step: insert-customers
+  Script: insert_customers
+  Binding: TransformScript:2:binding
+  StatementKind: Mutation
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name update-customers --script update_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+OK: Added pipeline step
+MetaPipeline:
+  Pipeline: CustomerLoad
+  Step: update-customers
+  Script: update_customers
+  Binding: TransformScript:3:binding
+  StatementKind: Mutation
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name merge-customers --script merge_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+OK: Added pipeline step
+MetaPipeline:
+  Pipeline: CustomerLoad
+  Step: merge-customers
+  Script: merge_customers
+  Binding: TransformScript:4:binding
+  StatementKind: Mutation
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name delete-customers --script delete_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+OK: Added pipeline step
+MetaPipeline:
+  Pipeline: CustomerLoad
+  Step: delete-customers
+  Script: delete_customers
+  Binding: TransformScript:5:binding
+  StatementKind: Mutation
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --target dbo.TargetCustomer --batch-size 2 --timeout-seconds 60
+OK: Added pipeline step
+MetaPipeline:
+  Pipeline: CustomerLoad
+  Step: load-customers
+  Script: dbo.v_customer_load
+  Binding: TransformScript:6:binding
+  TargetWriteTask: load-customers.target-write
+  TargetWrite: InsertRows
+  TargetDataTypeSystem: SqlServer
+  RowStream: load-customers.rows
+  Columns: 3
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline inspect --workspace PipelineWS
+OK: Loaded MetaPipeline workspace
+MetaPipeline:
+  Pipelines: 1
+  Tasks: 7
+  Connections: 2
+  RowStreams: 1
+  RowStreamColumns: 3
+  Dependencies: 6
+Pipeline: CustomerLoad:
+  Id: CustomerLoad
+  Tasks: 7
+  1. truncate-target [TransformExecution]
+  2. insert-customers [TransformExecution]
+  3. update-customers [TransformExecution]
+  4. merge-customers [TransformExecution]
+  5. delete-customers [TransformExecution]
+  6. load-customers [TransformExecution]
+  7. load-customers.target-write [TargetWrite:InsertRows]
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline create-pipeline-db --pipeline-db-connection-env META_PIPELINE_DEMO_PIPELINE_DB_ADMIN_SQL
+OK: Created MetaPipeline operational DB
+MetaPipelineDb:
+  ConnectionEnv: META_PIPELINE_DEMO_PIPELINE_DB_ADMIN_SQL
+  Database: MetaPipeline
+  Schema: MetaPipeline
+  SchemaVersion: 6
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline execute --workspace PipelineWS --pipeline CustomerLoad --transform-workspace TransformWS --binding-workspace BindingWS --pipeline-db-connection-env META_PIPELINE_DEMO_OPERATIONAL_SQL
+OK: Executed pipeline CustomerLoad
+Execution:
+  Pipeline: CustomerLoad
+  Steps: 6
+  Status: Succeeded
+  Scripts: truncate_target -> insert_customers -> update_customers -> merge_customers -> delete_customers -> dbo.v_customer_load
+  TaskRuns: 7
+  PipelineRunId: 4dfbb8f6-8c3b-4a7d-9ede-11fcaa5ea240

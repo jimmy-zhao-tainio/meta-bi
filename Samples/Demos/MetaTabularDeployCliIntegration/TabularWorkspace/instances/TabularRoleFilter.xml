@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularRoleFilterList>
+    <TabularRoleFilter Id="ReaderSalesFilter" TabularSecurityRoleId="Readers" TabularTableId="Sales">
+      <Expression>Sales[SalesAmount] &gt;= 0</Expression>
+    </TabularRoleFilter>
+  </TabularRoleFilterList>
+</MetaTabular>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <TableTranslationList>
+    <TableTranslation Id="translation:sv-SE:table:sales" CultureId="culture:sv-SE" TableId="table:sales">
+      <Caption>Forsaljning</Caption>
+    </TableTranslation>
+  </TableTranslationList>
+</MetaAnalytics>

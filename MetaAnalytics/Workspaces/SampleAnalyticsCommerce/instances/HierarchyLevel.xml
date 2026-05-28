@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <HierarchyLevelList>
+    <HierarchyLevel Id="hierarchy:date:calendar:level:10" AttributeId="table:date:attribute:CalendarYear" HierarchyId="hierarchy:date:calendar">
+      <Name>Year</Name>
+      <Ordinal>10</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="hierarchy:date:calendar:level:20" AttributeId="table:date:attribute:MonthName" HierarchyId="hierarchy:date:calendar">
+      <Name>Month</Name>
+      <Ordinal>20</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="hierarchy:date:calendar:level:30" AttributeId="table:date:attribute:CalendarDate" HierarchyId="hierarchy:date:calendar">
+      <Name>Date</Name>
+      <Ordinal>30</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="hierarchy:product:category-product:level:10" AttributeId="table:product:attribute:ProductCategory" HierarchyId="hierarchy:product:category-product">
+      <Name>Category</Name>
+      <Ordinal>10</Ordinal>
+    </HierarchyLevel>
+    <HierarchyLevel Id="hierarchy:product:category-product:level:20" AttributeId="table:product:attribute:ProductName" HierarchyId="hierarchy:product:category-product">
+      <Name>Product</Name>
+      <Ordinal>20</Ordinal>
+    </HierarchyLevel>
+  </HierarchyLevelList>
+</MetaAnalytics>

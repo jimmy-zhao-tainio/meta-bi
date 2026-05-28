@@ -1,0 +1,336 @@
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>call cleanup.cmd  1>nul 2>&1
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite01 --target dq.CustomerOrderComposite01 --new-workspace TransformWS
+OK: Created TransformWS
+Import:
+  Scripts: 1
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite02 --target dq.CustomerOrderComposite02 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 2
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite03 --target dq.CustomerOrderComposite03 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 3
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite04 --target dq.CustomerOrderComposite04 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 4
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite05 --target dq.CustomerOrderComposite05 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 5
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite06 --target dq.CustomerOrderComposite06 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 6
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite07 --target dq.CustomerOrderComposite07 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 7
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite08 --target dq.CustomerOrderComposite08 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 8
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId" --name dq.CustomerOrderSubset01 --target dq.CustomerOrderSubset01 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 9
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId" --name dq.CustomerOrderSubset02 --target dq.CustomerOrderSubset02 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 10
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant01 --target dq.CustomerInvoiceDominant01 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 11
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant02 --target dq.CustomerInvoiceDominant02 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 12
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant03 --target dq.CustomerInvoiceDominant03 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 13
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant04 --target dq.CustomerInvoiceDominant04 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 14
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant05 --target dq.CustomerInvoiceDominant05 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 15
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant06 --target dq.CustomerInvoiceDominant06 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 16
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant07 --target dq.CustomerInvoiceDominant07 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 17
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId" --name dq.CustomerInvoiceDominant08 --target dq.CustomerInvoiceDominant08 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 18
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-transform-script from sql-code --code "SELECT c.CustomerId, c.RegionId, i.InvoiceId FROM sales.Customer c INNER JOIN sales.Invoice i ON c.CustomerId = i.CustomerId AND c.RegionId = i.RegionId" --name dq.CustomerInvoiceOutlierExtra01 --target dq.CustomerInvoiceOutlierExtra01 --workspace TransformWS
+OK: Updated TransformWS
+Import:
+  Added: 1
+  Scripts: 19
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-data-quality from-transform-workspace --transform-workspace TransformWS --new-workspace DataQualityWS
+OK: Created DataQualityWS
+MetaDataQuality can create SQL views that return rows to investigate.
+  Views ready to create: 11
+
+Run This First:
+  meta-data-quality promote --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS" --all
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS" --out DataQualityViews.sql
+
+Review The Results:
+  Run the generated views and decide whether the reported rows are real data-quality issues.
+  Some rows may be valid for your business rules; keep the views that reveal useful problems.
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-data-quality inspect --workspace DataQualityWS
+OK: Loaded MetaDataQuality workspace
+
+MetaDataQuality can create SQL views that return rows to investigate.
+  Views ready to create: 11
+
+Why These Views Exist:
+  MetaDataQuality found joins in the transform workspace.
+  The generated views check whether the data behind those joins behaves as expected.
+
+The Views Check For:
+  Missing referenced rows: a row may point to related data that is not present.
+  Minority join pattern: a relationship is joined using a rare pattern compared to corpus consensus.
+  Incomplete composite join: an outlier join omits key parts from a dominant composite pattern.
+  Suspicious extra join predicate: an outlier join adds predicates beyond the dominant relationship pattern.
+  Minority column equivalence: a column is usually joined to one counterpart column, but minority joins map it to a different counterpart.
+  Implied missing referenced rows: high-consensus relationship evidence suggests reference misses should be checked globally.
+  Implied unique-key violation: high-consensus relationship evidence suggests duplicate lookup keys should be checked globally.
+
+Relationships Checked:
+  1. sales.Customer joined with sales.Invoice
+     Keys: c.CustomerId = i.CustomerId
+     Views: Missing referenced rows
+  2. sales.Customer joined with sales.Invoice
+     Keys: c.CustomerId = i.CustomerId; c.RegionId = i.RegionId
+     Views: Missing referenced rows
+  3. sales.Customer joined with sales.Order
+     Keys: c.CustomerId = o.CustomerId
+     Views: Missing referenced rows
+  4. sales.Customer joined with sales.Order
+     Keys: c.CustomerId = o.CustomerId; c.RegionId = o.RegionId
+     Views: Missing referenced rows
+
+Corpus Inference:
+  Relationships observed: 2
+  Dominant relationship patterns: 2
+  Column equivalence edges: 4
+  Minority join-pattern candidates: 2 (waiting 2, promoted 0)
+  Incomplete-composite candidates: 1 (waiting 1, promoted 0)
+  Suspicious-extra-predicate candidates: 1 (waiting 1, promoted 0)
+  Missing-common-filter candidates: 0
+  Minority column-equivalence candidates: 1 (waiting 1, promoted 0)
+  Optionality-drift (inner vs usually optional): 0
+  Optionality-drift (left vs usually mandatory): 0
+  Implied fanout-risk candidates: 0
+  Implied output-duplicate-risk candidates: 0
+  Dominant relationship preview:
+    sales.Customer <-> sales.Invoice | Ratio 0.8889 (8/9)
+    sales.Customer <-> sales.Order | Ratio 0.8 (8/10)
+  Implied relationship checks:
+    Implied missing referenced rows | sales.Customer <-> sales.Invoice | Consensus 0.8889, Outlier 0.1111 | Confidence High | Discovered
+      Diversity: Distinct transforms: 8; source objects: 2; relationship patterns: 1; effective transforms: 8.
+    Implied unique-key violation | sales.Customer <-> sales.Invoice | Consensus 0.8889, Outlier 0 | Confidence High | Discovered
+      Diversity: Distinct transforms: 8; source objects: 2; relationship patterns: 1; effective transforms: 8.
+
+Run This First:
+  meta-data-quality promote --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS" --all
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS" --out DataQualityViews.sql
+
+Review The Results:
+  Run the generated views and decide whether the reported rows are real data-quality issues.
+  Some rows may be valid for your business rules; keep the views that reveal useful problems.
+
+Need to exclude a few candidates? meta-data-quality inspect --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS" --show-cases --show-candidate-ids
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-convert data-quality-to-sql --workspace DataQualityWS --out BeforePromote.sql  1>before-promote.output 2>&1
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>type before-promote.output
+Cannot convert data-quality workspace to SQL.
+  Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS
+  Output: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\BeforePromote.sql
+  MetaDataQuality workspace has no promoted candidates.
+Next: check the workspace, promoted candidates, and output path, then retry.
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-data-quality promote --workspace DataQualityWS --all
+OK: Promoted 11 data quality candidates
+  Candidates promoted for SQL: 11
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS" --out DataQualityViews.sql
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-convert data-quality-to-sql --workspace DataQualityWS --out AllPromoted.sql
+OK: Generated 11 data quality view scripts, 1 review dashboard, and MetaDQ operational SQL (2 tables, 2 procedure).
+Output:
+  DataQualityViews: 11
+  Dashboard: dq.v_DataQualityReview
+  MetaDQTables: 2
+  MetaDQProcedures: 2
+  Scripts: 13
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\AllPromoted.sql
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-data-quality from-transform-workspace --transform-workspace TransformWS --new-workspace DataQualityWS_Supported
+OK: Created DataQualityWS_Supported
+MetaDataQuality can create SQL views that return rows to investigate.
+  Views ready to create: 11
+
+Run This First:
+  meta-data-quality promote --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS_Supported" --all
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS_Supported" --out DataQualityViews.sql
+
+Review The Results:
+  Run the generated views and decide whether the reported rows are real data-quality issues.
+  Some rows may be valid for your business rules; keep the views that reveal useful problems.
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>powershell -NoProfile -ExecutionPolicy Bypass -File collect-implied-candidate-ids.ps1 -WorkspacePath DataQualityWS_Supported -OutFile implied-candidate-ids.txt
+Implied candidate ids: DataQualityCandidate.ImpliedForeignKeyMissingReference.1, DataQualityCandidate.ImpliedUniqueKeyViolation.1
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>for /F %I in (implied-candidate-ids.txt) do (
+meta-data-quality promote --workspace DataQualityWS_Supported --candidate-id %I
+
+)
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>(
+meta-data-quality promote --workspace DataQualityWS_Supported --candidate-id DataQualityCandidate.ImpliedForeignKeyMissingReference.1
+
+)
+OK: Promoted 1 data quality candidates
+  Candidates promoted for SQL: 1
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS_Supported" --out DataQualityViews.sql
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>(
+meta-data-quality promote --workspace DataQualityWS_Supported --candidate-id DataQualityCandidate.ImpliedUniqueKeyViolation.1
+
+)
+OK: Promoted 1 data quality candidates
+  Candidates promoted for SQL: 2
+
+Next:
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS_Supported" --out DataQualityViews.sql
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-convert data-quality-to-sql --workspace DataQualityWS_Supported --out DataQualityViews.sql
+OK: Generated 2 data quality view scripts, 1 review dashboard, and MetaDQ operational SQL (2 tables, 2 procedure).
+Output:
+  DataQualityViews: 2
+  Dashboard: dq.v_DataQualityReview
+  MetaDQTables: 2
+  MetaDQProcedures: 2
+  Scripts: 4
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityViews.sql
+
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration>meta-data-quality inspect --workspace DataQualityWS_Supported
+OK: Loaded MetaDataQuality workspace
+
+MetaDataQuality can create SQL views that return rows to investigate.
+  Views ready to create: 11
+  Promoted for SQL: 2
+
+Why These Views Exist:
+  MetaDataQuality found joins in the transform workspace.
+  The generated views check whether the data behind those joins behaves as expected.
+
+The Views Check For:
+  Missing referenced rows: a row may point to related data that is not present.
+  Minority join pattern: a relationship is joined using a rare pattern compared to corpus consensus.
+  Incomplete composite join: an outlier join omits key parts from a dominant composite pattern.
+  Suspicious extra join predicate: an outlier join adds predicates beyond the dominant relationship pattern.
+  Minority column equivalence: a column is usually joined to one counterpart column, but minority joins map it to a different counterpart.
+  Implied missing referenced rows: high-consensus relationship evidence suggests reference misses should be checked globally.
+  Implied unique-key violation: high-consensus relationship evidence suggests duplicate lookup keys should be checked globally.
+
+Relationships Checked:
+  1. sales.Customer joined with sales.Invoice
+     Keys: c.CustomerId = i.CustomerId
+     Views: Missing referenced rows
+  2. sales.Customer joined with sales.Invoice
+     Keys: c.CustomerId = i.CustomerId; c.RegionId = i.RegionId
+     Views: Missing referenced rows
+  3. sales.Customer joined with sales.Order
+     Keys: c.CustomerId = o.CustomerId
+     Views: Missing referenced rows
+  4. sales.Customer joined with sales.Order
+     Keys: c.CustomerId = o.CustomerId; c.RegionId = o.RegionId
+     Views: Missing referenced rows
+
+Corpus Inference:
+  Relationships observed: 2
+  Dominant relationship patterns: 2
+  Column equivalence edges: 4
+  Minority join-pattern candidates: 2 (waiting 2, promoted 0)
+  Incomplete-composite candidates: 1 (waiting 1, promoted 0)
+  Suspicious-extra-predicate candidates: 1 (waiting 1, promoted 0)
+  Missing-common-filter candidates: 0
+  Minority column-equivalence candidates: 1 (waiting 1, promoted 0)
+  Optionality-drift (inner vs usually optional): 0
+  Optionality-drift (left vs usually mandatory): 0
+  Implied fanout-risk candidates: 0
+  Implied output-duplicate-risk candidates: 0
+  Dominant relationship preview:
+    sales.Customer <-> sales.Invoice | Ratio 0.8889 (8/9)
+    sales.Customer <-> sales.Order | Ratio 0.8 (8/10)
+  Implied relationship checks:
+    Implied missing referenced rows | sales.Customer <-> sales.Invoice | Consensus 0.8889, Outlier 0.1111 | Confidence High | Promoted
+      Diversity: Distinct transforms: 8; source objects: 2; relationship patterns: 1; effective transforms: 8.
+    Implied unique-key violation | sales.Customer <-> sales.Invoice | Consensus 0.8889, Outlier 0 | Confidence High | Promoted
+      Diversity: Distinct transforms: 8; source objects: 2; relationship patterns: 1; effective transforms: 8.
+
+Run This First:
+  meta-data-quality promote --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS_Supported" --all
+  meta-convert data-quality-to-sql --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS_Supported" --out DataQualityViews.sql
+
+Review The Results:
+  Run the generated views and decide whether the reported rows are real data-quality issues.
+  Some rows may be valid for your business rules; keep the views that reveal useful problems.
+
+Need to exclude a few candidates? meta-data-quality inspect --workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaDataQualityPhase2ABCliIntegration\DataQualityWS_Supported" --show-cases --show-candidate-ids

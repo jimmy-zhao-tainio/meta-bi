@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactList>
+    <Fact Id="fact:sales-order" WarehouseId="warehouse:commerce">
+      <Name>SalesOrder</Name>
+    </Fact>
+    <Fact Id="fact:inventory-snapshot" WarehouseId="warehouse:commerce">
+      <Name>InventorySnapshot</Name>
+    </Fact>
+    <Fact Id="fact:order-fulfillment" WarehouseId="warehouse:commerce">
+      <Name>OrderFulfillment</Name>
+    </Fact>
+    <Fact Id="fact:promotion-coverage" WarehouseId="warehouse:commerce">
+      <Name>PromotionCoverage</Name>
+    </Fact>
+    <Fact Id="fact:monthly-sales-summary" WarehouseId="warehouse:commerce">
+      <Name>MonthlySalesSummary</Name>
+    </Fact>
+  </FactList>
+</MetaDataWarehouse>

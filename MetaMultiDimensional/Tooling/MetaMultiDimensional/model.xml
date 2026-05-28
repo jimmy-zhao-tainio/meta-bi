@@ -1,0 +1,401 @@
+<Model name="MetaMultiDimensional">
+  <EntityList>
+    <Entity name="ActionTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="CubeAction" />
+        <Relationship entity="Culture" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="AttributeRelationship">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="RelationshipType" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DimensionAttribute" role="ChildAttribute" />
+        <Relationship entity="DimensionAttribute" role="ParentAttribute" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="AttributeTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="DimensionAttribute" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="CellPermission">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Expression" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Cube" />
+        <Relationship entity="SecurityRole" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Cube">
+      <PropertyList>
+        <Property name="DefaultMeasureName" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="ProcessingMode" isRequired="false" />
+        <Property name="StorageMode" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="MultiDimensionalDatabase" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="CubeAction">
+      <PropertyList>
+        <Property name="ActionType" />
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Expression" />
+        <Property name="Name" />
+        <Property name="Target" isRequired="false" />
+        <Property name="TargetKind" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Cube" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="CubeDimension">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="RoleName" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Cube" />
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="CubeTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Cube" />
+        <Relationship entity="Culture" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Culture">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="LanguageId" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="MultiDimensionalDatabase" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Dimension">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="DimensionType" isRequired="false" />
+        <Property name="Name" />
+        <Property name="ProcessingGroup" isRequired="false" />
+        <Property name="ProcessingMode" isRequired="false" />
+        <Property name="SourceName" isRequired="false" />
+        <Property name="StorageMode" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="MultiDimensionalDatabase" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionAttribute">
+      <PropertyList>
+        <Property name="AttributeHierarchyEnabled" isRequired="false" />
+        <Property name="AttributeHierarchyVisible" isRequired="false" />
+        <Property name="DataTypeId" />
+        <Property name="Description" isRequired="false" />
+        <Property name="IsKey" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+        <Property name="SourceName" isRequired="false" />
+        <Property name="Usage" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionHierarchy">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="HierarchyType" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionHierarchyLevel">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DimensionAttribute" />
+        <Relationship entity="DimensionHierarchy" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionPermission">
+      <PropertyList>
+        <Property name="AllowedSetExpression" isRequired="false" />
+        <Property name="DefaultMemberExpression" isRequired="false" />
+        <Property name="DeniedSetExpression" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="VisualTotals" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DimensionAttribute" />
+        <Relationship entity="Dimension" />
+        <Relationship entity="SecurityRole" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionUsage">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="IsRequired" isRequired="false" />
+        <Property name="RoleName" isRequired="false" />
+        <Property name="UsageKind" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="CubeDimension" />
+        <Relationship entity="DimensionAttribute" role="GranularityAttribute" isRequired="false" />
+        <Relationship entity="MeasureGroup" role="IntermediateMeasureGroup" isRequired="false" />
+        <Relationship entity="MeasureGroup" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Kpi">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="GoalExpression" isRequired="false" />
+        <Property name="Name" />
+        <Property name="StatusExpression" isRequired="false" />
+        <Property name="StatusGraphic" isRequired="false" />
+        <Property name="TrendExpression" isRequired="false" />
+        <Property name="TrendGraphic" isRequired="false" />
+        <Property name="ValueExpression" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Measure" role="AssociatedMeasure" isRequired="false" />
+        <Relationship entity="Cube" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="KpiTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="Kpi" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MdxCalculation">
+      <PropertyList>
+        <Property name="CalculationKind" />
+        <Property name="Description" isRequired="false" />
+        <Property name="DisplayFolder" isRequired="false" />
+        <Property name="Expression" />
+        <Property name="Name" />
+        <Property name="SolveOrder" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Cube" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Measure">
+      <PropertyList>
+        <Property name="AggregateFunction" isRequired="false" />
+        <Property name="DataTypeId" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="DisplayFolder" isRequired="false" />
+        <Property name="FormatString" isRequired="false" />
+        <Property name="Name" />
+        <Property name="SourceName" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="MeasureGroup" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MeasureGroup">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="ProcessingMode" isRequired="false" />
+        <Property name="SourceName" isRequired="false" />
+        <Property name="StorageMode" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Cube" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MeasureTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="Measure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MultiDimensionalDatabase">
+      <PropertyList>
+        <Property name="Collation" isRequired="false" />
+        <Property name="DefaultLanguage" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+    <Entity name="MultiDimensionalDataSource">
+      <PropertyList>
+        <Property name="ConnectionReference" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Provider" isRequired="false" />
+        <Property name="SourceKind" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="MultiDimensionalDatabase" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="NamedSet">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="DisplayFolder" isRequired="false" />
+        <Property name="Expression" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Cube" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="NamedSetTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="NamedSet" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Partition">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+        <Property name="ProcessingMode" isRequired="false" />
+        <Property name="SliceExpression" isRequired="false" />
+        <Property name="SourceExpression" isRequired="false" />
+        <Property name="StorageMode" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="MeasureGroup" />
+        <Relationship entity="MultiDimensionalDataSource" isRequired="false" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Perspective">
+      <PropertyList>
+        <Property name="DefaultMeasureName" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Cube" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveAction">
+      <RelationshipList>
+        <Relationship entity="CubeAction" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveCalculation">
+      <RelationshipList>
+        <Relationship entity="MdxCalculation" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveDimension">
+      <RelationshipList>
+        <Relationship entity="CubeDimension" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveKpi">
+      <RelationshipList>
+        <Relationship entity="Kpi" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveMeasure">
+      <RelationshipList>
+        <Relationship entity="Measure" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveMeasureGroup">
+      <RelationshipList>
+        <Relationship entity="MeasureGroup" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveNamedSet">
+      <RelationshipList>
+        <Relationship entity="NamedSet" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PerspectiveTranslation">
+      <PropertyList>
+        <Property name="Caption" isRequired="false" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Culture" />
+        <Relationship entity="Perspective" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RoleMember">
+      <PropertyList>
+        <Property name="MemberName" />
+        <Property name="MemberSid" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="SecurityRole" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="SecurityRole">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Permission" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="MultiDimensionalDatabase" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <BridgeWeightList>
+    <BridgeWeight Id="bridge-weight:customer-group" BridgeTableId="bridge:customer-group">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>AllocationWeight</Name>
+    </BridgeWeight>
+  </BridgeWeightList>
+</MetaDataWarehouse>

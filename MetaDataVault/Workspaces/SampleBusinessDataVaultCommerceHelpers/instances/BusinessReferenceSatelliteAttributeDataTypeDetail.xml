@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessReferenceSatelliteAttributeDataTypeDetailList>
+    <BusinessReferenceSatelliteAttributeDataTypeDetail Id="StatusNameLength" BusinessReferenceSatelliteAttributeId="StatusName">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </BusinessReferenceSatelliteAttributeDataTypeDetail>
+  </BusinessReferenceSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

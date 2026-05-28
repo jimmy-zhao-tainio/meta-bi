@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouseImplementation>
+  <FactTableImplementationList>
+    <FactTableImplementation Id="default-fact-table">
+      <DegenerateDimensionColumnPattern>{Name}</DegenerateDimensionColumnPattern>
+      <DimensionForeignKeyNamePattern>FK_{TableName}_{RoleName}</DimensionForeignKeyNamePattern>
+      <DimensionKeyColumnPattern>{RoleName}Key</DimensionKeyColumnPattern>
+      <MeasureColumnPattern>{Name}</MeasureColumnPattern>
+      <PrimaryKeyNamePattern>PK_{TableName}</PrimaryKeyNamePattern>
+      <SchemaName>dw</SchemaName>
+      <TableNamePattern>Fact_{Name}</TableNamePattern>
+    </FactTableImplementation>
+  </FactTableImplementationList>
+</MetaDataWarehouseImplementation>

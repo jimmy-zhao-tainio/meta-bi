@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tooling\MetaPipeline.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
+  </ItemGroup>
+
+</Project>

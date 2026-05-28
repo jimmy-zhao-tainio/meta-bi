@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <AccumulatingSnapshotMilestoneList>
+    <AccumulatingSnapshotMilestone Id="milestone:order-placed" AccumulatingSnapshotFactId="accumulating-snapshot:order-fulfillment">
+      <DateRoleName>OrderPlaced</DateRoleName>
+      <Name>OrderPlaced</Name>
+      <Ordinal>10</Ordinal>
+    </AccumulatingSnapshotMilestone>
+    <AccumulatingSnapshotMilestone Id="milestone:order-shipped" AccumulatingSnapshotFactId="accumulating-snapshot:order-fulfillment">
+      <DateRoleName>OrderShipped</DateRoleName>
+      <Name>OrderShipped</Name>
+      <Ordinal>20</Ordinal>
+    </AccumulatingSnapshotMilestone>
+  </AccumulatingSnapshotMilestoneList>
+</MetaDataWarehouse>

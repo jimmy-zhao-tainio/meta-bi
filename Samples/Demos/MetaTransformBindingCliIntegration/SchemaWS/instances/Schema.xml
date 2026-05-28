@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SchemaList>
+    <Schema Id="demo:schema:sales" SystemId="demo:system:MetaTransformBindingCliIntegration">
+      <Name>sales</Name>
+    </Schema>
+    <Schema Id="demo:schema:reporting" SystemId="demo:system:MetaTransformBindingCliIntegration">
+      <Name>reporting</Name>
+    </Schema>
+  </SchemaList>
+</MetaSchema>

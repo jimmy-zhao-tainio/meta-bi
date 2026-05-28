@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetaTabular", "MetaTabular", "{4F7D417C-C31C-4339-B98A-978A79F95616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaTabular.Tooling", "MetaTabular\Tooling\MetaTabular.Tooling.csproj", "{CD6656CD-4959-4CE6-B634-881CB1D0CE43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaTabular.Instance", "MetaTabular\Instance\MetaTabular.Instance.csproj", "{F6A60A72-0E17-43C9-A064-3F3C0371825F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaTabular.Core", "MetaTabular\Core\MetaTabular.Core.csproj", "{949F228A-175E-4159-9863-95C0F66F3B8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaTabular.Cli", "MetaTabular\Cli\MetaTabular.Cli.csproj", "{9BAD7836-4711-488C-B0F7-3221F0DAC775}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaTabular.Tests", "MetaTabular\Tests\MetaTabular.Tests.csproj", "{998015E6-7C80-431E-B94F-83EE1AD734EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetaConvert", "MetaConvert", "{48CE6E50-6786-484F-9E73-19040945DA40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaConvert.AnalyticsToTabular", "MetaConvert\AnalyticsToTabular\MetaConvert.AnalyticsToTabular.csproj", "{94DE5295-F44B-4F34-9422-DC72B4E7EC06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD6656CD-4959-4CE6-B634-881CB1D0CE43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6656CD-4959-4CE6-B634-881CB1D0CE43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6656CD-4959-4CE6-B634-881CB1D0CE43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6656CD-4959-4CE6-B634-881CB1D0CE43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A60A72-0E17-43C9-A064-3F3C0371825F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A60A72-0E17-43C9-A064-3F3C0371825F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A60A72-0E17-43C9-A064-3F3C0371825F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A60A72-0E17-43C9-A064-3F3C0371825F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{949F228A-175E-4159-9863-95C0F66F3B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{949F228A-175E-4159-9863-95C0F66F3B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{949F228A-175E-4159-9863-95C0F66F3B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{949F228A-175E-4159-9863-95C0F66F3B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BAD7836-4711-488C-B0F7-3221F0DAC775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BAD7836-4711-488C-B0F7-3221F0DAC775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BAD7836-4711-488C-B0F7-3221F0DAC775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BAD7836-4711-488C-B0F7-3221F0DAC775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{998015E6-7C80-431E-B94F-83EE1AD734EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{998015E6-7C80-431E-B94F-83EE1AD734EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{998015E6-7C80-431E-B94F-83EE1AD734EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{998015E6-7C80-431E-B94F-83EE1AD734EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94DE5295-F44B-4F34-9422-DC72B4E7EC06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94DE5295-F44B-4F34-9422-DC72B4E7EC06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94DE5295-F44B-4F34-9422-DC72B4E7EC06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94DE5295-F44B-4F34-9422-DC72B4E7EC06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD6656CD-4959-4CE6-B634-881CB1D0CE43} = {4F7D417C-C31C-4339-B98A-978A79F95616}
+		{F6A60A72-0E17-43C9-A064-3F3C0371825F} = {4F7D417C-C31C-4339-B98A-978A79F95616}
+		{949F228A-175E-4159-9863-95C0F66F3B8D} = {4F7D417C-C31C-4339-B98A-978A79F95616}
+		{9BAD7836-4711-488C-B0F7-3221F0DAC775} = {4F7D417C-C31C-4339-B98A-978A79F95616}
+		{998015E6-7C80-431E-B94F-83EE1AD734EE} = {4F7D417C-C31C-4339-B98A-978A79F95616}
+		{94DE5295-F44B-4F34-9422-DC72B4E7EC06} = {48CE6E50-6786-484F-9E73-19040945DA40}
+	EndGlobalSection
+EndGlobal

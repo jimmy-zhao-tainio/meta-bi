@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AttributeList>
+    <Attribute Id="DateKey" TableId="Date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <Name>DateKey</Name>
+      <Ordinal>10</Ordinal>
+    </Attribute>
+    <Attribute Id="OrderDateKey" TableId="Sales">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <Name>OrderDateKey</Name>
+      <Ordinal>10</Ordinal>
+    </Attribute>
+    <Attribute Id="SalesAmountColumn" TableId="Sales">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <Name>SalesAmount</Name>
+      <Ordinal>20</Ordinal>
+    </Attribute>
+  </AttributeList>
+</MetaAnalytics>
