@@ -2376,6 +2376,97 @@ INNER JOIN dbo.SourceB AS b
     }
 
     [Fact]
+    public void ValidationService_WithIgnoredTargetColumnsIfPresent_AllowsSparsePlatformColumns()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.CustomerSummary");
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue", "UpdateAudit_ID"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var validated = new TransformBindingValidationService().ApplyValidation(
+                bindingResult.Model,
+                schemaModel,
+                schemaModel,
+                TransformBindingValidationOptions.Create(
+                    ignoredTargetColumnNames: null,
+                    ignoredTargetColumnNamesIfPresent: ["UpdateAudit_ID"],
+                    executeSystemName: null,
+                    executeSystemDefaultSchemaName: null));
+
+            Assert.Equal(4, validated.ValidationTargetColumnLinkList.Count);
+            var ignoredTargetColumn = Assert.Single(validated.ValidationTargetIgnoredColumnList);
+
+            var updateAuditField = Assert.Single(schemaModel.FieldList, item =>
+                string.Equals(item.Table.Id, "Table:2", StringComparison.Ordinal) &&
+                string.Equals(item.Name, "UpdateAudit_ID", StringComparison.Ordinal));
+            Assert.Equal(updateAuditField.Id, ignoredTargetColumn.MetaSchemaFieldId);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void ValidationService_WithIgnoredTargetColumnsIfPresent_DoesNotRequireColumnOnEveryTarget()
+    {
+        var transformModel = ParseCorpus("001_basic_select.sql");
+        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.CustomerSummary");
+
+        var schemaModel = CreateSourceSchema(
+            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
+            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                Path.Combine(tempRoot, "BindingWorkspace"));
+
+            var validated = new TransformBindingValidationService().ApplyValidation(
+                bindingResult.Model,
+                schemaModel,
+                schemaModel,
+                TransformBindingValidationOptions.Create(
+                    ignoredTargetColumnNames: null,
+                    ignoredTargetColumnNamesIfPresent: ["UpdateAudit_ID"],
+                    executeSystemName: null,
+                    executeSystemDefaultSchemaName: null));
+
+            Assert.Equal(4, validated.ValidationTargetColumnLinkList.Count);
+            Assert.Empty(validated.ValidationTargetIgnoredColumnList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void ValidationService_WithNullableTargetColumnOmitted_PassesWriteContract()
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
@@ -3324,6 +3415,147 @@ FROM SourceTable AS s;
             Assert.Equal(1, result.TransformBindingCount);
             Assert.Equal(1, result.SourceColumnValidationCount);
             Assert.Equal(1, result.TargetColumnValidationCount);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindingWorkspaceService_WithAllowPartial_SavesOnlyBindingSuccessfulScripts()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_valid AS
+SELECT
+    s.CustomerId
+FROM dbo.SourceTable AS s;
+GO
+CREATE VIEW dbo.v_broken AS
+SELECT
+    m.CustomerId
+FROM dbo.MissingTable AS m;
+GO
+""";
+        var transformModel = new MetaTransformScriptSqlService().ImportFromSqlCode(sql);
+        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.ValidTarget");
+        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[1], "dbo.BrokenTarget");
+
+        var sourceSchemaModel = CreateSchema(
+            "ExecDb",
+            ("dbo", "SourceTable", ["CustomerId"]),
+            ("dbo", "MissingTable", ["OtherId"]));
+        var targetSchemaModel = CreateSchema(
+            "WarehouseDb",
+            ("dbo", "ValidTarget", ["CustomerId"]),
+            ("dbo", "BrokenTarget", ["CustomerId"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var sourceSchemaWorkspacePath = Path.Combine(tempRoot, "SourceSchemaWorkspace");
+        var targetSchemaWorkspacePath = Path.Combine(tempRoot, "TargetSchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
+            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+
+            var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+                transformWorkspacePath,
+                new[] { sourceSchemaWorkspacePath },
+                targetSchemaWorkspacePath,
+                executeSystemName: "ExecDb",
+                executeSystemDefaultSchemaName: null,
+                newWorkspacePath: bindingWorkspacePath,
+                allowPartial: true);
+
+            Assert.Equal(2, result.TransformScriptCount);
+            Assert.Equal(1, result.TransformBindingCount);
+            Assert.Equal(1, result.SkippedTransformScriptCount);
+            var issue = Assert.Single(result.ObjectIssues!);
+            Assert.Equal("Binding", issue.Stage);
+            Assert.Contains("ColumnReferenceNotFound", issue.Code, StringComparison.Ordinal);
+            Assert.Contains("MissingTable", issue.Message, StringComparison.OrdinalIgnoreCase);
+
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var binding = Assert.Single(reloaded.TransformBindingList);
+            Assert.Equal("dbo.v_valid", binding.TransformScriptName);
+            Assert.Single(reloaded.ValidationList);
+            Assert.Single(reloaded.ValidationTargetRowsetLinkList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public void BindingWorkspaceService_WithAllowPartial_SavesOnlyValidationSuccessfulScripts()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_valid AS
+SELECT
+    s.CustomerId
+FROM dbo.SourceTable AS s;
+GO
+CREATE VIEW dbo.v_missing_target AS
+SELECT
+    s.CustomerId
+FROM dbo.SourceTable AS s;
+GO
+""";
+        var transformModel = new MetaTransformScriptSqlService().ImportFromSqlCode(sql);
+        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.ValidTarget");
+        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[1], "dbo.MissingTarget");
+
+        var sourceSchemaModel = CreateSchema(
+            "ExecDb",
+            ("dbo", "SourceTable", ["CustomerId"]));
+        var targetSchemaModel = CreateSchema(
+            "WarehouseDb",
+            ("dbo", "ValidTarget", ["CustomerId"]));
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var sourceSchemaWorkspacePath = Path.Combine(tempRoot, "SourceSchemaWorkspace");
+        var targetSchemaWorkspacePath = Path.Combine(tempRoot, "TargetSchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
+            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+
+            var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+                transformWorkspacePath,
+                new[] { sourceSchemaWorkspacePath },
+                targetSchemaWorkspacePath,
+                executeSystemName: "ExecDb",
+                executeSystemDefaultSchemaName: null,
+                newWorkspacePath: bindingWorkspacePath,
+                allowPartial: true);
+
+            Assert.Equal(2, result.TransformScriptCount);
+            Assert.Equal(1, result.TransformBindingCount);
+            Assert.Equal(1, result.SkippedTransformScriptCount);
+            var issue = Assert.Single(result.ObjectIssues!);
+            Assert.Equal("Validation", issue.Stage);
+            Assert.Equal("TargetSchemaTableNotFound", issue.Code);
+
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            var binding = Assert.Single(reloaded.TransformBindingList);
+            Assert.Equal("dbo.v_valid", binding.TransformScriptName);
+            Assert.DoesNotContain(reloaded.TransformBindingList, item =>
+                string.Equals(item.TransformScriptName, "dbo.v_missing_target", StringComparison.OrdinalIgnoreCase));
         }
         finally
         {

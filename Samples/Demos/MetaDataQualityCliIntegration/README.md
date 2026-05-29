@@ -14,7 +14,7 @@ Workflow:
 - `setup.sql` creates `sales.Customer`, `sales.Order`, and `sales.Invoice` with seeded data.
 - `SourceViews/*/view.sql` creates the original transform views in the database.
 - `meta-transform-script` imports those views into `TransformWS`.
-- `meta-data-quality from-transform-workspace` scans the full transform workspace.
+- `meta-data-quality from-transform-workspace` scans the full transform workspace; `--binding-workspace <path>` can constrain discovery to validation-backed binding rows when a corpus contains broken objects.
 - `meta-data-quality inspect` explains the generated DQ pack.
 - `meta-data-quality promote --all` promotes all generated candidates for SQL output.
 - `meta-convert data-quality-to-sql` writes `DataQualityViews.sql`.

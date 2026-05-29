@@ -374,7 +374,8 @@ Important things that are still not truly implemented:
   - deterministic name-aligned nullability conformance is implemented for unique source-to-target column mappings
   - deterministic name-aligned length / precision / scale conformance is implemented for unique source-to-target column mappings when both sides expose type details
   - sanctioned conversion classification is persisted as explicit target-column type entities: `ValidationTargetColumnTypeExact`, `ValidationTargetColumnTypeSanctionedConversion`, and `ValidationTargetColumnTypeNotClassified`
-  - Validate supports explicit target-column exclusion through `--ignore-target-columns` (strict: ignored names must exist as non-identity target fields) and persists each applied ignore as `ValidationTargetIgnoredColumn`
+  - Validate supports explicit target-column exclusion through `--ignore-target-columns` (strict: ignored names must exist as non-identity target fields) and sparse target-column exclusion through `--ignore-target-columns-if-present`; each applied ignore is persisted as `ValidationTargetIgnoredColumn`
+  - strict validated binding remains atomic by default; `--allow-partial` is a corpus/discovery mode that writes only successfully bound/validated objects and can emit skipped-object diagnostics via `--partial-report`
   - source-to-target compatibility outcomes are persisted via explicit target-column type entities
 
 So the binder can now explain a lot of rowset and visibility structure, but it is still intentionally shallow in scalar semantics.
@@ -609,7 +610,8 @@ Do not do these yet:
 - [x] nullability validation is implemented for deterministic name-aligned source/target column mappings
 - [x] length / precision / scale validation is implemented for deterministic name-aligned source/target column mappings when both sides expose type details
 - [x] sanctioned conversion classification is implemented
-- [x] platform/system-generated target columns beyond SQL identity can be identified explicitly via `--ignore-target-columns`
+- [x] platform/system-generated target columns beyond SQL identity can be identified explicitly via `--ignore-target-columns` and sparse platform columns can be identified via `--ignore-target-columns-if-present`
+- [x] dirty corpus binding can be run in explicit partial mode with `--allow-partial`, saving only successfully bound/validated objects for downstream consumers
 - [x] target write-contract semantics beyond structural rowset checks are implemented
 - [x] `OPENROWSET` / `OPENQUERY` / `CHANGETABLE` are explicitly tracked as out-of-scope for Binding
 - [x] validation result entities are captured explicitly inside `MetaTransformBinding`

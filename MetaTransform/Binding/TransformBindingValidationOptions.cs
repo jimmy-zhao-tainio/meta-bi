@@ -7,6 +7,9 @@ public sealed class TransformBindingValidationOptions
     public IReadOnlySet<string> IgnoredTargetColumnNames { get; init; } =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
+    public IReadOnlySet<string> IgnoredTargetColumnNamesIfPresent { get; init; } =
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
     public string ExecuteSystemName { get; init; } = string.Empty;
 
     public string ExecuteSystemDefaultSchemaName { get; init; } = string.Empty;
@@ -16,12 +19,26 @@ public sealed class TransformBindingValidationOptions
     {
         return Create(
             ignoredTargetColumnNames,
+            ignoredTargetColumnNamesIfPresent: null,
             executeSystemName: null,
             executeSystemDefaultSchemaName: null);
     }
 
     public static TransformBindingValidationOptions Create(
         IEnumerable<string>? ignoredTargetColumnNames,
+        string? executeSystemName,
+        string? executeSystemDefaultSchemaName)
+    {
+        return Create(
+            ignoredTargetColumnNames,
+            ignoredTargetColumnNamesIfPresent: null,
+            executeSystemName,
+            executeSystemDefaultSchemaName);
+    }
+
+    public static TransformBindingValidationOptions Create(
+        IEnumerable<string>? ignoredTargetColumnNames,
+        IEnumerable<string>? ignoredTargetColumnNamesIfPresent,
         string? executeSystemName,
         string? executeSystemDefaultSchemaName)
     {
@@ -41,7 +58,21 @@ public sealed class TransformBindingValidationOptions
             }
         }
 
+        var normalizedIfPresent = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        if (ignoredTargetColumnNamesIfPresent is not null)
+        {
+            foreach (var name in ignoredTargetColumnNamesIfPresent)
+            {
+                var trimmed = name?.Trim();
+                if (!string.IsNullOrWhiteSpace(trimmed))
+                {
+                    normalizedIfPresent.Add(trimmed);
+                }
+            }
+        }
+
         if (normalized.Count == 0 &&
+            normalizedIfPresent.Count == 0 &&
             string.IsNullOrWhiteSpace(normalizedExecuteSystemName) &&
             string.IsNullOrWhiteSpace(normalizedDefaultSchemaName))
         {
@@ -51,6 +82,7 @@ public sealed class TransformBindingValidationOptions
         return new TransformBindingValidationOptions
         {
             IgnoredTargetColumnNames = normalized,
+            IgnoredTargetColumnNamesIfPresent = normalizedIfPresent,
             ExecuteSystemName = normalizedExecuteSystemName,
             ExecuteSystemDefaultSchemaName = normalizedDefaultSchemaName
         };

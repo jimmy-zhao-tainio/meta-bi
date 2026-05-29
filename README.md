@@ -830,7 +830,7 @@ Purpose:
 
 Command surface:
 - `meta-transform-binding help`
-- `meta-transform-binding bind --transform-workspace <path> --source-schema <path> [--source-schema <path> ...] --target-schema <path> --execute-system <name> --new-workspace <path> [--execute-system-default-schema-name <schema>] [--ignore-target-columns <col[,col...]>] [--data-type-conversion-workspace <path>]`
+- `meta-transform-binding bind --transform-workspace <path> --source-schema <path> [--source-schema <path> ...] --target-schema <path> --execute-system <name> --new-workspace <path> [--execute-system-default-schema-name <schema>] [--ignore-target-columns <col[,col...]>] [--ignore-target-columns-if-present <col[,col...]>] [--data-type-conversion-workspace <path>] [--allow-partial] [--partial-report <path>]`
 
 Behavior summary:
 - `bind` reads the target SQL identifier from view/mutation transform metadata; inline TVF and scalar function definitions are targetless helper scripts
@@ -846,9 +846,11 @@ Behavior summary:
 - `bind` enforces target write-contract shape using non-identity target fields
 - `bind` processes all transform scripts in the transform workspace
 - `--ignore-target-columns` excludes named non-identity target columns from target conformance checks; unknown names fail explicitly
+- `--ignore-target-columns-if-present` excludes named non-identity target columns only on target tables where they exist
 - `--data-type-conversion-workspace` selects the sanctioned conversion policy workspace used for type compatibility checks; omitted uses the built-in defaults
 - source-to-target data type conformance is checked as exact or sanctioned conversion path, not hardcoded widening logic
 - bind is atomic: if binding or validation fails, no output workspace is created
+- `--allow-partial` is an explicit corpus/discovery mode; it saves only scripts that bind and validate successfully, and `--partial-report` can write skipped object diagnostics as TSV
 - scale proof is included in `Samples\Demos\MetaTransformScriptTpcDsCliIntegration\run.cmd`, which imports and binds TPC-DS `q01`-`q99` in one workspace run
 
 Examples:
@@ -856,7 +858,9 @@ Examples:
 ```cmd
 meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SourceSchemaWS --target-schema .\TargetSchemaWS --execute-system WarehouseDb --new-workspace .\BindingWS
 
-meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SalesSchemaWS --source-schema .\ReferenceSchemaWS --target-schema .\WarehouseSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\BindingWS --ignore-target-columns LoadUtc,RunId --data-type-conversion-workspace .\MetaDataTypeConversion.Workspace
+meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SalesSchemaWS --source-schema .\ReferenceSchemaWS --target-schema .\WarehouseSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\BindingWS --ignore-target-columns LoadUtc,RunId --ignore-target-columns-if-present UpdateAudit_ID --data-type-conversion-workspace .\MetaDataTypeConversion.Workspace
+
+meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SourceSchemaWS --target-schema .\TargetSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\BindingWS --allow-partial --partial-report .\binding-partial.tsv
 ```
 
 See also:
@@ -877,7 +881,7 @@ Purpose:
 
 Command surface:
 - `meta-data-quality help`
-- `meta-data-quality from-transform-workspace --transform-workspace <path> --new-workspace <path>`
+- `meta-data-quality from-transform-workspace --transform-workspace <path> --new-workspace <path> [--binding-workspace <path>]`
 - `meta-data-quality inspect --workspace <path> [--show-cases] [--show-candidate-ids]`
 - `meta-data-quality promote --workspace <path> (--all | --candidate-id <id> [--candidate-id <id> ...])`
 
@@ -885,6 +889,7 @@ Workflow:
 
 ```cmd
 meta-data-quality from-transform-workspace --transform-workspace .\MetaTransformScript.Workspace --new-workspace .\MetaDataQuality.Workspace
+meta-data-quality from-transform-workspace --transform-workspace .\MetaTransformScript.Workspace --binding-workspace .\MetaTransformBinding.Workspace --new-workspace .\MetaDataQuality.Workspace
 meta-data-quality inspect --workspace .\MetaDataQuality.Workspace
 meta-data-quality promote --workspace .\MetaDataQuality.Workspace --all
 meta-convert data-quality-to-sql --workspace .\MetaDataQuality.Workspace --out .\DataQualityViews.sql
@@ -893,6 +898,8 @@ meta-convert data-quality-to-sql --workspace .\MetaDataQuality.Workspace --out .
 Analysis scopes:
 1. Transform-scope analysis (single script): detects missing referenced rows, unexpected outer-join nulls, row multiplication risk, duplicate output risk, and records modeled join evidence (`JoinPattern`, `JoinPatternOccurrence`, key parts).
 2. Corpus-scope analysis (workspace-wide): aggregates repeated relationship evidence and infers dominant vs outlier behavior across the transform corpus.
+
+When `--binding-workspace` is supplied, discovery scans only `TransformScript` rows that have validation-backed `TransformBinding` rows. This prevents generating DQ SQL for transform objects that were skipped by partial binding.
 
 Completed corpus capabilities:
 - relationship consensus:

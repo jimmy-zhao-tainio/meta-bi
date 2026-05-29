@@ -37,15 +37,17 @@ internal static class Program
                 new CliCommandDefinition(
                     "from-transform-workspace",
                     "Create generated DQ views from a full MetaTransformScript workspace.",
-                    new[] { "meta-data-quality from-transform-workspace --transform-workspace <path> --new-workspace <path>" },
+                    new[] { "meta-data-quality from-transform-workspace --transform-workspace <path> --new-workspace <path> [--binding-workspace <path>]" },
                     new[]
                     {
                         new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace to analyze."),
-                        new CliOptionDefinition("--new-workspace <path>", "Required. Directory where the generated MetaDataQuality workspace will be created.")
+                        new CliOptionDefinition("--new-workspace <path>", "Required. Directory where the generated MetaDataQuality workspace will be created."),
+                        new CliOptionDefinition("--binding-workspace <path>", "Optional. MetaTransformBinding workspace used to scan only validated scripts.")
                     },
                     new[]
                     {
                         "Scans all TransformScript instances in one workspace.",
+                        "When --binding-workspace is supplied, only TransformScript rows with Validation-backed TransformBinding rows are scanned.",
                         "Creates one MetaDataQuality workspace with generated DQ views."
                     }),
                 args => Task.FromResult(RunCommandWithHelp(args, "from-transform-workspace", commandArgs => RunFromTransformWorkspace(commandArgs, startIndex: 1)))),
@@ -129,7 +131,11 @@ internal static class Program
         {
             var transformWorkspacePath = Path.GetFullPath(parse.TransformWorkspacePath);
             var discovery = new MetaDataQualityCandidateDiscoveryService()
-                .DiscoverFromTransformWorkspace(transformWorkspacePath);
+                .DiscoverFromTransformWorkspace(
+                    transformWorkspacePath,
+                    string.IsNullOrWhiteSpace(parse.BindingWorkspacePath)
+                        ? null
+                        : Path.GetFullPath(parse.BindingWorkspacePath));
 
             var model = discovery.Model;
             model.SaveToXmlWorkspace(targetValidation.FullPath);
@@ -137,6 +143,11 @@ internal static class Program
             Presenter.WriteOk($"Created {Path.GetFileName(targetValidation.FullPath)}");
             Presenter.WriteInfo("MetaDataQuality can create SQL views that return rows to investigate.");
             Presenter.WriteInfo($"  Views ready to create: {model.DataQualityCandidateList.Count}");
+            if (!string.IsNullOrWhiteSpace(parse.BindingWorkspacePath))
+            {
+                Presenter.WriteInfo($"  Transform scripts scanned: {discovery.AnalyzedTransformScriptCount}/{discovery.TransformScriptCount}");
+                Presenter.WriteInfo($"  Transform scripts skipped by BindingWS: {discovery.BindingSkippedTransformScriptCount}");
+            }
             Presenter.WriteInfo(string.Empty);
             Presenter.WriteInfo("Run This First:");
             Presenter.WriteInfo($"  meta-data-quality promote --workspace \"{targetValidation.FullPath}\" --all");
@@ -156,6 +167,7 @@ internal static class Program
                 new[]
                 {
                     $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
+                    $"  BindingWorkspace: {(string.IsNullOrWhiteSpace(parse.BindingWorkspacePath) ? "<none>" : Path.GetFullPath(parse.BindingWorkspacePath))}",
                     $"  {ex.Message}",
                 });
         }
@@ -508,36 +520,48 @@ internal static class Program
         }
     }
 
-    private static (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, string ErrorMessage) ParseFromTransformWorkspaceArgs(string[] args, int startIndex)
+    private static (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, string BindingWorkspacePath, string ErrorMessage) ParseFromTransformWorkspaceArgs(string[] args, int startIndex)
     {
         var transformWorkspacePath = string.Empty;
         var newWorkspacePath = string.Empty;
+        var bindingWorkspacePath = string.Empty;
+
+        (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, string BindingWorkspacePath, string ErrorMessage) FailParse(string message) =>
+            (false, transformWorkspacePath, newWorkspacePath, bindingWorkspacePath, message);
 
         for (var i = startIndex; i < args.Length; i++)
         {
             var arg = args[i];
             if (string.Equals(arg, "--transform-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, "missing value for --transform-workspace.");
-                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, "--transform-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return FailParse("missing value for --transform-workspace.");
+                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("--transform-workspace can only be provided once.");
                 transformWorkspacePath = args[++i];
                 continue;
             }
 
             if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length) return (false, transformWorkspacePath, newWorkspacePath, "missing value for --new-workspace.");
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, "--new-workspace can only be provided once.");
+                if (i + 1 >= args.Length) return FailParse("missing value for --new-workspace.");
+                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return FailParse("--new-workspace can only be provided once.");
                 newWorkspacePath = args[++i];
                 continue;
             }
 
-            return (false, transformWorkspacePath, newWorkspacePath, $"unknown option '{arg}'.");
+            if (string.Equals(arg, "--binding-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --binding-workspace.");
+                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("--binding-workspace can only be provided once.");
+                bindingWorkspacePath = args[++i];
+                continue;
+            }
+
+            return FailParse($"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, "missing required option --transform-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return (false, transformWorkspacePath, newWorkspacePath, "missing required option --new-workspace <path>.");
-        return (true, transformWorkspacePath, newWorkspacePath, string.Empty);
+        if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("missing required option --transform-workspace <path>.");
+        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return FailParse("missing required option --new-workspace <path>.");
+        return (true, transformWorkspacePath, newWorkspacePath, bindingWorkspacePath, string.Empty);
     }
 
     private static (bool Ok, string WorkspacePath, string ErrorMessage) ParseWorkspaceOnlyArgs(string[] args, int startIndex)

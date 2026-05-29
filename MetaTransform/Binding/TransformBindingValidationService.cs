@@ -155,6 +155,7 @@ public sealed class TransformBindingValidationService
                 target,
                 targetResolver,
                 options.IgnoredTargetColumnNames,
+                options.IgnoredTargetColumnNamesIfPresent,
                 dataTypeConversionService,
                 dataTypeConversionWorkspace,
                 finalRowset,
@@ -254,6 +255,7 @@ public sealed class TransformBindingValidationService
         TransformBindingTarget target,
         MetaSchemaTableResolver resolver,
         IReadOnlySet<string> ignoredTargetColumnNames,
+        IReadOnlySet<string> ignoredTargetColumnNamesIfPresent,
         IMetaDataTypeConversionService dataTypeConversionService,
         Workspace dataTypeConversionWorkspace,
         Rowset? finalRowset,
@@ -301,8 +303,20 @@ public sealed class TransformBindingValidationService
             ignoredTargetFields.Add(ignoredField);
         }
 
+        foreach (var ignoredColumnName in ignoredTargetColumnNamesIfPresent)
+        {
+            if (expectedColumnsByName.TryGetValue(ignoredColumnName, out var ignoredField) &&
+                ignoredTargetFields.All(item => !string.Equals(item.FieldId, ignoredField.FieldId, StringComparison.Ordinal)))
+            {
+                ignoredTargetFields.Add(ignoredField);
+            }
+        }
+
+        var ignoredTargetFieldIds = ignoredTargetFields
+            .Select(item => item.FieldId)
+            .ToHashSet(StringComparer.Ordinal);
         var writeCandidateColumns = allNonIdentityExpectedColumns
-            .Where(item => !ignoredTargetColumnNames.Contains(item.FieldName))
+            .Where(item => !ignoredTargetFieldIds.Contains(item.FieldId))
             .ToArray();
         var actualWriteColumns = actualColumns
             .Where(item => !IsAnonymousSyntheticOutputColumn(item, expectedColumnsByName))

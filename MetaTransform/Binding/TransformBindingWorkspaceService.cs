@@ -15,7 +15,8 @@ public sealed class TransformBindingWorkspaceService
         string? executeSystemDefaultSchemaName,
         string newWorkspacePath,
         TransformBindingValidationOptions? validationOptions = null,
-        string? dataTypeConversionWorkspacePath = null)
+        string? dataTypeConversionWorkspacePath = null,
+        bool allowPartial = false)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
         ArgumentNullException.ThrowIfNull(sourceSchemaWorkspacePaths);
@@ -63,48 +64,88 @@ public sealed class TransformBindingWorkspaceService
         var sourceResolver = new MetaSchemaTableResolver(combinedSourceSchemaModel);
         var targetResolver = new MetaSchemaTableResolver(targetSchema.Model);
 
-        var packages = BindTransformScripts(
-            transformModel,
-            transformScripts,
-            sourceResolver,
-            targetResolver,
-            normalizedExecuteSystemName,
-            normalizedExecuteSystemDefaultSchemaName);
-        EnsureBindingSucceeded(packages);
-
-        var bindingModel = BuildCombinedBindingModel(packages);
         var baseOptions = validationOptions ?? TransformBindingValidationOptions.Default;
         var resolvedOptions = TransformBindingValidationOptions.Create(
             baseOptions.IgnoredTargetColumnNames,
+            baseOptions.IgnoredTargetColumnNamesIfPresent,
             normalizedExecuteSystemName,
             normalizedExecuteSystemDefaultSchemaName);
 
         var dataTypeConversionWorkspace = MetaDataTypeConversionWorkspaceProvider.LoadOrDefault(dataTypeConversionWorkspacePath);
-        var validatedModel = new TransformBindingValidationService(
+        var validationService = new TransformBindingValidationService(
             new MetaDataTypeConversionService(),
-            dataTypeConversionWorkspace).ApplyValidation(
-            bindingModel,
-            sourceSchemaModel: combinedSourceSchemaModel,
-            targetSchemaModel: targetSchema.Model,
-            resolvedOptions);
+            dataTypeConversionWorkspace);
+
+        var objectIssues = new List<BindWorkspaceObjectIssue>();
+        MetaTransformBindingModel validatedModel;
+
+        if (!allowPartial)
+        {
+            var packages = BindTransformScripts(
+                transformModel,
+                transformScripts,
+                sourceResolver,
+                targetResolver,
+                normalizedExecuteSystemName,
+                normalizedExecuteSystemDefaultSchemaName);
+            EnsureBindingSucceeded(packages);
+
+            var bindingModel = BuildCombinedBindingModel(packages);
+            validatedModel = validationService.ApplyValidation(
+                bindingModel,
+                sourceSchemaModel: combinedSourceSchemaModel,
+                targetSchemaModel: targetSchema.Model,
+                resolvedOptions);
+        }
+        else
+        {
+            var packages = BindTransformScripts(
+                transformModel,
+                transformScripts,
+                sourceResolver,
+                targetResolver,
+                normalizedExecuteSystemName,
+                normalizedExecuteSystemDefaultSchemaName,
+                objectIssues);
+
+            validatedModel = MetaTransformBindingModel.CreateEmpty();
+            foreach (var package in packages)
+            {
+                var packageModel = BuildCombinedBindingModel([package]);
+                try
+                {
+                    var validatedPackageModel = validationService.ApplyValidation(
+                        packageModel,
+                        sourceSchemaModel: combinedSourceSchemaModel,
+                        targetSchemaModel: targetSchema.Model,
+                        resolvedOptions);
+                    MergeBindingModel(validatedModel, validatedPackageModel, package.TransformScript.Name);
+                }
+                catch (TransformBindingValidationException ex)
+                {
+                    objectIssues.Add(CreateObjectIssue(package.TransformScript, "Validation", ex.Code, ex.Message));
+                }
+            }
+        }
 
         validatedModel.SaveToXmlWorkspace(bindingWorkspaceFullPath);
 
         return new BindToWorkspaceResult(
             validatedModel,
             bindingWorkspaceFullPath,
-            packages.Count,
+            transformScripts.Length,
             validatedModel.TransformBindingList.Count,
             validatedModel.RowsetList.Count(item =>
                 string.Equals(item.DerivationKind, "Source", StringComparison.OrdinalIgnoreCase) &&
                 !string.IsNullOrWhiteSpace(item.SqlIdentifier)),
             validatedModel.TransformBindingTargetList.Count,
-            0,
-            0,
+            objectIssues.Count,
+            objectIssues.Count,
             validatedModel.ValidationSourceRowsetLinkList.Count,
             validatedModel.ValidationTargetRowsetLinkList.Count,
             validatedModel.ValidationSourceColumnLinkList.Count,
-            validatedModel.ValidationTargetColumnLinkList.Count);
+            validatedModel.ValidationTargetColumnLinkList.Count,
+            objectIssues);
     }
 
     public BindToWorkspaceResult BindToWorkspace(
@@ -270,6 +311,52 @@ public sealed class TransformBindingWorkspaceService
         return packages;
     }
 
+    private static List<ScriptBindingPackage> BindTransformScripts(
+        MetaTransformScriptModel transformModel,
+        IReadOnlyList<TransformScript> transformScripts,
+        MetaSchemaTableResolver sourceResolver,
+        MetaSchemaTableResolver targetResolver,
+        string executeSystemName,
+        string executeSystemDefaultSchemaName,
+        ICollection<BindWorkspaceObjectIssue> objectIssues)
+    {
+        var bindingService = new TransformBindingService();
+        var packages = new List<ScriptBindingPackage>(transformScripts.Count);
+
+        foreach (var transformScript in transformScripts)
+        {
+            try
+            {
+                var target = CreateTargetFromTransformScript(transformModel, transformScript);
+                var bound = bindingService.BindTransform(
+                    transformModel,
+                    transformScript,
+                    sourceResolver,
+                    targetResolver,
+                    executeSystemName,
+                    executeSystemDefaultSchemaName);
+
+                if (bound.HasErrors)
+                {
+                    objectIssues.Add(CreateBindingIssue(transformScript, bound));
+                    continue;
+                }
+
+                packages.Add(new ScriptBindingPackage(transformScript, bound, target));
+            }
+            catch (TransformBindingValidationException ex)
+            {
+                objectIssues.Add(CreateObjectIssue(transformScript, "Binding", ex.Code, ex.Message));
+            }
+            catch (Exception ex) when (ex is InvalidOperationException or ArgumentException)
+            {
+                objectIssues.Add(CreateObjectIssue(transformScript, "Binding", ex.GetType().Name, ex.Message));
+            }
+        }
+
+        return packages;
+    }
+
     private static void EnsureBindingSucceeded(IReadOnlyList<ScriptBindingPackage> packages)
     {
         foreach (var package in packages)
@@ -297,17 +384,34 @@ public sealed class TransformBindingWorkspaceService
             var partial = package.Target is null
                 ? TransformBindingModelBuilder.Create(package.Bound)
                 : TransformBindingModelBuilder.Create(package.Bound, [package.Target]);
-            MergeById(model.TransformBindingList, partial.TransformBindingList, static item => item.Id, "TransformBinding", package.TransformScript.Name);
-            MergeById(model.TransformBindingTargetList, partial.TransformBindingTargetList, static item => item.Id, "TransformBindingTarget", package.TransformScript.Name);
-            MergeById(model.RowsetList, partial.RowsetList, static item => item.Id, "Rowset", package.TransformScript.Name);
-            MergeById(model.SourceTargetList, partial.SourceTargetList, static item => item.Id, "SourceTarget", package.TransformScript.Name);
-            MergeById(model.ColumnList, partial.ColumnList, static item => item.Id, "Column", package.TransformScript.Name);
-            MergeById(model.ColumnReferenceList, partial.ColumnReferenceList, static item => item.Id, "ColumnReference", package.TransformScript.Name);
-            MergeById(model.TableSourceList, partial.TableSourceList, static item => item.Id, "TableSource", package.TransformScript.Name);
-            MergeById(model.OutputRowsetList, partial.OutputRowsetList, static item => item.Id, "OutputRowset", package.TransformScript.Name);
+            MergeBindingModel(model, partial, package.TransformScript.Name);
         }
 
         return model;
+    }
+
+    private static void MergeBindingModel(
+        MetaTransformBindingModel destination,
+        MetaTransformBindingModel source,
+        string transformScriptName)
+    {
+        MergeById(destination.TransformBindingList, source.TransformBindingList, static item => item.Id, "TransformBinding", transformScriptName);
+        MergeById(destination.TransformBindingTargetList, source.TransformBindingTargetList, static item => item.Id, "TransformBindingTarget", transformScriptName);
+        MergeById(destination.RowsetList, source.RowsetList, static item => item.Id, "Rowset", transformScriptName);
+        MergeById(destination.SourceTargetList, source.SourceTargetList, static item => item.Id, "SourceTarget", transformScriptName);
+        MergeById(destination.ColumnList, source.ColumnList, static item => item.Id, "Column", transformScriptName);
+        MergeById(destination.ColumnReferenceList, source.ColumnReferenceList, static item => item.Id, "ColumnReference", transformScriptName);
+        MergeById(destination.TableSourceList, source.TableSourceList, static item => item.Id, "TableSource", transformScriptName);
+        MergeById(destination.OutputRowsetList, source.OutputRowsetList, static item => item.Id, "OutputRowset", transformScriptName);
+        MergeById(destination.ValidationList, source.ValidationList, static item => item.Id, "Validation", transformScriptName);
+        MergeById(destination.ValidationSourceRowsetLinkList, source.ValidationSourceRowsetLinkList, static item => item.Id, "ValidationSourceRowsetLink", transformScriptName);
+        MergeById(destination.ValidationTargetRowsetLinkList, source.ValidationTargetRowsetLinkList, static item => item.Id, "ValidationTargetRowsetLink", transformScriptName);
+        MergeById(destination.ValidationSourceColumnLinkList, source.ValidationSourceColumnLinkList, static item => item.Id, "ValidationSourceColumnLink", transformScriptName);
+        MergeById(destination.ValidationTargetColumnLinkList, source.ValidationTargetColumnLinkList, static item => item.Id, "ValidationTargetColumnLink", transformScriptName);
+        MergeById(destination.ValidationTargetColumnTypeExactList, source.ValidationTargetColumnTypeExactList, static item => item.Id, "ValidationTargetColumnTypeExact", transformScriptName);
+        MergeById(destination.ValidationTargetColumnTypeSanctionedConversionList, source.ValidationTargetColumnTypeSanctionedConversionList, static item => item.Id, "ValidationTargetColumnTypeSanctionedConversion", transformScriptName);
+        MergeById(destination.ValidationTargetColumnTypeNotClassifiedList, source.ValidationTargetColumnTypeNotClassifiedList, static item => item.Id, "ValidationTargetColumnTypeNotClassified", transformScriptName);
+        MergeById(destination.ValidationTargetIgnoredColumnList, source.ValidationTargetIgnoredColumnList, static item => item.Id, "ValidationTargetIgnoredColumn", transformScriptName);
     }
 
     private static void MergeById<T>(
@@ -534,6 +638,34 @@ public sealed class TransformBindingWorkspaceService
         return combined;
     }
 
+    private static BindWorkspaceObjectIssue CreateBindingIssue(
+        TransformScript transformScript,
+        TransformBindingResult bound)
+    {
+        var firstError = bound.Issues.FirstOrDefault();
+        return firstError is null
+            ? CreateObjectIssue(
+                transformScript,
+                "Binding",
+                "BindingFailed",
+                $"Transform script '{transformScript.Name}' produced one or more binding errors.")
+            : CreateObjectIssue(transformScript, "Binding", firstError.Code, firstError.Message);
+    }
+
+    private static BindWorkspaceObjectIssue CreateObjectIssue(
+        TransformScript transformScript,
+        string stage,
+        string code,
+        string message)
+    {
+        return new BindWorkspaceObjectIssue(
+            transformScript.Id,
+            transformScript.Name,
+            stage,
+            code,
+            message);
+    }
+
     private sealed record ScriptBindingPackage(
         TransformScript TransformScript,
         TransformBindingResult Bound,
@@ -562,4 +694,15 @@ public sealed record BindToWorkspaceResult(
     int SourceRowsetValidationCount = 0,
     int TargetRowsetValidationCount = 0,
     int SourceColumnValidationCount = 0,
-    int TargetColumnValidationCount = 0);
+    int TargetColumnValidationCount = 0,
+    IReadOnlyList<BindWorkspaceObjectIssue>? ObjectIssues = null)
+{
+    public int SkippedTransformScriptCount => ObjectIssues?.Count ?? 0;
+}
+
+public sealed record BindWorkspaceObjectIssue(
+    string TransformScriptId,
+    string TransformScriptName,
+    string Stage,
+    string Code,
+    string Message);

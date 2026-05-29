@@ -6,10 +6,12 @@ namespace MetaDataQuality.Core;
 public sealed partial class MetaDataQualityCandidateDiscoveryService
 {
     private static IReadOnlyList<ExtractedScriptEvidence> ExtractWorkspaceEvidence(
-        MetaTransformScriptModel transformModel)
+        MetaTransformScriptModel transformModel,
+        IReadOnlySet<string>? includedTransformScriptIds = null)
     {
         var extractor = new TransformScriptEvidenceExtractor(transformModel);
         return transformModel.TransformScriptList
+            .Where(script => includedTransformScriptIds is null || includedTransformScriptIds.Contains(script.Id))
             .OrderBy(static item => item.Name, StringComparer.OrdinalIgnoreCase)
             .Select(script => new ExtractedScriptEvidence
             {

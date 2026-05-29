@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Tooling\MetaDataQuality.Tooling.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Tooling\MetaTransformScript.Tooling.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Binding\Tooling\MetaTransformBinding.Tooling.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,8 @@ using MetaConvert.DataQualityToSql;
 using MetaBi.Tests.Common;
 using MetaDataQuality;
 using MetaDataQuality.Core;
+using MetaTransformBinding;
+using MetaTransformScript;
 using MetaTransformScript.Sql;
 
 namespace MetaDataQuality.Tests;
@@ -31,6 +33,7 @@ public sealed class CliTests
         Assert.Contains("Options:", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--transform-workspace <path>", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--new-workspace <path>", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--binding-workspace <path>", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -75,6 +78,68 @@ public sealed class CliTests
                 reloaded.DataQualityCandidateList,
                 item => string.Equals(item.Id, firstCandidate.Id, StringComparison.Ordinal));
             Assert.Equal("Promoted", promotedRow.Status);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
+    public async Task FromTransformWorkspace_WithBindingWorkspace_ScansOnlyBoundScripts()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(rootPath, "transform");
+        var bindingWorkspacePath = Path.Combine(rootPath, "binding");
+        var qualityWorkspacePath = Path.Combine(rootPath, "quality");
+
+        try
+        {
+            var sqlService = new MetaTransformScriptSqlService();
+            await sqlService.ImportFromSqlCodeToWorkspaceAsync(
+                "select c.CustomerId, o.OrderId from dbo.Customer c left outer join dbo.[Order] o on c.CustomerId = o.CustomerId",
+                "dbo.TargetOrders",
+                transformWorkspacePath,
+                "dbo.v_customer_orders");
+            await sqlService.AddSqlCodeToWorkspaceAsync(
+                "select m.CustomerId, p.PaymentId from dbo.MissingCustomer m left outer join dbo.Payment p on m.CustomerId = p.CustomerId",
+                "dbo.TargetPayments",
+                transformWorkspacePath,
+                "dbo.v_missing_payments");
+
+            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var boundScript = transformModel.TransformScriptList.Single(item =>
+                string.Equals(item.Name, "dbo.v_customer_orders", StringComparison.OrdinalIgnoreCase));
+            var bindingModel = MetaTransformBindingModel.CreateEmpty();
+            var binding = new TransformBinding
+            {
+                Id = $"{boundScript.Id}:binding",
+                MetaTransformScriptTransformScriptId = boundScript.Id,
+                TransformScriptName = boundScript.Name
+            };
+            bindingModel.TransformBindingList.Add(binding);
+            bindingModel.ValidationList.Add(new Validation
+            {
+                Id = $"{binding.Id}:validation",
+                TransformBinding = binding
+            });
+            bindingModel.SaveToXmlWorkspace(bindingWorkspacePath);
+
+            var generated = RunCli(
+                $"from-transform-workspace --transform-workspace \"{transformWorkspacePath}\" --binding-workspace \"{bindingWorkspacePath}\" --new-workspace \"{qualityWorkspacePath}\"");
+
+            Assert.Equal(0, generated.ExitCode);
+            Assert.Contains("Transform scripts scanned: 1/2", generated.Output, StringComparison.Ordinal);
+
+            var model = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);
+            Assert.NotEmpty(model.DataQualityCandidateList);
+            Assert.Contains(model.JoinPatternOccurrenceList, item =>
+                string.Equals(item.TransformScriptName, "dbo.v_customer_orders", StringComparison.OrdinalIgnoreCase));
+            Assert.DoesNotContain(model.JoinPatternOccurrenceList, item =>
+                string.Equals(item.TransformScriptName, "dbo.v_missing_payments", StringComparison.OrdinalIgnoreCase));
+            Assert.DoesNotContain(model.JoinPatternOccurrenceBaseTableList, item =>
+                item.BaseObjectName.Contains("MissingCustomer", StringComparison.OrdinalIgnoreCase) ||
+                item.BaseObjectName.Contains("Payment", StringComparison.OrdinalIgnoreCase));
         }
         finally
         {

@@ -7,7 +7,7 @@ It is not a hidden business-rules engine. It turns modeled transform syntax into
 ## Workflow
 
 1. Build or import a `MetaTransformScript` workspace.
-2. Create a `MetaDataQuality` workspace from the whole transform workspace.
+2. Create a `MetaDataQuality` workspace from the whole transform workspace, or from the subset represented by a BindingWS.
 3. Inspect what was discovered.
 4. Promote the generated candidates that should become SQL.
 5. Convert the promoted candidates to SQL views and MetaDQ operational SQL.
@@ -18,6 +18,7 @@ Commands:
 
 ```cmd
 meta-data-quality from-transform-workspace --transform-workspace TransformWS --new-workspace DataQualityWS
+meta-data-quality from-transform-workspace --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace DataQualityWS
 meta-data-quality inspect --workspace DataQualityWS
 meta-data-quality promote --workspace DataQualityWS --all
 meta-convert data-quality-to-sql --workspace DataQualityWS --out DataQualityViews.sql
@@ -28,6 +29,8 @@ meta-sql execute --connection-env META_DQ_OPERATIONAL_SQL --query "DECLARE @RunI
 ## How Discovery Works
 
 Discovery traverses the typed semantic `MetaTransformScript` model. It does not parse ad-hoc SQL text during DQ discovery, and it does not treat inferred lineage as product truth.
+
+When `--binding-workspace` is supplied, discovery first reads validation-backed `MetaTransformBinding.TransformBinding` rows and scans only the matching `TransformScript` ids. After partial binding, broken transform objects can remain in the raw transform workspace without producing DQ SQL that fails deployment.
 
 For each SELECT-kind `TransformScript`, discovery starts at the modeled `TSqlStatement`, resolves the `SelectStatement` branch, and walks the explicit instance graph:
 

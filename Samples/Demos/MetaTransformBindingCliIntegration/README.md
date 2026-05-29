@@ -26,5 +26,8 @@ The sample binds with:
 Optional:
 - `--ignore-target-columns <col[,col...]>` excludes named non-identity target columns from target conformance checks.
 - ignored names must exist on each target table or validation fails with `TargetIgnoredColumnNotFound`.
+- `--ignore-target-columns-if-present <col[,col...]>` excludes named non-identity target columns only on target tables where they exist.
 - if any one-part source identifier is present, `--execute-system-default-schema-name <schema>` is required.
 - bind is atomic: if binding or validation fails, no binding workspace is created.
+- `--allow-partial` is an explicit corpus/discovery mode that saves only successfully bound/validated objects.
+- `--partial-report <path>` writes skipped object diagnostics as TSV and requires `--allow-partial`.

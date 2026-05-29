@@ -1,6 +1,7 @@
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using MetaTransform.Binding;
+using System.Text;
 
 internal static class Program
 {
@@ -38,7 +39,7 @@ internal static class Program
                     "Bind all transform scripts and validate against source/target schema contracts into a new workspace.",
                     new[]
                     {
-                        "meta-transform-binding bind --transform-workspace <path> --source-schema <path> [--source-schema <path> ...] --target-schema <path> --execute-system <name> --new-workspace <path> [--execute-system-default-schema-name <schema>] [--ignore-target-columns <col[,col...]>] [--data-type-conversion-workspace <path>]"
+                        "meta-transform-binding bind --transform-workspace <path> --source-schema <path> [--source-schema <path> ...] --target-schema <path> --execute-system <name> --new-workspace <path> [--execute-system-default-schema-name <schema>] [--ignore-target-columns <col[,col...]>] [--ignore-target-columns-if-present <col[,col...]>] [--data-type-conversion-workspace <path>] [--allow-partial] [--partial-report <path>]"
                     },
                     new[]
                     {
@@ -49,24 +50,30 @@ internal static class Program
                         new CliOptionDefinition("--new-workspace <path>", "Required. Directory where the binding workspace will be created."),
                         new CliOptionDefinition("--execute-system-default-schema-name <schema>", "Required when any one-part source identifier exists."),
                         new CliOptionDefinition("--ignore-target-columns <col[,col...]>", "Optional comma-separated target columns to exclude from target conformance checks."),
-                        new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional sanctioned conversion policy workspace. Omitted uses built-in defaults.")
+                        new CliOptionDefinition("--ignore-target-columns-if-present <col[,col...]>", "Optional comma-separated target columns to exclude only on target tables where they exist."),
+                        new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional sanctioned conversion policy workspace. Omitted uses built-in defaults."),
+                        new CliOptionDefinition("--allow-partial", "Optional. Save only objects that bind and validate successfully."),
+                        new CliOptionDefinition("--partial-report <path>", "Optional TSV report for skipped objects. Requires --allow-partial.")
                     },
                     new[]
                     {
                         "bind is atomic: it binds and validates in one run.",
                         "If binding or validation fails, no binding workspace is created.",
+                        "--allow-partial is an explicit corpus/discovery mode: failed objects are skipped and successful bindings are saved.",
                         "bind processes all transform scripts in the transform workspace.",
                         "Target SQL identifier is read from ScriptObjectView.TargetSqlIdentifier.",
                         "Source schema workspaces are repeatable; target schema workspace is single.",
                         "Every schema workspace must contain exactly one system.",
                         "--execute-system-default-schema-name is required when any one-part source identifier exists.",
                         "--ignore-target-columns excludes named non-identity target columns from target conformance checks.",
-                        "Ignored names must exist on each target table or bind fails explicitly."
+                        "Ignored names must exist on each target table or bind fails explicitly.",
+                        "--ignore-target-columns-if-present excludes named non-identity target columns only on target tables where they exist."
                     },
                     new[]
                     {
                         "meta-transform-binding bind --transform-workspace .\\TransformWS --source-schema .\\SourceSchemaWS --target-schema .\\TargetSchemaWS --execute-system SalesDb --new-workspace .\\BindingWS",
-                        "meta-transform-binding bind --transform-workspace .\\TransformWS --source-schema .\\SalesSchemaWS --source-schema .\\ReferenceSchemaWS --target-schema .\\WarehouseSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\\BindingWS --ignore-target-columns LoadUtc,RunId"
+                        "meta-transform-binding bind --transform-workspace .\\TransformWS --source-schema .\\SalesSchemaWS --source-schema .\\ReferenceSchemaWS --target-schema .\\WarehouseSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\\BindingWS --ignore-target-columns LoadUtc,RunId --ignore-target-columns-if-present UpdateAudit_ID",
+                        "meta-transform-binding bind --transform-workspace .\\TransformWS --source-schema .\\SourceSchemaWS --target-schema .\\TargetSchemaWS --execute-system SalesDb --execute-system-default-schema-name dbo --new-workspace .\\BindingWS --allow-partial --partial-report .\\binding-partial.tsv"
                     }),
                 args => RunBindAsync(args, startIndex: 1))
         };
@@ -120,12 +127,13 @@ internal static class Program
         {
             var options = TransformBindingValidationOptions.Create(
                 parse.IgnoredTargetColumns,
+                parse.IgnoredTargetColumnsIfPresent,
                 parse.ExecuteSystemName,
                 parse.ExecuteSystemDefaultSchemaName);
 
             using (var activity = CliActivityLine.Start("Binding"))
             {
-                new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+                var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
                     parse.TransformWorkspacePath,
                     parse.SourceSchemaWorkspacePaths,
                     parse.TargetSchemaWorkspacePath,
@@ -133,9 +141,23 @@ internal static class Program
                     parse.ExecuteSystemDefaultSchemaName,
                     targetValidation.FullPath,
                     validationOptions: options,
-                    dataTypeConversionWorkspacePath: parse.DataTypeConversionWorkspacePath);
+                    dataTypeConversionWorkspacePath: parse.DataTypeConversionWorkspacePath,
+                    allowPartial: parse.AllowPartial);
 
-                activity.Succeed();
+                WritePartialReport(parse.PartialReportPath, result.ObjectIssues ?? []);
+
+                activity.Succeed(result.SkippedTransformScriptCount == 0
+                    ? "Ok"
+                    : $"Partial ({result.TransformBindingCount}/{result.TransformScriptCount})");
+
+                if (parse.AllowPartial && result.SkippedTransformScriptCount > 0)
+                {
+                    Presenter.WriteInfo($"Skipped transform scripts: {result.SkippedTransformScriptCount}");
+                    if (!string.IsNullOrWhiteSpace(parse.PartialReportPath))
+                    {
+                        Presenter.WriteInfo($"Partial report: {Path.GetFullPath(parse.PartialReportPath)}");
+                    }
+                }
             }
 
             return Task.FromResult(0);
@@ -187,7 +209,10 @@ internal static class Program
         string ExecuteSystemDefaultSchemaName,
         string NewWorkspacePath,
         string[] IgnoredTargetColumns,
+        string[] IgnoredTargetColumnsIfPresent,
         string DataTypeConversionWorkspacePath,
+        bool AllowPartial,
+        string PartialReportPath,
         string ErrorMessage) ParseBindArgs(
         string[] args,
         int startIndex)
@@ -199,7 +224,38 @@ internal static class Program
         var executeSystemDefaultSchemaName = string.Empty;
         var newWorkspacePath = string.Empty;
         var ignoredTargetColumns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var ignoredTargetColumnsIfPresent = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var dataTypeConversionWorkspacePath = string.Empty;
+        var allowPartial = false;
+        var partialReportPath = string.Empty;
+
+        (bool Ok,
+            string TransformWorkspacePath,
+            string[] SourceSchemaWorkspacePaths,
+            string TargetSchemaWorkspacePath,
+            string ExecuteSystemName,
+            string ExecuteSystemDefaultSchemaName,
+            string NewWorkspacePath,
+            string[] IgnoredTargetColumns,
+            string[] IgnoredTargetColumnsIfPresent,
+            string DataTypeConversionWorkspacePath,
+            bool AllowPartial,
+            string PartialReportPath,
+            string ErrorMessage) FailParse(string message) =>
+            (
+                false,
+                transformWorkspacePath,
+                sourceSchemaWorkspacePaths.ToArray(),
+                targetSchemaWorkspacePath,
+                executeSystemName,
+                executeSystemDefaultSchemaName,
+                newWorkspacePath,
+                ignoredTargetColumns.ToArray(),
+                ignoredTargetColumnsIfPresent.ToArray(),
+                dataTypeConversionWorkspacePath,
+                allowPartial,
+                partialReportPath,
+                message);
 
         for (var i = startIndex; i < args.Length; i++)
         {
@@ -207,35 +263,8 @@ internal static class Program
 
             if (string.Equals(arg, "--transform-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "missing value for --transform-workspace.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(transformWorkspacePath))
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "--transform-workspace can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return FailParse("missing value for --transform-workspace.");
+                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("--transform-workspace can only be provided once.");
 
                 transformWorkspacePath = args[++i];
                 continue;
@@ -243,20 +272,7 @@ internal static class Program
 
             if (string.Equals(arg, "--source-schema", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "missing value for --source-schema.");
-                }
+                if (i + 1 >= args.Length) return FailParse("missing value for --source-schema.");
 
                 sourceSchemaWorkspacePaths.Add(args[++i]);
                 continue;
@@ -264,35 +280,8 @@ internal static class Program
 
             if (string.Equals(arg, "--target-schema", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "missing value for --target-schema.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(targetSchemaWorkspacePath))
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "--target-schema can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return FailParse("missing value for --target-schema.");
+                if (!string.IsNullOrWhiteSpace(targetSchemaWorkspacePath)) return FailParse("--target-schema can only be provided once.");
 
                 targetSchemaWorkspacePath = args[++i];
                 continue;
@@ -300,35 +289,8 @@ internal static class Program
 
             if (string.Equals(arg, "--execute-system", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "missing value for --execute-system.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(executeSystemName))
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "--execute-system can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return FailParse("missing value for --execute-system.");
+                if (!string.IsNullOrWhiteSpace(executeSystemName)) return FailParse("--execute-system can only be provided once.");
 
                 executeSystemName = args[++i];
                 continue;
@@ -336,35 +298,8 @@ internal static class Program
 
             if (string.Equals(arg, "--execute-system-default-schema-name", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "missing value for --execute-system-default-schema-name.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(executeSystemDefaultSchemaName))
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "--execute-system-default-schema-name can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return FailParse("missing value for --execute-system-default-schema-name.");
+                if (!string.IsNullOrWhiteSpace(executeSystemDefaultSchemaName)) return FailParse("--execute-system-default-schema-name can only be provided once.");
 
                 executeSystemDefaultSchemaName = args[++i];
                 continue;
@@ -372,35 +307,8 @@ internal static class Program
 
             if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "missing value for --new-workspace.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath))
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "--new-workspace can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return FailParse("missing value for --new-workspace.");
+                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return FailParse("--new-workspace can only be provided once.");
 
                 newWorkspacePath = args[++i];
                 continue;
@@ -408,35 +316,12 @@ internal static class Program
 
             if (string.Equals(arg, "--ignore-target-columns", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "missing value for --ignore-target-columns.");
-                }
+                if (i + 1 >= args.Length) return FailParse("missing value for --ignore-target-columns.");
 
                 var raw = args[++i];
                 if (string.IsNullOrWhiteSpace(raw))
                 {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "value for --ignore-target-columns cannot be blank.");
+                    return FailParse("value for --ignore-target-columns cannot be blank.");
                 }
 
                 foreach (var value in raw.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
@@ -446,17 +331,30 @@ internal static class Program
 
                 if (ignoredTargetColumns.Count == 0)
                 {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "value for --ignore-target-columns must include at least one column name.");
+                    return FailParse("value for --ignore-target-columns must include at least one column name.");
+                }
+
+                continue;
+            }
+
+            if (string.Equals(arg, "--ignore-target-columns-if-present", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --ignore-target-columns-if-present.");
+
+                var raw = args[++i];
+                if (string.IsNullOrWhiteSpace(raw))
+                {
+                    return FailParse("value for --ignore-target-columns-if-present cannot be blank.");
+                }
+
+                foreach (var value in raw.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
+                {
+                    ignoredTargetColumnsIfPresent.Add(value);
+                }
+
+                if (ignoredTargetColumnsIfPresent.Count == 0)
+                {
+                    return FailParse("value for --ignore-target-columns-if-present must include at least one column name.");
                 }
 
                 continue;
@@ -464,126 +362,64 @@ internal static class Program
 
             if (string.Equals(arg, "--data-type-conversion-workspace", StringComparison.OrdinalIgnoreCase))
             {
-                if (i + 1 >= args.Length)
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "missing value for --data-type-conversion-workspace.");
-                }
-
-                if (!string.IsNullOrWhiteSpace(dataTypeConversionWorkspacePath))
-                {
-                    return (
-                        false,
-                        transformWorkspacePath,
-                        sourceSchemaWorkspacePaths.ToArray(),
-                        targetSchemaWorkspacePath,
-                        executeSystemName,
-                        executeSystemDefaultSchemaName,
-                        newWorkspacePath,
-                        ignoredTargetColumns.ToArray(),
-                        dataTypeConversionWorkspacePath,
-                        "--data-type-conversion-workspace can only be provided once.");
-                }
+                if (i + 1 >= args.Length) return FailParse("missing value for --data-type-conversion-workspace.");
+                if (!string.IsNullOrWhiteSpace(dataTypeConversionWorkspacePath)) return FailParse("--data-type-conversion-workspace can only be provided once.");
 
                 dataTypeConversionWorkspacePath = args[++i];
                 continue;
             }
 
-            return (
-                false,
-                transformWorkspacePath,
-                sourceSchemaWorkspacePaths.ToArray(),
-                targetSchemaWorkspacePath,
-                executeSystemName,
-                executeSystemDefaultSchemaName,
-                newWorkspacePath,
-                ignoredTargetColumns.ToArray(),
-                dataTypeConversionWorkspacePath,
-                $"unknown option '{arg}'.");
+            if (string.Equals(arg, "--allow-partial", StringComparison.OrdinalIgnoreCase))
+            {
+                allowPartial = true;
+                continue;
+            }
+
+            if (string.Equals(arg, "--partial-report", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --partial-report.");
+                if (!string.IsNullOrWhiteSpace(partialReportPath)) return FailParse("--partial-report can only be provided once.");
+
+                partialReportPath = args[++i];
+                if (string.IsNullOrWhiteSpace(partialReportPath))
+                {
+                    return FailParse("value for --partial-report cannot be blank.");
+                }
+
+                continue;
+            }
+
+            return FailParse($"unknown option '{arg}'.");
         }
 
         if (string.IsNullOrWhiteSpace(transformWorkspacePath))
         {
-            return (
-                false,
-                transformWorkspacePath,
-                sourceSchemaWorkspacePaths.ToArray(),
-                targetSchemaWorkspacePath,
-                executeSystemName,
-                executeSystemDefaultSchemaName,
-                newWorkspacePath,
-                ignoredTargetColumns.ToArray(),
-                dataTypeConversionWorkspacePath,
-                "missing required option --transform-workspace <path>.");
+            return FailParse("missing required option --transform-workspace <path>.");
         }
 
         if (sourceSchemaWorkspacePaths.Count == 0)
         {
-            return (
-                false,
-                transformWorkspacePath,
-                sourceSchemaWorkspacePaths.ToArray(),
-                targetSchemaWorkspacePath,
-                executeSystemName,
-                executeSystemDefaultSchemaName,
-                newWorkspacePath,
-                ignoredTargetColumns.ToArray(),
-                dataTypeConversionWorkspacePath,
-                "missing required option --source-schema <path>.");
+            return FailParse("missing required option --source-schema <path>.");
         }
 
         if (string.IsNullOrWhiteSpace(targetSchemaWorkspacePath))
         {
-            return (
-                false,
-                transformWorkspacePath,
-                sourceSchemaWorkspacePaths.ToArray(),
-                targetSchemaWorkspacePath,
-                executeSystemName,
-                executeSystemDefaultSchemaName,
-                newWorkspacePath,
-                ignoredTargetColumns.ToArray(),
-                dataTypeConversionWorkspacePath,
-                "missing required option --target-schema <path>.");
+            return FailParse("missing required option --target-schema <path>.");
         }
 
         if (string.IsNullOrWhiteSpace(executeSystemName))
         {
-            return (
-                false,
-                transformWorkspacePath,
-                sourceSchemaWorkspacePaths.ToArray(),
-                targetSchemaWorkspacePath,
-                executeSystemName,
-                executeSystemDefaultSchemaName,
-                newWorkspacePath,
-                ignoredTargetColumns.ToArray(),
-                dataTypeConversionWorkspacePath,
-                "missing required option --execute-system <name>.");
+            return FailParse("missing required option --execute-system <name>.");
         }
 
         if (string.IsNullOrWhiteSpace(newWorkspacePath))
         {
-            return (
-                false,
-                transformWorkspacePath,
-                sourceSchemaWorkspacePaths.ToArray(),
-                targetSchemaWorkspacePath,
-                executeSystemName,
-                executeSystemDefaultSchemaName,
-                newWorkspacePath,
-                ignoredTargetColumns.ToArray(),
-                dataTypeConversionWorkspacePath,
-                "missing required option --new-workspace <path>.");
+            return FailParse("missing required option --new-workspace <path>.");
+        }
+
+        if (!allowPartial && !string.IsNullOrWhiteSpace(partialReportPath))
+        {
+            return FailParse("--partial-report requires --allow-partial.");
         }
 
         return (
@@ -595,9 +431,50 @@ internal static class Program
             executeSystemDefaultSchemaName,
             newWorkspacePath,
             ignoredTargetColumns.ToArray(),
+            ignoredTargetColumnsIfPresent.ToArray(),
             dataTypeConversionWorkspacePath,
+            allowPartial,
+            partialReportPath,
             string.Empty);
     }
+
+    private static void WritePartialReport(
+        string partialReportPath,
+        IReadOnlyList<BindWorkspaceObjectIssue> objectIssues)
+    {
+        if (string.IsNullOrWhiteSpace(partialReportPath))
+        {
+            return;
+        }
+
+        var reportFullPath = Path.GetFullPath(partialReportPath);
+        var directory = Path.GetDirectoryName(reportFullPath);
+        if (!string.IsNullOrWhiteSpace(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
+
+        using var writer = new StreamWriter(reportFullPath, append: false, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+        writer.WriteLine("TransformScriptId\tTransformScriptName\tStage\tCode\tMessage");
+        foreach (var issue in objectIssues)
+        {
+            writer.Write(Tsv(issue.TransformScriptId));
+            writer.Write('\t');
+            writer.Write(Tsv(issue.TransformScriptName));
+            writer.Write('\t');
+            writer.Write(Tsv(issue.Stage));
+            writer.Write('\t');
+            writer.Write(Tsv(issue.Code));
+            writer.Write('\t');
+            writer.WriteLine(Tsv(issue.Message));
+        }
+    }
+
+    private static string Tsv(string value) =>
+        (value ?? string.Empty)
+            .Replace('\t', ' ')
+            .Replace('\r', ' ')
+            .Replace('\n', ' ');
 
     private static bool IsHelpToken(string value)
     {

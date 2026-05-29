@@ -1452,27 +1452,37 @@ Usage:
   meta-transform-binding bind --transform-workspace <path> --source-schema <path> [--source-schema
   <path> ...] --target-schema <path> --execute-system <name> --new-workspace <path>
   [--execute-system-default-schema-name <schema>] [--ignore-target-columns <col[,col...]>]
-  [--data-type-conversion-workspace <path>]
+  [--ignore-target-columns-if-present <col[,col...]>] [--data-type-conversion-workspace <path>]
+  [--allow-partial] [--partial-report <path>]
 
 Options:
 
-  --transform-workspace <path>                   Required. MetaTransformScript workspace to bind.
-  --source-schema <path>                         Required. Repeatable source MetaSchema workspace.
-  --target-schema <path>                         Required. Target MetaSchema workspace.
-  --execute-system <name>                        Required. Execution context for one/two-part source
-                                                 identifiers.
-  --new-workspace <path>                         Required. Directory where the binding workspace
-                                                 will be created.
-  --execute-system-default-schema-name <schema>  Required when any one-part source identifier
-                                                 exists.
-  --ignore-target-columns <col[,col...]>         Optional comma-separated target columns to exclude
-                                                 from target conformance checks.
-  --data-type-conversion-workspace <path>        Optional sanctioned conversion policy workspace.
-                                                 Omitted uses built-in defaults.
+  --transform-workspace <path>                       Required. MetaTransformScript workspace to
+                                                     bind.
+  --source-schema <path>                             Required. Repeatable source MetaSchema
+                                                     workspace.
+  --target-schema <path>                             Required. Target MetaSchema workspace.
+  --execute-system <name>                            Required. Execution context for one/two-part
+                                                     source identifiers.
+  --new-workspace <path>                             Required. Directory where the binding workspace
+                                                     will be created.
+  --execute-system-default-schema-name <schema>      Required when any one-part source identifier
+                                                     exists.
+  --ignore-target-columns <col[,col...]>             Optional comma-separated target columns to
+                                                     exclude from target conformance checks.
+  --ignore-target-columns-if-present <col[,col...]>  Optional comma-separated target columns to
+                                                     exclude only on target tables where they exist.
+  --data-type-conversion-workspace <path>            Optional sanctioned conversion policy
+                                                     workspace. Omitted uses built-in defaults.
+  --allow-partial                                    Optional. Save only objects that bind and
+                                                     validate successfully.
+  --partial-report <path>                            Optional TSV report for skipped objects.
+                                                     Requires --allow-partial.
 
 Notes:
   bind is atomic: it binds and validates in one run.
   If binding or validation fails, no binding workspace is created.
+  --allow-partial is an explicit corpus/discovery mode: failed objects are skipped and successful bindings are saved.
   bind processes all transform scripts in the transform workspace.
   Target SQL identifier is read from ScriptObjectView.TargetSqlIdentifier.
   Source schema workspaces are repeatable; target schema workspace is single.
@@ -1480,11 +1490,13 @@ Notes:
   --execute-system-default-schema-name is required when any one-part source identifier exists.
   --ignore-target-columns excludes named non-identity target columns from target conformance checks.
   Ignored names must exist on each target table or bind fails explicitly.
+  --ignore-target-columns-if-present excludes named non-identity target columns only on target tables where they exist.
 
 Examples:
 
   meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SourceSchemaWS --target-schema .\TargetSchemaWS --execute-system SalesDb --new-workspace .\BindingWS
-  meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SalesSchemaWS --source-schema .\ReferenceSchemaWS --target-schema .\WarehouseSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\BindingWS --ignore-target-columns LoadUtc,RunId
+  meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SalesSchemaWS --source-schema .\ReferenceSchemaWS --target-schema .\WarehouseSchemaWS --execute-system WarehouseDb --execute-system-default-schema-name dbo --new-workspace .\BindingWS --ignore-target-columns LoadUtc,RunId --ignore-target-columns-if-present UpdateAudit_ID
+  meta-transform-binding bind --transform-workspace .\TransformWS --source-schema .\SourceSchemaWS --target-schema .\TargetSchemaWS --execute-system SalesDb --execute-system-default-schema-name dbo --new-workspace .\BindingWS --allow-partial --partial-report .\binding-partial.tsv
 ```
 
 ## meta-data-quality
@@ -1511,15 +1523,19 @@ Next: meta-data-quality from-transform-workspace --help
 Command: from-transform-workspace
 Usage:
   meta-data-quality from-transform-workspace --transform-workspace <path> --new-workspace <path>
+  [--binding-workspace <path>]
 
 Options:
 
   --transform-workspace <path>  Required. MetaTransformScript workspace to analyze.
   --new-workspace <path>        Required. Directory where the generated MetaDataQuality workspace
                                 will be created.
+  --binding-workspace <path>    Optional. MetaTransformBinding workspace used to scan only validated
+                                scripts.
 
 Notes:
   Scans all TransformScript instances in one workspace.
+  When --binding-workspace is supplied, only TransformScript rows with Validation-backed TransformBinding rows are scanned.
   Creates one MetaDataQuality workspace with generated DQ views.
 ```
 
