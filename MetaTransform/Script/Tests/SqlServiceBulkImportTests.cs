@@ -84,6 +84,15 @@ SELECT CustomerId
 FROM dbo.Customer
 GO
 """);
+        var helperViewPath = WriteSql(
+            sourceDirectory,
+            "dbo.HelperView.sql",
+            """
+CREATE VIEW dbo.HelperView AS
+SELECT CustomerId
+FROM dbo.Customer
+GO
+""");
         var tvfPath = WriteSql(
             sourceDirectory,
             "dbo.fnCustomer.sql",
@@ -102,17 +111,20 @@ GO
             new[]
             {
                 new SqlFileImportRequest(viewPath, "dbo.TargetCustomer"),
+                new SqlFileImportRequest(helperViewPath, null),
                 new SqlFileImportRequest(tvfPath, null)
             },
             workspacePath);
 
         Assert.Empty(result.Failures);
-        Assert.Equal(2, result.Successes.Count);
+        Assert.Equal(3, result.Successes.Count);
 
         var loaded = MetaTransformScriptInstance.LoadFromWorkspace(workspacePath, searchUpward: false);
+        Assert.Equal(3, loaded.TransformScriptList.Count);
         Assert.Single(loaded.ScriptObjectViewList);
         Assert.Single(loaded.ScriptObjectTVFList);
         Assert.Equal("dbo.TargetCustomer", loaded.ScriptObjectViewList[0].TargetSqlIdentifier);
+        Assert.Contains(loaded.TransformScriptList, script => string.Equals(script.Name, "dbo.HelperView", StringComparison.Ordinal));
     }
 
     [Fact]

@@ -50,7 +50,7 @@ internal static class Program
                     Notes: new[]
                     {
                         "Sources: sql-file, sql-files, sql-code.",
-                        "--target <sql-identifier> is required for view/select imports and not allowed for TVF or mutation imports.",
+                        "--target <sql-identifier> is optional for CREATE VIEW imports, required for bare SELECT imports, and not allowed for TVF or mutation imports.",
                         "Specify exactly one of --new-workspace <path> or --workspace <path>."
                     },
                     Examples: new[]
@@ -85,7 +85,7 @@ internal static class Program
             new[]
             {
                 new CliOptionDefinition("--path <file.sql>", "Required. SQL file to import."),
-                new CliOptionDefinition("--target <sql-identifier>", "Required for CREATE VIEW imports; not allowed for inline CREATE FUNCTION or mutation statement imports."),
+                new CliOptionDefinition("--target <sql-identifier>", "Optional for CREATE VIEW imports; not allowed for inline CREATE FUNCTION or mutation statement imports."),
                 new CliOptionDefinition("--new-workspace <path>", "Create a new MetaTransformScript workspace. Mutually exclusive with --workspace."),
                 new CliOptionDefinition("--workspace <path>", "Add one script to an existing workspace. Mutually exclusive with --new-workspace.")
             },
@@ -113,7 +113,7 @@ internal static class Program
             new[]
             {
                 "Manifest paths are resolved relative to the manifest file.",
-                "Each row is one import attempt. CREATE VIEW and bare SELECT rows must supply Target; inline TVF and scalar UDF rows must leave Target blank.",
+                "Each row is one import attempt. CREATE VIEW rows may leave Target blank; bare SELECT rows must supply Target; inline TVF and scalar UDF rows must leave Target blank.",
                 "The command continues after per-file failures, saves successful imports once, and exits nonzero when any file failed."
             },
             ShowInCommandCatalog: false);
@@ -126,7 +126,7 @@ internal static class Program
             new[]
             {
                 new CliOptionDefinition("--code <sql>", "Required. SQL text to import."),
-                new CliOptionDefinition("--target <sql-identifier>", "Required for bare SELECT and CREATE VIEW imports; not allowed for inline CREATE FUNCTION or mutation statement imports."),
+                new CliOptionDefinition("--target <sql-identifier>", "Optional for CREATE VIEW imports, required for bare SELECT imports; not allowed for inline CREATE FUNCTION or mutation statement imports."),
                 new CliOptionDefinition("--new-workspace <path>", "Create a new MetaTransformScript workspace. Mutually exclusive with --workspace."),
                 new CliOptionDefinition("--workspace <path>", "Add one script to an existing workspace. Mutually exclusive with --new-workspace."),
                 new CliOptionDefinition("--name <name>", "Required when the code is a bare SELECT or mutation statement without a CREATE wrapper.")
@@ -1210,7 +1210,7 @@ internal static class Program
             MetaTransformScriptSqlImportFailureKind.UnsupportedSql => "remove unsupported wrapper options or unsupported SQL surface, then retry.",
             MetaTransformScriptSqlImportFailureKind.UnsupportedFunctionWrapper => "skip scalar or multistatement function files, or import only inline table-valued functions.",
             MetaTransformScriptSqlImportFailureKind.LikelyTextEncodingMismatch => "re-export or split the SQL as Unicode text, such as UTF-8 or UTF-16 with a BOM, then retry.",
-            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput => "apply target rules and retry: CREATE VIEW/bare SELECT requires --target; inline CREATE FUNCTION forbids --target.",
+            MetaTransformScriptSqlImportFailureKind.InvalidSqlInput => "apply target rules and retry: bare SELECT requires --target; CREATE VIEW may omit --target; inline CREATE FUNCTION forbids --target.",
             _ => $"check the {sourceLabel} input and retry."
         };
 

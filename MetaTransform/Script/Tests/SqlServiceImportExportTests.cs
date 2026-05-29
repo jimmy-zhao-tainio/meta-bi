@@ -213,7 +213,7 @@ FROM dbo.XmlSource AS s
     }
 
     [Fact]
-    public async Task ImportSingleSqlFileToWorkspaceAsync_CreateView_RequiresTarget()
+    public async Task ImportSingleSqlFileToWorkspaceAsync_CreateView_WithoutTarget_LeavesTargetBlank()
     {
         const string sql = """
 CREATE VIEW dbo.v_customer
@@ -224,17 +224,49 @@ FROM sales.Customer AS c
 """;
 
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Script.Tests", Guid.NewGuid().ToString("N"));
-        var sqlPath = MetaTransformScriptTestHelper.WriteTempSqlFile("view-requires-target.sql", sql);
+        var sqlPath = MetaTransformScriptTestHelper.WriteTempSqlFile("view-without-target.sql", sql);
+        var workspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+
+        try
+        {
+            var result = await new MetaTransformScriptSqlService().ImportSingleSqlFileToWorkspaceAsync(
+                sqlPath,
+                null,
+                workspacePath);
+
+            var script = Assert.Single(result.Model.TransformScriptList);
+            Assert.True(string.IsNullOrWhiteSpace(GetViewTargetSqlIdentifier(result.Model, script)));
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public async Task ImportFromSqlCodeToWorkspaceAsync_BareSelect_RequiresTarget()
+    {
+        const string sql = """
+SELECT
+    c.CustomerId
+FROM sales.Customer AS c
+""";
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Script.Tests", Guid.NewGuid().ToString("N"));
         var workspacePath = Path.Combine(tempRoot, "TransformWorkspace");
 
         try
         {
             var service = new MetaTransformScriptSqlService();
             var exception = await Assert.ThrowsAsync<MetaTransformScriptSqlImportException>(() =>
-                service.ImportSingleSqlFileToWorkspaceAsync(sqlPath, null, workspacePath));
+                service.ImportFromSqlCodeToWorkspaceAsync(sql, null, workspacePath, scriptName: "dbo.v_customer"));
 
             Assert.Equal(MetaTransformScriptSqlImportFailureKind.InvalidSqlInput, exception.Kind);
             Assert.Contains("requires --target", exception.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("bare SELECT", exception.Message, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {

@@ -1291,7 +1291,7 @@ Usage:
 
 Notes:
   Sources: sql-file, sql-files, sql-code.
-  --target <sql-identifier> is required for view/select imports and not allowed for TVF or mutation imports.
+  --target <sql-identifier> is optional for CREATE VIEW imports, required for bare SELECT imports, and not allowed for TVF or mutation imports.
   Specify exactly one of --new-workspace <path> or --workspace <path>.
 
 Examples:
@@ -1331,7 +1331,7 @@ Usage:
 Options:
 
   --path <file.sql>          Required. SQL file to import.
-  --target <sql-identifier>  Required for CREATE VIEW imports; not allowed for inline CREATE
+  --target <sql-identifier>  Optional for CREATE VIEW imports; not allowed for inline CREATE
                              FUNCTION or mutation statement imports.
   --new-workspace <path>     Create a new MetaTransformScript workspace. Mutually exclusive with
                              --workspace.
@@ -1365,7 +1365,7 @@ Options:
 
 Notes:
   Manifest paths are resolved relative to the manifest file.
-  Each row is one import attempt. CREATE VIEW and bare SELECT rows must supply Target; inline TVF and scalar UDF rows must leave Target blank.
+  Each row is one import attempt. CREATE VIEW rows may leave Target blank; bare SELECT rows must supply Target; inline TVF and scalar UDF rows must leave Target blank.
   The command continues after per-file failures, saves successful imports once, and exits nonzero when any file failed.
 ```
 
@@ -1380,8 +1380,8 @@ Usage:
 Options:
 
   --code <sql>               Required. SQL text to import.
-  --target <sql-identifier>  Required for bare SELECT and CREATE VIEW imports; not allowed for
-                             inline CREATE FUNCTION or mutation statement imports.
+  --target <sql-identifier>  Optional for CREATE VIEW imports, required for bare SELECT imports; not
+                             allowed for inline CREATE FUNCTION or mutation statement imports.
   --new-workspace <path>     Create a new MetaTransformScript workspace. Mutually exclusive with
                              --workspace.
   --workspace <path>         Add one script to an existing workspace. Mutually exclusive with

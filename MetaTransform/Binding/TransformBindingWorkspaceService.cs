@@ -247,6 +247,12 @@ public sealed class TransformBindingWorkspaceService
 
         if (string.IsNullOrWhiteSpace(trimmed))
         {
+            var statementKind = navigator.GetTransformScriptStatementKind(transformScript);
+            if (statementKind is BoundStatementKind.Select)
+            {
+                return null;
+            }
+
             throw new TransformBindingValidationException(
                 "TransformScriptTargetSqlIdentifierMissing",
                 $"Transform script '{transformScript.Name}' is missing TargetSqlIdentifier.");

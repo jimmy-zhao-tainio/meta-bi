@@ -3426,6 +3426,62 @@ FROM SourceTable AS s;
     }
 
     [Fact]
+    public void BindingWorkspaceService_TargetlessCreateView_BindsWithoutTargetValidation()
+    {
+        const string sql = """
+CREATE VIEW dbo.v_helper AS
+SELECT
+    s.CustomerId
+FROM dbo.SourceTable AS s;
+GO
+""";
+        var transformModel = new MetaTransformScriptSqlService().ImportFromSqlCode(sql);
+
+        var sourceSchemaModel = CreateSchema(
+            "ExecDb",
+            ("dbo", "SourceTable", ["CustomerId"]));
+        var targetSchemaModel = CreateSchema("WarehouseDb");
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
+        var sourceSchemaWorkspacePath = Path.Combine(tempRoot, "SourceSchemaWorkspace");
+        var targetSchemaWorkspacePath = Path.Combine(tempRoot, "TargetSchemaWorkspace");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "BindingWorkspace");
+
+        try
+        {
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            sourceSchemaModel.SaveToXmlWorkspace(sourceSchemaWorkspacePath);
+            targetSchemaModel.SaveToXmlWorkspace(targetSchemaWorkspacePath);
+
+            var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+                transformWorkspacePath,
+                new[] { sourceSchemaWorkspacePath },
+                targetSchemaWorkspacePath,
+                executeSystemName: "ExecDb",
+                executeSystemDefaultSchemaName: null,
+                newWorkspacePath: bindingWorkspacePath);
+
+            Assert.Equal(1, result.TransformBindingCount);
+            Assert.Equal(0, result.TargetCount);
+            Assert.Equal(1, result.SourceRowsetValidationCount);
+            Assert.Equal(0, result.TargetRowsetValidationCount);
+
+            var reloaded = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            Assert.Single(reloaded.TransformBindingList);
+            Assert.Empty(reloaded.TransformBindingTargetList);
+            Assert.Empty(reloaded.ValidationTargetRowsetLinkList);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
     public void BindingWorkspaceService_WithAllowPartial_SavesOnlyBindingSuccessfulScripts()
     {
         const string sql = """

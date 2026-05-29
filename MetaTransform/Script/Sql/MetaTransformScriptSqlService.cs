@@ -392,9 +392,14 @@ public sealed partial class MetaTransformScriptSqlService
 
         if (!hasTarget)
         {
-            throw new MetaTransformScriptSqlImportException(
-                MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
-                $"SQL import for '{normalizedSourceLabel}' requires --target for CREATE VIEW or bare SELECT imports.");
+            if (!HasDeclaredCreateObjectName(model, script))
+            {
+                throw new MetaTransformScriptSqlImportException(
+                    MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
+                    $"SQL import for '{normalizedSourceLabel}' requires --target for bare SELECT imports.");
+            }
+
+            return;
         }
 
         var normalizedTarget = NormalizeTargetSqlIdentifier(targetSqlIdentifier!);
@@ -1308,6 +1313,12 @@ public sealed partial class MetaTransformScriptSqlService
     private static MTS.ScriptObjectScalarFunction? TryGetScriptObjectScalarFunction(MTS.MetaTransformScriptModel model, string transformScriptId)
     {
         return model.ScriptObjectScalarFunctionList.SingleOrDefault(item => string.Equals(item.TransformScript.Id, transformScriptId, StringComparison.Ordinal));
+    }
+
+    private static bool HasDeclaredCreateObjectName(MTS.MetaTransformScriptModel model, MTS.TransformScript script)
+    {
+        return model.TransformScriptObjectIdentifierLinkList.Any(item =>
+            string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal));
     }
 
     private static void EnsureScriptObjectView(MTS.MetaTransformScriptModel model, MTS.TransformScript script, string targetSqlIdentifier)
