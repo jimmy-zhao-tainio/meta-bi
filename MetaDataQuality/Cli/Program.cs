@@ -140,22 +140,14 @@ internal static class Program
             var model = discovery.Model;
             model.SaveToXmlWorkspace(targetValidation.FullPath);
 
-            Presenter.WriteOk($"Created {Path.GetFileName(targetValidation.FullPath)}");
-            Presenter.WriteInfo("MetaDataQuality can create SQL views that return rows to investigate.");
-            Presenter.WriteInfo($"  Views ready to create: {model.DataQualityCandidateList.Count}");
+            Presenter.WriteInfo($"Workspace: {targetValidation.FullPath}");
+            Presenter.WriteInfo($"Views ready to create: {model.DataQualityCandidateList.Count}");
+            Presenter.WriteInfo($"Relationships captured: {model.JoinPatternOccurrenceList.Count}");
             if (!string.IsNullOrWhiteSpace(parse.BindingWorkspacePath))
             {
-                Presenter.WriteInfo($"  Transform scripts scanned: {discovery.AnalyzedTransformScriptCount}/{discovery.TransformScriptCount}");
-                Presenter.WriteInfo($"  Transform scripts skipped by BindingWS: {discovery.BindingSkippedTransformScriptCount}");
+                Presenter.WriteInfo($"Transform scripts scanned: {discovery.AnalyzedTransformScriptCount}/{discovery.TransformScriptCount}");
+                Presenter.WriteInfo($"Transform scripts skipped by BindingWS: {discovery.BindingSkippedTransformScriptCount}");
             }
-            Presenter.WriteInfo(string.Empty);
-            Presenter.WriteInfo("Run This First:");
-            Presenter.WriteInfo($"  meta-data-quality promote --workspace \"{targetValidation.FullPath}\" --all");
-            Presenter.WriteInfo($"  meta-convert data-quality-to-sql --workspace \"{targetValidation.FullPath}\" --out DataQualityViews.sql");
-            Presenter.WriteInfo(string.Empty);
-            Presenter.WriteInfo("Review The Results:");
-            Presenter.WriteInfo("  Run the generated views and decide whether the reported rows are real data-quality issues.");
-            Presenter.WriteInfo("  Some rows may be valid for your business rules; keep the views that reveal useful problems.");
             return 0;
         }
         catch (Exception ex)
@@ -188,8 +180,6 @@ internal static class Program
             var candidateCount = model.DataQualityCandidateList.Count;
             var promoted = model.DataQualityCandidateList.Count(item =>
                 string.Equals(item.Status, CandidateStatuses.Promoted, StringComparison.OrdinalIgnoreCase));
-
-            Presenter.WriteOk("Loaded MetaDataQuality workspace");
 
             var candidateTypes = ResolveCandidateTypeMap(model);
             var candidateById = model.DataQualityCandidateList.ToDictionary(item => item.Id, StringComparer.Ordinal);
@@ -413,11 +403,8 @@ internal static class Program
             model.SaveToXmlWorkspace(workspacePath);
             var totalPromoted = model.DataQualityCandidateList.Count(item =>
                 string.Equals(item.Status, CandidateStatuses.Promoted, StringComparison.OrdinalIgnoreCase));
-            Presenter.WriteOk($"Promoted {promotedCount} data quality candidates");
-            Presenter.WriteInfo($"  Candidates promoted for SQL: {totalPromoted}");
-            Presenter.WriteInfo(string.Empty);
-            Presenter.WriteInfo("Next:");
-            Presenter.WriteInfo($"  meta-convert data-quality-to-sql --workspace \"{workspacePath}\" --out DataQualityViews.sql");
+            Presenter.WriteInfo($"Candidates promoted this run: {promotedCount}");
+            Presenter.WriteInfo($"Candidates promoted for SQL: {totalPromoted}");
             return 0;
         }
         catch (Exception ex)

@@ -363,7 +363,7 @@ internal static class Program
         try
         {
             var result = new DataQualityToSqlConverter().Convert(workspacePath, outputPath);
-            Presenter.WriteOk(
+            Presenter.WriteInfo(
                 $"Generated {result.CandidateViewCount} data quality view script{(result.CandidateViewCount == 1 ? string.Empty : "s")}, " +
                 $"{result.DashboardViewCount} review dashboard, and MetaDQ operational SQL ({result.OperationalTableCount} tables, {result.OperationalProcedureCount} procedure).");
             Presenter.WriteKeyValueBlock("Output", new[]

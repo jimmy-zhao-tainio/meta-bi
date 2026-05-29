@@ -44,11 +44,6 @@ public sealed class DataQualityToSqlConverter
             .ThenBy(candidate => candidate.Name, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
-        if (promoted.Length == 0)
-        {
-            throw new InvalidOperationException("MetaDataQuality workspace has no promoted candidates.");
-        }
-
         ValidatePromotedCandidateTypes(promoted, candidateTypes);
 
         if (IsSqlFilePath(outputPath))
@@ -1032,6 +1027,14 @@ public sealed class DataQualityToSqlConverter
         builder.AppendLine("CREATE OR ALTER VIEW [dq].[v_DataQualityReview]");
         builder.AppendLine("AS");
 
+        if (candidates.Count == 0)
+        {
+            builder.Append(RenderEmptyDashboardSelect());
+            builder.AppendLine();
+            builder.AppendLine("GO");
+            return builder.ToString();
+        }
+
         for (var i = 0; i < candidates.Count; i++)
         {
             var candidate = candidates[i];
@@ -1075,6 +1078,68 @@ public sealed class DataQualityToSqlConverter
 
         builder.AppendLine();
         builder.AppendLine("GO");
+        return builder.ToString();
+    }
+
+    private static string RenderEmptyDashboardSelect()
+    {
+        var builder = new StringBuilder();
+        builder.AppendLine("SELECT");
+        builder.AppendLine("    CAST(NULL AS nvarchar(128)) AS [DQView],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(128)) AS [Issue],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(128)) AS [FindingTitle],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(128)) AS [FindingCategory],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(64)) AS [OutputMode],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(256)) AS [CandidateId],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(128)) AS [CandidateKind],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [Relationship],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [RelationshipLabel],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [ReferencingObject],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [ReferencedObject],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [CheckedObject],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [SuspectSide],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [SuspectObject],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [LookupObject],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [RelatedObject],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [CorpusRelationship],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [CorpusRelationshipPattern],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [DominantPattern],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [OutlierPattern],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [TransformViews],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [RowsReturned],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [ResultRowCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [FindingGroupCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [TotalSuspectCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [SuspectRowCount],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [Explanation],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [FindingExplanation],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [EvidenceSummary],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [EvidenceOccurrenceCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [OutlierOccurrenceCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [EvidenceTransformCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [OutlierTransformCount],");
+        builder.AppendLine("    CAST(NULL AS decimal(18,6)) AS [EvidenceConsensusRatio],");
+        builder.AppendLine("    CAST(NULL AS decimal(18,6)) AS [DominantConsensusRatio],");
+        builder.AppendLine("    CAST(NULL AS decimal(18,6)) AS [EvidenceOutlierRatio],");
+        builder.AppendLine("    CAST(NULL AS decimal(18,6)) AS [OutlierRatio],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(16)) AS [EvidenceQuality],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(16)) AS [ConfidenceBand],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [ConfidenceReason],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [EvidenceDiversitySummary],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [ConfidenceSummary],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [DistinctTransformCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [DistinctSourceTransformCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [DistinctSourceObjectCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [DistinctRelationshipPatternCount],");
+        builder.AppendLine("    CAST(NULL AS bigint) AS [EffectiveTransformCount],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(128)) AS [RecommendedAction],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(64)) AS [RuntimeCountStatus],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(512)) AS [GeneratedView],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [ReviewQuery],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [DetailQuery],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [TransformViewQuery],");
+        builder.AppendLine("    CAST(NULL AS nvarchar(max)) AS [SupportingTransformQuery]");
+        builder.Append("WHERE 1 = 0;");
         return builder.ToString();
     }
 

@@ -56,6 +56,10 @@ public sealed class CliTests
 
             Assert.Equal(0, generated.ExitCode);
             Assert.Contains("Views ready to create:", generated.Output, StringComparison.Ordinal);
+            Assert.Contains("Relationships captured:", generated.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Ok", generated.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Run This First:", generated.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Review The Results:", generated.Output, StringComparison.Ordinal);
             Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "workspace.xml")));
             Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "model.xml")));
 
@@ -75,7 +79,9 @@ public sealed class CliTests
             var firstCandidate = model.DataQualityCandidateList[0];
             var promoted = RunCli($"promote --workspace \"{qualityWorkspacePath}\" --candidate-id \"{firstCandidate.Id}\"");
             Assert.Equal(0, promoted.ExitCode);
-            Assert.Contains("Ok", promoted.Output, StringComparison.Ordinal);
+            Assert.Contains("Candidates promoted this run: 1", promoted.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Ok", promoted.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Next:", promoted.Output, StringComparison.Ordinal);
 
             var reloaded = MetaDataQualityModel.LoadFromXmlWorkspace(qualityWorkspacePath, searchUpward: false);
             var promotedRow = Assert.Single(
@@ -480,6 +486,35 @@ LEFT OUTER JOIN dbo.[Order] o
             Assert.Contains("SuspectRowCount", sql, StringComparison.Ordinal);
             Assert.DoesNotContain("WHERE 1 = 0;</SqlTemplate>", sql, StringComparison.Ordinal);
             Assert.DoesNotContain("> 1GO", sql, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
+    public void DataQualityToSql_GeneratesDeployableSqlForEmptyCandidateSet()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var qualityWorkspacePath = Path.Combine(rootPath, "quality");
+        var outputPath = Path.Combine(rootPath, "DataQualityViews.sql");
+
+        try
+        {
+            MetaDataQualityModel.CreateEmpty().SaveToXmlWorkspace(qualityWorkspacePath);
+
+            var result = new DataQualityToSqlConverter().Convert(qualityWorkspacePath, outputPath);
+            var sql = File.ReadAllText(outputPath);
+
+            Assert.Equal(0, result.CandidateViewCount);
+            Assert.Equal(1, result.DashboardViewCount);
+            Assert.Equal(2, result.OperationalTableCount);
+            Assert.Equal(2, result.OperationalProcedureCount);
+            Assert.Equal(2, result.ScriptCount);
+            Assert.Contains("CREATE OR ALTER VIEW [dq].[v_DataQualityReview]", sql, StringComparison.Ordinal);
+            Assert.Contains("WHERE 1 = 0;", sql, StringComparison.Ordinal);
+            Assert.Contains("CREATE DATABASE [MetaDQ]", sql, StringComparison.Ordinal);
         }
         finally
         {
