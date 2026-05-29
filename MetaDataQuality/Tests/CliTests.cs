@@ -66,6 +66,10 @@ public sealed class CliTests
 
             var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\"");
             Assert.Equal(0, inspect.ExitCode);
+            Assert.DoesNotContain("Loaded MetaDataQuality workspace", inspect.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Why These Views Exist:", inspect.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Run This First:", inspect.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Review The Results:", inspect.Output, StringComparison.Ordinal);
             Assert.Contains("Corpus Inference:", inspect.Output, StringComparison.Ordinal);
 
             var firstCandidate = model.DataQualityCandidateList[0];
@@ -484,7 +488,7 @@ LEFT OUTER JOIN dbo.[Order] o
     }
 
     [Fact]
-    public void Inspect_ShowsDirectionalOptionalityWording()
+    public void Inspect_SummarizesDirectionalOptionality()
     {
         var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
         var qualityWorkspacePath = Path.Combine(rootPath, "quality");
@@ -533,8 +537,48 @@ LEFT OUTER JOIN dbo.[Order] o
 
             var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\"");
             Assert.Equal(0, inspect.ExitCode);
-            Assert.Contains("Optionality drift checks:", inspect.Output, StringComparison.Ordinal);
-            Assert.Contains("nullable side is", inspect.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("Optionality-drift (inner vs usually optional):", inspect.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Diversity:", inspect.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("nullable side is", inspect.Output, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
+    public void Inspect_ShowCases_HidesInternalScalarExpressionIds()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var qualityWorkspacePath = Path.Combine(rootPath, "quality");
+
+        try
+        {
+            var model = MetaDataQualityModel.CreateEmpty();
+            AddJoinPatternForCli(
+                model,
+                patternId: "JoinPattern.Scalar.Cli",
+                keyPairs:
+                [
+                    ("ScalarExpression:5840", "ScalarExpression:5844"),
+                ],
+                joinType: "LeftOuter");
+            AddOccurrenceForCli(
+                model,
+                occurrenceId: "Occ.Scalar.Cli",
+                patternId: "JoinPattern.Scalar.Cli",
+                scriptName: "Script.Scalar.Cli",
+                leftTable: "sales.ExpressionSource",
+                rightTable: "sales.CalendarException");
+            AddDiscoveredJoinOrphanCandidateForCli(model, "JoinPattern.Scalar.Cli");
+            model.SaveToXmlWorkspace(qualityWorkspacePath);
+
+            var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\" --show-cases --top-cases 1");
+
+            Assert.Equal(0, inspect.ExitCode);
+            Assert.Contains("Keys: (scalar expression) = (scalar expression)", inspect.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("ScalarExpression:", inspect.Output, StringComparison.Ordinal);
         }
         finally
         {
@@ -643,6 +687,35 @@ LEFT OUTER JOIN dbo.[Order] o
             ResolutionPath = string.Empty,
             ResolvedInCteId = string.Empty,
             ResolvedInCteName = string.Empty,
+        });
+    }
+
+    private static void AddDiscoveredJoinOrphanCandidateForCli(
+        MetaDataQualityModel model,
+        string patternId)
+    {
+        var pattern = model.JoinPatternList.Single(row => string.Equals(row.Id, patternId, StringComparison.Ordinal));
+        var candidate = new DataQualityCandidate
+        {
+            Id = $"{patternId}.Candidate.JoinOrphan",
+            Name = $"JoinOrphan:{patternId}",
+            Status = CandidateStatuses.Discovered,
+            Rationale = "Test candidate.",
+            Assumptions = string.Empty,
+            SqlTemplate = "SELECT 1;",
+        };
+        model.DataQualityCandidateList.Add(candidate);
+        model.JoinOrphanList.Add(new JoinOrphan
+        {
+            Id = $"{candidate.Id}.JoinOrphan",
+            DataQualityCandidate = candidate,
+            EqualityPredicateCount = "1",
+        });
+        model.DataQualityCandidateJoinPatternLinkList.Add(new DataQualityCandidateJoinPatternLink
+        {
+            Id = $"{candidate.Id}.JoinPatternLink",
+            DataQualityCandidate = candidate,
+            JoinPattern = pattern,
         });
     }
 

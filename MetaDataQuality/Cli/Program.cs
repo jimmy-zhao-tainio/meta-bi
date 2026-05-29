@@ -227,13 +227,6 @@ internal static class Program
                 .OrderBy(group => CheckLabelSortOrder(group.Key))
                 .ThenBy(static group => group.Key, StringComparer.OrdinalIgnoreCase)
                 .ToArray();
-            var relationshipPreview = situations
-                .OrderByDescending(static item => item.WaitingCount)
-                .ThenBy(static item => item.JoinDescription, StringComparer.OrdinalIgnoreCase)
-                .Take(5)
-                .ToArray();
-            var corpusRelationshipById = model.CorpusRelationshipList
-                .ToDictionary(item => item.Id, StringComparer.Ordinal);
             var dominantCorpusPatterns = model.CorpusRelationshipPatternList
                 .Where(static row => IsTrueFlag(row.IsDominant))
                 .Select(row =>
@@ -278,56 +271,26 @@ internal static class Program
             var impliedOutputDuplicateSummary = SummarizeCandidateStatuses(
                 model.ImpliedOutputDuplicateRiskList.Select(static row => row.DataQualityCandidate.Id),
                 candidateById);
-            var impliedSummaryRows = BuildImpliedEvidenceSummaryRows(
-                model,
-                candidateById,
-                candidateTypes,
-                corpusRelationshipById);
-            var optionalitySummaryRows = BuildOptionalityEvidenceSummaryRows(
-                model,
-                candidateById,
-                candidateTypes,
-                corpusRelationshipById);
-
-            Presenter.WriteInfo(string.Empty);
-            Presenter.WriteInfo("MetaDataQuality can create SQL views that return rows to investigate.");
-            Presenter.WriteInfo($"  Views ready to create: {candidateCount}");
+            Presenter.WriteInfo($"Views ready to create: {candidateCount}");
             if (promoted > 0)
             {
-                Presenter.WriteInfo($"  Promoted for SQL: {promoted}");
+                Presenter.WriteInfo($"Promoted for SQL: {promoted}");
             }
-
-            Presenter.WriteInfo(string.Empty);
-            Presenter.WriteInfo("Why These Views Exist:");
-            Presenter.WriteInfo("  MetaDataQuality found joins in the transform workspace.");
-            Presenter.WriteInfo("  The generated views check whether the data behind those joins behaves as expected.");
 
             if (viewFamilies.Length > 0)
             {
                 Presenter.WriteInfo(string.Empty);
-                Presenter.WriteInfo("The Views Check For:");
+                Presenter.WriteInfo("Checks:");
                 foreach (var family in viewFamilies)
                 {
-                    Presenter.WriteInfo($"  {family.Key}: {DescribeCheckLabel(family.Key)}");
+                    Presenter.WriteInfo($"  {family.Key}: {family.Count()}");
                 }
             }
 
-            if (relationshipPreview.Length > 0)
+            if (situations.Count > 0)
             {
                 Presenter.WriteInfo(string.Empty);
-                Presenter.WriteInfo("Relationships Checked:");
-                for (var i = 0; i < relationshipPreview.Length; i++)
-                {
-                    var situation = relationshipPreview[i];
-                    Presenter.WriteInfo($"  {i + 1}. {situation.JoinDescription}");
-                    Presenter.WriteInfo($"     Keys: {situation.JoinCondition}");
-                    Presenter.WriteInfo($"     Views: {string.Join(", ", situation.ViewLabels)}");
-                }
-
-                if (situations.Count > relationshipPreview.Length)
-                {
-                    Presenter.WriteInfo($"  Showing {relationshipPreview.Length} of {situations.Count} relationships. Use --show-cases to see more.");
-                }
+                Presenter.WriteInfo($"Relationships captured: {situations.Count}");
             }
 
             if (model.CorpusRelationshipList.Count > 0)
@@ -346,66 +309,18 @@ internal static class Program
                 Presenter.WriteInfo($"  Optionality-drift (left vs usually mandatory): {FormatStatusSummary(leftAgainstMandatorySummary)}");
                 Presenter.WriteInfo($"  Implied fanout-risk candidates: {FormatStatusSummary(impliedJoinFanoutSummary)}");
                 Presenter.WriteInfo($"  Implied output-duplicate-risk candidates: {FormatStatusSummary(impliedOutputDuplicateSummary)}");
-
-                if (dominantCorpusPatterns.Length > 0)
-                {
-                    Presenter.WriteInfo("  Dominant relationship preview:");
-                    foreach (var item in dominantCorpusPatterns.Take(5))
-                    {
-                        Presenter.WriteInfo(
-                            $"    {item.LeftObjectName} <-> {item.RightObjectName} | Ratio {item.OccurrenceRatio} ({item.OccurrenceCount}/{item.RelationshipOccurrenceCount})");
-                    }
-                }
-
-                if (impliedSummaryRows.Length > 0)
-                {
-                    Presenter.WriteInfo("  Implied relationship checks:");
-                    foreach (var row in impliedSummaryRows)
-                    {
-                        Presenter.WriteInfo(
-                            $"    {ToHumanCheckLabel(row.CandidateType)} | {row.LeftObjectName} <-> {row.RightObjectName} | Consensus {row.ConsensusRatio}, Outlier {row.OutlierRatio} | Confidence {row.ConfidenceBand} | {row.Status}");
-                        Presenter.WriteInfo($"      Diversity: {row.EvidenceDiversitySummary}");
-                    }
-                }
-
-                if (optionalitySummaryRows.Length > 0)
-                {
-                    Presenter.WriteInfo("  Optionality drift checks:");
-                    foreach (var row in optionalitySummaryRows)
-                    {
-                        Presenter.WriteInfo(
-                            $"    {ToHumanCheckLabel(row.CandidateType)} | {row.LeftObjectName} <-> {row.RightObjectName} | {row.Explanation} | Consensus {row.ConsensusRatio}, Outlier {row.OutlierRatio} | Confidence {row.ConfidenceBand} | {row.Status}");
-                        Presenter.WriteInfo($"      Diversity: {row.EvidenceDiversitySummary}");
-                    }
-                }
             }
 
-            Presenter.WriteInfo(string.Empty);
-            Presenter.WriteInfo("Run This First:");
-            if (pending > 0)
-            {
-                Presenter.WriteInfo($"  meta-data-quality promote --workspace \"{workspacePath}\" --all");
-                Presenter.WriteInfo($"  meta-convert data-quality-to-sql --workspace \"{workspacePath}\" --out DataQualityViews.sql");
-            }
-            else
-            {
-                Presenter.WriteInfo($"  meta-convert data-quality-to-sql --workspace \"{workspacePath}\" --out DataQualityViews.sql");
-            }
-            Presenter.WriteInfo(string.Empty);
-            Presenter.WriteInfo("Review The Results:");
-            Presenter.WriteInfo("  Run the generated views and decide whether the reported rows are real data-quality issues.");
-            Presenter.WriteInfo("  Some rows may be valid for your business rules; keep the views that reveal useful problems.");
             if (pending > 0)
             {
                 Presenter.WriteInfo(string.Empty);
-                Presenter.WriteInfo($"Need to exclude a few candidates? meta-data-quality inspect --workspace \"{workspacePath}\" --show-cases --show-candidate-ids");
+                Presenter.WriteInfo($"Pending candidates: {pending}");
             }
 
             if (parse.ShowCases && pendingSituations.Length > 0)
             {
                 Presenter.WriteInfo(string.Empty);
-                Presenter.WriteInfo("Adjustment View:");
-                Presenter.WriteInfo("  Use this when you want to promote or skip a few generated candidates before creating SQL.");
+                Presenter.WriteInfo("Relationship Cases:");
                 var visible = pendingSituations.Take(parse.TopCases).ToArray();
                 for (var i = 0; i < visible.Length; i++)
                 {
@@ -413,7 +328,7 @@ internal static class Program
                     Presenter.WriteInfo($"  {i + 1}. {situation.JoinDescription}");
                     Presenter.WriteInfo($"     Keys: {situation.JoinCondition}");
                     Presenter.WriteInfo($"     SQL join: {situation.JoinType}");
-                    Presenter.WriteInfo($"     Views: {string.Join(", ", situation.ViewLabels)}");
+                    Presenter.WriteInfo($"     Checks: {string.Join(", ", situation.ViewLabels)}");
                     if (parse.ShowCandidateIds)
                     {
                         Presenter.WriteInfo($"     Candidate ids: {string.Join(", ", situation.PendingCandidateIds)}");
@@ -428,7 +343,6 @@ internal static class Program
             else if (parse.ShowCases && pendingSituations.Length == 0)
             {
                 Presenter.WriteInfo(string.Empty);
-                Presenter.WriteInfo("Adjustment View:");
                 Presenter.WriteInfo("  No generated candidates remain to promote.");
             }
 
@@ -837,8 +751,8 @@ internal static class Program
             .OrderBy(static row => ParseOrdinalOrMax(row.Ordinal))
             .Select(static row =>
             {
-                var left = string.IsNullOrWhiteSpace(row.FirstExpressionDisplay) ? row.FirstExpressionId : row.FirstExpressionDisplay;
-                var right = string.IsNullOrWhiteSpace(row.SecondExpressionDisplay) ? row.SecondExpressionId : row.SecondExpressionDisplay;
+                var left = FormatExpressionDisplay(string.IsNullOrWhiteSpace(row.FirstExpressionDisplay) ? row.FirstExpressionId : row.FirstExpressionDisplay);
+                var right = FormatExpressionDisplay(string.IsNullOrWhiteSpace(row.SecondExpressionDisplay) ? row.SecondExpressionId : row.SecondExpressionDisplay);
                 return $"{left} = {right}";
             })
             .Where(static value => !string.IsNullOrWhiteSpace(value))
@@ -889,8 +803,8 @@ internal static class Program
                     baseTablesByOccurrenceId,
                     anchor.Id,
                     anchor.SecondTableReferenceId);
-                var left = leftTables.Length == 0 ? "(unknown left)" : string.Join(", ", leftTables);
-                var right = rightTables.Length == 0 ? "(unknown right)" : string.Join(", ", rightTables);
+                var left = FormatTableSide(leftTables, "(unknown left)");
+                var right = FormatTableSide(rightTables, "(unknown right)");
                 joinDescription = $"{left} joined with {right}";
             }
 
@@ -921,6 +835,44 @@ internal static class Program
         }
 
         return result;
+    }
+
+    private static string FormatExpressionDisplay(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return "(scalar expression)";
+        }
+
+        var trimmed = value.Trim();
+        if (trimmed.StartsWith("ScalarExpression:", StringComparison.OrdinalIgnoreCase))
+        {
+            return "(scalar expression)";
+        }
+
+        const int maxLength = 120;
+        if (trimmed.Length <= maxLength)
+        {
+            return trimmed;
+        }
+
+        return $"{trimmed[..58]}...{trimmed[^58..]}";
+    }
+
+    private static string FormatTableSide(IReadOnlyList<string> tableNames, string emptyText)
+    {
+        if (tableNames.Count == 0)
+        {
+            return emptyText;
+        }
+
+        const int maxVisibleTables = 3;
+        if (tableNames.Count <= maxVisibleTables)
+        {
+            return string.Join(", ", tableNames);
+        }
+
+        return $"{string.Join(", ", tableNames.Take(maxVisibleTables))}, ... (+{tableNames.Count - maxVisibleTables})";
     }
 
     private static bool IsTrueFlag(string value) =>
@@ -966,116 +918,6 @@ internal static class Program
         }
 
         return $"{summary.Total} (waiting {summary.Waiting}, promoted {summary.Promoted})";
-    }
-
-    private static ImpliedEvidenceSummaryRow[] BuildImpliedEvidenceSummaryRows(
-        MetaDataQualityModel model,
-        IReadOnlyDictionary<string, DataQualityCandidate> candidateById,
-        IReadOnlyDictionary<string, string> candidateTypes,
-        IReadOnlyDictionary<string, CorpusRelationship> corpusRelationshipById)
-    {
-        var rows = new List<ImpliedEvidenceSummaryRow>();
-        foreach (var evidence in model.DataQualityCandidateEvidenceList)
-        {
-            if (!candidateById.TryGetValue(evidence.DataQualityCandidate.Id, out var candidate))
-            {
-                continue;
-            }
-
-            if (!candidateTypes.TryGetValue(candidate.Id, out var candidateType))
-            {
-                continue;
-            }
-
-            if (!string.Equals(candidateType, CandidateKinds.ImpliedForeignKeyMissingReference, StringComparison.Ordinal)
-                && !string.Equals(candidateType, CandidateKinds.ImpliedUniqueKeyViolation, StringComparison.Ordinal)
-                && !string.Equals(candidateType, CandidateKinds.ImpliedJoinFanoutRisk, StringComparison.Ordinal)
-                && !string.Equals(candidateType, CandidateKinds.ImpliedOutputDuplicateRisk, StringComparison.Ordinal))
-            {
-                continue;
-            }
-
-            if (!corpusRelationshipById.TryGetValue(evidence.CorpusRelationship.Id, out var relationship))
-            {
-                continue;
-            }
-
-            rows.Add(new ImpliedEvidenceSummaryRow(
-                relationship.CanonicalSideAObjectName,
-                relationship.CanonicalSideBObjectName,
-                candidateType,
-                evidence.ConsensusRatio,
-                evidence.OutlierRatio,
-                evidence.ConfidenceBand,
-                evidence.EvidenceDiversitySummary,
-                candidate.Status));
-        }
-
-        return rows
-            .OrderByDescending(static row => ParseRatioOrZero(row.ConsensusRatio))
-            .ThenBy(static row => row.LeftObjectName, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(static row => row.RightObjectName, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(static row => row.CandidateType, StringComparer.Ordinal)
-            .Take(5)
-            .ToArray();
-    }
-
-    private static OptionalityEvidenceSummaryRow[] BuildOptionalityEvidenceSummaryRows(
-        MetaDataQualityModel model,
-        IReadOnlyDictionary<string, DataQualityCandidate> candidateById,
-        IReadOnlyDictionary<string, string> candidateTypes,
-        IReadOnlyDictionary<string, CorpusRelationship> corpusRelationshipById)
-    {
-        var rows = new List<OptionalityEvidenceSummaryRow>();
-        foreach (var evidence in model.DataQualityCandidateEvidenceList)
-        {
-            if (!candidateById.TryGetValue(evidence.DataQualityCandidate.Id, out var candidate))
-            {
-                continue;
-            }
-
-            if (!candidateTypes.TryGetValue(candidate.Id, out var candidateType))
-            {
-                continue;
-            }
-
-            if (!string.Equals(candidateType, CandidateKinds.InnerJoinAgainstUsuallyOptionalRelationship, StringComparison.Ordinal)
-                && !string.Equals(candidateType, CandidateKinds.LeftJoinAgainstUsuallyMandatoryRelationship, StringComparison.Ordinal))
-            {
-                continue;
-            }
-
-            if (!corpusRelationshipById.TryGetValue(evidence.CorpusRelationship.Id, out var relationship))
-            {
-                continue;
-            }
-
-            rows.Add(new OptionalityEvidenceSummaryRow(
-                relationship.CanonicalSideAObjectName,
-                relationship.CanonicalSideBObjectName,
-                candidateType,
-                evidence.Explanation,
-                evidence.ConsensusRatio,
-                evidence.OutlierRatio,
-                evidence.ConfidenceBand,
-                evidence.EvidenceDiversitySummary,
-                candidate.Status));
-        }
-
-        return rows
-            .OrderByDescending(static row => ParseRatioOrZero(row.ConsensusRatio))
-            .ThenBy(static row => row.LeftObjectName, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(static row => row.RightObjectName, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(static row => row.CandidateType, StringComparer.Ordinal)
-            .Take(5)
-            .ToArray();
-    }
-
-    private static double ParseRatioOrZero(string value)
-    {
-        return double.TryParse(value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : 0d;
     }
 
     private static string ToHumanCheckLabel(string candidateType)
@@ -1124,29 +966,6 @@ internal static class Program
         };
     }
 
-    private static string DescribeCheckLabel(string label)
-    {
-        return label switch
-        {
-            "Row multiplication" => "a join may turn one business row into several rows.",
-            "Missing referenced rows" => "a row may point to related data that is not present.",
-            "Duplicate output rows" => "a transform may produce the same business row more than once.",
-            "Unexpected NULLs from outer joins" => "an optional join may leave related columns empty.",
-            "Minority join pattern" => "a relationship is joined using a rare pattern compared to corpus consensus.",
-            "Incomplete composite join" => "an outlier join omits key parts from a dominant composite pattern.",
-            "Suspicious extra join predicate" => "an outlier join adds predicates beyond the dominant relationship pattern.",
-            "Missing common filter" => "most occurrences apply a common source filter, while the outlier pattern omits it.",
-            "Minority column equivalence" => "a column is usually joined to one counterpart column, but minority joins map it to a different counterpart.",
-            "Inner join against usually optional side" => "an INNER join appears where the relationship is usually optional on one canonical side.",
-            "Left join against usually mandatory side" => "a LEFT join appears where the relationship is usually mandatory in most occurrences.",
-            "Implied missing referenced rows" => "high-consensus relationship evidence suggests reference misses should be checked globally.",
-            "Implied unique-key violation" => "high-consensus relationship evidence suggests duplicate lookup keys should be checked globally.",
-            "Implied join fanout risk" => "high-consensus relationship evidence repeatedly maps to row-multiplication risk signals.",
-            "Implied output duplicate risk" => "high-consensus relationship evidence repeatedly maps to duplicate-output risk signals.",
-            _ => "review rows returned by the generated view.",
-        };
-    }
-
     private readonly record struct JoinSituationView(
         string JoinDescription,
         string JoinCondition,
@@ -1170,24 +989,4 @@ internal static class Program
         string OccurrenceCount,
         string RelationshipOccurrenceCount);
 
-    private readonly record struct ImpliedEvidenceSummaryRow(
-        string LeftObjectName,
-        string RightObjectName,
-        string CandidateType,
-        string ConsensusRatio,
-        string OutlierRatio,
-        string ConfidenceBand,
-        string EvidenceDiversitySummary,
-        string Status);
-
-    private readonly record struct OptionalityEvidenceSummaryRow(
-        string LeftObjectName,
-        string RightObjectName,
-        string CandidateType,
-        string Explanation,
-        string ConsensusRatio,
-        string OutlierRatio,
-        string ConfidenceBand,
-        string EvidenceDiversitySummary,
-        string Status);
 }
