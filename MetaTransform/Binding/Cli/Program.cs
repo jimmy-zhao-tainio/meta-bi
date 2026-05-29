@@ -52,14 +52,14 @@ internal static class Program
                         new CliOptionDefinition("--ignore-target-columns <col[,col...]>", "Optional comma-separated target columns to exclude from target conformance checks."),
                         new CliOptionDefinition("--ignore-target-columns-if-present <col[,col...]>", "Optional comma-separated target columns to exclude only on target tables where they exist."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional sanctioned conversion policy workspace. Omitted uses built-in defaults."),
-                        new CliOptionDefinition("--allow-partial", "Optional. Save only objects that bind and validate successfully."),
-                        new CliOptionDefinition("--partial-report <path>", "Optional TSV report for skipped objects. Requires --allow-partial.")
+                        new CliOptionDefinition("--allow-partial", "Optional. Save only objects that bind and validate successfully; skipped objects are failures."),
+                        new CliOptionDefinition("--partial-report <path>", "Optional TSV report for objects skipped due to binding or validation failure. Requires --allow-partial.")
                     },
                     new[]
                     {
                         "bind is atomic: it binds and validates in one run.",
                         "If binding or validation fails, no binding workspace is created.",
-                        "--allow-partial is an explicit corpus/discovery mode: failed objects are skipped and successful bindings are saved.",
+                        "--allow-partial is an explicit corpus/discovery mode: objects with binding or validation failures are skipped and successful bindings are saved.",
                         "bind processes all transform scripts in the transform workspace.",
                         "Target SQL identifier is read from ScriptObjectView.TargetSqlIdentifier.",
                         "Source schema workspaces are repeatable; target schema workspace is single.",
@@ -146,13 +146,11 @@ internal static class Program
 
                 WritePartialReport(parse.PartialReportPath, result.ObjectIssues ?? []);
 
-                activity.Succeed(result.SkippedTransformScriptCount == 0
-                    ? "Ok"
-                    : $"Partial ({result.TransformBindingCount}/{result.TransformScriptCount})");
+                activity.Succeed(FormatBindingActivityResult(result));
 
                 if (parse.AllowPartial && result.SkippedTransformScriptCount > 0)
                 {
-                    Presenter.WriteInfo($"Skipped transform scripts: {result.SkippedTransformScriptCount}");
+                    WritePartialBindingSummary(result);
                     if (!string.IsNullOrWhiteSpace(parse.PartialReportPath))
                     {
                         Presenter.WriteInfo($"Partial report: {Path.GetFullPath(parse.PartialReportPath)}");
@@ -469,6 +467,39 @@ internal static class Program
             writer.WriteLine(Tsv(issue.Message));
         }
     }
+
+    private static string FormatBindingActivityResult(BindToWorkspaceResult result)
+    {
+        if (result.SkippedTransformScriptCount == 0)
+        {
+            return "Ok";
+        }
+
+        return $"Partial: {result.TransformBindingCount}/{result.TransformScriptCount} bound; {result.SkippedTransformScriptCount} skipped due to binding or validation failures";
+    }
+
+    private static void WritePartialBindingSummary(BindToWorkspaceResult result)
+    {
+        var issues = result.ObjectIssues ?? [];
+        Presenter.WriteInfo($"Skipped transform scripts due to binding or validation failures: {result.SkippedTransformScriptCount}");
+        foreach (var group in issues
+                     .GroupBy(static issue => issue.Stage, StringComparer.OrdinalIgnoreCase)
+                     .OrderBy(static group => GetStageOrder(group.Key))
+                     .ThenBy(static group => group.Key, StringComparer.OrdinalIgnoreCase))
+        {
+            Presenter.WriteInfo($"  {FormatStageFailureLabel(group.Key)}: {group.Count()}");
+        }
+    }
+
+    private static int GetStageOrder(string stage) =>
+        string.Equals(stage, "Binding", StringComparison.OrdinalIgnoreCase) ? 0 :
+        string.Equals(stage, "Validation", StringComparison.OrdinalIgnoreCase) ? 1 :
+        2;
+
+    private static string FormatStageFailureLabel(string stage) =>
+        string.Equals(stage, "Binding", StringComparison.OrdinalIgnoreCase) ? "Binding failures" :
+        string.Equals(stage, "Validation", StringComparison.OrdinalIgnoreCase) ? "Validation failures" :
+        $"{stage} failures";
 
     private static string Tsv(string value) =>
         (value ?? string.Empty)
