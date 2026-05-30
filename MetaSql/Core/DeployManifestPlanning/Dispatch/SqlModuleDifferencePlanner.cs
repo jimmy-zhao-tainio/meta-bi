@@ -52,6 +52,7 @@ internal sealed class SqlModuleDifferencePlanner
         var entityName = difference.ObjectKind switch
         {
             MetaSqlObjectKind.View => "View",
+            MetaSqlObjectKind.Function => "Function",
             MetaSqlObjectKind.StoredProcedure => "StoredProcedure",
             _ => throw new InvalidOperationException($"Unsupported SQL module kind '{difference.ObjectKind}'.")
         };

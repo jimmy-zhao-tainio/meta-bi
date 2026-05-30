@@ -76,6 +76,10 @@ meta-transform-script from sql-file --path RoundTrippedViews\view_32.sql --targe
 
 meta instance diff MetaTransformScriptReferenceCorpusWorkspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
 
+meta-convert transform-script-to-sql --workspace MetaTransformScriptReferenceCorpusWorkspace --database-name ReferenceCorpusDb --out MetaSqlReferenceCorpusWorkspace
+meta-convert transform-script-to-sql --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace --database-name ReferenceCorpusDb --out MetaSqlReferenceCorpusRoundTripWorkspace
+meta instance diff MetaSqlReferenceCorpusWorkspace MetaSqlReferenceCorpusRoundTripWorkspace
+
 pushd MetaTransformScriptReferenceCorpusRoundTripWorkspace
 
 meta-transform-script to sql-code --name dbo.v_xml_namespaces_and_methods

@@ -1,4 +1,5 @@
 using System.Collections;
+using MetaConvert.TransformScriptToSql;
 using MetaTransformScript;
 using MetaTransformScript.Instance;
 using MetaTransformScript.Sql;
@@ -15,11 +16,13 @@ internal static class MetaTransformScriptTestHelper
 
         var service = new MetaTransformScriptSqlService();
         var firstEmission = service.ExportToSqlCode(firstModel);
-        var secondModel = parser.ParseSqlCode(firstEmission, bareSelectName: bareSelectName);
+        var roundTripModuleName = GetPrimaryModuleName(service, firstModel, bareSelectName);
+        var secondModel = parser.ParseSqlCode(firstEmission, bareSelectName: roundTripModuleName);
         secondModel = RoundTripWorkspace(secondModel, "second");
         var secondEmission = service.ExportToSqlCode(secondModel);
 
         Assert.Equal(firstEmission, secondEmission);
+        AssertMetaSqlProjectionRoundTrips(firstModel);
     }
 
     public static string LoadCorpus(string fileName)
@@ -70,5 +73,54 @@ internal static class MetaTransformScriptTestHelper
         var filePath = Path.Combine(directoryPath, fileName);
         File.WriteAllText(filePath, sql);
         return filePath;
+    }
+
+    public static void AssertMetaSqlProjectionEqual(MetaTransformScriptModel expectedSource, MetaTransformScriptModel actualSource)
+    {
+        var service = new MetaTransformScriptSqlService();
+        var expected = TransformScriptToSqlConverter.ConvertToMetaSql(
+            service.ExportModuleDefinitions(expectedSource),
+            "RoundTripDb");
+        var actual = TransformScriptToSqlConverter.ConvertToMetaSql(
+            service.ExportModuleDefinitions(actualSource),
+            "RoundTripDb");
+
+        Assert.Equal(expected.DatabaseList.Count, actual.DatabaseList.Count);
+        Assert.Equal(
+            expected.SchemaList.Select(static item => item.Name).OrderBy(static item => item, StringComparer.Ordinal),
+            actual.SchemaList.Select(static item => item.Name).OrderBy(static item => item, StringComparer.Ordinal));
+        Assert.Equal(
+            expected.ViewList.Select(static item => $"{item.Schema.Name}.{item.Name}:{item.DefinitionSql}").OrderBy(static item => item, StringComparer.Ordinal),
+            actual.ViewList.Select(static item => $"{item.Schema.Name}.{item.Name}:{item.DefinitionSql}").OrderBy(static item => item, StringComparer.Ordinal));
+        Assert.Equal(
+            expected.FunctionList.Select(static item => $"{item.Schema.Name}.{item.Name}:{item.FunctionKind}:{item.DefinitionSql}").OrderBy(static item => item, StringComparer.Ordinal),
+            actual.FunctionList.Select(static item => $"{item.Schema.Name}.{item.Name}:{item.FunctionKind}:{item.DefinitionSql}").OrderBy(static item => item, StringComparer.Ordinal));
+    }
+
+    public static void AssertMetaSqlProjectionRoundTrips(MetaTransformScriptModel source)
+    {
+        var service = new MetaTransformScriptSqlService();
+        var module = Assert.Single(service.ExportModuleDefinitions(source));
+        var parsed = new MetaTransformScriptSqlParser().ParseSqlCode(module.DefinitionSql);
+        parsed = RoundTripWorkspace(parsed, "meta-sql-projection");
+
+        AssertMetaSqlProjectionEqual(source, parsed);
+    }
+
+    private static string GetPrimaryModuleName(
+        MetaTransformScriptSqlService service,
+        MetaTransformScriptModel model,
+        string fallbackName)
+    {
+        var module = service
+            .ExportModuleDefinitions(model)
+            .OrderBy(static item => item.DeployOrdinal)
+            .ThenBy(static item => item.SchemaName, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static item => item.ObjectName, StringComparer.OrdinalIgnoreCase)
+            .FirstOrDefault();
+
+        return module is null
+            ? fallbackName
+            : $"{module.SchemaName}.{module.ObjectName}";
     }
 }

@@ -1,4 +1,5 @@
 using MetaTransformBinding;
+using MetaTransform.Binding;
 using MetaTransformScript;
 using MetaTransformScript.Sql;
 
@@ -217,6 +218,170 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
             Assert.Equal("CustomerId", column.Name);
             Assert.Equal("sqlserver:type:int", column.SourceMetaDataTypeId);
             Assert.Equal("sqlserver:type:nvarchar", column.TargetMetaDataTypeId);
+        }
+        finally
+        {
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task Resolve_WhenStoredProcedureDeclaresResultRowset_UsesExplicitTargetAsRowStream()
+    {
+        var tempRoot = CreateTempRoot();
+        var transformWorkspacePath = Path.Combine(tempRoot, "transform");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "binding");
+
+        try
+        {
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+                """
+                CREATE PROCEDURE dq.ExportCustomers
+                AS
+                BEGIN
+                    SELECT CustomerId, CustomerName FROM src.Customer;
+                END
+                """,
+                null,
+                transformWorkspacePath);
+
+            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var script = Assert.Single(transformModel.TransformScriptList);
+            AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId", "CustomerName"]);
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                bindingWorkspacePath);
+            Assert.Equal(0, bindingResult.ErrorCount);
+            var binding = Assert.Single(bindingResult.Model.TransformBindingList);
+            Assert.Empty(bindingResult.Model.TransformBindingTargetList);
+
+            var result = new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(
+                transformWorkspacePath,
+                bindingWorkspacePath,
+                script.Id,
+                binding.Id,
+                "warehouse.CustomerLoad");
+
+            Assert.True(result.IsSelect);
+            Assert.Equal("warehouse.CustomerLoad", result.TargetSqlIdentifier);
+            Assert.Contains("EXEC dq.ExportCustomers", result.SourceSql, StringComparison.OrdinalIgnoreCase);
+            Assert.Collection(
+                result.Columns,
+                column =>
+                {
+                    Assert.Equal("CustomerId", column.Name);
+                    Assert.Equal(0, column.Ordinal);
+                },
+                column =>
+                {
+                    Assert.Equal("CustomerName", column.Name);
+                    Assert.Equal(1, column.Ordinal);
+                });
+        }
+        finally
+        {
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task Resolve_WhenStoredProcedureResultRowsetHasNoTarget_FailsClearly()
+    {
+        var tempRoot = CreateTempRoot();
+        var transformWorkspacePath = Path.Combine(tempRoot, "transform");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "binding");
+
+        try
+        {
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+                """
+                CREATE PROCEDURE dq.ExportCustomers
+                AS
+                BEGIN
+                    SELECT CustomerId FROM src.Customer;
+                END
+                """,
+                null,
+                transformWorkspacePath);
+
+            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var script = Assert.Single(transformModel.TransformScriptList);
+            AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId"]);
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                bindingWorkspacePath);
+            Assert.Equal(0, bindingResult.ErrorCount);
+            var binding = Assert.Single(bindingResult.Model.TransformBindingList);
+
+            var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
+                new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(
+                    transformWorkspacePath,
+                    bindingWorkspacePath,
+                    script.Id,
+                    binding.Id));
+
+            Assert.Contains("returns a rowset", exception.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("explicit target SQL identifier", exception.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task ResolveModeled_WhenStoredProcedureResultFeedsTargetWrite_ReturnsRowStreamPlan()
+    {
+        var tempRoot = CreateTempRoot();
+        var transformWorkspacePath = Path.Combine(tempRoot, "transform");
+        var bindingWorkspacePath = Path.Combine(tempRoot, "binding");
+        var pipelineWorkspacePath = Path.Combine(tempRoot, "pipeline");
+
+        try
+        {
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+                """
+                CREATE PROCEDURE dq.ExportCustomers
+                AS
+                BEGIN
+                    SELECT CustomerId, CustomerName FROM src.Customer;
+                END
+                """,
+                null,
+                transformWorkspacePath);
+
+            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            var script = Assert.Single(transformModel.TransformScriptList);
+            AddStoredProcedureContractResultRowset(transformModel, script, ["CustomerId", "CustomerName"]);
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspacePath,
+                bindingWorkspacePath);
+            Assert.Equal(0, bindingResult.ErrorCount);
+            var binding = Assert.Single(bindingResult.Model.TransformBindingList);
+            BuildTransformToTargetWritePipelineWorkspace(
+                pipelineWorkspacePath,
+                script.Id,
+                binding.Id,
+                "warehouse.CustomerLoad",
+                ["CustomerId", "CustomerName"]);
+
+            var plan = new MetaPipelineModeledSqlServerExecutionResolver().Resolve(
+                new MetaPipelineModeledSqlServerExecutionRequest(
+                    pipelineWorkspacePath,
+                    "CustomerLoad",
+                    transformWorkspacePath,
+                    bindingWorkspacePath));
+
+            Assert.True(plan.IsSelect);
+            Assert.Equal("warehouse.CustomerLoad", plan.TargetSqlIdentifier);
+            Assert.Equal("InsertRows", plan.TargetWriteModelName);
+            Assert.Equal(1000, plan.BatchSize);
         }
         finally
         {
@@ -769,6 +934,153 @@ END
         }
 
         model.SaveToXmlWorkspace(bindingWorkspacePath);
+    }
+
+    private static void AddStoredProcedureContractResultRowset(
+        MetaTransformScriptModel model,
+        TransformScript script,
+        IReadOnlyList<string> columnNames)
+    {
+        var storedProcedure = Assert.Single(model.ScriptObjectStoredProcedureList, item =>
+            string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal));
+        var contract = new StoredProcedureContract
+        {
+            Id = $"{script.Id}:stored-procedure-contract",
+            ScriptObjectStoredProcedure = storedProcedure,
+        };
+        model.StoredProcedureContractList.Add(contract);
+        var rowset = new StoredProcedureResultRowsetItem
+        {
+            Id = $"{contract.Id}:result-rowset:1",
+            StoredProcedureContract = contract,
+            Name = "Result",
+            Ordinal = "0",
+        };
+        model.StoredProcedureResultRowsetItemList.Add(rowset);
+
+        for (var index = 0; index < columnNames.Count; index++)
+        {
+            model.StoredProcedureResultColumnItemList.Add(new StoredProcedureResultColumnItem
+            {
+                Id = $"{rowset.Id}:column:{index + 1}",
+                StoredProcedureResultRowsetItem = rowset,
+                Name = columnNames[index],
+                Ordinal = index.ToString(),
+            });
+        }
+    }
+
+    private static void BuildTransformToTargetWritePipelineWorkspace(
+        string pipelineWorkspacePath,
+        string transformScriptId,
+        string transformBindingId,
+        string targetSqlIdentifier,
+        IReadOnlyList<string> columnNames)
+    {
+        var model = MetaPipelineModel.CreateEmpty();
+        var pipeline = new Pipeline
+        {
+            Id = "CustomerLoad",
+            Name = "CustomerLoad",
+        };
+        model.PipelineList.Add(pipeline);
+
+        var source = new ConnectionReference
+        {
+            Id = "CustomerLoad.source",
+            Pipeline = pipeline,
+            Name = "source",
+            EnvironmentVariableName = "SOURCE_ENV",
+        };
+        var target = new ConnectionReference
+        {
+            Id = "CustomerLoad.target",
+            Pipeline = pipeline,
+            Name = "target",
+            EnvironmentVariableName = "TARGET_ENV",
+        };
+        model.ConnectionReferenceList.Add(source);
+        model.ConnectionReferenceList.Add(target);
+
+        var transformTask = new PipelineTask
+        {
+            Id = "CustomerLoad.transform",
+            Pipeline = pipeline,
+            Name = "transform",
+            Ordinal = "1",
+        };
+        var targetWriteTask = new PipelineTask
+        {
+            Id = "CustomerLoad.target-write",
+            Pipeline = pipeline,
+            Name = "target-write",
+            Ordinal = "2",
+        };
+        model.PipelineTaskList.Add(transformTask);
+        model.PipelineTaskList.Add(targetWriteTask);
+
+        model.TransformExecutionTaskList.Add(new TransformExecutionTask
+        {
+            Id = "CustomerLoad.transform.TransformExecution",
+            PipelineTask = transformTask,
+            ExecutionConnectionReference = source,
+            TransformScriptId = transformScriptId,
+            TransformBindingId = transformBindingId,
+        });
+
+        var rowStream = new RowStream
+        {
+            Id = "CustomerLoad.transform.rows",
+            Pipeline = pipeline,
+            Name = "transform.rows",
+        };
+        model.RowStreamList.Add(rowStream);
+        for (var index = 0; index < columnNames.Count; index++)
+        {
+            model.RowStreamColumnList.Add(new RowStreamColumn
+            {
+                Id = $"{rowStream.Id}.column:{index + 1}",
+                RowStream = rowStream,
+                Name = columnNames[index],
+                Ordinal = index.ToString(),
+            });
+        }
+
+        model.RowStreamProducerList.Add(new RowStreamProducer
+        {
+            Id = "CustomerLoad.transform.producer",
+            PipelineTask = transformTask,
+            RowStream = rowStream,
+        });
+
+        var targetWrite = new TargetWriteTask
+        {
+            Id = "CustomerLoad.target-write.TargetWrite",
+            PipelineTask = targetWriteTask,
+            TargetConnectionReference = target,
+        };
+        model.TargetWriteTaskList.Add(targetWrite);
+        model.InsertRowsTargetWriteTaskList.Add(new InsertRowsTargetWriteTask
+        {
+            Id = "CustomerLoad.target-write.InsertRows",
+            TargetWriteTask = targetWrite,
+            TargetSqlIdentifier = targetSqlIdentifier,
+        });
+        model.RowStreamConsumerList.Add(new RowStreamConsumer
+        {
+            Id = "CustomerLoad.target-write.consumer",
+            PipelineTask = targetWriteTask,
+            RowStream = rowStream,
+        });
+        model.TaskDependencyList.Add(new TaskDependency
+        {
+            Id = "CustomerLoad.transform.Before.CustomerLoad.target-write",
+            Pipeline = pipeline,
+            Predecessor = transformTask,
+            Successor = targetWriteTask,
+        });
+
+        model.SaveToXmlWorkspace(pipelineWorkspacePath);
     }
 
     private static void BuildTransformOnlyPipelineWorkspace(

@@ -27,6 +27,54 @@
         <Relationship entity="ScalarExpression" />
       </RelationshipList>
     </Entity>
+    <Entity name="ScriptObjectStoredProcedure">
+      <PropertyList>
+        <Property name="DefinitionSql" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureContract">
+      <PropertyList>
+        <Property name="Notes" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ScriptObjectStoredProcedure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureContractOperation">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="OperationKind" />
+        <Property name="SqlIdentifier" />
+        <Property name="AccessRole" isRequired="false" />
+        <Property name="Notes" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureContract" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureResultRowsetItem">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="Name" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureContract" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureResultColumnItem">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="Name" />
+        <Property name="MetaDataTypeId" isRequired="false" />
+        <Property name="IsNullable" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureResultRowsetItem" />
+      </RelationshipList>
+    </Entity>
     <Entity name="TransformScriptSchemaIdentifierLink">
       <RelationshipList>
         <Relationship entity="TransformScript" />

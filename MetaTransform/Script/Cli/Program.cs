@@ -2,7 +2,7 @@ using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using MetaTransformScript.Sql;
 
-internal static class Program
+internal static partial class Program
 {
     private const string AppName = "meta-transform-script";
 
@@ -23,6 +23,10 @@ internal static class Program
                 CreateFromSqlFileCommand(),
                 CreateFromSqlFilesCommand(),
                 CreateFromSqlCodeCommand(),
+                CreateStoredProcedureViewContractCommand(),
+                CreateStoredProcedureAddContractCommand(),
+                CreateStoredProcedureRemoveContractCommand(),
+                CreateTargetIdentifiersFromPatternCommand(),
                 CreateToSqlPathCommand(),
                 CreateToSqlCodeCommand()
             })
@@ -74,7 +78,42 @@ internal static class Program
                     },
                     Next: "meta-transform-script to sql-path --help",
                     AdditionalNext: new[] { "meta-transform-script to sql-code --help" }),
-                RunToAsync)
+                RunToAsync),
+            new CliCommandRoute(
+                new CliCommandDefinition(
+                    "stored-procedure",
+                    "View, add, and remove stored procedure contracts.",
+                    new[] { "meta-transform-script stored-procedure <operation> [options]" },
+                    Notes: new[]
+                    {
+                        "Operations: view-contract, add-contract, remove-contract.",
+                        "Stored procedure bodies stay as SQL blobs; effects are declared as MetaTransformScript metadata."
+                    },
+                    Examples: new[]
+                    {
+                        "meta-transform-script stored-procedure view-contract --workspace .\\TransformWS",
+                        "meta-transform-script stored-procedure add-contract --workspace .\\TransformWS --name dq.RunReview --operation 10:read:src.Customer=CustomerInput --operation 20:reset:dq.CustomerReview --operation 30:append:dq.CustomerReview --operation 40:call:audit.MarkStarted",
+                        "meta-transform-script stored-procedure remove-contract --workspace .\\TransformWS --name dq.RunReview"
+                    },
+                    Next: "meta-transform-script stored-procedure view-contract --help",
+                    AdditionalNext: new[] { "meta-transform-script stored-procedure add-contract --help", "meta-transform-script stored-procedure remove-contract --help" }),
+                RunStoredProcedureAsync),
+            new CliCommandRoute(
+                new CliCommandDefinition(
+                    "target-identifiers",
+                    "Update TransformScript target identifiers.",
+                    new[] { "meta-transform-script target-identifiers <operation> [options]" },
+                    Notes: new[]
+                    {
+                        "Operations: from-pattern.",
+                        "Target identifiers are written to ScriptObjectView.TargetSqlIdentifier in the MetaTransformScript workspace."
+                    },
+                    Examples: new[]
+                    {
+                        "meta-transform-script target-identifiers from-pattern --workspace .\\TransformWS --source-pattern \"{schema}.{object}_TargetView\" --target-pattern \"Warehouse.{schema}.{object}\""
+                    },
+                    Next: "meta-transform-script target-identifiers from-pattern --help"),
+                RunTargetIdentifiersAsync)
         };
 
     private static CliCommandDefinition CreateFromSqlFileCommand() =>
@@ -152,6 +191,29 @@ internal static class Program
                 "Emits CREATE VIEW/CREATE FUNCTION wrappers where modeled; mutation statements emit as statements.",
                 "If --out ends with .sql, all scripts are emitted into one file.",
                 "Otherwise --out is treated as a target folder and must be empty or missing."
+            },
+            ShowInCommandCatalog: false);
+
+    private static CliCommandDefinition CreateTargetIdentifiersFromPatternCommand() =>
+        new(
+            "target-identifiers from-pattern",
+            "Derive view target identifiers from transform script names.",
+            new[] { "meta-transform-script target-identifiers from-pattern [--workspace <path>] --source-pattern <pattern> --target-pattern <pattern> [--only-missing] [--dry-run] [--allow-empty] [--verbose]" },
+            new[]
+            {
+                new CliOptionDefinition("--workspace <path>", "MetaTransformScript workspace to update. Defaults to the current directory."),
+                new CliOptionDefinition("--source-pattern <pattern>", "Required. Pattern matched against TransformScript.Name. Tokens use {name}, for example {schema}.{object}_TargetView."),
+                new CliOptionDefinition("--target-pattern <pattern>", "Required. Pattern rendered into TargetSqlIdentifier from captured source tokens, for example Warehouse.{schema}.{object}."),
+                new CliOptionDefinition("--only-missing", "Skip view scripts that already have a target identifier."),
+                new CliOptionDefinition("--dry-run", "Show what would change without saving the workspace."),
+                new CliOptionDefinition("--allow-empty", "Exit successfully even when the pattern updates no target identifiers."),
+                new CliOptionDefinition("--verbose", "Print each target identifier update.")
+            },
+            new[]
+            {
+                "The source pattern is matched against the modeled transform script name.",
+                "The target pattern is persisted as MetaTransformScript metadata, not as a side manifest.",
+                "Target identifiers can only be set on view scripts."
             },
             ShowInCommandCatalog: false);
 
@@ -654,6 +716,186 @@ internal static class Program
         }
 
         return Fail($"unknown target '{args[1]}'.", HelpCommand("to"));
+    }
+
+    private static async Task<int> RunTargetIdentifiersAsync(string[] args)
+    {
+        if (args.Length == 1 || IsHelpToken(args[1]))
+        {
+            PrintCommandHelp("target-identifiers");
+            return 0;
+        }
+
+        if (string.Equals(args[1], "from-pattern", StringComparison.OrdinalIgnoreCase))
+        {
+            if (args.Length >= 3 && IsHelpToken(args[2]))
+            {
+                PrintCommandHelp("target-identifiers from-pattern");
+                return 0;
+            }
+
+            var parse = ParseTargetIdentifiersFromPatternArgs(args, 2);
+            if (!parse.Ok)
+            {
+                return Fail(parse.ErrorMessage, HelpCommand("target-identifiers from-pattern"));
+            }
+
+            var workspacePath = Path.GetFullPath(parse.WorkspacePath);
+            try
+            {
+                var result = await new MetaTransformScriptSqlService()
+                    .UpdateTargetIdentifiersFromPatternAsync(
+                        workspacePath,
+                        parse.SourcePattern,
+                        parse.TargetPattern,
+                        parse.OnlyMissing,
+                        parse.DryRun)
+                    .ConfigureAwait(false);
+
+                if (result.UpdatedCount == 0 && !parse.AllowEmpty)
+                {
+                    return Fail(
+                        "No target identifiers were updated.",
+                        "adjust --source-pattern/--target-pattern or pass --allow-empty when no updates are expected.",
+                        4,
+                        new[]
+                        {
+                            $"  Workspace: {workspacePath}",
+                            $"  SourcePattern: {parse.SourcePattern}",
+                            $"  TargetPattern: {parse.TargetPattern}",
+                            $"  Scripts: {result.ScriptCount}",
+                            $"  Matched: {result.MatchedCount}",
+                            $"  ExistingSkipped: {result.SkippedExistingCount}",
+                            $"  Unchanged: {result.UnchangedCount}"
+                        });
+                }
+
+                Presenter.WriteInfo(
+                    parse.DryRun
+                        ? $"Target identifiers that would change: {result.UpdatedCount}"
+                        : $"Target identifiers updated: {result.UpdatedCount}");
+                Presenter.WriteKeyValueBlock("Summary", new[]
+                {
+                    ("Scripts", result.ScriptCount.ToString()),
+                    ("Matched", result.MatchedCount.ToString()),
+                    ("Updated", result.UpdatedCount.ToString()),
+                    ("ExistingSkipped", result.SkippedExistingCount.ToString()),
+                    ("Unchanged", result.UnchangedCount.ToString()),
+                    ("Workspace", result.WorkspacePath)
+                });
+
+                if (parse.Verbose || parse.DryRun)
+                {
+                    foreach (var update in result.Updates)
+                    {
+                        Console.Out.WriteLine(
+                            $"{update.TransformScriptName}: {DisplayTarget(update.PreviousTargetSqlIdentifier)} -> {update.TargetSqlIdentifier}");
+                    }
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                return Fail(
+                    "Cannot update target identifiers.",
+                    "check the workspace, patterns, and target identifier shape, then retry.",
+                    4,
+                    new[]
+                    {
+                        $"  Workspace: {workspacePath}",
+                        $"  SourcePattern: {parse.SourcePattern}",
+                        $"  TargetPattern: {parse.TargetPattern}",
+                        $"  {ex.Message}"
+                    });
+            }
+        }
+
+        return Fail($"unknown target-identifiers operation '{args[1]}'.", HelpCommand("target-identifiers"));
+    }
+
+    private sealed record TargetIdentifiersFromPatternArgs(
+        bool Ok,
+        string WorkspacePath,
+        string SourcePattern,
+        string TargetPattern,
+        bool OnlyMissing,
+        bool DryRun,
+        bool AllowEmpty,
+        bool Verbose,
+        string ErrorMessage);
+
+    private static TargetIdentifiersFromPatternArgs ParseTargetIdentifiersFromPatternArgs(
+        string[] args,
+        int startIndex)
+    {
+        var workspacePath = ".";
+        var workspaceSpecified = false;
+        var sourcePattern = string.Empty;
+        var targetPattern = string.Empty;
+        var onlyMissing = false;
+        var dryRun = false;
+        var allowEmpty = false;
+        var verbose = false;
+
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+            if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, "missing value for --workspace.");
+                if (workspaceSpecified) return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, "--workspace can only be provided once.");
+                workspacePath = args[++i];
+                workspaceSpecified = true;
+                continue;
+            }
+
+            if (string.Equals(arg, "--source-pattern", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, "missing value for --source-pattern.");
+                if (!string.IsNullOrWhiteSpace(sourcePattern)) return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, "--source-pattern can only be provided once.");
+                sourcePattern = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--target-pattern", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, "missing value for --target-pattern.");
+                if (!string.IsNullOrWhiteSpace(targetPattern)) return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, "--target-pattern can only be provided once.");
+                targetPattern = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--only-missing", StringComparison.OrdinalIgnoreCase))
+            {
+                onlyMissing = true;
+                continue;
+            }
+
+            if (string.Equals(arg, "--dry-run", StringComparison.OrdinalIgnoreCase))
+            {
+                dryRun = true;
+                continue;
+            }
+
+            if (string.Equals(arg, "--allow-empty", StringComparison.OrdinalIgnoreCase))
+            {
+                allowEmpty = true;
+                continue;
+            }
+
+            if (string.Equals(arg, "--verbose", StringComparison.OrdinalIgnoreCase))
+            {
+                verbose = true;
+                continue;
+            }
+
+            return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, $"unknown option '{arg}'.");
+        }
+
+        if (string.IsNullOrWhiteSpace(sourcePattern)) return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, "missing required option --source-pattern <pattern>.");
+        if (string.IsNullOrWhiteSpace(targetPattern)) return new(false, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, "missing required option --target-pattern <pattern>.");
+        return new(true, workspacePath, sourcePattern, targetPattern, onlyMissing, dryRun, allowEmpty, verbose, string.Empty);
     }
 
     private sealed record FromSqlFilesArgs(

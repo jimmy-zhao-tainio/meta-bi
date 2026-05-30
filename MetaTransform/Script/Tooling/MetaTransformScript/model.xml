@@ -1400,6 +1400,14 @@
         <Relationship entity="TransformScript" />
       </RelationshipList>
     </Entity>
+    <Entity name="ScriptObjectStoredProcedure">
+      <PropertyList>
+        <Property name="DefinitionSql" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="TransformScript" />
+      </RelationshipList>
+    </Entity>
     <Entity name="ScriptObjectTVF">
       <RelationshipList>
         <Relationship entity="TransformScript" />
@@ -1572,6 +1580,46 @@
       <RelationshipList>
         <Relationship entity="StatementWithCtesAndXmlNamespaces" />
         <Relationship entity="WithCtesAndXmlNamespaces" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureContract">
+      <PropertyList>
+        <Property name="Notes" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="ScriptObjectStoredProcedure" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureContractOperation">
+      <PropertyList>
+        <Property name="AccessRole" isRequired="false" />
+        <Property name="Notes" isRequired="false" />
+        <Property name="OperationKind" />
+        <Property name="Ordinal" />
+        <Property name="SqlIdentifier" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureContract" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureResultColumnItem">
+      <PropertyList>
+        <Property name="IsNullable" isRequired="false" />
+        <Property name="MetaDataTypeId" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureResultRowsetItem" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="StoredProcedureResultRowsetItem">
+      <PropertyList>
+        <Property name="Name" isRequired="false" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureContract" />
       </RelationshipList>
     </Entity>
     <Entity name="StringLiteral">

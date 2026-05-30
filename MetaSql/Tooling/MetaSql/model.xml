@@ -25,6 +25,17 @@
         <Relationship entity="TableColumn" role="TargetColumn" />
       </RelationshipList>
     </Entity>
+    <Entity name="Function">
+      <PropertyList>
+        <Property name="DefinitionSql" />
+        <Property name="DeployOrdinal" isRequired="false" />
+        <Property name="FunctionKind" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Schema" />
+      </RelationshipList>
+    </Entity>
     <Entity name="Index">
       <PropertyList>
         <Property name="FilterSql" isRequired="false" />

@@ -175,12 +175,26 @@ Usage:
 Commands:
 
   help         Show this help.
+  extract      Materialize sanctioned MetaSql workspaces from external sources.
   deploy-plan  Create a deploy manifest (add/alter/block/replace; destructive actions require exact
                object-scoped approvals).
   deploy       Apply a deploy manifest after source/live fingerprint validation.
   execute      Execute a SQL Server file or query for demo/bootstrap/verification scripts.
 
 Next: meta-sql deploy-plan --help
+```
+
+### `meta-sql extract --help`
+
+```text
+Command: extract
+Usage:
+  meta-sql extract <extractor> [options]
+
+Notes:
+  Available extractor: sqlserver.
+
+Next: meta-sql extract sqlserver --help
 ```
 
 ### `meta-sql deploy-plan --help`
@@ -269,6 +283,40 @@ Notes:
   Executes SQL Server SQL batches for demo/bootstrap/verification scripts.
   Batch separators use GO lines; --var replaces $(NAME) tokens before execution.
   This command is an execution helper. Metadata realization still belongs to deploy-plan/deploy.
+```
+
+### `meta-sql extract sqlserver --help`
+
+```text
+Command: extract sqlserver
+Usage:
+  meta-sql extract sqlserver --new-workspace <path> --connection-env <name> [--schema <name>]
+  [--table <name>] [--include-tables] [--include-views] [--include-functions]
+  [--include-stored-procedures] [--allow-empty]
+
+Options:
+
+  --new-workspace <path>       Required. Directory where the MetaSql workspace will be created.
+  --connection-env <name>      Required. Environment variable containing the SQL Server connection
+                               string.
+  --schema <name>              Optional. Extract only one SQL Server schema.
+  --table <name>               Optional. Extract only one table. SQL module extraction is skipped
+                               when a table filter is used.
+  --include-tables             Extract tables, columns, keys, and indexes. If no include switch is
+                               provided, all object kinds are extracted.
+  --include-views              Extract view modules. If any include switch is provided, only
+                               selected object kinds are extracted.
+  --include-functions          Extract function modules. If any include switch is provided, only
+                               selected object kinds are extracted.
+  --include-stored-procedures  Extract stored procedure modules. If any include switch is provided,
+                               only selected object kinds are extracted.
+  --allow-empty                Create an empty database/schema workspace when no tables or modules
+                               match.
+
+Notes:
+  Extracts deployable MetaSql state from SQL Server: tables, columns, primary keys, foreign keys, indexes, views, functions, and stored procedures.
+  FunctionKind is derived from SQL Server object type: ScalarFunction, InlineTableValuedFunction, or TableValuedFunction.
+  This is deployment-state import. Syntax-modeled CREATE VIEW/FUNCTION import remains owned by MetaTransformScript.
 ```
 
 ## meta-datavault-raw
@@ -1275,9 +1323,11 @@ Usage:
 
 Commands:
 
-  help  Show this help.
-  from  Import SQL file/code into a new or existing workspace.
-  to    Emit SQL files or SQL code from a MetaTransformScript workspace.
+  help                Show this help.
+  from                Import SQL file/code into a new or existing workspace.
+  to                  Emit SQL files or SQL code from a MetaTransformScript workspace.
+  stored-procedure    View, add, and remove stored procedure contracts.
+  target-identifiers  Update TransformScript target identifiers.
 
 Next: meta-transform-script from --help
 ```
@@ -1320,6 +1370,46 @@ Next: meta-transform-script to sql-path --help
 Next: meta-transform-script to sql-code --help
 ```
 
+### `meta-transform-script stored-procedure --help`
+
+```text
+Command: stored-procedure
+Usage:
+  meta-transform-script stored-procedure <operation> [options]
+
+Notes:
+  Operations: view-contract, add-contract, remove-contract.
+  Stored procedure bodies stay as SQL blobs; effects are declared as MetaTransformScript metadata.
+
+Examples:
+
+  meta-transform-script stored-procedure view-contract --workspace .\TransformWS
+  meta-transform-script stored-procedure add-contract --workspace .\TransformWS --name dq.RunReview --operation 10:read:src.Customer=CustomerInput --operation 20:reset:dq.CustomerReview --operation 30:append:dq.CustomerReview --operation 40:call:audit.MarkStarted
+  meta-transform-script stored-procedure remove-contract --workspace .\TransformWS --name dq.RunReview
+
+Next: meta-transform-script stored-procedure view-contract --help
+Next: meta-transform-script stored-procedure add-contract --help
+Next: meta-transform-script stored-procedure remove-contract --help
+```
+
+### `meta-transform-script target-identifiers --help`
+
+```text
+Command: target-identifiers
+Usage:
+  meta-transform-script target-identifiers <operation> [options]
+
+Notes:
+  Operations: from-pattern.
+  Target identifiers are written to ScriptObjectView.TargetSqlIdentifier in the MetaTransformScript workspace.
+
+Examples:
+
+  meta-transform-script target-identifiers from-pattern --workspace .\TransformWS --source-pattern "{schema}.{object}_TargetView" --target-pattern "Warehouse.{schema}.{object}"
+
+Next: meta-transform-script target-identifiers from-pattern --help
+```
+
 ### `meta-transform-script from sql-file --help`
 
 ```text
@@ -1359,8 +1449,8 @@ Options:
                              --workspace.
   --workspace <path>         Add successful imports to an existing workspace. Mutually exclusive
                              with --new-workspace.
-  --report <report.tsv>      Write per-file Success/Failure rows with structured failure
-                             kind, summary, line, and column columns.
+  --report <report.tsv>      Write per-file Success/Failure rows with structured failure kind,
+                             summary, line, and column columns.
   --verbose                  Print one progress line per imported file.
 
 Notes:
@@ -1427,6 +1517,97 @@ Notes:
   Emits one modeled statement without CREATE VIEW/inline TVF wrapping; scalar function scripts emit CREATE FUNCTION wrappers.
 ```
 
+### `meta-transform-script stored-procedure view-contract --help`
+
+```text
+Command: stored-procedure view-contract
+Usage:
+  meta-transform-script stored-procedure view-contract [--workspace <path>] [--name
+  <transform-script-name>]
+
+Options:
+
+  --workspace <path>              MetaTransformScript workspace to inspect. Defaults to the current
+                                  directory.
+  --name <transform-script-name>  Inspect one stored procedure transform script by name.
+
+Notes:
+  Reports whether each stored procedure has exactly one StoredProcedureContract row.
+  A present contract is authoritative: omitted operation/result rows mean none are declared.
+```
+
+### `meta-transform-script stored-procedure add-contract --help`
+
+```text
+Command: stored-procedure add-contract
+Usage:
+  meta-transform-script stored-procedure add-contract [--workspace <path>] --name
+  <transform-script-name> [--operation <ordinal>:<kind>:<sql-id>[=<role>]] [--result-rowset <name>]
+  [--result-column <rowset>=<column>]
+
+Options:
+
+  --workspace <path>                              MetaTransformScript workspace to update. Defaults
+                                                  to the current directory.
+  --name <transform-script-name>                  Required. Stored procedure transform script name.
+  --operation <ordinal>:<kind>:<sql-id>[=<role>]  Declare an ordered operation. Kinds: read, append,
+                                                  replace, reset, mutation, call. May be repeated.
+  --result-rowset <name>                          Declare the optional result rowset.
+  --result-column <rowset>=<column>               Declare a result column for a named result rowset.
+                                                  May be repeated.
+  --notes <text>                                  Optional human note stored on the contract.
+
+Notes:
+  This command replaces the entire contract for one stored procedure.
+  Omitting --operation or --result-* declares that part empty.
+  Operations are globally ordered inside the procedure. Use separate reset and append operations when order matters.
+```
+
+### `meta-transform-script stored-procedure remove-contract --help`
+
+```text
+Command: stored-procedure remove-contract
+Usage:
+  meta-transform-script stored-procedure remove-contract [--workspace <path>] --name
+  <transform-script-name>
+
+Options:
+
+  --workspace <path>              MetaTransformScript workspace to update. Defaults to the current
+                                  directory.
+  --name <transform-script-name>  Required. Stored procedure transform script name.
+
+Notes:
+  Removes the contract row plus operation, result rowset, and result column declaration rows for the stored procedure.
+```
+
+### `meta-transform-script target-identifiers from-pattern --help`
+
+```text
+Command: target-identifiers from-pattern
+Usage:
+  meta-transform-script target-identifiers from-pattern [--workspace <path>] --source-pattern
+  <pattern> --target-pattern <pattern> [--only-missing] [--dry-run] [--allow-empty] [--verbose]
+
+Options:
+
+  --workspace <path>          MetaTransformScript workspace to update. Defaults to the current
+                              directory.
+  --source-pattern <pattern>  Required. Pattern matched against TransformScript.Name. Tokens use
+                              {name}, for example {schema}.{object}_TargetView.
+  --target-pattern <pattern>  Required. Pattern rendered into TargetSqlIdentifier from captured
+                              source tokens, for example Warehouse.{schema}.{object}.
+  --only-missing              Skip view scripts that already have a target identifier.
+  --dry-run                   Show what would change without saving the workspace.
+  --allow-empty               Exit successfully even when the pattern updates no target identifiers.
+  --verbose                   Print each target identifier update.
+
+Notes:
+  The source pattern is matched against the modeled transform script name.
+  The target pattern is persisted as MetaTransformScript metadata, not as a side manifest.
+  Target identifiers can only be set on view scripts.
+```
+
 ## meta-transform-binding
 
 ### `meta-transform-binding --help`
@@ -1475,14 +1656,16 @@ Options:
   --data-type-conversion-workspace <path>            Optional sanctioned conversion policy
                                                      workspace. Omitted uses built-in defaults.
   --allow-partial                                    Optional. Save only objects that bind and
-                                                     validate successfully.
-  --partial-report <path>                            Optional TSV report for skipped objects.
-                                                     Requires --allow-partial.
+                                                     validate successfully; skipped objects are
+                                                     failures.
+  --partial-report <path>                            Optional TSV report for objects skipped due to
+                                                     binding or validation failure. Requires
+                                                     --allow-partial.
 
 Notes:
   bind is atomic: it binds and validates in one run.
   If binding or validation fails, no binding workspace is created.
-  --allow-partial is an explicit corpus/discovery mode: failed objects are skipped and successful bindings are saved.
+  --allow-partial is an explicit corpus/discovery mode: objects with binding or validation failures are skipped and successful bindings are saved.
   bind processes all transform scripts in the transform workspace.
   Target SQL identifier is read from ScriptObjectView.TargetSqlIdentifier.
   Source schema workspaces are repeatable; target schema workspace is single.
@@ -3531,6 +3714,8 @@ Commands:
   business-datavault-to-sql       Convert MetaBusinessDataVault workspace to MetaSql workspace.
   data-quality-to-sql             Convert promoted MetaDataQuality candidates to SQL DQ views.
   data-warehouse-to-sql           Convert MetaDataWarehouse workspace to MetaSql workspace.
+  transform-script-to-sql         Convert MetaTransformScript SQL modules to MetaSql workspace.
+  sql-to-transform-script         Convert MetaSql SQL modules to MetaTransformScript workspace.
   analytics-to-tabular            Convert MetaAnalytics workspace to MetaTabular workspace.
   analytics-to-multi-dimensional  Convert MetaAnalytics workspace to MetaMultiDimensional workspace.
 
@@ -3651,6 +3836,57 @@ Notes:
   Target table/column/key policy comes from the sanctioned MetaDataWarehouseImplementation workspace.
   Does not query any live database.
   Saves the generated current MetaSql workspace at --out.
+  Defaults to the current working directory when --workspace is omitted.
+```
+
+### `meta-convert transform-script-to-sql --help`
+
+```text
+Command: transform-script-to-sql
+Usage:
+  meta-convert transform-script-to-sql [--workspace <path>] --database-name <name> --out <path>
+
+Options:
+
+  --workspace <path>      Optional. Source MetaTransformScript workspace path. Default: current
+                          working directory.
+  --database-name <name>  Required. Target MetaSql database name.
+  --out <path>            Required. Output MetaSql workspace path.
+
+Notes:
+  Converts MetaTransformScript view, function, and stored procedure modules to a current MetaSql workspace.
+  SQL module declarations must already be schema-qualified in the source workspace.
+  Saves the generated current MetaSql workspace at --out.
+  Defaults to the current working directory when --workspace is omitted.
+```
+
+### `meta-convert sql-to-transform-script --help`
+
+```text
+Command: sql-to-transform-script
+Usage:
+  meta-convert sql-to-transform-script [--workspace <path>] --out <path> [--include-views]
+  [--include-functions] [--include-stored-procedures] [--allow-empty]
+
+Options:
+
+  --workspace <path>           Optional. Source MetaSql workspace path. Default: current working
+                               directory.
+  --out <path>                 Required. Output MetaTransformScript workspace path.
+  --include-views              Convert view modules. If no include switch is provided, all module
+                               kinds are selected.
+  --include-functions          Convert function modules. If no include switch is provided, all
+                               module kinds are selected.
+  --include-stored-procedures  Convert stored procedure modules. If no include switch is provided,
+                               all module kinds are selected.
+  --allow-empty                Create an empty MetaTransformScript workspace when selected module
+                               kinds have no convertible modules.
+
+Notes:
+  Reads view, function, and stored procedure module definitions from a MetaSql workspace.
+  Imports each module through the MetaTransformScript SQL importer.
+  If any include switch is provided, only selected module kinds are converted.
+  Saves the generated current MetaTransformScript workspace at --out.
   Defaults to the current working directory when --workspace is omitted.
 ```
 

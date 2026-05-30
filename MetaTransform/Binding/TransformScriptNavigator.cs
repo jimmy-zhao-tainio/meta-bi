@@ -14,6 +14,11 @@ internal sealed partial class TransformScriptNavigator
     private readonly IReadOnlyDictionary<string, ScriptObjectView> scriptObjectViewByOwnerId;
     private readonly IReadOnlyDictionary<string, ScriptObjectTVF> scriptObjectTvfByOwnerId;
     private readonly IReadOnlyDictionary<string, ScriptObjectScalarFunction> scriptObjectScalarFunctionByOwnerId;
+    private readonly IReadOnlyDictionary<string, ScriptObjectStoredProcedure> scriptObjectStoredProcedureByOwnerId;
+    private readonly IReadOnlyDictionary<string, List<StoredProcedureContract>> storedProcedureContractsByOwnerId;
+    private readonly IReadOnlyDictionary<string, List<StoredProcedureContractOperation>> storedProcedureOperationsByContractId;
+    private readonly IReadOnlyDictionary<string, List<StoredProcedureResultRowsetItem>> storedProcedureResultRowsetsByOwnerId;
+    private readonly IReadOnlyDictionary<string, List<StoredProcedureResultColumnItem>> storedProcedureResultColumnsByOwnerId;
     private readonly IReadOnlyDictionary<string, SelectStatement> selectStatementById;
     private readonly IReadOnlyDictionary<string, SelectStatement> selectStatementByStatementWithCtesId;
     private readonly IReadOnlyDictionary<string, SelectStatementQueryExpressionLink> selectStatementQueryExpressionLinkByOwnerId;
@@ -194,6 +199,11 @@ internal sealed partial class TransformScriptNavigator
         scriptObjectViewByOwnerId = model.ScriptObjectViewList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
         scriptObjectTvfByOwnerId = model.ScriptObjectTVFList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
         scriptObjectScalarFunctionByOwnerId = model.ScriptObjectScalarFunctionList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
+        scriptObjectStoredProcedureByOwnerId = model.ScriptObjectStoredProcedureList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
+        storedProcedureContractsByOwnerId = GroupByOwner(model.StoredProcedureContractList);
+        storedProcedureOperationsByContractId = GroupByOwner(model.StoredProcedureContractOperationList);
+        storedProcedureResultRowsetsByOwnerId = GroupByOwner(model.StoredProcedureResultRowsetItemList);
+        storedProcedureResultColumnsByOwnerId = GroupByOwner(model.StoredProcedureResultColumnItemList);
         selectStatementById = model.SelectStatementList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         selectStatementByStatementWithCtesId = model.SelectStatementList.ToDictionary(item => item.StatementWithCtesAndXmlNamespaces.Id, StringComparer.Ordinal);
         selectStatementQueryExpressionLinkByOwnerId = model.SelectStatementQueryExpressionLinkList.ToDictionary(item => item.SelectStatement.Id, StringComparer.Ordinal);
@@ -389,6 +399,11 @@ internal sealed partial class TransformScriptNavigator
             if (scriptObjectScalarFunctionByOwnerId.ContainsKey(script.Id))
             {
                 return BoundStatementKind.ScalarFunction;
+            }
+
+            if (scriptObjectStoredProcedureByOwnerId.ContainsKey(script.Id))
+            {
+                return BoundStatementKind.StoredProcedure;
             }
 
             return BoundStatementKind.Unsupported;
@@ -611,7 +626,8 @@ internal sealed partial class TransformScriptNavigator
         var hasView = scriptObjectViewByOwnerId.ContainsKey(script.Id);
         var hasTvf = scriptObjectTvfByOwnerId.ContainsKey(script.Id);
         var hasScalarFunction = scriptObjectScalarFunctionByOwnerId.ContainsKey(script.Id);
-        if ((hasView ? 1 : 0) + (hasTvf ? 1 : 0) + (hasScalarFunction ? 1 : 0) > 1)
+        var hasStoredProcedure = scriptObjectStoredProcedureByOwnerId.ContainsKey(script.Id);
+        if ((hasView ? 1 : 0) + (hasTvf ? 1 : 0) + (hasScalarFunction ? 1 : 0) + (hasStoredProcedure ? 1 : 0) > 1)
         {
             throw new InvalidOperationException(
                 $"Transform script '{script.Name}' has more than one script object row. Exactly one script object type is allowed.");
@@ -627,6 +643,11 @@ internal sealed partial class TransformScriptNavigator
             return "ScalarFunction";
         }
 
+        if (hasStoredProcedure)
+        {
+            return "StoredProcedure";
+        }
+
         return "View";
     }
 
@@ -635,6 +656,48 @@ internal sealed partial class TransformScriptNavigator
         return scriptObjectViewByOwnerId.TryGetValue(script.Id, out var scriptObjectView)
             ? scriptObjectView.TargetSqlIdentifier
             : null;
+    }
+
+    public ScriptObjectStoredProcedure? TryGetScriptObjectStoredProcedure(TransformScript script)
+    {
+        return scriptObjectStoredProcedureByOwnerId.GetValueOrDefault(script.Id);
+    }
+
+    public IReadOnlyList<StoredProcedureContract> GetStoredProcedureContracts(TransformScript script)
+    {
+        return TryGetScriptObjectStoredProcedure(script) is { } storedProcedure &&
+               storedProcedureContractsByOwnerId.TryGetValue(storedProcedure.Id, out var items)
+            ? items
+            : [];
+    }
+
+    public IReadOnlyList<StoredProcedureContractOperation> GetStoredProcedureOperations(TransformScript script)
+    {
+        return TryGetSingleStoredProcedureContract(script) is { } contract &&
+               storedProcedureOperationsByContractId.TryGetValue(contract.Id, out var items)
+            ? items.OrderBy(item => ParseOrdinal(item.Ordinal)).ToArray()
+            : [];
+    }
+
+    public IReadOnlyList<StoredProcedureResultRowsetItem> GetStoredProcedureResultRowsets(TransformScript script)
+    {
+        return TryGetSingleStoredProcedureContract(script) is { } contract &&
+               storedProcedureResultRowsetsByOwnerId.TryGetValue(contract.Id, out var items)
+            ? items.OrderBy(item => ParseOrdinal(item.Ordinal)).ToArray()
+            : [];
+    }
+
+    private StoredProcedureContract? TryGetSingleStoredProcedureContract(TransformScript script)
+    {
+        var contracts = GetStoredProcedureContracts(script);
+        return contracts.Count == 1 ? contracts[0] : null;
+    }
+
+    public IReadOnlyList<StoredProcedureResultColumnItem> GetStoredProcedureResultColumns(StoredProcedureResultRowsetItem rowset)
+    {
+        return storedProcedureResultColumnsByOwnerId.TryGetValue(rowset.Id, out var items)
+            ? items.OrderBy(item => ParseOrdinal(item.Ordinal)).ToArray()
+            : [];
     }
 
     public TransformScript? TryResolveScalarFunctionTransformScript(FunctionCall functionCall)

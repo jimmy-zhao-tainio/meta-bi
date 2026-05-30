@@ -780,7 +780,7 @@ Reference corpus status:
 - `MetaTransform\Script\Reference\Corpus` contains the broader SQL corpus used to pressure the importer/emitter
 - the reference-corpus round-trip demo uses the supported subset of that corpus and excludes the unsupported surfaces listed above
 - the exact supported parser/emitter surface and proof cases are tracked in `docs/meta-transform-script/META-TRANSFORM-SCRIPT-PARSER-STATUS.md`
-- the proof point is `meta instance diff` reporting no differences between the original and round-tripped workspaces
+- the proof point is `meta instance diff` reporting no differences between the original and round-tripped workspaces, plus no differences after both are projected to MetaSql
 
 Reference corpus demo commands:
 
@@ -798,6 +798,10 @@ popd
 
 meta-transform-script from sql-file --path RoundTrippedViews\view.sql --target dbo.v_basic --new-workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
 meta instance diff MetaTransformScriptReferenceCorpusWorkspace MetaTransformScriptReferenceCorpusRoundTripWorkspace
+
+meta-convert transform-script-to-sql --workspace MetaTransformScriptReferenceCorpusWorkspace --database-name ReferenceCorpusDb --out MetaSqlReferenceCorpusWorkspace
+meta-convert transform-script-to-sql --workspace MetaTransformScriptReferenceCorpusRoundTripWorkspace --database-name ReferenceCorpusDb --out MetaSqlReferenceCorpusRoundTripWorkspace
+meta instance diff MetaSqlReferenceCorpusWorkspace MetaSqlReferenceCorpusRoundTripWorkspace
 
 pushd MetaTransformScriptReferenceCorpusRoundTripWorkspace
 meta-transform-script to sql-code --name dbo.v_xml_namespaces_and_methods

@@ -169,6 +169,9 @@ internal static partial class Program
             manifestModel.BlockViewDifferenceList.Select(row => ("BlockViewDifference", row.DifferenceSummary)));
         AddBlockSummaryLines(
             lines,
+            manifestModel.BlockFunctionDifferenceList.Select(row => ("BlockFunctionDifference", row.DifferenceSummary)));
+        AddBlockSummaryLines(
+            lines,
             manifestModel.BlockStoredProcedureDifferenceList.Select(row => ("BlockStoredProcedureDifference", row.DifferenceSummary)));
 
         return lines;

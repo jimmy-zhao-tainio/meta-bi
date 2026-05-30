@@ -109,3 +109,5 @@ meta-transform-script to sql-path --out ..\RoundTrippedViews.sql
 meta-transform-script to sql-code --name tpcds.v_q01
 
 popd
+
+meta-convert transform-script-to-sql --workspace TransformWS --database-name TpcDsSnapshot --out MetaSqlWS

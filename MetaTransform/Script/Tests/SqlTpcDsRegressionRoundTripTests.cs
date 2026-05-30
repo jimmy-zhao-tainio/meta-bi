@@ -23,6 +23,7 @@ public sealed class SqlTpcDsRegressionRoundTripTests
         var secondEmission = service.ExportToSqlCode(secondModel);
 
         Assert.Equal(firstEmission, secondEmission);
+        MetaTransformScriptTestHelper.AssertMetaSqlProjectionRoundTrips(firstModel);
     }
 
     private static string GetTpcDsSqlPath(string sourceViewFolder)

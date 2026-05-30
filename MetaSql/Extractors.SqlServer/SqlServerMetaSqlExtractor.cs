@@ -21,6 +21,18 @@ public sealed class SqlServerMetaSqlExtractor
 
         var schemaFilter = request.SchemaName?.Trim();
         var tableFilter = request.TableName?.Trim();
+        var objectKinds = request.ObjectKinds == SqlServerExtractObjectKinds.None
+            ? SqlServerExtractObjectKinds.All
+            : request.ObjectKinds;
+        if (tableFilter is not null && objectKinds == SqlServerExtractObjectKinds.All)
+        {
+            objectKinds = SqlServerExtractObjectKinds.Tables;
+        }
+        else if (tableFilter is not null && objectKinds != SqlServerExtractObjectKinds.Tables)
+        {
+            throw new InvalidOperationException(
+                "extract sqlserver --table can only be used when extracting tables. Use --include-tables or omit object-kind switches.");
+        }
 
         using var connection = new SqlConnection(request.ConnectionString);
         connection.Open();
@@ -29,13 +41,15 @@ public sealed class SqlServerMetaSqlExtractor
             ? "(default)"
             : connection.Database;
 
-        var tableRows = LoadTables(connection, schemaFilter, tableFilter)
-            .OrderBy(row => row.SchemaName, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(row => row.SchemaName, StringComparer.Ordinal)
-            .ThenBy(row => row.TableName, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(row => row.TableName, StringComparer.Ordinal)
-            .ToList();
-        var viewRows = tableFilter is null
+        var tableRows = objectKinds.HasFlag(SqlServerExtractObjectKinds.Tables)
+            ? LoadTables(connection, schemaFilter, tableFilter)
+                .OrderBy(row => row.SchemaName, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.SchemaName, StringComparer.Ordinal)
+                .ThenBy(row => row.TableName, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.TableName, StringComparer.Ordinal)
+                .ToList()
+            : new List<SqlServerMetaSqlProjector.TableRow>();
+        var viewRows = objectKinds.HasFlag(SqlServerExtractObjectKinds.Views)
             ? LoadViews(connection, schemaFilter)
                 .OrderBy(row => row.SchemaName, StringComparer.OrdinalIgnoreCase)
                 .ThenBy(row => row.SchemaName, StringComparer.Ordinal)
@@ -43,7 +57,15 @@ public sealed class SqlServerMetaSqlExtractor
                 .ThenBy(row => row.ViewName, StringComparer.Ordinal)
                 .ToList()
             : new List<SqlServerMetaSqlProjector.ViewRow>();
-        var storedProcedureRows = tableFilter is null
+        var functionRows = objectKinds.HasFlag(SqlServerExtractObjectKinds.Functions)
+            ? LoadFunctions(connection, schemaFilter)
+                .OrderBy(row => row.SchemaName, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.SchemaName, StringComparer.Ordinal)
+                .ThenBy(row => row.FunctionName, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(row => row.FunctionName, StringComparer.Ordinal)
+                .ToList()
+            : new List<SqlServerMetaSqlProjector.FunctionRow>();
+        var storedProcedureRows = objectKinds.HasFlag(SqlServerExtractObjectKinds.StoredProcedures)
             ? LoadStoredProcedures(connection, schemaFilter)
                 .OrderBy(row => row.SchemaName, StringComparer.OrdinalIgnoreCase)
                 .ThenBy(row => row.SchemaName, StringComparer.Ordinal)
@@ -52,7 +74,7 @@ public sealed class SqlServerMetaSqlExtractor
                 .ToList()
             : new List<SqlServerMetaSqlProjector.StoredProcedureRow>();
 
-        if (tableRows.Count == 0 && viewRows.Count == 0 && storedProcedureRows.Count == 0)
+        if (tableRows.Count == 0 && viewRows.Count == 0 && functionRows.Count == 0 && storedProcedureRows.Count == 0)
         {
             if (request.AllowEmpty)
             {
@@ -125,6 +147,7 @@ public sealed class SqlServerMetaSqlExtractor
             indexesByTableKey,
             indexColumnsByTableKey,
             viewRows,
+            functionRows,
             storedProcedureRows);
     }
 
@@ -524,6 +547,39 @@ public sealed class SqlServerMetaSqlExtractor
         return rows;
     }
 
+    private static List<SqlServerMetaSqlProjector.FunctionRow> LoadFunctions(SqlConnection connection, string? schemaName)
+    {
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            select
+                s.name as SchemaName,
+                o.name as FunctionName,
+                o.type as FunctionType,
+                sm.definition as DefinitionSql
+            from sys.objects o
+            join sys.schemas s on s.schema_id = o.schema_id
+            join sys.sql_modules sm on sm.object_id = o.object_id
+            where o.is_ms_shipped = 0
+              and o.type in ('FN', 'IF', 'TF')
+              and (@schemaName is null or s.name = @schemaName)
+            order by s.name, o.name
+            """;
+        command.Parameters.Add(new SqlParameter("@schemaName", SqlDbType.NVarChar, 128) { Value = string.IsNullOrWhiteSpace(schemaName) ? DBNull.Value : schemaName });
+
+        var rows = new List<SqlServerMetaSqlProjector.FunctionRow>();
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            rows.Add(new SqlServerMetaSqlProjector.FunctionRow(
+                SchemaName: reader.GetString(0),
+                FunctionName: reader.GetString(1),
+                FunctionKind: NormalizeFunctionKind(reader.GetString(2)),
+                DefinitionSql: reader.GetString(3)));
+        }
+
+        return rows;
+    }
+
     private static int? ReadNullableInt(SqlDataReader reader, int ordinal)
     {
         if (reader.IsDBNull(ordinal))
@@ -620,6 +676,17 @@ public sealed class SqlServerMetaSqlExtractor
 
         return depth == 0;
     }
+
+    private static string NormalizeFunctionKind(string objectType)
+    {
+        return objectType switch
+        {
+            "FN" => "ScalarFunction",
+            "IF" => "InlineTableValuedFunction",
+            "TF" => "TableValuedFunction",
+            _ => objectType,
+        };
+    }
 }
 
 public sealed class SqlServerExtractRequest
@@ -628,5 +695,17 @@ public sealed class SqlServerExtractRequest
     public string ConnectionString { get; set; } = string.Empty;
     public string? SchemaName { get; set; }
     public string? TableName { get; set; }
+    public SqlServerExtractObjectKinds ObjectKinds { get; set; } = SqlServerExtractObjectKinds.All;
     public bool AllowEmpty { get; set; }
+}
+
+[Flags]
+public enum SqlServerExtractObjectKinds
+{
+    None = 0,
+    Tables = 1,
+    Views = 2,
+    Functions = 4,
+    StoredProcedures = 8,
+    All = Tables | Views | Functions | StoredProcedures
 }

@@ -19,6 +19,7 @@ internal static class SqlServerMetaSqlProjector
         IReadOnlyDictionary<string, List<IndexRow>> indexesByTableKey,
         IReadOnlyDictionary<string, List<IndexColumnRow>> indexColumnsByTableKey,
         IReadOnlyList<ViewRow>? viewRows = null,
+        IReadOnlyList<FunctionRow>? functionRows = null,
         IReadOnlyList<StoredProcedureRow>? storedProcedureRows = null)
     {
         var model = MetaSqlModel.CreateEmpty();
@@ -33,10 +34,12 @@ internal static class SqlServerMetaSqlProjector
         var tablesByScopedKey = new Dictionary<string, Table>(StringComparer.OrdinalIgnoreCase);
         var columnsByScopedTableAndName = new Dictionary<string, TableColumn>(StringComparer.OrdinalIgnoreCase);
         var normalizedViewRows = viewRows ?? Array.Empty<ViewRow>();
+        var normalizedFunctionRows = functionRows ?? Array.Empty<FunctionRow>();
         var normalizedStoredProcedureRows = storedProcedureRows ?? Array.Empty<StoredProcedureRow>();
 
         foreach (var schemaName in normalizedViewRows
                      .Select(row => row.SchemaName)
+                     .Concat(normalizedFunctionRows.Select(row => row.SchemaName))
                      .Concat(normalizedStoredProcedureRows.Select(row => row.SchemaName))
                      .OrderBy(row => row, StringComparer.OrdinalIgnoreCase)
                      .ThenBy(row => row, StringComparer.Ordinal))
@@ -197,6 +200,16 @@ internal static class SqlServerMetaSqlProjector
         {
             var schema = GetOrAddSchema(model, database, schemasByName, viewRow.SchemaName);
             AddView(model, schema, viewRow);
+        }
+
+        foreach (var functionRow in normalizedFunctionRows
+                     .OrderBy(row => row.DeployOrdinal ?? int.MaxValue)
+                     .ThenBy(row => row.SchemaName, StringComparer.OrdinalIgnoreCase)
+                     .ThenBy(row => row.FunctionName, StringComparer.OrdinalIgnoreCase)
+                     .ThenBy(row => row.FunctionName, StringComparer.Ordinal))
+        {
+            var schema = GetOrAddSchema(model, database, schemasByName, functionRow.SchemaName);
+            AddFunction(model, schema, functionRow);
         }
 
         foreach (var storedProcedureRow in normalizedStoredProcedureRows
@@ -413,6 +426,21 @@ internal static class SqlServerMetaSqlProjector
         return view;
     }
 
+    private static Function AddFunction(MetaSqlModel model, Schema schema, FunctionRow row)
+    {
+        var function = new Function
+        {
+            Id = $"{schema.Id}.function.{row.FunctionName}",
+            Name = row.FunctionName,
+            FunctionKind = row.FunctionKind,
+            DefinitionSql = row.DefinitionSql,
+            DeployOrdinal = row.DeployOrdinal?.ToString(CultureInfo.InvariantCulture) ?? string.Empty,
+            Schema = schema,
+        };
+        model.FunctionList.Add(function);
+        return function;
+    }
+
     private static StoredProcedure AddStoredProcedure(MetaSqlModel model, Schema schema, StoredProcedureRow row)
     {
         var storedProcedure = new StoredProcedure
@@ -457,5 +485,6 @@ internal static class SqlServerMetaSqlProjector
     internal readonly record struct IndexRow(string Name, bool IsUnique, bool IsClustered, string FilterSql = "");
     internal readonly record struct IndexColumnRow(string IndexName, int Ordinal, string ColumnName, bool IsDescending, bool IsIncluded);
     internal readonly record struct ViewRow(string SchemaName, string ViewName, string DefinitionSql, int? DeployOrdinal = null);
+    internal readonly record struct FunctionRow(string SchemaName, string FunctionName, string FunctionKind, string DefinitionSql, int? DeployOrdinal = null);
     internal readonly record struct StoredProcedureRow(string SchemaName, string ProcedureName, string DefinitionSql, int? DeployOrdinal = null);
 }

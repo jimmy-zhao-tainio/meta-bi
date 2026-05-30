@@ -6,6 +6,8 @@ using MetaConvert.DataQualityToSql;
 using MetaConvert.DataVaultToSql;
 using MetaConvert.DataWarehouseToSql;
 using MetaConvert.SchemaToDataVault;
+using MetaConvert.SqlToTransformScript;
+using MetaConvert.TransformScriptToSql;
 using MetaRawDataVault.Instance;
 using MetaSchema.Instance;
 
@@ -122,6 +124,35 @@ internal static class Program
                 RunDataWarehouseToSqlAsync),
             new CliCommandRoute(
                 new CliCommandDefinition(
+                    "transform-script-to-sql",
+                    "Convert MetaTransformScript SQL modules to MetaSql workspace.",
+                    new[] { "meta-convert transform-script-to-sql [--workspace <path>] --database-name <name> --out <path>" },
+                    TransformScriptToSqlOptions(),
+                    new[]
+                    {
+                        "Converts MetaTransformScript view, function, and stored procedure modules to a current MetaSql workspace.",
+                        "SQL module declarations must already be schema-qualified in the source workspace.",
+                        "Saves the generated current MetaSql workspace at --out.",
+                        "Defaults to the current working directory when --workspace is omitted."
+                    }),
+                RunTransformScriptToSqlAsync),
+            new CliCommandRoute(
+                new CliCommandDefinition(
+                    "sql-to-transform-script",
+                    "Convert MetaSql SQL modules to MetaTransformScript workspace.",
+                    new[] { "meta-convert sql-to-transform-script [--workspace <path>] --out <path> [--include-views] [--include-functions] [--include-stored-procedures] [--allow-empty]" },
+                    SqlToTransformScriptOptions(),
+                    new[]
+                    {
+                        "Reads view, function, and stored procedure module definitions from a MetaSql workspace.",
+                        "Imports each module through the MetaTransformScript SQL importer.",
+                        "If any include switch is provided, only selected module kinds are converted.",
+                        "Saves the generated current MetaTransformScript workspace at --out.",
+                        "Defaults to the current working directory when --workspace is omitted."
+                    }),
+                RunSqlToTransformScriptAsync),
+            new CliCommandRoute(
+                new CliCommandDefinition(
                     "analytics-to-tabular",
                     "Convert MetaAnalytics workspace to MetaTabular workspace.",
                     new[] { "meta-convert analytics-to-tabular [--workspace <path>] --out <path>" },
@@ -164,6 +195,25 @@ internal static class Program
         {
             new CliOptionDefinition("--workspace <path>", $"Optional. {workspaceDescription} Default: current working directory."),
             new CliOptionDefinition("--out <path>", "Required. Output workspace or script folder path.")
+        };
+
+    private static IReadOnlyList<CliOptionDefinition> TransformScriptToSqlOptions() =>
+        new[]
+        {
+            new CliOptionDefinition("--workspace <path>", "Optional. Source MetaTransformScript workspace path. Default: current working directory."),
+            new CliOptionDefinition("--database-name <name>", "Required. Target MetaSql database name."),
+            new CliOptionDefinition("--out <path>", "Required. Output MetaSql workspace path.")
+        };
+
+    private static IReadOnlyList<CliOptionDefinition> SqlToTransformScriptOptions() =>
+        new[]
+        {
+            new CliOptionDefinition("--workspace <path>", "Optional. Source MetaSql workspace path. Default: current working directory."),
+            new CliOptionDefinition("--out <path>", "Required. Output MetaTransformScript workspace path."),
+            new CliOptionDefinition("--include-views", "Convert view modules. If no include switch is provided, all module kinds are selected."),
+            new CliOptionDefinition("--include-functions", "Convert function modules. If no include switch is provided, all module kinds are selected."),
+            new CliOptionDefinition("--include-stored-procedures", "Convert stored procedure modules. If no include switch is provided, all module kinds are selected."),
+            new CliOptionDefinition("--allow-empty", "Create an empty MetaTransformScript workspace when selected module kinds have no convertible modules.")
         };
 
     static async Task<int> Main(string[] args)
@@ -438,6 +488,102 @@ internal static class Program
         }
     }
 
+    private static async Task<int> RunTransformScriptToSqlAsync(string[] args)
+    {
+        if (args.Length == 1 || IsHelpToken(args[1]))
+        {
+            PrintTransformScriptToSqlHelp();
+            return 0;
+        }
+
+        var parse = ParseTransformScriptToSqlArgs(args, 1);
+        if (!parse.Ok)
+        {
+            return Fail(parse.ErrorMessage, HelpCommand("transform-script-to-sql"));
+        }
+
+        var workspacePath = Path.GetFullPath(parse.WorkspacePath);
+        var outputWorkspacePath = Path.GetFullPath(parse.OutputPath);
+
+        try
+        {
+            Directory.CreateDirectory(outputWorkspacePath);
+            await TransformScriptToSqlConverter.ConvertAsync(
+                workspacePath,
+                outputWorkspacePath,
+                parse.DatabaseName).ConfigureAwait(false);
+
+            Presenter.WriteInfo($"Generated {Path.GetFileName(outputWorkspacePath)}");
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "Cannot convert transform scripts to SQL.",
+                "check the workspace, database name, schema-qualified module declarations, and output path, then retry.",
+                4,
+                new[]
+                {
+                    $"  Workspace: {workspacePath}",
+                    $"  Database: {parse.DatabaseName}",
+                    $"  Output: {outputWorkspacePath}",
+                    $"  {ex.Message}",
+            });
+        }
+    }
+
+    private static async Task<int> RunSqlToTransformScriptAsync(string[] args)
+    {
+        if (args.Length == 1 || IsHelpToken(args[1]))
+        {
+            PrintSqlToTransformScriptHelp();
+            return 0;
+        }
+
+        var parse = ParseSqlToTransformScriptArgs(args, 1);
+        if (!parse.Ok)
+        {
+            return Fail(parse.ErrorMessage, HelpCommand("sql-to-transform-script"));
+        }
+
+        var workspacePath = Path.GetFullPath(parse.WorkspacePath);
+        var outputWorkspacePath = Path.GetFullPath(parse.OutputPath);
+
+        try
+        {
+            var result = await SqlToTransformScriptConverter.ConvertAsync(
+                workspacePath,
+                outputWorkspacePath,
+                new SqlToTransformScriptConversionOptions
+                {
+                    ModuleKinds = parse.ModuleKinds,
+                    AllowEmpty = parse.AllowEmpty,
+                }).ConfigureAwait(false);
+
+            Presenter.WriteInfo($"Generated {Path.GetFileName(outputWorkspacePath)}");
+            Presenter.WriteKeyValueBlock("Summary", new[]
+            {
+                ("Views", result.ViewCount.ToString()),
+                ("Functions", result.FunctionCount.ToString()),
+                ("StoredProcedures", result.StoredProcedureCount.ToString()),
+            });
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "Cannot convert MetaSql to transform scripts.",
+                "check the MetaSql workspace, module definitions, and output path, then retry.",
+                4,
+                new[]
+                {
+                    $"  Workspace: {workspacePath}",
+                    $"  Output: {outputWorkspacePath}",
+                    $"  {ex.Message}",
+                });
+        }
+    }
+
     private static async Task<int> RunAnalyticsToTabularAsync(string[] args)
     {
         if (args.Length == 1 || IsHelpToken(args[1]))
@@ -647,6 +793,51 @@ internal static class Program
         return (true, workspacePath, implementationWorkspacePath, outputPath, databaseName, string.Empty);
     }
 
+    private static (bool Ok, string WorkspacePath, string OutputPath, string DatabaseName, string ErrorMessage) ParseTransformScriptToSqlArgs(
+        string[] args,
+        int startIndex)
+    {
+        var workspacePath = ".";
+        var workspaceSpecified = false;
+        var outputPath = string.Empty;
+        var databaseName = string.Empty;
+
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+            if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, workspacePath, outputPath, databaseName, "missing value for --workspace.");
+                if (workspaceSpecified) return (false, workspacePath, outputPath, databaseName, "--workspace can only be provided once.");
+                workspacePath = args[++i];
+                workspaceSpecified = true;
+                continue;
+            }
+
+            if (string.Equals(arg, "--out", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, workspacePath, outputPath, databaseName, "missing value for --out.");
+                if (!string.IsNullOrWhiteSpace(outputPath)) return (false, workspacePath, outputPath, databaseName, "--out can only be provided once.");
+                outputPath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--database-name", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, workspacePath, outputPath, databaseName, "missing value for --database-name.");
+                if (!string.IsNullOrWhiteSpace(databaseName)) return (false, workspacePath, outputPath, databaseName, "--database-name can only be provided once.");
+                databaseName = args[++i];
+                continue;
+            }
+
+            return (false, workspacePath, outputPath, databaseName, $"unknown option '{arg}'.");
+        }
+
+        if (string.IsNullOrWhiteSpace(outputPath)) return (false, workspacePath, outputPath, databaseName, "missing required option --out <path>.");
+        if (string.IsNullOrWhiteSpace(databaseName)) return (false, workspacePath, outputPath, databaseName, "missing required option --database-name <name>.");
+        return (true, workspacePath, outputPath, databaseName, string.Empty);
+    }
+
     private static (bool Ok, string WorkspacePath, string OutputPath, string ErrorMessage) ParseDataQualityToSqlArgs(string[] args, int startIndex)
     {
         var workspacePath = ".";
@@ -682,6 +873,86 @@ internal static class Program
         }
 
         return (true, workspacePath, outputPath, string.Empty);
+    }
+
+    private static (bool Ok, string WorkspacePath, string OutputPath, SqlToTransformScriptModuleKinds ModuleKinds, bool AllowEmpty, string ErrorMessage) ParseSqlToTransformScriptArgs(
+        string[] args,
+        int startIndex)
+    {
+        var workspacePath = ".";
+        var workspaceSpecified = false;
+        var outputPath = string.Empty;
+        var includeSwitchProvided = false;
+        var moduleKinds = SqlToTransformScriptModuleKinds.All;
+        var allowEmpty = false;
+
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+            if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, workspacePath, outputPath, moduleKinds, allowEmpty, "missing value for --workspace.");
+                if (workspaceSpecified) return (false, workspacePath, outputPath, moduleKinds, allowEmpty, "--workspace can only be provided once.");
+                workspacePath = args[++i];
+                workspaceSpecified = true;
+                continue;
+            }
+
+            if (string.Equals(arg, "--out", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return (false, workspacePath, outputPath, moduleKinds, allowEmpty, "missing value for --out.");
+                if (!string.IsNullOrWhiteSpace(outputPath)) return (false, workspacePath, outputPath, moduleKinds, allowEmpty, "--out can only be provided once.");
+                outputPath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--include-views", StringComparison.OrdinalIgnoreCase))
+            {
+                AddModuleKindFilter(ref includeSwitchProvided, ref moduleKinds, SqlToTransformScriptModuleKinds.Views);
+                continue;
+            }
+
+            if (string.Equals(arg, "--include-functions", StringComparison.OrdinalIgnoreCase))
+            {
+                AddModuleKindFilter(ref includeSwitchProvided, ref moduleKinds, SqlToTransformScriptModuleKinds.Functions);
+                continue;
+            }
+
+            if (string.Equals(arg, "--include-stored-procedures", StringComparison.OrdinalIgnoreCase))
+            {
+                AddModuleKindFilter(ref includeSwitchProvided, ref moduleKinds, SqlToTransformScriptModuleKinds.StoredProcedures);
+                continue;
+            }
+
+            if (string.Equals(arg, "--allow-empty", StringComparison.OrdinalIgnoreCase))
+            {
+                allowEmpty = true;
+                continue;
+            }
+
+            return (false, workspacePath, outputPath, moduleKinds, allowEmpty, $"unknown option '{arg}'.");
+        }
+
+        if (string.IsNullOrWhiteSpace(outputPath))
+        {
+            return (false, workspacePath, outputPath, moduleKinds, allowEmpty, "missing required option --out <path>.");
+        }
+
+        return (true, workspacePath, outputPath, moduleKinds, allowEmpty, string.Empty);
+    }
+
+    private static void AddModuleKindFilter(
+        ref bool includeSwitchProvided,
+        ref SqlToTransformScriptModuleKinds moduleKinds,
+        SqlToTransformScriptModuleKinds moduleKind)
+    {
+        if (!includeSwitchProvided)
+        {
+            moduleKinds = SqlToTransformScriptModuleKinds.None;
+            includeSwitchProvided = true;
+        }
+
+        moduleKinds |= moduleKind;
     }
 
     private static void RenderSummary(RawDataVaultFromMetaSchemaSummary summary)
@@ -753,6 +1024,16 @@ internal static class Program
     private static void PrintDataWarehouseToSqlHelp()
     {
         PrintCommandHelp("data-warehouse-to-sql");
+    }
+
+    private static void PrintTransformScriptToSqlHelp()
+    {
+        PrintCommandHelp("transform-script-to-sql");
+    }
+
+    private static void PrintSqlToTransformScriptHelp()
+    {
+        PrintCommandHelp("sql-to-transform-script");
     }
 
     private static void PrintAnalyticsToTabularHelp()

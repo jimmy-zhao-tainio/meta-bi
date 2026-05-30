@@ -114,6 +114,44 @@ FROM sales.Customer AS c
         Assert.True(string.IsNullOrWhiteSpace(GetViewTargetSqlIdentifier(model, script)));
     }
 
+    [Theory]
+    [InlineData("""
+CREATE VIEW v_customer
+AS
+SELECT
+    1 AS CustomerId
+""")]
+    [InlineData("""
+CREATE VIEW Warehouse.dbo.v_customer
+AS
+SELECT
+    1 AS CustomerId
+""")]
+    [InlineData("""
+CREATE FUNCTION fn_customer()
+RETURNS TABLE
+AS
+RETURN
+SELECT
+    1 AS CustomerId
+""")]
+    [InlineData("""
+CREATE FUNCTION Warehouse.dbo.fn_customer()
+RETURNS TABLE
+AS
+RETURN
+SELECT
+    1 AS CustomerId
+""")]
+    public void ImportFromSqlCode_RejectsCreateModuleNames_WithoutExactlyTwoParts(string sql)
+    {
+        var exception = Assert.Throws<MetaTransformScriptSqlImportException>(
+            () => new MetaTransformScriptSqlService().ImportFromSqlCode(sql));
+
+        Assert.Equal(MetaTransformScriptSqlImportFailureKind.UnsupportedSql, exception.Kind);
+        Assert.Contains("names must be two-part", exception.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
     [Fact]
     public void ImportFromSqlCode_MapsParseErrors_ToParseFailed()
     {

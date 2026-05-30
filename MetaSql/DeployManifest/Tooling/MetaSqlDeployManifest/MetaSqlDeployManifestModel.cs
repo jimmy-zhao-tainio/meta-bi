@@ -28,6 +28,8 @@ namespace MetaSqlDeployManifest
 
         public List<AddForeignKey> AddForeignKeyList { get; set; } = new();
 
+        public List<AddFunction> AddFunctionList { get; set; } = new();
+
         public List<AddIndex> AddIndexList { get; set; } = new();
 
         public List<AddPrimaryKey> AddPrimaryKeyList { get; set; } = new();
@@ -46,6 +48,8 @@ namespace MetaSqlDeployManifest
 
         public List<BlockForeignKeyDifference> BlockForeignKeyDifferenceList { get; set; } = new();
 
+        public List<BlockFunctionDifference> BlockFunctionDifferenceList { get; set; } = new();
+
         public List<BlockIndexDifference> BlockIndexDifferenceList { get; set; } = new();
 
         public List<BlockPrimaryKeyDifference> BlockPrimaryKeyDifferenceList { get; set; } = new();
@@ -62,6 +66,8 @@ namespace MetaSqlDeployManifest
 
         public List<DropForeignKey> DropForeignKeyList { get; set; } = new();
 
+        public List<DropFunction> DropFunctionList { get; set; } = new();
+
         public List<DropIndex> DropIndexList { get; set; } = new();
 
         public List<DropPrimaryKey> DropPrimaryKeyList { get; set; } = new();
@@ -75,6 +81,8 @@ namespace MetaSqlDeployManifest
         public List<DropView> DropViewList { get; set; } = new();
 
         public List<ReplaceForeignKey> ReplaceForeignKeyList { get; set; } = new();
+
+        public List<ReplaceFunction> ReplaceFunctionList { get; set; } = new();
 
         public List<ReplaceIndex> ReplaceIndexList { get; set; } = new();
 
@@ -155,6 +163,7 @@ namespace MetaSqlDeployManifest
 
             var loadIndexes = new LoadIndexes(model);
             ResolveRelationshipGroup1(loadIndexes, relationshipBuffers);
+            ResolveRelationshipGroup2(loadIndexes, relationshipBuffers);
             return model;
         }
 
@@ -177,6 +186,7 @@ namespace MetaSqlDeployManifest
             Directory.CreateDirectory(instanceDirectoryPath);
             var expectedShardPaths = BuildExpectedShardPaths(instanceDirectoryPath);
             SaveShardGroup1(model, instanceDirectoryPath, saveIndexes);
+            SaveShardGroup2(model, instanceDirectoryPath, saveIndexes);
             foreach (var shardPath in Directory.GetFiles(instanceDirectoryPath, "*.xml")
                          .OrderBy(Path.GetFileName, StringComparer.OrdinalIgnoreCase)
                          .ThenBy(path => path, StringComparer.Ordinal))
@@ -199,6 +209,17 @@ namespace MetaSqlDeployManifest
             else
             {
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(addForeignKeyShardPath, SerializeAddForeignKeyShard(model, saveIndexes));
+            }
+
+            model.AddFunctionList ??= new List<AddFunction>();
+            var addFunctionShardPath = Path.Combine(instanceDirectoryPath, "AddFunction.xml");
+            if (model.AddFunctionList.Count == 0)
+            {
+                DeleteIfExists(addFunctionShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(addFunctionShardPath, SerializeAddFunctionShard(model, saveIndexes));
             }
 
             model.AddIndexList ??= new List<AddIndex>();
@@ -300,6 +321,17 @@ namespace MetaSqlDeployManifest
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(blockForeignKeyDifferenceShardPath, SerializeBlockForeignKeyDifferenceShard(model, saveIndexes));
             }
 
+            model.BlockFunctionDifferenceList ??= new List<BlockFunctionDifference>();
+            var blockFunctionDifferenceShardPath = Path.Combine(instanceDirectoryPath, "BlockFunctionDifference.xml");
+            if (model.BlockFunctionDifferenceList.Count == 0)
+            {
+                DeleteIfExists(blockFunctionDifferenceShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(blockFunctionDifferenceShardPath, SerializeBlockFunctionDifferenceShard(model, saveIndexes));
+            }
+
             model.BlockIndexDifferenceList ??= new List<BlockIndexDifference>();
             var blockIndexDifferenceShardPath = Path.Combine(instanceDirectoryPath, "BlockIndexDifference.xml");
             if (model.BlockIndexDifferenceList.Count == 0)
@@ -388,6 +420,17 @@ namespace MetaSqlDeployManifest
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(dropForeignKeyShardPath, SerializeDropForeignKeyShard(model, saveIndexes));
             }
 
+            model.DropFunctionList ??= new List<DropFunction>();
+            var dropFunctionShardPath = Path.Combine(instanceDirectoryPath, "DropFunction.xml");
+            if (model.DropFunctionList.Count == 0)
+            {
+                DeleteIfExists(dropFunctionShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(dropFunctionShardPath, SerializeDropFunctionShard(model, saveIndexes));
+            }
+
             model.DropIndexList ??= new List<DropIndex>();
             var dropIndexShardPath = Path.Combine(instanceDirectoryPath, "DropIndex.xml");
             if (model.DropIndexList.Count == 0)
@@ -465,6 +508,17 @@ namespace MetaSqlDeployManifest
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(replaceForeignKeyShardPath, SerializeReplaceForeignKeyShard(model, saveIndexes));
             }
 
+            model.ReplaceFunctionList ??= new List<ReplaceFunction>();
+            var replaceFunctionShardPath = Path.Combine(instanceDirectoryPath, "ReplaceFunction.xml");
+            if (model.ReplaceFunctionList.Count == 0)
+            {
+                DeleteIfExists(replaceFunctionShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(replaceFunctionShardPath, SerializeReplaceFunctionShard(model, saveIndexes));
+            }
+
             model.ReplaceIndexList ??= new List<ReplaceIndex>();
             var replaceIndexShardPath = Path.Combine(instanceDirectoryPath, "ReplaceIndex.xml");
             if (model.ReplaceIndexList.Count == 0)
@@ -498,6 +552,10 @@ namespace MetaSqlDeployManifest
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(replaceStoredProcedureShardPath, SerializeReplaceStoredProcedureShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup2(MetaSqlDeployManifestModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.ReplaceViewList ??= new List<ReplaceView>();
             var replaceViewShardPath = Path.Combine(instanceDirectoryPath, "ReplaceView.xml");
             if (model.ReplaceViewList.Count == 0)
@@ -547,6 +605,9 @@ namespace MetaSqlDeployManifest
                     case "AddForeignKeyList":
                         LoadAddForeignKeyList(model, reader, loadState, relationshipBuffers);
                         break;
+                    case "AddFunctionList":
+                        LoadAddFunctionList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "AddIndexList":
                         LoadAddIndexList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -574,6 +635,9 @@ namespace MetaSqlDeployManifest
                     case "BlockForeignKeyDifferenceList":
                         LoadBlockForeignKeyDifferenceList(model, reader, loadState, relationshipBuffers);
                         break;
+                    case "BlockFunctionDifferenceList":
+                        LoadBlockFunctionDifferenceList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "BlockIndexDifferenceList":
                         LoadBlockIndexDifferenceList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -598,6 +662,9 @@ namespace MetaSqlDeployManifest
                     case "DropForeignKeyList":
                         LoadDropForeignKeyList(model, reader, loadState, relationshipBuffers);
                         break;
+                    case "DropFunctionList":
+                        LoadDropFunctionList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "DropIndexList":
                         LoadDropIndexList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -618,6 +685,9 @@ namespace MetaSqlDeployManifest
                         break;
                     case "ReplaceForeignKeyList":
                         LoadReplaceForeignKeyList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "ReplaceFunctionList":
+                        LoadReplaceFunctionList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "ReplaceIndexList":
                         LoadReplaceIndexList(model, reader, loadState, relationshipBuffers);
@@ -751,6 +821,119 @@ namespace MetaSqlDeployManifest
                 builder.Append("    </AddForeignKey>\n");
             }
             builder.Append("  </AddForeignKeyList>\n");
+            builder.Append("</MetaSqlDeployManifest>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadAddFunctionList(MetaSqlDeployManifestModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("AddFunctionList");
+                return;
+            }
+
+            reader.ReadStartElement("AddFunctionList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "AddFunction", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'AddFunctionList'.");
+                }
+                var row = ReadAddFunction(reader, relationshipBuffers);
+                loadState.AddAddFunctionId(row.Id);
+                model.AddFunctionList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static AddFunction ReadAddFunction(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new AddFunction();
+            var relationships = new AddFunctionRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "DeployManifestId":
+                            relationships.DeployManifestId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'AddFunction'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("AddFunction");
+                (relationshipBuffers.AddFunctionRelationships ??= new List<AddFunctionRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("AddFunction");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "SourceFunctionId":
+                        row.SourceFunctionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'AddFunction'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.AddFunctionRelationships ??= new List<AddFunctionRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeAddFunctionShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSqlDeployManifest>\n");
+            builder.Append("  <AddFunctionList>\n");
+            foreach (var row in model.AddFunctionList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'AddFunction' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'AddFunction' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <AddFunction Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var deployManifestId = RequireIdentity(row.DeployManifest?.Id, $"Relationship 'AddFunction.DeployManifestId' on row 'AddFunction:{row.Id}' is empty.");
+                if (!saveIndexes.DeployManifestListById.TryGetValue(deployManifestId, out var deployManifestCanonical) || !ReferenceEquals(deployManifestCanonical, row.DeployManifest))
+                {
+                    throw new InvalidOperationException($"Relationship 'AddFunction.DeployManifestId' on row 'AddFunction:{row.Id}' references an object that is not the canonical row for Id '{deployManifestId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("DeployManifestId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, deployManifestId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "SourceFunctionId", RequireText(row.SourceFunctionId, $"Entity 'AddFunction' row '{row.Id}' is missing required property 'SourceFunctionId'."), "      ");
+                builder.Append("    </AddFunction>\n");
+            }
+            builder.Append("  </AddFunctionList>\n");
             builder.Append("</MetaSqlDeployManifest>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -1784,6 +1967,127 @@ namespace MetaSqlDeployManifest
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadBlockFunctionDifferenceList(MetaSqlDeployManifestModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("BlockFunctionDifferenceList");
+                return;
+            }
+
+            reader.ReadStartElement("BlockFunctionDifferenceList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "BlockFunctionDifference", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'BlockFunctionDifferenceList'.");
+                }
+                var row = ReadBlockFunctionDifference(reader, relationshipBuffers);
+                loadState.AddBlockFunctionDifferenceId(row.Id);
+                model.BlockFunctionDifferenceList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static BlockFunctionDifference ReadBlockFunctionDifference(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new BlockFunctionDifference();
+            var relationships = new BlockFunctionDifferenceRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "DeployManifestId":
+                            relationships.DeployManifestId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'BlockFunctionDifference'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("BlockFunctionDifference");
+                (relationshipBuffers.BlockFunctionDifferenceRelationships ??= new List<BlockFunctionDifferenceRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("BlockFunctionDifference");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "DifferenceSummary":
+                        row.DifferenceSummary = reader.ReadElementContentAsString();
+                        break;
+                    case "LiveFunctionId":
+                        row.LiveFunctionId = reader.ReadElementContentAsString();
+                        break;
+                    case "SourceFunctionId":
+                        row.SourceFunctionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'BlockFunctionDifference'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.BlockFunctionDifferenceRelationships ??= new List<BlockFunctionDifferenceRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeBlockFunctionDifferenceShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSqlDeployManifest>\n");
+            builder.Append("  <BlockFunctionDifferenceList>\n");
+            foreach (var row in model.BlockFunctionDifferenceList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'BlockFunctionDifference' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'BlockFunctionDifference' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <BlockFunctionDifference Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var deployManifestId = RequireIdentity(row.DeployManifest?.Id, $"Relationship 'BlockFunctionDifference.DeployManifestId' on row 'BlockFunctionDifference:{row.Id}' is empty.");
+                if (!saveIndexes.DeployManifestListById.TryGetValue(deployManifestId, out var deployManifestCanonical) || !ReferenceEquals(deployManifestCanonical, row.DeployManifest))
+                {
+                    throw new InvalidOperationException($"Relationship 'BlockFunctionDifference.DeployManifestId' on row 'BlockFunctionDifference:{row.Id}' references an object that is not the canonical row for Id '{deployManifestId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("DeployManifestId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, deployManifestId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "DifferenceSummary", RequireText(row.DifferenceSummary, $"Entity 'BlockFunctionDifference' row '{row.Id}' is missing required property 'DifferenceSummary'."), "      ");
+                AppendElement(builder, "LiveFunctionId", RequireText(row.LiveFunctionId, $"Entity 'BlockFunctionDifference' row '{row.Id}' is missing required property 'LiveFunctionId'."), "      ");
+                AppendElement(builder, "SourceFunctionId", RequireText(row.SourceFunctionId, $"Entity 'BlockFunctionDifference' row '{row.Id}' is missing required property 'SourceFunctionId'."), "      ");
+                builder.Append("    </BlockFunctionDifference>\n");
+            }
+            builder.Append("  </BlockFunctionDifferenceList>\n");
+            builder.Append("</MetaSqlDeployManifest>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private static void LoadBlockIndexDifferenceList(MetaSqlDeployManifestModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -2743,6 +3047,119 @@ namespace MetaSqlDeployManifest
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadDropFunctionList(MetaSqlDeployManifestModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("DropFunctionList");
+                return;
+            }
+
+            reader.ReadStartElement("DropFunctionList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "DropFunction", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'DropFunctionList'.");
+                }
+                var row = ReadDropFunction(reader, relationshipBuffers);
+                loadState.AddDropFunctionId(row.Id);
+                model.DropFunctionList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static DropFunction ReadDropFunction(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new DropFunction();
+            var relationships = new DropFunctionRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "DeployManifestId":
+                            relationships.DeployManifestId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'DropFunction'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("DropFunction");
+                (relationshipBuffers.DropFunctionRelationships ??= new List<DropFunctionRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("DropFunction");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "LiveFunctionId":
+                        row.LiveFunctionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'DropFunction'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.DropFunctionRelationships ??= new List<DropFunctionRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeDropFunctionShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSqlDeployManifest>\n");
+            builder.Append("  <DropFunctionList>\n");
+            foreach (var row in model.DropFunctionList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'DropFunction' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'DropFunction' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <DropFunction Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var deployManifestId = RequireIdentity(row.DeployManifest?.Id, $"Relationship 'DropFunction.DeployManifestId' on row 'DropFunction:{row.Id}' is empty.");
+                if (!saveIndexes.DeployManifestListById.TryGetValue(deployManifestId, out var deployManifestCanonical) || !ReferenceEquals(deployManifestCanonical, row.DeployManifest))
+                {
+                    throw new InvalidOperationException($"Relationship 'DropFunction.DeployManifestId' on row 'DropFunction:{row.Id}' references an object that is not the canonical row for Id '{deployManifestId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("DeployManifestId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, deployManifestId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "LiveFunctionId", RequireText(row.LiveFunctionId, $"Entity 'DropFunction' row '{row.Id}' is missing required property 'LiveFunctionId'."), "      ");
+                builder.Append("    </DropFunction>\n");
+            }
+            builder.Append("  </DropFunctionList>\n");
+            builder.Append("</MetaSqlDeployManifest>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private static void LoadDropIndexList(MetaSqlDeployManifestModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -3538,6 +3955,123 @@ namespace MetaSqlDeployManifest
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadReplaceFunctionList(MetaSqlDeployManifestModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("ReplaceFunctionList");
+                return;
+            }
+
+            reader.ReadStartElement("ReplaceFunctionList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "ReplaceFunction", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'ReplaceFunctionList'.");
+                }
+                var row = ReadReplaceFunction(reader, relationshipBuffers);
+                loadState.AddReplaceFunctionId(row.Id);
+                model.ReplaceFunctionList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static ReplaceFunction ReadReplaceFunction(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new ReplaceFunction();
+            var relationships = new ReplaceFunctionRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "DeployManifestId":
+                            relationships.DeployManifestId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'ReplaceFunction'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("ReplaceFunction");
+                (relationshipBuffers.ReplaceFunctionRelationships ??= new List<ReplaceFunctionRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("ReplaceFunction");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "LiveFunctionId":
+                        row.LiveFunctionId = reader.ReadElementContentAsString();
+                        break;
+                    case "SourceFunctionId":
+                        row.SourceFunctionId = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'ReplaceFunction'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.ReplaceFunctionRelationships ??= new List<ReplaceFunctionRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeReplaceFunctionShard(MetaSqlDeployManifestModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSqlDeployManifest>\n");
+            builder.Append("  <ReplaceFunctionList>\n");
+            foreach (var row in model.ReplaceFunctionList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'ReplaceFunction' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'ReplaceFunction' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <ReplaceFunction Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var deployManifestId = RequireIdentity(row.DeployManifest?.Id, $"Relationship 'ReplaceFunction.DeployManifestId' on row 'ReplaceFunction:{row.Id}' is empty.");
+                if (!saveIndexes.DeployManifestListById.TryGetValue(deployManifestId, out var deployManifestCanonical) || !ReferenceEquals(deployManifestCanonical, row.DeployManifest))
+                {
+                    throw new InvalidOperationException($"Relationship 'ReplaceFunction.DeployManifestId' on row 'ReplaceFunction:{row.Id}' references an object that is not the canonical row for Id '{deployManifestId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("DeployManifestId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, deployManifestId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "LiveFunctionId", RequireText(row.LiveFunctionId, $"Entity 'ReplaceFunction' row '{row.Id}' is missing required property 'LiveFunctionId'."), "      ");
+                AppendElement(builder, "SourceFunctionId", RequireText(row.SourceFunctionId, $"Entity 'ReplaceFunction' row '{row.Id}' is missing required property 'SourceFunctionId'."), "      ");
+                builder.Append("    </ReplaceFunction>\n");
+            }
+            builder.Append("  </ReplaceFunctionList>\n");
+            builder.Append("</MetaSqlDeployManifest>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private static void LoadReplaceIndexList(MetaSqlDeployManifestModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -4129,6 +4663,12 @@ namespace MetaSqlDeployManifest
             public string DeployManifestId { get; set; } = string.Empty;
         }
 
+        private sealed class AddFunctionRelationships
+        {
+            public AddFunction Row { get; set; } = null!;
+            public string DeployManifestId { get; set; } = string.Empty;
+        }
+
         private sealed class AddIndexRelationships
         {
             public AddIndex Row { get; set; } = null!;
@@ -4183,6 +4723,12 @@ namespace MetaSqlDeployManifest
             public string DeployManifestId { get; set; } = string.Empty;
         }
 
+        private sealed class BlockFunctionDifferenceRelationships
+        {
+            public BlockFunctionDifference Row { get; set; } = null!;
+            public string DeployManifestId { get; set; } = string.Empty;
+        }
+
         private sealed class BlockIndexDifferenceRelationships
         {
             public BlockIndexDifference Row { get; set; } = null!;
@@ -4222,6 +4768,12 @@ namespace MetaSqlDeployManifest
         private sealed class DropForeignKeyRelationships
         {
             public DropForeignKey Row { get; set; } = null!;
+            public string DeployManifestId { get; set; } = string.Empty;
+        }
+
+        private sealed class DropFunctionRelationships
+        {
+            public DropFunction Row { get; set; } = null!;
             public string DeployManifestId { get; set; } = string.Empty;
         }
 
@@ -4267,6 +4819,12 @@ namespace MetaSqlDeployManifest
             public string DeployManifestId { get; set; } = string.Empty;
         }
 
+        private sealed class ReplaceFunctionRelationships
+        {
+            public ReplaceFunction Row { get; set; } = null!;
+            public string DeployManifestId { get; set; } = string.Empty;
+        }
+
         private sealed class ReplaceIndexRelationships
         {
             public ReplaceIndex Row { get; set; } = null!;
@@ -4300,6 +4858,7 @@ namespace MetaSqlDeployManifest
         private sealed class RelationshipBuffers
         {
             public List<AddForeignKeyRelationships>? AddForeignKeyRelationships { get; set; }
+            public List<AddFunctionRelationships>? AddFunctionRelationships { get; set; }
             public List<AddIndexRelationships>? AddIndexRelationships { get; set; }
             public List<AddPrimaryKeyRelationships>? AddPrimaryKeyRelationships { get; set; }
             public List<AddSchemaRelationships>? AddSchemaRelationships { get; set; }
@@ -4309,6 +4868,7 @@ namespace MetaSqlDeployManifest
             public List<AddViewRelationships>? AddViewRelationships { get; set; }
             public List<AlterTableColumnRelationships>? AlterTableColumnRelationships { get; set; }
             public List<BlockForeignKeyDifferenceRelationships>? BlockForeignKeyDifferenceRelationships { get; set; }
+            public List<BlockFunctionDifferenceRelationships>? BlockFunctionDifferenceRelationships { get; set; }
             public List<BlockIndexDifferenceRelationships>? BlockIndexDifferenceRelationships { get; set; }
             public List<BlockPrimaryKeyDifferenceRelationships>? BlockPrimaryKeyDifferenceRelationships { get; set; }
             public List<BlockStoredProcedureDifferenceRelationships>? BlockStoredProcedureDifferenceRelationships { get; set; }
@@ -4316,6 +4876,7 @@ namespace MetaSqlDeployManifest
             public List<BlockTableDifferenceRelationships>? BlockTableDifferenceRelationships { get; set; }
             public List<BlockViewDifferenceRelationships>? BlockViewDifferenceRelationships { get; set; }
             public List<DropForeignKeyRelationships>? DropForeignKeyRelationships { get; set; }
+            public List<DropFunctionRelationships>? DropFunctionRelationships { get; set; }
             public List<DropIndexRelationships>? DropIndexRelationships { get; set; }
             public List<DropPrimaryKeyRelationships>? DropPrimaryKeyRelationships { get; set; }
             public List<DropStoredProcedureRelationships>? DropStoredProcedureRelationships { get; set; }
@@ -4323,6 +4884,7 @@ namespace MetaSqlDeployManifest
             public List<DropTableColumnRelationships>? DropTableColumnRelationships { get; set; }
             public List<DropViewRelationships>? DropViewRelationships { get; set; }
             public List<ReplaceForeignKeyRelationships>? ReplaceForeignKeyRelationships { get; set; }
+            public List<ReplaceFunctionRelationships>? ReplaceFunctionRelationships { get; set; }
             public List<ReplaceIndexRelationships>? ReplaceIndexRelationships { get; set; }
             public List<ReplacePrimaryKeyRelationships>? ReplacePrimaryKeyRelationships { get; set; }
             public List<ReplaceStoredProcedureRelationships>? ReplaceStoredProcedureRelationships { get; set; }
@@ -4338,6 +4900,16 @@ namespace MetaSqlDeployManifest
                     loadIndexes.DeployManifestListById,
                     relationship.DeployManifestId,
                     "AddForeignKey",
+                    relationship.Row.Id,
+                    "DeployManifestId");
+            }
+
+            foreach (var relationship in relationshipBuffers.AddFunctionRelationships ?? Enumerable.Empty<AddFunctionRelationships>())
+            {
+                relationship.Row.DeployManifest = RequireTarget(
+                    loadIndexes.DeployManifestListById,
+                    relationship.DeployManifestId,
+                    "AddFunction",
                     relationship.Row.Id,
                     "DeployManifestId");
             }
@@ -4432,6 +5004,16 @@ namespace MetaSqlDeployManifest
                     "DeployManifestId");
             }
 
+            foreach (var relationship in relationshipBuffers.BlockFunctionDifferenceRelationships ?? Enumerable.Empty<BlockFunctionDifferenceRelationships>())
+            {
+                relationship.Row.DeployManifest = RequireTarget(
+                    loadIndexes.DeployManifestListById,
+                    relationship.DeployManifestId,
+                    "BlockFunctionDifference",
+                    relationship.Row.Id,
+                    "DeployManifestId");
+            }
+
             foreach (var relationship in relationshipBuffers.BlockIndexDifferenceRelationships ?? Enumerable.Empty<BlockIndexDifferenceRelationships>())
             {
                 relationship.Row.DeployManifest = RequireTarget(
@@ -4498,6 +5080,16 @@ namespace MetaSqlDeployManifest
                     loadIndexes.DeployManifestListById,
                     relationship.DeployManifestId,
                     "DropForeignKey",
+                    relationship.Row.Id,
+                    "DeployManifestId");
+            }
+
+            foreach (var relationship in relationshipBuffers.DropFunctionRelationships ?? Enumerable.Empty<DropFunctionRelationships>())
+            {
+                relationship.Row.DeployManifest = RequireTarget(
+                    loadIndexes.DeployManifestListById,
+                    relationship.DeployManifestId,
+                    "DropFunction",
                     relationship.Row.Id,
                     "DeployManifestId");
             }
@@ -4572,6 +5164,16 @@ namespace MetaSqlDeployManifest
                     "DeployManifestId");
             }
 
+            foreach (var relationship in relationshipBuffers.ReplaceFunctionRelationships ?? Enumerable.Empty<ReplaceFunctionRelationships>())
+            {
+                relationship.Row.DeployManifest = RequireTarget(
+                    loadIndexes.DeployManifestListById,
+                    relationship.DeployManifestId,
+                    "ReplaceFunction",
+                    relationship.Row.Id,
+                    "DeployManifestId");
+            }
+
             foreach (var relationship in relationshipBuffers.ReplaceIndexRelationships ?? Enumerable.Empty<ReplaceIndexRelationships>())
             {
                 relationship.Row.DeployManifest = RequireTarget(
@@ -4612,6 +5214,10 @@ namespace MetaSqlDeployManifest
                     "DeployManifestId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup2(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.TruncateTableColumnDataRelationships ?? Enumerable.Empty<TruncateTableColumnDataRelationships>())
             {
                 relationship.Row.DeployManifest = RequireTarget(
@@ -4627,6 +5233,7 @@ namespace MetaSqlDeployManifest
         private static readonly string[] ShardFileNames =
         {
             "AddForeignKey.xml",
+            "AddFunction.xml",
             "AddIndex.xml",
             "AddPrimaryKey.xml",
             "AddSchema.xml",
@@ -4636,6 +5243,7 @@ namespace MetaSqlDeployManifest
             "AddView.xml",
             "AlterTableColumn.xml",
             "BlockForeignKeyDifference.xml",
+            "BlockFunctionDifference.xml",
             "BlockIndexDifference.xml",
             "BlockPrimaryKeyDifference.xml",
             "BlockStoredProcedureDifference.xml",
@@ -4644,6 +5252,7 @@ namespace MetaSqlDeployManifest
             "BlockViewDifference.xml",
             "DeployManifest.xml",
             "DropForeignKey.xml",
+            "DropFunction.xml",
             "DropIndex.xml",
             "DropPrimaryKey.xml",
             "DropStoredProcedure.xml",
@@ -4651,6 +5260,7 @@ namespace MetaSqlDeployManifest
             "DropTableColumn.xml",
             "DropView.xml",
             "ReplaceForeignKey.xml",
+            "ReplaceFunction.xml",
             "ReplaceIndex.xml",
             "ReplacePrimaryKey.xml",
             "ReplaceStoredProcedure.xml",
@@ -4680,6 +5290,18 @@ namespace MetaSqlDeployManifest
                 if (!addForeignKeyIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'AddForeignKey' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? addFunctionIds;
+
+            public void AddAddFunctionId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'AddFunction' contains a row with empty Id.");
+                addFunctionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!addFunctionIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'AddFunction' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -4791,6 +5413,18 @@ namespace MetaSqlDeployManifest
                 }
             }
 
+            private HashSet<string>? blockFunctionDifferenceIds;
+
+            public void AddBlockFunctionDifferenceId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'BlockFunctionDifference' contains a row with empty Id.");
+                blockFunctionDifferenceIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!blockFunctionDifferenceIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'BlockFunctionDifference' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
             private HashSet<string>? blockIndexDifferenceIds;
 
             public void AddBlockIndexDifferenceId(string? id)
@@ -4887,6 +5521,18 @@ namespace MetaSqlDeployManifest
                 }
             }
 
+            private HashSet<string>? dropFunctionIds;
+
+            public void AddDropFunctionId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'DropFunction' contains a row with empty Id.");
+                dropFunctionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!dropFunctionIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'DropFunction' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
             private HashSet<string>? dropIndexIds;
 
             public void AddDropIndexId(string? id)
@@ -4971,6 +5617,18 @@ namespace MetaSqlDeployManifest
                 }
             }
 
+            private HashSet<string>? replaceFunctionIds;
+
+            public void AddReplaceFunctionId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'ReplaceFunction' contains a row with empty Id.");
+                replaceFunctionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!replaceFunctionIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'ReplaceFunction' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
             private HashSet<string>? replaceIndexIds;
 
             public void AddReplaceIndexId(string? id)
@@ -5046,6 +5704,10 @@ namespace MetaSqlDeployManifest
 
             public Dictionary<string, AddForeignKey> AddForeignKeyListById => addForeignKeyListById ??= BuildById(model.AddForeignKeyList, row => row.Id, "AddForeignKey");
 
+            private Dictionary<string, AddFunction>? addFunctionListById;
+
+            public Dictionary<string, AddFunction> AddFunctionListById => addFunctionListById ??= BuildById(model.AddFunctionList, row => row.Id, "AddFunction");
+
             private Dictionary<string, AddIndex>? addIndexListById;
 
             public Dictionary<string, AddIndex> AddIndexListById => addIndexListById ??= BuildById(model.AddIndexList, row => row.Id, "AddIndex");
@@ -5082,6 +5744,10 @@ namespace MetaSqlDeployManifest
 
             public Dictionary<string, BlockForeignKeyDifference> BlockForeignKeyDifferenceListById => blockForeignKeyDifferenceListById ??= BuildById(model.BlockForeignKeyDifferenceList, row => row.Id, "BlockForeignKeyDifference");
 
+            private Dictionary<string, BlockFunctionDifference>? blockFunctionDifferenceListById;
+
+            public Dictionary<string, BlockFunctionDifference> BlockFunctionDifferenceListById => blockFunctionDifferenceListById ??= BuildById(model.BlockFunctionDifferenceList, row => row.Id, "BlockFunctionDifference");
+
             private Dictionary<string, BlockIndexDifference>? blockIndexDifferenceListById;
 
             public Dictionary<string, BlockIndexDifference> BlockIndexDifferenceListById => blockIndexDifferenceListById ??= BuildById(model.BlockIndexDifferenceList, row => row.Id, "BlockIndexDifference");
@@ -5114,6 +5780,10 @@ namespace MetaSqlDeployManifest
 
             public Dictionary<string, DropForeignKey> DropForeignKeyListById => dropForeignKeyListById ??= BuildById(model.DropForeignKeyList, row => row.Id, "DropForeignKey");
 
+            private Dictionary<string, DropFunction>? dropFunctionListById;
+
+            public Dictionary<string, DropFunction> DropFunctionListById => dropFunctionListById ??= BuildById(model.DropFunctionList, row => row.Id, "DropFunction");
+
             private Dictionary<string, DropIndex>? dropIndexListById;
 
             public Dictionary<string, DropIndex> DropIndexListById => dropIndexListById ??= BuildById(model.DropIndexList, row => row.Id, "DropIndex");
@@ -5141,6 +5811,10 @@ namespace MetaSqlDeployManifest
             private Dictionary<string, ReplaceForeignKey>? replaceForeignKeyListById;
 
             public Dictionary<string, ReplaceForeignKey> ReplaceForeignKeyListById => replaceForeignKeyListById ??= BuildById(model.ReplaceForeignKeyList, row => row.Id, "ReplaceForeignKey");
+
+            private Dictionary<string, ReplaceFunction>? replaceFunctionListById;
+
+            public Dictionary<string, ReplaceFunction> ReplaceFunctionListById => replaceFunctionListById ??= BuildById(model.ReplaceFunctionList, row => row.Id, "ReplaceFunction");
 
             private Dictionary<string, ReplaceIndex>? replaceIndexListById;
 
@@ -5177,6 +5851,10 @@ namespace MetaSqlDeployManifest
 
             public Dictionary<string, AddForeignKey> AddForeignKeyListById => addForeignKeyListById ??= BuildById(model.AddForeignKeyList, row => row.Id, "AddForeignKey");
 
+            private Dictionary<string, AddFunction>? addFunctionListById;
+
+            public Dictionary<string, AddFunction> AddFunctionListById => addFunctionListById ??= BuildById(model.AddFunctionList, row => row.Id, "AddFunction");
+
             private Dictionary<string, AddIndex>? addIndexListById;
 
             public Dictionary<string, AddIndex> AddIndexListById => addIndexListById ??= BuildById(model.AddIndexList, row => row.Id, "AddIndex");
@@ -5213,6 +5891,10 @@ namespace MetaSqlDeployManifest
 
             public Dictionary<string, BlockForeignKeyDifference> BlockForeignKeyDifferenceListById => blockForeignKeyDifferenceListById ??= BuildById(model.BlockForeignKeyDifferenceList, row => row.Id, "BlockForeignKeyDifference");
 
+            private Dictionary<string, BlockFunctionDifference>? blockFunctionDifferenceListById;
+
+            public Dictionary<string, BlockFunctionDifference> BlockFunctionDifferenceListById => blockFunctionDifferenceListById ??= BuildById(model.BlockFunctionDifferenceList, row => row.Id, "BlockFunctionDifference");
+
             private Dictionary<string, BlockIndexDifference>? blockIndexDifferenceListById;
 
             public Dictionary<string, BlockIndexDifference> BlockIndexDifferenceListById => blockIndexDifferenceListById ??= BuildById(model.BlockIndexDifferenceList, row => row.Id, "BlockIndexDifference");
@@ -5245,6 +5927,10 @@ namespace MetaSqlDeployManifest
 
             public Dictionary<string, DropForeignKey> DropForeignKeyListById => dropForeignKeyListById ??= BuildById(model.DropForeignKeyList, row => row.Id, "DropForeignKey");
 
+            private Dictionary<string, DropFunction>? dropFunctionListById;
+
+            public Dictionary<string, DropFunction> DropFunctionListById => dropFunctionListById ??= BuildById(model.DropFunctionList, row => row.Id, "DropFunction");
+
             private Dictionary<string, DropIndex>? dropIndexListById;
 
             public Dictionary<string, DropIndex> DropIndexListById => dropIndexListById ??= BuildById(model.DropIndexList, row => row.Id, "DropIndex");
@@ -5272,6 +5958,10 @@ namespace MetaSqlDeployManifest
             private Dictionary<string, ReplaceForeignKey>? replaceForeignKeyListById;
 
             public Dictionary<string, ReplaceForeignKey> ReplaceForeignKeyListById => replaceForeignKeyListById ??= BuildById(model.ReplaceForeignKeyList, row => row.Id, "ReplaceForeignKey");
+
+            private Dictionary<string, ReplaceFunction>? replaceFunctionListById;
+
+            public Dictionary<string, ReplaceFunction> ReplaceFunctionListById => replaceFunctionListById ??= BuildById(model.ReplaceFunctionList, row => row.Id, "ReplaceFunction");
 
             private Dictionary<string, ReplaceIndex>? replaceIndexListById;
 
@@ -5308,6 +5998,10 @@ namespace MetaSqlDeployManifest
             {
                 return true;
             }
+            if (HasRuntimeExtendedEntityShapeGroup2())
+            {
+                return true;
+            }
 
             return HasUnexpectedModelLists();
         }
@@ -5317,6 +6011,14 @@ namespace MetaSqlDeployManifest
             if (HasUnexpectedProperties(typeof(AddForeignKey),
                 "Id",
                 "SourceForeignKeyId",
+                "DeployManifest"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(AddFunction),
+                "Id",
+                "SourceFunctionId",
                 "DeployManifest"))
             {
                 return true;
@@ -5392,6 +6094,16 @@ namespace MetaSqlDeployManifest
                 "DifferenceSummary",
                 "LiveForeignKeyId",
                 "SourceForeignKeyId",
+                "DeployManifest"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(BlockFunctionDifference),
+                "Id",
+                "DifferenceSummary",
+                "LiveFunctionId",
+                "SourceFunctionId",
                 "DeployManifest"))
             {
                 return true;
@@ -5477,6 +6189,14 @@ namespace MetaSqlDeployManifest
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(DropFunction),
+                "Id",
+                "LiveFunctionId",
+                "DeployManifest"))
+            {
+                return true;
+            }
+
             if (HasUnexpectedProperties(typeof(DropIndex),
                 "Id",
                 "LiveIndexId",
@@ -5534,6 +6254,15 @@ namespace MetaSqlDeployManifest
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(ReplaceFunction),
+                "Id",
+                "LiveFunctionId",
+                "SourceFunctionId",
+                "DeployManifest"))
+            {
+                return true;
+            }
+
             if (HasUnexpectedProperties(typeof(ReplaceIndex),
                 "Id",
                 "LiveIndexId",
@@ -5561,6 +6290,11 @@ namespace MetaSqlDeployManifest
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup2()
+        {
             if (HasUnexpectedProperties(typeof(ReplaceView),
                 "Id",
                 "LiveViewId",
@@ -5587,6 +6321,7 @@ namespace MetaSqlDeployManifest
             var knownLists = new HashSet<string>(StringComparer.Ordinal)
             {
                 "AddForeignKeyList",
+                "AddFunctionList",
                 "AddIndexList",
                 "AddPrimaryKeyList",
                 "AddSchemaList",
@@ -5596,6 +6331,7 @@ namespace MetaSqlDeployManifest
                 "AddViewList",
                 "AlterTableColumnList",
                 "BlockForeignKeyDifferenceList",
+                "BlockFunctionDifferenceList",
                 "BlockIndexDifferenceList",
                 "BlockPrimaryKeyDifferenceList",
                 "BlockStoredProcedureDifferenceList",
@@ -5604,6 +6340,7 @@ namespace MetaSqlDeployManifest
                 "BlockViewDifferenceList",
                 "DeployManifestList",
                 "DropForeignKeyList",
+                "DropFunctionList",
                 "DropIndexList",
                 "DropPrimaryKeyList",
                 "DropStoredProcedureList",
@@ -5611,6 +6348,7 @@ namespace MetaSqlDeployManifest
                 "DropTableColumnList",
                 "DropViewList",
                 "ReplaceForeignKeyList",
+                "ReplaceFunctionList",
                 "ReplaceIndexList",
                 "ReplacePrimaryKeyList",
                 "ReplaceStoredProcedureList",

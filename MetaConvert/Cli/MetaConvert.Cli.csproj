@@ -17,6 +17,8 @@
     <ProjectReference Include="..\DataVaultToSql\MetaConvert.DataVaultToSql.csproj" />
     <ProjectReference Include="..\DataWarehouseToSql\MetaConvert.DataWarehouseToSql.csproj" />
     <ProjectReference Include="..\DataQualityToSql\MetaConvert.DataQualityToSql.csproj" />
+    <ProjectReference Include="..\SqlToTransformScript\MetaConvert.SqlToTransformScript.csproj" />
+    <ProjectReference Include="..\TransformScriptToSql\MetaConvert.TransformScriptToSql.csproj" />
     <ProjectReference Include="..\AnalyticsToTabular\MetaConvert.AnalyticsToTabular.csproj" />
     <ProjectReference Include="..\AnalyticsToMultiDimensional\MetaConvert.AnalyticsToMultiDimensional.csproj" />
     <ProjectReference Include="..\SchemaToDataVault\MetaConvert.SchemaToDataVault.csproj" />

@@ -45,8 +45,10 @@
     </Entity>
     <Entity name="ObjectAccess">
       <PropertyList>
+        <Property name="Ordinal" />
         <Property name="AccessKind" />
         <Property name="AccessRole" />
+        <Property name="OperationKind" isRequired="false" />
         <Property name="Reason" isRequired="false" />
       </PropertyList>
       <RelationshipList>

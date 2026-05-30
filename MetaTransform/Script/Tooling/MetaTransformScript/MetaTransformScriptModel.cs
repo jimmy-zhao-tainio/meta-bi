@@ -482,6 +482,8 @@ namespace MetaTransformScript
 
         public List<ScriptObjectScalarFunction> ScriptObjectScalarFunctionList { get; set; } = new();
 
+        public List<ScriptObjectStoredProcedure> ScriptObjectStoredProcedureList { get; set; } = new();
+
         public List<ScriptObjectTVF> ScriptObjectTVFList { get; set; } = new();
 
         public List<ScriptObjectView> ScriptObjectViewList { get; set; } = new();
@@ -541,6 +543,14 @@ namespace MetaTransformScript
         public List<StatementWithCtesAndXmlNamespaces> StatementWithCtesAndXmlNamespacesList { get; set; } = new();
 
         public List<StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink> StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList { get; set; } = new();
+
+        public List<StoredProcedureContract> StoredProcedureContractList { get; set; } = new();
+
+        public List<StoredProcedureContractOperation> StoredProcedureContractOperationList { get; set; } = new();
+
+        public List<StoredProcedureResultColumnItem> StoredProcedureResultColumnItemList { get; set; } = new();
+
+        public List<StoredProcedureResultRowsetItem> StoredProcedureResultRowsetItemList { get; set; } = new();
 
         public List<StringLiteral> StringLiteralList { get; set; } = new();
 
@@ -3367,6 +3377,17 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(scriptObjectScalarFunctionShardPath, SerializeScriptObjectScalarFunctionShard(model, saveIndexes));
             }
 
+            model.ScriptObjectStoredProcedureList ??= new List<ScriptObjectStoredProcedure>();
+            var scriptObjectStoredProcedureShardPath = Path.Combine(instanceDirectoryPath, "ScriptObjectStoredProcedure.xml");
+            if (model.ScriptObjectStoredProcedureList.Count == 0)
+            {
+                DeleteIfExists(scriptObjectStoredProcedureShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(scriptObjectStoredProcedureShardPath, SerializeScriptObjectStoredProcedureShard(model, saveIndexes));
+            }
+
             model.ScriptObjectTVFList ??= new List<ScriptObjectTVF>();
             var scriptObjectTVFShardPath = Path.Combine(instanceDirectoryPath, "ScriptObjectTVF.xml");
             if (model.ScriptObjectTVFList.Count == 0)
@@ -3664,6 +3685,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sqlHintArgumentsItemShardPath, SerializeSqlHintArgumentsItemShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup9(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.SqlHintKeywordsItemList ??= new List<SqlHintKeywordsItem>();
             var sqlHintKeywordsItemShardPath = Path.Combine(instanceDirectoryPath, "SqlHintKeywordsItem.xml");
             if (model.SqlHintKeywordsItemList.Count == 0)
@@ -3675,10 +3700,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(sqlHintKeywordsItemShardPath, SerializeSqlHintKeywordsItemShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup9(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.StatementWithCtesAndXmlNamespacesList ??= new List<StatementWithCtesAndXmlNamespaces>();
             var statementWithCtesAndXmlNamespacesShardPath = Path.Combine(instanceDirectoryPath, "StatementWithCtesAndXmlNamespaces.xml");
             if (model.StatementWithCtesAndXmlNamespacesList.Count == 0)
@@ -3699,6 +3720,50 @@ namespace MetaTransformScript
             else
             {
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkShardPath, SerializeStatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkShard(model, saveIndexes));
+            }
+
+            model.StoredProcedureContractList ??= new List<StoredProcedureContract>();
+            var storedProcedureContractShardPath = Path.Combine(instanceDirectoryPath, "StoredProcedureContract.xml");
+            if (model.StoredProcedureContractList.Count == 0)
+            {
+                DeleteIfExists(storedProcedureContractShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(storedProcedureContractShardPath, SerializeStoredProcedureContractShard(model, saveIndexes));
+            }
+
+            model.StoredProcedureContractOperationList ??= new List<StoredProcedureContractOperation>();
+            var storedProcedureContractOperationShardPath = Path.Combine(instanceDirectoryPath, "StoredProcedureContractOperation.xml");
+            if (model.StoredProcedureContractOperationList.Count == 0)
+            {
+                DeleteIfExists(storedProcedureContractOperationShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(storedProcedureContractOperationShardPath, SerializeStoredProcedureContractOperationShard(model, saveIndexes));
+            }
+
+            model.StoredProcedureResultColumnItemList ??= new List<StoredProcedureResultColumnItem>();
+            var storedProcedureResultColumnItemShardPath = Path.Combine(instanceDirectoryPath, "StoredProcedureResultColumnItem.xml");
+            if (model.StoredProcedureResultColumnItemList.Count == 0)
+            {
+                DeleteIfExists(storedProcedureResultColumnItemShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(storedProcedureResultColumnItemShardPath, SerializeStoredProcedureResultColumnItemShard(model, saveIndexes));
+            }
+
+            model.StoredProcedureResultRowsetItemList ??= new List<StoredProcedureResultRowsetItem>();
+            var storedProcedureResultRowsetItemShardPath = Path.Combine(instanceDirectoryPath, "StoredProcedureResultRowsetItem.xml");
+            if (model.StoredProcedureResultRowsetItemList.Count == 0)
+            {
+                DeleteIfExists(storedProcedureResultRowsetItemShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(storedProcedureResultRowsetItemShardPath, SerializeStoredProcedureResultRowsetItemShard(model, saveIndexes));
             }
 
             model.StringLiteralList ??= new List<StringLiteral>();
@@ -3976,6 +4041,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(tryCastCallDataTypeLinkShardPath, SerializeTryCastCallDataTypeLinkShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup10(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.TryCastCallParameterLinkList ??= new List<TryCastCallParameterLink>();
             var tryCastCallParameterLinkShardPath = Path.Combine(instanceDirectoryPath, "TryCastCallParameterLink.xml");
             if (model.TryCastCallParameterLinkList.Count == 0)
@@ -4031,10 +4100,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(tryConvertCallStyleLinkShardPath, SerializeTryConvertCallStyleLinkShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup10(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.TryParseCallList ??= new List<TryParseCall>();
             var tryParseCallShardPath = Path.Combine(instanceDirectoryPath, "TryParseCall.xml");
             if (model.TryParseCallList.Count == 0)
@@ -4332,6 +4397,10 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(windowDefinitionShardPath, SerializeWindowDefinitionShard(model, saveIndexes));
             }
 
+        }
+
+        private static void SaveShardGroup11(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
+        {
             model.WindowDefinitionOrderByClauseLinkList ??= new List<WindowDefinitionOrderByClauseLink>();
             var windowDefinitionOrderByClauseLinkShardPath = Path.Combine(instanceDirectoryPath, "WindowDefinitionOrderByClauseLink.xml");
             if (model.WindowDefinitionOrderByClauseLinkList.Count == 0)
@@ -4387,10 +4456,6 @@ namespace MetaTransformScript
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(windowDefinitionWindowNameLinkShardPath, SerializeWindowDefinitionWindowNameLinkShard(model, saveIndexes));
             }
 
-        }
-
-        private static void SaveShardGroup11(MetaTransformScriptModel model, string instanceDirectoryPath, SaveIndexes saveIndexes)
-        {
             model.WindowDelimiterList ??= new List<WindowDelimiter>();
             var windowDelimiterShardPath = Path.Combine(instanceDirectoryPath, "WindowDelimiter.xml");
             if (model.WindowDelimiterList.Count == 0)
@@ -5297,6 +5362,9 @@ namespace MetaTransformScript
                     case "ScriptObjectScalarFunctionList":
                         LoadScriptObjectScalarFunctionList(model, reader, loadState, relationshipBuffers);
                         break;
+                    case "ScriptObjectStoredProcedureList":
+                        LoadScriptObjectStoredProcedureList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "ScriptObjectTVFList":
                         LoadScriptObjectTVFList(model, reader, loadState, relationshipBuffers);
                         break;
@@ -5386,6 +5454,18 @@ namespace MetaTransformScript
                         break;
                     case "StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList":
                         LoadStatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "StoredProcedureContractList":
+                        LoadStoredProcedureContractList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "StoredProcedureContractOperationList":
+                        LoadStoredProcedureContractOperationList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "StoredProcedureResultColumnItemList":
+                        LoadStoredProcedureResultColumnItemList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "StoredProcedureResultRowsetItemList":
+                        LoadStoredProcedureResultRowsetItemList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "StringLiteralList":
                         LoadStringLiteralList(model, reader, loadState, relationshipBuffers);
@@ -32441,6 +32521,119 @@ namespace MetaTransformScript
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadScriptObjectStoredProcedureList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("ScriptObjectStoredProcedureList");
+                return;
+            }
+
+            reader.ReadStartElement("ScriptObjectStoredProcedureList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "ScriptObjectStoredProcedure", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'ScriptObjectStoredProcedureList'.");
+                }
+                var row = ReadScriptObjectStoredProcedure(reader, relationshipBuffers);
+                loadState.AddScriptObjectStoredProcedureId(row.Id);
+                model.ScriptObjectStoredProcedureList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static ScriptObjectStoredProcedure ReadScriptObjectStoredProcedure(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new ScriptObjectStoredProcedure();
+            var relationships = new ScriptObjectStoredProcedureRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "TransformScriptId":
+                            relationships.TransformScriptId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'ScriptObjectStoredProcedure'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("ScriptObjectStoredProcedure");
+                (relationshipBuffers.ScriptObjectStoredProcedureRelationships ??= new List<ScriptObjectStoredProcedureRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("ScriptObjectStoredProcedure");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "DefinitionSql":
+                        row.DefinitionSql = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'ScriptObjectStoredProcedure'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.ScriptObjectStoredProcedureRelationships ??= new List<ScriptObjectStoredProcedureRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeScriptObjectStoredProcedureShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformScript>\n");
+            builder.Append("  <ScriptObjectStoredProcedureList>\n");
+            foreach (var row in model.ScriptObjectStoredProcedureList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'ScriptObjectStoredProcedure' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'ScriptObjectStoredProcedure' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <ScriptObjectStoredProcedure Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var transformScriptId = RequireIdentity(row.TransformScript?.Id, $"Relationship 'ScriptObjectStoredProcedure.TransformScriptId' on row 'ScriptObjectStoredProcedure:{row.Id}' is empty.");
+                if (!saveIndexes.TransformScriptListById.TryGetValue(transformScriptId, out var transformScriptCanonical) || !ReferenceEquals(transformScriptCanonical, row.TransformScript))
+                {
+                    throw new InvalidOperationException($"Relationship 'ScriptObjectStoredProcedure.TransformScriptId' on row 'ScriptObjectStoredProcedure:{row.Id}' references an object that is not the canonical row for Id '{transformScriptId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("TransformScriptId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, transformScriptId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "DefinitionSql", RequireText(row.DefinitionSql, $"Entity 'ScriptObjectStoredProcedure' row '{row.Id}' is missing required property 'DefinitionSql'."), "      ");
+                builder.Append("    </ScriptObjectStoredProcedure>\n");
+            }
+            builder.Append("  </ScriptObjectStoredProcedureList>\n");
+            builder.Append("</MetaTransformScript>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private static void LoadScriptObjectTVFList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -35891,6 +36084,508 @@ namespace MetaTransformScript
                 builder.Append("    </StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink>\n");
             }
             builder.Append("  </StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList>\n");
+            builder.Append("</MetaTransformScript>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadStoredProcedureContractList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("StoredProcedureContractList");
+                return;
+            }
+
+            reader.ReadStartElement("StoredProcedureContractList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "StoredProcedureContract", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'StoredProcedureContractList'.");
+                }
+                var row = ReadStoredProcedureContract(reader, relationshipBuffers);
+                loadState.AddStoredProcedureContractId(row.Id);
+                model.StoredProcedureContractList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static StoredProcedureContract ReadStoredProcedureContract(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new StoredProcedureContract();
+            var relationships = new StoredProcedureContractRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "ScriptObjectStoredProcedureId":
+                            relationships.ScriptObjectStoredProcedureId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'StoredProcedureContract'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("StoredProcedureContract");
+                (relationshipBuffers.StoredProcedureContractRelationships ??= new List<StoredProcedureContractRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("StoredProcedureContract");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "Notes":
+                        row.Notes = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'StoredProcedureContract'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.StoredProcedureContractRelationships ??= new List<StoredProcedureContractRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeStoredProcedureContractShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformScript>\n");
+            builder.Append("  <StoredProcedureContractList>\n");
+            foreach (var row in model.StoredProcedureContractList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedureContract' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'StoredProcedureContract' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <StoredProcedureContract Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var scriptObjectStoredProcedureId = RequireIdentity(row.ScriptObjectStoredProcedure?.Id, $"Relationship 'StoredProcedureContract.ScriptObjectStoredProcedureId' on row 'StoredProcedureContract:{row.Id}' is empty.");
+                if (!saveIndexes.ScriptObjectStoredProcedureListById.TryGetValue(scriptObjectStoredProcedureId, out var scriptObjectStoredProcedureCanonical) || !ReferenceEquals(scriptObjectStoredProcedureCanonical, row.ScriptObjectStoredProcedure))
+                {
+                    throw new InvalidOperationException($"Relationship 'StoredProcedureContract.ScriptObjectStoredProcedureId' on row 'StoredProcedureContract:{row.Id}' references an object that is not the canonical row for Id '{scriptObjectStoredProcedureId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("ScriptObjectStoredProcedureId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, scriptObjectStoredProcedureId);
+                builder.Append('"');
+                builder.Append(">\n");
+                if (!string.IsNullOrWhiteSpace(row.Notes))
+                {
+                    AppendElement(builder, "Notes", row.Notes!, "      ");
+                }
+                builder.Append("    </StoredProcedureContract>\n");
+            }
+            builder.Append("  </StoredProcedureContractList>\n");
+            builder.Append("</MetaTransformScript>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadStoredProcedureContractOperationList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("StoredProcedureContractOperationList");
+                return;
+            }
+
+            reader.ReadStartElement("StoredProcedureContractOperationList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "StoredProcedureContractOperation", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'StoredProcedureContractOperationList'.");
+                }
+                var row = ReadStoredProcedureContractOperation(reader, relationshipBuffers);
+                loadState.AddStoredProcedureContractOperationId(row.Id);
+                model.StoredProcedureContractOperationList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static StoredProcedureContractOperation ReadStoredProcedureContractOperation(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new StoredProcedureContractOperation();
+            var relationships = new StoredProcedureContractOperationRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "StoredProcedureContractId":
+                            relationships.StoredProcedureContractId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'StoredProcedureContractOperation'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("StoredProcedureContractOperation");
+                (relationshipBuffers.StoredProcedureContractOperationRelationships ??= new List<StoredProcedureContractOperationRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("StoredProcedureContractOperation");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "AccessRole":
+                        row.AccessRole = reader.ReadElementContentAsString();
+                        break;
+                    case "Notes":
+                        row.Notes = reader.ReadElementContentAsString();
+                        break;
+                    case "OperationKind":
+                        row.OperationKind = reader.ReadElementContentAsString();
+                        break;
+                    case "Ordinal":
+                        row.Ordinal = reader.ReadElementContentAsString();
+                        break;
+                    case "SqlIdentifier":
+                        row.SqlIdentifier = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'StoredProcedureContractOperation'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.StoredProcedureContractOperationRelationships ??= new List<StoredProcedureContractOperationRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeStoredProcedureContractOperationShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformScript>\n");
+            builder.Append("  <StoredProcedureContractOperationList>\n");
+            foreach (var row in model.StoredProcedureContractOperationList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedureContractOperation' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'StoredProcedureContractOperation' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <StoredProcedureContractOperation Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var storedProcedureContractId = RequireIdentity(row.StoredProcedureContract?.Id, $"Relationship 'StoredProcedureContractOperation.StoredProcedureContractId' on row 'StoredProcedureContractOperation:{row.Id}' is empty.");
+                if (!saveIndexes.StoredProcedureContractListById.TryGetValue(storedProcedureContractId, out var storedProcedureContractCanonical) || !ReferenceEquals(storedProcedureContractCanonical, row.StoredProcedureContract))
+                {
+                    throw new InvalidOperationException($"Relationship 'StoredProcedureContractOperation.StoredProcedureContractId' on row 'StoredProcedureContractOperation:{row.Id}' references an object that is not the canonical row for Id '{storedProcedureContractId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("StoredProcedureContractId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, storedProcedureContractId);
+                builder.Append('"');
+                builder.Append(">\n");
+                if (!string.IsNullOrWhiteSpace(row.AccessRole))
+                {
+                    AppendElement(builder, "AccessRole", row.AccessRole!, "      ");
+                }
+                if (!string.IsNullOrWhiteSpace(row.Notes))
+                {
+                    AppendElement(builder, "Notes", row.Notes!, "      ");
+                }
+                AppendElement(builder, "OperationKind", RequireText(row.OperationKind, $"Entity 'StoredProcedureContractOperation' row '{row.Id}' is missing required property 'OperationKind'."), "      ");
+                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'StoredProcedureContractOperation' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
+                AppendElement(builder, "SqlIdentifier", RequireText(row.SqlIdentifier, $"Entity 'StoredProcedureContractOperation' row '{row.Id}' is missing required property 'SqlIdentifier'."), "      ");
+                builder.Append("    </StoredProcedureContractOperation>\n");
+            }
+            builder.Append("  </StoredProcedureContractOperationList>\n");
+            builder.Append("</MetaTransformScript>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadStoredProcedureResultColumnItemList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("StoredProcedureResultColumnItemList");
+                return;
+            }
+
+            reader.ReadStartElement("StoredProcedureResultColumnItemList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "StoredProcedureResultColumnItem", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'StoredProcedureResultColumnItemList'.");
+                }
+                var row = ReadStoredProcedureResultColumnItem(reader, relationshipBuffers);
+                loadState.AddStoredProcedureResultColumnItemId(row.Id);
+                model.StoredProcedureResultColumnItemList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static StoredProcedureResultColumnItem ReadStoredProcedureResultColumnItem(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new StoredProcedureResultColumnItem();
+            var relationships = new StoredProcedureResultColumnItemRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "StoredProcedureResultRowsetItemId":
+                            relationships.StoredProcedureResultRowsetItemId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'StoredProcedureResultColumnItem'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("StoredProcedureResultColumnItem");
+                (relationshipBuffers.StoredProcedureResultColumnItemRelationships ??= new List<StoredProcedureResultColumnItemRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("StoredProcedureResultColumnItem");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "IsNullable":
+                        row.IsNullable = reader.ReadElementContentAsString();
+                        break;
+                    case "MetaDataTypeId":
+                        row.MetaDataTypeId = reader.ReadElementContentAsString();
+                        break;
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    case "Ordinal":
+                        row.Ordinal = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'StoredProcedureResultColumnItem'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.StoredProcedureResultColumnItemRelationships ??= new List<StoredProcedureResultColumnItemRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeStoredProcedureResultColumnItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformScript>\n");
+            builder.Append("  <StoredProcedureResultColumnItemList>\n");
+            foreach (var row in model.StoredProcedureResultColumnItemList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedureResultColumnItem' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'StoredProcedureResultColumnItem' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <StoredProcedureResultColumnItem Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var storedProcedureResultRowsetItemId = RequireIdentity(row.StoredProcedureResultRowsetItem?.Id, $"Relationship 'StoredProcedureResultColumnItem.StoredProcedureResultRowsetItemId' on row 'StoredProcedureResultColumnItem:{row.Id}' is empty.");
+                if (!saveIndexes.StoredProcedureResultRowsetItemListById.TryGetValue(storedProcedureResultRowsetItemId, out var storedProcedureResultRowsetItemCanonical) || !ReferenceEquals(storedProcedureResultRowsetItemCanonical, row.StoredProcedureResultRowsetItem))
+                {
+                    throw new InvalidOperationException($"Relationship 'StoredProcedureResultColumnItem.StoredProcedureResultRowsetItemId' on row 'StoredProcedureResultColumnItem:{row.Id}' references an object that is not the canonical row for Id '{storedProcedureResultRowsetItemId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("StoredProcedureResultRowsetItemId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, storedProcedureResultRowsetItemId);
+                builder.Append('"');
+                builder.Append(">\n");
+                if (!string.IsNullOrWhiteSpace(row.IsNullable))
+                {
+                    AppendElement(builder, "IsNullable", row.IsNullable!, "      ");
+                }
+                if (!string.IsNullOrWhiteSpace(row.MetaDataTypeId))
+                {
+                    AppendElement(builder, "MetaDataTypeId", row.MetaDataTypeId!, "      ");
+                }
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'StoredProcedureResultColumnItem' row '{row.Id}' is missing required property 'Name'."), "      ");
+                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'StoredProcedureResultColumnItem' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
+                builder.Append("    </StoredProcedureResultColumnItem>\n");
+            }
+            builder.Append("  </StoredProcedureResultColumnItemList>\n");
+            builder.Append("</MetaTransformScript>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadStoredProcedureResultRowsetItemList(MetaTransformScriptModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("StoredProcedureResultRowsetItemList");
+                return;
+            }
+
+            reader.ReadStartElement("StoredProcedureResultRowsetItemList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "StoredProcedureResultRowsetItem", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'StoredProcedureResultRowsetItemList'.");
+                }
+                var row = ReadStoredProcedureResultRowsetItem(reader, relationshipBuffers);
+                loadState.AddStoredProcedureResultRowsetItemId(row.Id);
+                model.StoredProcedureResultRowsetItemList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static StoredProcedureResultRowsetItem ReadStoredProcedureResultRowsetItem(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new StoredProcedureResultRowsetItem();
+            var relationships = new StoredProcedureResultRowsetItemRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "StoredProcedureContractId":
+                            relationships.StoredProcedureContractId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'StoredProcedureResultRowsetItem'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("StoredProcedureResultRowsetItem");
+                (relationshipBuffers.StoredProcedureResultRowsetItemRelationships ??= new List<StoredProcedureResultRowsetItemRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("StoredProcedureResultRowsetItem");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    case "Ordinal":
+                        row.Ordinal = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'StoredProcedureResultRowsetItem'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.StoredProcedureResultRowsetItemRelationships ??= new List<StoredProcedureResultRowsetItemRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeStoredProcedureResultRowsetItemShard(MetaTransformScriptModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaTransformScript>\n");
+            builder.Append("  <StoredProcedureResultRowsetItemList>\n");
+            foreach (var row in model.StoredProcedureResultRowsetItemList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'StoredProcedureResultRowsetItem' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'StoredProcedureResultRowsetItem' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <StoredProcedureResultRowsetItem Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var storedProcedureContractId = RequireIdentity(row.StoredProcedureContract?.Id, $"Relationship 'StoredProcedureResultRowsetItem.StoredProcedureContractId' on row 'StoredProcedureResultRowsetItem:{row.Id}' is empty.");
+                if (!saveIndexes.StoredProcedureContractListById.TryGetValue(storedProcedureContractId, out var storedProcedureContractCanonical) || !ReferenceEquals(storedProcedureContractCanonical, row.StoredProcedureContract))
+                {
+                    throw new InvalidOperationException($"Relationship 'StoredProcedureResultRowsetItem.StoredProcedureContractId' on row 'StoredProcedureResultRowsetItem:{row.Id}' references an object that is not the canonical row for Id '{storedProcedureContractId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("StoredProcedureContractId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, storedProcedureContractId);
+                builder.Append('"');
+                builder.Append(">\n");
+                if (!string.IsNullOrWhiteSpace(row.Name))
+                {
+                    AppendElement(builder, "Name", row.Name!, "      ");
+                }
+                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'StoredProcedureResultRowsetItem' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
+                builder.Append("    </StoredProcedureResultRowsetItem>\n");
+            }
+            builder.Append("  </StoredProcedureResultRowsetItemList>\n");
             builder.Append("</MetaTransformScript>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -46596,6 +47291,12 @@ namespace MetaTransformScript
             public string TransformScriptId { get; set; } = string.Empty;
         }
 
+        private sealed class ScriptObjectStoredProcedureRelationships
+        {
+            public ScriptObjectStoredProcedure Row { get; set; } = null!;
+            public string TransformScriptId { get; set; } = string.Empty;
+        }
+
         private sealed class ScriptObjectTVFRelationships
         {
             public ScriptObjectTVF Row { get; set; } = null!;
@@ -46765,6 +47466,30 @@ namespace MetaTransformScript
             public StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink Row { get; set; } = null!;
             public string StatementWithCtesAndXmlNamespacesId { get; set; } = string.Empty;
             public string WithCtesAndXmlNamespacesId { get; set; } = string.Empty;
+        }
+
+        private sealed class StoredProcedureContractRelationships
+        {
+            public StoredProcedureContract Row { get; set; } = null!;
+            public string ScriptObjectStoredProcedureId { get; set; } = string.Empty;
+        }
+
+        private sealed class StoredProcedureContractOperationRelationships
+        {
+            public StoredProcedureContractOperation Row { get; set; } = null!;
+            public string StoredProcedureContractId { get; set; } = string.Empty;
+        }
+
+        private sealed class StoredProcedureResultColumnItemRelationships
+        {
+            public StoredProcedureResultColumnItem Row { get; set; } = null!;
+            public string StoredProcedureResultRowsetItemId { get; set; } = string.Empty;
+        }
+
+        private sealed class StoredProcedureResultRowsetItemRelationships
+        {
+            public StoredProcedureResultRowsetItem Row { get; set; } = null!;
+            public string StoredProcedureContractId { get; set; } = string.Empty;
         }
 
         private sealed class StringLiteralRelationships
@@ -47421,6 +48146,7 @@ namespace MetaTransformScript
             public List<SchemaObjectNameBaseIdentifierLinkRelationships>? SchemaObjectNameBaseIdentifierLinkRelationships { get; set; }
             public List<SchemaObjectNameSchemaIdentifierLinkRelationships>? SchemaObjectNameSchemaIdentifierLinkRelationships { get; set; }
             public List<ScriptObjectScalarFunctionRelationships>? ScriptObjectScalarFunctionRelationships { get; set; }
+            public List<ScriptObjectStoredProcedureRelationships>? ScriptObjectStoredProcedureRelationships { get; set; }
             public List<ScriptObjectTVFRelationships>? ScriptObjectTVFRelationships { get; set; }
             public List<ScriptObjectViewRelationships>? ScriptObjectViewRelationships { get; set; }
             public List<SearchedCaseExpressionRelationships>? SearchedCaseExpressionRelationships { get; set; }
@@ -47447,6 +48173,10 @@ namespace MetaTransformScript
             public List<SqlHintKeywordsItemRelationships>? SqlHintKeywordsItemRelationships { get; set; }
             public List<StatementWithCtesAndXmlNamespacesRelationships>? StatementWithCtesAndXmlNamespacesRelationships { get; set; }
             public List<StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkRelationships>? StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkRelationships { get; set; }
+            public List<StoredProcedureContractRelationships>? StoredProcedureContractRelationships { get; set; }
+            public List<StoredProcedureContractOperationRelationships>? StoredProcedureContractOperationRelationships { get; set; }
+            public List<StoredProcedureResultColumnItemRelationships>? StoredProcedureResultColumnItemRelationships { get; set; }
+            public List<StoredProcedureResultRowsetItemRelationships>? StoredProcedureResultRowsetItemRelationships { get; set; }
             public List<StringLiteralRelationships>? StringLiteralRelationships { get; set; }
             public List<SubqueryComparisonPredicateRelationships>? SubqueryComparisonPredicateRelationships { get; set; }
             public List<SubqueryComparisonPredicateExpressionLinkRelationships>? SubqueryComparisonPredicateExpressionLinkRelationships { get; set; }
@@ -50997,6 +51727,16 @@ namespace MetaTransformScript
                     "TransformScriptId");
             }
 
+            foreach (var relationship in relationshipBuffers.ScriptObjectStoredProcedureRelationships ?? Enumerable.Empty<ScriptObjectStoredProcedureRelationships>())
+            {
+                relationship.Row.TransformScript = RequireTarget(
+                    loadIndexes.TransformScriptListById,
+                    relationship.TransformScriptId,
+                    "ScriptObjectStoredProcedure",
+                    relationship.Row.Id,
+                    "TransformScriptId");
+            }
+
             foreach (var relationship in relationshipBuffers.ScriptObjectTVFRelationships ?? Enumerable.Empty<ScriptObjectTVFRelationships>())
             {
                 relationship.Row.TransformScript = RequireTarget(
@@ -51067,6 +51807,10 @@ namespace MetaTransformScript
                     "BooleanExpressionId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup12(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.SearchedWhenClauseWhenExpressionLinkRelationships ?? Enumerable.Empty<SearchedWhenClauseWhenExpressionLinkRelationships>())
             {
                 relationship.Row.SearchedWhenClause = RequireTarget(
@@ -51077,10 +51821,6 @@ namespace MetaTransformScript
                     "SearchedWhenClauseId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup12(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.SelectScalarExpressionRelationships ?? Enumerable.Empty<SelectScalarExpressionRelationships>())
             {
                 relationship.Row.SelectElement = RequireTarget(
@@ -51391,6 +52131,10 @@ namespace MetaTransformScript
                     "TSqlStatementId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup13(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkRelationships ?? Enumerable.Empty<StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkRelationships>())
             {
                 relationship.Row.StatementWithCtesAndXmlNamespaces = RequireTarget(
@@ -51401,10 +52145,6 @@ namespace MetaTransformScript
                     "StatementWithCtesAndXmlNamespacesId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup13(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkRelationships ?? Enumerable.Empty<StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkRelationships>())
             {
                 relationship.Row.WithCtesAndXmlNamespaces = RequireTarget(
@@ -51413,6 +52153,46 @@ namespace MetaTransformScript
                     "StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink",
                     relationship.Row.Id,
                     "WithCtesAndXmlNamespacesId");
+            }
+
+            foreach (var relationship in relationshipBuffers.StoredProcedureContractRelationships ?? Enumerable.Empty<StoredProcedureContractRelationships>())
+            {
+                relationship.Row.ScriptObjectStoredProcedure = RequireTarget(
+                    loadIndexes.ScriptObjectStoredProcedureListById,
+                    relationship.ScriptObjectStoredProcedureId,
+                    "StoredProcedureContract",
+                    relationship.Row.Id,
+                    "ScriptObjectStoredProcedureId");
+            }
+
+            foreach (var relationship in relationshipBuffers.StoredProcedureContractOperationRelationships ?? Enumerable.Empty<StoredProcedureContractOperationRelationships>())
+            {
+                relationship.Row.StoredProcedureContract = RequireTarget(
+                    loadIndexes.StoredProcedureContractListById,
+                    relationship.StoredProcedureContractId,
+                    "StoredProcedureContractOperation",
+                    relationship.Row.Id,
+                    "StoredProcedureContractId");
+            }
+
+            foreach (var relationship in relationshipBuffers.StoredProcedureResultColumnItemRelationships ?? Enumerable.Empty<StoredProcedureResultColumnItemRelationships>())
+            {
+                relationship.Row.StoredProcedureResultRowsetItem = RequireTarget(
+                    loadIndexes.StoredProcedureResultRowsetItemListById,
+                    relationship.StoredProcedureResultRowsetItemId,
+                    "StoredProcedureResultColumnItem",
+                    relationship.Row.Id,
+                    "StoredProcedureResultRowsetItemId");
+            }
+
+            foreach (var relationship in relationshipBuffers.StoredProcedureResultRowsetItemRelationships ?? Enumerable.Empty<StoredProcedureResultRowsetItemRelationships>())
+            {
+                relationship.Row.StoredProcedureContract = RequireTarget(
+                    loadIndexes.StoredProcedureContractListById,
+                    relationship.StoredProcedureContractId,
+                    "StoredProcedureResultRowsetItem",
+                    relationship.Row.Id,
+                    "StoredProcedureContractId");
             }
 
             foreach (var relationship in relationshipBuffers.StringLiteralRelationships ?? Enumerable.Empty<StringLiteralRelationships>())
@@ -51675,6 +52455,10 @@ namespace MetaTransformScript
                     "IdentifierId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup14(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.TransformScriptSchemaIdentifierLinkRelationships ?? Enumerable.Empty<TransformScriptSchemaIdentifierLinkRelationships>())
             {
                 relationship.Row.TransformScript = RequireTarget(
@@ -51725,10 +52509,6 @@ namespace MetaTransformScript
                     "TransformScriptId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup14(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.TruncateStatementRelationships ?? Enumerable.Empty<TruncateStatementRelationships>())
             {
                 relationship.Row.TSqlStatement = RequireTarget(
@@ -51999,6 +52779,10 @@ namespace MetaTransformScript
                     "ColumnReferenceExpressionId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup15(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.UnpivotedTableReferenceInColumnsItemRelationships ?? Enumerable.Empty<UnpivotedTableReferenceInColumnsItemRelationships>())
             {
                 relationship.Row.UnpivotedTableReference = RequireTarget(
@@ -52049,10 +52833,6 @@ namespace MetaTransformScript
                     "UnpivotedTableReferenceId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup15(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.UnpivotedTableReferenceValueColumnLinkRelationships ?? Enumerable.Empty<UnpivotedTableReferenceValueColumnLinkRelationships>())
             {
                 relationship.Row.Identifier = RequireTarget(
@@ -52323,6 +53103,10 @@ namespace MetaTransformScript
                     "WindowDefinitionId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup16(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.WindowDefinitionWindowFrameClauseLinkRelationships ?? Enumerable.Empty<WindowDefinitionWindowFrameClauseLinkRelationships>())
             {
                 relationship.Row.WindowDefinition = RequireTarget(
@@ -52373,10 +53157,6 @@ namespace MetaTransformScript
                     "ScalarExpressionId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup16(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.WindowDelimiterOffsetValueLinkRelationships ?? Enumerable.Empty<WindowDelimiterOffsetValueLinkRelationships>())
             {
                 relationship.Row.WindowDelimiter = RequireTarget(
@@ -52829,6 +53609,7 @@ namespace MetaTransformScript
             "SchemaObjectNameBaseIdentifierLink.xml",
             "SchemaObjectNameSchemaIdentifierLink.xml",
             "ScriptObjectScalarFunction.xml",
+            "ScriptObjectStoredProcedure.xml",
             "ScriptObjectTVF.xml",
             "ScriptObjectView.xml",
             "SearchedCaseExpression.xml",
@@ -52859,6 +53640,10 @@ namespace MetaTransformScript
             "SqlHintKeywordsItem.xml",
             "StatementWithCtesAndXmlNamespaces.xml",
             "StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink.xml",
+            "StoredProcedureContract.xml",
+            "StoredProcedureContractOperation.xml",
+            "StoredProcedureResultColumnItem.xml",
+            "StoredProcedureResultRowsetItem.xml",
             "StringLiteral.xml",
             "SubqueryComparisonPredicate.xml",
             "SubqueryComparisonPredicateExpressionLink.xml",
@@ -55690,6 +56475,18 @@ namespace MetaTransformScript
                 }
             }
 
+            private HashSet<string>? scriptObjectStoredProcedureIds;
+
+            public void AddScriptObjectStoredProcedureId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'ScriptObjectStoredProcedure' contains a row with empty Id.");
+                scriptObjectStoredProcedureIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!scriptObjectStoredProcedureIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'ScriptObjectStoredProcedure' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
             private HashSet<string>? scriptObjectTVFIds;
 
             public void AddScriptObjectTVFId(string? id)
@@ -56047,6 +56844,54 @@ namespace MetaTransformScript
                 if (!statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? storedProcedureContractIds;
+
+            public void AddStoredProcedureContractId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'StoredProcedureContract' contains a row with empty Id.");
+                storedProcedureContractIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!storedProcedureContractIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'StoredProcedureContract' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? storedProcedureContractOperationIds;
+
+            public void AddStoredProcedureContractOperationId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'StoredProcedureContractOperation' contains a row with empty Id.");
+                storedProcedureContractOperationIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!storedProcedureContractOperationIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'StoredProcedureContractOperation' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? storedProcedureResultColumnItemIds;
+
+            public void AddStoredProcedureResultColumnItemId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'StoredProcedureResultColumnItem' contains a row with empty Id.");
+                storedProcedureResultColumnItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!storedProcedureResultColumnItemIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'StoredProcedureResultColumnItem' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? storedProcedureResultRowsetItemIds;
+
+            public void AddStoredProcedureResultRowsetItemId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'StoredProcedureResultRowsetItem' contains a row with empty Id.");
+                storedProcedureResultRowsetItemIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!storedProcedureResultRowsetItemIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'StoredProcedureResultRowsetItem' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -57933,6 +58778,10 @@ namespace MetaTransformScript
 
             public Dictionary<string, ScriptObjectScalarFunction> ScriptObjectScalarFunctionListById => scriptObjectScalarFunctionListById ??= BuildById(model.ScriptObjectScalarFunctionList, row => row.Id, "ScriptObjectScalarFunction");
 
+            private Dictionary<string, ScriptObjectStoredProcedure>? scriptObjectStoredProcedureListById;
+
+            public Dictionary<string, ScriptObjectStoredProcedure> ScriptObjectStoredProcedureListById => scriptObjectStoredProcedureListById ??= BuildById(model.ScriptObjectStoredProcedureList, row => row.Id, "ScriptObjectStoredProcedure");
+
             private Dictionary<string, ScriptObjectTVF>? scriptObjectTVFListById;
 
             public Dictionary<string, ScriptObjectTVF> ScriptObjectTVFListById => scriptObjectTVFListById ??= BuildById(model.ScriptObjectTVFList, row => row.Id, "ScriptObjectTVF");
@@ -58052,6 +58901,22 @@ namespace MetaTransformScript
             private Dictionary<string, StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink>? statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkListById;
 
             public Dictionary<string, StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink> StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkListById => statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkListById ??= BuildById(model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList, row => row.Id, "StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink");
+
+            private Dictionary<string, StoredProcedureContract>? storedProcedureContractListById;
+
+            public Dictionary<string, StoredProcedureContract> StoredProcedureContractListById => storedProcedureContractListById ??= BuildById(model.StoredProcedureContractList, row => row.Id, "StoredProcedureContract");
+
+            private Dictionary<string, StoredProcedureContractOperation>? storedProcedureContractOperationListById;
+
+            public Dictionary<string, StoredProcedureContractOperation> StoredProcedureContractOperationListById => storedProcedureContractOperationListById ??= BuildById(model.StoredProcedureContractOperationList, row => row.Id, "StoredProcedureContractOperation");
+
+            private Dictionary<string, StoredProcedureResultColumnItem>? storedProcedureResultColumnItemListById;
+
+            public Dictionary<string, StoredProcedureResultColumnItem> StoredProcedureResultColumnItemListById => storedProcedureResultColumnItemListById ??= BuildById(model.StoredProcedureResultColumnItemList, row => row.Id, "StoredProcedureResultColumnItem");
+
+            private Dictionary<string, StoredProcedureResultRowsetItem>? storedProcedureResultRowsetItemListById;
+
+            public Dictionary<string, StoredProcedureResultRowsetItem> StoredProcedureResultRowsetItemListById => storedProcedureResultRowsetItemListById ??= BuildById(model.StoredProcedureResultRowsetItemList, row => row.Id, "StoredProcedureResultRowsetItem");
 
             private Dictionary<string, StringLiteral>? stringLiteralListById;
 
@@ -59296,6 +60161,10 @@ namespace MetaTransformScript
 
             public Dictionary<string, ScriptObjectScalarFunction> ScriptObjectScalarFunctionListById => scriptObjectScalarFunctionListById ??= BuildById(model.ScriptObjectScalarFunctionList, row => row.Id, "ScriptObjectScalarFunction");
 
+            private Dictionary<string, ScriptObjectStoredProcedure>? scriptObjectStoredProcedureListById;
+
+            public Dictionary<string, ScriptObjectStoredProcedure> ScriptObjectStoredProcedureListById => scriptObjectStoredProcedureListById ??= BuildById(model.ScriptObjectStoredProcedureList, row => row.Id, "ScriptObjectStoredProcedure");
+
             private Dictionary<string, ScriptObjectTVF>? scriptObjectTVFListById;
 
             public Dictionary<string, ScriptObjectTVF> ScriptObjectTVFListById => scriptObjectTVFListById ??= BuildById(model.ScriptObjectTVFList, row => row.Id, "ScriptObjectTVF");
@@ -59415,6 +60284,22 @@ namespace MetaTransformScript
             private Dictionary<string, StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink>? statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkListById;
 
             public Dictionary<string, StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink> StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkListById => statementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkListById ??= BuildById(model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList, row => row.Id, "StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink");
+
+            private Dictionary<string, StoredProcedureContract>? storedProcedureContractListById;
+
+            public Dictionary<string, StoredProcedureContract> StoredProcedureContractListById => storedProcedureContractListById ??= BuildById(model.StoredProcedureContractList, row => row.Id, "StoredProcedureContract");
+
+            private Dictionary<string, StoredProcedureContractOperation>? storedProcedureContractOperationListById;
+
+            public Dictionary<string, StoredProcedureContractOperation> StoredProcedureContractOperationListById => storedProcedureContractOperationListById ??= BuildById(model.StoredProcedureContractOperationList, row => row.Id, "StoredProcedureContractOperation");
+
+            private Dictionary<string, StoredProcedureResultColumnItem>? storedProcedureResultColumnItemListById;
+
+            public Dictionary<string, StoredProcedureResultColumnItem> StoredProcedureResultColumnItemListById => storedProcedureResultColumnItemListById ??= BuildById(model.StoredProcedureResultColumnItemList, row => row.Id, "StoredProcedureResultColumnItem");
+
+            private Dictionary<string, StoredProcedureResultRowsetItem>? storedProcedureResultRowsetItemListById;
+
+            public Dictionary<string, StoredProcedureResultRowsetItem> StoredProcedureResultRowsetItemListById => storedProcedureResultRowsetItemListById ??= BuildById(model.StoredProcedureResultRowsetItemList, row => row.Id, "StoredProcedureResultRowsetItem");
 
             private Dictionary<string, StringLiteral>? stringLiteralListById;
 
@@ -61618,6 +62503,14 @@ namespace MetaTransformScript
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(ScriptObjectStoredProcedure),
+                "Id",
+                "DefinitionSql",
+                "TransformScript"))
+            {
+                return true;
+            }
+
             if (HasUnexpectedProperties(typeof(ScriptObjectTVF),
                 "Id",
                 "TransformScript"))
@@ -61823,6 +62716,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup9()
+        {
             if (HasUnexpectedProperties(typeof(SqlHintKeywordsItem),
                 "Id",
                 "Ordinal",
@@ -61832,11 +62730,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup9()
-        {
             if (HasUnexpectedProperties(typeof(StatementWithCtesAndXmlNamespaces),
                 "Id",
                 "TSqlStatement"))
@@ -61848,6 +62741,46 @@ namespace MetaTransformScript
                 "Id",
                 "StatementWithCtesAndXmlNamespaces",
                 "WithCtesAndXmlNamespaces"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(StoredProcedureContract),
+                "Id",
+                "Notes",
+                "ScriptObjectStoredProcedure"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(StoredProcedureContractOperation),
+                "Id",
+                "AccessRole",
+                "Notes",
+                "OperationKind",
+                "Ordinal",
+                "SqlIdentifier",
+                "StoredProcedureContract"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(StoredProcedureResultColumnItem),
+                "Id",
+                "IsNullable",
+                "MetaDataTypeId",
+                "Name",
+                "Ordinal",
+                "StoredProcedureResultRowsetItem"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(StoredProcedureResultRowsetItem),
+                "Id",
+                "Name",
+                "Ordinal",
+                "StoredProcedureContract"))
             {
                 return true;
             }
@@ -62056,6 +62989,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup10()
+        {
             if (HasUnexpectedProperties(typeof(TryCastCallParameterLink),
                 "Id",
                 "ScalarExpression",
@@ -62095,11 +63033,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup10()
-        {
             if (HasUnexpectedProperties(typeof(TryParseCall),
                 "Id",
                 "PrimaryExpression"))
@@ -62304,6 +63237,11 @@ namespace MetaTransformScript
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool HasRuntimeExtendedEntityShapeGroup11()
+        {
             if (HasUnexpectedProperties(typeof(WindowDefinitionOrderByClauseLink),
                 "Id",
                 "OrderByClause",
@@ -62345,11 +63283,6 @@ namespace MetaTransformScript
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool HasRuntimeExtendedEntityShapeGroup11()
-        {
             if (HasUnexpectedProperties(typeof(WindowDelimiter),
                 "Id",
                 "WindowDelimiterType"))
@@ -62720,6 +63653,7 @@ namespace MetaTransformScript
                 "SchemaObjectNameBaseIdentifierLinkList",
                 "SchemaObjectNameSchemaIdentifierLinkList",
                 "ScriptObjectScalarFunctionList",
+                "ScriptObjectStoredProcedureList",
                 "ScriptObjectTVFList",
                 "ScriptObjectViewList",
                 "SearchedCaseExpressionList",
@@ -62750,6 +63684,10 @@ namespace MetaTransformScript
                 "SqlHintKeywordsItemList",
                 "StatementWithCtesAndXmlNamespacesList",
                 "StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList",
+                "StoredProcedureContractList",
+                "StoredProcedureContractOperationList",
+                "StoredProcedureResultColumnItemList",
+                "StoredProcedureResultRowsetItemList",
                 "StringLiteralList",
                 "SubqueryComparisonPredicateList",
                 "SubqueryComparisonPredicateExpressionLinkList",

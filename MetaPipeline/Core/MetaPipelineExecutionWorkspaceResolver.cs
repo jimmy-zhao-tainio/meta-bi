@@ -29,7 +29,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         var transformScript = ResolveTransformScriptById(transformModel, transformScriptId);
         var statementKind = new TransformScriptStatementKindService().GetStatementKind(transformModel, transformScript);
         EnsureTransformScriptIsSupported(transformModel, transformScript, statementKind);
-        var isSelect = statementKind is BoundStatementKind.Select;
+        var rowStreamMode = ResolveRowStreamMode(transformModel, transformScript, statementKind);
         var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(
             Path.GetFullPath(bindingWorkspacePath),
             searchUpward: false);
@@ -41,13 +41,14 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
                 $"Transform binding id '{binding.Id}' does not reference transform script id '{transformScript.Id}'.");
         }
 
-        return isSelect
-            ? CreateSelectDefinition(
-            transformModel,
-            bindingModel,
-            transformScript,
-            binding,
-                targetSqlIdentifier)
+        return rowStreamMode.IsRowProducing
+            ? CreateRowStreamDefinition(
+                transformModel,
+                bindingModel,
+                transformScript,
+                binding,
+                targetSqlIdentifier,
+                rowStreamMode.TargetResolution)
             : CreateMutationDefinition(
                 transformModel,
                 bindingModel,
@@ -56,16 +57,22 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
                 targetSqlIdentifier);
     }
 
-    private MetaPipelineExecutionDefinition CreateSelectDefinition(
+    private MetaPipelineExecutionDefinition CreateRowStreamDefinition(
         MTS.MetaTransformScriptModel transformModel,
         MetaTransformBindingModel bindingModel,
         MTS.TransformScript transformScript,
         TransformBinding binding,
-        string? targetSqlIdentifier)
+        string? targetSqlIdentifier,
+        RowStreamTargetResolution targetResolution)
     {
-        var target = ResolveTarget(bindingModel, binding, targetSqlIdentifier);
+        var target = ResolveRowStreamTarget(
+            bindingModel,
+            binding,
+            transformScript.Name,
+            targetSqlIdentifier,
+            targetResolution);
         var outputRowset = ResolveSingleOutputRowset(bindingModel, binding);
-        var columns = ResolveOrderedColumns(bindingModel, outputRowset, target);
+        var columns = ResolveOrderedColumns(bindingModel, outputRowset, target.BindingTarget);
         var sourceSql = sqlService.ExportToSqlCode(transformModel, transformScript.Name);
 
         return new MetaPipelineExecutionDefinition(
@@ -166,6 +173,16 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
                 $"Transform script '{transformScript.Name}' does not expose a supported executable statement kind for pipeline execution.");
         }
 
+        if (statementKind is BoundStatementKind.StoredProcedure)
+        {
+            var contractCount = CountStoredProcedureContracts(transformModel, transformScript);
+            if (contractCount != 1)
+            {
+                throw new MetaPipelineConfigurationException(
+                    $"Stored procedure transform script '{transformScript.Name}' requires exactly one StoredProcedureContract row for pipeline execution, but found {contractCount}.");
+            }
+        }
+
         var parameterCount = transformModel.TransformScriptFunctionParametersItemList.Count(item =>
             string.Equals(item.TransformScript.Id, transformScript.Id, StringComparison.Ordinal));
         if (parameterCount > 0)
@@ -175,28 +192,110 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         }
     }
 
+    private static RowStreamMode ResolveRowStreamMode(
+        MTS.MetaTransformScriptModel transformModel,
+        MTS.TransformScript transformScript,
+        BoundStatementKind statementKind)
+    {
+        if (statementKind is BoundStatementKind.Select)
+        {
+            return new RowStreamMode(true, RowStreamTargetResolution.BindingTarget);
+        }
+
+        if (statementKind is not BoundStatementKind.StoredProcedure)
+        {
+            return new RowStreamMode(false, RowStreamTargetResolution.BindingTarget);
+        }
+
+        var resultRowsetCount = CountStoredProcedureResultRowsets(transformModel, transformScript);
+        if (resultRowsetCount == 0)
+        {
+            return new RowStreamMode(false, RowStreamTargetResolution.BindingTarget);
+        }
+
+        if (resultRowsetCount > 1)
+        {
+            throw new MetaPipelineConfigurationException(
+                $"Stored procedure transform script '{transformScript.Name}' declares {resultRowsetCount} result rowsets. Stored procedure contracts support at most one result rowset.");
+        }
+
+        return new RowStreamMode(true, RowStreamTargetResolution.ExplicitTargetIdentifier);
+    }
+
+    private static int CountStoredProcedureContracts(
+        MTS.MetaTransformScriptModel transformModel,
+        MTS.TransformScript transformScript)
+    {
+        var storedProcedures = transformModel.ScriptObjectStoredProcedureList
+            .Where(item => string.Equals(item.TransformScript.Id, transformScript.Id, StringComparison.Ordinal))
+            .ToArray();
+        if (storedProcedures.Length != 1)
+        {
+            return 0;
+        }
+
+        return transformModel.StoredProcedureContractList.Count(item =>
+            string.Equals(item.ScriptObjectStoredProcedure.Id, storedProcedures[0].Id, StringComparison.Ordinal));
+    }
+
+    private static int CountStoredProcedureResultRowsets(
+        MTS.MetaTransformScriptModel transformModel,
+        MTS.TransformScript transformScript)
+    {
+        var storedProcedure = transformModel.ScriptObjectStoredProcedureList.SingleOrDefault(item =>
+            string.Equals(item.TransformScript.Id, transformScript.Id, StringComparison.Ordinal));
+        if (storedProcedure is null)
+        {
+            return 0;
+        }
+
+        var contract = transformModel.StoredProcedureContractList.SingleOrDefault(item =>
+            string.Equals(item.ScriptObjectStoredProcedure.Id, storedProcedure.Id, StringComparison.Ordinal));
+        if (contract is null)
+        {
+            return 0;
+        }
+
+        return transformModel.StoredProcedureResultRowsetItemList.Count(item =>
+            string.Equals(item.StoredProcedureContract.Id, contract.Id, StringComparison.Ordinal));
+    }
+
+    private static ResolvedRowStreamTarget ResolveRowStreamTarget(
+        MetaTransformBindingModel bindingModel,
+        TransformBinding binding,
+        string transformScriptName,
+        string? targetSqlIdentifier,
+        RowStreamTargetResolution targetResolution)
+    {
+        if (targetResolution is RowStreamTargetResolution.BindingTarget)
+        {
+            var target = ResolveTarget(bindingModel, binding, targetSqlIdentifier);
+            return new ResolvedRowStreamTarget(target.SqlIdentifier, target);
+        }
+
+        if (string.IsNullOrWhiteSpace(targetSqlIdentifier))
+        {
+            throw new MetaPipelineConfigurationException(
+                $"Stored procedure transform script '{transformScriptName}' returns a rowset and requires an explicit target SQL identifier for InsertRows execution.");
+        }
+
+        var explicitTargetSqlIdentifier = targetSqlIdentifier.Trim();
+        return new ResolvedRowStreamTarget(
+            explicitTargetSqlIdentifier,
+            TryResolveOptionalBindingTarget(bindingModel, binding, explicitTargetSqlIdentifier));
+    }
+
     private static TransformBindingTarget ResolveTarget(
         MetaTransformBindingModel bindingModel,
         TransformBinding binding,
         string? targetSqlIdentifier)
     {
-        var targets = bindingModel.TransformBindingTargetList
-            .Where(item => string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal))
-            .ToArray();
+        var targets = ResolveBindingTargets(bindingModel, binding);
 
         if (targets.Length == 0)
         {
             throw new MetaPipelineConfigurationException(
                 $"Transform binding id '{binding.Id}' does not contain a target.");
-        }
-
-        foreach (var target in targets)
-        {
-            if (string.IsNullOrWhiteSpace(target.SqlIdentifier))
-            {
-                throw new MetaPipelineConfigurationException(
-                    $"Transform binding id '{binding.Id}' contains a blank target SQL identifier.");
-            }
         }
 
         if (!string.IsNullOrWhiteSpace(targetSqlIdentifier))
@@ -223,6 +322,51 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         };
     }
 
+    private static TransformBindingTarget? TryResolveOptionalBindingTarget(
+        MetaTransformBindingModel bindingModel,
+        TransformBinding binding,
+        string targetSqlIdentifier)
+    {
+        var targets = ResolveBindingTargets(bindingModel, binding);
+        if (targets.Length == 0)
+        {
+            return null;
+        }
+
+        var matches = targets
+            .Where(item => string.Equals(item.SqlIdentifier, targetSqlIdentifier, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+
+        return matches.Length switch
+        {
+            0 => throw new MetaPipelineConfigurationException(
+                $"Target '{targetSqlIdentifier}' was not found for transform binding id '{binding.Id}'."),
+            > 1 => throw new MetaPipelineConfigurationException(
+                $"Target '{targetSqlIdentifier}' is ambiguous for transform binding id '{binding.Id}'."),
+            _ => matches[0],
+        };
+    }
+
+    private static TransformBindingTarget[] ResolveBindingTargets(
+        MetaTransformBindingModel bindingModel,
+        TransformBinding binding)
+    {
+        var targets = bindingModel.TransformBindingTargetList
+            .Where(item => string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal))
+            .ToArray();
+
+        foreach (var target in targets)
+        {
+            if (string.IsNullOrWhiteSpace(target.SqlIdentifier))
+            {
+                throw new MetaPipelineConfigurationException(
+                    $"Transform binding id '{binding.Id}' contains a blank target SQL identifier.");
+            }
+        }
+
+        return targets;
+    }
+
     private static OutputRowset ResolveSingleOutputRowset(
         MetaTransformBindingModel bindingModel,
         TransformBinding binding)
@@ -244,7 +388,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
     private static IReadOnlyList<PipelineColumn> ResolveOrderedColumns(
         MetaTransformBindingModel bindingModel,
         OutputRowset outputRowset,
-        TransformBindingTarget target)
+        TransformBindingTarget? target)
     {
         var rowset = bindingModel.RowsetList.SingleOrDefault(item =>
             string.Equals(item.Id, outputRowset.Rowset.Id, StringComparison.Ordinal));
@@ -297,8 +441,13 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
     private static IReadOnlyDictionary<string, ResolvedColumnDataTypes> ResolveColumnDataTypesByColumnId(
         MetaTransformBindingModel bindingModel,
         Rowset rowset,
-        TransformBindingTarget target)
+        TransformBindingTarget? target)
     {
+        if (target is null)
+        {
+            return new Dictionary<string, ResolvedColumnDataTypes>(StringComparer.Ordinal);
+        }
+
         var targetRowsetLinks = bindingModel.ValidationTargetRowsetLinkList
             .Where(item =>
                 string.Equals(item.TransformBindingTarget.Id, target.Id, StringComparison.Ordinal) &&
@@ -383,4 +532,18 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
     private sealed record ResolvedColumnDataTypes(
         string? SourceMetaDataTypeId,
         string? TargetMetaDataTypeId);
+
+    private sealed record RowStreamMode(
+        bool IsRowProducing,
+        RowStreamTargetResolution TargetResolution);
+
+    private enum RowStreamTargetResolution
+    {
+        BindingTarget,
+        ExplicitTargetIdentifier
+    }
+
+    private sealed record ResolvedRowStreamTarget(
+        string SqlIdentifier,
+        TransformBindingTarget? BindingTarget);
 }

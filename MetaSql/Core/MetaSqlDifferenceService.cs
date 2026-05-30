@@ -131,6 +131,15 @@ public sealed class MetaSqlDifferenceService
             liveWorkspace,
             sourceSchemasById,
             liveSchemasById,
+            "Function",
+            MetaSqlObjectKind.Function);
+
+        AddSchemaScopedObjectDifferences(
+            differences,
+            sourceWorkspace,
+            liveWorkspace,
+            sourceSchemasById,
+            liveSchemasById,
             "StoredProcedure",
             MetaSqlObjectKind.StoredProcedure);
 
@@ -472,7 +481,7 @@ public sealed class MetaSqlDifferenceService
         {
             var sourceRow = sourceRowsByScopedName[key];
             var liveRow = liveRowsByScopedName[key];
-            if (!AreSqlDefinitionsEquivalent(GetValue(sourceRow, "DefinitionSql"), GetValue(liveRow, "DefinitionSql")))
+            if (!AreSchemaScopedObjectsEquivalent(sourceRow, liveRow, entityName))
             {
                 differences.Add(new MetaSqlDifference
                 {
@@ -485,6 +494,17 @@ public sealed class MetaSqlDifferenceService
                 });
             }
         }
+    }
+
+    private static bool AreSchemaScopedObjectsEquivalent(GenericRecord sourceRow, GenericRecord liveRow, string entityName)
+    {
+        if (string.Equals(entityName, "Function", StringComparison.Ordinal) &&
+            !IsSameValue(GetValue(sourceRow, "FunctionKind"), GetValue(liveRow, "FunctionKind")))
+        {
+            return false;
+        }
+
+        return AreSqlDefinitionsEquivalent(GetValue(sourceRow, "DefinitionSql"), GetValue(liveRow, "DefinitionSql"));
     }
 
     private static bool AreColumnsEquivalent(

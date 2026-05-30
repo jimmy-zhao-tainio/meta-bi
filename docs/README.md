@@ -27,6 +27,7 @@
 - [MetaTransform boundary](meta-transform/META-TRANSFORM-BOUNDARY.md)
 - [MetaTransformScript parser status](meta-transform-script/META-TRANSFORM-SCRIPT-PARSER-STATUS.md)
 - [MetaTransformScript scalar UDF support](meta-transform-script/META-TRANSFORM-SCRIPT-SCALAR-UDFS.md)
+- [MetaTransformScript stored procedure contracts](meta-transform-script/STORED-PROCEDURE-CONTRACTS.md)
 
 ## Releases
 

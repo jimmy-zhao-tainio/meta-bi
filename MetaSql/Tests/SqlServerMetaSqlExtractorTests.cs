@@ -170,6 +170,7 @@ public sealed class SqlServerMetaSqlExtractorTests
     public void Project_CreatesSqlModuleRows()
     {
         const string viewDefinition = "CREATE OR ALTER VIEW [dq].[v_DataQualityReview] AS SELECT 1 AS [Result];";
+        const string functionDefinition = "CREATE FUNCTION [dbo].[fnAddOne](@value int) RETURNS int AS BEGIN RETURN @value + 1 END;";
         const string procedureDefinition = "CREATE OR ALTER PROCEDURE [dbo].[Run] AS SELECT 1 AS [Result];";
 
         var workspace = SqlServerMetaSqlProjector.Project(
@@ -184,10 +185,12 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase),
             viewRows: [new("dq", "v_DataQualityReview", viewDefinition, 2)],
+            functionRows: [new("dbo", "fnAddOne", "ScalarFunction", functionDefinition, 1)],
             storedProcedureRows: [new("dbo", "Run", procedureDefinition, 3)]);
 
         var schemas = workspace.Instance.GetOrCreateEntityRecords("Schema");
         var views = workspace.Instance.GetOrCreateEntityRecords("View");
+        var functions = workspace.Instance.GetOrCreateEntityRecords("Function");
         var storedProcedures = workspace.Instance.GetOrCreateEntityRecords("StoredProcedure");
 
         Assert.Contains(schemas, row => row.Id == "SalesDb.dq");
@@ -198,6 +201,13 @@ public sealed class SqlServerMetaSqlExtractorTests
         Assert.Equal(viewDefinition, view.Values["DefinitionSql"]);
         Assert.Equal("2", view.Values["DeployOrdinal"]);
         Assert.Equal("SalesDb.dq", view.RelationshipIds["SchemaId"]);
+
+        var function = Assert.Single(functions);
+        Assert.Equal("SalesDb.dbo.function.fnAddOne", function.Id);
+        Assert.Equal(functionDefinition, function.Values["DefinitionSql"]);
+        Assert.Equal("ScalarFunction", function.Values["FunctionKind"]);
+        Assert.Equal("1", function.Values["DeployOrdinal"]);
+        Assert.Equal("SalesDb.dbo", function.RelationshipIds["SchemaId"]);
 
         var storedProcedure = Assert.Single(storedProcedures);
         Assert.Equal("SalesDb.dbo.procedure.Run", storedProcedure.Id);

@@ -17,6 +17,7 @@ internal sealed class DeployStatementPlanBuilder
         var sourceForeignKeysById = sourceModel.ForeignKeyList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var sourceIndexesById = sourceModel.IndexList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var sourceViewsById = sourceModel.ViewList.ToDictionary(row => row.Id, StringComparer.Ordinal);
+        var sourceFunctionsById = sourceModel.FunctionList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var sourceStoredProceduresById = sourceModel.StoredProcedureList.ToDictionary(row => row.Id, StringComparer.Ordinal);
 
         var sourceColumnsByTableId = GroupBy(sourceModel.TableColumnList, row => row.Table.Id);
@@ -31,6 +32,7 @@ internal sealed class DeployStatementPlanBuilder
         var liveForeignKeysById = liveModel.ForeignKeyList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var liveIndexesById = liveModel.IndexList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var liveViewsById = liveModel.ViewList.ToDictionary(row => row.Id, StringComparer.Ordinal);
+        var liveFunctionsById = liveModel.FunctionList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var liveStoredProceduresById = liveModel.StoredProcedureList.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var liveColumnDetailsByColumnId = GroupBy(liveModel.TableColumnDataTypeDetailList, row => row.TableColumn.Id);
 
@@ -56,6 +58,14 @@ internal sealed class DeployStatementPlanBuilder
         {
             var view = RequireById(liveViewsById, viewId, "DropView.LiveViewId");
             actions.Add(new DropViewAction(view));
+        }
+
+        foreach (var functionId in manifestModel.DropFunctionList
+                     .Select(row => row.LiveFunctionId)
+                     .OrderBy(row => row, StringComparer.Ordinal))
+        {
+            var function = RequireById(liveFunctionsById, functionId, "DropFunction.LiveFunctionId");
+            actions.Add(new DropFunctionAction(function));
         }
 
         var dropForeignKeyIds = manifestModel.DropForeignKeyList
@@ -249,6 +259,20 @@ internal sealed class DeployStatementPlanBuilder
             .Concat(manifestModel.ReplaceViewList.Select(row => row.SourceViewId))
             .Distinct(StringComparer.Ordinal)
             .ToList();
+        var deployFunctionIds = manifestModel.AddFunctionList
+            .Select(row => row.SourceFunctionId)
+            .Concat(manifestModel.ReplaceFunctionList.Select(row => row.SourceFunctionId))
+            .Distinct(StringComparer.Ordinal)
+            .ToList();
+        foreach (var function in deployFunctionIds
+                     .Select(id => RequireById(sourceFunctionsById, id, "AddFunction/ReplaceFunction.SourceFunctionId"))
+                     .OrderBy(GetModuleDeployOrdinal)
+                     .ThenBy(row => row.Schema.Name, StringComparer.Ordinal)
+                     .ThenBy(row => row.Name, StringComparer.Ordinal))
+        {
+            actions.Add(new DeployFunctionAction(function));
+        }
+
         foreach (var view in deployViewIds
                      .Select(id => RequireById(sourceViewsById, id, "AddView/ReplaceView.SourceViewId"))
                      .OrderBy(GetModuleDeployOrdinal)
@@ -294,6 +318,7 @@ internal sealed class DeployStatementPlanBuilder
                manifestModel.BlockForeignKeyDifferenceList.Count +
                manifestModel.BlockIndexDifferenceList.Count +
                manifestModel.BlockViewDifferenceList.Count +
+               manifestModel.BlockFunctionDifferenceList.Count +
                manifestModel.BlockStoredProcedureDifferenceList.Count;
     }
 
@@ -306,6 +331,7 @@ internal sealed class DeployStatementPlanBuilder
                manifestModel.AddForeignKeyList.Count +
                manifestModel.AddIndexList.Count +
                manifestModel.AddViewList.Count +
+               manifestModel.AddFunctionList.Count +
                manifestModel.AddStoredProcedureList.Count;
     }
 
@@ -317,6 +343,7 @@ internal sealed class DeployStatementPlanBuilder
                manifestModel.DropForeignKeyList.Count +
                manifestModel.DropIndexList.Count +
                manifestModel.DropViewList.Count +
+               manifestModel.DropFunctionList.Count +
                manifestModel.DropStoredProcedureList.Count;
     }
 
@@ -336,6 +363,7 @@ internal sealed class DeployStatementPlanBuilder
                manifestModel.ReplaceForeignKeyList.Count +
                manifestModel.ReplaceIndexList.Count +
                manifestModel.ReplaceViewList.Count +
+               manifestModel.ReplaceFunctionList.Count +
                manifestModel.ReplaceStoredProcedureList.Count;
     }
 
@@ -350,6 +378,8 @@ internal sealed class DeployStatementPlanBuilder
     }
 
     private static int GetModuleDeployOrdinal(View view) => ParseOrdinal(view.DeployOrdinal);
+
+    private static int GetModuleDeployOrdinal(Function function) => ParseOrdinal(function.DeployOrdinal);
 
     private static int GetModuleDeployOrdinal(StoredProcedure storedProcedure) => ParseOrdinal(storedProcedure.DeployOrdinal);
 

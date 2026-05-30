@@ -4,6 +4,7 @@ public enum BoundStatementKind
 {
     Unsupported,
     ScalarFunction,
+    StoredProcedure,
     Select,
     Insert,
     Update,

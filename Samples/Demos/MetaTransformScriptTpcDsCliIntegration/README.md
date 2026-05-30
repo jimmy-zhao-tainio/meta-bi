@@ -4,7 +4,7 @@ This demo imports a TPC-DS query slice (`q01`-`q99`) into a `MetaTransformScript
 
 Purpose of this sample is gap-finding, not only green-path demonstration. Parse/export failures are signal and should be used to drive fix slices.
 
-Current status: full `q01`-`q99` import, one-shot workspace bind, and SQL export roundtrip succeed.
+Current status: full `q01`-`q99` import, one-shot workspace bind, SQL export roundtrip, and MetaSql conversion succeed.
 
 See [CURRENT_GAPS.md](./CURRENT_GAPS.md) for the latest known failures from this demo run.
 

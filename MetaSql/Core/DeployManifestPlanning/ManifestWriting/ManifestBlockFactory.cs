@@ -79,6 +79,16 @@ internal sealed class ManifestBlockFactory
                     DeployManifest = root,
                 });
                 return 1;
+            case MetaSqlObjectKind.Function:
+                model.BlockFunctionDifferenceList.Add(new BlockFunctionDifference
+                {
+                    Id = $"BlockFunctionDifference:{sourceId}:{liveId}",
+                    SourceFunctionId = sourceId,
+                    LiveFunctionId = liveId,
+                    DifferenceSummary = blockerReason,
+                    DeployManifest = root,
+                });
+                return 1;
             case MetaSqlObjectKind.StoredProcedure:
                 model.BlockStoredProcedureDifferenceList.Add(new BlockStoredProcedureDifference
                 {

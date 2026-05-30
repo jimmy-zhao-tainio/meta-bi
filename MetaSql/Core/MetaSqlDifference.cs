@@ -8,6 +8,7 @@ public enum MetaSqlObjectKind
     ForeignKey,
     Index,
     View,
+    Function,
     StoredProcedure,
 }
 

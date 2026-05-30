@@ -34,6 +34,7 @@ internal sealed class SqlServerDeploySqlRenderer
             DropPrimaryKeyAction row => constraintSqlRenderer.BuildDropPrimaryKeySql(row.PrimaryKey),
             DropStoredProcedureAction row => moduleSqlRenderer.BuildDropStoredProcedureSql(row.StoredProcedure),
             DropViewAction row => moduleSqlRenderer.BuildDropViewSql(row.View),
+            DropFunctionAction row => moduleSqlRenderer.BuildDropFunctionSql(row.Function),
             DropTableColumnAction row => tableSqlRenderer.BuildDropColumnSql(row.Column),
             DropTableAction row => tableSqlRenderer.BuildDropTableSql(row.Table),
             AddSchemaAction row => schemaSqlRenderer.BuildAddSchemaSql(row.Schema),
@@ -57,6 +58,7 @@ internal sealed class SqlServerDeploySqlRenderer
             AddForeignKeyAction row => constraintSqlRenderer.BuildAddForeignKeySql(row.ForeignKey, row.Members),
             AddIndexAction row => constraintSqlRenderer.BuildAddIndexSql(row.Index, row.Members),
             DeployViewAction row => moduleSqlRenderer.BuildDeployViewSql(row.View),
+            DeployFunctionAction row => moduleSqlRenderer.BuildDeployFunctionSql(row.Function),
             DeployStoredProcedureAction row => moduleSqlRenderer.BuildDeployStoredProcedureSql(row.StoredProcedure),
             _ => throw new InvalidOperationException($"Unsupported deploy action type '{action.GetType().Name}'.")
         };

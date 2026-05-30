@@ -107,6 +107,8 @@ public sealed record PipelineObjectAccessProfile(
     string ObjectKey,
     OrchestrationObjectAccessKind AccessKind,
     string AccessRole,
+    int Ordinal,
+    string? OperationKind,
     string Reason);
 
 public sealed record TaskObjectEffectProfile(

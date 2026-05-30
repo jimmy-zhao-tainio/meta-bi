@@ -1023,4 +1023,55 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
             });
         }
     }
+
+    public void AddStoredProcedureScript(
+        string name,
+        string? sourcePath,
+        string definitionSql,
+        BuiltNode schemaIdentifier,
+        BuiltNode objectIdentifier)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new InvalidOperationException("Transform script name cannot be empty.");
+        }
+
+        if (string.IsNullOrWhiteSpace(definitionSql))
+        {
+            throw new InvalidOperationException("Stored procedure definition SQL cannot be empty.");
+        }
+
+        if (model.TransformScriptList.Any(existing => string.Equals(existing.Name, name, StringComparison.OrdinalIgnoreCase)))
+        {
+            throw new InvalidOperationException($"Transform script '{name}' already exists in this workspace.");
+        }
+
+        var row = new TransformScript
+        {
+            Id = NextId(nameof(TransformScript)),
+            Name = name,
+            SourcePath = sourcePath ?? string.Empty
+        };
+        model.TransformScriptList.Add(row);
+        model.ScriptObjectStoredProcedureList.Add(new ScriptObjectStoredProcedure
+        {
+            Id = NextId(nameof(ScriptObjectStoredProcedure)),
+            TransformScript = row,
+            DefinitionSql = definitionSql.Trim()
+        });
+
+        model.TransformScriptSchemaIdentifierLinkList.Add(new TransformScriptSchemaIdentifierLink
+        {
+            Id = NextId(nameof(TransformScriptSchemaIdentifierLink)),
+            TransformScript = row,
+            Identifier = schemaIdentifier.GetRef<Identifier>(nameof(Identifier))
+        });
+
+        model.TransformScriptObjectIdentifierLinkList.Add(new TransformScriptObjectIdentifierLink
+        {
+            Id = NextId(nameof(TransformScriptObjectIdentifierLink)),
+            TransformScript = row,
+            Identifier = objectIdentifier.GetRef<Identifier>(nameof(Identifier))
+        });
+    }
 }

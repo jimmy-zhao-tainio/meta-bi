@@ -9,7 +9,7 @@ public sealed partial class MetaTransformScriptSqlParser
     {
         BareSelect,
         BareMutation,
-        CreateWrappedSelect
+        CreateWrappedModule
     }
 
     public MetaTransformScriptModel ParseSqlCode(
@@ -21,7 +21,7 @@ public sealed partial class MetaTransformScriptSqlParser
 
         var tokens = new MetaTransformScriptSqlLexer(sqlCode).Tokenize();
         var builder = new MetaTransformScriptSqlModelBuilder();
-        new Parser(tokens, builder, sourcePath, bareSelectName).ParseDocument();
+        new Parser(sqlCode, tokens, builder, sourcePath, bareSelectName).ParseDocument();
         return builder.Build();
     }
 
@@ -35,7 +35,7 @@ public sealed partial class MetaTransformScriptSqlParser
         ArgumentNullException.ThrowIfNull(builder);
 
         var tokens = new MetaTransformScriptSqlLexer(sqlCode).Tokenize();
-        return new Parser(tokens, builder, sourcePath, bareSelectName).ParseDocument();
+        return new Parser(sqlCode, tokens, builder, sourcePath, bareSelectName).ParseDocument();
     }
 
     private sealed partial class Parser
@@ -108,17 +108,20 @@ public sealed partial class MetaTransformScriptSqlParser
 
         private readonly IReadOnlyList<MetaTransformScriptSqlToken> tokens;
         private readonly MetaTransformScriptSqlModelBuilder builder;
+        private readonly string sqlCode;
         private readonly string? sourcePath;
         private readonly string? bareSelectName;
         private int position;
         private bool allowMergeActionPseudoColumn;
 
         public Parser(
+            string sqlCode,
             IReadOnlyList<MetaTransformScriptSqlToken> tokens,
             MetaTransformScriptSqlModelBuilder builder,
             string? sourcePath,
             string? bareSelectName)
         {
+            this.sqlCode = sqlCode;
             this.tokens = tokens;
             this.builder = builder;
             this.sourcePath = sourcePath;

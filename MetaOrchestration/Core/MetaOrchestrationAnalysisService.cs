@@ -83,6 +83,7 @@ public sealed class MetaOrchestrationAnalysisService
         var functionParameterCountsByScriptId = transformModel.TransformScriptFunctionParametersItemList
             .GroupBy(static item => item.TransformScript.Id, StringComparer.Ordinal)
             .ToDictionary(static group => group.Key, static group => group.Count(), StringComparer.Ordinal);
+        var storedProcedureOperationsByScriptId = BuildStoredProcedureOperationsByScriptId(transformModel);
         var bindingsById = bindingModel.TransformBindingList
             .ToDictionary(static item => item.Id, StringComparer.Ordinal);
 
@@ -96,8 +97,35 @@ public sealed class MetaOrchestrationAnalysisService
                 transformScriptsById,
                 statementKindsByScriptId,
                 functionParameterCountsByScriptId,
+                storedProcedureOperationsByScriptId,
                 bindingsById))
             .ToArray();
+    }
+
+    private static IReadOnlyDictionary<string, IReadOnlyList<StoredProcedureContractOperation>> BuildStoredProcedureOperationsByScriptId(
+        MetaTransformScriptModel transformModel)
+    {
+        var contractsByStoredProcedureId = transformModel.StoredProcedureContractList
+            .GroupBy(static item => item.ScriptObjectStoredProcedure.Id, StringComparer.Ordinal)
+            .Where(static group => group.Count() == 1)
+            .ToDictionary(static group => group.Key, static group => group.Single(), StringComparer.Ordinal);
+        var operationsByContractId = transformModel.StoredProcedureContractOperationList
+            .GroupBy(static item => item.StoredProcedureContract.Id, StringComparer.Ordinal)
+            .ToDictionary(
+                static group => group.Key,
+                static group => (IReadOnlyList<StoredProcedureContractOperation>)group
+                    .OrderBy(static item => ParseOrdinalOrMax(item.Ordinal))
+                    .ThenBy(static item => item.OperationKind, StringComparer.OrdinalIgnoreCase)
+                    .ThenBy(static item => item.SqlIdentifier, StringComparer.OrdinalIgnoreCase)
+                    .ToArray(),
+                StringComparer.Ordinal);
+
+        return transformModel.ScriptObjectStoredProcedureList
+            .Where(item => contractsByStoredProcedureId.ContainsKey(item.Id))
+            .ToDictionary(
+                static item => item.TransformScript.Id,
+                item => operationsByContractId.GetValueOrDefault(contractsByStoredProcedureId[item.Id].Id) ?? [],
+                StringComparer.Ordinal);
     }
 
     private static PipelineDependencyProfile CreatePipelineProfile(
@@ -107,6 +135,7 @@ public sealed class MetaOrchestrationAnalysisService
         IReadOnlyDictionary<string, TransformScript> transformScriptsById,
         IReadOnlyDictionary<string, BoundStatementKind> statementKindsByScriptId,
         IReadOnlyDictionary<string, int> functionParameterCountsByScriptId,
+        IReadOnlyDictionary<string, IReadOnlyList<StoredProcedureContractOperation>> storedProcedureOperationsByScriptId,
         IReadOnlyDictionary<string, TransformBinding> bindingsById)
     {
         var transformTasks = pipelineModel.TransformExecutionTaskList
@@ -133,6 +162,7 @@ public sealed class MetaOrchestrationAnalysisService
                 transformScriptsById,
                 statementKindsByScriptId,
                 functionParameterCountsByScriptId,
+                storedProcedureOperationsByScriptId,
                 bindingsById);
             taskProfiles.Add(taskProfile.Profile);
             issues.AddRange(taskProfile.Issues);
@@ -163,6 +193,7 @@ public sealed class MetaOrchestrationAnalysisService
         IReadOnlyDictionary<string, TransformScript> transformScriptsById,
         IReadOnlyDictionary<string, BoundStatementKind> statementKindsByScriptId,
         IReadOnlyDictionary<string, int> functionParameterCountsByScriptId,
+        IReadOnlyDictionary<string, IReadOnlyList<StoredProcedureContractOperation>> storedProcedureOperationsByScriptId,
         IReadOnlyDictionary<string, TransformBinding> bindingsById)
     {
         var accesses = new List<PipelineObjectAccessProfile>();
@@ -211,16 +242,30 @@ public sealed class MetaOrchestrationAnalysisService
 
             if (canContributeObjectAccesses)
             {
-                foreach (var source in ResolveSourceSqlIdentifiers(bindingModel, binding))
+                if (statementKind is BoundStatementKind.StoredProcedure)
                 {
-                    accesses.Add(CreateAccess(source, OrchestrationObjectAccessKind.Read, "Source", "Bound source rowset"));
-                }
-
-                if (IsMutationStatementKind(statementKind))
-                {
-                    foreach (var target in ResolveTargetSqlIdentifiers(bindingModel, binding))
+                    foreach (var operation in storedProcedureOperationsByScriptId.GetValueOrDefault(execution.TransformScriptId) ?? [])
                     {
-                        accesses.Add(CreateAccess(target, ResolveMutationTargetAccessKind(statementKind), "Target", $"Bound {statementKind} target"));
+                        var access = TryCreateStoredProcedureOperationAccess(operation);
+                        if (access is not null)
+                        {
+                            accesses.Add(access);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var source in ResolveSourceSqlIdentifiers(bindingModel, binding))
+                    {
+                        accesses.Add(CreateAccess(source, OrchestrationObjectAccessKind.Read, "Source", "Bound source rowset", accesses.Count));
+                    }
+
+                    if (IsMutationStatementKind(statementKind))
+                    {
+                        foreach (var target in ResolveTargetSqlIdentifiers(bindingModel, binding))
+                        {
+                            accesses.Add(CreateAccess(target, ResolveMutationTargetAccessKind(statementKind), "Target", $"Bound {statementKind} target", accesses.Count));
+                        }
                     }
                 }
             }
@@ -278,9 +323,12 @@ public sealed class MetaOrchestrationAnalysisService
 
         if (canContributeObjectAccesses)
         {
+            var insertRowsOrdinal = statementKind is BoundStatementKind.StoredProcedure
+                ? int.MaxValue
+                : accesses.Count;
             foreach (var target in ResolveInsertRowsTargets(pipelineModel, execution.PipelineTask))
             {
-                accesses.Add(CreateAccess(target, OrchestrationObjectAccessKind.Write, "InsertRowsTarget", "SELECT-kind InsertRows target write"));
+                accesses.Add(CreateAccess(target, OrchestrationObjectAccessKind.Write, "InsertRowsTarget", "Row-producing InsertRows target write", insertRowsOrdinal));
             }
         }
 
@@ -292,13 +340,18 @@ public sealed class MetaOrchestrationAnalysisService
             transformScriptName,
             execution.TransformBindingId,
             statementKind.ToString(),
-            accesses
-                .GroupBy(access => $"{access.ObjectKey}|{access.AccessKind}|{access.AccessRole}", StringComparer.OrdinalIgnoreCase)
-                .Select(static group => group.First())
-                .OrderBy(static item => item.ObjectKey, StringComparer.OrdinalIgnoreCase)
-                .ThenBy(static item => item.AccessKind.ToString(), StringComparer.Ordinal)
-                .ThenBy(static item => item.AccessRole, StringComparer.Ordinal)
-                .ToArray());
+            statementKind is BoundStatementKind.StoredProcedure
+                ? accesses
+                    .OrderBy(static item => item.Ordinal)
+                    .ThenBy(static item => item.ObjectKey, StringComparer.OrdinalIgnoreCase)
+                    .ToArray()
+                : accesses
+                    .GroupBy(access => $"{access.ObjectKey}|{access.AccessKind}|{access.AccessRole}", StringComparer.OrdinalIgnoreCase)
+                    .Select(static group => group.First())
+                    .OrderBy(static item => item.ObjectKey, StringComparer.OrdinalIgnoreCase)
+                    .ThenBy(static item => item.AccessKind.ToString(), StringComparer.Ordinal)
+                    .ThenBy(static item => item.AccessRole, StringComparer.Ordinal)
+                    .ToArray());
 
         return new TaskProfileResult(profile, issues);
     }
@@ -320,6 +373,63 @@ public sealed class MetaOrchestrationAnalysisService
             BoundStatementKind.Merge => OrchestrationObjectAccessKind.ReadWrite,
             _ => throw new ArgumentOutOfRangeException(nameof(statementKind), statementKind, "Statement kind is not a mutation statement kind.")
         };
+
+    private static PipelineObjectAccessProfile? TryCreateStoredProcedureOperationAccess(
+        StoredProcedureContractOperation operation)
+    {
+        var operationKind = NormalizeStoredProcedureOperationKind(operation.OperationKind);
+        if (operationKind is null ||
+            string.Equals(operationKind, "Call", StringComparison.Ordinal) ||
+            string.IsNullOrWhiteSpace(operation.SqlIdentifier))
+        {
+            return null;
+        }
+
+        var accessKind = operationKind switch
+        {
+            "Read" => OrchestrationObjectAccessKind.Read,
+            "Append" => OrchestrationObjectAccessKind.Write,
+            "Replace" => OrchestrationObjectAccessKind.Write,
+            "Reset" => OrchestrationObjectAccessKind.ResetWrite,
+            "Mutation" => OrchestrationObjectAccessKind.ReadWrite,
+            _ => OrchestrationObjectAccessKind.Read
+        };
+        var accessRole = string.IsNullOrWhiteSpace(operation.AccessRole)
+            ? $"StoredProcedure{operationKind}"
+            : operation.AccessRole.Trim();
+        var reason = $"Declared stored procedure {operationKind} operation";
+        if (!string.IsNullOrWhiteSpace(operation.Notes))
+        {
+            reason = $"{reason}: {operation.Notes.Trim()}";
+        }
+
+        return CreateAccess(
+            operation.SqlIdentifier,
+            accessKind,
+            accessRole,
+            reason,
+            ParseOrdinalOrMax(operation.Ordinal),
+            operationKind);
+    }
+
+    private static string? NormalizeStoredProcedureOperationKind(string? operationKind)
+    {
+        if (string.IsNullOrWhiteSpace(operationKind))
+        {
+            return null;
+        }
+
+        return operationKind.Trim().ToLowerInvariant() switch
+        {
+            "read" => "Read",
+            "append" => "Append",
+            "replace" => "Replace",
+            "reset" => "Reset",
+            "mutation" => "Mutation",
+            "call" => "Call",
+            _ => null
+        };
+    }
 
     private static IReadOnlyList<string> ResolveSourceSqlIdentifiers(
         MetaTransformBindingModel bindingModel,
@@ -401,7 +511,9 @@ public sealed class MetaOrchestrationAnalysisService
         string sqlIdentifier,
         OrchestrationObjectAccessKind accessKind,
         string accessRole,
-        string reason)
+        string reason,
+        int ordinal = 0,
+        string? operationKind = null)
     {
         var trimmed = sqlIdentifier.Trim();
         return new PipelineObjectAccessProfile(
@@ -409,6 +521,8 @@ public sealed class MetaOrchestrationAnalysisService
             NormalizeObjectKey(trimmed),
             accessKind,
             accessRole,
+            ordinal,
+            operationKind,
             reason);
     }
 
@@ -433,6 +547,8 @@ public sealed class MetaOrchestrationAnalysisService
             first.Access.ObjectKey,
             aggregateKind,
             "Pipeline",
+            0,
+            null,
             reason);
     }
 
@@ -524,18 +640,19 @@ public sealed class MetaOrchestrationAnalysisService
             {
                 var ordered = taskObjectGroup
                     .OrderBy(static item => item.Task.Ordinal)
+                    .ThenBy(static item => item.Access.Ordinal)
                     .ThenBy(static item => item.Task.TaskName, StringComparer.OrdinalIgnoreCase)
                     .ToArray();
                 var task = ordered[0].Task;
                 var objectKey = ordered[0].Access.ObjectKey;
-                var hasPriorReset = resetOrdinalsByObject.TryGetValue(objectKey, out var resetOrdinals) &&
+                var hasPriorResetBeforeTask = resetOrdinalsByObject.TryGetValue(objectKey, out var resetOrdinals) &&
                                     resetOrdinals.Any(ordinal => ordinal < task.Ordinal);
 
                 effects.Add(ClassifyTaskObjectEffect(
                     pipeline,
                     task,
                     ordered.Select(static item => item.Access).ToArray(),
-                    hasPriorReset));
+                    hasPriorResetBeforeTask));
             }
         }
 
@@ -546,8 +663,12 @@ public sealed class MetaOrchestrationAnalysisService
         PipelineDependencyProfile pipeline,
         PipelineTaskAccessProfile task,
         IReadOnlyList<PipelineObjectAccessProfile> accesses,
-        bool hasPriorReset)
+        bool hasPriorResetBeforeTask)
     {
+        var orderedAccesses = accesses
+            .OrderBy(static item => item.Ordinal)
+            .ThenBy(static item => item.AccessRole, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
         var roles = accesses
             .Select(static item => item.AccessRole)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
@@ -555,13 +676,15 @@ public sealed class MetaOrchestrationAnalysisService
             .Select(static item => item.AccessKind)
             .ToHashSet();
         var first = accesses
-            .OrderBy(static item => item.SqlIdentifier, StringComparer.OrdinalIgnoreCase)
+            .OrderBy(static item => item.Ordinal)
+            .ThenBy(static item => item.SqlIdentifier, StringComparer.OrdinalIgnoreCase)
             .First();
         var reason = string.Join(
             "; ",
-            accesses
-                .OrderBy(static item => item.AccessRole, StringComparer.OrdinalIgnoreCase)
-                .Select(static item => $"{item.AccessRole}:{item.AccessKind}"));
+            orderedAccesses
+                .Select(static item => string.IsNullOrWhiteSpace(item.OperationKind)
+                    ? $"{item.AccessRole}:{item.AccessKind}"
+                    : $"{item.Ordinal}:{item.OperationKind}:{item.AccessRole}:{item.AccessKind}"));
 
         if (roles.Contains("InferredMemberRepair"))
         {
@@ -599,6 +722,10 @@ public sealed class MetaOrchestrationAnalysisService
         var hasWrite = kinds.Contains(OrchestrationObjectAccessKind.Write);
         var hasReadWrite = kinds.Contains(OrchestrationObjectAccessKind.ReadWrite);
         var hasReset = kinds.Contains(OrchestrationObjectAccessKind.ResetWrite);
+        var mutatingAccesses = orderedAccesses
+            .Where(static item => item.AccessKind is OrchestrationObjectAccessKind.Write or OrchestrationObjectAccessKind.ReadWrite or OrchestrationObjectAccessKind.ResetWrite)
+            .ToArray();
+        var finalMutatingAccess = mutatingAccesses.LastOrDefault();
 
         if (!hasWrite && !hasReadWrite && !hasReset)
         {
@@ -616,7 +743,8 @@ public sealed class MetaOrchestrationAnalysisService
                 reason);
         }
 
-        if (hasReset && !hasWrite && !hasReadWrite)
+        if (finalMutatingAccess is not null &&
+            finalMutatingAccess.AccessKind == OrchestrationObjectAccessKind.ResetWrite)
         {
             return CreateEffect(
                 pipeline,
@@ -632,9 +760,23 @@ public sealed class MetaOrchestrationAnalysisService
                 reason);
         }
 
-        if (roles.Contains("InsertRowsTarget") || string.Equals(task.StatementKind, BoundStatementKind.Select.ToString(), StringComparison.Ordinal))
+        var hasResetBeforeFinalWrite = hasPriorResetBeforeTask ||
+                                       (finalMutatingAccess is not null &&
+                                        orderedAccesses.Any(access =>
+                                            access.AccessKind == OrchestrationObjectAccessKind.ResetWrite &&
+                                            access.Ordinal < finalMutatingAccess.Ordinal));
+        var finalOperationKind = finalMutatingAccess?.OperationKind;
+        var isTargetLoad = roles.Contains("InsertRowsTarget") ||
+                           string.Equals(task.StatementKind, BoundStatementKind.Select.ToString(), StringComparison.Ordinal) ||
+                           string.Equals(finalOperationKind, "Append", StringComparison.Ordinal) ||
+                           string.Equals(finalOperationKind, "Replace", StringComparison.Ordinal);
+
+        if (isTargetLoad)
         {
-            var writeEffect = hasPriorReset ? OrchestrationWriteEffect.Replace : OrchestrationWriteEffect.Append;
+            var writeEffect = hasResetBeforeFinalWrite ||
+                              string.Equals(finalOperationKind, "Replace", StringComparison.Ordinal)
+                ? OrchestrationWriteEffect.Replace
+                : OrchestrationWriteEffect.Append;
             return CreateEffect(
                 pipeline,
                 task,
@@ -650,7 +792,7 @@ public sealed class MetaOrchestrationAnalysisService
         }
 
         var mutationWriteEffect = string.Equals(task.StatementKind, BoundStatementKind.Insert.ToString(), StringComparison.Ordinal)
-            ? (hasPriorReset ? OrchestrationWriteEffect.Replace : OrchestrationWriteEffect.Append)
+            ? (hasResetBeforeFinalWrite ? OrchestrationWriteEffect.Replace : OrchestrationWriteEffect.Append)
             : OrchestrationWriteEffect.Mutation;
         var lockMode = mutationWriteEffect switch
         {
@@ -1110,15 +1252,17 @@ public sealed class MetaOrchestrationAnalysisService
                 taskRows.Add(task.PipelineTaskId, row);
 
                 var accessOrdinal = 0;
-                foreach (var access in task.ObjectAccesses.OrderBy(static item => item.ObjectKey, StringComparer.OrdinalIgnoreCase).ThenBy(static item => item.AccessKind.ToString(), StringComparer.Ordinal))
+                foreach (var access in task.ObjectAccesses.OrderBy(static item => item.Ordinal).ThenBy(static item => item.ObjectKey, StringComparer.OrdinalIgnoreCase).ThenBy(static item => item.AccessKind.ToString(), StringComparer.Ordinal))
                 {
                     model.ObjectAccessList.Add(new MO.ObjectAccess
                     {
                         Id = NaturalId(row.Id, "access", (++accessOrdinal).ToString(CultureInfo.InvariantCulture)),
                         TaskAccessProfile = row,
                         DataObject = objectRows[access.ObjectKey],
+                        Ordinal = access.Ordinal.ToString(CultureInfo.InvariantCulture),
                         AccessKind = access.AccessKind.ToString(),
                         AccessRole = access.AccessRole,
+                        OperationKind = access.OperationKind,
                         Reason = access.Reason
                     });
                 }

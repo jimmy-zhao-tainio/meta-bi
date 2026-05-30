@@ -250,6 +250,306 @@ END
         }
     }
 
+    [Theory]
+    [InlineData("10:Reset,20:Append", OrchestrationWriteEffect.Replace)]
+    [InlineData("10:Append,20:Reset", OrchestrationWriteEffect.ResetOnly)]
+    public async Task Analyze_StoredProcedureContractOperations_PreserveInternalOrder(
+        string operationOrder,
+        OrchestrationWriteEffect expectedWriteEffect)
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var transformWorkspace = Path.Combine(tempRoot, "Transform");
+            var bindingWorkspace = Path.Combine(tempRoot, "Binding");
+            var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+
+            var transformModel = await BuildTransformWorkspaceAsync(
+                transformWorkspace,
+                ("dq.RefreshStage", """
+CREATE PROCEDURE dq.RefreshStage
+AS
+BEGIN
+    SELECT 1 AS Marker;
+END
+""", null));
+            AddStoredProcedureContractOperations(
+                transformModel,
+                "dq.RefreshStage",
+                operationOrder.Split(',').Select(ParseOperationSeed).ToArray());
+            transformModel.SaveToXmlWorkspace(transformWorkspace);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspace,
+                bindingWorkspace);
+            Assert.Equal(0, bindingResult.ErrorCount);
+
+            BuildPipelineWorkspace(
+                pipelineWorkspace,
+                (PipelineName: "RefreshStage", Script: ResolveScript(transformModel, "dq.RefreshStage"), InsertRowsTarget: null));
+
+            var result = Analyze(pipelineWorkspace, transformWorkspace, bindingWorkspace);
+
+            var effect = Assert.Single(result.TaskObjectEffects, item =>
+                string.Equals(item.SqlIdentifier, "dbo.Stage", StringComparison.OrdinalIgnoreCase));
+            Assert.Equal(expectedWriteEffect, effect.WriteEffect);
+
+            var task = Assert.Single(Assert.Single(result.Pipelines).Tasks);
+            var accesses = task.ObjectAccesses
+                .Where(item => string.Equals(item.SqlIdentifier, "dbo.Stage", StringComparison.OrdinalIgnoreCase))
+                .OrderBy(static item => item.Ordinal)
+                .ToArray();
+            Assert.Equal(
+                operationOrder.Split(',').Select(item => item.Split(':')[1]).ToArray(),
+                accesses.Select(static item => item.OperationKind).ToArray());
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task Analyze_StoredProcedureResultRowset_InsertRowsTargetContributesWriteDependency()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var transformWorkspace = Path.Combine(tempRoot, "Transform");
+            var bindingWorkspace = Path.Combine(tempRoot, "Binding");
+            var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+
+            var transformModel = await BuildTransformWorkspaceAsync(
+                transformWorkspace,
+                ("dq.ExportCustomers", """
+CREATE PROCEDURE dq.ExportCustomers
+AS
+BEGIN
+    SELECT CustomerId FROM src.Customer;
+END
+""", null),
+                ("read-export", "SELECT CustomerId FROM stg.CustomerExport", "mart.Customer"));
+            AddStoredProcedureContractOperations(
+                transformModel,
+                "dq.ExportCustomers",
+                [Operation(10, "Read", "src.Customer", "Source")]);
+            AddStoredProcedureResultRowset(
+                transformModel,
+                "dq.ExportCustomers",
+                ["CustomerId"]);
+            transformModel.SaveToXmlWorkspace(transformWorkspace);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspace,
+                bindingWorkspace);
+            Assert.Equal(0, bindingResult.ErrorCount);
+
+            BuildPipelineWorkspace(
+                pipelineWorkspace,
+                (PipelineName: "ExportCustomers", Script: ResolveScript(transformModel, "dq.ExportCustomers"), InsertRowsTarget: "stg.CustomerExport"),
+                (PipelineName: "ReadExport", Script: ResolveScript(transformModel, "read-export"), InsertRowsTarget: "mart.Customer"));
+
+            var result = Analyze(pipelineWorkspace, transformWorkspace, bindingWorkspace);
+
+            Assert.True(result.IsCompleteDag);
+            var dependency = Assert.Single(result.Dependencies);
+            Assert.Equal("pipeline:ExportCustomers", dependency.PredecessorPipelineId);
+            Assert.Equal("pipeline:ReadExport", dependency.SuccessorPipelineId);
+
+            var exportTask = Assert.Single(
+                Assert.Single(result.Pipelines, item => string.Equals(item.PipelineName, "ExportCustomers", StringComparison.OrdinalIgnoreCase)).Tasks);
+            Assert.Contains(exportTask.ObjectAccesses, item =>
+                string.Equals(item.SqlIdentifier, "stg.CustomerExport", StringComparison.OrdinalIgnoreCase) &&
+                item.AccessKind == OrchestrationObjectAccessKind.Write &&
+                string.Equals(item.AccessRole, "InsertRowsTarget", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task Analyze_ComplexLayeredStoredProcedureGraph_InferExpectedDagEffectsAndPersistedOperations()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var transformWorkspace = Path.Combine(tempRoot, "Transform");
+            var bindingWorkspace = Path.Combine(tempRoot, "Binding");
+            var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+            var orchestrationWorkspace = Path.Combine(tempRoot, "Orchestration");
+
+            var transformModel = await BuildTransformWorkspaceAsync(
+                transformWorkspace,
+                ("extract-customers", "SELECT CustomerId, CountryCode FROM src.Customer", "stg.Customer"),
+                ("extract-orders", "SELECT OrderId, CustomerId FROM src.SalesOrder", "stg.SalesOrder"),
+                ("dbo.RefreshCountry", """
+CREATE PROCEDURE dbo.RefreshCountry
+AS
+BEGIN
+    SELECT 1 AS Marker;
+END
+""", null),
+                ("dbo.CurateCustomer", """
+CREATE PROCEDURE dbo.CurateCustomer
+AS
+BEGIN
+    SELECT 1 AS Marker;
+END
+""", null),
+                ("build-dim-customer", "SELECT CustomerId, CountryCode FROM core.Customer", "dw.DimCustomer"),
+                ("build-fact-order", """
+SELECT
+    o.OrderId,
+    c.CustomerId
+FROM stg.SalesOrder AS o
+INNER JOIN dw.DimCustomer AS c
+    ON c.CustomerId = o.CustomerId
+""", "dw.FactOrder"),
+                ("publish-sales", """
+SELECT
+    f.OrderId,
+    d.CustomerId
+FROM dw.FactOrder AS f
+INNER JOIN dw.DimCustomer AS d
+    ON d.CustomerId = f.CustomerId
+""", "mart.Sales"));
+
+            AddStoredProcedureContractOperations(
+                transformModel,
+                "dbo.RefreshCountry",
+                [
+                    Operation(10, "Read", "src.Country", "Source"),
+                    Operation(20, "Reset", "ref.Country"),
+                    Operation(30, "Append", "ref.Country"),
+                    Operation(40, "Call", "audit.MarkCountryRefresh")
+                ]);
+            AddStoredProcedureContractOperations(
+                transformModel,
+                "dbo.CurateCustomer",
+                [
+                    Operation(10, "Read", "stg.Customer", "Source"),
+                    Operation(20, "Read", "ref.Country", "Lookup"),
+                    Operation(30, "Reset", "core.Customer"),
+                    Operation(40, "Append", "core.Customer"),
+                    Operation(50, "Mutation", "audit.CustomerLoadLog")
+                ]);
+            transformModel.SaveToXmlWorkspace(transformWorkspace);
+
+            var bindingResult = new TransformBindingWorkspaceService().BindToWorkspace(
+                transformWorkspace,
+                bindingWorkspace);
+            Assert.Equal(0, bindingResult.ErrorCount);
+
+            BuildPipelineWorkspace(
+                pipelineWorkspace,
+                (PipelineName: "ExtractCustomers", Script: ResolveScript(transformModel, "extract-customers"), InsertRowsTarget: "stg.Customer"),
+                (PipelineName: "ExtractOrders", Script: ResolveScript(transformModel, "extract-orders"), InsertRowsTarget: "stg.SalesOrder"),
+                (PipelineName: "RefreshCountry", Script: ResolveScript(transformModel, "dbo.RefreshCountry"), InsertRowsTarget: null),
+                (PipelineName: "CurateCustomer", Script: ResolveScript(transformModel, "dbo.CurateCustomer"), InsertRowsTarget: null),
+                (PipelineName: "BuildDimCustomer", Script: ResolveScript(transformModel, "build-dim-customer"), InsertRowsTarget: "dw.DimCustomer"),
+                (PipelineName: "BuildFactOrder", Script: ResolveScript(transformModel, "build-fact-order"), InsertRowsTarget: "dw.FactOrder"),
+                (PipelineName: "PublishSales", Script: ResolveScript(transformModel, "publish-sales"), InsertRowsTarget: "mart.Sales"));
+
+            var service = new MetaOrchestrationAnalysisService();
+            var result = Analyze(pipelineWorkspace, transformWorkspace, bindingWorkspace);
+
+            Assert.True(result.IsCompleteDag);
+            Assert.Equal("Complete", result.DagStatus);
+            Assert.Equal("Deterministic", result.DeterminismStatus);
+            Assert.Equal("Complete", result.SynchronizationStatus);
+            Assert.Empty(result.Issues);
+            Assert.Equal(
+                new[]
+                {
+                    "pipeline:BuildDimCustomer->pipeline:BuildFactOrder",
+                    "pipeline:BuildDimCustomer->pipeline:PublishSales",
+                    "pipeline:BuildFactOrder->pipeline:PublishSales",
+                    "pipeline:CurateCustomer->pipeline:BuildDimCustomer",
+                    "pipeline:ExtractCustomers->pipeline:CurateCustomer",
+                    "pipeline:ExtractOrders->pipeline:BuildFactOrder",
+                    "pipeline:RefreshCountry->pipeline:CurateCustomer"
+                },
+                result.Dependencies
+                    .Select(static item => $"{item.PredecessorPipelineId}->{item.SuccessorPipelineId}")
+                    .OrderBy(static item => item, StringComparer.Ordinal)
+                    .ToArray());
+
+            AssertTaskObjectEffect(
+                result,
+                "RefreshCountry",
+                "ref.Country",
+                OrchestrationAccessDirection.Write,
+                OrchestrationWriteEffect.Replace,
+                OrchestrationAccessPurpose.TargetLoad);
+            AssertTaskObjectEffect(
+                result,
+                "CurateCustomer",
+                "core.Customer",
+                OrchestrationAccessDirection.Write,
+                OrchestrationWriteEffect.Replace,
+                OrchestrationAccessPurpose.TargetLoad);
+            AssertTaskObjectEffect(
+                result,
+                "CurateCustomer",
+                "ref.Country",
+                OrchestrationAccessDirection.Read,
+                OrchestrationWriteEffect.None,
+                OrchestrationAccessPurpose.Lookup);
+            AssertTaskObjectEffect(
+                result,
+                "CurateCustomer",
+                "audit.CustomerLoadLog",
+                OrchestrationAccessDirection.ReadWrite,
+                OrchestrationWriteEffect.Mutation,
+                OrchestrationAccessPurpose.TargetMutation);
+
+            var curateTask = Assert.Single(Assert.Single(result.Pipelines, item =>
+                string.Equals(item.PipelineName, "CurateCustomer", StringComparison.OrdinalIgnoreCase)).Tasks);
+            Assert.Equal(
+                new[]
+                {
+                    "10:Read:stg.Customer:Read",
+                    "20:Read:ref.Country:Read",
+                    "30:Reset:core.Customer:ResetWrite",
+                    "40:Append:core.Customer:Write",
+                    "50:Mutation:audit.CustomerLoadLog:ReadWrite"
+                },
+                curateTask.ObjectAccesses
+                    .OrderBy(static item => item.Ordinal)
+                    .Select(static item => $"{item.Ordinal}:{item.OperationKind}:{item.SqlIdentifier}:{item.AccessKind}")
+                    .ToArray());
+
+            var orchestrationModel = service.CreateModel(result, pipelineWorkspace);
+            orchestrationModel.SaveToXmlWorkspace(orchestrationWorkspace);
+            var reloaded = MetaOrchestrationModel.LoadFromXmlWorkspace(orchestrationWorkspace, searchUpward: false);
+            var persistedCurateTask = Assert.Single(reloaded.TaskAccessProfileList, item =>
+                string.Equals(item.TransformScriptName, "dbo.CurateCustomer", StringComparison.OrdinalIgnoreCase));
+            Assert.Equal(
+                new[]
+                {
+                    "10:Read:stg.Customer:Read",
+                    "20:Read:ref.Country:Read",
+                    "30:Reset:core.Customer:ResetWrite",
+                    "40:Append:core.Customer:Write",
+                    "50:Mutation:audit.CustomerLoadLog:ReadWrite"
+                },
+                reloaded.ObjectAccessList
+                    .Where(item => string.Equals(item.TaskAccessProfile.Id, persistedCurateTask.Id, StringComparison.Ordinal))
+                    .OrderBy(static item => int.Parse(item.Ordinal))
+                    .Select(static item => $"{item.Ordinal}:{item.OperationKind}:{item.DataObject.SqlIdentifier}:{item.AccessKind}")
+                    .ToArray());
+            Assert.Equal("Complete", Assert.Single(reloaded.OrchestrationPlanList).DagStatus);
+            Assert.Equal(7, reloaded.PipelineDependencyList.Count);
+            Assert.Empty(reloaded.DependencyIssueList);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
     [Fact]
     public async Task Analyze_DoesNotBlockPrivateResetWrite()
     {
@@ -944,6 +1244,8 @@ END
                     first.ObjectKey,
                     AggregateAccessKind(group.Select(static item => item.AccessKind)),
                     "Pipeline",
+                    0,
+                    null,
                     string.Join("; ", group.Select(static item => $"{item.AccessRole}:{item.AccessKind}")));
             })
             .OrderBy(static item => item.ObjectKey, StringComparer.OrdinalIgnoreCase)
@@ -978,13 +1280,17 @@ END
     private static PipelineObjectAccessProfile Access(
         string sqlIdentifier,
         OrchestrationObjectAccessKind accessKind,
-        string accessRole)
+        string accessRole,
+        int ordinal = 0,
+        string? operationKind = null)
     {
         return new PipelineObjectAccessProfile(
             sqlIdentifier,
             sqlIdentifier.ToUpperInvariant(),
             accessKind,
             accessRole,
+            ordinal,
+            operationKind,
             accessRole);
     }
 
@@ -1025,6 +1331,104 @@ END
 
         return MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspace, searchUpward: false);
     }
+
+    private static void AssertTaskObjectEffect(
+        OrchestrationAnalysisResult result,
+        string pipelineName,
+        string sqlIdentifier,
+        OrchestrationAccessDirection accessDirection,
+        OrchestrationWriteEffect writeEffect,
+        OrchestrationAccessPurpose accessPurpose)
+    {
+        var effect = Assert.Single(result.TaskObjectEffects, item =>
+            string.Equals(item.PipelineName, pipelineName, StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(item.SqlIdentifier, sqlIdentifier, StringComparison.OrdinalIgnoreCase));
+        Assert.Equal(accessDirection, effect.AccessDirection);
+        Assert.Equal(writeEffect, effect.WriteEffect);
+        Assert.Equal(accessPurpose, effect.AccessPurpose);
+    }
+
+    private static StoredProcedureOperationSeed ParseOperationSeed(string value)
+    {
+        var parts = value.Split(':', 3);
+        return Operation(
+            int.Parse(parts[0]),
+            parts[1],
+            parts.Length == 3 ? parts[2] : "dbo.Stage");
+    }
+
+    private static StoredProcedureOperationSeed Operation(
+        int ordinal,
+        string operationKind,
+        string sqlIdentifier,
+        string? accessRole = null) =>
+        new(ordinal, operationKind, sqlIdentifier, accessRole);
+
+    private static void AddStoredProcedureContractOperations(
+        MetaTransformScriptModel model,
+        string transformScriptName,
+        IReadOnlyList<StoredProcedureOperationSeed> operations)
+    {
+        var script = ResolveScript(model, transformScriptName);
+        var storedProcedure = Assert.Single(model.ScriptObjectStoredProcedureList, item =>
+            string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal));
+        var contract = new StoredProcedureContract
+        {
+            Id = $"{storedProcedure.Id}:contract",
+            ScriptObjectStoredProcedure = storedProcedure
+        };
+        model.StoredProcedureContractList.Add(contract);
+
+        foreach (var operation in operations)
+        {
+            model.StoredProcedureContractOperationList.Add(new StoredProcedureContractOperation
+            {
+                Id = $"{contract.Id}:operation:{operation.Ordinal}",
+                StoredProcedureContract = contract,
+                Ordinal = operation.Ordinal.ToString(),
+                OperationKind = operation.OperationKind,
+                SqlIdentifier = operation.SqlIdentifier,
+                AccessRole = operation.AccessRole
+            });
+        }
+    }
+
+    private static void AddStoredProcedureResultRowset(
+        MetaTransformScriptModel model,
+        string transformScriptName,
+        IReadOnlyList<string> columnNames)
+    {
+        var script = ResolveScript(model, transformScriptName);
+        var storedProcedure = Assert.Single(model.ScriptObjectStoredProcedureList, item =>
+            string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal));
+        var contract = Assert.Single(model.StoredProcedureContractList, item =>
+            string.Equals(item.ScriptObjectStoredProcedure.Id, storedProcedure.Id, StringComparison.Ordinal));
+        var rowset = new StoredProcedureResultRowsetItem
+        {
+            Id = $"{contract.Id}:result-rowset:1",
+            StoredProcedureContract = contract,
+            Name = "Result",
+            Ordinal = "0",
+        };
+        model.StoredProcedureResultRowsetItemList.Add(rowset);
+
+        for (var index = 0; index < columnNames.Count; index++)
+        {
+            model.StoredProcedureResultColumnItemList.Add(new StoredProcedureResultColumnItem
+            {
+                Id = $"{rowset.Id}:column:{index + 1}",
+                StoredProcedureResultRowsetItem = rowset,
+                Name = columnNames[index],
+                Ordinal = index.ToString(),
+            });
+        }
+    }
+
+    private sealed record StoredProcedureOperationSeed(
+        int Ordinal,
+        string OperationKind,
+        string SqlIdentifier,
+        string? AccessRole);
 
     private static void BuildBindingWorkspace(
         string bindingWorkspace,

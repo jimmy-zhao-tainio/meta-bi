@@ -176,6 +176,32 @@
       </RelationshipList>
     </Entity>
 
+    <Entity name="AddFunction">
+      <PropertyList>
+        <Property name="SourceFunctionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DropFunction">
+      <PropertyList>
+        <Property name="LiveFunctionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ReplaceFunction">
+      <PropertyList>
+        <Property name="SourceFunctionId" />
+        <Property name="LiveFunctionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+
     <Entity name="AddStoredProcedure">
       <PropertyList>
         <Property name="SourceStoredProcedureId" />
@@ -256,6 +282,16 @@
       <PropertyList>
         <Property name="SourceViewId" />
         <Property name="LiveViewId" />
+        <Property name="DifferenceSummary" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BlockFunctionDifference">
+      <PropertyList>
+        <Property name="SourceFunctionId" />
+        <Property name="LiveFunctionId" />
         <Property name="DifferenceSummary" />
       </PropertyList>
       <RelationshipList>

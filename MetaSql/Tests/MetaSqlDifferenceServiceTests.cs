@@ -69,10 +69,12 @@ public sealed class MetaSqlDifferenceServiceTests
     {
         var sourceModel = CreateCustomerModel(includeExtraLiveColumn: false);
         AddView(sourceModel, "vCustomerReview", "CREATE OR ALTER VIEW [dbo].[vCustomerReview] AS SELECT [CustomerId] FROM [dbo].[Customer];");
+        AddFunction(sourceModel, "fnCustomerScore", "ScalarFunction", "CREATE FUNCTION [dbo].[fnCustomerScore](@CustomerId int) RETURNS int AS BEGIN RETURN @CustomerId END;");
         AddStoredProcedure(sourceModel, "RunReview", "CREATE OR ALTER PROCEDURE [dbo].[RunReview] AS SELECT 1 AS [Result];");
 
         var liveModel = CreateCustomerModel(includeExtraLiveColumn: false);
         AddView(liveModel, "vCustomerReview", "CREATE OR ALTER VIEW [dbo].[vCustomerReview] AS SELECT [CustomerName] FROM [dbo].[Customer];");
+        AddFunction(liveModel, "fnCustomerScore", "InlineTableValuedFunction", "CREATE FUNCTION [dbo].[fnCustomerScore](@CustomerId int) RETURNS TABLE AS RETURN SELECT @CustomerId AS CustomerId;");
 
         var sourceWorkspace = CreateWorkspace(sourceModel, "source");
         var liveWorkspace = CreateWorkspace(liveModel, "live");
@@ -88,6 +90,10 @@ public sealed class MetaSqlDifferenceServiceTests
         var procedureDifference = Assert.Single(differences, row => row.ObjectKind == MetaSqlObjectKind.StoredProcedure);
         Assert.Equal(MetaSqlDifferenceKind.MissingInLive, procedureDifference.DifferenceKind);
         Assert.Equal("dbo.RunReview", procedureDifference.DisplayName);
+
+        var functionDifference = Assert.Single(differences, row => row.ObjectKind == MetaSqlObjectKind.Function);
+        Assert.Equal(MetaSqlDifferenceKind.Different, functionDifference.DifferenceKind);
+        Assert.Equal("dbo.fnCustomerScore", functionDifference.DisplayName);
     }
 
     [Fact]
@@ -222,6 +228,19 @@ public sealed class MetaSqlDifferenceServiceTests
         {
             Id = $"{schema.Id}.procedure.{name}",
             Name = name,
+            DefinitionSql = definitionSql,
+            Schema = schema,
+        });
+    }
+
+    private static void AddFunction(MetaSqlModel model, string name, string functionKind, string definitionSql)
+    {
+        var schema = Assert.Single(model.SchemaList);
+        model.FunctionList.Add(new Function
+        {
+            Id = $"{schema.Id}.function.{name}",
+            Name = name,
+            FunctionKind = functionKind,
             DefinitionSql = definitionSql,
             Schema = schema,
         });

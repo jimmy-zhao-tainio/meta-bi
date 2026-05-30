@@ -92,6 +92,34 @@ public sealed partial class CliDiffTests
     }
 
     [Fact]
+    public void ExtractSqlServerHelp_RendersExpectedUsage()
+    {
+        var repoRoot = FindRepositoryRoot();
+
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = "meta-sql",
+            Arguments = $"extract sqlserver --help",
+            WorkingDirectory = repoRoot,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+        };
+
+        var result = RunProcess(startInfo, "Could not start MetaSql CLI process.");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("Command: extract sqlserver", result.Output, StringComparison.Ordinal);
+        Assert.Contains("meta-sql extract sqlserver --new-workspace <path> --connection-env <name>", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--include-tables", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--include-views", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--include-functions", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--include-stored-procedures", result.Output, StringComparison.Ordinal);
+        Assert.Contains("--allow-empty", result.Output, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void DeployPlanCommand_FailsWhenConnectionEnvironmentVariableIsMissing()
     {
         var repoRoot = FindRepositoryRoot();

@@ -65,6 +65,11 @@ internal sealed partial class TransformBindingSession
             return CreateResult(transformScript, null, null, null);
         }
 
+        if (string.Equals(scriptObjectKind, "StoredProcedure", StringComparison.OrdinalIgnoreCase))
+        {
+            return BindStoredProcedureTransform(transformScript);
+        }
+
         var statementKind = navigator.GetTransformScriptStatementKind(transformScript);
         isInlineTableValuedFunction = string.Equals(scriptObjectKind, "InlineTableValuedFunction", StringComparison.OrdinalIgnoreCase);
         activeTransformFunctionParameterNames.Clear();
@@ -285,6 +290,237 @@ internal sealed partial class TransformBindingSession
             []);
         TrackRowset(rowset);
         return rowset;
+    }
+
+    private TransformBindingResult BindStoredProcedureTransform(TransformScript transformScript)
+    {
+        if (!ValidateStoredProcedureContract(transformScript))
+        {
+            return CreateResult(transformScript, null, null, null);
+        }
+
+        var inputRowsets = new List<RuntimeRowsetInput>();
+        var ordinal = 0;
+
+        foreach (var operation in navigator.GetStoredProcedureOperations(transformScript))
+        {
+            var operationKind = NormalizeStoredProcedureOperationKind(operation.OperationKind);
+            if (operationKind is null)
+            {
+                issues.Add(new TransformBindingIssue(
+                    "StoredProcedureOperationKindInvalid",
+                    $"Stored procedure transform script '{transformScript.Name}' declares operation '{operation.Id}' with unsupported OperationKind '{operation.OperationKind}'.",
+                    operation.Id));
+                continue;
+            }
+
+            var sqlIdentifier = operation.SqlIdentifier?.Trim() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(sqlIdentifier))
+            {
+                issues.Add(new TransformBindingIssue(
+                    "StoredProcedureOperationSqlIdentifierMissing",
+                    $"Stored procedure transform script '{transformScript.Name}' declares a {operationKind} operation with a blank SqlIdentifier.",
+                    operation.Id));
+                continue;
+            }
+
+            if (string.Equals(operationKind, "Call", StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            var derivationKind = string.Equals(operationKind, "Read", StringComparison.Ordinal)
+                ? "Source"
+                : "Target";
+            var inputRole = $"StoredProcedure{operationKind}";
+            var rowsetName = string.IsNullOrWhiteSpace(operation.AccessRole)
+                ? $"{inputRole}:{operation.Ordinal}"
+                : operation.AccessRole.Trim();
+            var columns = string.Equals(operationKind, "Read", StringComparison.Ordinal)
+                ? ResolveSourceColumns(sqlIdentifier)
+                : ResolveTargetColumns(sqlIdentifier, transformScript, operation.Id);
+            var rowset = CreateDeclaredStoredProcedureRowset(
+                $"{transformScript.Id}:stored-procedure-operation:{ordinal + 1}",
+                rowsetName,
+                derivationKind,
+                inputRole,
+                operation.Id,
+                sqlIdentifier,
+                columns);
+            inputRowsets.Add(new RuntimeRowsetInput(ordinal, inputRole, rowset));
+            ordinal++;
+        }
+
+        var resultRowsets = navigator.GetStoredProcedureResultRowsets(transformScript)
+            .Select((item, index) => CreateDeclaredStoredProcedureResultRowset(transformScript, item, index))
+            .ToArray();
+
+        var topLevelRowset = resultRowsets.Length == 1
+            ? resultRowsets[0]
+            : null;
+        var inputRowset = inputRowsets.Count == 0
+            ? null
+            : new RuntimeRowset(
+                $"{transformScript.Id}:stored-procedure-declared-access-rowset",
+                $"StoredProcedureDeclaredAccess:{transformScript.Name}",
+                "DeclaredAccess",
+                "StoredProcedureAccess",
+                transformScript.Id,
+                null,
+                [],
+                inputRowsets);
+        if (inputRowset is not null)
+        {
+            TrackRowset(inputRowset);
+        }
+
+        return CreateResult(transformScript, null, inputRowset, topLevelRowset);
+    }
+
+    private bool ValidateStoredProcedureContract(TransformScript transformScript)
+    {
+        var contracts = navigator.GetStoredProcedureContracts(transformScript);
+        if (contracts.Count == 1)
+        {
+            var resultRowsetCount = navigator.GetStoredProcedureResultRowsets(transformScript).Count;
+            if (resultRowsetCount > 1)
+            {
+                issues.Add(new TransformBindingIssue(
+                    "StoredProcedureResultRowsetInvalid",
+                    $"Stored procedure transform script '{transformScript.Name}' declares {resultRowsetCount} result rowsets. Stored procedure contracts support at most one result rowset.",
+                    transformScript.Id));
+                return false;
+            }
+
+            return true;
+        }
+
+        if (contracts.Count == 0)
+        {
+            issues.Add(new TransformBindingIssue(
+                "StoredProcedureContractMissing",
+                $"Stored procedure transform script '{transformScript.Name}' does not have a StoredProcedureContract row.",
+                transformScript.Id));
+            return false;
+        }
+
+        issues.Add(new TransformBindingIssue(
+            "StoredProcedureContractInvalid",
+            $"Stored procedure transform script '{transformScript.Name}' has multiple StoredProcedureContract rows.",
+            transformScript.Id));
+        return false;
+    }
+
+    private static string? NormalizeStoredProcedureOperationKind(string? operationKind)
+    {
+        if (string.IsNullOrWhiteSpace(operationKind))
+        {
+            return null;
+        }
+
+        return operationKind.Trim().ToLowerInvariant() switch
+        {
+            "read" => "Read",
+            "append" => "Append",
+            "replace" => "Replace",
+            "reset" => "Reset",
+            "mutation" => "Mutation",
+            "call" => "Call",
+            _ => null
+        };
+    }
+
+    private RuntimeRowset CreateDeclaredStoredProcedureResultRowset(
+        TransformScript transformScript,
+        StoredProcedureResultRowsetItem rowset,
+        int index)
+    {
+        var columns = navigator.GetStoredProcedureResultColumns(rowset)
+            .Select((column, columnIndex) => new RuntimeColumn(
+                $"{rowset.Id}:column:{columnIndex + 1}",
+                column.Name,
+                columnIndex))
+            .ToArray();
+
+        var result = new RuntimeRowset(
+            $"{transformScript.Id}:stored-procedure-result-rowset:{index + 1}",
+            string.IsNullOrWhiteSpace(rowset.Name) ? $"StoredProcedureResult:{index + 1}" : rowset.Name.Trim(),
+            "Output",
+            "StoredProcedureResult",
+            rowset.Id,
+            null,
+            columns,
+            []);
+        TrackRowset(result);
+        return result;
+    }
+
+    private RuntimeRowset CreateDeclaredStoredProcedureRowset(
+        string id,
+        string name,
+        string derivationKind,
+        string rowsetRole,
+        string metaTransformScriptEntityId,
+        string sqlIdentifier,
+        IReadOnlyList<RuntimeColumn> columns)
+    {
+        var rowset = new RuntimeRowset(
+            id,
+            name,
+            derivationKind,
+            rowsetRole,
+            metaTransformScriptEntityId,
+            sqlIdentifier,
+            columns,
+            []);
+        TrackRowset(rowset);
+        return rowset;
+    }
+
+    private IReadOnlyList<RuntimeColumn> ResolveSourceColumns(string sqlIdentifier)
+    {
+        var resolution = ResolveSourceSchemaIdentifier(sqlIdentifier);
+        return resolution.IsResolved && resolution.Table is not null
+            ? CreateSchemaColumns(sqlIdentifier, resolution.Table.Fields)
+            : [];
+    }
+
+    private IReadOnlyList<RuntimeColumn> ResolveTargetColumns(
+        string sqlIdentifier,
+        TransformScript transformScript,
+        string declarationId)
+    {
+        var resolver = targetSchemaResolver ?? sourceSchemaResolver;
+        if (resolver is null)
+        {
+            return [];
+        }
+
+        var resolution = resolver.ResolveSqlIdentifier(sqlIdentifier);
+        if (!resolution.IsResolved || resolution.Table is null)
+        {
+            issues.Add(new TransformBindingIssue(
+                "StoredProcedureOperationTargetNotResolved",
+                $"Stored procedure transform script '{transformScript.Name}' declares target operation '{sqlIdentifier}', but it was not found in the sanctioned target schema.",
+                declarationId));
+            return [];
+        }
+
+        return CreateSchemaColumns(sqlIdentifier, resolution.Table.Fields);
+    }
+
+    private static IReadOnlyList<RuntimeColumn> CreateSchemaColumns(
+        string sqlIdentifier,
+        IReadOnlyList<ResolvedSchemaField> fields)
+    {
+        return fields
+            .OrderBy(item => item.Ordinal)
+            .ThenBy(item => item.FieldName, StringComparer.OrdinalIgnoreCase)
+            .Select((field, ordinal) => new RuntimeColumn(
+                $"{sqlIdentifier}:column:{ordinal + 1}",
+                field.FieldName,
+                ordinal))
+            .ToArray();
     }
 
     private void InitializeCommonTableExpressionsForMutation(TransformScript transformScript)

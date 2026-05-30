@@ -28,6 +28,9 @@ internal sealed class DeployManifestContractValidator
         "AddView",
         "DropView",
         "ReplaceView",
+        "AddFunction",
+        "DropFunction",
+        "ReplaceFunction",
         "AddStoredProcedure",
         "DropStoredProcedure",
         "ReplaceStoredProcedure",
@@ -38,6 +41,7 @@ internal sealed class DeployManifestContractValidator
         "BlockForeignKeyDifference",
         "BlockIndexDifference",
         "BlockViewDifference",
+        "BlockFunctionDifference",
         "BlockStoredProcedureDifference",
     ];
 

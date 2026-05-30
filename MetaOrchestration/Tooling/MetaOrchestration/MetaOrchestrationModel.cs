@@ -1049,6 +1049,12 @@ namespace MetaOrchestration
                     case "AccessRole":
                         row.AccessRole = reader.ReadElementContentAsString();
                         break;
+                    case "OperationKind":
+                        row.OperationKind = reader.ReadElementContentAsString();
+                        break;
+                    case "Ordinal":
+                        row.Ordinal = reader.ReadElementContentAsString();
+                        break;
                     case "Reason":
                         row.Reason = reader.ReadElementContentAsString();
                         break;
@@ -1102,6 +1108,11 @@ namespace MetaOrchestration
                 builder.Append(">\n");
                 AppendElement(builder, "AccessKind", RequireText(row.AccessKind, $"Entity 'ObjectAccess' row '{row.Id}' is missing required property 'AccessKind'."), "      ");
                 AppendElement(builder, "AccessRole", RequireText(row.AccessRole, $"Entity 'ObjectAccess' row '{row.Id}' is missing required property 'AccessRole'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.OperationKind))
+                {
+                    AppendElement(builder, "OperationKind", row.OperationKind!, "      ");
+                }
+                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'ObjectAccess' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.Reason))
                 {
                     AppendElement(builder, "Reason", row.Reason!, "      ");
@@ -3671,6 +3682,8 @@ namespace MetaOrchestration
                 "Id",
                 "AccessKind",
                 "AccessRole",
+                "OperationKind",
+                "Ordinal",
                 "Reason",
                 "DataObject",
                 "TaskAccessProfile"))

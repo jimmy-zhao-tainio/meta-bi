@@ -8,6 +8,14 @@
         <Relationship entity="DeployManifest" />
       </RelationshipList>
     </Entity>
+    <Entity name="AddFunction">
+      <PropertyList>
+        <Property name="SourceFunctionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
     <Entity name="AddIndex">
       <PropertyList>
         <Property name="SourceIndexId" />
@@ -78,6 +86,16 @@
         <Property name="DifferenceSummary" />
         <Property name="LiveForeignKeyId" />
         <Property name="SourceForeignKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BlockFunctionDifference">
+      <PropertyList>
+        <Property name="DifferenceSummary" />
+        <Property name="LiveFunctionId" />
+        <Property name="SourceFunctionId" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="DeployManifest" />
@@ -161,6 +179,14 @@
         <Relationship entity="DeployManifest" />
       </RelationshipList>
     </Entity>
+    <Entity name="DropFunction">
+      <PropertyList>
+        <Property name="LiveFunctionId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
     <Entity name="DropIndex">
       <PropertyList>
         <Property name="LiveIndexId" />
@@ -213,6 +239,15 @@
       <PropertyList>
         <Property name="LiveForeignKeyId" />
         <Property name="SourceForeignKeyId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DeployManifest" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ReplaceFunction">
+      <PropertyList>
+        <Property name="LiveFunctionId" />
+        <Property name="SourceFunctionId" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="DeployManifest" />

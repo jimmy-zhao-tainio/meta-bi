@@ -56,6 +56,7 @@ internal sealed class DifferencePlanDispatcher
                     indexDifferencePlanner.Plan(lookup, delta, difference);
                     break;
                 case MetaSqlObjectKind.View:
+                case MetaSqlObjectKind.Function:
                 case MetaSqlObjectKind.StoredProcedure:
                     sqlModuleDifferencePlanner.Plan(lookup, delta, difference);
                     break;

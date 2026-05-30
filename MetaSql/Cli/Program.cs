@@ -20,7 +20,7 @@ internal static partial class Program
         {
             "meta-sql <command> [options]"
         },
-        CommandRoutes.Select(route => route.Definition).ToArray(),
+        CommandRoutes.Select(route => route.Definition).Concat(new[] { CreateExtractSqlServerCommand() }).ToArray(),
         Next: "meta-sql deploy-plan --help");
 
     private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes() =>
@@ -36,6 +36,14 @@ internal static partial class Program
                     PrintHelp();
                     return Task.FromResult(0);
                 }),
+            new CliCommandRoute(
+                new CliCommandDefinition(
+                    "extract",
+                    "Materialize sanctioned MetaSql workspaces from external sources.",
+                    new[] { "meta-sql extract <extractor> [options]" },
+                    Notes: new[] { "Available extractor: sqlserver." },
+                    Next: "meta-sql extract sqlserver --help"),
+                RunExtractAsync),
             new CliCommandRoute(
                 new CliCommandDefinition(
                     "deploy-plan",
@@ -328,6 +336,7 @@ internal static partial class Program
                        manifestModel.AddForeignKeyList.Count +
                        manifestModel.AddIndexList.Count +
                        manifestModel.AddViewList.Count +
+                       manifestModel.AddFunctionList.Count +
                        manifestModel.AddStoredProcedureList.Count,
                 actionLabel: "to add",
                 (manifestModel.AddSchemaList.Count, "schema", "schemas"),
@@ -337,6 +346,7 @@ internal static partial class Program
                 (manifestModel.AddForeignKeyList.Count, "foreign key", "foreign keys"),
                 (manifestModel.AddIndexList.Count, "index", "indexes"),
                 (manifestModel.AddViewList.Count, "view", "views"),
+                (manifestModel.AddFunctionList.Count, "function", "functions"),
                 (manifestModel.AddStoredProcedureList.Count, "stored procedure", "stored procedures")),
             BuildActionGroup(
                 total: manifestModel.AlterTableColumnList.Count,
@@ -349,6 +359,7 @@ internal static partial class Program
                        manifestModel.DropForeignKeyList.Count +
                        manifestModel.DropIndexList.Count +
                        manifestModel.DropViewList.Count +
+                       manifestModel.DropFunctionList.Count +
                        manifestModel.DropStoredProcedureList.Count,
                 actionLabel: "to drop",
                 (manifestModel.DropTableList.Count, "table", "tables"),
@@ -357,6 +368,7 @@ internal static partial class Program
                 (manifestModel.DropForeignKeyList.Count, "foreign key", "foreign keys"),
                 (manifestModel.DropIndexList.Count, "index", "indexes"),
                 (manifestModel.DropViewList.Count, "view", "views"),
+                (manifestModel.DropFunctionList.Count, "function", "functions"),
                 (manifestModel.DropStoredProcedureList.Count, "stored procedure", "stored procedures")),
             BuildActionGroup(
                 total: manifestModel.TruncateTableColumnDataList.Count,
@@ -367,12 +379,14 @@ internal static partial class Program
                        manifestModel.ReplaceForeignKeyList.Count +
                        manifestModel.ReplaceIndexList.Count +
                        manifestModel.ReplaceViewList.Count +
+                       manifestModel.ReplaceFunctionList.Count +
                        manifestModel.ReplaceStoredProcedureList.Count,
                 actionLabel: "to replace",
                 (manifestModel.ReplacePrimaryKeyList.Count, "primary key", "primary keys"),
                 (manifestModel.ReplaceForeignKeyList.Count, "foreign key", "foreign keys"),
                 (manifestModel.ReplaceIndexList.Count, "index", "indexes"),
                 (manifestModel.ReplaceViewList.Count, "view", "views"),
+                (manifestModel.ReplaceFunctionList.Count, "function", "functions"),
                 (manifestModel.ReplaceStoredProcedureList.Count, "stored procedure", "stored procedures")));
     }
 
@@ -387,6 +401,7 @@ internal static partial class Program
                        manifestModel.AddForeignKeyList.Count +
                        manifestModel.AddIndexList.Count +
                        manifestModel.AddViewList.Count +
+                       manifestModel.AddFunctionList.Count +
                        manifestModel.AddStoredProcedureList.Count,
                 actionLabel: "added",
                 (manifestModel.AddSchemaList.Count, "schema", "schemas"),
@@ -396,6 +411,7 @@ internal static partial class Program
                 (manifestModel.AddForeignKeyList.Count, "foreign key", "foreign keys"),
                 (manifestModel.AddIndexList.Count, "index", "indexes"),
                 (manifestModel.AddViewList.Count, "view", "views"),
+                (manifestModel.AddFunctionList.Count, "function", "functions"),
                 (manifestModel.AddStoredProcedureList.Count, "stored procedure", "stored procedures")),
             BuildActionGroup(
                 total: manifestModel.AlterTableColumnList.Count,
@@ -408,6 +424,7 @@ internal static partial class Program
                        manifestModel.DropForeignKeyList.Count +
                        manifestModel.DropIndexList.Count +
                        manifestModel.DropViewList.Count +
+                       manifestModel.DropFunctionList.Count +
                        manifestModel.DropStoredProcedureList.Count,
                 actionLabel: "dropped",
                 (manifestModel.DropTableList.Count, "table", "tables"),
@@ -416,6 +433,7 @@ internal static partial class Program
                 (manifestModel.DropForeignKeyList.Count, "foreign key", "foreign keys"),
                 (manifestModel.DropIndexList.Count, "index", "indexes"),
                 (manifestModel.DropViewList.Count, "view", "views"),
+                (manifestModel.DropFunctionList.Count, "function", "functions"),
                 (manifestModel.DropStoredProcedureList.Count, "stored procedure", "stored procedures")),
             BuildActionGroup(
                 total: manifestModel.TruncateTableColumnDataList.Count,
@@ -426,12 +444,14 @@ internal static partial class Program
                        manifestModel.ReplaceForeignKeyList.Count +
                        manifestModel.ReplaceIndexList.Count +
                        manifestModel.ReplaceViewList.Count +
+                       manifestModel.ReplaceFunctionList.Count +
                        manifestModel.ReplaceStoredProcedureList.Count,
                 actionLabel: "replaced",
                 (manifestModel.ReplacePrimaryKeyList.Count, "primary key", "primary keys"),
                 (manifestModel.ReplaceForeignKeyList.Count, "foreign key", "foreign keys"),
                 (manifestModel.ReplaceIndexList.Count, "index", "indexes"),
                 (manifestModel.ReplaceViewList.Count, "view", "views"),
+                (manifestModel.ReplaceFunctionList.Count, "function", "functions"),
                 (manifestModel.ReplaceStoredProcedureList.Count, "stored procedure", "stored procedures")));
     }
 

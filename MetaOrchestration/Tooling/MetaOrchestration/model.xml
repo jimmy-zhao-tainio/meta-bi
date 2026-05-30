@@ -51,6 +51,8 @@
       <PropertyList>
         <Property name="AccessKind" />
         <Property name="AccessRole" />
+        <Property name="OperationKind" isRequired="false" />
+        <Property name="Ordinal" />
         <Property name="Reason" isRequired="false" />
       </PropertyList>
       <RelationshipList>

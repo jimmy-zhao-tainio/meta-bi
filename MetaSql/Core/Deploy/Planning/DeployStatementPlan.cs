@@ -7,6 +7,7 @@ internal sealed record DropIndexAction(Index Index) : IDeployStatementAction;
 internal sealed record DropPrimaryKeyAction(PrimaryKey PrimaryKey) : IDeployStatementAction;
 internal sealed record DropStoredProcedureAction(StoredProcedure StoredProcedure) : IDeployStatementAction;
 internal sealed record DropViewAction(View View) : IDeployStatementAction;
+internal sealed record DropFunctionAction(Function Function) : IDeployStatementAction;
 internal sealed record DropTableColumnAction(TableColumn Column) : IDeployStatementAction;
 internal sealed record DropTableAction(Table Table) : IDeployStatementAction;
 internal sealed record AddSchemaAction(Schema Schema) : IDeployStatementAction;
@@ -30,6 +31,7 @@ internal sealed record AddPrimaryKeyAction(PrimaryKey PrimaryKey, IReadOnlyList<
 internal sealed record AddForeignKeyAction(ForeignKey ForeignKey, IReadOnlyList<ForeignKeyColumn> Members) : IDeployStatementAction;
 internal sealed record AddIndexAction(Index Index, IReadOnlyList<IndexColumn> Members) : IDeployStatementAction;
 internal sealed record DeployViewAction(View View) : IDeployStatementAction;
+internal sealed record DeployFunctionAction(Function Function) : IDeployStatementAction;
 internal sealed record DeployStoredProcedureAction(StoredProcedure StoredProcedure) : IDeployStatementAction;
 
 /// <summary>

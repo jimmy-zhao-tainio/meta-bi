@@ -10,16 +10,27 @@ public sealed partial class MetaTransformScriptSqlParser
         {
             if (MatchKeyword("CREATE"))
             {
+                if (MatchKeyword("OR"))
+                {
+                    ExpectKeyword("ALTER");
+                }
+
                 if (PeekKeyword("VIEW"))
                 {
                     ParseCreateViewScript();
-                    return TopLevelStatementShape.CreateWrappedSelect;
+                    return TopLevelStatementShape.CreateWrappedModule;
                 }
 
                 if (PeekKeyword("FUNCTION"))
                 {
                     ParseCreateFunctionScript();
-                    return TopLevelStatementShape.CreateWrappedSelect;
+                    return TopLevelStatementShape.CreateWrappedModule;
+                }
+
+                if (PeekKeyword("PROCEDURE") || PeekKeyword("PROC"))
+                {
+                    ParseCreateProcedureScript();
+                    return TopLevelStatementShape.CreateWrappedModule;
                 }
 
                 throw Unsupported($"CREATE wrapper '{Current.Value.ToUpperInvariant()}' is not supported yet.");
@@ -74,7 +85,7 @@ public sealed partial class MetaTransformScriptSqlParser
                 string.Empty,
                 sourcePath,
                 selectStatement,
-                schemaIdentifier?.Node,
+                schemaIdentifier.Node,
                 objectIdentifier.Node,
                 viewColumns,
                 scriptObjectKind: "View");
@@ -117,7 +128,7 @@ public sealed partial class MetaTransformScriptSqlParser
                     string.Empty,
                     sourcePath,
                     selectStatement,
-                    schemaIdentifier?.Node,
+                    schemaIdentifier.Node,
                     objectIdentifier.Node,
                     scriptObjectKind: "InlineTableValuedFunction",
                     functionParameters: functionParameters);
@@ -147,9 +158,25 @@ public sealed partial class MetaTransformScriptSqlParser
                 sourcePath,
                 returnDataType,
                 returnExpression,
-                schemaIdentifier?.Node,
+                schemaIdentifier.Node,
                 objectIdentifier.Node,
                 functionParameters: functionParameters);
+        }
+
+        private void ParseCreateProcedureScript()
+        {
+            if (!MatchKeyword("PROCEDURE"))
+            {
+                ExpectKeyword("PROC");
+            }
+
+            var (schemaIdentifier, objectIdentifier, renderedName) = ParseCreateProcedureName();
+            builder.AddStoredProcedureScript(
+                renderedName,
+                sourcePath,
+                sqlCode,
+                schemaIdentifier.Node,
+                objectIdentifier.Node);
         }
 
         private BuiltNode ParseScalarFunctionBodyReturnExpression()
@@ -244,28 +271,33 @@ public sealed partial class MetaTransformScriptSqlParser
             throw Unsupported($"Unsupported CREATE VIEW tail clause beginning with 'WITH {Current.Value.ToUpperInvariant()}'.");
         }
 
-        private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateViewName()
+        private (ParsedIdentifier SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateViewName()
         {
             return ParseCreateObjectName("VIEW");
         }
 
-        private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateFunctionName()
+        private (ParsedIdentifier SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateFunctionName()
         {
             return ParseCreateObjectName("FUNCTION");
         }
 
-        private (ParsedIdentifier? SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateObjectName(string objectType)
+        private (ParsedIdentifier SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateProcedureName()
+        {
+            return ParseCreateObjectName("PROCEDURE");
+        }
+
+        private (ParsedIdentifier SchemaIdentifier, ParsedIdentifier ObjectIdentifier, string RenderedName) ParseCreateObjectName(string objectType)
         {
             var first = ParseIdentifier();
             if (!Match(MetaTransformScriptSqlTokenKind.Dot))
             {
-                return (null, first, RenderIdentifier(first.Token));
+                throw Unsupported($"CREATE {objectType} names must be two-part (schema.name).");
             }
 
             var second = ParseIdentifier();
             if (Match(MetaTransformScriptSqlTokenKind.Dot))
             {
-                throw Unsupported($"CREATE {objectType} names with more than two identifier parts are not supported.");
+                throw Unsupported($"CREATE {objectType} names must be two-part (schema.name).");
             }
 
             return (first, second, $"{RenderIdentifier(first.Token)}.{RenderIdentifier(second.Token)}");

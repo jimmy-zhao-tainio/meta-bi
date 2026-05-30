@@ -18,6 +18,16 @@ internal sealed class SqlServerModuleSqlRenderer
         return NormalizeModuleDefinition(view.DefinitionSql, "VIEW", view.Id);
     }
 
+    public string BuildDropFunctionSql(Function function)
+    {
+        return $"DROP FUNCTION {FormatModuleName(function.Schema, function.Name)};";
+    }
+
+    public string BuildDeployFunctionSql(Function function)
+    {
+        return NormalizeModuleDefinition(function.DefinitionSql, "FUNCTION", function.Id);
+    }
+
     public string BuildDropStoredProcedureSql(StoredProcedure storedProcedure)
     {
         return $"DROP PROCEDURE {FormatModuleName(storedProcedure.Schema, storedProcedure.Name)};";

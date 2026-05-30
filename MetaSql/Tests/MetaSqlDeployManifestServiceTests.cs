@@ -1016,6 +1016,7 @@ public sealed class MetaSqlDeployManifestServiceTests
             includeLiveOnlyColumn: false,
             sourceNameLength: 50);
         AddView(sourceModel, "vCustomerReview", "CREATE OR ALTER VIEW [dbo].[vCustomerReview] AS SELECT [CustomerId] FROM [dbo].[Customer];");
+        AddFunction(sourceModel, "fnCustomerScore", "ScalarFunction", "CREATE FUNCTION [dbo].[fnCustomerScore](@CustomerId int) RETURNS int AS BEGIN RETURN @CustomerId END;");
         AddStoredProcedure(sourceModel, "RunReview", "CREATE OR ALTER PROCEDURE [dbo].[RunReview] AS SELECT 1 AS [Result];");
 
         var liveModel = CreateModel(
@@ -1023,6 +1024,7 @@ public sealed class MetaSqlDeployManifestServiceTests
             includeLiveOnlyColumn: false,
             sourceNameLength: 50);
         AddView(liveModel, "vCustomerReview", "CREATE OR ALTER VIEW [dbo].[vCustomerReview] AS SELECT [CustomerName] FROM [dbo].[Customer];");
+        AddFunction(liveModel, "fnCustomerScore", "ScalarFunction", "CREATE FUNCTION [dbo].[fnCustomerScore](@CustomerId int) RETURNS int AS BEGIN RETURN @CustomerId + 1 END;");
 
         var sourceWorkspace = CreateWorkspace(sourceModel, "source");
         var liveWorkspace = CreateWorkspace(liveModel, "live");
@@ -1042,11 +1044,12 @@ public sealed class MetaSqlDeployManifestServiceTests
         Assert.Equal(1, manifest.AddCount);
         Assert.Equal(0, manifest.DropCount);
         Assert.Equal(0, manifest.AlterCount);
-        Assert.Equal(1, manifest.ReplaceCount);
+        Assert.Equal(2, manifest.ReplaceCount);
         Assert.Equal(0, manifest.BlockCount);
         Assert.True(manifest.IsDeployable);
         Assert.Single(manifest.ManifestModel.AddStoredProcedureList);
         Assert.Single(manifest.ManifestModel.ReplaceViewList);
+        Assert.Single(manifest.ManifestModel.ReplaceFunctionList);
     }
 
     private static MetaSqlModel CreateModel(bool includeSourceOnlyColumn, bool includeLiveOnlyColumn, int sourceNameLength)
@@ -1304,6 +1307,19 @@ public sealed class MetaSqlDeployManifestServiceTests
         {
             Id = $"{schema.Id}.procedure.{name}",
             Name = name,
+            DefinitionSql = definitionSql,
+            Schema = schema,
+        });
+    }
+
+    private static void AddFunction(MetaSqlModel model, string name, string functionKind, string definitionSql)
+    {
+        var schema = Assert.Single(model.SchemaList);
+        model.FunctionList.Add(new Function
+        {
+            Id = $"{schema.Id}.function.{name}",
+            Name = name,
+            FunctionKind = functionKind,
             DefinitionSql = definitionSql,
             Schema = schema,
         });

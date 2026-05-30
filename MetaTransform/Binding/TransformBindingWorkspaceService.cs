@@ -203,11 +203,14 @@ public sealed class TransformBindingWorkspaceService
             string.Equals(item.TransformScript.Id, transformScript.Id, StringComparison.Ordinal));
         var scriptObjectScalarFunction = transformModel.ScriptObjectScalarFunctionList.SingleOrDefault(item =>
             string.Equals(item.TransformScript.Id, transformScript.Id, StringComparison.Ordinal));
+        var scriptObjectStoredProcedure = transformModel.ScriptObjectStoredProcedureList.SingleOrDefault(item =>
+            string.Equals(item.TransformScript.Id, transformScript.Id, StringComparison.Ordinal));
 
         var objectTypeCount =
             (scriptObjectView is null ? 0 : 1) +
             (scriptObjectTvf is null ? 0 : 1) +
-            (scriptObjectScalarFunction is null ? 0 : 1);
+            (scriptObjectScalarFunction is null ? 0 : 1) +
+            (scriptObjectStoredProcedure is null ? 0 : 1);
         if (objectTypeCount > 1)
         {
             throw new TransformBindingValidationException(
@@ -217,6 +220,7 @@ public sealed class TransformBindingWorkspaceService
 
         var isInlineTableValuedFunction = scriptObjectTvf is not null;
         var isScalarFunction = scriptObjectScalarFunction is not null;
+        var isStoredProcedure = scriptObjectStoredProcedure is not null;
         var trimmed = scriptObjectView?.TargetSqlIdentifier?.Trim()
             ?? navigator.TryGetMutationTargetSqlIdentifier(transformScript)?.Trim()
             ?? string.Empty;
@@ -240,6 +244,18 @@ public sealed class TransformBindingWorkspaceService
                 throw new TransformBindingValidationException(
                     "ScalarFunctionTargetNotAllowed",
                     $"Transform script '{transformScript.Name}' is a scalar function and must not define TargetSqlIdentifier.");
+            }
+
+            return null;
+        }
+
+        if (isStoredProcedure)
+        {
+            if (!string.IsNullOrWhiteSpace(trimmed))
+            {
+                throw new TransformBindingValidationException(
+                    "StoredProcedureTargetNotAllowed",
+                    $"Transform script '{transformScript.Name}' is a stored procedure and must declare target effects through StoredProcedureContractOperation rows instead of TargetSqlIdentifier.");
             }
 
             return null;

@@ -118,6 +118,17 @@
         <Relationship entity="Schema" />
       </RelationshipList>
     </Entity>
+    <Entity name="Function">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="FunctionKind" />
+        <Property name="DefinitionSql" />
+        <Property name="DeployOrdinal" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Schema" />
+      </RelationshipList>
+    </Entity>
     <Entity name="StoredProcedure">
       <PropertyList>
         <Property name="Name" />

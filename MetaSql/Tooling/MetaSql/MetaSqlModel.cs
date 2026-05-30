@@ -32,6 +32,8 @@ namespace MetaSql
 
         public List<ForeignKeyColumn> ForeignKeyColumnList { get; set; } = new();
 
+        public List<Function> FunctionList { get; set; } = new();
+
         public List<Index> IndexList { get; set; } = new();
 
         public List<IndexColumn> IndexColumnList { get; set; } = new();
@@ -189,6 +191,17 @@ namespace MetaSql
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(foreignKeyColumnShardPath, SerializeForeignKeyColumnShard(model, saveIndexes));
             }
 
+            model.FunctionList ??= new List<Function>();
+            var functionShardPath = Path.Combine(instanceDirectoryPath, "Function.xml");
+            if (model.FunctionList.Count == 0)
+            {
+                DeleteIfExists(functionShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(functionShardPath, SerializeFunctionShard(model, saveIndexes));
+            }
+
             model.IndexList ??= new List<Index>();
             var indexShardPath = Path.Combine(instanceDirectoryPath, "Index.xml");
             if (model.IndexList.Count == 0)
@@ -331,6 +344,9 @@ namespace MetaSql
                         break;
                     case "ForeignKeyColumnList":
                         LoadForeignKeyColumnList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "FunctionList":
+                        LoadFunctionList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "IndexList":
                         LoadIndexList(model, reader, loadState, relationshipBuffers);
@@ -735,6 +751,134 @@ namespace MetaSql
                 builder.Append("    </ForeignKeyColumn>\n");
             }
             builder.Append("  </ForeignKeyColumnList>\n");
+            builder.Append("</MetaSql>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadFunctionList(MetaSqlModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("FunctionList");
+                return;
+            }
+
+            reader.ReadStartElement("FunctionList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "Function", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'FunctionList'.");
+                }
+                var row = ReadFunction(reader, relationshipBuffers);
+                loadState.AddFunctionId(row.Id);
+                model.FunctionList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static Function ReadFunction(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new Function();
+            var relationships = new FunctionRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "SchemaId":
+                            relationships.SchemaId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'Function'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("Function");
+                (relationshipBuffers.FunctionRelationships ??= new List<FunctionRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("Function");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "DefinitionSql":
+                        row.DefinitionSql = reader.ReadElementContentAsString();
+                        break;
+                    case "DeployOrdinal":
+                        row.DeployOrdinal = reader.ReadElementContentAsString();
+                        break;
+                    case "FunctionKind":
+                        row.FunctionKind = reader.ReadElementContentAsString();
+                        break;
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'Function'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.FunctionRelationships ??= new List<FunctionRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeFunctionShard(MetaSqlModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaSql>\n");
+            builder.Append("  <FunctionList>\n");
+            foreach (var row in model.FunctionList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'Function' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'Function' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <Function Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var schemaId = RequireIdentity(row.Schema?.Id, $"Relationship 'Function.SchemaId' on row 'Function:{row.Id}' is empty.");
+                if (!saveIndexes.SchemaListById.TryGetValue(schemaId, out var schemaCanonical) || !ReferenceEquals(schemaCanonical, row.Schema))
+                {
+                    throw new InvalidOperationException($"Relationship 'Function.SchemaId' on row 'Function:{row.Id}' references an object that is not the canonical row for Id '{schemaId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("SchemaId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, schemaId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "DefinitionSql", RequireText(row.DefinitionSql, $"Entity 'Function' row '{row.Id}' is missing required property 'DefinitionSql'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.DeployOrdinal))
+                {
+                    AppendElement(builder, "DeployOrdinal", row.DeployOrdinal!, "      ");
+                }
+                AppendElement(builder, "FunctionKind", RequireText(row.FunctionKind, $"Entity 'Function' row '{row.Id}' is missing required property 'FunctionKind'."), "      ");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'Function' row '{row.Id}' is missing required property 'Name'."), "      ");
+                builder.Append("    </Function>\n");
+            }
+            builder.Append("  </FunctionList>\n");
             builder.Append("</MetaSql>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -2038,6 +2182,12 @@ namespace MetaSql
             public string TargetColumnId { get; set; } = string.Empty;
         }
 
+        private sealed class FunctionRelationships
+        {
+            public Function Row { get; set; } = null!;
+            public string SchemaId { get; set; } = string.Empty;
+        }
+
         private sealed class IndexRelationships
         {
             public Index Row { get; set; } = null!;
@@ -2104,6 +2254,7 @@ namespace MetaSql
         {
             public List<ForeignKeyRelationships>? ForeignKeyRelationships { get; set; }
             public List<ForeignKeyColumnRelationships>? ForeignKeyColumnRelationships { get; set; }
+            public List<FunctionRelationships>? FunctionRelationships { get; set; }
             public List<IndexRelationships>? IndexRelationships { get; set; }
             public List<IndexColumnRelationships>? IndexColumnRelationships { get; set; }
             public List<PrimaryKeyRelationships>? PrimaryKeyRelationships { get; set; }
@@ -2166,6 +2317,16 @@ namespace MetaSql
                     "ForeignKeyColumn",
                     relationship.Row.Id,
                     "TargetColumnId");
+            }
+
+            foreach (var relationship in relationshipBuffers.FunctionRelationships ?? Enumerable.Empty<FunctionRelationships>())
+            {
+                relationship.Row.Schema = RequireTarget(
+                    loadIndexes.SchemaListById,
+                    relationship.SchemaId,
+                    "Function",
+                    relationship.Row.Id,
+                    "SchemaId");
             }
 
             foreach (var relationship in relationshipBuffers.IndexRelationships ?? Enumerable.Empty<IndexRelationships>())
@@ -2295,6 +2456,7 @@ namespace MetaSql
             "Database.xml",
             "ForeignKey.xml",
             "ForeignKeyColumn.xml",
+            "Function.xml",
             "Index.xml",
             "IndexColumn.xml",
             "PrimaryKey.xml",
@@ -2353,6 +2515,18 @@ namespace MetaSql
                 if (!foreignKeyColumnIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ForeignKeyColumn' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? functionIds;
+
+            public void AddFunctionId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'Function' contains a row with empty Id.");
+                functionIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!functionIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'Function' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -2499,6 +2673,10 @@ namespace MetaSql
 
             public Dictionary<string, ForeignKeyColumn> ForeignKeyColumnListById => foreignKeyColumnListById ??= BuildById(model.ForeignKeyColumnList, row => row.Id, "ForeignKeyColumn");
 
+            private Dictionary<string, Function>? functionListById;
+
+            public Dictionary<string, Function> FunctionListById => functionListById ??= BuildById(model.FunctionList, row => row.Id, "Function");
+
             private Dictionary<string, Index>? indexListById;
 
             public Dictionary<string, Index> IndexListById => indexListById ??= BuildById(model.IndexList, row => row.Id, "Index");
@@ -2561,6 +2739,10 @@ namespace MetaSql
             private Dictionary<string, ForeignKeyColumn>? foreignKeyColumnListById;
 
             public Dictionary<string, ForeignKeyColumn> ForeignKeyColumnListById => foreignKeyColumnListById ??= BuildById(model.ForeignKeyColumnList, row => row.Id, "ForeignKeyColumn");
+
+            private Dictionary<string, Function>? functionListById;
+
+            public Dictionary<string, Function> FunctionListById => functionListById ??= BuildById(model.FunctionList, row => row.Id, "Function");
 
             private Dictionary<string, Index>? indexListById;
 
@@ -2646,6 +2828,17 @@ namespace MetaSql
                 "ForeignKey",
                 "SourceColumn",
                 "TargetColumn"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(Function),
+                "Id",
+                "DefinitionSql",
+                "DeployOrdinal",
+                "FunctionKind",
+                "Name",
+                "Schema"))
             {
                 return true;
             }
@@ -2762,6 +2955,7 @@ namespace MetaSql
                 "DatabaseList",
                 "ForeignKeyList",
                 "ForeignKeyColumnList",
+                "FunctionList",
                 "IndexList",
                 "IndexColumnList",
                 "PrimaryKeyList",

@@ -59,6 +59,14 @@ internal sealed class ManifestEntryFactory
                     DeployManifest = root,
                 });
                 return 1;
+            case MetaSqlObjectKind.Function:
+                model.AddFunctionList.Add(new AddFunction
+                {
+                    Id = $"AddFunction:{RequireValue(difference.SourceId, "SourceId", difference)}",
+                    SourceFunctionId = RequireValue(difference.SourceId, "SourceId", difference),
+                    DeployManifest = root,
+                });
+                return 1;
             case MetaSqlObjectKind.StoredProcedure:
                 model.AddStoredProcedureList.Add(new AddStoredProcedure
                 {
@@ -137,6 +145,14 @@ internal sealed class ManifestEntryFactory
                 {
                     Id = $"DropView:{RequireValue(difference.LiveId, "LiveId", difference)}",
                     LiveViewId = RequireValue(difference.LiveId, "LiveId", difference),
+                    DeployManifest = root,
+                });
+                return 1;
+            case MetaSqlObjectKind.Function:
+                model.DropFunctionList.Add(new DropFunction
+                {
+                    Id = $"DropFunction:{RequireValue(difference.LiveId, "LiveId", difference)}",
+                    LiveFunctionId = RequireValue(difference.LiveId, "LiveId", difference),
                     DeployManifest = root,
                 });
                 return 1;
@@ -221,6 +237,15 @@ internal sealed class ManifestEntryFactory
                     Id = $"ReplaceView:{sourceId}:{liveId}",
                     SourceViewId = sourceId,
                     LiveViewId = liveId,
+                    DeployManifest = root,
+                });
+                return 1;
+            case MetaSqlObjectKind.Function:
+                model.ReplaceFunctionList.Add(new ReplaceFunction
+                {
+                    Id = $"ReplaceFunction:{sourceId}:{liveId}",
+                    SourceFunctionId = sourceId,
+                    LiveFunctionId = liveId,
                     DeployManifest = root,
                 });
                 return 1;
