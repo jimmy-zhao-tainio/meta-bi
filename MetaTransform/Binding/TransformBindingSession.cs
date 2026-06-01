@@ -336,11 +336,12 @@ internal sealed partial class TransformBindingSession
             var rowsetName = string.IsNullOrWhiteSpace(operation.AccessRole)
                 ? $"{inputRole}:{operation.Ordinal}"
                 : operation.AccessRole.Trim();
+            var rowsetId = $"{transformScript.Id}:stored-procedure-operation:{ordinal + 1}";
             var columns = string.Equals(operationKind, "Read", StringComparison.Ordinal)
-                ? ResolveSourceColumns(sqlIdentifier)
-                : ResolveTargetColumns(sqlIdentifier, transformScript, operation.Id);
+                ? ResolveSourceColumns(sqlIdentifier, rowsetId)
+                : ResolveTargetColumns(sqlIdentifier, rowsetId, transformScript, operation.Id);
             var rowset = CreateDeclaredStoredProcedureRowset(
-                $"{transformScript.Id}:stored-procedure-operation:{ordinal + 1}",
+                rowsetId,
                 rowsetName,
                 derivationKind,
                 inputRole,
@@ -477,16 +478,19 @@ internal sealed partial class TransformBindingSession
         return rowset;
     }
 
-    private IReadOnlyList<RuntimeColumn> ResolveSourceColumns(string sqlIdentifier)
+    private IReadOnlyList<RuntimeColumn> ResolveSourceColumns(
+        string sqlIdentifier,
+        string rowsetId)
     {
         var resolution = ResolveSourceSchemaIdentifier(sqlIdentifier);
         return resolution.IsResolved && resolution.Table is not null
-            ? CreateSchemaColumns(sqlIdentifier, resolution.Table.Fields)
+            ? CreateSchemaColumns(rowsetId, resolution.Table.Fields)
             : [];
     }
 
     private IReadOnlyList<RuntimeColumn> ResolveTargetColumns(
         string sqlIdentifier,
+        string rowsetId,
         TransformScript transformScript,
         string declarationId)
     {
@@ -506,18 +510,18 @@ internal sealed partial class TransformBindingSession
             return [];
         }
 
-        return CreateSchemaColumns(sqlIdentifier, resolution.Table.Fields);
+        return CreateSchemaColumns(rowsetId, resolution.Table.Fields);
     }
 
     private static IReadOnlyList<RuntimeColumn> CreateSchemaColumns(
-        string sqlIdentifier,
+        string columnScopeId,
         IReadOnlyList<ResolvedSchemaField> fields)
     {
         return fields
             .OrderBy(item => item.Ordinal)
             .ThenBy(item => item.FieldName, StringComparer.OrdinalIgnoreCase)
             .Select((field, ordinal) => new RuntimeColumn(
-                $"{sqlIdentifier}:column:{ordinal + 1}",
+                $"{columnScopeId}:column:{ordinal + 1}",
                 field.FieldName,
                 ordinal))
             .ToArray();

@@ -123,6 +123,33 @@
         <Relationship entity="TaskObjectEffect" />
       </RelationshipList>
     </Entity>
+    <Entity name="RetryPolicy">
+      <PropertyList>
+        <Property name="BackoffMultiplier" />
+        <Property name="InitialDelayMilliseconds" />
+        <Property name="MaxAttempts" />
+        <Property name="MaxDelayMilliseconds" />
+        <Property name="Name" />
+        <Property name="PolicyKind" />
+        <Property name="Reason" isRequired="false" />
+        <Property name="RetryReadOnlyTasksByDefault" />
+        <Property name="RetryWriteTasksByDefault" />
+        <Property name="Status" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="OrchestrationPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RetryPolicyFailureClass">
+      <PropertyList>
+        <Property name="FailureClass" />
+        <Property name="Reason" isRequired="false" />
+        <Property name="RetryBehavior" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="RetryPolicy" />
+      </RelationshipList>
+    </Entity>
     <Entity name="RunPlan">
       <PropertyList>
         <Property name="Name" />
@@ -131,6 +158,16 @@
       </PropertyList>
       <RelationshipList>
         <Relationship entity="OrchestrationPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RunPlanRetryPolicy">
+      <PropertyList>
+        <Property name="PolicyRole" />
+        <Property name="Reason" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="RetryPolicy" />
+        <Relationship entity="RunPlan" />
       </RelationshipList>
     </Entity>
     <Entity name="TaskAccessProfile">

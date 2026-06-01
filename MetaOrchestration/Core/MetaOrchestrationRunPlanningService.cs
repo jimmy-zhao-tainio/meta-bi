@@ -7,6 +7,7 @@ namespace MetaOrchestration.Core;
 public sealed class MetaOrchestrationRunPlanningService
 {
     public const string DefaultRunPlanName = "DefaultRunPlan";
+    public const string DefaultRetryPolicyName = "DefaultRetryPolicy";
 
     public OrchestrationPolicyResult AddTaskOrderingResolution(
         MO.MetaOrchestrationModel model,
@@ -186,18 +187,6 @@ public sealed class MetaOrchestrationRunPlanningService
             .ThenBy(static item => item.TaskName, StringComparer.OrdinalIgnoreCase)
             .ThenBy(static item => item.Id, StringComparer.Ordinal)
             .ToArray();
-        var predecessors = taskRows.ToDictionary(static item => item.Id, static _ => new HashSet<string>(StringComparer.Ordinal), StringComparer.Ordinal);
-        var successors = taskRows.ToDictionary(static item => item.Id, static _ => new HashSet<string>(StringComparer.Ordinal), StringComparer.Ordinal);
-
-        foreach (var dependency in model.TaskDependencyList)
-        {
-            AddEdge(predecessors, successors, dependency.Predecessor.Id, dependency.Successor.Id);
-        }
-
-        foreach (var resolution in model.TaskOrderingResolutionList.Where(static item => IsActive(item.Status)))
-        {
-            AddEdge(predecessors, successors, resolution.Predecessor.Id, resolution.Successor.Id);
-        }
 
         var locksByTaskId = model.TaskObjectEffectList
             .Where(static item => !string.Equals(item.LockMode, "None", StringComparison.OrdinalIgnoreCase))
@@ -212,8 +201,7 @@ public sealed class MetaOrchestrationRunPlanningService
         var activeLockPolicies = model.LockCompatibilityPolicyList
             .Where(static item => IsActive(item.Status))
             .ToArray();
-
-        var orderedTasks = BuildDependencyOrderedTasks(taskRows, predecessors);
+        var retryPolicy = ResolveRunPlanRetryPolicy(model, plan);
 
         var runPlanId = NaturalId(plan.Id, "run-plan", DefaultRunPlanName);
         RemoveExistingRunPlans(model, plan);
@@ -224,12 +212,20 @@ public sealed class MetaOrchestrationRunPlanningService
             OrchestrationPlan = plan,
             Name = DefaultRunPlanName,
             RunPlanStatus = "Ready",
-            Reason = "Generated from task dependencies, active ordering resolutions, task-object effects, and lock compatibility policy."
+            Reason = "Generated from declared task access profiles, task-object effects, and lock compatibility policy. Dependency rows remain graph edges evaluated at execution time."
         };
         model.RunPlanList.Add(runPlan);
+        model.RunPlanRetryPolicyList.Add(new MO.RunPlanRetryPolicy
+        {
+            Id = NaturalId(runPlan.Id, "retry-policy", "default"),
+            RunPlan = runPlan,
+            RetryPolicy = retryPolicy,
+            PolicyRole = "Default",
+            Reason = "Run-level retry policy used by orchestration when a task attempt fails before terminal success."
+        });
 
         var globalOrdinal = 0;
-        foreach (var task in orderedTasks)
+        foreach (var task in taskRows)
         {
             var plannedTask = new MO.PlannedTask
             {
@@ -238,7 +234,7 @@ public sealed class MetaOrchestrationRunPlanningService
                 PipelineReference = task.PipelineReference,
                 Id = NaturalId(runPlan.Id, "task", (++globalOrdinal).ToString(CultureInfo.InvariantCulture)),
                 Ordinal = globalOrdinal.ToString(CultureInfo.InvariantCulture),
-                Reason = BuildPlannedTaskReason(task, predecessors[task.Id])
+                Reason = BuildPlannedTaskReason()
             };
             model.PlannedTaskList.Add(plannedTask);
 
@@ -267,34 +263,89 @@ public sealed class MetaOrchestrationRunPlanningService
         return new OrchestrationRunPlanResult(runPlan.Id, runPlan.Name, runPlan.RunPlanStatus, globalOrdinal);
     }
 
-    private static IReadOnlyList<MO.TaskAccessProfile> BuildDependencyOrderedTasks(
-        IReadOnlyList<MO.TaskAccessProfile> taskRows,
-        IReadOnlyDictionary<string, HashSet<string>> predecessors)
+    private static MO.RetryPolicy ResolveRunPlanRetryPolicy(MO.MetaOrchestrationModel model, MO.OrchestrationPlan plan)
     {
-        var pending = taskRows.Select(static item => item.Id).ToHashSet(StringComparer.Ordinal);
-        var completed = new HashSet<string>(StringComparer.Ordinal);
-        var orderedTasks = new List<MO.TaskAccessProfile>(taskRows.Count);
+        var activePolicies = model.RetryPolicyList
+            .Where(item => ReferenceEquals(item.OrchestrationPlan, plan))
+            .Where(static item => IsActive(item.Status))
+            .OrderBy(static item => item.Name, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static item => item.Id, StringComparer.Ordinal)
+            .ToArray();
 
-        while (pending.Count > 0)
+        if (activePolicies.Length == 0)
         {
-            var eligible = taskRows
-                .Where(item => pending.Contains(item.Id) && predecessors[item.Id].All(completed.Contains))
-                .ToArray();
-            if (eligible.Length == 0)
-            {
-                throw new InvalidOperationException("Cannot build run plan because task dependencies contain a cycle or unresolved predecessor.");
-            }
-
-            foreach (var task in eligible)
-            {
-                pending.Remove(task.Id);
-                completed.Add(task.Id);
-                orderedTasks.Add(task);
-            }
+            return EnsureDefaultRetryPolicy(model, plan);
         }
 
-        return orderedTasks;
+        if (activePolicies.Length == 1)
+        {
+            var activePolicy = activePolicies[0];
+            if (IsDefaultRetryPolicy(activePolicy))
+            {
+                EnsureDefaultRetryFailureClasses(model, activePolicy);
+            }
+
+            return activePolicy;
+        }
+
+        throw new InvalidOperationException(
+            $"Cannot build run plan for orchestration plan '{plan.Name}' because {activePolicies.Length} active retry policies are present. Keep one active RetryPolicy per plan.");
     }
+
+    private static MO.RetryPolicy EnsureDefaultRetryPolicy(MO.MetaOrchestrationModel model, MO.OrchestrationPlan plan)
+    {
+        var id = NaturalId(plan.Id, "retry-policy", DefaultRetryPolicyName);
+        var policy = model.RetryPolicyList.SingleOrDefault(item => string.Equals(item.Id, id, StringComparison.Ordinal));
+        if (policy is null)
+        {
+            policy = new MO.RetryPolicy
+            {
+                Id = id,
+                OrchestrationPlan = plan
+            };
+            model.RetryPolicyList.Add(policy);
+        }
+
+        policy.Name = DefaultRetryPolicyName;
+        policy.PolicyKind = "DefaultRetryPolicy";
+        policy.MaxAttempts = "3";
+        policy.InitialDelayMilliseconds = "1000";
+        policy.MaxDelayMilliseconds = "30000";
+        policy.BackoffMultiplier = "2";
+        policy.RetryReadOnlyTasksByDefault = "true";
+        policy.RetryWriteTasksByDefault = "false";
+        policy.Status = "Active";
+        policy.Reason = "Conservative generated retry policy: retry read-only task attempts on transient failure classes; side-effecting writes require an explicit retry-safe policy.";
+
+        EnsureDefaultRetryFailureClasses(model, policy);
+        return policy;
+    }
+
+    private static void EnsureDefaultRetryFailureClasses(MO.MetaOrchestrationModel model, MO.RetryPolicy policy)
+    {
+        foreach (var failureClass in DefaultRetryableFailureClasses())
+        {
+            var id = NaturalId(policy.Id, "failure-class", failureClass);
+            var row = model.RetryPolicyFailureClassList.SingleOrDefault(item => string.Equals(item.Id, id, StringComparison.Ordinal));
+            if (row is null)
+            {
+                row = new MO.RetryPolicyFailureClass
+                {
+                    Id = id,
+                    RetryPolicy = policy
+                };
+                model.RetryPolicyFailureClassList.Add(row);
+            }
+
+            row.FailureClass = failureClass;
+            row.RetryBehavior = "Retry";
+            row.Reason = "Default transient retry class.";
+        }
+    }
+
+    private static bool IsDefaultRetryPolicy(MO.RetryPolicy policy) =>
+        string.Equals(policy.PolicyKind, "DefaultRetryPolicy", StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(policy.Name, DefaultRetryPolicyName, StringComparison.OrdinalIgnoreCase);
 
     private static void RemoveExistingRunPlans(MO.MetaOrchestrationModel model, MO.OrchestrationPlan plan)
     {
@@ -312,6 +363,9 @@ public sealed class MetaOrchestrationRunPlanningService
         var locks = model.PlannedTaskLockList
             .Where(taskLock => tasks.Any(task => ReferenceEquals(taskLock.PlannedTask, task)))
             .ToArray();
+        var retryAssignments = model.RunPlanRetryPolicyList
+            .Where(item => existingRunPlans.Any(runPlan => ReferenceEquals(item.RunPlan, runPlan)))
+            .ToArray();
         foreach (var taskLock in locks)
         {
             model.PlannedTaskLockList.Remove(taskLock);
@@ -322,31 +376,14 @@ public sealed class MetaOrchestrationRunPlanningService
             model.PlannedTaskList.Remove(task);
         }
 
+        foreach (var retryAssignment in retryAssignments)
+        {
+            model.RunPlanRetryPolicyList.Remove(retryAssignment);
+        }
+
         foreach (var runPlan in existingRunPlans)
         {
             model.RunPlanList.Remove(runPlan);
-        }
-    }
-
-    private static void AddEdge(
-        IReadOnlyDictionary<string, HashSet<string>> predecessors,
-        IReadOnlyDictionary<string, HashSet<string>> successors,
-        string predecessorId,
-        string successorId)
-    {
-        if (string.Equals(predecessorId, successorId, StringComparison.Ordinal))
-        {
-            return;
-        }
-
-        if (predecessors.TryGetValue(successorId, out var predecessorSet))
-        {
-            predecessorSet.Add(predecessorId);
-        }
-
-        if (successors.TryGetValue(predecessorId, out var successorSet))
-        {
-            successorSet.Add(successorId);
         }
     }
 
@@ -408,15 +445,8 @@ public sealed class MetaOrchestrationRunPlanningService
         return false;
     }
 
-    private static string BuildPlannedTaskReason(
-        MO.TaskAccessProfile task,
-        IReadOnlySet<string> predecessorIds)
-    {
-        var predecessorText = predecessorIds.Count == 0
-            ? "no task predecessors"
-            : $"{predecessorIds.Count} task predecessor(s)";
-        return $"Dependency-ordered after {predecessorText}.";
-    }
+    private static string BuildPlannedTaskReason() =>
+        "Run-plan row for declared task access profile; dependency rows are evaluated as graph edges at execution time.";
 
     private static string BuildPlannedTaskLockReason(
         TaskLockRequest taskLock,
@@ -537,6 +567,16 @@ public sealed class MetaOrchestrationRunPlanningService
 
     private static bool IsTrue(string value) =>
         string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
+
+    private static IEnumerable<string> DefaultRetryableFailureClasses()
+    {
+        yield return OrchestrationRetryFailureClasses.TransientSql;
+        yield return OrchestrationRetryFailureClasses.TransientConnectivity;
+        yield return OrchestrationRetryFailureClasses.WorkerCrashBeforeTerminalEvent;
+        yield return OrchestrationRetryFailureClasses.HeartbeatTimeout;
+        yield return OrchestrationRetryFailureClasses.TaskTimeout;
+        yield return OrchestrationRetryFailureClasses.WorkerReportedRetryable;
+    }
 
     private static int ParseOrdinal(string value) =>
         int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var ordinal)

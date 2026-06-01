@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\Tooling\MetaOrchestration.Tooling.csproj" />
     <ProjectReference Include="..\..\MetaPipeline\Tooling\MetaPipeline.Tooling.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />

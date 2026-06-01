@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Tests\Common\MetaBi.Tests.Common.csproj" />
+    <ProjectReference Include="..\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\Core\MetaOrchestration.Core.csproj" />
     <ProjectReference Include="..\..\MetaPipeline\Tooling\MetaPipeline.Tooling.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />

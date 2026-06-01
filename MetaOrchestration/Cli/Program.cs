@@ -48,7 +48,7 @@ internal static partial class Program
                     },
                     new[]
                     {
-                        "Shows DAG, determinism, synchronization, dependency, effect, and issue summaries."
+                        "Shows DAG, determinism, synchronization, dependency, effect, retry-policy, and issue summaries."
                     }),
                 args => RunCommandWithHelpAsync(args, "inspect", commandArgs => RunInspect(commandArgs, startIndex: 1))),
             new CliCommandRoute(
@@ -163,7 +163,7 @@ internal static partial class Program
             new CliCommandRoute(
                 new CliCommandDefinition(
                     "refresh-run-plan",
-                    "Refresh lock-aware topological run-plan rows in an orchestration workspace.",
+                    "Refresh lock-aware run-plan rows in an orchestration workspace.",
                     new[] { "meta-orchestration refresh-run-plan --workspace <path>" },
                     new[]
                     {
@@ -171,7 +171,7 @@ internal static partial class Program
                     },
                     new[]
                     {
-                        "Writes the run plan, planned tasks, and task locks into the existing orchestration workspace.",
+                        "Writes the run plan, default run-plan retry policy assignment, planned tasks, and task locks into the existing orchestration workspace.",
                         "The DAG must be complete and run-planning policy must resolve blocking determinism/synchronization issues.",
                         "Execute refreshes the run plan automatically; this command is for preflight and inspection workflows."
                     }),
@@ -179,7 +179,7 @@ internal static partial class Program
             new CliCommandRoute(
                 new CliCommandDefinition(
                     "inspect-run-plan",
-                    "Inspect planned task order.",
+                    "Inspect the planned task dependency graph.",
                     new[] { "meta-orchestration inspect-run-plan --workspace <path>" },
                     new[]
                     {
@@ -187,31 +187,39 @@ internal static partial class Program
                     },
                     new[]
                     {
-                        "Shows the run-plan shape as a compact tree.",
+                        "Shows the task dependency graph as an adjacency list.",
+                        "The graph is printed from dependency rows, not from planned-task order.",
                         "Use issue/policy inspection commands when you need the reasoning behind the plan."
                     }),
                 args => RunCommandWithHelpAsync(args, "inspect-run-plan", commandArgs => RunInspectRunPlan(commandArgs, startIndex: 1))),
             new CliCommandRoute(
                 new CliCommandDefinition(
                     "execute",
-                    "Execute the current run plan by supervising meta-pipeline execute-step workers.",
-                    new[] { "meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>]" },
+                    "Execute the current run plan by coordinating meta-pipeline worker processes.",
+                    new[] { "meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>] [--run-artifacts-root <path>] [--worker-event-timeout-seconds <n>]" },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaOrchestration workspace containing the analysis and run-plan rows."),
-                        new CliOptionDefinition("--pipeline-workspace <path>", "Required. MetaPipeline workspace used by child execute-step workers."),
-                        new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace used by child execute-step workers."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Required. MetaTransformBinding workspace used by child execute-step workers."),
+                        new CliOptionDefinition("--pipeline-workspace <path>", "Required. MetaPipeline workspace used by child pipeline workers."),
+                        new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace used by child pipeline workers."),
+                        new CliOptionDefinition("--binding-workspace <path>", "Required. MetaTransformBinding workspace used by child pipeline workers."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace passed to child workers."),
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional operational DB connection env passed to child workers."),
-                        new CliOptionDefinition("--max-degree-of-parallelism <n>", "Maximum concurrent child meta-pipeline workers. Default: 1.")
+                        new CliOptionDefinition("--max-degree-of-parallelism <n>", "Maximum concurrently granted pipeline tasks. Default: 1."),
+                        new CliOptionDefinition("--run-artifacts-root <path>", "Optional operational root for run journals, worker logs, and workspace execution leases."),
+                        new CliOptionDefinition("--worker-event-timeout-seconds <n>", "Optional fail-safe timeout for silent worker protocol periods. Default: 1800.")
                     },
                     new[]
                     {
                         "Refreshes run-plan rows from current workspace state, then executes the run plan.",
-                        "Each planned task is run by launching meta-pipeline execute-step.",
+                        "Each MetaPipeline pipeline is launched once as a worker with a named pipe control channel.",
+                        "Orchestration sends StartPipeline after WorkerReady, before any task grants.",
+                        "Orchestration grants TaskReady work or stops a worker at a blocked task.",
+                        "Workers parked at TaskReady do not count as silent; activation and running grants do.",
+                        "Retry policy is read from modeled RetryPolicy/RetryPolicyFailureClass/RunPlanRetryPolicy rows, not from a command-line switch.",
                         "Failed tasks block OnSuccess dependents, enable OnFailure branches, and leave unrelated paths running.",
-                        "Task dependencies and locks define runtime eligibility; --max-degree-of-parallelism throttles child processes.",
+                        "Task dependencies and locks define runtime eligibility; --max-degree-of-parallelism throttles concurrent task grants.",
+                        "Execution takes an exclusive lease for the orchestration workspace; different workspaces may execute concurrently.",
                         "MetaPipeline remains the owner of transform execution and operational DB evidence."
                     }),
                 args => RunCommandWithHelpAsync(args, "execute", commandArgs => RunExecuteAsync(commandArgs, startIndex: 1))),
@@ -336,6 +344,7 @@ internal static partial class Program
                 ("PipelineDependencies", model.PipelineDependencyList.Count.ToString()),
                 ("TaskOrderingResolutions", model.TaskOrderingResolutionList.Count.ToString()),
                 ("LockCompatibilityPolicies", model.LockCompatibilityPolicyList.Count.ToString()),
+                ("RetryPolicies", model.RetryPolicyList.Count.ToString()),
                 ("RunPlans", model.RunPlanList.Count.ToString()),
                 ("PlannedTasks", model.PlannedTaskList.Count.ToString()),
                 ("Issues", model.DependencyIssueList.Count.ToString()),
@@ -554,7 +563,7 @@ internal static partial class Program
             var workspacePath = Path.GetFullPath(parse.WorkspacePath);
             var model = MO.MetaOrchestrationModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
 
-            PrintRunPlanTree(model);
+            PrintRunPlanGraph(model);
             return 0;
         }
         catch (Exception ex) when (ex is InvalidOperationException or ArgumentException or IOException or UnauthorizedAccessException)
@@ -937,7 +946,7 @@ internal static partial class Program
         };
     }
 
-    private static void PrintRunPlanTree(MO.MetaOrchestrationModel model)
+    private static void PrintRunPlanGraph(MO.MetaOrchestrationModel model)
     {
         var runPlans = model.RunPlanList
             .OrderBy(static item => item.Name, StringComparer.OrdinalIgnoreCase)
@@ -961,6 +970,17 @@ internal static partial class Program
                 ? string.Empty
                 : $" [{runPlan.RunPlanStatus}]";
             Presenter.WriteInfo($"{runPlan.Name}{status}");
+            var retryPolicy = model.RunPlanRetryPolicyList
+                .Where(item => ReferenceEquals(item.RunPlan, runPlan))
+                .Where(static item => string.Equals(item.PolicyRole, "Default", StringComparison.OrdinalIgnoreCase))
+                .Select(static item => item.RetryPolicy)
+                .OrderBy(static item => item.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(static item => item.Id, StringComparer.Ordinal)
+                .FirstOrDefault();
+            if (retryPolicy is not null)
+            {
+                Presenter.WriteInfo($"RetryPolicy: {retryPolicy.Name} (MaxAttempts={retryPolicy.MaxAttempts})");
+            }
 
             var tasks = model.PlannedTaskList
                 .Where(item => ReferenceEquals(item.RunPlan, runPlan))
@@ -969,17 +989,107 @@ internal static partial class Program
                 .ToArray();
             if (tasks.Length == 0)
             {
-                Presenter.WriteInfo("`-- No planned tasks");
+                Presenter.WriteInfo("PlannedTasks: 0");
                 continue;
             }
 
-            for (var taskIndex = 0; taskIndex < tasks.Length; taskIndex++)
+            var plannedTaskProfileIds = tasks
+                .Select(static item => item.TaskAccessProfile.Id)
+                .ToHashSet(StringComparer.Ordinal);
+            var edges = BuildRunPlanGraphEdges(model, plannedTaskProfileIds);
+            var edgesByPredecessorId = edges
+                .GroupBy(static item => item.Predecessor.Id, StringComparer.Ordinal)
+                .ToDictionary(
+                    static group => group.Key,
+                    static group => group
+                        .OrderBy(static item => FormatGraphTaskName(item.Successor), StringComparer.OrdinalIgnoreCase)
+                        .ThenBy(static item => item.Kind, StringComparer.OrdinalIgnoreCase)
+                        .ThenBy(static item => item.Condition, StringComparer.OrdinalIgnoreCase)
+                        .ThenBy(static item => item.ObjectSqlIdentifier ?? string.Empty, StringComparer.OrdinalIgnoreCase)
+                        .ToArray(),
+                    StringComparer.Ordinal);
+            Presenter.WriteInfo($"PlannedTasks: {tasks.Length}");
+            Presenter.WriteInfo($"DependencyEdges: {edges.Length}");
+            Presenter.WriteInfo("Graph:");
+
+            foreach (var task in tasks
+                         .OrderBy(static item => FormatGraphTaskName(item), StringComparer.OrdinalIgnoreCase)
+                         .ThenBy(static item => item.Id, StringComparer.Ordinal))
             {
-                var taskBranch = taskIndex == tasks.Length - 1 ? "`--" : "+--";
-                Presenter.WriteInfo($"{taskBranch} {FormatTaskName(tasks[taskIndex])}");
+                Presenter.WriteInfo($"  {FormatGraphTaskName(task)}");
+                if (!edgesByPredecessorId.TryGetValue(task.TaskAccessProfile.Id, out var outgoingEdges))
+                {
+                    Presenter.WriteInfo("    (no outgoing dependencies)");
+                    continue;
+                }
+
+                foreach (var edge in outgoingEdges)
+                {
+                    Presenter.WriteInfo($"    --> {FormatGraphTaskName(edge.Successor)} [{FormatGraphEdgeLabel(edge)}]");
+                }
             }
         }
     }
+
+    private static RunPlanGraphEdge[] BuildRunPlanGraphEdges(
+        MO.MetaOrchestrationModel model,
+        IReadOnlySet<string> plannedTaskProfileIds)
+    {
+        var edges = new List<RunPlanGraphEdge>();
+        foreach (var dependency in model.TaskDependencyList)
+        {
+            if (!plannedTaskProfileIds.Contains(dependency.Predecessor.Id) ||
+                !plannedTaskProfileIds.Contains(dependency.Successor.Id))
+            {
+                continue;
+            }
+
+            edges.Add(new RunPlanGraphEdge(
+                dependency.Predecessor,
+                dependency.Successor,
+                dependency.DependencyKind,
+                dependency.DependencyCondition,
+                dependency.DataObject?.SqlIdentifier));
+        }
+
+        foreach (var resolution in model.TaskOrderingResolutionList.Where(static item => IsActive(item.Status)))
+        {
+            if (!plannedTaskProfileIds.Contains(resolution.Predecessor.Id) ||
+                !plannedTaskProfileIds.Contains(resolution.Successor.Id))
+            {
+                continue;
+            }
+
+            edges.Add(new RunPlanGraphEdge(
+                resolution.Predecessor,
+                resolution.Successor,
+                resolution.ResolutionKind,
+                resolution.DependencyCondition,
+                resolution.DataObject?.SqlIdentifier));
+        }
+
+        return edges
+            .OrderBy(static item => FormatGraphTaskName(item.Predecessor), StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static item => FormatGraphTaskName(item.Successor), StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static item => item.Kind, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static item => item.Condition, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(static item => item.ObjectSqlIdentifier ?? string.Empty, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    private static string FormatGraphEdgeLabel(RunPlanGraphEdge edge)
+    {
+        var label = $"{edge.Condition}/{edge.Kind}";
+        return string.IsNullOrWhiteSpace(edge.ObjectSqlIdentifier)
+            ? label
+            : $"{label}/{edge.ObjectSqlIdentifier}";
+    }
+
+    private static string FormatGraphTaskName(MO.TaskAccessProfile task) =>
+        $"{task.PipelineReference.Name}.{task.TaskName}";
+
+    private static string FormatGraphTaskName(MO.PlannedTask plannedTask) =>
+        FormatGraphTaskName(plannedTask.TaskAccessProfile);
 
     private static Task<int> RunCommandWithHelpAsync(
         string[] args,
@@ -1060,6 +1170,13 @@ internal static partial class Program
         Presenter.WriteFailure(message, renderedDetails);
         return exitCode;
     }
+
+    private sealed record RunPlanGraphEdge(
+        MO.TaskAccessProfile Predecessor,
+        MO.TaskAccessProfile Successor,
+        string Kind,
+        string Condition,
+        string? ObjectSqlIdentifier);
 
     private sealed record ParsedInferArgs(
         bool Ok,

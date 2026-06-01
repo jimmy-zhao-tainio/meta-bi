@@ -1774,6 +1774,7 @@ Usage:
 Commands:
 
   execute             Execute a modeled pipeline's serial task chain.
+  execute-worker      Execute a modeled pipeline under an orchestration worker protocol.
   execute-step        Execute one modeled transform-backed pipeline step.
   execute-sqlserver   Execute the direct SQL Server runtime slice.
   create-pipeline-db  Create or update the MetaPipeline operational DB.
@@ -1829,6 +1830,45 @@ Examples:
   meta-pipeline execute --workspace .\PipelineWS --pipeline CustomerLoad --transform-workspace .\TransformWS --binding-workspace .\BindingWS
 ```
 
+### `meta-pipeline execute-worker --help`
+
+```text
+Command: execute-worker
+Usage:
+  meta-pipeline execute-worker --workspace <path> --pipeline <name> --transform-workspace <path>
+  --binding-workspace <path> --control-pipe <name> [--data-type-conversion-workspace <path>]
+  [--pipeline-db-connection-env <name>]
+
+Options:
+
+  --workspace <path>                       Required. MetaPipeline workspace that contains the
+                                           modeled serial task chain.
+  --pipeline <name>                        Required. Pipeline name to execute as a worker.
+  --transform-workspace <path>             Required. MetaTransformScript workspace used by transform
+                                           tasks.
+  --binding-workspace <path>               Required. MetaTransformBinding workspace used by
+                                           transform tasks.
+  --control-pipe <name>                    Required. Named pipe used for orchestration worker
+                                           control messages.
+  --data-type-conversion-workspace <path>  Optional conversion policy workspace; omitted uses the
+                                           built-in defaults.
+  --pipeline-db-connection-env <name>      Optional shell-visible environment variable for an
+                                           initialized MetaPipeline operational DB.
+
+Notes:
+  This command is an orchestration worker boundary, not an interactive user surface.
+  The process loads the whole modeled pipeline once and preserves that pipeline context.
+  It uses the named pipe control channel for typed WorkerOnline/WorkerReady/PipelineStarted/TaskReady events and StartPipeline, GrantTask, StopPipeline, or FailPipeline commands.
+  The worker waits for StartPipeline before it emits PipelineStarted or any TaskReady task boundary.
+  stdout and stderr are diagnostics only; they are not the worker control plane.
+  After TaskFailed it waits at the failed task boundary for retry, stop, or fail commands instead of advancing automatically.
+  MetaOrchestration owns cross-pipeline task synchronization; MetaPipeline owns in-process pipeline execution and operational DB evidence.
+
+Examples:
+
+  meta-pipeline execute-worker --workspace .\PipelineWS --pipeline CustomerLoad --transform-workspace .\TransformWS --binding-workspace .\BindingWS --control-pipe meta-worker-123
+```
+
 ### `meta-pipeline execute-step --help`
 
 ```text
@@ -1858,7 +1898,7 @@ Notes:
   SELECT-kind steps execute their paired InsertRows target write when modeled.
   Non-SELECT steps execute directly through the modeled execution connection.
   Connection references in the model name shell-visible environment variables.
-  This command is the task-grain runtime surface used by MetaOrchestration scheduling.
+  This command is a diagnostic/debugging surface. MetaOrchestration uses execute-worker so pipeline context is not erased between tasks.
 
 Examples:
 
@@ -2080,11 +2120,11 @@ Commands:
                            orchestration workspace.
   allow-concurrent-append  Allow concurrent execution for multiple Append effects on one object.
   set-lock-policy          Record scoped lock compatibility for one object/effect interaction.
-  refresh-run-plan         Refresh lock-aware topological run-plan rows in an orchestration
+  refresh-run-plan         Refresh lock-aware run-plan rows in an orchestration
                            workspace.
-  inspect-run-plan         Inspect planned task order.
-  execute                  Execute the current run plan by supervising meta-pipeline execute-step
-                           workers.
+  inspect-run-plan         Inspect the planned task dependency graph.
+  execute                  Execute the current run plan by coordinating meta-pipeline worker
+                           processes.
   help                     Show this help.
 
 Notes:
@@ -2109,7 +2149,7 @@ Options:
   --workspace <path>  Required. MetaOrchestration workspace to inspect.
 
 Notes:
-  Shows DAG, determinism, synchronization, dependency, effect, and issue summaries.
+  Shows DAG, determinism, synchronization, dependency, effect, retry-policy, and issue summaries.
 ```
 
 ### `meta-orchestration list-issues --help`
@@ -2246,7 +2286,7 @@ Options:
   --workspace <path>  Required. MetaOrchestration workspace to update.
 
 Notes:
-  Writes the run plan, planned tasks, and task locks into the existing orchestration workspace.
+  Writes the run plan, default run-plan retry policy assignment, planned tasks, and task locks into the existing orchestration workspace.
   The DAG must be complete and run-planning policy must resolve blocking determinism/synchronization issues.
   Execute refreshes the run plan automatically; this command is for preflight and inspection workflows.
 ```
@@ -2263,7 +2303,8 @@ Options:
   --workspace <path>  Required. MetaOrchestration workspace to inspect.
 
 Notes:
-  Shows the run-plan shape as a compact tree.
+  Shows the task dependency graph as an adjacency list.
+  The graph is printed from dependency rows, not from planned-task order.
   Use issue/policy inspection commands when you need the reasoning behind the plan.
 ```
 
@@ -2275,29 +2316,38 @@ Usage:
   meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace
   <path> --binding-workspace <path> [--data-type-conversion-workspace <path>]
   [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>]
+  [--run-artifacts-root <path>] [--worker-event-timeout-seconds <n>]
 
 Options:
 
   --workspace <path>                       Required. MetaOrchestration workspace containing the
                                            analysis and run-plan rows.
   --pipeline-workspace <path>              Required. MetaPipeline workspace used by child
-                                           execute-step workers.
+                                           pipeline workers.
   --transform-workspace <path>             Required. MetaTransformScript workspace used by child
-                                           execute-step workers.
+                                           pipeline workers.
   --binding-workspace <path>               Required. MetaTransformBinding workspace used by child
-                                           execute-step workers.
+                                           pipeline workers.
   --data-type-conversion-workspace <path>  Optional conversion policy workspace passed to child
                                            workers.
   --pipeline-db-connection-env <name>      Optional operational DB connection env passed to child
                                            workers.
-  --max-degree-of-parallelism <n>          Maximum concurrent child meta-pipeline workers. Default:
-                                           1.
+  --max-degree-of-parallelism <n>          Maximum concurrently granted pipeline tasks. Default: 1.
+  --run-artifacts-root <path>              Optional operational root for run journals, worker
+                                           logs, and workspace execution leases.
+  --worker-event-timeout-seconds <n>       Optional fail-safe timeout for silent worker protocol
+                                           periods. Default: 1800.
 
 Notes:
   Refreshes run-plan rows from current workspace state, then executes the run plan.
-  Each planned task is run by launching meta-pipeline execute-step.
+  Each MetaPipeline pipeline is launched once as a worker with a named pipe control channel.
+  Orchestration sends StartPipeline after WorkerReady, before any task grants.
+  Orchestration grants TaskReady work or stops a worker at a blocked task.
+  Workers parked at TaskReady do not count as silent; activation and running grants do.
+  Retry policy is read from modeled RetryPolicy/RetryPolicyFailureClass/RunPlanRetryPolicy rows, not from a command-line switch.
   Failed tasks block OnSuccess dependents, enable OnFailure branches, and leave unrelated paths running.
-  Task dependencies and locks define runtime eligibility; --max-degree-of-parallelism throttles child processes.
+  Task dependencies and locks define runtime eligibility; --max-degree-of-parallelism throttles concurrent task grants.
+  Execution takes an exclusive lease for the orchestration workspace; different workspaces may execute concurrently.
   MetaPipeline remains the owner of transform execution and operational DB evidence.
 ```
 

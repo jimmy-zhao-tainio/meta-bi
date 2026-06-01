@@ -66,6 +66,39 @@ internal static partial class Program
                 RunExecuteAsync),
             new CliCommandRoute(
                 new CliCommandDefinition(
+                    "execute-worker",
+                    "Execute a modeled pipeline under an orchestration worker protocol.",
+                    new[]
+                    {
+                        "meta-pipeline execute-worker --workspace <path> --pipeline <name> --transform-workspace <path> --binding-workspace <path> --control-pipe <name> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
+                    },
+                    new[]
+                    {
+                        new CliOptionDefinition("--workspace <path>", "Required. MetaPipeline workspace that contains the modeled serial task chain."),
+                        new CliOptionDefinition("--pipeline <name>", "Required. Pipeline name to execute as a worker."),
+                        new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace used by transform tasks."),
+                        new CliOptionDefinition("--binding-workspace <path>", "Required. MetaTransformBinding workspace used by transform tasks."),
+                        new CliOptionDefinition("--control-pipe <name>", "Required. Named pipe used for orchestration worker control messages."),
+                        new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
+                        new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional shell-visible environment variable for an initialized MetaPipeline operational DB.")
+                    },
+                    new[]
+                    {
+                        "This command is an orchestration worker boundary, not an interactive user surface.",
+                        "The process loads the whole modeled pipeline once and preserves that pipeline context.",
+                        "It uses the named pipe control channel for typed WorkerOnline/WorkerReady/PipelineStarted/TaskReady events and StartPipeline, GrantTask, StopPipeline, or FailPipeline commands.",
+                        "The worker waits for StartPipeline before it emits PipelineStarted or any TaskReady task boundary.",
+                        "stdout and stderr are diagnostics only; they are not the worker control plane.",
+                        "After TaskFailed it waits at the failed task boundary for retry, stop, or fail commands instead of advancing automatically.",
+                        "MetaOrchestration owns cross-pipeline task synchronization; MetaPipeline owns in-process pipeline execution and operational DB evidence."
+                    },
+                    new[]
+                    {
+                        "meta-pipeline execute-worker --workspace .\\PipelineWS --pipeline CustomerLoad --transform-workspace .\\TransformWS --binding-workspace .\\BindingWS --control-pipe meta-worker-123"
+                    }),
+                RunExecuteWorkerAsync),
+            new CliCommandRoute(
+                new CliCommandDefinition(
                     "execute-step",
                     "Execute one modeled transform-backed pipeline step.",
                     new[]
@@ -89,7 +122,7 @@ internal static partial class Program
                         "SELECT-kind steps execute their paired InsertRows target write when modeled.",
                         "Non-SELECT steps execute directly through the modeled execution connection.",
                         "Connection references in the model name shell-visible environment variables.",
-                        "This command is the task-grain runtime surface used by MetaOrchestration scheduling."
+                        "This command is a diagnostic/debugging surface. MetaOrchestration uses execute-worker so pipeline context is not erased between tasks."
                     },
                     new[]
                     {
@@ -329,6 +362,8 @@ internal static partial class Program
     private static void PrintExecuteHelp() => PrintCommandHelp("execute");
 
     private static void PrintExecuteStepHelp() => PrintCommandHelp("execute-step");
+
+    private static void PrintExecuteWorkerHelp() => PrintCommandHelp("execute-worker");
 
     private static void PrintExecuteSqlServerHelp() => PrintCommandHelp("execute-sqlserver");
 

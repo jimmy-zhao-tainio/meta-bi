@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\MetaOrchestration\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\Core\MetaPipeline.Core.csproj" />
     <ProjectReference Include="..\Tooling\MetaPipeline.Tooling.csproj" />
   </ItemGroup>

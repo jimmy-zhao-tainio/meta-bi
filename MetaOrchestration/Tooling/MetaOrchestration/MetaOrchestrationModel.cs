@@ -48,7 +48,13 @@ namespace MetaOrchestration
 
         public List<PlannedTaskLock> PlannedTaskLockList { get; set; } = new();
 
+        public List<RetryPolicy> RetryPolicyList { get; set; } = new();
+
+        public List<RetryPolicyFailureClass> RetryPolicyFailureClassList { get; set; } = new();
+
         public List<RunPlan> RunPlanList { get; set; } = new();
+
+        public List<RunPlanRetryPolicy> RunPlanRetryPolicyList { get; set; } = new();
 
         public List<TaskAccessProfile> TaskAccessProfileList { get; set; } = new();
 
@@ -284,6 +290,28 @@ namespace MetaOrchestration
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(plannedTaskLockShardPath, SerializePlannedTaskLockShard(model, saveIndexes));
             }
 
+            model.RetryPolicyList ??= new List<RetryPolicy>();
+            var retryPolicyShardPath = Path.Combine(instanceDirectoryPath, "RetryPolicy.xml");
+            if (model.RetryPolicyList.Count == 0)
+            {
+                DeleteIfExists(retryPolicyShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(retryPolicyShardPath, SerializeRetryPolicyShard(model, saveIndexes));
+            }
+
+            model.RetryPolicyFailureClassList ??= new List<RetryPolicyFailureClass>();
+            var retryPolicyFailureClassShardPath = Path.Combine(instanceDirectoryPath, "RetryPolicyFailureClass.xml");
+            if (model.RetryPolicyFailureClassList.Count == 0)
+            {
+                DeleteIfExists(retryPolicyFailureClassShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(retryPolicyFailureClassShardPath, SerializeRetryPolicyFailureClassShard(model, saveIndexes));
+            }
+
             model.RunPlanList ??= new List<RunPlan>();
             var runPlanShardPath = Path.Combine(instanceDirectoryPath, "RunPlan.xml");
             if (model.RunPlanList.Count == 0)
@@ -293,6 +321,17 @@ namespace MetaOrchestration
             else
             {
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(runPlanShardPath, SerializeRunPlanShard(model, saveIndexes));
+            }
+
+            model.RunPlanRetryPolicyList ??= new List<RunPlanRetryPolicy>();
+            var runPlanRetryPolicyShardPath = Path.Combine(instanceDirectoryPath, "RunPlanRetryPolicy.xml");
+            if (model.RunPlanRetryPolicyList.Count == 0)
+            {
+                DeleteIfExists(runPlanRetryPolicyShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(runPlanRetryPolicyShardPath, SerializeRunPlanRetryPolicyShard(model, saveIndexes));
             }
 
             model.TaskAccessProfileList ??= new List<TaskAccessProfile>();
@@ -396,8 +435,17 @@ namespace MetaOrchestration
                     case "PlannedTaskLockList":
                         LoadPlannedTaskLockList(model, reader, loadState, relationshipBuffers);
                         break;
+                    case "RetryPolicyList":
+                        LoadRetryPolicyList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "RetryPolicyFailureClassList":
+                        LoadRetryPolicyFailureClassList(model, reader, loadState, relationshipBuffers);
+                        break;
                     case "RunPlanList":
                         LoadRunPlanList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "RunPlanRetryPolicyList":
+                        LoadRunPlanRetryPolicyList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "TaskAccessProfileList":
                         LoadTaskAccessProfileList(model, reader, loadState, relationshipBuffers);
@@ -1951,6 +1999,282 @@ namespace MetaOrchestration
             return Utf8NoBom.GetBytes(builder.ToString());
         }
 
+        private static void LoadRetryPolicyList(MetaOrchestrationModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("RetryPolicyList");
+                return;
+            }
+
+            reader.ReadStartElement("RetryPolicyList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "RetryPolicy", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'RetryPolicyList'.");
+                }
+                var row = ReadRetryPolicy(reader, relationshipBuffers);
+                loadState.AddRetryPolicyId(row.Id);
+                model.RetryPolicyList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static RetryPolicy ReadRetryPolicy(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new RetryPolicy();
+            var relationships = new RetryPolicyRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "OrchestrationPlanId":
+                            relationships.OrchestrationPlanId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RetryPolicy'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("RetryPolicy");
+                (relationshipBuffers.RetryPolicyRelationships ??= new List<RetryPolicyRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("RetryPolicy");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "BackoffMultiplier":
+                        row.BackoffMultiplier = reader.ReadElementContentAsString();
+                        break;
+                    case "InitialDelayMilliseconds":
+                        row.InitialDelayMilliseconds = reader.ReadElementContentAsString();
+                        break;
+                    case "MaxAttempts":
+                        row.MaxAttempts = reader.ReadElementContentAsString();
+                        break;
+                    case "MaxDelayMilliseconds":
+                        row.MaxDelayMilliseconds = reader.ReadElementContentAsString();
+                        break;
+                    case "Name":
+                        row.Name = reader.ReadElementContentAsString();
+                        break;
+                    case "PolicyKind":
+                        row.PolicyKind = reader.ReadElementContentAsString();
+                        break;
+                    case "Reason":
+                        row.Reason = reader.ReadElementContentAsString();
+                        break;
+                    case "RetryReadOnlyTasksByDefault":
+                        row.RetryReadOnlyTasksByDefault = reader.ReadElementContentAsString();
+                        break;
+                    case "RetryWriteTasksByDefault":
+                        row.RetryWriteTasksByDefault = reader.ReadElementContentAsString();
+                        break;
+                    case "Status":
+                        row.Status = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'RetryPolicy'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.RetryPolicyRelationships ??= new List<RetryPolicyRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeRetryPolicyShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaOrchestration>\n");
+            builder.Append("  <RetryPolicyList>\n");
+            foreach (var row in model.RetryPolicyList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'RetryPolicy' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'RetryPolicy' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <RetryPolicy Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var orchestrationPlanId = RequireIdentity(row.OrchestrationPlan?.Id, $"Relationship 'RetryPolicy.OrchestrationPlanId' on row 'RetryPolicy:{row.Id}' is empty.");
+                if (!saveIndexes.OrchestrationPlanListById.TryGetValue(orchestrationPlanId, out var orchestrationPlanCanonical) || !ReferenceEquals(orchestrationPlanCanonical, row.OrchestrationPlan))
+                {
+                    throw new InvalidOperationException($"Relationship 'RetryPolicy.OrchestrationPlanId' on row 'RetryPolicy:{row.Id}' references an object that is not the canonical row for Id '{orchestrationPlanId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("OrchestrationPlanId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, orchestrationPlanId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "BackoffMultiplier", RequireText(row.BackoffMultiplier, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'BackoffMultiplier'."), "      ");
+                AppendElement(builder, "InitialDelayMilliseconds", RequireText(row.InitialDelayMilliseconds, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'InitialDelayMilliseconds'."), "      ");
+                AppendElement(builder, "MaxAttempts", RequireText(row.MaxAttempts, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'MaxAttempts'."), "      ");
+                AppendElement(builder, "MaxDelayMilliseconds", RequireText(row.MaxDelayMilliseconds, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'MaxDelayMilliseconds'."), "      ");
+                AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'Name'."), "      ");
+                AppendElement(builder, "PolicyKind", RequireText(row.PolicyKind, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'PolicyKind'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.Reason))
+                {
+                    AppendElement(builder, "Reason", row.Reason!, "      ");
+                }
+                AppendElement(builder, "RetryReadOnlyTasksByDefault", RequireText(row.RetryReadOnlyTasksByDefault, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'RetryReadOnlyTasksByDefault'."), "      ");
+                AppendElement(builder, "RetryWriteTasksByDefault", RequireText(row.RetryWriteTasksByDefault, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'RetryWriteTasksByDefault'."), "      ");
+                AppendElement(builder, "Status", RequireText(row.Status, $"Entity 'RetryPolicy' row '{row.Id}' is missing required property 'Status'."), "      ");
+                builder.Append("    </RetryPolicy>\n");
+            }
+            builder.Append("  </RetryPolicyList>\n");
+            builder.Append("</MetaOrchestration>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadRetryPolicyFailureClassList(MetaOrchestrationModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("RetryPolicyFailureClassList");
+                return;
+            }
+
+            reader.ReadStartElement("RetryPolicyFailureClassList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "RetryPolicyFailureClass", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'RetryPolicyFailureClassList'.");
+                }
+                var row = ReadRetryPolicyFailureClass(reader, relationshipBuffers);
+                loadState.AddRetryPolicyFailureClassId(row.Id);
+                model.RetryPolicyFailureClassList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static RetryPolicyFailureClass ReadRetryPolicyFailureClass(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new RetryPolicyFailureClass();
+            var relationships = new RetryPolicyFailureClassRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "RetryPolicyId":
+                            relationships.RetryPolicyId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RetryPolicyFailureClass'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("RetryPolicyFailureClass");
+                (relationshipBuffers.RetryPolicyFailureClassRelationships ??= new List<RetryPolicyFailureClassRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("RetryPolicyFailureClass");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "FailureClass":
+                        row.FailureClass = reader.ReadElementContentAsString();
+                        break;
+                    case "Reason":
+                        row.Reason = reader.ReadElementContentAsString();
+                        break;
+                    case "RetryBehavior":
+                        row.RetryBehavior = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'RetryPolicyFailureClass'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.RetryPolicyFailureClassRelationships ??= new List<RetryPolicyFailureClassRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeRetryPolicyFailureClassShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaOrchestration>\n");
+            builder.Append("  <RetryPolicyFailureClassList>\n");
+            foreach (var row in model.RetryPolicyFailureClassList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'RetryPolicyFailureClass' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'RetryPolicyFailureClass' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <RetryPolicyFailureClass Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var retryPolicyId = RequireIdentity(row.RetryPolicy?.Id, $"Relationship 'RetryPolicyFailureClass.RetryPolicyId' on row 'RetryPolicyFailureClass:{row.Id}' is empty.");
+                if (!saveIndexes.RetryPolicyListById.TryGetValue(retryPolicyId, out var retryPolicyCanonical) || !ReferenceEquals(retryPolicyCanonical, row.RetryPolicy))
+                {
+                    throw new InvalidOperationException($"Relationship 'RetryPolicyFailureClass.RetryPolicyId' on row 'RetryPolicyFailureClass:{row.Id}' references an object that is not the canonical row for Id '{retryPolicyId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("RetryPolicyId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, retryPolicyId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "FailureClass", RequireText(row.FailureClass, $"Entity 'RetryPolicyFailureClass' row '{row.Id}' is missing required property 'FailureClass'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.Reason))
+                {
+                    AppendElement(builder, "Reason", row.Reason!, "      ");
+                }
+                AppendElement(builder, "RetryBehavior", RequireText(row.RetryBehavior, $"Entity 'RetryPolicyFailureClass' row '{row.Id}' is missing required property 'RetryBehavior'."), "      ");
+                builder.Append("    </RetryPolicyFailureClass>\n");
+            }
+            builder.Append("  </RetryPolicyFailureClassList>\n");
+            builder.Append("</MetaOrchestration>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
         private static void LoadRunPlanList(MetaOrchestrationModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
         {
             if (reader.IsEmptyElement)
@@ -2071,6 +2395,139 @@ namespace MetaOrchestration
                 builder.Append("    </RunPlan>\n");
             }
             builder.Append("  </RunPlanList>\n");
+            builder.Append("</MetaOrchestration>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadRunPlanRetryPolicyList(MetaOrchestrationModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("RunPlanRetryPolicyList");
+                return;
+            }
+
+            reader.ReadStartElement("RunPlanRetryPolicyList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "RunPlanRetryPolicy", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'RunPlanRetryPolicyList'.");
+                }
+                var row = ReadRunPlanRetryPolicy(reader, relationshipBuffers);
+                loadState.AddRunPlanRetryPolicyId(row.Id);
+                model.RunPlanRetryPolicyList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static RunPlanRetryPolicy ReadRunPlanRetryPolicy(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new RunPlanRetryPolicy();
+            var relationships = new RunPlanRetryPolicyRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "RetryPolicyId":
+                            relationships.RetryPolicyId = reader.Value;
+                            break;
+                        case "RunPlanId":
+                            relationships.RunPlanId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'RunPlanRetryPolicy'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("RunPlanRetryPolicy");
+                (relationshipBuffers.RunPlanRetryPolicyRelationships ??= new List<RunPlanRetryPolicyRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("RunPlanRetryPolicy");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "PolicyRole":
+                        row.PolicyRole = reader.ReadElementContentAsString();
+                        break;
+                    case "Reason":
+                        row.Reason = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'RunPlanRetryPolicy'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.RunPlanRetryPolicyRelationships ??= new List<RunPlanRetryPolicyRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeRunPlanRetryPolicyShard(MetaOrchestrationModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaOrchestration>\n");
+            builder.Append("  <RunPlanRetryPolicyList>\n");
+            foreach (var row in model.RunPlanRetryPolicyList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'RunPlanRetryPolicy' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'RunPlanRetryPolicy' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <RunPlanRetryPolicy Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var retryPolicyId = RequireIdentity(row.RetryPolicy?.Id, $"Relationship 'RunPlanRetryPolicy.RetryPolicyId' on row 'RunPlanRetryPolicy:{row.Id}' is empty.");
+                if (!saveIndexes.RetryPolicyListById.TryGetValue(retryPolicyId, out var retryPolicyCanonical) || !ReferenceEquals(retryPolicyCanonical, row.RetryPolicy))
+                {
+                    throw new InvalidOperationException($"Relationship 'RunPlanRetryPolicy.RetryPolicyId' on row 'RunPlanRetryPolicy:{row.Id}' references an object that is not the canonical row for Id '{retryPolicyId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("RetryPolicyId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, retryPolicyId);
+                builder.Append('"');
+                var runPlanId = RequireIdentity(row.RunPlan?.Id, $"Relationship 'RunPlanRetryPolicy.RunPlanId' on row 'RunPlanRetryPolicy:{row.Id}' is empty.");
+                if (!saveIndexes.RunPlanListById.TryGetValue(runPlanId, out var runPlanCanonical) || !ReferenceEquals(runPlanCanonical, row.RunPlan))
+                {
+                    throw new InvalidOperationException($"Relationship 'RunPlanRetryPolicy.RunPlanId' on row 'RunPlanRetryPolicy:{row.Id}' references an object that is not the canonical row for Id '{runPlanId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("RunPlanId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, runPlanId);
+                builder.Append('"');
+                builder.Append(">\n");
+                AppendElement(builder, "PolicyRole", RequireText(row.PolicyRole, $"Entity 'RunPlanRetryPolicy' row '{row.Id}' is missing required property 'PolicyRole'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.Reason))
+                {
+                    AppendElement(builder, "Reason", row.Reason!, "      ");
+                }
+                builder.Append("    </RunPlanRetryPolicy>\n");
+            }
+            builder.Append("  </RunPlanRetryPolicyList>\n");
             builder.Append("</MetaOrchestration>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -2798,10 +3255,29 @@ namespace MetaOrchestration
             public string TaskObjectEffectId { get; set; } = string.Empty;
         }
 
+        private sealed class RetryPolicyRelationships
+        {
+            public RetryPolicy Row { get; set; } = null!;
+            public string OrchestrationPlanId { get; set; } = string.Empty;
+        }
+
+        private sealed class RetryPolicyFailureClassRelationships
+        {
+            public RetryPolicyFailureClass Row { get; set; } = null!;
+            public string RetryPolicyId { get; set; } = string.Empty;
+        }
+
         private sealed class RunPlanRelationships
         {
             public RunPlan Row { get; set; } = null!;
             public string OrchestrationPlanId { get; set; } = string.Empty;
+        }
+
+        private sealed class RunPlanRetryPolicyRelationships
+        {
+            public RunPlanRetryPolicy Row { get; set; } = null!;
+            public string RetryPolicyId { get; set; } = string.Empty;
+            public string RunPlanId { get; set; } = string.Empty;
         }
 
         private sealed class TaskAccessProfileRelationships
@@ -2848,7 +3324,10 @@ namespace MetaOrchestration
             public List<PipelineReferenceRelationships>? PipelineReferenceRelationships { get; set; }
             public List<PlannedTaskRelationships>? PlannedTaskRelationships { get; set; }
             public List<PlannedTaskLockRelationships>? PlannedTaskLockRelationships { get; set; }
+            public List<RetryPolicyRelationships>? RetryPolicyRelationships { get; set; }
+            public List<RetryPolicyFailureClassRelationships>? RetryPolicyFailureClassRelationships { get; set; }
             public List<RunPlanRelationships>? RunPlanRelationships { get; set; }
+            public List<RunPlanRetryPolicyRelationships>? RunPlanRetryPolicyRelationships { get; set; }
             public List<TaskAccessProfileRelationships>? TaskAccessProfileRelationships { get; set; }
             public List<TaskDependencyRelationships>? TaskDependencyRelationships { get; set; }
             public List<TaskObjectEffectRelationships>? TaskObjectEffectRelationships { get; set; }
@@ -3093,6 +3572,26 @@ namespace MetaOrchestration
                     "TaskObjectEffectId");
             }
 
+            foreach (var relationship in relationshipBuffers.RetryPolicyRelationships ?? Enumerable.Empty<RetryPolicyRelationships>())
+            {
+                relationship.Row.OrchestrationPlan = RequireTarget(
+                    loadIndexes.OrchestrationPlanListById,
+                    relationship.OrchestrationPlanId,
+                    "RetryPolicy",
+                    relationship.Row.Id,
+                    "OrchestrationPlanId");
+            }
+
+            foreach (var relationship in relationshipBuffers.RetryPolicyFailureClassRelationships ?? Enumerable.Empty<RetryPolicyFailureClassRelationships>())
+            {
+                relationship.Row.RetryPolicy = RequireTarget(
+                    loadIndexes.RetryPolicyListById,
+                    relationship.RetryPolicyId,
+                    "RetryPolicyFailureClass",
+                    relationship.Row.Id,
+                    "RetryPolicyId");
+            }
+
             foreach (var relationship in relationshipBuffers.RunPlanRelationships ?? Enumerable.Empty<RunPlanRelationships>())
             {
                 relationship.Row.OrchestrationPlan = RequireTarget(
@@ -3101,6 +3600,26 @@ namespace MetaOrchestration
                     "RunPlan",
                     relationship.Row.Id,
                     "OrchestrationPlanId");
+            }
+
+            foreach (var relationship in relationshipBuffers.RunPlanRetryPolicyRelationships ?? Enumerable.Empty<RunPlanRetryPolicyRelationships>())
+            {
+                relationship.Row.RetryPolicy = RequireTarget(
+                    loadIndexes.RetryPolicyListById,
+                    relationship.RetryPolicyId,
+                    "RunPlanRetryPolicy",
+                    relationship.Row.Id,
+                    "RetryPolicyId");
+            }
+
+            foreach (var relationship in relationshipBuffers.RunPlanRetryPolicyRelationships ?? Enumerable.Empty<RunPlanRetryPolicyRelationships>())
+            {
+                relationship.Row.RunPlan = RequireTarget(
+                    loadIndexes.RunPlanListById,
+                    relationship.RunPlanId,
+                    "RunPlanRetryPolicy",
+                    relationship.Row.Id,
+                    "RunPlanId");
             }
 
             foreach (var relationship in relationshipBuffers.TaskAccessProfileRelationships ?? Enumerable.Empty<TaskAccessProfileRelationships>())
@@ -3145,6 +3664,10 @@ namespace MetaOrchestration
                     "PredecessorId");
             }
 
+        }
+
+        private static void ResolveRelationshipGroup2(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
+        {
             foreach (var relationship in relationshipBuffers.TaskDependencyRelationships ?? Enumerable.Empty<TaskDependencyRelationships>())
             {
                 relationship.Row.Successor = RequireTarget(
@@ -3187,10 +3710,6 @@ namespace MetaOrchestration
                         "DataObjectId");
             }
 
-        }
-
-        private static void ResolveRelationshipGroup2(LoadIndexes loadIndexes, RelationshipBuffers relationshipBuffers)
-        {
             foreach (var relationship in relationshipBuffers.TaskOrderingResolutionRelationships ?? Enumerable.Empty<TaskOrderingResolutionRelationships>())
             {
                 relationship.Row.DependencyIssue = string.IsNullOrWhiteSpace(relationship.DependencyIssueId)
@@ -3248,7 +3767,10 @@ namespace MetaOrchestration
             "PipelineReference.xml",
             "PlannedTask.xml",
             "PlannedTaskLock.xml",
+            "RetryPolicy.xml",
+            "RetryPolicyFailureClass.xml",
             "RunPlan.xml",
+            "RunPlanRetryPolicy.xml",
             "TaskAccessProfile.xml",
             "TaskDependency.xml",
             "TaskObjectEffect.xml",
@@ -3400,6 +3922,30 @@ namespace MetaOrchestration
                 }
             }
 
+            private HashSet<string>? retryPolicyIds;
+
+            public void AddRetryPolicyId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'RetryPolicy' contains a row with empty Id.");
+                retryPolicyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!retryPolicyIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'RetryPolicy' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? retryPolicyFailureClassIds;
+
+            public void AddRetryPolicyFailureClassId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'RetryPolicyFailureClass' contains a row with empty Id.");
+                retryPolicyFailureClassIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!retryPolicyFailureClassIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'RetryPolicyFailureClass' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
             private HashSet<string>? runPlanIds;
 
             public void AddRunPlanId(string? id)
@@ -3409,6 +3955,18 @@ namespace MetaOrchestration
                 if (!runPlanIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'RunPlan' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? runPlanRetryPolicyIds;
+
+            public void AddRunPlanRetryPolicyId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'RunPlanRetryPolicy' contains a row with empty Id.");
+                runPlanRetryPolicyIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!runPlanRetryPolicyIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'RunPlanRetryPolicy' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -3515,9 +4073,21 @@ namespace MetaOrchestration
 
             public Dictionary<string, PlannedTaskLock> PlannedTaskLockListById => plannedTaskLockListById ??= BuildById(model.PlannedTaskLockList, row => row.Id, "PlannedTaskLock");
 
+            private Dictionary<string, RetryPolicy>? retryPolicyListById;
+
+            public Dictionary<string, RetryPolicy> RetryPolicyListById => retryPolicyListById ??= BuildById(model.RetryPolicyList, row => row.Id, "RetryPolicy");
+
+            private Dictionary<string, RetryPolicyFailureClass>? retryPolicyFailureClassListById;
+
+            public Dictionary<string, RetryPolicyFailureClass> RetryPolicyFailureClassListById => retryPolicyFailureClassListById ??= BuildById(model.RetryPolicyFailureClassList, row => row.Id, "RetryPolicyFailureClass");
+
             private Dictionary<string, RunPlan>? runPlanListById;
 
             public Dictionary<string, RunPlan> RunPlanListById => runPlanListById ??= BuildById(model.RunPlanList, row => row.Id, "RunPlan");
+
+            private Dictionary<string, RunPlanRetryPolicy>? runPlanRetryPolicyListById;
+
+            public Dictionary<string, RunPlanRetryPolicy> RunPlanRetryPolicyListById => runPlanRetryPolicyListById ??= BuildById(model.RunPlanRetryPolicyList, row => row.Id, "RunPlanRetryPolicy");
 
             private Dictionary<string, TaskAccessProfile>? taskAccessProfileListById;
 
@@ -3590,9 +4160,21 @@ namespace MetaOrchestration
 
             public Dictionary<string, PlannedTaskLock> PlannedTaskLockListById => plannedTaskLockListById ??= BuildById(model.PlannedTaskLockList, row => row.Id, "PlannedTaskLock");
 
+            private Dictionary<string, RetryPolicy>? retryPolicyListById;
+
+            public Dictionary<string, RetryPolicy> RetryPolicyListById => retryPolicyListById ??= BuildById(model.RetryPolicyList, row => row.Id, "RetryPolicy");
+
+            private Dictionary<string, RetryPolicyFailureClass>? retryPolicyFailureClassListById;
+
+            public Dictionary<string, RetryPolicyFailureClass> RetryPolicyFailureClassListById => retryPolicyFailureClassListById ??= BuildById(model.RetryPolicyFailureClassList, row => row.Id, "RetryPolicyFailureClass");
+
             private Dictionary<string, RunPlan>? runPlanListById;
 
             public Dictionary<string, RunPlan> RunPlanListById => runPlanListById ??= BuildById(model.RunPlanList, row => row.Id, "RunPlan");
+
+            private Dictionary<string, RunPlanRetryPolicy>? runPlanRetryPolicyListById;
+
+            public Dictionary<string, RunPlanRetryPolicy> RunPlanRetryPolicyListById => runPlanRetryPolicyListById ??= BuildById(model.RunPlanRetryPolicyList, row => row.Id, "RunPlanRetryPolicy");
 
             private Dictionary<string, TaskAccessProfile>? taskAccessProfileListById;
 
@@ -3756,12 +4338,49 @@ namespace MetaOrchestration
                 return true;
             }
 
+            if (HasUnexpectedProperties(typeof(RetryPolicy),
+                "Id",
+                "BackoffMultiplier",
+                "InitialDelayMilliseconds",
+                "MaxAttempts",
+                "MaxDelayMilliseconds",
+                "Name",
+                "PolicyKind",
+                "Reason",
+                "RetryReadOnlyTasksByDefault",
+                "RetryWriteTasksByDefault",
+                "Status",
+                "OrchestrationPlan"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(RetryPolicyFailureClass),
+                "Id",
+                "FailureClass",
+                "Reason",
+                "RetryBehavior",
+                "RetryPolicy"))
+            {
+                return true;
+            }
+
             if (HasUnexpectedProperties(typeof(RunPlan),
                 "Id",
                 "Name",
                 "Reason",
                 "RunPlanStatus",
                 "OrchestrationPlan"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(RunPlanRetryPolicy),
+                "Id",
+                "PolicyRole",
+                "Reason",
+                "RetryPolicy",
+                "RunPlan"))
             {
                 return true;
             }
@@ -3843,7 +4462,10 @@ namespace MetaOrchestration
                 "PipelineReferenceList",
                 "PlannedTaskList",
                 "PlannedTaskLockList",
+                "RetryPolicyList",
+                "RetryPolicyFailureClassList",
                 "RunPlanList",
+                "RunPlanRetryPolicyList",
                 "TaskAccessProfileList",
                 "TaskDependencyList",
                 "TaskObjectEffectList",

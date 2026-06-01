@@ -108,7 +108,10 @@ The policy and run-plan model records:
 
 - `TaskOrderingResolution`
 - `LockCompatibilityPolicy`
+- `RetryPolicy`
+- `RetryPolicyFailureClass`
 - `RunPlan`
+- `RunPlanRetryPolicy`
 - `PlannedTask`
 - `PlannedTaskLock`
 
@@ -140,19 +143,26 @@ These policies affect run planning only. They do not create data dependencies an
 
 `AllowConcurrent` is currently accepted only for `Append`/`Append`. Other same-object interactions can be explicitly serialized, but concurrent keyed-upsert or mutation allowance needs a stronger modeled safety contract first.
 
+`RetryPolicy` records orchestration retry truth for a plan. It names the policy kind, attempt budget, delay/backoff values, whether read-only and write-effecting tasks are retry-safe by default, status, and reason.
+
+`RetryPolicyFailureClass` records which failure classes the policy may retry. A failure class omitted from the policy is not retryable by that policy.
+
+`RunPlanRetryPolicy` assigns the default retry policy to a run plan. Retry policy is not a CLI-only runtime knob; execution resolves it from the orchestration workspace after refreshing the run plan.
+
 ## Run Planning
 
-`refresh-run-plan` builds a lock-aware topological plan from `TaskDependency`, active `TaskOrderingResolution` rows, `TaskObjectEffect.LockMode`, and active `LockCompatibilityPolicy` rows.
+`refresh-run-plan` writes lock-aware run-plan rows from declared task access profiles, `TaskObjectEffect.LockMode`, and active `LockCompatibilityPolicy` rows. It does not dependency-order the tasks. `TaskDependency` and active `TaskOrderingResolution` rows remain graph edges that execution evaluates at runtime.
 
 The run-plan builder:
 
 - requires `DagStatus=Complete`
 - fails when any issue still blocks the DAG
 - fails when determinism or synchronization policy is still required
-- respects intra-pipeline serial task edges
-- respects cross-pipeline producer-to-consumer task edges
-- writes `RunPlan`, dependency-ordered `PlannedTask` rows, and per-task `PlannedTaskLock` rows
+- preserves dependency edges as runtime graph constraints
+- writes `RunPlan`, default `RunPlanRetryPolicy`, stable `PlannedTask` rows, and per-task `PlannedTaskLock` rows
 - records reasons on planned tasks and locks, including lock policy source when a policy applies
+
+If a plan has no active `RetryPolicy`, run planning creates a conservative `DefaultRetryPolicy`: three attempts, bounded exponential backoff, retry for read-only tasks by default, no write-task retry by default, and transient failure classes such as SQL/connectivity failures and retryable worker-reported failures. If more than one active retry policy exists for the plan, run planning fails until the policy is made unambiguous.
 
 The initial lock compatibility is conservative:
 
@@ -162,11 +172,15 @@ The initial lock compatibility is conservative:
 
 ## Execution
 
-`execute` refreshes deterministic run-plan rows from the current orchestration workspace state, then consumes those rows. It does not infer SQL access, bind SQL, or execute pipeline logic itself. It repeatedly starts ready `PlannedTask` rows whose dependency conditions are satisfied and whose planned locks are compatible with currently running tasks, launching `meta-pipeline execute-step` workers up to `--max-degree-of-parallelism`.
+`execute` takes an exclusive execution lease for the orchestration workspace, refreshes deterministic run-plan rows from the current orchestration workspace state, then consumes those rows. It does not infer SQL access, bind SQL, or execute pipeline logic itself. It launches one `meta-pipeline execute-worker` process per participating pipeline with a dedicated named pipe control channel, checks the worker's exact executable version, sends `StartPipeline` after `WorkerReady`, receives task `TaskReady` events only after `PipelineStarted`, grants only `PlannedTask` rows whose dependency conditions are satisfied and whose planned locks are compatible with currently running tasks, and stops a worker when its next serial pipeline task is blocked. `--max-degree-of-parallelism` limits concurrently granted tasks, not pipeline process count.
 
-Execution continues viable DAG paths by default. A failed task marks only that task failed; downstream `OnSuccess` branches are skipped as blocked, downstream `OnFailure` branches become eligible, and unrelated planned paths continue. An `OnFailure` branch after a successful predecessor is skipped as an unchosen branch rather than a run failure. The command returns nonzero when any task failed or any required success branch was blocked.
+`--worker-event-timeout-seconds` is a fail-safe for silent worker protocol periods. It does not apply while a worker is parked at `TaskReady` waiting for orchestration. It does apply during startup/activation and while a grant is running; activation silence is capped to a short startup window, and running-grant silence marks the active task failed/unknown before terminating the worker path.
 
-Failure handlers are not post-run action hooks. A handler pipeline is part of the same run plan and runs through `meta-pipeline execute-step` like any other planned task.
+Execution writes a local run journal, bounded worker log artifacts, and lease record under the configured run artifacts root, or under the default user-local `meta\orchestration` operational directory. These are operational evidence files, not modeled workspace metadata. Multiple `meta-orchestration` processes can execute different orchestration workspaces at the same time, but a second execution against the same workspace fails while the lease is active.
+
+Execution continues viable DAG paths by default. A failed task attempt is evaluated against the run-plan retry policy before it becomes a terminal task failure. When retry is allowed, orchestration releases the failed attempt's locks, records retry evidence, and sends a new `GrantTask` with a new grant id and incremented attempt number. When retry is not allowed, the task is marked failed and the pipeline worker path is closed. Downstream `OnSuccess` branches are blocked, downstream `OnFailure` branches become eligible, and unrelated planned paths continue. An `OnFailure` branch after a successful predecessor is treated as a non-selected branch rather than a run failure. The command returns nonzero when any task failed terminally or any required success branch was blocked.
+
+Failure handlers are not post-run action hooks. A handler pipeline is part of the same run plan and runs through the same pipeline-worker protocol as any other planned task.
 
 ## CLI
 
@@ -181,13 +195,13 @@ meta-orchestration allow-concurrent-append --workspace .\OrchestrationWS --objec
 meta-orchestration set-lock-policy --workspace .\OrchestrationWS --object dbo.Stage --left-effect Mutation --right-effect Mutation --behavior serialize --reason "Stage access should not overlap."
 meta-orchestration refresh-run-plan --workspace .\OrchestrationWS
 meta-orchestration inspect-run-plan --workspace .\OrchestrationWS
-meta-orchestration execute --workspace .\OrchestrationWS --pipeline-workspace .\PipelineWS --transform-workspace .\TransformWS --binding-workspace .\BindingWS --max-degree-of-parallelism 4
+meta-orchestration execute --workspace .\OrchestrationWS --pipeline-workspace .\PipelineWS --transform-workspace .\TransformWS --binding-workspace .\BindingWS --max-degree-of-parallelism 4 --run-artifacts-root .\TestRuns
 ```
 
 Workspace creation returns nonzero when `DagStatus` is `Invalid`, while still writing the orchestration workspace with issue rows. A complete DAG may still have determinism or synchronization issues that must be handled before automatic parallel run planning. `refresh-run-plan` returns nonzero until those policy gaps are resolved.
 
 ## Runtime Boundary
 
-The current runtime is process-based and local. It starts `meta-pipeline` child processes, but it does not yet own worker pools, distributed locks, calendars, retries, resumability, resource pools, or placement optimization.
+The current runtime is process-based and local. It starts `meta-pipeline` child processes, but those children are pipeline workers, not one-shot task processes. MetaPipeline preserves pipeline context inside the worker; MetaOrchestration owns cross-pipeline task synchronization through named-pipe worker events and grants. Local task-attempt retry after `TaskFailed` exists through modeled retry policy; worker-crash retry, heartbeat timeouts, worker pools, distributed locks, calendars, resumability, resource pools, and placement optimization remain future work.
 
-More runtime detail is captured in [META-ORCHESTRATION-EXECUTION.md](META-ORCHESTRATION-EXECUTION.md). The key boundary is that orchestration executes planned task-grain work by supervising `meta-pipeline execute-step` child processes. It should not duplicate MetaPipeline transform execution logic.
+More runtime detail is captured in [META-ORCHESTRATION-EXECUTION.md](META-ORCHESTRATION-EXECUTION.md). The key boundary is that orchestration executes planned task-grain work by coordinating `meta-pipeline execute-worker` child processes. It should not duplicate MetaPipeline transform execution logic.

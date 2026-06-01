@@ -124,6 +124,7 @@ internal static partial class Program
         string BindingWorkspacePath,
         string DataTypeConversionWorkspacePath,
         string PipelineDbConnectionEnvironmentVariableName,
+        string WorkerControlPipeName,
         string ErrorMessage) ParseExecutePipelineArgs(
         string[] args,
         int startIndex)
@@ -134,6 +135,7 @@ internal static partial class Program
         var bindingWorkspacePath = string.Empty;
         var dataTypeConversionWorkspacePath = string.Empty;
         var pipelineDbConnectionEnvironmentVariableName = string.Empty;
+        var workerControlPipeName = string.Empty;
 
         for (var i = startIndex; i < args.Length; i++)
         {
@@ -187,6 +189,14 @@ internal static partial class Program
                 continue;
             }
 
+            if (string.Equals(arg, "--control-pipe", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --control-pipe.");
+                if (!string.IsNullOrWhiteSpace(workerControlPipeName)) return FailParse("--control-pipe can only be provided once.");
+                workerControlPipeName = args[++i];
+                continue;
+            }
+
             return FailParse($"unknown option '{arg}'.");
         }
 
@@ -203,9 +213,10 @@ internal static partial class Program
             bindingWorkspacePath,
             dataTypeConversionWorkspacePath,
             pipelineDbConnectionEnvironmentVariableName,
+            workerControlPipeName,
             string.Empty);
 
-        (bool Ok, string PipelineWorkspacePath, string PipelineName, string TransformWorkspacePath, string BindingWorkspacePath, string DataTypeConversionWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string ErrorMessage) FailParse(string message)
+        (bool Ok, string PipelineWorkspacePath, string PipelineName, string TransformWorkspacePath, string BindingWorkspacePath, string DataTypeConversionWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string WorkerControlPipeName, string ErrorMessage) FailParse(string message)
         {
             return (
                 false,
@@ -215,6 +226,7 @@ internal static partial class Program
                 bindingWorkspacePath,
                 dataTypeConversionWorkspacePath,
                 pipelineDbConnectionEnvironmentVariableName,
+                workerControlPipeName,
                 message);
         }
     }

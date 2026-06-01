@@ -1,6 +1,8 @@
 using MetaTransform.Binding;
+using MetaTransformBinding;
 using MetaTransformScript;
 using MetaTransformScript.Sql;
+using MS = MetaSchema;
 
 public sealed class StoredProcedureSupportTests
 {
@@ -220,6 +222,64 @@ public sealed class StoredProcedureSupportTests
     }
 
     [Fact]
+    public async Task BindingWorkspace_ScopesStoredProcedureDeclaredColumnsPerOperationRowset()
+    {
+        var root = CreateTempRoot();
+        var transformWorkspacePath = Path.Combine(root, "TransformWS");
+        var schemaWorkspacePath = Path.Combine(root, "SchemaWS");
+        var bindingWorkspacePath = Path.Combine(root, "BindingWS");
+
+        try
+        {
+            var service = new MetaTransformScriptSqlService();
+            await service.ImportFromSqlCodeToWorkspaceAsync(
+                """
+                CREATE PROCEDURE etl.FirstLoad
+                AS
+                BEGIN
+                    SELECT 1 AS Marker;
+                END
+                """,
+                targetSqlIdentifier: null,
+                newWorkspacePath: transformWorkspacePath);
+            await service.AddSqlCodeToWorkspaceAsync(
+                """
+                CREATE PROCEDURE etl.SecondLoad
+                AS
+                BEGIN
+                    SELECT 1 AS Marker;
+                END
+                """,
+                targetSqlIdentifier: null,
+                workspacePath: transformWorkspacePath);
+
+            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
+            AddSingleReadContract(transformModel, "etl.FirstLoad", "src.SharedSource");
+            AddSingleReadContract(transformModel, "etl.SecondLoad", "src.SharedSource");
+            transformModel.SaveToXmlWorkspace(transformWorkspacePath);
+            SaveSchemaWorkspace(schemaWorkspacePath, "src.SharedSource");
+
+            var result = new TransformBindingWorkspaceService().BindValidatedToWorkspace(
+                transformWorkspacePath,
+                [schemaWorkspacePath],
+                schemaWorkspacePath,
+                executeSystemName: "Hairball",
+                executeSystemDefaultSchemaName: null,
+                newWorkspacePath: bindingWorkspacePath);
+
+            var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+            Assert.Equal(2, result.TransformBindingCount);
+            Assert.Equal(bindingModel.ColumnList.Count, bindingModel.ColumnList.Select(static item => item.Id).Distinct(StringComparer.Ordinal).Count());
+            Assert.Equal(2, bindingModel.RowsetList.Count(static item =>
+                string.Equals(item.SqlIdentifier, "src.SharedSource", StringComparison.Ordinal)));
+        }
+        finally
+        {
+            DeleteTempRoot(root);
+        }
+    }
+
+    [Fact]
     public async Task StoredProcedureContractService_AddsViewsAndRemovesContract()
     {
         var root = CreateTempRoot();
@@ -344,4 +404,72 @@ public sealed class StoredProcedureSupportTests
             Id = "stored-procedure-contract:1",
             ScriptObjectStoredProcedure = storedProcedure
         };
+
+    private static void AddSingleReadContract(
+        MetaTransformScriptModel model,
+        string transformScriptName,
+        string sourceSqlIdentifier)
+    {
+        var transformScript = model.TransformScriptList.Single(item =>
+            string.Equals(item.Name, transformScriptName, StringComparison.Ordinal));
+        var storedProcedure = model.ScriptObjectStoredProcedureList.Single(item =>
+            string.Equals(item.TransformScript.Id, transformScript.Id, StringComparison.Ordinal));
+        var contract = new StoredProcedureContract
+        {
+            Id = $"{storedProcedure.Id}:contract",
+            ScriptObjectStoredProcedure = storedProcedure
+        };
+        model.StoredProcedureContractList.Add(contract);
+        model.StoredProcedureContractOperationList.Add(new StoredProcedureContractOperation
+        {
+            Id = $"{contract.Id}:operation:1",
+            StoredProcedureContract = contract,
+            Ordinal = "10",
+            OperationKind = "Read",
+            SqlIdentifier = sourceSqlIdentifier,
+            AccessRole = "Source"
+        });
+    }
+
+    private static void SaveSchemaWorkspace(
+        string workspacePath,
+        string tableSqlIdentifier)
+    {
+        var parts = tableSqlIdentifier.Split('.', 2);
+        Assert.Equal(2, parts.Length);
+
+        var model = MS.MetaSchemaModel.CreateEmpty();
+        var system = new MS.System
+        {
+            Id = "hairball:system",
+            Name = "Hairball"
+        };
+        var schema = new MS.Schema
+        {
+            Id = $"hairball:schema:{parts[0]}",
+            System = system,
+            Name = parts[0]
+        };
+        var table = new MS.Table
+        {
+            Id = $"hairball:table:{parts[0]}:{parts[1]}",
+            Schema = schema,
+            Name = parts[1],
+            ObjectType = "Table"
+        };
+
+        model.SystemList.Add(system);
+        model.SchemaList.Add(schema);
+        model.TableList.Add(table);
+        model.FieldList.Add(new MS.Field
+        {
+            Id = $"hairball:field:{parts[0]}:{parts[1]}:Value",
+            Table = table,
+            MetaDataTypeId = "sqlserver:type:int",
+            Name = "Value",
+            Ordinal = "0",
+            IsNullable = "false"
+        });
+        model.SaveToXmlWorkspace(workspacePath);
+    }
 }

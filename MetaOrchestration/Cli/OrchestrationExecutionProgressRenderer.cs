@@ -10,7 +10,7 @@ internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
     private int totalTasks;
     private int completedTasks;
     private int failedTasks;
-    private int skippedTasks;
+    private int blockedTasks;
     private bool disposed;
 
     private OrchestrationExecutionProgressRenderer()
@@ -70,12 +70,12 @@ internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
         }
     }
 
-    public void TaskSkipped()
+    public void TaskBlocked()
     {
         lock (sync)
         {
             completedTasks++;
-            skippedTasks++;
+            blockedTasks++;
         }
     }
 
@@ -139,9 +139,9 @@ internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
                 readout += $"  {failedTasks} failed";
             }
 
-            if (skippedTasks > 0)
+            if (blockedTasks > 0)
             {
-                readout += $"  {skippedTasks} skipped";
+                readout += $"  {blockedTasks} blocked";
             }
 
             return readout;
@@ -158,9 +158,9 @@ internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
             }
 
             var readout = $"{BuildProgressRail(completedTasks, totalTasks)} {completedTasks} of {totalTasks}";
-            if (skippedTasks > 0)
+            if (blockedTasks > 0)
             {
-                readout += $"  {skippedTasks} skipped";
+                readout += $"  {blockedTasks} blocked";
             }
 
             return readout;

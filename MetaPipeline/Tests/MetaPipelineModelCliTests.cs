@@ -17,6 +17,7 @@ public sealed class MetaPipelineModelCliTests
         Assert.DoesNotContain("init", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("add-pipeline", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("add-step", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("execute-worker", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("execute-step", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("add-transform", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("create-pipeline-db", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -65,7 +66,25 @@ public sealed class MetaPipelineModelCliTests
         Assert.Contains("--step-name", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Required. Pipeline task name or id", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("exactly one", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("MetaOrchestration", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("diagnostic", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("execute-worker", result.Output, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void ExecuteWorkerHelp_ShowsPipelinePreservingProtocol()
+    {
+        var result = RunCli("execute-worker --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("--workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--pipeline", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--control-pipe", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("named pipe", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("stdout and stderr are diagnostics only", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("orchestration worker boundary", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("preserves that pipeline context", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("GrantTask", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("StopPipeline", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]

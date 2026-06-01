@@ -1,8 +1,5 @@
-using System.Diagnostics;
 using System.Globalization;
-using System.Text;
 using MetaOrchestration.Core;
-using MO = MetaOrchestration;
 
 internal static partial class Program
 {
@@ -14,98 +11,33 @@ internal static partial class Program
             return Fail(parse.ErrorMessage, HelpCommand("execute"));
         }
 
-        if (!string.IsNullOrWhiteSpace(parse.PipelineDbConnectionEnvironmentVariableName) &&
-            string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable(parse.PipelineDbConnectionEnvironmentVariableName)))
-        {
-            return Fail(
-                "Cannot execute orchestration.",
-                "set the named connection environment variable and retry.",
-                4,
-                [$"Connection environment variable '{parse.PipelineDbConnectionEnvironmentVariableName}' was not found."]);
-        }
-
-        var progress = OrchestrationExecutionProgressRenderer.TryCreate();
+        using var progress = OrchestrationExecutionProgressRenderer.TryCreate();
         try
         {
-            var workspacePath = Path.GetFullPath(parse.WorkspacePath);
-            progress?.SetPhase("Loading");
-            var model = MO.MetaOrchestrationModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
-            var runPlanningService = new MetaOrchestrationRunPlanningService();
-            progress?.SetPhase("Building");
-            runPlanningService.BuildRunPlan(model);
-            progress?.SetPhase("Saving");
-            model.SaveToXmlWorkspace(workspacePath);
+            var observer = progress is null
+                ? null
+                : new OrchestrationRuntimeProgressObserver(progress);
+            var result = await new MetaOrchestrationRuntimeService()
+                .ExecuteAsync(
+                    new OrchestrationRuntimeRequest(
+                        parse.WorkspacePath,
+                        parse.PipelineWorkspacePath,
+                        parse.TransformWorkspacePath,
+                        parse.BindingWorkspacePath,
+                        parse.DataTypeConversionWorkspacePath,
+                        parse.PipelineDbConnectionEnvironmentVariableName,
+                        parse.MaxDegreeOfParallelism,
+                        RunArtifactsRootPath: parse.RunArtifactsRootPath,
+                        WorkerEventTimeout: parse.WorkerEventTimeoutSeconds is null
+                            ? null
+                            : TimeSpan.FromSeconds(parse.WorkerEventTimeoutSeconds.Value)),
+                    observer)
+                .ConfigureAwait(false);
 
-            var runPlan = ResolveRunPlan(model);
-            if (!string.Equals(runPlan.RunPlanStatus, "Ready", StringComparison.OrdinalIgnoreCase))
+            progress?.Complete(failed: !result.Succeeded);
+            if (!result.Succeeded)
             {
-                progress?.Complete(failed: true);
-                progress?.Dispose();
-                return Fail(
-                    $"Run plan '{runPlan.Name}' is not ready.",
-                    "resolve policy gaps, then retry execute or run meta-orchestration refresh-run-plan for preflight.",
-                    4,
-                    [$"  RunPlanStatus: {runPlan.RunPlanStatus}"]);
-            }
-
-            var plannedTasks = model.PlannedTaskList
-                .Where(item => ReferenceEquals(item.RunPlan, runPlan))
-                .OrderBy(static item => ParseOrdinal(item.Ordinal))
-                .ThenBy(static item => item.Id, StringComparer.Ordinal)
-                .ToArray();
-
-            if (plannedTasks.Length == 0)
-            {
-                progress?.Complete(failed: true);
-                progress?.Dispose();
-                return Fail(
-                    $"Run plan '{runPlan.Name}' has no planned tasks.",
-                    "run meta-orchestration refresh-run-plan --workspace <path>, then inspect-run-plan.",
-                    4);
-            }
-
-            progress?.RunPlanReady(plannedTasks.Length);
-            var allResults = new List<PlannedTaskProcessResult>();
-            var skippedResults = new List<PlannedTaskSkipResult>();
-            var taskOutcomesByTaskProfileId = new Dictionary<string, string>(StringComparer.Ordinal);
-            var dependenciesByTaskProfileId = OrchestrationExecutionContinuity.BuildDependencyMap(model);
-            var plannedTasksByProfileId = plannedTasks
-                .GroupBy(static item => item.TaskAccessProfile.Id, StringComparer.Ordinal)
-                .ToDictionary(
-                    static group => group.Key,
-                    static group => group.OrderBy(static item => item.Id, StringComparer.Ordinal).First(),
-                    StringComparer.Ordinal);
-
-            var locksByPlannedTaskId = model.PlannedTaskLockList
-                .Where(item => plannedTasks.Any(task => ReferenceEquals(item.PlannedTask, task)))
-                .GroupBy(static item => item.PlannedTask.Id, StringComparer.Ordinal)
-                .ToDictionary(
-                    static group => group.Key,
-                    static group => group.OrderBy(static item => item.DataObject.NormalizedKey, StringComparer.OrdinalIgnoreCase).ToArray(),
-                    StringComparer.Ordinal);
-            var activeLockPolicies = model.LockCompatibilityPolicyList
-                .Where(static item => IsActive(item.Status))
-                .ToArray();
-
-            await ExecuteReadyGraphAsync(
-                plannedTasks,
-                locksByPlannedTaskId,
-                activeLockPolicies,
-                dependenciesByTaskProfileId,
-                plannedTasksByProfileId,
-                taskOutcomesByTaskProfileId,
-                allResults,
-                skippedResults,
-                parse,
-                progress).ConfigureAwait(false);
-
-            var hasFailure = allResults.Any(static item => item.ExitCode != 0) ||
-                             skippedResults.Any(static item => string.Equals(item.SkipOutcome, OrchestrationExecutionContinuity.SkippedBlocked, StringComparison.Ordinal));
-            progress?.Complete(failed: hasFailure);
-            progress?.Dispose();
-            if (hasFailure)
-            {
-                return PrintExecutionIncomplete(runPlan, allResults, skippedResults);
+                return PrintExecutionIncomplete(result);
             }
 
             if (progress is null)
@@ -118,259 +50,27 @@ internal static partial class Program
         catch (Exception ex) when (ex is InvalidOperationException or ArgumentException or IOException or UnauthorizedAccessException)
         {
             progress?.Complete(failed: true);
-            progress?.Dispose();
             return Fail(
                 "Cannot execute orchestration.",
-                "check the orchestration workspace, pipeline workspace, child meta-pipeline command availability, and retry.",
+                "check the orchestration workspace, pipeline workspace, child meta-pipeline worker availability, and retry.",
                 4,
                 [$"  {ex.Message}"]);
         }
     }
 
-    private static async Task ExecuteReadyGraphAsync(
-        IReadOnlyList<MO.PlannedTask> plannedTasks,
-        IReadOnlyDictionary<string, MO.PlannedTaskLock[]> locksByPlannedTaskId,
-        IReadOnlyList<MO.LockCompatibilityPolicy> activeLockPolicies,
-        IReadOnlyDictionary<string, OrchestrationExecutionDependency[]> dependenciesByTaskProfileId,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByProfileId,
-        Dictionary<string, string> taskOutcomesByTaskProfileId,
-        ICollection<PlannedTaskProcessResult> allResults,
-        ICollection<PlannedTaskSkipResult> skippedResults,
-        ParsedExecuteArgs parse,
-        OrchestrationExecutionProgressRenderer? progress)
+    private static int PrintExecutionIncomplete(OrchestrationRuntimeResult result)
     {
-        var pending = plannedTasks
-            .OrderBy(static item => ParseOrdinal(item.Ordinal))
-            .ThenBy(static item => item.Id, StringComparer.Ordinal)
-            .ToList();
-        var running = new List<Task<PlannedTaskProcessResult>>();
-        var runningLocksByTaskId = new Dictionary<string, MO.PlannedTaskLock[]>(StringComparer.Ordinal);
-
-        while (pending.Count > 0 || running.Count > 0)
-        {
-            var madeProgress = false;
-            foreach (var plannedTask in pending.ToArray())
-            {
-                if (running.Count >= parse.MaxDegreeOfParallelism)
-                {
-                    break;
-                }
-
-                var readiness = OrchestrationExecutionContinuity.EvaluateReadiness(
-                    plannedTask,
-                    dependenciesByTaskProfileId,
-                    taskOutcomesByTaskProfileId,
-                    out var dependency,
-                    out var skipOutcome,
-                    out var skipReason);
-
-                if (readiness == OrchestrationTaskReadiness.Waiting)
-                {
-                    continue;
-                }
-
-                pending.Remove(plannedTask);
-                madeProgress = true;
-
-                if (readiness == OrchestrationTaskReadiness.Skip)
-                {
-                    skippedResults.Add(CreateSkipResult(
-                        plannedTask,
-                        dependency,
-                        skipOutcome,
-                        skipReason,
-                        plannedTasksByProfileId));
-                    taskOutcomesByTaskProfileId[plannedTask.TaskAccessProfile.Id] = skipOutcome;
-                    progress?.TaskSkipped();
-                    continue;
-                }
-
-                var plannedTaskLocks = locksByPlannedTaskId.TryGetValue(plannedTask.Id, out var locks)
-                    ? locks
-                    : [];
-                if (!AreLocksCompatibleWithRunning(plannedTaskLocks, runningLocksByTaskId.Values.SelectMany(static item => item).ToArray(), activeLockPolicies))
-                {
-                    pending.Add(plannedTask);
-                    madeProgress = false;
-                    continue;
-                }
-
-                progress?.TaskStarted(plannedTask.Id, FormatTaskName(plannedTask));
-                runningLocksByTaskId[plannedTask.Id] = plannedTaskLocks;
-                running.Add(RunPlannedTaskProcessAsync(plannedTask, parse));
-            }
-
-            if (running.Count == 0)
-            {
-                if (!madeProgress && pending.Count > 0)
-                {
-                    throw new InvalidOperationException("Cannot execute run plan because remaining tasks are waiting on predecessors that are not in the run plan.");
-                }
-
-                continue;
-            }
-
-            var completed = await Task.WhenAny(running).ConfigureAwait(false);
-            running.Remove(completed);
-            var result = await completed.ConfigureAwait(false);
-            allResults.Add(result);
-            taskOutcomesByTaskProfileId[result.TaskAccessProfileId] = OrchestrationExecutionContinuity.OutcomeForExitCode(result.ExitCode);
-            runningLocksByTaskId.Remove(result.PlannedTaskId);
-            progress?.TaskCompleted(result.PlannedTaskId, result.ExitCode == 0);
-        }
-    }
-
-    private static async Task<PlannedTaskProcessResult> RunPlannedTaskProcessAsync(
-        MO.PlannedTask plannedTask,
-        ParsedExecuteArgs parse)
-    {
-        var pipelineName = plannedTask.PipelineReference.Name;
-        var displayStepName = plannedTask.TaskAccessProfile.TaskName;
-        var stepSelector = string.IsNullOrWhiteSpace(plannedTask.TaskAccessProfile.MetaPipelinePipelineTaskId)
-            ? displayStepName
-            : plannedTask.TaskAccessProfile.MetaPipelinePipelineTaskId;
-        var output = new StringBuilder();
-        var error = new StringBuilder();
-        try
-        {
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = "meta-pipeline",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
-            };
-            startInfo.ArgumentList.Add("execute-step");
-            startInfo.ArgumentList.Add("--workspace");
-            startInfo.ArgumentList.Add(parse.PipelineWorkspacePath);
-            startInfo.ArgumentList.Add("--pipeline");
-            startInfo.ArgumentList.Add(pipelineName);
-            startInfo.ArgumentList.Add("--step-name");
-            startInfo.ArgumentList.Add(stepSelector);
-            startInfo.ArgumentList.Add("--transform-workspace");
-            startInfo.ArgumentList.Add(parse.TransformWorkspacePath);
-            startInfo.ArgumentList.Add("--binding-workspace");
-            startInfo.ArgumentList.Add(parse.BindingWorkspacePath);
-
-            if (!string.IsNullOrWhiteSpace(parse.DataTypeConversionWorkspacePath))
-            {
-                startInfo.ArgumentList.Add("--data-type-conversion-workspace");
-                startInfo.ArgumentList.Add(parse.DataTypeConversionWorkspacePath);
-            }
-
-            if (!string.IsNullOrWhiteSpace(parse.PipelineDbConnectionEnvironmentVariableName))
-            {
-                startInfo.ArgumentList.Add("--pipeline-db-connection-env");
-                startInfo.ArgumentList.Add(parse.PipelineDbConnectionEnvironmentVariableName);
-            }
-
-            using var process = new Process { StartInfo = startInfo };
-            process.Start();
-            var outputTask = ReadToBuilderAsync(process.StandardOutput, output);
-            var errorTask = ReadToBuilderAsync(process.StandardError, error);
-            await process.WaitForExitAsync().ConfigureAwait(false);
-            await Task.WhenAll(outputTask, errorTask).ConfigureAwait(false);
-
-            return new PlannedTaskProcessResult(
-                plannedTask.TaskAccessProfile.Id,
-                plannedTask.Id,
-                pipelineName,
-                displayStepName,
-                process.ExitCode,
-                output.ToString(),
-                error.ToString());
-        }
-        catch (Exception ex)
-        {
-            return new PlannedTaskProcessResult(
-                plannedTask.TaskAccessProfile.Id,
-                plannedTask.Id,
-                pipelineName,
-                displayStepName,
-                -1,
-                output.ToString(),
-                error.AppendLine(ex.Message).ToString());
-        }
-    }
-
-    private static bool AreLocksCompatibleWithRunning(
-        IReadOnlyList<MO.PlannedTaskLock> candidateLocks,
-        IReadOnlyList<MO.PlannedTaskLock> runningLocks,
-        IReadOnlyList<MO.LockCompatibilityPolicy> activeLockPolicies)
-    {
-        foreach (var runningLock in runningLocks)
-        {
-            foreach (var candidateLock in candidateLocks)
-            {
-                if (!string.Equals(runningLock.DataObject.Id, candidateLock.DataObject.Id, StringComparison.Ordinal))
-                {
-                    continue;
-                }
-
-                if (!ArePlannedTaskLocksCompatible(runningLock, candidateLock, activeLockPolicies))
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    private static bool ArePlannedTaskLocksCompatible(
-        MO.PlannedTaskLock left,
-        MO.PlannedTaskLock right,
-        IReadOnlyList<MO.LockCompatibilityPolicy> activeLockPolicies)
-    {
-        if (string.Equals(left.LockMode, "SharedRead", StringComparison.OrdinalIgnoreCase) &&
-            string.Equals(right.LockMode, "SharedRead", StringComparison.OrdinalIgnoreCase))
-        {
-            return true;
-        }
-
-        var policy = activeLockPolicies
-            .Where(item => string.Equals(item.DataObject.Id, left.DataObject.Id, StringComparison.Ordinal))
-            .Where(item => EffectsMatch(item, left.TaskObjectEffect.WriteEffect, right.TaskObjectEffect.WriteEffect))
-            .OrderBy(static item => item.PolicyKind, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(static item => item.Id, StringComparer.Ordinal)
-            .FirstOrDefault();
-
-        return policy is not null &&
-               string.Equals(policy.LockBehavior, "AllowConcurrent", StringComparison.OrdinalIgnoreCase);
-    }
-
-    private static bool EffectsMatch(MO.LockCompatibilityPolicy policy, string leftEffect, string rightEffect)
-    {
-        return
-            (string.Equals(policy.LeftEffect, leftEffect, StringComparison.OrdinalIgnoreCase) &&
-             string.Equals(policy.RightEffect, rightEffect, StringComparison.OrdinalIgnoreCase)) ||
-            (string.Equals(policy.LeftEffect, rightEffect, StringComparison.OrdinalIgnoreCase) &&
-             string.Equals(policy.RightEffect, leftEffect, StringComparison.OrdinalIgnoreCase));
-    }
-
-    private static async Task ReadToBuilderAsync(StreamReader reader, StringBuilder builder)
-    {
-        while (await reader.ReadLineAsync().ConfigureAwait(false) is { } line)
-        {
-            builder.AppendLine(line);
-        }
-    }
-
-    private static int PrintExecutionIncomplete(
-        MO.RunPlan runPlan,
-        IReadOnlyList<PlannedTaskProcessResult> results,
-        IReadOnlyList<PlannedTaskSkipResult> skippedResults)
-    {
-        var failed = results.FirstOrDefault(static item => item.ExitCode != 0);
-        var succeededCount = results.Count(static item => item.ExitCode == 0);
-        var failedCount = results.Count(static item => item.ExitCode != 0);
+        var failed = result.TaskResults.FirstOrDefault(static item => item.ExitCode != 0);
+        var succeededCount = result.TaskResults.Count(static item => item.ExitCode == 0);
+        var failedCount = result.TaskResults.Count(static item => item.ExitCode != 0);
         var details = new List<string>
         {
-            $"{runPlan.Name} stopped with unresolved paths.",
+            $"{result.RunPlanName} stopped with unresolved paths.",
+            $"  RunId: {result.RunId}",
+            $"  RunArtifacts: {result.RunArtifactDirectoryPath}",
             $"  {succeededCount.ToString(CultureInfo.InvariantCulture)} succeeded",
             $"  {failedCount.ToString(CultureInfo.InvariantCulture)} failed",
-            $"  {skippedResults.Count.ToString(CultureInfo.InvariantCulture)} skipped",
+            $"  {result.BlockedResults.Count.ToString(CultureInfo.InvariantCulture)} blocked",
         };
 
         string? next = null;
@@ -394,18 +94,18 @@ internal static partial class Program
             next = childFailure.Next;
         }
 
-        if (skippedResults.Count > 0)
+        if (result.BlockedResults.Count > 0)
         {
             details.Add(string.Empty);
-            details.Add("Skipped");
-            foreach (var skipped in skippedResults.Take(4))
+            details.Add("Blocked");
+            foreach (var blocked in result.BlockedResults.Take(4))
             {
-                details.Add($"  {skipped.PipelineName}.{skipped.StepName}");
+                details.Add($"  {blocked.PipelineName}.{blocked.StepName}");
             }
 
-            if (skippedResults.Count > 4)
+            if (result.BlockedResults.Count > 4)
             {
-                details.Add($"  ... {skippedResults.Count - 4} more");
+                details.Add($"  ... {result.BlockedResults.Count - 4} more");
             }
         }
 
@@ -416,29 +116,7 @@ internal static partial class Program
             details);
     }
 
-    private static PlannedTaskSkipResult CreateSkipResult(
-        MO.PlannedTask plannedTask,
-        OrchestrationExecutionDependency dependency,
-        string skipOutcome,
-        string skipReason,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByProfileId)
-    {
-        var blockingTaskProfileId = dependency.PredecessorTaskProfileId;
-        var blockingTask = plannedTasksByProfileId.GetValueOrDefault(blockingTaskProfileId);
-        return new PlannedTaskSkipResult(
-            plannedTask.Id,
-            plannedTask.TaskAccessProfile.Id,
-            plannedTask.PipelineReference.Name,
-            plannedTask.TaskAccessProfile.TaskName,
-            blockingTaskProfileId,
-            blockingTask?.PipelineReference.Name ?? "<unknown>",
-            blockingTask?.TaskAccessProfile.TaskName ?? blockingTaskProfileId,
-            dependency.Condition,
-            skipOutcome,
-            skipReason);
-    }
-
-    private static ChildFailureSummary SummarizeChildFailure(PlannedTaskProcessResult failed)
+    private static ChildFailureSummary SummarizeChildFailure(OrchestrationTaskWorkerResult failed)
     {
         var outputLines = NormalizeChildLines(failed.StandardOutput);
         var errorLines = NormalizeChildLines(failed.StandardError);
@@ -488,21 +166,8 @@ internal static partial class Program
         }
     }
 
-    private static string FormatTaskName(MO.PlannedTask plannedTask) =>
-        $"{plannedTask.PipelineReference.Name}.{plannedTask.TaskAccessProfile.TaskName}";
-
     private static bool IsActive(string value) =>
         string.Equals(value, "Active", StringComparison.OrdinalIgnoreCase);
-
-    private static MO.RunPlan ResolveRunPlan(MO.MetaOrchestrationModel model)
-    {
-        return model.RunPlanList.Count switch
-        {
-            1 => model.RunPlanList[0],
-            0 => throw new InvalidOperationException("The orchestration workspace contains no RunPlan rows."),
-            _ => throw new InvalidOperationException("The orchestration workspace contains multiple run plans.")
-        };
-    }
 
     private static ParsedExecuteArgs ParseExecuteArgs(string[] args, int startIndex)
     {
@@ -513,6 +178,8 @@ internal static partial class Program
         var dataTypeConversionWorkspacePath = string.Empty;
         var pipelineDbConnectionEnvironmentVariableName = string.Empty;
         var maxDegreeOfParallelism = 1;
+        var runArtifactsRootPath = string.Empty;
+        int? workerEventTimeoutSeconds = null;
         var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         for (var i = startIndex; i < args.Length; i++)
@@ -557,6 +224,18 @@ internal static partial class Program
                     }
 
                     break;
+                case "--run-artifacts-root":
+                    runArtifactsRootPath = value;
+                    break;
+                case "--worker-event-timeout-seconds":
+                    if (!int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedWorkerEventTimeoutSeconds) ||
+                        parsedWorkerEventTimeoutSeconds <= 0)
+                    {
+                        return ParsedExecuteArgs.Fail("invalid value for --worker-event-timeout-seconds. Expected a positive integer.");
+                    }
+
+                    workerEventTimeoutSeconds = parsedWorkerEventTimeoutSeconds;
+                    break;
                 default:
                     return ParsedExecuteArgs.Fail($"unknown option '{option}'.");
             }
@@ -576,29 +255,23 @@ internal static partial class Program
             dataTypeConversionWorkspacePath,
             pipelineDbConnectionEnvironmentVariableName,
             maxDegreeOfParallelism,
+            runArtifactsRootPath,
+            workerEventTimeoutSeconds,
             string.Empty);
     }
 
-    private sealed record PlannedTaskProcessResult(
-        string TaskAccessProfileId,
-        string PlannedTaskId,
-        string PipelineName,
-        string StepName,
-        int ExitCode,
-        string StandardOutput,
-        string StandardError);
+    private sealed class OrchestrationRuntimeProgressObserver(OrchestrationExecutionProgressRenderer progress) : IOrchestrationRuntimeObserver
+    {
+        public void PhaseChanged(string phase) => progress.SetPhase(phase);
 
-    private sealed record PlannedTaskSkipResult(
-        string PlannedTaskId,
-        string TaskAccessProfileId,
-        string PipelineName,
-        string StepName,
-        string BlockingTaskAccessProfileId,
-        string BlockingPipelineName,
-        string BlockingStepName,
-        string DependencyCondition,
-        string SkipOutcome,
-        string Reason);
+        public void RunPlanReady(int totalTasks) => progress.RunPlanReady(totalTasks);
+
+        public void TaskStarted(string taskId, string taskName) => progress.TaskStarted(taskId, taskName);
+
+        public void TaskCompleted(string taskId, bool succeeded) => progress.TaskCompleted(taskId, succeeded);
+
+        public void TaskBlocked(string taskId) => progress.TaskBlocked();
+    }
 
     private sealed record ChildFailureSummary(
         string? Reason,
@@ -615,9 +288,11 @@ internal static partial class Program
         string DataTypeConversionWorkspacePath,
         string PipelineDbConnectionEnvironmentVariableName,
         int MaxDegreeOfParallelism,
+        string RunArtifactsRootPath,
+        int? WorkerEventTimeoutSeconds,
         string ErrorMessage)
     {
         public static ParsedExecuteArgs Fail(string errorMessage) =>
-            new(false, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 1, errorMessage);
+            new(false, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 1, string.Empty, null, errorMessage);
     }
 }

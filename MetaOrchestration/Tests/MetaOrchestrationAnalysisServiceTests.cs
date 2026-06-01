@@ -1,5 +1,7 @@
+using System.Globalization;
 using MetaBi.Tests.Common;
 using MetaOrchestration.Core;
+using MetaOrchestration.WorkerProtocol;
 using MetaPipeline;
 using MetaTransform.Binding;
 using MetaTransformBinding;
@@ -29,10 +31,14 @@ public sealed class MetaOrchestrationAnalysisServiceTests
         Assert.Contains("--workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--schedule-workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--max-degree-of-parallelism", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("--run-artifacts-root", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Options:", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Required. MetaOrchestration workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Refreshes run-plan rows", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("meta-pipeline execute-step", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("named pipe control channel", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("stops a worker at a blocked task", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("exclusive lease", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("execute-step", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -54,6 +60,719 @@ public sealed class MetaOrchestrationAnalysisServiceTests
         Assert.DoesNotContain("RunPlan:", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("FirstFailedTask", result.Output, StringComparison.Ordinal);
         Assert.DoesNotContain("SkippedTask", result.Output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void ExecutionLease_PreventsConcurrentExecutionForSameWorkspace()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var workspacePath = Path.Combine(tempRoot, "Orchestration");
+            var artifactRoot = Path.Combine(tempRoot, "Runs");
+            Directory.CreateDirectory(workspacePath);
+
+            using var lease = OrchestrationWorkspaceExecutionLease.Acquire(workspacePath, Guid.NewGuid(), artifactRoot);
+
+            var ex = Assert.Throws<InvalidOperationException>(
+                () => OrchestrationWorkspaceExecutionLease.Acquire(Path.Combine(workspacePath, "."), Guid.NewGuid(), artifactRoot));
+
+            Assert.Contains("already using workspace", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("RunId=", ex.Message, StringComparison.Ordinal);
+            Assert.True(File.Exists(lease.LeaseRecordPath));
+            Assert.Empty(Directory.GetFiles(workspacePath, "*", SearchOption.AllDirectories));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public void ExecutionLease_AllowsDifferentWorkspaces()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var firstWorkspacePath = Path.Combine(tempRoot, "First");
+            var secondWorkspacePath = Path.Combine(tempRoot, "Second");
+            var artifactRoot = Path.Combine(tempRoot, "Runs");
+            Directory.CreateDirectory(firstWorkspacePath);
+            Directory.CreateDirectory(secondWorkspacePath);
+
+            using var first = OrchestrationWorkspaceExecutionLease.Acquire(firstWorkspacePath, Guid.NewGuid(), artifactRoot);
+            using var second = OrchestrationWorkspaceExecutionLease.Acquire(secondWorkspacePath, Guid.NewGuid(), artifactRoot);
+
+            Assert.NotEqual(first.LeaseRecordPath, second.LeaseRecordPath);
+            Assert.True(File.Exists(first.LeaseRecordPath));
+            Assert.True(File.Exists(second.LeaseRecordPath));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeRejectsRunArtifactsRootInsideOrchestrationWorkspace()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var workspacePath = Path.Combine(tempRoot, "Orchestration");
+            var ex = await Assert.ThrowsAsync<ArgumentException>(() => new MetaOrchestrationRuntimeService().ExecuteAsync(
+                new OrchestrationRuntimeRequest(
+                    workspacePath,
+                    Path.Combine(tempRoot, "Pipeline"),
+                    Path.Combine(tempRoot, "Transform"),
+                    Path.Combine(tempRoot, "Binding"),
+                    string.Empty,
+                    string.Empty,
+                    1,
+                    RunArtifactsRootPath: Path.Combine(workspacePath, "Runs"))));
+
+            Assert.Contains("RunArtifactsRootPath", ex.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public void RuntimeLivenessRejectsReadyForNonPendingTask()
+    {
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
+                "CustomerLoad",
+                WorkerEventKinds.TaskReady,
+                "CustomerLoad.load",
+                new HashSet<string>(StringComparer.Ordinal),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)));
+
+        Assert.Contains("not pending", ex.Message, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("must not send", ex.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void RuntimeLivenessRejectsTerminalEventWithoutGrant()
+    {
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
+                "CustomerLoad",
+                WorkerEventKinds.TaskSucceeded,
+                "CustomerLoad.load",
+                new HashSet<string>(["CustomerLoad.load"], StringComparer.Ordinal),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)));
+
+        Assert.Contains("no active grant", ex.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void RuntimeLivenessRejectsWorkerThatMovesWhileAlreadyReady()
+    {
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
+                "CustomerLoad",
+                WorkerEventKinds.TaskReady,
+                "CustomerLoad.write",
+                new HashSet<string>(["CustomerLoad.write"], StringComparer.Ordinal),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["CustomerLoad"] = "CustomerLoad.load"
+                },
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)));
+
+        Assert.Contains("already waiting", ex.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void RuntimeLivenessRejectsReadyWhileGrantIsRunning()
+    {
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
+                "CustomerLoad",
+                WorkerEventKinds.TaskReady,
+                "CustomerLoad.write",
+                new HashSet<string>(["CustomerLoad.write"], StringComparer.Ordinal),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["CustomerLoad"] = "CustomerLoad.load"
+                }));
+
+        Assert.Contains("still running", ex.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void RuntimeLivenessRejectsTerminalEventForWrongGrant()
+    {
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
+                "CustomerLoad",
+                WorkerEventKinds.TaskFailed,
+                "CustomerLoad.write",
+                new HashSet<string>(StringComparer.Ordinal),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["CustomerLoad"] = "CustomerLoad.load"
+                }));
+
+        Assert.Contains("active grant", ex.Message, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("CustomerLoad.load", ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void RuntimeLivenessRejectsUnsupportedWorkerEvent()
+    {
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
+                "CustomerLoad",
+                "PAUSE",
+                "CustomerLoad.load",
+                new HashSet<string>(["CustomerLoad.load"], StringComparer.Ordinal),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)));
+
+        Assert.Contains("unsupported event", ex.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void RuntimeLivenessAcceptsStartedForMatchingGrant()
+    {
+        OrchestrationRuntimeLiveness.ValidateWorkerEvent(
+            "CustomerLoad",
+            WorkerEventKinds.TaskStarted,
+            "CustomerLoad.load",
+            new HashSet<string>(StringComparer.Ordinal),
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["CustomerLoad"] = "CustomerLoad.load"
+            });
+    }
+
+    [Fact]
+    public void WorkerProtocolRoundTripsGrantTaskCommandAndTaskStartedEvent()
+    {
+        var command = new WorkerProtocolCommand(
+            WorkerCommandKinds.GrantTask,
+            "cmd-1",
+            "grant-1",
+            "grant-0",
+            2,
+            "pipeline:CustomerLoad",
+            "CustomerLoad",
+            "pipeline:CustomerLoad:task:1",
+            "retry");
+        var commandLine = OrchestrationWorkerProtocol.EncodeCommand(command);
+
+        Assert.True(OrchestrationWorkerProtocol.TryDecodeCommand(commandLine, out var decodedCommand));
+        Assert.Equal(command, decodedCommand);
+
+        var workerEvent = new WorkerProtocolEvent(
+            WorkerEventKinds.TaskStarted,
+            "worker-1",
+            "pipeline:CustomerLoad",
+            "CustomerLoad",
+            "pipeline:CustomerLoad:task:1",
+            "load",
+            "grant-1",
+            "cmd-1",
+            2,
+            0,
+            "test-worker",
+            "started");
+        var eventLine = OrchestrationWorkerProtocol.EncodeEvent(workerEvent);
+
+        Assert.True(OrchestrationWorkerProtocol.TryDecodeEvent(eventLine, out var decodedEvent));
+        Assert.Equal(workerEvent, decodedEvent);
+    }
+
+    [Fact]
+    public void RetryPolicyRetriesRetrySafeTransientFailuresOnlyWithinBudget()
+    {
+        var policy = new ResolvedOrchestrationRetryPolicy(
+            "retry-policy:test",
+            "TestRetryPolicy",
+            MaxAttempts: 3,
+            InitialDelayMilliseconds: 100,
+            MaxDelayMilliseconds: 1000,
+            BackoffMultiplier: 2,
+            RetryReadOnlyTasksByDefault: true,
+            RetryWriteTasksByDefault: false,
+            RetryableFailureClasses: [OrchestrationRetryFailureClasses.TransientSql]);
+
+        var first = policy.Evaluate(new OrchestrationRetryEvaluationContext(
+            "task-1",
+            AttemptNumber: 1,
+            OrchestrationRetryFailureClasses.TransientSql,
+            IsTaskRetrySafe: true,
+            ExitCode: 4,
+            FailureMessage: "deadlock"));
+        Assert.True(first.ShouldRetry);
+        Assert.Equal(2, first.NextAttemptNumber);
+        Assert.Equal(TimeSpan.FromMilliseconds(100), first.Delay);
+
+        var exhausted = policy.Evaluate(new OrchestrationRetryEvaluationContext(
+            "task-1",
+            AttemptNumber: 3,
+            OrchestrationRetryFailureClasses.TransientSql,
+            IsTaskRetrySafe: true,
+            ExitCode: 4,
+            FailureMessage: "deadlock"));
+        Assert.False(exhausted.ShouldRetry);
+        Assert.Contains("exhausted", exhausted.Reason, StringComparison.OrdinalIgnoreCase);
+
+        var unsafeTask = policy.Evaluate(new OrchestrationRetryEvaluationContext(
+            "task-1",
+            AttemptNumber: 1,
+            OrchestrationRetryFailureClasses.TransientSql,
+            IsTaskRetrySafe: false,
+            ExitCode: 4,
+            FailureMessage: "deadlock"));
+        Assert.False(unsafeTask.ShouldRetry);
+        Assert.Contains("not retry-safe", unsafeTask.Reason, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void RunPlan_ModelsDefaultRetryPolicy()
+    {
+        var model = CreateModel(
+            AnalyzeProfiles(
+                Profile(
+                    "LoadA",
+                    Task("LoadA", 1, "load-a", "Select", Access("dbo.RawA", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.A", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+        var result = new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
+
+        Assert.Equal("Ready", result.Status);
+        var retryPolicy = Assert.Single(model.RetryPolicyList);
+        Assert.Equal("DefaultRetryPolicy", retryPolicy.Name);
+        Assert.Equal("3", retryPolicy.MaxAttempts);
+        Assert.Equal("true", retryPolicy.RetryReadOnlyTasksByDefault);
+        Assert.Equal("false", retryPolicy.RetryWriteTasksByDefault);
+
+        var assignment = Assert.Single(model.RunPlanRetryPolicyList);
+        Assert.Same(retryPolicy, assignment.RetryPolicy);
+        Assert.Same(Assert.Single(model.RunPlanList), assignment.RunPlan);
+        Assert.Equal("Default", assignment.PolicyRole);
+
+        Assert.Contains(
+            model.RetryPolicyFailureClassList,
+            item => ReferenceEquals(item.RetryPolicy, retryPolicy) &&
+                    item.FailureClass == OrchestrationRetryFailureClasses.TransientSql &&
+                    item.RetryBehavior == "Retry");
+
+        var resolved = ResolvedOrchestrationRetryPolicy.FromRunPlan(model, assignment.RunPlan);
+        Assert.Equal("DefaultRetryPolicy", resolved.Name);
+        Assert.Contains(OrchestrationRetryFailureClasses.TransientSql, resolved.RetryableFailureClasses);
+
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var workspace = Path.Combine(tempRoot, "Orchestration");
+            model.SaveToXmlWorkspace(workspace);
+
+            var reloaded = MetaOrchestrationModel.LoadFromXmlWorkspace(workspace, searchUpward: false);
+            var reloadedRunPlan = Assert.Single(reloaded.RunPlanList);
+            var reloadedResolved = ResolvedOrchestrationRetryPolicy.FromRunPlan(reloaded, reloadedRunPlan);
+            Assert.Equal("DefaultRetryPolicy", reloadedResolved.Name);
+            Assert.Contains(OrchestrationRetryFailureClasses.TransientSql, reloadedResolved.RetryableFailureClasses);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public void DiagnosticLogBufferEnforcesLineAndByteBudgets()
+    {
+        var buffer = new OrchestrationDiagnosticLogBuffer(new OrchestrationLogCapturePolicy(
+            MaxLineLength: 8,
+            MaxBytesPerWorkerStream: 80));
+
+        buffer.AppendLine("12345678901234567890");
+        buffer.AppendLine("second");
+        buffer.AppendLine(new string('x', 200));
+
+        var text = buffer.ToString();
+        Assert.Contains("[line truncated]", text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("diagnostics truncated", text, StringComparison.OrdinalIgnoreCase);
+        Assert.True(buffer.WasTruncated);
+        Assert.True(buffer.DroppedBytes > 0);
+    }
+
+    [Fact]
+    public void DiagnosticLogBufferWritesBoundedArtifact()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var artifactPath = Path.Combine(tempRoot, "logs", "worker.stdout.log");
+            var buffer = new OrchestrationDiagnosticLogBuffer(
+                new OrchestrationLogCapturePolicy(
+                    MaxLineLength: 8,
+                    MaxBytesPerWorkerStream: 48),
+                artifactPath);
+
+            buffer.AppendLine("abcdefghijk");
+            buffer.AppendLine("second");
+            buffer.AppendLine(new string('z', 200));
+
+            Assert.True(File.Exists(artifactPath));
+            var artifact = File.ReadAllText(artifactPath);
+            Assert.Contains("abcdefgh", artifact, StringComparison.Ordinal);
+            Assert.Contains("[line truncated]", artifact, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("second", artifact, StringComparison.Ordinal);
+            Assert.DoesNotContain(new string('z', 8), artifact, StringComparison.Ordinal);
+            Assert.True(buffer.WasTruncated);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastWhenWorkerExitsBeforeReady()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    return
+                    """));
+
+            Assert.Contains("CustomerLoad", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("exited before all", ex.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastOnWorkerVersionMismatch()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    Send-WorkerEvent -Kind 'WorkerOnline' -Version 'wrong-version' -Message 'online'
+                    return
+                    """));
+
+            Assert.Contains("version mismatch", ex.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeRetriesRetrySafeTaskAfterTaskFailed()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source")))));
+            AddTestRetryPolicy(model, maxAttempts: 2, retryWrites: false);
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant-1' -CommandId 'command-1' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant-1' -CommandId 'command-1' -Attempt 1 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskFailed' -TaskId $taskId -TaskName 'load' -GrantId 'grant-1' -CommandId 'command-1' -Attempt 1 -ExitCode 4 -Message 'transient' -FailureClass 'WorkerReportedRetryable'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant-2' -CommandId 'command-2' -Attempt 2 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant-2' -CommandId 'command-2' -Attempt 2 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant-2' -CommandId 'command-2' -Attempt 2 -Message 'completed'
+                return
+                """);
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(2, result.TaskResults.Count);
+            Assert.Contains(result.TaskResults, item => item.ExitCode == 4 && item.AttemptNumber == 1);
+            Assert.Contains(result.TaskResults, item => item.ExitCode == 0 && item.AttemptNumber == 2);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastWhenWorkerNeverEmitsOnline()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    Start-Sleep -Seconds 5
+                    return
+                    """,
+                    TimeSpan.FromMilliseconds(150)));
+
+            Assert.Contains("stopped responding", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(WorkerEventKinds.WorkerOnline, ex.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastWhenWorkerDoesNotStartPipelineAfterActivationCommand()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                    Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                    $startCommand = Read-StartPipelineCommand
+                    Start-Sleep -Seconds 5
+                    return
+                    """,
+                    TimeSpan.FromMilliseconds(150)));
+
+            Assert.Contains("stopped responding", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(WorkerEventKinds.PipelineStarted, ex.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeMarksRunningTaskFailedWhenWorkerStopsRespondingDuringGrant()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                Start-Sleep -Seconds 5
+                return
+                """,
+                TimeSpan.FromMilliseconds(150));
+
+            Assert.False(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal(4, taskResult.ExitCode);
+            Assert.Contains("active task outcome is unknown", taskResult.StandardError, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastWhenWorkerExitsAfterReadyBeforeGrant()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "Producer",
+                        Task(
+                            "Producer",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget"))),
+                    Profile(
+                        "Consumer",
+                        Task(
+                            "Consumer",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Mart", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    $taskId = "pipeline:${pipeline}:task:1"
+                    Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                    Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                    $startCommand = Read-StartPipelineCommand
+                    Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                    if ($pipeline -eq 'Consumer') { return }
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                    Start-Sleep -Milliseconds 500
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                    return
+                    """));
+
+            Assert.Contains("Consumer", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.True(
+                ex.Message.Contains("exited before all", StringComparison.OrdinalIgnoreCase) ||
+                ex.Message.Contains("Cannot send GrantTask", StringComparison.OrdinalIgnoreCase),
+                ex.Message);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastOnMalformedWorkerProtocolEvent()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    Send-RawWorkerLine "META_PIPELINE_WORKER`tREADY`ttoo-few"
+                    return
+                    """));
+
+            Assert.Contains("malformed protocol event", ex.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
     }
 
     [Fact]
@@ -825,7 +1544,7 @@ INNER JOIN dw.DimCustomer AS d
     }
 
     [Fact]
-    public void RunPlan_IndependentTasks_AreDependencyOrdered()
+    public void RunPlan_IndependentTasks_AreAllInitiallyReady()
     {
         var model = CreateModel(
             AnalyzeProfiles(
@@ -844,6 +1563,13 @@ INNER JOIN dw.DimCustomer AS d
         Assert.Equal("Ready", result.Status);
         Assert.Equal(3, result.PlannedTasks);
         Assert.Equal(3, model.PlannedTaskList.Count);
+        var dependencies = OrchestrationExecutionContinuity.BuildDependencyMap(model);
+        var taskOutcomes = new Dictionary<string, string>(StringComparer.Ordinal);
+        Assert.All(
+            PlannedTaskRows(model),
+            task => Assert.Equal(
+                OrchestrationTaskReadiness.Ready,
+                OrchestrationExecutionContinuity.EvaluateReadiness(task, dependencies, taskOutcomes, out _, out _, out _)));
     }
 
     [Fact]
@@ -909,7 +1635,23 @@ INNER JOIN dw.DimCustomer AS d
 
         service.BuildRunPlan(model);
 
-        Assert.Equal(["LoadA.load-a", "FailureHandler.record-failure"], PlannedTaskNamesInOrder(model));
+        var dependencies = OrchestrationExecutionContinuity.BuildDependencyMap(model);
+        var plannedTasks = PlannedTaskRows(model);
+        var loadA = plannedTasks.Single(item => item.PipelineReference.Name == "LoadA");
+        var failureHandler = plannedTasks.Single(item => item.PipelineReference.Name == "FailureHandler");
+        Assert.Equal(
+            OrchestrationTaskReadiness.Waiting,
+            OrchestrationExecutionContinuity.EvaluateReadiness(failureHandler, dependencies, EmptyTaskOutcomes(), out var waitingDependency, out _, out _));
+        Assert.Equal(loadA.TaskAccessProfile.Id, waitingDependency.PredecessorTaskProfileId);
+        Assert.Equal("OnFailure", waitingDependency.Condition);
+
+        var failedOutcomes = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            [loadA.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.Failed
+        };
+        Assert.Equal(
+            OrchestrationTaskReadiness.Ready,
+            OrchestrationExecutionContinuity.EvaluateReadiness(failureHandler, dependencies, failedOutcomes, out _, out _, out _));
     }
 
     [Fact]
@@ -988,7 +1730,7 @@ INNER JOIN dw.DimCustomer AS d
 
 
     [Fact]
-    public void RunPlan_ProducerConsumer_OrdersProducerBeforeConsumer()
+    public void RunPlan_ProducerConsumer_KeepsDependencyAsRuntimeGraphEdge()
     {
         var model = CreateModel(
             AnalyzeProfiles(
@@ -1002,11 +1744,29 @@ INNER JOIN dw.DimCustomer AS d
         var result = new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
 
         Assert.Equal(2, result.PlannedTasks);
-        Assert.Equal(["WriteA.write-a", "ReadA.read-a"], PlannedTaskNamesInOrder(model));
+        Assert.Equal(["ReadA.read-a", "WriteA.write-a"], PlannedTaskNamesInOrder(model));
+
+        var dependencies = OrchestrationExecutionContinuity.BuildDependencyMap(model);
+        var plannedTasks = PlannedTaskRows(model);
+        var writeA = plannedTasks.Single(item => item.PipelineReference.Name == "WriteA");
+        var readA = plannedTasks.Single(item => item.PipelineReference.Name == "ReadA");
+        Assert.Equal(
+            OrchestrationTaskReadiness.Waiting,
+            OrchestrationExecutionContinuity.EvaluateReadiness(readA, dependencies, EmptyTaskOutcomes(), out var dependency, out _, out _));
+        Assert.Equal(writeA.TaskAccessProfile.Id, dependency.PredecessorTaskProfileId);
+        Assert.Equal("OnSuccess", dependency.Condition);
+
+        var taskOutcomes = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            [writeA.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.Succeeded
+        };
+        Assert.Equal(
+            OrchestrationTaskReadiness.Ready,
+            OrchestrationExecutionContinuity.EvaluateReadiness(readA, dependencies, taskOutcomes, out _, out _, out _));
     }
 
     [Fact]
-    public void RunPlan_DiamondGraph_KeepsIndependentMiddleTasksTogether()
+    public void RunPlan_DiamondGraph_KeepsEdgesInRuntimeDependencyGraph()
     {
         var model = CreateModel(
             AnalyzeProfiles(
@@ -1026,11 +1786,81 @@ INNER JOIN dw.DimCustomer AS d
         var result = new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
 
         Assert.Equal(4, result.PlannedTasks);
-        var plannedTasks = PlannedTaskNamesInOrder(model);
-        Assert.Equal("Seed.seed", plannedTasks[0]);
-        Assert.True(Array.IndexOf(plannedTasks, "Dim.dim") > Array.IndexOf(plannedTasks, "Seed.seed"));
-        Assert.True(Array.IndexOf(plannedTasks, "Fact.fact") > Array.IndexOf(plannedTasks, "Seed.seed"));
-        Assert.Equal("Mart.mart", plannedTasks[^1]);
+        Assert.Equal(["Dim.dim", "Fact.fact", "Mart.mart", "Seed.seed"], PlannedTaskNamesInOrder(model));
+
+        var dependencies = OrchestrationExecutionContinuity.BuildDependencyMap(model);
+        var plannedTasks = PlannedTaskRows(model);
+        var seed = plannedTasks.Single(item => item.PipelineReference.Name == "Seed");
+        var dim = plannedTasks.Single(item => item.PipelineReference.Name == "Dim");
+        var fact = plannedTasks.Single(item => item.PipelineReference.Name == "Fact");
+        var mart = plannedTasks.Single(item => item.PipelineReference.Name == "Mart");
+
+        Assert.Equal(OrchestrationTaskReadiness.Ready, OrchestrationExecutionContinuity.EvaluateReadiness(seed, dependencies, EmptyTaskOutcomes(), out _, out _, out _));
+        Assert.Equal(OrchestrationTaskReadiness.Waiting, OrchestrationExecutionContinuity.EvaluateReadiness(dim, dependencies, EmptyTaskOutcomes(), out _, out _, out _));
+        Assert.Equal(OrchestrationTaskReadiness.Waiting, OrchestrationExecutionContinuity.EvaluateReadiness(fact, dependencies, EmptyTaskOutcomes(), out _, out _, out _));
+        Assert.Equal(OrchestrationTaskReadiness.Waiting, OrchestrationExecutionContinuity.EvaluateReadiness(mart, dependencies, EmptyTaskOutcomes(), out _, out _, out _));
+
+        var afterSeed = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            [seed.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.Succeeded
+        };
+        Assert.Equal(OrchestrationTaskReadiness.Ready, OrchestrationExecutionContinuity.EvaluateReadiness(dim, dependencies, afterSeed, out _, out _, out _));
+        Assert.Equal(OrchestrationTaskReadiness.Ready, OrchestrationExecutionContinuity.EvaluateReadiness(fact, dependencies, afterSeed, out _, out _, out _));
+        Assert.Equal(OrchestrationTaskReadiness.Waiting, OrchestrationExecutionContinuity.EvaluateReadiness(mart, dependencies, afterSeed, out _, out _, out _));
+
+        afterSeed[dim.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.Succeeded;
+        afterSeed[fact.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.Succeeded;
+        Assert.Equal(OrchestrationTaskReadiness.Ready, OrchestrationExecutionContinuity.EvaluateReadiness(mart, dependencies, afterSeed, out _, out _, out _));
+    }
+
+    [Fact]
+    public void CliInspectRunPlan_PrintsDependencyGraph_NotWavesOrOrder()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var orchestrationWorkspace = Path.Combine(tempRoot, "Orchestration");
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "Seed",
+                        Task("Seed", 1, "seed", "Select", Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget"))),
+                    Profile(
+                        "Dim",
+                        Task("Dim", 1, "dim", "Select", Access("dbo.Stage", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Dim", OrchestrationObjectAccessKind.Write, "InsertRowsTarget"))),
+                    Profile(
+                        "Fact",
+                        Task("Fact", 1, "fact", "Select", Access("dbo.Stage", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Fact", OrchestrationObjectAccessKind.Write, "InsertRowsTarget"))),
+                    Profile(
+                        "Mart",
+                        Task("Mart", 1, "mart", "Select", Access("dbo.Dim", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Fact", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Mart", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+            new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
+            model.SaveToXmlWorkspace(orchestrationWorkspace);
+
+            var result = RunCli($"inspect-run-plan --workspace \"{orchestrationWorkspace}\"");
+
+            Assert.Equal(0, result.ExitCode);
+            Assert.Contains("DefaultRunPlan", result.Output, StringComparison.Ordinal);
+            Assert.Contains("PlannedTasks: 4", result.Output, StringComparison.Ordinal);
+            Assert.Contains("DependencyEdges: 4", result.Output, StringComparison.Ordinal);
+            Assert.Contains("Graph:", result.Output, StringComparison.Ordinal);
+            Assert.Contains("  Seed.seed", result.Output, StringComparison.Ordinal);
+            Assert.Contains("    --> Dim.dim [OnSuccess/Data/dbo.Stage]", result.Output, StringComparison.Ordinal);
+            Assert.Contains("    --> Fact.fact [OnSuccess/Data/dbo.Stage]", result.Output, StringComparison.Ordinal);
+            Assert.Contains("  Dim.dim", result.Output, StringComparison.Ordinal);
+            Assert.Contains("    --> Mart.mart [OnSuccess/Data/dbo.Dim]", result.Output, StringComparison.Ordinal);
+            Assert.Contains("  Fact.fact", result.Output, StringComparison.Ordinal);
+            Assert.Contains("    --> Mart.mart [OnSuccess/Data/dbo.Fact]", result.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("ParallelWaves", result.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("MaxWaveWidth", result.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("Wave ", result.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("+--", result.Output, StringComparison.Ordinal);
+            Assert.DoesNotContain("`--", result.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
     }
 
     [Fact]
@@ -1056,7 +1886,22 @@ INNER JOIN dw.DimCustomer AS d
         service.AddTaskOrderingResolution(model, "RefreshA.write-a", "AppendA.append-a", "dbo.A", "Refresh before append.");
         service.BuildRunPlan(model);
 
-        Assert.Equal(["RefreshA.truncate-a", "RefreshA.write-a", "AppendA.append-a", "ReadA.read-a"], PlannedTaskNamesInOrder(model));
+        var dependencies = OrchestrationExecutionContinuity.BuildDependencyMap(model);
+        var plannedTasks = PlannedTaskRows(model);
+        var refreshWrite = plannedTasks.Single(item => item.PipelineReference.Name == "RefreshA" && item.TaskAccessProfile.TaskName == "write-a");
+        var appendA = plannedTasks.Single(item => item.PipelineReference.Name == "AppendA");
+        Assert.Equal(
+            OrchestrationTaskReadiness.Waiting,
+            OrchestrationExecutionContinuity.EvaluateReadiness(appendA, dependencies, EmptyTaskOutcomes(), out var dependency, out _, out _));
+        Assert.Equal(refreshWrite.TaskAccessProfile.Id, dependency.PredecessorTaskProfileId);
+
+        var taskOutcomes = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            [refreshWrite.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.Succeeded
+        };
+        Assert.Equal(
+            OrchestrationTaskReadiness.Ready,
+            OrchestrationExecutionContinuity.EvaluateReadiness(appendA, dependencies, taskOutcomes, out _, out _, out _));
     }
 
     [Fact]
@@ -1078,9 +1923,19 @@ INNER JOIN dw.DimCustomer AS d
         service.AddConcurrentAppendPolicy(model, "dbo.Stage", "Stage writes are append-only.");
         service.BuildRunPlan(model);
 
-        var plannedTasks = PlannedTaskNamesInOrder(model);
-        Assert.True(Array.IndexOf(plannedTasks, "StageA.append-a") < Array.IndexOf(plannedTasks, "ReadStage.read-stage"));
-        Assert.True(Array.IndexOf(plannedTasks, "StageB.append-b") < Array.IndexOf(plannedTasks, "ReadStage.read-stage"));
+        var dependencies = OrchestrationExecutionContinuity.BuildDependencyMap(model);
+        var plannedTasks = PlannedTaskRows(model);
+        var stageA = plannedTasks.Single(item => item.PipelineReference.Name == "StageA");
+        var stageB = plannedTasks.Single(item => item.PipelineReference.Name == "StageB");
+        var readStage = plannedTasks.Single(item => item.PipelineReference.Name == "ReadStage");
+        Assert.Equal(OrchestrationTaskReadiness.Waiting, OrchestrationExecutionContinuity.EvaluateReadiness(readStage, dependencies, EmptyTaskOutcomes(), out _, out _, out _));
+        var taskOutcomes = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            [stageA.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.Succeeded
+        };
+        Assert.Equal(OrchestrationTaskReadiness.Waiting, OrchestrationExecutionContinuity.EvaluateReadiness(readStage, dependencies, taskOutcomes, out _, out _, out _));
+        taskOutcomes[stageB.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.Succeeded;
+        Assert.Equal(OrchestrationTaskReadiness.Ready, OrchestrationExecutionContinuity.EvaluateReadiness(readStage, dependencies, taskOutcomes, out _, out _, out _));
         Assert.Single(model.LockCompatibilityPolicyList);
         Assert.All(model.PlannedTaskLockList.Where(item => item.DataObject.SqlIdentifier == "dbo.Stage"), item => Assert.NotNull(item.Reason));
     }
@@ -1123,7 +1978,7 @@ INNER JOIN dw.DimCustomer AS d
             "No modeled unique-key/atomic upsert proof yet.");
         service.BuildRunPlan(model);
 
-        Assert.Equal(["LoadInternetSales.load-internet-sales", "LoadStoreSales.load-store-sales"], PlannedTaskNamesInOrder(model));
+        Assert.Equal(2, model.PlannedTaskList.Count);
         Assert.All(model.PlannedTaskLockList.Where(item => item.DataObject.SqlIdentifier == "dbo.DimCustomer"), item => Assert.NotNull(item.LockCompatibilityPolicy));
     }
 
@@ -1212,6 +2067,192 @@ INNER JOIN dw.DimCustomer AS d
         return new MetaOrchestrationAnalysisService().AnalyzeProfiles("Default", null, profiles);
     }
 
+    private static Task<OrchestrationRuntimeResult> ExecuteWithFakePipelineWorkerAsync(
+        string tempRoot,
+        MetaOrchestrationModel model,
+        string workerScript,
+        TimeSpan? workerEventTimeout = null)
+    {
+        var orchestrationWorkspace = Path.Combine(tempRoot, "Orchestration");
+        var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+        var transformWorkspace = Path.Combine(tempRoot, "Transform");
+        var bindingWorkspace = Path.Combine(tempRoot, "Binding");
+        var runArtifactsRoot = Path.Combine(tempRoot, "Runs");
+        Directory.CreateDirectory(pipelineWorkspace);
+        Directory.CreateDirectory(transformWorkspace);
+        Directory.CreateDirectory(bindingWorkspace);
+        model.SaveToXmlWorkspace(orchestrationWorkspace);
+
+        var workerPath = Path.Combine(tempRoot, "fake-meta-pipeline.cmd");
+        var workerPowerShellPath = Path.Combine(tempRoot, "fake-meta-pipeline.ps1");
+        File.WriteAllText(
+            workerPath,
+            """
+            @echo off
+            powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0fake-meta-pipeline.ps1" %*
+            exit /b %errorlevel%
+            """.Replace("\r\n", "\n", StringComparison.Ordinal).Replace("\n", Environment.NewLine, StringComparison.Ordinal));
+        File.WriteAllText(
+            workerPowerShellPath,
+            FakeWorkerPowerShellPreamble
+                + Environment.NewLine
+                + workerScript.Replace("\r\n", "\n", StringComparison.Ordinal).Replace("\n", Environment.NewLine, StringComparison.Ordinal)
+                + Environment.NewLine
+                + FakeWorkerPowerShellEpilogue);
+
+        return new MetaOrchestrationRuntimeService().ExecuteAsync(
+            new OrchestrationRuntimeRequest(
+                orchestrationWorkspace,
+                pipelineWorkspace,
+                transformWorkspace,
+                bindingWorkspace,
+                string.Empty,
+                string.Empty,
+                1,
+                PipelineExecutableName: workerPath,
+                RunArtifactsRootPath: runArtifactsRoot,
+                ExpectedWorkerExecutableVersion: "test-worker",
+                WorkerEventTimeout: workerEventTimeout));
+    }
+
+    private const string FakeWorkerPowerShellPreamble = """
+        $ErrorActionPreference = 'Stop'
+        $WorkerArgs = $args
+        $pipeline = ''
+        $pipeName = ''
+        for ($index = 0; $index -lt $WorkerArgs.Count; $index++) {
+            if ($WorkerArgs[$index] -eq '--pipeline') {
+                $index++
+                $pipeline = $WorkerArgs[$index]
+                continue
+            }
+            if ($WorkerArgs[$index] -eq '--control-pipe') {
+                $index++
+                $pipeName = $WorkerArgs[$index]
+                continue
+            }
+        }
+
+        if ([string]::IsNullOrWhiteSpace($pipeName)) {
+            throw 'missing --control-pipe'
+        }
+
+        $client = [System.IO.Pipes.NamedPipeClientStream]::new('.', $pipeName, [System.IO.Pipes.PipeDirection]::InOut, [System.IO.Pipes.PipeOptions]::Asynchronous)
+        $client.Connect(10000)
+        $utf8 = [System.Text.UTF8Encoding]::new($false)
+        $reader = [System.IO.StreamReader]::new($client, $utf8, $false, 4096, $true)
+        $writer = [System.IO.StreamWriter]::new($client, $utf8, 4096, $true)
+        $writer.AutoFlush = $true
+
+        function Send-WorkerEvent {
+            param(
+                [string] $Kind,
+                [string] $TaskId = 'no-task',
+                [string] $TaskName = 'no-task',
+                [string] $GrantId = 'no-grant',
+                [string] $CommandId = 'no-command',
+                [int] $Attempt = 0,
+                [int] $ExitCode = 0,
+                [string] $Version = 'test-worker',
+                [string] $Message = '',
+                [string] $FailureClass = ''
+            )
+            $fields = @(
+                'META_PIPELINE_WORKER',
+                $Kind,
+                'test-worker',
+                "pipeline:$pipeline",
+                $pipeline,
+                $TaskId,
+                $TaskName,
+                $GrantId,
+                $CommandId,
+                [string] $Attempt,
+                [string] $ExitCode,
+                $Version,
+                $Message,
+                $FailureClass
+            )
+            $writer.WriteLine(($fields -join "`t"))
+        }
+
+        function Send-RawWorkerLine {
+            param([string] $Line)
+            $writer.WriteLine($Line)
+        }
+
+        function Read-WorkerCommand {
+            $reader.ReadLine()
+        }
+
+        function Read-StartPipelineCommand {
+            $line = Read-WorkerCommand
+            if ([string]::IsNullOrWhiteSpace($line)) {
+                throw 'missing StartPipeline command'
+            }
+
+            $fields = $line.Split("`t")
+            if ($fields.Count -lt 10 -or $fields[0] -ne 'META_ORCHESTRATION' -or $fields[1] -ne 'StartPipeline') {
+                throw "expected StartPipeline command, got '$line'"
+            }
+
+            $startedPipeline = [System.Uri]::UnescapeDataString($fields[7])
+            if ([string]::IsNullOrWhiteSpace($startedPipeline)) {
+                throw 'StartPipeline did not name a pipeline'
+            }
+
+            if (![string]::IsNullOrWhiteSpace($pipeline) -and $startedPipeline -ne $pipeline) {
+                throw "StartPipeline named '$startedPipeline', expected '$pipeline'"
+            }
+
+            $script:pipeline = $startedPipeline
+            $line
+        }
+
+        try {
+        """;
+
+    private const string FakeWorkerPowerShellEpilogue = """
+        }
+        finally {
+            if ($null -ne $writer) { $writer.Dispose() }
+            if ($null -ne $reader) { $reader.Dispose() }
+            if ($null -ne $client) { $client.Dispose() }
+        }
+        """;
+
+    private static void AddTestRetryPolicy(
+        MetaOrchestrationModel model,
+        int maxAttempts,
+        bool retryWrites)
+    {
+        var plan = Assert.Single(model.OrchestrationPlanList);
+        var policy = new RetryPolicy
+        {
+            Id = "retry-policy:test",
+            OrchestrationPlan = plan,
+            Name = "TestRetryPolicy",
+            PolicyKind = "TestRetryPolicy",
+            MaxAttempts = maxAttempts.ToString(CultureInfo.InvariantCulture),
+            InitialDelayMilliseconds = "0",
+            MaxDelayMilliseconds = "0",
+            BackoffMultiplier = "1",
+            RetryReadOnlyTasksByDefault = "true",
+            RetryWriteTasksByDefault = retryWrites ? "true" : "false",
+            Status = "Active",
+            Reason = "Test retry policy."
+        };
+        model.RetryPolicyList.Add(policy);
+        model.RetryPolicyFailureClassList.Add(new RetryPolicyFailureClass
+        {
+            Id = "retry-policy:test:failure-class:worker-reported-retryable",
+            RetryPolicy = policy,
+            FailureClass = WorkerFailureClasses.WorkerReportedRetryable,
+            RetryBehavior = "Retry",
+            Reason = "Test retry class."
+        });
+    }
+
     private static MetaOrchestrationModel CreateModel(OrchestrationAnalysisResult result)
     {
         return new MetaOrchestrationAnalysisService().CreateModel(result, Path.Combine(Path.GetTempPath(), "MetaOrchestration.Tests", "Pipeline"));
@@ -1230,6 +2271,9 @@ INNER JOIN dw.DimCustomer AS d
             .OrderBy(static item => int.Parse(item.Ordinal))
             .ToArray();
     }
+
+    private static Dictionary<string, string> EmptyTaskOutcomes() =>
+        new(StringComparer.Ordinal);
 
     private static PipelineDependencyProfile Profile(string pipelineName, params PipelineTaskAccessProfile[] tasks)
     {

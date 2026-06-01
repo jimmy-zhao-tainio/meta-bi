@@ -4,6 +4,7 @@
 
 ## Core
 
+- [meta+meta-bi landing page](landing/index.html)
 - [Meta BI design goals](core/META-BI-DESIGN-GOALS.md)
 - [CLI interaction wall](cli/CLI-INTERACTION-WALL.md)
 - [Modeling guardrails](META-MODELING-GUARDRAILS.md)

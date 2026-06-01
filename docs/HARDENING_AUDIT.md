@@ -697,7 +697,7 @@ Role in ladder:
 
 Current support:
 - Plans, pipeline references, data objects, task profiles, object access evidence, task object effects, task dependencies, ordering resolutions, lock policies, run plans, planned tasks, planned locks, pipeline dependency projection, issues.
-- Local process-based execution over `meta-pipeline execute-step`.
+- Local process-based execution over `meta-pipeline execute-worker`, with orchestration grants between worker task-ready events, per-run journals, an exclusive workspace execution lease, and local liveness guards for impossible worker waits.
 - Continues viable DAG paths by default; success/failure dependency conditions exist.
 
 Gaps:
@@ -705,6 +705,7 @@ Gaps:
 - Resource policy is still thin: max degree of parallelism exists, but CPU/memory/disk/network/source-system pools are not modeled.
 - Failure continuation exists, but retry, compensation, alerting, and manual gate patterns are not modeled.
 - Lock-aware scheduling is deterministic but not yet a distributed runtime lock manager.
+- The local lease prevents duplicate execution of one orchestration workspace on one machine, but a future operational DB lease is still needed for multi-machine execution.
 
 Ordered hardening work:
 1. P0: Keep run plan graph-based. Do not make topological batches the default semantic contract unless the user explicitly models batch grouping.
