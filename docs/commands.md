@@ -1860,6 +1860,7 @@ Notes:
   The process loads the whole modeled pipeline once and preserves that pipeline context.
   It uses the named pipe control channel for typed WorkerOnline/WorkerReady/PipelineStarted/TaskReady events and StartPipeline, GrantTask, StopPipeline, or FailPipeline commands.
   The worker waits for StartPipeline before it emits PipelineStarted or any TaskReady task boundary.
+  If StartPipeline carries a task id, the worker resumes at that task boundary and does not replay earlier tasks in the same pipeline.
   stdout and stderr are diagnostics only; they are not the worker control plane.
   After TaskFailed it waits at the failed task boundary for retry, stop, or fail commands instead of advancing automatically.
   MetaOrchestration owns cross-pipeline task synchronization; MetaPipeline owns in-process pipeline execution and operational DB evidence.
@@ -2342,6 +2343,7 @@ Notes:
   Refreshes run-plan rows from current workspace state, then executes the run plan.
   Each MetaPipeline pipeline is launched once as a worker with a named pipe control channel.
   Orchestration sends StartPipeline after WorkerReady, before any task grants.
+  Replacement workers receive StartPipeline with a resume task id so prior same-pipeline tasks are not replayed after retryable worker loss.
   Orchestration grants TaskReady work or stops a worker at a blocked task.
   Workers parked at TaskReady do not count as silent; activation and running grants do.
   Retry policy is read from modeled RetryPolicy/RetryPolicyFailureClass/RunPlanRetryPolicy rows, not from a command-line switch.

@@ -140,119 +140,445 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
-    public void RuntimeLivenessRejectsReadyForNonPendingTask()
+    public void RuntimeStateMachineRejectsReadyForNonPendingTask()
     {
+        var state = CreateStartedRuntimeState("CustomerLoad.load");
+        state.MarkReady("CustomerLoad.load", "CustomerLoad");
+
         var ex = Assert.Throws<InvalidOperationException>(() =>
-            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
-                "CustomerLoad",
-                WorkerEventKinds.TaskReady,
-                "CustomerLoad.load",
-                new HashSet<string>(StringComparer.Ordinal),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)));
+            state.ValidateTaskEvent("CustomerLoad", WorkerEventKinds.TaskReady, "CustomerLoad.load"));
 
         Assert.Contains("not pending", ex.Message, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("must not send", ex.Message, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public void RuntimeLivenessRejectsTerminalEventWithoutGrant()
+    public void RuntimeStateMachineRejectsTerminalEventWithoutGrant()
     {
+        var state = CreateStartedRuntimeState("CustomerLoad.load");
+
         var ex = Assert.Throws<InvalidOperationException>(() =>
-            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
-                "CustomerLoad",
-                WorkerEventKinds.TaskSucceeded,
-                "CustomerLoad.load",
-                new HashSet<string>(["CustomerLoad.load"], StringComparer.Ordinal),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)));
+            state.ValidateTaskEvent("CustomerLoad", WorkerEventKinds.TaskSucceeded, "CustomerLoad.load"));
 
         Assert.Contains("no active grant", ex.Message, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public void RuntimeLivenessRejectsWorkerThatMovesWhileAlreadyReady()
+    public void RuntimeStateMachineRejectsWorkerThatMovesWhileAlreadyReady()
     {
-        var ex = Assert.Throws<InvalidOperationException>(() =>
-            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
-                "CustomerLoad",
-                WorkerEventKinds.TaskReady,
-                "CustomerLoad.write",
-                new HashSet<string>(["CustomerLoad.write"], StringComparer.Ordinal),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-                {
-                    ["CustomerLoad"] = "CustomerLoad.load"
-                },
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)));
+        var state = CreateStartedRuntimeState("CustomerLoad.load", "CustomerLoad.write");
+        state.MarkReady("CustomerLoad.load", "CustomerLoad");
 
-        Assert.Contains("already waiting", ex.Message, StringComparison.OrdinalIgnoreCase);
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            state.ValidateTaskEvent("CustomerLoad", WorkerEventKinds.TaskReady, "CustomerLoad.write"));
+
+        Assert.Contains("already ready", ex.Message, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public void RuntimeLivenessRejectsReadyWhileGrantIsRunning()
+    public void RuntimeStateMachineRejectsReadyWhileGrantIsActive()
     {
-        var ex = Assert.Throws<InvalidOperationException>(() =>
-            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
-                "CustomerLoad",
-                WorkerEventKinds.TaskReady,
-                "CustomerLoad.write",
-                new HashSet<string>(["CustomerLoad.write"], StringComparer.Ordinal),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-                {
-                    ["CustomerLoad"] = "CustomerLoad.load"
-                }));
+        var state = CreateStartedRuntimeState("CustomerLoad.load", "CustomerLoad.write");
+        state.MarkReady("CustomerLoad.load", "CustomerLoad");
+        state.MarkGrantIssued("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 1);
 
-        Assert.Contains("still running", ex.Message, StringComparison.OrdinalIgnoreCase);
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            state.ValidateTaskEvent("CustomerLoad", WorkerEventKinds.TaskReady, "CustomerLoad.write"));
+
+        Assert.Contains("still active", ex.Message, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public void RuntimeLivenessRejectsTerminalEventForWrongGrant()
+    public void RuntimeStateMachineRejectsTerminalEventForWrongGrant()
     {
+        var state = CreateStartedRuntimeState("CustomerLoad.load", "CustomerLoad.write");
+        state.MarkReady("CustomerLoad.load", "CustomerLoad");
+        state.MarkGrantIssued("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkTaskStarted("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 1);
+
         var ex = Assert.Throws<InvalidOperationException>(() =>
-            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
-                "CustomerLoad",
-                WorkerEventKinds.TaskFailed,
-                "CustomerLoad.write",
-                new HashSet<string>(StringComparer.Ordinal),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-                {
-                    ["CustomerLoad"] = "CustomerLoad.load"
-                }));
+            state.ValidateTaskEvent("CustomerLoad", WorkerEventKinds.TaskFailed, "CustomerLoad.write"));
 
         Assert.Contains("active grant", ex.Message, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("CustomerLoad.load", ex.Message, StringComparison.Ordinal);
     }
 
     [Fact]
-    public void RuntimeLivenessRejectsUnsupportedWorkerEvent()
+    public void RuntimeStateMachineRejectsMissingGrantEvidence()
     {
+        var missingGrant = CreateStartedRuntimeState("CustomerLoad.load");
+        missingGrant.MarkReady("CustomerLoad.load", "CustomerLoad");
+        missingGrant.MarkGrantIssued("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 1);
+        Assert.Contains(
+            "grant id",
+            Assert.Throws<InvalidOperationException>(() =>
+                missingGrant.MarkGrantAccepted("CustomerLoad.load", "CustomerLoad", string.Empty, "command-1", 1)).Message,
+            StringComparison.OrdinalIgnoreCase);
+
+        var missingCommand = CreateStartedRuntimeState("CustomerLoad.load");
+        missingCommand.MarkReady("CustomerLoad.load", "CustomerLoad");
+        missingCommand.MarkGrantIssued("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 1);
+        Assert.Contains(
+            "command id",
+            Assert.Throws<InvalidOperationException>(() =>
+                missingCommand.MarkGrantAccepted("CustomerLoad.load", "CustomerLoad", "grant-1", string.Empty, 1)).Message,
+            StringComparison.OrdinalIgnoreCase);
+
+        var missingAttempt = CreateStartedRuntimeState("CustomerLoad.load");
+        missingAttempt.MarkReady("CustomerLoad.load", "CustomerLoad");
+        missingAttempt.MarkGrantIssued("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 1);
+        Assert.Contains(
+            "attempt",
+            Assert.Throws<InvalidOperationException>(() =>
+                missingAttempt.MarkGrantAccepted("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 0)).Message,
+            StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineRejectsUnsupportedWorkerEvent()
+    {
+        var state = CreateStartedRuntimeState("CustomerLoad.load");
+
         var ex = Assert.Throws<InvalidOperationException>(() =>
-            OrchestrationRuntimeLiveness.ValidateWorkerEvent(
-                "CustomerLoad",
-                "PAUSE",
-                "CustomerLoad.load",
-                new HashSet<string>(["CustomerLoad.load"], StringComparer.Ordinal),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
-                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)));
+            state.ValidateTaskEvent("CustomerLoad", "PAUSE", "CustomerLoad.load"));
 
         Assert.Contains("unsupported event", ex.Message, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
-    public void RuntimeLivenessAcceptsStartedForMatchingGrant()
+    public void RuntimeStateMachineAcceptsStartedForMatchingGrant()
     {
-        OrchestrationRuntimeLiveness.ValidateWorkerEvent(
-            "CustomerLoad",
-            WorkerEventKinds.TaskStarted,
-            "CustomerLoad.load",
-            new HashSet<string>(StringComparer.Ordinal),
-            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
-            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["CustomerLoad"] = "CustomerLoad.load"
-            });
+        var state = CreateStartedRuntimeState("CustomerLoad.load");
+
+        state.MarkReady("CustomerLoad.load", "CustomerLoad");
+        state.MarkGrantIssued("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 1);
+        state.ValidateTaskEvent("CustomerLoad", WorkerEventKinds.TaskStarted, "CustomerLoad.load");
+        state.MarkTaskStarted("CustomerLoad.load", "CustomerLoad", "grant-1", "command-1", 1);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineDeclaresTaskAndWorkerTransitions()
+    {
+        Assert.Contains(
+            OrchestrationExecutionStateMachine.TaskTransitions,
+            item => item.From == OrchestrationTaskRuntimeState.Pending &&
+                    item.Trigger == OrchestrationTaskRuntimeTrigger.WorkerTaskReady &&
+                    item.To == OrchestrationTaskRuntimeState.Ready);
+        Assert.Contains(
+            OrchestrationExecutionStateMachine.TaskTransitions,
+            item => item.From == OrchestrationTaskRuntimeState.Ready &&
+                    item.Trigger == OrchestrationTaskRuntimeTrigger.GrantIssued &&
+                    item.To == OrchestrationTaskRuntimeState.GrantIssued);
+        Assert.Contains(
+            OrchestrationExecutionStateMachine.TaskTransitions,
+            item => item.From == OrchestrationTaskRuntimeState.Ready &&
+                    item.Trigger == OrchestrationTaskRuntimeTrigger.ReadyWorkerLost &&
+                    item.To == OrchestrationTaskRuntimeState.Pending);
+        Assert.Contains(
+            OrchestrationExecutionStateMachine.TaskTransitions,
+            item => item.From == OrchestrationTaskRuntimeState.Running &&
+                    item.Trigger == OrchestrationTaskRuntimeTrigger.ReplacementRetryScheduled &&
+                    item.To == OrchestrationTaskRuntimeState.RetryScheduled);
+        Assert.Contains(
+            OrchestrationExecutionStateMachine.WorkerTransitions,
+            item => item.From == OrchestrationWorkerRuntimeState.Starting &&
+                    item.Trigger == OrchestrationWorkerRuntimeTrigger.WorkerOnline &&
+                    item.To == OrchestrationWorkerRuntimeState.Online);
+        Assert.Contains(
+            OrchestrationExecutionStateMachine.WorkerTransitions,
+            item => item.From == OrchestrationWorkerRuntimeState.StartPipelineSent &&
+                    item.Trigger == OrchestrationWorkerRuntimeTrigger.PipelineStarted &&
+                    item.To == OrchestrationWorkerRuntimeState.PipelineStarted);
+
+        Assert.All(
+            OrchestrationExecutionStateMachine.TaskTransitions
+                .GroupBy(static item => (item.From, item.Trigger)),
+            group => Assert.Single(group));
+        Assert.All(
+            OrchestrationExecutionStateMachine.WorkerTransitions
+                .GroupBy(static item => (item.From, item.Trigger)),
+            group => Assert.Single(group));
+    }
+
+    [Fact]
+    public void RuntimeStateMachineAcceptsNormalTaskLifecycle()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+        state.MarkGrantIssued("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkGrantAccepted("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkTaskStarted("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkSucceeded("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+
+        Assert.False(state.HasUnresolvedTasks);
+        Assert.Equal(0, state.PendingCount);
+        Assert.Equal(0, state.ReadyCount);
+        Assert.Equal(0, state.RunningCount);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineRejectsDuplicateReadyTaskOnSameWorker()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1", "pipeline:CustomerLoad:task:2");
+
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            state.MarkReady("pipeline:CustomerLoad:task:2", "CustomerLoad"));
+
+        Assert.Contains("already ready", ex.Message, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("pipeline:CustomerLoad:task:1", ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineRejectsTerminalEventBeforeRunning()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            state.MarkSucceeded("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1));
+
+        Assert.Contains("no active grant", ex.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineAcceptsReplacementWorkerRetryLifecycle()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+        state.MarkGrantIssued("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkRetryScheduledForReplacement("pipeline:CustomerLoad:task:1", "grant-1", 2);
+        state.MarkWorkerClosed("CustomerLoad");
+        state.MarkPendingForReplacement("pipeline:CustomerLoad:task:1");
+        state.RegisterWorker("CustomerLoad", "pipeline:CustomerLoad", "pipeline:CustomerLoad:task:1", "test-version");
+        state.MarkWorkerOnline("CustomerLoad", "test-version");
+        state.MarkWorkerReady("CustomerLoad");
+        state.MarkStartPipelineSent("CustomerLoad");
+        state.MarkPipelineStarted("CustomerLoad");
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+        state.MarkGrantIssued("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-2", "command-2", 2);
+        state.MarkGrantAccepted("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-2", "command-2", 2);
+        state.MarkTaskStarted("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-2", "command-2", 2);
+        state.MarkSucceeded("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-2", "command-2", 2);
+
+        Assert.False(state.HasUnresolvedTasks);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineRejectsReadyBeforePipelineStarted()
+    {
+        var state = new OrchestrationExecutionStateMachine(["pipeline:CustomerLoad:task:1"]);
+        state.RegisterWorker("CustomerLoad", "pipeline:CustomerLoad", string.Empty, "test-version");
+        state.MarkWorkerOnline("CustomerLoad", "test-version");
+        state.MarkWorkerReady("CustomerLoad");
+
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad"));
+
+        Assert.Contains(WorkerEventKinds.PipelineStarted, ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineRejectsWorkerEventsAfterWorkerClosed()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+
+        state.MarkWorkerClosed("CustomerLoad");
+
+        Assert.False(state.WorkerIsOnline("CustomerLoad"));
+        Assert.False(state.WorkerIsReady("CustomerLoad"));
+        Assert.False(state.WorkerStartPipelineSent("CustomerLoad"));
+        Assert.False(state.WorkerPipelineStarted("CustomerLoad"));
+
+        var lifecycle = Assert.Throws<InvalidOperationException>(() =>
+            state.AcceptWorkerLifecycleEvent("CustomerLoad", WorkerEventKinds.Heartbeat));
+        var task = Assert.Throws<InvalidOperationException>(() =>
+            state.ValidateTaskEvent("CustomerLoad", WorkerEventKinds.TaskReady, "pipeline:CustomerLoad:task:1"));
+
+        Assert.Contains("after it was closed", lifecycle.Message, StringComparison.Ordinal);
+        Assert.Contains("after it was closed", task.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineRejectsTerminalEventBeforeTaskStarted()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+        state.MarkGrantIssued("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkGrantAccepted("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            state.ValidateTaskEvent("CustomerLoad", WorkerEventKinds.TaskSucceeded, "pipeline:CustomerLoad:task:1"));
+
+        Assert.Contains("GrantAccepted", ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsReadyWorkerLossDecision()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+
+        var decision = state.ApplyWorkerLoss("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerLossDecisionKind.ReplaceAtReadyTaskBoundary, decision.Kind);
+        Assert.Equal("pipeline:CustomerLoad:task:1", decision.TaskId);
+        Assert.Equal("pipeline:CustomerLoad:task:1", decision.ResumeTaskId);
+        Assert.True(state.IsPending("pipeline:CustomerLoad:task:1"));
+        Assert.False(state.WorkerIsOnline("CustomerLoad"));
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsPreActivationWorkerLossDecision()
+    {
+        var state = new OrchestrationExecutionStateMachine(["pipeline:CustomerLoad:task:1"]);
+        state.RegisterWorker("CustomerLoad", "pipeline:CustomerLoad", string.Empty, "test-version");
+        state.MarkWorkerOnline("CustomerLoad", "test-version");
+
+        var decision = state.ApplyWorkerLoss("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerLossDecisionKind.ReplaceFromBeginning, decision.Kind);
+        Assert.Equal(string.Empty, decision.ResumeTaskId);
+        Assert.False(state.WorkerIsOnline("CustomerLoad"));
+        Assert.True(state.IsPending("pipeline:CustomerLoad:task:1"));
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsActiveGrantWorkerLossDecision()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+        state.MarkGrantIssued("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkTaskStarted("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+
+        var decision = state.ApplyWorkerLoss("CustomerLoad", exitCode: 99);
+
+        Assert.Equal(OrchestrationWorkerLossDecisionKind.ActiveGrantLost, decision.Kind);
+        Assert.Equal("pipeline:CustomerLoad:task:1", decision.TaskId);
+        Assert.True(state.HasActiveGrant("pipeline:CustomerLoad:task:1"));
+        Assert.False(state.WorkerIsOnline("CustomerLoad"));
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsTimeoutDecisionBeforeOnline()
+    {
+        var state = new OrchestrationExecutionStateMachine(["pipeline:CustomerLoad:task:1"]);
+        state.RegisterWorker("CustomerLoad", "pipeline:CustomerLoad", string.Empty, "test-version");
+
+        var decision = state.ResolveWorkerTimeout("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerTimeoutDecisionKind.AwaitingWorkerOnline, decision.Kind);
+        Assert.Equal(WorkerEventKinds.WorkerOnline, decision.ExpectedEventKind);
+        Assert.True(decision.HasUnresolvedPipelineTasks);
+        Assert.False(decision.WorkerHasReachedTaskBoundary);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsTimeoutDecisionBeforeReady()
+    {
+        var state = new OrchestrationExecutionStateMachine(["pipeline:CustomerLoad:task:1"]);
+        state.RegisterWorker("CustomerLoad", "pipeline:CustomerLoad", string.Empty, "test-version");
+        state.MarkWorkerOnline("CustomerLoad", "test-version");
+
+        var decision = state.ResolveWorkerTimeout("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerTimeoutDecisionKind.AwaitingWorkerReady, decision.Kind);
+        Assert.Equal(WorkerEventKinds.WorkerReady, decision.ExpectedEventKind);
+        Assert.True(decision.HasUnresolvedPipelineTasks);
+        Assert.False(decision.WorkerHasReachedTaskBoundary);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsTimeoutDecisionBeforePipelineStarted()
+    {
+        var state = new OrchestrationExecutionStateMachine(["pipeline:CustomerLoad:task:1"]);
+        state.RegisterWorker("CustomerLoad", "pipeline:CustomerLoad", string.Empty, "test-version");
+        state.MarkWorkerOnline("CustomerLoad", "test-version");
+        state.MarkWorkerReady("CustomerLoad");
+        state.MarkStartPipelineSent("CustomerLoad");
+
+        var decision = state.ResolveWorkerTimeout("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerTimeoutDecisionKind.AwaitingPipelineStarted, decision.Kind);
+        Assert.Equal(WorkerEventKinds.PipelineStarted, decision.ExpectedEventKind);
+        Assert.Equal(WorkerCommandKinds.StartPipeline, decision.ExpectedCommandKind);
+        Assert.True(decision.HasUnresolvedPipelineTasks);
+        Assert.False(decision.WorkerHasReachedTaskBoundary);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineSuppressesProtocolTimeoutAtReadyGrantBoundary()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+
+        var decision = state.ResolveWorkerTimeout("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerTimeoutDecisionKind.WaitingForGrant, decision.Kind);
+        Assert.Equal("pipeline:CustomerLoad:task:1", decision.TaskId);
+        Assert.Equal(WorkerCommandKinds.GrantTask, decision.ExpectedCommandKind);
+        Assert.True(decision.IsWaitingForOrchestrationCommand);
+        Assert.True(decision.WorkerHasReachedTaskBoundary);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsTimeoutDecisionBeforeFirstTaskBoundary()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+
+        var decision = state.ResolveWorkerTimeout("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerTimeoutDecisionKind.AwaitingTaskBoundary, decision.Kind);
+        Assert.Equal(WorkerEventKinds.TaskReady, decision.ExpectedEventKind);
+        Assert.True(decision.HasUnresolvedPipelineTasks);
+        Assert.False(decision.WorkerHasReachedTaskBoundary);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsTimeoutDecisionForActiveGrant()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+        state.MarkGrantIssued("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkTaskStarted("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+
+        var decision = state.ResolveWorkerTimeout("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerTimeoutDecisionKind.ActiveGrantTimedOut, decision.Kind);
+        Assert.Equal("pipeline:CustomerLoad:task:1", decision.TaskId);
+        Assert.Equal(WorkerCommandKinds.GrantTask, decision.ExpectedCommandKind);
+        Assert.True(decision.HasUnresolvedPipelineTasks);
+        Assert.True(decision.WorkerHasReachedTaskBoundary);
+    }
+
+    [Fact]
+    public void RuntimeStateMachineOwnsTimeoutDecisionForResolvedPipeline()
+    {
+        var state = CreateStartedRuntimeState("pipeline:CustomerLoad:task:1");
+        state.MarkReady("pipeline:CustomerLoad:task:1", "CustomerLoad");
+        state.MarkGrantIssued("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkTaskStarted("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+        state.MarkSucceeded("pipeline:CustomerLoad:task:1", "CustomerLoad", "grant-1", "command-1", 1);
+
+        var decision = state.ResolveWorkerTimeout("CustomerLoad");
+
+        Assert.Equal(OrchestrationWorkerTimeoutDecisionKind.PipelineResolved, decision.Kind);
+        Assert.False(decision.HasUnresolvedPipelineTasks);
+        Assert.True(decision.WorkerHasReachedTaskBoundary);
+    }
+
+    private static OrchestrationExecutionStateMachine CreateStartedRuntimeState(params string[] taskIds)
+    {
+        var state = new OrchestrationExecutionStateMachine(taskIds);
+        state.RegisterWorker("CustomerLoad", "pipeline:CustomerLoad", string.Empty, "test-version");
+        state.MarkWorkerOnline("CustomerLoad", "test-version");
+        state.MarkWorkerReady("CustomerLoad");
+        state.MarkStartPipelineSent("CustomerLoad");
+        state.MarkPipelineStarted("CustomerLoad");
+        return state;
     }
 
     [Fact]
@@ -559,6 +885,263 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
+    public async Task RuntimeAcceptsPipelineFailedAfterNonRetryTaskFailure()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source")))));
+            AddTestRetryPolicy(model, maxAttempts: 1, retryWrites: false);
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskFailed' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -ExitCode 4 -Message 'fatal' -FailureClass 'WorkerReportedRetryable'
+                $command = Read-WorkerCommand
+                if ($command -notlike "*`tFailPipeline`t*") {
+                    throw "expected FailPipeline command, got '$command'"
+                }
+
+                Send-WorkerEvent -Kind 'PipelineFailed' -TaskId $taskId -TaskName 'load' -ExitCode 4 -Message 'pipeline failed'
+                return
+                """);
+
+            Assert.False(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal(4, taskResult.ExitCode);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeHandlesWorkerDisconnectAfterReportedTaskFailure()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source")))));
+            AddTestRetryPolicy(model, maxAttempts: 1, retryWrites: false);
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskFailed' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -ExitCode 4 -Message 'fatal' -FailureClass 'WorkerReportedRetryable'
+                $writer.Dispose()
+                $reader.Dispose()
+                $client.Dispose()
+                Start-Sleep -Milliseconds 250
+                return
+                """);
+
+            Assert.False(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal(4, taskResult.ExitCode);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeRetriesWorkerCrashAtResumeBoundaryWithoutReplayingPriorPipelineTasks()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "stage",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source")),
+                        Task(
+                            "CustomerLoad",
+                            2,
+                            "publish",
+                            "Select",
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Read, "Source")))));
+            AddTestRetryPolicy(model, maxAttempts: 2, retryWrites: false);
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $statePath = Join-Path $PSScriptRoot "crash-state-$pipeline.txt"
+                $processNumber = 1
+                if (Test-Path $statePath) {
+                    $processNumber = 1 + [int](Get-Content $statePath)
+                }
+                Set-Content -Path $statePath -Value $processNumber
+
+                $task1 = "pipeline:${pipeline}:task:1"
+                $task2 = "pipeline:${pipeline}:task:2"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+
+                if ($processNumber -eq 1) {
+                    if (![string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                        throw "first worker should not receive a resume task, got '$resumeTaskId'"
+                    }
+
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $task1 -TaskName 'stage' -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $task1 -TaskName 'stage' -GrantId 'grant-stage' -CommandId 'command-stage' -Attempt 1 -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $task1 -TaskName 'stage' -GrantId 'grant-stage' -CommandId 'command-stage' -Attempt 1 -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $task1 -TaskName 'stage' -GrantId 'grant-stage' -CommandId 'command-stage' -Attempt 1 -Message 'completed'
+
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $task2 -TaskName 'publish' -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $task2 -TaskName 'publish' -GrantId 'grant-publish-1' -CommandId 'command-publish-1' -Attempt 1 -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $task2 -TaskName 'publish' -GrantId 'grant-publish-1' -CommandId 'command-publish-1' -Attempt 1 -Message 'started'
+                    exit 99
+                }
+
+                if ($resumeTaskId -ne $task2) {
+                    throw "replacement worker resumed at '$resumeTaskId', expected '$task2'"
+                }
+
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $task2 -TaskName 'publish' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $task2 -TaskName 'publish' -GrantId 'grant-publish-2' -CommandId 'command-publish-2' -Attempt 2 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $task2 -TaskName 'publish' -GrantId 'grant-publish-2' -CommandId 'command-publish-2' -Attempt 2 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $task2 -TaskName 'publish' -GrantId 'grant-publish-2' -CommandId 'command-publish-2' -Attempt 2 -Message 'completed'
+                return
+                """);
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(3, result.TaskResults.Count);
+            Assert.Single(result.TaskResults, item => item.StepName == "stage" && item.ExitCode == 0);
+            Assert.Contains(result.TaskResults, item => item.StepName == "publish" && item.ExitCode != 0 && item.AttemptNumber == 1);
+            Assert.Contains(result.TaskResults, item => item.StepName == "publish" && item.ExitCode == 0 && item.AttemptNumber == 2);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeRetriesSilentRunningGrantAtResumeBoundary()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source")))));
+            AddTestRetryPolicy(model, maxAttempts: 2, retryWrites: false);
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $statePath = Join-Path $PSScriptRoot "timeout-state-$pipeline.txt"
+                $processNumber = 1
+                if (Test-Path $statePath) {
+                    $processNumber = 1 + [int](Get-Content $statePath)
+                }
+                Set-Content -Path $statePath -Value $processNumber
+
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+
+                if ($processNumber -eq 1 -and ![string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                    throw "first worker should not receive a resume task, got '$resumeTaskId'"
+                }
+
+                if ($processNumber -gt 1 -and $resumeTaskId -ne $taskId) {
+                    throw "replacement worker resumed at '$resumeTaskId', expected '$taskId'"
+                }
+
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId "grant-$processNumber" -CommandId "command-$processNumber" -Attempt $processNumber -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId "grant-$processNumber" -CommandId "command-$processNumber" -Attempt $processNumber -Message 'started'
+
+                if ($processNumber -eq 1) {
+                    Start-Sleep -Seconds 5
+                    return
+                }
+
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant-2' -CommandId 'command-2' -Attempt 2 -Message 'completed'
+                return
+                """,
+                TimeSpan.FromMilliseconds(500));
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(2, result.TaskResults.Count);
+            Assert.Contains(result.TaskResults, item => item.StepName == "load" && item.ExitCode != 0 && item.AttemptNumber == 1);
+            Assert.Contains(result.TaskResults, item => item.StepName == "load" && item.ExitCode == 0 && item.AttemptNumber == 2);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task RuntimeFailsFastWhenWorkerNeverEmitsOnline()
     {
         var tempRoot = CreateTempRoot();
@@ -588,6 +1171,135 @@ public sealed class MetaOrchestrationAnalysisServiceTests
 
             Assert.Contains("stopped responding", ex.Message, StringComparison.OrdinalIgnoreCase);
             Assert.Contains(WorkerEventKinds.WorkerOnline, ex.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeRestartsWorkerThatDisconnectsAfterOnlineBeforeReady()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $statePath = Join-Path $PSScriptRoot "online-before-ready-disconnect-state-$pipeline.txt"
+                $processNumber = 1
+                if (Test-Path $statePath) {
+                    $processNumber = 1 + [int](Get-Content $statePath)
+                }
+                Set-Content -Path $statePath -Value $processNumber
+
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+
+                if ($processNumber -eq 1) {
+                    $writer.Dispose()
+                    $reader.Dispose()
+                    $client.Dispose()
+                    Start-Sleep -Milliseconds 250
+                    return
+                }
+
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+                if (![string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                    throw "replacement worker should start the pipeline from the beginning, got resume task '$resumeTaskId'"
+                }
+
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                return
+                """);
+
+            Assert.True(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal(0, taskResult.ExitCode);
+            Assert.Equal(1, taskResult.AttemptNumber);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastWhenPreWorkWorkerReplacementLimitIsExhausted()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    $statePath = Join-Path $PSScriptRoot "pre-work-replacement-loop-state-$pipeline.txt"
+                    $processNumber = 1
+                    if (Test-Path $statePath) {
+                        $processNumber = 1 + [int](Get-Content $statePath)
+                    }
+                    Set-Content -Path $statePath -Value $processNumber
+
+                    $taskId = "pipeline:${pipeline}:task:1"
+                    Send-WorkerEvent -Kind 'WorkerOnline' -Message "online $processNumber"
+
+                    if ($processNumber -le 4) {
+                        $writer.Dispose()
+                        $reader.Dispose()
+                        $client.Dispose()
+                        Start-Sleep -Milliseconds 100
+                        return
+                    }
+
+                    Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                    $startCommand = Read-StartPipelineCommand
+                    Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                    return
+                    """));
+
+            Assert.Contains("pre-work worker replacement limit", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("CustomerLoad", ex.Message, StringComparison.Ordinal);
         }
         finally
         {
@@ -636,6 +1348,136 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
+    public async Task RuntimeRestartsWorkerThatDisconnectsBeforeStartPipelineDelivery()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $statePath = Join-Path $PSScriptRoot "start-pipeline-disconnect-state-$pipeline.txt"
+                $processNumber = 1
+                if (Test-Path $statePath) {
+                    $processNumber = 1 + [int](Get-Content $statePath)
+                }
+                Set-Content -Path $statePath -Value $processNumber
+
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+
+                if ($processNumber -eq 1) {
+                    $writer.Dispose()
+                    $reader.Dispose()
+                    $client.Dispose()
+                    Start-Sleep -Milliseconds 250
+                    return
+                }
+
+                $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+                if (![string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                    throw "replacement worker should start the pipeline from the beginning, got resume task '$resumeTaskId'"
+                }
+
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                return
+                """);
+
+            Assert.True(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal(0, taskResult.ExitCode);
+            Assert.Equal(1, taskResult.AttemptNumber);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastWhenStartPipelineCommandReplacementLimitIsExhausted()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    $statePath = Join-Path $PSScriptRoot "start-pipeline-replacement-loop-state-$pipeline.txt"
+                    $processNumber = 1
+                    if (Test-Path $statePath) {
+                        $processNumber = 1 + [int](Get-Content $statePath)
+                    }
+                    Set-Content -Path $statePath -Value $processNumber
+
+                    $taskId = "pipeline:${pipeline}:task:1"
+                    Send-WorkerEvent -Kind 'WorkerOnline' -Message "online $processNumber"
+                    Send-WorkerEvent -Kind 'WorkerReady' -Message "ready $processNumber"
+
+                    if ($processNumber -le 4) {
+                        $writer.Dispose()
+                        $reader.Dispose()
+                        $client.Dispose()
+                        Start-Sleep -Milliseconds 100
+                        return
+                    }
+
+                    $startCommand = Read-StartPipelineCommand
+                    Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                    return
+                    """));
+
+            Assert.Contains("pre-work worker replacement limit", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("before pipeline activation", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("CustomerLoad", ex.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task RuntimeMarksRunningTaskFailedWhenWorkerStopsRespondingDuringGrant()
     {
         var tempRoot = CreateTempRoot();
@@ -651,6 +1493,7 @@ public sealed class MetaOrchestrationAnalysisServiceTests
                             "load",
                             "Select",
                             Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source")))));
+            AddTestRetryPolicy(model, maxAttempts: 1, retryWrites: false);
 
             var result = await ExecuteWithFakePipelineWorkerAsync(
                 tempRoot,
@@ -673,7 +1516,7 @@ public sealed class MetaOrchestrationAnalysisServiceTests
             Assert.False(result.Succeeded);
             var taskResult = Assert.Single(result.TaskResults);
             Assert.Equal(4, taskResult.ExitCode);
-            Assert.Contains("active task outcome is unknown", taskResult.StandardError, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("worker protocol event", taskResult.StandardError, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {
@@ -682,7 +1525,152 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
-    public async Task RuntimeFailsFastWhenWorkerExitsAfterReadyBeforeGrant()
+    public async Task RuntimeRestartsWorkerThatDisconnectsAfterReadyBeforeGrant()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $statePath = Join-Path $PSScriptRoot "ready-disconnect-state-$pipeline.txt"
+                $processNumber = 1
+                if (Test-Path $statePath) {
+                    $processNumber = 1 + [int](Get-Content $statePath)
+                }
+                Set-Content -Path $statePath -Value $processNumber
+
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+
+                if ($processNumber -eq 1) {
+                    if (![string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                        throw "first worker should not receive a resume task, got '$resumeTaskId'"
+                    }
+
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                    $writer.Dispose()
+                    $reader.Dispose()
+                    $client.Dispose()
+                    Start-Sleep -Milliseconds 250
+                    return
+                }
+
+                if ($resumeTaskId -ne $taskId) {
+                    throw "replacement worker resumed at '$resumeTaskId', expected '$taskId'"
+                }
+
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready again'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                return
+                """);
+
+            Assert.True(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal(0, taskResult.ExitCode);
+            Assert.Equal(1, taskResult.AttemptNumber);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeRestartsReadyWorkerThatAlreadyExitedBeforeGrantAttempt()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $statePath = Join-Path $PSScriptRoot "ready-exited-before-grant-state-$pipeline.txt"
+                $processNumber = 1
+                if (Test-Path $statePath) {
+                    $processNumber = 1 + [int](Get-Content $statePath)
+                }
+                Set-Content -Path $statePath -Value $processNumber
+
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+
+                if ($processNumber -eq 1) {
+                    if (![string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                        throw "first worker should not receive a resume task, got '$resumeTaskId'"
+                    }
+
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                    $writer.Dispose()
+                    $reader.Dispose()
+                    $client.Dispose()
+                    return
+                }
+
+                if ($resumeTaskId -ne $taskId) {
+                    throw "replacement worker resumed at '$resumeTaskId', expected '$taskId'"
+                }
+
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready again'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                return
+                """);
+
+            Assert.True(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal(0, taskResult.ExitCode);
+            Assert.Equal(1, taskResult.AttemptNumber);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeRestartsReadyWorkerThatExitsWhileWaitingOnDependency()
     {
         var tempRoot = CreateTempRoot();
         try
@@ -694,7 +1682,7 @@ public sealed class MetaOrchestrationAnalysisServiceTests
                         Task(
                             "Producer",
                             1,
-                            "load",
+                            "produce",
                             "Select",
                             Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
                             Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget"))),
@@ -703,36 +1691,224 @@ public sealed class MetaOrchestrationAnalysisServiceTests
                         Task(
                             "Consumer",
                             1,
-                            "load",
+                            "consume",
                             "Select",
                             Access("dbo.Stage", OrchestrationObjectAccessKind.Read, "Source"),
-                            Access("dbo.Mart", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $consumerReadyPath = Join-Path $PSScriptRoot "consumer-ready-before-dependency.txt"
+                $consumerStatePath = Join-Path $PSScriptRoot "consumer-waiting-exit-state.txt"
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+
+                if ($pipeline -eq 'Producer') {
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'produce' -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'produce' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'produce' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+
+                    while (!(Test-Path $consumerReadyPath)) {
+                        Start-Sleep -Milliseconds 20
+                    }
+
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'produce' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                    return
+                }
+
+                $processNumber = 1
+                if (Test-Path $consumerStatePath) {
+                    $processNumber = 1 + [int](Get-Content $consumerStatePath)
+                }
+                Set-Content -Path $consumerStatePath -Value $processNumber
+
+                if ($processNumber -eq 1) {
+                    if (![string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                        throw "first consumer worker should not receive a resume task, got '$resumeTaskId'"
+                    }
+
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'consume' -GrantId '' -CommandId '' -Message 'waiting for producer'
+                    Set-Content -Path $consumerReadyPath -Value "ready"
+                    $writer.Dispose()
+                    $reader.Dispose()
+                    $client.Dispose()
+                    return
+                }
+
+                if ($resumeTaskId -ne $taskId) {
+                    throw "replacement consumer resumed at '$resumeTaskId', expected '$taskId'"
+                }
+
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'consume' -GrantId '' -CommandId '' -Message 'ready again'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'consume' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'consume' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'consume' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
+                return
+                """,
+                maxDegreeOfParallelism: 2);
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(2, result.TaskResults.Count);
+            Assert.Single(result.TaskResults, item => item.PipelineName == "Producer" && item.ExitCode == 0);
+            Assert.Single(result.TaskResults, item => item.PipelineName == "Consumer" && item.ExitCode == 0);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastWhenReadyWorkerReplacementLimitIsExhausted()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
 
             var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
                 ExecuteWithFakePipelineWorkerAsync(
                     tempRoot,
                     model,
                     """
+                    $statePath = Join-Path $PSScriptRoot "ready-replacement-loop-state-$pipeline.txt"
+                    $processNumber = 1
+                    if (Test-Path $statePath) {
+                        $processNumber = 1 + [int](Get-Content $statePath)
+                    }
+                    Set-Content -Path $statePath -Value $processNumber
+
                     $taskId = "pipeline:${pipeline}:task:1"
-                    Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
-                    Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                    Send-WorkerEvent -Kind 'WorkerOnline' -Message "online $processNumber"
+                    Send-WorkerEvent -Kind 'WorkerReady' -Message "ready $processNumber"
                     $startCommand = Read-StartPipelineCommand
+                    $startFields = $startCommand.Split("`t")
+                    $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+
+                    if ($processNumber -eq 1 -and ![string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                        throw "first worker should not receive a resume task, got '$resumeTaskId'"
+                    }
+
+                    if ($processNumber -gt 1 -and $resumeTaskId -ne $taskId) {
+                        throw "replacement worker resumed at '$resumeTaskId', expected '$taskId'"
+                    }
+
                     Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
-                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
-                    if ($pipeline -eq 'Consumer') { return }
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message "ready $processNumber"
+
+                    if ($processNumber -le 4) {
+                        $writer.Dispose()
+                        $reader.Dispose()
+                        $client.Dispose()
+                        Start-Sleep -Milliseconds 100
+                        return
+                    }
+
                     $command = Read-WorkerCommand
                     Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
                     Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
-                    Start-Sleep -Milliseconds 500
                     Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'completed'
                     return
                     """));
 
-            Assert.Contains("Consumer", ex.Message, StringComparison.OrdinalIgnoreCase);
-            Assert.True(
-                ex.Message.Contains("exited before all", StringComparison.OrdinalIgnoreCase) ||
-                ex.Message.Contains("Cannot send GrantTask", StringComparison.OrdinalIgnoreCase),
-                ex.Message);
+            Assert.Contains("pre-work worker replacement limit", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("before granting task", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("pipeline:CustomerLoad:task:1", ex.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeHandlesWorkerDisconnectAtBlockedTaskBoundary()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "Producer",
+                        Task(
+                            "Producer",
+                            1,
+                            "produce",
+                            "Select",
+                            Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget"))),
+                    Profile(
+                        "Consumer",
+                        Task(
+                            "Consumer",
+                            1,
+                            "consume",
+                            "Select",
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Read, "Source")))));
+            AddTestRetryPolicy(model, maxAttempts: 1, retryWrites: false);
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $producerFailedPath = Join-Path $PSScriptRoot "producer-failed.txt"
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+
+                if ($pipeline -eq 'Producer') {
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'produce' -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'produce' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'produce' -GrantId 'grant' -CommandId 'command' -Attempt 1 -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskFailed' -TaskId $taskId -TaskName 'produce' -GrantId 'grant' -CommandId 'command' -Attempt 1 -ExitCode 4 -Message 'producer failed' -FailureClass 'WorkerReportedRetryable'
+                    $command = Read-WorkerCommand
+                    if ($command -notlike "*`tFailPipeline`t*") {
+                        throw "expected FailPipeline command, got '$command'"
+                    }
+
+                    Set-Content -Path $producerFailedPath -Value "failed"
+                    Send-WorkerEvent -Kind 'PipelineFailed' -TaskId $taskId -TaskName 'produce' -ExitCode 4 -Message 'pipeline failed'
+                    return
+                }
+
+                while (!(Test-Path $producerFailedPath)) {
+                    Start-Sleep -Milliseconds 20
+                }
+
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'consume' -GrantId '' -CommandId '' -Message 'ready after predecessor failed'
+                $writer.Dispose()
+                $reader.Dispose()
+                $client.Dispose()
+                Start-Sleep -Milliseconds 250
+                return
+                """);
+
+            Assert.False(result.Succeeded);
+            Assert.Single(result.TaskResults, item => item.PipelineName == "Producer" && item.ExitCode == 4);
+            Assert.Single(result.BlockedResults, item => item.PipelineName == "Consumer");
         }
         finally
         {
@@ -772,6 +1948,117 @@ public sealed class MetaOrchestrationAnalysisServiceTests
         finally
         {
             DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsFastWhenWorkerOmitsActiveGrantEvidence()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Target", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    $taskId = "pipeline:${pipeline}:task:1"
+                    Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                    Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                    $startCommand = Read-StartPipelineCommand
+                    Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-RawWorkerLine "META_PIPELINE_WORKER`tGrantAccepted`ttest-worker`tpipeline:$pipeline`t$pipeline`t$taskId`tload`t`t`t0`t0`ttest-worker`tmissing grant evidence`t"
+                    return
+                    """));
+
+            Assert.Contains("grant id", ex.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeProtocolFuzzerRejectsDiabolicalWorkerSequences()
+    {
+        var cases = RuntimeProtocolFuzzCase.All;
+        var iterations = ResolveRuntimeProtocolFuzzIterations(cases.Length);
+
+        for (var iteration = 0; iteration < iterations; iteration++)
+        {
+            var fuzzCase = cases[(iteration * 7) % cases.Length];
+            var tempRoot = CreateTempRoot();
+            try
+            {
+                var model = CreateSingleTaskRuntimeProtocolModel();
+                var ex = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                    ExecuteWithFakePipelineWorkerAsync(
+                        tempRoot,
+                        model,
+                        fuzzCase.Script,
+                        fuzzCase.WorkerEventTimeout));
+
+                Assert.Contains(fuzzCase.ExpectedMessageFragment, ex.Message, StringComparison.OrdinalIgnoreCase);
+            }
+            finally
+            {
+                DeleteDirectoryIfExists(tempRoot);
+            }
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeGraphFuzzerExecutesPredictedMultiPipelineDagWithProjectionInvariants()
+    {
+        var iterations = ResolveRuntimeGraphFuzzIterations(8);
+
+        for (var iteration = 0; iteration < iterations; iteration++)
+        {
+            var fuzzCase = RuntimeGraphFuzzCase.Create(iteration + 1);
+            var model = CreateModel(AnalyzeProfiles(fuzzCase.Profiles));
+            new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
+            AssertRuntimeGraphPredictions(model, fuzzCase);
+
+            var tempRoot = CreateTempRoot();
+            try
+            {
+                var result = await ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    fuzzCase.WorkerScript,
+                    TimeSpan.FromSeconds(15),
+                    maxDegreeOfParallelism: 4);
+
+                Assert.True(result.Succeeded);
+                Assert.Empty(result.BlockedResults);
+                Assert.Equal(fuzzCase.ExpectedTaskNames.Length, result.TaskResults.Count);
+                Assert.All(result.TaskResults, item => Assert.Equal(0, item.ExitCode));
+                Assert.Equal(
+                    fuzzCase.ExpectedTaskNames.OrderBy(static item => item, StringComparer.OrdinalIgnoreCase).ToArray(),
+                    result.TaskResults
+                        .Select(static item => $"{item.PipelineName}.{item.StepName}")
+                        .OrderBy(static item => item, StringComparer.OrdinalIgnoreCase)
+                        .ToArray());
+            }
+            finally
+            {
+                DeleteDirectoryIfExists(tempRoot);
+            }
         }
     }
 
@@ -2067,11 +3354,529 @@ INNER JOIN dw.DimCustomer AS d
         return new MetaOrchestrationAnalysisService().AnalyzeProfiles("Default", null, profiles);
     }
 
+    private static int ResolveRuntimeProtocolFuzzIterations(int minimum)
+    {
+        var rawValue = Environment.GetEnvironmentVariable("META_ORCH_RUNTIME_PROTOCOL_FUZZ_ITERATIONS");
+        if (int.TryParse(rawValue, out var parsed) && parsed > 0)
+        {
+            return Math.Max(minimum, parsed);
+        }
+
+        return minimum;
+    }
+
+    private static MetaOrchestrationModel CreateSingleTaskRuntimeProtocolModel()
+    {
+        return CreateModel(
+            AnalyzeProfiles(
+                Profile(
+                    "CustomerLoad",
+                    Task(
+                        "CustomerLoad",
+                        1,
+                        "load",
+                        "Select",
+                        Access("dbo.Source", OrchestrationObjectAccessKind.Read, "Source")))));
+    }
+
+    private sealed record RuntimeProtocolFuzzCase(
+        string Name,
+        string ExpectedMessageFragment,
+        string Script,
+        TimeSpan? WorkerEventTimeout = null)
+    {
+        public static RuntimeProtocolFuzzCase[] All { get; } =
+        [
+            new(
+                "duplicate-worker-online",
+                "Online + WorkerOnline",
+                """
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online again'
+                return
+                """),
+            new(
+                "pipeline-started-before-start-pipeline",
+                "Online + PipelineStarted",
+                """
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'too early'
+                return
+                """),
+            new(
+                "task-ready-before-pipeline-started",
+                "PipelineStarted",
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'too early'
+                return
+                """),
+            new(
+                "duplicate-worker-ready",
+                "StartPipelineSent + WorkerReady",
+                """
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready again'
+                return
+                """),
+            new(
+                "grant-accepted-before-grant",
+                "no active grant",
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-RawWorkerLine "META_PIPELINE_WORKER`tGrantAccepted`ttest-worker`tpipeline:$pipeline`t$pipeline`t$taskId`tload`tgrant-before-grant`tcommand-before-grant`t1`t0`ttest-worker`tbefore grant`t"
+                return
+                """),
+            new(
+                "task-succeeded-before-task-started",
+                "GrantIssued",
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -Message 'too early'
+                return
+                """),
+            new(
+                "wrong-grant-accepted",
+                "active grant",
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-RawWorkerLine "META_PIPELINE_WORKER`tGrantAccepted`ttest-worker`tpipeline:$pipeline`t$pipeline`t$taskId`tload`twrong-grant`t$script:lastCommandId`t$script:lastAttempt`t0`ttest-worker`twrong grant`t"
+                return
+                """),
+            new(
+                "wrong-command-started",
+                "active command",
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -Message 'accepted'
+                Send-RawWorkerLine "META_PIPELINE_WORKER`tTaskStarted`ttest-worker`tpipeline:$pipeline`t$pipeline`t$taskId`tload`t$script:lastGrantId`twrong-command`t$script:lastAttempt`t0`ttest-worker`twrong command`t"
+                return
+                """),
+            new(
+                "wrong-attempt-succeeded",
+                "active attempt",
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -Message 'started'
+                Send-RawWorkerLine "META_PIPELINE_WORKER`tTaskSucceeded`ttest-worker`tpipeline:$pipeline`t$pipeline`t$taskId`tload`t$script:lastGrantId`t$script:lastCommandId`t99`t0`ttest-worker`twrong attempt`t"
+                return
+                """),
+            new(
+                "duplicate-task-ready-while-ready",
+                "not pending",
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready again'
+                $command = Read-WorkerCommand
+                Start-Sleep -Seconds 2
+                return
+                """),
+            new(
+                "worker-emits-reserved-closed",
+                "reserved event kind",
+                """
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-RawWorkerLine "META_PIPELINE_WORKER`tClosed`ttest-worker`tpipeline:$pipeline`t$pipeline`t`t`t`t`t0`t0`ttest-worker`treserved`t"
+                return
+                """),
+            new(
+                "worker-emits-reserved-protocol-fault",
+                "reserved event kind",
+                """
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-RawWorkerLine "META_PIPELINE_WORKER`tProtocolFault`ttest-worker`tpipeline:$pipeline`t$pipeline`t`t`t`t`t0`t0`ttest-worker`treserved`t"
+                return
+                """)
+        ];
+    }
+
+    private static int ResolveRuntimeGraphFuzzIterations(int minimum)
+    {
+        var rawValue = Environment.GetEnvironmentVariable("META_ORCH_RUNTIME_GRAPH_FUZZ_ITERATIONS");
+        if (int.TryParse(rawValue, out var parsed) && parsed > 0)
+        {
+            return Math.Max(minimum, parsed);
+        }
+
+        return minimum;
+    }
+
+    private static void AssertRuntimeGraphPredictions(
+        MetaOrchestrationModel model,
+        RuntimeGraphFuzzCase fuzzCase)
+    {
+        var dependencies = OrchestrationExecutionContinuity.BuildDependencyMap(model);
+        var plannedTasks = PlannedTaskRows(model);
+        var finalTask = plannedTasks.Single(item =>
+            string.Equals(item.PipelineReference.Name, fuzzCase.FinalPipelineName, StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(item.TaskAccessProfile.TaskName, fuzzCase.FinalTaskName, StringComparison.OrdinalIgnoreCase));
+
+        Assert.True(fuzzCase.ExpectedTaskNames.Length >= 8);
+        Assert.True(
+            dependencies.TryGetValue(finalTask.TaskAccessProfile.Id, out var finalDependencies) &&
+            finalDependencies.Length > 0,
+            "The generated final task must have modeled predecessors.");
+        Assert.Equal(
+            OrchestrationTaskReadiness.Waiting,
+            OrchestrationExecutionContinuity.EvaluateReadiness(
+                finalTask,
+                dependencies,
+                EmptyTaskOutcomes(),
+                out _,
+                out _,
+                out _));
+
+        var predecessorOutcomes = plannedTasks
+            .Where(item => !ReferenceEquals(item, finalTask))
+            .ToDictionary(
+                static item => item.TaskAccessProfile.Id,
+                static _ => OrchestrationExecutionContinuity.Succeeded,
+                StringComparer.Ordinal);
+        Assert.Equal(
+            OrchestrationTaskReadiness.Ready,
+            OrchestrationExecutionContinuity.EvaluateReadiness(
+                finalTask,
+                dependencies,
+                predecessorOutcomes,
+                out _,
+                out _,
+                out _));
+    }
+
+    private sealed record RuntimeGraphFuzzCase(
+        PipelineDependencyProfile[] Profiles,
+        string WorkerScript,
+        string[] ExpectedTaskNames,
+        string FinalPipelineName,
+        string FinalTaskName)
+    {
+        public static RuntimeGraphFuzzCase Create(int seed)
+        {
+            var random = new RuntimeGraphRandom((uint)(0xC0DE_2026u + (uint)seed));
+            var profiles = new List<PipelineDependencyProfile>();
+            var expectedTaskNames = new List<string>();
+            var taskRowsByPipeline = new Dictionary<string, List<RuntimeGraphTaskRow>>(StringComparer.OrdinalIgnoreCase);
+
+            var sourceCount = 2 + random.Next(3);
+            var currentObjects = new List<string>();
+            for (var index = 1; index <= sourceCount; index++)
+            {
+                var pipelineName = $"Seed{seed}P{index}";
+                var output = $"stg.Seed{seed}_{index}";
+                AddRuntimeGraphPipeline(
+                    profiles,
+                    expectedTaskNames,
+                    taskRowsByPipeline,
+                    pipelineName,
+                    [
+                        RuntimeGraphTask.Create(
+                            pipelineName,
+                            1,
+                            "extract",
+                            [Access($"src.Seed{seed}_{index}", OrchestrationObjectAccessKind.Read, "Source")],
+                            output)
+                    ],
+                    random.Next(25));
+                currentObjects.Add(output);
+            }
+
+            var layerCount = 2 + random.Next(3);
+            for (var layer = 1; layer <= layerCount; layer++)
+            {
+                var nextObjects = new List<string>();
+                var nodeCount = 2 + random.Next(3);
+                for (var node = 1; node <= nodeCount; node++)
+                {
+                    var pipelineName = $"Layer{layer}Node{node}Seed{seed}";
+                    var selectedInputs = SelectRuntimeGraphInputs(currentObjects, ref random);
+                    var output = $"core.Seed{seed}_L{layer}_N{node}";
+                    if (random.Percent(35))
+                    {
+                        var workOutput = output + "_Work";
+                        AddRuntimeGraphPipeline(
+                            profiles,
+                            expectedTaskNames,
+                            taskRowsByPipeline,
+                            pipelineName,
+                            [
+                                RuntimeGraphTask.Create(
+                                    pipelineName,
+                                    1,
+                                    "stage",
+                                    selectedInputs.Select(static item => Access(item, OrchestrationObjectAccessKind.Read, "Source")).ToArray(),
+                                    workOutput),
+                                RuntimeGraphTask.Create(
+                                    pipelineName,
+                                    2,
+                                    "publish",
+                                    [Access(workOutput, OrchestrationObjectAccessKind.Read, "Source")],
+                                    output)
+                            ],
+                            random.Next(30));
+                    }
+                    else
+                    {
+                        AddRuntimeGraphPipeline(
+                            profiles,
+                            expectedTaskNames,
+                            taskRowsByPipeline,
+                            pipelineName,
+                            [
+                                RuntimeGraphTask.Create(
+                                    pipelineName,
+                                    1,
+                                    "build",
+                                    selectedInputs.Select(static item => Access(item, OrchestrationObjectAccessKind.Read, "Source")).ToArray(),
+                                    output)
+                            ],
+                            random.Next(30));
+                    }
+
+                    nextObjects.Add(output);
+                }
+
+                currentObjects = nextObjects;
+            }
+
+            var finalPipelineName = $"PublishSeed{seed}";
+            var finalTaskName = $"publish-final-{finalPipelineName.ToLowerInvariant()}-1";
+            AddRuntimeGraphPipeline(
+                profiles,
+                expectedTaskNames,
+                taskRowsByPipeline,
+                finalPipelineName,
+                [
+                    RuntimeGraphTask.Create(
+                        finalPipelineName,
+                        1,
+                        "publish-final",
+                        currentObjects.Select(static item => Access(item, OrchestrationObjectAccessKind.Read, "Source")).ToArray(),
+                        $"mart.Seed{seed}_Final")
+                ],
+                random.Next(30));
+
+            return new RuntimeGraphFuzzCase(
+                profiles.ToArray(),
+                CreateRuntimeGraphWorkerScript(taskRowsByPipeline),
+                expectedTaskNames.ToArray(),
+                finalPipelineName,
+                finalTaskName);
+        }
+
+        private static void AddRuntimeGraphPipeline(
+            ICollection<PipelineDependencyProfile> profiles,
+            ICollection<string> expectedTaskNames,
+            IDictionary<string, List<RuntimeGraphTaskRow>> taskRowsByPipeline,
+            string pipelineName,
+            RuntimeGraphTask[] tasks,
+            int delayOffsetMilliseconds)
+        {
+            var pipelineTasks = tasks
+                .Select(task => Task(
+                    pipelineName,
+                    task.Ordinal,
+                    task.TaskName,
+                    "Select",
+                    task.Accesses
+                        .Append(Access(task.OutputSqlIdentifier, OrchestrationObjectAccessKind.Write, "InsertRowsTarget"))
+                        .ToArray()))
+                .ToArray();
+            profiles.Add(Profile(pipelineName, pipelineTasks));
+            taskRowsByPipeline[pipelineName] = pipelineTasks
+                .Select(task => new RuntimeGraphTaskRow(
+                    task.PipelineTaskId,
+                    task.TaskName,
+                    5 + delayOffsetMilliseconds + task.Ordinal))
+                .ToList();
+            foreach (var task in pipelineTasks)
+            {
+                expectedTaskNames.Add($"{pipelineName}.{task.TaskName}");
+            }
+        }
+
+        private static string[] SelectRuntimeGraphInputs(
+            IReadOnlyList<string> candidates,
+            ref RuntimeGraphRandom random)
+        {
+            var count = Math.Min(candidates.Count, 1 + random.Next(Math.Min(3, candidates.Count)));
+            var weightedCandidates = new List<(string Candidate, int Weight)>();
+            foreach (var candidate in candidates)
+            {
+                weightedCandidates.Add((candidate, random.Next(1024)));
+            }
+
+            return weightedCandidates
+                .OrderBy(static item => item.Weight)
+                .Select(static item => item.Candidate)
+                .Take(count)
+                .OrderBy(static item => item, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+        }
+
+        private static string CreateRuntimeGraphWorkerScript(
+            IReadOnlyDictionary<string, List<RuntimeGraphTaskRow>> taskRowsByPipeline)
+        {
+            var cases = string.Join(
+                Environment.NewLine,
+                taskRowsByPipeline
+                    .OrderBy(static item => item.Key, StringComparer.OrdinalIgnoreCase)
+                    .Select(item =>
+                    {
+                        var rows = string.Join(
+                            "," + Environment.NewLine,
+                            item.Value.Select(static task =>
+                                "        @{" + Environment.NewLine +
+                                $"            Id = '{EscapePowerShellSingleQuotedValue(task.TaskId)}'" + Environment.NewLine +
+                                $"            Name = '{EscapePowerShellSingleQuotedValue(task.TaskName)}'" + Environment.NewLine +
+                                $"            Delay = {task.DelayMilliseconds.ToString(CultureInfo.InvariantCulture)}" + Environment.NewLine +
+                                "        }"));
+                        return "    '" + EscapePowerShellSingleQuotedValue(item.Key) + "' {" + Environment.NewLine +
+                               "        $taskRows = @(" + Environment.NewLine +
+                               rows + Environment.NewLine +
+                               "        )" + Environment.NewLine +
+                               "    }";
+                    }));
+
+            return
+                """
+                $taskRows = @()
+                switch ($pipeline) {
+                """ +
+                Environment.NewLine +
+                cases +
+                Environment.NewLine +
+                """
+                    default {
+                        throw "unknown runtime graph fuzz pipeline '$pipeline'"
+                    }
+                }
+
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+
+                foreach ($task in $taskRows) {
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $task.Id -TaskName $task.Name -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $task.Id -TaskName $task.Name -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $task.Id -TaskName $task.Name -Message 'started'
+                    Start-Sleep -Milliseconds ([int] $task.Delay)
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $task.Id -TaskName $task.Name -Message 'completed'
+                }
+
+                return
+                """;
+        }
+
+        private static string EscapePowerShellSingleQuotedValue(string value) =>
+            value.Replace("'", "''", StringComparison.Ordinal);
+    }
+
+    private sealed record RuntimeGraphTask(
+        string PipelineName,
+        int Ordinal,
+        string TaskName,
+        PipelineObjectAccessProfile[] Accesses,
+        string OutputSqlIdentifier)
+    {
+        public static RuntimeGraphTask Create(
+            string pipelineName,
+            int ordinal,
+            string taskKind,
+            PipelineObjectAccessProfile[] accesses,
+            string outputSqlIdentifier) =>
+            new(
+                pipelineName,
+                ordinal,
+                $"{taskKind}-{pipelineName.ToLowerInvariant()}-{ordinal.ToString(CultureInfo.InvariantCulture)}",
+                accesses,
+                outputSqlIdentifier);
+    }
+
+    private sealed record RuntimeGraphTaskRow(
+        string TaskId,
+        string TaskName,
+        int DelayMilliseconds);
+
+    private struct RuntimeGraphRandom
+    {
+        private uint state;
+
+        public RuntimeGraphRandom(uint seed)
+        {
+            state = seed == 0 ? 0x9E37_79B9u : seed;
+        }
+
+        public int Next(int exclusiveMax)
+        {
+            if (exclusiveMax <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(exclusiveMax));
+            }
+
+            return (int)(NextUInt32() % (uint)exclusiveMax);
+        }
+
+        public bool Percent(int percent) =>
+            Next(100) < percent;
+
+        private uint NextUInt32()
+        {
+            var value = state;
+            value ^= value << 13;
+            value ^= value >> 17;
+            value ^= value << 5;
+            state = value;
+            return value;
+        }
+    }
+
     private static Task<OrchestrationRuntimeResult> ExecuteWithFakePipelineWorkerAsync(
         string tempRoot,
         MetaOrchestrationModel model,
         string workerScript,
-        TimeSpan? workerEventTimeout = null)
+        TimeSpan? workerEventTimeout = null,
+        int maxDegreeOfParallelism = 1)
     {
         var orchestrationWorkspace = Path.Combine(tempRoot, "Orchestration");
         var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
@@ -2108,7 +3913,7 @@ INNER JOIN dw.DimCustomer AS d
                 bindingWorkspace,
                 string.Empty,
                 string.Empty,
-                1,
+                maxDegreeOfParallelism,
                 PipelineExecutableName: workerPath,
                 RunArtifactsRootPath: runArtifactsRoot,
                 ExpectedWorkerExecutableVersion: "test-worker",
@@ -2143,6 +3948,9 @@ INNER JOIN dw.DimCustomer AS d
         $reader = [System.IO.StreamReader]::new($client, $utf8, $false, 4096, $true)
         $writer = [System.IO.StreamWriter]::new($client, $utf8, 4096, $true)
         $writer.AutoFlush = $true
+        $script:lastGrantId = ''
+        $script:lastCommandId = ''
+        $script:lastAttempt = 0
 
         function Send-WorkerEvent {
             param(
@@ -2157,6 +3965,12 @@ INNER JOIN dw.DimCustomer AS d
                 [string] $Message = '',
                 [string] $FailureClass = ''
             )
+            if (($Kind -eq 'GrantAccepted' -or $Kind -eq 'TaskStarted' -or $Kind -eq 'TaskSucceeded' -or $Kind -eq 'TaskFailed') -and ![string]::IsNullOrWhiteSpace($script:lastGrantId)) {
+                $GrantId = $script:lastGrantId
+                $CommandId = $script:lastCommandId
+                $Attempt = $script:lastAttempt
+            }
+
             $fields = @(
                 'META_PIPELINE_WORKER',
                 $Kind,
@@ -2182,7 +3996,17 @@ INNER JOIN dw.DimCustomer AS d
         }
 
         function Read-WorkerCommand {
-            $reader.ReadLine()
+            $line = $reader.ReadLine()
+            if (![string]::IsNullOrWhiteSpace($line)) {
+                $fields = $line.Split("`t")
+                if ($fields.Count -ge 10 -and $fields[0] -eq 'META_ORCHESTRATION' -and $fields[1] -eq 'GrantTask') {
+                    $script:lastCommandId = [System.Uri]::UnescapeDataString($fields[2])
+                    $script:lastGrantId = [System.Uri]::UnescapeDataString($fields[3])
+                    $script:lastAttempt = [int] $fields[5]
+                }
+            }
+
+            $line
         }
 
         function Read-StartPipelineCommand {
@@ -2243,14 +4067,23 @@ INNER JOIN dw.DimCustomer AS d
             Reason = "Test retry policy."
         };
         model.RetryPolicyList.Add(policy);
-        model.RetryPolicyFailureClassList.Add(new RetryPolicyFailureClass
+        foreach (var failureClass in new[]
+                 {
+                     WorkerFailureClasses.WorkerReportedRetryable,
+                     WorkerFailureClasses.WorkerCrashBeforeTerminalEvent,
+                     WorkerFailureClasses.TaskTimeout,
+                     WorkerFailureClasses.HeartbeatTimeout
+                 })
         {
-            Id = "retry-policy:test:failure-class:worker-reported-retryable",
-            RetryPolicy = policy,
-            FailureClass = WorkerFailureClasses.WorkerReportedRetryable,
-            RetryBehavior = "Retry",
-            Reason = "Test retry class."
-        });
+            model.RetryPolicyFailureClassList.Add(new RetryPolicyFailureClass
+            {
+                Id = "retry-policy:test:failure-class:" + failureClass.ToLowerInvariant(),
+                RetryPolicy = policy,
+                FailureClass = failureClass,
+                RetryBehavior = "Retry",
+                Reason = "Test retry class."
+            });
+        }
     }
 
     private static MetaOrchestrationModel CreateModel(OrchestrationAnalysisResult result)

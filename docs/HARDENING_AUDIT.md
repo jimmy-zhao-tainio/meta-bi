@@ -1227,7 +1227,8 @@ Suggested tests:
 ### Pipeline / Orchestration
 
 - Pipeline source adapters are not yet modeled.
-- Orchestration resource pools, source throttles, retry/resume, and distributed execution are not modeled.
+- Orchestration resource pools, source throttles, distributed execution, and automatic partial rerun are not modeled.
+- Local orchestration now has modeled retry policy, an explicit in-process task state machine, automatic same-task replacement-worker resume after retryable worker loss, a run journal, and bounded worker log artifacts. `meta-orchestration execute` is scoped as a short-lived supervisor; supervisor-process crash recovery is intentionally a hard stop, not a durable resume feature.
 - Topological batch grouping should remain optional/user-authored, not the default semantics of a run plan.
 
 ## 7. Recommended next implementation batch

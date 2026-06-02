@@ -3,24 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Model-first BI</title>
+  <title>meta+meta-bi</title>
   <meta name="description" content="BI, rebuilt from the ground up. Model first. CLI native. Agent ready.">
   <style>
     :root {
       color-scheme: light;
-      --page: #fafafa;
-      --page-low: #f1f3f4;
-      --ink: #111315;
-      --muted: #5f656b;
-      --quiet: #8b9299;
-      --line: rgba(17, 19, 21, 0.12);
-      --line-strong: rgba(17, 19, 21, 0.22);
-      --terminal: #141719;
+      --page: #fbfbfa;
+      --page-soft: #f3f1ec;
+      --paper: #ffffff;
+      --ink: #0d0f11;
+      --muted: #646a70;
+      --quiet: #8b9298;
+      --line: rgba(13, 15, 17, 0.12);
+      --line-strong: rgba(13, 15, 17, 0.22);
+      --terminal: #131719;
       --terminal-top: #1b2023;
       --terminal-text: #eef1f2;
       --terminal-muted: #a2abb1;
-      --steel: #6f7c86;
-      --content: 1260px;
+      --cyan: #1fc9ff;
+      --violet: #8f6bff;
+      --amber: #e78b2f;
+      --signal: #72c7ae;
+      --content: 1240px;
     }
 
     * {
@@ -35,7 +39,8 @@
     body {
       min-width: 320px;
       margin: 0;
-      background: linear-gradient(145deg, #ffffff 0%, var(--page) 48%, var(--page-low) 100%);
+      overflow-x: hidden;
+      background: linear-gradient(180deg,#fff 0%, #fff 52%, #fcfaf4 100%);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.5;
@@ -46,21 +51,29 @@
       color: inherit;
     }
 
-    a:focus-visible {
-      outline: 3px solid rgba(111, 124, 134, 0.32);
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(31, 201, 255, 0.38);
       outline-offset: 5px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
     }
 
     .skip-link {
       position: absolute;
       left: 1rem;
       top: 1rem;
-      z-index: 50;
+      z-index: 100;
       transform: translateY(-160%);
       border: 1px solid var(--line-strong);
-      border-radius: 6px;
+      border-radius: 999px;
       background: #ffffff;
-      padding: 0.62rem 0.85rem;
+      padding: 0.68rem 0.95rem;
       font-weight: 720;
       text-decoration: none;
     }
@@ -74,44 +87,122 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 20;
-      border-bottom: 1px solid rgba(17, 19, 21, 0.08);
-      background: rgba(250, 250, 250, 0.78);
-      backdrop-filter: blur(18px) saturate(120%);
+      z-index: 50;
+      padding: 0;
+      pointer-events: none;
     }
 
-    .nav {
-      display: flex;
+    .nav-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
       align-items: center;
-      justify-content: space-between;
-      max-width: var(--content);
-      margin: 0 auto;
-      padding: 1rem 1.25rem;
-      gap: 1rem;
+      width: 100%;
+      gap: 1.1rem;
+      border-bottom: 1px solid rgba(13, 15, 17, 0.1);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 14px 36px rgba(13, 15, 17, 0.045);
+      padding: 0.72rem max(1.25rem, calc((100vw - var(--content)) / 2 + 1.25rem));
+      pointer-events: auto;
     }
 
-    .wordmark,
-    .nav-links a,
-    .button {
+    .brand {
+      display: inline-flex;
+      min-width: 0;
+      align-items: center;
+      gap: 0.78rem;
       text-decoration: none;
     }
 
-    .wordmark {
-      font-size: 0.98rem;
-      font-weight: 760;
-      letter-spacing: 0;
+    .brand-mark {
+      display: grid;
+      width: 2.52rem;
+      height: 2.52rem;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 50%;
+      background: #0d0f11;
+      color: #ffffff;
+    }
+
+    .brand-mark svg {
+      width: 1.12rem;
+      height: 1.12rem;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .brand-text {
+      display: grid;
+      gap: 0.02rem;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      line-height: 1.25rem;
+      text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.15rem;
+      gap: 1.75rem;
       color: var(--muted);
-      font-size: 0.94rem;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .nav-links a,
+    .button,
+    .nav-cta {
+      text-decoration: none;
     }
 
     .nav-links a:hover {
       color: var(--ink);
+    }
+
+    .nav-cta,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.25rem;
+      white-space: nowrap;
+    }
+
+    .nav-cta {
+      background: var(--ink);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 160ms ease;
+    }
+
+    .nav-cta:hover {
+      background: rgba(13, 15, 17, 0.85);
+    }
+
+    .button-icon {
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
     }
 
     main {
@@ -122,109 +213,147 @@
       display: grid;
       min-height: 100svh;
       align-items: center;
-      padding: 7rem 1.25rem 4rem;
+      padding: 8.8rem 1.25rem 5.8rem;
+      background:
+        linear-gradient(145deg, #ffffff 0%, #fbfbfa 58%, #f2f4f4 100%);
     }
 
     .hero-inner {
       display: grid;
-      grid-template-columns: minmax(0, 0.84fr) minmax(520px, 1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(460px, 0.78fr);
       align-items: center;
       max-width: var(--content);
       width: 100%;
       margin: 0 auto;
-      gap: 4.6rem;
+      gap: clamp(3rem, 6vw, 6.4rem);
     }
 
     .hero-copy {
-      max-width: 690px;
-    }
-
-    h1,
-    p {
-      margin-top: 0;
+      max-width: 850px;
+      min-width: 0;
     }
 
     h1 {
-      max-width: 720px;
-      margin-bottom: 1.25rem;
-      font-size: 4.35rem;
-      line-height: 0.99;
+      max-width: 840px;
+      margin-bottom: 1.35rem;
+      color: var(--ink);
+      font-size: clamp(5.2rem, 8.6vw, 8rem);
+      font-weight: 850;
       letter-spacing: 0;
-      font-weight: 780;
+      line-height: 0.92;
     }
 
     .subline {
-      margin-bottom: 0.66rem;
+      margin-bottom: 0.65rem;
       color: var(--ink);
-      font-size: 1.36rem;
+      font-size: 1.42rem;
+      font-weight: 700;
       line-height: 1.38;
-      font-weight: 680;
     }
 
     .support {
+      max-width: 31rem;
       margin-bottom: 0;
       color: var(--muted);
-      font-size: 1.06rem;
+      font-size: 1.04rem;
+      line-height: 1.55;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 0.84rem;
-      margin-top: 2rem;
+      margin-top: 2.25rem;
     }
 
     .button {
-      display: inline-flex;
-      min-height: 2.85rem;
-      align-items: center;
-      justify-content: center;
       border: 1px solid var(--line-strong);
-      border-radius: 999px;
-      padding: 0.74rem 1.08rem;
-      font-weight: 720;
-      line-height: 1.2;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background 160ms ease, border-color 160ms ease;
     }
 
     .button-primary {
       border-color: var(--ink);
       background: var(--ink);
       color: #ffffff;
+      box-shadow: 0 16px 34px rgba(13, 15, 17, 0.14);
+    }
+
+    .button-primary:hover {
+      background: rgba(13, 15, 17, 0.9);
     }
 
     .button-secondary {
-      background: rgba(255, 255, 255, 0.62);
-      color: var(--muted);
+      border-color: rgba(13, 15, 17, 0.1);
+      background: transparent;
+      color: var(--ink);
     }
 
     .button-secondary:hover {
-      border-color: var(--ink);
-      color: var(--ink);
+      border-color: rgba(13, 15, 17, 0.25);
+      background: rgba(13, 15, 17, 0.03);
     }
 
     .terminal-wrap {
       position: relative;
       justify-self: end;
-      width: clamp(36rem, 38vw, 39rem);
+      width: clamp(33rem, 35vw, 38rem);
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .proof-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 34rem;
+      margin-top: 3.4rem;
+    }
+
+    .proof-point {
+      border-top: 1px solid rgba(13, 15, 17, 0.12);
+      padding-top: 0.92rem;
+    }
+
+    .proof-number {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--ink);
+      font-size: 1.45rem;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    .proof-label {
+      display: block;
+      color: rgba(13, 15, 17, 0.55);
+      font-size: 0.82rem;
+      font-weight: 650;
+      letter-spacing: 0.16em;
+      line-height: 1.25;
+      text-transform: uppercase;
     }
 
     .terminal-wrap::before {
-      content: "";
       position: absolute;
       inset: 2.45rem -1.15rem -1.15rem 1.15rem;
       z-index: -1;
-      border: 1px solid rgba(17, 19, 21, 0.08);
+      border: 1px solid rgba(13, 15, 17, 0.08);
       background: rgba(255, 255, 255, 0.58);
       box-shadow: 0 46px 118px rgba(32, 38, 44, 0.16);
+      content: "";
     }
 
     .terminal {
       display: flex;
       width: 100%;
+      min-width: 0;
       height: clamp(22rem, 26vw, 24rem);
       flex-direction: column;
       overflow: hidden;
-      border: 1px solid rgba(17, 19, 21, 0.18);
+      border: 1px solid rgba(13, 15, 17, 0.18);
       border-radius: 18px;
       background: var(--terminal);
       box-shadow:
@@ -246,62 +375,388 @@
     }
 
     .terminal-controls {
-      display: flex;
-      gap: 0.42rem;
-    }
-
-    .terminal-dot {
-      width: 0.46rem;
-      height: 0.46rem;
-      border-radius: 50%;
-      background: rgba(238, 241, 242, 0.24);
+      display: none;
     }
 
     .terminal-body {
       display: grid;
       flex: 1;
-      align-content: start;
-      gap: 0.56rem;
+      min-width: 0;
+      align-content: center;
+      gap: 0.48rem;
       overflow: hidden;
-      padding: 1.42rem 1.48rem;
+      padding: 0.64rem 1.48rem 0.56rem;
       color: var(--terminal-text);
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
       font-size: 0.8rem;
-      line-height: 1.72;
-    }
-
-    .terminal-line {
+      font-variant-ligatures: none;
+      line-height: 1.58;
+      text-rendering: geometricPrecision;
       white-space: pre;
     }
 
+    .terminal-line {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+
     .prompt {
-      color: #b8c2c8;
+      color: var(--terminal-text);
     }
 
     .result {
       color: var(--terminal-muted);
-      padding-left: 1.16rem;
     }
 
     .terminal-break {
-      margin-top: 0.5rem;
+      margin-top: 0.22rem;
     }
 
     .terminal-final {
       display: inline-flex;
       align-items: baseline;
-      margin-top: 0.36rem;
+      margin-top: 0.08rem;
     }
 
     .terminal-cursor {
       display: inline-block;
-      width: 0.68ch;
-      height: 1em;
-      margin-left: 0.45ch;
+      width: calc(0.76ch + 1px);
+      height: 1.12em;
+      margin-left: 1ch;
       border-radius: 1px;
-      background: currentColor;
-      vertical-align: -0.14em;
-      animation: cursorBlink 1.15s ease-in-out infinite;
+      background: var(--terminal-text);
+      transform: translateY(1px);
+      vertical-align: -0.1em;
+      animation: cursorBlink 1.05s steps(1, end) infinite;
+    }
+
+    .section {
+      padding: 7.4rem 1.25rem;
+    }
+
+    .section-inner {
+      max-width: var(--content);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin-bottom: 0.9rem;
+      color: var(--quiet);
+      font-size: 0.82rem;
+      font-weight: 760;
+      line-height: 1.2;
+    }
+
+    .section-heading {
+      margin-bottom: 1.05rem;
+      color: var(--ink);
+      font-size: 3.05rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 1.02;
+    }
+
+    .section-text {
+      max-width: 650px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.72;
+    }
+
+    .section-transition {
+      position: relative;
+      overflow: hidden;
+      margin-top: -1px;
+    }
+
+    .cinematic-strip {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 25%, rgba(242,184,75,.38), transparent 36%),
+        radial-gradient(ellipse at 80% 35%, rgba(125,211,252,.38), transparent 34%),
+        radial-gradient(ellipse at 50% 85%, rgba(167,139,250,.25), transparent 28%);
+      opacity: .95;
+      filter: saturate(1.05);
+    }
+
+    .surfaces {
+      color: var(--ink);
+    }
+
+    .surfaces .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .surface-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(560px, 1.12fr);
+      align-items: center;
+      gap: clamp(3rem, 6vw, 6.2rem);
+    }
+
+    .surfaces .eyebrow {
+      color: rgba(13, 15, 17, 0.56);
+    }
+
+    .surfaces .section-heading {
+      max-width: 560px;
+      color: var(--ink);
+    }
+
+    .surfaces .section-text {
+      color: rgba(13, 15, 17, 0.72);
+    }
+
+    .surface-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .surface-panel {
+      --accent: var(--cyan);
+      display: grid;
+      min-height: 12.2rem;
+      align-content: end;
+      border: 1px solid rgba(13, 15, 17, 0.08);
+      border-radius: 24px;
+      background: #fffdfa;
+      color: var(--ink);
+      box-shadow:
+        0 24px 60px rgba(13, 15, 17, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
+      padding: 1.25rem;
+    }
+
+    .surface-panel::before {
+      display: block;
+      width: 2.4rem;
+      height: 0.28rem;
+      margin-bottom: 1.1rem;
+      border-radius: 999px;
+      background: var(--accent);
+      content: "";
+    }
+
+    .surface-panel h3 {
+      margin-bottom: 0.32rem;
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .surface-panel p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .surface-xml {
+      --accent: var(--cyan);
+      grid-column: span 2;
+    }
+
+    .surface-csharp {
+      --accent: var(--violet);
+      grid-column: span 2;
+      transform: translateY(1.6rem);
+    }
+
+    .surface-sql {
+      --accent: var(--amber);
+      grid-column: span 2;
+    }
+
+    .surface-cli {
+      --accent: var(--signal);
+      grid-column: span 6;
+      display: grid;
+      min-height: 9.6rem;
+      grid-template-columns: minmax(0, 0.44fr) minmax(0, 1fr);
+      align-items: end;
+      gap: 1rem;
+      margin-top: 1.35rem;
+    }
+
+    .command-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.42rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .command-chips li {
+      border: 1px solid rgba(13, 15, 17, 0.12);
+      border-radius: 999px;
+      background: #f4f6f4;
+      color: #31423d;
+      padding: 0.34rem 0.58rem;
+      font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 0.72rem;
+      line-height: 1.2;
+    }
+
+    .models {
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      background: #fcfaf4;
+      color: var(--ink);
+    }
+
+    .models-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.58fr) minmax(0, 1.42fr);
+      align-items: start;
+      gap: clamp(3rem, 6vw, 5.6rem);
+    }
+
+    .model-copy .section-heading {
+      max-width: 560px;
+    }
+
+    .model-copy,
+    .model-collection {
+      min-width: 0;
+    }
+
+    .model-collection {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .model-tile {
+      --tile-accent: var(--cyan);
+      position: relative;
+      display: grid;
+      min-height: 13rem;
+      align-content: space-between;
+      gap: 1.4rem;
+      overflow: hidden;
+      border: 1px solid rgba(13, 15, 17, 0.1);
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow:
+        0 22px 54px rgba(13, 15, 17, 0.075),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      padding: 1.05rem;
+    }
+
+    .model-tile::before {
+      display: block;
+      width: 2.35rem;
+      height: 0.24rem;
+      border-radius: 999px;
+      background: var(--tile-accent);
+      content: "";
+    }
+
+    .model-marker {
+      display: grid;
+      width: 2.35rem;
+      height: 2.35rem;
+      place-items: center;
+      border: 1px solid rgba(13, 15, 17, 0.1);
+      border-radius: 999px;
+      color: rgba(13, 15, 17, 0.58);
+      font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 0.72rem;
+    }
+
+    .model-tile h3 {
+      margin-bottom: 0.55rem;
+      font-size: 1.2rem;
+      font-weight: 820;
+      line-height: 1.1;
+    }
+
+    .model-tile p {
+      margin-bottom: 0;
+      color: rgba(13, 15, 17, 0.62);
+      font-size: 0.88rem;
+      line-height: 1.48;
+    }
+
+    .model-wide {
+      grid-column: span 2;
+    }
+
+    .tile-cyan {
+      --tile-accent: var(--cyan);
+    }
+
+    .tile-violet {
+      --tile-accent: var(--violet);
+    }
+
+    .tile-amber {
+      --tile-accent: var(--amber);
+    }
+
+    .tile-signal {
+      --tile-accent: var(--signal);
+    }
+
+    .site-footer {
+      border-top: 1px solid rgba(13, 15, 17, 0.1);
+      padding: 3rem 1.25rem;
+      background: #ffffff;
+      color: var(--ink);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      max-width: var(--content);
+      margin: 0 auto;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      margin-bottom: 0.4rem;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      line-height: 1.25rem;
+      text-transform: uppercase;
+    }
+
+    .footer-line {
+      margin-bottom: 0;
+      color: rgba(13, 15, 17, 0.55);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .footer-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.48rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-pills li {
+      border: 1px solid rgba(13, 15, 17, 0.1);
+      border-radius: 999px;
+      color: rgba(13, 15, 17, 0.55);
+      padding: 0.5rem 1rem;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
     }
 
     @keyframes cursorBlink {
@@ -310,9 +765,9 @@
         opacity: 1;
       }
 
-      70%,
+      46%,
       100% {
-        opacity: 0.18;
+        opacity: 0;
       }
     }
 
@@ -328,18 +783,31 @@
     }
 
     @media (max-width: 980px) {
-      .hero {
-        align-items: start;
+      .nav-shell {
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding-right: 0.95rem;
+        padding-left: 0.95rem;
       }
 
-      .hero-inner {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        align-items: start;
+        padding-top: 7.4rem;
+      }
+
+      .hero-inner,
+      .surface-layout,
+      .models-layout {
         grid-template-columns: 1fr;
         gap: 3.4rem;
       }
 
       h1 {
-        max-width: 680px;
-        font-size: 3.42rem;
+        max-width: 720px;
+        font-size: clamp(4rem, 9vw, 5.8rem);
       }
 
       .terminal-wrap {
@@ -351,58 +819,152 @@
       .terminal {
         height: 23.5rem;
       }
+
+      .section {
+        padding: 5.4rem 1.25rem;
+      }
+
+      .section-heading {
+        font-size: 2.55rem;
+      }
+
+      .surface-panel-grid {
+        max-width: 760px;
+      }
+
+      .models-layout {
+        align-items: start;
+      }
+
+      .model-collection {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 640px) {
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
+      .site-header {
+        position: absolute;
       }
 
-      .nav-links {
-        gap: 0.95rem;
+      .nav-shell {
+        grid-template-columns: 1fr;
+        padding: 0.76rem;
+      }
+
+      .nav-cta {
+        justify-self: start;
       }
 
       .hero {
-        padding-top: 7.4rem;
+        padding: 10rem 1rem 4rem;
+      }
+
+      .hero-copy {
+        max-width: 100%;
       }
 
       h1 {
-        font-size: 2.52rem;
+        max-width: 100%;
+        font-size: clamp(3.15rem, 16vw, 4.8rem);
+        line-height: 0.93;
       }
 
       .subline {
-        font-size: 1.14rem;
+        font-size: 1.12rem;
       }
 
       .support {
-        font-size: 1rem;
+        font-size: 0.98rem;
       }
 
       .actions {
         align-items: stretch;
         flex-direction: column;
+        width: calc(100vw - 3rem);
+        max-width: calc(100vw - 3rem);
       }
 
       .button {
         width: 100%;
       }
 
+      .proof-points {
+        grid-template-columns: 1fr;
+        width: calc(100vw - 3rem);
+        max-width: calc(100vw - 3rem);
+        margin-top: 2.2rem;
+      }
+
       .terminal-wrap::before {
         inset: 1.4rem -0.55rem -0.55rem 0.55rem;
       }
 
-      .terminal-body {
-        padding: 0.78rem;
-        font-size: clamp(0.55rem, 2.8vw, 0.68rem);
+      .terminal-wrap {
+        width: calc(100vw - 3rem);
+        max-width: calc(100vw - 3rem);
       }
 
       .terminal {
         height: 23rem;
+        border-radius: 16px;
+      }
+
+      .terminal-body {
+        padding: 0.78rem;
+        font-size: 0.62rem;
       }
 
       .terminal-bar {
         font-size: 0.68rem;
+      }
+
+      .section {
+        padding: 4.5rem 1rem;
+      }
+
+      .section-heading {
+        font-size: 2.1rem;
+      }
+
+      .section-text {
+        font-size: 0.98rem;
+      }
+
+      .surface-panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .surface-xml,
+      .surface-csharp,
+      .surface-sql,
+      .surface-cli {
+        grid-column: auto;
+        transform: none;
+      }
+
+      .surface-cli {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+      }
+
+      .command-chips {
+        justify-content: flex-start;
+      }
+
+      .model-collection {
+        grid-template-columns: 1fr;
+      }
+
+      .model-wide {
+        grid-column: auto;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-pills {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -411,12 +973,27 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="wordmark" href="#main">meta+meta-bi</a>
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="#main">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M7.5 12h9"></path>
+            <path d="M12 7.5v9"></path>
+            <circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"></circle>
+            <circle cx="7.5" cy="12" r="1.1" fill="currentColor" stroke="none"></circle>
+            <circle cx="16.5" cy="12" r="1.1" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">meta+meta-bi</span>
+        </span>
+      </a>
       <div class="nav-links" aria-label="Documentation links">
         <a href="../README.md">Docs</a>
         <a href="../README.md#domain-notes">Models</a>
+        <a href="#surfaces">Surfaces</a>
       </div>
+      <a class="nav-cta" href="../README.md"><span>Read the docs</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10"></path><path d="M17 7v10H7"></path></svg></a>
     </nav>
   </header>
 
@@ -428,8 +1005,22 @@
           <p class="subline">Model first. CLI native. Agent ready.</p>
           <p class="support">Define the system once. Generate the stack.</p>
           <div class="actions" aria-label="Primary actions">
-            <a class="button button-primary" href="../README.md">Read the docs</a>
-            <a class="button button-secondary" href="../README.md#domain-notes">View sanctioned models</a>
+            <a class="button button-primary" href="../README.md"><span>Read the docs</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 18 12 22 16 18"></path><path d="M12 2v20"></path></svg></a>
+            <a class="button button-secondary" href="../README.md#domain-notes"><span>View sanctioned models</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+          </div>
+          <div class="proof-points" aria-label="Product qualities">
+            <div class="proof-point">
+              <span class="proof-number">01</span>
+              <span class="proof-label">Model-first</span>
+            </div>
+            <div class="proof-point">
+              <span class="proof-number">02</span>
+              <span class="proof-label">CLI-native</span>
+            </div>
+            <div class="proof-point">
+              <span class="proof-number">03</span>
+              <span class="proof-label">Agent-ready</span>
+            </div>
           </div>
         </div>
 
@@ -437,28 +1028,148 @@
           <div class="terminal">
             <div class="terminal-bar">
               <span>meta-bi</span>
-              <span class="terminal-controls" aria-hidden="true">
-                <span class="terminal-dot"></span>
-                <span class="terminal-dot"></span>
-                <span class="terminal-dot"></span>
-              </span>
+              <span class="terminal-controls" aria-hidden="true"></span>
             </div>
             <div class="terminal-body">
-              <div class="terminal-line"><span class="prompt">&gt;</span> meta-data-quality inspect --workspace .\DQ --show-cases</div>
-              <div class="terminal-line result">RuntimeCheck             12</div>
-              <div class="terminal-line result">SemanticReviewFinding    29</div>
-              <div class="terminal-line result">ImpliedJoinFanoutRisk     4</div>
-              <div class="terminal-line terminal-break"><span class="prompt">&gt;</span> meta-orchestration refresh-run-plan --workspace .\Run</div>
-              <div class="terminal-line result">RunPlan                  written</div>
-              <div class="terminal-line result">DagStatus                Complete</div>
-              <div class="terminal-line result">PlannedTask              24</div>
-              <div class="terminal-line result">PlannedTaskLock           6</div>
+              <div class="terminal-line"><span class="prompt">&gt;</span> meta-pipeline inspect --workspace .\Vault.Load</div>
+              <div class="terminal-line result">model               BusinessVault</div>
+              <div class="terminal-line result">targets             hubs links satellites</div>
+              <div class="terminal-line result">steps               32</div>
+              <div class="terminal-line result">evidence            complete</div>
+              <div class="terminal-line terminal-break"><span class="prompt">&gt;</span> meta-orchestration inspect --workspace .\Vault.Run</div>
+              <div class="terminal-line result">dag                 complete</div>
+              <div class="terminal-line result">dependencies        resolved</div>
+              <div class="terminal-line result">issues              none</div>
+              <div class="terminal-line result">constraints         applied</div>
               <div class="terminal-line terminal-final"><span class="prompt">&gt;</span><span class="terminal-cursor" aria-hidden="true"></span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <section class="section surfaces section-transition" id="surfaces" aria-labelledby="surfaces-title">
+      <div class="cinematic-strip" aria-hidden="true"></div>
+      <div class="section-inner surface-layout">
+        <div>
+          <p class="eyebrow">META</p>
+          <h2 class="section-heading" id="surfaces-title">One model. Native surfaces.</h2>
+          <p class="section-text">XML for version control. C# for generation. SQL for scale. CLI for operations. Define metadata once and keep it aligned across every surface, from flat data discovery to model refactoring and runtime inspection.</p>
+        </div>
+
+        <div class="surface-panel-grid" aria-label="Native metadata surfaces">
+          <article class="surface-panel surface-xml">
+            <h3>XML</h3>
+            <p>Version control</p>
+          </article>
+          <article class="surface-panel surface-csharp">
+            <h3>C#</h3>
+            <p>Generation</p>
+          </article>
+          <article class="surface-panel surface-sql">
+            <h3>SQL</h3>
+            <p>Scale</p>
+          </article>
+          <article class="surface-panel surface-cli">
+            <div>
+              <h3>CLI</h3>
+              <p>Operations</p>
+            </div>
+            <ul class="command-chips" aria-label="CLI operations">
+              <li>discover</li>
+              <li>refactor</li>
+              <li>inspect</li>
+              <li>explain</li>
+              <li>operate</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section models" id="models" aria-labelledby="models-title">
+      <div class="section-inner models-layout">
+        <div class="model-copy">
+          <p class="eyebrow">MODELS</p>
+          <h2 class="section-heading" id="models-title">A complete model surface for BI systems.</h2>
+          <p class="section-text">From physical schemas to orchestration and quality evidence, the stack keeps BI structure explicit, inspectable, and generation-ready.</p>
+        </div>
+
+        <div class="model-collection" aria-label="BI model surfaces">
+          <article class="model-tile tile-cyan">
+            <span class="model-marker" aria-hidden="true">01</span>
+            <div>
+              <h3>Schemas</h3>
+              <p>Source and target structures</p>
+            </div>
+          </article>
+          <article class="model-tile tile-violet">
+            <span class="model-marker" aria-hidden="true">02</span>
+            <div>
+              <h3>RDV</h3>
+              <p>Raw Vault structures with lineage preserved</p>
+            </div>
+          </article>
+          <article class="model-tile tile-amber">
+            <span class="model-marker" aria-hidden="true">03</span>
+            <div>
+              <h3>BDV</h3>
+              <p>Business Vault rules and derived structures</p>
+            </div>
+          </article>
+          <article class="model-tile tile-signal">
+            <span class="model-marker" aria-hidden="true">04</span>
+            <div>
+              <h3>DW</h3>
+              <p>Dimensional and warehouse-facing outputs</p>
+            </div>
+          </article>
+          <article class="model-tile model-wide tile-amber">
+            <span class="model-marker" aria-hidden="true">05</span>
+            <div>
+              <h3>Analytics</h3>
+              <p>Semantic analysis surfaces</p>
+            </div>
+          </article>
+          <article class="model-tile tile-violet">
+            <span class="model-marker" aria-hidden="true">06</span>
+            <div>
+              <h3>SSAS</h3>
+              <p>Analytical model projections</p>
+            </div>
+          </article>
+          <article class="model-tile model-wide tile-cyan">
+            <span class="model-marker" aria-hidden="true">07</span>
+            <div>
+              <h3>Orchestration</h3>
+              <p>Execution intent, dependencies, and run structure</p>
+            </div>
+          </article>
+          <article class="model-tile tile-signal">
+            <span class="model-marker" aria-hidden="true">08</span>
+            <div>
+              <h3>DQ</h3>
+              <p>Quality rules, findings, and evidence</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">meta+meta-bi</p>
+        <p class="footer-line">Model-first BI infrastructure.</p>
+      </div>
+      <ul class="footer-pills" aria-label="Product qualities">
+        <li>Model-first</li>
+        <li>CLI-native</li>
+        <li>Agent-ready</li>
+        <li>Generation-ready</li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>

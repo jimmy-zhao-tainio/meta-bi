@@ -56,6 +56,15 @@ internal static partial class Program
                 4,
                 [$"  {ex.Message}"]);
         }
+        catch (OperationCanceledException ex)
+        {
+            progress?.Complete(failed: true);
+            return Fail(
+                "Orchestration execution was cancelled.",
+                "inspect the run artifacts for the last supervisor state and worker logs before rerunning execute.",
+                4,
+                [$"  {ex.Message}"]);
+        }
     }
 
     private static int PrintExecutionIncomplete(OrchestrationRuntimeResult result)

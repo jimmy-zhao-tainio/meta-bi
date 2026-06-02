@@ -5,6 +5,7 @@ namespace MetaOrchestration.Core;
 
 internal sealed class OrchestrationRunJournal
 {
+    private const int MaxDetailLength = 16_000;
     private readonly object gate = new();
     private readonly string eventLogPath;
 
@@ -64,15 +65,32 @@ internal sealed class OrchestrationRunJournal
             DateTimeOffset.UtcNow.ToString("O"),
             Escape(eventKind),
             Escape(subject),
-            Escape(detail));
+            Escape(TrimDetail(detail)));
         lock (gate)
         {
             File.AppendAllText(eventLogPath, line + Environment.NewLine, Encoding.UTF8);
         }
     }
 
+    public void WriteException(string eventKind, Exception exception)
+    {
+        WriteEvent(eventKind, exception.GetType().FullName ?? exception.GetType().Name, exception.Message);
+        WriteEvent(eventKind + "Detail", exception.GetType().Name, exception.ToString());
+    }
+
     private static string Escape(string? value) =>
         (value ?? string.Empty)
         .Replace("\t", " ", StringComparison.Ordinal)
         .ReplaceLineEndings(" ");
+
+    private static string TrimDetail(string? value)
+    {
+        if (string.IsNullOrEmpty(value) ||
+            value.Length <= MaxDetailLength)
+        {
+            return value ?? string.Empty;
+        }
+
+        return value[..MaxDetailLength] + "... <truncated>";
+    }
 }

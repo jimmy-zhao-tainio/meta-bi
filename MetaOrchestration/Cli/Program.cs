@@ -214,6 +214,7 @@ internal static partial class Program
                         "Refreshes run-plan rows from current workspace state, then executes the run plan.",
                         "Each MetaPipeline pipeline is launched once as a worker with a named pipe control channel.",
                         "Orchestration sends StartPipeline after WorkerReady, before any task grants.",
+                        "Replacement workers receive StartPipeline with a resume task id so prior same-pipeline tasks are not replayed after retryable worker loss.",
                         "Orchestration grants TaskReady work or stops a worker at a blocked task.",
                         "Workers parked at TaskReady do not count as silent; activation and running grants do.",
                         "Retry policy is read from modeled RetryPolicy/RetryPolicyFailureClass/RunPlanRetryPolicy rows, not from a command-line switch.",

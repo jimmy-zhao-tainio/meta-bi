@@ -4,6 +4,25 @@ This note captures the first process-based runtime slice after run planning.
 
 `MetaOrchestration` should execute a run plan, not an inferred plan directly and not a loose set of whole pipelines. Run-plan rows in the orchestration workspace are the contract between planning and runtime.
 
+For the current plain-English state-machine contract, critique, and section-by-section implementation comparison, see `META-ORCHESTRATION-STATE-LOGIC.md`.
+
+## Runtime Scope
+
+`meta-orchestration execute` is a short-lived supervisor command, not a daemon and not a resumable distributed scheduler.
+
+Its job is to:
+
+- refresh and execute one run plan
+- start `meta-pipeline` worker processes
+- grant eligible tasks based on dependencies, locks, and retry policy
+- handle worker/process failures while the supervisor is alive
+- capture bounded run evidence and worker diagnostics
+- exit with a final status
+
+If `meta-orchestration.exe` itself crashes, the run is a hard stop. The supported behavior is best-effort evidence: a run journal, worker logs, task/grant events already flushed, and final exception details when the process can write them. Do not design automatic supervisor-restart resume, durable grant replay, or a MetaOrchestration operational database into the first runtime shape.
+
+The supervisor should log its own managed exceptions with a compact runtime state snapshot when the run journal exists. It should also record catchable shutdown signals such as Ctrl+C, SIGTERM, and SIGHUP where the platform exposes them, then cancel the live run and dispose workers. Non-catchable termination such as SIGKILL, hard power loss, or force-kill from the OS cannot be logged reliably.
+
 ## Ownership Boundary
 
 `MetaOrchestration` owns:
@@ -126,9 +145,9 @@ Important constraints:
 - pipeline workers do not understand orchestration dependency semantics; they only wait at task boundaries and execute granted work
 - the named pipe is a local supervision protocol, not a durable distributed runtime store
 
-## Production Worker Architecture
+## Worker Architecture
 
-The production target keeps the same ownership boundary and continues hardening the explicit local control channel.
+The target keeps the same ownership boundary and continues hardening the explicit local control channel for one short-lived execute invocation.
 
 ### Process Shape
 
@@ -143,7 +162,7 @@ meta-pipeline worker ^
 
 The pipeline worker process loads the `MetaPipeline` workspace once, advertises the pipelines and task boundaries it can execute, then waits for orchestration grants. It should shut down only when orchestration sends a normal drain/stop command, when all assigned pipeline work is complete, or when a fatal worker failure occurs.
 
-`meta-orchestration` owns the worker lifecycle:
+`meta-orchestration` owns the worker lifecycle while that execute process is alive:
 
 - create one orchestration run id
 - acquire an exclusive execution lease for the orchestration workspace
@@ -154,6 +173,7 @@ The pipeline worker process loads the `MetaPipeline` workspace once, advertises 
 - grant work only when dependencies, locks, and resources allow it
 - drain and close workers after all reachable work is complete
 - terminate workers on orchestration cancellation, timeout, or fatal protocol violation
+- exit when the run is complete or when the supervisor itself reaches a fatal condition
 
 ### Control Channel
 
@@ -201,7 +221,7 @@ Messages from pipeline worker to orchestration:
 Messages from orchestration to pipeline worker:
 
 - `InitializeRun`: orchestration run id and execution settings
-- `StartPipeline`: pipeline id/name to activate from the loaded workspace
+- `StartPipeline`: pipeline id/name to activate from the loaded workspace, plus an optional resume task id
 - `GrantTask`: command id, grant id, optional previous grant id, attempt number, pipeline id, pipeline task id
 - `GrantRange`: range grant id plus an ordered contiguous list of task grants for one active pipeline
 - `StopPipeline`: stop at the current task boundary because orchestration has determined that pipeline path is blocked or no longer selected
@@ -215,7 +235,7 @@ There is still no `Skip` command. Blocked, not-selected, and skipped are orchest
 Command rationale:
 
 - `InitializeRun` separates process startup from run context.
-- `StartPipeline` makes the active `MetaPipeline.Pipeline` explicit before task work starts.
+- `StartPipeline` makes the active `MetaPipeline.Pipeline` explicit before task work starts and carries the resume task boundary for replacement workers.
 - `GrantTask` is the unit of orchestration permission, lock ownership, retry attempt, and task evidence.
 - `GrantRange` is only a round-trip optimization over contiguous grants; it does not change task semantics.
 - `StopPipeline` keeps blocked/not-selected decisions in orchestration while letting the worker stop cleanly at a boundary.
@@ -254,6 +274,8 @@ Orchestration should explicitly send `StartPipeline` before any task grants. Thi
 - first executable task boundary
 
 After `PipelineStarted`, the worker emits `TaskReady` for the first orchestration-visible task boundary. Orchestration then grants work, stops the pipeline, or leaves it waiting until dependencies/resources allow progress.
+
+If orchestration is replacing a worker after retryable worker loss, `StartPipeline` carries the task id where the replacement must resume. The worker must validate that task id against the loaded pipeline plan and emit `TaskReady` for that boundary. It must not execute earlier tasks in the same pipeline. Empty resume task id means normal activation at the first executable task.
 
 ### Grant Ranges
 
@@ -308,18 +330,28 @@ Failure behavior:
 - a failed grant releases locks/resources before new grants are evaluated
 - `FailPipeline` releases the active pipeline context but keeps the worker process alive if it can safely accept another pipeline
 - process exit while a grant is running is treated as grant failure unless a terminal event for that grant was already received
+- if retry policy allows the failure, orchestration starts a replacement worker with `StartPipeline` carrying the failed task id as the resume boundary
+- replacement workers must emit `TaskReady` for that resume boundary; earlier same-pipeline tasks must not be replayed
 - process exit while idle after `DrainWorker` or after all active pipelines are terminal is normal
 
 ### Scheduler Shape
 
-Orchestration should maintain a runtime state table in memory for the local first version:
+Local orchestration now maintains explicit in-memory state machines for the live supervisor. Legal movement is represented as transition rows, not scattered `if` statements:
+
+```text
+StateTransition<CurrentState, Trigger, NextState>
+```
+
+There are separate transition tables for worker lifecycle and task/grant lifecycle. The side dictionaries still carry process, lock, retry-delay, and output payloads, but task and worker state changes go through the transition applicator.
 
 - workers: starting, online, ready, draining, exited, faulted
 - pipelines: unassigned, assigned, ready, running, blocked, completed, failed
-- tasks: pending, ready, granted, running, succeeded, failed, blocked, not selected
+- tasks: pending, ready, grant issued, grant accepted, running, retry scheduled, succeeded, failed, blocked
 - grants: issued, accepted, running, completed, failed, cancelled, timed out
 - locks/resources: held by grant id, released on terminal task outcome
 - workspace lease: acquired, renewed, released, stale, stolen only by explicit recovery
+
+The first implemented state machines are local and process-owned. They reject duplicate ready tasks on one worker, `TaskReady` before `PipelineStarted`, terminal task events before `TaskStarted`, blocked transitions from active grants, and replacement-worker retry without the active-grant -> retry-scheduled -> pending resume path.
 
 The scheduler loop should be event-driven:
 
@@ -352,9 +384,9 @@ The supervisor must not wait for a worker message when the current state already
 
 The current local runtime explicitly validates the command/event state before accepting worker events. If worker startup fails partway through, already-started workers are disposed. If a worker exits before a grant is sent, orchestration will not mark the task running first and then wait for a terminal event that cannot arrive. When every live worker is already `TaskReady` and no command can be sent, it reports the blocking predecessor state rather than waiting forever on the control pipe. Examples include dependency cycles, a predecessor not present in the run plan, or a predecessor trapped behind another ready boundary.
 
-Local execution also has a fail-safe worker-event timeout. Workers parked at `TaskReady` do not count as silent because they are intentionally waiting for orchestration. Activation silence and running-grant silence do count. Activation silence is capped to a short startup window even when the general worker-event timeout is longer, and fails the run fast. Running-grant silence terminates the worker, records the active task as failed/unknown, blocks the remaining serial pipeline path, and lets unrelated viable paths continue.
+Local execution also has a fail-safe worker-event timeout. Workers parked at `TaskReady` do not count as silent because they are intentionally waiting for orchestration. Activation silence and running-grant silence do count. Activation silence is capped to a short startup window even when the general worker-event timeout is longer, and fails the run fast. Running-grant silence terminates the worker and records the active task as failed/unknown. If retry policy allows the timeout failure class and the task is retry-safe, orchestration starts a replacement worker at the same task boundary; otherwise it blocks the remaining serial pipeline path and lets unrelated viable paths continue.
 
-Full heartbeat policy, cooperative cancellation, drain timeouts, and worker-crash retry still belong to the next typed control-channel/runtime policy slice.
+Cooperative cancellation and drain timeouts can be added as live-supervisor behavior. Durable supervisor restart/recovery is out of scope for this runtime shape.
 
 ### Workspace Execution Lease
 
@@ -373,21 +405,15 @@ Local first implementation:
 - hold the lease until all workers are drained/terminated and the final run outcome is recorded
 - read-only commands such as `inspect`, `list-issues`, and `inspect-run-plan` do not require the execution lease
 
-Production implementation with an operational DB:
+This lease is operational evidence, not modeled orchestration truth. It should not be written as normal `instances/*.xml` metadata. A simple local lock file is enough for the short-lived supervisor shape.
 
-- acquire a database-backed unique active-run lease for the orchestration workspace identity
-- record holder process id, machine name, run id, heartbeat timestamp, and lease version
-- renew the lease while execution is active
-- fail fast when another active holder exists unless the command explicitly asks to wait
-- allow stale lease recovery only through an explicit recovery command or policy
+### Run Artifacts And Evidence
 
-This lease is operational evidence, not modeled orchestration truth. It should not be written as normal `instances/*.xml` metadata.
+Runtime state remains in-process. Automatic same-task resume is limited to a live supervisor replacing a failed worker process during the same execute invocation.
 
-### Operational Store
+Run evidence is stored in a per-run artifact directory outside modeled workspaces. Do not write run attempts, worker diagnostics, or logs into the normal MetaOrchestration workspace and then import them back as metadata.
 
-For the local first version, runtime state can remain in-process. For production realism, add a MetaOrchestration operational store before supporting resume or multiple orchestration supervisors.
-
-The store should record:
+The run artifacts should record:
 
 - orchestration run id
 - orchestration workspace identity and execution lease holder
@@ -401,11 +427,11 @@ The store should record:
 - lock/resource acquisitions and releases
 - protocol faults
 
-This store is orchestration operational evidence. It is not a replacement for the modeled orchestration workspace and not a source for SQL or dependency truth.
+This evidence is not a replacement for the modeled orchestration workspace and not a source for SQL or dependency truth. If the supervisor crashes, these artifacts are for diagnosis and manual rerun decisions, not automatic replay.
 
 ### Production Runtime Features
 
-The production runtime should include the ordinary supervisor features expected from a long-running data platform. These are operational capabilities around the modeled run plan; they are not new metadata truth.
+The runtime should include the ordinary supervisor features expected from a serious command-line data platform. These are operational capabilities around the modeled run plan; they are not new metadata truth and do not imply a long-running service.
 
 Run identity and evidence:
 
@@ -413,7 +439,7 @@ Run identity and evidence:
 - sanitized command line, exact executable versions, machine name, process id, and user identity when available
 - orchestration workspace fingerprint, run-plan fingerprint, pipeline workspace fingerprint, transform workspace fingerprint, and binding workspace fingerprint
 - per-run artifact directory outside the modeled workspaces
-- durable event journal before resume is supported
+- flushed event journal for diagnosis and manual rerun decisions
 - configurable retention for run artifacts, worker diagnostics, and event history
 
 Protocol safety:
@@ -429,7 +455,7 @@ Worker supervision:
 - process start timeout, online timeout, heartbeat timeout, task start timeout, task execution timeout, drain timeout, and termination timeout
 - heartbeat records include worker state, active pipeline, active grant, and last completed event sequence
 - graceful shutdown path: stop issuing grants, cancel if policy allows, drain worker, then terminate only after timeout
-- orphan detection for workers from a dead supervisor process
+- worker cleanup when the live supervisor cancels, times out, or exits normally
 - bounded stderr/stdout capture for diagnostics without backpressure deadlocks
 - worker restart is allowed only when no grant is active or when policy says the active grant can be retried safely
 
@@ -477,7 +503,7 @@ Log handling:
 - stdout/stderr may be captured for diagnostics, but never as the production control plane
 - every worker gets bounded log capture: maximum line length, maximum bytes per task attempt, maximum bytes per worker, and maximum bytes per run
 - high-volume worker diagnostics are written to per-run artifact files with rotation, not inserted one row per line into an operational database
-- the operational store records log file references, byte counts, truncation flags, severity counts, and selected failure excerpts
+- the run journal records log file references, byte counts, truncation flags, severity counts, and selected failure excerpts
 - repeated identical diagnostics should be coalesced with counts
 - noisy diagnostics should be rate-limited with explicit dropped/truncated counters
 - attached console output stays compact; full worker logs are opt-in through diagnostics bundle/export commands
@@ -487,11 +513,11 @@ Log handling:
 
 Operational commands should eventually cover:
 
-- inspect active and recent runs
+- inspect recent run artifacts
 - show the current lease holder for a workspace
 - request cancellation of a run
 - request drain of a run
-- recover or clear a stale lease through an explicit recovery command
+- clear a stale local lease through an explicit recovery command
 - export a diagnostics bundle for a run
 - validate that all referenced workspaces and executable versions are compatible before execution starts
 
@@ -519,22 +545,23 @@ The first production-worthy cut should implement:
 - exclusive orchestration workspace execution lease
 - one worker process per participating pipeline, started by orchestration
 - explicit `StartPipeline` before task grants
+- replacement-worker resume boundary through `StartPipeline` task id
 - worker lifecycle state in `MetaOrchestration.Core`
 - grant ids for every task execution
 - range grant ids for `GrantRange`
 - idempotent grant command handling
 - worker heartbeat and timeout handling
 - first-class retry policy with grant attempt numbers, retry-safe classification, backoff, exhaustion evidence, and metrics
-- durable run/event evidence in an operational store or a clearly bounded local run artifact directory
+- bounded local run/event evidence in the run artifact directory
 - sanitized run fingerprints for every participating workspace and executable
 - explicit drain and stop behavior
 - explicit cancellation and failure commands
 - bounded diagnostics/log capture with per-task, per-worker, and per-run budgets plus rotation/truncation evidence
 - final run summary with failed, blocked, not-selected, cancelled, and timed-out counts
 - stdout/stderr reserved for diagnostics
-- no distributed workers, no resume
+- no distributed workers, no supervisor-restart resume
 
-Distributed workers and resumability should wait until the local worker contract is stable.
+Distributed workers and supervisor-restart resumability are out of scope for `meta-orchestration execute`.
 
 ## Orchestration Execute Command
 
@@ -570,11 +597,12 @@ The first process-based runtime can be simple:
 7. Send `StartPipeline` after `WorkerReady`.
 8. Receive worker `TaskReady` events and grant only tasks whose dependencies, locks, and resource limits are satisfied.
 9. On `TaskFailed`, resolve the modeled retry policy and either grant a retry attempt or close the pipeline path as terminally failed.
-10. Treat silent activation/running-grant periods past `--worker-event-timeout-seconds` as worker protocol faults.
-11. Record task outcomes from worker events into the run journal.
-12. Send `STOP` to a worker when its next pipeline task is blocked by orchestration dependency conditions.
-13. Continue unrelated viable run-plan paths.
-14. Return nonzero when any planned task failed terminally or any required downstream task was blocked.
+10. On retryable worker loss while a grant is running, start a replacement worker and send `StartPipeline` with the failed task id as the resume boundary.
+11. Treat silent activation/running-grant periods past `--worker-event-timeout-seconds` as worker protocol faults; retry running-grant timeouts only when policy allows it.
+12. Record task outcomes from worker events into the run journal.
+13. Send `STOP` to a worker when its next pipeline task is blocked by orchestration dependency conditions.
+14. Continue unrelated viable run-plan paths.
+15. Return nonzero when any planned task failed terminally or any required downstream task was blocked.
 
 The run plan has already encoded dependencies and declared lock requests. Runtime should not rediscover SQL access semantics.
 
@@ -598,12 +626,12 @@ The first execution slice is conservative about recovery but not about unrelated
 - let `OnFailure` dependency branches run when their predecessor failed
 - treat unchosen failure branches after successful predecessors as blocked/non-selected branches
 - retry only through explicit orchestration retry policy, with a new grant id per attempt and retry-safe classification
-- do not resume
+- only resume automatically at a task boundary after retryable worker loss; do not replay prior same-pipeline tasks
 - do not repair partial pipeline state
 - do not continue tasks blocked by failed predecessors
 - report blocked tasks separately from failed tasks
 
-Resume, partial rerun, and manual recovery are later orchestration-runtime features. Retry is part of the first production runtime contract because transient worker, SQL, and connectivity failures are normal operational conditions.
+Partial rerun and manual recovery can be added later. Supervisor-restart recovery is out of scope: if `meta-orchestration.exe` crashes, the run stops and the captured artifacts are used for diagnosis/rerun decisions. Retry remains part of the runtime contract because transient worker, SQL, and connectivity failures are normal operational conditions while the supervisor is alive.
 
 ## Conditional Dependencies
 
@@ -679,8 +707,8 @@ Then a task can start only when:
 - worker pools
 - distributed workers
 - distributed locks
-- retries
-- resumability
+- supervisor-restart resumability
+- automatic partial rerun
 - queue storage
 - resource optimization
 - run-plan mutation during execution

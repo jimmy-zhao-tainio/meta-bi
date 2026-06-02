@@ -337,6 +337,7 @@ internal static partial class Program
                 operationalRunId,
                 parse.DataTypeConversionWorkspacePath,
                 workerChannel,
+                startCommand.TaskId,
                 executableVersion)
                 .ConfigureAwait(false);
 
@@ -925,6 +926,7 @@ internal static partial class Program
         Guid? operationalRunId,
         string? dataTypeConversionWorkspacePath,
         OrchestrationWorkerProtocolChannel workerChannel,
+        string resumeTaskId,
         string executableVersion)
     {
         var startedAtUtc = DateTimeOffset.UtcNow;
@@ -952,7 +954,8 @@ internal static partial class Program
             "pipeline started").ConfigureAwait(false);
 
         var closePipelinePath = false;
-        for (var index = 0; index < plan.Steps.Count && !closePipelinePath; index++)
+        var startIndex = ResolveWorkerStartIndex(plan, resumeTaskId);
+        for (var index = startIndex; index < plan.Steps.Count && !closePipelinePath; index++)
         {
             var step = plan.Steps[index];
             var command = await ReadWorkerCommandAtBoundaryAsync(
@@ -1106,6 +1109,27 @@ internal static partial class Program
             firstFailureMessage,
             firstFailureTaskName,
             taskResults);
+    }
+
+    private static int ResolveWorkerStartIndex(
+        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
+        string resumeTaskId)
+    {
+        if (string.IsNullOrWhiteSpace(resumeTaskId))
+        {
+            return 0;
+        }
+
+        for (var index = 0; index < plan.Steps.Count; index++)
+        {
+            if (string.Equals(plan.Steps[index].TransformTaskId, resumeTaskId, StringComparison.Ordinal))
+            {
+                return index;
+            }
+        }
+
+        throw new MetaPipeline.MetaPipelineConfigurationException(
+            $"Worker command '{WorkerCommandKinds.StartPipeline}' requested resume task id '{resumeTaskId}', but pipeline '{plan.PipelineName}' has no matching task boundary.");
     }
 
     private static async Task<MetaPipeline.MetaPipelineExecutionResult> ExecuteModeledStepAsync(
