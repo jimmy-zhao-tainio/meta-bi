@@ -441,7 +441,7 @@ Behavior summary:
 - the modeled path resolves execution/target connection references through environment-variable names stored in `ConnectionReference` rows
 - if the selected binding contains multiple targets, `--target` is required
 - stage 1 execution supports parameterless transform scripts and one selected target per run
-- modeled transform executions can declare `TimeoutSeconds`; direct `execute-sqlserver` can use `--timeout-seconds`; omitted means no SQL command timeout
+- modeled transform executions can declare `TimeoutSeconds`; direct `execute-sqlserver` can use `--timeout-seconds`; `0` or omitted means no SQL command timeout
 - mutation task row-count evidence uses SQL Server rows affected where SQL Server reports it
 - attached-console execution shows compact live operator progress: step count, elapsed time, rows, batches, and automatic B/KB/MB/GB rate; redirected/headless runs stay quiet
 - `--pipeline-db-connection-env` records diagnostic logs separately from audit-relevant run logs, task runs, metrics, audit ids, workspace fingerprints, and failures in an initialized operational DB
@@ -457,9 +457,9 @@ meta-pipeline create-pipeline-db --pipeline-db-connection-env META_PIPELINE_ADMI
 
 meta-pipeline --new-workspace .\PipelineWS
 meta-pipeline add-pipeline --workspace .\PipelineWS --name CustomerLoad
-meta-pipeline add-step --workspace .\PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace .\TransformWS --binding-workspace .\BindingWS --execution-connection-env META_PIPELINE_EXECUTION --target-connection-env META_PIPELINE_TARGET --target dbo.TargetCustomer --timeout-seconds 300 --target-data-type-system SqlServer
+meta-pipeline add-step --workspace .\PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace .\TransformWS --binding-workspace .\BindingWS --execution-connection-env META_PIPELINE_EXECUTION --target-connection-env META_PIPELINE_TARGET --target dbo.TargetCustomer --target-data-type-system SqlServer
 meta-pipeline execute --workspace .\PipelineWS --pipeline CustomerLoad --transform-workspace .\TransformWS --binding-workspace .\BindingWS
-meta-pipeline execute-sqlserver --transform-workspace .\TransformWS --binding-workspace .\BindingWS --script dbo.v_customer_load --execution-connection-env META_PIPELINE_EXECUTION --target-connection-env META_PIPELINE_TARGET --timeout-seconds 300 --target-data-type-system SqlServer
+meta-pipeline execute-sqlserver --transform-workspace .\TransformWS --binding-workspace .\BindingWS --script dbo.v_customer_load --execution-connection-env META_PIPELINE_EXECUTION --target-connection-env META_PIPELINE_TARGET --target-data-type-system SqlServer
 ```
 
 ### meta-orchestration

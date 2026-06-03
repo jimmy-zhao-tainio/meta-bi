@@ -196,7 +196,7 @@ internal static partial class Program
                 new CliCommandDefinition(
                     "execute",
                     "Execute the current run plan by coordinating meta-pipeline worker processes.",
-                    new[] { "meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>] [--run-artifacts-root <path>] [--worker-event-timeout-seconds <n>]" },
+                    new[] { "meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>] [--run-artifacts-root <path>] [--worker-event-timeout-seconds <n>] [--worker-activation-timeout-seconds <n>] [--worker-control-pipe-connect-timeout-seconds <n>]" },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaOrchestration workspace containing the analysis and run-plan rows."),
@@ -207,7 +207,9 @@ internal static partial class Program
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional operational DB connection env passed to child workers."),
                         new CliOptionDefinition("--max-degree-of-parallelism <n>", "Maximum concurrently granted pipeline tasks. Default: 1."),
                         new CliOptionDefinition("--run-artifacts-root <path>", "Optional operational root for run journals, worker logs, and workspace execution leases."),
-                        new CliOptionDefinition("--worker-event-timeout-seconds <n>", "Optional fail-safe timeout for silent worker protocol periods. Default: 1800.")
+                        new CliOptionDefinition("--worker-event-timeout-seconds <n>", "Optional timeout for silent worker protocol periods. 0 or omitted means no timeout."),
+                        new CliOptionDefinition("--worker-activation-timeout-seconds <n>", "Optional startup/activation timeout. Omitted follows --worker-event-timeout-seconds; 0 disables activation timeout."),
+                        new CliOptionDefinition("--worker-control-pipe-connect-timeout-seconds <n>", "Optional timeout while waiting for child workers to connect to the named pipe. 0 or omitted means no timeout.")
                     },
                     new[]
                     {
@@ -216,7 +218,7 @@ internal static partial class Program
                         "Orchestration sends StartPipeline after WorkerReady, before any task grants.",
                         "Replacement workers receive StartPipeline with a resume task id so prior same-pipeline tasks are not replayed after retryable worker loss.",
                         "Orchestration grants TaskReady work or stops a worker at a blocked task.",
-                        "Workers parked at TaskReady do not count as silent; activation and running grants do.",
+                        "Workers parked at TaskReady do not count as silent. Timeout options are disabled by default; use zero to explicitly disable a timeout.",
                         "Retry policy is read from modeled RetryPolicy/RetryPolicyFailureClass/RunPlanRetryPolicy rows, not from a command-line switch.",
                         "Failed tasks block OnSuccess dependents, enable OnFailure branches, and leave unrelated paths running.",
                         "Task dependencies and locks define runtime eligibility; --max-degree-of-parallelism throttles concurrent task grants.",
@@ -1012,7 +1014,6 @@ internal static partial class Program
             Presenter.WriteInfo($"PlannedTasks: {tasks.Length}");
             Presenter.WriteInfo($"DependencyEdges: {edges.Length}");
             Presenter.WriteInfo("Graph:");
-
             foreach (var task in tasks
                          .OrderBy(static item => FormatGraphTaskName(item), StringComparer.OrdinalIgnoreCase)
                          .ThenBy(static item => item.Id, StringComparer.Ordinal))

@@ -30,7 +30,13 @@ internal static partial class Program
                         RunArtifactsRootPath: parse.RunArtifactsRootPath,
                         WorkerEventTimeout: parse.WorkerEventTimeoutSeconds is null
                             ? null
-                            : TimeSpan.FromSeconds(parse.WorkerEventTimeoutSeconds.Value)),
+                            : TimeSpan.FromSeconds(parse.WorkerEventTimeoutSeconds.Value),
+                        WorkerActivationTimeout: parse.WorkerActivationTimeoutSeconds is null
+                            ? null
+                            : TimeSpan.FromSeconds(parse.WorkerActivationTimeoutSeconds.Value),
+                        WorkerControlPipeConnectTimeout: parse.WorkerControlPipeConnectTimeoutSeconds is null
+                            ? null
+                            : TimeSpan.FromSeconds(parse.WorkerControlPipeConnectTimeoutSeconds.Value)),
                     observer)
                 .ConfigureAwait(false);
 
@@ -40,10 +46,7 @@ internal static partial class Program
                 return PrintExecutionIncomplete(result);
             }
 
-            if (progress is null)
-            {
-                Presenter.WriteOk();
-            }
+            if (progress is null) PrintExecutionComplete(result);
 
             return 0;
         }
@@ -125,6 +128,20 @@ internal static partial class Program
             details);
     }
 
+    private static void PrintExecutionComplete(OrchestrationRuntimeResult result)
+    {
+        var succeededAttempts = result.TaskResults.Count(static item => item.ExitCode == 0);
+        var failedAttempts = result.TaskResults.Count(static item => item.ExitCode != 0);
+        Presenter.WriteInfo("Orchestration completed.");
+        Presenter.WriteInfo($"  RunPlan: {result.RunPlanName}");
+        Presenter.WriteInfo($"  RunId: {result.RunId}");
+        Presenter.WriteInfo($"  RunArtifacts: {result.RunArtifactDirectoryPath}");
+        Presenter.WriteInfo($"  TaskAttempts: {result.TaskResults.Count.ToString(CultureInfo.InvariantCulture)}");
+        Presenter.WriteInfo($"  SucceededAttempts: {succeededAttempts.ToString(CultureInfo.InvariantCulture)}");
+        Presenter.WriteInfo($"  FailedAttemptsRecovered: {failedAttempts.ToString(CultureInfo.InvariantCulture)}");
+        Presenter.WriteInfo($"  BlockedTasks: {result.BlockedResults.Count.ToString(CultureInfo.InvariantCulture)}");
+    }
+
     private static ChildFailureSummary SummarizeChildFailure(OrchestrationTaskWorkerResult failed)
     {
         var outputLines = NormalizeChildLines(failed.StandardOutput);
@@ -189,6 +206,8 @@ internal static partial class Program
         var maxDegreeOfParallelism = 1;
         var runArtifactsRootPath = string.Empty;
         int? workerEventTimeoutSeconds = null;
+        int? workerActivationTimeoutSeconds = null;
+        int? workerControlPipeConnectTimeoutSeconds = null;
         var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         for (var i = startIndex; i < args.Length; i++)
@@ -238,12 +257,30 @@ internal static partial class Program
                     break;
                 case "--worker-event-timeout-seconds":
                     if (!int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedWorkerEventTimeoutSeconds) ||
-                        parsedWorkerEventTimeoutSeconds <= 0)
+                        parsedWorkerEventTimeoutSeconds < 0)
                     {
-                        return ParsedExecuteArgs.Fail("invalid value for --worker-event-timeout-seconds. Expected a positive integer.");
+                        return ParsedExecuteArgs.Fail("invalid value for --worker-event-timeout-seconds. Expected a non-negative integer; 0 means no timeout.");
                     }
 
                     workerEventTimeoutSeconds = parsedWorkerEventTimeoutSeconds;
+                    break;
+                case "--worker-activation-timeout-seconds":
+                    if (!int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedWorkerActivationTimeoutSeconds) ||
+                        parsedWorkerActivationTimeoutSeconds < 0)
+                    {
+                        return ParsedExecuteArgs.Fail("invalid value for --worker-activation-timeout-seconds. Expected a non-negative integer; 0 means no timeout.");
+                    }
+
+                    workerActivationTimeoutSeconds = parsedWorkerActivationTimeoutSeconds;
+                    break;
+                case "--worker-control-pipe-connect-timeout-seconds":
+                    if (!int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedWorkerControlPipeConnectTimeoutSeconds) ||
+                        parsedWorkerControlPipeConnectTimeoutSeconds < 0)
+                    {
+                        return ParsedExecuteArgs.Fail("invalid value for --worker-control-pipe-connect-timeout-seconds. Expected a non-negative integer; 0 means no timeout.");
+                    }
+
+                    workerControlPipeConnectTimeoutSeconds = parsedWorkerControlPipeConnectTimeoutSeconds;
                     break;
                 default:
                     return ParsedExecuteArgs.Fail($"unknown option '{option}'.");
@@ -266,6 +303,8 @@ internal static partial class Program
             maxDegreeOfParallelism,
             runArtifactsRootPath,
             workerEventTimeoutSeconds,
+            workerActivationTimeoutSeconds,
+            workerControlPipeConnectTimeoutSeconds,
             string.Empty);
     }
 
@@ -299,9 +338,11 @@ internal static partial class Program
         int MaxDegreeOfParallelism,
         string RunArtifactsRootPath,
         int? WorkerEventTimeoutSeconds,
+        int? WorkerActivationTimeoutSeconds,
+        int? WorkerControlPipeConnectTimeoutSeconds,
         string ErrorMessage)
     {
         public static ParsedExecuteArgs Fail(string errorMessage) =>
-            new(false, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 1, string.Empty, null, errorMessage);
+            new(false, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 1, string.Empty, null, null, null, errorMessage);
     }
 }

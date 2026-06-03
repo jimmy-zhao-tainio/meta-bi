@@ -402,6 +402,288 @@ public sealed class MetaOrchestrationRuntimeKernelTests
         Assert.Contains("no live event, ready, or running projection", ex.Message, StringComparison.Ordinal);
     }
 
+    [Fact]
+    public void RuntimeKernelBoundsPreWorkReplacementAttemptsAtPipelineActivationBoundary()
+    {
+        var task = CreateTask("Load", "load", "pipeline:Load:task:load");
+        var kernel = CreateKernel([task]);
+
+        var first = kernel.ReservePreWorkReplacementAttempt("Load", string.Empty, "first lost worker");
+        var second = kernel.ReservePreWorkReplacementAttempt("Load", string.Empty, "second lost worker");
+        var third = kernel.ReservePreWorkReplacementAttempt("Load", string.Empty, "third lost worker");
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            kernel.ReservePreWorkReplacementAttempt("Load", string.Empty, "fourth lost worker"));
+
+        Assert.Equal("Load", first.PipelineName);
+        Assert.Equal(string.Empty, first.ResumeTaskId);
+        Assert.Equal(1, first.Attempt);
+        Assert.Equal(2, second.Attempt);
+        Assert.Equal(3, third.Attempt);
+        Assert.Equal(3, third.Limit);
+        Assert.Contains("pre-work worker replacement limit before pipeline activation", ex.Message, StringComparison.Ordinal);
+        Assert.Contains("Limit: 3", ex.Message, StringComparison.Ordinal);
+        Assert.Contains("fourth lost worker", ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void RuntimeKernelTracksPreWorkReplacementAttemptsPerResumeBoundary()
+    {
+        var task = CreateTask("Load", "load", "pipeline:Load:task:load");
+        var kernel = CreateKernel([task]);
+
+        kernel.ReservePreWorkReplacementAttempt("Load", string.Empty, "activation one");
+        kernel.ReservePreWorkReplacementAttempt("Load", string.Empty, "activation two");
+        kernel.ReservePreWorkReplacementAttempt("Load", string.Empty, "activation three");
+
+        var firstAtTaskBoundary = kernel.ReservePreWorkReplacementAttempt(
+            "Load",
+            task.TaskAccessProfile.MetaPipelinePipelineTaskId,
+            "grant lost at task boundary");
+        var secondAtTaskBoundary = kernel.ReservePreWorkReplacementAttempt(
+            "Load",
+            task.TaskAccessProfile.MetaPipelinePipelineTaskId,
+            "grant lost again");
+
+        Assert.Equal(1, firstAtTaskBoundary.Attempt);
+        Assert.Equal(2, secondAtTaskBoundary.Attempt);
+        Assert.Equal(task.TaskAccessProfile.MetaPipelinePipelineTaskId, firstAtTaskBoundary.ResumeTaskId);
+    }
+
+    [Fact]
+    public void RuntimeWorkerActivationStateMachineDeclaresParkingAndResumeTransitions()
+    {
+        Assert.Contains(
+            OrchestrationWorkerActivationStateMachine.Transitions,
+            item => item.From == OrchestrationWorkerActivationState.Active &&
+                    item.Trigger == OrchestrationWorkerActivationTrigger.CapacityDeferralRequested &&
+                    item.To == OrchestrationWorkerActivationState.CapacityDeferralRequested);
+        Assert.Contains(
+            OrchestrationWorkerActivationStateMachine.Transitions,
+            item => item.From == OrchestrationWorkerActivationState.CapacityDeferralRequested &&
+                    item.Trigger == OrchestrationWorkerActivationTrigger.CapacityDeferredWorkerClosed &&
+                    item.To == OrchestrationWorkerActivationState.Parked);
+        Assert.Contains(
+            OrchestrationWorkerActivationStateMachine.Transitions,
+            item => item.From == OrchestrationWorkerActivationState.Parked &&
+                    item.Trigger == OrchestrationWorkerActivationTrigger.StartRequested &&
+                    item.To == OrchestrationWorkerActivationState.StartRequested);
+        Assert.Contains(
+            OrchestrationWorkerActivationStateMachine.Transitions,
+            item => item.From == OrchestrationWorkerActivationState.StartRequested &&
+                    item.Trigger == OrchestrationWorkerActivationTrigger.WorkerRegistered &&
+                    item.To == OrchestrationWorkerActivationState.Active);
+    }
+
+    [Fact]
+    public void RuntimeWorkerActivationStateMachineParksAndResumesThroughEvents()
+    {
+        var consumerStage = CreateTask("AConsumer", "stage", "pipeline:AConsumer:task:1");
+        var consumerWait = CreateTask("AConsumer", "consume-b", "pipeline:AConsumer:task:2");
+        var producer = CreateTask("BProducer", "produce-b", "pipeline:BProducer:task:1");
+        var machine = CreateActivationStateMachine([consumerStage, consumerWait, producer]);
+
+        var consumerStart = machine.ApplySchedulerTick(new OrchestrationWorkerActivationFacts(
+            EmptyWorkerSet(),
+            MaxActiveWorkerProcesses: 1,
+            DateTimeOffset.UtcNow,
+            (definition, _) => definition.PipelineName == "AConsumer"
+                ? ActivationCandidate(definition, consumerStage, OrchestrationTaskReadiness.Ready)
+                : ActivationCandidate(definition, producer, OrchestrationTaskReadiness.Ready),
+            () => null));
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker, consumerStart.Kind);
+        machine.RegisterWorker("AConsumer", "pipeline:AConsumer", string.Empty);
+
+        var defer = machine.ApplySchedulerTick(new OrchestrationWorkerActivationFacts(
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "AConsumer" },
+            MaxActiveWorkerProcesses: 1,
+            DateTimeOffset.UtcNow,
+            (definition, _) => definition.PipelineName == "AConsumer"
+                ? ActivationCandidate(definition, consumerWait, OrchestrationTaskReadiness.Waiting)
+                : ActivationCandidate(definition, producer, OrchestrationTaskReadiness.Ready),
+            () => new OrchestrationRuntimeWorkerCapacityDeferralCandidate(
+                "AConsumer",
+                "pipeline:AConsumer",
+                "AConsumer",
+                consumerWait.TaskAccessProfile.MetaPipelinePipelineTaskId,
+                consumerWait.TaskAccessProfile.TaskName,
+                "consumer waits for producer")));
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.DeferWorkerForCapacity, defer.Kind);
+        machine.CommitCapacityDeferralRequested(defer);
+        Assert.True(machine.IsCapacityDeferralPending("AConsumer"));
+
+        Assert.True(machine.TryApplyCapacityDeferredWorkerClosed(
+            "AConsumer",
+            consumerWait.TaskAccessProfile.MetaPipelinePipelineTaskId,
+            consumerWait.TaskAccessProfile.TaskName,
+            out var parked));
+        Assert.Equal(consumerWait.TaskAccessProfile.MetaPipelinePipelineTaskId, parked.ResumeTaskId);
+        Assert.Equal(OrchestrationWorkerActivationState.Parked, Snapshot(machine, "AConsumer").State);
+
+        var producerStart = machine.ApplySchedulerTick(new OrchestrationWorkerActivationFacts(
+            EmptyWorkerSet(),
+            MaxActiveWorkerProcesses: 1,
+            DateTimeOffset.UtcNow,
+            (definition, _) => definition.PipelineName == "AConsumer"
+                ? ActivationCandidate(definition, consumerWait, OrchestrationTaskReadiness.Waiting)
+                : ActivationCandidate(definition, producer, OrchestrationTaskReadiness.Ready),
+            () => null));
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker, producerStart.Kind);
+        Assert.Equal("BProducer", producerStart.PipelineName);
+
+        machine.RegisterWorker("BProducer", "pipeline:BProducer", string.Empty);
+        machine.MarkPipelineCompleted("BProducer");
+        var consumerResume = machine.ApplySchedulerTick(new OrchestrationWorkerActivationFacts(
+            EmptyWorkerSet(),
+            MaxActiveWorkerProcesses: 1,
+            DateTimeOffset.UtcNow,
+            (definition, _) => definition.PipelineName == "AConsumer"
+                ? ActivationCandidate(definition, consumerWait, OrchestrationTaskReadiness.Ready)
+                : null,
+            () => null));
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker, consumerResume.Kind);
+        Assert.Equal("AConsumer", consumerResume.PipelineName);
+        Assert.Equal(consumerWait.TaskAccessProfile.MetaPipelinePipelineTaskId, consumerResume.ResumeTaskId);
+    }
+
+    [Fact]
+    public void RuntimeWorkerActivationStateMachineCancelsLostCapacityDeferralCommand()
+    {
+        var consumer = CreateTask("AConsumer", "consume", "pipeline:AConsumer:task:1");
+        var producer = CreateTask("BProducer", "produce", "pipeline:BProducer:task:1");
+        var machine = CreateActivationStateMachine([consumer, producer]);
+        machine.RegisterWorker("AConsumer", "pipeline:AConsumer", string.Empty);
+
+        var defer = machine.ApplySchedulerTick(new OrchestrationWorkerActivationFacts(
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "AConsumer" },
+            MaxActiveWorkerProcesses: 1,
+            DateTimeOffset.UtcNow,
+            (definition, _) => definition.PipelineName == "BProducer"
+                ? ActivationCandidate(definition, producer, OrchestrationTaskReadiness.Ready)
+                : ActivationCandidate(definition, consumer, OrchestrationTaskReadiness.Waiting),
+            () => new OrchestrationRuntimeWorkerCapacityDeferralCandidate(
+                "AConsumer",
+                "pipeline:AConsumer",
+                "AConsumer",
+                consumer.TaskAccessProfile.MetaPipelinePipelineTaskId,
+                consumer.TaskAccessProfile.TaskName,
+                "consumer waits")));
+
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.DeferWorkerForCapacity, defer.Kind);
+        machine.CancelCapacityDeferralRequested(defer);
+
+        Assert.False(machine.IsCapacityDeferralPending("AConsumer"));
+        Assert.Equal(OrchestrationWorkerActivationState.Active, Snapshot(machine, "AConsumer").State);
+    }
+
+    [Fact]
+    public void RuntimeKernelChoosesWorkerActivationOnlyWithinLiveProcessCapacity()
+    {
+        var loadA = CreateTask("LoadA", "load", "pipeline:LoadA:task:1");
+        var loadB = CreateTask("LoadB", "load", "pipeline:LoadB:task:1");
+        var loadC = CreateTask("LoadC", "load", "pipeline:LoadC:task:1");
+        var kernel = CreateKernel([loadA, loadB, loadC]);
+
+        var first = kernel.ChooseWorkerActivationAction(EmptyWorkerSet(), maxActiveWorkerProcesses: 2, DateTimeOffset.UtcNow);
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker, first.Kind);
+        Assert.Equal("LoadA", first.PipelineName);
+        StartWorker(kernel, loadA);
+
+        var second = kernel.ChooseWorkerActivationAction(
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "LoadA" },
+            maxActiveWorkerProcesses: 2,
+            DateTimeOffset.UtcNow);
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker, second.Kind);
+        Assert.Equal("LoadB", second.PipelineName);
+        StartWorker(kernel, loadB);
+
+        var capped = kernel.ChooseWorkerActivationAction(
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "LoadA", "LoadB" },
+            maxActiveWorkerProcesses: 2,
+            DateTimeOffset.UtcNow);
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.None, capped.Kind);
+    }
+
+    [Fact]
+    public void RuntimeKernelCanActivateWaitingPipelineWhenCapacityIsSpare()
+    {
+        var producer = CreateTask("Producer", "produce", "pipeline:Producer:task:1");
+        var consumer = CreateTask("Consumer", "consume", "pipeline:Consumer:task:1");
+        var dependencies = new Dictionary<string, OrchestrationExecutionDependency[]>(StringComparer.Ordinal)
+        {
+            [producer.TaskAccessProfile.Id] = [],
+            [consumer.TaskAccessProfile.Id] = [CreateDependency(producer, consumer, "Data")]
+        };
+        var kernel = CreateKernel([producer, consumer], dependencies);
+
+        var producerActivation = kernel.ChooseWorkerActivationAction(EmptyWorkerSet(), maxActiveWorkerProcesses: 2, DateTimeOffset.UtcNow);
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker, producerActivation.Kind);
+        Assert.Equal("Producer", producerActivation.PipelineName);
+        StartWorker(kernel, producer);
+
+        var consumerActivation = kernel.ChooseWorkerActivationAction(
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "Producer" },
+            maxActiveWorkerProcesses: 2,
+            DateTimeOffset.UtcNow);
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker, consumerActivation.Kind);
+        Assert.Equal("Consumer", consumerActivation.PipelineName);
+        Assert.Equal(OrchestrationTaskReadiness.Waiting, consumerActivation.Readiness);
+
+        var capped = kernel.ChooseWorkerActivationAction(
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "Producer", "Consumer" },
+            maxActiveWorkerProcesses: 2,
+            DateTimeOffset.UtcNow);
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.None, capped.Kind);
+    }
+
+    [Fact]
+    public void RuntimeKernelDefersWaitingReadyWorkerWhenInactiveProducerNeedsCapacity()
+    {
+        var consumerStage = CreateTask("AConsumer", "stage", "pipeline:AConsumer:task:1");
+        var consumerWait = CreateTask("AConsumer", "consume-b", "pipeline:AConsumer:task:2");
+        var producer = CreateTask("BProducer", "produce-b", "pipeline:BProducer:task:1");
+        var dependencies = new Dictionary<string, OrchestrationExecutionDependency[]>(StringComparer.Ordinal)
+        {
+            [consumerStage.TaskAccessProfile.Id] = [],
+            [consumerWait.TaskAccessProfile.Id] = [CreateDependency(producer, consumerWait, "Data")],
+            [producer.TaskAccessProfile.Id] = []
+        };
+        var kernel = CreateKernel([consumerStage, consumerWait, producer], dependencies);
+
+        StartWorker(kernel, consumerStage);
+        kernel.AddReady(ReadyEvent(consumerStage), "AConsumer");
+        var grantDecision = kernel.ChooseReadyAction(EmptyWorkerSet(), DateTimeOffset.UtcNow, maxDegreeOfParallelism: 1);
+        Assert.Equal(OrchestrationRuntimeReadyDecisionKind.Grant, grantDecision.Kind);
+        var grant = kernel.CommitGrantIssued(
+            grantDecision.ReadyTask,
+            grantDecision.PlannedTask!,
+            grantDecision.PlannedTaskLocks,
+            grantDecision.Grant).Grant;
+        kernel.MarkTaskStarted(GrantEvent(WorkerEventKinds.TaskStarted, consumerStage, grant), "AConsumer");
+        kernel.CompleteSucceeded(GrantEvent(WorkerEventKinds.TaskSucceeded, consumerStage, grant), "AConsumer");
+        kernel.AddReady(ReadyEvent(consumerWait), "AConsumer");
+
+        var defer = kernel.ChooseWorkerActivationAction(
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "AConsumer" },
+            maxActiveWorkerProcesses: 1,
+            DateTimeOffset.UtcNow);
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.DeferWorkerForCapacity, defer.Kind);
+        Assert.Equal("AConsumer", defer.WorkerName);
+        Assert.Equal(consumerWait.TaskAccessProfile.MetaPipelinePipelineTaskId, defer.TaskId);
+
+        kernel.CommitWorkerCapacityDeferralRequested(defer);
+        var notReplacedBeforeDeferredClose = kernel.ChooseReadyAction(
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "AConsumer" },
+            DateTimeOffset.UtcNow,
+            maxDegreeOfParallelism: 1);
+        Assert.Equal(OrchestrationRuntimeReadyDecisionKind.None, notReplacedBeforeDeferredClose.Kind);
+        Assert.True(kernel.TryApplyCapacityDeferredWorkerClosed("AConsumer", exitCode: 0, out var deferred));
+        Assert.Equal(consumerWait.TaskAccessProfile.MetaPipelinePipelineTaskId, deferred.ResumeTaskId);
+
+        var startProducer = kernel.ChooseWorkerActivationAction(EmptyWorkerSet(), maxActiveWorkerProcesses: 1, DateTimeOffset.UtcNow);
+        Assert.Equal(OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker, startProducer.Kind);
+        Assert.Equal("BProducer", startProducer.PipelineName);
+    }
+
     private static OrchestrationRuntimeKernel CreateKernel(
         IReadOnlyList<MO.PlannedTask> plannedTasks,
         IReadOnlyDictionary<string, OrchestrationExecutionDependency[]>? dependenciesByTaskProfileId = null,
@@ -427,6 +709,42 @@ public sealed class MetaOrchestrationRuntimeKernelTests
             [],
             dependenciesByTaskProfileId);
     }
+
+    private static OrchestrationWorkerActivationStateMachine CreateActivationStateMachine(
+        IReadOnlyList<MO.PlannedTask> plannedTasks)
+    {
+        var definitions = plannedTasks
+            .GroupBy(static item => item.PipelineReference.Name, StringComparer.OrdinalIgnoreCase)
+            .Select(static group =>
+            {
+                var first = group.First();
+                return new OrchestrationWorkerActivationPipelineDefinition(
+                    first.PipelineReference.Name,
+                    first.PipelineReference.MetaPipelinePipelineId,
+                    group
+                        .OrderBy(static item => item.Ordinal, StringComparer.Ordinal)
+                        .ThenBy(static item => item.Id, StringComparer.Ordinal)
+                        .ToArray());
+            })
+            .ToArray();
+        return new OrchestrationWorkerActivationStateMachine(definitions);
+    }
+
+    private static OrchestrationRuntimePipelineActivationCandidate ActivationCandidate(
+        OrchestrationWorkerActivationPipelineDefinition definition,
+        MO.PlannedTask plannedTask,
+        OrchestrationTaskReadiness readiness) =>
+        new(
+            definition.PipelineName,
+            definition.PipelineId,
+            plannedTask.TaskAccessProfile.MetaPipelinePipelineTaskId,
+            plannedTask.TaskAccessProfile.TaskName,
+            readiness);
+
+    private static OrchestrationWorkerActivationSnapshot Snapshot(
+        OrchestrationWorkerActivationStateMachine machine,
+        string pipelineName) =>
+        machine.GetSnapshots().Single(item => string.Equals(item.PipelineName, pipelineName, StringComparison.OrdinalIgnoreCase));
 
     private static IReadOnlySet<string> EmptyWorkerSet() =>
         new HashSet<string>(StringComparer.OrdinalIgnoreCase);

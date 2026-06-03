@@ -276,7 +276,7 @@ Options:
   --query <sql>                Execute inline SQL. Mutually exclusive with --file.
   --var <name=value>           Replace one SQLCMD-style $(NAME) token before execution. Can be
                                repeated.
-  --timeout-seconds <seconds>  Command timeout for each SQL batch. Defaults to 30.
+  --timeout-seconds <seconds>  Command timeout for each SQL batch. 0 or omitted means no timeout.
   --quiet                      Suppress result-set and success output.
 
 Notes:
@@ -1836,24 +1836,26 @@ Examples:
 Command: execute-worker
 Usage:
   meta-pipeline execute-worker --workspace <path> --pipeline <name> --transform-workspace <path>
-  --binding-workspace <path> --control-pipe <name> [--data-type-conversion-workspace <path>]
-  [--pipeline-db-connection-env <name>]
+  --binding-workspace <path> --control-pipe <name> [--control-pipe-connect-timeout-seconds <n>]
+  [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]
 
 Options:
 
-  --workspace <path>                       Required. MetaPipeline workspace that contains the
-                                           modeled serial task chain.
-  --pipeline <name>                        Required. Pipeline name to execute as a worker.
-  --transform-workspace <path>             Required. MetaTransformScript workspace used by transform
-                                           tasks.
-  --binding-workspace <path>               Required. MetaTransformBinding workspace used by
-                                           transform tasks.
-  --control-pipe <name>                    Required. Named pipe used for orchestration worker
-                                           control messages.
-  --data-type-conversion-workspace <path>  Optional conversion policy workspace; omitted uses the
-                                           built-in defaults.
-  --pipeline-db-connection-env <name>      Optional shell-visible environment variable for an
-                                           initialized MetaPipeline operational DB.
+  --workspace <path>                          Required. MetaPipeline workspace that contains the
+                                              modeled serial task chain.
+  --pipeline <name>                           Required. Pipeline name to execute as a worker.
+  --transform-workspace <path>                Required. MetaTransformScript workspace used by
+                                              transform tasks.
+  --binding-workspace <path>                  Required. MetaTransformBinding workspace used by
+                                              transform tasks.
+  --control-pipe <name>                       Required. Named pipe used for orchestration worker
+                                              control messages.
+  --control-pipe-connect-timeout-seconds <n>  Optional timeout while connecting to the orchestration
+                                              control pipe. 0 or omitted means no timeout.
+  --data-type-conversion-workspace <path>     Optional conversion policy workspace; omitted uses the
+                                              built-in defaults.
+  --pipeline-db-connection-env <name>         Optional shell-visible environment variable for an
+                                              initialized MetaPipeline operational DB.
 
 Notes:
   This command is an orchestration worker boundary, not an interactive user surface.
@@ -1934,8 +1936,8 @@ Options:
   --target <sql-identifier>                Target table identifier when a SELECT binding has
                                            multiple targets.
   --batch-size <n>                         Bounded in-memory row buffer size. Default: 1000.
-  --timeout-seconds <n>                    SQL command and bulk-copy timeout seconds. Omitted means
-                                           no command timeout.
+  --timeout-seconds <n>                    SQL command and bulk-copy timeout seconds. 0 or omitted
+                                           means no command timeout.
   --target-data-type-system <name>         Runtime target type family for InsertRows. Default:
                                            SqlServer.
   --data-type-conversion-workspace <path>  Optional conversion policy workspace; omitted uses the
@@ -2066,7 +2068,7 @@ Options:
   --batch-size <n>                   Bounded in-memory row buffer size for InsertRows. Default:
                                      1000.
   --timeout-seconds <n>              SQL command and bulk-copy timeout seconds for the transform
-                                     execution.
+                                     execution. 0 or omitted means no timeout.
   --target-data-type-system <name>   InsertRows target type family. Default: SqlServer.
 
 Notes:
@@ -2121,8 +2123,7 @@ Commands:
                            orchestration workspace.
   allow-concurrent-append  Allow concurrent execution for multiple Append effects on one object.
   set-lock-policy          Record scoped lock compatibility for one object/effect interaction.
-  refresh-run-plan         Refresh lock-aware run-plan rows in an orchestration
-                           workspace.
+  refresh-run-plan         Refresh lock-aware run-plan rows in an orchestration workspace.
   inspect-run-plan         Inspect the planned task dependency graph.
   execute                  Execute the current run plan by coordinating meta-pipeline worker
                            processes.
@@ -2316,28 +2317,36 @@ Command: execute
 Usage:
   meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace
   <path> --binding-workspace <path> [--data-type-conversion-workspace <path>]
-  [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>]
-  [--run-artifacts-root <path>] [--worker-event-timeout-seconds <n>]
+  [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>] [--run-artifacts-root
+  <path>] [--worker-event-timeout-seconds <n>] [--worker-activation-timeout-seconds <n>]
+  [--worker-control-pipe-connect-timeout-seconds <n>]
 
 Options:
 
-  --workspace <path>                       Required. MetaOrchestration workspace containing the
-                                           analysis and run-plan rows.
-  --pipeline-workspace <path>              Required. MetaPipeline workspace used by child
-                                           pipeline workers.
-  --transform-workspace <path>             Required. MetaTransformScript workspace used by child
-                                           pipeline workers.
-  --binding-workspace <path>               Required. MetaTransformBinding workspace used by child
-                                           pipeline workers.
-  --data-type-conversion-workspace <path>  Optional conversion policy workspace passed to child
-                                           workers.
-  --pipeline-db-connection-env <name>      Optional operational DB connection env passed to child
-                                           workers.
-  --max-degree-of-parallelism <n>          Maximum concurrently granted pipeline tasks. Default: 1.
-  --run-artifacts-root <path>              Optional operational root for run journals, worker
-                                           logs, and workspace execution leases.
-  --worker-event-timeout-seconds <n>       Optional fail-safe timeout for silent worker protocol
-                                           periods. Default: 1800.
+  --workspace <path>                                 Required. MetaOrchestration workspace
+                                                     containing the analysis and run-plan rows.
+  --pipeline-workspace <path>                        Required. MetaPipeline workspace used by child
+                                                     pipeline workers.
+  --transform-workspace <path>                       Required. MetaTransformScript workspace used by
+                                                     child pipeline workers.
+  --binding-workspace <path>                         Required. MetaTransformBinding workspace used
+                                                     by child pipeline workers.
+  --data-type-conversion-workspace <path>            Optional conversion policy workspace passed to
+                                                     child workers.
+  --pipeline-db-connection-env <name>                Optional operational DB connection env passed
+                                                     to child workers.
+  --max-degree-of-parallelism <n>                    Maximum concurrently granted pipeline tasks.
+                                                     Default: 1.
+  --run-artifacts-root <path>                        Optional operational root for run journals,
+                                                     worker logs, and workspace execution leases.
+  --worker-event-timeout-seconds <n>                 Optional timeout for silent worker protocol
+                                                     periods. 0 or omitted means no timeout.
+  --worker-activation-timeout-seconds <n>            Optional startup/activation timeout. Omitted
+                                                     follows --worker-event-timeout-seconds; 0
+                                                     disables activation timeout.
+  --worker-control-pipe-connect-timeout-seconds <n>  Optional timeout while waiting for child
+                                                     workers to connect to the named pipe. 0 or
+                                                     omitted means no timeout.
 
 Notes:
   Refreshes run-plan rows from current workspace state, then executes the run plan.
@@ -2345,7 +2354,7 @@ Notes:
   Orchestration sends StartPipeline after WorkerReady, before any task grants.
   Replacement workers receive StartPipeline with a resume task id so prior same-pipeline tasks are not replayed after retryable worker loss.
   Orchestration grants TaskReady work or stops a worker at a blocked task.
-  Workers parked at TaskReady do not count as silent; activation and running grants do.
+  Workers parked at TaskReady do not count as silent. Timeout options are disabled by default; use zero to explicitly disable a timeout.
   Retry policy is read from modeled RetryPolicy/RetryPolicyFailureClass/RunPlanRetryPolicy rows, not from a command-line switch.
   Failed tasks block OnSuccess dependents, enable OnFailure branches, and leave unrelated paths running.
   Task dependencies and locks define runtime eligibility; --max-degree-of-parallelism throttles concurrent task grants.

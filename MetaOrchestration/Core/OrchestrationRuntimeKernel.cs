@@ -6,12 +6,15 @@ namespace MetaOrchestration.Core;
 
 internal sealed class OrchestrationRuntimeKernel
 {
+    private const int MaxPreWorkWorkerReplacementAttempts = 3;
+
     private readonly IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByPipelineTaskId;
     private readonly IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByProfileId;
     private readonly IReadOnlyDictionary<string, MO.PlannedTaskLock[]> locksByPlannedTaskId;
     private readonly IReadOnlyList<MO.LockCompatibilityPolicy> activeLockPolicies;
     private readonly IReadOnlyDictionary<string, OrchestrationExecutionDependency[]> dependenciesByTaskProfileId;
     private readonly OrchestrationExecutionStateMachine stateMachine;
+    private readonly OrchestrationWorkerActivationStateMachine activationStateMachine;
     private readonly HashSet<string> pendingTaskIds;
     private readonly Dictionary<string, OrchestrationRuntimeReadyTask> readyByTaskId = new(StringComparer.Ordinal);
     private readonly Dictionary<string, OrchestrationRuntimeRetryState> scheduledRetryByTaskId = new(StringComparer.Ordinal);
@@ -20,6 +23,7 @@ internal sealed class OrchestrationRuntimeKernel
     private readonly Dictionary<string, MO.PlannedTaskLock[]> runningLocksByPlannedTaskId = new(StringComparer.Ordinal);
     private readonly Dictionary<string, string> taskOutcomesByTaskProfileId = new(StringComparer.Ordinal);
     private readonly HashSet<string> stoppedPipelineNames = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, int> preWorkReplacementAttemptsByBoundary = new(StringComparer.OrdinalIgnoreCase);
 
     public OrchestrationRuntimeKernel(
         IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByPipelineTaskId,
@@ -44,11 +48,27 @@ internal sealed class OrchestrationRuntimeKernel
         this.activeLockPolicies = activeLockPolicies;
         this.dependenciesByTaskProfileId = dependenciesByTaskProfileId;
         pendingTaskIds = plannedTasksByPipelineTaskId.Keys.ToHashSet(StringComparer.Ordinal);
+        var pipelineDefinitions = plannedTasksByPipelineTaskId.Values
+            .GroupBy(static item => item.PipelineReference.Name, StringComparer.OrdinalIgnoreCase)
+            .Select(
+                static group =>
+                {
+                    var first = group.First();
+                    return new OrchestrationWorkerActivationPipelineDefinition(
+                        first.PipelineReference.Name,
+                        first.PipelineReference.MetaPipelinePipelineId,
+                        group
+                            .OrderBy(static item => ParseOrdinal(item.Ordinal))
+                            .ThenBy(static item => item.Id, StringComparer.Ordinal)
+                            .ToArray());
+                })
+            .ToArray();
         var pipelineNamesByTaskId = plannedTasksByPipelineTaskId.ToDictionary(
             static item => item.Key,
             static item => item.Value.PipelineReference.Name,
             StringComparer.Ordinal);
         stateMachine = new OrchestrationExecutionStateMachine(plannedTasksByPipelineTaskId.Keys, pipelineNamesByTaskId);
+        activationStateMachine = new OrchestrationWorkerActivationStateMachine(pipelineDefinitions);
     }
 
     public IReadOnlySet<string> PendingTaskIds => pendingTaskIds;
@@ -79,8 +99,11 @@ internal sealed class OrchestrationRuntimeKernel
         string workerName,
         string pipelineId,
         string resumeTaskId,
-        string expectedExecutableVersion) =>
+        string expectedExecutableVersion)
+    {
+        activationStateMachine.RegisterWorker(workerName, pipelineId, resumeTaskId);
         stateMachine.RegisterWorker(workerName, pipelineId, resumeTaskId, expectedExecutableVersion);
+    }
 
     public void MarkWorkerOnline(string workerName, string executableVersion) =>
         stateMachine.MarkWorkerOnline(workerName, executableVersion);
@@ -98,10 +121,65 @@ internal sealed class OrchestrationRuntimeKernel
         stateMachine.AcceptWorkerLifecycleEvent(workerName, eventKind);
 
     public void MarkWorkerClosed(string workerName) =>
+        MarkWorkerClosed(workerName, updateActivationCompletion: true);
+
+    private void MarkWorkerClosed(
+        string workerName,
+        bool updateActivationCompletion)
+    {
         stateMachine.MarkWorkerClosed(workerName);
+        if (updateActivationCompletion)
+        {
+            MarkActivationCompletedIfPipelineHasNoRuntimeWork(workerName);
+        }
+    }
 
     public OrchestrationWorkerTimeoutDecision ResolveWorkerTimeout(string workerName) =>
         stateMachine.ResolveWorkerTimeout(workerName);
+
+    public OrchestrationRuntimeWorkerActivationDecision ChooseWorkerActivationAction(
+        IReadOnlySet<string> liveWorkerNames,
+        int maxActiveWorkerProcesses,
+        DateTimeOffset now) =>
+        activationStateMachine.ApplySchedulerTick(CreateActivationFacts(liveWorkerNames, maxActiveWorkerProcesses, now));
+
+    public void CommitWorkerCapacityDeferralRequested(OrchestrationRuntimeWorkerActivationDecision decision)
+        => activationStateMachine.CommitCapacityDeferralRequested(decision);
+
+    public void CancelWorkerCapacityDeferralRequested(OrchestrationRuntimeWorkerActivationDecision decision) =>
+        activationStateMachine.CancelCapacityDeferralRequested(decision);
+
+    public bool TryApplyCapacityDeferredWorkerClosed(
+        string workerName,
+        int exitCode,
+        out OrchestrationRuntimeCapacityDeferredWorkerClosed deferredWorker)
+    {
+        if (!activationStateMachine.IsCapacityDeferralPending(workerName))
+        {
+            deferredWorker = default;
+            return false;
+        }
+
+        var decision = ApplyWorkerLoss(
+            workerName,
+            exitCode,
+            stoppedByOrchestration: true);
+        if (decision.Kind != OrchestrationWorkerLossDecisionKind.ReplaceAtReadyTaskBoundary)
+        {
+            throw new InvalidOperationException(
+                $"Deferred worker '{workerName}' closed with decision {decision.Kind}, but a ready-boundary resume was required.");
+        }
+
+        var plannedTask = RequirePlannedTask(decision.ResumeTaskId);
+        return activationStateMachine.TryApplyCapacityDeferredWorkerClosed(
+            workerName,
+            decision.ResumeTaskId,
+            plannedTask.TaskAccessProfile.TaskName,
+            out deferredWorker);
+    }
+
+    public bool HasInactivePipelineThatCanProgress(DateTimeOffset now) =>
+        activationStateMachine.HasInactivePipelineThatCanProgress(CreateActivationFacts(EmptyWorkerSet(), 1, now));
 
     public OrchestrationWorkerLossDecision ApplyWorkerLoss(
         string workerName,
@@ -113,9 +191,54 @@ internal sealed class OrchestrationRuntimeKernel
         {
             readyByTaskId.Remove(decision.TaskId);
             pendingTaskIds.Add(decision.TaskId);
+            if (!activationStateMachine.IsCapacityDeferralPending(workerName))
+            {
+                var plannedTask = RequirePlannedTask(decision.ResumeTaskId);
+                activationStateMachine.ApplyWorkerReplacementAtResumeBoundary(
+                    workerName,
+                    decision.ResumeTaskId,
+                    plannedTask.TaskAccessProfile.TaskName);
+            }
+
+            return decision;
         }
 
+        if (decision.Kind == OrchestrationWorkerLossDecisionKind.ReplaceFromBeginning)
+        {
+            activationStateMachine.ApplyWorkerReplacementFromBeginning(workerName);
+            return decision;
+        }
+
+        MarkActivationCompletedIfPipelineHasNoRuntimeWork(workerName);
         return decision;
+    }
+
+    public OrchestrationPreWorkReplacementReservation ReservePreWorkReplacementAttempt(
+        string pipelineName,
+        string resumeTaskId,
+        string reason)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(pipelineName);
+        var normalizedResumeTaskId = string.IsNullOrWhiteSpace(resumeTaskId) ? string.Empty : resumeTaskId.Trim();
+        var key = CreatePreWorkReplacementAttemptKey(pipelineName, normalizedResumeTaskId);
+        preWorkReplacementAttemptsByBoundary.TryGetValue(key, out var currentAttempt);
+        var nextAttempt = currentAttempt + 1;
+        if (nextAttempt > MaxPreWorkWorkerReplacementAttempts)
+        {
+            var boundary = string.IsNullOrWhiteSpace(normalizedResumeTaskId)
+                ? "before pipeline activation"
+                : $"before granting task '{normalizedResumeTaskId}'";
+            throw new InvalidOperationException(
+                $"Pipeline worker '{pipelineName}' exceeded the pre-work worker replacement limit {boundary}. " +
+                $"Limit: {MaxPreWorkWorkerReplacementAttempts.ToString(CultureInfo.InvariantCulture)}. Last reason: {reason}");
+        }
+
+        preWorkReplacementAttemptsByBoundary[key] = nextAttempt;
+        return new OrchestrationPreWorkReplacementReservation(
+            pipelineName,
+            normalizedResumeTaskId,
+            nextAttempt,
+            MaxPreWorkWorkerReplacementAttempts);
     }
 
     public bool IsPipelineStopped(string pipelineName) =>
@@ -179,6 +302,11 @@ internal sealed class OrchestrationRuntimeKernel
             }
 
             var plannedTask = RequirePlannedTask(ready.TaskId);
+            if (activationStateMachine.IsCapacityDeferralPending(ready.WorkerName))
+            {
+                continue;
+            }
+
             if (exitedWorkerNames.Contains(ready.WorkerName))
             {
                 var decision = ApplyWorkerLoss(ready.WorkerName);
@@ -395,6 +523,7 @@ internal sealed class OrchestrationRuntimeKernel
             stateMachine.MarkFailedFromSupervisor(workerEvent.TaskId);
             stoppedPipelineNames.Add(workerName);
             var blocked = BlockRemainingPipelineTasks(workerName, reason);
+            MarkActivationCompletedIfPipelineHasNoRuntimeWork(workerName);
             return OrchestrationRuntimeSupervisorFailure.NoRetry(
                 completion,
                 retryDecision,
@@ -406,13 +535,17 @@ internal sealed class OrchestrationRuntimeKernel
             workerEvent.TaskId,
             completion.GrantId,
             retryDecision.NextAttemptNumber);
-        stateMachine.MarkWorkerClosed(workerName);
+        MarkWorkerClosed(workerName, updateActivationCompletion: false);
         pendingTaskIds.Add(workerEvent.TaskId);
         stateMachine.MarkPendingForReplacement(workerEvent.TaskId);
         scheduledRetryByTaskId[workerEvent.TaskId] = new OrchestrationRuntimeRetryState(
             DateTimeOffset.UtcNow + retryDecision.Delay,
             completion.GrantId,
             retryDecision.NextAttemptNumber);
+        activationStateMachine.ApplyWorkerReplacementAtResumeBoundary(
+            workerName,
+            workerEvent.TaskId,
+            plannedTask.TaskAccessProfile.TaskName);
 
         return OrchestrationRuntimeSupervisorFailure.Retry(
             completion,
@@ -525,6 +658,8 @@ internal sealed class OrchestrationRuntimeKernel
         void Fail(string message) =>
             throw new InvalidOperationException(
                 $"Orchestration runtime kernel invariant failed at {stage}: {message}");
+
+        activationStateMachine.AssertInvariants(Fail);
 
         foreach (var taskId in pendingTaskIds)
         {
@@ -819,6 +954,117 @@ internal sealed class OrchestrationRuntimeKernel
         return plannedTask;
     }
 
+    private OrchestrationRuntimeWorkerCapacityDeferralCandidate? SelectWaitingReadyWorkerForCapacityDeferral()
+    {
+        foreach (var ready in readyByTaskId.Values
+                     .OrderBy(static item => item.PipelineName, StringComparer.OrdinalIgnoreCase)
+                     .ThenBy(static item => item.TaskName, StringComparer.OrdinalIgnoreCase))
+        {
+            var plannedTask = RequirePlannedTask(ready.TaskId);
+            if (EvaluateTaskReadiness(plannedTask) != OrchestrationTaskReadiness.Waiting)
+            {
+                continue;
+            }
+
+            return new OrchestrationRuntimeWorkerCapacityDeferralCandidate(
+                ready.WorkerName,
+                ready.PipelineId,
+                ready.PipelineName,
+                ready.TaskId,
+                ready.TaskName,
+                $"{FormatTaskName(plannedTask)} waits for dependencies.");
+        }
+
+        return null;
+    }
+
+    private OrchestrationWorkerActivationFacts CreateActivationFacts(
+        IReadOnlySet<string> liveWorkerNames,
+        int maxActiveWorkerProcesses,
+        DateTimeOffset now) =>
+        new(
+            liveWorkerNames,
+            maxActiveWorkerProcesses,
+            now,
+            ResolvePipelineActivationCandidate,
+            SelectWaitingReadyWorkerForCapacityDeferral);
+
+    private void MarkActivationCompletedIfPipelineHasNoRuntimeWork(string pipelineName)
+    {
+        if (!PipelineHasRuntimeWork(pipelineName))
+        {
+            activationStateMachine.MarkPipelineCompleted(pipelineName);
+        }
+    }
+
+    private bool PipelineHasRuntimeWork(string pipelineName)
+    {
+        bool TaskBelongsToPipeline(string taskId) =>
+            plannedTasksByPipelineTaskId.TryGetValue(taskId, out var plannedTask) &&
+            string.Equals(plannedTask.PipelineReference.Name, pipelineName, StringComparison.OrdinalIgnoreCase);
+
+        return pendingTaskIds.Any(TaskBelongsToPipeline) ||
+               readyByTaskId.Keys.Any(TaskBelongsToPipeline) ||
+               scheduledRetryByTaskId.Keys.Any(TaskBelongsToPipeline) ||
+               runningWorkerNamesByTaskId.Keys.Any(TaskBelongsToPipeline);
+    }
+
+    private OrchestrationRuntimePipelineActivationCandidate? ResolvePipelineActivationCandidate(
+        OrchestrationWorkerActivationPipelineDefinition activationState,
+        DateTimeOffset now)
+    {
+        var nextTask = ResolveNextInactivePipelineTask(activationState, now);
+        if (nextTask is null)
+        {
+            return null;
+        }
+
+        return new OrchestrationRuntimePipelineActivationCandidate(
+            activationState.PipelineName,
+            activationState.PipelineId,
+            nextTask.TaskAccessProfile.MetaPipelinePipelineTaskId,
+            nextTask.TaskAccessProfile.TaskName,
+            EvaluateTaskReadiness(nextTask));
+    }
+
+    private MO.PlannedTask? ResolveNextInactivePipelineTask(
+        OrchestrationWorkerActivationPipelineDefinition activationState,
+        DateTimeOffset now)
+    {
+        foreach (var task in activationState.PlannedTasks)
+        {
+            var pipelineTaskId = task.TaskAccessProfile.MetaPipelinePipelineTaskId;
+            if (scheduledRetryByTaskId.TryGetValue(pipelineTaskId, out var retry) &&
+                retry.NotBeforeUtc > now)
+            {
+                continue;
+            }
+
+            if (pendingTaskIds.Contains(pipelineTaskId) ||
+                scheduledRetryByTaskId.ContainsKey(pipelineTaskId))
+            {
+                return task;
+            }
+        }
+
+        return null;
+    }
+
+    private OrchestrationTaskReadiness EvaluateTaskReadiness(MO.PlannedTask plannedTask) =>
+        OrchestrationExecutionContinuity.EvaluateReadiness(
+            plannedTask,
+            dependenciesByTaskProfileId,
+            taskOutcomesByTaskProfileId,
+            out _,
+            out _,
+            out _);
+
+    private static IReadOnlySet<string> EmptyWorkerSet() =>
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+    private static string CreatePreWorkReplacementAttemptKey(string pipelineName, string resumeTaskId) =>
+        string.Concat(pipelineName.Trim(), "\u001f", resumeTaskId ?? string.Empty);
+
     private OrchestrationRuntimeBlockedTask CreateBlockedTask(
         MO.PlannedTask plannedTask,
         OrchestrationExecutionDependency dependency,
@@ -989,6 +1235,11 @@ internal sealed class OrchestrationRuntimeKernel
             ? fallbackFailureClass
             : workerEvent.FailureClass.Trim();
 
+    private static decimal ParseOrdinal(string value) =>
+        decimal.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out var ordinal)
+            ? ordinal
+            : decimal.MaxValue;
+
     private static string FormatTaskName(MO.PlannedTask plannedTask) =>
         $"{plannedTask.PipelineReference.Name}.{plannedTask.TaskAccessProfile.TaskName}";
 }
@@ -1066,6 +1317,90 @@ internal enum OrchestrationRuntimeReadyDecisionKind
     Block,
     ReplaceWorker
 }
+
+internal readonly record struct OrchestrationRuntimeWorkerActivationDecision(
+    OrchestrationRuntimeWorkerActivationDecisionKind Kind,
+    string WorkerName,
+    string PipelineId,
+    string PipelineName,
+    string ResumeTaskId,
+    string TaskId,
+    string TaskName,
+    OrchestrationTaskReadiness Readiness,
+    string Reason)
+{
+    public static OrchestrationRuntimeWorkerActivationDecision None { get; } =
+        new(OrchestrationRuntimeWorkerActivationDecisionKind.None, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, default, string.Empty);
+
+    public static OrchestrationRuntimeWorkerActivationDecision StartWorker(
+        string pipelineName,
+        string pipelineId,
+        string resumeTaskId,
+        string taskId,
+        string taskName,
+        OrchestrationTaskReadiness readiness) =>
+        new(
+            OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker,
+            pipelineName,
+            pipelineId,
+            pipelineName,
+            resumeTaskId,
+            taskId,
+            taskName,
+            readiness,
+            string.Empty);
+
+    public static OrchestrationRuntimeWorkerActivationDecision DeferWorkerForCapacity(
+        string workerName,
+        string pipelineId,
+        string pipelineName,
+        string taskId,
+        string taskName,
+        string reason) =>
+        new(
+            OrchestrationRuntimeWorkerActivationDecisionKind.DeferWorkerForCapacity,
+            workerName,
+            pipelineId,
+            pipelineName,
+            string.Empty,
+            taskId,
+            taskName,
+            OrchestrationTaskReadiness.Waiting,
+            reason);
+}
+
+internal enum OrchestrationRuntimeWorkerActivationDecisionKind
+{
+    None,
+    StartWorker,
+    DeferWorkerForCapacity
+}
+
+internal readonly record struct OrchestrationRuntimeCapacityDeferredWorkerClosed(
+    string WorkerName,
+    string ResumeTaskId,
+    string TaskName);
+
+internal readonly record struct OrchestrationRuntimePipelineActivationCandidate(
+    string PipelineName,
+    string PipelineId,
+    string NextTaskId,
+    string NextTaskName,
+    OrchestrationTaskReadiness Readiness);
+
+internal readonly record struct OrchestrationRuntimeWorkerCapacityDeferralCandidate(
+    string WorkerName,
+    string PipelineId,
+    string PipelineName,
+    string TaskId,
+    string TaskName,
+    string Reason);
+
+internal readonly record struct OrchestrationPreWorkReplacementReservation(
+    string PipelineName,
+    string ResumeTaskId,
+    int Attempt,
+    int Limit);
 
 internal readonly record struct OrchestrationRuntimeGrantIssue(
     OrchestrationRuntimeReadyTask ReadyTask,

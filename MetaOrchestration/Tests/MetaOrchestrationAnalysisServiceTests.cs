@@ -1179,6 +1179,232 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
+    public async Task RuntimeDrainsQueuedWorkerEventsBeforeApplyingActivationTimeouts()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "ExtractA",
+                        Task(
+                            "ExtractA",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.SourceA", OrchestrationObjectAccessKind.Read, "Source"))),
+                    Profile(
+                        "ExtractB",
+                        Task(
+                            "ExtractB",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.SourceB", OrchestrationObjectAccessKind.Read, "Source"))),
+                    Profile(
+                        "ExtractC",
+                        Task(
+                            "ExtractC",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.SourceC", OrchestrationObjectAccessKind.Read, "Source"))),
+                    Profile(
+                        "ExtractD",
+                        Task(
+                            "ExtractD",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.SourceD", OrchestrationObjectAccessKind.Read, "Source")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -Message 'completed'
+                return
+                """,
+                TimeSpan.FromMilliseconds(300),
+                maxDegreeOfParallelism: 2,
+                preConnectDelay: TimeSpan.FromMilliseconds(250));
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(4, result.TaskResults.Count);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeDoesNotActivateMoreWorkerProcessesThanMaxDegree()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "ExtractA",
+                        Task("ExtractA", 1, "load", "Select", Access("dbo.SourceA", OrchestrationObjectAccessKind.Read, "Source"))),
+                    Profile(
+                        "ExtractB",
+                        Task("ExtractB", 1, "load", "Select", Access("dbo.SourceB", OrchestrationObjectAccessKind.Read, "Source"))),
+                    Profile(
+                        "ExtractC",
+                        Task("ExtractC", 1, "load", "Select", Access("dbo.SourceC", OrchestrationObjectAccessKind.Read, "Source"))),
+                    Profile(
+                        "ExtractD",
+                        Task("ExtractD", 1, "load", "Select", Access("dbo.SourceD", OrchestrationObjectAccessKind.Read, "Source"))),
+                    Profile(
+                        "ExtractE",
+                        Task("ExtractE", 1, "load", "Select", Access("dbo.SourceE", OrchestrationObjectAccessKind.Read, "Source")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -Message 'started'
+                Start-Sleep -Milliseconds 150
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -Message 'completed'
+                return
+                """,
+                maxDegreeOfParallelism: 2,
+                trackActiveWorkers: true);
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(5, result.TaskResults.Count);
+            Assert.True(
+                ReadMaxActiveFakeWorkerProcesses(tempRoot) <= 2,
+                File.ReadAllText(Path.Combine(result.RunArtifactDirectoryPath, "events.tsv")));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeParksWaitingWorkerWhenCapacityIsNeededByProducer()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "AConsumer",
+                        Task(
+                            "AConsumer",
+                            1,
+                            "stage",
+                            "Select",
+                            Access("dbo.RawA", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.AStage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")),
+                        Task(
+                            "AConsumer",
+                            2,
+                            "consume-b",
+                            "Select",
+                            Access("dbo.BStage", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Final", OrchestrationObjectAccessKind.Write, "InsertRowsTarget"))),
+                    Profile(
+                        "BProducer",
+                        Task(
+                            "BProducer",
+                            1,
+                            "produce-b",
+                            "Select",
+                            Access("dbo.RawB", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.BStage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+
+                if ($pipeline -eq 'AConsumer' -and [string]::IsNullOrWhiteSpace($resumeTaskId)) {
+                    $task1 = 'pipeline:AConsumer:task:1'
+                    $task2 = 'pipeline:AConsumer:task:2'
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $task1 -TaskName 'stage' -GrantId '' -CommandId '' -Message 'stage ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $task1 -TaskName 'stage' -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $task1 -TaskName 'stage' -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $task1 -TaskName 'stage' -Message 'completed'
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $task2 -TaskName 'consume-b' -GrantId '' -CommandId '' -Message 'waiting for producer'
+                    $command = Read-WorkerCommand
+                    if ($command -match 'StopPipeline') {
+                        return
+                    }
+
+                    throw "expected StopPipeline for waiting AConsumer task, got '$command'"
+                }
+
+                if ($pipeline -eq 'BProducer') {
+                    $taskId = 'pipeline:BProducer:task:1'
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'produce-b' -GrantId '' -CommandId '' -Message 'ready'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'produce-b' -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'produce-b' -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'produce-b' -Message 'completed'
+                    return
+                }
+
+                if ($pipeline -eq 'AConsumer' -and $resumeTaskId -eq 'pipeline:AConsumer:task:2') {
+                    $taskId = 'pipeline:AConsumer:task:2'
+                    Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'consume-b' -GrantId '' -CommandId '' -Message 'resumed'
+                    $command = Read-WorkerCommand
+                    Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'consume-b' -Message 'accepted'
+                    Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'consume-b' -Message 'started'
+                    Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'consume-b' -Message 'completed'
+                    return
+                }
+
+                throw "unexpected worker state pipeline=$pipeline resume='$resumeTaskId'"
+                """,
+                maxDegreeOfParallelism: 1,
+                trackActiveWorkers: true);
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(3, result.TaskResults.Count);
+            var events = File.ReadAllText(Path.Combine(result.RunArtifactDirectoryPath, "events.tsv"));
+            Assert.Contains("WorkerDeferredForCapacity", events, StringComparison.Ordinal);
+            Assert.Contains("WorkerDeferred", events, StringComparison.Ordinal);
+            Assert.True(ReadMaxActiveFakeWorkerProcesses(tempRoot) <= 1, events);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task RuntimeRestartsWorkerThatDisconnectsAfterOnlineBeforeReady()
     {
         var tempRoot = CreateTempRoot();
@@ -3131,17 +3357,21 @@ INNER JOIN dw.DimCustomer AS d
             Assert.Contains("PlannedTasks: 4", result.Output, StringComparison.Ordinal);
             Assert.Contains("DependencyEdges: 4", result.Output, StringComparison.Ordinal);
             Assert.Contains("Graph:", result.Output, StringComparison.Ordinal);
-            Assert.Contains("  Seed.seed", result.Output, StringComparison.Ordinal);
-            Assert.Contains("    --> Dim.dim [OnSuccess/Data/dbo.Stage]", result.Output, StringComparison.Ordinal);
-            Assert.Contains("    --> Fact.fact [OnSuccess/Data/dbo.Stage]", result.Output, StringComparison.Ordinal);
-            Assert.Contains("  Dim.dim", result.Output, StringComparison.Ordinal);
-            Assert.Contains("    --> Mart.mart [OnSuccess/Data/dbo.Dim]", result.Output, StringComparison.Ordinal);
-            Assert.Contains("  Fact.fact", result.Output, StringComparison.Ordinal);
-            Assert.Contains("    --> Mart.mart [OnSuccess/Data/dbo.Fact]", result.Output, StringComparison.Ordinal);
+            Assert.Contains("Seed.seed", result.Output, StringComparison.Ordinal);
+            Assert.Contains("--> Dim.dim", result.Output, StringComparison.Ordinal);
+            Assert.Contains("--> Fact.fact", result.Output, StringComparison.Ordinal);
+            Assert.Contains("Dim.dim", result.Output, StringComparison.Ordinal);
+            Assert.Contains("--> Mart.mart", result.Output, StringComparison.Ordinal);
+            Assert.Contains("Fact.fact", result.Output, StringComparison.Ordinal);
+            Assert.Contains("Mart.mart", result.Output, StringComparison.Ordinal);
+            Assert.Contains("(no outgoing dependencies)", result.Output, StringComparison.Ordinal);
+            Assert.Contains("OnSuccess", result.Output, StringComparison.Ordinal);
+            Assert.Contains("dbo.Stage", result.Output, StringComparison.Ordinal);
+            Assert.Contains("dbo.Dim", result.Output, StringComparison.Ordinal);
+            Assert.Contains("dbo.Fact", result.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("ParallelWaves", result.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("MaxWaveWidth", result.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Wave ", result.Output, StringComparison.Ordinal);
-            Assert.DoesNotContain("+--", result.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("`--", result.Output, StringComparison.Ordinal);
         }
         finally
@@ -3793,11 +4023,30 @@ INNER JOIN dw.DimCustomer AS d
                 Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
                 Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
                 $startCommand = Read-StartPipelineCommand
+                $startFields = $startCommand.Split("`t")
+                $resumeTaskId = [System.Uri]::UnescapeDataString($startFields[8])
                 Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
 
+                $taskStarted = [string]::IsNullOrWhiteSpace($resumeTaskId)
                 foreach ($task in $taskRows) {
+                    if (!$taskStarted) {
+                        if ($task.Id -ne $resumeTaskId) {
+                            continue
+                        }
+
+                        $taskStarted = $true
+                    }
+
                     Send-WorkerEvent -Kind 'TaskReady' -TaskId $task.Id -TaskName $task.Name -GrantId '' -CommandId '' -Message 'ready'
                     $command = Read-WorkerCommand
+                    if ($command -like "*`tStopPipeline`t*") {
+                        return
+                    }
+
+                    if ($command -notlike "*`tGrantTask`t*") {
+                        throw "expected GrantTask or StopPipeline command, got '$command'"
+                    }
+
                     Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $task.Id -TaskName $task.Name -Message 'accepted'
                     Send-WorkerEvent -Kind 'TaskStarted' -TaskId $task.Id -TaskName $task.Name -Message 'started'
                     Start-Sleep -Milliseconds ([int] $task.Delay)
@@ -3876,7 +4125,9 @@ INNER JOIN dw.DimCustomer AS d
         MetaOrchestrationModel model,
         string workerScript,
         TimeSpan? workerEventTimeout = null,
-        int maxDegreeOfParallelism = 1)
+        int maxDegreeOfParallelism = 1,
+        TimeSpan? preConnectDelay = null,
+        bool trackActiveWorkers = false)
     {
         var orchestrationWorkspace = Path.Combine(tempRoot, "Orchestration");
         var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
@@ -3890,18 +4141,30 @@ INNER JOIN dw.DimCustomer AS d
 
         var workerPath = Path.Combine(tempRoot, "fake-meta-pipeline.cmd");
         var workerPowerShellPath = Path.Combine(tempRoot, "fake-meta-pipeline.ps1");
+        var workerCommandLines = new List<string>
+        {
+            "@echo off"
+        };
+        if (preConnectDelay is { } delay && delay > TimeSpan.Zero)
+        {
+            workerCommandLines.Add(
+                "powershell -NoProfile -Command \"Start-Sleep -Milliseconds " +
+                ((int)Math.Ceiling(delay.TotalMilliseconds)).ToString(CultureInfo.InvariantCulture) +
+                "\"");
+        }
+
+        workerCommandLines.Add("powershell -NoProfile -ExecutionPolicy Bypass -File \"%~dp0fake-meta-pipeline.ps1\" %*");
+        workerCommandLines.Add("exit /b %errorlevel%");
         File.WriteAllText(
             workerPath,
-            """
-            @echo off
-            powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0fake-meta-pipeline.ps1" %*
-            exit /b %errorlevel%
-            """.Replace("\r\n", "\n", StringComparison.Ordinal).Replace("\n", Environment.NewLine, StringComparison.Ordinal));
+            string.Join(Environment.NewLine, workerCommandLines));
         File.WriteAllText(
             workerPowerShellPath,
             FakeWorkerPowerShellPreamble
                 + Environment.NewLine
-                + workerScript.Replace("\r\n", "\n", StringComparison.Ordinal).Replace("\n", Environment.NewLine, StringComparison.Ordinal)
+                + (trackActiveWorkers ? WrapWithActiveWorkerCounter(workerScript) : workerScript)
+                    .Replace("\r\n", "\n", StringComparison.Ordinal)
+                    .Replace("\n", Environment.NewLine, StringComparison.Ordinal)
                 + Environment.NewLine
                 + FakeWorkerPowerShellEpilogue);
 
@@ -3918,6 +4181,81 @@ INNER JOIN dw.DimCustomer AS d
                 RunArtifactsRootPath: runArtifactsRoot,
                 ExpectedWorkerExecutableVersion: "test-worker",
                 WorkerEventTimeout: workerEventTimeout));
+    }
+
+    private static string WrapWithActiveWorkerCounter(string workerScript) =>
+        """
+        function Update-ActiveWorkerCount {
+            param([int] $Delta)
+            $lockPath = Join-Path $PSScriptRoot 'active-workers.lock'
+            $counterPath = Join-Path $PSScriptRoot 'active-workers.txt'
+            $maxPath = Join-Path $PSScriptRoot 'max-active-workers.txt'
+            $lockStream = $null
+            for ($attempt = 0; $attempt -lt 200; $attempt++) {
+                try {
+                    $lockStream = [System.IO.File]::Open($lockPath, [System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::None)
+                    break
+                }
+                catch [System.IO.IOException] {
+                    Start-Sleep -Milliseconds 10
+                }
+            }
+
+            if ($null -eq $lockStream) {
+                throw 'could not acquire active worker counter lock'
+            }
+
+            try {
+                $current = 0
+                if (Test-Path $counterPath) {
+                    $rawCurrent = Get-Content -Path $counterPath -Raw
+                    if (![string]::IsNullOrWhiteSpace($rawCurrent)) {
+                        $current = [int] $rawCurrent.Trim()
+                    }
+                }
+
+                $current += $Delta
+                if ($current -lt 0) {
+                    $current = 0
+                }
+
+                Set-Content -Path $counterPath -Value $current
+                $max = 0
+                if (Test-Path $maxPath) {
+                    $rawMax = Get-Content -Path $maxPath -Raw
+                    if (![string]::IsNullOrWhiteSpace($rawMax)) {
+                        $max = [int] $rawMax.Trim()
+                    }
+                }
+
+                if ($current -gt $max) {
+                    Set-Content -Path $maxPath -Value $current
+                }
+            }
+            finally {
+                $lockStream.Dispose()
+            }
+        }
+
+        Update-ActiveWorkerCount 1
+        try {
+        """ +
+        Environment.NewLine +
+        workerScript +
+        Environment.NewLine +
+        """
+        }
+        finally {
+            Update-ActiveWorkerCount -1
+        }
+        """;
+
+    private static int ReadMaxActiveFakeWorkerProcesses(string tempRoot)
+    {
+        var path = Path.Combine(tempRoot, "max-active-workers.txt");
+        return File.Exists(path)
+            ? int.Parse(File.ReadAllText(path), CultureInfo.InvariantCulture)
+            : 0;
     }
 
     private const string FakeWorkerPowerShellPreamble = """

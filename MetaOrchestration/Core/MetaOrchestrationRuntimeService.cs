@@ -8,10 +8,6 @@ namespace MetaOrchestration.Core;
 
 public sealed class MetaOrchestrationRuntimeService
 {
-    private static readonly TimeSpan DefaultWorkerEventTimeout = TimeSpan.FromMinutes(30);
-    private static readonly TimeSpan DefaultWorkerActivationTimeout = TimeSpan.FromSeconds(30);
-    private const int MaxPreWorkWorkerReplacementAttempts = 3;
-
     public async Task<OrchestrationRuntimeResult> ExecuteAsync(
         OrchestrationRuntimeRequest request,
         IOrchestrationRuntimeObserver? observer = null,
@@ -26,9 +22,17 @@ public sealed class MetaOrchestrationRuntimeService
         {
             throw new ArgumentException("MaxDegreeOfParallelism must be a positive integer.", nameof(request));
         }
-        if (request.WorkerEventTimeout is { } workerEventTimeout && workerEventTimeout <= TimeSpan.Zero)
+        if (request.WorkerEventTimeout is { } workerEventTimeout && workerEventTimeout < TimeSpan.Zero)
         {
-            throw new ArgumentException("WorkerEventTimeout must be positive when provided.", nameof(request));
+            throw new ArgumentException("WorkerEventTimeout must be non-negative when provided. Use zero for no timeout.", nameof(request));
+        }
+        if (request.WorkerActivationTimeout is { } workerActivationTimeout && workerActivationTimeout < TimeSpan.Zero)
+        {
+            throw new ArgumentException("WorkerActivationTimeout must be non-negative when provided. Use zero for no timeout.", nameof(request));
+        }
+        if (request.WorkerControlPipeConnectTimeout is { } workerControlPipeConnectTimeout && workerControlPipeConnectTimeout < TimeSpan.Zero)
+        {
+            throw new ArgumentException("WorkerControlPipeConnectTimeout must be non-negative when provided. Use zero for no timeout.", nameof(request));
         }
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineExecutableName);
 
@@ -179,7 +183,9 @@ public sealed class MetaOrchestrationRuntimeService
         OrchestrationSupervisorRunState supervisorState,
         CancellationToken cancellationToken)
     {
-        var workerEventTimeout = request.WorkerEventTimeout ?? DefaultWorkerEventTimeout;
+        var workerEventTimeout = NormalizeOptionalTimeout(request.WorkerEventTimeout);
+        var workerActivationTimeout = ResolveWorkerActivationTimeout(request.WorkerActivationTimeout, workerEventTimeout);
+        var workerControlPipeConnectTimeout = NormalizeOptionalTimeout(request.WorkerControlPipeConnectTimeout);
         var plannedTasksByPipelineTaskId = plannedTasks
             .Where(static item => !string.IsNullOrWhiteSpace(item.TaskAccessProfile.MetaPipelinePipelineTaskId))
             .GroupBy(static item => item.TaskAccessProfile.MetaPipelinePipelineTaskId, StringComparer.Ordinal)
@@ -205,38 +211,11 @@ public sealed class MetaOrchestrationRuntimeService
             kernel.ScheduledRetryByTaskId.Count,
             taskResults.Count,
             blockedResults.Count);
-        var replacementCoordinator = new PipelineWorkerReplacementCoordinator();
         var workers = new List<PipelineWorkerProcess>();
         var workersByName = new Dictionary<string, PipelineWorkerProcess>(StringComparer.OrdinalIgnoreCase);
+        var eventTasksByWorker = new Dictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>>();
         try
         {
-            foreach (var group in plannedTasks.GroupBy(static item => item.PipelineReference.Name, StringComparer.OrdinalIgnoreCase))
-            {
-                var pipelineReference = group.First().PipelineReference;
-                var pipelineName = pipelineReference.Name;
-                journal.WriteEvent("WorkerStarting", pipelineName, request.PipelineExecutableName);
-                var worker = await PipelineWorkerProcess.StartAsync(
-                    pipelineName,
-                    pipelineReference.MetaPipelinePipelineId,
-                    string.Empty,
-                    request,
-                    journal.RunDirectoryPath,
-                    cancellationToken).ConfigureAwait(false);
-                kernel.RegisterWorker(
-                    worker.PipelineName,
-                    worker.PipelineId,
-                    worker.ResumeTaskId,
-                    worker.ExpectedExecutableVersion);
-                journal.WriteEvent("WorkerStarted", pipelineName, worker.ProcessId.ToString(CultureInfo.InvariantCulture));
-                journal.WriteEvent("WorkerControlPipe", pipelineName, worker.ControlPipeName);
-                journal.WriteEvent("WorkerLog", pipelineName, $"stdout={worker.StandardOutputArtifactPath}; stderr={worker.StandardErrorArtifactPath}");
-                workers.Add(worker);
-                workersByName[worker.PipelineName] = worker;
-            }
-
-            var eventTasksByWorker = workers.ToDictionary(
-                static worker => worker,
-                worker => worker.ReadEventAsync(cancellationToken));
             void UpdateSupervisorState(string eventKind, string subject = "")
             {
                 supervisorState.SetRuntimeCounts(
@@ -254,114 +233,106 @@ public sealed class MetaOrchestrationRuntimeService
                 stage,
                 ResolveLiveWorkerNames(eventTasksByWorker, kernel));
 
-            UpdateSupervisorState("WorkersStarted");
-            AssertProjection("after workers started");
+            IReadOnlySet<string> ResolveLiveWorkerProcessNames() =>
+                eventTasksByWorker.Keys
+                    .Where(static worker => !worker.HasExited)
+                    .Select(static worker => worker.PipelineName)
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-            while (kernel.HasRuntimeWork || eventTasksByWorker.Count > 0)
+            async Task StartPipelineWorkerAsync(OrchestrationRuntimeWorkerActivationDecision activationDecision)
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                UpdateSupervisorState("LoopStart");
-                AssertProjection("loop start");
-                if (await TryGrantReadyWorkerTaskAsync(
-                    kernel,
-                    eventTasksByWorker,
-                    workers,
-                    workersByName,
-                    replacementCoordinator,
-                    blockedResults,
+                var pipelineName = activationDecision.PipelineName;
+                var resumeTaskId = activationDecision.ResumeTaskId ?? string.Empty;
+                journal.WriteEvent(
+                    string.IsNullOrWhiteSpace(resumeTaskId) ? "WorkerStarting" : "WorkerResuming",
+                    pipelineName,
+                    string.IsNullOrWhiteSpace(resumeTaskId)
+                        ? request.PipelineExecutableName
+                        : $"ResumeTaskId={resumeTaskId}; Executable={request.PipelineExecutableName}");
+                var worker = await PipelineWorkerProcess.StartAsync(
+                    pipelineName,
+                    activationDecision.PipelineId,
+                    resumeTaskId,
                     request,
-                    observer,
-                    journal,
-                    cancellationToken).ConfigureAwait(false))
-                {
-                    UpdateSupervisorState("GrantOrBlock");
-                    AssertProjection("after grant or block");
-                    continue;
-                }
+                    journal.RunDirectoryPath,
+                    workerControlPipeConnectTimeout,
+                    cancellationToken).ConfigureAwait(false);
+                kernel.RegisterWorker(
+                    worker.PipelineName,
+                    worker.PipelineId,
+                    worker.ResumeTaskId,
+                    worker.ExpectedExecutableVersion);
+                journal.WriteEvent("WorkerStarted", pipelineName, worker.ProcessId.ToString(CultureInfo.InvariantCulture));
+                journal.WriteEvent("WorkerControlPipe", pipelineName, worker.ControlPipeName);
+                journal.WriteEvent("WorkerLog", pipelineName, $"stdout={worker.StandardOutputArtifactPath}; stderr={worker.StandardErrorArtifactPath}");
+                workers.Add(worker);
+                workersByName[worker.PipelineName] = worker;
+                eventTasksByWorker[worker] = worker.ReadEventAsync(cancellationToken);
+            }
 
-                if (eventTasksByWorker.Count == 0)
+            async Task<bool> TryPerformWorkerActivationActionAsync()
+            {
+                var acted = false;
+                while (true)
                 {
-                    if (kernel.HasRuntimeWork)
+                    var activationDecision = kernel.ChooseWorkerActivationAction(
+                        ResolveLiveWorkerProcessNames(),
+                        request.MaxDegreeOfParallelism,
+                        DateTimeOffset.UtcNow);
+                    switch (activationDecision.Kind)
                     {
-                        UpdateSupervisorState("NoWorkersWithRuntimeWork");
-                        throw new InvalidOperationException("Cannot execute run plan because no pipeline worker can produce the remaining task events.");
+                        case OrchestrationRuntimeWorkerActivationDecisionKind.None:
+                            return acted;
+                        case OrchestrationRuntimeWorkerActivationDecisionKind.StartWorker:
+                            await StartPipelineWorkerAsync(activationDecision).ConfigureAwait(false);
+                            acted = true;
+                            UpdateSupervisorState("WorkerActivated", activationDecision.PipelineName);
+                            AssertProjection("after worker activation");
+                            continue;
+                        case OrchestrationRuntimeWorkerActivationDecisionKind.DeferWorkerForCapacity:
+                            if (!workersByName.TryGetValue(activationDecision.WorkerName, out var worker) || worker.HasExited)
+                            {
+                                journal.WriteEvent(
+                                    "WorkerDeferCommandLost",
+                                    activationDecision.WorkerName,
+                                    "worker process was no longer live");
+                                kernel.CancelWorkerCapacityDeferralRequested(activationDecision);
+                                return acted;
+                            }
+
+                            journal.WriteEvent(
+                                "WorkerDeferredForCapacity",
+                                activationDecision.WorkerName,
+                                activationDecision.Reason);
+                            try
+                            {
+                                await worker.SendStopPipelineAsync(
+                                    activationDecision.PipelineId,
+                                    activationDecision.TaskId,
+                                    "Deferred by orchestration to honor max active worker process capacity.").ConfigureAwait(false);
+                            }
+                            catch (InvalidOperationException ex)
+                            {
+                                journal.WriteEvent("WorkerDeferCommandLost", activationDecision.WorkerName, ex.Message);
+                                kernel.CancelWorkerCapacityDeferralRequested(activationDecision);
+                                return acted;
+                            }
+
+                            kernel.CommitWorkerCapacityDeferralRequested(activationDecision);
+                            return true;
+                        default:
+                            throw new InvalidOperationException(
+                                $"Unsupported worker activation decision '{activationDecision.Kind}'.");
                     }
+                }
+            }
 
-                    break;
-                }
-
-                if (kernel.RunningCount == 0 &&
-                    eventTasksByWorker.Values.All(static task => !task.IsCompleted) &&
-                    eventTasksByWorker.Keys.All(worker => !worker.HasExited && kernel.ReadyByTaskId.Values.Any(ready => string.Equals(ready.WorkerName, worker.PipelineName, StringComparison.OrdinalIgnoreCase))) &&
-                    !kernel.ReadyByTaskId.Values.Any(static ready => ready.NotBeforeUtc > DateTimeOffset.UtcNow))
-                {
-                    var detail = kernel.DescribeAllReadyNoProgress();
-                    UpdateSupervisorState("NoProgress", "all-workers-ready");
-                    journal.WriteEvent("NoProgress", "all-workers-ready", detail);
-                    throw new InvalidOperationException(
-                        "Cannot execute run plan because every live pipeline worker is waiting for an orchestration command, but no ready task can be granted. " + detail);
-                }
-
-                var timedOutWorker = FindTimedOutWorker(
-                    eventTasksByWorker,
-                    kernel,
-                    workerEventTimeout,
-                    DateTimeOffset.UtcNow);
-                if (timedOutWorker is not null)
-                {
-                    eventTasksByWorker.Remove(timedOutWorker);
-                    UpdateSupervisorState("WorkerTimeout", timedOutWorker.PipelineName);
-                    await HandleTimedOutWorkerAsync(
-                        timedOutWorker,
-                        workerEventTimeout,
-                        eventTasksByWorker,
-                        workers,
-                        workersByName,
-                        retryPolicy,
-                        kernel,
-                        plannedTasksByPipelineTaskId,
-                        taskResults,
-                        blockedResults,
-                        request,
-                        journal,
-                        observer,
-                        cancellationToken).ConfigureAwait(false);
-                    UpdateSupervisorState("WorkerTimeoutHandled", timedOutWorker.PipelineName);
-                    AssertProjection("after worker timeout");
-                    continue;
-                }
-
-                var retryWakeTask = kernel.CreateRetryWakeTask(cancellationToken);
-                var timeoutWakeTask = CreateWorkerEventTimeoutWakeTask(
-                    eventTasksByWorker,
-                    kernel,
-                    workerEventTimeout,
-                    cancellationToken);
-                var waitTasks = eventTasksByWorker.Values.Cast<Task>();
-                if (retryWakeTask is not null)
-                {
-                    waitTasks = waitTasks.Append(retryWakeTask);
-                }
-                if (timeoutWakeTask is not null)
-                {
-                    waitTasks = waitTasks.Append(timeoutWakeTask);
-                }
-
-                Task completedEventTask = await Task.WhenAny(waitTasks).ConfigureAwait(false);
-                if (ReferenceEquals(completedEventTask, retryWakeTask))
-                {
-                    UpdateSupervisorState("RetryWake");
-                    continue;
-                }
-                if (ReferenceEquals(completedEventTask, timeoutWakeTask))
-                {
-                    UpdateSupervisorState("TimeoutWake");
-                    continue;
-                }
-
+            async Task ProcessWorkerEventTaskAsync(Task completedEventTask)
+            {
                 var worker = eventTasksByWorker.First(item => ReferenceEquals(item.Value, completedEventTask)).Key;
                 eventTasksByWorker.Remove(worker);
                 var workerEvent = await ((Task<WorkerProtocolEvent>)completedEventTask).ConfigureAwait(false);
+                worker.MarkProtocolEventObservedBySupervisor();
                 UpdateSupervisorState(workerEvent.Kind, worker.PipelineName);
                 journal.WriteEvent(
                     "WorkerEvent",
@@ -372,13 +343,26 @@ public sealed class MetaOrchestrationRuntimeService
 
                 if (string.Equals(workerEvent.Kind, WorkerEventKinds.Closed, StringComparison.OrdinalIgnoreCase))
                 {
+                    if (kernel.TryApplyCapacityDeferredWorkerClosed(
+                            worker.PipelineName,
+                            workerEvent.ExitCode,
+                            out var deferredWorker))
+                    {
+                        journal.WriteEvent(
+                            "WorkerDeferred",
+                            deferredWorker.WorkerName,
+                            $"ResumeTaskId={deferredWorker.ResumeTaskId}; Task={deferredWorker.TaskName}");
+                        UpdateSupervisorState("WorkerDeferred", deferredWorker.WorkerName);
+                        AssertProjection("after worker deferred");
+                        return;
+                    }
+
                     await HandleClosedWorkerAsync(
                         worker,
                         workerEvent,
                         eventTasksByWorker,
                         workers,
                         workersByName,
-                        replacementCoordinator,
                         retryPolicy,
                         kernel,
                         plannedTasksByPipelineTaskId,
@@ -390,7 +374,7 @@ public sealed class MetaOrchestrationRuntimeService
                         cancellationToken).ConfigureAwait(false);
                     UpdateSupervisorState("WorkerClosedHandled", worker.PipelineName);
                     AssertProjection("after worker closed");
-                    continue;
+                    return;
                 }
 
                 if (string.Equals(workerEvent.Kind, WorkerEventKinds.ProtocolFault, StringComparison.OrdinalIgnoreCase))
@@ -405,7 +389,6 @@ public sealed class MetaOrchestrationRuntimeService
                         eventTasksByWorker,
                         workers,
                         workersByName,
-                        replacementCoordinator,
                         kernel,
                         request,
                         journal,
@@ -413,7 +396,7 @@ public sealed class MetaOrchestrationRuntimeService
                 {
                     UpdateSupervisorState("WorkerLifecycleHandled", worker.PipelineName);
                     AssertProjection("after worker lifecycle event");
-                    continue;
+                    return;
                 }
 
                 if (!plannedTasksByPipelineTaskId.TryGetValue(workerEvent.TaskId, out var plannedTask))
@@ -466,6 +449,132 @@ public sealed class MetaOrchestrationRuntimeService
                 UpdateSupervisorState($"TaskEventHandled:{workerEvent.Kind}", worker.PipelineName);
                 AssertProjection($"after task event {workerEvent.Kind}");
             }
+
+            await TryPerformWorkerActivationActionAsync().ConfigureAwait(false);
+            UpdateSupervisorState("WorkersActivated");
+            AssertProjection("after initial worker activation");
+
+            while (kernel.HasRuntimeWork || eventTasksByWorker.Count > 0)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                UpdateSupervisorState("LoopStart");
+                AssertProjection("loop start");
+                var completedWorkerEventTask = eventTasksByWorker.Values.FirstOrDefault(static task => task.IsCompleted);
+                if (completedWorkerEventTask is not null)
+                {
+                    await ProcessWorkerEventTaskAsync(completedWorkerEventTask).ConfigureAwait(false);
+                    continue;
+                }
+
+                if (await TryGrantReadyWorkerTaskAsync(
+                    kernel,
+                    eventTasksByWorker,
+                    workers,
+                    workersByName,
+                    blockedResults,
+                    request,
+                    observer,
+                    journal,
+                    cancellationToken).ConfigureAwait(false))
+                {
+                    UpdateSupervisorState("GrantOrBlock");
+                    AssertProjection("after grant or block");
+                    continue;
+                }
+
+                if (await TryPerformWorkerActivationActionAsync().ConfigureAwait(false))
+                {
+                    UpdateSupervisorState("WorkerActivated");
+                    AssertProjection("after worker activation");
+                    continue;
+                }
+
+                if (eventTasksByWorker.Count == 0)
+                {
+                    if (kernel.HasRuntimeWork)
+                    {
+                        UpdateSupervisorState("NoWorkersWithRuntimeWork");
+                        throw new InvalidOperationException("Cannot execute run plan because no pipeline worker can produce the remaining task events.");
+                    }
+
+                    break;
+                }
+
+                if (kernel.RunningCount == 0 &&
+                    eventTasksByWorker.Values.All(static task => !task.IsCompleted) &&
+                    eventTasksByWorker.Keys.All(worker => !worker.HasExited && kernel.ReadyByTaskId.Values.Any(ready => string.Equals(ready.WorkerName, worker.PipelineName, StringComparison.OrdinalIgnoreCase))) &&
+                    !kernel.HasInactivePipelineThatCanProgress(DateTimeOffset.UtcNow) &&
+                    !kernel.ReadyByTaskId.Values.Any(static ready => ready.NotBeforeUtc > DateTimeOffset.UtcNow))
+                {
+                    var detail = kernel.DescribeAllReadyNoProgress();
+                    UpdateSupervisorState("NoProgress", "all-workers-ready");
+                    journal.WriteEvent("NoProgress", "all-workers-ready", detail);
+                    throw new InvalidOperationException(
+                        "Cannot execute run plan because every live pipeline worker is waiting for an orchestration command, but no ready task can be granted. " + detail);
+                }
+
+                var timedOutWorker = FindTimedOutWorker(
+                    eventTasksByWorker,
+                    kernel,
+                    workerEventTimeout,
+                    workerActivationTimeout,
+                    DateTimeOffset.UtcNow);
+                if (timedOutWorker is not null)
+                {
+                    eventTasksByWorker.Remove(timedOutWorker);
+                    UpdateSupervisorState("WorkerTimeout", timedOutWorker.PipelineName);
+                    await HandleTimedOutWorkerAsync(
+                        timedOutWorker,
+                        workerEventTimeout,
+                        workerActivationTimeout,
+                        eventTasksByWorker,
+                        workers,
+                        workersByName,
+                        retryPolicy,
+                        kernel,
+                        plannedTasksByPipelineTaskId,
+                        taskResults,
+                        blockedResults,
+                        request,
+                        journal,
+                        observer,
+                        cancellationToken).ConfigureAwait(false);
+                    UpdateSupervisorState("WorkerTimeoutHandled", timedOutWorker.PipelineName);
+                    AssertProjection("after worker timeout");
+                    continue;
+                }
+
+                var retryWakeTask = kernel.CreateRetryWakeTask(cancellationToken);
+                var timeoutWakeTask = CreateWorkerEventTimeoutWakeTask(
+                    eventTasksByWorker,
+                    kernel,
+                    workerEventTimeout,
+                    workerActivationTimeout,
+                    cancellationToken);
+                var waitTasks = eventTasksByWorker.Values.Cast<Task>();
+                if (retryWakeTask is not null)
+                {
+                    waitTasks = waitTasks.Append(retryWakeTask);
+                }
+                if (timeoutWakeTask is not null)
+                {
+                    waitTasks = waitTasks.Append(timeoutWakeTask);
+                }
+
+                Task completedEventTask = await Task.WhenAny(waitTasks).ConfigureAwait(false);
+                if (ReferenceEquals(completedEventTask, retryWakeTask))
+                {
+                    UpdateSupervisorState("RetryWake");
+                    continue;
+                }
+                if (ReferenceEquals(completedEventTask, timeoutWakeTask))
+                {
+                    UpdateSupervisorState("TimeoutWake");
+                    continue;
+                }
+
+                await ProcessWorkerEventTaskAsync(completedEventTask).ConfigureAwait(false);
+            }
         }
         finally
         {
@@ -482,32 +591,11 @@ public sealed class MetaOrchestrationRuntimeService
         return kernel.TaskOutcomesByTaskProfileId;
     }
 
-    private static Task? CreateRetryWakeTask(
-        IEnumerable<PipelineWorkerReadyState> readyStates,
-        CancellationToken cancellationToken)
-    {
-        var now = DateTimeOffset.UtcNow;
-        var nextRetryAt = readyStates
-            .Where(static item => item.NotBeforeUtc > DateTimeOffset.MinValue)
-            .Select(static item => item.NotBeforeUtc)
-            .Where(item => item > now)
-            .OrderBy(static item => item)
-            .FirstOrDefault();
-        if (nextRetryAt <= DateTimeOffset.MinValue)
-        {
-            return null;
-        }
-
-        var delay = nextRetryAt - now;
-        return delay <= TimeSpan.Zero
-            ? Task.CompletedTask
-            : Task.Delay(delay, cancellationToken);
-    }
-
     private static Task? CreateWorkerEventTimeoutWakeTask(
         IReadOnlyDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         OrchestrationRuntimeKernel kernel,
-        TimeSpan workerEventTimeout,
+        TimeSpan? workerEventTimeout,
+        TimeSpan? workerActivationTimeout,
         CancellationToken cancellationToken)
     {
         var now = DateTimeOffset.UtcNow;
@@ -520,9 +608,11 @@ public sealed class MetaOrchestrationRuntimeService
                 Decision = kernel.ResolveWorkerTimeout(worker.PipelineName)
             })
             .Where(static item => !item.Decision.IsWaitingForOrchestrationCommand)
-            .Select(item => item.Worker.LastProtocolActivityUtc + ResolveWorkerProtocolTimeout(item.Decision, workerEventTimeout))
+            .Select(item => ResolveWorkerProtocolTimeout(item.Decision, workerEventTimeout, workerActivationTimeout) is { } timeout
+                ? item.Worker.LastProtocolActivityUtc + timeout
+                : (DateTimeOffset?)null)
+            .Where(static item => item is not null)
             .OrderBy(static item => item)
-            .Cast<DateTimeOffset?>()
             .FirstOrDefault();
         if (nextTimeoutAt is null)
         {
@@ -538,7 +628,8 @@ public sealed class MetaOrchestrationRuntimeService
     private static PipelineWorkerProcess? FindTimedOutWorker(
         IReadOnlyDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         OrchestrationRuntimeKernel kernel,
-        TimeSpan workerEventTimeout,
+        TimeSpan? workerEventTimeout,
+        TimeSpan? workerActivationTimeout,
         DateTimeOffset now)
     {
         foreach (var worker in eventTasksByWorker.Keys.OrderBy(static item => item.PipelineName, StringComparer.OrdinalIgnoreCase))
@@ -554,9 +645,14 @@ public sealed class MetaOrchestrationRuntimeService
                 continue;
             }
 
-            var timeout = ResolveWorkerProtocolTimeout(decision, workerEventTimeout);
+            var timeout = ResolveWorkerProtocolTimeout(decision, workerEventTimeout, workerActivationTimeout);
+            if (timeout is not { } protocolTimeout)
+            {
+                continue;
+            }
+
             var elapsed = now - worker.LastProtocolActivityUtc;
-            if (elapsed < timeout)
+            if (elapsed < protocolTimeout)
             {
                 continue;
             }
@@ -579,277 +675,27 @@ public sealed class MetaOrchestrationRuntimeService
             .Concat(kernel.RunningWorkerNamesByTaskId.Values)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-    private static void AssertRuntimeProjection(
-        string stage,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByPipelineTaskId,
-        IReadOnlyDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
-        IReadOnlySet<string> pendingTaskIds,
-        IReadOnlyDictionary<string, PipelineWorkerReadyState> readyByTaskId,
-        IReadOnlyDictionary<string, PipelineWorkerRetryState> scheduledRetryByTaskId,
-        IReadOnlyDictionary<string, PipelineWorkerProcess> runningByTaskId,
-        IReadOnlyDictionary<string, PipelineWorkerGrantState> runningGrantsByTaskId,
-        IReadOnlyDictionary<string, MO.PlannedTaskLock[]> runningLocksByTaskId,
-        OrchestrationExecutionStateMachine stateMachine)
-    {
-        void Fail(string message) =>
-            throw new InvalidOperationException(
-                $"Orchestration runtime projection invariant failed at {stage}: {message}");
-
-        foreach (var taskId in pendingTaskIds)
-        {
-            if (!plannedTasksByPipelineTaskId.ContainsKey(taskId))
-            {
-                Fail($"pending task '{taskId}' is not present in the run plan.");
-            }
-        }
-
-        foreach (var taskId in readyByTaskId.Keys)
-        {
-            if (!plannedTasksByPipelineTaskId.ContainsKey(taskId))
-            {
-                Fail($"ready task '{taskId}' is not present in the run plan.");
-            }
-        }
-
-        foreach (var taskId in scheduledRetryByTaskId.Keys)
-        {
-            if (!plannedTasksByPipelineTaskId.ContainsKey(taskId))
-            {
-                Fail($"scheduled retry task '{taskId}' is not present in the run plan.");
-            }
-        }
-
-        foreach (var taskId in runningByTaskId.Keys)
-        {
-            if (!plannedTasksByPipelineTaskId.ContainsKey(taskId))
-            {
-                Fail($"running task '{taskId}' is not present in the run plan.");
-            }
-        }
-
-        foreach (var taskId in runningGrantsByTaskId.Keys)
-        {
-            if (!plannedTasksByPipelineTaskId.ContainsKey(taskId))
-            {
-                Fail($"running grant task '{taskId}' is not present in the run plan.");
-            }
-        }
-
-        var runningPlannedTaskIds = runningByTaskId.Keys
-            .Select(taskId => plannedTasksByPipelineTaskId[taskId].Id)
-            .ToHashSet(StringComparer.Ordinal);
-        foreach (var plannedTaskId in runningLocksByTaskId.Keys)
-        {
-            if (!runningPlannedTaskIds.Contains(plannedTaskId))
-            {
-                Fail($"running locks exist for planned task '{plannedTaskId}', but no active grant owns that planned task.");
-            }
-        }
-
-        foreach (var plannedTask in plannedTasksByPipelineTaskId.Values)
-        {
-            if (runningByTaskId.ContainsKey(plannedTask.TaskAccessProfile.MetaPipelinePipelineTaskId) &&
-                !runningLocksByTaskId.ContainsKey(plannedTask.Id))
-            {
-                Fail($"active task '{plannedTask.TaskAccessProfile.MetaPipelinePipelineTaskId}' has no running lock projection for planned task '{plannedTask.Id}'.");
-            }
-        }
-
-        var runningOnly = runningByTaskId.Keys
-            .Except(runningGrantsByTaskId.Keys, StringComparer.Ordinal)
-            .FirstOrDefault();
-        if (!string.IsNullOrWhiteSpace(runningOnly))
-        {
-            Fail($"task '{runningOnly}' is running without an active grant projection.");
-        }
-
-        var grantOnly = runningGrantsByTaskId.Keys
-            .Except(runningByTaskId.Keys, StringComparer.Ordinal)
-            .FirstOrDefault();
-        if (!string.IsNullOrWhiteSpace(grantOnly))
-        {
-            Fail($"task '{grantOnly}' has an active grant projection without a running worker projection.");
-        }
-
-        var liveWorkerNames = eventTasksByWorker.Keys
-            .Select(static item => item.PipelineName)
-            .Concat(readyByTaskId.Values.Select(static item => item.Worker.PipelineName))
-            .Concat(runningByTaskId.Values.Select(static item => item.PipelineName))
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
-        foreach (var workerSnapshot in stateMachine.GetWorkerSnapshots())
-        {
-            if (workerSnapshot.State != OrchestrationWorkerRuntimeState.Closed &&
-                !liveWorkerNames.Contains(workerSnapshot.WorkerName))
-            {
-                Fail($"kernel worker '{workerSnapshot.WorkerName}' is {workerSnapshot.State} but has no live event, ready, or running projection.");
-            }
-        }
-
-        foreach (var snapshot in stateMachine.GetTaskSnapshots())
-        {
-            var inPending = pendingTaskIds.Contains(snapshot.TaskId);
-            var inReady = readyByTaskId.TryGetValue(snapshot.TaskId, out var ready);
-            var inScheduledRetry = scheduledRetryByTaskId.TryGetValue(snapshot.TaskId, out var scheduledRetry);
-            var inRunning = runningByTaskId.TryGetValue(snapshot.TaskId, out var runningWorker);
-            var inRunningGrant = runningGrantsByTaskId.TryGetValue(snapshot.TaskId, out var runningGrant);
-
-            switch (snapshot.State)
-            {
-                case OrchestrationTaskRuntimeState.Pending:
-                    if (!inPending)
-                    {
-                        Fail($"kernel task '{snapshot.TaskId}' is Pending but pendingTaskIds does not contain it.");
-                    }
-
-                    if (inReady || inRunning || inRunningGrant)
-                    {
-                        Fail($"kernel task '{snapshot.TaskId}' is Pending but has ready/running projection state.");
-                    }
-
-                    if (inScheduledRetry)
-                    {
-                        AssertScheduledRetryProjection(snapshot, scheduledRetry!, Fail);
-                    }
-
-                    break;
-                case OrchestrationTaskRuntimeState.Ready:
-                    if (!inReady)
-                    {
-                        Fail($"kernel task '{snapshot.TaskId}' is Ready but readyByTaskId does not contain it.");
-                    }
-
-                    if (inRunning || inRunningGrant || inScheduledRetry)
-                    {
-                        Fail($"kernel task '{snapshot.TaskId}' is Ready but has running or scheduled-retry projection state.");
-                    }
-
-                    AssertReadyProjection(snapshot, ready!, Fail);
-                    break;
-                case OrchestrationTaskRuntimeState.GrantIssued:
-                case OrchestrationTaskRuntimeState.GrantAccepted:
-                case OrchestrationTaskRuntimeState.Running:
-                    if (inPending || inReady || inScheduledRetry)
-                    {
-                        Fail($"kernel task '{snapshot.TaskId}' has an active grant but is still pending/ready/scheduled in runtime projections.");
-                    }
-
-                    if (!inRunning || !inRunningGrant)
-                    {
-                        Fail($"kernel task '{snapshot.TaskId}' has an active grant but does not have both running and grant projections.");
-                    }
-
-                    AssertActiveGrantProjection(snapshot, runningWorker!, runningGrant!, Fail);
-                    break;
-                case OrchestrationTaskRuntimeState.RetryScheduled:
-                    if (!inScheduledRetry)
-                    {
-                        Fail($"kernel task '{snapshot.TaskId}' is RetryScheduled but scheduledRetryByTaskId does not contain it.");
-                    }
-
-                    if (inPending || inReady || inRunning || inRunningGrant)
-                    {
-                        Fail($"kernel task '{snapshot.TaskId}' is RetryScheduled but has pending/ready/running projection state.");
-                    }
-
-                    AssertScheduledRetryProjection(snapshot, scheduledRetry!, Fail);
-                    break;
-                case OrchestrationTaskRuntimeState.Succeeded:
-                case OrchestrationTaskRuntimeState.Failed:
-                case OrchestrationTaskRuntimeState.Blocked:
-                    if (inPending || inReady || inScheduledRetry || inRunning || inRunningGrant)
-                    {
-                        Fail($"terminal kernel task '{snapshot.TaskId}' still has pending/ready/retry/running projection state.");
-                    }
-
-                    break;
-                default:
-                    Fail($"kernel task '{snapshot.TaskId}' has unknown state {snapshot.State}.");
-                    break;
-            }
-        }
-    }
-
-    private static void AssertReadyProjection(
-        OrchestrationTaskRuntimeSnapshot snapshot,
-        PipelineWorkerReadyState ready,
-        Action<string> fail)
-    {
-        if (!string.Equals(ready.Event.TaskId, snapshot.TaskId, StringComparison.Ordinal))
-        {
-            fail($"ready projection key '{snapshot.TaskId}' contains event task id '{ready.Event.TaskId}'.");
-        }
-
-        if (!string.Equals(ready.Worker.PipelineName, snapshot.WorkerName, StringComparison.OrdinalIgnoreCase))
-        {
-            fail($"ready projection for task '{snapshot.TaskId}' is owned by worker '{ready.Worker.PipelineName}', but kernel owner is '{snapshot.WorkerName}'.");
-        }
-
-        if (snapshot.AttemptNumber > 0 && ready.AttemptNumber != snapshot.AttemptNumber)
-        {
-            fail($"ready projection for task '{snapshot.TaskId}' has attempt {ready.AttemptNumber.ToString(CultureInfo.InvariantCulture)}, but kernel attempt is {snapshot.AttemptNumber.ToString(CultureInfo.InvariantCulture)}.");
-        }
-
-        if (!string.IsNullOrWhiteSpace(snapshot.PreviousGrantId) &&
-            !string.Equals(ready.PreviousGrantId, snapshot.PreviousGrantId, StringComparison.Ordinal))
-        {
-            fail($"ready projection for task '{snapshot.TaskId}' has previous grant '{ready.PreviousGrantId}', but kernel previous grant is '{snapshot.PreviousGrantId}'.");
-        }
-    }
-
-    private static void AssertScheduledRetryProjection(
-        OrchestrationTaskRuntimeSnapshot snapshot,
-        PipelineWorkerRetryState scheduledRetry,
-        Action<string> fail)
-    {
-        if (scheduledRetry.AttemptNumber != snapshot.AttemptNumber)
-        {
-            fail($"scheduled retry for task '{snapshot.TaskId}' has attempt {scheduledRetry.AttemptNumber.ToString(CultureInfo.InvariantCulture)}, but kernel attempt is {snapshot.AttemptNumber.ToString(CultureInfo.InvariantCulture)}.");
-        }
-
-        if (!string.Equals(scheduledRetry.PreviousGrantId, snapshot.PreviousGrantId, StringComparison.Ordinal))
-        {
-            fail($"scheduled retry for task '{snapshot.TaskId}' has previous grant '{scheduledRetry.PreviousGrantId}', but kernel previous grant is '{snapshot.PreviousGrantId}'.");
-        }
-    }
-
-    private static void AssertActiveGrantProjection(
-        OrchestrationTaskRuntimeSnapshot snapshot,
-        PipelineWorkerProcess runningWorker,
-        PipelineWorkerGrantState runningGrant,
-        Action<string> fail)
-    {
-        if (!string.Equals(runningWorker.PipelineName, snapshot.WorkerName, StringComparison.OrdinalIgnoreCase))
-        {
-            fail($"active task '{snapshot.TaskId}' is running on worker '{runningWorker.PipelineName}', but kernel owner is '{snapshot.WorkerName}'.");
-        }
-
-        if (!string.Equals(runningGrant.TaskId, snapshot.TaskId, StringComparison.Ordinal))
-        {
-            fail($"active grant projection key '{snapshot.TaskId}' contains grant task id '{runningGrant.TaskId}'.");
-        }
-
-        if (!string.Equals(runningGrant.GrantId, snapshot.GrantId, StringComparison.Ordinal))
-        {
-            fail($"active grant projection for task '{snapshot.TaskId}' has grant id '{runningGrant.GrantId}', but kernel grant id is '{snapshot.GrantId}'.");
-        }
-
-        if (!string.Equals(runningGrant.CommandId, snapshot.CommandId, StringComparison.Ordinal))
-        {
-            fail($"active grant projection for task '{snapshot.TaskId}' has command id '{runningGrant.CommandId}', but kernel command id is '{snapshot.CommandId}'.");
-        }
-
-        if (runningGrant.AttemptNumber != snapshot.AttemptNumber)
-        {
-            fail($"active grant projection for task '{snapshot.TaskId}' has attempt {runningGrant.AttemptNumber.ToString(CultureInfo.InvariantCulture)}, but kernel attempt is {snapshot.AttemptNumber.ToString(CultureInfo.InvariantCulture)}.");
-        }
-    }
-
-    private static TimeSpan ResolveWorkerProtocolTimeout(
+    private static TimeSpan? ResolveWorkerProtocolTimeout(
         OrchestrationWorkerTimeoutDecision decision,
-        TimeSpan workerEventTimeout) =>
-        decision.WorkerHasReachedTaskBoundary || workerEventTimeout <= DefaultWorkerActivationTimeout
+        TimeSpan? workerEventTimeout,
+        TimeSpan? workerActivationTimeout) =>
+        decision.Kind is OrchestrationWorkerTimeoutDecisionKind.AwaitingWorkerOnline
+            or OrchestrationWorkerTimeoutDecisionKind.AwaitingWorkerReady
+            or OrchestrationWorkerTimeoutDecisionKind.AwaitingPipelineStarted
+                ? workerActivationTimeout
+                : workerEventTimeout;
+
+    private static TimeSpan? NormalizeOptionalTimeout(TimeSpan? timeout) =>
+        timeout is null || timeout.Value == TimeSpan.Zero
+            ? null
+            : timeout;
+
+    private static TimeSpan? ResolveWorkerActivationTimeout(
+        TimeSpan? configuredActivationTimeout,
+        TimeSpan? workerEventTimeout) =>
+        configuredActivationTimeout is null
             ? workerEventTimeout
-            : DefaultWorkerActivationTimeout;
+            : NormalizeOptionalTimeout(configuredActivationTimeout);
 
     private static async Task<bool> HandleWorkerLifecycleEventAsync(
         PipelineWorkerProcess worker,
@@ -857,7 +703,6 @@ public sealed class MetaOrchestrationRuntimeService
         IDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         ICollection<PipelineWorkerProcess> workers,
         IDictionary<string, PipelineWorkerProcess> workersByName,
-        PipelineWorkerReplacementCoordinator replacementCoordinator,
         OrchestrationRuntimeKernel kernel,
         OrchestrationRuntimeRequest request,
         OrchestrationRunJournal journal,
@@ -889,7 +734,6 @@ public sealed class MetaOrchestrationRuntimeService
                     eventTasksByWorker,
                     workers,
                     workersByName,
-                    replacementCoordinator,
                     kernel,
                     request,
                     journal,
@@ -935,7 +779,6 @@ public sealed class MetaOrchestrationRuntimeService
         IDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         ICollection<PipelineWorkerProcess> workers,
         IDictionary<string, PipelineWorkerProcess> workersByName,
-        PipelineWorkerReplacementCoordinator replacementCoordinator,
         OrchestrationRuntimeKernel kernel,
         OrchestrationRuntimeRequest request,
         OrchestrationRunJournal journal,
@@ -954,10 +797,19 @@ public sealed class MetaOrchestrationRuntimeService
             reason);
         worker.Terminate(reason);
 
-        var replacement = await replacementCoordinator.StartPreWorkReplacementAsync(
-            worker,
-            decision,
-            reason,
+        var replacementReservation = kernel.ReservePreWorkReplacementAttempt(
+            worker.PipelineName,
+            decision.ResumeTaskId,
+            reason);
+        journal.WriteEvent(
+            "WorkerReplacementReserved",
+            worker.PipelineName,
+            $"ResumeTaskId={replacementReservation.ResumeTaskId}; Attempt={replacementReservation.Attempt.ToString(CultureInfo.InvariantCulture)}; Limit={replacementReservation.Limit.ToString(CultureInfo.InvariantCulture)}");
+
+        var replacement = await StartReplacementWorkerAsync(
+            worker.PipelineName,
+            worker.PipelineId,
+            decision.ResumeTaskId,
             request,
             journal,
             cancellationToken).ConfigureAwait(false);
@@ -976,7 +828,6 @@ public sealed class MetaOrchestrationRuntimeService
         IDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         ICollection<PipelineWorkerProcess> workers,
         IDictionary<string, PipelineWorkerProcess> workersByName,
-        PipelineWorkerReplacementCoordinator replacementCoordinator,
         ICollection<OrchestrationTaskBlockedResult> blockedResults,
         OrchestrationRuntimeRequest request,
         IOrchestrationRuntimeObserver? observer,
@@ -1011,7 +862,6 @@ public sealed class MetaOrchestrationRuntimeService
                     eventTasksByWorker,
                     workers,
                     workersByName,
-                    replacementCoordinator,
                     kernel,
                     request,
                     journal,
@@ -1048,7 +898,6 @@ public sealed class MetaOrchestrationRuntimeService
                         eventTasksByWorker,
                         workers,
                         workersByName,
-                        replacementCoordinator,
                         kernel,
                         request,
                         journal,
@@ -1073,110 +922,6 @@ public sealed class MetaOrchestrationRuntimeService
                 throw new InvalidOperationException(
                     $"Unsupported runtime ready decision {decision.Kind}.");
         }
-    }
-
-    private static string DescribeAllReadyNoProgress(
-        IReadOnlyDictionary<string, PipelineWorkerReadyState> readyByTaskId,
-        ISet<string> pendingTaskIds,
-        IReadOnlyDictionary<string, PipelineWorkerProcess> runningByTaskId,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByPipelineTaskId,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByProfileId,
-        IReadOnlyDictionary<string, OrchestrationExecutionDependency[]> dependenciesByTaskProfileId,
-        IReadOnlyDictionary<string, string> taskOutcomesByTaskProfileId)
-    {
-        var descriptions = new List<string>();
-        foreach (var ready in readyByTaskId.Values
-                     .OrderBy(static item => item.Event.PipelineName, StringComparer.OrdinalIgnoreCase)
-                     .ThenBy(static item => item.Event.TaskName, StringComparer.OrdinalIgnoreCase))
-        {
-            if (!plannedTasksByPipelineTaskId.TryGetValue(ready.Event.TaskId, out var plannedTask))
-            {
-                descriptions.Add($"{ready.Event.PipelineName}.{ready.Event.TaskName} is TaskReady for task '{ready.Event.TaskId}', which is not in the run plan");
-                continue;
-            }
-
-            if (ready.NotBeforeUtc > DateTimeOffset.UtcNow)
-            {
-                descriptions.Add(
-                    $"{FormatTaskName(plannedTask)} waits for retry delay until {ready.NotBeforeUtc:O}");
-                continue;
-            }
-
-            var readiness = OrchestrationExecutionContinuity.EvaluateReadiness(
-                plannedTask,
-                dependenciesByTaskProfileId,
-                taskOutcomesByTaskProfileId,
-                out var dependency,
-                out var blockedOutcome,
-                out var blockedReason);
-
-            if (readiness == OrchestrationTaskReadiness.Waiting)
-            {
-                descriptions.Add(
-                    $"{FormatTaskName(plannedTask)} waits for {DescribeDependencyState(dependency, pendingTaskIds, readyByTaskId, runningByTaskId, plannedTasksByProfileId, taskOutcomesByTaskProfileId)}");
-                continue;
-            }
-
-            if (readiness == OrchestrationTaskReadiness.Skip)
-            {
-                descriptions.Add(
-                    $"{FormatTaskName(plannedTask)} should be blocked as {blockedOutcome}: {blockedReason}");
-                continue;
-            }
-
-            descriptions.Add($"{FormatTaskName(plannedTask)} is ready but no grant was issued");
-        }
-
-        return descriptions.Count == 0
-            ? "No TaskReady details were available."
-            : "Ready waits: " + string.Join("; ", descriptions.Take(6)) + (descriptions.Count > 6 ? $"; ... {descriptions.Count - 6} more" : string.Empty);
-    }
-
-    private static string DescribeDependencyState(
-        OrchestrationExecutionDependency dependency,
-        ISet<string> pendingTaskIds,
-        IReadOnlyDictionary<string, PipelineWorkerReadyState> readyByTaskId,
-        IReadOnlyDictionary<string, PipelineWorkerProcess> runningByTaskId,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByProfileId,
-        IReadOnlyDictionary<string, string> taskOutcomesByTaskProfileId)
-    {
-        if (string.IsNullOrWhiteSpace(dependency.PredecessorTaskProfileId))
-        {
-            return "an unknown predecessor";
-        }
-
-        if (taskOutcomesByTaskProfileId.TryGetValue(dependency.PredecessorTaskProfileId, out var outcome))
-        {
-            return $"{dependency.PredecessorTaskProfileId} ({outcome})";
-        }
-
-        if (!plannedTasksByProfileId.TryGetValue(dependency.PredecessorTaskProfileId, out var predecessorTask))
-        {
-            return $"{dependency.PredecessorTaskProfileId} (not present in the run plan)";
-        }
-
-        var predecessorPipelineTaskId = predecessorTask.TaskAccessProfile.MetaPipelinePipelineTaskId;
-        if (string.IsNullOrWhiteSpace(predecessorPipelineTaskId))
-        {
-            return $"{FormatTaskName(predecessorTask)} (has no MetaPipeline task id)";
-        }
-
-        if (runningByTaskId.ContainsKey(predecessorPipelineTaskId))
-        {
-            return $"{FormatTaskName(predecessorTask)} (running)";
-        }
-
-        if (readyByTaskId.ContainsKey(predecessorPipelineTaskId))
-        {
-            return $"{FormatTaskName(predecessorTask)} (also TaskReady and waiting for a command)";
-        }
-
-        if (pendingTaskIds.Contains(predecessorPipelineTaskId))
-        {
-            return $"{FormatTaskName(predecessorTask)} (pending behind a worker boundary)";
-        }
-
-        return $"{FormatTaskName(predecessorTask)} (no active worker state can produce it)";
     }
 
     private static async Task StopPipelineAtBlockedTaskAsync(
@@ -1320,60 +1065,12 @@ public sealed class MetaOrchestrationRuntimeService
                 : $"{failure.FailureClass}; NextAttempt={failure.RetryDecision.NextAttemptNumber.ToString(CultureInfo.InvariantCulture)}; {failure.RetryDecision.Reason}");
     }
 
-    private static OrchestrationTaskWorkerResult CompleteRunningTask(
-        PipelineWorkerProcess worker,
-        WorkerProtocolEvent workerEvent,
-        MO.PlannedTask plannedTask,
-        int exitCode,
-        Dictionary<string, string> taskOutcomesByTaskProfileId,
-        ICollection<OrchestrationTaskWorkerResult> taskResults,
-        IDictionary<string, PipelineWorkerProcess> runningByTaskId,
-        IDictionary<string, PipelineWorkerGrantState> runningGrantsByTaskId,
-        IDictionary<string, MO.PlannedTaskLock[]> runningLocksByTaskId,
-        OrchestrationRunJournal journal,
-        IOrchestrationRuntimeObserver? observer,
-        bool recordTerminalOutcome = true)
-    {
-        runningByTaskId.Remove(workerEvent.TaskId);
-        runningGrantsByTaskId.Remove(workerEvent.TaskId, out var grant);
-        runningLocksByTaskId.Remove(plannedTask.Id);
-        var standardError = string.IsNullOrWhiteSpace(workerEvent.Message)
-            ? worker.StandardErrorText
-            : string.Concat(worker.StandardErrorText, workerEvent.Message, Environment.NewLine);
-        var result = new OrchestrationTaskWorkerResult(
-            plannedTask.TaskAccessProfile.Id,
-            plannedTask.Id,
-            plannedTask.PipelineReference.Name,
-            plannedTask.TaskAccessProfile.TaskName,
-            exitCode,
-            worker.StandardOutputText,
-            standardError,
-            workerEvent.GrantId,
-            workerEvent.CommandId,
-            workerEvent.AttemptNumber == 0 ? grant?.AttemptNumber ?? 0 : workerEvent.AttemptNumber);
-        taskResults.Add(result);
-        if (recordTerminalOutcome)
-        {
-            taskOutcomesByTaskProfileId[result.TaskAccessProfileId] = OrchestrationExecutionContinuity.OutcomeForExitCode(result.ExitCode);
-            observer?.TaskCompleted(result.PlannedTaskId, result.ExitCode == 0);
-        }
-
-        journal.WriteEvent(
-            result.ExitCode == 0
-                ? "TaskSucceeded"
-                : recordTerminalOutcome ? "TaskFailed" : "TaskAttemptFailed",
-            FormatTaskName(plannedTask),
-            result.ExitCode.ToString(CultureInfo.InvariantCulture));
-        return result;
-    }
-
     private static async Task HandleClosedWorkerAsync(
         PipelineWorkerProcess worker,
         WorkerProtocolEvent workerEvent,
         IDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         ICollection<PipelineWorkerProcess> workers,
         IDictionary<string, PipelineWorkerProcess> workersByName,
-        PipelineWorkerReplacementCoordinator replacementCoordinator,
         ResolvedOrchestrationRetryPolicy retryPolicy,
         OrchestrationRuntimeKernel kernel,
         IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByPipelineTaskId,
@@ -1396,7 +1093,6 @@ public sealed class MetaOrchestrationRuntimeService
             eventTasksByWorker,
             workers,
             workersByName,
-            replacementCoordinator,
             retryPolicy,
             kernel,
             plannedTasksByPipelineTaskId,
@@ -1415,7 +1111,6 @@ public sealed class MetaOrchestrationRuntimeService
         IDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         ICollection<PipelineWorkerProcess> workers,
         IDictionary<string, PipelineWorkerProcess> workersByName,
-        PipelineWorkerReplacementCoordinator replacementCoordinator,
         ResolvedOrchestrationRetryPolicy retryPolicy,
         OrchestrationRuntimeKernel kernel,
         IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByPipelineTaskId,
@@ -1441,7 +1136,6 @@ public sealed class MetaOrchestrationRuntimeService
                     eventTasksByWorker,
                     workers,
                     workersByName,
-                    replacementCoordinator,
                     kernel,
                     request,
                     journal,
@@ -1464,7 +1158,6 @@ public sealed class MetaOrchestrationRuntimeService
                     eventTasksByWorker,
                     workers,
                     workersByName,
-                    replacementCoordinator,
                     kernel,
                     request,
                     journal,
@@ -1591,62 +1284,6 @@ public sealed class MetaOrchestrationRuntimeService
         eventTasksByWorker[replacement] = replacement.ReadEventAsync(cancellationToken);
     }
 
-    private sealed class PipelineWorkerReplacementCoordinator
-    {
-        private readonly Dictionary<string, int> preWorkReplacementAttemptsByKey = new(StringComparer.OrdinalIgnoreCase);
-
-        public async Task<PipelineWorkerProcess> StartPreWorkReplacementAsync(
-            PipelineWorkerProcess worker,
-            OrchestrationWorkerLossDecision decision,
-            string reason,
-            OrchestrationRuntimeRequest request,
-            OrchestrationRunJournal journal,
-            CancellationToken cancellationToken)
-        {
-            var replacementAttempt = ReservePreWorkReplacementAttempt(
-                worker.PipelineName,
-                decision.ResumeTaskId,
-                reason);
-            journal.WriteEvent(
-                "WorkerReplacementReserved",
-                worker.PipelineName,
-                $"ResumeTaskId={decision.ResumeTaskId}; Attempt={replacementAttempt.ToString(CultureInfo.InvariantCulture)}; Limit={MaxPreWorkWorkerReplacementAttempts.ToString(CultureInfo.InvariantCulture)}");
-
-            return await StartReplacementWorkerAsync(
-                worker.PipelineName,
-                worker.PipelineId,
-                decision.ResumeTaskId,
-                request,
-                journal,
-                cancellationToken).ConfigureAwait(false);
-        }
-
-        private int ReservePreWorkReplacementAttempt(
-            string pipelineName,
-            string resumeTaskId,
-            string reason)
-        {
-            var key = CreatePreWorkReplacementAttemptKey(pipelineName, resumeTaskId);
-            preWorkReplacementAttemptsByKey.TryGetValue(key, out var currentAttempt);
-            var nextAttempt = currentAttempt + 1;
-            if (nextAttempt > MaxPreWorkWorkerReplacementAttempts)
-            {
-                var boundary = string.IsNullOrWhiteSpace(resumeTaskId)
-                    ? "before pipeline activation"
-                    : $"before granting task '{resumeTaskId}'";
-                throw new InvalidOperationException(
-                    $"Pipeline worker '{pipelineName}' exceeded the pre-work worker replacement limit {boundary}. " +
-                    $"Limit: {MaxPreWorkWorkerReplacementAttempts.ToString(CultureInfo.InvariantCulture)}. Last reason: {reason}");
-            }
-
-            preWorkReplacementAttemptsByKey[key] = nextAttempt;
-            return nextAttempt;
-        }
-
-        private static string CreatePreWorkReplacementAttemptKey(string pipelineName, string resumeTaskId) =>
-            string.Concat(pipelineName, "\u001f", resumeTaskId ?? string.Empty);
-    }
-
     private static async Task<PipelineWorkerProcess> StartReplacementWorkerAsync(
         string pipelineName,
         string pipelineId,
@@ -1662,6 +1299,7 @@ public sealed class MetaOrchestrationRuntimeService
             resumeTaskId,
             request,
             journal.RunDirectoryPath,
+            NormalizeOptionalTimeout(request.WorkerControlPipeConnectTimeout),
             cancellationToken).ConfigureAwait(false);
         journal.WriteEvent("WorkerRestarted", pipelineName, replacement.ProcessId.ToString(CultureInfo.InvariantCulture));
         journal.WriteEvent("WorkerControlPipe", pipelineName, replacement.ControlPipeName);
@@ -1671,7 +1309,8 @@ public sealed class MetaOrchestrationRuntimeService
 
     private static async Task HandleTimedOutWorkerAsync(
         PipelineWorkerProcess worker,
-        TimeSpan workerEventTimeout,
+        TimeSpan? workerEventTimeout,
+        TimeSpan? workerActivationTimeout,
         IDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         ICollection<PipelineWorkerProcess> workers,
         IDictionary<string, PipelineWorkerProcess> workersByName,
@@ -1686,7 +1325,14 @@ public sealed class MetaOrchestrationRuntimeService
         CancellationToken cancellationToken)
     {
         var decision = kernel.ResolveWorkerTimeout(worker.PipelineName);
-        var reason = DescribeWorkerEventTimeout(decision, ResolveWorkerProtocolTimeout(decision, workerEventTimeout));
+        var protocolTimeout = ResolveWorkerProtocolTimeout(decision, workerEventTimeout, workerActivationTimeout);
+        if (protocolTimeout is null)
+        {
+            throw new InvalidOperationException(
+                $"Pipeline worker '{worker.PipelineName}' was selected for timeout handling, but no timeout is configured for state '{decision.Kind}'.");
+        }
+
+        var reason = DescribeWorkerEventTimeout(decision, protocolTimeout.Value);
         journal.WriteEvent("WorkerProtocolTimeout", worker.PipelineName, reason);
         worker.Terminate(reason);
 
@@ -1777,143 +1423,6 @@ public sealed class MetaOrchestrationRuntimeService
         }
 
         return $"{timeout.TotalMinutes.ToString("0.###", CultureInfo.InvariantCulture)}m";
-    }
-
-    private static void BlockRemainingPipelineTasks(
-        string pipelineName,
-        string reason,
-        ISet<string> pendingTaskIds,
-        IDictionary<string, PipelineWorkerReadyState> readyByTaskId,
-        OrchestrationExecutionStateMachine stateMachine,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByPipelineTaskId,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByProfileId,
-        Dictionary<string, string> taskOutcomesByTaskProfileId,
-        ICollection<OrchestrationTaskBlockedResult> blockedResults,
-        OrchestrationRunJournal journal,
-        IOrchestrationRuntimeObserver? observer)
-    {
-        foreach (var taskId in pendingTaskIds
-                     .Where(taskId => plannedTasksByPipelineTaskId.TryGetValue(taskId, out var candidate) &&
-                                      string.Equals(candidate.PipelineReference.Name, pipelineName, StringComparison.OrdinalIgnoreCase))
-                     .ToArray())
-        {
-            pendingTaskIds.Remove(taskId);
-            readyByTaskId.Remove(taskId);
-            stateMachine.MarkBlocked(taskId);
-            var plannedTask = plannedTasksByPipelineTaskId[taskId];
-            blockedResults.Add(CreateBlockedResult(
-                plannedTask,
-                OrchestrationExecutionDependency.Empty,
-                OrchestrationExecutionContinuity.SkippedBlocked,
-                reason,
-                plannedTasksByProfileId));
-            taskOutcomesByTaskProfileId[plannedTask.TaskAccessProfile.Id] = OrchestrationExecutionContinuity.SkippedBlocked;
-            observer?.TaskBlocked(plannedTask.Id);
-            journal.WriteEvent("TaskBlocked", FormatTaskName(plannedTask), reason);
-        }
-    }
-
-    private static bool AreLocksCompatibleWithRunning(
-        IReadOnlyList<MO.PlannedTaskLock> candidateLocks,
-        IReadOnlyList<MO.PlannedTaskLock> runningLocks,
-        IReadOnlyList<MO.LockCompatibilityPolicy> activeLockPolicies)
-    {
-        foreach (var runningLock in runningLocks)
-        {
-            foreach (var candidateLock in candidateLocks)
-            {
-                if (!string.Equals(runningLock.DataObject.Id, candidateLock.DataObject.Id, StringComparison.Ordinal))
-                {
-                    continue;
-                }
-
-                if (!ArePlannedTaskLocksCompatible(runningLock, candidateLock, activeLockPolicies))
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    private static int ResolveAttemptNumber(
-        WorkerProtocolEvent workerEvent,
-        IDictionary<string, PipelineWorkerGrantState> runningGrantsByTaskId)
-    {
-        if (workerEvent.AttemptNumber > 0)
-        {
-            return workerEvent.AttemptNumber;
-        }
-
-        return runningGrantsByTaskId.TryGetValue(workerEvent.TaskId, out var grant)
-            ? Math.Max(1, grant.AttemptNumber)
-            : 1;
-    }
-
-    private static string ResolveFailureClass(WorkerProtocolEvent workerEvent, string fallbackFailureClass) =>
-        string.IsNullOrWhiteSpace(workerEvent.FailureClass)
-            ? fallbackFailureClass
-            : workerEvent.FailureClass.Trim();
-
-    private static bool HasWriteEffect(IReadOnlyList<MO.PlannedTaskLock> plannedTaskLocks)
-    {
-        return plannedTaskLocks.Any(static item =>
-            !string.Equals(item.LockMode, "SharedRead", StringComparison.OrdinalIgnoreCase) ||
-            !string.Equals(item.TaskObjectEffect.WriteEffect, "None", StringComparison.OrdinalIgnoreCase));
-    }
-
-    private static bool ArePlannedTaskLocksCompatible(
-        MO.PlannedTaskLock left,
-        MO.PlannedTaskLock right,
-        IReadOnlyList<MO.LockCompatibilityPolicy> activeLockPolicies)
-    {
-        if (string.Equals(left.LockMode, "SharedRead", StringComparison.OrdinalIgnoreCase) &&
-            string.Equals(right.LockMode, "SharedRead", StringComparison.OrdinalIgnoreCase))
-        {
-            return true;
-        }
-
-        var policy = activeLockPolicies
-            .Where(item => string.Equals(item.DataObject.Id, left.DataObject.Id, StringComparison.Ordinal))
-            .Where(item => EffectsMatch(item, left.TaskObjectEffect.WriteEffect, right.TaskObjectEffect.WriteEffect))
-            .OrderBy(static item => item.PolicyKind, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(static item => item.Id, StringComparer.Ordinal)
-            .FirstOrDefault();
-
-        return policy is not null &&
-               string.Equals(policy.LockBehavior, "AllowConcurrent", StringComparison.OrdinalIgnoreCase);
-    }
-
-    private static bool EffectsMatch(MO.LockCompatibilityPolicy policy, string leftEffect, string rightEffect)
-    {
-        return
-            (string.Equals(policy.LeftEffect, leftEffect, StringComparison.OrdinalIgnoreCase) &&
-             string.Equals(policy.RightEffect, rightEffect, StringComparison.OrdinalIgnoreCase)) ||
-            (string.Equals(policy.LeftEffect, rightEffect, StringComparison.OrdinalIgnoreCase) &&
-             string.Equals(policy.RightEffect, leftEffect, StringComparison.OrdinalIgnoreCase));
-    }
-
-    private static OrchestrationTaskBlockedResult CreateBlockedResult(
-        MO.PlannedTask plannedTask,
-        OrchestrationExecutionDependency dependency,
-        string outcome,
-        string reason,
-        IReadOnlyDictionary<string, MO.PlannedTask> plannedTasksByProfileId)
-    {
-        var blockingTaskProfileId = dependency.PredecessorTaskProfileId;
-        var blockingTask = plannedTasksByProfileId.GetValueOrDefault(blockingTaskProfileId);
-        return new OrchestrationTaskBlockedResult(
-            plannedTask.Id,
-            plannedTask.TaskAccessProfile.Id,
-            plannedTask.PipelineReference.Name,
-            plannedTask.TaskAccessProfile.TaskName,
-            blockingTaskProfileId,
-            blockingTask?.PipelineReference.Name ?? "<unknown>",
-            blockingTask?.TaskAccessProfile.TaskName ?? blockingTaskProfileId,
-            dependency.Condition,
-            outcome,
-            reason);
     }
 
     private static string FormatTaskName(MO.PlannedTask plannedTask) =>
@@ -2058,6 +1567,7 @@ public sealed class MetaOrchestrationRuntimeService
             string resumeTaskId,
             OrchestrationRuntimeRequest request,
             string runDirectoryPath,
+            TimeSpan? controlPipeConnectTimeout,
             CancellationToken cancellationToken)
         {
             var controlPipeName = CreateControlPipeName();
@@ -2073,6 +1583,12 @@ public sealed class MetaOrchestrationRuntimeService
             startInfo.ArgumentList.Add("execute-worker");
             startInfo.ArgumentList.Add("--control-pipe");
             startInfo.ArgumentList.Add(controlPipeName);
+            if (controlPipeConnectTimeout is { } connectTimeout)
+            {
+                startInfo.ArgumentList.Add("--control-pipe-connect-timeout-seconds");
+                startInfo.ArgumentList.Add(((int)Math.Ceiling(connectTimeout.TotalSeconds)).ToString(CultureInfo.InvariantCulture));
+            }
+
             startInfo.ArgumentList.Add("--workspace");
             startInfo.ArgumentList.Add(request.PipelineWorkspacePath);
             startInfo.ArgumentList.Add("--pipeline");
@@ -2123,6 +1639,7 @@ public sealed class MetaOrchestrationRuntimeService
                     process,
                     pipelineName,
                     standardError,
+                    controlPipeConnectTimeout,
                     cancellationToken).ConfigureAwait(false);
             }
             catch
@@ -2303,6 +1820,9 @@ public sealed class MetaOrchestrationRuntimeService
                 taskId,
                 reason));
 
+        public void MarkProtocolEventObservedBySupervisor() =>
+            RecordProtocolActivity();
+
         public void Dispose()
         {
             if (disposed)
@@ -2387,12 +1907,18 @@ public sealed class MetaOrchestrationRuntimeService
             Process process,
             string pipelineName,
             OrchestrationDiagnosticLogBuffer standardError,
+            TimeSpan? controlPipeConnectTimeout,
             CancellationToken cancellationToken)
         {
             var connectTask = serverPipe.WaitForConnectionAsync(cancellationToken);
             var exitTask = process.WaitForExitAsync(cancellationToken);
-            var timeoutTask = Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
-            var completedTask = await Task.WhenAny(connectTask, exitTask, timeoutTask).ConfigureAwait(false);
+            var waitTasks = new List<Task> { connectTask, exitTask };
+            if (controlPipeConnectTimeout is { } timeout)
+            {
+                waitTasks.Add(Task.Delay(timeout, cancellationToken));
+            }
+
+            var completedTask = await Task.WhenAny(waitTasks).ConfigureAwait(false);
             if (ReferenceEquals(completedTask, connectTask))
             {
                 await connectTask.ConfigureAwait(false);
@@ -2407,7 +1933,7 @@ public sealed class MetaOrchestrationRuntimeService
             }
 
             throw new InvalidOperationException(
-                $"Pipeline worker '{pipelineName}' did not connect to the orchestration control pipe within 10 seconds.");
+                $"Pipeline worker '{pipelineName}' did not connect to the orchestration control pipe within {FormatTimeout(controlPipeConnectTimeout!.Value)}.");
         }
 
         private static async Task DisposeFailedStartAsync(
@@ -2470,35 +1996,6 @@ public sealed class MetaOrchestrationRuntimeService
         }
     }
 
-    private sealed record PipelineWorkerReadyState(
-        PipelineWorkerProcess Worker,
-        WorkerProtocolEvent Event,
-        DateTimeOffset NotBeforeUtc = default,
-        string PreviousGrantId = "",
-        int AttemptNumber = 1);
-
-    private sealed record PipelineWorkerRetryState(
-        DateTimeOffset NotBeforeUtc,
-        string PreviousGrantId,
-        int AttemptNumber);
-
-    private sealed record PipelineWorkerGrantState(
-        string PipelineId,
-        string TaskId,
-        string CommandId,
-        string GrantId,
-        string PreviousGrantId,
-        int AttemptNumber)
-    {
-        public static PipelineWorkerGrantState Create(string pipelineId, string taskId, string previousGrantId = "", int attemptNumber = 1) =>
-            new(
-                pipelineId,
-                taskId,
-                Guid.NewGuid().ToString("N"),
-                Guid.NewGuid().ToString("N"),
-                previousGrantId,
-                attemptNumber);
-    }
 }
 
 public sealed record OrchestrationRuntimeRequest(
@@ -2513,7 +2010,9 @@ public sealed record OrchestrationRuntimeRequest(
     string RunArtifactsRootPath = "",
     string ExpectedWorkerExecutableVersion = "",
     OrchestrationLogCapturePolicy? LogCapturePolicy = null,
-    TimeSpan? WorkerEventTimeout = null);
+    TimeSpan? WorkerEventTimeout = null,
+    TimeSpan? WorkerActivationTimeout = null,
+    TimeSpan? WorkerControlPipeConnectTimeout = null);
 
 public sealed record OrchestrationRuntimeResult(
     string RunPlanName,

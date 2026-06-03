@@ -40,13 +40,13 @@ public sealed class OrchestrationWorkerProtocolChannel : IAsyncDisposable, IDisp
 
     public static async Task<OrchestrationWorkerProtocolChannel> ConnectClientAsync(
         string pipeName,
-        TimeSpan timeout,
+        TimeSpan? timeout = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(pipeName);
-        if (timeout <= TimeSpan.Zero)
+        if (timeout is { } configuredTimeout && configuredTimeout < TimeSpan.Zero)
         {
-            throw new ArgumentOutOfRangeException(nameof(timeout), timeout, "Timeout must be positive.");
+            throw new ArgumentOutOfRangeException(nameof(timeout), timeout, "Timeout must be non-negative. Use zero or null for no timeout.");
         }
 
         var client = new NamedPipeClientStream(
@@ -54,11 +54,19 @@ public sealed class OrchestrationWorkerProtocolChannel : IAsyncDisposable, IDisp
             pipeName,
             PipeDirection.InOut,
             PipeOptions.Asynchronous);
-        using var timeoutCancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-        timeoutCancellation.CancelAfter(timeout);
         try
         {
-            await client.ConnectAsync(timeoutCancellation.Token).ConfigureAwait(false);
+            if (timeout is null || timeout.Value == TimeSpan.Zero)
+            {
+                await client.ConnectAsync(cancellationToken).ConfigureAwait(false);
+            }
+            else
+            {
+                using var timeoutCancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                timeoutCancellation.CancelAfter(timeout.Value);
+                await client.ConnectAsync(timeoutCancellation.Token).ConfigureAwait(false);
+            }
+
             return new OrchestrationWorkerProtocolChannel(client);
         }
         catch

@@ -70,7 +70,7 @@ MetaPipeline:
   Pipeline: CustomerLoad
   Tasks: 0
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name truncate-target --script truncate_target --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name truncate-target --script truncate_target --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 OK: Added pipeline step
 MetaPipeline:
   Pipeline: CustomerLoad
@@ -79,7 +79,7 @@ MetaPipeline:
   Binding: TransformScript:1:binding
   StatementKind: Mutation
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name insert-customers --script insert_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name insert-customers --script insert_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 OK: Added pipeline step
 MetaPipeline:
   Pipeline: CustomerLoad
@@ -88,7 +88,7 @@ MetaPipeline:
   Binding: TransformScript:2:binding
   StatementKind: Mutation
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name update-customers --script update_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name update-customers --script update_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 OK: Added pipeline step
 MetaPipeline:
   Pipeline: CustomerLoad
@@ -97,7 +97,7 @@ MetaPipeline:
   Binding: TransformScript:3:binding
   StatementKind: Mutation
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name merge-customers --script merge_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name merge-customers --script merge_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 OK: Added pipeline step
 MetaPipeline:
   Pipeline: CustomerLoad
@@ -106,7 +106,7 @@ MetaPipeline:
   Binding: TransformScript:4:binding
   StatementKind: Mutation
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name delete-customers --script delete_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name delete-customers --script delete_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 OK: Added pipeline step
 MetaPipeline:
   Pipeline: CustomerLoad
@@ -115,7 +115,7 @@ MetaPipeline:
   Binding: TransformScript:5:binding
   StatementKind: Mutation
 
-C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --target dbo.TargetCustomer --batch-size 2 --timeout-seconds 60
+C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaPipelineSqlServerCliIntegration>meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --target dbo.TargetCustomer --batch-size 2
 OK: Added pipeline step
 MetaPipeline:
   Pipeline: CustomerLoad

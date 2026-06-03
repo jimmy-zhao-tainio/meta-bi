@@ -38,22 +38,22 @@ meta-pipeline --new-workspace PipelineWS
 meta-pipeline add-pipeline --workspace PipelineWS --name CustomerLoad --description "Load customer totals"
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name truncate-target --script truncate_target --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name truncate-target --script truncate_target --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name insert-customers --script insert_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name insert-customers --script insert_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name update-customers --script update_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name update-customers --script update_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name merge-customers --script merge_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name merge-customers --script merge_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name delete-customers --script delete_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --timeout-seconds 60
+meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name delete-customers --script delete_customers --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL
 @if errorlevel 1 exit /b %errorlevel%
 
-meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --target dbo.TargetCustomer --batch-size 2 --timeout-seconds 60
+meta-pipeline add-step --workspace PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace TransformWS --binding-workspace BindingWS --execution-connection-env META_PIPELINE_DEMO_EXECUTION_SQL --target-connection-env META_PIPELINE_DEMO_TARGET_SQL --target dbo.TargetCustomer --batch-size 2
 @if errorlevel 1 exit /b %errorlevel%
 
 meta-pipeline inspect --workspace PipelineWS

@@ -74,7 +74,7 @@ internal static partial class Program
         var filePath = string.Empty;
         var query = string.Empty;
         var variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        var timeoutSeconds = 30;
+        var timeoutSeconds = 0;
         var quiet = false;
 
         for (var i = startIndex; i < args.Length; i++)
@@ -169,7 +169,7 @@ internal static partial class Program
             bool Quiet,
             string ErrorMessage) ExecuteParseFailure(string message)
         {
-            return (false, string.Empty, string.Empty, string.Empty, new ReadOnlyDictionary<string, string>(new Dictionary<string, string>()), 30, false, message);
+            return (false, string.Empty, string.Empty, string.Empty, new ReadOnlyDictionary<string, string>(new Dictionary<string, string>()), 0, false, message);
         }
     }
 

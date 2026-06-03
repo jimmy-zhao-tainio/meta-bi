@@ -217,6 +217,10 @@ foreach ($cliName in $CliNames) {
     }
 }
 
+while ($output.Count -gt 0 -and [string]::IsNullOrWhiteSpace($output[$output.Count - 1])) {
+    $output.RemoveAt($output.Count - 1)
+}
+
 $resolvedOutputPath = Resolve-Path -Path "." | ForEach-Object { Join-Path $_ $OutputPath }
 $outputDirectory = Split-Path -Parent $resolvedOutputPath
 if (-not (Test-Path $outputDirectory)) {

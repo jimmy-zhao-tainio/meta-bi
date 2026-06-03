@@ -260,7 +260,9 @@ internal static partial class Program
         {
             await using var workerChannel = await OrchestrationWorkerProtocolChannel.ConnectClientAsync(
                 parse.WorkerControlPipeName,
-                TimeSpan.FromSeconds(10)).ConfigureAwait(false);
+                parse.ControlPipeConnectTimeoutSeconds is null
+                    ? null
+                    : TimeSpan.FromSeconds(parse.ControlPipeConnectTimeoutSeconds.Value)).ConfigureAwait(false);
             var executableVersion = OrchestrationWorkerProtocol.ResolveExecutableVersion();
             await WriteWorkerLifecycleEventAsync(
                 workerChannel,

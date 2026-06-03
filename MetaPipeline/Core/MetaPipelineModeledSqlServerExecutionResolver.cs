@@ -681,10 +681,10 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
             return null;
         }
 
-        if (!int.TryParse(configuredTimeoutSeconds, out var timeoutSeconds) || timeoutSeconds <= 0)
+        if (!int.TryParse(configuredTimeoutSeconds, out var timeoutSeconds) || timeoutSeconds < 0)
         {
             throw new MetaPipelineConfigurationException(
-                $"Transform task '{transformTaskName}' has invalid TimeoutSeconds '{configuredTimeoutSeconds}'. Expected a positive integer.");
+                $"Transform task '{transformTaskName}' has invalid TimeoutSeconds '{configuredTimeoutSeconds}'. Expected a non-negative integer; 0 means no timeout.");
         }
 
         return timeoutSeconds;

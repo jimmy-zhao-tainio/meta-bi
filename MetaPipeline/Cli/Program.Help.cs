@@ -70,7 +70,7 @@ internal static partial class Program
                     "Execute a modeled pipeline under an orchestration worker protocol.",
                     new[]
                     {
-                        "meta-pipeline execute-worker --workspace <path> --pipeline <name> --transform-workspace <path> --binding-workspace <path> --control-pipe <name> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
+                        "meta-pipeline execute-worker --workspace <path> --pipeline <name> --transform-workspace <path> --binding-workspace <path> --control-pipe <name> [--control-pipe-connect-timeout-seconds <n>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
                     },
                     new[]
                     {
@@ -79,6 +79,7 @@ internal static partial class Program
                         new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace used by transform tasks."),
                         new CliOptionDefinition("--binding-workspace <path>", "Required. MetaTransformBinding workspace used by transform tasks."),
                         new CliOptionDefinition("--control-pipe <name>", "Required. Named pipe used for orchestration worker control messages."),
+                        new CliOptionDefinition("--control-pipe-connect-timeout-seconds <n>", "Optional timeout while connecting to the orchestration control pipe. 0 or omitted means no timeout."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional shell-visible environment variable for an initialized MetaPipeline operational DB.")
                     },
@@ -148,7 +149,7 @@ internal static partial class Program
                         new CliOptionDefinition("--target-connection-env <name>", "Required for SELECT-kind scripts. Shell-visible environment variable for the target SQL Server connection."),
                         new CliOptionDefinition("--target <sql-identifier>", "Target table identifier when a SELECT binding has multiple targets."),
                         new CliOptionDefinition("--batch-size <n>", "Bounded in-memory row buffer size. Default: 1000."),
-                        new CliOptionDefinition("--timeout-seconds <n>", "SQL command and bulk-copy timeout seconds. Omitted means no command timeout."),
+                        new CliOptionDefinition("--timeout-seconds <n>", "SQL command and bulk-copy timeout seconds. 0 or omitted means no command timeout."),
                         new CliOptionDefinition("--target-data-type-system <name>", "Runtime target type family for InsertRows. Default: SqlServer."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional shell-visible environment variable for an initialized MetaPipeline operational DB.")
@@ -266,7 +267,7 @@ internal static partial class Program
                         new CliOptionDefinition("--target <sql-identifier>", "Target table identifier when a SELECT binding has multiple targets."),
                         new CliOptionDefinition("--target-write <insert-rows>", "SELECT-kind target write model. The only supported value is insert-rows."),
                         new CliOptionDefinition("--batch-size <n>", "Bounded in-memory row buffer size for InsertRows. Default: 1000."),
-                        new CliOptionDefinition("--timeout-seconds <n>", "SQL command and bulk-copy timeout seconds for the transform execution."),
+                        new CliOptionDefinition("--timeout-seconds <n>", "SQL command and bulk-copy timeout seconds for the transform execution. 0 or omitted means no timeout."),
                         new CliOptionDefinition("--target-data-type-system <name>", "InsertRows target type family. Default: SqlServer.")
                     },
                     new[]

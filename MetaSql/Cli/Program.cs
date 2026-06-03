@@ -109,7 +109,7 @@ internal static partial class Program
                         new CliOptionDefinition("--file <path>", "Execute SQL from a file. Mutually exclusive with --query."),
                         new CliOptionDefinition("--query <sql>", "Execute inline SQL. Mutually exclusive with --file."),
                         new CliOptionDefinition("--var <name=value>", "Replace one SQLCMD-style $(NAME) token before execution. Can be repeated."),
-                        new CliOptionDefinition("--timeout-seconds <seconds>", "Command timeout for each SQL batch. Defaults to 30."),
+                        new CliOptionDefinition("--timeout-seconds <seconds>", "Command timeout for each SQL batch. 0 or omitted means no timeout."),
                         new CliOptionDefinition("--quiet", "Suppress result-set and success output.")
                     },
                     new[]

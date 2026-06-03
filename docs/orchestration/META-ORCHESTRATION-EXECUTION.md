@@ -384,7 +384,7 @@ The supervisor must not wait for a worker message when the current state already
 
 The current local runtime explicitly validates the command/event state before accepting worker events. If worker startup fails partway through, already-started workers are disposed. If a worker exits before a grant is sent, orchestration will not mark the task running first and then wait for a terminal event that cannot arrive. When every live worker is already `TaskReady` and no command can be sent, it reports the blocking predecessor state rather than waiting forever on the control pipe. Examples include dependency cycles, a predecessor not present in the run plan, or a predecessor trapped behind another ready boundary.
 
-Local execution also has a fail-safe worker-event timeout. Workers parked at `TaskReady` do not count as silent because they are intentionally waiting for orchestration. Activation silence and running-grant silence do count. Activation silence is capped to a short startup window even when the general worker-event timeout is longer, and fails the run fast. Running-grant silence terminates the worker and records the active task as failed/unknown. If retry policy allows the timeout failure class and the task is retry-safe, orchestration starts a replacement worker at the same task boundary; otherwise it blocks the remaining serial pipeline path and lets unrelated viable paths continue.
+Local execution also has opt-in worker-event timeouts. Workers parked at `TaskReady` do not count as silent because they are intentionally waiting for orchestration. Startup/activation silence and running-grant silence count only when the matching timeout is configured. `0` or omission means no timeout. `--worker-activation-timeout-seconds` can override startup/activation silence; omitted follows `--worker-event-timeout-seconds`, while `0` disables activation timeout. Running-grant silence terminates the worker and records the active task as failed/unknown only when the configured timeout is reached. If retry policy allows the timeout failure class and the task is retry-safe, orchestration starts a replacement worker at the same task boundary; otherwise it blocks the remaining serial pipeline path and lets unrelated viable paths continue.
 
 Cooperative cancellation and drain timeouts can be added as live-supervisor behavior. Durable supervisor restart/recovery is out of scope for this runtime shape.
 
@@ -577,7 +577,9 @@ meta-orchestration execute ^
   [--pipeline-db-connection-env META_PIPELINE_OPERATIONAL_SQL] ^
   [--max-degree-of-parallelism 4] ^
   [--run-artifacts-root .\TestRuns] ^
-  [--worker-event-timeout-seconds 1800]
+  [--worker-event-timeout-seconds 0]
+  [--worker-activation-timeout-seconds 0]
+  [--worker-control-pipe-connect-timeout-seconds 0]
 ```
 
 The command takes an exclusive execution lease for the orchestration workspace, refreshes deterministic run-plan rows from current workspace state, writes an operational run journal, and then executes. It does not infer SQL access or bind SQL on the fly.
@@ -598,7 +600,7 @@ The first process-based runtime can be simple:
 8. Receive worker `TaskReady` events and grant only tasks whose dependencies, locks, and resource limits are satisfied.
 9. On `TaskFailed`, resolve the modeled retry policy and either grant a retry attempt or close the pipeline path as terminally failed.
 10. On retryable worker loss while a grant is running, start a replacement worker and send `StartPipeline` with the failed task id as the resume boundary.
-11. Treat silent activation/running-grant periods past `--worker-event-timeout-seconds` as worker protocol faults; retry running-grant timeouts only when policy allows it.
+11. Treat silent activation/running-grant periods past configured timeout options as worker protocol faults; retry running-grant timeouts only when policy allows it. `0` means no timeout.
 12. Record task outcomes from worker events into the run journal.
 13. Send `STOP` to a worker when its next pipeline task is blocked by orchestration dependency conditions.
 14. Continue unrelated viable run-plan paths.

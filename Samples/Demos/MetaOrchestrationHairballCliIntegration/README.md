@@ -15,11 +15,15 @@ It creates:
 - SELECT transforms
 - stored procedure refresh transforms with ordered reset/append operations
 - stored procedure result-rowset transforms feeding InsertRows target writes
-- a mutation task
-- a serial multi-task pipeline
+- mutation tasks
+- many single-task pipelines
+- serial hub, bridge, regional mart, and composite pipelines
 - expected pipeline and object-level data dependency files
 - `generated-setup.cmd` containing the actual `meta-transform-script`, `meta-transform-binding`, `meta-pipeline`, and setup `meta-orchestration` calls
 - `generated-execute.cmd` containing the actual orchestration execution command
+- `orchestration-run-plan-graph.txt`, captured from `meta-orchestration inspect-run-plan`
+- `orchestration-execute-output.txt`, captured from `meta-orchestration execute`
+- `RunArtifacts`, passed as `--run-artifacts-root` for orchestration journals, worker logs, and leases
 - real TransformScript, Binding, Pipeline, and Orchestration workspaces created by those commands
 
 Run setup from this folder:
@@ -44,6 +48,9 @@ The run writes output under `Runs\hairball-seed-20260530`, including:
 - `BindingWS`
 - `PipelineWS`
 - `OrchestrationWS`
+- `RunArtifacts`
+- `orchestration-run-plan-graph.txt`
+- `orchestration-execute-output.txt`
 - `expected-pipeline-edges.tsv`
 - `actual-pipeline-edges.tsv`
 - `expected-data-edges.tsv`

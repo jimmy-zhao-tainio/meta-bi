@@ -204,6 +204,8 @@ internal static class HairballDemo
     private const string TargetConnectionEnv = "HAIRBALL_TARGET_SQL";
     private const string LocalhostConnectionString = "Server=localhost;Database=MetaOrchestrationHairball;Trusted_Connection=True;TrustServerCertificate=True;";
     private const string ExecuteSystemName = "Hairball";
+    private const string RunPlanGraphCapturePath = "orchestration-run-plan-graph.txt";
+    private const string ExecuteOutputCapturePath = "orchestration-execute-output.txt";
 
     public static HairballGeneratedRun Generate(DemoOptions options)
     {
@@ -351,7 +353,7 @@ internal static class HairballDemo
     {
         var setupScriptPath = Path.Combine(runRoot, "generated-setup.cmd");
         var executeScriptPath = Path.Combine(runRoot, "generated-execute.cmd");
-        var setupCommands = new List<string>();
+        var setupCommands = new List<HairballBatchCommand>();
 
         for (var index = 0; index < scenario.Transforms.Count; index++)
         {
@@ -359,10 +361,10 @@ internal static class HairballDemo
             var workspaceOption = index == 0
                 ? "--new-workspace TransformWS"
                 : "--workspace TransformWS";
-            setupCommands.Add(
+            setupCommands.Add(HairballBatchCommand.Run(
                 string.IsNullOrWhiteSpace(transform.TargetSqlIdentifier)
                     ? $"meta-transform-script from sql-file --path {QuoteCmd(Path.Combine("SourceSql", transform.FileStem + ".sql"))} {workspaceOption}"
-                    : $"meta-transform-script from sql-file --path {QuoteCmd(Path.Combine("SourceSql", transform.FileStem + ".sql"))} --target {transform.TargetSqlIdentifier} {workspaceOption}");
+                    : $"meta-transform-script from sql-file --path {QuoteCmd(Path.Combine("SourceSql", transform.FileStem + ".sql"))} --target {transform.TargetSqlIdentifier} {workspaceOption}"));
         }
 
         foreach (var transform in scenario.Transforms.Where(static item => item.IsStoredProcedure))
@@ -385,15 +387,15 @@ internal static class HairballDemo
                 }
             }
 
-            setupCommands.Add(command.ToString());
+            setupCommands.Add(HairballBatchCommand.Run(command.ToString()));
         }
 
-        setupCommands.Add("meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system Hairball --new-workspace BindingWS");
-        setupCommands.Add("meta-pipeline --new-workspace PipelineWS");
+        setupCommands.Add(HairballBatchCommand.Run("meta-transform-binding bind --transform-workspace TransformWS --source-schema SchemaWS --target-schema SchemaWS --execute-system Hairball --new-workspace BindingWS"));
+        setupCommands.Add(HairballBatchCommand.Run("meta-pipeline --new-workspace PipelineWS"));
 
         foreach (var pipeline in scenario.Pipelines)
         {
-            setupCommands.Add($"meta-pipeline add-pipeline --workspace PipelineWS --name {pipeline.PipelineName}");
+            setupCommands.Add(HairballBatchCommand.Run($"meta-pipeline add-pipeline --workspace PipelineWS --name {pipeline.PipelineName}"));
             foreach (var task in pipeline.Tasks)
             {
                 var command = new StringBuilder();
@@ -403,21 +405,25 @@ internal static class HairballDemo
                     command.Append(CultureInfo.InvariantCulture, $" --target-connection-env {TargetConnectionEnv} --target {task.InsertRowsTarget}");
                 }
 
-                setupCommands.Add(command.ToString());
+                setupCommands.Add(HairballBatchCommand.Run(command.ToString()));
             }
         }
 
-        setupCommands.Add("meta-pipeline inspect --workspace PipelineWS");
-        setupCommands.Add("meta-orchestration --pipeline-workspace PipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace OrchestrationWS --description \"Deterministic hairball CLI demo\"");
-        setupCommands.Add("meta-orchestration inspect --workspace OrchestrationWS");
-        setupCommands.Add("meta-orchestration refresh-run-plan --workspace OrchestrationWS");
-        setupCommands.Add("meta-orchestration inspect-run-plan --workspace OrchestrationWS");
+        setupCommands.Add(HairballBatchCommand.Run("meta-pipeline inspect --workspace PipelineWS"));
+        setupCommands.Add(HairballBatchCommand.Run("meta-orchestration --pipeline-workspace PipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace OrchestrationWS --description \"Deterministic hairball CLI demo\""));
+        setupCommands.Add(HairballBatchCommand.Run("meta-orchestration inspect --workspace OrchestrationWS"));
+        setupCommands.Add(HairballBatchCommand.Run("meta-orchestration refresh-run-plan --workspace OrchestrationWS"));
+        setupCommands.Add(HairballBatchCommand.Capture(
+            "meta-orchestration inspect-run-plan --workspace OrchestrationWS",
+            RunPlanGraphCapturePath));
 
         WriteBatchScript(setupScriptPath, setupCommands);
         WriteBatchScript(
             executeScriptPath,
             [
-                "meta-orchestration execute --workspace OrchestrationWS --pipeline-workspace PipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --max-degree-of-parallelism 8"
+                HairballBatchCommand.Capture(
+                    "meta-orchestration execute --workspace OrchestrationWS --pipeline-workspace PipelineWS --transform-workspace TransformWS --binding-workspace BindingWS --max-degree-of-parallelism 12 --run-artifacts-root RunArtifacts",
+                    ExecuteOutputCapturePath)
             ],
             [
                 (ExecuteConnectionEnv, LocalhostConnectionString),
@@ -429,7 +435,7 @@ internal static class HairballDemo
 
     private static void WriteBatchScript(
         string path,
-        IReadOnlyList<string> commands,
+        IReadOnlyList<HairballBatchCommand> commands,
         IReadOnlyList<(string Name, string Value)>? environmentDefaults = null)
     {
         var lines = new List<string>
@@ -445,13 +451,28 @@ internal static class HairballDemo
 
         foreach (var command in commands)
         {
-            lines.Add($"call :run {command} || goto :fail");
+            if (string.IsNullOrWhiteSpace(command.CapturePath))
+            {
+                lines.Add($"call :run {command.Command} || goto :fail");
+                continue;
+            }
+
+            lines.Add("echo.");
+            lines.Add($"echo {command.Command}");
+            lines.Add($"echo Capturing output to {command.CapturePath}");
+            lines.Add($"call {command.Command} > {QuoteCmd(command.CapturePath)} 2>&1");
+            lines.Add("set \"__hairball_capture_exit=%errorlevel%\"");
+            lines.Add($"type {QuoteCmd(command.CapturePath)}");
+            lines.Add("if not \"%__hairball_capture_exit%\"==\"0\" (");
+            lines.Add("  set \"__hairball_exit=%__hairball_capture_exit%\"");
+            lines.Add("  goto :fail");
+            lines.Add(")");
         }
 
         lines.Add("popd");
         lines.Add("exit /b 0");
         lines.Add(":fail");
-        lines.Add("set __hairball_exit=%errorlevel%");
+        lines.Add("if not defined __hairball_exit set \"__hairball_exit=%errorlevel%\"");
         lines.Add("popd");
         lines.Add("exit /b %__hairball_exit%");
         lines.Add(":run");
@@ -743,30 +764,37 @@ internal sealed record HairballScenario(
         var pipelines = new List<HairballPipelineSeed>();
         var availableObjects = new List<string>();
 
-        for (var index = 1; index <= 6; index++)
+        void AddPipeline(HairballPipelineSeed pipeline)
+        {
+            pipelines.Add(pipeline);
+            availableObjects.AddRange(pipeline.Tasks.SelectMany(static item => item.WriteObjects));
+        }
+
+        for (var index = 1; index <= 8; index++)
         {
             var raw = $"raw.Source{index:00}";
             var target = $"stage.Seed{index:00}";
-            AddSingleTaskPipeline(
-                pipelines,
+            AddPipeline(new HairballPipelineSeed(
                 $"ExtractSeed{index:00}",
-                SelectTask(
-                    $"extract-seed-{index:00}",
-                    $"demo.ExtractSeed{index:00}",
-                    target,
-                    [raw]));
-            availableObjects.Add(target);
+                [
+                    SelectTask(
+                        $"extract-seed-{index:00}",
+                        $"demo.ExtractSeed{index:00}",
+                        target,
+                        [raw])
+                ]));
         }
 
-        var layerCount = 5 + random.Next(0, 3);
+        var layerCount = 8 + random.Next(0, 2);
         for (var layer = 1; layer <= layerCount; layer++)
         {
-            var nodeCount = 4 + random.Next(0, 4);
+            var layerObjects = new List<string>();
+            var nodeCount = 7 + random.Next(0, 4);
             for (var node = 1; node <= nodeCount; node++)
             {
                 var target = ResolveLayerTarget(layer, node);
-                var sources = PickObjects(random, availableObjects, 1, Math.Min(3, availableObjects.Count));
-                var kind = random.Next(0, 3);
+                var sources = PickObjects(random, availableObjects, 2, 5);
+                var kind = (layer + node + random.Next(0, 4)) % 3;
                 var pipelineName = $"Layer{layer:00}Node{node:00}";
                 var task = kind switch
                 {
@@ -787,62 +815,167 @@ internal sealed record HairballScenario(
                         sources)
                 };
 
-                AddSingleTaskPipeline(pipelines, pipelineName, task);
-                availableObjects.Add(target);
+                AddPipeline(new HairballPipelineSeed(pipelineName, [task]));
+                layerObjects.Add(target);
+            }
+
+            var hubStage = $"hub.Layer{layer:00}Stage";
+            var hubCurated = $"hub.Layer{layer:00}Curated";
+            var hubPublished = $"hub.Layer{layer:00}Published";
+            AddPipeline(new HairballPipelineSeed(
+                $"Layer{layer:00}Hub",
+                [
+                    SelectTask(
+                        $"hub-l{layer:00}-stage",
+                        $"demo.HubL{layer:00}Stage",
+                        hubStage,
+                        PickObjects(random, layerObjects, 4, 8)),
+                    StoredProcedureRefreshTask(
+                        $"hub-l{layer:00}-curate",
+                        $"etl.HubL{layer:00}Curate",
+                        hubCurated,
+                        CombineObjects(
+                            [hubStage],
+                            PickObjects(random, availableObjects, 2, 4))),
+                    StoredProcedureResultTask(
+                        $"hub-l{layer:00}-publish",
+                        $"etl.HubL{layer:00}Publish",
+                        hubPublished,
+                        CombineObjects(
+                            [hubCurated],
+                            PickObjects(random, layerObjects.Concat(availableObjects).ToArray(), 3, 6)))
+                ]));
+
+            if (layer > 1 && layer % 2 == 0)
+            {
+                var bridgeStage = $"bridge.L{layer - 1:00}L{layer:00}Stage";
+                var bridgeNorth = $"bridge.L{layer - 1:00}L{layer:00}North";
+                var bridgeSouth = $"bridge.L{layer - 1:00}L{layer:00}South";
+                AddPipeline(new HairballPipelineSeed(
+                    $"BridgeL{layer - 1:00}L{layer:00}",
+                    [
+                        StoredProcedureResultTask(
+                            $"bridge-l{layer - 1:00}-l{layer:00}-collect",
+                            $"etl.BridgeL{layer - 1:00}L{layer:00}Collect",
+                            bridgeStage,
+                            PickObjects(random, availableObjects, 5, 9)),
+                        SelectTask(
+                            $"bridge-l{layer - 1:00}-l{layer:00}-north",
+                            $"demo.BridgeL{layer - 1:00}L{layer:00}North",
+                            bridgeNorth,
+                            CombineObjects(
+                                [bridgeStage],
+                                PickObjects(random, availableObjects, 2, 4))),
+                        StoredProcedureRefreshTask(
+                            $"bridge-l{layer - 1:00}-l{layer:00}-south",
+                            $"etl.BridgeL{layer - 1:00}L{layer:00}South",
+                            bridgeSouth,
+                            CombineObjects(
+                                [bridgeStage, bridgeNorth],
+                                PickObjects(random, availableObjects, 2, 4)))
+                    ]));
             }
         }
 
-        var compositeInputs = PickObjects(random, availableObjects, 3, 4);
-        pipelines.Add(new HairballPipelineSeed(
+        for (var region = 1; region <= 4; region++)
+        {
+            var regionStage = $"wrk.Region{region:00}Stage";
+            var regionCurated = $"wrk.Region{region:00}Curated";
+            var regionPublished = $"mart.Region{region:00}Published";
+            AddPipeline(new HairballPipelineSeed(
+                $"RegionalMart{region:00}",
+                [
+                    SelectTask(
+                        $"regional-{region:00}-stage",
+                        $"demo.Regional{region:00}Stage",
+                        regionStage,
+                        PickObjects(random, availableObjects, 6, 10)),
+                    StoredProcedureRefreshTask(
+                        $"regional-{region:00}-curate",
+                        $"etl.Regional{region:00}Curate",
+                        regionCurated,
+                        CombineObjects(
+                            [regionStage],
+                            PickObjects(random, availableObjects, 3, 5))),
+                    StoredProcedureResultTask(
+                        $"regional-{region:00}-publish",
+                        $"etl.Regional{region:00}Publish",
+                        regionPublished,
+                        CombineObjects(
+                            [regionCurated],
+                            PickObjects(random, availableObjects, 3, 6))),
+                    StoredProcedureMutationTask(
+                        $"regional-{region:00}-audit",
+                        $"audit.RecordRegional{region:00}",
+                        $"audit.Region{region:00}LoadLog",
+                        CombineObjects(
+                            [regionPublished],
+                            PickObjects(random, availableObjects, 1, 2)))
+                ]));
+        }
+
+        var compositeInputs = PickObjects(random, availableObjects, 6, 9);
+        AddPipeline(new HairballPipelineSeed(
             "CompositeMart",
             [
                 SelectTask(
                     "composite-stage",
                     "demo.CompositeStage",
                     "wrk.CompositeStage",
-                    compositeInputs.Take(2).ToArray()),
+                    compositeInputs.Take(4).ToArray()),
                 StoredProcedureRefreshTask(
                     "composite-curate",
                     "etl.CompositeCurate",
                     "wrk.CompositeCurated",
-                    ["wrk.CompositeStage", compositeInputs[2]]),
+                    CombineObjects(
+                        ["wrk.CompositeStage"],
+                        compositeInputs.Skip(4).Take(2).ToArray())),
+                SelectTask(
+                    "composite-reconcile",
+                    "demo.CompositeReconcile",
+                    "wrk.CompositeReconciled",
+                    CombineObjects(
+                        ["wrk.CompositeCurated"],
+                        PickObjects(random, availableObjects, 3, 5))),
+                StoredProcedureRefreshTask(
+                    "composite-certify",
+                    "etl.CompositeCertify",
+                    "wrk.CompositeCertified",
+                    CombineObjects(
+                        ["wrk.CompositeReconciled"],
+                        PickObjects(random, availableObjects, 3, 5))),
                 StoredProcedureResultTask(
                     "composite-publish",
                     "etl.CompositePublish",
                     "mart.CompositeFinal",
-                    ["wrk.CompositeCurated", compositeInputs[^1]])
+                    CombineObjects(
+                        ["wrk.CompositeCertified"],
+                        compositeInputs.TakeLast(2).ToArray()))
             ]));
-        availableObjects.Add("mart.CompositeFinal");
 
-        var auditInputs = PickObjects(random, availableObjects, 1, 2);
-        AddSingleTaskPipeline(
-            pipelines,
+        var auditInputs = PickObjects(random, availableObjects, 4, 7);
+        AddPipeline(new HairballPipelineSeed(
             "AuditHairball",
-            StoredProcedureMutationTask(
-                "audit-hairball",
-                "audit.RecordHairball",
-                "audit.HairballRunLog",
-                auditInputs));
+            [
+                StoredProcedureMutationTask(
+                    "audit-hairball",
+                    "audit.RecordHairball",
+                    "audit.HairballRunLog",
+                    auditInputs)
+            ]));
 
-        var finalInputs = PickObjects(random, availableObjects, 5, 7);
-        AddSingleTaskPipeline(
-            pipelines,
+        var finalInputs = PickObjects(random, availableObjects, 10, 14);
+        AddPipeline(new HairballPipelineSeed(
             "PublishHairballFinal",
-            SelectTask(
-                "publish-hairball-final",
-                "demo.PublishHairballFinal",
-                "mart.HairballFinal",
-                finalInputs));
+            [
+                SelectTask(
+                    "publish-hairball-final",
+                    "demo.PublishHairballFinal",
+                    "mart.HairballFinal",
+                    finalInputs)
+            ]));
 
         return new HairballScenario(seed, pipelines);
-    }
-
-    private static void AddSingleTaskPipeline(
-        ICollection<HairballPipelineSeed> pipelines,
-        string pipelineName,
-        HairballTaskSeed task)
-    {
-        pipelines.Add(new HairballPipelineSeed(pipelineName, [task]));
     }
 
     private static HairballTaskSeed SelectTask(
@@ -978,14 +1111,30 @@ internal sealed record HairballScenario(
         int minCount,
         int maxCount)
     {
-        var count = Math.Min(objects.Count, random.Next(minCount, maxCount + 1));
-        return objects
-            .Select(static item => item)
+        var distinctObjects = objects
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        if (distinctObjects.Length == 0)
+        {
+            return [];
+        }
+
+        var safeMin = Math.Min(Math.Max(1, minCount), distinctObjects.Length);
+        var safeMax = Math.Min(Math.Max(safeMin, maxCount), distinctObjects.Length);
+        var count = random.Next(safeMin, safeMax + 1);
+        return distinctObjects
             .OrderBy(_ => random.Next())
             .Take(count)
             .OrderBy(static item => item, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
+
+    private static IReadOnlyList<string> CombineObjects(params IReadOnlyList<string>[] objectSets) =>
+        objectSets
+            .SelectMany(static item => item)
+            .Where(static item => !string.IsNullOrWhiteSpace(item))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
 
     private static string CreateSelectSql(string scriptName, IReadOnlyList<string> sources)
     {
@@ -1078,6 +1227,15 @@ internal sealed record HairballGeneratedRun(
 internal sealed record HairballGeneratedScripts(
     string SetupScriptPath,
     string ExecuteScriptPath);
+
+internal sealed record HairballBatchCommand(
+    string Command,
+    string? CapturePath)
+{
+    public static HairballBatchCommand Run(string command) => new(command, null);
+
+    public static HairballBatchCommand Capture(string command, string capturePath) => new(command, capturePath);
+}
 
 internal sealed record HairballRunResult(
     int Seed,

@@ -125,6 +125,7 @@ internal static partial class Program
         string DataTypeConversionWorkspacePath,
         string PipelineDbConnectionEnvironmentVariableName,
         string WorkerControlPipeName,
+        int? ControlPipeConnectTimeoutSeconds,
         string ErrorMessage) ParseExecutePipelineArgs(
         string[] args,
         int startIndex)
@@ -136,6 +137,7 @@ internal static partial class Program
         var dataTypeConversionWorkspacePath = string.Empty;
         var pipelineDbConnectionEnvironmentVariableName = string.Empty;
         var workerControlPipeName = string.Empty;
+        int? controlPipeConnectTimeoutSeconds = null;
 
         for (var i = startIndex; i < args.Length; i++)
         {
@@ -197,6 +199,20 @@ internal static partial class Program
                 continue;
             }
 
+            if (string.Equals(arg, "--control-pipe-connect-timeout-seconds", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --control-pipe-connect-timeout-seconds.");
+                if (controlPipeConnectTimeoutSeconds is not null) return FailParse("--control-pipe-connect-timeout-seconds can only be provided once.");
+                var raw = args[++i];
+                if (!int.TryParse(raw, out var parsedTimeoutSeconds) || parsedTimeoutSeconds < 0)
+                {
+                    return FailParse($"invalid value '{raw}' for --control-pipe-connect-timeout-seconds. Expected a non-negative integer.");
+                }
+
+                controlPipeConnectTimeoutSeconds = parsedTimeoutSeconds;
+                continue;
+            }
+
             return FailParse($"unknown option '{arg}'.");
         }
 
@@ -214,9 +230,10 @@ internal static partial class Program
             dataTypeConversionWorkspacePath,
             pipelineDbConnectionEnvironmentVariableName,
             workerControlPipeName,
+            controlPipeConnectTimeoutSeconds,
             string.Empty);
 
-        (bool Ok, string PipelineWorkspacePath, string PipelineName, string TransformWorkspacePath, string BindingWorkspacePath, string DataTypeConversionWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string WorkerControlPipeName, string ErrorMessage) FailParse(string message)
+        (bool Ok, string PipelineWorkspacePath, string PipelineName, string TransformWorkspacePath, string BindingWorkspacePath, string DataTypeConversionWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string WorkerControlPipeName, int? ControlPipeConnectTimeoutSeconds, string ErrorMessage) FailParse(string message)
         {
             return (
                 false,
@@ -227,6 +244,7 @@ internal static partial class Program
                 dataTypeConversionWorkspacePath,
                 pipelineDbConnectionEnvironmentVariableName,
                 workerControlPipeName,
+                controlPipeConnectTimeoutSeconds,
                 message);
         }
     }
@@ -344,9 +362,9 @@ internal static partial class Program
                 if (i + 1 >= args.Length) return FailParse("missing value for --timeout-seconds.");
                 if (timeoutSecondsSpecified) return FailParse("--timeout-seconds can only be provided once.");
                 var raw = args[++i];
-                if (!int.TryParse(raw, out var parsedTimeoutSeconds) || parsedTimeoutSeconds <= 0)
+                if (!int.TryParse(raw, out var parsedTimeoutSeconds) || parsedTimeoutSeconds < 0)
                 {
-                    return FailParse($"invalid value '{raw}' for --timeout-seconds. Expected a positive integer.");
+                    return FailParse($"invalid value '{raw}' for --timeout-seconds. Expected a non-negative integer; 0 means no timeout.");
                 }
 
                 timeoutSeconds = parsedTimeoutSeconds;
@@ -796,9 +814,9 @@ internal static partial class Program
                 if (i + 1 >= args.Length) return FailParse("missing value for --timeout-seconds.");
                 if (timeoutSecondsSpecified) return FailParse("--timeout-seconds can only be provided once.");
                 var raw = args[++i];
-                if (!int.TryParse(raw, out var parsedTimeoutSeconds) || parsedTimeoutSeconds <= 0)
+                if (!int.TryParse(raw, out var parsedTimeoutSeconds) || parsedTimeoutSeconds < 0)
                 {
-                    return FailParse($"invalid value '{raw}' for --timeout-seconds. Expected a positive integer.");
+                    return FailParse($"invalid value '{raw}' for --timeout-seconds. Expected a non-negative integer; 0 means no timeout.");
                 }
 
                 timeoutSeconds = parsedTimeoutSeconds;
