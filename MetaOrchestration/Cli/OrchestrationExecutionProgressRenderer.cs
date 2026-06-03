@@ -1,32 +1,38 @@
-using Meta.Core.Presentation.Cli;
+using System.Diagnostics;
+using System.Globalization;
+using MetaOrchestration.Core;
 
 internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
 {
-    private const int ProgressRailWidth = 20;
+    private const int WorkRailWidth = 20;
+    private const int WorkerRailWidth = 8;
     private readonly object sync = new();
-    private readonly CliLiveLineRenderer liveLine;
-    private readonly Dictionary<string, string> runningTaskNamesById = new(StringComparer.Ordinal);
+    private readonly Stopwatch stopwatch = Stopwatch.StartNew();
+    private readonly OrchestrationLiveLineRenderer liveLine;
+    private readonly HashSet<string> completedPipelineNames = new(StringComparer.OrdinalIgnoreCase);
+    private readonly int maxParallelism;
     private string currentPhase = "starting";
-    private int totalTasks;
-    private int completedTasks;
-    private int failedTasks;
-    private int blockedTasks;
+    private int totalPipelines;
+    private int liveWorkers;
     private bool disposed;
 
-    private OrchestrationExecutionProgressRenderer()
+    private OrchestrationExecutionProgressRenderer(int maxParallelism)
     {
-        liveLine = CliLiveLineRenderer.TryStart(BuildReadout, TimeSpan.FromMilliseconds(180))
+        this.maxParallelism = Math.Max(1, maxParallelism);
+        liveLine = OrchestrationLiveLineRenderer.TryStart(
+                BuildReadout,
+                delay: TimeSpan.FromMilliseconds(180))
             ?? throw new InvalidOperationException("Console live-line renderer is not available.");
     }
 
-    public static OrchestrationExecutionProgressRenderer? TryCreate()
+    public static OrchestrationExecutionProgressRenderer? TryCreate(int maxParallelism)
     {
         if (Console.IsErrorRedirected || Console.IsOutputRedirected)
         {
             return null;
         }
 
-        return new OrchestrationExecutionProgressRenderer();
+        return new OrchestrationExecutionProgressRenderer(maxParallelism);
     }
 
     public void SetPhase(string phase)
@@ -35,47 +41,51 @@ internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
         {
             currentPhase = string.IsNullOrWhiteSpace(phase)
                 ? "working"
-                : phase.Trim();
+                : phase.Trim().ToLowerInvariant();
         }
     }
 
-    public void RunPlanReady(int totalTasks)
+    public void RunPlanReady(int totalPipelines)
     {
         lock (sync)
         {
-            this.totalTasks = Math.Max(totalTasks, 1);
+            this.totalPipelines = Math.Max(totalPipelines, 1);
+        }
+    }
+
+    public void RuntimeStateChanged(OrchestrationRuntimeProgressSnapshot snapshot)
+    {
+        lock (sync)
+        {
+            liveWorkers = Math.Max(0, snapshot.LiveWorkerCount);
         }
     }
 
     public void TaskStarted(string taskId, string taskName)
     {
-        lock (sync)
-        {
-            runningTaskNamesById[taskId] = string.IsNullOrWhiteSpace(taskName)
-                ? taskId
-                : taskName.Trim();
-        }
+        _ = taskId;
+        _ = taskName;
     }
 
     public void TaskCompleted(string taskId, bool succeeded)
     {
-        lock (sync)
-        {
-            runningTaskNamesById.Remove(taskId);
-            completedTasks++;
-            if (!succeeded)
-            {
-                failedTasks++;
-            }
-        }
+        _ = taskId;
+        _ = succeeded;
     }
 
-    public void TaskBlocked()
+    public void TaskBlocked(string taskId)
+    {
+        _ = taskId;
+    }
+
+    public void PipelineCompleted(string pipelineName)
     {
         lock (sync)
         {
-            completedTasks++;
-            blockedTasks++;
+            if (!string.IsNullOrWhiteSpace(pipelineName))
+            {
+                completedPipelineNames.Add(pipelineName);
+            }
         }
     }
 
@@ -91,13 +101,7 @@ internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
             disposed = true;
         }
 
-        if (failed)
-        {
-            liveLine.Clear();
-            return;
-        }
-
-        liveLine.Complete(BuildCompletionReadout());
+        liveLine.Complete(failed ? BuildFailureReadout() : BuildCompletionReadout());
     }
 
     public void Dispose()
@@ -115,36 +119,25 @@ internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
         liveLine.Dispose();
     }
 
-    private string BuildReadout()
+    private string BuildReadout(char spinnerFrame)
     {
         lock (sync)
         {
-            if (totalTasks <= 0)
+            if (totalPipelines <= 0)
             {
                 return currentPhase;
             }
 
-            var readout = $"{BuildProgressRail(completedTasks, totalTasks)} {completedTasks} of {totalTasks}";
-            if (runningTaskNamesById.Count == 1)
+            var completedPipelines = completedPipelineNames.Count;
+            var countWidth = CountWidth(totalPipelines);
+            var workerCountWidth = CountWidth(maxParallelism);
+            var segments = new List<string>
             {
-                readout += $"  {Shorten(runningTaskNamesById.Values.First(), 28)}";
-            }
-            else if (runningTaskNamesById.Count > 1)
-            {
-                readout += $"  {runningTaskNamesById.Count} running";
-            }
+                $"Progress {BuildProgressRail(completedPipelines, totalPipelines, WorkRailWidth, spinnerFrame)} {FormatCount(completedPipelines, countWidth)}/{FormatCount(totalPipelines, countWidth)}",
+                $"Workers {BuildProgressRail(liveWorkers, maxParallelism, WorkerRailWidth)} {FormatCount(liveWorkers, workerCountWidth)}/{FormatCount(maxParallelism, workerCountWidth)}"
+            };
 
-            if (failedTasks > 0)
-            {
-                readout += $"  {failedTasks} failed";
-            }
-
-            if (blockedTasks > 0)
-            {
-                readout += $"  {blockedTasks} blocked";
-            }
-
-            return readout;
+            return string.Join("  ", segments);
         }
     }
 
@@ -152,40 +145,75 @@ internal sealed class OrchestrationExecutionProgressRenderer : IDisposable
     {
         lock (sync)
         {
-            if (totalTasks <= 0)
+            var completedPipelines = completedPipelineNames.Count;
+            var countWidth = CountWidth(totalPipelines);
+            var segments = new List<string>
             {
-                return "Complete";
-            }
+                $"Progress {BuildProgressRail(completedPipelines, totalPipelines, WorkRailWidth)} {FormatCount(completedPipelines, countWidth)}/{FormatCount(totalPipelines, countWidth)}",
+                "OK",
+                FormatElapsed(stopwatch.Elapsed)
+            };
 
-            var readout = $"{BuildProgressRail(completedTasks, totalTasks)} {completedTasks} of {totalTasks}";
-            if (blockedTasks > 0)
-            {
-                readout += $"  {blockedTasks} blocked";
-            }
-
-            return readout;
+            return string.Join("  ", segments);
         }
     }
 
-    private static string BuildProgressRail(int completed, int total)
+    private string BuildFailureReadout()
+    {
+        lock (sync)
+        {
+            if (totalPipelines <= 0)
+            {
+                return $"FAIL {currentPhase} {FormatElapsed(stopwatch.Elapsed)}";
+            }
+
+            var completedPipelines = completedPipelineNames.Count;
+            var countWidth = CountWidth(totalPipelines);
+            var segments = new List<string>
+            {
+                $"Progress {BuildProgressRail(completedPipelines, totalPipelines, WorkRailWidth)} {FormatCount(completedPipelines, countWidth)}/{FormatCount(totalPipelines, countWidth)}",
+                "FAIL",
+                FormatElapsed(stopwatch.Elapsed)
+            };
+
+            return string.Join("  ", segments);
+        }
+    }
+
+    private static string BuildProgressRail(int completed, int total, int width)
     {
         var safeTotal = Math.Max(1, total);
-        const int width = ProgressRailWidth;
+        var safeWidth = Math.Max(1, width);
         var safeCompleted = Math.Clamp(completed, 0, safeTotal);
         var filled = safeCompleted >= safeTotal
-            ? width
-            : (int)Math.Floor(safeCompleted * width / (double)safeTotal);
-        return $"[{new string('=', filled)}{new string('-', width - filled)}]";
+            ? safeWidth
+            : (int)Math.Floor(safeCompleted * safeWidth / (double)safeTotal);
+        return $"[{new string('#', filled)}{new string('.', safeWidth - filled)}]";
     }
 
-    private static string Shorten(string value, int maxLength)
+    private static string BuildProgressRail(int completed, int total, int width, char spinnerFrame)
     {
-        var normalized = value.Trim();
-        if (normalized.Length <= maxLength)
+        var safeTotal = Math.Max(1, total);
+        var safeWidth = Math.Max(1, width);
+        var safeCompleted = Math.Clamp(completed, 0, safeTotal);
+        if (safeCompleted >= safeTotal)
         {
-            return normalized;
+            return BuildProgressRail(safeCompleted, safeTotal, safeWidth);
         }
 
-        return normalized[..Math.Max(0, maxLength - 3)] + "...";
+        var spinnerIndex = (int)Math.Floor(safeCompleted * safeWidth / (double)safeTotal);
+        spinnerIndex = Math.Clamp(spinnerIndex, 0, safeWidth - 1);
+        return $"[{new string('#', spinnerIndex)}{spinnerFrame}{new string('.', safeWidth - spinnerIndex - 1)}]";
     }
+
+    private static string FormatElapsed(TimeSpan elapsed) =>
+        elapsed.TotalHours >= 1
+            ? elapsed.ToString(@"hh\:mm\:ss", CultureInfo.InvariantCulture)
+            : elapsed.ToString(@"mm\:ss", CultureInfo.InvariantCulture);
+
+    private static int CountWidth(int maxValue) =>
+        Math.Max(2, Math.Max(1, maxValue).ToString(CultureInfo.InvariantCulture).Length);
+
+    private static string FormatCount(int value, int width) =>
+        Math.Max(0, value).ToString(CultureInfo.InvariantCulture).PadLeft(Math.Max(1, width));
 }

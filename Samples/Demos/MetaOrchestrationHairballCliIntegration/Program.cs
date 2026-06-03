@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text;
 using MetaOrchestration;
 using MS = MetaSchema;
+using SQL = MetaSql;
 
 var options = DemoOptions.Parse(args);
 if (!options.Ok)
@@ -202,7 +203,8 @@ internal static class HairballDemo
     public const int DefaultSeed = 20260530;
     private const string ExecuteConnectionEnv = "HAIRBALL_EXECUTION_SQL";
     private const string TargetConnectionEnv = "HAIRBALL_TARGET_SQL";
-    private const string LocalhostConnectionString = "Server=localhost;Database=MetaOrchestrationHairball;Trusted_Connection=True;TrustServerCertificate=True;";
+    private const string DatabaseName = "MetaOrchestrationHairball";
+    private const string LocalhostConnectionString = "Server=localhost;Database=" + DatabaseName + ";Trusted_Connection=True;TrustServerCertificate=True;";
     private const string ExecuteSystemName = "Hairball";
     private const string RunPlanGraphCapturePath = "orchestration-run-plan-graph.txt";
     private const string ExecuteOutputCapturePath = "orchestration-execute-output.txt";
@@ -223,6 +225,7 @@ internal static class HairballDemo
         var prediction = scenario.Predict();
         WriteSqlFiles(runRoot, scenario);
         WriteSchemaWorkspace(runRoot, scenario);
+        WriteMetaSqlWorkspace(runRoot, scenario);
         WritePredictionFiles(runRoot, prediction);
         var commandScripts = WriteCommandScripts(runRoot, scenario);
 
@@ -349,11 +352,104 @@ internal static class HairballDemo
         model.SaveToXmlWorkspace(schemaWorkspace);
     }
 
+    private static void WriteMetaSqlWorkspace(string runRoot, HairballScenario scenario)
+    {
+        var workspacePath = Path.Combine(runRoot, "CurrentMetaSqlWorkspace");
+        var model = SQL.MetaSqlModel.CreateEmpty();
+        var database = new SQL.Database
+        {
+            Id = DatabaseName,
+            Name = DatabaseName,
+        };
+        model.DatabaseList.Add(database);
+
+        var schemasByName = new Dictionary<string, SQL.Schema>(StringComparer.OrdinalIgnoreCase);
+        SQL.Schema GetOrAddSchema(string schemaName)
+        {
+            if (schemasByName.TryGetValue(schemaName, out var existing))
+            {
+                return existing;
+            }
+
+            var schema = new SQL.Schema
+            {
+                Id = $"{DatabaseName}.{schemaName}",
+                Name = schemaName,
+                Database = database,
+            };
+            schemasByName.Add(schemaName, schema);
+            model.SchemaList.Add(schema);
+            return schema;
+        }
+
+        foreach (var sqlIdentifier in scenario.Pipelines
+                     .SelectMany(static pipeline => pipeline.Tasks)
+                     .SelectMany(static task => task.ReadObjects.Concat(task.WriteObjects))
+                     .Distinct(StringComparer.OrdinalIgnoreCase)
+                     .OrderBy(static item => item, StringComparer.OrdinalIgnoreCase))
+        {
+            var (schemaName, objectName) = ParseTwoPartIdentifier(sqlIdentifier);
+            var schema = GetOrAddSchema(schemaName);
+            var table = new SQL.Table
+            {
+                Id = $"{schema.Id}.{objectName}",
+                Name = objectName,
+                Schema = schema,
+            };
+            model.TableList.Add(table);
+            model.TableColumnList.Add(new SQL.TableColumn
+            {
+                Id = $"{table.Id}.Value",
+                Table = table,
+                Name = "Value",
+                Ordinal = "1",
+                MetaDataTypeId = "sqlserver:type:int",
+                IsNullable = "false",
+            });
+        }
+
+        for (var index = 0; index < scenario.Transforms.Count; index++)
+        {
+            var transform = scenario.Transforms[index];
+            var (schemaName, moduleName) = ParseTwoPartIdentifier(transform.ScriptName);
+            var schema = GetOrAddSchema(schemaName);
+            var deployOrdinal = (index + 1).ToString(CultureInfo.InvariantCulture);
+            if (transform.IsStoredProcedure)
+            {
+                model.StoredProcedureList.Add(new SQL.StoredProcedure
+                {
+                    Id = $"{schema.Id}.procedure.{moduleName}",
+                    Schema = schema,
+                    Name = moduleName,
+                    DefinitionSql = transform.Sql,
+                    DeployOrdinal = deployOrdinal,
+                });
+            }
+            else
+            {
+                model.ViewList.Add(new SQL.View
+                {
+                    Id = $"{schema.Id}.view.{moduleName}",
+                    Schema = schema,
+                    Name = moduleName,
+                    DefinitionSql = transform.Sql,
+                    DeployOrdinal = deployOrdinal,
+                });
+            }
+        }
+
+        model.SaveToXmlWorkspace(workspacePath);
+    }
+
     private static HairballGeneratedScripts WriteCommandScripts(string runRoot, HairballScenario scenario)
     {
         var setupScriptPath = Path.Combine(runRoot, "generated-setup.cmd");
         var executeScriptPath = Path.Combine(runRoot, "generated-execute.cmd");
         var setupCommands = new List<HairballBatchCommand>();
+
+        setupCommands.Add(HairballBatchCommand.Run($"meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-env {ExecuteConnectionEnv} --out MetaSqlDeployManifest"));
+        setupCommands.Add(HairballBatchCommand.Run($"meta-sql deploy --manifest-workspace MetaSqlDeployManifest --source-workspace CurrentMetaSqlWorkspace --connection-env {ExecuteConnectionEnv}"));
+        setupCommands.Add(HairballBatchCommand.Run($"meta-sql deploy-plan --source-workspace CurrentMetaSqlWorkspace --connection-env {ExecuteConnectionEnv} --out MetaSqlVerifyManifest"));
 
         for (var index = 0; index < scenario.Transforms.Count; index++)
         {
@@ -417,7 +513,13 @@ internal static class HairballDemo
             "meta-orchestration inspect-run-plan --workspace OrchestrationWS",
             RunPlanGraphCapturePath));
 
-        WriteBatchScript(setupScriptPath, setupCommands);
+        WriteBatchScript(
+            setupScriptPath,
+            setupCommands,
+            [
+                (ExecuteConnectionEnv, LocalhostConnectionString),
+                (TargetConnectionEnv, LocalhostConnectionString)
+            ]);
         WriteBatchScript(
             executeScriptPath,
             [
@@ -688,6 +790,17 @@ internal static class HairballDemo
     }
 
     private static string QuoteCmd(string value) => "\"" + value.Replace("\"", "\"\"", StringComparison.Ordinal) + "\"";
+
+    private static (string SchemaName, string ObjectName) ParseTwoPartIdentifier(string sqlIdentifier)
+    {
+        var parts = sqlIdentifier.Split('.', 2);
+        if (parts.Length != 2)
+        {
+            throw new InvalidOperationException($"Expected two-part SQL identifier, got '{sqlIdentifier}'.");
+        }
+
+        return (parts[0], parts[1]);
+    }
 
     private static string PipelineId(string pipelineName) => pipelineName;
 
@@ -1021,7 +1134,7 @@ internal sealed record HairballScenario(
             new HairballTransformSeed(
                 scriptName,
                 scriptName,
-                CreateStoredProcedureSql(scriptName),
+                CreateStoredProcedureSql(scriptName, returnsValue: false),
                 null,
                 operations,
                 []),
@@ -1048,7 +1161,7 @@ internal sealed record HairballScenario(
             new HairballTransformSeed(
                 scriptName,
                 scriptName,
-                CreateStoredProcedureSql(scriptName),
+                CreateStoredProcedureSql(scriptName, returnsValue: true),
                 null,
                 operations,
                 ["Value"]),
@@ -1076,7 +1189,7 @@ internal sealed record HairballScenario(
             new HairballTransformSeed(
                 scriptName,
                 scriptName,
-                CreateStoredProcedureSql(scriptName),
+                CreateStoredProcedureSql(scriptName, returnsValue: false),
                 null,
                 operations,
                 []),
@@ -1161,14 +1274,20 @@ FROM {from}
 """;
     }
 
-    private static string CreateStoredProcedureSql(string scriptName) =>
-        $"""
+    private static string CreateStoredProcedureSql(string scriptName, bool returnsValue)
+    {
+        var body = returnsValue
+            ? "    SELECT CAST(1 AS int) AS Value;"
+            : "    RETURN 0;";
+        return $"""
 CREATE PROCEDURE {scriptName}
 AS
 BEGIN
-    SELECT 1 AS Marker;
+    SET NOCOUNT ON;
+{body}
 END
 """;
+    }
 
     private static string PipelineId(string pipelineName) => pipelineName;
 

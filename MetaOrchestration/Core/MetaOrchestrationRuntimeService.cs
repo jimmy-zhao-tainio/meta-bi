@@ -106,7 +106,6 @@ public sealed class MetaOrchestrationRuntimeService
             }
             supervisorState.SetRunPlan(runPlan.Name, plannedTasks.Length);
 
-            observer?.RunPlanReady(plannedTasks.Length);
             journal.WriteEvent("RunPlanReady", runPlan.Name, plannedTasks.Length.ToString(CultureInfo.InvariantCulture));
             var taskResults = new List<OrchestrationTaskWorkerResult>();
             var blockedResults = new List<OrchestrationTaskBlockedResult>();
@@ -137,6 +136,7 @@ public sealed class MetaOrchestrationRuntimeService
                 locksByPlannedTaskId,
                 dependenciesByTaskProfileId,
                 retryPolicy);
+            observer?.RunPlanReady(runtimeDefinition.Pipelines.Count);
             var taskOutcomesByTaskProfileId = await ExecuteWorkerGraphAsync(
                 runtimeDefinition,
                 taskResults,
@@ -152,6 +152,7 @@ public sealed class MetaOrchestrationRuntimeService
             var result = new OrchestrationRuntimeResult(
                 runPlan.Name,
                 !hasFailure,
+                runtimeDefinition.Pipelines.Count,
                 taskResults,
                 blockedResults,
                 runId,
@@ -192,12 +193,28 @@ public sealed class MetaOrchestrationRuntimeService
         var workers = new List<PipelineWorkerProcess>();
         var workersByName = new Dictionary<string, PipelineWorkerProcess>(StringComparer.OrdinalIgnoreCase);
         var eventTasksByWorker = new Dictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>>();
+        var exitTasksByWorker = new Dictionary<PipelineWorkerProcess, Task<WorkerProcessExit>>();
+        var closedWorkers = new HashSet<PipelineWorkerProcess>();
+        var processExitJournaledWorkers = new HashSet<PipelineWorkerProcess>();
+        var supervisorStopSignal = new TaskCompletionSource<RuntimePumpSignal>(
+            TaskCreationOptions.RunContinuationsAsynchronously);
+        using var supervisorStopRegistration = cancellationToken.Register(
+            static state => ((TaskCompletionSource<RuntimePumpSignal>)state!).TrySetResult(
+                new RuntimePumpSignal.SupervisorStopRequested("supervisor cancellation requested")),
+            supervisorStopSignal);
+        var schedulerTickPending = true;
         var snapshot = kernel.Snapshot;
 
         async Task<KernelResult> SubmitAsync(RuntimeEvent runtimeEvent)
         {
             var result = kernel.RegisterEvent(runtimeEvent);
             snapshot = result.Snapshot;
+            observer?.RuntimeStateChanged(new OrchestrationRuntimeProgressSnapshot(
+                snapshot.PendingCount,
+                snapshot.ReadyCount,
+                snapshot.RunningGrantCount,
+                snapshot.RetryCount,
+                snapshot.Workers.Count(static item => item.State != WorkerRuntimeState.Closed)));
             supervisorState.SetRuntimeCounts(
                 snapshot.PendingCount,
                 snapshot.ReadyCount,
@@ -205,7 +222,10 @@ public sealed class MetaOrchestrationRuntimeService
                 snapshot.RetryCount,
                 taskResults.Count,
                 blockedResults.Count);
-            supervisorState.SetLiveWorkers(eventTasksByWorker.Keys.Select(static worker => worker.PipelineName));
+            supervisorState.SetLiveWorkers(
+                exitTasksByWorker.Keys
+                    .Where(static worker => !worker.HasExited)
+                    .Select(static worker => worker.PipelineName));
 
             foreach (var action in result.Actions)
             {
@@ -226,6 +246,8 @@ public sealed class MetaOrchestrationRuntimeService
                     if (workersByName.TryGetValue(start.WorkerName, out var existingWorker))
                     {
                         eventTasksByWorker.Remove(existingWorker);
+                        exitTasksByWorker.Remove(existingWorker);
+                        closedWorkers.Add(existingWorker);
                         if (!existingWorker.HasExited)
                         {
                             existingWorker.Terminate("worker replaced by orchestration");
@@ -251,7 +273,8 @@ public sealed class MetaOrchestrationRuntimeService
                     journal.WriteEvent("WorkerLog", worker.PipelineName, $"stdout={worker.StandardOutputArtifactPath}; stderr={worker.StandardErrorArtifactPath}");
                     workers.Add(worker);
                     workersByName[worker.PipelineName] = worker;
-                    eventTasksByWorker[worker] = worker.ReadEventAsync(cancellationToken);
+                    eventTasksByWorker[worker] = worker.ReadEventAsync(CancellationToken.None);
+                    exitTasksByWorker[worker] = worker.WaitForExitEventAsync(CancellationToken.None);
                     return;
                 case RuntimeAction.SendStartPipeline startPipeline:
                     if (!workersByName.TryGetValue(startPipeline.WorkerName, out var startWorker) || startWorker.HasExited)
@@ -361,6 +384,10 @@ public sealed class MetaOrchestrationRuntimeService
                 case RuntimeAction.RecordBlockedTasks blocked:
                     RecordRuntimeBlockedTasks(blocked.BlockedTasks, blockedResults, journal, observer);
                     return;
+                case RuntimeAction.RecordPipelineCompletion completed:
+                    journal.WriteEvent("PipelineCompleted", completed.PipelineName, string.Empty);
+                    observer?.PipelineCompleted(completed.PipelineName);
+                    return;
                 case RuntimeAction.WriteJournalEntry entry:
                     journal.WriteEvent(entry.EventKind, entry.Subject, entry.Detail);
                     return;
@@ -378,7 +405,11 @@ public sealed class MetaOrchestrationRuntimeService
 
         async Task ProcessWorkerEventAsync(Task<WorkerProtocolEvent> completedEventTask)
         {
-            var worker = eventTasksByWorker.First(item => ReferenceEquals(item.Value, completedEventTask)).Key;
+            if (!TryRemoveCompletedWorkerEvent(completedEventTask, out var worker))
+            {
+                return;
+            }
+
             eventTasksByWorker.Remove(worker);
             var workerEvent = await completedEventTask.ConfigureAwait(false);
             worker.MarkProtocolEventObservedBySupervisor();
@@ -398,7 +429,7 @@ public sealed class MetaOrchestrationRuntimeService
 
             if (string.Equals(workerEvent.Kind, WorkerEventKinds.Closed, StringComparison.OrdinalIgnoreCase))
             {
-                await SubmitAsync(new RuntimeEvent.WorkerClosed(worker.PipelineName, workerEvent.ExitCode, workerEvent.Message)).ConfigureAwait(false);
+                await SubmitWorkerClosedAsync(worker, workerEvent.ExitCode, workerEvent.Message, removeExitTask: false).ConfigureAwait(false);
                 return;
             }
 
@@ -438,82 +469,264 @@ public sealed class MetaOrchestrationRuntimeService
 
             if (!worker.HasExited &&
                 workersByName.TryGetValue(worker.PipelineName, out var currentWorker) &&
-                ReferenceEquals(currentWorker, worker))
+                ReferenceEquals(currentWorker, worker) &&
+                !closedWorkers.Contains(worker))
             {
-                eventTasksByWorker[worker] = worker.ReadEventAsync(cancellationToken);
+                eventTasksByWorker[worker] = worker.ReadEventAsync(CancellationToken.None);
             }
+        }
+
+        async Task ProcessWorkerExitAsync(Task<WorkerProcessExit> completedExitTask)
+        {
+            if (!TryRemoveCompletedWorkerExit(completedExitTask, out var worker))
+            {
+                return;
+            }
+
+            var exit = await completedExitTask.ConfigureAwait(false);
+            WriteWorkerProcessExitJournalEntry(worker, exit.ExitCode, exit.Reason);
+            await SubmitWorkerClosedAsync(worker, exit.ExitCode, exit.Reason, removeExitTask: true).ConfigureAwait(false);
+        }
+
+        async Task SubmitWorkerClosedAsync(
+            PipelineWorkerProcess worker,
+            int exitCode,
+            string reason,
+            bool removeExitTask)
+        {
+            eventTasksByWorker.Remove(worker);
+            if (worker.TryGetExitCode(out var observedExitCode))
+            {
+                WriteWorkerProcessExitJournalEntry(
+                    worker,
+                    observedExitCode,
+                    string.IsNullOrWhiteSpace(reason) ? "worker process exited" : reason);
+                exitTasksByWorker.Remove(worker);
+            }
+            else if (removeExitTask)
+            {
+                exitTasksByWorker.Remove(worker);
+            }
+
+            if (!closedWorkers.Add(worker))
+            {
+                return;
+            }
+
+            if (!workersByName.TryGetValue(worker.PipelineName, out var currentWorker) ||
+                !ReferenceEquals(currentWorker, worker))
+            {
+                return;
+            }
+
+            await SubmitAsync(new RuntimeEvent.WorkerClosed(worker.PipelineName, exitCode, reason)).ConfigureAwait(false);
+        }
+
+        void WriteWorkerProcessExitJournalEntry(
+            PipelineWorkerProcess worker,
+            int exitCode,
+            string reason)
+        {
+            if (!processExitJournaledWorkers.Add(worker))
+            {
+                return;
+            }
+
+            journal.WriteEvent(
+                "WorkerProcessExited",
+                worker.PipelineName,
+                $"ExitCode={exitCode.ToString(CultureInfo.InvariantCulture)}; {reason}");
+        }
+
+        bool TryRemoveCompletedWorkerEvent(
+            Task<WorkerProtocolEvent> completedEventTask,
+            out PipelineWorkerProcess worker)
+        {
+            foreach (var item in eventTasksByWorker.ToArray())
+            {
+                if (ReferenceEquals(item.Value, completedEventTask))
+                {
+                    worker = item.Key;
+                    eventTasksByWorker.Remove(item.Key);
+                    return true;
+                }
+            }
+
+            worker = null!;
+            return false;
+        }
+
+        bool TryRemoveCompletedWorkerExit(
+            Task<WorkerProcessExit> completedExitTask,
+            out PipelineWorkerProcess worker)
+        {
+            foreach (var item in exitTasksByWorker.ToArray())
+            {
+                if (ReferenceEquals(item.Value, completedExitTask))
+                {
+                    worker = item.Key;
+                    exitTasksByWorker.Remove(item.Key);
+                    return true;
+                }
+            }
+
+            worker = null!;
+            return false;
+        }
+
+        async Task ProcessRuntimePumpSignalAsync(RuntimePumpSignal signal)
+        {
+            switch (signal)
+            {
+                case RuntimePumpSignal.SchedulerTick tick:
+                    var beforeProtocolCount = eventTasksByWorker.Count;
+                    var beforeExitCount = exitTasksByWorker.Count;
+                    var schedulerResult = await SubmitAsync(new RuntimeEvent.SchedulerTick(tick.Now, request.MaxDegreeOfParallelism)).ConfigureAwait(false);
+                    schedulerTickPending = schedulerResult.Actions.Any(action => action is not RuntimeAction.PublishSnapshot) ||
+                                           eventTasksByWorker.Count != beforeProtocolCount ||
+                                           exitTasksByWorker.Count != beforeExitCount;
+                    return;
+                case RuntimePumpSignal.WorkerProtocol protocol:
+                    await ProcessWorkerEventAsync(protocol.EventTask).ConfigureAwait(false);
+                    schedulerTickPending = true;
+                    return;
+                case RuntimePumpSignal.WorkerProcessExited exited:
+                    await ProcessWorkerExitAsync(exited.ExitTask).ConfigureAwait(false);
+                    schedulerTickPending = true;
+                    return;
+                case RuntimePumpSignal.TimeoutElapsed:
+                    await ProcessRuntimeTimeoutElapsedAsync().ConfigureAwait(false);
+                    schedulerTickPending = true;
+                    return;
+                case RuntimePumpSignal.SupervisorStopRequested stop:
+                    await SubmitAsync(new RuntimeEvent.SupervisorStopRequested(stop.Reason)).ConfigureAwait(false);
+                    throw new OperationCanceledException(stop.Reason, cancellationToken);
+                default:
+                    throw new InvalidOperationException($"Unsupported runtime pump signal '{signal.GetType().Name}'.");
+            }
+        }
+
+        async Task ProcessRuntimeTimeoutElapsedAsync()
+        {
+            var timedOutWorker = FindRuntimeTimedOutWorker(
+                eventTasksByWorker,
+                workerEventTimeout,
+                workerActivationTimeout,
+                DateTimeOffset.UtcNow);
+            if (timedOutWorker is null)
+            {
+                return;
+            }
+
+            eventTasksByWorker.Remove(timedOutWorker);
+            var timeout = ResolveRuntimeWorkerTimeout(timedOutWorker, workerEventTimeout, workerActivationTimeout);
+            var reason = timeout is null
+                ? "worker stopped responding"
+                : $"No worker protocol event was received within {FormatTimeout(timeout.Value)}.";
+            journal.WriteEvent("WorkerProtocolTimeout", timedOutWorker.PipelineName, reason);
+            timedOutWorker.Terminate(reason);
+            await SubmitAsync(new RuntimeEvent.WorkerTimedOut(
+                timedOutWorker.PipelineName,
+                WorkerFailureClasses.TaskTimeout,
+                reason)).ConfigureAwait(false);
+        }
+
+        RuntimePumpSignal? TryTakeImmediateRuntimePumpSignal()
+        {
+            if (supervisorStopSignal.Task.IsCompletedSuccessfully)
+            {
+                return supervisorStopSignal.Task.Result;
+            }
+
+            foreach (var item in eventTasksByWorker.ToArray())
+            {
+                if (item.Value.IsCompleted)
+                {
+                    return new RuntimePumpSignal.WorkerProtocol(item.Value);
+                }
+            }
+
+            foreach (var item in exitTasksByWorker.ToArray())
+            {
+                if (item.Value.IsCompleted)
+                {
+                    return new RuntimePumpSignal.WorkerProcessExited(item.Value);
+                }
+            }
+
+            if (schedulerTickPending)
+            {
+                schedulerTickPending = false;
+                return new RuntimePumpSignal.SchedulerTick(DateTimeOffset.UtcNow);
+            }
+
+            return null;
+        }
+
+        async Task<RuntimePumpSignal> WaitForRuntimePumpSignalAsync()
+        {
+            if (TryTakeImmediateRuntimePumpSignal() is { } immediateSignal)
+            {
+                return immediateSignal;
+            }
+
+            var waitTasks = eventTasksByWorker.Values.Cast<Task>().ToList();
+            waitTasks.AddRange(exitTasksByWorker.Values);
+            if (!supervisorStopSignal.Task.IsCompleted)
+            {
+                waitTasks.Add(supervisorStopSignal.Task);
+            }
+
+            var timeoutWakeTask = CreateRuntimeTimeoutSignalTask(
+                eventTasksByWorker,
+                workerEventTimeout,
+                workerActivationTimeout,
+                cancellationToken);
+            if (timeoutWakeTask is not null)
+            {
+                waitTasks.Add(timeoutWakeTask);
+            }
+
+            if (waitTasks.Count == 0)
+            {
+                if (HasRuntimeWork(snapshot))
+                {
+                    throw new InvalidOperationException("Cannot execute run plan because no pipeline worker can produce the remaining task events.");
+                }
+
+                return new RuntimePumpSignal.Completed();
+            }
+
+            var completedTask = await Task.WhenAny(waitTasks).ConfigureAwait(false);
+            if (ReferenceEquals(completedTask, supervisorStopSignal.Task))
+            {
+                return await supervisorStopSignal.Task.ConfigureAwait(false);
+            }
+
+            if (ReferenceEquals(completedTask, timeoutWakeTask))
+            {
+                return await timeoutWakeTask!.ConfigureAwait(false);
+            }
+
+            if (completedTask is Task<WorkerProtocolEvent> workerEventTask)
+            {
+                return new RuntimePumpSignal.WorkerProtocol(workerEventTask);
+            }
+
+            return new RuntimePumpSignal.WorkerProcessExited((Task<WorkerProcessExit>)completedTask);
         }
 
         try
         {
-            await SubmitAsync(new RuntimeEvent.SchedulerTick(DateTimeOffset.UtcNow, request.MaxDegreeOfParallelism)).ConfigureAwait(false);
-            while (HasRuntimeWork(snapshot) || eventTasksByWorker.Count > 0)
+            while (schedulerTickPending || HasRuntimeWork(snapshot) || eventTasksByWorker.Count > 0 || exitTasksByWorker.Count > 0)
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                var completed = eventTasksByWorker.Values.FirstOrDefault(static item => item.IsCompleted);
-                if (completed is not null)
+                var signal = await WaitForRuntimePumpSignalAsync().ConfigureAwait(false);
+                if (signal is RuntimePumpSignal.Completed)
                 {
-                    await ProcessWorkerEventAsync(completed).ConfigureAwait(false);
-                    continue;
-                }
-
-                var beforeActionCount = eventTasksByWorker.Count;
-                var schedulerResult = await SubmitAsync(new RuntimeEvent.SchedulerTick(DateTimeOffset.UtcNow, request.MaxDegreeOfParallelism)).ConfigureAwait(false);
-                if (schedulerResult.Actions.Any(action => action is not RuntimeAction.PublishSnapshot) ||
-                    eventTasksByWorker.Count != beforeActionCount)
-                {
-                    continue;
-                }
-
-                var timedOutWorker = FindRuntimeTimedOutWorker(
-                    eventTasksByWorker,
-                    workerEventTimeout,
-                    workerActivationTimeout,
-                    DateTimeOffset.UtcNow);
-                if (timedOutWorker is not null)
-                {
-                    eventTasksByWorker.Remove(timedOutWorker);
-                    var timeout = ResolveRuntimeWorkerTimeout(timedOutWorker, workerEventTimeout, workerActivationTimeout);
-                    var reason = timeout is null
-                        ? "worker stopped responding"
-                        : $"No worker protocol event was received within {FormatTimeout(timeout.Value)}.";
-                    journal.WriteEvent("WorkerProtocolTimeout", timedOutWorker.PipelineName, reason);
-                    timedOutWorker.Terminate(reason);
-                    await SubmitAsync(new RuntimeEvent.WorkerTimedOut(
-                        timedOutWorker.PipelineName,
-                        WorkerFailureClasses.TaskTimeout,
-                        reason)).ConfigureAwait(false);
-                    continue;
-                }
-
-                if (eventTasksByWorker.Count == 0)
-                {
-                    if (HasRuntimeWork(snapshot))
-                    {
-                        throw new InvalidOperationException("Cannot execute run plan because no pipeline worker can produce the remaining task events.");
-                    }
-
                     break;
                 }
 
-                var timeoutWakeTask = CreateRuntimeTimeoutWakeTask(
-                    eventTasksByWorker,
-                    workerEventTimeout,
-                    workerActivationTimeout,
-                    cancellationToken);
-                var waitTasks = eventTasksByWorker.Values.Cast<Task>();
-                if (timeoutWakeTask is not null)
-                {
-                    waitTasks = waitTasks.Append(timeoutWakeTask);
-                }
-
-                var completedTask = await Task.WhenAny(waitTasks).ConfigureAwait(false);
-                if (ReferenceEquals(completedTask, timeoutWakeTask))
-                {
-                    continue;
-                }
-
-                await ProcessWorkerEventAsync((Task<WorkerProtocolEvent>)completedTask).ConfigureAwait(false);
+                await ProcessRuntimePumpSignalAsync(signal).ConfigureAwait(false);
             }
 
             return snapshot.Outcomes.ToDictionary(
@@ -558,11 +771,12 @@ public sealed class MetaOrchestrationRuntimeService
             worker?.StandardErrorText ?? string.Empty,
             completion.GrantId,
             completion.CommandId,
-            completion.AttemptNumber);
+            completion.AttemptNumber,
+            completion.FailureMessage);
         taskResults.Add(result);
         if (completion.RecordTerminalOutcome)
         {
-            observer?.TaskCompleted(result.PlannedTaskId, result.ExitCode == 0);
+            observer?.TaskCompleted(completion.TaskId, result.ExitCode == 0);
         }
 
         journal.WriteEvent(
@@ -623,7 +837,7 @@ public sealed class MetaOrchestrationRuntimeService
         return null;
     }
 
-    private static Task? CreateRuntimeTimeoutWakeTask(
+    private static Task<RuntimePumpSignal>? CreateRuntimeTimeoutSignalTask(
         IReadOnlyDictionary<PipelineWorkerProcess, Task<WorkerProtocolEvent>> eventTasksByWorker,
         TimeSpan? workerEventTimeout,
         TimeSpan? workerActivationTimeout,
@@ -644,8 +858,23 @@ public sealed class MetaOrchestrationRuntimeService
 
         var delay = nextTimeoutAt.Value - DateTimeOffset.UtcNow;
         return delay <= TimeSpan.Zero
-            ? Task.CompletedTask
-            : Task.Delay(delay, cancellationToken);
+            ? Task.FromResult<RuntimePumpSignal>(new RuntimePumpSignal.TimeoutElapsed())
+            : DelayRuntimeTimeoutSignalAsync(delay, cancellationToken);
+    }
+
+    private static async Task<RuntimePumpSignal> DelayRuntimeTimeoutSignalAsync(
+        TimeSpan delay,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
+            return new RuntimePumpSignal.TimeoutElapsed();
+        }
+        catch (OperationCanceledException)
+        {
+            return new RuntimePumpSignal.SupervisorStopRequested("supervisor cancellation requested");
+        }
     }
 
     private static TimeSpan? ResolveRuntimeWorkerTimeout(
@@ -801,6 +1030,26 @@ public sealed class MetaOrchestrationRuntimeService
                 {
                     return true;
                 }
+            }
+        }
+
+        public bool TryGetExitCode(out int exitCode)
+        {
+            try
+            {
+                if (!process.HasExited)
+                {
+                    exitCode = 0;
+                    return false;
+                }
+
+                exitCode = process.ExitCode;
+                return true;
+            }
+            catch (InvalidOperationException)
+            {
+                exitCode = 0;
+                return false;
             }
         }
 
@@ -995,9 +1244,6 @@ public sealed class MetaOrchestrationRuntimeService
                     }
                 }
 
-                await process.WaitForExitAsync(cancellationToken).ConfigureAwait(false);
-                await standardOutputPump.ConfigureAwait(false);
-                await standardErrorPump.ConfigureAwait(false);
                 RecordProtocolActivity();
                 return new WorkerProtocolEvent(
                     WorkerEventKinds.Closed,
@@ -1009,9 +1255,9 @@ public sealed class MetaOrchestrationRuntimeService
                     string.Empty,
                     string.Empty,
                     0,
-                    process.ExitCode,
+                    TryGetExitCode(out var exitCode) ? exitCode : -1,
                     string.Empty,
-                    string.Empty);
+                    "worker control channel closed");
             }
             catch (Exception ex) when (ex is InvalidOperationException or IOException or ObjectDisposedException)
             {
@@ -1029,6 +1275,27 @@ public sealed class MetaOrchestrationRuntimeService
                     0,
                     -1,
                     string.Empty,
+                    ex.Message);
+            }
+        }
+
+        public async Task<WorkerProcessExit> WaitForExitEventAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                await process.WaitForExitAsync(cancellationToken).ConfigureAwait(false);
+                await Task.WhenAll(standardOutputPump, standardErrorPump).ConfigureAwait(false);
+                return new WorkerProcessExit(
+                    PipelineName,
+                    process.ExitCode,
+                    "worker process exited");
+            }
+            catch (Exception ex) when (ex is InvalidOperationException or IOException or ObjectDisposedException)
+            {
+                standardError.AppendLine(ex.Message);
+                return new WorkerProcessExit(
+                    PipelineName,
+                    -1,
                     ex.Message);
             }
         }
@@ -1259,6 +1526,26 @@ public sealed class MetaOrchestrationRuntimeService
         }
     }
 
+    private sealed record WorkerProcessExit(
+        string PipelineName,
+        int ExitCode,
+        string Reason);
+
+    private abstract record RuntimePumpSignal
+    {
+        public sealed record SchedulerTick(DateTimeOffset Now) : RuntimePumpSignal;
+
+        public sealed record WorkerProtocol(Task<WorkerProtocolEvent> EventTask) : RuntimePumpSignal;
+
+        public sealed record WorkerProcessExited(Task<WorkerProcessExit> ExitTask) : RuntimePumpSignal;
+
+        public sealed record TimeoutElapsed : RuntimePumpSignal;
+
+        public sealed record SupervisorStopRequested(string Reason) : RuntimePumpSignal;
+
+        public sealed record Completed : RuntimePumpSignal;
+    }
+
 }
 
 public sealed record OrchestrationRuntimeRequest(
@@ -1280,6 +1567,7 @@ public sealed record OrchestrationRuntimeRequest(
 public sealed record OrchestrationRuntimeResult(
     string RunPlanName,
     bool Succeeded,
+    int PipelineCount,
     IReadOnlyList<OrchestrationTaskWorkerResult> TaskResults,
     IReadOnlyList<OrchestrationTaskBlockedResult> BlockedResults,
     Guid RunId,
@@ -1295,7 +1583,8 @@ public sealed record OrchestrationTaskWorkerResult(
     string StandardError,
     string GrantId = "",
     string CommandId = "",
-    int AttemptNumber = 0);
+    int AttemptNumber = 0,
+    string FailureMessage = "");
 
 public sealed record OrchestrationTaskBlockedResult(
     string PlannedTaskId,
@@ -1315,9 +1604,20 @@ public interface IOrchestrationRuntimeObserver
 
     void RunPlanReady(int totalTasks);
 
+    void RuntimeStateChanged(OrchestrationRuntimeProgressSnapshot snapshot);
+
     void TaskStarted(string taskId, string taskName);
 
     void TaskCompleted(string taskId, bool succeeded);
 
     void TaskBlocked(string taskId);
+
+    void PipelineCompleted(string pipelineName);
 }
+
+public sealed record OrchestrationRuntimeProgressSnapshot(
+    int PendingCount,
+    int ReadyCount,
+    int RunningGrantCount,
+    int RetryCount,
+    int LiveWorkerCount);

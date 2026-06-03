@@ -70,6 +70,9 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
             case RuntimeEvent.SupervisorFailureObserved e:
                 HandleSupervisorFailureObserved(e, actions);
                 break;
+            case RuntimeEvent.SupervisorStopRequested e:
+                HandleSupervisorStopRequested(e, actions);
+                break;
             case RuntimeEvent.PipelineStopRequested e:
                 HandlePipelineStopRequested(e, actions);
                 break;
@@ -86,8 +89,8 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
         RuntimeEvent.SchedulerTick e,
         ICollection<RuntimeAction> actions)
     {
-        TryPromoteDueRetry(e.Now);
-        TryIssueNextGrant(e.Now, e.MaxActiveWorkerProcesses, actions);
+        PromoteDueRetries(e.Now);
+        TryIssueReadyGrants(e.Now, e.MaxActiveWorkerProcesses, actions);
         if (TryRequestCapacityDeferral(e.MaxActiveWorkerProcesses, actions))
         {
             return;
@@ -322,7 +325,8 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
                 e.ExitCode == 0 ? 4 : e.ExitCode,
                 retryDecision.NextAttemptNumber,
                 dueAt,
-                retryTransition);
+                retryTransition,
+                e.Reason);
             actions.Add(new RuntimeAction.RecordTaskCompletion(retry.Completion));
             actions.Add(new RuntimeAction.ScheduleRetry(
                 retry.Retry.TaskId,
@@ -340,7 +344,7 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
                 state.RunningGrants.GetGrantState(e.TaskId)),
             ExecutionTrigger.TaskFailed,
             CreateFacts(e.WorkerName, e.TaskId, e.GrantId, e.CommandId, e.AttemptNumber));
-        var completion = state.CompleteGrantFailed(grant, task, e.ExitCode, failedTransition);
+        var completion = state.CompleteGrantFailed(grant, task, e.ExitCode, failedTransition, e.Reason);
         actions.Add(new RuntimeAction.RecordTaskCompletion(completion));
         actions.Add(new RuntimeAction.MarkPipelineFailed(
             grant.WorkerName,
@@ -399,10 +403,11 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
             var retry = state.CompleteGrantWithReplacementRetry(
                 runningGrant.Grant,
                 task,
-                e.ExitCode == 0 ? 4 : e.ExitCode,
+                e.ExitCode,
                 retryDecision.NextAttemptNumber,
                 DateTimeOffset.UtcNow + retryDecision.Delay,
-                retryTransition);
+                retryTransition,
+                e.Reason);
             actions.Add(new RuntimeAction.RecordTaskCompletion(retry.Completion));
             actions.Add(new RuntimeAction.ScheduleRetry(
                 retry.Retry.TaskId,
@@ -446,7 +451,7 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
                 runningGrant.Grant.GrantId,
                 runningGrant.Grant.CommandId,
                 runningGrant.Grant.AttemptNumber));
-        var completion = state.FailActiveGrantAfterWorkerLoss(runningGrant, task, e.ExitCode == 0 ? 4 : e.ExitCode, failureTransition);
+        var completion = state.FailActiveGrantAfterWorkerLoss(runningGrant, task, e.ExitCode, failureTransition, e.Reason);
         actions.Add(new RuntimeAction.RecordTaskCompletion(completion));
         actions.Add(new RuntimeAction.MarkPipelineFailed(
             e.WorkerName,
@@ -486,6 +491,15 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
 
         if (!state.PipelineHasUnresolvedWork(workerName))
         {
+            var completed = activationReducer.Apply(
+                state.PipelineActivations.GetState(workerName),
+                ActivationTrigger.PipelineCompleted,
+                new ActivationFacts(
+                    HasRemainingPipelineWork: false,
+                    HasWorkerCapacity: true,
+                    DateTimeOffset.UtcNow));
+            state.ApplyPipelineActivation(workerName, completed);
+            actions.Add(new RuntimeAction.RecordPipelineCompletion(workerName));
             return;
         }
 
@@ -621,7 +635,7 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
                 runningGrant.Grant.GrantId,
                 runningGrant.Grant.CommandId,
                 runningGrant.Grant.AttemptNumber));
-        var completion = state.FailActiveGrantAfterWorkerLoss(runningGrant, task, e.ExitCode == 0 ? 4 : e.ExitCode, failureTransition);
+        var completion = state.FailActiveGrantAfterWorkerLoss(runningGrant, task, e.ExitCode == 0 ? 4 : e.ExitCode, failureTransition, e.Reason);
         actions.Add(new RuntimeAction.RecordTaskCompletion(completion));
         actions.Add(new RuntimeAction.MarkPipelineFailed(
             e.WorkerName,
@@ -629,6 +643,42 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
             runningGrant.Grant.TaskId,
             e.FailureClass,
             e.Reason));
+    }
+
+    private void HandleSupervisorStopRequested(
+        RuntimeEvent.SupervisorStopRequested e,
+        ICollection<RuntimeAction> actions)
+    {
+        actions.Add(new RuntimeAction.WriteJournalEntry(
+            "SupervisorStopRequested",
+            "orchestration",
+            e.Reason));
+
+        foreach (var worker in state.WorkerRegistry.CreateSnapshot()
+                     .Where(static item => item.State != WorkerRuntimeState.Closed)
+                     .OrderBy(static item => item.WorkerName, StringComparer.OrdinalIgnoreCase))
+        {
+            var activationState = state.PipelineActivations.GetState(worker.WorkerName);
+            if (activationState is PipelineActivationState.Completed or PipelineActivationState.Stopped)
+            {
+                continue;
+            }
+
+            var pipeline = state.Definition.RequirePipeline(worker.WorkerName);
+            var transition = activationReducer.Apply(
+                activationState,
+                ActivationTrigger.PipelineStopped,
+                new ActivationFacts(
+                    HasRemainingPipelineWork: true,
+                    HasWorkerCapacity: true,
+                    DateTimeOffset.UtcNow));
+            state.StopPipeline(worker.WorkerName, transition);
+            actions.Add(new RuntimeAction.SendStopPipeline(
+                worker.WorkerName,
+                pipeline.PipelineId,
+                string.Empty,
+                e.Reason));
+        }
     }
 
     private void HandlePipelineStopRequested(
@@ -647,96 +697,106 @@ internal sealed class MetaOrchestrationRuntimeKernel : IRuntimeEventSink
         actions.Add(new RuntimeAction.SendStopPipeline(e.PipelineName, pipeline.PipelineId, string.Empty, e.Reason));
     }
 
-    private void TryPromoteDueRetry(DateTimeOffset now)
+    private void PromoteDueRetries(DateTimeOffset now)
     {
-        var retry = state.RetrySchedule.FirstDue(now);
-        if (retry is null)
+        while (state.RetrySchedule.FirstDue(now) is { } retry)
         {
-            return;
+            var task = state.Definition.RequireTask(retry.TaskId);
+            var transition = executionReducer.Apply(
+                new ExecutionState(
+                    state.TaskLifecycles.GetState(retry.TaskId),
+                    state.WorkerRegistry.GetState(retry.WorkerName),
+                    GrantRuntimeState.Released),
+                ExecutionTrigger.RetryDue,
+                CreateFacts(retry.WorkerName, retry.TaskId, retry.PreviousGrantId, string.Empty, retry.AttemptNumber));
+            state.RetrySchedule.Consume(retry.TaskId);
+            state.TaskLifecycles.ApplyTransition(retry.TaskId, transition.State.Task);
+            state.ReadyQueue.MarkReady(new RuntimeReadyWork(
+                retry.TaskId,
+                task.TaskName,
+                retry.WorkerName,
+                task.PipelineName,
+                task.PipelineId,
+                retry.AttemptNumber,
+                retry.PreviousGrantId,
+                DateTimeOffset.MinValue));
+            state.AssertTaskHasSingleRuntimeLocation(retry.TaskId);
         }
-
-        var task = state.Definition.RequireTask(retry.TaskId);
-        var transition = executionReducer.Apply(
-            new ExecutionState(
-                state.TaskLifecycles.GetState(retry.TaskId),
-                state.WorkerRegistry.GetState(retry.WorkerName),
-                GrantRuntimeState.Released),
-            ExecutionTrigger.RetryDue,
-            CreateFacts(retry.WorkerName, retry.TaskId, retry.PreviousGrantId, string.Empty, retry.AttemptNumber));
-        state.RetrySchedule.Consume(retry.TaskId);
-        state.TaskLifecycles.ApplyTransition(retry.TaskId, transition.State.Task);
-        state.ReadyQueue.MarkReady(new RuntimeReadyWork(
-            retry.TaskId,
-            task.TaskName,
-            retry.WorkerName,
-            task.PipelineName,
-            task.PipelineId,
-            retry.AttemptNumber,
-            retry.PreviousGrantId,
-            DateTimeOffset.MinValue));
-        state.AssertTaskHasSingleRuntimeLocation(retry.TaskId);
     }
 
-    private void TryIssueNextGrant(
+    private void TryIssueReadyGrants(
         DateTimeOffset now,
         int maxDegreeOfParallelism,
         ICollection<RuntimeAction> actions)
     {
-        if (state.RunningGrants.Count >= Math.Max(1, maxDegreeOfParallelism))
-        {
-            return;
-        }
+        var maxRunningGrants = Math.Max(1, maxDegreeOfParallelism);
 
-        foreach (var ready in state.ReadyQueue.CreateSnapshot())
+        while (state.RunningGrants.Count < maxRunningGrants)
         {
-            if (ready.NotBeforeUtc > now)
+            var changed = false;
+            foreach (var ready in state.ReadyQueue.CreateSnapshot())
             {
-                continue;
+                if (state.RunningGrants.Count >= maxRunningGrants)
+                {
+                    return;
+                }
+
+                if (ready.NotBeforeUtc > now)
+                {
+                    continue;
+                }
+
+                var task = state.Definition.RequireTask(ready.TaskId);
+                var readiness = EvaluateReadiness(task, out var dependency, out var blockedOutcome, out var blockedReason);
+                if (readiness == OrchestrationTaskReadiness.Waiting)
+                {
+                    continue;
+                }
+
+                if (readiness == OrchestrationTaskReadiness.Skip)
+                {
+                    var blocked = state.BlockPipelineTasks(
+                        task,
+                        dependency with
+                        {
+                            BlockedOutcome = blockedOutcome,
+                            BlockedReason = blockedReason
+                        },
+                        blockedReason);
+                    actions.Add(new RuntimeAction.RecordBlockedTasks(
+                        task.PipelineName,
+                        task.PipelineId,
+                        task.TaskId,
+                        blockedReason,
+                        blocked));
+                    actions.Add(new RuntimeAction.SendStopPipeline(task.PipelineName, task.PipelineId, task.TaskId, blockedReason));
+                    changed = true;
+                    break;
+                }
+
+                if (!state.RuntimeLocks.CanAcquire(task.LockRequests))
+                {
+                    continue;
+                }
+
+                var grant = state.CreateGrant(ready);
+                var transition = executionReducer.Apply(
+                    new ExecutionState(
+                        state.TaskLifecycles.GetState(ready.TaskId),
+                        state.WorkerRegistry.GetState(ready.WorkerName),
+                        GrantRuntimeState.None),
+                    ExecutionTrigger.GrantIssued,
+                    CreateFacts(ready.WorkerName, ready.TaskId, grant.GrantId, grant.CommandId, grant.AttemptNumber));
+                state.IssueGrantFromReady(ready, task, grant, transition);
+                actions.Add(new RuntimeAction.IssueGrant(ready.WorkerName, ready.TaskId, task.TaskName, grant));
+                changed = true;
+                break;
             }
 
-            var task = state.Definition.RequireTask(ready.TaskId);
-            var readiness = EvaluateReadiness(task, out var dependency, out var blockedOutcome, out var blockedReason);
-            if (readiness == OrchestrationTaskReadiness.Waiting)
+            if (!changed)
             {
-                continue;
-            }
-
-            if (readiness == OrchestrationTaskReadiness.Skip)
-            {
-                var blocked = state.BlockPipelineTasks(
-                    task,
-                    dependency with
-                    {
-                        BlockedOutcome = blockedOutcome,
-                        BlockedReason = blockedReason
-                    },
-                    blockedReason);
-                actions.Add(new RuntimeAction.RecordBlockedTasks(
-                    task.PipelineName,
-                    task.PipelineId,
-                    task.TaskId,
-                    blockedReason,
-                    blocked));
-                actions.Add(new RuntimeAction.SendStopPipeline(task.PipelineName, task.PipelineId, task.TaskId, blockedReason));
                 return;
             }
-
-            if (!state.RuntimeLocks.CanAcquire(task.LockRequests))
-            {
-                continue;
-            }
-
-            var grant = state.CreateGrant(ready);
-            var transition = executionReducer.Apply(
-                new ExecutionState(
-                    state.TaskLifecycles.GetState(ready.TaskId),
-                    state.WorkerRegistry.GetState(ready.WorkerName),
-                    GrantRuntimeState.None),
-                ExecutionTrigger.GrantIssued,
-                CreateFacts(ready.WorkerName, ready.TaskId, grant.GrantId, grant.CommandId, grant.AttemptNumber));
-            state.IssueGrantFromReady(ready, task, grant, transition);
-            actions.Add(new RuntimeAction.IssueGrant(ready.WorkerName, ready.TaskId, task.TaskName, grant));
-            return;
         }
     }
 

@@ -11,7 +11,7 @@ internal static partial class Program
             return Fail(parse.ErrorMessage, HelpCommand("execute"));
         }
 
-        using var progress = OrchestrationExecutionProgressRenderer.TryCreate();
+        using var progress = OrchestrationExecutionProgressRenderer.TryCreate(parse.MaxDegreeOfParallelism);
         try
         {
             var observer = progress is null
@@ -46,7 +46,7 @@ internal static partial class Program
                 return PrintExecutionIncomplete(result);
             }
 
-            if (progress is null) PrintExecutionComplete(result);
+            PrintExecutionComplete(result);
 
             return 0;
         }
@@ -73,16 +73,19 @@ internal static partial class Program
     private static int PrintExecutionIncomplete(OrchestrationRuntimeResult result)
     {
         var failed = result.TaskResults.FirstOrDefault(static item => item.ExitCode != 0);
-        var succeededCount = result.TaskResults.Count(static item => item.ExitCode == 0);
-        var failedCount = result.TaskResults.Count(static item => item.ExitCode != 0);
+        var pipelineCount = result.PipelineCount;
+        var failedPipelineCount = result.TaskResults
+            .Where(static item => item.ExitCode != 0)
+            .Select(static item => item.PipelineName)
+            .Concat(result.BlockedResults.Select(static item => item.PipelineName))
+            .Where(static item => !string.IsNullOrWhiteSpace(item))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Count();
+        var completedPipelineCount = Math.Max(0, pipelineCount - failedPipelineCount);
         var details = new List<string>
         {
-            $"{result.RunPlanName} stopped with unresolved paths.",
-            $"  RunId: {result.RunId}",
-            $"  RunArtifacts: {result.RunArtifactDirectoryPath}",
-            $"  {succeededCount.ToString(CultureInfo.InvariantCulture)} succeeded",
-            $"  {failedCount.ToString(CultureInfo.InvariantCulture)} failed",
-            $"  {result.BlockedResults.Count.ToString(CultureInfo.InvariantCulture)} blocked",
+            $"{completedPipelineCount.ToString(CultureInfo.InvariantCulture)}/{pipelineCount.ToString(CultureInfo.InvariantCulture)} {Pluralize(pipelineCount, "pipeline", "pipelines")} completed.",
+            $"Run artifacts: {result.RunArtifactDirectoryPath}",
         };
 
         string? next = null;
@@ -90,15 +93,14 @@ internal static partial class Program
         {
             var childFailure = SummarizeChildFailure(failed);
             details.Add(string.Empty);
-            details.Add("First failed");
-            details.Add($"  {failed.PipelineName}.{failed.StepName}");
+            details.Add($"First failed: {failed.PipelineName}");
             if (!string.IsNullOrWhiteSpace(childFailure.Reason))
             {
-                details.Add($"  {childFailure.Reason}");
+                details.Add(childFailure.Reason);
             }
             else
             {
-                details.Add($"  exit code {failed.ExitCode.ToString(CultureInfo.InvariantCulture)}");
+                details.Add($"Exit code {failed.ExitCode.ToString(CultureInfo.InvariantCulture)}.");
             }
 
             AddTail(details, "Output", childFailure.OutputLines);
@@ -108,17 +110,12 @@ internal static partial class Program
 
         if (result.BlockedResults.Count > 0)
         {
-            details.Add(string.Empty);
-            details.Add("Blocked");
-            foreach (var blocked in result.BlockedResults.Take(4))
-            {
-                details.Add($"  {blocked.PipelineName}.{blocked.StepName}");
-            }
-
-            if (result.BlockedResults.Count > 4)
-            {
-                details.Add($"  ... {result.BlockedResults.Count - 4} more");
-            }
+            var blockedPipelineCount = result.BlockedResults
+                .Select(static item => item.PipelineName)
+                .Where(static item => !string.IsNullOrWhiteSpace(item))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Count();
+            details.Add($"{blockedPipelineCount.ToString(CultureInfo.InvariantCulture)} {Pluralize(blockedPipelineCount, "pipeline was", "pipelines were")} blocked by dependencies.");
         }
 
         return Fail(
@@ -130,24 +127,17 @@ internal static partial class Program
 
     private static void PrintExecutionComplete(OrchestrationRuntimeResult result)
     {
-        var succeededAttempts = result.TaskResults.Count(static item => item.ExitCode == 0);
-        var failedAttempts = result.TaskResults.Count(static item => item.ExitCode != 0);
-        Presenter.WriteInfo("Orchestration completed.");
-        Presenter.WriteInfo($"  RunPlan: {result.RunPlanName}");
-        Presenter.WriteInfo($"  RunId: {result.RunId}");
-        Presenter.WriteInfo($"  RunArtifacts: {result.RunArtifactDirectoryPath}");
-        Presenter.WriteInfo($"  TaskAttempts: {result.TaskResults.Count.ToString(CultureInfo.InvariantCulture)}");
-        Presenter.WriteInfo($"  SucceededAttempts: {succeededAttempts.ToString(CultureInfo.InvariantCulture)}");
-        Presenter.WriteInfo($"  FailedAttemptsRecovered: {failedAttempts.ToString(CultureInfo.InvariantCulture)}");
-        Presenter.WriteInfo($"  BlockedTasks: {result.BlockedResults.Count.ToString(CultureInfo.InvariantCulture)}");
+        var pipelineCount = result.PipelineCount;
+        Presenter.WriteInfo($"{pipelineCount.ToString(CultureInfo.InvariantCulture)} {Pluralize(pipelineCount, "pipeline", "pipelines")} executed successfully.");
     }
 
     private static ChildFailureSummary SummarizeChildFailure(OrchestrationTaskWorkerResult failed)
     {
+        var failureMessage = NormalizeChildReason(failed.FailureMessage);
         var outputLines = NormalizeChildLines(failed.StandardOutput);
         var errorLines = NormalizeChildLines(failed.StandardError);
-        var reason = outputLines.Concat(errorLines)
-            .FirstOrDefault(line =>
+        var reason = failureMessage ?? outputLines.Concat(errorLines)
+            .FirstOrDefault(static line =>
                 !line.StartsWith("Next:", StringComparison.OrdinalIgnoreCase) &&
                 !string.Equals(line, "Ok", StringComparison.OrdinalIgnoreCase));
         var next = outputLines.Concat(errorLines)
@@ -158,6 +148,7 @@ internal static partial class Program
             next = next["Next:".Length..].Trim();
         }
 
+        next ??= SuggestNextForFailureReason(reason);
         outputLines = outputLines
             .Where(line => !string.Equals(line, reason, StringComparison.Ordinal) &&
                            !line.StartsWith("Next:", StringComparison.OrdinalIgnoreCase))
@@ -176,6 +167,28 @@ internal static partial class Program
             .Split([Environment.NewLine, "\n"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .Where(static line => !string.Equals(line, "Cannot continue.", StringComparison.OrdinalIgnoreCase))
             .ToArray();
+    }
+
+    private static string? NormalizeChildReason(string text)
+    {
+        var normalized = NormalizeChildLines(text)
+            .FirstOrDefault(static line =>
+                !line.StartsWith("Next:", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(line, "Ok", StringComparison.OrdinalIgnoreCase));
+        return string.IsNullOrWhiteSpace(normalized) ? null : normalized;
+    }
+
+    private static string? SuggestNextForFailureReason(string? reason)
+    {
+        if (string.IsNullOrWhiteSpace(reason))
+        {
+            return null;
+        }
+
+        return reason.Contains("Cannot open database", StringComparison.OrdinalIgnoreCase) ||
+               reason.Contains("Login failed", StringComparison.OrdinalIgnoreCase)
+            ? "deploy the target database from the generated MetaSql workspace, confirm the connection env vars and login permissions, then rerun execute."
+            : null;
     }
 
     private static void AddTail(ICollection<string> details, string label, IReadOnlyCollection<string> lines)
@@ -314,11 +327,15 @@ internal static partial class Program
 
         public void RunPlanReady(int totalTasks) => progress.RunPlanReady(totalTasks);
 
+        public void RuntimeStateChanged(OrchestrationRuntimeProgressSnapshot snapshot) => progress.RuntimeStateChanged(snapshot);
+
         public void TaskStarted(string taskId, string taskName) => progress.TaskStarted(taskId, taskName);
 
         public void TaskCompleted(string taskId, bool succeeded) => progress.TaskCompleted(taskId, succeeded);
 
-        public void TaskBlocked(string taskId) => progress.TaskBlocked();
+        public void TaskBlocked(string taskId) => progress.TaskBlocked(taskId);
+
+        public void PipelineCompleted(string pipelineName) => progress.PipelineCompleted(pipelineName);
     }
 
     private sealed record ChildFailureSummary(
@@ -326,6 +343,9 @@ internal static partial class Program
         string? Next,
         IReadOnlyList<string> OutputLines,
         IReadOnlyList<string> ErrorLines);
+
+    private static string Pluralize(int count, string singular, string plural) =>
+        count == 1 ? singular : plural;
 
     private sealed record ParsedExecuteArgs(
         bool Ok,

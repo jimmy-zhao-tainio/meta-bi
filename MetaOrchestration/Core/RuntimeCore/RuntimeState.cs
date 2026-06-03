@@ -245,6 +245,7 @@ internal sealed record RuntimeSnapshot(
     IReadOnlyList<OutcomeRuntimeSnapshot> Outcomes);
 
 internal sealed record RuntimeTaskCompletion(
+    string TaskId,
     string TaskAccessProfileId,
     string PlannedTaskId,
     string PipelineName,
@@ -254,6 +255,7 @@ internal sealed record RuntimeTaskCompletion(
     string CommandId,
     int AttemptNumber,
     bool RecordTerminalOutcome,
+    string FailureMessage,
     string JournalEventKind);
 
 internal sealed record RuntimeBlockedTask(
@@ -540,7 +542,7 @@ internal sealed class RuntimeState
         RuntimeLocks.ReleaseForGrant(grant.GrantId);
         PipelineOutcomes.RecordOutcome(grant.TaskId, task.TaskAccessProfileId, "Succeeded", exitCode);
         AssertTaskHasSingleRuntimeLocation(grant.TaskId);
-        return CreateCompletion(task, grant, exitCode, recordTerminalOutcome: true, journalEventKind: "TaskSucceeded");
+        return CreateCompletion(task, grant, exitCode, recordTerminalOutcome: true, failureMessage: string.Empty, journalEventKind: "TaskSucceeded");
     }
 
     internal (RuntimeTaskCompletion Completion, RuntimeReadyWork Ready) CompleteGrantWithSameWorkerRetry(
@@ -569,7 +571,7 @@ internal sealed class RuntimeState
             dueAtUtc);
         ReadyQueue.MarkReady(ready);
         AssertTaskHasSingleRuntimeLocation(grant.TaskId);
-        return (CreateCompletion(task, grant, exitCode: 4, recordTerminalOutcome: false, journalEventKind: "TaskAttemptFailed"), ready);
+        return (CreateCompletion(task, grant, exitCode: 4, recordTerminalOutcome: false, failureMessage: string.Empty, journalEventKind: "TaskAttemptFailed"), ready);
     }
 
     internal (RuntimeTaskCompletion Completion, RuntimeRetryEntry Retry) CompleteGrantWithReplacementRetry(
@@ -578,7 +580,8 @@ internal sealed class RuntimeState
         int exitCode,
         int nextAttemptNumber,
         DateTimeOffset dueAtUtc,
-        ExecutionTransitionResult transition)
+        ExecutionTransitionResult transition,
+        string failureMessage)
     {
         if (transition.State.Task != TaskRuntimeState.RetryScheduled)
         {
@@ -595,35 +598,37 @@ internal sealed class RuntimeState
             dueAtUtc,
             grant.GrantId);
         AssertTaskHasSingleRuntimeLocation(grant.TaskId);
-        return (CreateCompletion(task, grant, exitCode, recordTerminalOutcome: false, journalEventKind: "TaskAttemptFailed"), retry);
+        return (CreateCompletion(task, grant, exitCode, recordTerminalOutcome: false, failureMessage, journalEventKind: "TaskAttemptFailed"), retry);
     }
 
     internal RuntimeTaskCompletion CompleteGrantFailed(
         RuntimeGrant grant,
         RuntimeTaskDefinition task,
         int exitCode,
-        ExecutionTransitionResult transition)
+        ExecutionTransitionResult transition,
+        string failureMessage)
     {
         TaskLifecycles.ApplyTransition(grant.TaskId, transition.State.Task);
         RunningGrants.FailGrant(grant.TaskId, grant.GrantId);
         RuntimeLocks.ReleaseForGrant(grant.GrantId);
         PipelineOutcomes.RecordOutcome(grant.TaskId, task.TaskAccessProfileId, "Failed", exitCode);
         AssertTaskHasSingleRuntimeLocation(grant.TaskId);
-        return CreateCompletion(task, grant, exitCode, recordTerminalOutcome: true, journalEventKind: "TaskFailed");
+        return CreateCompletion(task, grant, exitCode, recordTerminalOutcome: true, failureMessage, journalEventKind: "TaskFailed");
     }
 
     internal RuntimeTaskCompletion FailActiveGrantAfterWorkerLoss(
         RuntimeRunningGrant runningGrant,
         RuntimeTaskDefinition task,
         int exitCode,
-        ExecutionTransitionResult transition)
+        ExecutionTransitionResult transition,
+        string failureMessage)
     {
         TaskLifecycles.ApplyTransition(runningGrant.Grant.TaskId, transition.State.Task);
         RunningGrants.FailGrant(runningGrant.Grant.TaskId, runningGrant.Grant.GrantId);
         RuntimeLocks.ReleaseForGrant(runningGrant.Grant.GrantId);
         PipelineOutcomes.RecordOutcome(runningGrant.Grant.TaskId, task.TaskAccessProfileId, "Failed", exitCode);
         AssertTaskHasSingleRuntimeLocation(runningGrant.Grant.TaskId);
-        return CreateCompletion(task, runningGrant.Grant, exitCode, recordTerminalOutcome: true, journalEventKind: "TaskFailed");
+        return CreateCompletion(task, runningGrant.Grant, exitCode, recordTerminalOutcome: true, failureMessage, journalEventKind: "TaskFailed");
     }
 
     internal void StopPipeline(
@@ -882,8 +887,10 @@ internal sealed class RuntimeState
         RuntimeGrant grant,
         int exitCode,
         bool recordTerminalOutcome,
+        string failureMessage,
         string journalEventKind) =>
         new(
+            task.TaskId,
             task.TaskAccessProfileId,
             task.PlannedTaskId,
             task.PipelineName,
@@ -893,6 +900,7 @@ internal sealed class RuntimeState
             grant.CommandId,
             grant.AttemptNumber,
             recordTerminalOutcome,
+            failureMessage,
             journalEventKind);
 }
 

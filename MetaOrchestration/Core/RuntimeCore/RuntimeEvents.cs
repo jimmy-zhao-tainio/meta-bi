@@ -84,6 +84,8 @@ internal abstract record RuntimeEvent
         string FailureClass,
         string Reason) : RuntimeEvent;
 
+    public sealed record SupervisorStopRequested(string Reason) : RuntimeEvent;
+
     public sealed record PipelineStopRequested(
         string PipelineName,
         string Reason) : RuntimeEvent;

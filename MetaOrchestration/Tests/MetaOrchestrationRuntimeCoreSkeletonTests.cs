@@ -170,6 +170,26 @@ public sealed class MetaOrchestrationRuntimeCoreSkeletonTests
     }
 
     [Fact]
+    public void SchedulerTickIssuesReadyGrantsUpToAvailableCapacity()
+    {
+        var kernel = CreateKernel(CreateIndependentPipelineDefinition("CustomerA", "CustomerB", "CustomerC"));
+        RunToPipelineStarted(kernel, "CustomerA", "pipeline:CustomerA", MaxActiveWorkerProcesses: 3);
+        RunToPipelineStarted(kernel, "CustomerB", "pipeline:CustomerB", MaxActiveWorkerProcesses: 3);
+        RunToPipelineStarted(kernel, "CustomerC", "pipeline:CustomerC", MaxActiveWorkerProcesses: 3);
+        kernel.RegisterEvent(new RuntimeEvent.TaskReady("CustomerA", "task:CustomerA:load", "load"));
+        kernel.RegisterEvent(new RuntimeEvent.TaskReady("CustomerB", "task:CustomerB:load", "load"));
+        kernel.RegisterEvent(new RuntimeEvent.TaskReady("CustomerC", "task:CustomerC:load", "load"));
+
+        var tick = kernel.RegisterEvent(new RuntimeEvent.SchedulerTick(DateTimeOffset.UtcNow, MaxActiveWorkerProcesses: 2));
+        var grants = DomainActions(tick).OfType<RuntimeAction.IssueGrant>().ToArray();
+
+        Assert.Equal(2, grants.Length);
+        Assert.Equal(["task:CustomerA:load", "task:CustomerB:load"], grants.Select(static item => item.TaskId).ToArray());
+        Assert.Equal(1, tick.Snapshot.ReadyCount);
+        Assert.Equal(2, tick.Snapshot.RunningGrantCount);
+    }
+
+    [Fact]
     public void TaskSuccessRemovesRunningGrantReleasesLocksAndRecordsOutcome()
     {
         var (kernel, grant) = RunToStartedGrant(CreateDefinition(withLock: true));
@@ -191,6 +211,50 @@ public sealed class MetaOrchestrationRuntimeCoreSkeletonTests
         Assert.Contains(success.Snapshot.Tasks, static item =>
             item.TaskId == "task:CustomerLoad:load" &&
             item.State == TaskRuntimeState.Succeeded);
+    }
+
+    [Fact]
+    public void WorkerCloseAfterResolvedPipelineRecordsPipelineCompletion()
+    {
+        var (kernel, grant) = RunToStartedGrant(CreateDefinition());
+        kernel.RegisterEvent(new RuntimeEvent.TaskSucceeded(
+            "CustomerLoad",
+            grant.TaskId,
+            grant.GrantId,
+            grant.CommandId,
+            grant.AttemptNumber,
+            ExitCode: 0));
+
+        var closed = kernel.RegisterEvent(new RuntimeEvent.WorkerClosed("CustomerLoad", ExitCode: 0, Reason: string.Empty));
+        var completion = Assert.IsType<RuntimeAction.RecordPipelineCompletion>(Assert.Single(DomainActions(closed)));
+
+        Assert.Equal("CustomerLoad", completion.PipelineName);
+        Assert.Contains(closed.Snapshot.Pipelines, static item =>
+            item.PipelineName == "CustomerLoad" &&
+            item.State == PipelineActivationState.Completed);
+    }
+
+    [Fact]
+    public void SupervisorStopRequestedEmitsStopActionsForLiveWorkers()
+    {
+        var kernel = CreateKernel(CreateIndependentPipelineDefinition("CustomerA", "CustomerB"));
+        RunToPipelineStarted(kernel, "CustomerA", "pipeline:CustomerA", MaxActiveWorkerProcesses: 2);
+        RunToPipelineStarted(kernel, "CustomerB", "pipeline:CustomerB", MaxActiveWorkerProcesses: 2);
+
+        var stopped = kernel.RegisterEvent(new RuntimeEvent.SupervisorStopRequested("test cancellation"));
+        var actions = DomainActions(stopped);
+        var stops = actions.OfType<RuntimeAction.SendStopPipeline>().ToArray();
+
+        Assert.Contains(actions.OfType<RuntimeAction.WriteJournalEntry>(), static item =>
+            item.EventKind == "SupervisorStopRequested");
+        Assert.Equal(2, stops.Length);
+        Assert.Equal(["CustomerA", "CustomerB"], stops.Select(static item => item.PipelineName).Order().ToArray());
+        Assert.Contains(stopped.Snapshot.Pipelines, static item =>
+            item.PipelineName == "CustomerA" &&
+            item.State == PipelineActivationState.Stopped);
+        Assert.Contains(stopped.Snapshot.Pipelines, static item =>
+            item.PipelineName == "CustomerB" &&
+            item.State == PipelineActivationState.Stopped);
     }
 
     [Fact]
@@ -498,6 +562,26 @@ public sealed class MetaOrchestrationRuntimeCoreSkeletonTests
                 new RuntimePipelineDefinition("CustomerA", "pipeline:CustomerA", [taskA]),
                 new RuntimePipelineDefinition("CustomerB", "pipeline:CustomerB", [taskB])
             ],
+            RuntimeRetryPolicy.NoRetry);
+    }
+
+    private static RuntimeDefinition CreateIndependentPipelineDefinition(params string[] pipelineNames)
+    {
+        return new RuntimeDefinition(
+            pipelineNames
+                .Select(static name =>
+                {
+                    var task = new RuntimeTaskDefinition(
+                        $"task:{name}:load",
+                        "load",
+                        name,
+                        $"pipeline:{name}",
+                        $"planned:{name}:load",
+                        $"profile:{name}:load",
+                        []);
+                    return new RuntimePipelineDefinition(name, $"pipeline:{name}", [task]);
+                })
+                .ToArray(),
             RuntimeRetryPolicy.NoRetry);
     }
 

@@ -110,6 +110,10 @@ internal sealed class ActivationStateReducer
             ActivationTrigger.PipelineStopped,
             PipelineActivationState.Stopped),
         new(
+            PipelineActivationState.CapacityDeferralRequested,
+            ActivationTrigger.PipelineStopped,
+            PipelineActivationState.Stopped),
+        new(
             PipelineActivationState.Parked,
             ActivationTrigger.PipelineStopped,
             PipelineActivationState.Stopped)

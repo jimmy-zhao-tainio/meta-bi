@@ -52,6 +52,8 @@ internal abstract record RuntimeAction
         string Reason,
         IReadOnlyList<RuntimeBlockedTask> BlockedTasks) : RuntimeAction;
 
+    public sealed record RecordPipelineCompletion(string PipelineName) : RuntimeAction;
+
     public sealed record WriteJournalEntry(
         string EventKind,
         string Subject,

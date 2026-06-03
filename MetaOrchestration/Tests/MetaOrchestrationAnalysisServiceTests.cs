@@ -863,6 +863,151 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
+    public async Task RuntimeRecordsPipelineCompletionWhenPipeEofWinsBeforeProcessExit()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -Message 'completed'
+                $writer.Dispose()
+                $reader.Dispose()
+                $client.Dispose()
+                Start-Sleep -Milliseconds 250
+                return
+                """);
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(1, result.PipelineCount);
+            Assert.Equal(1, CountJournalEvents(result, "PipelineCompleted", "CustomerLoad"));
+            Assert.Equal(1, CountJournalEvents(result, "WorkerProcessExited", "CustomerLoad"));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeRecordsPipelineCompletionWhenProcessExitWinsAfterFinalTaskSuccess()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load' -Message 'completed'
+                [Environment]::Exit(0)
+                """);
+
+            Assert.True(result.Succeeded);
+            Assert.Equal(1, result.PipelineCount);
+            Assert.Equal(1, CountJournalEvents(result, "PipelineCompleted", "CustomerLoad"));
+            Assert.Equal(1, CountJournalEvents(result, "WorkerProcessExited", "CustomerLoad"));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task RuntimeFailsActiveGrantWhenWorkerExitsWithoutTerminalTaskEvent()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "CustomerLoad",
+                        Task(
+                            "CustomerLoad",
+                            1,
+                            "load",
+                            "Select",
+                            Access("dbo.Raw", OrchestrationObjectAccessKind.Read, "Source"),
+                            Access("dbo.Stage", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
+            AddTestRetryPolicy(model, maxAttempts: 1, retryWrites: false);
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load' -GrantId '' -CommandId '' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load' -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load' -Message 'started'
+                [Environment]::Exit(4)
+                """);
+
+            Assert.False(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.True(
+                taskResult.ExitCode is -1 or 4,
+                $"Expected active-grant loss to record the observed close evidence, got exit code {taskResult.ExitCode.ToString(CultureInfo.InvariantCulture)}.");
+            Assert.Equal(1, CountJournalEvents(result, "WorkerProcessExited", "CustomerLoad"));
+            Assert.Equal(1, CountJournalEvents(result, "TaskFailed", "CustomerLoad.load"));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task RuntimeParksWaitingWorkerWhenCapacityIsNeededByProducer()
     {
         var tempRoot = CreateTempRoot();
@@ -3814,6 +3959,23 @@ INNER JOIN dw.DimCustomer AS d
         return File.Exists(path)
             ? int.Parse(File.ReadAllText(path), CultureInfo.InvariantCulture)
             : 0;
+    }
+
+    private static int CountJournalEvents(
+        OrchestrationRuntimeResult result,
+        string eventKind,
+        string subject)
+    {
+        var path = Path.Combine(result.RunArtifactDirectoryPath, "events.tsv");
+        return File.ReadLines(path)
+            .Skip(1)
+            .Count(line =>
+            {
+                var fields = line.Split('\t');
+                return fields.Length >= 3 &&
+                       string.Equals(fields[1], eventKind, StringComparison.Ordinal) &&
+                       string.Equals(fields[2], subject, StringComparison.Ordinal);
+            });
     }
 
     private const string FakeWorkerPowerShellPreamble = """

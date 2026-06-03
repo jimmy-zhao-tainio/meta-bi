@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\MetaOrchestration\Tooling\MetaOrchestration.Tooling.csproj" />
     <ProjectReference Include="..\..\..\MetaSchema\Tooling\MetaSchema.Tooling.csproj" />
+    <ProjectReference Include="..\..\..\MetaSql\Tooling\MetaSql.Tooling.csproj" />
   </ItemGroup>
 
 </Project>
