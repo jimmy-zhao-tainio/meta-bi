@@ -272,6 +272,7 @@ Command surface:
 - `meta-tabular add-tabular-kpi --id <id> --base-measure <id> --name <name>`
 - `meta-tabular add-tabular-role-filter --id <id> --tabular-security-role <id> --tabular-table <id> --expression <dax>`
 - `meta-tabular deploy [--workspace <path>] --server <server> [--database-name <name>] [--drop-existing] [--no-process]`
+- `meta-tabular process --server <server> --database-name <name> [--refresh-type <type>] [--table <name>] [--partition <name>]`
 - `meta-tabular restore --source-server <server> --source-database-name <name> --target-server <server> --target-database-name <name> --backup-file <path> [--drop-existing] [--overwrite-backup-file]`
 - `meta-tabular drop --server <server> --database-name <name>`
 
@@ -282,8 +283,9 @@ Behavior summary:
 - `deploy` creates the Analysis Services tabular database and modeled objects from the target workspace root model; `--drop-existing` explicitly drops an existing database first
 - `deploy` processes by default and fails if processing fails; for existing databases, use `--drop-existing` so the safe sequence is drop, create, full process
 - use `--no-process` for metadata-only deployment
+- `process` refreshes an existing tabular database, table, or partition without changing modeled metadata
 - `restore` promotes a processed pre-prod tabular database through SSAS backup/restore; if the target exists, `--drop-existing` is required before restore
-- `restore` does not process and does not do partial/object-level processing; that belongs in a separate target-owned command
+- `restore` does not process; use `process` for post-restore or object-level processing
 - the restore backup file path must be accessible to the Analysis Services service accounts on both source and target servers
 - `drop` directly deletes the named tabular database and has no confirmation prompt
 - current deploy realization covers modeled data sources, tables, columns, partitions, measures, relationships, calculation groups/items, and role filters
@@ -296,8 +298,10 @@ meta-convert analytics-to-tabular --workspace .\MetaAnalytics.Workspace --out .\
 meta-tabular add-tabular-calculation-group --workspace .\MetaTabular.Workspace --id TimeIntelligence --tabular-model Commerce --name "Time Intelligence" --precedence 10
 meta-tabular add-tabular-calculation-item --workspace .\MetaTabular.Workspace --id TimeYtd --tabular-calculation-group TimeIntelligence --name YTD --expression "CALCULATE(SELECTEDMEASURE(), DATESYTD('Date'[Date]))"
 meta-tabular add-tabular-partition --workspace .\MetaTabular.Workspace --id SalesCurrent --tabular-table Sales --tabular-data-source Warehouse --name "Sales Current" --mode Import --expression "SELECT * FROM mart.FactSales"
-meta-tabular deploy --workspace .\MetaTabular.Workspace --server localhost\TABULAR --database-name Commerce --drop-existing
+meta-tabular deploy --workspace .\MetaTabular.Workspace --server localhost\TABULAR --database-name Commerce --drop-existing --no-process
+meta-tabular process --server localhost\TABULAR --database-name Commerce
 meta-tabular restore --source-server preprod-tabular --source-database-name Commerce --target-server prod-tabular --target-database-name Commerce --backup-file \\fileserver\ssas-backups\Commerce.abf --drop-existing --overwrite-backup-file
+meta-tabular process --server prod-tabular --database-name Commerce --table Sales --partition "Sales Current"
 meta-tabular drop --server localhost\TABULAR --database-name Commerce
 ```
 

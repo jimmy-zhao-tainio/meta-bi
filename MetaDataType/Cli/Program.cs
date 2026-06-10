@@ -21,6 +21,8 @@ internal static class Program
         CommandRoutes.Select(route => route.Definition).ToArray(),
         Next: "meta-data-type --new-workspace --help");
 
+    internal static CliAppDefinition CreateAppDefinition() => Cli;
+
     private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes() =>
         new[]
         {

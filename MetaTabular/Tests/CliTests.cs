@@ -12,6 +12,7 @@ public sealed class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-tabular [--new-workspace <path> | <command> [options]]", result.Output);
         Assert.Contains("deploy", result.Output);
+        Assert.Contains("process", result.Output);
         Assert.Contains("restore", result.Output);
         Assert.Contains("drop", result.Output);
         Assert.Contains("add-tabular-calculation-group", result.Output);
@@ -40,6 +41,37 @@ public sealed class CliTests
         Assert.Contains("fails if processing fails", result.Output);
         Assert.Contains("drop, create, full-process", result.Output);
         Assert.DoesNotContain("--replace", result.Output);
+    }
+
+    [Fact]
+    public void ProcessCommand_RequiresServer()
+    {
+        var result = RunCli("process --database-name Commerce");
+
+        Assert.NotEqual(0, result.ExitCode);
+        Assert.Contains("missing required option --server <server>.", result.Output);
+    }
+
+    [Fact]
+    public void ProcessCommand_RequiresTableForPartition()
+    {
+        var result = RunCli("process --server localhost\\TABULAR --database-name Commerce --partition Current");
+
+        Assert.NotEqual(0, result.ExitCode);
+        Assert.Contains("--partition requires --table <name>.", result.Output);
+    }
+
+    [Fact]
+    public void ProcessHelp_DescribesDatabaseTableAndPartitionProcessing()
+    {
+        var result = RunCli("process --help");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("Processes an existing Analysis Services tabular database", result.Output);
+        Assert.Contains("--refresh-type", result.Output);
+        Assert.Contains("--table", result.Output);
+        Assert.Contains("--partition", result.Output);
+        Assert.Contains("deploy --no-process", result.Output);
     }
 
     [Fact]

@@ -1,17 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>meta-transform-binding</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\CliDefinition\MetaTransformBinding.CliDefinition.csproj" />
-    <ProjectReference Include="..\MetaTransform.Binding.csproj" />
   </ItemGroup>
+
 </Project>

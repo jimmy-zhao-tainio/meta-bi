@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Cli\**\*.cs" />
+    <Compile Remove="CliDefinition\**\*.cs" />
     <EmbeddedResource Remove="Cli\**\*" />
+    <EmbeddedResource Remove="CliDefinition\**\*" />
     <None Remove="Cli\**\*" />
+    <None Remove="CliDefinition\**\*" />
     <Compile Remove="Tooling\**\*.cs" />
     <EmbeddedResource Remove="Tooling\**\*" />
     <None Remove="Tooling\**\*" />

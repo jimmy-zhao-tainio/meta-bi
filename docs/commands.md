@@ -4005,6 +4005,8 @@ Commands:
   --new-workspace                            Create an empty MetaTabular workspace.
   deploy                                     Create modeled objects on an Analysis Services tabular
                                              instance.
+  process                                    Process an existing tabular database, table, or
+                                             partition.
   restore                                    Promote a processed tabular database through backup and
                                              restore.
   drop                                       Drop a tabular database from an Analysis Services
@@ -4082,6 +4084,31 @@ Notes:
   This deploys modeled data sources, tables, columns, partitions, measures, relationships, calculation groups, and role filters.
 ```
 
+### `meta-tabular process --help`
+
+```text
+Command: process
+Usage:
+  meta-tabular process --server <server> --database-name <name> [--refresh-type <type>] [--table
+  <name>] [--partition <name>]
+
+Options:
+
+  --server <server>       Required. Analysis Services tabular server.
+  --database-name <name>  Required. Database name to process.
+  --refresh-type <type>   Refresh type. Defaults to Full. Common values: Full, DataOnly, Calculate,
+                          ClearValues, Automatic, Add, Defragment.
+  --table <name>          Optional table name or id to process instead of the whole database.
+  --partition <name>      Optional partition name or id to process. Requires --table.
+
+Notes:
+  Processes an existing Analysis Services tabular database without changing modeled metadata.
+  Without --table, the command requests refresh on the database model.
+  With --table, the command requests refresh on that table.
+  With --table and --partition, the command requests refresh on that partition.
+  Use deploy --no-process when deployment and processing need separate pipeline tasks.
+```
+
 ### `meta-tabular restore --help`
 
 ```text
@@ -4107,7 +4134,7 @@ Notes:
   Backs up a processed source tabular database and restores it as the target database.
   Use this for pre-prod-to-prod promotion after pre-prod deploy and processing succeeds.
   If the target database exists, --drop-existing is required before restore.
-  Restore does not process. Partial or object-level processing belongs in a separate command.
+  Restore does not process. Use process for post-restore or object-level processing.
   The backup file path must be accessible to the Analysis Services service accounts on both source and target servers.
 ```
 

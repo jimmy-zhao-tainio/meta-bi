@@ -32,6 +32,8 @@ internal static partial class Program
 
     private static CliAppDefinition Cli => CliLazy.Value;
 
+    internal static CliAppDefinition CreateAppDefinition() => Cli;
+
     private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes()
     {
         var routes = new List<CliCommandRoute>

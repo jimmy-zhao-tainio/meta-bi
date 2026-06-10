@@ -31,6 +31,8 @@ internal static class Program
 
     private static CliAppDefinition Cli => CliLazy.Value;
 
+    internal static CliAppDefinition CreateAppDefinition() => Cli;
+
     private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes()
     {
         var routes = new List<CliCommandRoute>
@@ -56,6 +58,7 @@ internal static class Program
                     }),
                 RunNewWorkspaceAsync),
             new(CreateDeployCommandDefinition(), RunDeployAsync),
+            new(CreateProcessCommandDefinition(), RunProcessAsync),
             new(CreateRestoreCommandDefinition(), RunRestoreAsync),
             new(CreateDropCommandDefinition(), RunDropAsync)
         };
@@ -87,6 +90,28 @@ internal static class Program
                 "This deploys modeled data sources, tables, columns, partitions, measures, relationships, calculation groups, and role filters."
             });
 
+    private static CliCommandDefinition CreateProcessCommandDefinition() =>
+        new(
+            "process",
+            "Process an existing tabular database, table, or partition.",
+            new[] { "meta-tabular process --server <server> --database-name <name> [--refresh-type <type>] [--table <name>] [--partition <name>]" },
+            new[]
+            {
+                new CliOptionDefinition("--server <server>", "Required. Analysis Services tabular server."),
+                new CliOptionDefinition("--database-name <name>", "Required. Database name to process."),
+                new CliOptionDefinition("--refresh-type <type>", "Refresh type. Defaults to Full. Common values: Full, DataOnly, Calculate, ClearValues, Automatic, Add, Defragment."),
+                new CliOptionDefinition("--table <name>", "Optional table name or id to process instead of the whole database."),
+                new CliOptionDefinition("--partition <name>", "Optional partition name or id to process. Requires --table.")
+            },
+            new[]
+            {
+                "Processes an existing Analysis Services tabular database without changing modeled metadata.",
+                "Without --table, the command requests refresh on the database model.",
+                "With --table, the command requests refresh on that table.",
+                "With --table and --partition, the command requests refresh on that partition.",
+                "Use deploy --no-process when deployment and processing need separate pipeline tasks."
+            });
+
     private static CliCommandDefinition CreateRestoreCommandDefinition() =>
         new(
             "restore",
@@ -107,7 +132,7 @@ internal static class Program
                 "Backs up a processed source tabular database and restores it as the target database.",
                 "Use this for pre-prod-to-prod promotion after pre-prod deploy and processing succeeds.",
                 "If the target database exists, --drop-existing is required before restore.",
-                "Restore does not process. Partial or object-level processing belongs in a separate command.",
+                "Restore does not process. Use process for post-restore or object-level processing.",
                 "The backup file path must be accessible to the Analysis Services service accounts on both source and target servers."
             });
 
@@ -280,6 +305,47 @@ internal static class Program
             return Fail(
                 "Cannot restore tabular database.",
                 HelpCommand("restore"),
+                4,
+                [$"  {ex.Message}"]);
+        }
+    }
+
+    private static async Task<int> RunProcessAsync(string[] args)
+    {
+        if (args.Length == 1 || IsHelpToken(args[1]))
+        {
+            PrintProcessHelp();
+            return 0;
+        }
+
+        var parse = ParseProcessCommand(args, 1);
+        if (!parse.Ok)
+        {
+            return Fail(parse.ErrorMessage, HelpCommand("process"));
+        }
+
+        try
+        {
+            var result = await new MetaTabularProcessService()
+                .ProcessAsync(new MetaTabularProcessRequest
+                {
+                    Server = parse.Server,
+                    DatabaseName = parse.DatabaseName,
+                    RefreshType = parse.RefreshType,
+                    TableName = parse.TableName,
+                    PartitionName = parse.PartitionName,
+                })
+                .ConfigureAwait(false);
+
+            Presenter.WriteOk($"Processed {result.TargetKind.ToLowerInvariant()} {FormatProcessTarget(result)} on {result.Server}");
+            Presenter.WriteInfo($"Refresh type: {result.RefreshType}");
+            return 0;
+        }
+        catch (Exception ex) when (IsExpectedDeployException(ex))
+        {
+            return Fail(
+                "Cannot process tabular database.",
+                HelpCommand("process"),
                 4,
                 [$"  {ex.Message}"]);
         }
@@ -582,6 +648,80 @@ internal static class Program
         return new ParsedDeployCommand(true, workspacePath, server, databaseName, dropExisting, process, string.Empty);
     }
 
+    private static ParsedProcessCommand ParseProcessCommand(string[] args, int startIndex)
+    {
+        var server = string.Empty;
+        var databaseName = string.Empty;
+        var refreshType = "Full";
+        string? tableName = null;
+        string? partitionName = null;
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+            if (i + 1 >= args.Length)
+            {
+                return new ParsedProcessCommand(false, server, databaseName, refreshType, tableName, partitionName, $"missing value for {arg}.");
+            }
+
+            var value = args[++i];
+            if (!seen.Add(arg))
+            {
+                return new ParsedProcessCommand(false, server, databaseName, refreshType, tableName, partitionName, $"{arg} can only be provided once.");
+            }
+
+            if (string.Equals(arg, "--server", StringComparison.OrdinalIgnoreCase))
+            {
+                server = value;
+                continue;
+            }
+
+            if (string.Equals(arg, "--database-name", StringComparison.OrdinalIgnoreCase))
+            {
+                databaseName = value;
+                continue;
+            }
+
+            if (string.Equals(arg, "--refresh-type", StringComparison.OrdinalIgnoreCase))
+            {
+                refreshType = value;
+                continue;
+            }
+
+            if (string.Equals(arg, "--table", StringComparison.OrdinalIgnoreCase))
+            {
+                tableName = value;
+                continue;
+            }
+
+            if (string.Equals(arg, "--partition", StringComparison.OrdinalIgnoreCase))
+            {
+                partitionName = value;
+                continue;
+            }
+
+            return new ParsedProcessCommand(false, server, databaseName, refreshType, tableName, partitionName, $"unknown option '{arg}'.");
+        }
+
+        if (string.IsNullOrWhiteSpace(server))
+        {
+            return new ParsedProcessCommand(false, server, databaseName, refreshType, tableName, partitionName, "missing required option --server <server>.");
+        }
+
+        if (string.IsNullOrWhiteSpace(databaseName))
+        {
+            return new ParsedProcessCommand(false, server, databaseName, refreshType, tableName, partitionName, "missing required option --database-name <name>.");
+        }
+
+        if (!string.IsNullOrWhiteSpace(partitionName) && string.IsNullOrWhiteSpace(tableName))
+        {
+            return new ParsedProcessCommand(false, server, databaseName, refreshType, tableName, partitionName, "--partition requires --table <name>.");
+        }
+
+        return new ParsedProcessCommand(true, server, databaseName, refreshType, tableName, partitionName, string.Empty);
+    }
+
     private static ParsedRestoreCommand ParseRestoreCommand(string[] args, int startIndex)
     {
         var sourceServer = string.Empty;
@@ -748,6 +888,11 @@ internal static class Program
         PrintCommandHelp("deploy");
     }
 
+    private static void PrintProcessHelp()
+    {
+        PrintCommandHelp("process");
+    }
+
     private static void PrintRestoreHelp()
     {
         PrintCommandHelp("restore");
@@ -776,6 +921,21 @@ internal static class Program
     }
 
     private static string HelpCommand(string commandName) => Cli.GetCommand(commandName).HelpCommand(Cli.Name);
+
+    private static string FormatProcessTarget(MetaTabularProcessResult result)
+    {
+        if (!string.IsNullOrWhiteSpace(result.PartitionName))
+        {
+            return $"{result.DatabaseName}/{result.TableName}/{result.PartitionName}";
+        }
+
+        if (!string.IsNullOrWhiteSpace(result.TableName))
+        {
+            return $"{result.DatabaseName}/{result.TableName}";
+        }
+
+        return result.DatabaseName;
+    }
 
     private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
     {
@@ -819,6 +979,15 @@ internal static class Program
         bool Ok,
         string Server,
         string DatabaseName,
+        string ErrorMessage);
+
+    private sealed record ParsedProcessCommand(
+        bool Ok,
+        string Server,
+        string DatabaseName,
+        string RefreshType,
+        string? TableName,
+        string? PartitionName,
         string ErrorMessage);
 
     private sealed record ParsedRestoreCommand(

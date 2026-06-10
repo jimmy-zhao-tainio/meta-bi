@@ -33,6 +33,8 @@ internal static partial class Program
             .ToArray(),
         Next: "meta-transform-script from --help");
 
+    internal static CliAppDefinition CreateAppDefinition() => Cli;
+
     private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes() =>
         new[]
         {

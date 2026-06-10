@@ -23,6 +23,8 @@ internal static partial class Program
         CommandRoutes.Select(route => route.Definition).Concat(new[] { CreateExtractSqlServerCommand() }).ToArray(),
         Next: "meta-sql deploy-plan --help");
 
+    internal static CliAppDefinition CreateAppDefinition() => Cli;
+
     private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes() =>
         new[]
         {

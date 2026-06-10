@@ -28,6 +28,8 @@ internal static class Program
         CommandRoutes.Select(route => route.Definition).ToArray(),
         Next: "meta-convert schema-to-raw-datavault --help");
 
+    internal static CliAppDefinition CreateAppDefinition() => Cli;
+
     private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes() =>
         new[]
         {
