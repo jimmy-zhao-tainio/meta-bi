@@ -28,6 +28,8 @@ namespace MetaPipeline
 
         public List<ConnectionReference> ConnectionReferenceList { get; set; } = new();
 
+        public List<ExecutableTask> ExecutableTaskList { get; set; } = new();
+
         public List<InsertRowsTargetWriteTask> InsertRowsTargetWriteTaskList { get; set; } = new();
 
         public List<Pipeline> PipelineList { get; set; } = new();
@@ -161,6 +163,17 @@ namespace MetaPipeline
             else
             {
                 TypedWorkspaceXmlSerializer.WriteBytesIfChanged(connectionReferenceShardPath, SerializeConnectionReferenceShard(model, saveIndexes));
+            }
+
+            model.ExecutableTaskList ??= new List<ExecutableTask>();
+            var executableTaskShardPath = Path.Combine(instanceDirectoryPath, "ExecutableTask.xml");
+            if (model.ExecutableTaskList.Count == 0)
+            {
+                DeleteIfExists(executableTaskShardPath);
+            }
+            else
+            {
+                TypedWorkspaceXmlSerializer.WriteBytesIfChanged(executableTaskShardPath, SerializeExecutableTaskShard(model, saveIndexes));
             }
 
             model.InsertRowsTargetWriteTaskList ??= new List<InsertRowsTargetWriteTask>();
@@ -299,6 +312,9 @@ namespace MetaPipeline
                 {
                     case "ConnectionReferenceList":
                         LoadConnectionReferenceList(model, reader, loadState, relationshipBuffers);
+                        break;
+                    case "ExecutableTaskList":
+                        LoadExecutableTaskList(model, reader, loadState, relationshipBuffers);
                         break;
                     case "InsertRowsTargetWriteTaskList":
                         LoadInsertRowsTargetWriteTaskList(model, reader, loadState, relationshipBuffers);
@@ -451,6 +467,147 @@ namespace MetaPipeline
                 builder.Append("    </ConnectionReference>\n");
             }
             builder.Append("  </ConnectionReferenceList>\n");
+            builder.Append("</MetaPipeline>\n");
+            return Utf8NoBom.GetBytes(builder.ToString());
+        }
+
+        private static void LoadExecutableTaskList(MetaPipelineModel model, XmlReader reader, LoadState loadState, RelationshipBuffers relationshipBuffers)
+        {
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("ExecutableTaskList");
+                return;
+            }
+
+            reader.ReadStartElement("ExecutableTaskList");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                if (!string.Equals(reader.LocalName, "ExecutableTask", StringComparison.Ordinal))
+                {
+                    throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' in 'ExecutableTaskList'.");
+                }
+                var row = ReadExecutableTask(reader, relationshipBuffers);
+                loadState.AddExecutableTaskId(row.Id);
+                model.ExecutableTaskList.Add(row);
+                reader.MoveToContent();
+            }
+            reader.ReadEndElement();
+        }
+
+        private static ExecutableTask ReadExecutableTask(XmlReader reader, RelationshipBuffers relationshipBuffers)
+        {
+            var row = new ExecutableTask();
+            var relationships = new ExecutableTaskRelationships { Row = row };
+            if (reader.HasAttributes)
+            {
+                while (reader.MoveToNextAttribute())
+                {
+                    if (IsNamespaceDeclaration(reader))
+                    {
+                        continue;
+                    }
+
+                    switch (reader.LocalName)
+                    {
+                        case "Id":
+                            row.Id = reader.Value;
+                            break;
+                        case "PipelineTaskId":
+                            relationships.PipelineTaskId = reader.Value;
+                            break;
+                        default:
+                            throw new InvalidDataException($"Unknown XML attribute '{reader.LocalName}' on 'ExecutableTask'.");
+                    }
+                }
+
+                reader.MoveToElement();
+            }
+
+            if (reader.IsEmptyElement)
+            {
+                reader.ReadStartElement("ExecutableTask");
+                (relationshipBuffers.ExecutableTaskRelationships ??= new List<ExecutableTaskRelationships>()).Add(relationships);
+                return row;
+            }
+
+            reader.ReadStartElement("ExecutableTask");
+            while (reader.NodeType == XmlNodeType.Element)
+            {
+                switch (reader.LocalName)
+                {
+                    case "Arguments":
+                        row.Arguments = reader.ReadElementContentAsString();
+                        break;
+                    case "ExecutablePath":
+                        row.ExecutablePath = reader.ReadElementContentAsString();
+                        break;
+                    case "SuccessExitCode":
+                        row.SuccessExitCode = reader.ReadElementContentAsString();
+                        break;
+                    case "TimeoutSeconds":
+                        row.TimeoutSeconds = reader.ReadElementContentAsString();
+                        break;
+                    case "WorkingDirectory":
+                        row.WorkingDirectory = reader.ReadElementContentAsString();
+                        break;
+                    default:
+                        throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'ExecutableTask'.");
+                }
+            }
+            reader.ReadEndElement();
+            (relationshipBuffers.ExecutableTaskRelationships ??= new List<ExecutableTaskRelationships>()).Add(relationships);
+            return row;
+        }
+
+        private static byte[] SerializeExecutableTaskShard(MetaPipelineModel model, SaveIndexes saveIndexes)
+        {
+            var builder = new StringBuilder();
+            var rowIds = new HashSet<string>(StringComparer.Ordinal);
+            builder.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            builder.Append("<MetaPipeline>\n");
+            builder.Append("  <ExecutableTaskList>\n");
+            foreach (var row in model.ExecutableTaskList)
+            {
+                ArgumentNullException.ThrowIfNull(row);
+                var rowId = RequireIdentity(row.Id, "Entity 'ExecutableTask' contains a row with empty Id.");
+                if (!rowIds.Add(rowId))
+                {
+                    throw new InvalidOperationException($"Entity 'ExecutableTask' contains duplicate Id '{rowId}'.");
+                }
+                builder.Append("    <ExecutableTask Id=\"");
+                AppendXmlAttribute(builder, rowId);
+                builder.Append('"');
+                var pipelineTaskId = RequireIdentity(row.PipelineTask?.Id, $"Relationship 'ExecutableTask.PipelineTaskId' on row 'ExecutableTask:{row.Id}' is empty.");
+                if (!saveIndexes.PipelineTaskListById.TryGetValue(pipelineTaskId, out var pipelineTaskCanonical) || !ReferenceEquals(pipelineTaskCanonical, row.PipelineTask))
+                {
+                    throw new InvalidOperationException($"Relationship 'ExecutableTask.PipelineTaskId' on row 'ExecutableTask:{row.Id}' references an object that is not the canonical row for Id '{pipelineTaskId}'.");
+                }
+                builder.Append(' ');
+                builder.Append("PipelineTaskId");
+                builder.Append("=\"");
+                AppendXmlAttribute(builder, pipelineTaskId);
+                builder.Append('"');
+                builder.Append(">\n");
+                if (!string.IsNullOrWhiteSpace(row.Arguments))
+                {
+                    AppendElement(builder, "Arguments", row.Arguments!, "      ");
+                }
+                AppendElement(builder, "ExecutablePath", RequireText(row.ExecutablePath, $"Entity 'ExecutableTask' row '{row.Id}' is missing required property 'ExecutablePath'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.SuccessExitCode))
+                {
+                    AppendElement(builder, "SuccessExitCode", row.SuccessExitCode!, "      ");
+                }
+                if (!string.IsNullOrWhiteSpace(row.TimeoutSeconds))
+                {
+                    AppendElement(builder, "TimeoutSeconds", row.TimeoutSeconds!, "      ");
+                }
+                if (!string.IsNullOrWhiteSpace(row.WorkingDirectory))
+                {
+                    AppendElement(builder, "WorkingDirectory", row.WorkingDirectory!, "      ");
+                }
+                builder.Append("    </ExecutableTask>\n");
+            }
+            builder.Append("  </ExecutableTaskList>\n");
             builder.Append("</MetaPipeline>\n");
             return Utf8NoBom.GetBytes(builder.ToString());
         }
@@ -1677,6 +1834,12 @@ namespace MetaPipeline
             public string PipelineId { get; set; } = string.Empty;
         }
 
+        private sealed class ExecutableTaskRelationships
+        {
+            public ExecutableTask Row { get; set; } = null!;
+            public string PipelineTaskId { get; set; } = string.Empty;
+        }
+
         private sealed class InsertRowsTargetWriteTaskRelationships
         {
             public InsertRowsTargetWriteTask Row { get; set; } = null!;
@@ -1740,6 +1903,7 @@ namespace MetaPipeline
         private sealed class RelationshipBuffers
         {
             public List<ConnectionReferenceRelationships>? ConnectionReferenceRelationships { get; set; }
+            public List<ExecutableTaskRelationships>? ExecutableTaskRelationships { get; set; }
             public List<InsertRowsTargetWriteTaskRelationships>? InsertRowsTargetWriteTaskRelationships { get; set; }
             public List<PipelineTaskRelationships>? PipelineTaskRelationships { get; set; }
             public List<RowStreamRelationships>? RowStreamRelationships { get; set; }
@@ -1761,6 +1925,16 @@ namespace MetaPipeline
                     "ConnectionReference",
                     relationship.Row.Id,
                     "PipelineId");
+            }
+
+            foreach (var relationship in relationshipBuffers.ExecutableTaskRelationships ?? Enumerable.Empty<ExecutableTaskRelationships>())
+            {
+                relationship.Row.PipelineTask = RequireTarget(
+                    loadIndexes.PipelineTaskListById,
+                    relationship.PipelineTaskId,
+                    "ExecutableTask",
+                    relationship.Row.Id,
+                    "PipelineTaskId");
             }
 
             foreach (var relationship in relationshipBuffers.InsertRowsTargetWriteTaskRelationships ?? Enumerable.Empty<InsertRowsTargetWriteTaskRelationships>())
@@ -1918,6 +2092,7 @@ namespace MetaPipeline
         private static readonly string[] ShardFileNames =
         {
             "ConnectionReference.xml",
+            "ExecutableTask.xml",
             "InsertRowsTargetWriteTask.xml",
             "Pipeline.xml",
             "PipelineTask.xml",
@@ -1952,6 +2127,18 @@ namespace MetaPipeline
                 if (!connectionReferenceIds.Add(normalizedId))
                 {
                     throw new InvalidDataException($"Entity 'ConnectionReference' contains duplicate Id '{normalizedId}'.");
+                }
+            }
+
+            private HashSet<string>? executableTaskIds;
+
+            public void AddExecutableTaskId(string? id)
+            {
+                var normalizedId = RequireIdentity(id, "Entity 'ExecutableTask' contains a row with empty Id.");
+                executableTaskIds ??= new HashSet<string>(StringComparer.Ordinal);
+                if (!executableTaskIds.Add(normalizedId))
+                {
+                    throw new InvalidDataException($"Entity 'ExecutableTask' contains duplicate Id '{normalizedId}'.");
                 }
             }
 
@@ -2090,6 +2277,10 @@ namespace MetaPipeline
 
             public Dictionary<string, ConnectionReference> ConnectionReferenceListById => connectionReferenceListById ??= BuildById(model.ConnectionReferenceList, row => row.Id, "ConnectionReference");
 
+            private Dictionary<string, ExecutableTask>? executableTaskListById;
+
+            public Dictionary<string, ExecutableTask> ExecutableTaskListById => executableTaskListById ??= BuildById(model.ExecutableTaskList, row => row.Id, "ExecutableTask");
+
             private Dictionary<string, InsertRowsTargetWriteTask>? insertRowsTargetWriteTaskListById;
 
             public Dictionary<string, InsertRowsTargetWriteTask> InsertRowsTargetWriteTaskListById => insertRowsTargetWriteTaskListById ??= BuildById(model.InsertRowsTargetWriteTaskList, row => row.Id, "InsertRowsTargetWriteTask");
@@ -2144,6 +2335,10 @@ namespace MetaPipeline
             private Dictionary<string, ConnectionReference>? connectionReferenceListById;
 
             public Dictionary<string, ConnectionReference> ConnectionReferenceListById => connectionReferenceListById ??= BuildById(model.ConnectionReferenceList, row => row.Id, "ConnectionReference");
+
+            private Dictionary<string, ExecutableTask>? executableTaskListById;
+
+            public Dictionary<string, ExecutableTask> ExecutableTaskListById => executableTaskListById ??= BuildById(model.ExecutableTaskList, row => row.Id, "ExecutableTask");
 
             private Dictionary<string, InsertRowsTargetWriteTask>? insertRowsTargetWriteTaskListById;
 
@@ -2211,6 +2406,18 @@ namespace MetaPipeline
                 "EnvironmentVariableName",
                 "Name",
                 "Pipeline"))
+            {
+                return true;
+            }
+
+            if (HasUnexpectedProperties(typeof(ExecutableTask),
+                "Id",
+                "Arguments",
+                "ExecutablePath",
+                "SuccessExitCode",
+                "TimeoutSeconds",
+                "WorkingDirectory",
+                "PipelineTask"))
             {
                 return true;
             }
@@ -2311,6 +2518,7 @@ namespace MetaPipeline
             var knownLists = new HashSet<string>(StringComparer.Ordinal)
             {
                 "ConnectionReferenceList",
+                "ExecutableTaskList",
                 "InsertRowsTargetWriteTaskList",
                 "PipelineList",
                 "PipelineTaskList",

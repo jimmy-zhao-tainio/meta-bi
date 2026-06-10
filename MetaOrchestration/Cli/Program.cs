@@ -14,14 +14,14 @@ internal static partial class Program
             "meta-orchestration",
             new[]
             {
-                "meta-orchestration --pipeline-workspace <path> --transform-workspace <path> --binding-workspace <path> --new-workspace <path> [--description <text>]",
+                "meta-orchestration --pipeline-workspace <path> [--transform-workspace <path>] [--binding-workspace <path>] --new-workspace <path> [--description <text>]",
                 "meta-orchestration <command> [options]",
             },
             CommandRoutes.Select(route => route.Definition).ToArray(),
             new[]
             {
-                "--new-workspace creates a MetaOrchestration workspace by inferring from bound MetaPipeline transform steps.",
-                "Binding must already exist; orchestration does not parse or bind SQL itself.",
+                "--new-workspace creates a MetaOrchestration workspace by inferring from modeled MetaPipeline steps.",
+                "Transform-backed steps require binding; executable process steps do not.",
                 "The workspace separates dependency DAG status from determinism and synchronization status.",
                 "Data dependencies are inferred from published producers to dependency consumers.",
                 "Same-object writer interactions become determinism or synchronization issues instead of artificial dependency edges."
@@ -198,13 +198,13 @@ internal static partial class Program
                 new CliCommandDefinition(
                     "execute",
                     "Execute the current run plan by coordinating meta-pipeline worker processes.",
-                    new[] { "meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>] [--run-artifacts-root <path>] [--worker-event-timeout-seconds <n>] [--worker-activation-timeout-seconds <n>] [--worker-control-pipe-connect-timeout-seconds <n>]" },
+                    new[] { "meta-orchestration execute --workspace <path> --pipeline-workspace <path> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>] [--run-artifacts-root <path>] [--worker-event-timeout-seconds <n>] [--worker-activation-timeout-seconds <n>] [--worker-control-pipe-connect-timeout-seconds <n>]" },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaOrchestration workspace containing the analysis and run-plan rows."),
                         new CliOptionDefinition("--pipeline-workspace <path>", "Required. MetaPipeline workspace used by child pipeline workers."),
-                        new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace used by child pipeline workers."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Required. MetaTransformBinding workspace used by child pipeline workers."),
+                        new CliOptionDefinition("--transform-workspace <path>", "Required when planned tasks include transform-backed MetaPipeline steps."),
+                        new CliOptionDefinition("--binding-workspace <path>", "Required when planned tasks include transform-backed MetaPipeline steps."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace passed to child workers."),
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional operational DB connection env passed to child workers."),
                         new CliOptionDefinition("--max-degree-of-parallelism <n>", "Maximum concurrently granted pipeline tasks. Default: 1."),
@@ -217,6 +217,7 @@ internal static partial class Program
                     {
                         "Refreshes run-plan rows from current workspace state, then executes the run plan.",
                         "Each MetaPipeline pipeline is launched once as a worker with a named pipe control channel.",
+                        "Executable-only pipeline workers do not require transform or binding workspace arguments.",
                         "Orchestration sends StartPipeline after WorkerReady, before any task grants.",
                         "Replacement workers receive StartPipeline with a resume task id so prior same-pipeline tasks are not replayed after retryable worker loss.",
                         "Orchestration grants TaskReady work or stops a worker at a blocked task.",
@@ -315,7 +316,7 @@ internal static partial class Program
         {
             return Fail(
                 "Cannot infer orchestration.",
-                "check the pipeline, transform, and binding workspaces, then retry.",
+                "check the pipeline workspace and any transform/binding workspaces required by transform-backed steps, then retry.",
                 4,
                 [$"  {ex.Message}"]);
         }
@@ -627,8 +628,6 @@ internal static partial class Program
         }
 
         if (string.IsNullOrWhiteSpace(pipelineWorkspace)) return ParsedInferArgs.Fail("missing required option --pipeline-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(transformWorkspace)) return ParsedInferArgs.Fail("missing required option --transform-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(bindingWorkspace)) return ParsedInferArgs.Fail("missing required option --binding-workspace <path>.");
         if (string.IsNullOrWhiteSpace(outputWorkspace)) return ParsedInferArgs.Fail("missing required option --new-workspace <path>.");
 
         return new ParsedInferArgs(true, pipelineWorkspace, transformWorkspace, bindingWorkspace, outputWorkspace, description, string.Empty);

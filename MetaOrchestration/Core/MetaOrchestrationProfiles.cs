@@ -95,6 +95,7 @@ public sealed record PipelineDependencyProfile(
 public sealed record PipelineTaskAccessProfile(
     string PipelineTaskId,
     string TaskName,
+    string TaskKind,
     int Ordinal,
     string TransformScriptId,
     string TransformScriptName,

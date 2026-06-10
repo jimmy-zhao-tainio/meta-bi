@@ -21,13 +21,15 @@ namespace MetaOrchestration
 
         public string StatementKind { get; set; } = string.Empty;
 
+        public string TaskKind { get; set; } = string.Empty;
+
         public string TaskName { get; set; } = string.Empty;
 
-        public string TransformBindingId { get; set; } = string.Empty;
+        public string? TransformBindingId { get; set; }
 
-        public string TransformScriptId { get; set; } = string.Empty;
+        public string? TransformScriptId { get; set; }
 
-        public string TransformScriptName { get; set; } = string.Empty;
+        public string? TransformScriptName { get; set; }
 
         public PipelineReference PipelineReference { get; set; } = null!;
 

@@ -141,6 +141,11 @@ internal static partial class Program
         MetaPipeline.MetaPipelineModel model,
         MetaPipeline.PipelineTask task)
     {
+        if (model.ExecutableTaskList.Any(item => string.Equals(item.PipelineTask.Id, task.Id, StringComparison.Ordinal)))
+        {
+            return "Executable";
+        }
+
         if (model.TransformExecutionTaskList.Any(item => string.Equals(item.PipelineTask.Id, task.Id, StringComparison.Ordinal)))
         {
             return "TransformExecution";

@@ -17,7 +17,7 @@ internal static partial class Program
             return Fail(parse.ErrorMessage, HelpCommand("execute"));
         }
 
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan? plan = null;
+        MetaPipeline.MetaPipelineModeledExecutionPlan? plan = null;
         MetaPipeline.MetaPipelineOperationalDbStore? operationalDb = null;
         Guid? operationalRunId = null;
         PipelineConsoleProgressRenderer? progress = null;
@@ -31,8 +31,8 @@ internal static partial class Program
                     new MetaPipeline.MetaPipelineOperationalRunStart(
                         PipelineWorkspacePath: pipelineWorkspacePath,
                         PipelineName: parse.PipelineName,
-                        TransformWorkspacePath: Path.GetFullPath(parse.TransformWorkspacePath),
-                        BindingWorkspacePath: Path.GetFullPath(parse.BindingWorkspacePath)))
+                        TransformWorkspacePath: FullPathOrEmpty(parse.TransformWorkspacePath),
+                        BindingWorkspacePath: FullPathOrEmpty(parse.BindingWorkspacePath)))
                     .ConfigureAwait(false);
             }
 
@@ -58,8 +58,8 @@ internal static partial class Program
                     details);
             }
 
-            plan = new MetaPipeline.MetaPipelineModeledSqlServerExecutionResolver().Resolve(
-                new MetaPipeline.MetaPipelineModeledSqlServerExecutionRequest(
+            plan = new MetaPipeline.MetaPipelineModeledExecutionResolver().Resolve(
+                new MetaPipeline.MetaPipelineModeledExecutionRequest(
                     parse.PipelineWorkspacePath,
                     parse.PipelineName,
                     parse.TransformWorkspacePath,
@@ -77,8 +77,8 @@ internal static partial class Program
                         TransformTaskName: plan.TransformTaskName,
                         TargetWriteTaskId: plan.TargetWriteTaskId,
                         TargetWriteTaskName: plan.TargetWriteTaskName,
-                        TransformWorkspacePath: Path.GetFullPath(plan.TransformWorkspacePath),
-                        BindingWorkspacePath: Path.GetFullPath(plan.BindingWorkspacePath),
+                        TransformWorkspacePath: FullPathOrEmpty(plan.TransformWorkspacePath),
+                        BindingWorkspacePath: FullPathOrEmpty(plan.BindingWorkspacePath),
                         TransformScriptId: plan.TransformScriptId,
                         TransformBindingId: plan.TransformBindingId,
                         TransformScriptName: plan.TransformScriptName,
@@ -212,8 +212,15 @@ internal static partial class Program
             };
             if (plan is not null)
             {
-                details.Insert(3, $"  ExecutionConnectionEnv: {plan.ExecutionConnectionEnvironmentVariableName}");
-                details.Insert(4, $"  TargetConnectionEnv: {plan.TargetConnectionEnvironmentVariableName}");
+                if (!string.IsNullOrWhiteSpace(plan.ExecutionConnectionEnvironmentVariableName))
+                {
+                    details.Insert(3, $"  ExecutionConnectionEnv: {plan.ExecutionConnectionEnvironmentVariableName}");
+                }
+
+                if (!string.IsNullOrWhiteSpace(plan.TargetConnectionEnvironmentVariableName))
+                {
+                    details.Insert(4, $"  TargetConnectionEnv: {plan.TargetConnectionEnvironmentVariableName}");
+                }
             }
 
             return Fail(
@@ -253,7 +260,7 @@ internal static partial class Program
                 ["  Missing required option --control-pipe <name>."]);
         }
 
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan? plan = null;
+        MetaPipeline.MetaPipelineModeledExecutionPlan? plan = null;
         MetaPipeline.MetaPipelineOperationalDbStore? operationalDb = null;
         Guid? operationalRunId = null;
         try
@@ -285,8 +292,8 @@ internal static partial class Program
                     new MetaPipeline.MetaPipelineOperationalRunStart(
                         PipelineWorkspacePath: pipelineWorkspacePath,
                         PipelineName: parse.PipelineName,
-                        TransformWorkspacePath: Path.GetFullPath(parse.TransformWorkspacePath),
-                        BindingWorkspacePath: Path.GetFullPath(parse.BindingWorkspacePath)))
+                        TransformWorkspacePath: FullPathOrEmpty(parse.TransformWorkspacePath),
+                        BindingWorkspacePath: FullPathOrEmpty(parse.BindingWorkspacePath)))
                     .ConfigureAwait(false);
             }
 
@@ -312,8 +319,8 @@ internal static partial class Program
                     details);
             }
 
-            plan = new MetaPipeline.MetaPipelineModeledSqlServerExecutionResolver().Resolve(
-                new MetaPipeline.MetaPipelineModeledSqlServerExecutionRequest(
+            plan = new MetaPipeline.MetaPipelineModeledExecutionResolver().Resolve(
+                new MetaPipeline.MetaPipelineModeledExecutionRequest(
                     parse.PipelineWorkspacePath,
                     parse.PipelineName,
                     parse.TransformWorkspacePath,
@@ -328,8 +335,8 @@ internal static partial class Program
                         PipelineWorkspacePath: Path.GetFullPath(plan.PipelineWorkspacePath),
                         PipelineId: plan.PipelineId,
                         PipelineName: plan.PipelineName,
-                        TransformWorkspacePath: Path.GetFullPath(plan.TransformWorkspacePath),
-                        BindingWorkspacePath: Path.GetFullPath(plan.BindingWorkspacePath)))
+                        TransformWorkspacePath: FullPathOrEmpty(plan.TransformWorkspacePath),
+                        BindingWorkspacePath: FullPathOrEmpty(plan.BindingWorkspacePath)))
                     .ConfigureAwait(false);
             }
 
@@ -437,7 +444,7 @@ internal static partial class Program
             return Fail(parse.ErrorMessage, HelpCommand("execute-step"));
         }
 
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan? plan = null;
+        MetaPipeline.MetaPipelineModeledExecutionPlan? plan = null;
         MetaPipeline.MetaPipelineOperationalDbStore? operationalDb = null;
         Guid? operationalRunId = null;
         PipelineConsoleProgressRenderer? progress = null;
@@ -451,13 +458,13 @@ internal static partial class Program
                     new MetaPipeline.MetaPipelineOperationalRunStart(
                         PipelineWorkspacePath: pipelineWorkspacePath,
                         PipelineName: parse.PipelineName,
-                        TransformWorkspacePath: Path.GetFullPath(parse.TransformWorkspacePath),
-                        BindingWorkspacePath: Path.GetFullPath(parse.BindingWorkspacePath)))
+                        TransformWorkspacePath: FullPathOrEmpty(parse.TransformWorkspacePath),
+                        BindingWorkspacePath: FullPathOrEmpty(parse.BindingWorkspacePath)))
                     .ConfigureAwait(false);
             }
 
-            plan = new MetaPipeline.MetaPipelineModeledSqlServerExecutionResolver().ResolveStep(
-                new MetaPipeline.MetaPipelineModeledSqlServerExecutionStepRequest(
+            plan = new MetaPipeline.MetaPipelineModeledExecutionResolver().ResolveStep(
+                new MetaPipeline.MetaPipelineModeledExecutionStepRequest(
                     parse.PipelineWorkspacePath,
                     parse.PipelineName,
                     parse.StepName,
@@ -476,8 +483,8 @@ internal static partial class Program
                         TransformTaskName: plan.TransformTaskName,
                         TargetWriteTaskId: plan.TargetWriteTaskId,
                         TargetWriteTaskName: plan.TargetWriteTaskName,
-                        TransformWorkspacePath: Path.GetFullPath(plan.TransformWorkspacePath),
-                        BindingWorkspacePath: Path.GetFullPath(plan.BindingWorkspacePath),
+                        TransformWorkspacePath: FullPathOrEmpty(plan.TransformWorkspacePath),
+                        BindingWorkspacePath: FullPathOrEmpty(plan.BindingWorkspacePath),
                         TransformScriptId: plan.TransformScriptId,
                         TransformBindingId: plan.TransformBindingId,
                         TransformScriptName: plan.TransformScriptName,
@@ -613,8 +620,15 @@ internal static partial class Program
             };
             if (plan is not null)
             {
-                details.Insert(4, $"  ExecutionConnectionEnv: {plan.ExecutionConnectionEnvironmentVariableName}");
-                details.Insert(5, $"  TargetConnectionEnv: {plan.TargetConnectionEnvironmentVariableName}");
+                if (!string.IsNullOrWhiteSpace(plan.ExecutionConnectionEnvironmentVariableName))
+                {
+                    details.Insert(4, $"  ExecutionConnectionEnv: {plan.ExecutionConnectionEnvironmentVariableName}");
+                }
+
+                if (!string.IsNullOrWhiteSpace(plan.TargetConnectionEnvironmentVariableName))
+                {
+                    details.Insert(5, $"  TargetConnectionEnv: {plan.TargetConnectionEnvironmentVariableName}");
+                }
             }
 
             return Fail(
@@ -656,8 +670,8 @@ internal static partial class Program
             {
                 operationalRunId = await operationalDb.StartRunAsync(
                     new MetaPipeline.MetaPipelineOperationalRunStart(
-                        TransformWorkspacePath: Path.GetFullPath(parse.TransformWorkspacePath),
-                        BindingWorkspacePath: Path.GetFullPath(parse.BindingWorkspacePath),
+                        TransformWorkspacePath: FullPathOrEmpty(parse.TransformWorkspacePath),
+                        BindingWorkspacePath: FullPathOrEmpty(parse.BindingWorkspacePath),
                         ExecutionConnectionEnvironmentVariableName: parse.ExecutionConnectionEnvironmentVariableName,
                         TargetConnectionEnvironmentVariableName: parse.TargetConnectionEnvironmentVariableName,
                         TargetSqlIdentifier: parse.TargetSqlIdentifier,
@@ -791,11 +805,11 @@ internal static partial class Program
                 ex).ConfigureAwait(false);
             var details = new List<string>
             {
-                $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
+                $"  TransformWorkspace: {FullPathOrEmpty(parse.TransformWorkspacePath)}",
             };
             if (!string.IsNullOrWhiteSpace(parse.BindingWorkspacePath))
             {
-                details.Add($"  BindingWorkspace: {Path.GetFullPath(parse.BindingWorkspacePath)}");
+                details.Add($"  BindingWorkspace: {FullPathOrEmpty(parse.BindingWorkspacePath)}");
             }
 
             details.AddRange(dbDetails);
@@ -824,12 +838,12 @@ internal static partial class Program
 
             var details = new List<string>
             {
-                $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
+                $"  TransformWorkspace: {FullPathOrEmpty(parse.TransformWorkspacePath)}",
                 $"  ExecutionConnectionEnv: {parse.ExecutionConnectionEnvironmentVariableName}",
             };
             if (!string.IsNullOrWhiteSpace(parse.BindingWorkspacePath))
             {
-                details.Add($"  BindingWorkspace: {Path.GetFullPath(parse.BindingWorkspacePath)}");
+                details.Add($"  BindingWorkspace: {FullPathOrEmpty(parse.BindingWorkspacePath)}");
             }
 
             if (!string.IsNullOrWhiteSpace(parse.TargetConnectionEnvironmentVariableName))
@@ -853,7 +867,7 @@ internal static partial class Program
     }
 
     private static async Task<MetaPipeline.MetaPipelineExecutionResult> ExecuteModeledPlanAsync(
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
         MetaPipeline.MetaPipelineOperationalDbStore? operationalDb,
         Guid? operationalRunId,
         string? dataTypeConversionWorkspacePath,
@@ -868,7 +882,7 @@ internal static partial class Program
         for (var index = 0; index < plan.Steps.Count; index++)
         {
             var step = plan.Steps[index];
-            progress?.StartStep(index + 1, step.TransformTaskName);
+            progress?.StartStep(index + 1, step.TaskName);
             MetaPipeline.MetaPipelineExecutionResult result;
             try
             {
@@ -923,7 +937,7 @@ internal static partial class Program
     }
 
     private static async Task<MetaPipeline.MetaPipelineExecutionResult> ExecuteModeledPlanAsWorkerAsync(
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
         MetaPipeline.MetaPipelineOperationalDbStore? operationalDb,
         Guid? operationalRunId,
         string? dataTypeConversionWorkspacePath,
@@ -1029,7 +1043,7 @@ internal static partial class Program
                 {
                     pendingFailureStage = MetaPipeline.PipelineExecutionFailureStage.TransformExecution;
                     pendingFailureMessage = ex.Message;
-                    pendingFailureTaskName = step.TransformTaskName;
+                    pendingFailureTaskName = step.TaskName;
                     await WritePipelineWorkerEventAsync(
                         workerChannel,
                         WorkerEventKinds.TaskFailed,
@@ -1087,7 +1101,7 @@ internal static partial class Program
                     command.GrantId,
                     command.CommandId,
                     command.AttemptNumber,
-                    4,
+                    ResolveFailureExitCode(result),
                     executableVersion,
                     result.FailureMessage,
                     ClassifyPipelineFailureClass(result.FailureStage)).ConfigureAwait(false);
@@ -1114,7 +1128,7 @@ internal static partial class Program
     }
 
     private static int ResolveWorkerStartIndex(
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
         string resumeTaskId)
     {
         if (string.IsNullOrWhiteSpace(resumeTaskId))
@@ -1124,7 +1138,7 @@ internal static partial class Program
 
         for (var index = 0; index < plan.Steps.Count; index++)
         {
-            if (string.Equals(plan.Steps[index].TransformTaskId, resumeTaskId, StringComparison.Ordinal))
+            if (string.Equals(plan.Steps[index].TaskId, resumeTaskId, StringComparison.Ordinal))
             {
                 return index;
             }
@@ -1135,15 +1149,37 @@ internal static partial class Program
     }
 
     private static async Task<MetaPipeline.MetaPipelineExecutionResult> ExecuteModeledStepAsync(
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionStep step,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionStep step,
         MetaPipeline.MetaPipelineOperationalDbStore? operationalDb,
         Guid? operationalRunId,
         string? dataTypeConversionWorkspacePath,
         IProgress<MetaPipeline.BufferedPipelineExecutionProgress>? progress)
     {
+        if (step.StepKind == MetaPipeline.MetaPipelineModeledExecutionStepKind.Executable)
+        {
+            var executableContext = await CreateExecutionContextAsync(
+                operationalDb,
+                operationalRunId,
+                plan.PipelineName,
+                step.TaskName,
+                "Executable").ConfigureAwait(false);
+
+            return await new MetaPipeline.MetaPipelineExecutableExecutionService().ExecuteAsync(
+                new MetaPipeline.MetaPipelineExecutableExecutionRequest(
+                    step.TaskName,
+                    step.ExecutablePath
+                    ?? throw new MetaPipeline.MetaPipelineConfigurationException($"Executable task '{step.TaskName}' must name an executable path."),
+                    step.Arguments,
+                    step.WorkingDirectory,
+                    step.SuccessExitCode ?? 0,
+                    step.TimeoutSeconds,
+                    executableContext)).ConfigureAwait(false);
+        }
+
         var executionConnectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(
-            step.ExecutionConnectionEnvironmentVariableName);
+            step.ExecutionConnectionEnvironmentVariableName
+            ?? throw new MetaPipeline.MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name an execution connection environment variable."));
         var targetConnectionString = step.IsSelect
             ? ConnectionEnvironmentVariableResolver.ResolveRequired(
                 step.TargetConnectionEnvironmentVariableName
@@ -1153,7 +1189,7 @@ internal static partial class Program
             operationalDb,
             operationalRunId,
             plan.PipelineName,
-            step.TransformTaskName,
+            step.TaskName,
             "TransformExecution").ConfigureAwait(false);
 
         return await new MetaPipeline.MetaPipelineSqlServerExecutionService().ExecuteAsync(
@@ -1162,16 +1198,18 @@ internal static partial class Program
                 plan.BindingWorkspacePath,
                 executionConnectionString,
                 targetConnectionString,
-                step.TransformScriptId,
-                step.TransformBindingId,
+                step.TransformScriptId
+                ?? throw new MetaPipeline.MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name a transform script id."),
+                step.TransformBindingId
+                ?? throw new MetaPipeline.MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name a transform binding id."),
                 step.TargetSqlIdentifier,
                 step.BatchSize,
                 step.TimeoutSeconds,
-                step.TargetWriteModelName,
-                step.TransformTaskName,
+                step.TargetWriteModelName ?? "None",
+                step.TaskName,
                 step.TargetWriteTaskName,
                 executionContext,
-                step.TargetDataTypeSystemName,
+                step.TargetDataTypeSystemName ?? "SqlServer",
                 dataTypeConversionWorkspacePath),
             progress).ConfigureAwait(false);
     }
@@ -1234,7 +1272,7 @@ internal static partial class Program
 
     private static void ValidateStartPipelineCommand(
         WorkerProtocolCommand command,
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan)
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan)
     {
         if (!string.IsNullOrWhiteSpace(command.PipelineId) &&
             !string.Equals(command.PipelineId, plan.PipelineId, StringComparison.Ordinal))
@@ -1246,8 +1284,8 @@ internal static partial class Program
 
     private static async Task<WorkerProtocolCommand> ReadWorkerCommandAtBoundaryAsync(
         OrchestrationWorkerProtocolChannel workerChannel,
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionStep step,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionStep step,
         string executableVersion,
         bool emitTaskReady)
     {
@@ -1267,10 +1305,10 @@ internal static partial class Program
         }
 
         var command = await ReadWorkerCommandAsync(workerChannel).ConfigureAwait(false);
-        if (!string.Equals(command.TaskId, step.TransformTaskId, StringComparison.Ordinal))
+        if (!string.Equals(command.TaskId, step.TaskId, StringComparison.Ordinal))
         {
             throw new MetaPipeline.MetaPipelineConfigurationException(
-                $"Worker command '{command.Kind}' named task id '{command.TaskId}', but pipeline '{plan.PipelineName}' is waiting at task id '{step.TransformTaskId}'.");
+                $"Worker command '{command.Kind}' named task id '{command.TaskId}', but pipeline '{plan.PipelineName}' is waiting at task id '{step.TaskId}'.");
         }
 
         return command;
@@ -1279,8 +1317,8 @@ internal static partial class Program
     private static Task WritePipelineWorkerEventAsync(
         OrchestrationWorkerProtocolChannel workerChannel,
         string kind,
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionStep? step,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionStep? step,
         string grantId,
         string commandId,
         int attemptNumber,
@@ -1294,8 +1332,8 @@ internal static partial class Program
             Environment.ProcessId.ToString(System.Globalization.CultureInfo.InvariantCulture),
             plan.PipelineId,
             plan.PipelineName,
-            step?.TransformTaskId ?? string.Empty,
-            step?.TransformTaskName ?? string.Empty,
+            step?.TaskId ?? string.Empty,
+            step?.TaskName ?? string.Empty,
             grantId,
             commandId,
             attemptNumber,
@@ -1338,7 +1376,7 @@ internal static partial class Program
         };
 
     private static MetaPipeline.MetaPipelineExecutionResult CreateModeledPlanResult(
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
         MetaPipeline.MetaPipelineExecutionStatus status,
         DateTimeOffset startedAtUtc,
         long rowCount,
@@ -1351,7 +1389,7 @@ internal static partial class Program
     {
         var scriptNames = string.Join(
             " -> ",
-            plan.Steps.Select(static item => item.TransformScriptName));
+            plan.Steps.Select(static item => RenderStepSubject(item)));
         var targets = string.Join(
             " -> ",
             plan.Steps
@@ -1359,9 +1397,9 @@ internal static partial class Program
                 .Where(static item => !string.IsNullOrWhiteSpace(item))
                 .Cast<string>());
         var targetWriteModels = plan.Steps
-            .Select(static item => item.TargetWriteModelName)
-            .Where(static item => !string.IsNullOrWhiteSpace(item) && !string.Equals(item, "None", StringComparison.OrdinalIgnoreCase))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Select(static item => item.TargetWriteModelName)
+                .Where(static item => !string.IsNullOrWhiteSpace(item) && !string.Equals(item, "None", StringComparison.OrdinalIgnoreCase))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
         var targetWriteModelName = targetWriteModels.Length == 0
             ? "None"
@@ -1385,11 +1423,16 @@ internal static partial class Program
     }
 
     private static string ResolveModeledPlanOperationName(
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan)
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan)
     {
         if (plan.Steps.Count != 1)
         {
-            return "SqlServerSerialPipeline";
+            return "ModeledSerialPipeline";
+        }
+
+        if (plan.Steps[0].StepKind == MetaPipeline.MetaPipelineModeledExecutionStepKind.Executable)
+        {
+            return "ProcessExecute";
         }
 
         return plan.Steps[0].IsSelect
@@ -1398,14 +1441,14 @@ internal static partial class Program
     }
 
     private static void AddSkippedFutureTasks(
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
         int startIndex,
         ICollection<MetaPipeline.MetaPipelineExecutionTaskResult> taskResults)
     {
         for (var index = startIndex; index < plan.Steps.Count; index++)
         {
             var step = plan.Steps[index];
-            taskResults.Add(CreateSkippedTaskResult(step.TransformTaskName, "TransformExecution", step.TimeoutSeconds));
+            taskResults.Add(CreateSkippedTaskResult(step.TaskName, ResolveStepTaskKind(step), step.TimeoutSeconds));
             if (step.IsSelect && !string.IsNullOrWhiteSpace(step.TargetWriteTaskName))
             {
                 taskResults.Add(CreateSkippedTaskResult(step.TargetWriteTaskName, "TargetWrite", step.TimeoutSeconds));
@@ -1433,7 +1476,7 @@ internal static partial class Program
     }
 
     private static IReadOnlyList<MetaPipeline.MetaPipelineOperationalFingerprint> BuildModeledOperationalFingerprints(
-        MetaPipeline.MetaPipelineModeledSqlServerExecutionPlan plan,
+        MetaPipeline.MetaPipelineModeledExecutionPlan plan,
         string? dataTypeConversionWorkspacePath)
     {
         var service = new MetaPipeline.MetaPipelineWorkspaceFingerprintService();
@@ -1443,29 +1486,42 @@ internal static partial class Program
                 "PipelineWorkspace",
                 plan.PipelineId,
                 plan.PipelineWorkspacePath),
-            service.CreateWorkspaceFingerprint(
+        };
+
+        if (!string.IsNullOrWhiteSpace(plan.TransformWorkspacePath))
+        {
+            fingerprints.Add(service.CreateWorkspaceFingerprint(
                 "TransformWorkspace",
                 "all",
-                plan.TransformWorkspacePath),
-            service.CreateWorkspaceFingerprint(
+                plan.TransformWorkspacePath));
+        }
+
+        if (!string.IsNullOrWhiteSpace(plan.BindingWorkspacePath))
+        {
+            fingerprints.Add(service.CreateWorkspaceFingerprint(
                 "BindingWorkspace",
                 "all",
-                plan.BindingWorkspacePath),
-        };
+                plan.BindingWorkspacePath));
+        }
 
         foreach (var step in plan.Steps)
         {
+            if (step.StepKind == MetaPipeline.MetaPipelineModeledExecutionStepKind.Executable)
+            {
+                continue;
+            }
+
             fingerprints.Add(service.CreateWorkspaceFingerprint(
                 "TransformScript",
-                step.TransformScriptId,
+                step.TransformScriptId ?? string.Empty,
                 plan.TransformWorkspacePath,
-                step.TransformTaskName,
+                step.TaskName,
                 "TransformExecution"));
             fingerprints.Add(service.CreateWorkspaceFingerprint(
                 "TransformBinding",
-                step.TransformBindingId,
+                step.TransformBindingId ?? string.Empty,
                 plan.BindingWorkspacePath,
-                step.TransformTaskName,
+                step.TaskName,
                 "TransformExecution"));
 
             if (step.IsSelect
@@ -1474,7 +1530,7 @@ internal static partial class Program
             {
                 fingerprints.Add(service.CreateWorkspaceFingerprint(
                     "DataTypeConversionWorkspace",
-                    step.TargetDataTypeSystemName,
+                    step.TargetDataTypeSystemName ?? "SqlServer",
                     dataTypeConversionWorkspacePath,
                     step.TargetWriteTaskName,
                     "TargetWrite"));
@@ -1557,6 +1613,22 @@ internal static partial class Program
             taskKind);
     }
 
+    private static string ResolveStepTaskKind(MetaPipeline.MetaPipelineModeledExecutionStep step) =>
+        step.StepKind == MetaPipeline.MetaPipelineModeledExecutionStepKind.Executable
+            ? "Executable"
+            : "TransformExecution";
+
+    private static int ResolveFailureExitCode(MetaPipeline.MetaPipelineExecutionResult result) =>
+        result.TaskResults
+            .FirstOrDefault(static task => task.Status == MetaPipeline.MetaPipelineExecutionTaskStatus.Failed)
+            ?.ExitCode
+        ?? 4;
+
+    private static string RenderStepSubject(MetaPipeline.MetaPipelineModeledExecutionStep step) =>
+        step.StepKind == MetaPipeline.MetaPipelineModeledExecutionStepKind.Executable
+            ? step.TaskName
+            : step.TransformScriptName ?? step.TaskName;
+
     private static MetaPipeline.MetaPipelineOperationalDbStore? CreateOperationalDbStore(string connectionEnvironmentVariableName)
     {
         if (string.IsNullOrWhiteSpace(connectionEnvironmentVariableName))
@@ -1567,6 +1639,11 @@ internal static partial class Program
         var connectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(connectionEnvironmentVariableName);
         return new MetaPipeline.MetaPipelineOperationalDbStore(connectionString);
     }
+
+    private static string FullPathOrEmpty(string? path) =>
+        string.IsNullOrWhiteSpace(path)
+            ? string.Empty
+            : Path.GetFullPath(path);
 
     private static bool IsOperationalDbStartupFailure(
         MetaPipeline.MetaPipelineOperationalDbStore? operationalDb,

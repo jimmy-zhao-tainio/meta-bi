@@ -43,8 +43,16 @@ internal sealed class OrchestrationRunJournal
         journal.WriteEvent("Process", Process.GetCurrentProcess().ProcessName, Environment.ProcessId.ToString(System.Globalization.CultureInfo.InvariantCulture));
         journal.WriteEvent("PipelineExecutable", request.PipelineExecutableName, string.Empty);
         journal.WriteEvent("PipelineWorkspace", Path.GetFullPath(request.PipelineWorkspacePath), string.Empty);
-        journal.WriteEvent("TransformWorkspace", Path.GetFullPath(request.TransformWorkspacePath), string.Empty);
-        journal.WriteEvent("BindingWorkspace", Path.GetFullPath(request.BindingWorkspacePath), string.Empty);
+        if (!string.IsNullOrWhiteSpace(request.TransformWorkspacePath))
+        {
+            journal.WriteEvent("TransformWorkspace", Path.GetFullPath(request.TransformWorkspacePath), string.Empty);
+        }
+
+        if (!string.IsNullOrWhiteSpace(request.BindingWorkspacePath))
+        {
+            journal.WriteEvent("BindingWorkspace", Path.GetFullPath(request.BindingWorkspacePath), string.Empty);
+        }
+
         if (!string.IsNullOrWhiteSpace(request.DataTypeConversionWorkspacePath))
         {
             journal.WriteEvent("DataTypeConversionWorkspace", Path.GetFullPath(request.DataTypeConversionWorkspacePath), string.Empty);

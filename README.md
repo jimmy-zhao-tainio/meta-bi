@@ -415,6 +415,7 @@ Purpose:
 - run one bound `MetaTransformScript.TransformScript` per transform-backed task
 - materialize SELECT-kind scripts through `InsertRows`
 - execute SQL-shaped mutation scripts directly through their modeled SQL statements
+- execute external process steps and treat their real exit codes as success/failure evidence
 - keep stage 1 centered on SQL Server execution, bounded row buffering, honest failures, and operational evidence
 
 Command surface:
@@ -422,9 +423,11 @@ Command surface:
 - `meta-pipeline --new-workspace <path>`
 - `meta-pipeline add-pipeline --workspace <path> --name <name> [--description <text>]`
 - `meta-pipeline add-step --workspace <path> --pipeline <name> --script <name-or-id> --transform-workspace <path> --binding-workspace <path> --execution-connection-env <name> [--step-name <name>] [--binding <id>] [--target-connection-env <name>] [--target <sql-identifier>] [--target-write <insert-rows>] [--batch-size <n>] [--timeout-seconds <n>] [--target-data-type-system <name>]`
+- `meta-pipeline add-executable-step --workspace <path> --pipeline <name> --executable <path> [--step-name <name>] [--arguments <text>] [--working-directory <path>] [--success-exit-code <n>] [--timeout-seconds <n>]`
 - `meta-pipeline inspect --workspace <path>`
-- `meta-pipeline execute --workspace <path> --pipeline <name> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]`
-- `meta-pipeline execute-step --workspace <path> --pipeline <name> --step-name <name-or-id> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]`
+- `meta-pipeline execute --workspace <path> --pipeline <name> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]`
+- `meta-pipeline execute-worker --workspace <path> --pipeline <name> --control-pipe <name> [--transform-workspace <path>] [--binding-workspace <path>] [--control-pipe-connect-timeout-seconds <n>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]`
+- `meta-pipeline execute-step --workspace <path> --pipeline <name> --step-name <name-or-id> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]`
 - `meta-pipeline execute-sqlserver --transform-workspace <path> --binding-workspace <path> --script <name-or-id> [--binding <id>] --execution-connection-env <name> [--target-connection-env <name>] [--target <sql-identifier>] [--batch-size <n>] [--timeout-seconds <n>] [--target-data-type-system <name>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]`
 - `meta-pipeline create-pipeline-db --pipeline-db-connection-env <name> [--pipeline-db-name <name>]`
 - `meta-pipeline prune-pipeline-db --pipeline-db-connection-env <name> --retention-days <days> [--dry-run]`
@@ -432,8 +435,10 @@ Command surface:
 Behavior summary:
 - `MetaTransformScript` owns SQL statement semantics, including SQL-shaped mutation statements such as `MERGE`
 - `MetaPipeline` executes modeled transform scripts and handles buffering/row movement where rowsets are materialized
+- executable tasks run external processes directly; the modeled expected success exit code defaults to `0`, and runtime evidence records the real process exit code when the process starts
 - `execute` is the modeled path and resolves one connected serial `PipelineTask` chain
-- `execute-step` executes one transform-backed task and its paired `InsertRows` target write when the selected script is SELECT-kind; it is the task-grain worker surface used by `MetaOrchestration`
+- `execute-step` executes one selected modeled task; executable-only steps do not require transform or binding workspaces
+- `execute-worker` preserves pipeline context for task-grain orchestration
 - every transform-backed task persists the resolved transform script id and transform binding id
 - CLI authoring selects scripts through `--script` by exact `TransformScript.Name` first, with exact id fallback; `--binding` is only needed when multiple bindings reference the selected script
 - SELECT-kind scripts must feed exactly one adjacent `InsertRows` target-write task
@@ -461,6 +466,7 @@ meta-pipeline create-pipeline-db --pipeline-db-connection-env META_PIPELINE_ADMI
 
 meta-pipeline --new-workspace .\PipelineWS
 meta-pipeline add-pipeline --workspace .\PipelineWS --name CustomerLoad
+meta-pipeline add-executable-step --workspace .\PipelineWS --pipeline CustomerLoad --step-name prepare-files --executable dotnet --arguments "--info"
 meta-pipeline add-step --workspace .\PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace .\TransformWS --binding-workspace .\BindingWS --execution-connection-env META_PIPELINE_EXECUTION --target-connection-env META_PIPELINE_TARGET --target dbo.TargetCustomer --target-data-type-system SqlServer
 meta-pipeline execute --workspace .\PipelineWS --pipeline CustomerLoad --transform-workspace .\TransformWS --binding-workspace .\BindingWS
 meta-pipeline execute-sqlserver --transform-workspace .\TransformWS --binding-workspace .\BindingWS --script dbo.v_customer_load --execution-connection-env META_PIPELINE_EXECUTION --target-connection-env META_PIPELINE_TARGET --target-data-type-system SqlServer
@@ -469,14 +475,15 @@ meta-pipeline execute-sqlserver --transform-workspace .\TransformWS --binding-wo
 ### meta-orchestration
 
 Purpose:
-- infer a task-level dependency graph from bound `MetaPipeline` transform steps
-- use `MetaTransformBinding` rowset/target profiles as the minimum dependency input
+- infer a task-level dependency graph from modeled `MetaPipeline` steps
+- use `MetaTransformBinding` rowset/target profiles as the minimum dependency input for transform-backed steps
+- include executable process steps as dependency-neutral pipeline tasks
 - keep orchestration state in a sanctioned workspace
 - separate data dependency, write determinism, and runtime synchronization concerns
 
 Command surface:
 - `meta-orchestration help`
-- `meta-orchestration --pipeline-workspace <path> --transform-workspace <path> --binding-workspace <path> --new-workspace <path> [--description <text>]`
+- `meta-orchestration --pipeline-workspace <path> [--transform-workspace <path>] [--binding-workspace <path>] --new-workspace <path> [--description <text>]`
 - `meta-orchestration inspect --workspace <path>`
 - `meta-orchestration list-issues --workspace <path>`
 - `meta-orchestration explain-issue --workspace <path> --issue <id-or-unique-code>`
@@ -486,15 +493,16 @@ Command surface:
 - `meta-orchestration set-lock-policy --workspace <path> --object <sql-identifier> --left-effect <effect> --right-effect <effect> --behavior <serialize|allow> [--reason <text>]`
 - `meta-orchestration refresh-run-plan --workspace <path>`
 - `meta-orchestration inspect-run-plan --workspace <path>`
-- `meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>]`
+- `meta-orchestration execute --workspace <path> --pipeline-workspace <path> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>]`
 
 Behavior summary:
-- orchestration does not parse or bind SQL; it consumes already-bound transform metadata
+- orchestration does not parse or bind SQL; it consumes already-bound transform metadata when transform-backed tasks are present
+- executable-only pipeline workers do not require transform or binding workspace arguments
 - scalar function definitions in a transform workspace are treated as helper objects; if a pipeline task references one directly, orchestration records a blocking `NonExecutableTransformScript` issue instead of treating it as an unknown SQL statement
 - source reads surfaced from same-workspace scalar function return-expression bodies participate in normal dependency inference for executable transforms that call those functions
 - there is no empty `init` surface today; root `--new-workspace` creates the orchestration workspace by inference, and `refresh-run-plan --workspace` writes run-plan rows into that same workspace
 - each modeled pipeline becomes a `PipelineReference`
-- ordered transform steps become `TaskAccessProfile` rows
+- ordered transform-backed and executable process steps become `TaskAccessProfile` rows
 - object reads/writes become `ObjectAccess` and `PipelineObjectAccess` rows
 - derived `TaskObjectEffect` rows classify producer/consumer, write effect, purpose, synchronization, and lock intent
 - data dependencies become `TaskDependency` rows first, then cross-pipeline summaries become `PipelineDependency` rows
@@ -505,8 +513,8 @@ Behavior summary:
 - replacement mixed with append or same-table mutations can keep `DagStatus=Complete` while setting `DeterminismStatus=RequiresExplicitOrdering`
 - unsafe shared reset and true dependency cycles make `DagStatus=Invalid`
 - explicit task-ordering resolutions and scoped lock compatibility policies are workspace rows
-- `refresh-run-plan` writes `RunPlan`, dependency-ordered `PlannedTask`, and `PlannedTaskLock` rows using task dependencies plus conservative lock policy
-- `execute` refreshes current run-plan rows from the orchestration workspace and starts ready `meta-pipeline execute-step` child processes by traversing the dependency graph
+- `refresh-run-plan` writes `RunPlan`, `PlannedTask`, and `PlannedTaskLock` rows while preserving task dependencies plus conservative lock policy
+- `execute` refreshes current run-plan rows from the orchestration workspace and coordinates `meta-pipeline execute-worker` child processes through the dependency graph
 - attached-console `execute` renders one compact live progress line with the current load/plan/save phase or task count and running task names; redirected/headless runs stay quiet
 - execution continues viable DAG paths by default; failed tasks block only downstream dependents, while unrelated paths continue
 - blocked dependent success branches are reported as skipped, not failed

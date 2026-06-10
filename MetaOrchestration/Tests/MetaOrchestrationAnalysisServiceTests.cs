@@ -274,6 +274,128 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
+    public void Analyze_ExecutableOnlyPipeline_CreatesRunnableTaskProfileWithoutTransformBinding()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+            BuildExecutablePipelineWorkspace(
+                pipelineWorkspace,
+                (PipelineName: "Utility", TaskName: "prepare-files", ExecutablePath: "cmd.exe"));
+
+            var service = new MetaOrchestrationAnalysisService();
+            var result = service.Analyze(
+                new OrchestrationAnalysisRequest(
+                    pipelineWorkspace,
+                    string.Empty,
+                    string.Empty,
+                    "Default"));
+
+            Assert.True(result.IsCompleteDag);
+            Assert.Empty(result.Issues);
+            var pipeline = Assert.Single(result.Pipelines);
+            var task = Assert.Single(pipeline.Tasks);
+            Assert.Equal("Executable", task.TaskKind);
+            Assert.Equal("prepare-files", task.TaskName);
+            Assert.Equal("Executable", task.StatementKind);
+            Assert.Empty(task.TransformScriptId);
+            Assert.Empty(task.TransformBindingId);
+            Assert.Empty(task.ObjectAccesses);
+            Assert.Empty(result.TaskObjectEffects);
+
+            var model = service.CreateModel(result, pipelineWorkspace);
+            var runPlan = new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
+            Assert.Equal("Ready", runPlan.Status);
+            var plannedTask = Assert.Single(model.PlannedTaskList);
+            Assert.Equal("Executable", plannedTask.TaskAccessProfile.TaskKind);
+            Assert.Empty(model.PlannedTaskLockList);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task Runtime_ExecutableOnlyRunPlan_DoesNotPassTransformBindingWorkerArguments()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "Utility",
+                        ExecutableTask("Utility", 1, "prepare-files"))));
+
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                if ($WorkerArgs -contains '--transform-workspace') {
+                    throw 'unexpected --transform-workspace argument'
+                }
+
+                if ($WorkerArgs -contains '--binding-workspace') {
+                    throw 'unexpected --binding-workspace argument'
+                }
+
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'prepare-files' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'prepare-files' -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'prepare-files' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'prepare-files' -ExitCode 0 -Message 'completed'
+                """,
+                provideTransformBindingWorkspaces: false);
+
+            Assert.True(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal("Utility", taskResult.PipelineName);
+            Assert.Equal("prepare-files", taskResult.StepName);
+            Assert.Equal(0, taskResult.ExitCode);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
+    public async Task Runtime_TransformBackedRunPlan_RequiresTransformAndBindingWorkspaces()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var model = CreateModel(
+                AnalyzeProfiles(
+                    Profile(
+                        "LoadA",
+                        Task("LoadA", 1, "load-a", "Select", Access("dbo.RawA", OrchestrationObjectAccessKind.Read, "Source")))));
+
+            var ex = await Assert.ThrowsAsync<InvalidOperationException>(
+                () => ExecuteWithFakePipelineWorkerAsync(
+                    tempRoot,
+                    model,
+                    """
+                    throw 'worker should not start'
+                    """,
+                    provideTransformBindingWorkspaces: false));
+
+            Assert.Contains("transform-backed tasks", ex.Message, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public void DiagnosticLogBufferEnforcesLineAndByteBudgets()
     {
         var buffer = new OrchestrationDiagnosticLogBuffer(new OrchestrationLogCapturePolicy(
@@ -3830,7 +3952,8 @@ INNER JOIN dw.DimCustomer AS d
         TimeSpan? workerEventTimeout = null,
         int maxDegreeOfParallelism = 1,
         TimeSpan? preConnectDelay = null,
-        bool trackActiveWorkers = false)
+        bool trackActiveWorkers = false,
+        bool provideTransformBindingWorkspaces = true)
     {
         var orchestrationWorkspace = Path.Combine(tempRoot, "Orchestration");
         var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
@@ -3875,8 +3998,8 @@ INNER JOIN dw.DimCustomer AS d
             new OrchestrationRuntimeRequest(
                 orchestrationWorkspace,
                 pipelineWorkspace,
-                transformWorkspace,
-                bindingWorkspace,
+                provideTransformBindingWorkspaces ? transformWorkspace : string.Empty,
+                provideTransformBindingWorkspaces ? bindingWorkspace : string.Empty,
                 string.Empty,
                 string.Empty,
                 maxDegreeOfParallelism,
@@ -4204,12 +4327,30 @@ INNER JOIN dw.DimCustomer AS d
         return new PipelineTaskAccessProfile(
             $"pipeline:{pipelineName}:task:{ordinal}",
             taskName,
+            "TransformExecution",
             ordinal,
             $"script:{pipelineName}:{taskName}",
             taskName,
             $"binding:{pipelineName}:{taskName}",
             statementKind,
             accesses);
+    }
+
+    private static PipelineTaskAccessProfile ExecutableTask(
+        string pipelineName,
+        int ordinal,
+        string taskName)
+    {
+        return new PipelineTaskAccessProfile(
+            $"pipeline:{pipelineName}:task:{ordinal}",
+            taskName,
+            "Executable",
+            ordinal,
+            string.Empty,
+            string.Empty,
+            string.Empty,
+            "Executable",
+            []);
     }
 
     private static PipelineObjectAccessProfile Access(
@@ -4512,6 +4653,57 @@ INNER JOIN dw.DimCustomer AS d
                 Predecessor = transformTask,
                 Successor = targetWriteTask,
             });
+        }
+
+        model.SaveToXmlWorkspace(pipelineWorkspace);
+    }
+
+    private static void BuildExecutablePipelineWorkspace(
+        string pipelineWorkspace,
+        params (string PipelineName, string TaskName, string ExecutablePath)[] tasks)
+    {
+        var model = MetaPipelineModel.CreateEmpty();
+        foreach (var pipelineGroup in tasks.GroupBy(static item => item.PipelineName, StringComparer.Ordinal))
+        {
+            var pipeline = new Pipeline
+            {
+                Id = $"pipeline:{pipelineGroup.Key}",
+                Name = pipelineGroup.Key,
+            };
+            model.PipelineList.Add(pipeline);
+
+            var ordinal = 0;
+            PipelineTask? previousTask = null;
+            foreach (var taskSeed in pipelineGroup)
+            {
+                var pipelineTask = new PipelineTask
+                {
+                    Id = $"{pipeline.Id}:task:{++ordinal}",
+                    Pipeline = pipeline,
+                    Name = taskSeed.TaskName,
+                    Ordinal = ordinal.ToString(CultureInfo.InvariantCulture),
+                };
+                model.PipelineTaskList.Add(pipelineTask);
+                model.ExecutableTaskList.Add(new MetaPipeline.ExecutableTask
+                {
+                    Id = $"{pipelineTask.Id}:executable",
+                    PipelineTask = pipelineTask,
+                    ExecutablePath = taskSeed.ExecutablePath,
+                });
+
+                if (previousTask is not null)
+                {
+                    model.TaskDependencyList.Add(new MetaPipeline.TaskDependency
+                    {
+                        Id = $"{previousTask.Id}:before:{pipelineTask.Id}",
+                        Pipeline = pipeline,
+                        Predecessor = previousTask,
+                        Successor = pipelineTask,
+                    });
+                }
+
+                previousTask = pipelineTask;
+            }
         }
 
         model.SaveToXmlWorkspace(pipelineWorkspace);

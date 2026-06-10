@@ -1,62 +1,75 @@
-namespace MetaPipeline;
+﻿namespace MetaPipeline;
 
-public sealed class MetaPipelineModeledSqlServerExecutionResolver
+public sealed class MetaPipelineModeledExecutionResolver
 {
-    public MetaPipelineModeledSqlServerExecutionPlan Resolve(
-        MetaPipelineModeledSqlServerExecutionRequest request)
+    public MetaPipelineModeledExecutionPlan Resolve(
+        MetaPipelineModeledExecutionRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineName);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.TransformWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.BindingWorkspacePath);
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
-        var transformWorkspacePath = Path.GetFullPath(request.TransformWorkspacePath);
-        var bindingWorkspacePath = Path.GetFullPath(request.BindingWorkspacePath);
+        var transformWorkspacePath = NormalizeOptionalWorkspacePath(request.TransformWorkspacePath);
+        var bindingWorkspacePath = NormalizeOptionalWorkspacePath(request.BindingWorkspacePath);
         var model = MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
         var pipeline = ResolvePipeline(model, request.PipelineName);
         var orderedTasks = ResolveSerialTaskOrder(model, pipeline);
-        var steps = new List<MetaPipelineModeledSqlServerExecutionStep>();
+        var steps = new List<MetaPipelineModeledExecutionStep>();
         var workspaceResolver = new MetaPipelineExecutionWorkspaceResolver();
 
         for (var index = 0; index < orderedTasks.Count; index++)
         {
-            var transformTask = orderedTasks[index];
-            var transformExecution = ResolveTransformExecutionTask(model, transformTask);
+            var pipelineTask = orderedTasks[index];
+            var executableTask = ResolveExecutableTask(model, pipelineTask);
+            var transformExecution = ResolveTransformExecutionTask(model, pipelineTask);
+            if (executableTask is not null && transformExecution is not null)
+            {
+                throw new MetaPipelineConfigurationException(
+                    $"Pipeline task '{pipelineTask.Name}' maps to multiple execution detail kinds.");
+            }
+
+            if (executableTask is not null)
+            {
+                steps.Add(ResolveExecutableStep(pipelineTask, executableTask));
+                continue;
+            }
+
             if (transformExecution is null)
             {
-                if (TryResolveTargetWritePlan(model, pipeline, transformTask) is not null)
+                if (TryResolveTargetWritePlan(model, pipeline, pipelineTask) is not null)
                 {
                     throw new MetaPipelineConfigurationException(
-                        $"Target write task '{transformTask.Name}' is not immediately preceded by the SELECT-kind transform it materializes.");
+                        $"Target write task '{pipelineTask.Name}' is not immediately preceded by the SELECT-kind transform it materializes.");
                 }
 
                 throw new MetaPipelineConfigurationException(
-                    $"Pipeline task '{transformTask.Name}' has no supported execution detail.");
+                    $"Pipeline task '{pipelineTask.Name}' has no supported execution detail.");
             }
 
+            RequireWorkspacePath(transformWorkspacePath, "Transform tasks require --transform-workspace <path>.");
+            RequireWorkspacePath(bindingWorkspacePath, "Transform tasks require --binding-workspace <path>.");
             var transformScriptId = RequireValue(
                 transformExecution.TransformScriptId,
-                $"Transform task '{transformTask.Name}' must name a transform script id.");
+                $"Transform task '{pipelineTask.Name}' must name a transform script id.");
             var transformBindingId = RequireValue(
                 transformExecution.TransformBindingId,
-                $"Transform task '{transformTask.Name}' must name a transform binding id.");
+                $"Transform task '{pipelineTask.Name}' must name a transform binding id.");
             var executionConnection = ResolveConnectionReference(
                 model,
                 pipeline,
                 transformExecution.ExecutionConnectionReference.Id,
                 "execution",
-                transformTask.Name);
-            var timeoutSeconds = ResolveTimeoutSeconds(transformTask.Name, transformExecution.TimeoutSeconds);
+                pipelineTask.Name);
+            var timeoutSeconds = ResolveTimeoutSeconds(pipelineTask.Name, transformExecution.TimeoutSeconds);
 
             var nextTask = index + 1 < orderedTasks.Count ? orderedTasks[index + 1] : null;
             var targetWritePlan = nextTask is null
                 ? null
                 : TryResolveTargetWritePlan(model, pipeline, nextTask);
             var executionDefinition = workspaceResolver.ResolveByIds(
-                transformWorkspacePath,
-                bindingWorkspacePath,
+                transformWorkspacePath!,
+                bindingWorkspacePath!,
                 transformScriptId,
                 transformBindingId,
                 targetWritePlan?.TargetSqlIdentifier);
@@ -69,9 +82,10 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
                         $"Transform script '{executionDefinition.TransformScriptName}' is not SELECT-kind and cannot feed an InsertRows target write.");
                 }
 
-                steps.Add(new MetaPipelineModeledSqlServerExecutionStep(
-                    transformTask.Id,
-                    transformTask.Name,
+                steps.Add(new MetaPipelineModeledExecutionStep(
+                    pipelineTask.Id,
+                    pipelineTask.Name,
+                    MetaPipelineModeledExecutionStepKind.TransformExecution,
                     null,
                     null,
                     executionDefinition.TransformScriptId,
@@ -86,7 +100,11 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
                     "None",
                     0,
                     timeoutSeconds,
-                    "SqlServer"));
+                    "SqlServer",
+                    null,
+                    null,
+                    null,
+                    null));
                 continue;
             }
 
@@ -103,18 +121,19 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
                 "target",
                 targetWritePlan.TargetWritePipelineTask.Name);
 
-            var rowStream = EnsureSingleSharedRowStream(model, transformTask, targetWritePlan.TargetWritePipelineTask);
+            var rowStream = EnsureSingleSharedRowStream(model, pipelineTask, targetWritePlan.TargetWritePipelineTask);
             EnsureModeledRowStreamShapeMatchesResolvedShape(
                 model,
                 rowStream,
                 executionDefinition.RowStreamShape ?? throw new MetaPipelineConfigurationException(
                     $"Transform script '{executionDefinition.TransformScriptName}' is SELECT-kind but did not resolve a row-stream shape."),
-                transformTask.Name,
+                pipelineTask.Name,
                 targetWritePlan.TargetWritePipelineTask.Name);
 
-            steps.Add(new MetaPipelineModeledSqlServerExecutionStep(
-                transformTask.Id,
-                transformTask.Name,
+            steps.Add(new MetaPipelineModeledExecutionStep(
+                pipelineTask.Id,
+                pipelineTask.Name,
+                MetaPipelineModeledExecutionStepKind.TransformExecution,
                 targetWritePlan.TargetWritePipelineTask.Id,
                 targetWritePlan.TargetWritePipelineTask.Name,
                 executionDefinition.TransformScriptId,
@@ -129,63 +148,102 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
                 targetWritePlan.TargetWriteModelName,
                 targetWritePlan.BatchSize,
                 timeoutSeconds,
-                targetWritePlan.TargetDataTypeSystemName));
+                targetWritePlan.TargetDataTypeSystemName,
+                null,
+                null,
+                null,
+                null));
             index++;
         }
 
         if (steps.Count == 0)
         {
             throw new MetaPipelineConfigurationException(
-                $"Pipeline '{pipeline.Name}' must declare at least one TransformExecution task.");
+                $"Pipeline '{pipeline.Name}' must declare at least one executable task detail row.");
         }
 
-        return new MetaPipelineModeledSqlServerExecutionPlan(
+        return new MetaPipelineModeledExecutionPlan(
             pipelineWorkspacePath,
             pipeline.Id,
             pipeline.Name,
-            transformWorkspacePath,
-            bindingWorkspacePath,
+            transformWorkspacePath ?? string.Empty,
+            bindingWorkspacePath ?? string.Empty,
             steps);
     }
 
-    public MetaPipelineModeledSqlServerExecutionPlan ResolveStep(
-        MetaPipelineModeledSqlServerExecutionStepRequest request)
+    public MetaPipelineModeledExecutionPlan ResolveStep(
+        MetaPipelineModeledExecutionStepRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineName);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.StepName);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.TransformWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.BindingWorkspacePath);
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
-        var transformWorkspacePath = Path.GetFullPath(request.TransformWorkspacePath);
-        var bindingWorkspacePath = Path.GetFullPath(request.BindingWorkspacePath);
+        var transformWorkspacePath = NormalizeOptionalWorkspacePath(request.TransformWorkspacePath);
+        var bindingWorkspacePath = NormalizeOptionalWorkspacePath(request.BindingWorkspacePath);
         var model = MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
         var pipeline = ResolvePipeline(model, request.PipelineName);
-        var transformTask = ResolveTransformPipelineTask(model, pipeline, request.StepName);
-        var transformExecution = ResolveTransformExecutionTask(model, transformTask)
-            ?? throw new MetaPipelineConfigurationException(
-                $"Pipeline task '{transformTask.Name}' is not a transform execution step.");
+        var pipelineTask = ResolvePipelineTask(model, pipeline, request.StepName);
+        var executableTask = ResolveExecutableTask(model, pipelineTask);
+        var transformExecution = ResolveTransformExecutionTask(model, pipelineTask);
+        if (executableTask is not null && transformExecution is not null)
+        {
+            throw new MetaPipelineConfigurationException(
+                $"Pipeline task '{pipelineTask.Name}' maps to multiple execution detail kinds.");
+        }
 
-        var step = ResolveTransformExecutionStep(
-            model,
-            pipeline,
-            transformTask,
-            transformExecution,
-            transformWorkspacePath,
-            bindingWorkspacePath);
+        var step = executableTask is not null
+            ? ResolveExecutableStep(pipelineTask, executableTask)
+            : ResolveTransformExecutionStep(
+                model,
+                pipeline,
+                pipelineTask,
+                transformExecution
+                ?? throw new MetaPipelineConfigurationException(
+                    $"Pipeline task '{pipelineTask.Name}' is not an executable or transform execution step."),
+                RequireWorkspacePath(transformWorkspacePath, "Transform tasks require --transform-workspace <path>."),
+                RequireWorkspacePath(bindingWorkspacePath, "Transform tasks require --binding-workspace <path>."));
 
-        return new MetaPipelineModeledSqlServerExecutionPlan(
+        return new MetaPipelineModeledExecutionPlan(
             pipelineWorkspacePath,
             pipeline.Id,
             pipeline.Name,
-            transformWorkspacePath,
-            bindingWorkspacePath,
+            transformWorkspacePath ?? string.Empty,
+            bindingWorkspacePath ?? string.Empty,
             [step]);
     }
 
-    private static MetaPipelineModeledSqlServerExecutionStep ResolveTransformExecutionStep(
+    private static MetaPipelineModeledExecutionStep ResolveExecutableStep(
+        PipelineTask pipelineTask,
+        ExecutableTask executableTask)
+    {
+        return new MetaPipelineModeledExecutionStep(
+            pipelineTask.Id,
+            pipelineTask.Name,
+            MetaPipelineModeledExecutionStepKind.Executable,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            IsSelect: false,
+            null,
+            "None",
+            0,
+            ResolveTimeoutSeconds(pipelineTask.Name, executableTask.TimeoutSeconds),
+            null,
+            RequireValue(executableTask.ExecutablePath, $"Executable task '{pipelineTask.Name}' must name an executable path."),
+            NormalizeOptionalValue(executableTask.Arguments),
+            NormalizeOptionalValue(executableTask.WorkingDirectory),
+            ResolveSuccessExitCode(pipelineTask.Name, executableTask.SuccessExitCode));
+    }
+
+    private static MetaPipelineModeledExecutionStep ResolveTransformExecutionStep(
         MetaPipelineModel model,
         Pipeline pipeline,
         PipelineTask transformTask,
@@ -222,9 +280,10 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
                     $"Transform script '{executionDefinition.TransformScriptName}' is not SELECT-kind and cannot feed an InsertRows target write.");
             }
 
-            return new MetaPipelineModeledSqlServerExecutionStep(
+            return new MetaPipelineModeledExecutionStep(
                 transformTask.Id,
                 transformTask.Name,
+                MetaPipelineModeledExecutionStepKind.TransformExecution,
                 null,
                 null,
                 executionDefinition.TransformScriptId,
@@ -239,7 +298,11 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
                 "None",
                 0,
                 timeoutSeconds,
-                "SqlServer");
+                "SqlServer",
+                null,
+                null,
+                null,
+                null);
         }
 
         if (targetWritePlan is null)
@@ -264,9 +327,10 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
             transformTask.Name,
             targetWritePlan.TargetWritePipelineTask.Name);
 
-        return new MetaPipelineModeledSqlServerExecutionStep(
+        return new MetaPipelineModeledExecutionStep(
             transformTask.Id,
             transformTask.Name,
+            MetaPipelineModeledExecutionStepKind.TransformExecution,
             targetWritePlan.TargetWritePipelineTask.Id,
             targetWritePlan.TargetWritePipelineTask.Name,
             executionDefinition.TransformScriptId,
@@ -281,7 +345,11 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
             targetWritePlan.TargetWriteModelName,
             targetWritePlan.BatchSize,
             timeoutSeconds,
-            targetWritePlan.TargetDataTypeSystemName);
+            targetWritePlan.TargetDataTypeSystemName,
+            null,
+            null,
+            null,
+            null);
     }
 
     private static Pipeline ResolvePipeline(
@@ -417,7 +485,7 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
         return ordered;
     }
 
-    private static PipelineTask ResolveTransformPipelineTask(
+    private static PipelineTask ResolvePipelineTask(
         MetaPipelineModel model,
         Pipeline pipeline,
         string stepName)
@@ -435,6 +503,23 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
             0 => throw new MetaPipelineConfigurationException($"Pipeline '{pipeline.Name}' step '{stepName}' was not found."),
             > 1 => throw new MetaPipelineConfigurationException($"Pipeline '{pipeline.Name}' step selector '{stepName}' is ambiguous."),
             _ => matches[0],
+        };
+    }
+
+    private static ExecutableTask? ResolveExecutableTask(
+        MetaPipelineModel model,
+        PipelineTask task)
+    {
+        var matches = model.ExecutableTaskList
+            .Where(item => string.Equals(item.PipelineTask.Id, task.Id, StringComparison.Ordinal))
+            .ToArray();
+
+        return matches.Length switch
+        {
+            0 => null,
+            1 => matches[0],
+            _ => throw new MetaPipelineConfigurationException(
+                $"Pipeline task '{task.Name}' has multiple ExecutableTask detail rows."),
         };
     }
 
@@ -673,7 +758,7 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
             : configuredName.Trim();
 
     private static int? ResolveTimeoutSeconds(
-        string transformTaskName,
+        string taskName,
         string? configuredTimeoutSeconds)
     {
         if (string.IsNullOrWhiteSpace(configuredTimeoutSeconds))
@@ -684,11 +769,44 @@ public sealed class MetaPipelineModeledSqlServerExecutionResolver
         if (!int.TryParse(configuredTimeoutSeconds, out var timeoutSeconds) || timeoutSeconds < 0)
         {
             throw new MetaPipelineConfigurationException(
-                $"Transform task '{transformTaskName}' has invalid TimeoutSeconds '{configuredTimeoutSeconds}'. Expected a non-negative integer; 0 means no timeout.");
+                $"Task '{taskName}' has invalid TimeoutSeconds '{configuredTimeoutSeconds}'. Expected a non-negative integer; 0 means no timeout.");
         }
 
         return timeoutSeconds;
     }
+
+    private static int ResolveSuccessExitCode(
+        string taskName,
+        string? configuredSuccessExitCode)
+    {
+        if (string.IsNullOrWhiteSpace(configuredSuccessExitCode))
+        {
+            return 0;
+        }
+
+        if (!int.TryParse(configuredSuccessExitCode, out var successExitCode))
+        {
+            throw new MetaPipelineConfigurationException(
+                $"Executable task '{taskName}' has invalid SuccessExitCode '{configuredSuccessExitCode}'. Expected an integer.");
+        }
+
+        return successExitCode;
+    }
+
+    private static string? NormalizeOptionalWorkspacePath(string value) =>
+        string.IsNullOrWhiteSpace(value)
+            ? null
+            : Path.GetFullPath(value);
+
+    private static string? NormalizeOptionalValue(string? value) =>
+        string.IsNullOrWhiteSpace(value)
+            ? null
+            : value.Trim();
+
+    private static string RequireWorkspacePath(string? path, string errorMessage) =>
+        string.IsNullOrWhiteSpace(path)
+            ? throw new MetaPipelineConfigurationException(errorMessage)
+            : path;
 
     private static string RenderColumnShape(IEnumerable<(int Ordinal, string Name)> columns) =>
         string.Join(", ", columns.Select(item => item.Ordinal.ToString() + ":" + item.Name));

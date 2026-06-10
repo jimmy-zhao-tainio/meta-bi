@@ -41,6 +41,51 @@ public sealed class MetaPipelineModelValidationServiceTests
     }
 
     [Fact]
+    public void ValidatePipeline_WhenExecutableTaskOnly_IsValid()
+    {
+        var model = MetaPipelineModel.CreateEmpty();
+        var pipeline = AddPipeline(model);
+        var task = new PipelineTask
+        {
+            Id = "CustomerLoad.prepare",
+            Pipeline = pipeline,
+            Name = "prepare",
+            Ordinal = "1",
+        };
+        model.PipelineTaskList.Add(task);
+        model.ExecutableTaskList.Add(new ExecutableTask
+        {
+            Id = "CustomerLoad.prepare.Executable",
+            PipelineTask = task,
+            ExecutablePath = "cmd.exe",
+        });
+
+        var result = new MetaPipelineModelValidationService().ValidatePipeline(model, "CustomerLoad");
+
+        Assert.True(result.IsValid);
+    }
+
+    [Fact]
+    public void ValidatePipeline_WhenTaskHasExecutableAndTransformDetails_ReturnsError()
+    {
+        var model = MetaPipelineModel.CreateEmpty();
+        var pipeline = AddPipeline(model);
+        var source = AddConnection(model, pipeline);
+        var task = AddTransformTask(model, pipeline, source, "prepare", "1");
+        model.ExecutableTaskList.Add(new ExecutableTask
+        {
+            Id = "CustomerLoad.prepare.Executable",
+            PipelineTask = task,
+            ExecutablePath = "cmd.exe",
+        });
+
+        var result = new MetaPipelineModelValidationService().ValidatePipeline(model, "CustomerLoad");
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, item => item.Contains("multiple detail kinds", StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
     public void ValidatePipeline_WhenSerialChainBranches_ReturnsError()
     {
         var model = MetaPipelineModel.CreateEmpty();

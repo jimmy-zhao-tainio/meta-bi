@@ -371,8 +371,8 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 "warehouse.CustomerLoad",
                 ["CustomerId", "CustomerName"]);
 
-            var plan = new MetaPipelineModeledSqlServerExecutionResolver().Resolve(
-                new MetaPipelineModeledSqlServerExecutionRequest(
+            var plan = new MetaPipelineModeledExecutionResolver().Resolve(
+                new MetaPipelineModeledExecutionRequest(
                     pipelineWorkspacePath,
                     "CustomerLoad",
                     transformWorkspacePath,
@@ -645,8 +645,8 @@ END
                 new BindingSeed("binding:1", script, "dbo.Target", []));
             BuildTransformOnlyPipelineWorkspace(pipelineWorkspacePath, script.Id, "binding:1", "45");
 
-            var plan = new MetaPipelineModeledSqlServerExecutionResolver().Resolve(
-                new MetaPipelineModeledSqlServerExecutionRequest(
+            var plan = new MetaPipelineModeledExecutionResolver().Resolve(
+                new MetaPipelineModeledExecutionRequest(
                     pipelineWorkspacePath,
                     "CustomerLoad",
                     transformWorkspacePath,
@@ -701,8 +701,8 @@ END
                 deleteScript.Id,
                 "binding:delete");
 
-            var plan = new MetaPipelineModeledSqlServerExecutionResolver().Resolve(
-                new MetaPipelineModeledSqlServerExecutionRequest(
+            var plan = new MetaPipelineModeledExecutionResolver().Resolve(
+                new MetaPipelineModeledExecutionRequest(
                     pipelineWorkspacePath,
                     "CustomerLoad",
                     transformWorkspacePath,
@@ -756,8 +756,8 @@ END
                 deleteScript.Id,
                 "binding:delete");
 
-            var plan = new MetaPipelineModeledSqlServerExecutionResolver().ResolveStep(
-                new MetaPipelineModeledSqlServerExecutionStepRequest(
+            var plan = new MetaPipelineModeledExecutionResolver().ResolveStep(
+                new MetaPipelineModeledExecutionStepRequest(
                     pipelineWorkspacePath,
                     "CustomerLoad",
                     "delete",
@@ -798,8 +798,8 @@ END
             BuildTransformOnlyPipelineWorkspace(pipelineWorkspacePath, script.Id, "binding:1");
 
             var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
-                new MetaPipelineModeledSqlServerExecutionResolver().Resolve(
-                    new MetaPipelineModeledSqlServerExecutionRequest(
+                new MetaPipelineModeledExecutionResolver().Resolve(
+                    new MetaPipelineModeledExecutionRequest(
                         pipelineWorkspacePath,
                         "CustomerLoad",
                         transformWorkspacePath,

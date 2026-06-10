@@ -25,6 +25,11 @@ Each transform-backed task is centered on:
 The transform is the core.
 The binding is the guarantee.
 
+Executable process tasks are also modeled pipeline tasks.
+They carry the executable path, arguments, working directory, expected success exit code, and optional timeout in the workspace.
+They do not use transform or binding workspaces.
+At runtime, success/failure is based on the real process exit code.
+
 Every transform execution task names the transform script and transform binding explicitly by id.
 If a SELECT-kind binding exposes multiple targets, the task also names the target explicitly.
 In the modeled CLI path, `meta-pipeline execute` runs the pipeline's declared serial `PipelineTask` chain.
@@ -93,6 +98,9 @@ They require the operational DB to be initialized first and fail with a `Next:` 
 `meta-pipeline prune-pipeline-db --pipeline-db-connection-env <name> --retention-days <days>` performs explicit retention maintenance for old `RunDiagnosticsLog` rows while preserving run lineage.
 
 When `execute` or `execute-sqlserver` runs in an attached console, the CLI prints one compact live operator progress line with step count, elapsed time, rows, batches, and estimated payload rate. Rate units switch between `B/s`, `KB/s`, `MB/s`, and `GB/s` as the observed rate grows. Redirected/headless executions do not print the live progress line.
+
+Executable process tasks can be authored with `meta-pipeline add-executable-step`.
+`execute`, `execute-step`, and `execute-worker` can run executable-only tasks without transform or binding workspace arguments.
 
 The operational DB stores run diagnostic logs separately from audit-relevant run logs, metrics, task runs, and failures.
 It does not store XML metadata, connection strings, scheduling policy, watermarks, checkpoints, or orchestration decisions.

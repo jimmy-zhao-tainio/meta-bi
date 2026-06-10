@@ -302,8 +302,6 @@ internal static partial class Program
 
         if (string.IsNullOrWhiteSpace(workspacePath)) return ParsedExecuteArgs.Fail("missing required option --workspace <path>.");
         if (string.IsNullOrWhiteSpace(pipelineWorkspacePath)) return ParsedExecuteArgs.Fail("missing required option --pipeline-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return ParsedExecuteArgs.Fail("missing required option --transform-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(bindingWorkspacePath)) return ParsedExecuteArgs.Fail("missing required option --binding-workspace <path>.");
 
         return new ParsedExecuteArgs(
             true,

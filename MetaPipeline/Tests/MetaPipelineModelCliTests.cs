@@ -17,6 +17,7 @@ public sealed class MetaPipelineModelCliTests
         Assert.DoesNotContain("init", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("add-pipeline", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("add-step", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("add-executable-step", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("execute-worker", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("execute-step", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("add-transform", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -278,6 +279,51 @@ public sealed class MetaPipelineModelCliTests
     }
 
     [Fact]
+    public void AddExecutableStepAndExecute_UsesProcessExitCode()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaPipeline.Tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "pipeline");
+        var cmdExe = ResolveCmdExe();
+
+        try
+        {
+            Assert.Equal(0, RunCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunCli($"add-pipeline --workspace \"{workspacePath}\" --name ExecutableSuccess").ExitCode);
+            Assert.Equal(0, RunCli(
+                $"add-executable-step --workspace \"{workspacePath}\" --pipeline ExecutableSuccess --step-name run-success --executable \"{cmdExe}\" --arguments \"/c exit /b 0\"").ExitCode);
+
+            var successInspect = RunCli($"inspect --workspace \"{workspacePath}\"");
+
+            Assert.Equal(0, successInspect.ExitCode);
+            Assert.Contains("run-success [Executable]", successInspect.Output, StringComparison.OrdinalIgnoreCase);
+
+            var success = RunCli($"execute --workspace \"{workspacePath}\" --pipeline ExecutableSuccess");
+
+            Assert.Equal(0, success.ExitCode);
+
+            Assert.Equal(0, RunCli($"add-pipeline --workspace \"{workspacePath}\" --name ExecutableFailure").ExitCode);
+            Assert.Equal(0, RunCli(
+                $"add-executable-step --workspace \"{workspacePath}\" --pipeline ExecutableFailure --step-name run-failure --executable \"{cmdExe}\" --arguments \"/c echo failure-output & exit /b 7\"").ExitCode);
+
+            var failure = RunCli($"execute --workspace \"{workspacePath}\" --pipeline ExecutableFailure");
+
+            Assert.Equal(4, failure.ExitCode);
+            Assert.Contains("exited with code 7", failure.Output, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("failure-output", failure.Output, StringComparison.OrdinalIgnoreCase);
+
+            var model = global::MetaPipeline.MetaPipelineModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+            Assert.Equal(2, model.ExecutableTaskList.Count);
+            Assert.Contains(model.ExecutableTaskList, task =>
+                string.Equals(task.PipelineTask.Name, "run-success", StringComparison.Ordinal)
+                && string.Equals(task.ExecutablePath, cmdExe, StringComparison.OrdinalIgnoreCase));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task AddStep_WhenScriptIsNotSelect_CreatesTransformExecutionOnly()
     {
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaPipeline.Tests", Guid.NewGuid().ToString("N"));
@@ -494,6 +540,9 @@ public sealed class MetaPipelineModelCliTests
 
     private static (int ExitCode, string Output) RunCli(string arguments) =>
         CliTestRunner.RunStandardCli("MetaPipeline", "meta-pipeline.exe", arguments);
+
+    private static string ResolveCmdExe() =>
+        Environment.GetEnvironmentVariable("ComSpec") ?? "cmd.exe";
 
     private static void DeleteDirectoryIfExists(string path)
     {

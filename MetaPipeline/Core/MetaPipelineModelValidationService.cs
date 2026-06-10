@@ -214,18 +214,25 @@ public sealed class MetaPipelineModelValidationService
             .Select(static item => item.Id)
             .ToHashSet(StringComparer.Ordinal);
 
-        var transformTaskIds = model.TransformExecutionTaskList
+        var executableTaskDetailCount = model.ExecutableTaskList
+            .Count(item => pipelineTaskIdSet.Contains(item.PipelineTask.Id));
+        var transformTaskDetailCount = model.TransformExecutionTaskList
             .Where(item => pipelineTaskIdSet.Contains(item.PipelineTask.Id))
             .Select(static item => item.PipelineTask.Id)
-            .ToArray();
-        if (transformTaskIds.Length == 0)
+            .Count();
+        if (executableTaskDetailCount + transformTaskDetailCount == 0)
         {
-            errors.Add($"Pipeline '{pipeline.Name}' must declare at least one TransformExecutionTask detail row.");
+            errors.Add($"Pipeline '{pipeline.Name}' must declare at least one executable task detail row.");
         }
 
         foreach (var task in pipelineTasks)
         {
             var detailCount = 0;
+            if (model.ExecutableTaskList.Any(item => string.Equals(item.PipelineTask.Id, task.Id, StringComparison.Ordinal)))
+            {
+                detailCount++;
+            }
+
             if (model.TransformExecutionTaskList.Any(item => string.Equals(item.PipelineTask.Id, task.Id, StringComparison.Ordinal)))
             {
                 detailCount++;

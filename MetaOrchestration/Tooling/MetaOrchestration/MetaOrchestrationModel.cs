@@ -2605,6 +2605,9 @@ namespace MetaOrchestration
                     case "StatementKind":
                         row.StatementKind = reader.ReadElementContentAsString();
                         break;
+                    case "TaskKind":
+                        row.TaskKind = reader.ReadElementContentAsString();
+                        break;
                     case "TaskName":
                         row.TaskName = reader.ReadElementContentAsString();
                         break;
@@ -2658,10 +2661,20 @@ namespace MetaOrchestration
                 AppendElement(builder, "MetaPipelinePipelineTaskId", RequireText(row.MetaPipelinePipelineTaskId, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'MetaPipelinePipelineTaskId'."), "      ");
                 AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 AppendElement(builder, "StatementKind", RequireText(row.StatementKind, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'StatementKind'."), "      ");
+                AppendElement(builder, "TaskKind", RequireText(row.TaskKind, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'TaskKind'."), "      ");
                 AppendElement(builder, "TaskName", RequireText(row.TaskName, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'TaskName'."), "      ");
-                AppendElement(builder, "TransformBindingId", RequireText(row.TransformBindingId, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'TransformBindingId'."), "      ");
-                AppendElement(builder, "TransformScriptId", RequireText(row.TransformScriptId, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'TransformScriptId'."), "      ");
-                AppendElement(builder, "TransformScriptName", RequireText(row.TransformScriptName, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'TransformScriptName'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.TransformBindingId))
+                {
+                    AppendElement(builder, "TransformBindingId", row.TransformBindingId!, "      ");
+                }
+                if (!string.IsNullOrWhiteSpace(row.TransformScriptId))
+                {
+                    AppendElement(builder, "TransformScriptId", row.TransformScriptId!, "      ");
+                }
+                if (!string.IsNullOrWhiteSpace(row.TransformScriptName))
+                {
+                    AppendElement(builder, "TransformScriptName", row.TransformScriptName!, "      ");
+                }
                 builder.Append("    </TaskAccessProfile>\n");
             }
             builder.Append("  </TaskAccessProfileList>\n");
@@ -4390,6 +4403,7 @@ namespace MetaOrchestration
                 "MetaPipelinePipelineTaskId",
                 "Ordinal",
                 "StatementKind",
+                "TaskKind",
                 "TaskName",
                 "TransformBindingId",
                 "TransformScriptId",

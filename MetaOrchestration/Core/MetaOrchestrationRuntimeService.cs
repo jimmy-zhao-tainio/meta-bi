@@ -17,8 +17,6 @@ public sealed class MetaOrchestrationRuntimeService
         ArgumentNullException.ThrowIfNull(request);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.WorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.TransformWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.BindingWorkspacePath);
         if (request.MaxDegreeOfParallelism <= 0)
         {
             throw new ArgumentException("MaxDegreeOfParallelism must be a positive integer.", nameof(request));
@@ -104,6 +102,21 @@ public sealed class MetaOrchestrationRuntimeService
                 throw new InvalidOperationException(
                     $"Run plan '{runPlan.Name}' has no planned tasks.");
             }
+            if (RunPlanContainsTransformBackedTasks(plannedTasks))
+            {
+                if (string.IsNullOrWhiteSpace(request.TransformWorkspacePath))
+                {
+                    throw new InvalidOperationException(
+                        "Run plan contains transform-backed tasks, but no transform workspace was provided.");
+                }
+
+                if (string.IsNullOrWhiteSpace(request.BindingWorkspacePath))
+                {
+                    throw new InvalidOperationException(
+                        "Run plan contains transform-backed tasks, but no binding workspace was provided.");
+                }
+            }
+
             supervisorState.SetRunPlan(runPlan.Name, plannedTasks.Length);
 
             journal.WriteEvent("RunPlanReady", runPlan.Name, plannedTasks.Length.ToString(CultureInfo.InvariantCulture));
@@ -925,8 +938,12 @@ public sealed class MetaOrchestrationRuntimeService
         {
             WorkspacePath = Path.GetFullPath(request.WorkspacePath),
             PipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath),
-            TransformWorkspacePath = Path.GetFullPath(request.TransformWorkspacePath),
-            BindingWorkspacePath = Path.GetFullPath(request.BindingWorkspacePath),
+            TransformWorkspacePath = string.IsNullOrWhiteSpace(request.TransformWorkspacePath)
+                ? string.Empty
+                : Path.GetFullPath(request.TransformWorkspacePath),
+            BindingWorkspacePath = string.IsNullOrWhiteSpace(request.BindingWorkspacePath)
+                ? string.Empty
+                : Path.GetFullPath(request.BindingWorkspacePath),
             DataTypeConversionWorkspacePath = string.IsNullOrWhiteSpace(request.DataTypeConversionWorkspacePath)
                 ? string.Empty
                 : Path.GetFullPath(request.DataTypeConversionWorkspacePath),
@@ -949,6 +966,11 @@ public sealed class MetaOrchestrationRuntimeService
 
     private static bool IsActive(string value) =>
         string.Equals(value, "Active", StringComparison.OrdinalIgnoreCase);
+
+    private static bool RunPlanContainsTransformBackedTasks(IReadOnlyList<MO.PlannedTask> plannedTasks) =>
+        plannedTasks.Any(static item =>
+            string.IsNullOrWhiteSpace(item.TaskAccessProfile.TaskKind) ||
+            string.Equals(item.TaskAccessProfile.TaskKind, "TransformExecution", StringComparison.OrdinalIgnoreCase));
 
     private static MO.RunPlan ResolveRunPlan(MO.MetaOrchestrationModel model)
     {
@@ -1105,10 +1127,17 @@ public sealed class MetaOrchestrationRuntimeService
             startInfo.ArgumentList.Add(request.PipelineWorkspacePath);
             startInfo.ArgumentList.Add("--pipeline");
             startInfo.ArgumentList.Add(pipelineName);
-            startInfo.ArgumentList.Add("--transform-workspace");
-            startInfo.ArgumentList.Add(request.TransformWorkspacePath);
-            startInfo.ArgumentList.Add("--binding-workspace");
-            startInfo.ArgumentList.Add(request.BindingWorkspacePath);
+            if (!string.IsNullOrWhiteSpace(request.TransformWorkspacePath))
+            {
+                startInfo.ArgumentList.Add("--transform-workspace");
+                startInfo.ArgumentList.Add(request.TransformWorkspacePath);
+            }
+
+            if (!string.IsNullOrWhiteSpace(request.BindingWorkspacePath))
+            {
+                startInfo.ArgumentList.Add("--binding-workspace");
+                startInfo.ArgumentList.Add(request.BindingWorkspacePath);
+            }
 
             if (!string.IsNullOrWhiteSpace(request.DataTypeConversionWorkspacePath))
             {

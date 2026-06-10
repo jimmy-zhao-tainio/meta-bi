@@ -22,6 +22,7 @@ The implemented stage 1 slice is:
 - one selected target when a SELECT binding exposes more than one target
 - initial `MetaPipeline` XML workspace and instance CLI commands
 - a serial `PipelineTask` chain with one bound transform script per transform-backed task
+- executable process tasks with modeled path, arguments, working directory, success exit code, and optional timeout
 - SQL Server transform execution through an explicit execution connection
 - explicit row-stream shape shared by source, buffers, and writer
 - bounded in-memory row buffers
@@ -39,12 +40,14 @@ The CLI surface is:
 ```text
 meta-pipeline create-pipeline-db --pipeline-db-connection-env <name> [--pipeline-db-name <name>]
 meta-pipeline prune-pipeline-db --pipeline-db-connection-env <name> --retention-days <days> [--dry-run]
-meta-pipeline execute --workspace <path> --pipeline <name> --transform-workspace <path> --binding-workspace <path> [--pipeline-db-connection-env <name>]
+meta-pipeline add-executable-step --workspace <path> --pipeline <name> --executable <path> [--step-name <name>] [--arguments <text>] [--working-directory <path>] [--success-exit-code <n>] [--timeout-seconds <n>]
+meta-pipeline execute --workspace <path> --pipeline <name> [--transform-workspace <path>] [--binding-workspace <path>] [--pipeline-db-connection-env <name>]
 meta-pipeline execute-sqlserver --transform-workspace <path> --binding-workspace <path> --script <name-or-id> [--binding <id>] --execution-connection-env <name> [--target-connection-env <name>] [--target <sql-identifier>] [--batch-size <n>] [--timeout-seconds <n>] [--pipeline-db-connection-env <name>]
 ```
 
 `execute` is the preferred shape for modeled work.
 `execute-sqlserver` remains the direct low-level slice while the modeled path is being filled in.
+Executable process tasks can run without transform or binding workspaces and use the real process exit code as task success/failure evidence.
 Target connection options are required only for SELECT-kind scripts that materialize through `InsertRows`; mutation scripts execute through the explicit execution connection.
 Timeouts are explicit: omitted means no SQL command timeout, and configured timeouts apply to SQL commands and SQL Server bulk copy.
 

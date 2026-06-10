@@ -128,6 +128,78 @@ internal static partial class Program
         }
     }
 
+    private static int RunAddExecutableStep(string[] args, int startIndex)
+    {
+        var parse = ParseAddExecutableStepArgs(args, startIndex);
+        if (!parse.Ok)
+        {
+            return Fail(parse.ErrorMessage, HelpCommand("add-executable-step"));
+        }
+
+        try
+        {
+            var workspacePath = Path.GetFullPath(parse.WorkspacePath);
+            var model = MetaPipeline.MetaPipelineModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
+            var pipeline = ResolvePipeline(model, parse.PipelineName);
+            var taskName = ResolveExecutableStepName(parse.StepName, parse.ExecutablePath);
+            EnsureTaskNameAvailable(model, pipeline, taskName);
+            var nextOrdinal = ResolveNextTaskOrdinal(model, pipeline);
+            var taskId = ScopedId(pipeline.Id, taskName);
+            var previousTerminalTask = ResolveCurrentTerminalTask(model, pipeline);
+
+            var operations = new List<WorkspaceOp>
+            {
+                CreateUpsertOperation(
+                    "PipelineTask",
+                    CreateRowPatch(
+                        taskId,
+                        new Dictionary<string, string>
+                        {
+                            ["Name"] = taskName,
+                            ["Ordinal"] = nextOrdinal.ToString(),
+                        },
+                        new Dictionary<string, string>
+                        {
+                            ["PipelineId"] = pipeline.Id,
+                        })),
+                CreateUpsertOperation(
+                    "ExecutableTask",
+                    CreateRowPatch(
+                        ScopedId(taskId, "Executable"),
+                        new Dictionary<string, string>
+                        {
+                            ["ExecutablePath"] = parse.ExecutablePath.Trim(),
+                            ["Arguments"] = parse.Arguments.Trim(),
+                            ["WorkingDirectory"] = parse.WorkingDirectory.Trim(),
+                            ["SuccessExitCode"] = parse.SuccessExitCodeSpecified ? parse.SuccessExitCode.ToString() : string.Empty,
+                            ["TimeoutSeconds"] = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : string.Empty,
+                        },
+                        new Dictionary<string, string>
+                        {
+                            ["PipelineTaskId"] = taskId,
+                        })),
+            };
+
+            if (previousTerminalTask is not null)
+            {
+                operations.Add(CreateSerialDependencyOperation(pipeline, previousTerminalTask.Id, taskId));
+            }
+
+            ApplyInstanceUpserts(workspacePath, operations);
+
+            Presenter.WriteOk();
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            return Fail(
+                "Cannot update pipeline workspace.",
+                "check the pipeline name and executable task inputs, then retry.",
+                4,
+                new[] { $"  Workspace: {Path.GetFullPath(parse.WorkspacePath)}", $"  {ex.Message}" });
+        }
+    }
+
     private static int RunAddStep(string[] args, int startIndex)
     {
         var parse = ParseAddStepArgs(args, startIndex);
@@ -478,6 +550,24 @@ internal static partial class Program
         {
             throw new MetaPipeline.MetaPipelineConfigurationException(
                 $"Transform script '{transformScriptName}' cannot be used to derive a step name. Use --step-name <name>.");
+        }
+
+        return derived;
+    }
+
+    private static string ResolveExecutableStepName(string stepName, string executablePath)
+    {
+        if (!string.IsNullOrWhiteSpace(stepName))
+        {
+            return stepName.Trim();
+        }
+
+        var fileName = Path.GetFileNameWithoutExtension(executablePath.Trim());
+        var derived = DeriveStepName(fileName);
+        if (string.IsNullOrWhiteSpace(derived))
+        {
+            throw new MetaPipeline.MetaPipelineConfigurationException(
+                $"Executable path '{executablePath}' cannot be used to derive a step name. Use --step-name <name>.");
         }
 
         return derived;

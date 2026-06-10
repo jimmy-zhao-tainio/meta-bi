@@ -1773,16 +1773,17 @@ Usage:
 
 Commands:
 
-  execute             Execute a modeled pipeline's serial task chain.
-  execute-worker      Execute a modeled pipeline under an orchestration worker protocol.
-  execute-step        Execute one modeled transform-backed pipeline step.
-  execute-sqlserver   Execute the direct SQL Server runtime slice.
-  create-pipeline-db  Create or update the MetaPipeline operational DB.
-  prune-pipeline-db   Prune old MetaPipeline operational diagnostic logs.
-  add-pipeline        Add one Pipeline instance to a MetaPipeline workspace.
-  add-step            Add one transform-backed step to a pipeline.
-  inspect             Show a compact MetaPipeline workspace summary.
-  help                Show this help.
+  execute              Execute a modeled pipeline's serial task chain.
+  execute-worker       Execute a modeled pipeline under an orchestration worker protocol.
+  execute-step         Execute one modeled pipeline step.
+  execute-sqlserver    Execute the direct SQL Server runtime slice.
+  create-pipeline-db   Create or update the MetaPipeline operational DB.
+  prune-pipeline-db    Prune old MetaPipeline operational diagnostic logs.
+  add-pipeline         Add one Pipeline instance to a MetaPipeline workspace.
+  add-step             Add one transform-backed step to a pipeline.
+  add-executable-step  Add one executable process step to a pipeline.
+  inspect              Show a compact MetaPipeline workspace summary.
+  help                 Show this help.
 
 Notes:
   --new-workspace creates an empty sanctioned MetaPipeline workspace.
@@ -1795,19 +1796,19 @@ Next: meta-pipeline add-pipeline --help
 ```text
 Command: execute
 Usage:
-  meta-pipeline execute --workspace <path> --pipeline <name> --transform-workspace <path>
-  --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env
-  <name>]
+  meta-pipeline execute --workspace <path> --pipeline <name> [--transform-workspace <path>]
+  [--binding-workspace <path>] [--data-type-conversion-workspace <path>]
+  [--pipeline-db-connection-env <name>]
 
 Options:
 
   --workspace <path>                       Required. MetaPipeline workspace that contains the
                                            modeled serial task chain.
   --pipeline <name>                        Required. Pipeline name to execute.
-  --transform-workspace <path>             Required. MetaTransformScript workspace used by transform
-                                           tasks.
-  --binding-workspace <path>               Required. MetaTransformBinding workspace used by
-                                           transform tasks.
+  --transform-workspace <path>             Required when the pipeline contains transform tasks.
+                                           MetaTransformScript workspace used by transform tasks.
+  --binding-workspace <path>               Required when the pipeline contains transform tasks.
+                                           MetaTransformBinding workspace used by transform tasks.
   --data-type-conversion-workspace <path>  Optional conversion policy workspace; omitted uses the
                                            built-in defaults.
   --pipeline-db-connection-env <name>      Optional shell-visible environment variable for an
@@ -1816,6 +1817,7 @@ Options:
 Notes:
   Executes the serial PipelineTask chain declared in a MetaPipeline workspace.
   Every transform task requires a binding workspace.
+  Executable tasks do not require transform or binding workspaces.
   SELECT-kind scripts must feed exactly one InsertRows target write.
   Non-SELECT scripts execute directly and must not feed a TargetWrite task.
   Connection references in the model name shell-visible environment variables.
@@ -1835,19 +1837,21 @@ Examples:
 ```text
 Command: execute-worker
 Usage:
-  meta-pipeline execute-worker --workspace <path> --pipeline <name> --transform-workspace <path>
-  --binding-workspace <path> --control-pipe <name> [--control-pipe-connect-timeout-seconds <n>]
-  [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]
+  meta-pipeline execute-worker --workspace <path> --pipeline <name> --control-pipe <name>
+  [--transform-workspace <path>] [--binding-workspace <path>]
+  [--control-pipe-connect-timeout-seconds <n>] [--data-type-conversion-workspace <path>]
+  [--pipeline-db-connection-env <name>]
 
 Options:
 
   --workspace <path>                          Required. MetaPipeline workspace that contains the
                                               modeled serial task chain.
   --pipeline <name>                           Required. Pipeline name to execute as a worker.
-  --transform-workspace <path>                Required. MetaTransformScript workspace used by
-                                              transform tasks.
-  --binding-workspace <path>                  Required. MetaTransformBinding workspace used by
-                                              transform tasks.
+  --transform-workspace <path>                Required when the pipeline contains transform tasks.
+                                              MetaTransformScript workspace used by transform tasks.
+  --binding-workspace <path>                  Required when the pipeline contains transform tasks.
+                                              MetaTransformBinding workspace used by transform
+                                              tasks.
   --control-pipe <name>                       Required. Named pipe used for orchestration worker
                                               control messages.
   --control-pipe-connect-timeout-seconds <n>  Optional timeout while connecting to the orchestration
@@ -1878,8 +1882,8 @@ Examples:
 Command: execute-step
 Usage:
   meta-pipeline execute-step --workspace <path> --pipeline <name> --step-name <name-or-id>
-  --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>]
-  [--pipeline-db-connection-env <name>]
+  [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace
+  <path>] [--pipeline-db-connection-env <name>]
 
 Options:
 
@@ -1887,16 +1891,18 @@ Options:
                                            modeled step.
   --pipeline <name>                        Required. Pipeline name containing the step.
   --step-name <name-or-id>                 Required. Pipeline task name or id to execute.
-  --transform-workspace <path>             Required. MetaTransformScript workspace used by the step.
-  --binding-workspace <path>               Required. MetaTransformBinding workspace used by the
-                                           step.
+  --transform-workspace <path>             Required when the step is a transform task.
+                                           MetaTransformScript workspace used by the step.
+  --binding-workspace <path>               Required when the step is a transform task.
+                                           MetaTransformBinding workspace used by the step.
   --data-type-conversion-workspace <path>  Optional conversion policy workspace; omitted uses the
                                            built-in defaults.
   --pipeline-db-connection-env <name>      Optional shell-visible environment variable for an
                                            initialized MetaPipeline operational DB.
 
 Notes:
-  Executes exactly one transform-backed PipelineTask declared in a MetaPipeline workspace.
+  Executes exactly one PipelineTask declared in a MetaPipeline workspace.
+  Executable steps can be selected without transform or binding workspaces.
   The command does not traverse predecessor or successor tasks.
   SELECT-kind steps execute their paired InsertRows target write when modeled.
   Non-SELECT steps execute directly through the modeled execution connection.
@@ -2087,6 +2093,40 @@ Examples:
   meta-pipeline add-step --workspace .\PipelineWS --pipeline CustomerLoad --step-name load-customers --script dbo.v_customer_load --transform-workspace .\TransformWS --binding-workspace .\BindingWS --execution-connection-env EXECUTION_DB --target-connection-env TARGET_DB --target dbo.TargetCustomer --target-write insert-rows --batch-size 1000
 ```
 
+### `meta-pipeline add-executable-step --help`
+
+```text
+Command: add-executable-step
+Usage:
+  meta-pipeline add-executable-step --workspace <path> --pipeline <name> --executable <path>
+  [--step-name <name>] [--arguments <text>] [--working-directory <path>] [--success-exit-code <n>]
+  [--timeout-seconds <n>]
+
+Options:
+
+  --workspace <path>          Required. Existing MetaPipeline workspace to update.
+  --pipeline <name>           Required. Pipeline that receives the new serial step.
+  --executable <path>         Required. Executable path or executable name resolvable by the
+                              operating system.
+  --step-name <name>          Optional step name; omitted derives a deterministic name from the
+                              executable file name.
+  --arguments <text>          Optional raw command-line arguments passed to the executable.
+  --working-directory <path>  Optional process working directory.
+  --success-exit-code <n>     Expected process exit code. Default: 0.
+  --timeout-seconds <n>       Process timeout seconds. 0 or omitted means no timeout.
+
+Notes:
+  Appends one executable-backed task instance to the pipeline's serial task chain.
+  The executable path, arguments, working directory, expected success exit code, and optional timeout are modeled in the workspace.
+  Runtime success is determined by the real process exit code.
+  Connection strings are not involved in executable tasks.
+  Use meta-pipeline execute to execute the modeled executable task.
+
+Examples:
+
+  meta-pipeline add-executable-step --workspace .\PipelineWS --pipeline CustomerLoad --step-name prepare-files --executable dotnet --arguments "--info"
+```
+
 ### `meta-pipeline inspect --help`
 
 ```text
@@ -2108,8 +2148,8 @@ Notes:
 
 ```text
 Usage:
-  meta-orchestration --pipeline-workspace <path> --transform-workspace <path> --binding-workspace
-  <path> --new-workspace <path> [--description <text>]
+  meta-orchestration --pipeline-workspace <path> [--transform-workspace <path>] [--binding-workspace
+  <path>] --new-workspace <path> [--description <text>]
 Usage:
   meta-orchestration <command> [options]
 
@@ -2130,8 +2170,8 @@ Commands:
   help                     Show this help.
 
 Notes:
-  --new-workspace creates a MetaOrchestration workspace by inferring from bound MetaPipeline transform steps.
-  Binding must already exist; orchestration does not parse or bind SQL itself.
+  --new-workspace creates a MetaOrchestration workspace by inferring from modeled MetaPipeline steps.
+  Transform-backed steps require binding; executable process steps do not.
   The workspace separates dependency DAG status from determinism and synchronization status.
   Data dependencies are inferred from published producers to dependency consumers.
   Same-object writer interactions become determinism or synchronization issues instead of artificial dependency edges.
@@ -2315,8 +2355,8 @@ Notes:
 ```text
 Command: execute
 Usage:
-  meta-orchestration execute --workspace <path> --pipeline-workspace <path> --transform-workspace
-  <path> --binding-workspace <path> [--data-type-conversion-workspace <path>]
+  meta-orchestration execute --workspace <path> --pipeline-workspace <path> [--transform-workspace
+  <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>]
   [--pipeline-db-connection-env <name>] [--max-degree-of-parallelism <n>] [--run-artifacts-root
   <path>] [--worker-event-timeout-seconds <n>] [--worker-activation-timeout-seconds <n>]
   [--worker-control-pipe-connect-timeout-seconds <n>]
@@ -2327,10 +2367,10 @@ Options:
                                                      containing the analysis and run-plan rows.
   --pipeline-workspace <path>                        Required. MetaPipeline workspace used by child
                                                      pipeline workers.
-  --transform-workspace <path>                       Required. MetaTransformScript workspace used by
-                                                     child pipeline workers.
-  --binding-workspace <path>                         Required. MetaTransformBinding workspace used
-                                                     by child pipeline workers.
+  --transform-workspace <path>                       Required when planned tasks include
+                                                     transform-backed MetaPipeline steps.
+  --binding-workspace <path>                         Required when planned tasks include
+                                                     transform-backed MetaPipeline steps.
   --data-type-conversion-workspace <path>            Optional conversion policy workspace passed to
                                                      child workers.
   --pipeline-db-connection-env <name>                Optional operational DB connection env passed
@@ -2351,6 +2391,7 @@ Options:
 Notes:
   Refreshes run-plan rows from current workspace state, then executes the run plan.
   Each MetaPipeline pipeline is launched once as a worker with a named pipe control channel.
+  Executable-only pipeline workers do not require transform or binding workspace arguments.
   Orchestration sends StartPipeline after WorkerReady, before any task grants.
   Replacement workers receive StartPipeline with a resume task id so prior same-pipeline tasks are not replayed after retryable worker loss.
   Orchestration grants TaskReady work or stops a worker at a blocked task.

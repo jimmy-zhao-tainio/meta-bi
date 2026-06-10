@@ -172,7 +172,7 @@ The initial lock compatibility is conservative:
 
 ## Execution
 
-`execute` takes an exclusive execution lease for the orchestration workspace, refreshes deterministic run-plan rows from the current orchestration workspace state, then consumes those rows. It does not infer SQL access, bind SQL, or execute pipeline logic itself. It launches one `meta-pipeline execute-worker` process per participating pipeline with a dedicated named pipe control channel, checks the worker's exact executable version, sends `StartPipeline` after `WorkerReady`, receives task `TaskReady` events only after `PipelineStarted`, grants only `PlannedTask` rows whose dependency conditions are satisfied and whose planned locks are compatible with currently running tasks, and stops a worker when its next serial pipeline task is blocked. `--max-degree-of-parallelism` limits concurrently granted tasks, not pipeline process count.
+`execute` takes an exclusive execution lease for the orchestration workspace, refreshes deterministic run-plan rows from the current orchestration workspace state, then consumes those rows. It does not infer SQL access, bind SQL, or execute pipeline logic itself. It launches one `meta-pipeline execute-worker` process per participating pipeline with a dedicated named pipe control channel, checks the worker's exact executable version, sends `StartPipeline` after `WorkerReady`, receives task `TaskReady` events only after `PipelineStarted`, grants only `PlannedTask` rows whose dependency conditions are satisfied and whose planned locks are compatible with currently running tasks, and stops a worker when its next serial pipeline task is blocked. `--max-degree-of-parallelism` limits concurrently granted tasks, not pipeline process count. Transform and binding workspaces are required only when planned tasks include transform-backed `MetaPipeline` steps; executable-only pipeline workers do not require those workspace arguments.
 
 `--worker-event-timeout-seconds` is an opt-in timeout for silent worker protocol periods. `0` or omission means no worker-event timeout. It does not apply while a worker is parked at `TaskReady` waiting for orchestration. It does apply during startup/activation and while a grant is running when configured. `--worker-activation-timeout-seconds` can override startup/activation silence; omitted follows `--worker-event-timeout-seconds`, while `0` disables activation timeout. Running-grant silence marks the active task failed/unknown before terminating the worker path only when the configured timeout is reached.
 
@@ -184,7 +184,7 @@ Failure handlers are not post-run action hooks. A handler pipeline is part of th
 
 ## CLI
 
-`MetaOrchestration` does not currently have an empty `init` command. The root `--new-workspace` command creates the orchestration workspace by inferring from already-bound pipeline profiles. Run planning is a resolution/planning pass inside that same workspace.
+`MetaOrchestration` does not currently have an empty `init` command. The root `--new-workspace` command creates the orchestration workspace by inferring from modeled pipeline profiles. Transform-backed pipeline steps require transform and binding workspaces during inference; executable process steps are included as dependency-neutral task profiles. Run planning is a resolution/planning pass inside that same workspace.
 
 ```cmd
 meta-orchestration --pipeline-workspace .\PipelineWS --transform-workspace .\TransformWS --binding-workspace .\BindingWS --new-workspace .\OrchestrationWS

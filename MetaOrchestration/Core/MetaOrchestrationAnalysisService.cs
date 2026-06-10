@@ -10,23 +10,36 @@ namespace MetaOrchestration.Core;
 
 public sealed class MetaOrchestrationAnalysisService
 {
+    private const string TaskKindTransformExecution = "TransformExecution";
+    private const string TaskKindExecutable = "Executable";
+
     private readonly TransformScriptStatementKindService statementKindService = new();
 
     public OrchestrationAnalysisResult Analyze(OrchestrationAnalysisRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.TransformWorkspacePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(request.BindingWorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PlanName);
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
-        var transformWorkspacePath = Path.GetFullPath(request.TransformWorkspacePath);
-        var bindingWorkspacePath = Path.GetFullPath(request.BindingWorkspacePath);
-
         var pipelineModel = MP.MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
-        var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(transformWorkspacePath, searchUpward: false);
-        var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspacePath, searchUpward: false);
+        var hasTransformTasks = pipelineModel.TransformExecutionTaskList.Count > 0;
+        if (hasTransformTasks && string.IsNullOrWhiteSpace(request.TransformWorkspacePath))
+        {
+            throw new ArgumentException("Transform-backed pipeline tasks require --transform-workspace <path>.", nameof(request));
+        }
+
+        if (hasTransformTasks && string.IsNullOrWhiteSpace(request.BindingWorkspacePath))
+        {
+            throw new ArgumentException("Transform-backed pipeline tasks require --binding-workspace <path>.", nameof(request));
+        }
+
+        var transformModel = hasTransformTasks
+            ? MetaTransformScriptModel.LoadFromXmlWorkspace(Path.GetFullPath(request.TransformWorkspacePath), searchUpward: false)
+            : MetaTransformScriptModel.CreateEmpty();
+        var bindingModel = hasTransformTasks
+            ? MetaTransformBindingModel.LoadFromXmlWorkspace(Path.GetFullPath(request.BindingWorkspacePath), searchUpward: false)
+            : MetaTransformBindingModel.CreateEmpty();
 
         return AnalyzeProfiles(
             request.PlanName,
@@ -138,26 +151,35 @@ public sealed class MetaOrchestrationAnalysisService
         IReadOnlyDictionary<string, IReadOnlyList<StoredProcedureContractOperation>> storedProcedureOperationsByScriptId,
         IReadOnlyDictionary<string, TransformBinding> bindingsById)
     {
-        var transformTasks = pipelineModel.TransformExecutionTaskList
-            .Where(item => string.Equals(item.PipelineTask.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
-            .Select(item => new
-            {
-                Execution = item,
-                Ordinal = ParseOrdinalOrMax(item.PipelineTask.Ordinal)
-            })
-            .OrderBy(static item => item.Ordinal)
-            .ThenBy(static item => item.Execution.PipelineTask.Name, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-
         var taskProfiles = new List<PipelineTaskAccessProfile>();
         var issues = new List<PipelineDependencyProfileIssue>();
-        foreach (var task in transformTasks)
+        var taskDetails = pipelineModel.PipelineTaskList
+            .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
+            .Select(task => new PipelineTaskDetail(
+                task,
+                ResolveTransformExecutionTask(pipelineModel, task),
+                ResolveExecutableTask(pipelineModel, task),
+                ParseOrdinalOrMax(task.Ordinal)))
+            .Where(static item => item.TransformExecution is not null || item.Executable is not null)
+            .OrderBy(static item => item.Ordinal)
+            .ThenBy(static item => item.PipelineTask.Name, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        foreach (var task in taskDetails)
         {
+            if (task.Executable is not null && task.TransformExecution is null)
+            {
+                taskProfiles.Add(CreateExecutableTaskProfile(task.Executable, task.Ordinal));
+                continue;
+            }
+
             var taskProfile = CreateTaskProfile(
                 pipelineModel,
                 bindingModel,
                 pipeline,
-                task.Execution,
+                task.TransformExecution
+                ?? throw new InvalidOperationException(
+                    $"Pipeline '{pipeline.Name}' task '{task.PipelineTask.Name}' has no transform execution detail."),
                 task.Ordinal,
                 transformScriptsById,
                 statementKindsByScriptId,
@@ -182,6 +204,56 @@ public sealed class MetaOrchestrationAnalysisService
             taskProfiles,
             pipelineAccesses,
             issues);
+    }
+
+    private static MP.TransformExecutionTask? ResolveTransformExecutionTask(
+        MP.MetaPipelineModel pipelineModel,
+        MP.PipelineTask pipelineTask)
+    {
+        var matches = pipelineModel.TransformExecutionTaskList
+            .Where(item => string.Equals(item.PipelineTask.Id, pipelineTask.Id, StringComparison.Ordinal))
+            .ToArray();
+
+        return matches.Length switch
+        {
+            0 => null,
+            1 => matches[0],
+            _ => throw new InvalidOperationException(
+                $"Pipeline task '{pipelineTask.Name}' has multiple TransformExecutionTask detail rows."),
+        };
+    }
+
+    private static MP.ExecutableTask? ResolveExecutableTask(
+        MP.MetaPipelineModel pipelineModel,
+        MP.PipelineTask pipelineTask)
+    {
+        var matches = pipelineModel.ExecutableTaskList
+            .Where(item => string.Equals(item.PipelineTask.Id, pipelineTask.Id, StringComparison.Ordinal))
+            .ToArray();
+
+        return matches.Length switch
+        {
+            0 => null,
+            1 => matches[0],
+            _ => throw new InvalidOperationException(
+                $"Pipeline task '{pipelineTask.Name}' has multiple ExecutableTask detail rows."),
+        };
+    }
+
+    private static PipelineTaskAccessProfile CreateExecutableTaskProfile(
+        MP.ExecutableTask executable,
+        int ordinal)
+    {
+        return new PipelineTaskAccessProfile(
+            executable.PipelineTask.Id,
+            executable.PipelineTask.Name,
+            TaskKindExecutable,
+            ordinal,
+            string.Empty,
+            string.Empty,
+            string.Empty,
+            TaskKindExecutable,
+            []);
     }
 
     private static TaskProfileResult CreateTaskProfile(
@@ -335,6 +407,7 @@ public sealed class MetaOrchestrationAnalysisService
         var profile = new PipelineTaskAccessProfile(
             execution.PipelineTask.Id,
             execution.PipelineTask.Name,
+            TaskKindTransformExecution,
             ordinal,
             execution.TransformScriptId,
             transformScriptName,
@@ -1242,6 +1315,7 @@ public sealed class MetaOrchestrationAnalysisService
                     PipelineReference = pipelineRows[pipeline.PipelineId],
                     MetaPipelinePipelineTaskId = task.PipelineTaskId,
                     TaskName = task.TaskName,
+                    TaskKind = task.TaskKind,
                     Ordinal = task.Ordinal.ToString(CultureInfo.InvariantCulture),
                     TransformScriptId = task.TransformScriptId,
                     TransformScriptName = task.TransformScriptName,
@@ -1468,6 +1542,12 @@ public sealed class MetaOrchestrationAnalysisService
         string DagStatus,
         string DeterminismStatus,
         string SynchronizationStatus);
+
+    private sealed record PipelineTaskDetail(
+        MP.PipelineTask PipelineTask,
+        MP.TransformExecutionTask? TransformExecution,
+        MP.ExecutableTask? Executable,
+        int Ordinal);
 
     private sealed record TaskProfileResult(
         PipelineTaskAccessProfile Profile,

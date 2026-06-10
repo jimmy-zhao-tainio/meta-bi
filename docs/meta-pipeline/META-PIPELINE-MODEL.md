@@ -172,6 +172,7 @@ The smallest honest model nucleus is:
 | --- | --- |
 | `Pipeline` | Modeled as an explicit row added to a `MetaPipeline` workspace. |
 | `TransformExecutionTask` | Modeled; runtime executes each serial task through explicit `TransformScript` and `TransformBinding` selection. |
+| `ExecutableTask` | Modeled; runtime executes an external process and records success/failure from the real exit code. |
 | `RowStreamShape` | Implemented in core runtime. |
 | `RowStreamBatch` | Implemented as `PipelineDataBatch`. |
 | `TargetWriteTask` | Modeled and backed by `IPipelineTargetWriteOperation`. |
@@ -184,13 +185,15 @@ The initial instance CLI supports:
 meta-pipeline --new-workspace <path>
 meta-pipeline add-pipeline --workspace <path> --name <name> [--description <text>]
 meta-pipeline add-step --workspace <path> --pipeline <name> --script <name-or-id> --transform-workspace <path> --binding-workspace <path> --execution-connection-env <name> [--step-name <name>] [--binding <id>] [--target-connection-env <name>] [--target <sql-identifier>] [--target-write <insert-rows>] [--batch-size <n>] [--timeout-seconds <n>]
+meta-pipeline add-executable-step --workspace <path> --pipeline <name> --executable <path> [--step-name <name>] [--arguments <text>] [--working-directory <path>] [--success-exit-code <n>] [--timeout-seconds <n>]
 meta-pipeline inspect --workspace <path>
 meta-pipeline create-pipeline-db --pipeline-db-connection-env <name> [--pipeline-db-name <name>]
 meta-pipeline prune-pipeline-db --pipeline-db-connection-env <name> --retention-days <days> [--dry-run]
-meta-pipeline execute --workspace <path> --pipeline <name> --transform-workspace <path> --binding-workspace <path> [--pipeline-db-connection-env <name>]
+meta-pipeline execute --workspace <path> --pipeline <name> [--transform-workspace <path>] [--binding-workspace <path>] [--pipeline-db-connection-env <name>]
 ```
 
 `execute` resolves the pipeline's serial `PipelineTask` chain, resolves modeled connection references through environment variables, and executes each transform-backed task in order.
+Executable tasks do not use transform or binding workspaces; runtime success is determined by their modeled success exit code.
 For SELECT-kind scripts, the transform task uses its execution connection to read and must be followed immediately by one `InsertRowsTargetWriteTask` with a target connection.
 For INSERT/UPDATE/DELETE/TRUNCATE/MERGE scripts, the transform task executes directly through the execution connection and must not feed a target-write task.
 The CLI takes connection environment variable names only; it derives the modeled connection reference name from the env name rather than exposing a separate `--...-ref` argument.

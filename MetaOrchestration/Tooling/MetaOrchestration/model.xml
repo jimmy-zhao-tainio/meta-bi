@@ -175,10 +175,11 @@
         <Property name="MetaPipelinePipelineTaskId" />
         <Property name="Ordinal" />
         <Property name="StatementKind" />
+        <Property name="TaskKind" />
         <Property name="TaskName" />
-        <Property name="TransformBindingId" />
-        <Property name="TransformScriptId" />
-        <Property name="TransformScriptName" />
+        <Property name="TransformBindingId" isRequired="false" />
+        <Property name="TransformScriptId" isRequired="false" />
+        <Property name="TransformScriptName" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="PipelineReference" />

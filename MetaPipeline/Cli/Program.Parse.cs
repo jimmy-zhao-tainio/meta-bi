@@ -87,8 +87,6 @@ internal static partial class Program
         if (string.IsNullOrWhiteSpace(pipelineWorkspacePath)) return FailParse("missing required option --workspace <path>.");
         if (string.IsNullOrWhiteSpace(pipelineName)) return FailParse("missing required option --pipeline <name>.");
         if (string.IsNullOrWhiteSpace(stepName)) return FailParse("missing required option --step-name <name-or-id>.");
-        if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("missing required option --transform-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("missing required option --binding-workspace <path>.");
 
         return (
             true,
@@ -218,8 +216,6 @@ internal static partial class Program
 
         if (string.IsNullOrWhiteSpace(pipelineWorkspacePath)) return FailParse("missing required option --workspace <path>.");
         if (string.IsNullOrWhiteSpace(pipelineName)) return FailParse("missing required option --pipeline <name>.");
-        if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("missing required option --transform-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("missing required option --binding-workspace <path>.");
 
         return (
             true,
@@ -659,6 +655,151 @@ internal static partial class Program
         }
 
         return (true, workspacePath, string.Empty);
+    }
+
+    private static (
+        bool Ok,
+        string WorkspacePath,
+        string PipelineName,
+        string StepName,
+        string ExecutablePath,
+        string Arguments,
+        string WorkingDirectory,
+        int SuccessExitCode,
+        bool SuccessExitCodeSpecified,
+        int? TimeoutSeconds,
+        bool TimeoutSecondsSpecified,
+        string ErrorMessage) ParseAddExecutableStepArgs(string[] args, int startIndex)
+    {
+        var workspacePath = string.Empty;
+        var pipelineName = string.Empty;
+        var stepName = string.Empty;
+        var executablePath = string.Empty;
+        var arguments = string.Empty;
+        var workingDirectory = string.Empty;
+        var successExitCode = 0;
+        var successExitCodeSpecified = false;
+        int? timeoutSeconds = null;
+        var timeoutSecondsSpecified = false;
+
+        for (var i = startIndex; i < args.Length; i++)
+        {
+            var arg = args[i];
+
+            if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --workspace.");
+                if (!string.IsNullOrWhiteSpace(workspacePath)) return FailParse("--workspace can only be provided once.");
+                workspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--pipeline", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --pipeline.");
+                if (!string.IsNullOrWhiteSpace(pipelineName)) return FailParse("--pipeline can only be provided once.");
+                pipelineName = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--step-name", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --step-name.");
+                if (!string.IsNullOrWhiteSpace(stepName)) return FailParse("--step-name can only be provided once.");
+                stepName = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--executable", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --executable.");
+                if (!string.IsNullOrWhiteSpace(executablePath)) return FailParse("--executable can only be provided once.");
+                executablePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--arguments", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --arguments.");
+                if (!string.IsNullOrWhiteSpace(arguments)) return FailParse("--arguments can only be provided once.");
+                arguments = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--working-directory", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --working-directory.");
+                if (!string.IsNullOrWhiteSpace(workingDirectory)) return FailParse("--working-directory can only be provided once.");
+                workingDirectory = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--success-exit-code", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --success-exit-code.");
+                if (successExitCodeSpecified) return FailParse("--success-exit-code can only be provided once.");
+                var raw = args[++i];
+                if (!int.TryParse(raw, out successExitCode))
+                {
+                    return FailParse($"invalid value '{raw}' for --success-exit-code. Expected an integer.");
+                }
+
+                successExitCodeSpecified = true;
+                continue;
+            }
+
+            if (string.Equals(arg, "--timeout-seconds", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --timeout-seconds.");
+                if (timeoutSecondsSpecified) return FailParse("--timeout-seconds can only be provided once.");
+                var raw = args[++i];
+                if (!int.TryParse(raw, out var parsedTimeoutSeconds) || parsedTimeoutSeconds < 0)
+                {
+                    return FailParse($"invalid value '{raw}' for --timeout-seconds. Expected a non-negative integer; 0 means no timeout.");
+                }
+
+                timeoutSeconds = parsedTimeoutSeconds;
+                timeoutSecondsSpecified = true;
+                continue;
+            }
+
+            return FailParse($"unknown option '{arg}'.");
+        }
+
+        if (string.IsNullOrWhiteSpace(workspacePath)) return FailParse("missing required option --workspace <path>.");
+        if (string.IsNullOrWhiteSpace(pipelineName)) return FailParse("missing required option --pipeline <name>.");
+        if (string.IsNullOrWhiteSpace(executablePath)) return FailParse("missing required option --executable <path>.");
+
+        return (
+            true,
+            workspacePath,
+            pipelineName,
+            stepName,
+            executablePath,
+            arguments,
+            workingDirectory,
+            successExitCode,
+            successExitCodeSpecified,
+            timeoutSeconds,
+            timeoutSecondsSpecified,
+            string.Empty);
+
+        (bool Ok, string WorkspacePath, string PipelineName, string StepName, string ExecutablePath, string Arguments, string WorkingDirectory, int SuccessExitCode, bool SuccessExitCodeSpecified, int? TimeoutSeconds, bool TimeoutSecondsSpecified, string ErrorMessage) FailParse(string message)
+        {
+            return (
+                false,
+                workspacePath,
+                pipelineName,
+                stepName,
+                executablePath,
+                arguments,
+                workingDirectory,
+                successExitCode,
+                successExitCodeSpecified,
+                timeoutSeconds,
+                timeoutSecondsSpecified,
+                message);
+        }
     }
 
     private static (

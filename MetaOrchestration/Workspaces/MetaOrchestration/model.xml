@@ -33,10 +33,11 @@
       <PropertyList>
         <Property name="MetaPipelinePipelineTaskId" />
         <Property name="TaskName" />
+        <Property name="TaskKind" />
         <Property name="Ordinal" />
-        <Property name="TransformScriptId" />
-        <Property name="TransformScriptName" />
-        <Property name="TransformBindingId" />
+        <Property name="TransformScriptId" isRequired="false" />
+        <Property name="TransformScriptName" isRequired="false" />
+        <Property name="TransformBindingId" isRequired="false" />
         <Property name="StatementKind" />
       </PropertyList>
       <RelationshipList>

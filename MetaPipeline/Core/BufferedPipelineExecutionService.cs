@@ -182,4 +182,5 @@ public enum PipelineExecutionFailureStage
     TransformExecution,
     ShapeValidation,
     TargetWrite,
+    Executable,
 }

@@ -37,7 +37,8 @@ public sealed record MetaPipelineExecutionTaskResult(
     string FailureMessage,
     Guid? TaskRunId = null,
     long? AuditId = null,
-    int? TimeoutSeconds = null);
+    int? TimeoutSeconds = null,
+    int? ExitCode = null);
 
 public enum MetaPipelineExecutionTaskStatus
 {

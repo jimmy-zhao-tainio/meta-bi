@@ -9,6 +9,18 @@
         <Relationship entity="Pipeline" />
       </RelationshipList>
     </Entity>
+    <Entity name="ExecutableTask">
+      <PropertyList>
+        <Property name="Arguments" isRequired="false" />
+        <Property name="ExecutablePath" />
+        <Property name="SuccessExitCode" isRequired="false" />
+        <Property name="TimeoutSeconds" isRequired="false" />
+        <Property name="WorkingDirectory" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="PipelineTask" />
+      </RelationshipList>
+    </Entity>
     <Entity name="InsertRowsTargetWriteTask">
       <PropertyList>
         <Property name="BatchSize" isRequired="false" />

@@ -37,14 +37,14 @@ internal static partial class Program
                     "Execute a modeled pipeline's serial task chain.",
                     new[]
                     {
-                        "meta-pipeline execute --workspace <path> --pipeline <name> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
+                        "meta-pipeline execute --workspace <path> --pipeline <name> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
                     },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaPipeline workspace that contains the modeled serial task chain."),
                         new CliOptionDefinition("--pipeline <name>", "Required. Pipeline name to execute."),
-                        new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace used by transform tasks."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Required. MetaTransformBinding workspace used by transform tasks."),
+                        new CliOptionDefinition("--transform-workspace <path>", "Required when the pipeline contains transform tasks. MetaTransformScript workspace used by transform tasks."),
+                        new CliOptionDefinition("--binding-workspace <path>", "Required when the pipeline contains transform tasks. MetaTransformBinding workspace used by transform tasks."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional shell-visible environment variable for an initialized MetaPipeline operational DB.")
                     },
@@ -52,6 +52,7 @@ internal static partial class Program
                     {
                         "Executes the serial PipelineTask chain declared in a MetaPipeline workspace.",
                         "Every transform task requires a binding workspace.",
+                        "Executable tasks do not require transform or binding workspaces.",
                         "SELECT-kind scripts must feed exactly one InsertRows target write.",
                         "Non-SELECT scripts execute directly and must not feed a TargetWrite task.",
                         "Connection references in the model name shell-visible environment variables.",
@@ -72,14 +73,14 @@ internal static partial class Program
                     "Execute a modeled pipeline under an orchestration worker protocol.",
                     new[]
                     {
-                        "meta-pipeline execute-worker --workspace <path> --pipeline <name> --transform-workspace <path> --binding-workspace <path> --control-pipe <name> [--control-pipe-connect-timeout-seconds <n>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
+                        "meta-pipeline execute-worker --workspace <path> --pipeline <name> --control-pipe <name> [--transform-workspace <path>] [--binding-workspace <path>] [--control-pipe-connect-timeout-seconds <n>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
                     },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaPipeline workspace that contains the modeled serial task chain."),
                         new CliOptionDefinition("--pipeline <name>", "Required. Pipeline name to execute as a worker."),
-                        new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace used by transform tasks."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Required. MetaTransformBinding workspace used by transform tasks."),
+                        new CliOptionDefinition("--transform-workspace <path>", "Required when the pipeline contains transform tasks. MetaTransformScript workspace used by transform tasks."),
+                        new CliOptionDefinition("--binding-workspace <path>", "Required when the pipeline contains transform tasks. MetaTransformBinding workspace used by transform tasks."),
                         new CliOptionDefinition("--control-pipe <name>", "Required. Named pipe used for orchestration worker control messages."),
                         new CliOptionDefinition("--control-pipe-connect-timeout-seconds <n>", "Optional timeout while connecting to the orchestration control pipe. 0 or omitted means no timeout."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
@@ -104,24 +105,25 @@ internal static partial class Program
             new CliCommandRoute(
                 new CliCommandDefinition(
                     "execute-step",
-                    "Execute one modeled transform-backed pipeline step.",
+                    "Execute one modeled pipeline step.",
                     new[]
                     {
-                        "meta-pipeline execute-step --workspace <path> --pipeline <name> --step-name <name-or-id> --transform-workspace <path> --binding-workspace <path> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
+                        "meta-pipeline execute-step --workspace <path> --pipeline <name> --step-name <name-or-id> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
                     },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaPipeline workspace that contains the modeled step."),
                         new CliOptionDefinition("--pipeline <name>", "Required. Pipeline name containing the step."),
                         new CliOptionDefinition("--step-name <name-or-id>", "Required. Pipeline task name or id to execute."),
-                        new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace used by the step."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Required. MetaTransformBinding workspace used by the step."),
+                        new CliOptionDefinition("--transform-workspace <path>", "Required when the step is a transform task. MetaTransformScript workspace used by the step."),
+                        new CliOptionDefinition("--binding-workspace <path>", "Required when the step is a transform task. MetaTransformBinding workspace used by the step."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional shell-visible environment variable for an initialized MetaPipeline operational DB.")
                     },
                     new[]
                     {
-                        "Executes exactly one transform-backed PipelineTask declared in a MetaPipeline workspace.",
+                        "Executes exactly one PipelineTask declared in a MetaPipeline workspace.",
+                        "Executable steps can be selected without transform or binding workspaces.",
                         "The command does not traverse predecessor or successor tasks.",
                         "SELECT-kind steps execute their paired InsertRows target write when modeled.",
                         "Non-SELECT steps execute directly through the modeled execution connection.",
@@ -291,6 +293,38 @@ internal static partial class Program
                 args => RunCommandWithHelpAsync(args, "add-step", commandArgs => RunAddStep(commandArgs, startIndex: 1))),
             new CliCommandRoute(
                 new CliCommandDefinition(
+                    "add-executable-step",
+                    "Add one executable process step to a pipeline.",
+                    new[]
+                    {
+                        "meta-pipeline add-executable-step --workspace <path> --pipeline <name> --executable <path> [--step-name <name>] [--arguments <text>] [--working-directory <path>] [--success-exit-code <n>] [--timeout-seconds <n>]"
+                    },
+                    new[]
+                    {
+                        new CliOptionDefinition("--workspace <path>", "Required. Existing MetaPipeline workspace to update."),
+                        new CliOptionDefinition("--pipeline <name>", "Required. Pipeline that receives the new serial step."),
+                        new CliOptionDefinition("--executable <path>", "Required. Executable path or executable name resolvable by the operating system."),
+                        new CliOptionDefinition("--step-name <name>", "Optional step name; omitted derives a deterministic name from the executable file name."),
+                        new CliOptionDefinition("--arguments <text>", "Optional raw command-line arguments passed to the executable."),
+                        new CliOptionDefinition("--working-directory <path>", "Optional process working directory."),
+                        new CliOptionDefinition("--success-exit-code <n>", "Expected process exit code. Default: 0."),
+                        new CliOptionDefinition("--timeout-seconds <n>", "Process timeout seconds. 0 or omitted means no timeout.")
+                    },
+                    new[]
+                    {
+                        "Appends one executable-backed task instance to the pipeline's serial task chain.",
+                        "The executable path, arguments, working directory, expected success exit code, and optional timeout are modeled in the workspace.",
+                        "Runtime success is determined by the real process exit code.",
+                        "Connection strings are not involved in executable tasks.",
+                        "Use meta-pipeline execute to execute the modeled executable task."
+                    },
+                    new[]
+                    {
+                        "meta-pipeline add-executable-step --workspace .\\PipelineWS --pipeline CustomerLoad --step-name prepare-files --executable dotnet --arguments \"--info\""
+                    }),
+                args => RunCommandWithHelpAsync(args, "add-executable-step", commandArgs => RunAddExecutableStep(commandArgs, startIndex: 1))),
+            new CliCommandRoute(
+                new CliCommandDefinition(
                     "inspect",
                     "Show a compact MetaPipeline workspace summary.",
                     new[]
@@ -380,6 +414,8 @@ internal static partial class Program
     private static void PrintInspectHelp() => PrintCommandHelp("inspect");
 
     private static void PrintAddStepHelp() => PrintCommandHelp("add-step");
+
+    private static void PrintAddExecutableStepHelp() => PrintCommandHelp("add-executable-step");
 
     private static string HelpCommand(string commandName) => Cli.GetCommand(commandName).HelpCommand(Cli.Name);
 
