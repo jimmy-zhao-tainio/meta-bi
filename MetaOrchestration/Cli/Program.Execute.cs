@@ -245,12 +245,6 @@ internal static partial class Program
                 case "--pipeline-workspace":
                     pipelineWorkspacePath = value;
                     break;
-                case "--transform-workspace":
-                    transformWorkspacePath = value;
-                    break;
-                case "--binding-workspace":
-                    bindingWorkspacePath = value;
-                    break;
                 case "--data-type-conversion-workspace":
                     dataTypeConversionWorkspacePath = value;
                     break;

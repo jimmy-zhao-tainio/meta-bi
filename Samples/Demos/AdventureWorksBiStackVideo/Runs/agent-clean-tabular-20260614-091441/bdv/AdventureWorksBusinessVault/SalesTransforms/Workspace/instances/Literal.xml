@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <LiteralList>
+    <Literal Id="Literal:1" ValueExpressionId="ValueExpression:1">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:2" ValueExpressionId="ValueExpression:2">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.H_Customer</Value>
+    </Literal>
+    <Literal Id="Literal:3" ValueExpressionId="ValueExpression:3">
+      <LiteralType>Integer</LiteralType>
+      <Value>40</Value>
+    </Literal>
+    <Literal Id="Literal:4" ValueExpressionId="ValueExpression:4">
+      <LiteralType>String</LiteralType>
+      <Value>Individual</Value>
+    </Literal>
+    <Literal Id="Literal:5" ValueExpressionId="ValueExpression:5">
+      <LiteralType>String</LiteralType>
+      <Value>Store</Value>
+    </Literal>
+    <Literal Id="Literal:6" ValueExpressionId="ValueExpression:6">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:7" ValueExpressionId="ValueExpression:7">
+      <LiteralType>String</LiteralType>
+      <Value>SHA2_256</Value>
+    </Literal>
+    <Literal Id="Literal:8" ValueExpressionId="ValueExpression:8">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:9" ValueExpressionId="ValueExpression:9">
+      <LiteralType>String</LiteralType>
+      <Value>Individual</Value>
+    </Literal>
+    <Literal Id="Literal:10" ValueExpressionId="ValueExpression:10">
+      <LiteralType>String</LiteralType>
+      <Value>Store</Value>
+    </Literal>
+    <Literal Id="Literal:11" ValueExpressionId="ValueExpression:11">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:12" ValueExpressionId="ValueExpression:12">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.CustomerProfile</Value>
+    </Literal>
+    <Literal Id="Literal:13" ValueExpressionId="ValueExpression:13">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:14" ValueExpressionId="ValueExpression:14">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.H_Store</Value>
+    </Literal>
+    <Literal Id="Literal:15" ValueExpressionId="ValueExpression:15">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:16" ValueExpressionId="ValueExpression:16">
+      <LiteralType>String</LiteralType>
+      <Value>SHA2_256</Value>
+    </Literal>
+    <Literal Id="Literal:17" ValueExpressionId="ValueExpression:17">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:18" ValueExpressionId="ValueExpression:18">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.StoreProfile</Value>
+    </Literal>
+    <Literal Id="Literal:19" ValueExpressionId="ValueExpression:19">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:20" ValueExpressionId="ValueExpression:20">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.H_SalesPerson</Value>
+    </Literal>
+    <Literal Id="Literal:21" ValueExpressionId="ValueExpression:21">
+      <LiteralType>Integer</LiteralType>
+      <Value>150</Value>
+    </Literal>
+    <Literal Id="Literal:22" ValueExpressionId="ValueExpression:22">
+      <LiteralType>String</LiteralType>
+      <Value>Salesperson </Value>
+    </Literal>
+    <Literal Id="Literal:23" ValueExpressionId="ValueExpression:23">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:24" ValueExpressionId="ValueExpression:24">
+      <LiteralType>String</LiteralType>
+      <Value>SHA2_256</Value>
+    </Literal>
+    <Literal Id="Literal:25" ValueExpressionId="ValueExpression:25">
+      <LiteralType>String</LiteralType>
+      <Value>Salesperson </Value>
+    </Literal>
+    <Literal Id="Literal:26" ValueExpressionId="ValueExpression:26">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:27" ValueExpressionId="ValueExpression:27">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.SalesPersonProfile</Value>
+    </Literal>
+    <Literal Id="Literal:28" ValueExpressionId="ValueExpression:28">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:29" ValueExpressionId="ValueExpression:29">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.H_SalesTerritory</Value>
+    </Literal>
+    <Literal Id="Literal:30" ValueExpressionId="ValueExpression:30">
+      <LiteralType>Integer</LiteralType>
+      <Value>10</Value>
+    </Literal>
+    <Literal Id="Literal:31" ValueExpressionId="ValueExpression:31">
+      <LiteralType>String</LiteralType>
+      <Value>Unknown</Value>
+    </Literal>
+    <Literal Id="Literal:32" ValueExpressionId="ValueExpression:32">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:33" ValueExpressionId="ValueExpression:33">
+      <LiteralType>String</LiteralType>
+      <Value>SHA2_256</Value>
+    </Literal>
+    <Literal Id="Literal:34" ValueExpressionId="ValueExpression:34">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:35" ValueExpressionId="ValueExpression:35">
+      <LiteralType>String</LiteralType>
+      <Value>Unknown</Value>
+    </Literal>
+    <Literal Id="Literal:36" ValueExpressionId="ValueExpression:36">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:37" ValueExpressionId="ValueExpression:37">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.SalesTerritoryProfile</Value>
+    </Literal>
+    <Literal Id="Literal:38" ValueExpressionId="ValueExpression:38">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:39" ValueExpressionId="ValueExpression:39">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.H_SalesOrderHeader</Value>
+    </Literal>
+    <Literal Id="Literal:40" ValueExpressionId="ValueExpression:40">
+      <LiteralType>Integer</LiteralType>
+      <Value>40</Value>
+    </Literal>
+    <Literal Id="Literal:41" ValueExpressionId="ValueExpression:41">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:42" ValueExpressionId="ValueExpression:42">
+      <LiteralType>String</LiteralType>
+      <Value>SHA2_256</Value>
+    </Literal>
+    <Literal Id="Literal:43" ValueExpressionId="ValueExpression:43">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:44" ValueExpressionId="ValueExpression:44">
+      <LiteralType>Integer</LiteralType>
+      <Value>40</Value>
+    </Literal>
+    <Literal Id="Literal:45" ValueExpressionId="ValueExpression:45">
+      <LiteralType>Integer</LiteralType>
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:46" ValueExpressionId="ValueExpression:46">
+      <LiteralType>Integer</LiteralType>
+      <Value>30</Value>
+    </Literal>
+    <Literal Id="Literal:47" ValueExpressionId="ValueExpression:47">
+      <LiteralType>Integer</LiteralType>
+      <Value>126</Value>
+    </Literal>
+    <Literal Id="Literal:48" ValueExpressionId="ValueExpression:48">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:49" ValueExpressionId="ValueExpression:49">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.SalesOrderProfile</Value>
+    </Literal>
+    <Literal Id="Literal:50" ValueExpressionId="ValueExpression:50">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:51" ValueExpressionId="ValueExpression:51">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.H_SalesOrderDetail</Value>
+    </Literal>
+    <Literal Id="Literal:52" ValueExpressionId="ValueExpression:52">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:53" ValueExpressionId="ValueExpression:53">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:54" ValueExpressionId="ValueExpression:54">
+      <LiteralType>Integer</LiteralType>
+      <Value>10</Value>
+    </Literal>
+    <Literal Id="Literal:55" ValueExpressionId="ValueExpression:55">
+      <LiteralType>Integer</LiteralType>
+      <Value>23</Value>
+    </Literal>
+    <Literal Id="Literal:56" ValueExpressionId="ValueExpression:56">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:57" ValueExpressionId="ValueExpression:57">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.SalesOrderHeader.OrderDate</Value>
+    </Literal>
+    <Literal Id="Literal:58" ValueExpressionId="ValueExpression:58">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:59" ValueExpressionId="ValueExpression:59">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:60" ValueExpressionId="ValueExpression:60">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:61" ValueExpressionId="ValueExpression:61">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:62" ValueExpressionId="ValueExpression:62">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:63" ValueExpressionId="ValueExpression:63">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:64" ValueExpressionId="ValueExpression:64">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:65" ValueExpressionId="ValueExpression:65">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:66" ValueExpressionId="ValueExpression:66">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:67" ValueExpressionId="ValueExpression:67">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.L_SalesOrderHeaderCustomer</Value>
+    </Literal>
+    <Literal Id="Literal:68" ValueExpressionId="ValueExpression:68">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:69" ValueExpressionId="ValueExpression:69">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:70" ValueExpressionId="ValueExpression:70">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:71" ValueExpressionId="ValueExpression:71">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:72" ValueExpressionId="ValueExpression:72">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:73" ValueExpressionId="ValueExpression:73">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:74" ValueExpressionId="ValueExpression:74">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:75" ValueExpressionId="ValueExpression:75">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:76" ValueExpressionId="ValueExpression:76">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.SalesOrderStore</Value>
+    </Literal>
+    <Literal Id="Literal:77" ValueExpressionId="ValueExpression:77">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:78" ValueExpressionId="ValueExpression:78">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:79" ValueExpressionId="ValueExpression:79">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:80" ValueExpressionId="ValueExpression:80">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:81" ValueExpressionId="ValueExpression:81">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:82" ValueExpressionId="ValueExpression:82">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:83" ValueExpressionId="ValueExpression:83">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:84" ValueExpressionId="ValueExpression:84">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:85" ValueExpressionId="ValueExpression:85">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.L_SalesOrderHeaderSalesPerson</Value>
+    </Literal>
+    <Literal Id="Literal:86" ValueExpressionId="ValueExpression:86">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:87" ValueExpressionId="ValueExpression:87">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:88" ValueExpressionId="ValueExpression:88">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:89" ValueExpressionId="ValueExpression:89">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:90" ValueExpressionId="ValueExpression:90">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:91" ValueExpressionId="ValueExpression:91">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:92" ValueExpressionId="ValueExpression:92">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:93" ValueExpressionId="ValueExpression:93">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:94" ValueExpressionId="ValueExpression:94">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.L_SalesOrderHeaderSalesTerritory</Value>
+    </Literal>
+    <Literal Id="Literal:95" ValueExpressionId="ValueExpression:95">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:96" ValueExpressionId="ValueExpression:96">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:97" ValueExpressionId="ValueExpression:97">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:98" ValueExpressionId="ValueExpression:98">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:99" ValueExpressionId="ValueExpression:99">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:100" ValueExpressionId="ValueExpression:100">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:101" ValueExpressionId="ValueExpression:101">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:102" ValueExpressionId="ValueExpression:102">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:103" ValueExpressionId="ValueExpression:103">
+      <LiteralType>Integer</LiteralType>
+      <Value>10</Value>
+    </Literal>
+    <Literal Id="Literal:104" ValueExpressionId="ValueExpression:104">
+      <LiteralType>Integer</LiteralType>
+      <Value>23</Value>
+    </Literal>
+    <Literal Id="Literal:105" ValueExpressionId="ValueExpression:105">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:106" ValueExpressionId="ValueExpression:106">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:107" ValueExpressionId="ValueExpression:107">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:108" ValueExpressionId="ValueExpression:108">
+      <LiteralType>Integer</LiteralType>
+      <Value>10</Value>
+    </Literal>
+    <Literal Id="Literal:109" ValueExpressionId="ValueExpression:109">
+      <LiteralType>Integer</LiteralType>
+      <Value>23</Value>
+    </Literal>
+    <Literal Id="Literal:110" ValueExpressionId="ValueExpression:110">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:111" ValueExpressionId="ValueExpression:111">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.SalesOrderDate</Value>
+    </Literal>
+    <Literal Id="Literal:112" ValueExpressionId="ValueExpression:112">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:113" ValueExpressionId="ValueExpression:113">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:114" ValueExpressionId="ValueExpression:114">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:115" ValueExpressionId="ValueExpression:115">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:116" ValueExpressionId="ValueExpression:116">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:117" ValueExpressionId="ValueExpression:117">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:118" ValueExpressionId="ValueExpression:118">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:119" ValueExpressionId="ValueExpression:119">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:120" ValueExpressionId="ValueExpression:120">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.L_SalesOrderDetailSalesOrderHeader</Value>
+    </Literal>
+    <Literal Id="Literal:121" ValueExpressionId="ValueExpression:121">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:122" ValueExpressionId="ValueExpression:122">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:123" ValueExpressionId="ValueExpression:123">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:124" ValueExpressionId="ValueExpression:124">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:125" ValueExpressionId="ValueExpression:125">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:126" ValueExpressionId="ValueExpression:126">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:127" ValueExpressionId="ValueExpression:127">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:128" ValueExpressionId="ValueExpression:128">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:129" ValueExpressionId="ValueExpression:129">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.SalesOrderLineProduct</Value>
+    </Literal>
+    <Literal Id="Literal:130" ValueExpressionId="ValueExpression:130">
+      <LiteralType>Integer</LiteralType>
+      <Value>16</Value>
+    </Literal>
+    <Literal Id="Literal:131" ValueExpressionId="ValueExpression:131">
+      <LiteralType>String</LiteralType>
+      <Value>MD5</Value>
+    </Literal>
+    <Literal Id="Literal:132" ValueExpressionId="ValueExpression:132">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:133" ValueExpressionId="ValueExpression:133">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:134" ValueExpressionId="ValueExpression:134">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:135" ValueExpressionId="ValueExpression:135">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:136" ValueExpressionId="ValueExpression:136">
+      <LiteralType>Integer</LiteralType>
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:137" ValueExpressionId="ValueExpression:137">
+      <LiteralType>Integer</LiteralType>
+      <Value>19</Value>
+    </Literal>
+    <Literal Id="Literal:138" ValueExpressionId="ValueExpression:138">
+      <LiteralType>Integer</LiteralType>
+      <Value>4</Value>
+    </Literal>
+    <Literal Id="Literal:139" ValueExpressionId="ValueExpression:139">
+      <LiteralType>Integer</LiteralType>
+      <Value>38</Value>
+    </Literal>
+    <Literal Id="Literal:140" ValueExpressionId="ValueExpression:140">
+      <LiteralType>Integer</LiteralType>
+      <Value>6</Value>
+    </Literal>
+    <Literal Id="Literal:141" ValueExpressionId="ValueExpression:141">
+      <LiteralType>Integer</LiteralType>
+      <Value>19</Value>
+    </Literal>
+    <Literal Id="Literal:142" ValueExpressionId="ValueExpression:142">
+      <LiteralType>Integer</LiteralType>
+      <Value>4</Value>
+    </Literal>
+    <Literal Id="Literal:143" ValueExpressionId="ValueExpression:143">
+      <LiteralType>Integer</LiteralType>
+      <Value>19</Value>
+    </Literal>
+    <Literal Id="Literal:144" ValueExpressionId="ValueExpression:144">
+      <LiteralType>Integer</LiteralType>
+      <Value>4</Value>
+    </Literal>
+    <Literal Id="Literal:145" ValueExpressionId="ValueExpression:145">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:146" ValueExpressionId="ValueExpression:146">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:147" ValueExpressionId="ValueExpression:147">
+      <LiteralType>Integer</LiteralType>
+      <Value>19</Value>
+    </Literal>
+    <Literal Id="Literal:148" ValueExpressionId="ValueExpression:148">
+      <LiteralType>Integer</LiteralType>
+      <Value>4</Value>
+    </Literal>
+    <Literal Id="Literal:149" ValueExpressionId="ValueExpression:149">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:150" ValueExpressionId="ValueExpression:150">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:151" ValueExpressionId="ValueExpression:151">
+      <LiteralType>Integer</LiteralType>
+      <Value>32</Value>
+    </Literal>
+    <Literal Id="Literal:152" ValueExpressionId="ValueExpression:152">
+      <LiteralType>String</LiteralType>
+      <Value>SHA2_256</Value>
+    </Literal>
+    <Literal Id="Literal:153" ValueExpressionId="ValueExpression:153">
+      <LiteralType>String</LiteralType>
+      <Value>|</Value>
+    </Literal>
+    <Literal Id="Literal:154" ValueExpressionId="ValueExpression:154">
+      <LiteralType>Integer</LiteralType>
+      <Value>20</Value>
+    </Literal>
+    <Literal Id="Literal:155" ValueExpressionId="ValueExpression:155">
+      <LiteralType>Integer</LiteralType>
+      <Value>40</Value>
+    </Literal>
+    <Literal Id="Literal:156" ValueExpressionId="ValueExpression:156">
+      <LiteralType>Integer</LiteralType>
+      <Value>40</Value>
+    </Literal>
+    <Literal Id="Literal:157" ValueExpressionId="ValueExpression:157">
+      <LiteralType>Integer</LiteralType>
+      <Value>40</Value>
+    </Literal>
+    <Literal Id="Literal:158" ValueExpressionId="ValueExpression:158">
+      <LiteralType>Integer</LiteralType>
+      <Value>40</Value>
+    </Literal>
+    <Literal Id="Literal:159" ValueExpressionId="ValueExpression:159">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:160" ValueExpressionId="ValueExpression:160">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:161" ValueExpressionId="ValueExpression:161">
+      <LiteralType>Integer</LiteralType>
+      <Value>40</Value>
+    </Literal>
+    <Literal Id="Literal:162" ValueExpressionId="ValueExpression:162">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:163" ValueExpressionId="ValueExpression:163">
+      <LiteralType>Integer</LiteralType>
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:164" ValueExpressionId="ValueExpression:164">
+      <LiteralType>Integer</LiteralType>
+      <Value>256</Value>
+    </Literal>
+    <Literal Id="Literal:165" ValueExpressionId="ValueExpression:165">
+      <LiteralType>String</LiteralType>
+      <Value>AdventureWorksRawVault.SalesOrderLineMeasures</Value>
+    </Literal>
+  </LiteralList>
+</MetaTransformScript>

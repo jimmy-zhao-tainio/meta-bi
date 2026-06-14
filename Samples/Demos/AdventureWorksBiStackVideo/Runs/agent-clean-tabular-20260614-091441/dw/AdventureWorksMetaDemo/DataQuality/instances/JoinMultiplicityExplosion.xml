@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinMultiplicityExplosionList>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.6.5.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.6.5">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.4.9.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.4.9">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.20.13.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.20.13">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.19.16.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.19.16">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.12.29.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.12.29">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+    <JoinMultiplicityExplosion Id="JoinMultiplicityExplosion.JoinPattern.9.37.JoinMultiplicityExplosion" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.9.37">
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+    </JoinMultiplicityExplosion>
+  </JoinMultiplicityExplosionList>
+</MetaDataQuality>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AggregationBehaviorList>
+    <AggregationBehavior Id="Aggregation_MeasureDiscountAmount" MeasureId="MeasureDiscountAmount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="Aggregation_MeasureLineCount" MeasureId="MeasureLineCount">
+      <Function>Count</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="Aggregation_MeasureOrderQuantity" MeasureId="MeasureOrderQuantity">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="Aggregation_MeasureSalesAmount" MeasureId="MeasureSalesAmount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+    <AggregationBehavior Id="Aggregation_MeasureTaxAmount" MeasureId="MeasureTaxAmount">
+      <Function>Sum</Function>
+    </AggregationBehavior>
+  </AggregationBehaviorList>
+</MetaAnalytics>

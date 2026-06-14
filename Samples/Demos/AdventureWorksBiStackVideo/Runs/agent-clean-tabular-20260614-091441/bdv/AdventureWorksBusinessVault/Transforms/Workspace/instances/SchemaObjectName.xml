@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SchemaObjectNameList>
+    <SchemaObjectName Id="SchemaObjectName:1" MultiPartIdentifierId="MultiPartIdentifier:4">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:2" MultiPartIdentifierId="MultiPartIdentifier:6">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:3" MultiPartIdentifierId="MultiPartIdentifier:8">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:4" MultiPartIdentifierId="MultiPartIdentifier:10">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:5" MultiPartIdentifierId="MultiPartIdentifier:12">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:6" MultiPartIdentifierId="MultiPartIdentifier:14">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:7" MultiPartIdentifierId="MultiPartIdentifier:16">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:8" MultiPartIdentifierId="MultiPartIdentifier:22">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:9" MultiPartIdentifierId="MultiPartIdentifier:24">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:10" MultiPartIdentifierId="MultiPartIdentifier:25">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:11" MultiPartIdentifierId="MultiPartIdentifier:28">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:12" MultiPartIdentifierId="MultiPartIdentifier:31">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:13" MultiPartIdentifierId="MultiPartIdentifier:34">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:14" MultiPartIdentifierId="MultiPartIdentifier:37">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:15" MultiPartIdentifierId="MultiPartIdentifier:40">
+    </SchemaObjectName>
+    <SchemaObjectName Id="SchemaObjectName:16" MultiPartIdentifierId="MultiPartIdentifier:43">
+    </SchemaObjectName>
+  </SchemaObjectNameList>
+</MetaTransformScript>

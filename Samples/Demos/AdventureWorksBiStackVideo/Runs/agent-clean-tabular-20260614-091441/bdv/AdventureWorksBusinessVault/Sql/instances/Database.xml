@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <DatabaseList>
+    <Database Id="AdventureWorksBusinessVault">
+      <Name>AdventureWorksBusinessVault</Name>
+    </Database>
+  </DatabaseList>
+</MetaSql>

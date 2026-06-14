@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaPipeline>
+  <TransformExecutionTaskList>
+    <TransformExecutionTask Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.TransformExecution" ExecutionConnectionReferenceId="BDV_Product_dbo_BHS_Product_ProductClassification.AW_BDV_SQL" PipelineTaskId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:2:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:2</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.TransformExecution" ExecutionConnectionReferenceId="BDV_Product_dbo_BH_Product.AW_BDV_SQL" PipelineTaskId="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:1:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:1</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:2:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:2</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:10:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:10</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:6:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:6</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:8:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:8</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BHS_Store_StoreProfile.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:4:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:4</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BH_Customer.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:1:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:1</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BH_OrderDate.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:12:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:12</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BH_SalesOrder.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:9:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:9</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BH_SalesOrderLine.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:11:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:11</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BH_SalesPerson.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:5:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BH_SalesTerritory.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:7:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:7</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BH_Store.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:3:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:3</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:20:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BL_SalesOrderCustomer.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:13:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BL_SalesOrderDate.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:17:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:17</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BL_SalesOrderLineOrder.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:18:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BL_SalesOrderLineProduct.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:19:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BL_SalesOrderSalesPerson.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:15:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BL_SalesOrderStore.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:14:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.TransformExecution" ExecutionConnectionReferenceId="BDV_Sales_dbo_BL_SalesOrderTerritory.AW_BDV_SQL" PipelineTaskId="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:16:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:16</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel.TransformExecution" ExecutionConnectionReferenceId="DW_Mart_awbi_DimCustomerChannel.AW_TARGET_SQL" PipelineTaskId="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:4:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:4</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.TransformExecution" ExecutionConnectionReferenceId="DW_Mart_awbi_DimOrderDate.AW_TARGET_SQL" PipelineTaskId="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:2:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:2</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.TransformExecution" ExecutionConnectionReferenceId="DW_Mart_awbi_DimProduct.AW_TARGET_SQL" PipelineTaskId="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:1:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:1</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="DW_Mart_awbi_DimSalesTerritory.AW_TARGET_SQL" PipelineTaskId="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:3:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:3</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.TransformExecution" ExecutionConnectionReferenceId="DW_Mart_awbi_FactSalesOrderLine.AW_TARGET_SQL" PipelineTaskId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:5:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.TransformExecution" ExecutionConnectionReferenceId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.AW_RDV_SQL" PipelineTaskId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:2:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:2</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.TransformExecution" ExecutionConnectionReferenceId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.AW_RDV_SQL" PipelineTaskId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:4:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:4</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.TransformExecution" ExecutionConnectionReferenceId="RDV_Product_dbo_HS_Product_Product.AW_RDV_SQL" PipelineTaskId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:6:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:6</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Product_dbo_H_Product.Load_dbo_H_Product.TransformExecution" ExecutionConnectionReferenceId="RDV_Product_dbo_H_Product.AW_RDV_SQL" PipelineTaskId="RDV_Product_dbo_H_Product.Load_dbo_H_Product">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:5:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.TransformExecution" ExecutionConnectionReferenceId="RDV_Product_dbo_H_ProductCategory.AW_RDV_SQL" PipelineTaskId="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:1:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:1</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.TransformExecution" ExecutionConnectionReferenceId="RDV_Product_dbo_H_ProductSubcategory.AW_RDV_SQL" PipelineTaskId="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:3:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:3</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.TransformExecution" ExecutionConnectionReferenceId="RDV_Product_dbo_L_ProductProductSubcategory.AW_RDV_SQL" PipelineTaskId="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:8:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:8</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.TransformExecution" ExecutionConnectionReferenceId="RDV_Product_dbo_L_ProductSubcategoryProductCategory.AW_RDV_SQL" PipelineTaskId="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Binding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:7:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:7</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_HS_Customer_Customer.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:2:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:2</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:12:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:12</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:10:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:10</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:6:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:6</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:8:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:8</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_HS_Store_Store.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:4:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:4</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_H_Customer.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:1:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:1</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_H_SalesOrderDetail.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:11:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:11</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_H_SalesOrderHeader.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:9:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:9</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_H_SalesPerson.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:5:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_H_SalesTerritory.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:7:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:7</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_H_SpecialOfferProduct.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:13:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_H_Store.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_H_Store.Load_dbo_H_Store">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:3:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:3</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_L_CustomerSalesTerritory.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:15:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_L_CustomerStore.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:14:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:19:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:20:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:16:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:16</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:17:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:17</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:18:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.TransformExecution" ExecutionConnectionReferenceId="RDV_Sales_dbo_L_SpecialOfferProductProduct.AW_RDV_SQL" PipelineTaskId="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct">
+      <BindingWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesBinding</BindingWorkspacePath>
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:21:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:21</TransformScriptId>
+      <TransformWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace</TransformWorkspacePath>
+    </TransformExecutionTask>
+  </TransformExecutionTaskList>
+</MetaPipeline>

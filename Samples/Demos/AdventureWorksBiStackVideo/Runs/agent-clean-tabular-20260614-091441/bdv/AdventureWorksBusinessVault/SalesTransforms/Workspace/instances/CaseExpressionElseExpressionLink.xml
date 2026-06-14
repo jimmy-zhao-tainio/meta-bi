@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <CaseExpressionElseExpressionLinkList>
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:1" CaseExpressionId="CaseExpression:1" ScalarExpressionId="ScalarExpression:13">
+    </CaseExpressionElseExpressionLink>
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:2" CaseExpressionId="CaseExpression:2" ScalarExpressionId="ScalarExpression:22">
+    </CaseExpressionElseExpressionLink>
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:3" CaseExpressionId="CaseExpression:3" ScalarExpressionId="ScalarExpression:387">
+    </CaseExpressionElseExpressionLink>
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:4" CaseExpressionId="CaseExpression:4" ScalarExpressionId="ScalarExpression:400">
+    </CaseExpressionElseExpressionLink>
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:5" CaseExpressionId="CaseExpression:5" ScalarExpressionId="ScalarExpression:431">
+    </CaseExpressionElseExpressionLink>
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:6" CaseExpressionId="CaseExpression:6" ScalarExpressionId="ScalarExpression:443">
+    </CaseExpressionElseExpressionLink>
+  </CaseExpressionElseExpressionLinkList>
+</MetaTransformScript>

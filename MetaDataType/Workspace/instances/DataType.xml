@@ -230,6 +230,10 @@
       <Category>Structured</Category>
       <Name>variant</Name>
     </DataType>
+    <DataType Id="sqlserver:type:AccountNumber" DataTypeSystemId="SqlServer">
+      <Category>Text</Category>
+      <Name>AccountNumber</Name>
+    </DataType>
     <DataType Id="sqlserver:type:binary" DataTypeSystemId="SqlServer">
       <Category>Binary</Category>
       <Name>binary</Name>
@@ -241,6 +245,10 @@
     <DataType Id="sqlserver:type:bit" DataTypeSystemId="SqlServer">
       <Category>Logical</Category>
       <Name>bit</Name>
+    </DataType>
+    <DataType Id="sqlserver:type:Flag" DataTypeSystemId="SqlServer">
+      <Category>Logical</Category>
+      <Name>Flag</Name>
     </DataType>
     <DataType Id="sqlserver:type:char" DataTypeSystemId="SqlServer">
       <Category>Text</Category>
@@ -290,6 +298,14 @@
       <Category>Numeric</Category>
       <Name>money</Name>
     </DataType>
+    <DataType Id="sqlserver:type:Name" DataTypeSystemId="SqlServer">
+      <Category>Text</Category>
+      <Name>Name</Name>
+    </DataType>
+    <DataType Id="sqlserver:type:NameStyle" DataTypeSystemId="SqlServer">
+      <Category>Logical</Category>
+      <Name>NameStyle</Name>
+    </DataType>
     <DataType Id="sqlserver:type:nchar" DataTypeSystemId="SqlServer">
       <Category>Text</Category>
       <Name>nchar</Name>
@@ -301,6 +317,14 @@
     <DataType Id="sqlserver:type:numeric" DataTypeSystemId="SqlServer">
       <Category>Numeric</Category>
       <Name>numeric</Name>
+    </DataType>
+    <DataType Id="sqlserver:type:OrderNumber" DataTypeSystemId="SqlServer">
+      <Category>Text</Category>
+      <Name>OrderNumber</Name>
+    </DataType>
+    <DataType Id="sqlserver:type:Phone" DataTypeSystemId="SqlServer">
+      <Category>Text</Category>
+      <Name>Phone</Name>
     </DataType>
     <DataType Id="sqlserver:type:real" DataTypeSystemId="SqlServer">
       <Category>Numeric</Category>
@@ -317,6 +341,10 @@
     <DataType Id="sqlserver:type:sql_variant" DataTypeSystemId="SqlServer">
       <Category>Structured</Category>
       <Name>sql_variant</Name>
+    </DataType>
+    <DataType Id="sqlserver:type:sysname" DataTypeSystemId="SqlServer">
+      <Category>Text</Category>
+      <Name>sysname</Name>
     </DataType>
     <DataType Id="sqlserver:type:time" DataTypeSystemId="SqlServer">
       <Category>Temporal</Category>

@@ -38,6 +38,8 @@
         <Property name="TransformScriptId" isRequired="false" />
         <Property name="TransformScriptName" isRequired="false" />
         <Property name="TransformBindingId" isRequired="false" />
+        <Property name="TransformWorkspacePath" isRequired="false" />
+        <Property name="BindingWorkspacePath" isRequired="false" />
         <Property name="StatementKind" />
       </PropertyList>
       <RelationshipList>

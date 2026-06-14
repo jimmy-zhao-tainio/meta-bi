@@ -2596,6 +2596,9 @@ namespace MetaOrchestration
             {
                 switch (reader.LocalName)
                 {
+                    case "BindingWorkspacePath":
+                        row.BindingWorkspacePath = reader.ReadElementContentAsString();
+                        break;
                     case "MetaPipelinePipelineTaskId":
                         row.MetaPipelinePipelineTaskId = reader.ReadElementContentAsString();
                         break;
@@ -2619,6 +2622,9 @@ namespace MetaOrchestration
                         break;
                     case "TransformScriptName":
                         row.TransformScriptName = reader.ReadElementContentAsString();
+                        break;
+                    case "TransformWorkspacePath":
+                        row.TransformWorkspacePath = reader.ReadElementContentAsString();
                         break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'TaskAccessProfile'.");
@@ -2658,6 +2664,10 @@ namespace MetaOrchestration
                 AppendXmlAttribute(builder, pipelineReferenceId);
                 builder.Append('"');
                 builder.Append(">\n");
+                if (!string.IsNullOrWhiteSpace(row.BindingWorkspacePath))
+                {
+                    AppendElement(builder, "BindingWorkspacePath", row.BindingWorkspacePath!, "      ");
+                }
                 AppendElement(builder, "MetaPipelinePipelineTaskId", RequireText(row.MetaPipelinePipelineTaskId, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'MetaPipelinePipelineTaskId'."), "      ");
                 AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 AppendElement(builder, "StatementKind", RequireText(row.StatementKind, $"Entity 'TaskAccessProfile' row '{row.Id}' is missing required property 'StatementKind'."), "      ");
@@ -2674,6 +2684,10 @@ namespace MetaOrchestration
                 if (!string.IsNullOrWhiteSpace(row.TransformScriptName))
                 {
                     AppendElement(builder, "TransformScriptName", row.TransformScriptName!, "      ");
+                }
+                if (!string.IsNullOrWhiteSpace(row.TransformWorkspacePath))
+                {
+                    AppendElement(builder, "TransformWorkspacePath", row.TransformWorkspacePath!, "      ");
                 }
                 builder.Append("    </TaskAccessProfile>\n");
             }
@@ -4400,6 +4414,7 @@ namespace MetaOrchestration
 
             if (HasUnexpectedProperties(typeof(TaskAccessProfile),
                 "Id",
+                "BindingWorkspacePath",
                 "MetaPipelinePipelineTaskId",
                 "Ordinal",
                 "StatementKind",
@@ -4408,6 +4423,7 @@ namespace MetaOrchestration
                 "TransformBindingId",
                 "TransformScriptId",
                 "TransformScriptName",
+                "TransformWorkspacePath",
                 "PipelineReference"))
             {
                 return true;

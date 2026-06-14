@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <TableColumnDataTypeDetailList>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Customer.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Customer.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Customer.CustomerId.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Customer.CustomerId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Customer.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Customer.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Customer.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Customer.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_OrderDate.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_OrderDate.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_OrderDate.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BH_OrderDate.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_OrderDate.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_OrderDate.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Product.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Product.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Product.ProductId.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Product.ProductId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Product.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Product.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Product.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Product.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrder.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.SalesOrderId.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrder.SalesOrderId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrder.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrder.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.SalesOrderId.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.SalesOrderId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.SalesOrderDetailId.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.SalesOrderDetailId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesPerson.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.SalesPersonBusinessEntityId.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesPerson.SalesPersonBusinessEntityId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesPerson.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesPerson.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.TerritoryId.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.TerritoryId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Store.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Store.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Store.StoreId.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Store.StoreId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Store.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Store.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BH_Store.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Store.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.HubHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.CustomerAccountNumber.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.CustomerAccountNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.CustomerType.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.CustomerType">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.HashDiff.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.HubHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.ProductNumber.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.ProductNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.ProductName.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.ProductName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.ProductCategory.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.ProductCategory">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.ProductSubcategory.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.ProductSubcategory">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.HashDiff.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.HubHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.SalesOrderNumber.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.SalesOrderNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.OrderStatus.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.OrderStatus">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.HashDiff.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.HubHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.SalesPersonName.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.SalesPersonName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.HashDiff.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.HubHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.TerritoryName.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.TerritoryName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.CountryRegionCode.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.CountryRegionCode">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.TerritoryGroup.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.TerritoryGroup">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.HashDiff.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.HubHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.HubHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.StoreName.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.StoreName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.HashDiff.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.SalesOrderHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.CustomerHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.CustomerHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.SalesOrderHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.OrderDateHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.OrderDateHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.SalesOrderLineHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.SalesOrderLineHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.SalesOrderHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.SalesOrderLineHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.SalesOrderLineHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.ProductHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.ProductHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.SalesOrderHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.SalesPersonHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.SalesPersonHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.SalesOrderHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.StoreHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.StoreHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.HashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.HashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.SalesOrderHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.SalesTerritoryHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.SalesTerritoryHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.LinkHashKey.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.LinkHashKey">
+      <Name>Length</Name>
+      <Value>16</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.UnitPrice.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.UnitPrice">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.UnitPrice.detail.Scale" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.UnitPrice">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.LineTotal.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.LineTotal">
+      <Name>Precision</Name>
+      <Value>38</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.LineTotal.detail.Scale" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.LineTotal">
+      <Name>Scale</Name>
+      <Value>6</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.DiscountAmount.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.DiscountAmount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.DiscountAmount.detail.Scale" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.DiscountAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.TaxAmount.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.TaxAmount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.TaxAmount.detail.Scale" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.TaxAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.FreightAmount.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.FreightAmount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.FreightAmount.detail.Scale" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.FreightAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.HashDiff.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.RecordSource.detail.Length" TableColumnId="AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+  </TableColumnDataTypeDetailList>
+</MetaSql>

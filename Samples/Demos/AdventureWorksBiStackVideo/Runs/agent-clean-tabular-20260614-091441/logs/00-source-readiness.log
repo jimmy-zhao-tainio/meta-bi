@@ -1,0 +1,23 @@
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+meta-sql execute --connection-env AW_SOURCE_SQL --query source readiness row counts
+
+Result set 1
+ObjectName | RowTotal
+Sales.SalesOrderHeader | 31465
+Sales.SalesOrderDetail | 121317
+Production.Product | 504
+Sales.Customer | 19820
+Sales.Store | 701
+Ok
+Source readiness passed.

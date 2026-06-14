@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ParameterizedDataTypeReferenceList>
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:1" DataTypeReferenceId="DataTypeReference:1">
+    </ParameterizedDataTypeReference>
+  </ParameterizedDataTypeReferenceList>
+</MetaTransformScript>

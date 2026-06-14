@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <IntegerLiteralList>
+    <IntegerLiteral Id="IntegerLiteral:1" LiteralId="Literal:1">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+    <IntegerLiteral Id="IntegerLiteral:2" LiteralId="Literal:2">
+      <LiteralType>Integer</LiteralType>
+    </IntegerLiteral>
+  </IntegerLiteralList>
+</MetaTransformScript>

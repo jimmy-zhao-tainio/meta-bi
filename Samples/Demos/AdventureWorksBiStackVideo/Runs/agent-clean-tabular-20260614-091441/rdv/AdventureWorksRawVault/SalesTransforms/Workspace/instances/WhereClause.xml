@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <WhereClauseList>
+    <WhereClause Id="WhereClause:1">
+    </WhereClause>
+    <WhereClause Id="WhereClause:2">
+    </WhereClause>
+    <WhereClause Id="WhereClause:3">
+    </WhereClause>
+    <WhereClause Id="WhereClause:4">
+    </WhereClause>
+  </WhereClauseList>
+</MetaTransformScript>

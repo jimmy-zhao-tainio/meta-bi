@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingTargetList>
+    <TransformBindingTarget Id="TransformScript:1:binding:target:1" TransformBindingId="TransformScript:1:binding">
+      <SqlIdentifier>awbi.DimProduct</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:2:binding:target:1" TransformBindingId="TransformScript:2:binding">
+      <SqlIdentifier>awbi.DimOrderDate</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:3:binding:target:1" TransformBindingId="TransformScript:3:binding">
+      <SqlIdentifier>awbi.DimSalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:4:binding:target:1" TransformBindingId="TransformScript:4:binding">
+      <SqlIdentifier>awbi.DimCustomerChannel</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:5:binding:target:1" TransformBindingId="TransformScript:5:binding">
+      <SqlIdentifier>awbi.FactSalesOrderLine</SqlIdentifier>
+    </TransformBindingTarget>
+  </TransformBindingTargetList>
+</MetaTransformBinding>

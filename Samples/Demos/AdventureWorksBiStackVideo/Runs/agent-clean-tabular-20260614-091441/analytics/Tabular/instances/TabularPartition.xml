@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularPartitionList>
+    <TabularPartition Id="PartitionDimCustomerChannel" TabularDataSourceId="Mart" TabularTableId="DimCustomerChannel">
+      <Expression>SELECT
+    CustomerId,
+    CustomerAccountNumber,
+    CustomerType
+FROM awbi.DimCustomerChannel</Expression>
+      <Mode>Import</Mode>
+      <Name>Customer Channel Partition</Name>
+      <Ordinal>50</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="PartitionDimOrderDate" TabularDataSourceId="Mart" TabularTableId="DimOrderDate">
+      <Expression>SELECT
+    OrderDate,
+    OrderYear,
+    OrderMonth,
+    OrderMonthName
+FROM awbi.DimOrderDate</Expression>
+      <Mode>Import</Mode>
+      <Name>Order Date Partition</Name>
+      <Ordinal>30</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="PartitionDimProduct" TabularDataSourceId="Mart" TabularTableId="DimProduct">
+      <Expression>SELECT
+    ProductId,
+    ProductNumber,
+    ProductName,
+    ProductCategory,
+    ProductSubcategory
+FROM awbi.DimProduct</Expression>
+      <Mode>Import</Mode>
+      <Name>Product Partition</Name>
+      <Ordinal>20</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="PartitionDimSalesTerritory" TabularDataSourceId="Mart" TabularTableId="DimSalesTerritory">
+      <Expression>SELECT
+    TerritoryId,
+    TerritoryName,
+    CountryRegionCode,
+    TerritoryGroup
+FROM awbi.DimSalesTerritory</Expression>
+      <Mode>Import</Mode>
+      <Name>Sales Territory Partition</Name>
+      <Ordinal>40</Ordinal>
+    </TabularPartition>
+    <TabularPartition Id="PartitionFactSalesOrderLine" TabularDataSourceId="Mart" TabularTableId="FactSalesOrderLine">
+      <Expression>SELECT
+    SalesOrderId,
+    SalesOrderDetailId,
+    SalesOrderNumber,
+    OrderDate,
+    ProductId,
+    ProductNumber,
+    ProductName,
+    ProductCategory,
+    ProductSubcategory,
+    CustomerId,
+    CustomerType,
+    TerritoryId,
+    TerritoryName,
+    TerritoryGroup,
+    SalesPersonBusinessEntityId,
+    SalesPersonName,
+    OnlineOrderFlag,
+    OrderQuantity,
+    UnitPrice,
+    SalesAmount,
+    DiscountAmount,
+    TaxAmount,
+    FreightAmount
+FROM awbi.FactSalesOrderLine</Expression>
+      <Mode>Import</Mode>
+      <Name>Fact Sales Order Line Partition</Name>
+      <Ordinal>10</Ordinal>
+    </TabularPartition>
+  </TabularPartitionList>
+</MetaTabular>

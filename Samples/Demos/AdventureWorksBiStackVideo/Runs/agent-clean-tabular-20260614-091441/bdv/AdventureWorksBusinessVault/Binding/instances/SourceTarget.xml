@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <SourceTargetList>
+    <SourceTarget Id="QueryExpression:1:output-rowset:input:1" SourceId="TableReference:1:rowset" TargetId="QueryExpression:1:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:4:rowset:input:1" SourceId="TableReference:2:rowset" TargetId="TableReference:4:rowset">
+      <InputRole>JoinLeft</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:4:rowset:input:2" SourceId="TableReference:3:rowset" TargetId="TableReference:4:rowset">
+      <InputRole>JoinRight</InputRole>
+      <Ordinal>1</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:6:rowset:input:1" SourceId="TableReference:4:rowset" TargetId="TableReference:6:rowset">
+      <InputRole>JoinLeft</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:6:rowset:input:2" SourceId="TableReference:5:rowset" TargetId="TableReference:6:rowset">
+      <InputRole>JoinRight</InputRole>
+      <Ordinal>1</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:8:rowset:input:1" SourceId="TableReference:6:rowset" TargetId="TableReference:8:rowset">
+      <InputRole>JoinLeft</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:8:rowset:input:2" SourceId="TableReference:7:rowset" TargetId="TableReference:8:rowset">
+      <InputRole>JoinRight</InputRole>
+      <Ordinal>1</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:10:rowset:input:1" SourceId="TableReference:8:rowset" TargetId="TableReference:10:rowset">
+      <InputRole>JoinLeft</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:10:rowset:input:2" SourceId="TableReference:9:rowset" TargetId="TableReference:10:rowset">
+      <InputRole>JoinRight</InputRole>
+      <Ordinal>1</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:12:rowset:input:1" SourceId="TableReference:10:rowset" TargetId="TableReference:12:rowset">
+      <InputRole>JoinLeft</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:12:rowset:input:2" SourceId="TableReference:11:rowset" TargetId="TableReference:12:rowset">
+      <InputRole>JoinRight</InputRole>
+      <Ordinal>1</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:14:rowset:input:1" SourceId="TableReference:12:rowset" TargetId="TableReference:14:rowset">
+      <InputRole>JoinLeft</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:14:rowset:input:2" SourceId="TableReference:13:rowset" TargetId="TableReference:14:rowset">
+      <InputRole>JoinRight</InputRole>
+      <Ordinal>1</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:16:rowset:input:1" SourceId="TableReference:14:rowset" TargetId="TableReference:16:rowset">
+      <InputRole>JoinLeft</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="TableReference:16:rowset:input:2" SourceId="TableReference:15:rowset" TargetId="TableReference:16:rowset">
+      <InputRole>JoinRight</InputRole>
+      <Ordinal>1</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="QueryExpression:2:output-rowset:input:1" SourceId="TableReference:16:rowset" TargetId="QueryExpression:2:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+  </SourceTargetList>
+</MetaTransformBinding>

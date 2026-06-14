@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaPipeline>
+  <PipelineTaskList>
+    <PipelineTask Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification" PipelineId="BDV_Product_dbo_BHS_Product_ProductClassification">
+      <Name>Load_dbo_BHS_Product_ProductClassification</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.target-write" PipelineId="BDV_Product_dbo_BHS_Product_ProductClassification">
+      <Name>Load_dbo_BHS_Product_ProductClassification.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product" PipelineId="BDV_Product_dbo_BH_Product">
+      <Name>Load_dbo_BH_Product</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.target-write" PipelineId="BDV_Product_dbo_BH_Product">
+      <Name>Load_dbo_BH_Product.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile" PipelineId="BDV_Sales_dbo_BHS_Customer_CustomerProfile">
+      <Name>Load_dbo_BHS_Customer_CustomerProfile</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.target-write" PipelineId="BDV_Sales_dbo_BHS_Customer_CustomerProfile">
+      <Name>Load_dbo_BHS_Customer_CustomerProfile.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile" PipelineId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile">
+      <Name>Load_dbo_BHS_SalesOrder_SalesOrderProfile</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.target-write" PipelineId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile">
+      <Name>Load_dbo_BHS_SalesOrder_SalesOrderProfile.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile" PipelineId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile">
+      <Name>Load_dbo_BHS_SalesPerson_SalesPersonProfile</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.target-write" PipelineId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile">
+      <Name>Load_dbo_BHS_SalesPerson_SalesPersonProfile.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile" PipelineId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile">
+      <Name>Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.target-write" PipelineId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile">
+      <Name>Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile" PipelineId="BDV_Sales_dbo_BHS_Store_StoreProfile">
+      <Name>Load_dbo_BHS_Store_StoreProfile</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.target-write" PipelineId="BDV_Sales_dbo_BHS_Store_StoreProfile">
+      <Name>Load_dbo_BHS_Store_StoreProfile.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer" PipelineId="BDV_Sales_dbo_BH_Customer">
+      <Name>Load_dbo_BH_Customer</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.target-write" PipelineId="BDV_Sales_dbo_BH_Customer">
+      <Name>Load_dbo_BH_Customer.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate" PipelineId="BDV_Sales_dbo_BH_OrderDate">
+      <Name>Load_dbo_BH_OrderDate</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.target-write" PipelineId="BDV_Sales_dbo_BH_OrderDate">
+      <Name>Load_dbo_BH_OrderDate.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder" PipelineId="BDV_Sales_dbo_BH_SalesOrder">
+      <Name>Load_dbo_BH_SalesOrder</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.target-write" PipelineId="BDV_Sales_dbo_BH_SalesOrder">
+      <Name>Load_dbo_BH_SalesOrder.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine" PipelineId="BDV_Sales_dbo_BH_SalesOrderLine">
+      <Name>Load_dbo_BH_SalesOrderLine</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.target-write" PipelineId="BDV_Sales_dbo_BH_SalesOrderLine">
+      <Name>Load_dbo_BH_SalesOrderLine.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson" PipelineId="BDV_Sales_dbo_BH_SalesPerson">
+      <Name>Load_dbo_BH_SalesPerson</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.target-write" PipelineId="BDV_Sales_dbo_BH_SalesPerson">
+      <Name>Load_dbo_BH_SalesPerson.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory" PipelineId="BDV_Sales_dbo_BH_SalesTerritory">
+      <Name>Load_dbo_BH_SalesTerritory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.target-write" PipelineId="BDV_Sales_dbo_BH_SalesTerritory">
+      <Name>Load_dbo_BH_SalesTerritory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store" PipelineId="BDV_Sales_dbo_BH_Store">
+      <Name>Load_dbo_BH_Store</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.target-write" PipelineId="BDV_Sales_dbo_BH_Store">
+      <Name>Load_dbo_BH_Store.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures" PipelineId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures">
+      <Name>Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.target-write" PipelineId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures">
+      <Name>Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer" PipelineId="BDV_Sales_dbo_BL_SalesOrderCustomer">
+      <Name>Load_dbo_BL_SalesOrderCustomer</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.target-write" PipelineId="BDV_Sales_dbo_BL_SalesOrderCustomer">
+      <Name>Load_dbo_BL_SalesOrderCustomer.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate" PipelineId="BDV_Sales_dbo_BL_SalesOrderDate">
+      <Name>Load_dbo_BL_SalesOrderDate</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.target-write" PipelineId="BDV_Sales_dbo_BL_SalesOrderDate">
+      <Name>Load_dbo_BL_SalesOrderDate.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder" PipelineId="BDV_Sales_dbo_BL_SalesOrderLineOrder">
+      <Name>Load_dbo_BL_SalesOrderLineOrder</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.target-write" PipelineId="BDV_Sales_dbo_BL_SalesOrderLineOrder">
+      <Name>Load_dbo_BL_SalesOrderLineOrder.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct" PipelineId="BDV_Sales_dbo_BL_SalesOrderLineProduct">
+      <Name>Load_dbo_BL_SalesOrderLineProduct</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.target-write" PipelineId="BDV_Sales_dbo_BL_SalesOrderLineProduct">
+      <Name>Load_dbo_BL_SalesOrderLineProduct.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson" PipelineId="BDV_Sales_dbo_BL_SalesOrderSalesPerson">
+      <Name>Load_dbo_BL_SalesOrderSalesPerson</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.target-write" PipelineId="BDV_Sales_dbo_BL_SalesOrderSalesPerson">
+      <Name>Load_dbo_BL_SalesOrderSalesPerson.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore" PipelineId="BDV_Sales_dbo_BL_SalesOrderStore">
+      <Name>Load_dbo_BL_SalesOrderStore</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.target-write" PipelineId="BDV_Sales_dbo_BL_SalesOrderStore">
+      <Name>Load_dbo_BL_SalesOrderStore.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory" PipelineId="BDV_Sales_dbo_BL_SalesOrderTerritory">
+      <Name>Load_dbo_BL_SalesOrderTerritory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.target-write" PipelineId="BDV_Sales_dbo_BL_SalesOrderTerritory">
+      <Name>Load_dbo_BL_SalesOrderTerritory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel" PipelineId="DW_Mart_awbi_DimCustomerChannel">
+      <Name>Load_awbi_DimCustomerChannel</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel.target-write" PipelineId="DW_Mart_awbi_DimCustomerChannel">
+      <Name>Load_awbi_DimCustomerChannel.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate" PipelineId="DW_Mart_awbi_DimOrderDate">
+      <Name>Load_awbi_DimOrderDate</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.target-write" PipelineId="DW_Mart_awbi_DimOrderDate">
+      <Name>Load_awbi_DimOrderDate.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct" PipelineId="DW_Mart_awbi_DimProduct">
+      <Name>Load_awbi_DimProduct</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.target-write" PipelineId="DW_Mart_awbi_DimProduct">
+      <Name>Load_awbi_DimProduct.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory" PipelineId="DW_Mart_awbi_DimSalesTerritory">
+      <Name>Load_awbi_DimSalesTerritory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.target-write" PipelineId="DW_Mart_awbi_DimSalesTerritory">
+      <Name>Load_awbi_DimSalesTerritory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine" PipelineId="DW_Mart_awbi_FactSalesOrderLine">
+      <Name>Load_awbi_FactSalesOrderLine</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.target-write" PipelineId="DW_Mart_awbi_FactSalesOrderLine">
+      <Name>Load_awbi_FactSalesOrderLine.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory" PipelineId="RDV_Product_dbo_HS_ProductCategory_ProductCategory">
+      <Name>Load_dbo_HS_ProductCategory_ProductCategory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.target-write" PipelineId="RDV_Product_dbo_HS_ProductCategory_ProductCategory">
+      <Name>Load_dbo_HS_ProductCategory_ProductCategory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory" PipelineId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory">
+      <Name>Load_dbo_HS_ProductSubcategory_ProductSubcategory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.target-write" PipelineId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory">
+      <Name>Load_dbo_HS_ProductSubcategory_ProductSubcategory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product" PipelineId="RDV_Product_dbo_HS_Product_Product">
+      <Name>Load_dbo_HS_Product_Product</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.target-write" PipelineId="RDV_Product_dbo_HS_Product_Product">
+      <Name>Load_dbo_HS_Product_Product.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_H_Product.Load_dbo_H_Product" PipelineId="RDV_Product_dbo_H_Product">
+      <Name>Load_dbo_H_Product</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_H_Product.Load_dbo_H_Product.target-write" PipelineId="RDV_Product_dbo_H_Product">
+      <Name>Load_dbo_H_Product.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory" PipelineId="RDV_Product_dbo_H_ProductCategory">
+      <Name>Load_dbo_H_ProductCategory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.target-write" PipelineId="RDV_Product_dbo_H_ProductCategory">
+      <Name>Load_dbo_H_ProductCategory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory" PipelineId="RDV_Product_dbo_H_ProductSubcategory">
+      <Name>Load_dbo_H_ProductSubcategory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.target-write" PipelineId="RDV_Product_dbo_H_ProductSubcategory">
+      <Name>Load_dbo_H_ProductSubcategory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory" PipelineId="RDV_Product_dbo_L_ProductProductSubcategory">
+      <Name>Load_dbo_L_ProductProductSubcategory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.target-write" PipelineId="RDV_Product_dbo_L_ProductProductSubcategory">
+      <Name>Load_dbo_L_ProductProductSubcategory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory" PipelineId="RDV_Product_dbo_L_ProductSubcategoryProductCategory">
+      <Name>Load_dbo_L_ProductSubcategoryProductCategory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.target-write" PipelineId="RDV_Product_dbo_L_ProductSubcategoryProductCategory">
+      <Name>Load_dbo_L_ProductSubcategoryProductCategory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer" PipelineId="RDV_Sales_dbo_HS_Customer_Customer">
+      <Name>Load_dbo_HS_Customer_Customer</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.target-write" PipelineId="RDV_Sales_dbo_HS_Customer_Customer">
+      <Name>Load_dbo_HS_Customer_Customer.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail" PipelineId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail">
+      <Name>Load_dbo_HS_SalesOrderDetail_SalesOrderDetail</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.target-write" PipelineId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail">
+      <Name>Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader" PipelineId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader">
+      <Name>Load_dbo_HS_SalesOrderHeader_SalesOrderHeader</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.target-write" PipelineId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader">
+      <Name>Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson" PipelineId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson">
+      <Name>Load_dbo_HS_SalesPerson_SalesPerson</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.target-write" PipelineId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson">
+      <Name>Load_dbo_HS_SalesPerson_SalesPerson.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory" PipelineId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory">
+      <Name>Load_dbo_HS_SalesTerritory_SalesTerritory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.target-write" PipelineId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory">
+      <Name>Load_dbo_HS_SalesTerritory_SalesTerritory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store" PipelineId="RDV_Sales_dbo_HS_Store_Store">
+      <Name>Load_dbo_HS_Store_Store</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.target-write" PipelineId="RDV_Sales_dbo_HS_Store_Store">
+      <Name>Load_dbo_HS_Store_Store.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer" PipelineId="RDV_Sales_dbo_H_Customer">
+      <Name>Load_dbo_H_Customer</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.target-write" PipelineId="RDV_Sales_dbo_H_Customer">
+      <Name>Load_dbo_H_Customer.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail" PipelineId="RDV_Sales_dbo_H_SalesOrderDetail">
+      <Name>Load_dbo_H_SalesOrderDetail</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.target-write" PipelineId="RDV_Sales_dbo_H_SalesOrderDetail">
+      <Name>Load_dbo_H_SalesOrderDetail.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader" PipelineId="RDV_Sales_dbo_H_SalesOrderHeader">
+      <Name>Load_dbo_H_SalesOrderHeader</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.target-write" PipelineId="RDV_Sales_dbo_H_SalesOrderHeader">
+      <Name>Load_dbo_H_SalesOrderHeader.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson" PipelineId="RDV_Sales_dbo_H_SalesPerson">
+      <Name>Load_dbo_H_SalesPerson</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.target-write" PipelineId="RDV_Sales_dbo_H_SalesPerson">
+      <Name>Load_dbo_H_SalesPerson.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory" PipelineId="RDV_Sales_dbo_H_SalesTerritory">
+      <Name>Load_dbo_H_SalesTerritory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.target-write" PipelineId="RDV_Sales_dbo_H_SalesTerritory">
+      <Name>Load_dbo_H_SalesTerritory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct" PipelineId="RDV_Sales_dbo_H_SpecialOfferProduct">
+      <Name>Load_dbo_H_SpecialOfferProduct</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.target-write" PipelineId="RDV_Sales_dbo_H_SpecialOfferProduct">
+      <Name>Load_dbo_H_SpecialOfferProduct.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_Store.Load_dbo_H_Store" PipelineId="RDV_Sales_dbo_H_Store">
+      <Name>Load_dbo_H_Store</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.target-write" PipelineId="RDV_Sales_dbo_H_Store">
+      <Name>Load_dbo_H_Store.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory" PipelineId="RDV_Sales_dbo_L_CustomerSalesTerritory">
+      <Name>Load_dbo_L_CustomerSalesTerritory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.target-write" PipelineId="RDV_Sales_dbo_L_CustomerSalesTerritory">
+      <Name>Load_dbo_L_CustomerSalesTerritory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore" PipelineId="RDV_Sales_dbo_L_CustomerStore">
+      <Name>Load_dbo_L_CustomerStore</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.target-write" PipelineId="RDV_Sales_dbo_L_CustomerStore">
+      <Name>Load_dbo_L_CustomerStore.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader" PipelineId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader">
+      <Name>Load_dbo_L_SalesOrderDetailSalesOrderHeader</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.target-write" PipelineId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader">
+      <Name>Load_dbo_L_SalesOrderDetailSalesOrderHeader.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct" PipelineId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct">
+      <Name>Load_dbo_L_SalesOrderDetailSpecialOfferProduct</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.target-write" PipelineId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct">
+      <Name>Load_dbo_L_SalesOrderDetailSpecialOfferProduct.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer" PipelineId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer">
+      <Name>Load_dbo_L_SalesOrderHeaderCustomer</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.target-write" PipelineId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer">
+      <Name>Load_dbo_L_SalesOrderHeaderCustomer.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson" PipelineId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson">
+      <Name>Load_dbo_L_SalesOrderHeaderSalesPerson</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.target-write" PipelineId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson">
+      <Name>Load_dbo_L_SalesOrderHeaderSalesPerson.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory" PipelineId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory">
+      <Name>Load_dbo_L_SalesOrderHeaderSalesTerritory</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.target-write" PipelineId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory">
+      <Name>Load_dbo_L_SalesOrderHeaderSalesTerritory.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct" PipelineId="RDV_Sales_dbo_L_SpecialOfferProductProduct">
+      <Name>Load_dbo_L_SpecialOfferProductProduct</Name>
+      <Ordinal>1</Ordinal>
+    </PipelineTask>
+    <PipelineTask Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.target-write" PipelineId="RDV_Sales_dbo_L_SpecialOfferProductProduct">
+      <Name>Load_dbo_L_SpecialOfferProductProduct.target-write</Name>
+      <Ordinal>2</Ordinal>
+    </PipelineTask>
+  </PipelineTaskList>
+</MetaPipeline>

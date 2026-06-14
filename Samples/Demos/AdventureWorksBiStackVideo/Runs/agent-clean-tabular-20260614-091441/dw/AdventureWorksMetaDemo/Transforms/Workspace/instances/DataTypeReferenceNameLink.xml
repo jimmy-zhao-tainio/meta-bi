@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <DataTypeReferenceNameLinkList>
+    <DataTypeReferenceNameLink Id="DataTypeReferenceNameLink:1" DataTypeReferenceId="DataTypeReference:1" SchemaObjectNameId="SchemaObjectName:3">
+    </DataTypeReferenceNameLink>
+  </DataTypeReferenceNameLinkList>
+</MetaTransformScript>

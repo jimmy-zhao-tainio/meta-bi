@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnTypeExactList>
+    <ValidationTargetColumnTypeExact Id="TransformScript:1:binding:validation:target:1:column:1:type-exact" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:1">
+      <SourceMetaDataTypeId>sqlserver:type:binary</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:1:binding:validation:target:1:column:2:type-exact" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:2">
+      <SourceMetaDataTypeId>sqlserver:type:nvarchar</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:1:binding:validation:target:1:column:3:type-exact" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:3">
+      <SourceMetaDataTypeId>sqlserver:type:datetime2</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:1:binding:validation:target:1:column:4:type-exact" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:4">
+      <SourceMetaDataTypeId>sqlserver:type:nvarchar</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:1:binding:validation:target:1:column:5:type-exact" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:5">
+      <SourceMetaDataTypeId>sqlserver:type:bigint</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:2:binding:validation:target:2:column:7:type-exact" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:7">
+      <SourceMetaDataTypeId>sqlserver:type:nvarchar</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+  </ValidationTargetColumnTypeExactList>
+</MetaTransformBinding>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BooleanIsNullExpressionList>
+    <BooleanIsNullExpression Id="BooleanIsNullExpression:1" BooleanExpressionId="BooleanExpression:1">
+      <IsNot>true</IsNot>
+    </BooleanIsNullExpression>
+    <BooleanIsNullExpression Id="BooleanIsNullExpression:2" BooleanExpressionId="BooleanExpression:2">
+      <IsNot>true</IsNot>
+    </BooleanIsNullExpression>
+    <BooleanIsNullExpression Id="BooleanIsNullExpression:3" BooleanExpressionId="BooleanExpression:3">
+      <IsNot>true</IsNot>
+    </BooleanIsNullExpression>
+    <BooleanIsNullExpression Id="BooleanIsNullExpression:4" BooleanExpressionId="BooleanExpression:4">
+      <IsNot>true</IsNot>
+    </BooleanIsNullExpression>
+  </BooleanIsNullExpressionList>
+</MetaTransformScript>

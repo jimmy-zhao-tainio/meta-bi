@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinPatternList>
+    <JoinPattern Id="JoinPattern">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_customer;right=adventureworksbusinessvault.dbo.bhs_customer_customerprofile;eq=1;hasEq=1;keys=c.hashkey=cp.hubhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.1">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_product;right=adventureworksbusinessvault.dbo.bhs_product_productclassification;eq=1;hasEq=1;keys=hp.hashkey=hpc.hubhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.2">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_salesterritory;right=adventureworksbusinessvault.dbo.bhs_salesterritory_salesterritoryprofile;eq=1;hasEq=1;keys=st.hashkey=stp.hubhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.3">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile;eq=1;hasEq=1;keys=so.hubhashkey=sohub.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.4">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bl_salesorderdate;eq=1;hasEq=1;keys=sod.salesorderhashkey=sohub.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.5">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bh_orderdate;eq=1;hasEq=1;keys=od.hashkey=sod.orderdatehashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.6">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bl_salesordercustomer;eq=1;hasEq=1;keys=soc.salesorderhashkey=sohub.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.7">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bh_customer;eq=1;hasEq=1;keys=c.hashkey=soc.customerhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.8">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bhs_customer_customerprofile;eq=1;hasEq=1;keys=c.hashkey=cp.hubhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.9">
+      <CanonicalSignature>type=leftouter;left=adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_customer_customerprofile,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bl_salesorderterritory;eq=1;hasEq=1;keys=sohub.hashkey=sot.salesorderhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>LeftOuter</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.10">
+      <CanonicalSignature>type=leftouter;left=adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_customer_customerprofile,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bl_salesorderterritory,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bh_salesterritory;eq=1;hasEq=1;keys=sot.salesterritoryhashkey=st.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>LeftOuter</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.11">
+      <CanonicalSignature>type=leftouter;left=adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_customer_customerprofile,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bl_salesorderterritory,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bhs_salesterritory_salesterritoryprofile;eq=1;hasEq=1;keys=st.hashkey=stp.hubhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>LeftOuter</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.12">
+      <CanonicalSignature>type=leftouter;left=adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_customer_customerprofile,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bhs_salesterritory_salesterritoryprofile,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bl_salesorderterritory,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bl_salesordersalesperson;eq=1;hasEq=1;keys=sohub.hashkey=sosp.salesorderhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>LeftOuter</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.13">
+      <CanonicalSignature>type=leftouter;left=adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_customer_customerprofile,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bhs_salesterritory_salesterritoryprofile,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesorderterritory,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bh_salesperson;eq=1;hasEq=1;keys=sosp.salespersonhashkey=sp.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>LeftOuter</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.14">
+      <CanonicalSignature>type=leftouter;left=adventureworksbusinessvault.dbo.bh_customer,adventureworksbusinessvault.dbo.bh_orderdate,adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorder,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bh_salesperson,adventureworksbusinessvault.dbo.bh_salesterritory,adventureworksbusinessvault.dbo.bhs_customer_customerprofile,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bhs_salesorder_salesorderprofile,adventureworksbusinessvault.dbo.bhs_salesterritory_salesterritoryprofile,adventureworksbusinessvault.dbo.bl_salesordercustomer,adventureworksbusinessvault.dbo.bl_salesorderdate,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bl_salesordersalesperson,adventureworksbusinessvault.dbo.bl_salesorderterritory,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bhs_salesperson_salespersonprofile;eq=1;hasEq=1;keys=sp.hashkey=spp.hubhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>LeftOuter</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.15">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bl_salesorderlineproduct;right=adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;eq=1;hasEq=1;keys=lop.hashkey=m.linkhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.16">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bh_salesorderline;eq=1;hasEq=1;keys=lop.salesorderlinehashkey=sol.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.17">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bh_product;eq=1;hasEq=1;keys=lop.producthashkey=p.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.18">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bhs_product_productclassification;eq=1;hasEq=1;keys=p.hashkey=pc.hubhashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.19">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bl_salesorderlineorder;eq=1;hasEq=1;keys=loo.salesorderlinehashkey=sol.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+    <JoinPattern Id="JoinPattern.20">
+      <CanonicalSignature>type=inner;left=adventureworksbusinessvault.dbo.bh_product,adventureworksbusinessvault.dbo.bh_salesorderline,adventureworksbusinessvault.dbo.bhs_product_productclassification,adventureworksbusinessvault.dbo.bl_salesorderlineorder,adventureworksbusinessvault.dbo.bl_salesorderlineproduct,adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures;right=adventureworksbusinessvault.dbo.bh_salesorder;eq=1;hasEq=1;keys=loo.salesorderhashkey=sohub.hashkey</CanonicalSignature>
+      <ContainsEqualityPredicate>true</ContainsEqualityPredicate>
+      <EqualityPredicateCount>1</EqualityPredicateCount>
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </JoinPattern>
+  </JoinPatternList>
+</MetaDataQuality>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SearchedCaseExpressionList>
+    <SearchedCaseExpression Id="SearchedCaseExpression:1" CaseExpressionId="CaseExpression:1">
+    </SearchedCaseExpression>
+    <SearchedCaseExpression Id="SearchedCaseExpression:2" CaseExpressionId="CaseExpression:2">
+    </SearchedCaseExpression>
+    <SearchedCaseExpression Id="SearchedCaseExpression:3" CaseExpressionId="CaseExpression:3">
+    </SearchedCaseExpression>
+    <SearchedCaseExpression Id="SearchedCaseExpression:4" CaseExpressionId="CaseExpression:4">
+    </SearchedCaseExpression>
+    <SearchedCaseExpression Id="SearchedCaseExpression:5" CaseExpressionId="CaseExpression:5">
+    </SearchedCaseExpression>
+    <SearchedCaseExpression Id="SearchedCaseExpression:6" CaseExpressionId="CaseExpression:6">
+    </SearchedCaseExpression>
+  </SearchedCaseExpressionList>
+</MetaTransformScript>

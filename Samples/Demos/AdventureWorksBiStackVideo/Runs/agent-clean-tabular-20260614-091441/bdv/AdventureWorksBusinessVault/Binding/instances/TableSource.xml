@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TableSourceList>
+    <TableSource Id="TransformScript:1:binding:table-source:1" RowsetId="TableReference:1:rowset" TransformBindingId="TransformScript:1:binding">
+      <ExposedName>h</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:1</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:1" RowsetId="TableReference:2:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>h</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:2</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:2" RowsetId="TableReference:3:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>hs</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:3</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:3" RowsetId="TableReference:5:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>lps</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:5</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:4" RowsetId="TableReference:7:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>hps</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:7</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:5" RowsetId="TableReference:9:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>ps</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:9</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:6" RowsetId="TableReference:11:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>lpc</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:11</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:7" RowsetId="TableReference:13:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>hpc</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:13</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:8" RowsetId="TableReference:15:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>pc</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:15</MetaTransformScriptTableReferenceId>
+    </TableSource>
+  </TableSourceList>
+</MetaTransformBinding>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <FromClauseList>
+    <FromClause Id="FromClause:1">
+    </FromClause>
+    <FromClause Id="FromClause:2">
+    </FromClause>
+    <FromClause Id="FromClause:3">
+    </FromClause>
+    <FromClause Id="FromClause:4">
+    </FromClause>
+    <FromClause Id="FromClause:5">
+    </FromClause>
+    <FromClause Id="FromClause:6">
+    </FromClause>
+    <FromClause Id="FromClause:7">
+    </FromClause>
+    <FromClause Id="FromClause:8">
+    </FromClause>
+    <FromClause Id="FromClause:9">
+    </FromClause>
+    <FromClause Id="FromClause:10">
+    </FromClause>
+    <FromClause Id="FromClause:11">
+    </FromClause>
+    <FromClause Id="FromClause:12">
+    </FromClause>
+    <FromClause Id="FromClause:13">
+    </FromClause>
+    <FromClause Id="FromClause:14">
+    </FromClause>
+    <FromClause Id="FromClause:15">
+    </FromClause>
+    <FromClause Id="FromClause:16">
+    </FromClause>
+    <FromClause Id="FromClause:17">
+    </FromClause>
+    <FromClause Id="FromClause:18">
+    </FromClause>
+    <FromClause Id="FromClause:19">
+    </FromClause>
+    <FromClause Id="FromClause:20">
+    </FromClause>
+  </FromClauseList>
+</MetaTransformScript>

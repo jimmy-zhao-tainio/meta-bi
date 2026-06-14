@@ -1309,7 +1309,10 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
 
                     var filterPredicates = CollectQueryFilterPredicates(querySpecificationId);
 
-                    var equalityPredicates = CollectEqualityPredicates(searchConditionBooleanExpressionId);
+                    var equalityPredicates = ResolveJoinInputColumnsForEqualityPredicates(
+                        firstTableReferenceId,
+                        secondTableReferenceId,
+                        CollectEqualityPredicates(searchConditionBooleanExpressionId));
                     var projectsRightDetailColumn = ProjectsNonKeyColumnFromJoinSide(
                         querySpecificationId,
                         secondTableReferenceId,
@@ -1436,6 +1439,92 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             {
                 keyColumns.Add(column);
             }
+        }
+
+        private IReadOnlyList<EqualityPredicateEvidence> ResolveJoinInputColumnsForEqualityPredicates(
+            string firstTableReferenceId,
+            string secondTableReferenceId,
+            IReadOnlyList<EqualityPredicateEvidence> predicates)
+        {
+            if (predicates.Count == 0)
+            {
+                return predicates;
+            }
+
+            var firstAliases = ResolveTableReferenceAliases(firstTableReferenceId);
+            var secondAliases = ResolveTableReferenceAliases(secondTableReferenceId);
+            if (firstAliases.Count == 0 && secondAliases.Count == 0)
+            {
+                return predicates;
+            }
+
+            var resolved = new List<EqualityPredicateEvidence>(predicates.Count);
+            foreach (var predicate in predicates)
+            {
+                var firstExpressionSide = ResolveJoinInputSide(
+                    predicate.FirstExpressionDisplay,
+                    firstAliases,
+                    secondAliases,
+                    out var firstExpressionColumn);
+                var secondExpressionSide = ResolveJoinInputSide(
+                    predicate.SecondExpressionDisplay,
+                    firstAliases,
+                    secondAliases,
+                    out var secondExpressionColumn);
+
+                var firstJoinInputColumnName = string.Empty;
+                var secondJoinInputColumnName = string.Empty;
+                if (firstExpressionSide == JoinExpressionSide.FirstInput
+                    && secondExpressionSide == JoinExpressionSide.SecondInput)
+                {
+                    firstJoinInputColumnName = firstExpressionColumn;
+                    secondJoinInputColumnName = secondExpressionColumn;
+                }
+                else if (firstExpressionSide == JoinExpressionSide.SecondInput
+                         && secondExpressionSide == JoinExpressionSide.FirstInput)
+                {
+                    firstJoinInputColumnName = secondExpressionColumn;
+                    secondJoinInputColumnName = firstExpressionColumn;
+                }
+
+                resolved.Add(new EqualityPredicateEvidence
+                {
+                    BooleanComparisonExpressionId = predicate.BooleanComparisonExpressionId,
+                    FirstExpressionId = predicate.FirstExpressionId,
+                    SecondExpressionId = predicate.SecondExpressionId,
+                    FirstExpressionDisplay = predicate.FirstExpressionDisplay,
+                    SecondExpressionDisplay = predicate.SecondExpressionDisplay,
+                    FirstJoinInputColumnName = firstJoinInputColumnName,
+                    SecondJoinInputColumnName = secondJoinInputColumnName,
+                });
+            }
+
+            return resolved;
+        }
+
+        private static JoinExpressionSide ResolveJoinInputSide(
+            string expression,
+            ISet<string> firstAliases,
+            ISet<string> secondAliases,
+            out string column)
+        {
+            column = string.Empty;
+            if (!TryParseQualifiedColumnDisplay(expression, out var alias, out var parsedColumn))
+            {
+                return JoinExpressionSide.Unknown;
+            }
+
+            var matchesFirst = firstAliases.Contains(alias);
+            var matchesSecond = secondAliases.Contains(alias);
+            if (matchesFirst == matchesSecond)
+            {
+                return JoinExpressionSide.Unknown;
+            }
+
+            column = parsedColumn;
+            return matchesFirst
+                ? JoinExpressionSide.FirstInput
+                : JoinExpressionSide.SecondInput;
         }
 
         private static bool TryParseQualifiedColumnDisplay(
@@ -2867,6 +2956,10 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
         public string FirstExpressionDisplay { get; init; } = string.Empty;
 
         public string SecondExpressionDisplay { get; init; } = string.Empty;
+
+        public string FirstJoinInputColumnName { get; init; } = string.Empty;
+
+        public string SecondJoinInputColumnName { get; init; } = string.Empty;
     }
 
     private sealed class FilterPredicateEvidence
@@ -2876,6 +2969,13 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
         public string PredicateSignature { get; init; } = string.Empty;
 
         public string PredicateDisplay { get; init; } = string.Empty;
+    }
+
+    private enum JoinExpressionSide
+    {
+        Unknown,
+        FirstInput,
+        SecondInput,
     }
 
     private sealed class CteDefinition

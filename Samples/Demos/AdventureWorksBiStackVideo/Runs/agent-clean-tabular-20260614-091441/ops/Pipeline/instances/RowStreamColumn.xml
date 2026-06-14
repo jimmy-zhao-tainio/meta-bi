@@ -1,0 +1,1633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaPipeline>
+  <RowStreamColumnList>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.AuditId" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>AuditId</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.HashDiff" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.HubHashKey" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.LoadTimestamp" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.ProductCategory" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>ProductCategory</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.ProductName" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>ProductName</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.ProductNumber" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>ProductNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.ProductSubcategory" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>ProductSubcategory</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows.RecordSource" RowStreamId="BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows.AuditId" RowStreamId="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows.HashKey" RowStreamId="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows.LoadTimestamp" RowStreamId="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows.ProductId" RowStreamId="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows">
+      <Name>ProductId</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows.RecordSource" RowStreamId="BDV_Product_dbo_BH_Product.Load_dbo_BH_Product.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows.AuditId" RowStreamId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows">
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows.CustomerAccountNumber" RowStreamId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows">
+      <Name>CustomerAccountNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows.CustomerType" RowStreamId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows">
+      <Name>CustomerType</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows.HashDiff" RowStreamId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows.HubHashKey" RowStreamId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.AuditId" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>AuditId</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.DueDate" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>DueDate</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.HashDiff" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.HubHashKey" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.OnlineOrderFlag" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>OnlineOrderFlag</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.OrderStatus" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>OrderStatus</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows.SalesOrderNumber" RowStreamId="BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile.rows">
+      <Name>SalesOrderNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows.AuditId" RowStreamId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows.HashDiff" RowStreamId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows.HubHashKey" RowStreamId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows.SalesPersonName" RowStreamId="BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile.rows">
+      <Name>SalesPersonName</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows.AuditId" RowStreamId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows">
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows.CountryRegionCode" RowStreamId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows">
+      <Name>CountryRegionCode</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows.HashDiff" RowStreamId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows.HubHashKey" RowStreamId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows.TerritoryGroup" RowStreamId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows">
+      <Name>TerritoryGroup</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows.TerritoryName" RowStreamId="BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile.rows">
+      <Name>TerritoryName</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows.AuditId" RowStreamId="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows.HashDiff" RowStreamId="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows.HubHashKey" RowStreamId="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows.StoreName" RowStreamId="BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile.rows">
+      <Name>StoreName</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows.AuditId" RowStreamId="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows.CustomerId" RowStreamId="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows">
+      <Name>CustomerId</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows.HashKey" RowStreamId="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows.AuditId" RowStreamId="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows.HashKey" RowStreamId="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows.OrderDate" RowStreamId="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows">
+      <Name>OrderDate</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows.AuditId" RowStreamId="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows.HashKey" RowStreamId="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows.SalesOrderId" RowStreamId="BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder.rows">
+      <Name>SalesOrderId</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows.AuditId" RowStreamId="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows.HashKey" RowStreamId="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows.SalesOrderDetailId" RowStreamId="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows">
+      <Name>SalesOrderDetailId</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows.SalesOrderId" RowStreamId="BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine.rows">
+      <Name>SalesOrderId</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows.AuditId" RowStreamId="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows.HashKey" RowStreamId="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows.SalesPersonBusinessEntityId" RowStreamId="BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson.rows">
+      <Name>SalesPersonBusinessEntityId</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows.AuditId" RowStreamId="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows.HashKey" RowStreamId="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows.TerritoryId" RowStreamId="BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory.rows">
+      <Name>TerritoryId</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows.AuditId" RowStreamId="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows.HashKey" RowStreamId="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows.StoreId" RowStreamId="BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store.rows">
+      <Name>StoreId</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.AuditId" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>AuditId</Name>
+      <Ordinal>10</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.DiscountAmount" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>DiscountAmount</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.FreightAmount" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>FreightAmount</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.HashDiff" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.LineTotal" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>LineTotal</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.LinkHashKey" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>LinkHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.OrderQuantity" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>OrderQuantity</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>9</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.TaxAmount" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>TaxAmount</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows.UnitPrice" RowStreamId="BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.rows">
+      <Name>UnitPrice</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows.AuditId" RowStreamId="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows.CustomerHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows">
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows.HashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows.SalesOrderHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer.rows">
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows.AuditId" RowStreamId="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows.HashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows.OrderDateHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows">
+      <Name>OrderDateHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows.SalesOrderHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate.rows">
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows.AuditId" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows.HashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows.SalesOrderHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows">
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows.SalesOrderLineHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder.rows">
+      <Name>SalesOrderLineHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows.AuditId" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows.HashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows.ProductHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows">
+      <Name>ProductHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows.SalesOrderLineHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct.rows">
+      <Name>SalesOrderLineHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows.AuditId" RowStreamId="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows.HashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows.SalesOrderHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows">
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows.SalesPersonHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson.rows">
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows.AuditId" RowStreamId="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows.HashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows.SalesOrderHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows">
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows.StoreHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore.rows">
+      <Name>StoreHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows.AuditId" RowStreamId="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows.HashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows.LoadTimestamp" RowStreamId="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows.RecordSource" RowStreamId="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows.SalesOrderHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows">
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows.SalesTerritoryHashKey" RowStreamId="BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory.rows">
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel.rows.CustomerAccountNumber" RowStreamId="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel.rows">
+      <Name>CustomerAccountNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel.rows.CustomerId" RowStreamId="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel.rows">
+      <Name>CustomerId</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel.rows.CustomerType" RowStreamId="DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel.rows">
+      <Name>CustomerType</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.rows.OrderDate" RowStreamId="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.rows">
+      <Name>OrderDate</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.rows.OrderMonth" RowStreamId="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.rows">
+      <Name>OrderMonth</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.rows.OrderMonthName" RowStreamId="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.rows">
+      <Name>OrderMonthName</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.rows.OrderYear" RowStreamId="DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate.rows">
+      <Name>OrderYear</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows.ProductCategory" RowStreamId="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows">
+      <Name>ProductCategory</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows.ProductId" RowStreamId="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows">
+      <Name>ProductId</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows.ProductName" RowStreamId="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows">
+      <Name>ProductName</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows.ProductNumber" RowStreamId="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows">
+      <Name>ProductNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows.ProductSubcategory" RowStreamId="DW_Mart_awbi_DimProduct.Load_awbi_DimProduct.rows">
+      <Name>ProductSubcategory</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.rows.CountryRegionCode" RowStreamId="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.rows">
+      <Name>CountryRegionCode</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.rows.TerritoryGroup" RowStreamId="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.rows">
+      <Name>TerritoryGroup</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.rows.TerritoryId" RowStreamId="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.rows">
+      <Name>TerritoryId</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.rows.TerritoryName" RowStreamId="DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory.rows">
+      <Name>TerritoryName</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.CustomerId" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>CustomerId</Name>
+      <Ordinal>9</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.CustomerType" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>CustomerType</Name>
+      <Ordinal>10</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.DiscountAmount" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>DiscountAmount</Name>
+      <Ordinal>20</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.FreightAmount" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>FreightAmount</Name>
+      <Ordinal>22</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.OnlineOrderFlag" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>OnlineOrderFlag</Name>
+      <Ordinal>16</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.OrderDate" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>OrderDate</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.OrderQuantity" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>OrderQuantity</Name>
+      <Ordinal>17</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.ProductCategory" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>ProductCategory</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.ProductId" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>ProductId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.ProductName" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>ProductName</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.ProductNumber" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>ProductNumber</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.ProductSubcategory" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>ProductSubcategory</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.SalesAmount" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>SalesAmount</Name>
+      <Ordinal>19</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.SalesOrderDetailId" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>SalesOrderDetailId</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.SalesOrderId" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>SalesOrderId</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.SalesOrderNumber" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>SalesOrderNumber</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.SalesPersonBusinessEntityId" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>SalesPersonBusinessEntityId</Name>
+      <Ordinal>14</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.SalesPersonName" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>SalesPersonName</Name>
+      <Ordinal>15</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.TaxAmount" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>TaxAmount</Name>
+      <Ordinal>21</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.TerritoryGroup" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>TerritoryGroup</Name>
+      <Ordinal>13</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.TerritoryId" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>TerritoryId</Name>
+      <Ordinal>11</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.TerritoryName" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>TerritoryName</Name>
+      <Ordinal>12</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows.UnitPrice" RowStreamId="DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine.rows">
+      <Name>UnitPrice</Name>
+      <Ordinal>18</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows.AuditId" RowStreamId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows.HashDiff" RowStreamId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows.HubHashKey" RowStreamId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows.LoadTimestamp" RowStreamId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows.ModifiedDate" RowStreamId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows.Name" RowStreamId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows.RecordSource" RowStreamId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows.rowguid" RowStreamId="RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory.rows">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows.AuditId" RowStreamId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows.HashDiff" RowStreamId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows.HubHashKey" RowStreamId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows.LoadTimestamp" RowStreamId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows.ModifiedDate" RowStreamId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows.Name" RowStreamId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows.RecordSource" RowStreamId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows.rowguid" RowStreamId="RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory.rows">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.AuditId" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>AuditId</Name>
+      <Ordinal>24</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.Class" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>Class</Name>
+      <Ordinal>14</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.Color" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>Color</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.DaysToManufacture" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>DaysToManufacture</Name>
+      <Ordinal>12</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.DiscontinuedDate" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>DiscontinuedDate</Name>
+      <Ordinal>18</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.FinishedGoodsFlag" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>FinishedGoodsFlag</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.HashDiff" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>21</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.HubHashKey" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.ListPrice" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>ListPrice</Name>
+      <Ordinal>9</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.LoadTimestamp" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>22</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.MakeFlag" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>MakeFlag</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.ModifiedDate" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>20</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.Name" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.ProductLine" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>ProductLine</Name>
+      <Ordinal>13</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.ProductNumber" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>ProductNumber</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.RecordSource" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>23</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.ReorderPoint" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>ReorderPoint</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.rowguid" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>rowguid</Name>
+      <Ordinal>19</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.SafetyStockLevel" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>SafetyStockLevel</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.SellEndDate" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>SellEndDate</Name>
+      <Ordinal>17</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.SellStartDate" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>SellStartDate</Name>
+      <Ordinal>16</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.Size" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>Size</Name>
+      <Ordinal>10</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.StandardCost" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>StandardCost</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.Style" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>Style</Name>
+      <Ordinal>15</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows.Weight" RowStreamId="RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product.rows">
+      <Name>Weight</Name>
+      <Ordinal>11</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows.AuditId" RowStreamId="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows.HashKey" RowStreamId="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows.LoadTimestamp" RowStreamId="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows.ProductID" RowStreamId="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows">
+      <Name>ProductID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows.RecordSource" RowStreamId="RDV_Product_dbo_H_Product.Load_dbo_H_Product.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows.AuditId" RowStreamId="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows.HashKey" RowStreamId="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows.LoadTimestamp" RowStreamId="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows.ProductCategoryID" RowStreamId="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows">
+      <Name>ProductCategoryID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows.RecordSource" RowStreamId="RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows.AuditId" RowStreamId="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows.HashKey" RowStreamId="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows.LoadTimestamp" RowStreamId="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows.ProductSubcategoryID" RowStreamId="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows">
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows.RecordSource" RowStreamId="RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows.AuditId" RowStreamId="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows.HashKey" RowStreamId="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows.LoadTimestamp" RowStreamId="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows.ProductHashKey" RowStreamId="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows">
+      <Name>ProductHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows.ProductSubcategoryHashKey" RowStreamId="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows">
+      <Name>ProductSubcategoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows.RecordSource" RowStreamId="RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows.AuditId" RowStreamId="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows.HashKey" RowStreamId="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows.LoadTimestamp" RowStreamId="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows.ProductCategoryHashKey" RowStreamId="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows">
+      <Name>ProductCategoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows.ProductSubcategoryHashKey" RowStreamId="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows">
+      <Name>ProductSubcategoryHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows.RecordSource" RowStreamId="RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows.AccountNumber" RowStreamId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows">
+      <Name>AccountNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows.AuditId" RowStreamId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows">
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows.HashDiff" RowStreamId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows.HubHashKey" RowStreamId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows.ModifiedDate" RowStreamId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows.RecordSource" RowStreamId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows.rowguid" RowStreamId="RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer.rows">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.AuditId" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>AuditId</Name>
+      <Ordinal>11</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.CarrierTrackingNumber" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>CarrierTrackingNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.HashDiff" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.HubHashKey" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.LineTotal" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>LineTotal</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>9</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.ModifiedDate" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.OrderQty" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>OrderQty</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.RecordSource" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>10</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.rowguid" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>rowguid</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.UnitPrice" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>UnitPrice</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows.UnitPriceDiscount" RowStreamId="RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail.rows">
+      <Name>UnitPriceDiscount</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.AccountNumber" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>AccountNumber</Name>
+      <Ordinal>9</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.AuditId" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>AuditId</Name>
+      <Ordinal>21</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.Comment" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>Comment</Name>
+      <Ordinal>15</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.CreditCardApprovalCode" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>CreditCardApprovalCode</Name>
+      <Ordinal>10</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.DueDate" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>DueDate</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.Freight" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>Freight</Name>
+      <Ordinal>13</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.HashDiff" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>18</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.HubHashKey" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>19</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.ModifiedDate" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>17</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.OnlineOrderFlag" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>OnlineOrderFlag</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.OrderDate" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>OrderDate</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.PurchaseOrderNumber" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>PurchaseOrderNumber</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.RecordSource" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>20</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.RevisionNumber" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>RevisionNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.rowguid" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>rowguid</Name>
+      <Ordinal>16</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.SalesOrderNumber" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>SalesOrderNumber</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.ShipDate" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>ShipDate</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.Status" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>Status</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.SubTotal" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>SubTotal</Name>
+      <Ordinal>11</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.TaxAmt" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>TaxAmt</Name>
+      <Ordinal>12</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows.TotalDue" RowStreamId="RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader.rows">
+      <Name>TotalDue</Name>
+      <Ordinal>14</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.AuditId" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>AuditId</Name>
+      <Ordinal>11</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.Bonus" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>Bonus</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.CommissionPct" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>CommissionPct</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.HashDiff" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.HubHashKey" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>9</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.ModifiedDate" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.RecordSource" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>10</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.rowguid" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>rowguid</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.SalesLastYear" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>SalesLastYear</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.SalesQuota" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>SalesQuota</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows.SalesYTD" RowStreamId="RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson.rows">
+      <Name>SalesYTD</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.AuditId" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>12</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.CostLastYear" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>CostLastYear</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.CostYTD" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>CostYTD</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.Group" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>Group</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.HashDiff" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>9</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.HubHashKey" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>10</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.ModifiedDate" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.Name" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.RecordSource" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>11</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.rowguid" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>rowguid</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.SalesLastYear" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>SalesLastYear</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows.SalesYTD" RowStreamId="RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory.rows">
+      <Name>SalesYTD</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.AuditId" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>AuditId</Name>
+      <Ordinal>8</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.Demographics" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>Demographics</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.HashDiff" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>HashDiff</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.HubHashKey" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>6</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.ModifiedDate" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.Name" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.RecordSource" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>7</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows.rowguid" RowStreamId="RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store.rows">
+      <Name>rowguid</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows.AuditId" RowStreamId="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows.CustomerID" RowStreamId="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows">
+      <Name>CustomerID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows.HashKey" RowStreamId="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows.RecordSource" RowStreamId="RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows.AuditId" RowStreamId="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows.HashKey" RowStreamId="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows.RecordSource" RowStreamId="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows.SalesOrderDetailID" RowStreamId="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows">
+      <Name>SalesOrderDetailID</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows.SalesOrderID" RowStreamId="RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail.rows">
+      <Name>SalesOrderID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows.AuditId" RowStreamId="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows.HashKey" RowStreamId="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows.RecordSource" RowStreamId="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows.SalesOrderID" RowStreamId="RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader.rows">
+      <Name>SalesOrderID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows.AuditId" RowStreamId="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows.BusinessEntityID" RowStreamId="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows">
+      <Name>BusinessEntityID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows.HashKey" RowStreamId="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows.RecordSource" RowStreamId="RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows.AuditId" RowStreamId="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows.HashKey" RowStreamId="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows.RecordSource" RowStreamId="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows.TerritoryID" RowStreamId="RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory.rows">
+      <Name>TerritoryID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows.AuditId" RowStreamId="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows.HashKey" RowStreamId="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows.ProductID" RowStreamId="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows">
+      <Name>ProductID</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows.RecordSource" RowStreamId="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows.SpecialOfferID" RowStreamId="RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct.rows">
+      <Name>SpecialOfferID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows.AuditId" RowStreamId="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows.BusinessEntityID" RowStreamId="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows">
+      <Name>BusinessEntityID</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows.HashKey" RowStreamId="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows.RecordSource" RowStreamId="RDV_Sales_dbo_H_Store.Load_dbo_H_Store.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows.AuditId" RowStreamId="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows.CustomerHashKey" RowStreamId="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows">
+      <Name>CustomerHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows.HashKey" RowStreamId="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows.RecordSource" RowStreamId="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows.SalesTerritoryHashKey" RowStreamId="RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory.rows">
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows.AuditId" RowStreamId="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows.CustomerHashKey" RowStreamId="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows">
+      <Name>CustomerHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows.HashKey" RowStreamId="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows.RecordSource" RowStreamId="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows.StoreHashKey" RowStreamId="RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore.rows">
+      <Name>StoreHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows.AuditId" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows.HashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows.RecordSource" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows.SalesOrderDetailHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows">
+      <Name>SalesOrderDetailHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows.SalesOrderHeaderHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader.rows">
+      <Name>SalesOrderHeaderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows.AuditId" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows.HashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows.RecordSource" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows.SalesOrderDetailHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows">
+      <Name>SalesOrderDetailHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows.SpecialOfferProductHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct.rows">
+      <Name>SpecialOfferProductHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows.AuditId" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows.CustomerHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows">
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows.HashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows.RecordSource" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows.SalesOrderHeaderHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer.rows">
+      <Name>SalesOrderHeaderHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows.AuditId" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows.HashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows.RecordSource" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows.SalesOrderHeaderHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows">
+      <Name>SalesOrderHeaderHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows.SalesPersonHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson.rows">
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows.AuditId" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows.HashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows.RecordSource" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows.SalesOrderHeaderHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows">
+      <Name>SalesOrderHeaderHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows.SalesTerritoryHashKey" RowStreamId="RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory.rows">
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows.AuditId" RowStreamId="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows.HashKey" RowStreamId="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows.LoadTimestamp" RowStreamId="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows.ProductHashKey" RowStreamId="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows">
+      <Name>ProductHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows.RecordSource" RowStreamId="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </RowStreamColumn>
+    <RowStreamColumn Id="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows.SpecialOfferProductHashKey" RowStreamId="RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct.rows">
+      <Name>SpecialOfferProductHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </RowStreamColumn>
+  </RowStreamColumnList>
+</MetaPipeline>

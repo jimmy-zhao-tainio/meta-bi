@@ -1,0 +1,56 @@
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+AW_RDV_DATABASE=AdventureWorksRawVault
+AW_RDV_SQL=Server=localhost;Database=AdventureWorksRawVault;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False
+RDV_IMPLEMENTATION_WORKSPACE=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation
+meta-convert schema-to-raw-datavault --source-workspace source\AdventureWorks2022\Schema --new-workspace rdv\AdventureWorksRawVault\RawVault --verbose
+Ok
+
+Summary:
+  Source systems: 1
+  Source schemas: 6
+  Source tables: 71
+  Source relationships: 90
+  Raw hubs: 71
+  Raw hub key parts: 102
+  Raw links: 90
+  Raw hub satellites: 71
+  Raw hub satellite attributes: 341
+  Ignored field names: (none)
+  Ignored field suffixes: (none)
+  Included views: no
+Raw vault counts:
+RawHub: 71
+RawHubKeyPart: 102
+RawHubSatellite: 71
+RawHubSatelliteAttribute: 341
+RawLink: 90
+RawLinkHub: 180
+SourceTable: 71
+SourceField: 486
+meta-convert raw-datavault-to-sql --workspace rdv\AdventureWorksRawVault\RawVault --implementation-workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation" --database-name AdventureWorksRawVault --out rdv\AdventureWorksRawVault\Sql
+Ok
+RDV SQL identifier scan:
+Identifier scan OK.
+meta-sql execute --connection-env AW_MASTER_SQL --quiet --query drop AdventureWorksRawVault if it exists
+meta-sql deploy-plan --source-workspace rdv\AdventureWorksRawVault\Sql --connection-env AW_RDV_SQL --out rdv\AdventureWorksRawVault\DeployManifest
+Ok
+
+Status: ready to deploy
+Changes: 644 to add (232 tables, 161 primary keys, 251 foreign keys)
+meta-sql deploy --manifest-workspace rdv\AdventureWorksRawVault\DeployManifest --source-workspace rdv\AdventureWorksRawVault\Sql --connection-env AW_RDV_SQL
+Ok
+
+Database: created
+Deployed: 644 added (232 tables, 161 primary keys, 251 foreign keys)
+meta-sql deploy-plan --source-workspace rdv\AdventureWorksRawVault\Sql --connection-env AW_RDV_SQL --out rdv\AdventureWorksRawVault\DeployVerifyManifest
+Ok
+
+Status: ready to deploy
+Changes: none
+RDV gate passed.

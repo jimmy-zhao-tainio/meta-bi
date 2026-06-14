@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <PipelineDependencyList>
+    <PipelineDependency Id="plan-default:dependency:bdv-product-dbo-bhs-product-productclassification:before:dw-mart-awbi-dimproduct" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification" SuccessorId="plan-default:pipeline:dw-mart-awbi-dimproduct">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BHS_Product_ProductClassification' produces 'AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification' consumed by task 'Load_awbi_DimProduct'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-product-dbo-bhs-product-productclassification:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BHS_Product_ProductClassification' produces 'AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-product-dbo-bh-product:before:dw-mart-awbi-dimproduct" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-product-dbo-bh-product" SuccessorId="plan-default:pipeline:dw-mart-awbi-dimproduct">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_Product' produces 'AdventureWorksBusinessVault.dbo.BH_Product' consumed by task 'Load_awbi_DimProduct'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-product-dbo-bh-product:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-product-dbo-bh-product" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_Product' produces 'AdventureWorksBusinessVault.dbo.BH_Product' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bhs-customer-customerprofile:before:dw-mart-awbi-dimcustomerchannel" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bhs-customer-customerprofile" SuccessorId="plan-default:pipeline:dw-mart-awbi-dimcustomerchannel">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BHS_Customer_CustomerProfile' produces 'AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' consumed by task 'Load_awbi_DimCustomerChannel'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bhs-customer-customerprofile:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bhs-customer-customerprofile" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BHS_Customer_CustomerProfile' produces 'AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bhs-salesorder-salesorderprofile:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesorder-salesorderprofile" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BHS_SalesOrder_SalesOrderProfile' produces 'AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bhs-salesperson-salespersonprofile:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesperson-salespersonprofile" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BHS_SalesPerson_SalesPersonProfile' produces 'AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile:before:dw-mart-awbi-dimsalesterritory" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile" SuccessorId="plan-default:pipeline:dw-mart-awbi-dimsalesterritory">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile' produces 'AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' consumed by task 'Load_awbi_DimSalesTerritory'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile' produces 'AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-customer:before:dw-mart-awbi-dimcustomerchannel" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-customer" SuccessorId="plan-default:pipeline:dw-mart-awbi-dimcustomerchannel">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_Customer' produces 'AdventureWorksBusinessVault.dbo.BH_Customer' consumed by task 'Load_awbi_DimCustomerChannel'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-customer:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-customer" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_Customer' produces 'AdventureWorksBusinessVault.dbo.BH_Customer' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-orderdate:before:dw-mart-awbi-dimorderdate" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-orderdate" SuccessorId="plan-default:pipeline:dw-mart-awbi-dimorderdate">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_OrderDate' produces 'AdventureWorksBusinessVault.dbo.BH_OrderDate' consumed by task 'Load_awbi_DimOrderDate'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-orderdate:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-orderdate" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_OrderDate' produces 'AdventureWorksBusinessVault.dbo.BH_OrderDate' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-salesorder:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesorder" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_SalesOrder' produces 'AdventureWorksBusinessVault.dbo.BH_SalesOrder' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-salesorderline:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesorderline" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_SalesOrderLine' produces 'AdventureWorksBusinessVault.dbo.BH_SalesOrderLine' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-salesperson:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesperson" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_SalesPerson' produces 'AdventureWorksBusinessVault.dbo.BH_SalesPerson' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-salesterritory:before:dw-mart-awbi-dimsalesterritory" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesterritory" SuccessorId="plan-default:pipeline:dw-mart-awbi-dimsalesterritory">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_SalesTerritory' produces 'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' consumed by task 'Load_awbi_DimSalesTerritory'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bh-salesterritory:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesterritory" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BH_SalesTerritory' produces 'AdventureWorksBusinessVault.dbo.BH_SalesTerritory' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures' produces 'AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bl-salesordercustomer:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesordercustomer" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BL_SalesOrderCustomer' produces 'AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bl-salesorderdate:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderdate" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BL_SalesOrderDate' produces 'AdventureWorksBusinessVault.dbo.BL_SalesOrderDate' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bl-salesorderlineorder:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderlineorder" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BL_SalesOrderLineOrder' produces 'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bl-salesorderlineproduct:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderlineproduct" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BL_SalesOrderLineProduct' produces 'AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bl-salesordersalesperson:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesordersalesperson" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BL_SalesOrderSalesPerson' produces 'AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:bdv-sales-dbo-bl-salesorderterritory:before:dw-mart-awbi-factsalesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderterritory" SuccessorId="plan-default:pipeline:dw-mart-awbi-factsalesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_BL_SalesOrderTerritory' produces 'AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory' consumed by task 'Load_awbi_FactSalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-hs-productcategory-productcategory:before:bdv-product-dbo-bhs-product-productclassification" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-hs-productcategory-productcategory" SuccessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_ProductCategory_ProductCategory' produces 'AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory' consumed by task 'Load_dbo_BHS_Product_ProductClassification'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-hs-productsubcategory-productsubcategory:before:bdv-product-dbo-bhs-product-productclassification" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-hs-productsubcategory-productsubcategory" SuccessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_ProductSubcategory_ProductSubcategory' produces 'AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory' consumed by task 'Load_dbo_BHS_Product_ProductClassification'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-hs-product-product:before:bdv-product-dbo-bhs-product-productclassification" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-hs-product-product" SuccessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_Product_Product' produces 'AdventureWorksRawVault.dbo.HS_Product_Product' consumed by task 'Load_dbo_BHS_Product_ProductClassification'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-h-product:before:bdv-product-dbo-bhs-product-productclassification" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-h-product" SuccessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_Product' produces 'AdventureWorksRawVault.dbo.H_Product' consumed by task 'Load_dbo_BHS_Product_ProductClassification'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-h-product:before:bdv-product-dbo-bh-product" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-h-product" SuccessorId="plan-default:pipeline:bdv-product-dbo-bh-product">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_Product' produces 'AdventureWorksRawVault.dbo.H_Product' consumed by task 'Load_dbo_BH_Product'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-h-productcategory:before:bdv-product-dbo-bhs-product-productclassification" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-h-productcategory" SuccessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_ProductCategory' produces 'AdventureWorksRawVault.dbo.H_ProductCategory' consumed by task 'Load_dbo_BHS_Product_ProductClassification'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-h-productsubcategory:before:bdv-product-dbo-bhs-product-productclassification" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-h-productsubcategory" SuccessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_ProductSubcategory' produces 'AdventureWorksRawVault.dbo.H_ProductSubcategory' consumed by task 'Load_dbo_BHS_Product_ProductClassification'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-l-productproductsubcategory:before:bdv-product-dbo-bhs-product-productclassification" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-l-productproductsubcategory" SuccessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_ProductProductSubcategory' produces 'AdventureWorksRawVault.dbo.L_ProductProductSubcategory' consumed by task 'Load_dbo_BHS_Product_ProductClassification'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-product-dbo-l-productsubcategoryproductcategory:before:bdv-product-dbo-bhs-product-productclassification" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-product-dbo-l-productsubcategoryproductcategory" SuccessorId="plan-default:pipeline:bdv-product-dbo-bhs-product-productclassification">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_ProductSubcategoryProductCategory' produces 'AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory' consumed by task 'Load_dbo_BHS_Product_ProductClassification'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-hs-customer-customer:before:bdv-sales-dbo-bhs-customer-customerprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-hs-customer-customer" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-customer-customerprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_Customer_Customer' produces 'AdventureWorksRawVault.dbo.HS_Customer_Customer' consumed by task 'Load_dbo_BHS_Customer_CustomerProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-hs-salesorderdetail-salesorderdetail:before:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-hs-salesorderdetail-salesorderdetail" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_SalesOrderDetail_SalesOrderDetail' produces 'AdventureWorksRawVault.dbo.HS_SalesOrderDetail_SalesOrderDetail' consumed by task 'Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-hs-salesorderheader-salesorderheader:before:bdv-sales-dbo-bhs-salesorder-salesorderprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-hs-salesorderheader-salesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesorder-salesorderprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_SalesOrderHeader_SalesOrderHeader' produces 'AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader' consumed by task 'Load_dbo_BHS_SalesOrder_SalesOrderProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-hs-salesorderheader-salesorderheader:before:bdv-sales-dbo-bh-orderdate" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-hs-salesorderheader-salesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bh-orderdate">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_SalesOrderHeader_SalesOrderHeader' produces 'AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader' consumed by task 'Load_dbo_BH_OrderDate'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-hs-salesorderheader-salesorderheader:before:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-hs-salesorderheader-salesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_SalesOrderHeader_SalesOrderHeader' produces 'AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader' consumed by task 'Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-hs-salesorderheader-salesorderheader:before:bdv-sales-dbo-bl-salesorderdate" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-hs-salesorderheader-salesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderdate">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_SalesOrderHeader_SalesOrderHeader' produces 'AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader' consumed by task 'Load_dbo_BL_SalesOrderDate'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-hs-salesterritory-salesterritory:before:bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-hs-salesterritory-salesterritory" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_SalesTerritory_SalesTerritory' produces 'AdventureWorksRawVault.dbo.HS_SalesTerritory_SalesTerritory' consumed by task 'Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-hs-store-store:before:bdv-sales-dbo-bhs-store-storeprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-hs-store-store" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-store-storeprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_HS_Store_Store' produces 'AdventureWorksRawVault.dbo.HS_Store_Store' consumed by task 'Load_dbo_BHS_Store_StoreProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-customer:before:bdv-sales-dbo-bhs-customer-customerprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-customer" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-customer-customerprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_Customer' produces 'AdventureWorksRawVault.dbo.H_Customer' consumed by task 'Load_dbo_BHS_Customer_CustomerProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-customer:before:bdv-sales-dbo-bh-customer" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-customer" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bh-customer">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_Customer' produces 'AdventureWorksRawVault.dbo.H_Customer' consumed by task 'Load_dbo_BH_Customer'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-salesorderdetail:before:bdv-sales-dbo-bh-salesorderline" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-salesorderdetail" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesorderline">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_SalesOrderDetail' produces 'AdventureWorksRawVault.dbo.H_SalesOrderDetail' consumed by task 'Load_dbo_BH_SalesOrderLine'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-salesorderheader:before:bdv-sales-dbo-bhs-salesorder-salesorderprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-salesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesorder-salesorderprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_SalesOrderHeader' produces 'AdventureWorksRawVault.dbo.H_SalesOrderHeader' consumed by task 'Load_dbo_BHS_SalesOrder_SalesOrderProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-salesorderheader:before:bdv-sales-dbo-bh-salesorder" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-salesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesorder">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_SalesOrderHeader' produces 'AdventureWorksRawVault.dbo.H_SalesOrderHeader' consumed by task 'Load_dbo_BH_SalesOrder'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-salesorderheader:before:bdv-sales-dbo-bl-salesorderdate" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-salesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderdate">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_SalesOrderHeader' produces 'AdventureWorksRawVault.dbo.H_SalesOrderHeader' consumed by task 'Load_dbo_BL_SalesOrderDate'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-salesperson:before:bdv-sales-dbo-bhs-salesperson-salespersonprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-salesperson" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesperson-salespersonprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_SalesPerson' produces 'AdventureWorksRawVault.dbo.H_SalesPerson' consumed by task 'Load_dbo_BHS_SalesPerson_SalesPersonProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-salesperson:before:bdv-sales-dbo-bh-salesperson" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-salesperson" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesperson">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_SalesPerson' produces 'AdventureWorksRawVault.dbo.H_SalesPerson' consumed by task 'Load_dbo_BH_SalesPerson'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-salesterritory:before:bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-salesterritory" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_SalesTerritory' produces 'AdventureWorksRawVault.dbo.H_SalesTerritory' consumed by task 'Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-salesterritory:before:bdv-sales-dbo-bh-salesterritory" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-salesterritory" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bh-salesterritory">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_SalesTerritory' produces 'AdventureWorksRawVault.dbo.H_SalesTerritory' consumed by task 'Load_dbo_BH_SalesTerritory'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-store:before:bdv-sales-dbo-bhs-store-storeprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-store" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-store-storeprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_Store' produces 'AdventureWorksRawVault.dbo.H_Store' consumed by task 'Load_dbo_BHS_Store_StoreProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-h-store:before:bdv-sales-dbo-bh-store" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-h-store" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bh-store">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_H_Store' produces 'AdventureWorksRawVault.dbo.H_Store' consumed by task 'Load_dbo_BH_Store'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-customerstore:before:bdv-sales-dbo-bhs-customer-customerprofile" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-customerstore" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bhs-customer-customerprofile">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_CustomerStore' produces 'AdventureWorksRawVault.dbo.L_CustomerStore' consumed by task 'Load_dbo_BHS_Customer_CustomerProfile'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-customerstore:before:bdv-sales-dbo-bl-salesorderstore" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-customerstore" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderstore">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_CustomerStore' produces 'AdventureWorksRawVault.dbo.L_CustomerStore' consumed by task 'Load_dbo_BL_SalesOrderStore'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-salesorderdetailsalesorderheader:before:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-salesorderdetailsalesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SalesOrderDetailSalesOrderHeader' produces 'AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader' consumed by task 'Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-salesorderdetailsalesorderheader:before:bdv-sales-dbo-bl-salesorderlineorder" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-salesorderdetailsalesorderheader" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderlineorder">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SalesOrderDetailSalesOrderHeader' produces 'AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader' consumed by task 'Load_dbo_BL_SalesOrderLineOrder'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-salesorderdetailspecialofferproduct:before:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-salesorderdetailspecialofferproduct" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SalesOrderDetailSpecialOfferProduct' produces 'AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct' consumed by task 'Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-salesorderdetailspecialofferproduct:before:bdv-sales-dbo-bl-salesorderlineproduct" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-salesorderdetailspecialofferproduct" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderlineproduct">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SalesOrderDetailSpecialOfferProduct' produces 'AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct' consumed by task 'Load_dbo_BL_SalesOrderLineProduct'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-salesorderheadercustomer:before:bdv-sales-dbo-bl-salesordercustomer" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-salesorderheadercustomer" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesordercustomer">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SalesOrderHeaderCustomer' produces 'AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer' consumed by task 'Load_dbo_BL_SalesOrderCustomer'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-salesorderheadercustomer:before:bdv-sales-dbo-bl-salesorderstore" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-salesorderheadercustomer" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderstore">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SalesOrderHeaderCustomer' produces 'AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer' consumed by task 'Load_dbo_BL_SalesOrderStore'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-salesorderheadersalesperson:before:bdv-sales-dbo-bl-salesordersalesperson" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-salesorderheadersalesperson" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesordersalesperson">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SalesOrderHeaderSalesPerson' produces 'AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson' consumed by task 'Load_dbo_BL_SalesOrderSalesPerson'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-salesorderheadersalesterritory:before:bdv-sales-dbo-bl-salesorderterritory" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-salesorderheadersalesterritory" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderterritory">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SalesOrderHeaderSalesTerritory' produces 'AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory' consumed by task 'Load_dbo_BL_SalesOrderTerritory'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-specialofferproductproduct:before:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-specialofferproductproduct" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SpecialOfferProductProduct' produces 'AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct' consumed by task 'Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures'.</Reason>
+    </PipelineDependency>
+    <PipelineDependency Id="plan-default:dependency:rdv-sales-dbo-l-specialofferproductproduct:before:bdv-sales-dbo-bl-salesorderlineproduct" OrchestrationPlanId="plan:default" PredecessorId="plan-default:pipeline:rdv-sales-dbo-l-specialofferproductproduct" SuccessorId="plan-default:pipeline:bdv-sales-dbo-bl-salesorderlineproduct">
+      <DependencyKind>Inferred</DependencyKind>
+      <Reason>Task 'Load_dbo_L_SpecialOfferProductProduct' produces 'AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct' consumed by task 'Load_dbo_BL_SalesOrderLineProduct'.</Reason>
+    </PipelineDependency>
+  </PipelineDependencyList>
+</MetaOrchestration>

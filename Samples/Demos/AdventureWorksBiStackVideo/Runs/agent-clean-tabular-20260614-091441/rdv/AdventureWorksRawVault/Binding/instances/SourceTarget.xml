@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <SourceTargetList>
+    <SourceTarget Id="QueryExpression:1:output-rowset:input:1" SourceId="TableReference:1:rowset" TargetId="QueryExpression:1:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="QueryExpression:2:output-rowset:input:1" SourceId="TableReference:2:rowset" TargetId="QueryExpression:2:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="QueryExpression:3:output-rowset:input:1" SourceId="TableReference:3:rowset" TargetId="QueryExpression:3:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="QueryExpression:4:output-rowset:input:1" SourceId="TableReference:4:rowset" TargetId="QueryExpression:4:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="QueryExpression:5:output-rowset:input:1" SourceId="TableReference:5:rowset" TargetId="QueryExpression:5:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="QueryExpression:6:output-rowset:input:1" SourceId="TableReference:6:rowset" TargetId="QueryExpression:6:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="QueryExpression:7:output-rowset:input:1" SourceId="TableReference:7:rowset" TargetId="QueryExpression:7:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+    <SourceTarget Id="QueryExpression:8:output-rowset:input:1" SourceId="TableReference:8:rowset" TargetId="QueryExpression:8:output-rowset">
+      <InputRole>Input</InputRole>
+      <Ordinal>0</Ordinal>
+    </SourceTarget>
+  </SourceTargetList>
+</MetaTransformBinding>

@@ -1,0 +1,6 @@
+Path	Target
+sql\001_load_DimProduct.sql	awbi.DimProduct
+sql\002_load_DimOrderDate.sql	awbi.DimOrderDate
+sql\003_load_DimSalesTerritory.sql	awbi.DimSalesTerritory
+sql\004_load_DimCustomerChannel.sql	awbi.DimCustomerChannel
+sql\005_load_FactSalesOrderLine.sql	awbi.FactSalesOrderLine

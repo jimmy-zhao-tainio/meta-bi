@@ -1,0 +1,3 @@
+Path	Target
+sql\001_load_BH_Product.sql	dbo.BH_Product
+sql\002_load_BHS_Product_ProductClassification.sql	dbo.BHS_Product_ProductClassification

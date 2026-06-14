@@ -10,8 +10,6 @@ public sealed class MetaPipelineModeledExecutionResolver
         ArgumentException.ThrowIfNullOrWhiteSpace(request.PipelineName);
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
-        var transformWorkspacePath = NormalizeOptionalWorkspacePath(request.TransformWorkspacePath);
-        var bindingWorkspacePath = NormalizeOptionalWorkspacePath(request.BindingWorkspacePath);
         var model = MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
         var pipeline = ResolvePipeline(model, request.PipelineName);
         var orderedTasks = ResolveSerialTaskOrder(model, pipeline);
@@ -47,8 +45,12 @@ public sealed class MetaPipelineModeledExecutionResolver
                     $"Pipeline task '{pipelineTask.Name}' has no supported execution detail.");
             }
 
-            RequireWorkspacePath(transformWorkspacePath, "Transform tasks require --transform-workspace <path>.");
-            RequireWorkspacePath(bindingWorkspacePath, "Transform tasks require --binding-workspace <path>.");
+            var transformWorkspacePath = RequireWorkspacePath(
+                transformExecution.TransformWorkspacePath,
+                $"Transform task '{pipelineTask.Name}' must name TransformWorkspacePath.");
+            var bindingWorkspacePath = RequireWorkspacePath(
+                transformExecution.BindingWorkspacePath,
+                $"Transform task '{pipelineTask.Name}' must name BindingWorkspacePath.");
             var transformScriptId = RequireValue(
                 transformExecution.TransformScriptId,
                 $"Transform task '{pipelineTask.Name}' must name a transform script id.");
@@ -68,8 +70,8 @@ public sealed class MetaPipelineModeledExecutionResolver
                 ? null
                 : TryResolveTargetWritePlan(model, pipeline, nextTask);
             var executionDefinition = workspaceResolver.ResolveByIds(
-                transformWorkspacePath!,
-                bindingWorkspacePath!,
+                transformWorkspacePath,
+                bindingWorkspacePath,
                 transformScriptId,
                 transformBindingId,
                 targetWritePlan?.TargetSqlIdentifier);
@@ -88,6 +90,8 @@ public sealed class MetaPipelineModeledExecutionResolver
                     MetaPipelineModeledExecutionStepKind.TransformExecution,
                     null,
                     null,
+                    transformWorkspacePath,
+                    bindingWorkspacePath,
                     executionDefinition.TransformScriptId,
                     executionDefinition.TransformBindingId,
                     executionDefinition.TransformScriptName,
@@ -136,6 +140,8 @@ public sealed class MetaPipelineModeledExecutionResolver
                 MetaPipelineModeledExecutionStepKind.TransformExecution,
                 targetWritePlan.TargetWritePipelineTask.Id,
                 targetWritePlan.TargetWritePipelineTask.Name,
+                transformWorkspacePath,
+                bindingWorkspacePath,
                 executionDefinition.TransformScriptId,
                 executionDefinition.TransformBindingId,
                 executionDefinition.TransformScriptName,
@@ -166,8 +172,8 @@ public sealed class MetaPipelineModeledExecutionResolver
             pipelineWorkspacePath,
             pipeline.Id,
             pipeline.Name,
-            transformWorkspacePath ?? string.Empty,
-            bindingWorkspacePath ?? string.Empty,
+            ResolvePlanWorkspacePath(steps, static step => step.TransformWorkspacePath),
+            ResolvePlanWorkspacePath(steps, static step => step.BindingWorkspacePath),
             steps);
     }
 
@@ -180,8 +186,6 @@ public sealed class MetaPipelineModeledExecutionResolver
         ArgumentException.ThrowIfNullOrWhiteSpace(request.StepName);
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
-        var transformWorkspacePath = NormalizeOptionalWorkspacePath(request.TransformWorkspacePath);
-        var bindingWorkspacePath = NormalizeOptionalWorkspacePath(request.BindingWorkspacePath);
         var model = MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
         var pipeline = ResolvePipeline(model, request.PipelineName);
         var pipelineTask = ResolvePipelineTask(model, pipeline, request.StepName);
@@ -201,16 +205,14 @@ public sealed class MetaPipelineModeledExecutionResolver
                 pipelineTask,
                 transformExecution
                 ?? throw new MetaPipelineConfigurationException(
-                    $"Pipeline task '{pipelineTask.Name}' is not an executable or transform execution step."),
-                RequireWorkspacePath(transformWorkspacePath, "Transform tasks require --transform-workspace <path>."),
-                RequireWorkspacePath(bindingWorkspacePath, "Transform tasks require --binding-workspace <path>."));
+                    $"Pipeline task '{pipelineTask.Name}' is not an executable or transform execution step."));
 
         return new MetaPipelineModeledExecutionPlan(
             pipelineWorkspacePath,
             pipeline.Id,
             pipeline.Name,
-            transformWorkspacePath ?? string.Empty,
-            bindingWorkspacePath ?? string.Empty,
+            step.TransformWorkspacePath ?? string.Empty,
+            step.BindingWorkspacePath ?? string.Empty,
             [step]);
     }
 
@@ -222,6 +224,8 @@ public sealed class MetaPipelineModeledExecutionResolver
             pipelineTask.Id,
             pipelineTask.Name,
             MetaPipelineModeledExecutionStepKind.Executable,
+            null,
+            null,
             null,
             null,
             null,
@@ -247,10 +251,14 @@ public sealed class MetaPipelineModeledExecutionResolver
         MetaPipelineModel model,
         Pipeline pipeline,
         PipelineTask transformTask,
-        TransformExecutionTask transformExecution,
-        string transformWorkspacePath,
-        string bindingWorkspacePath)
+        TransformExecutionTask transformExecution)
     {
+        var transformWorkspacePath = RequireWorkspacePath(
+            transformExecution.TransformWorkspacePath,
+            $"Transform task '{transformTask.Name}' must name TransformWorkspacePath.");
+        var bindingWorkspacePath = RequireWorkspacePath(
+            transformExecution.BindingWorkspacePath,
+            $"Transform task '{transformTask.Name}' must name BindingWorkspacePath.");
         var transformScriptId = RequireValue(
             transformExecution.TransformScriptId,
             $"Transform task '{transformTask.Name}' must name a transform script id.");
@@ -286,6 +294,8 @@ public sealed class MetaPipelineModeledExecutionResolver
                 MetaPipelineModeledExecutionStepKind.TransformExecution,
                 null,
                 null,
+                transformWorkspacePath,
+                bindingWorkspacePath,
                 executionDefinition.TransformScriptId,
                 executionDefinition.TransformBindingId,
                 executionDefinition.TransformScriptName,
@@ -333,6 +343,8 @@ public sealed class MetaPipelineModeledExecutionResolver
             MetaPipelineModeledExecutionStepKind.TransformExecution,
             targetWritePlan.TargetWritePipelineTask.Id,
             targetWritePlan.TargetWritePipelineTask.Name,
+            transformWorkspacePath,
+            bindingWorkspacePath,
             executionDefinition.TransformScriptId,
             executionDefinition.TransformBindingId,
             executionDefinition.TransformScriptName,
@@ -793,10 +805,24 @@ public sealed class MetaPipelineModeledExecutionResolver
         return successExitCode;
     }
 
-    private static string? NormalizeOptionalWorkspacePath(string value) =>
-        string.IsNullOrWhiteSpace(value)
-            ? null
-            : Path.GetFullPath(value);
+    private static string ResolvePlanWorkspacePath(
+        IReadOnlyList<MetaPipelineModeledExecutionStep> steps,
+        Func<MetaPipelineModeledExecutionStep, string?> selectPath)
+    {
+        var paths = steps
+            .Select(selectPath)
+            .Where(static item => !string.IsNullOrWhiteSpace(item))
+            .Select(static item => item!)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        return paths.Length switch
+        {
+            0 => string.Empty,
+            1 => paths[0],
+            _ => "<per-task>"
+        };
+    }
 
     private static string? NormalizeOptionalValue(string? value) =>
         string.IsNullOrWhiteSpace(value)
@@ -806,7 +832,7 @@ public sealed class MetaPipelineModeledExecutionResolver
     private static string RequireWorkspacePath(string? path, string errorMessage) =>
         string.IsNullOrWhiteSpace(path)
             ? throw new MetaPipelineConfigurationException(errorMessage)
-            : path;
+            : Path.GetFullPath(path);
 
     private static string RenderColumnShape(IEnumerable<(int Ordinal, string Name)> columns) =>
         string.Join(", ", columns.Select(item => item.Ordinal.ToString() + ":" + item.Name));

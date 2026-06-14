@@ -2,6 +2,15 @@
 
 `meta-bi` is the BI stack that sits on top of the generic `meta` foundation.
 
+It is not only a set of code generators. The important product shape is a modeled BI stack: source contracts, transform syntax, binding, target deployment assets, data quality, pipeline execution, orchestration, and analytical targets remain explicit workspaces that can be inspected, replayed, and validated.
+
+Two high-value behaviors are intentionally model-driven:
+
+- `meta-data-quality` automatically derives reviewable DQ candidates from the modeled transform graph. Supported checks come from `MetaTransformScript` structure and optional binding evidence, not from hand-authored one-off test SQL.
+- `meta-orchestration` automatically infers the safe part of the run graph from modeled `MetaPipeline` tasks and bound transform access profiles. When write ordering or synchronization cannot be proven, it records modeled policy issues instead of hiding uncertainty in scheduler code.
+
+For the normal modeled BI path -- source schema, SQL transforms in the supported `MetaTransformScript` surface, strict binding, generated DQ, modeled pipeline tasks, orchestration, and Tabular/MultiDimensional output -- this covers a large automatic slice of the stack. Dynamic SQL or legacy opaque procedural SQL needs explicit guarantees before orchestration/DQ can safely trust it.
+
 ## CLI Guide
 
 `meta-bi` ships these operator-facing CLIs:
@@ -475,10 +484,11 @@ meta-pipeline execute-sqlserver --transform-workspace .\TransformWS --binding-wo
 ### meta-orchestration
 
 Purpose:
-- infer a task-level dependency graph from modeled `MetaPipeline` steps
+- automatically infer the safe task-level dependency graph from modeled `MetaPipeline` steps
 - use `MetaTransformBinding` rowset/target profiles as the minimum dependency input for transform-backed steps
 - include executable process steps as dependency-neutral pipeline tasks
-- keep orchestration state in a sanctioned workspace
+- create orchestration workspace and run-plan rows from modeled pipeline/binding evidence
+- keep inferred dependencies, explicit policy, and runtime planning state in a sanctioned workspace
 - separate data dependency, write determinism, and runtime synchronization concerns
 
 Command surface:
@@ -500,7 +510,7 @@ Behavior summary:
 - executable-only pipeline workers do not require transform or binding workspace arguments
 - scalar function definitions in a transform workspace are treated as helper objects; if a pipeline task references one directly, orchestration records a blocking `NonExecutableTransformScript` issue instead of treating it as an unknown SQL statement
 - source reads surfaced from same-workspace scalar function return-expression bodies participate in normal dependency inference for executable transforms that call those functions
-- there is no empty `init` surface today; root `--new-workspace` creates the orchestration workspace by inference, and `refresh-run-plan --workspace` writes run-plan rows into that same workspace
+- there is no empty `init` surface today; root `--new-workspace` creates the orchestration workspace by inference from pipeline/binding profiles, and `refresh-run-plan --workspace` writes run-plan rows into that same workspace
 - each modeled pipeline becomes a `PipelineReference`
 - ordered transform-backed and executable process steps become `TaskAccessProfile` rows
 - object reads/writes become `ObjectAccess` and `PipelineObjectAccess` rows
@@ -886,12 +896,12 @@ See also:
 
 ### meta-data-quality
 
-`meta-data-quality` derives sanctioned `MetaDataQuality` candidates from a `MetaTransformScript` workspace.
+`meta-data-quality` automatically derives sanctioned `MetaDataQuality` candidates from a `MetaTransformScript` workspace.
 
 It traverses the typed semantic `MetaTransformScript` graph (not raw SQL text): `TransformScript` -> `SelectStatement` -> `QueryExpression` -> `QuerySpecification` -> `FromClause` -> `TableReference` / `QualifiedJoin`, including CTE scopes, derived tables, and modeled boolean expressions.
 
 Purpose:
-- discover reviewable DQ candidates from transform semantics
+- automatically discover reviewable DQ candidates from transform semantics
 - persist candidates in a sanctioned `MetaDataQuality` workspace
 - convert promoted candidates into executable SQL DQ assets
 
@@ -914,6 +924,8 @@ meta-convert data-quality-to-sql --workspace .\MetaDataQuality.Workspace --out .
 Analysis scopes:
 1. Transform-scope analysis (single script): detects missing referenced rows, unexpected outer-join nulls, row multiplication risk, duplicate output risk, and records modeled join evidence (`JoinPattern`, `JoinPatternOccurrence`, key parts).
 2. Corpus-scope analysis (workspace-wide): aggregates repeated relationship evidence and infers dominant vs outlier behavior across the transform corpus.
+
+This is automatic DQ generation from modeled transforms. The human/review boundary is promotion: discovery creates candidates; explicit promotion decides which candidates become executable SQL assets.
 
 When `--binding-workspace` is supplied, discovery scans only `TransformScript` rows that have validation-backed `TransformBinding` rows. This prevents generating DQ SQL for transform objects that were skipped by partial binding.
 

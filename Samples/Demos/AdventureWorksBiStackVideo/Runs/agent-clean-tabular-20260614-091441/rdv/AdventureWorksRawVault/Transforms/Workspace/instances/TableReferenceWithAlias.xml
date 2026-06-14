@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TableReferenceWithAliasList>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:1" TableReferenceId="TableReference:1">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:2" TableReferenceId="TableReference:2">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:3" TableReferenceId="TableReference:3">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:4" TableReferenceId="TableReference:4">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:5" TableReferenceId="TableReference:5">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:6" TableReferenceId="TableReference:6">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:7" TableReferenceId="TableReference:7">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:8" TableReferenceId="TableReference:8">
+    </TableReferenceWithAlias>
+  </TableReferenceWithAliasList>
+</MetaTransformScript>

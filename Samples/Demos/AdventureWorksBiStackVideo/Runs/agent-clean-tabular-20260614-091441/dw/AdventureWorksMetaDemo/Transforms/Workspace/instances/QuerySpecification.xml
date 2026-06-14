@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <QuerySpecificationList>
+    <QuerySpecification Id="QuerySpecification:1" QueryExpressionId="QueryExpression:1">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:2" QueryExpressionId="QueryExpression:2">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:3" QueryExpressionId="QueryExpression:3">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:4" QueryExpressionId="QueryExpression:4">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:5" QueryExpressionId="QueryExpression:5">
+    </QuerySpecification>
+  </QuerySpecificationList>
+</MetaTransformScript>

@@ -1758,6 +1758,9 @@ namespace MetaPipeline
             {
                 switch (reader.LocalName)
                 {
+                    case "BindingWorkspacePath":
+                        row.BindingWorkspacePath = reader.ReadElementContentAsString();
+                        break;
                     case "TimeoutSeconds":
                         row.TimeoutSeconds = reader.ReadElementContentAsString();
                         break;
@@ -1766,6 +1769,9 @@ namespace MetaPipeline
                         break;
                     case "TransformScriptId":
                         row.TransformScriptId = reader.ReadElementContentAsString();
+                        break;
+                    case "TransformWorkspacePath":
+                        row.TransformWorkspacePath = reader.ReadElementContentAsString();
                         break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'TransformExecutionTask'.");
@@ -1815,12 +1821,14 @@ namespace MetaPipeline
                 AppendXmlAttribute(builder, pipelineTaskId);
                 builder.Append('"');
                 builder.Append(">\n");
+                AppendElement(builder, "BindingWorkspacePath", RequireText(row.BindingWorkspacePath, $"Entity 'TransformExecutionTask' row '{row.Id}' is missing required property 'BindingWorkspacePath'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.TimeoutSeconds))
                 {
                     AppendElement(builder, "TimeoutSeconds", row.TimeoutSeconds!, "      ");
                 }
                 AppendElement(builder, "TransformBindingId", RequireText(row.TransformBindingId, $"Entity 'TransformExecutionTask' row '{row.Id}' is missing required property 'TransformBindingId'."), "      ");
                 AppendElement(builder, "TransformScriptId", RequireText(row.TransformScriptId, $"Entity 'TransformExecutionTask' row '{row.Id}' is missing required property 'TransformScriptId'."), "      ");
+                AppendElement(builder, "TransformWorkspacePath", RequireText(row.TransformWorkspacePath, $"Entity 'TransformExecutionTask' row '{row.Id}' is missing required property 'TransformWorkspacePath'."), "      ");
                 builder.Append("    </TransformExecutionTask>\n");
             }
             builder.Append("  </TransformExecutionTaskList>\n");
@@ -2501,9 +2509,11 @@ namespace MetaPipeline
 
             if (HasUnexpectedProperties(typeof(TransformExecutionTask),
                 "Id",
+                "BindingWorkspacePath",
                 "TimeoutSeconds",
                 "TransformBindingId",
                 "TransformScriptId",
+                "TransformWorkspacePath",
                 "ExecutionConnectionReference",
                 "PipelineTask"))
             {

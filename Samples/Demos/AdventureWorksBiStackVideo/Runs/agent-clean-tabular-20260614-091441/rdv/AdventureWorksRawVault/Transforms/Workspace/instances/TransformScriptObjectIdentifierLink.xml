@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptObjectIdentifierLinkList>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:1" IdentifierId="Identifier:2" TransformScriptId="TransformScript:1">
+    </TransformScriptObjectIdentifierLink>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:2" IdentifierId="Identifier:25" TransformScriptId="TransformScript:2">
+    </TransformScriptObjectIdentifierLink>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:3" IdentifierId="Identifier:62" TransformScriptId="TransformScript:3">
+    </TransformScriptObjectIdentifierLink>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:4" IdentifierId="Identifier:85" TransformScriptId="TransformScript:4">
+    </TransformScriptObjectIdentifierLink>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:5" IdentifierId="Identifier:122" TransformScriptId="TransformScript:5">
+    </TransformScriptObjectIdentifierLink>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:6" IdentifierId="Identifier:145" TransformScriptId="TransformScript:6">
+    </TransformScriptObjectIdentifierLink>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:7" IdentifierId="Identifier:261" TransformScriptId="TransformScript:7">
+    </TransformScriptObjectIdentifierLink>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:8" IdentifierId="Identifier:296" TransformScriptId="TransformScript:8">
+    </TransformScriptObjectIdentifierLink>
+  </TransformScriptObjectIdentifierLinkList>
+</MetaTransformScript>

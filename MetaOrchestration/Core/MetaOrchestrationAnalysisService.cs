@@ -23,28 +23,11 @@ public sealed class MetaOrchestrationAnalysisService
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
         var pipelineModel = MP.MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
-        var hasTransformTasks = pipelineModel.TransformExecutionTaskList.Count > 0;
-        if (hasTransformTasks && string.IsNullOrWhiteSpace(request.TransformWorkspacePath))
-        {
-            throw new ArgumentException("Transform-backed pipeline tasks require --transform-workspace <path>.", nameof(request));
-        }
-
-        if (hasTransformTasks && string.IsNullOrWhiteSpace(request.BindingWorkspacePath))
-        {
-            throw new ArgumentException("Transform-backed pipeline tasks require --binding-workspace <path>.", nameof(request));
-        }
-
-        var transformModel = hasTransformTasks
-            ? MetaTransformScriptModel.LoadFromXmlWorkspace(Path.GetFullPath(request.TransformWorkspacePath), searchUpward: false)
-            : MetaTransformScriptModel.CreateEmpty();
-        var bindingModel = hasTransformTasks
-            ? MetaTransformBindingModel.LoadFromXmlWorkspace(Path.GetFullPath(request.BindingWorkspacePath), searchUpward: false)
-            : MetaTransformBindingModel.CreateEmpty();
 
         return AnalyzeProfiles(
             request.PlanName,
             request.Description,
-            CreateProfiles(pipelineModel, transformModel, bindingModel));
+            CreateProfiles(pipelineModel));
     }
 
     public OrchestrationAnalysisResult AnalyzeProfiles(
@@ -86,32 +69,17 @@ public sealed class MetaOrchestrationAnalysisService
     }
 
     private IReadOnlyList<PipelineDependencyProfile> CreateProfiles(
-        MP.MetaPipelineModel pipelineModel,
-        MetaTransformScriptModel transformModel,
-        MetaTransformBindingModel bindingModel)
+        MP.MetaPipelineModel pipelineModel)
     {
-        var transformScriptsById = transformModel.TransformScriptList
-            .ToDictionary(static item => item.Id, StringComparer.Ordinal);
-        var statementKindsByScriptId = statementKindService.GetStatementKindsByTransformScriptId(transformModel);
-        var functionParameterCountsByScriptId = transformModel.TransformScriptFunctionParametersItemList
-            .GroupBy(static item => item.TransformScript.Id, StringComparer.Ordinal)
-            .ToDictionary(static group => group.Key, static group => group.Count(), StringComparer.Ordinal);
-        var storedProcedureOperationsByScriptId = BuildStoredProcedureOperationsByScriptId(transformModel);
-        var bindingsById = bindingModel.TransformBindingList
-            .ToDictionary(static item => item.Id, StringComparer.Ordinal);
+        var workspaceCache = new TransformWorkspaceProfileCache(statementKindService);
 
         return pipelineModel.PipelineList
             .OrderBy(static item => item.Name, StringComparer.OrdinalIgnoreCase)
             .ThenBy(static item => item.Id, StringComparer.Ordinal)
             .Select(pipeline => CreatePipelineProfile(
                 pipelineModel,
-                bindingModel,
                 pipeline,
-                transformScriptsById,
-                statementKindsByScriptId,
-                functionParameterCountsByScriptId,
-                storedProcedureOperationsByScriptId,
-                bindingsById))
+                workspaceCache))
             .ToArray();
     }
 
@@ -143,13 +111,8 @@ public sealed class MetaOrchestrationAnalysisService
 
     private static PipelineDependencyProfile CreatePipelineProfile(
         MP.MetaPipelineModel pipelineModel,
-        MetaTransformBindingModel bindingModel,
         MP.Pipeline pipeline,
-        IReadOnlyDictionary<string, TransformScript> transformScriptsById,
-        IReadOnlyDictionary<string, BoundStatementKind> statementKindsByScriptId,
-        IReadOnlyDictionary<string, int> functionParameterCountsByScriptId,
-        IReadOnlyDictionary<string, IReadOnlyList<StoredProcedureContractOperation>> storedProcedureOperationsByScriptId,
-        IReadOnlyDictionary<string, TransformBinding> bindingsById)
+        TransformWorkspaceProfileCache workspaceCache)
     {
         var taskProfiles = new List<PipelineTaskAccessProfile>();
         var issues = new List<PipelineDependencyProfileIssue>();
@@ -175,17 +138,12 @@ public sealed class MetaOrchestrationAnalysisService
 
             var taskProfile = CreateTaskProfile(
                 pipelineModel,
-                bindingModel,
                 pipeline,
                 task.TransformExecution
                 ?? throw new InvalidOperationException(
                     $"Pipeline '{pipeline.Name}' task '{task.PipelineTask.Name}' has no transform execution detail."),
                 task.Ordinal,
-                transformScriptsById,
-                statementKindsByScriptId,
-                functionParameterCountsByScriptId,
-                storedProcedureOperationsByScriptId,
-                bindingsById);
+                workspaceCache);
             taskProfiles.Add(taskProfile.Profile);
             issues.AddRange(taskProfile.Issues);
         }
@@ -252,35 +210,70 @@ public sealed class MetaOrchestrationAnalysisService
             string.Empty,
             string.Empty,
             string.Empty,
+            string.Empty,
+            string.Empty,
             TaskKindExecutable,
             []);
     }
 
     private static TaskProfileResult CreateTaskProfile(
         MP.MetaPipelineModel pipelineModel,
-        MetaTransformBindingModel bindingModel,
         MP.Pipeline pipeline,
         MP.TransformExecutionTask execution,
         int ordinal,
-        IReadOnlyDictionary<string, TransformScript> transformScriptsById,
-        IReadOnlyDictionary<string, BoundStatementKind> statementKindsByScriptId,
-        IReadOnlyDictionary<string, int> functionParameterCountsByScriptId,
-        IReadOnlyDictionary<string, IReadOnlyList<StoredProcedureContractOperation>> storedProcedureOperationsByScriptId,
-        IReadOnlyDictionary<string, TransformBinding> bindingsById)
+        TransformWorkspaceProfileCache workspaceCache)
     {
         var accesses = new List<PipelineObjectAccessProfile>();
         var issues = new List<PipelineDependencyProfileIssue>();
         var transformScriptName = execution.TransformScriptId;
         var statementKind = BoundStatementKind.Unsupported;
         var functionParameterCount = 0;
+        TransformWorkspaceProfileContext? workspaceContext = null;
+        TransformBinding? resolvedBinding = null;
 
-        if (transformScriptsById.TryGetValue(execution.TransformScriptId, out var transformScript))
+        if (string.IsNullOrWhiteSpace(execution.TransformWorkspacePath) ||
+            string.IsNullOrWhiteSpace(execution.BindingWorkspacePath))
         {
-            transformScriptName = transformScript.Name;
-            statementKindsByScriptId.TryGetValue(transformScript.Id, out statementKind);
-            functionParameterCountsByScriptId.TryGetValue(transformScript.Id, out functionParameterCount);
+            issues.Add(CreateIssue(
+                OrchestrationIssueCode.MissingScriptOrBinding,
+                OrchestrationIssueDomain.ProfileResolution,
+                "Error",
+                blocksDag: true,
+                blocksAutomaticRunPlanning: true,
+                $"Pipeline '{pipeline.Name}' task '{execution.PipelineTask.Name}' is missing TransformWorkspacePath or BindingWorkspacePath.",
+                null,
+                [pipeline.Id]));
         }
         else
+        {
+            try
+            {
+                workspaceContext = workspaceCache.Get(
+                    execution.TransformWorkspacePath,
+                    execution.BindingWorkspacePath);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException or InvalidOperationException)
+            {
+                issues.Add(CreateIssue(
+                    OrchestrationIssueCode.MissingScriptOrBinding,
+                    OrchestrationIssueDomain.ProfileResolution,
+                    "Error",
+                    blocksDag: true,
+                    blocksAutomaticRunPlanning: true,
+                    $"Pipeline '{pipeline.Name}' task '{execution.PipelineTask.Name}' could not load its transform/binding workspace context. {ex.Message}",
+                    null,
+                    [pipeline.Id]));
+            }
+        }
+
+        if (workspaceContext is not null &&
+            workspaceContext.TransformScriptsById.TryGetValue(execution.TransformScriptId, out var transformScript))
+        {
+            transformScriptName = transformScript.Name;
+            workspaceContext.StatementKindsByScriptId.TryGetValue(transformScript.Id, out statementKind);
+            workspaceContext.FunctionParameterCountsByScriptId.TryGetValue(transformScript.Id, out functionParameterCount);
+        }
+        else if (workspaceContext is not null)
         {
             issues.Add(CreateIssue(
                 OrchestrationIssueCode.MissingScriptOrBinding,
@@ -297,8 +290,10 @@ public sealed class MetaOrchestrationAnalysisService
         var isParameterizedFunctionTask = !isScalarFunctionTask && functionParameterCount > 0;
         var canContributeObjectAccesses = !isScalarFunctionTask && !isParameterizedFunctionTask;
 
-        if (bindingsById.TryGetValue(execution.TransformBindingId, out var binding))
+        if (workspaceContext is not null &&
+            workspaceContext.BindingsById.TryGetValue(execution.TransformBindingId, out var binding))
         {
+            resolvedBinding = binding;
             if (!string.Equals(binding.MetaTransformScriptTransformScriptId, execution.TransformScriptId, StringComparison.Ordinal))
             {
                 issues.Add(CreateIssue(
@@ -316,7 +311,7 @@ public sealed class MetaOrchestrationAnalysisService
             {
                 if (statementKind is BoundStatementKind.StoredProcedure)
                 {
-                    foreach (var operation in storedProcedureOperationsByScriptId.GetValueOrDefault(execution.TransformScriptId) ?? [])
+                    foreach (var operation in workspaceContext.StoredProcedureOperationsByScriptId.GetValueOrDefault(execution.TransformScriptId) ?? [])
                     {
                         var access = TryCreateStoredProcedureOperationAccess(operation);
                         if (access is not null)
@@ -327,22 +322,22 @@ public sealed class MetaOrchestrationAnalysisService
                 }
                 else
                 {
-                    foreach (var source in ResolveSourceSqlIdentifiers(bindingModel, binding))
+                    foreach (var source in ResolveSourceSqlIdentifiers(workspaceContext.BindingModel, binding))
                     {
                         accesses.Add(CreateAccess(source, OrchestrationObjectAccessKind.Read, "Source", "Bound source rowset", accesses.Count));
                     }
 
-                    if (IsMutationStatementKind(statementKind))
+                if (IsMutationStatementKind(statementKind))
+                {
+                    foreach (var target in ResolveTargetSqlIdentifiers(workspaceContext.BindingModel, binding))
                     {
-                        foreach (var target in ResolveTargetSqlIdentifiers(bindingModel, binding))
-                        {
-                            accesses.Add(CreateAccess(target, ResolveMutationTargetAccessKind(statementKind), "Target", $"Bound {statementKind} target", accesses.Count));
-                        }
+                        accesses.Add(CreateAccess(target, ResolveMutationTargetAccessKind(statementKind), "Target", $"Bound {statementKind} target", accesses.Count));
+                    }
                     }
                 }
             }
         }
-        else
+        else if (workspaceContext is not null)
         {
             issues.Add(CreateIssue(
                 OrchestrationIssueCode.MissingScriptOrBinding,
@@ -398,7 +393,10 @@ public sealed class MetaOrchestrationAnalysisService
             var insertRowsOrdinal = statementKind is BoundStatementKind.StoredProcedure
                 ? int.MaxValue
                 : accesses.Count;
-            foreach (var target in ResolveInsertRowsTargets(pipelineModel, execution.PipelineTask))
+            foreach (var target in QualifyTargetSqlIdentifiersFromBindingValidation(
+                workspaceContext?.BindingModel,
+                resolvedBinding,
+                ResolveInsertRowsTargets(pipelineModel, execution.PipelineTask)))
             {
                 accesses.Add(CreateAccess(target, OrchestrationObjectAccessKind.Write, "InsertRowsTarget", "Row-producing InsertRows target write", insertRowsOrdinal));
             }
@@ -412,6 +410,8 @@ public sealed class MetaOrchestrationAnalysisService
             execution.TransformScriptId,
             transformScriptName,
             execution.TransformBindingId,
+            execution.TransformWorkspacePath,
+            execution.BindingWorkspacePath,
             statementKind.ToString(),
             statementKind is BoundStatementKind.StoredProcedure
                 ? accesses
@@ -533,10 +533,10 @@ public sealed class MetaOrchestrationAnalysisService
 
         if (targets.Length > 0)
         {
-            return targets;
+            return QualifyTargetSqlIdentifiersFromBindingValidation(bindingModel, binding, targets);
         }
 
-        return bindingModel.RowsetList
+        var rowsetTargets = bindingModel.RowsetList
             .Where(item =>
                 string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
                 string.Equals(item.DerivationKind, "Target", StringComparison.OrdinalIgnoreCase) &&
@@ -545,6 +545,107 @@ public sealed class MetaOrchestrationAnalysisService
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .OrderBy(static item => item, StringComparer.OrdinalIgnoreCase)
             .ToArray();
+
+        return QualifyTargetSqlIdentifiersFromBindingValidation(bindingModel, binding, rowsetTargets);
+    }
+
+    private static IReadOnlyList<string> QualifyTargetSqlIdentifiersFromBindingValidation(
+        MetaTransformBindingModel? bindingModel,
+        TransformBinding? binding,
+        IReadOnlyList<string> sqlIdentifiers)
+    {
+        if (bindingModel is null || binding is null || sqlIdentifiers.Count == 0)
+        {
+            return sqlIdentifiers;
+        }
+
+        return sqlIdentifiers
+            .Select(sqlIdentifier => TryResolveValidatedTargetSqlIdentifier(bindingModel, binding, sqlIdentifier) ?? sqlIdentifier)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(static item => item, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    private static string? TryResolveValidatedTargetSqlIdentifier(
+        MetaTransformBindingModel bindingModel,
+        TransformBinding binding,
+        string sqlIdentifier)
+    {
+        var targetIds = bindingModel.TransformBindingTargetList
+            .Where(item =>
+                string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
+                string.Equals(NormalizeObjectKey(item.SqlIdentifier), NormalizeObjectKey(sqlIdentifier), StringComparison.Ordinal))
+            .Select(static item => item.Id)
+            .ToHashSet(StringComparer.Ordinal);
+
+        if (targetIds.Count == 0)
+        {
+            return null;
+        }
+
+        foreach (var validationTarget in bindingModel.ValidationTargetRowsetLinkList
+            .Where(item => targetIds.Contains(item.TransformBindingTarget.Id))
+            .OrderBy(static item => item.Id, StringComparer.Ordinal))
+        {
+            if (TryFormatMetaSchemaTableId(validationTarget.MetaSchemaTableId, out var validatedIdentifier))
+            {
+                return validatedIdentifier;
+            }
+        }
+
+        return null;
+    }
+
+    private static bool TryFormatMetaSchemaTableId(string metaSchemaTableId, out string sqlIdentifier)
+    {
+        sqlIdentifier = string.Empty;
+        if (string.IsNullOrWhiteSpace(metaSchemaTableId))
+        {
+            return false;
+        }
+
+        var parts = metaSchemaTableId.Split(':', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length < 6 ||
+            !string.Equals(parts[0], "sqlserver", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        var systemName = parts[1];
+        var schemaIndex = Array.FindIndex(parts, static item => string.Equals(item, "schema", StringComparison.OrdinalIgnoreCase));
+        var tableIndex = Array.FindIndex(parts, static item => string.Equals(item, "table", StringComparison.OrdinalIgnoreCase));
+        if (schemaIndex < 0 ||
+            tableIndex < 0 ||
+            schemaIndex + 1 >= parts.Length ||
+            tableIndex + 1 >= parts.Length)
+        {
+            return false;
+        }
+
+        var schemaName = parts[schemaIndex + 1];
+        var tableName = parts[tableIndex + 1];
+        if (string.IsNullOrWhiteSpace(systemName) ||
+            string.IsNullOrWhiteSpace(schemaName) ||
+            string.IsNullOrWhiteSpace(tableName))
+        {
+            return false;
+        }
+
+        sqlIdentifier = $"{FormatSqlIdentifierPart(systemName)}.{FormatSqlIdentifierPart(schemaName)}.{FormatSqlIdentifierPart(tableName)}";
+        return true;
+    }
+
+    private static string FormatSqlIdentifierPart(string value)
+    {
+        var trimmed = value.Trim();
+        if (trimmed.Length > 0 &&
+            (char.IsLetter(trimmed[0]) || trimmed[0] == '_') &&
+            trimmed.All(static character => char.IsLetterOrDigit(character) || character == '_'))
+        {
+            return trimmed;
+        }
+
+        return "[" + trimmed.Replace("]", "]]", StringComparison.Ordinal) + "]";
     }
 
     private static IReadOnlyList<string> ResolveInsertRowsTargets(
@@ -1320,6 +1421,8 @@ public sealed class MetaOrchestrationAnalysisService
                     TransformScriptId = task.TransformScriptId,
                     TransformScriptName = task.TransformScriptName,
                     TransformBindingId = task.TransformBindingId,
+                    TransformWorkspacePath = task.TransformWorkspacePath,
+                    BindingWorkspacePath = task.BindingWorkspacePath,
                     StatementKind = task.StatementKind
                 };
                 model.TaskAccessProfileList.Add(row);
@@ -1548,6 +1651,48 @@ public sealed class MetaOrchestrationAnalysisService
         MP.TransformExecutionTask? TransformExecution,
         MP.ExecutableTask? Executable,
         int Ordinal);
+
+    private sealed class TransformWorkspaceProfileCache(TransformScriptStatementKindService statementKindService)
+    {
+        private readonly Dictionary<string, TransformWorkspaceProfileContext> cache = new(StringComparer.OrdinalIgnoreCase);
+
+        public TransformWorkspaceProfileContext Get(string transformWorkspacePath, string bindingWorkspacePath)
+        {
+            var fullTransformWorkspacePath = Path.GetFullPath(transformWorkspacePath);
+            var fullBindingWorkspacePath = Path.GetFullPath(bindingWorkspacePath);
+            var key = $"{fullTransformWorkspacePath}|{fullBindingWorkspacePath}";
+            if (cache.TryGetValue(key, out var existing))
+            {
+                return existing;
+            }
+
+            var transformModel = MetaTransformScriptModel.LoadFromXmlWorkspace(fullTransformWorkspacePath, searchUpward: false);
+            var bindingModel = MetaTransformBindingModel.LoadFromXmlWorkspace(fullBindingWorkspacePath, searchUpward: false);
+            var context = new TransformWorkspaceProfileContext(
+                fullTransformWorkspacePath,
+                fullBindingWorkspacePath,
+                bindingModel,
+                transformModel.TransformScriptList.ToDictionary(static item => item.Id, StringComparer.Ordinal),
+                statementKindService.GetStatementKindsByTransformScriptId(transformModel),
+                transformModel.TransformScriptFunctionParametersItemList
+                    .GroupBy(static item => item.TransformScript.Id, StringComparer.Ordinal)
+                    .ToDictionary(static group => group.Key, static group => group.Count(), StringComparer.Ordinal),
+                BuildStoredProcedureOperationsByScriptId(transformModel),
+                bindingModel.TransformBindingList.ToDictionary(static item => item.Id, StringComparer.Ordinal));
+            cache.Add(key, context);
+            return context;
+        }
+    }
+
+    private sealed record TransformWorkspaceProfileContext(
+        string TransformWorkspacePath,
+        string BindingWorkspacePath,
+        MetaTransformBindingModel BindingModel,
+        IReadOnlyDictionary<string, TransformScript> TransformScriptsById,
+        IReadOnlyDictionary<string, BoundStatementKind> StatementKindsByScriptId,
+        IReadOnlyDictionary<string, int> FunctionParameterCountsByScriptId,
+        IReadOnlyDictionary<string, IReadOnlyList<StoredProcedureContractOperation>> StoredProcedureOperationsByScriptId,
+        IReadOnlyDictionary<string, TransformBinding> BindingsById);
 
     private sealed record TaskProfileResult(
         PipelineTaskAccessProfile Profile,

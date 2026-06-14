@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <QualifiedJoinSearchConditionLinkList>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:1" BooleanExpressionId="BooleanExpression:1" QualifiedJoinId="QualifiedJoin:1">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:2" BooleanExpressionId="BooleanExpression:2" QualifiedJoinId="QualifiedJoin:2">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:3" BooleanExpressionId="BooleanExpression:3" QualifiedJoinId="QualifiedJoin:3">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:4" BooleanExpressionId="BooleanExpression:4" QualifiedJoinId="QualifiedJoin:4">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:5" BooleanExpressionId="BooleanExpression:5" QualifiedJoinId="QualifiedJoin:5">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:6" BooleanExpressionId="BooleanExpression:6" QualifiedJoinId="QualifiedJoin:6">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:7" BooleanExpressionId="BooleanExpression:7" QualifiedJoinId="QualifiedJoin:7">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:8" BooleanExpressionId="BooleanExpression:8" QualifiedJoinId="QualifiedJoin:8">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:9" BooleanExpressionId="BooleanExpression:9" QualifiedJoinId="QualifiedJoin:9">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:10" BooleanExpressionId="BooleanExpression:10" QualifiedJoinId="QualifiedJoin:10">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:11" BooleanExpressionId="BooleanExpression:11" QualifiedJoinId="QualifiedJoin:11">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:12" BooleanExpressionId="BooleanExpression:12" QualifiedJoinId="QualifiedJoin:12">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:13" BooleanExpressionId="BooleanExpression:13" QualifiedJoinId="QualifiedJoin:13">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:14" BooleanExpressionId="BooleanExpression:14" QualifiedJoinId="QualifiedJoin:14">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:15" BooleanExpressionId="BooleanExpression:15" QualifiedJoinId="QualifiedJoin:15">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:16" BooleanExpressionId="BooleanExpression:16" QualifiedJoinId="QualifiedJoin:16">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:17" BooleanExpressionId="BooleanExpression:17" QualifiedJoinId="QualifiedJoin:17">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:18" BooleanExpressionId="BooleanExpression:18" QualifiedJoinId="QualifiedJoin:18">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:19" BooleanExpressionId="BooleanExpression:19" QualifiedJoinId="QualifiedJoin:19">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:20" BooleanExpressionId="BooleanExpression:20" QualifiedJoinId="QualifiedJoin:20">
+    </QualifiedJoinSearchConditionLink>
+    <QualifiedJoinSearchConditionLink Id="QualifiedJoinSearchConditionLink:21" BooleanExpressionId="BooleanExpression:21" QualifiedJoinId="QualifiedJoin:21">
+    </QualifiedJoinSearchConditionLink>
+  </QualifiedJoinSearchConditionLinkList>
+</MetaTransformScript>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <RowsetList>
+    <Rowset Id="TableReference:1:rowset" TransformBindingId="TransformScript:1:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.H_Product</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Product</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="QueryExpression:1:output-rowset" TransformBindingId="TransformScript:1:binding">
+      <DerivationKind>Projection</DerivationKind>
+      <Name>FinalOutput</Name>
+    </Rowset>
+    <Rowset Id="TableReference:2:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.H_Product</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Product</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="TableReference:3:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.HS_Product_Product</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Product_Product</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="TableReference:4:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Join</DerivationKind>
+      <Name>Inner:TableReference:4</Name>
+    </Rowset>
+    <Rowset Id="TableReference:5:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.L_ProductProductSubcategory</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_ProductProductSubcategory</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="TableReference:6:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Join</DerivationKind>
+      <Name>LeftOuter:TableReference:6</Name>
+    </Rowset>
+    <Rowset Id="TableReference:7:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.H_ProductSubcategory</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_ProductSubcategory</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="TableReference:8:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Join</DerivationKind>
+      <Name>LeftOuter:TableReference:8</Name>
+    </Rowset>
+    <Rowset Id="TableReference:9:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="TableReference:10:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Join</DerivationKind>
+      <Name>LeftOuter:TableReference:10</Name>
+    </Rowset>
+    <Rowset Id="TableReference:11:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="TableReference:12:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Join</DerivationKind>
+      <Name>LeftOuter:TableReference:12</Name>
+    </Rowset>
+    <Rowset Id="TableReference:13:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.H_ProductCategory</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_ProductCategory</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="TableReference:14:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Join</DerivationKind>
+      <Name>LeftOuter:TableReference:14</Name>
+    </Rowset>
+    <Rowset Id="TableReference:15:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Source</DerivationKind>
+      <Name>AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory</Name>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory</SqlIdentifier>
+    </Rowset>
+    <Rowset Id="TableReference:16:rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Join</DerivationKind>
+      <Name>LeftOuter:TableReference:16</Name>
+    </Rowset>
+    <Rowset Id="QueryExpression:2:output-rowset" TransformBindingId="TransformScript:2:binding">
+      <DerivationKind>Projection</DerivationKind>
+      <Name>FinalOutput</Name>
+    </Rowset>
+  </RowsetList>
+</MetaTransformBinding>

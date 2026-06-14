@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <WhereClauseSearchConditionLinkList>
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:1" BooleanExpressionId="BooleanExpression:1" WhereClauseId="WhereClause:1">
+    </WhereClauseSearchConditionLink>
+  </WhereClauseSearchConditionLinkList>
+</MetaTransformScript>

@@ -6,8 +6,6 @@ internal static class MetaTransformScriptSqlServerDataTypes
 {
     private const string SqlServerDataTypeSystemId = "SqlServer";
 
-    private static readonly IReadOnlyDictionary<string, string> CanonicalSqlNameToOption = BuildCanonicalSqlNameToOption();
-
     private static readonly IReadOnlyDictionary<string, string> SqlNameAliasToCanonicalSqlName =
         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
@@ -22,6 +20,12 @@ internal static class MetaTransformScriptSqlServerDataTypes
             ["national character varying"] = "nvarchar",
             ["rowversion"] = "binary",
             ["timestamp"] = "binary",
+            ["AccountNumber"] = "nvarchar",
+            ["Flag"] = "bit",
+            ["Name"] = "nvarchar",
+            ["NameStyle"] = "bit",
+            ["OrderNumber"] = "nvarchar",
+            ["Phone"] = "nvarchar",
             ["sysname"] = "nvarchar"
         };
 
@@ -33,6 +37,7 @@ internal static class MetaTransformScriptSqlServerDataTypes
             ["timestamp"] = ["8"]
         };
 
+    private static readonly IReadOnlyDictionary<string, string> CanonicalSqlNameToOption = BuildCanonicalSqlNameToOption();
     private static readonly IReadOnlyDictionary<string, string> SqlNameToOption = BuildSqlNameToOption();
     private static readonly IReadOnlyDictionary<string, string> OptionToSqlName = BuildOptionToSqlName();
 
@@ -119,6 +124,11 @@ internal static class MetaTransformScriptSqlServerDataTypes
         var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var pair in CanonicalSqlNameToOption)
         {
+            if (SqlNameAliasToCanonicalSqlName.ContainsKey(pair.Key))
+            {
+                continue;
+            }
+
             map[pair.Value] = pair.Key;
         }
 
@@ -157,6 +167,8 @@ internal static class MetaTransformScriptSqlServerDataTypes
             "varbinary" => "VarBinary",
             "varchar" => "VarChar",
             "xml" => "Xml",
+            _ when SqlNameAliasToCanonicalSqlName.TryGetValue(sqlName.Trim(), out var canonicalSqlName) =>
+                TryMapCanonicalSqlNameToOption(canonicalSqlName, out var aliasOption) ? aliasOption : string.Empty,
             _ => string.Empty
         };
 

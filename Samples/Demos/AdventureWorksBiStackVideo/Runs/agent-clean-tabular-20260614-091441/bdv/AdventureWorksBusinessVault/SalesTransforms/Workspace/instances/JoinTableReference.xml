@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <JoinTableReferenceList>
+    <JoinTableReference Id="JoinTableReference:1" TableReferenceId="TableReference:4">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:2" TableReferenceId="TableReference:6">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:3" TableReferenceId="TableReference:10">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:4" TableReferenceId="TableReference:16">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:5" TableReferenceId="TableReference:20">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:6" TableReferenceId="TableReference:26">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:7" TableReferenceId="TableReference:31">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:8" TableReferenceId="TableReference:35">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:9" TableReferenceId="TableReference:38">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:10" TableReferenceId="TableReference:40">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:11" TableReferenceId="TableReference:42">
+    </JoinTableReference>
+    <JoinTableReference Id="JoinTableReference:12" TableReferenceId="TableReference:44">
+    </JoinTableReference>
+  </JoinTableReferenceList>
+</MetaTransformScript>

@@ -49,22 +49,6 @@ internal static partial class Program
                 continue;
             }
 
-            if (string.Equals(arg, "--transform-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return FailParse("missing value for --transform-workspace.");
-                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("--transform-workspace can only be provided once.");
-                transformWorkspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--binding-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return FailParse("missing value for --binding-workspace.");
-                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("--binding-workspace can only be provided once.");
-                bindingWorkspacePath = args[++i];
-                continue;
-            }
-
             if (string.Equals(arg, "--data-type-conversion-workspace", StringComparison.OrdinalIgnoreCase))
             {
                 if (i + 1 >= args.Length) return FailParse("missing value for --data-type-conversion-workspace.");
@@ -154,22 +138,6 @@ internal static partial class Program
                 if (i + 1 >= args.Length) return FailParse("missing value for --pipeline.");
                 if (!string.IsNullOrWhiteSpace(pipelineName)) return FailParse("--pipeline can only be provided once.");
                 pipelineName = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--transform-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return FailParse("missing value for --transform-workspace.");
-                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("--transform-workspace can only be provided once.");
-                transformWorkspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--binding-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return FailParse("missing value for --binding-workspace.");
-                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("--binding-workspace can only be provided once.");
-                bindingWorkspacePath = args[++i];
                 continue;
             }
 

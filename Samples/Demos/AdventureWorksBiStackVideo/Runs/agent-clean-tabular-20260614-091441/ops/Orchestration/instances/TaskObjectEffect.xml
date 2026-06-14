@@ -1,0 +1,1525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <TaskObjectEffectList>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksbusinessvault-dbo-bhs-product-productclassification" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-product-productclassification" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksrawvault-dbo-hs-productcategory-productcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-productcategory-productcategory" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksrawvault-dbo-hs-product-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-product-product" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksrawvault-dbo-h-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-product" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksrawvault-dbo-h-productcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-productcategory" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksrawvault-dbo-h-productsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-productsubcategory" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksrawvault-dbo-l-productproductsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-productproductsubcategory" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification-task-load-dbo-bhs-product-productclassification:effect:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bhs-product-productclassification:task:load-dbo-bhs-product-productclassification">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bh-product-task-load-dbo-bh-product:effect:adventureworksbusinessvault-dbo-bh-product" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-product" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bh-product:task:load-dbo-bh-product">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-product-dbo-bh-product-task-load-dbo-bh-product:effect:adventureworksrawvault-dbo-h-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-product" TaskAccessProfileId="plan-default-pipeline-bdv-product-dbo-bh-product:task:load-dbo-bh-product">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-customer-customerprofile-task-load-dbo-bhs-customer-customerprofile:effect:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-customer-customerprofile:task:load-dbo-bhs-customer-customerprofile">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-customer-customerprofile-task-load-dbo-bhs-customer-customerprofile:effect:adventureworksrawvault-dbo-hs-customer-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-customer-customer" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-customer-customerprofile:task:load-dbo-bhs-customer-customerprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-customer-customerprofile-task-load-dbo-bhs-customer-customerprofile:effect:adventureworksrawvault-dbo-h-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-customer" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-customer-customerprofile:task:load-dbo-bhs-customer-customerprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-customer-customerprofile-task-load-dbo-bhs-customer-customerprofile:effect:adventureworksrawvault-dbo-l-customerstore" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customerstore" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-customer-customerprofile:task:load-dbo-bhs-customer-customerprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-salesorder-salesorderprofile-task-load-dbo-bhs-salesorder-salesorderprofile:effect:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderprofile" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-salesorder-salesorderprofile:task:load-dbo-bhs-salesorder-salesorderprofile">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-salesorder-salesorderprofile-task-load-dbo-bhs-salesorder-salesorderprofile:effect:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-salesorder-salesorderprofile:task:load-dbo-bhs-salesorder-salesorderprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-salesorder-salesorderprofile-task-load-dbo-bhs-salesorder-salesorderprofile:effect:adventureworksrawvault-dbo-h-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-salesorder-salesorderprofile:task:load-dbo-bhs-salesorder-salesorderprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-salesperson-salespersonprofile-task-load-dbo-bhs-salesperson-salespersonprofile:effect:adventureworksbusinessvault-dbo-bhs-salesperson-salespersonprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesperson-salespersonprofile" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-salesperson-salespersonprofile:task:load-dbo-bhs-salesperson-salespersonprofile">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-salesperson-salespersonprofile-task-load-dbo-bhs-salesperson-salespersonprofile:effect:adventureworksrawvault-dbo-h-salesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesperson" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-salesperson-salespersonprofile:task:load-dbo-bhs-salesperson-salespersonprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile-task-load-dbo-bhs-salesterritory-salesterritoryprofile:effect:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile:task:load-dbo-bhs-salesterritory-salesterritoryprofile">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile-task-load-dbo-bhs-salesterritory-salesterritoryprofile:effect:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile:task:load-dbo-bhs-salesterritory-salesterritoryprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile-task-load-dbo-bhs-salesterritory-salesterritoryprofile:effect:adventureworksrawvault-dbo-h-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesterritory" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-salesterritory-salesterritoryprofile:task:load-dbo-bhs-salesterritory-salesterritoryprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-store-storeprofile-task-load-dbo-bhs-store-storeprofile:effect:adventureworksbusinessvault-dbo-bhs-store-storeprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-store-storeprofile" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-store-storeprofile:task:load-dbo-bhs-store-storeprofile">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-store-storeprofile-task-load-dbo-bhs-store-storeprofile:effect:adventureworksrawvault-dbo-hs-store-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-store-store" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-store-storeprofile:task:load-dbo-bhs-store-storeprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bhs-store-storeprofile-task-load-dbo-bhs-store-storeprofile:effect:adventureworksrawvault-dbo-h-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-store" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bhs-store-storeprofile:task:load-dbo-bhs-store-storeprofile">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-customer-task-load-dbo-bh-customer:effect:adventureworksbusinessvault-dbo-bh-customer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-customer" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-customer:task:load-dbo-bh-customer">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-customer-task-load-dbo-bh-customer:effect:adventureworksrawvault-dbo-h-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-customer" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-customer:task:load-dbo-bh-customer">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-orderdate-task-load-dbo-bh-orderdate:effect:adventureworksbusinessvault-dbo-bh-orderdate" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-orderdate" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-orderdate:task:load-dbo-bh-orderdate">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-orderdate-task-load-dbo-bh-orderdate:effect:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-orderdate:task:load-dbo-bh-orderdate">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-salesorder-task-load-dbo-bh-salesorder:effect:adventureworksbusinessvault-dbo-bh-salesorder" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorder" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-salesorder:task:load-dbo-bh-salesorder">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-salesorder-task-load-dbo-bh-salesorder:effect:adventureworksrawvault-dbo-h-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-salesorder:task:load-dbo-bh-salesorder">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-salesorderline-task-load-dbo-bh-salesorderline:effect:adventureworksbusinessvault-dbo-bh-salesorderline" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorderline" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-salesorderline:task:load-dbo-bh-salesorderline">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-salesorderline-task-load-dbo-bh-salesorderline:effect:adventureworksrawvault-dbo-h-salesorderdetail" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderdetail" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-salesorderline:task:load-dbo-bh-salesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-salesperson-task-load-dbo-bh-salesperson:effect:adventureworksbusinessvault-dbo-bh-salesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesperson" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-salesperson:task:load-dbo-bh-salesperson">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-salesperson-task-load-dbo-bh-salesperson:effect:adventureworksrawvault-dbo-h-salesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesperson" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-salesperson:task:load-dbo-bh-salesperson">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-salesterritory-task-load-dbo-bh-salesterritory:effect:adventureworksbusinessvault-dbo-bh-salesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesterritory" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-salesterritory:task:load-dbo-bh-salesterritory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-salesterritory-task-load-dbo-bh-salesterritory:effect:adventureworksrawvault-dbo-h-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesterritory" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-salesterritory:task:load-dbo-bh-salesterritory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-store-task-load-dbo-bh-store:effect:adventureworksbusinessvault-dbo-bh-store" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-store" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-store:task:load-dbo-bh-store">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bh-store-task-load-dbo-bh-store:effect:adventureworksrawvault-dbo-h-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-store" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bh-store:task:load-dbo-bh-store">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures-task-load-dbo-bls-salesorderlineproduct-salesorderlinemeasures:effect:adventureworksbusinessvault-dbo-bls-salesorderlineproduct-salesorderlinemeasures" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bls-salesorderlineproduct-salesorderlinemeasures" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures:task:load-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures-task-load-dbo-bls-salesorderlineproduct-salesorderlinemeasures:effect:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures:task:load-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures-task-load-dbo-bls-salesorderlineproduct-salesorderlinemeasures:effect:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures:task:load-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures-task-load-dbo-bls-salesorderlineproduct-salesorderlinemeasures:effect:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures:task:load-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures-task-load-dbo-bls-salesorderlineproduct-salesorderlinemeasures:effect:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures:task:load-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures-task-load-dbo-bls-salesorderlineproduct-salesorderlinemeasures:effect:adventureworksrawvault-dbo-l-specialofferproductproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-specialofferproductproduct" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bls-salesorderlineproduct-salesorderlinemeasures:task:load-dbo-bls-salesorderlineproduct-salesorderlinemeasures">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesordercustomer-task-load-dbo-bl-salesordercustomer:effect:adventureworksbusinessvault-dbo-bl-salesordercustomer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordercustomer" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesordercustomer:task:load-dbo-bl-salesordercustomer">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesordercustomer-task-load-dbo-bl-salesordercustomer:effect:adventureworksrawvault-dbo-l-salesorderheadercustomer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadercustomer" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesordercustomer:task:load-dbo-bl-salesordercustomer">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderdate-task-load-dbo-bl-salesorderdate:effect:adventureworksbusinessvault-dbo-bl-salesorderdate" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderdate" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderdate:task:load-dbo-bl-salesorderdate">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderdate-task-load-dbo-bl-salesorderdate:effect:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderdate:task:load-dbo-bl-salesorderdate">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderdate-task-load-dbo-bl-salesorderdate:effect:adventureworksrawvault-dbo-h-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderdate:task:load-dbo-bl-salesorderdate">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineorder-task-load-dbo-bl-salesorderlineorder:effect:adventureworksbusinessvault-dbo-bl-salesorderlineorder" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlineorder" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineorder:task:load-dbo-bl-salesorderlineorder">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineorder-task-load-dbo-bl-salesorderlineorder:effect:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineorder:task:load-dbo-bl-salesorderlineorder">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineproduct-task-load-dbo-bl-salesorderlineproduct:effect:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineproduct:task:load-dbo-bl-salesorderlineproduct">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineproduct-task-load-dbo-bl-salesorderlineproduct:effect:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineproduct:task:load-dbo-bl-salesorderlineproduct">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineproduct-task-load-dbo-bl-salesorderlineproduct:effect:adventureworksrawvault-dbo-l-specialofferproductproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-specialofferproductproduct" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderlineproduct:task:load-dbo-bl-salesorderlineproduct">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesordersalesperson-task-load-dbo-bl-salesordersalesperson:effect:adventureworksbusinessvault-dbo-bl-salesordersalesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordersalesperson" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesordersalesperson:task:load-dbo-bl-salesordersalesperson">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesordersalesperson-task-load-dbo-bl-salesordersalesperson:effect:adventureworksrawvault-dbo-l-salesorderheadersalesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesperson" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesordersalesperson:task:load-dbo-bl-salesordersalesperson">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderstore-task-load-dbo-bl-salesorderstore:effect:adventureworksbusinessvault-dbo-bl-salesorderstore" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderstore" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderstore:task:load-dbo-bl-salesorderstore">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderstore-task-load-dbo-bl-salesorderstore:effect:adventureworksrawvault-dbo-l-customerstore" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customerstore" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderstore:task:load-dbo-bl-salesorderstore">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderstore-task-load-dbo-bl-salesorderstore:effect:adventureworksrawvault-dbo-l-salesorderheadercustomer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadercustomer" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderstore:task:load-dbo-bl-salesorderstore">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderterritory-task-load-dbo-bl-salesorderterritory:effect:adventureworksbusinessvault-dbo-bl-salesorderterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderterritory" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderterritory:task:load-dbo-bl-salesorderterritory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-bdv-sales-dbo-bl-salesorderterritory-task-load-dbo-bl-salesorderterritory:effect:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" TaskAccessProfileId="plan-default-pipeline-bdv-sales-dbo-bl-salesorderterritory:task:load-dbo-bl-salesorderterritory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimcustomerchannel-task-load-awbi-dimcustomerchannel:effect:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimcustomerchannel:task:load-awbi-dimcustomerchannel">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimcustomerchannel-task-load-awbi-dimcustomerchannel:effect:adventureworksbusinessvault-dbo-bh-customer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-customer" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimcustomerchannel:task:load-awbi-dimcustomerchannel">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimcustomerchannel-task-load-awbi-dimcustomerchannel:effect:adventureworksmetademo-awbi-dimcustomerchannel" DataObjectId="plan-default:object:adventureworksmetademo-awbi-dimcustomerchannel" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimcustomerchannel:task:load-awbi-dimcustomerchannel">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimorderdate-task-load-awbi-dimorderdate:effect:adventureworksbusinessvault-dbo-bh-orderdate" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-orderdate" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimorderdate:task:load-awbi-dimorderdate">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimorderdate-task-load-awbi-dimorderdate:effect:adventureworksmetademo-awbi-dimorderdate" DataObjectId="plan-default:object:adventureworksmetademo-awbi-dimorderdate" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimorderdate:task:load-awbi-dimorderdate">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimproduct-task-load-awbi-dimproduct:effect:adventureworksbusinessvault-dbo-bhs-product-productclassification" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-product-productclassification" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimproduct:task:load-awbi-dimproduct">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimproduct-task-load-awbi-dimproduct:effect:adventureworksbusinessvault-dbo-bh-product" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-product" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimproduct:task:load-awbi-dimproduct">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimproduct-task-load-awbi-dimproduct:effect:adventureworksmetademo-awbi-dimproduct" DataObjectId="plan-default:object:adventureworksmetademo-awbi-dimproduct" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimproduct:task:load-awbi-dimproduct">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimsalesterritory-task-load-awbi-dimsalesterritory:effect:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimsalesterritory:task:load-awbi-dimsalesterritory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimsalesterritory-task-load-awbi-dimsalesterritory:effect:adventureworksbusinessvault-dbo-bh-salesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesterritory" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimsalesterritory:task:load-awbi-dimsalesterritory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-dimsalesterritory-task-load-awbi-dimsalesterritory:effect:adventureworksmetademo-awbi-dimsalesterritory" DataObjectId="plan-default:object:adventureworksmetademo-awbi-dimsalesterritory" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-dimsalesterritory:task:load-awbi-dimsalesterritory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bhs-product-productclassification" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-product-productclassification" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderprofile" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bhs-salesperson-salespersonprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesperson-salespersonprofile" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bh-customer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-customer" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bh-orderdate" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-orderdate" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bh-product" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-product" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bh-salesorder" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorder" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bh-salesorderline" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorderline" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bh-salesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesperson" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bh-salesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesterritory" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bls-salesorderlineproduct-salesorderlinemeasures" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bls-salesorderlineproduct-salesorderlinemeasures" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bl-salesordercustomer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordercustomer" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bl-salesorderdate" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderdate" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bl-salesorderlineorder" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlineorder" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bl-salesordersalesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordersalesperson" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksbusinessvault-dbo-bl-salesorderterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderterritory" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-dw-mart-awbi-factsalesorderline-task-load-awbi-factsalesorderline:effect:adventureworksmetademo-awbi-factsalesorderline" DataObjectId="plan-default:object:adventureworksmetademo-awbi-factsalesorderline" TaskAccessProfileId="plan-default-pipeline-dw-mart-awbi-factsalesorderline:task:load-awbi-factsalesorderline">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-hs-productcategory-productcategory-task-load-dbo-hs-productcategory-productcategory:effect:adventureworks2022-production-productcategory" DataObjectId="plan-default:object:adventureworks2022-production-productcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-hs-productcategory-productcategory:task:load-dbo-hs-productcategory-productcategory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-hs-productcategory-productcategory-task-load-dbo-hs-productcategory-productcategory:effect:adventureworksrawvault-dbo-hs-productcategory-productcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-productcategory-productcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-hs-productcategory-productcategory:task:load-dbo-hs-productcategory-productcategory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-hs-productsubcategory-productsubcategory-task-load-dbo-hs-productsubcategory-productsubcategory:effect:adventureworks2022-production-productsubcategory" DataObjectId="plan-default:object:adventureworks2022-production-productsubcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-hs-productsubcategory-productsubcategory:task:load-dbo-hs-productsubcategory-productsubcategory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-hs-productsubcategory-productsubcategory-task-load-dbo-hs-productsubcategory-productsubcategory:effect:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-hs-productsubcategory-productsubcategory:task:load-dbo-hs-productsubcategory-productsubcategory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-hs-product-product-task-load-dbo-hs-product-product:effect:adventureworks2022-production-product" DataObjectId="plan-default:object:adventureworks2022-production-product" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-hs-product-product:task:load-dbo-hs-product-product">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-hs-product-product-task-load-dbo-hs-product-product:effect:adventureworksrawvault-dbo-hs-product-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-product-product" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-hs-product-product:task:load-dbo-hs-product-product">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-h-product-task-load-dbo-h-product:effect:adventureworks2022-production-product" DataObjectId="plan-default:object:adventureworks2022-production-product" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-h-product:task:load-dbo-h-product">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-h-product-task-load-dbo-h-product:effect:adventureworksrawvault-dbo-h-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-product" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-h-product:task:load-dbo-h-product">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-h-productcategory-task-load-dbo-h-productcategory:effect:adventureworks2022-production-productcategory" DataObjectId="plan-default:object:adventureworks2022-production-productcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-h-productcategory:task:load-dbo-h-productcategory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-h-productcategory-task-load-dbo-h-productcategory:effect:adventureworksrawvault-dbo-h-productcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-productcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-h-productcategory:task:load-dbo-h-productcategory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-h-productsubcategory-task-load-dbo-h-productsubcategory:effect:adventureworks2022-production-productsubcategory" DataObjectId="plan-default:object:adventureworks2022-production-productsubcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-h-productsubcategory:task:load-dbo-h-productsubcategory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-h-productsubcategory-task-load-dbo-h-productsubcategory:effect:adventureworksrawvault-dbo-h-productsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-productsubcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-h-productsubcategory:task:load-dbo-h-productsubcategory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-l-productproductsubcategory-task-load-dbo-l-productproductsubcategory:effect:adventureworks2022-production-product" DataObjectId="plan-default:object:adventureworks2022-production-product" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-l-productproductsubcategory:task:load-dbo-l-productproductsubcategory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-l-productproductsubcategory-task-load-dbo-l-productproductsubcategory:effect:adventureworksrawvault-dbo-l-productproductsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-productproductsubcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-l-productproductsubcategory:task:load-dbo-l-productproductsubcategory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-l-productsubcategoryproductcategory-task-load-dbo-l-productsubcategoryproductcategory:effect:adventureworks2022-production-productsubcategory" DataObjectId="plan-default:object:adventureworks2022-production-productsubcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-l-productsubcategoryproductcategory:task:load-dbo-l-productsubcategoryproductcategory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-product-dbo-l-productsubcategoryproductcategory-task-load-dbo-l-productsubcategoryproductcategory:effect:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" TaskAccessProfileId="plan-default-pipeline-rdv-product-dbo-l-productsubcategoryproductcategory:task:load-dbo-l-productsubcategoryproductcategory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-customer-customer-task-load-dbo-hs-customer-customer:effect:adventureworks2022-sales-customer" DataObjectId="plan-default:object:adventureworks2022-sales-customer" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-customer-customer:task:load-dbo-hs-customer-customer">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-customer-customer-task-load-dbo-hs-customer-customer:effect:adventureworksrawvault-dbo-hs-customer-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-customer-customer" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-customer-customer:task:load-dbo-hs-customer-customer">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-salesorderdetail-salesorderdetail-task-load-dbo-hs-salesorderdetail-salesorderdetail:effect:adventureworks2022-sales-salesorderdetail" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderdetail" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-salesorderdetail-salesorderdetail:task:load-dbo-hs-salesorderdetail-salesorderdetail">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-salesorderdetail-salesorderdetail-task-load-dbo-hs-salesorderdetail-salesorderdetail:effect:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-salesorderdetail-salesorderdetail:task:load-dbo-hs-salesorderdetail-salesorderdetail">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-salesorderheader-salesorderheader-task-load-dbo-hs-salesorderheader-salesorderheader:effect:adventureworks2022-sales-salesorderheader" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderheader" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-salesorderheader-salesorderheader:task:load-dbo-hs-salesorderheader-salesorderheader">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-salesorderheader-salesorderheader-task-load-dbo-hs-salesorderheader-salesorderheader:effect:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-salesorderheader-salesorderheader:task:load-dbo-hs-salesorderheader-salesorderheader">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-salesperson-salesperson-task-load-dbo-hs-salesperson-salesperson:effect:adventureworks2022-sales-salesperson" DataObjectId="plan-default:object:adventureworks2022-sales-salesperson" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-salesperson-salesperson:task:load-dbo-hs-salesperson-salesperson">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-salesperson-salesperson-task-load-dbo-hs-salesperson-salesperson:effect:adventureworksrawvault-dbo-hs-salesperson-salesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesperson-salesperson" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-salesperson-salesperson:task:load-dbo-hs-salesperson-salesperson">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-salesterritory-salesterritory-task-load-dbo-hs-salesterritory-salesterritory:effect:adventureworks2022-sales-salesterritory" DataObjectId="plan-default:object:adventureworks2022-sales-salesterritory" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-salesterritory-salesterritory:task:load-dbo-hs-salesterritory-salesterritory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-salesterritory-salesterritory-task-load-dbo-hs-salesterritory-salesterritory:effect:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-salesterritory-salesterritory:task:load-dbo-hs-salesterritory-salesterritory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-store-store-task-load-dbo-hs-store-store:effect:adventureworks2022-sales-store" DataObjectId="plan-default:object:adventureworks2022-sales-store" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-store-store:task:load-dbo-hs-store-store">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-hs-store-store-task-load-dbo-hs-store-store:effect:adventureworksrawvault-dbo-hs-store-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-store-store" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-hs-store-store:task:load-dbo-hs-store-store">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-customer-task-load-dbo-h-customer:effect:adventureworks2022-sales-customer" DataObjectId="plan-default:object:adventureworks2022-sales-customer" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-customer:task:load-dbo-h-customer">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-customer-task-load-dbo-h-customer:effect:adventureworksrawvault-dbo-h-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-customer" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-customer:task:load-dbo-h-customer">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-salesorderdetail-task-load-dbo-h-salesorderdetail:effect:adventureworks2022-sales-salesorderdetail" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderdetail" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-salesorderdetail:task:load-dbo-h-salesorderdetail">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-salesorderdetail-task-load-dbo-h-salesorderdetail:effect:adventureworksrawvault-dbo-h-salesorderdetail" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderdetail" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-salesorderdetail:task:load-dbo-h-salesorderdetail">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-salesorderheader-task-load-dbo-h-salesorderheader:effect:adventureworks2022-sales-salesorderheader" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderheader" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-salesorderheader:task:load-dbo-h-salesorderheader">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-salesorderheader-task-load-dbo-h-salesorderheader:effect:adventureworksrawvault-dbo-h-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderheader" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-salesorderheader:task:load-dbo-h-salesorderheader">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-salesperson-task-load-dbo-h-salesperson:effect:adventureworks2022-sales-salesperson" DataObjectId="plan-default:object:adventureworks2022-sales-salesperson" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-salesperson:task:load-dbo-h-salesperson">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-salesperson-task-load-dbo-h-salesperson:effect:adventureworksrawvault-dbo-h-salesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesperson" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-salesperson:task:load-dbo-h-salesperson">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-salesterritory-task-load-dbo-h-salesterritory:effect:adventureworks2022-sales-salesterritory" DataObjectId="plan-default:object:adventureworks2022-sales-salesterritory" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-salesterritory:task:load-dbo-h-salesterritory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-salesterritory-task-load-dbo-h-salesterritory:effect:adventureworksrawvault-dbo-h-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesterritory" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-salesterritory:task:load-dbo-h-salesterritory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-specialofferproduct-task-load-dbo-h-specialofferproduct:effect:adventureworks2022-sales-specialofferproduct" DataObjectId="plan-default:object:adventureworks2022-sales-specialofferproduct" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-specialofferproduct:task:load-dbo-h-specialofferproduct">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-specialofferproduct-task-load-dbo-h-specialofferproduct:effect:adventureworksrawvault-dbo-h-specialofferproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-specialofferproduct" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-specialofferproduct:task:load-dbo-h-specialofferproduct">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-store-task-load-dbo-h-store:effect:adventureworks2022-sales-store" DataObjectId="plan-default:object:adventureworks2022-sales-store" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-store:task:load-dbo-h-store">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-h-store-task-load-dbo-h-store:effect:adventureworksrawvault-dbo-h-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-store" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-h-store:task:load-dbo-h-store">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-customersalesterritory-task-load-dbo-l-customersalesterritory:effect:adventureworks2022-sales-customer" DataObjectId="plan-default:object:adventureworks2022-sales-customer" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-customersalesterritory:task:load-dbo-l-customersalesterritory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-customersalesterritory-task-load-dbo-l-customersalesterritory:effect:adventureworksrawvault-dbo-l-customersalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customersalesterritory" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-customersalesterritory:task:load-dbo-l-customersalesterritory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-customerstore-task-load-dbo-l-customerstore:effect:adventureworks2022-sales-customer" DataObjectId="plan-default:object:adventureworks2022-sales-customer" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-customerstore:task:load-dbo-l-customerstore">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-customerstore-task-load-dbo-l-customerstore:effect:adventureworksrawvault-dbo-l-customerstore" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customerstore" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-customerstore:task:load-dbo-l-customerstore">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderdetailsalesorderheader-task-load-dbo-l-salesorderdetailsalesorderheader:effect:adventureworks2022-sales-salesorderdetail" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderdetail" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderdetailsalesorderheader:task:load-dbo-l-salesorderdetailsalesorderheader">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderdetailsalesorderheader-task-load-dbo-l-salesorderdetailsalesorderheader:effect:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderdetailsalesorderheader:task:load-dbo-l-salesorderdetailsalesorderheader">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderdetailspecialofferproduct-task-load-dbo-l-salesorderdetailspecialofferproduct:effect:adventureworks2022-sales-salesorderdetail" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderdetail" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderdetailspecialofferproduct:task:load-dbo-l-salesorderdetailspecialofferproduct">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderdetailspecialofferproduct-task-load-dbo-l-salesorderdetailspecialofferproduct:effect:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderdetailspecialofferproduct:task:load-dbo-l-salesorderdetailspecialofferproduct">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadercustomer-task-load-dbo-l-salesorderheadercustomer:effect:adventureworks2022-sales-salesorderheader" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderheader" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadercustomer:task:load-dbo-l-salesorderheadercustomer">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadercustomer-task-load-dbo-l-salesorderheadercustomer:effect:adventureworksrawvault-dbo-l-salesorderheadercustomer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadercustomer" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadercustomer:task:load-dbo-l-salesorderheadercustomer">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadersalesperson-task-load-dbo-l-salesorderheadersalesperson:effect:adventureworks2022-sales-salesorderheader" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderheader" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadersalesperson:task:load-dbo-l-salesorderheadersalesperson">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadersalesperson-task-load-dbo-l-salesorderheadersalesperson:effect:adventureworksrawvault-dbo-l-salesorderheadersalesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesperson" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadersalesperson:task:load-dbo-l-salesorderheadersalesperson">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadersalesterritory-task-load-dbo-l-salesorderheadersalesterritory:effect:adventureworks2022-sales-salesorderheader" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderheader" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadersalesterritory:task:load-dbo-l-salesorderheadersalesterritory">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadersalesterritory-task-load-dbo-l-salesorderheadersalesterritory:effect:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-salesorderheadersalesterritory:task:load-dbo-l-salesorderheadersalesterritory">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-specialofferproductproduct-task-load-dbo-l-specialofferproductproduct:effect:adventureworks2022-sales-specialofferproduct" DataObjectId="plan-default:object:adventureworks2022-sales-specialofferproduct" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-specialofferproductproduct:task:load-dbo-l-specialofferproductproduct">
+      <AccessDirection>Read</AccessDirection>
+      <AccessPurpose>SourceInput</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>false</IsPublishedProducer>
+      <LockMode>SharedRead</LockMode>
+      <Reason>Source:Read</Reason>
+      <RequiresSynchronization>false</RequiresSynchronization>
+      <WriteEffect>None</WriteEffect>
+    </TaskObjectEffect>
+    <TaskObjectEffect Id="plan-default-pipeline-rdv-sales-dbo-l-specialofferproductproduct-task-load-dbo-l-specialofferproductproduct:effect:adventureworksrawvault-dbo-l-specialofferproductproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-specialofferproductproduct" TaskAccessProfileId="plan-default-pipeline-rdv-sales-dbo-l-specialofferproductproduct:task:load-dbo-l-specialofferproductproduct">
+      <AccessDirection>Write</AccessDirection>
+      <AccessPurpose>TargetLoad</AccessPurpose>
+      <CreatesDataDependency>true</CreatesDataDependency>
+      <IsPublishedProducer>true</IsPublishedProducer>
+      <LockMode>AppendWrite</LockMode>
+      <Reason>InsertRowsTarget:Write</Reason>
+      <RequiresSynchronization>true</RequiresSynchronization>
+      <WriteEffect>Append</WriteEffect>
+    </TaskObjectEffect>
+  </TaskObjectEffectList>
+</MetaOrchestration>

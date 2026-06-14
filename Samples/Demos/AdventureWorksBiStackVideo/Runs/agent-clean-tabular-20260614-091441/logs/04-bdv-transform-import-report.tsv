@@ -1,0 +1,3 @@
+Status	Index	Total	Path	Target	ScriptName	FailureKind	ErrorSummary	Line	Column	Message
+Success	1	2	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\Transforms\sql\001_load_BH_Product.sql	dbo.BH_Product	dbo.v_load_BH_Product					
+Success	2	2	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\Transforms\sql\002_load_BHS_Product_ProductClassification.sql	dbo.BHS_Product_ProductClassification	dbo.v_load_BHS_Product_ProductClassification					

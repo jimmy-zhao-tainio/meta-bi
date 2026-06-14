@@ -2953,6 +2953,9 @@ namespace MetaDataQuality
                     case "FirstExpressionId":
                         row.FirstExpressionId = reader.ReadElementContentAsString();
                         break;
+                    case "FirstJoinInputColumnName":
+                        row.FirstJoinInputColumnName = reader.ReadElementContentAsString();
+                        break;
                     case "Ordinal":
                         row.Ordinal = reader.ReadElementContentAsString();
                         break;
@@ -2961,6 +2964,9 @@ namespace MetaDataQuality
                         break;
                     case "SecondExpressionId":
                         row.SecondExpressionId = reader.ReadElementContentAsString();
+                        break;
+                    case "SecondJoinInputColumnName":
+                        row.SecondJoinInputColumnName = reader.ReadElementContentAsString();
                         break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'JoinPatternKeyPart'.");
@@ -3006,12 +3012,20 @@ namespace MetaDataQuality
                     AppendElement(builder, "FirstExpressionDisplay", row.FirstExpressionDisplay!, "      ");
                 }
                 AppendElement(builder, "FirstExpressionId", RequireText(row.FirstExpressionId, $"Entity 'JoinPatternKeyPart' row '{row.Id}' is missing required property 'FirstExpressionId'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.FirstJoinInputColumnName))
+                {
+                    AppendElement(builder, "FirstJoinInputColumnName", row.FirstJoinInputColumnName!, "      ");
+                }
                 AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'JoinPatternKeyPart' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 if (!string.IsNullOrWhiteSpace(row.SecondExpressionDisplay))
                 {
                     AppendElement(builder, "SecondExpressionDisplay", row.SecondExpressionDisplay!, "      ");
                 }
                 AppendElement(builder, "SecondExpressionId", RequireText(row.SecondExpressionId, $"Entity 'JoinPatternKeyPart' row '{row.Id}' is missing required property 'SecondExpressionId'."), "      ");
+                if (!string.IsNullOrWhiteSpace(row.SecondJoinInputColumnName))
+                {
+                    AppendElement(builder, "SecondJoinInputColumnName", row.SecondJoinInputColumnName!, "      ");
+                }
                 builder.Append("    </JoinPatternKeyPart>\n");
             }
             builder.Append("  </JoinPatternKeyPartList>\n");
@@ -5904,9 +5918,11 @@ namespace MetaDataQuality
                 "BooleanComparisonExpressionId",
                 "FirstExpressionDisplay",
                 "FirstExpressionId",
+                "FirstJoinInputColumnName",
                 "Ordinal",
                 "SecondExpressionDisplay",
                 "SecondExpressionId",
+                "SecondJoinInputColumnName",
                 "JoinPattern"))
             {
                 return true;

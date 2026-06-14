@@ -479,6 +479,8 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 SecondExpressionId = predicate.SecondExpressionId,
                 FirstExpressionDisplay = predicate.FirstExpressionDisplay,
                 SecondExpressionDisplay = predicate.SecondExpressionDisplay,
+                FirstJoinInputColumnName = predicate.FirstJoinInputColumnName,
+                SecondJoinInputColumnName = predicate.SecondJoinInputColumnName,
             });
         }
     }

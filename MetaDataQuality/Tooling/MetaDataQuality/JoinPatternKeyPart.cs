@@ -21,11 +21,15 @@ namespace MetaDataQuality
 
         public string FirstExpressionId { get; set; } = string.Empty;
 
+        public string? FirstJoinInputColumnName { get; set; }
+
         public string Ordinal { get; set; } = string.Empty;
 
         public string? SecondExpressionDisplay { get; set; }
 
         public string SecondExpressionId { get; set; } = string.Empty;
+
+        public string? SecondJoinInputColumnName { get; set; }
 
         public JoinPattern JoinPattern { get; set; } = null!;
 

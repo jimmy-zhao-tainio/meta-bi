@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <OutputRowsetList>
+    <OutputRowset Id="TransformScript:1:binding:final-rowset" RowsetId="QueryExpression:1:output-rowset" TransformBindingId="TransformScript:1:binding">
+    </OutputRowset>
+    <OutputRowset Id="TransformScript:2:binding:final-rowset" RowsetId="QueryExpression:2:output-rowset" TransformBindingId="TransformScript:2:binding">
+    </OutputRowset>
+    <OutputRowset Id="TransformScript:3:binding:final-rowset" RowsetId="QueryExpression:3:output-rowset" TransformBindingId="TransformScript:3:binding">
+    </OutputRowset>
+    <OutputRowset Id="TransformScript:4:binding:final-rowset" RowsetId="QueryExpression:4:output-rowset" TransformBindingId="TransformScript:4:binding">
+    </OutputRowset>
+    <OutputRowset Id="TransformScript:5:binding:final-rowset" RowsetId="QueryExpression:5:output-rowset" TransformBindingId="TransformScript:5:binding">
+    </OutputRowset>
+  </OutputRowsetList>
+</MetaTransformBinding>

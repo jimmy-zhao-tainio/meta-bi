@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <RelationshipList>
+    <Relationship Id="RelationshipFactCustomerChannel" FromAttributeId="FactSalesOrderLine_CustomerId" FromTableId="FactSalesOrderLine" ToAttributeId="DimCustomerChannel_CustomerId" ToTableId="DimCustomerChannel">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Customer Channel</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+    </Relationship>
+    <Relationship Id="RelationshipFactOrderDate" FromAttributeId="FactSalesOrderLine_OrderDate" FromTableId="FactSalesOrderLine" ToAttributeId="DimOrderDate_OrderDate" ToTableId="DimOrderDate">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Order Date</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+    </Relationship>
+    <Relationship Id="RelationshipFactProduct" FromAttributeId="FactSalesOrderLine_ProductId" FromTableId="FactSalesOrderLine" ToAttributeId="DimProduct_ProductId" ToTableId="DimProduct">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Product</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+    </Relationship>
+    <Relationship Id="RelationshipFactSalesTerritory" FromAttributeId="FactSalesOrderLine_TerritoryId" FromTableId="FactSalesOrderLine" ToAttributeId="DimSalesTerritory_TerritoryId" ToTableId="DimSalesTerritory">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Territory</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+    </Relationship>
+  </RelationshipList>
+</MetaAnalytics>

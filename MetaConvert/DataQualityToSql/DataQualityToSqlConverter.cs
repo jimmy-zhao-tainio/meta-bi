@@ -2079,6 +2079,13 @@ public sealed class DataQualityToSqlConverter
         var resolved = new List<JoinKeyPart>();
         foreach (var row in rows.OrderBy(static item => ParseOrdinalOrMax(item.Ordinal)))
         {
+            if (!string.IsNullOrWhiteSpace(row.FirstJoinInputColumnName)
+                && !string.IsNullOrWhiteSpace(row.SecondJoinInputColumnName))
+            {
+                resolved.Add(new JoinKeyPart(row.FirstJoinInputColumnName.Trim(), row.SecondJoinInputColumnName.Trim()));
+                continue;
+            }
+
             var firstExpression = string.IsNullOrWhiteSpace(row.FirstExpressionDisplay)
                 ? row.FirstExpressionId
                 : row.FirstExpressionDisplay;

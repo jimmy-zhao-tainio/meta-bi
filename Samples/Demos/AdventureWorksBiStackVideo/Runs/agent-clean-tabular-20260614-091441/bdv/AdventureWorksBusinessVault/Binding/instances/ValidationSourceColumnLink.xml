@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationSourceColumnLinkList>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:1" ColumnId="TableReference:1:source-column:1" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:HashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:2" ColumnId="TableReference:1:source-column:2" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:ProductID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:3" ColumnId="TableReference:1:source-column:3" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:4" ColumnId="TableReference:1:source-column:4" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:5" ColumnId="TableReference:1:source-column:5" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:6" ColumnId="TableReference:2:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:HashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:7" ColumnId="TableReference:2:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:ProductID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:8" ColumnId="TableReference:2:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:9" ColumnId="TableReference:2:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:10" ColumnId="TableReference:2:source-column:5" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:11" ColumnId="TableReference:3:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:12" ColumnId="TableReference:3:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:13" ColumnId="TableReference:3:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:14" ColumnId="TableReference:3:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:MakeFlag</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:15" ColumnId="TableReference:3:source-column:5" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:FinishedGoodsFlag</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:16" ColumnId="TableReference:3:source-column:6" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:Color</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:17" ColumnId="TableReference:3:source-column:7" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:SafetyStockLevel</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:18" ColumnId="TableReference:3:source-column:8" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:ReorderPoint</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:19" ColumnId="TableReference:3:source-column:9" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:StandardCost</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:20" ColumnId="TableReference:3:source-column:10" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:ListPrice</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:21" ColumnId="TableReference:3:source-column:11" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:Size</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:22" ColumnId="TableReference:3:source-column:12" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:Weight</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:23" ColumnId="TableReference:3:source-column:13" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:DaysToManufacture</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:24" ColumnId="TableReference:3:source-column:14" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:ProductLine</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:25" ColumnId="TableReference:3:source-column:15" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:Class</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:26" ColumnId="TableReference:3:source-column:16" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:Style</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:27" ColumnId="TableReference:3:source-column:17" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:SellStartDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:28" ColumnId="TableReference:3:source-column:18" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:SellEndDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:29" ColumnId="TableReference:3:source-column:19" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:DiscontinuedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:30" ColumnId="TableReference:3:source-column:20" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:31" ColumnId="TableReference:3:source-column:21" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:32" ColumnId="TableReference:3:source-column:22" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:HashDiff</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:33" ColumnId="TableReference:3:source-column:23" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:34" ColumnId="TableReference:3:source-column:24" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:3:column:35" ColumnId="TableReference:3:source-column:25" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:4:column:36" ColumnId="TableReference:5:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:field:HashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:4:column:37" ColumnId="TableReference:5:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:field:ProductHashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:4:column:38" ColumnId="TableReference:5:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:field:ProductSubcategoryHashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:4:column:39" ColumnId="TableReference:5:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:4:column:40" ColumnId="TableReference:5:source-column:5" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:4:column:41" ColumnId="TableReference:5:source-column:6" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:5:column:42" ColumnId="TableReference:7:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:HashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:5:column:43" ColumnId="TableReference:7:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:ProductSubcategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:5:column:44" ColumnId="TableReference:7:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:5:column:45" ColumnId="TableReference:7:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:5:column:46" ColumnId="TableReference:7:source-column:5" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:6:column:47" ColumnId="TableReference:9:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:6:column:48" ColumnId="TableReference:9:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:6:column:49" ColumnId="TableReference:9:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:6:column:50" ColumnId="TableReference:9:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:6:column:51" ColumnId="TableReference:9:source-column:5" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory:field:HashDiff</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:6:column:52" ColumnId="TableReference:9:source-column:6" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:6:column:53" ColumnId="TableReference:9:source-column:7" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:6:column:54" ColumnId="TableReference:9:source-column:8" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:7:column:55" ColumnId="TableReference:11:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:field:HashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:7:column:56" ColumnId="TableReference:11:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:field:ProductSubcategoryHashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:7:column:57" ColumnId="TableReference:11:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:field:ProductCategoryHashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:7:column:58" ColumnId="TableReference:11:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:7:column:59" ColumnId="TableReference:11:source-column:5" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:7:column:60" ColumnId="TableReference:11:source-column:6" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:8:column:61" ColumnId="TableReference:13:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:HashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:8:column:62" ColumnId="TableReference:13:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:ProductCategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:8:column:63" ColumnId="TableReference:13:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:8:column:64" ColumnId="TableReference:13:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:8:column:65" ColumnId="TableReference:13:source-column:5" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:9:column:66" ColumnId="TableReference:15:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:9">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:9:column:67" ColumnId="TableReference:15:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:9">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:9:column:68" ColumnId="TableReference:15:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:9">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:9:column:69" ColumnId="TableReference:15:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:9">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:9:column:70" ColumnId="TableReference:15:source-column:5" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:9">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory:field:HashDiff</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:9:column:71" ColumnId="TableReference:15:source-column:6" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:9">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:9:column:72" ColumnId="TableReference:15:source-column:7" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:9">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:9:column:73" ColumnId="TableReference:15:source-column:8" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:9">
+      <MetaSchemaFieldId>source:AdventureWorksRawVault:field:sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory:field:AuditId</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+  </ValidationSourceColumnLinkList>
+</MetaTransformBinding>

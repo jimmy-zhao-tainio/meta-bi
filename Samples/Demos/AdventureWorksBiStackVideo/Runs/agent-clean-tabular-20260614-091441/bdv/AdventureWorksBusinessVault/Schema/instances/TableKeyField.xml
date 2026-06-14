@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableKeyFieldList>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:key:PK_BH_Customer:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:key:PK_BH_Customer">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_OrderDate:key:PK_BH_OrderDate:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_OrderDate:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_OrderDate:key:PK_BH_OrderDate">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:key:PK_BH_Product:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:key:PK_BH_Product">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:key:PK_BH_SalesOrder:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:key:PK_BH_SalesOrder">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:key:PK_BH_SalesOrderLine:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:key:PK_BH_SalesOrderLine">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:key:PK_BH_SalesPerson:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:key:PK_BH_SalesPerson">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:key:PK_BH_SalesTerritory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:key:PK_BH_SalesTerritory">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:key:PK_BH_Store:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:key:PK_BH_Store">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:key:PK_BL_SalesOrderCustomer:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:key:PK_BL_SalesOrderCustomer">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:key:PK_BL_SalesOrderDate:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:key:PK_BL_SalesOrderDate">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:key:PK_BL_SalesOrderLineOrder:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:key:PK_BL_SalesOrderLineOrder">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:key:PK_BL_SalesOrderLineProduct:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:key:PK_BL_SalesOrderLineProduct">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:key:PK_BL_SalesOrderSalesPerson:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:key:PK_BL_SalesOrderSalesPerson">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:key:PK_BL_SalesOrderStore:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:key:PK_BL_SalesOrderStore">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:key:PK_BL_SalesOrderTerritory:field:1" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:field:HashKey" TableKeyId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:key:PK_BL_SalesOrderTerritory">
+      <FieldName>HashKey</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+  </TableKeyFieldList>
+</MetaSchema>

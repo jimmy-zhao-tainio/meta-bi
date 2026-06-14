@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnLinkList>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:1" ColumnId="SelectElement:1:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:2" ColumnId="SelectElement:2:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:ProductId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:3" ColumnId="SelectElement:3:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:4" ColumnId="SelectElement:4:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:5" ColumnId="SelectElement:5:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:6" ColumnId="SelectElement:6:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:7" ColumnId="SelectElement:7:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:8" ColumnId="SelectElement:8:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:ProductName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:9" ColumnId="SelectElement:9:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:ProductCategory</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:10" ColumnId="SelectElement:10:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:ProductSubcategory</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:11" ColumnId="SelectElement:11:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:HashDiff</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:12" ColumnId="SelectElement:12:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:13" ColumnId="SelectElement:13:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:14" ColumnId="SelectElement:14:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+  </ValidationTargetColumnLinkList>
+</MetaTransformBinding>

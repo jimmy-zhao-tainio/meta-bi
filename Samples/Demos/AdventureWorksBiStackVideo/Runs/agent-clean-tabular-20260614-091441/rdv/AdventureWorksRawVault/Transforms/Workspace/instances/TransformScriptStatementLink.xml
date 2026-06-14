@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptStatementLinkList>
+    <TransformScriptStatementLink Id="TransformScriptStatementLink:1" TransformScriptId="TransformScript:1" TSqlStatementId="TSqlStatement:1">
+    </TransformScriptStatementLink>
+    <TransformScriptStatementLink Id="TransformScriptStatementLink:2" TransformScriptId="TransformScript:2" TSqlStatementId="TSqlStatement:2">
+    </TransformScriptStatementLink>
+    <TransformScriptStatementLink Id="TransformScriptStatementLink:3" TransformScriptId="TransformScript:3" TSqlStatementId="TSqlStatement:3">
+    </TransformScriptStatementLink>
+    <TransformScriptStatementLink Id="TransformScriptStatementLink:4" TransformScriptId="TransformScript:4" TSqlStatementId="TSqlStatement:4">
+    </TransformScriptStatementLink>
+    <TransformScriptStatementLink Id="TransformScriptStatementLink:5" TransformScriptId="TransformScript:5" TSqlStatementId="TSqlStatement:5">
+    </TransformScriptStatementLink>
+    <TransformScriptStatementLink Id="TransformScriptStatementLink:6" TransformScriptId="TransformScript:6" TSqlStatementId="TSqlStatement:6">
+    </TransformScriptStatementLink>
+    <TransformScriptStatementLink Id="TransformScriptStatementLink:7" TransformScriptId="TransformScript:7" TSqlStatementId="TSqlStatement:7">
+    </TransformScriptStatementLink>
+    <TransformScriptStatementLink Id="TransformScriptStatementLink:8" TransformScriptId="TransformScript:8" TSqlStatementId="TSqlStatement:8">
+    </TransformScriptStatementLink>
+  </TransformScriptStatementLinkList>
+</MetaTransformScript>

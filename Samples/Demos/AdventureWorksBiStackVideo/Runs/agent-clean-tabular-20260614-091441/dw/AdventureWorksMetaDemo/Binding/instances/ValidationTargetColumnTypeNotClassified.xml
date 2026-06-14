@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnTypeNotClassifiedList>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:2:binding:validation:target:2:column:7:type-not-classified" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:7">
+      <TargetMetaDataTypeId>sqlserver:type:int</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:2:binding:validation:target:2:column:8:type-not-classified" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:8">
+      <TargetMetaDataTypeId>sqlserver:type:int</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:2:binding:validation:target:2:column:9:type-not-classified" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:9">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:5:binding:validation:target:5:column:17:type-not-classified" ValidationTargetColumnLinkId="TransformScript:5:binding:validation:target:5:column:17">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:5:binding:validation:target:5:column:36:type-not-classified" ValidationTargetColumnLinkId="TransformScript:5:binding:validation:target:5:column:36">
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+  </ValidationTargetColumnTypeNotClassifiedList>
+</MetaTransformBinding>

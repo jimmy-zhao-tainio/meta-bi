@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SqlDataTypeReferenceList>
+    <SqlDataTypeReference Id="SqlDataTypeReference:1" ParameterizedDataTypeReferenceId="ParameterizedDataTypeReference:1">
+      <SqlDataTypeOption>NVarChar</SqlDataTypeOption>
+    </SqlDataTypeReference>
+  </SqlDataTypeReferenceList>
+</MetaTransformScript>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <WhenClauseList>
+    <WhenClause Id="WhenClause:1">
+    </WhenClause>
+    <WhenClause Id="WhenClause:2">
+    </WhenClause>
+    <WhenClause Id="WhenClause:3">
+    </WhenClause>
+    <WhenClause Id="WhenClause:4">
+    </WhenClause>
+    <WhenClause Id="WhenClause:5">
+    </WhenClause>
+    <WhenClause Id="WhenClause:6">
+    </WhenClause>
+  </WhenClauseList>
+</MetaTransformScript>

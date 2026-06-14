@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptObjectIdentifierLinkList>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:1" IdentifierId="Identifier:2" TransformScriptId="TransformScript:1">
+    </TransformScriptObjectIdentifierLink>
+    <TransformScriptObjectIdentifierLink Id="TransformScriptObjectIdentifierLink:2" IdentifierId="Identifier:19" TransformScriptId="TransformScript:2">
+    </TransformScriptObjectIdentifierLink>
+  </TransformScriptObjectIdentifierLinkList>
+</MetaTransformScript>

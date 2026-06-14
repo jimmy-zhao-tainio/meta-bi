@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnTypeNotClassifiedList>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:1:binding:validation:target:1:column:1:type-not-classified" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:1">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:1:binding:validation:target:1:column:3:type-not-classified" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:3">
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:1:binding:validation:target:1:column:4:type-not-classified" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:4">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:1:binding:validation:target:1:column:5:type-not-classified" ValidationTargetColumnLinkId="TransformScript:1:binding:validation:target:1:column:5">
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:2:binding:validation:target:2:column:6:type-not-classified" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:6">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:2:binding:validation:target:2:column:10:type-not-classified" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:10">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:2:binding:validation:target:2:column:11:type-not-classified" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:11">
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:2:binding:validation:target:2:column:12:type-not-classified" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:12">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:2:binding:validation:target:2:column:13:type-not-classified" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:2:column:13">
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:3:binding:validation:target:3:column:14:type-not-classified" ValidationTargetColumnLinkId="TransformScript:3:binding:validation:target:3:column:14">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:3:binding:validation:target:3:column:16:type-not-classified" ValidationTargetColumnLinkId="TransformScript:3:binding:validation:target:3:column:16">
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:3:binding:validation:target:3:column:17:type-not-classified" ValidationTargetColumnLinkId="TransformScript:3:binding:validation:target:3:column:17">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:3:binding:validation:target:3:column:18:type-not-classified" ValidationTargetColumnLinkId="TransformScript:3:binding:validation:target:3:column:18">
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:4:binding:validation:target:4:column:19:type-not-classified" ValidationTargetColumnLinkId="TransformScript:4:binding:validation:target:4:column:19">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:4:binding:validation:target:4:column:23:type-not-classified" ValidationTargetColumnLinkId="TransformScript:4:binding:validation:target:4:column:23">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:4:binding:validation:target:4:column:24:type-not-classified" ValidationTargetColumnLinkId="TransformScript:4:binding:validation:target:4:column:24">
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:4:binding:validation:target:4:column:25:type-not-classified" ValidationTargetColumnLinkId="TransformScript:4:binding:validation:target:4:column:25">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:4:binding:validation:target:4:column:26:type-not-classified" ValidationTargetColumnLinkId="TransformScript:4:binding:validation:target:4:column:26">
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:5:binding:validation:target:5:column:27:type-not-classified" ValidationTargetColumnLinkId="TransformScript:5:binding:validation:target:5:column:27">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:5:binding:validation:target:5:column:29:type-not-classified" ValidationTargetColumnLinkId="TransformScript:5:binding:validation:target:5:column:29">
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:5:binding:validation:target:5:column:30:type-not-classified" ValidationTargetColumnLinkId="TransformScript:5:binding:validation:target:5:column:30">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:5:binding:validation:target:5:column:31:type-not-classified" ValidationTargetColumnLinkId="TransformScript:5:binding:validation:target:5:column:31">
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:6:binding:validation:target:6:column:32:type-not-classified" ValidationTargetColumnLinkId="TransformScript:6:binding:validation:target:6:column:32">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:6:binding:validation:target:6:column:53:type-not-classified" ValidationTargetColumnLinkId="TransformScript:6:binding:validation:target:6:column:53">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:6:binding:validation:target:6:column:54:type-not-classified" ValidationTargetColumnLinkId="TransformScript:6:binding:validation:target:6:column:54">
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:6:binding:validation:target:6:column:55:type-not-classified" ValidationTargetColumnLinkId="TransformScript:6:binding:validation:target:6:column:55">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:6:binding:validation:target:6:column:56:type-not-classified" ValidationTargetColumnLinkId="TransformScript:6:binding:validation:target:6:column:56">
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:7:binding:validation:target:7:column:57:type-not-classified" ValidationTargetColumnLinkId="TransformScript:7:binding:validation:target:7:column:57">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:7:binding:validation:target:7:column:58:type-not-classified" ValidationTargetColumnLinkId="TransformScript:7:binding:validation:target:7:column:58">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:7:binding:validation:target:7:column:59:type-not-classified" ValidationTargetColumnLinkId="TransformScript:7:binding:validation:target:7:column:59">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:7:binding:validation:target:7:column:60:type-not-classified" ValidationTargetColumnLinkId="TransformScript:7:binding:validation:target:7:column:60">
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:7:binding:validation:target:7:column:61:type-not-classified" ValidationTargetColumnLinkId="TransformScript:7:binding:validation:target:7:column:61">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:7:binding:validation:target:7:column:62:type-not-classified" ValidationTargetColumnLinkId="TransformScript:7:binding:validation:target:7:column:62">
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:8:binding:validation:target:8:column:63:type-not-classified" ValidationTargetColumnLinkId="TransformScript:8:binding:validation:target:8:column:63">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:8:binding:validation:target:8:column:64:type-not-classified" ValidationTargetColumnLinkId="TransformScript:8:binding:validation:target:8:column:64">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:8:binding:validation:target:8:column:65:type-not-classified" ValidationTargetColumnLinkId="TransformScript:8:binding:validation:target:8:column:65">
+      <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:8:binding:validation:target:8:column:66:type-not-classified" ValidationTargetColumnLinkId="TransformScript:8:binding:validation:target:8:column:66">
+      <TargetMetaDataTypeId>sqlserver:type:datetime2</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:8:binding:validation:target:8:column:67:type-not-classified" ValidationTargetColumnLinkId="TransformScript:8:binding:validation:target:8:column:67">
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+    <ValidationTargetColumnTypeNotClassified Id="TransformScript:8:binding:validation:target:8:column:68:type-not-classified" ValidationTargetColumnLinkId="TransformScript:8:binding:validation:target:8:column:68">
+      <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeNotClassified>
+  </ValidationTargetColumnTypeNotClassifiedList>
+</MetaTransformBinding>

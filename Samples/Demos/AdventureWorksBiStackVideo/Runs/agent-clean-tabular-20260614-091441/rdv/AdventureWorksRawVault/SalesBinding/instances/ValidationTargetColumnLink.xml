@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnLinkList>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:1" ColumnId="SelectElement:1:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:2" ColumnId="SelectElement:2:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:CustomerID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:3" ColumnId="SelectElement:3:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:4" ColumnId="SelectElement:4:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:5" ColumnId="SelectElement:5:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:6" ColumnId="SelectElement:6:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:7" ColumnId="SelectElement:7:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer:field:AccountNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:8" ColumnId="SelectElement:8:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer:field:rowguid</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:9" ColumnId="SelectElement:9:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:10" ColumnId="SelectElement:10:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer:field:HashDiff</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:11" ColumnId="SelectElement:11:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:12" ColumnId="SelectElement:12:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:13" ColumnId="SelectElement:13:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:14" ColumnId="SelectElement:14:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:15" ColumnId="SelectElement:15:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:field:BusinessEntityID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:16" ColumnId="SelectElement:16:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:17" ColumnId="SelectElement:17:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:18" ColumnId="SelectElement:18:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:19" ColumnId="SelectElement:19:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:20" ColumnId="SelectElement:20:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:Name</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:21" ColumnId="SelectElement:21:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:Demographics</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:22" ColumnId="SelectElement:22:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:rowguid</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:23" ColumnId="SelectElement:23:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:24" ColumnId="SelectElement:24:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:HashDiff</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:25" ColumnId="SelectElement:25:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:26" ColumnId="SelectElement:26:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:27" ColumnId="SelectElement:27:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:28" ColumnId="SelectElement:28:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:29" ColumnId="SelectElement:29:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:BusinessEntityID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:30" ColumnId="SelectElement:30:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:31" ColumnId="SelectElement:31:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:32" ColumnId="SelectElement:32:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:33" ColumnId="SelectElement:33:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:34" ColumnId="SelectElement:34:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:SalesQuota</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:35" ColumnId="SelectElement:35:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:Bonus</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:36" ColumnId="SelectElement:36:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:CommissionPct</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:37" ColumnId="SelectElement:37:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:SalesYTD</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:38" ColumnId="SelectElement:38:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:SalesLastYear</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:39" ColumnId="SelectElement:39:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:rowguid</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:40" ColumnId="SelectElement:40:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:41" ColumnId="SelectElement:41:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:HashDiff</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:42" ColumnId="SelectElement:42:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:43" ColumnId="SelectElement:43:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:6:binding:validation:target:6:column:44" ColumnId="SelectElement:44:output" ValidationTargetRowsetLinkId="TransformScript:6:binding:validation:target:6">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:7:column:45" ColumnId="SelectElement:45:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:7:column:46" ColumnId="SelectElement:46:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:field:TerritoryID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:7:column:47" ColumnId="SelectElement:47:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:7:column:48" ColumnId="SelectElement:48:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:7:binding:validation:target:7:column:49" ColumnId="SelectElement:49:output" ValidationTargetRowsetLinkId="TransformScript:7:binding:validation:target:7">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:50" ColumnId="SelectElement:50:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:51" ColumnId="SelectElement:51:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:Name</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:52" ColumnId="SelectElement:52:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:Group</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:53" ColumnId="SelectElement:53:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:SalesYTD</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:54" ColumnId="SelectElement:54:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:SalesLastYear</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:55" ColumnId="SelectElement:55:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:CostYTD</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:56" ColumnId="SelectElement:56:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:CostLastYear</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:57" ColumnId="SelectElement:57:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:rowguid</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:58" ColumnId="SelectElement:58:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:59" ColumnId="SelectElement:59:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:HashDiff</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:60" ColumnId="SelectElement:60:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:61" ColumnId="SelectElement:61:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:8:binding:validation:target:8:column:62" ColumnId="SelectElement:62:output" ValidationTargetRowsetLinkId="TransformScript:8:binding:validation:target:8">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:9:column:63" ColumnId="SelectElement:63:output" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:9:column:64" ColumnId="SelectElement:64:output" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:SalesOrderID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:9:column:65" ColumnId="SelectElement:65:output" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:9:column:66" ColumnId="SelectElement:66:output" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:9:binding:validation:target:9:column:67" ColumnId="SelectElement:67:output" ValidationTargetRowsetLinkId="TransformScript:9:binding:validation:target:9">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:68" ColumnId="SelectElement:68:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:69" ColumnId="SelectElement:69:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:RevisionNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:70" ColumnId="SelectElement:70:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:OrderDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:71" ColumnId="SelectElement:71:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:DueDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:72" ColumnId="SelectElement:72:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:ShipDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:73" ColumnId="SelectElement:73:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:Status</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:74" ColumnId="SelectElement:74:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:OnlineOrderFlag</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:75" ColumnId="SelectElement:75:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:SalesOrderNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:76" ColumnId="SelectElement:76:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:PurchaseOrderNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:77" ColumnId="SelectElement:77:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:AccountNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:78" ColumnId="SelectElement:78:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:CreditCardApprovalCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:79" ColumnId="SelectElement:79:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:SubTotal</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:80" ColumnId="SelectElement:80:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:TaxAmt</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:81" ColumnId="SelectElement:81:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:Freight</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:82" ColumnId="SelectElement:82:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:TotalDue</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:83" ColumnId="SelectElement:83:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:Comment</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:84" ColumnId="SelectElement:84:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:rowguid</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:85" ColumnId="SelectElement:85:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:86" ColumnId="SelectElement:86:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:HashDiff</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:87" ColumnId="SelectElement:87:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:88" ColumnId="SelectElement:88:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:10:binding:validation:target:10:column:89" ColumnId="SelectElement:89:output" ValidationTargetRowsetLinkId="TransformScript:10:binding:validation:target:10">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:11:column:90" ColumnId="SelectElement:90:output" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:11:column:91" ColumnId="SelectElement:91:output" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:SalesOrderID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:11:column:92" ColumnId="SelectElement:92:output" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:SalesOrderDetailID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:11:column:93" ColumnId="SelectElement:93:output" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:11:column:94" ColumnId="SelectElement:94:output" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:11:binding:validation:target:11:column:95" ColumnId="SelectElement:95:output" ValidationTargetRowsetLinkId="TransformScript:11:binding:validation:target:11">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:96" ColumnId="SelectElement:96:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:HubHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:97" ColumnId="SelectElement:97:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:CarrierTrackingNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:98" ColumnId="SelectElement:98:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:OrderQty</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:99" ColumnId="SelectElement:99:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:UnitPrice</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:100" ColumnId="SelectElement:100:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:UnitPriceDiscount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:101" ColumnId="SelectElement:101:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:LineTotal</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:102" ColumnId="SelectElement:102:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:rowguid</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:103" ColumnId="SelectElement:103:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:104" ColumnId="SelectElement:104:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:HashDiff</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:105" ColumnId="SelectElement:105:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:106" ColumnId="SelectElement:106:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:12:binding:validation:target:12:column:107" ColumnId="SelectElement:107:output" ValidationTargetRowsetLinkId="TransformScript:12:binding:validation:target:12">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:13:column:108" ColumnId="SelectElement:108:output" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:13:column:109" ColumnId="SelectElement:109:output" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:SpecialOfferID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:13:column:110" ColumnId="SelectElement:110:output" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:ProductID</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:13:column:111" ColumnId="SelectElement:111:output" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:13:column:112" ColumnId="SelectElement:112:output" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:13:binding:validation:target:13:column:113" ColumnId="SelectElement:113:output" ValidationTargetRowsetLinkId="TransformScript:13:binding:validation:target:13">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:14:column:114" ColumnId="SelectElement:114:output" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:14:column:115" ColumnId="SelectElement:115:output" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:field:CustomerHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:14:column:116" ColumnId="SelectElement:116:output" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:field:StoreHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:14:column:117" ColumnId="SelectElement:117:output" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:14:column:118" ColumnId="SelectElement:118:output" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:14:binding:validation:target:14:column:119" ColumnId="SelectElement:119:output" ValidationTargetRowsetLinkId="TransformScript:14:binding:validation:target:14">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:15:column:120" ColumnId="SelectElement:120:output" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:15:column:121" ColumnId="SelectElement:121:output" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:field:CustomerHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:15:column:122" ColumnId="SelectElement:122:output" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:field:SalesTerritoryHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:15:column:123" ColumnId="SelectElement:123:output" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:15:column:124" ColumnId="SelectElement:124:output" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:15:binding:validation:target:15:column:125" ColumnId="SelectElement:125:output" ValidationTargetRowsetLinkId="TransformScript:15:binding:validation:target:15">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:16:column:126" ColumnId="SelectElement:126:output" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:16:column:127" ColumnId="SelectElement:127:output" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:field:SalesOrderHeaderHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:16:column:128" ColumnId="SelectElement:128:output" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:field:CustomerHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:16:column:129" ColumnId="SelectElement:129:output" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:16:column:130" ColumnId="SelectElement:130:output" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:16:binding:validation:target:16:column:131" ColumnId="SelectElement:131:output" ValidationTargetRowsetLinkId="TransformScript:16:binding:validation:target:16">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:17:column:132" ColumnId="SelectElement:132:output" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:17:column:133" ColumnId="SelectElement:133:output" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:field:SalesOrderHeaderHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:17:column:134" ColumnId="SelectElement:134:output" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:field:SalesPersonHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:17:column:135" ColumnId="SelectElement:135:output" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:17:column:136" ColumnId="SelectElement:136:output" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:17:binding:validation:target:17:column:137" ColumnId="SelectElement:137:output" ValidationTargetRowsetLinkId="TransformScript:17:binding:validation:target:17">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:18:column:138" ColumnId="SelectElement:138:output" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:18:column:139" ColumnId="SelectElement:139:output" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:field:SalesOrderHeaderHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:18:column:140" ColumnId="SelectElement:140:output" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:field:SalesTerritoryHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:18:column:141" ColumnId="SelectElement:141:output" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:18:column:142" ColumnId="SelectElement:142:output" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:18:binding:validation:target:18:column:143" ColumnId="SelectElement:143:output" ValidationTargetRowsetLinkId="TransformScript:18:binding:validation:target:18">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:19:column:144" ColumnId="SelectElement:144:output" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:19:column:145" ColumnId="SelectElement:145:output" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:field:SalesOrderDetailHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:19:column:146" ColumnId="SelectElement:146:output" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:field:SalesOrderHeaderHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:19:column:147" ColumnId="SelectElement:147:output" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:19:column:148" ColumnId="SelectElement:148:output" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:19:binding:validation:target:19:column:149" ColumnId="SelectElement:149:output" ValidationTargetRowsetLinkId="TransformScript:19:binding:validation:target:19">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:20:column:150" ColumnId="SelectElement:150:output" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:20">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:20:column:151" ColumnId="SelectElement:151:output" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:20">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:field:SalesOrderDetailHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:20:column:152" ColumnId="SelectElement:152:output" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:20">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:field:SpecialOfferProductHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:20:column:153" ColumnId="SelectElement:153:output" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:20">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:20:column:154" ColumnId="SelectElement:154:output" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:20">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:20:binding:validation:target:20:column:155" ColumnId="SelectElement:155:output" ValidationTargetRowsetLinkId="TransformScript:20:binding:validation:target:20">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:21:binding:validation:target:21:column:156" ColumnId="SelectElement:156:output" ValidationTargetRowsetLinkId="TransformScript:21:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:field:HashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:21:binding:validation:target:21:column:157" ColumnId="SelectElement:157:output" ValidationTargetRowsetLinkId="TransformScript:21:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:field:SpecialOfferProductHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:21:binding:validation:target:21:column:158" ColumnId="SelectElement:158:output" ValidationTargetRowsetLinkId="TransformScript:21:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:field:ProductHashKey</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:21:binding:validation:target:21:column:159" ColumnId="SelectElement:159:output" ValidationTargetRowsetLinkId="TransformScript:21:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:field:LoadTimestamp</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:21:binding:validation:target:21:column:160" ColumnId="SelectElement:160:output" ValidationTargetRowsetLinkId="TransformScript:21:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:field:RecordSource</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:21:binding:validation:target:21:column:161" ColumnId="SelectElement:161:output" ValidationTargetRowsetLinkId="TransformScript:21:binding:validation:target:21">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:field:AuditId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+  </ValidationTargetColumnLinkList>
+</MetaTransformBinding>

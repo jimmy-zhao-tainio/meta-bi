@@ -67,6 +67,13 @@ internal static class CorpusObservationBuilder
         var leftToRightPairs = new List<(string LeftColumn, string RightColumn)>();
         foreach (var keyPart in keyParts.OrderBy(item => CorpusInferenceNormalization.ParseOrdinalOrMax(item.Ordinal)))
         {
+            if (!string.IsNullOrWhiteSpace(keyPart.FirstJoinInputColumnName)
+                && !string.IsNullOrWhiteSpace(keyPart.SecondJoinInputColumnName))
+            {
+                leftToRightPairs.Add((keyPart.FirstJoinInputColumnName.Trim(), keyPart.SecondJoinInputColumnName.Trim()));
+                continue;
+            }
+
             var leftExpression = string.IsNullOrWhiteSpace(keyPart.FirstExpressionDisplay)
                 ? keyPart.FirstExpressionId
                 : keyPart.FirstExpressionDisplay;

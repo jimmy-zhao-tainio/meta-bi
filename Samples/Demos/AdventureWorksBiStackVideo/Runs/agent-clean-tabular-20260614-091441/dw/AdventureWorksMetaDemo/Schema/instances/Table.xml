@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableList>
+    <Table Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel" SchemaId="sqlserver:AdventureWorksMetaDemo:schema:awbi">
+      <Name>DimCustomerChannel</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate" SchemaId="sqlserver:AdventureWorksMetaDemo:schema:awbi">
+      <Name>DimOrderDate</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct" SchemaId="sqlserver:AdventureWorksMetaDemo:schema:awbi">
+      <Name>DimProduct</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory" SchemaId="sqlserver:AdventureWorksMetaDemo:schema:awbi">
+      <Name>DimSalesTerritory</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+    <Table Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine" SchemaId="sqlserver:AdventureWorksMetaDemo:schema:awbi">
+      <Name>FactSalesOrderLine</Name>
+      <ObjectType>Table</ObjectType>
+    </Table>
+  </TableList>
+</MetaSchema>

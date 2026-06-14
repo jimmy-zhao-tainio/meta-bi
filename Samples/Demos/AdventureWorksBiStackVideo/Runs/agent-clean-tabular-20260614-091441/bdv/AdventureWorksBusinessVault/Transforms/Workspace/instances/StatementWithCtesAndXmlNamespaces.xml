@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <StatementWithCtesAndXmlNamespacesList>
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:1" TSqlStatementId="TSqlStatement:1">
+    </StatementWithCtesAndXmlNamespaces>
+    <StatementWithCtesAndXmlNamespaces Id="StatementWithCtesAndXmlNamespaces:2" TSqlStatementId="TSqlStatement:2">
+    </StatementWithCtesAndXmlNamespaces>
+  </StatementWithCtesAndXmlNamespacesList>
+</MetaTransformScript>

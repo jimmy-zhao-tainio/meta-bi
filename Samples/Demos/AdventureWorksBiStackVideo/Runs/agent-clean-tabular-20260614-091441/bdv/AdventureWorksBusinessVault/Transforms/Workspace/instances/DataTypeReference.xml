@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <DataTypeReferenceList>
+    <DataTypeReference Id="DataTypeReference:1">
+    </DataTypeReference>
+    <DataTypeReference Id="DataTypeReference:2">
+    </DataTypeReference>
+    <DataTypeReference Id="DataTypeReference:3">
+    </DataTypeReference>
+    <DataTypeReference Id="DataTypeReference:4">
+    </DataTypeReference>
+    <DataTypeReference Id="DataTypeReference:5">
+    </DataTypeReference>
+    <DataTypeReference Id="DataTypeReference:6">
+    </DataTypeReference>
+    <DataTypeReference Id="DataTypeReference:7">
+    </DataTypeReference>
+  </DataTypeReferenceList>
+</MetaTransformScript>

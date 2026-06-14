@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingList>
+    <TransformBinding Id="TransformScript:1:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:1</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_Customer</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:2:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:2</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_Customer_Customer</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:3:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:3</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_Store</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:4:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:4</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_Store_Store</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:5:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:5</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_SalesPerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:6:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:6</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_SalesPerson_SalesPerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:7:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:7</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_SalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:8:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:8</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_SalesTerritory_SalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:9:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:9</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_SalesOrderHeader</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:10:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:10</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_SalesOrderHeader_SalesOrderHeader</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:11:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:11</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_SalesOrderDetail</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:12:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:12</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_SalesOrderDetail_SalesOrderDetail</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:13:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:13</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_SpecialOfferProduct</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:14:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:14</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_CustomerStore</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:15:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:15</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_CustomerSalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:16:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:16</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_SalesOrderHeaderCustomer</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:17:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:17</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_SalesOrderHeaderSalesPerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:18:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:18</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_SalesOrderHeaderSalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:19:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:19</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_SalesOrderDetailSalesOrderHeader</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:20:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:20</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_SalesOrderDetailSpecialOfferProduct</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:21:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:21</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_SpecialOfferProductProduct</TransformScriptName>
+    </TransformBinding>
+  </TransformBindingList>
+</MetaTransformBinding>

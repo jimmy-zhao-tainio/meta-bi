@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <CorpusColumnEquivalenceList>
+    <CorpusColumnEquivalence Id="CorpusColumnEquivalence.1">
+      <CanonicalSideAColumnName>adventureworksbusinessvault.dbo.bhs_customer_customerprofile.hubhashkey</CanonicalSideAColumnName>
+      <CanonicalSideBColumnName>adventureworksbusinessvault.dbo.bh_customer.hashkey</CanonicalSideBColumnName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_customer_customerprofile.hubhashkey|adventureworksbusinessvault.dbo.bh_customer.hashkey</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusColumnEquivalence>
+    <CorpusColumnEquivalence Id="CorpusColumnEquivalence.2">
+      <CanonicalSideAColumnName>adventureworksbusinessvault.dbo.bhs_product_productclassification.hubhashkey</CanonicalSideAColumnName>
+      <CanonicalSideBColumnName>adventureworksbusinessvault.dbo.bh_product.hashkey</CanonicalSideBColumnName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_product_productclassification.hubhashkey|adventureworksbusinessvault.dbo.bh_product.hashkey</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusColumnEquivalence>
+    <CorpusColumnEquivalence Id="CorpusColumnEquivalence.3">
+      <CanonicalSideAColumnName>adventureworksbusinessvault.dbo.bhs_salesterritory_salesterritoryprofile.hubhashkey</CanonicalSideAColumnName>
+      <CanonicalSideBColumnName>adventureworksbusinessvault.dbo.bh_salesterritory.hashkey</CanonicalSideBColumnName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_salesterritory_salesterritoryprofile.hubhashkey|adventureworksbusinessvault.dbo.bh_salesterritory.hashkey</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusColumnEquivalence>
+    <CorpusColumnEquivalence Id="CorpusColumnEquivalence.4">
+      <CanonicalSideAColumnName>adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures.linkhashkey</CanonicalSideAColumnName>
+      <CanonicalSideBColumnName>adventureworksbusinessvault.dbo.bl_salesorderlineproduct.hashkey</CanonicalSideBColumnName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bls_salesorderlineproduct_salesorderlinemeasures.linkhashkey|adventureworksbusinessvault.dbo.bl_salesorderlineproduct.hashkey</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusColumnEquivalence>
+  </CorpusColumnEquivalenceList>
+</MetaDataQuality>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <FunctionCallFunctionNameLinkList>
+    <FunctionCallFunctionNameLink Id="FunctionCallFunctionNameLink:1" FunctionCallId="FunctionCall:1" IdentifierId="Identifier:48">
+    </FunctionCallFunctionNameLink>
+    <FunctionCallFunctionNameLink Id="FunctionCallFunctionNameLink:2" FunctionCallId="FunctionCall:2" IdentifierId="Identifier:49">
+    </FunctionCallFunctionNameLink>
+  </FunctionCallFunctionNameLinkList>
+</MetaTransformScript>

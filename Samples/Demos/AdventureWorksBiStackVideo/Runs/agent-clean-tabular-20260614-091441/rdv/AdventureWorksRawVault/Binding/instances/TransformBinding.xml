@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingList>
+    <TransformBinding Id="TransformScript:1:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:1</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_ProductCategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:2:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:2</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_ProductCategory_ProductCategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:3:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:3</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_ProductSubcategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:4:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:4</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_ProductSubcategory_ProductSubcategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:5:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:5</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_H_Product</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:6:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:6</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_HS_Product_Product</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:7:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:7</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_ProductSubcategoryProductCategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:8:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:8</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_L_ProductProductSubcategory</TransformScriptName>
+    </TransformBinding>
+  </TransformBindingList>
+</MetaTransformBinding>

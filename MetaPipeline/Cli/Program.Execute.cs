@@ -61,9 +61,7 @@ internal static partial class Program
             plan = new MetaPipeline.MetaPipelineModeledExecutionResolver().Resolve(
                 new MetaPipeline.MetaPipelineModeledExecutionRequest(
                     parse.PipelineWorkspacePath,
-                    parse.PipelineName,
-                    parse.TransformWorkspacePath,
-                    parse.BindingWorkspacePath));
+                    parse.PipelineName));
 
             if (operationalDb is not null && operationalRunId is Guid startedRunId)
             {
@@ -322,9 +320,7 @@ internal static partial class Program
             plan = new MetaPipeline.MetaPipelineModeledExecutionResolver().Resolve(
                 new MetaPipeline.MetaPipelineModeledExecutionRequest(
                     parse.PipelineWorkspacePath,
-                    parse.PipelineName,
-                    parse.TransformWorkspacePath,
-                    parse.BindingWorkspacePath));
+                    parse.PipelineName));
             ValidateStartPipelineCommand(startCommand, plan);
 
             if (operationalDb is not null && operationalRunId is Guid startedRunId)
@@ -467,9 +463,7 @@ internal static partial class Program
                 new MetaPipeline.MetaPipelineModeledExecutionStepRequest(
                     parse.PipelineWorkspacePath,
                     parse.PipelineName,
-                    parse.StepName,
-                    parse.TransformWorkspacePath,
-                    parse.BindingWorkspacePath));
+                    parse.StepName));
 
             if (operationalDb is not null && operationalRunId is Guid startedRunId)
             {
@@ -1194,8 +1188,10 @@ internal static partial class Program
 
         return await new MetaPipeline.MetaPipelineSqlServerExecutionService().ExecuteAsync(
             new MetaPipeline.MetaPipelineSqlServerExecutionRequest(
-                plan.TransformWorkspacePath,
-                plan.BindingWorkspacePath,
+                step.TransformWorkspacePath
+                ?? throw new MetaPipeline.MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name TransformWorkspacePath."),
+                step.BindingWorkspacePath
+                ?? throw new MetaPipeline.MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name BindingWorkspacePath."),
                 executionConnectionString,
                 targetConnectionString,
                 step.TransformScriptId
@@ -1488,20 +1484,32 @@ internal static partial class Program
                 plan.PipelineWorkspacePath),
         };
 
-        if (!string.IsNullOrWhiteSpace(plan.TransformWorkspacePath))
+        var transformWorkspacePaths = plan.Steps
+            .Select(static step => step.TransformWorkspacePath)
+            .Where(static path => !string.IsNullOrWhiteSpace(path))
+            .Select(static path => path!)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        for (var index = 0; index < transformWorkspacePaths.Length; index++)
         {
             fingerprints.Add(service.CreateWorkspaceFingerprint(
                 "TransformWorkspace",
-                "all",
-                plan.TransformWorkspacePath));
+                index.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                transformWorkspacePaths[index]));
         }
 
-        if (!string.IsNullOrWhiteSpace(plan.BindingWorkspacePath))
+        var bindingWorkspacePaths = plan.Steps
+            .Select(static step => step.BindingWorkspacePath)
+            .Where(static path => !string.IsNullOrWhiteSpace(path))
+            .Select(static path => path!)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        for (var index = 0; index < bindingWorkspacePaths.Length; index++)
         {
             fingerprints.Add(service.CreateWorkspaceFingerprint(
                 "BindingWorkspace",
-                "all",
-                plan.BindingWorkspacePath));
+                index.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                bindingWorkspacePaths[index]));
         }
 
         foreach (var step in plan.Steps)
@@ -1514,13 +1522,15 @@ internal static partial class Program
             fingerprints.Add(service.CreateWorkspaceFingerprint(
                 "TransformScript",
                 step.TransformScriptId ?? string.Empty,
-                plan.TransformWorkspacePath,
+                step.TransformWorkspacePath
+                ?? throw new MetaPipeline.MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name TransformWorkspacePath."),
                 step.TaskName,
                 "TransformExecution"));
             fingerprints.Add(service.CreateWorkspaceFingerprint(
                 "TransformBinding",
                 step.TransformBindingId ?? string.Empty,
-                plan.BindingWorkspacePath,
+                step.BindingWorkspacePath
+                ?? throw new MetaPipeline.MetaPipelineConfigurationException($"Transform task '{step.TaskName}' must name BindingWorkspacePath."),
                 step.TaskName,
                 "TransformExecution"));
 

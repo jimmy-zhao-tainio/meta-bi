@@ -1,0 +1,15 @@
+Clean run completed through SourceDBs -> RDV -> BDV -> DW/Mart -> Tabular.
+
+Source schema was extracted from AdventureWorks2022.
+RDV and BDV were created and loaded before the DW/mart.
+DW/mart persisted target tables were loaded from BDV-backed transforms.
+DQ candidates were generated from modeled transform structure and binding evidence, promoted, converted to SQL, and deployed.
+MetaPipeline contains 56 transform-backed table-load tasks.
+MetaOrchestration contains 56 planned table-load tasks inferred from modeled pipeline/binding access profiles.
+Tabular workspace was generated from MetaAnalytics, deployed to .\TABULAR, and processed as AdventureWorksMetaDemoTabular.
+
+Tabular proof:
+FactRows=121317
+SalesAmount=109846381.4144
+OrderQuantity=274914
+

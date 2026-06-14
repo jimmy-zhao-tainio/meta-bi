@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BooleanIsNullExpressionExpressionLinkList>
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:1" BooleanIsNullExpressionId="BooleanIsNullExpression:1" ScalarExpressionId="ScalarExpression:467">
+    </BooleanIsNullExpressionExpressionLink>
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:2" BooleanIsNullExpressionId="BooleanIsNullExpression:2" ScalarExpressionId="ScalarExpression:501">
+    </BooleanIsNullExpressionExpressionLink>
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:3" BooleanIsNullExpressionId="BooleanIsNullExpression:3" ScalarExpressionId="ScalarExpression:568">
+    </BooleanIsNullExpressionExpressionLink>
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:4" BooleanIsNullExpressionId="BooleanIsNullExpression:4" ScalarExpressionId="ScalarExpression:602">
+    </BooleanIsNullExpressionExpressionLink>
+  </BooleanIsNullExpressionExpressionLinkList>
+</MetaTransformScript>

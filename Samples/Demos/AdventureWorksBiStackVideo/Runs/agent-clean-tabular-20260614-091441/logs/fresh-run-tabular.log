@@ -1,0 +1,1588 @@
+
+=== 00-source-readiness.cmd ===
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+meta-sql execute --connection-env AW_SOURCE_SQL --query source readiness row counts
+
+Result set 1
+ObjectName | RowTotal
+Sales.SalesOrderHeader | 31465
+Sales.SalesOrderDetail | 121317
+Production.Product | 504
+Sales.Customer | 19820
+Sales.Store | 701
+Ok
+Source readiness passed.
+
+=== 01-extract-source-schema.cmd ===
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+meta-schema extract sqlserver --new-workspace source\AdventureWorks2022\Schema --connection-env AW_SOURCE_SQL --system AdventureWorks2022 --all-schemas --all-tables
+Extracting...Ok
+Source schema counts:
+System: 1
+Schema: 6
+Table: 91
+Field: 744
+FieldDataTypeDetail: 322
+TableRelationship: 90
+Alias physical detail check:
+FieldId: sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:GroupName
+FieldName: GroupName
+MetaDataTypeId: sqlserver:type:Name
+Length: 50
+Source schema extraction passed.
+
+=== 02-rdv-model-sql-deploy.cmd ===
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+AW_RDV_DATABASE=AdventureWorksRawVault
+AW_RDV_SQL=Server=localhost;Database=AdventureWorksRawVault;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False
+RDV_IMPLEMENTATION_WORKSPACE=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation
+meta-convert schema-to-raw-datavault --source-workspace source\AdventureWorks2022\Schema --new-workspace rdv\AdventureWorksRawVault\RawVault --verbose
+Ok
+
+Summary:
+  Source systems: 1
+  Source schemas: 6
+  Source tables: 71
+  Source relationships: 90
+  Raw hubs: 71
+  Raw hub key parts: 102
+  Raw links: 90
+  Raw hub satellites: 71
+  Raw hub satellite attributes: 341
+  Ignored field names: (none)
+  Ignored field suffixes: (none)
+  Included views: no
+Raw vault counts:
+RawHub: 71
+RawHubKeyPart: 102
+RawHubSatellite: 71
+RawHubSatelliteAttribute: 341
+RawLink: 90
+RawLinkHub: 180
+SourceTable: 71
+SourceField: 486
+meta-convert raw-datavault-to-sql --workspace rdv\AdventureWorksRawVault\RawVault --implementation-workspace "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation" --database-name AdventureWorksRawVault --out rdv\AdventureWorksRawVault\Sql
+Ok
+RDV SQL identifier scan:
+Identifier scan OK.
+meta-sql execute --connection-env AW_MASTER_SQL --quiet --query drop AdventureWorksRawVault if it exists
+meta-sql deploy-plan --source-workspace rdv\AdventureWorksRawVault\Sql --connection-env AW_RDV_SQL --out rdv\AdventureWorksRawVault\DeployManifest
+Ok
+
+Status: ready to deploy
+Changes: 644 to add (232 tables, 161 primary keys, 251 foreign keys)
+meta-sql deploy --manifest-workspace rdv\AdventureWorksRawVault\DeployManifest --source-workspace rdv\AdventureWorksRawVault\Sql --connection-env AW_RDV_SQL
+Ok
+
+Database: created
+Deployed: 644 added (232 tables, 161 primary keys, 251 foreign keys)
+meta-sql deploy-plan --source-workspace rdv\AdventureWorksRawVault\Sql --connection-env AW_RDV_SQL --out rdv\AdventureWorksRawVault\DeployVerifyManifest
+Ok
+
+Status: ready to deploy
+Changes: none
+RDV gate passed.
+
+=== 03-bdv-model-sql-deploy.cmd ===
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+AW_BDV_DATABASE=AdventureWorksBusinessVault
+AW_BDV_SQL=Server=localhost;Database=AdventureWorksBusinessVault;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False
+BDV_IMPLEMENTATION_WORKSPACE=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation
+NOTE: This stage models and deploys BDV structure. RDV-to-BDV load transforms are the next gate.
+meta-datavault-business --new-workspace bdv\AdventureWorksBusinessVault\BusinessVault
+Ok
+meta-datavault-business add-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id Customer --name Customer
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id CustomerId --hub Customer --name CustomerId --data-type-id meta:type:String --ordinal 1 --length 256
+Ok
+meta-datavault-business add-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id Store --name Store
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id StoreId --hub Store --name StoreId --data-type-id meta:type:String --ordinal 1 --length 256
+Ok
+meta-datavault-business add-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrder --name SalesOrder
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderId --hub SalesOrder --name SalesOrderId --data-type-id meta:type:String --ordinal 1 --length 256
+Ok
+meta-datavault-business add-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLine --name SalesOrderLine
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineOrderId --hub SalesOrderLine --name SalesOrderId --data-type-id meta:type:String --ordinal 1 --length 256
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineDetailId --hub SalesOrderLine --name SalesOrderDetailId --data-type-id meta:type:String --ordinal 2 --length 256
+Ok
+meta-datavault-business add-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id Product --name Product
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id ProductId --hub Product --name ProductId --data-type-id meta:type:String --ordinal 1 --length 256
+Ok
+meta-datavault-business add-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesPerson --name SalesPerson
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesPersonBusinessEntityId --hub SalesPerson --name SalesPersonBusinessEntityId --data-type-id meta:type:String --ordinal 1 --length 256
+Ok
+meta-datavault-business add-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesTerritory --name SalesTerritory
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesTerritoryId --hub SalesTerritory --name TerritoryId --data-type-id meta:type:String --ordinal 1 --length 256
+Ok
+meta-datavault-business add-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id OrderDate --name OrderDate
+Ok
+meta-datavault-business add-hub-key-part --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id OrderDateValue --hub OrderDate --name OrderDate --data-type-id meta:type:DateTime --ordinal 1
+Ok
+meta-datavault-business add-hub-satellite --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id ProductClassification --hub Product --name ProductClassification
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id ProductNumber --hub-satellite ProductClassification --name ProductNumber --data-type-id meta:type:String --ordinal 1 --length 25
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id ProductName --hub-satellite ProductClassification --name ProductName --data-type-id meta:type:String --ordinal 2 --length 100
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id ProductCategory --hub-satellite ProductClassification --name ProductCategory --data-type-id meta:type:String --ordinal 3 --length 100
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id ProductSubcategory --hub-satellite ProductClassification --name ProductSubcategory --data-type-id meta:type:String --ordinal 4 --length 100
+Ok
+meta-datavault-business add-hub-satellite --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id CustomerProfile --hub Customer --name CustomerProfile
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id CustomerAccountNumber --hub-satellite CustomerProfile --name CustomerAccountNumber --data-type-id meta:type:String --ordinal 1 --length 25
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id CustomerType --hub-satellite CustomerProfile --name CustomerType --data-type-id meta:type:String --ordinal 2 --length 40
+Ok
+meta-datavault-business add-hub-satellite --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id StoreProfile --hub Store --name StoreProfile
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id StoreName --hub-satellite StoreProfile --name StoreName --data-type-id meta:type:String --ordinal 1 --length 100
+Ok
+meta-datavault-business add-hub-satellite --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderProfile --hub SalesOrder --name SalesOrderProfile
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderNumber --hub-satellite SalesOrderProfile --name SalesOrderNumber --data-type-id meta:type:String --ordinal 1 --length 25
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id OrderStatus --hub-satellite SalesOrderProfile --name OrderStatus --data-type-id meta:type:String --ordinal 2 --length 40
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id OnlineOrderFlag --hub-satellite SalesOrderProfile --name OnlineOrderFlag --data-type-id meta:type:Boolean --ordinal 3
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id DueDate --hub-satellite SalesOrderProfile --name DueDate --data-type-id meta:type:DateTime --ordinal 4
+Ok
+meta-datavault-business add-hub-satellite --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesPersonProfile --hub SalesPerson --name SalesPersonProfile
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesPersonName --hub-satellite SalesPersonProfile --name SalesPersonName --data-type-id meta:type:String --ordinal 1 --length 150
+Ok
+meta-datavault-business add-hub-satellite --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesTerritoryProfile --hub SalesTerritory --name SalesTerritoryProfile
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id TerritoryName --hub-satellite SalesTerritoryProfile --name TerritoryName --data-type-id meta:type:String --ordinal 1 --length 100
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id CountryRegionCode --hub-satellite SalesTerritoryProfile --name CountryRegionCode --data-type-id meta:type:String --ordinal 2 --length 10
+Ok
+meta-datavault-business add-hub-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id TerritoryGroup --hub-satellite SalesTerritoryProfile --name TerritoryGroup --data-type-id meta:type:String --ordinal 3 --length 50
+Ok
+meta-datavault-business add-link --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderCustomer --name SalesOrderCustomer
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderCustomerOrder --link SalesOrderCustomer --hub SalesOrder --ordinal 1 --role-name SalesOrder
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderCustomerCustomer --link SalesOrderCustomer --hub Customer --ordinal 2 --role-name Customer
+Ok
+meta-datavault-business add-link --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderStore --name SalesOrderStore
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderStoreOrder --link SalesOrderStore --hub SalesOrder --ordinal 1 --role-name SalesOrder
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderStoreStore --link SalesOrderStore --hub Store --ordinal 2 --role-name Store
+Ok
+meta-datavault-business add-link --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderSalesPerson --name SalesOrderSalesPerson
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderSalesPersonOrder --link SalesOrderSalesPerson --hub SalesOrder --ordinal 1 --role-name SalesOrder
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderSalesPersonPerson --link SalesOrderSalesPerson --hub SalesPerson --ordinal 2 --role-name SalesPerson
+Ok
+meta-datavault-business add-link --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderTerritory --name SalesOrderTerritory
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderTerritoryOrder --link SalesOrderTerritory --hub SalesOrder --ordinal 1 --role-name SalesOrder
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderTerritoryTerritory --link SalesOrderTerritory --hub SalesTerritory --ordinal 2 --role-name SalesTerritory
+Ok
+meta-datavault-business add-link --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderDate --name SalesOrderDate
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderDateOrder --link SalesOrderDate --hub SalesOrder --ordinal 1 --role-name SalesOrder
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderDateDate --link SalesOrderDate --hub OrderDate --ordinal 2 --role-name OrderDate
+Ok
+meta-datavault-business add-link --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineOrder --name SalesOrderLineOrder
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineOrderLine --link SalesOrderLineOrder --hub SalesOrderLine --ordinal 1 --role-name SalesOrderLine
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineOrderOrder --link SalesOrderLineOrder --hub SalesOrder --ordinal 2 --role-name SalesOrder
+Ok
+meta-datavault-business add-link --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineProduct --name SalesOrderLineProduct
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineProductLine --link SalesOrderLineProduct --hub SalesOrderLine --ordinal 1 --role-name SalesOrderLine
+Ok
+meta-datavault-business add-link-hub --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineProductProduct --link SalesOrderLineProduct --hub Product --ordinal 2 --role-name Product
+Ok
+meta-datavault-business add-link-satellite --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id SalesOrderLineMeasures --link SalesOrderLineProduct --name SalesOrderLineMeasures
+Ok
+meta-datavault-business add-link-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id OrderQuantity --link-satellite SalesOrderLineMeasures --name OrderQuantity --data-type-id meta:type:Int32 --ordinal 1
+Ok
+meta-datavault-business add-link-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id UnitPrice --link-satellite SalesOrderLineMeasures --name UnitPrice --data-type-id meta:type:Decimal --ordinal 2 --precision 19 --scale 4
+Ok
+meta-datavault-business add-link-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id LineTotal --link-satellite SalesOrderLineMeasures --name LineTotal --data-type-id meta:type:Decimal --ordinal 3 --precision 38 --scale 6
+Ok
+meta-datavault-business add-link-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id DiscountAmount --link-satellite SalesOrderLineMeasures --name DiscountAmount --data-type-id meta:type:Decimal --ordinal 4 --precision 19 --scale 4
+Ok
+meta-datavault-business add-link-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id TaxAmount --link-satellite SalesOrderLineMeasures --name TaxAmount --data-type-id meta:type:Decimal --ordinal 5 --precision 19 --scale 4
+Ok
+meta-datavault-business add-link-satellite-attribute --workspace bdv\AdventureWorksBusinessVault\BusinessVault --id FreightAmount --link-satellite SalesOrderLineMeasures --name FreightAmount --data-type-id meta:type:Decimal --ordinal 6 --precision 19 --scale 4
+Ok
+BDV model counts: hubs=8, hub-key-parts=9, hub-satellites=6, hub-satellite-attributes=15, links=7, link-hubs=14, link-satellites=1, link-satellite-attributes=6
+meta-convert business-datavault-to-sql --workspace bdv\AdventureWorksBusinessVault\BusinessVault --implementation-workspace C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataVault\Workspaces\MetaDataVaultImplementation --database-name AdventureWorksBusinessVault --out bdv\AdventureWorksBusinessVault\Sql
+Ok
+BDV SQL identifier scan:
+Identifier scan OK.
+BDV SQL counts: tables=22, columns=139, primary-keys=15, foreign-keys=21
+meta-sql execute --connection-env AW_MASTER_SQL --quiet --query IF DB_ID(N'AdventureWorksBusinessVault') IS NOT NULL BEGIN ALTER DATABASE [AdventureWorksBusinessVault] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [AdventureWorksBusinessVault]; END
+meta-sql deploy-plan --source-workspace bdv\AdventureWorksBusinessVault\Sql --connection-env AW_BDV_SQL --out bdv\AdventureWorksBusinessVault\DeployManifest
+Ok
+
+Status: ready to deploy
+Changes: 58 to add (22 tables, 15 primary keys, 21 foreign keys)
+meta-sql deploy --manifest-workspace bdv\AdventureWorksBusinessVault\DeployManifest --source-workspace bdv\AdventureWorksBusinessVault\Sql --connection-env AW_BDV_SQL
+Ok
+
+Database: created
+Deployed: 58 added (22 tables, 15 primary keys, 21 foreign keys)
+meta-sql deploy-plan --source-workspace bdv\AdventureWorksBusinessVault\Sql --connection-env AW_BDV_SQL --out bdv\AdventureWorksBusinessVault\DeployVerifyManifest
+Ok
+
+Status: ready to deploy
+Changes: none
+BDV gate passed. RDV-to-BDV load transforms and binding are the next honest gate.
+
+=== 04-load-product-vault-slice.cmd ===
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+Extracting current RDV and BDV schemas for strict transform binding.
+meta-schema extract sqlserver --new-workspace rdv\AdventureWorksRawVault\Schema --connection-env AW_RDV_SQL --system AdventureWorksRawVault --all-schemas --all-tables
+Extracting...Ok
+meta-schema extract sqlserver --new-workspace bdv\AdventureWorksBusinessVault\Schema --connection-env AW_BDV_SQL --system AdventureWorksBusinessVault --all-schemas --all-tables
+Extracting...Ok
+meta-transform-script from sql-files --manifest rdv\AdventureWorksRawVault\Transforms\manifest.tsv --new-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --report logs\04-rdv-transform-import-report.tsv --verbose
+ok [1/8] 001_load_H_ProductCategory.sql
+ok [2/8] 002_load_HS_ProductCategory_ProductCategory.sql
+ok [3/8] 003_load_H_ProductSubcategory.sql
+ok [4/8] 004_load_HS_ProductSubcategory_ProductSubcategory.sql
+ok [5/8] 005_load_H_Product.sql
+ok [6/8] 006_load_HS_Product_Product.sql
+ok [7/8] 007_load_L_ProductSubcategoryProductCategory.sql
+ok [8/8] 008_load_L_ProductProductSubcategory.sql
+Ok
+Workspace:
+  Scripts: 8
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace
+Report:
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\logs\04-rdv-transform-import-report.tsv
+meta-transform-binding bind --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --source-schema source\AdventureWorks2022\Schema --target-schema rdv\AdventureWorksRawVault\Schema --execute-system AdventureWorksRawVault --new-workspace rdv\AdventureWorksRawVault\Binding --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataTypeConversion\Workspace
+Binding...Ok
+Clearing RDV Product slice tables before load.
+meta-sql execute --connection-env AW_RDV_SQL --quiet --query DELETE FROM dbo.L_ProductProductSubcategory;
+DELETE FROM dbo.L_ProductSubcategoryProductCategory;
+DELETE FROM dbo.HS_Product_Product;
+DELETE FROM dbo.H_Product;
+DELETE FROM dbo.HS_ProductSubcategory_ProductSubcategory;
+DELETE FROM dbo.H_ProductSubcategory;
+DELETE FROM dbo.HS_ProductCategory_ProductCategory;
+DELETE FROM dbo.H_ProductCategory;
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_H_ProductCategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_ProductCategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_HS_ProductCategory_ProductCategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_ProductCategory_ProductCategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_H_ProductSubcategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_ProductSubcategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_HS_ProductSubcategory_ProductSubcategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_ProductSubcategory_ProductSubcategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_H_Product --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_Product --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_HS_Product_Product --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_Product_Product --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_L_ProductSubcategoryProductCategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_ProductSubcategoryProductCategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_L_ProductProductSubcategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_ProductProductSubcategory --target-data-type-system SqlServer
+Ok
+RDV Product slice counts:
+meta-sql execute --connection-env AW_RDV_SQL --query SELECT 'H_ProductCategory' AS TableName, COUNT_BIG(*) AS RowTotal FROM dbo.H_ProductCategory
+UNION ALL SELECT 'HS_ProductCategory_ProductCategory', COUNT_BIG(*) FROM dbo.HS_ProductCategory_ProductCategory
+UNION ALL SELECT 'H_ProductSubcategory', COUNT_BIG(*) FROM dbo.H_ProductSubcategory
+UNION ALL SELECT 'HS_ProductSubcategory_ProductSubcategory', COUNT_BIG(*) FROM dbo.HS_ProductSubcategory_ProductSubcategory
+UNION ALL SELECT 'H_Product', COUNT_BIG(*) FROM dbo.H_Product
+UNION ALL SELECT 'HS_Product_Product', COUNT_BIG(*) FROM dbo.HS_Product_Product
+UNION ALL SELECT 'L_ProductSubcategoryProductCategory', COUNT_BIG(*) FROM dbo.L_ProductSubcategoryProductCategory
+UNION ALL SELECT 'L_ProductProductSubcategory', COUNT_BIG(*) FROM dbo.L_ProductProductSubcategory;
+
+Result set 1
+TableName | RowTotal
+H_ProductCategory | 4
+HS_ProductCategory_ProductCategory | 4
+H_ProductSubcategory | 37
+HS_ProductSubcategory_ProductSubcategory | 37
+H_Product | 504
+HS_Product_Product | 504
+L_ProductSubcategoryProductCategory | 37
+L_ProductProductSubcategory | 295
+Ok
+meta-transform-script from sql-files --manifest bdv\AdventureWorksBusinessVault\Transforms\manifest.tsv --new-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --report logs\04-bdv-transform-import-report.tsv --verbose
+ok [1/2] 001_load_BH_Product.sql
+ok [2/2] 002_load_BHS_Product_ProductClassification.sql
+Ok
+Workspace:
+  Scripts: 2
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\Transforms\Workspace
+Report:
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\logs\04-bdv-transform-import-report.tsv
+meta-transform-binding bind --transform-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --source-schema rdv\AdventureWorksRawVault\Schema --target-schema bdv\AdventureWorksBusinessVault\Schema --execute-system AdventureWorksBusinessVault --new-workspace bdv\AdventureWorksBusinessVault\Binding --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataTypeConversion\Workspace
+Binding...Ok
+Clearing BDV Product slice tables before load.
+meta-sql execute --connection-env AW_BDV_SQL --quiet --query DELETE FROM dbo.BHS_Product_ProductClassification;
+DELETE FROM dbo.BH_Product;
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\Binding --script dbo.v_load_BH_Product --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_Product --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\Binding --script dbo.v_load_BHS_Product_ProductClassification --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_Product_ProductClassification --target-data-type-system SqlServer
+Ok
+BDV Product slice counts:
+meta-sql execute --connection-env AW_BDV_SQL --query SELECT 'BH_Product' AS TableName, COUNT_BIG(*) AS RowTotal FROM dbo.BH_Product
+UNION ALL SELECT 'BHS_Product_ProductClassification', COUNT_BIG(*) FROM dbo.BHS_Product_ProductClassification;
+
+Result set 1
+TableName | RowTotal
+BH_Product | 504
+BHS_Product_ProductClassification | 504
+Ok
+Product vault load slice passed.
+
+=== 05-load-sales-vault-slice.cmd ===
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+meta-transform-script from sql-files --manifest rdv\AdventureWorksRawVault\SalesTransforms\manifest.tsv --new-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --report logs\05-rdv-sales-transform-import-report.tsv --verbose
+ok [1/21] 001_load_H_Customer.sql
+ok [2/21] 002_load_HS_Customer_Customer.sql
+ok [3/21] 003_load_H_Store.sql
+ok [4/21] 004_load_HS_Store_Store.sql
+ok [5/21] 005_load_H_SalesPerson.sql
+ok [6/21] 006_load_HS_SalesPerson_SalesPerson.sql
+ok [7/21] 007_load_H_SalesTerritory.sql
+ok [8/21] 008_load_HS_SalesTerritory_SalesTerritory.sql
+ok [9/21] 009_load_H_SalesOrderHeader.sql
+ok [10/21] 010_load_HS_SalesOrderHeader_SalesOrderHeader.sql
+ok [11/21] 011_load_H_SalesOrderDetail.sql
+ok [12/21] 012_load_HS_SalesOrderDetail_SalesOrderDetail.sql
+ok [13/21] 013_load_H_SpecialOfferProduct.sql
+ok [14/21] 014_load_L_CustomerStore.sql
+ok [15/21] 015_load_L_CustomerSalesTerritory.sql
+ok [16/21] 016_load_L_SalesOrderHeaderCustomer.sql
+ok [17/21] 017_load_L_SalesOrderHeaderSalesPerson.sql
+ok [18/21] 018_load_L_SalesOrderHeaderSalesTerritory.sql
+ok [19/21] 019_load_L_SalesOrderDetailSalesOrderHeader.sql
+ok [20/21] 020_load_L_SalesOrderDetailSpecialOfferProduct.sql
+ok [21/21] 021_load_L_SpecialOfferProductProduct.sql
+Ok
+Workspace:
+  Scripts: 21
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\SalesTransforms\Workspace
+Report:
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\logs\05-rdv-sales-transform-import-report.tsv
+meta-transform-binding bind --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --source-schema source\AdventureWorks2022\Schema --target-schema rdv\AdventureWorksRawVault\Schema --execute-system AdventureWorksRawVault --new-workspace rdv\AdventureWorksRawVault\SalesBinding --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataTypeConversion\Workspace
+Binding...Ok
+Clearing RDV Sales slice tables before load.
+meta-sql execute --connection-env AW_RDV_SQL --quiet --query DELETE FROM dbo.L_SalesOrderDetailSpecialOfferProduct;
+DELETE FROM dbo.L_SpecialOfferProductProduct;
+DELETE FROM dbo.L_SalesOrderDetailSalesOrderHeader;
+DELETE FROM dbo.L_SalesOrderHeaderSalesTerritory;
+DELETE FROM dbo.L_SalesOrderHeaderSalesPerson;
+DELETE FROM dbo.L_SalesOrderHeaderCustomer;
+DELETE FROM dbo.L_CustomerSalesTerritory;
+DELETE FROM dbo.L_CustomerStore;
+DELETE FROM dbo.HS_SalesOrderDetail_SalesOrderDetail;
+DELETE FROM dbo.H_SalesOrderDetail;
+DELETE FROM dbo.HS_SalesOrderHeader_SalesOrderHeader;
+DELETE FROM dbo.H_SalesOrderHeader;
+DELETE FROM dbo.HS_SpecialOfferProduct_SpecialOfferProduct;
+DELETE FROM dbo.H_SpecialOfferProduct;
+DELETE FROM dbo.HS_SalesPerson_SalesPerson;
+DELETE FROM dbo.H_SalesPerson;
+DELETE FROM dbo.HS_SalesTerritory_SalesTerritory;
+DELETE FROM dbo.H_SalesTerritory;
+DELETE FROM dbo.HS_Store_Store;
+DELETE FROM dbo.H_Store;
+DELETE FROM dbo.HS_Customer_Customer;
+DELETE FROM dbo.H_Customer;
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_H_Customer --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_Customer --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_HS_Customer_Customer --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_Customer_Customer --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_H_Store --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_Store --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_HS_Store_Store --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_Store_Store --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_H_SalesPerson --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SalesPerson --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_HS_SalesPerson_SalesPerson --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_SalesPerson_SalesPerson --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_H_SalesTerritory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SalesTerritory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_HS_SalesTerritory_SalesTerritory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_SalesTerritory_SalesTerritory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_H_SalesOrderHeader --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SalesOrderHeader --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_HS_SalesOrderHeader_SalesOrderHeader --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_SalesOrderHeader_SalesOrderHeader --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_H_SalesOrderDetail --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SalesOrderDetail --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_HS_SalesOrderDetail_SalesOrderDetail --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_SalesOrderDetail_SalesOrderDetail --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_H_SpecialOfferProduct --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SpecialOfferProduct --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_L_CustomerStore --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_CustomerStore --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_L_CustomerSalesTerritory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_CustomerSalesTerritory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_L_SalesOrderHeaderCustomer --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderHeaderCustomer --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_L_SalesOrderHeaderSalesPerson --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderHeaderSalesPerson --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_L_SalesOrderHeaderSalesTerritory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderHeaderSalesTerritory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_L_SalesOrderDetailSalesOrderHeader --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderDetailSalesOrderHeader --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_L_SalesOrderDetailSpecialOfferProduct --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderDetailSpecialOfferProduct --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --script dbo.v_load_L_SpecialOfferProductProduct --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SpecialOfferProductProduct --target-data-type-system SqlServer
+Ok
+RDV Sales slice counts:
+meta-sql execute --connection-env AW_RDV_SQL --query SELECT 'H_Customer' AS TableName, COUNT_BIG(*) AS RowTotal FROM dbo.H_Customer
+UNION ALL SELECT 'H_Store', COUNT_BIG(*) FROM dbo.H_Store
+UNION ALL SELECT 'H_SalesPerson', COUNT_BIG(*) FROM dbo.H_SalesPerson
+UNION ALL SELECT 'H_SalesTerritory', COUNT_BIG(*) FROM dbo.H_SalesTerritory
+UNION ALL SELECT 'H_SalesOrderHeader', COUNT_BIG(*) FROM dbo.H_SalesOrderHeader
+UNION ALL SELECT 'H_SalesOrderDetail', COUNT_BIG(*) FROM dbo.H_SalesOrderDetail
+UNION ALL SELECT 'H_SpecialOfferProduct', COUNT_BIG(*) FROM dbo.H_SpecialOfferProduct
+UNION ALL SELECT 'L_SalesOrderDetailSalesOrderHeader', COUNT_BIG(*) FROM dbo.L_SalesOrderDetailSalesOrderHeader
+UNION ALL SELECT 'L_SalesOrderDetailSpecialOfferProduct', COUNT_BIG(*) FROM dbo.L_SalesOrderDetailSpecialOfferProduct;
+
+Result set 1
+TableName | RowTotal
+H_Customer | 19820
+H_Store | 701
+H_SalesPerson | 17
+H_SalesTerritory | 10
+H_SalesOrderHeader | 31465
+H_SalesOrderDetail | 121317
+H_SpecialOfferProduct | 538
+L_SalesOrderDetailSalesOrderHeader | 121317
+L_SalesOrderDetailSpecialOfferProduct | 121317
+Ok
+meta-transform-script from sql-files --manifest bdv\AdventureWorksBusinessVault\SalesTransforms\manifest.tsv --new-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --report logs\05-bdv-sales-transform-import-report.tsv --verbose
+ok [1/20] 001_load_BH_Customer.sql
+ok [2/20] 002_load_BHS_Customer_CustomerProfile.sql
+ok [3/20] 003_load_BH_Store.sql
+ok [4/20] 004_load_BHS_Store_StoreProfile.sql
+ok [5/20] 005_load_BH_SalesPerson.sql
+ok [6/20] 006_load_BHS_SalesPerson_SalesPersonProfile.sql
+ok [7/20] 007_load_BH_SalesTerritory.sql
+ok [8/20] 008_load_BHS_SalesTerritory_SalesTerritoryProfile.sql
+ok [9/20] 009_load_BH_SalesOrder.sql
+ok [10/20] 010_load_BHS_SalesOrder_SalesOrderProfile.sql
+ok [11/20] 011_load_BH_SalesOrderLine.sql
+ok [12/20] 012_load_BH_OrderDate.sql
+ok [13/20] 013_load_BL_SalesOrderCustomer.sql
+ok [14/20] 014_load_BL_SalesOrderStore.sql
+ok [15/20] 015_load_BL_SalesOrderSalesPerson.sql
+ok [16/20] 016_load_BL_SalesOrderTerritory.sql
+ok [17/20] 017_load_BL_SalesOrderDate.sql
+ok [18/20] 018_load_BL_SalesOrderLineOrder.sql
+ok [19/20] 019_load_BL_SalesOrderLineProduct.sql
+ok [20/20] 020_load_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.sql
+Ok
+Workspace:
+  Scripts: 20
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace
+Report:
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\logs\05-bdv-sales-transform-import-report.tsv
+meta-transform-binding bind --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --source-schema rdv\AdventureWorksRawVault\Schema --target-schema bdv\AdventureWorksBusinessVault\Schema --execute-system AdventureWorksBusinessVault --new-workspace bdv\AdventureWorksBusinessVault\SalesBinding --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataTypeConversion\Workspace
+Binding...Ok
+Clearing BDV Sales slice tables before load.
+meta-sql execute --connection-env AW_BDV_SQL --quiet --query DELETE FROM dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures;
+DELETE FROM dbo.BL_SalesOrderLineProduct;
+DELETE FROM dbo.BL_SalesOrderLineOrder;
+DELETE FROM dbo.BL_SalesOrderDate;
+DELETE FROM dbo.BL_SalesOrderTerritory;
+DELETE FROM dbo.BL_SalesOrderSalesPerson;
+DELETE FROM dbo.BL_SalesOrderStore;
+DELETE FROM dbo.BL_SalesOrderCustomer;
+DELETE FROM dbo.BHS_SalesOrder_SalesOrderProfile;
+DELETE FROM dbo.BH_SalesOrder;
+DELETE FROM dbo.BH_SalesOrderLine;
+DELETE FROM dbo.BH_OrderDate;
+DELETE FROM dbo.BHS_Customer_CustomerProfile;
+DELETE FROM dbo.BH_Customer;
+DELETE FROM dbo.BHS_Store_StoreProfile;
+DELETE FROM dbo.BH_Store;
+DELETE FROM dbo.BHS_SalesPerson_SalesPersonProfile;
+DELETE FROM dbo.BH_SalesPerson;
+DELETE FROM dbo.BHS_SalesTerritory_SalesTerritoryProfile;
+DELETE FROM dbo.BH_SalesTerritory;
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BH_Customer --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_Customer --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BHS_Customer_CustomerProfile --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_Customer_CustomerProfile --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BH_Store --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_Store --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BHS_Store_StoreProfile --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_Store_StoreProfile --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BH_SalesPerson --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_SalesPerson --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BHS_SalesPerson_SalesPersonProfile --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_SalesPerson_SalesPersonProfile --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BH_SalesTerritory --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_SalesTerritory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BHS_SalesTerritory_SalesTerritoryProfile --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_SalesTerritory_SalesTerritoryProfile --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BH_SalesOrder --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_SalesOrder --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BHS_SalesOrder_SalesOrderProfile --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_SalesOrder_SalesOrderProfile --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BH_SalesOrderLine --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_SalesOrderLine --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BH_OrderDate --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_OrderDate --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BL_SalesOrderCustomer --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderCustomer --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BL_SalesOrderStore --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderStore --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BL_SalesOrderSalesPerson --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderSalesPerson --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BL_SalesOrderTerritory --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderTerritory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BL_SalesOrderDate --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderDate --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BL_SalesOrderLineOrder --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderLineOrder --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BL_SalesOrderLineProduct --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderLineProduct --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --script dbo.v_load_BLS_SalesOrderLineProduct_SalesOrderLineMeasures --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures --target-data-type-system SqlServer
+Ok
+BDV Sales slice counts:
+meta-sql execute --connection-env AW_BDV_SQL --query SELECT 'BH_Customer' AS TableName, COUNT_BIG(*) AS RowTotal FROM dbo.BH_Customer
+UNION ALL SELECT 'BH_Store', COUNT_BIG(*) FROM dbo.BH_Store
+UNION ALL SELECT 'BH_SalesPerson', COUNT_BIG(*) FROM dbo.BH_SalesPerson
+UNION ALL SELECT 'BH_SalesTerritory', COUNT_BIG(*) FROM dbo.BH_SalesTerritory
+UNION ALL SELECT 'BH_SalesOrder', COUNT_BIG(*) FROM dbo.BH_SalesOrder
+UNION ALL SELECT 'BH_SalesOrderLine', COUNT_BIG(*) FROM dbo.BH_SalesOrderLine
+UNION ALL SELECT 'BH_OrderDate', COUNT_BIG(*) FROM dbo.BH_OrderDate
+UNION ALL SELECT 'BL_SalesOrderLineProduct', COUNT_BIG(*) FROM dbo.BL_SalesOrderLineProduct
+UNION ALL SELECT 'BLS_SalesOrderLineProduct_SalesOrderLineMeasures', COUNT_BIG(*) FROM dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures;
+
+Result set 1
+TableName | RowTotal
+BH_Customer | 19820
+BH_Store | 701
+BH_SalesPerson | 17
+BH_SalesTerritory | 10
+BH_SalesOrder | 31465
+BH_SalesOrderLine | 121317
+BH_OrderDate | 1124
+BL_SalesOrderLineProduct | 121317
+BLS_SalesOrderLineProduct_SalesOrderLineMeasures | 121317
+Ok
+Sales vault load slice passed.
+
+=== 06-build-bdv-mart-dq-orchestration.cmd ===
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+meta-sql execute --connection-env AW_MASTER_SQL --quiet --query IF DB_ID(N'AdventureWorksMetaDemo') IS NOT NULL
+BEGIN
+    ALTER DATABASE [AdventureWorksMetaDemo] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE [AdventureWorksMetaDemo];
+END;
+CREATE DATABASE [AdventureWorksMetaDemo];
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query CREATE SCHEMA awbi;
+Creating empty mart table awbi.DimProduct from modeled select shape.
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query IF OBJECT_ID(N'awbi.DimProduct', N'U') IS NOT NULL
+    DROP TABLE awbi.DimProduct;
+
+SELECT TOP (0)
+    src.*
+INTO awbi.DimProduct
+FROM
+(
+SELECT
+    hp.ProductId,
+    hpc.ProductNumber,
+    hpc.ProductName,
+    hpc.ProductCategory,
+    hpc.ProductSubcategory
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Product] AS hp
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_Product_ProductClassification] AS hpc
+    ON hpc.HubHashKey = hp.HashKey
+) AS src;
+Creating empty mart table awbi.DimOrderDate from modeled select shape.
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query IF OBJECT_ID(N'awbi.DimOrderDate', N'U') IS NOT NULL
+    DROP TABLE awbi.DimOrderDate;
+
+SELECT TOP (0)
+    src.*
+INTO awbi.DimOrderDate
+FROM
+(
+SELECT
+    od.OrderDate,
+    DATEPART(year, od.OrderDate) AS OrderYear,
+    DATEPART(month, od.OrderDate) AS OrderMonth,
+    CONVERT(nvarchar(7), od.OrderDate, 126) AS OrderMonthName
+FROM [AdventureWorksBusinessVault].[dbo].[BH_OrderDate] AS od
+) AS src;
+Creating empty mart table awbi.DimSalesTerritory from modeled select shape.
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query IF OBJECT_ID(N'awbi.DimSalesTerritory', N'U') IS NOT NULL
+    DROP TABLE awbi.DimSalesTerritory;
+
+SELECT TOP (0)
+    src.*
+INTO awbi.DimSalesTerritory
+FROM
+(
+SELECT
+    st.TerritoryId,
+    stp.TerritoryName,
+    stp.CountryRegionCode,
+    stp.TerritoryGroup
+FROM [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS st
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesTerritory_SalesTerritoryProfile] AS stp
+    ON stp.HubHashKey = st.HashKey
+) AS src;
+Creating empty mart table awbi.DimCustomerChannel from modeled select shape.
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query IF OBJECT_ID(N'awbi.DimCustomerChannel', N'U') IS NOT NULL
+    DROP TABLE awbi.DimCustomerChannel;
+
+SELECT TOP (0)
+    src.*
+INTO awbi.DimCustomerChannel
+FROM
+(
+SELECT
+    c.CustomerId,
+    cp.CustomerAccountNumber,
+    cp.CustomerType
+FROM [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS c
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_Customer_CustomerProfile] AS cp
+    ON cp.HubHashKey = c.HashKey
+) AS src;
+Creating empty mart table awbi.FactSalesOrderLine from modeled select shape.
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query IF OBJECT_ID(N'awbi.FactSalesOrderLine', N'U') IS NOT NULL
+    DROP TABLE awbi.FactSalesOrderLine;
+
+SELECT TOP (0)
+    src.*
+INTO awbi.FactSalesOrderLine
+FROM
+(
+SELECT
+    sol.SalesOrderId,
+    sol.SalesOrderDetailId,
+    so.SalesOrderNumber,
+    od.OrderDate,
+    p.ProductId,
+    pc.ProductNumber,
+    pc.ProductName,
+    pc.ProductCategory,
+    pc.ProductSubcategory,
+    c.CustomerId,
+    cp.CustomerType,
+    st.TerritoryId,
+    stp.TerritoryName,
+    stp.TerritoryGroup,
+    sp.SalesPersonBusinessEntityId,
+    spp.SalesPersonName,
+    so.OnlineOrderFlag,
+    m.OrderQuantity,
+    m.UnitPrice,
+    m.LineTotal AS SalesAmount,
+    m.DiscountAmount,
+    m.TaxAmount,
+    m.FreightAmount
+FROM [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineProduct] AS lop
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BLS_SalesOrderLineProduct_SalesOrderLineMeasures] AS m
+    ON m.LinkHashKey = lop.HashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesOrderLine] AS sol
+    ON sol.HashKey = lop.SalesOrderLineHashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Product] AS p
+    ON p.HashKey = lop.ProductHashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_Product_ProductClassification] AS pc
+    ON pc.HubHashKey = p.HashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderLineOrder] AS loo
+    ON loo.SalesOrderLineHashKey = sol.HashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesOrder] AS soHub
+    ON soHub.HashKey = loo.SalesOrderHashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrder_SalesOrderProfile] AS so
+    ON so.HubHashKey = soHub.HashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderDate] AS sod
+    ON sod.SalesOrderHashKey = soHub.HashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_OrderDate] AS od
+    ON od.HashKey = sod.OrderDateHashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderCustomer] AS soc
+    ON soc.SalesOrderHashKey = soHub.HashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BH_Customer] AS c
+    ON c.HashKey = soc.CustomerHashKey
+INNER JOIN [AdventureWorksBusinessVault].[dbo].[BHS_Customer_CustomerProfile] AS cp
+    ON cp.HubHashKey = c.HashKey
+LEFT JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderTerritory] AS sot
+    ON sot.SalesOrderHashKey = soHub.HashKey
+LEFT JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesTerritory] AS st
+    ON st.HashKey = sot.SalesTerritoryHashKey
+LEFT JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesTerritory_SalesTerritoryProfile] AS stp
+    ON stp.HubHashKey = st.HashKey
+LEFT JOIN [AdventureWorksBusinessVault].[dbo].[BL_SalesOrderSalesPerson] AS sosp
+    ON sosp.SalesOrderHashKey = soHub.HashKey
+LEFT JOIN [AdventureWorksBusinessVault].[dbo].[BH_SalesPerson] AS sp
+    ON sp.HashKey = sosp.SalesPersonHashKey
+LEFT JOIN [AdventureWorksBusinessVault].[dbo].[BHS_SalesPerson_SalesPersonProfile] AS spp
+    ON spp.HubHashKey = sp.HashKey
+) AS src;
+meta-transform-script from sql-files --manifest dw\AdventureWorksMetaDemo\Transforms\manifest.tsv --new-workspace dw\AdventureWorksMetaDemo\Transforms\Workspace --report logs\06-mart-transform-import-report.tsv --verbose
+ok [1/5] 001_load_DimProduct.sql
+ok [2/5] 002_load_DimOrderDate.sql
+ok [3/5] 003_load_DimSalesTerritory.sql
+ok [4/5] 004_load_DimCustomerChannel.sql
+ok [5/5] 005_load_FactSalesOrderLine.sql
+Ok
+Workspace:
+  Scripts: 5
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\Workspace
+Report:
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\logs\06-mart-transform-import-report.tsv
+meta-schema extract sqlserver --new-workspace dw\AdventureWorksMetaDemo\Schema --connection-env AW_TARGET_SQL --system AdventureWorksMetaDemo --all-schemas --all-tables
+Extracting...Ok
+meta-transform-binding bind --transform-workspace dw\AdventureWorksMetaDemo\Transforms\Workspace --source-schema bdv\AdventureWorksBusinessVault\Schema --target-schema dw\AdventureWorksMetaDemo\Schema --execute-system AdventureWorksMetaDemo --new-workspace dw\AdventureWorksMetaDemo\Binding --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataTypeConversion\Workspace
+Binding...Ok
+meta-data-quality from-transform-workspace --transform-workspace dw\AdventureWorksMetaDemo\Transforms\Workspace --binding-workspace dw\AdventureWorksMetaDemo\Binding --new-workspace dw\AdventureWorksMetaDemo\DataQuality
+Workspace: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQuality
+Views ready to create: 39
+Relationships captured: 21
+Transform scripts scanned: 5/5
+Transform scripts skipped by BindingWS: 0
+meta-data-quality inspect --workspace dw\AdventureWorksMetaDemo\DataQuality
+Views ready to create: 39
+
+Checks:
+  Row multiplication: 6
+  Missing referenced rows: 21
+  Duplicate output rows: 6
+  Unexpected NULLs from outer joins: 6
+
+Relationships captured: 21
+
+Corpus Inference:
+  Relationships observed: 4
+  Dominant relationship patterns: 0
+  Column equivalence edges: 4
+  Minority join-pattern candidates: 0
+  Incomplete-composite candidates: 0
+  Suspicious-extra-predicate candidates: 0
+  Missing-common-filter candidates: 0
+  Minority column-equivalence candidates: 0
+  Optionality-drift (inner vs usually optional): 0
+  Optionality-drift (left vs usually mandatory): 0
+  Implied fanout-risk candidates: 0
+  Implied output-duplicate-risk candidates: 0
+
+Pending candidates: 39
+meta-data-quality promote --workspace dw\AdventureWorksMetaDemo\DataQuality --all
+Candidates promoted this run: 39
+Candidates promoted for SQL: 39
+meta-convert data-quality-to-sql --workspace dw\AdventureWorksMetaDemo\DataQuality --out dw\AdventureWorksMetaDemo\DataQualitySql
+Generated 39 data quality view scripts, 1 review dashboard, and MetaDQ operational SQL (2 tables, 2 procedure).
+Output:
+  DataQualityViews: 39
+  Dashboard: dq.v_DataQualityReview
+  MetaDQTables: 2
+  MetaDQProcedures: 2
+  Scripts: 41
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql
+DQ SQL pack generated: 41 files under dw\AdventureWorksMetaDemo\DataQualitySql.
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinMultiplicityExplosion_JoinPattern.12.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinMultiplicityExplosion_JoinPattern.19.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinMultiplicityExplosion_JoinPattern.20.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinMultiplicityExplosion_JoinPattern.4.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinMultiplicityExplosion_JoinPattern.6.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinMultiplicityExplosion_JoinPattern.9.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.1.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.10.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.11.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.12.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.13.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.14.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.15.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.16.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.17.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.18.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.19.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.2.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.20.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.3.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.4.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.5.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.6.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.7.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.8.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.9.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\JoinOrphan_JoinPattern.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OuterJoinNullExpansion_JoinPattern.10.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OuterJoinNullExpansion_JoinPattern.11.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OuterJoinNullExpansion_JoinPattern.12.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OuterJoinNullExpansion_JoinPattern.13.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OuterJoinNullExpansion_JoinPattern.14.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OuterJoinNullExpansion_JoinPattern.9.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OutputDuplicateRisk_JoinPattern.12.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OutputDuplicateRisk_JoinPattern.19.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OutputDuplicateRisk_JoinPattern.20.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OutputDuplicateRisk_JoinPattern.4.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OutputDuplicateRisk_JoinPattern.6.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\DataQualitySql\OutputDuplicateRisk_JoinPattern.9.sql --quiet
+meta-sql execute --connection-env AW_TARGET_SQL --file dw\AdventureWorksMetaDemo\DataQualitySql\v_DataQualityReview.sql --quiet
+meta-sql execute --connection-env AW_MASTER_SQL --file dw\AdventureWorksMetaDemo\DataQualitySql\MetaDQ.Operational.sql --quiet
+Pipeline build plan: RDV Product 8, RDV Sales 21, BDV Product 2, BDV Sales 20, DW/Mart 5, total 56.
+Clearing mart tables before orchestrated reload.
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query DELETE FROM awbi.FactSalesOrderLine;
+DELETE FROM awbi.DimCustomerChannel;
+DELETE FROM awbi.DimSalesTerritory;
+DELETE FROM awbi.DimOrderDate;
+DELETE FROM awbi.DimProduct;
+Clearing BDV Sales slice tables before orchestrated reload.
+meta-sql execute --connection-env AW_BDV_SQL --quiet --query DELETE FROM dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures;
+DELETE FROM dbo.BL_SalesOrderLineProduct;
+DELETE FROM dbo.BL_SalesOrderLineOrder;
+DELETE FROM dbo.BL_SalesOrderDate;
+DELETE FROM dbo.BL_SalesOrderTerritory;
+DELETE FROM dbo.BL_SalesOrderSalesPerson;
+DELETE FROM dbo.BL_SalesOrderStore;
+DELETE FROM dbo.BL_SalesOrderCustomer;
+DELETE FROM dbo.BHS_SalesOrder_SalesOrderProfile;
+DELETE FROM dbo.BH_SalesOrder;
+DELETE FROM dbo.BH_SalesOrderLine;
+DELETE FROM dbo.BH_OrderDate;
+DELETE FROM dbo.BHS_Customer_CustomerProfile;
+DELETE FROM dbo.BH_Customer;
+DELETE FROM dbo.BHS_Store_StoreProfile;
+DELETE FROM dbo.BH_Store;
+DELETE FROM dbo.BHS_SalesPerson_SalesPersonProfile;
+DELETE FROM dbo.BH_SalesPerson;
+DELETE FROM dbo.BHS_SalesTerritory_SalesTerritoryProfile;
+DELETE FROM dbo.BH_SalesTerritory;
+Clearing BDV Product slice tables before orchestrated reload.
+meta-sql execute --connection-env AW_BDV_SQL --quiet --query DELETE FROM dbo.BHS_Product_ProductClassification;
+DELETE FROM dbo.BH_Product;
+Clearing RDV Sales slice tables before orchestrated reload.
+meta-sql execute --connection-env AW_RDV_SQL --quiet --query DELETE FROM dbo.L_SalesOrderDetailSpecialOfferProduct;
+DELETE FROM dbo.L_SpecialOfferProductProduct;
+DELETE FROM dbo.L_SalesOrderDetailSalesOrderHeader;
+DELETE FROM dbo.L_SalesOrderHeaderSalesTerritory;
+DELETE FROM dbo.L_SalesOrderHeaderSalesPerson;
+DELETE FROM dbo.L_SalesOrderHeaderCustomer;
+DELETE FROM dbo.L_CustomerSalesTerritory;
+DELETE FROM dbo.L_CustomerStore;
+DELETE FROM dbo.HS_SalesOrderDetail_SalesOrderDetail;
+DELETE FROM dbo.H_SalesOrderDetail;
+DELETE FROM dbo.HS_SalesOrderHeader_SalesOrderHeader;
+DELETE FROM dbo.H_SalesOrderHeader;
+DELETE FROM dbo.HS_SpecialOfferProduct_SpecialOfferProduct;
+DELETE FROM dbo.H_SpecialOfferProduct;
+DELETE FROM dbo.HS_SalesPerson_SalesPerson;
+DELETE FROM dbo.H_SalesPerson;
+DELETE FROM dbo.HS_SalesTerritory_SalesTerritory;
+DELETE FROM dbo.H_SalesTerritory;
+DELETE FROM dbo.HS_Store_Store;
+DELETE FROM dbo.H_Store;
+DELETE FROM dbo.HS_Customer_Customer;
+DELETE FROM dbo.H_Customer;
+Clearing RDV Product slice tables before orchestrated reload.
+meta-sql execute --connection-env AW_RDV_SQL --quiet --query DELETE FROM dbo.L_ProductProductSubcategory;
+DELETE FROM dbo.L_ProductSubcategoryProductCategory;
+DELETE FROM dbo.HS_Product_Product;
+DELETE FROM dbo.H_Product;
+DELETE FROM dbo.HS_ProductSubcategory_ProductSubcategory;
+DELETE FROM dbo.H_ProductSubcategory;
+DELETE FROM dbo.HS_ProductCategory_ProductCategory;
+DELETE FROM dbo.H_ProductCategory;
+meta-pipeline --new-workspace ops\Pipeline
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Product_dbo_H_ProductCategory --description Modeled RDV_Product table-load pipeline for dbo.H_ProductCategory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Product_dbo_H_ProductCategory --step-name Load_dbo_H_ProductCategory --script dbo.v_load_H_ProductCategory --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_ProductCategory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Product_dbo_HS_ProductCategory_ProductCategory --description Modeled RDV_Product table-load pipeline for dbo.HS_ProductCategory_ProductCategory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Product_dbo_HS_ProductCategory_ProductCategory --step-name Load_dbo_HS_ProductCategory_ProductCategory --script dbo.v_load_HS_ProductCategory_ProductCategory --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_ProductCategory_ProductCategory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Product_dbo_H_ProductSubcategory --description Modeled RDV_Product table-load pipeline for dbo.H_ProductSubcategory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Product_dbo_H_ProductSubcategory --step-name Load_dbo_H_ProductSubcategory --script dbo.v_load_H_ProductSubcategory --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_ProductSubcategory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory --description Modeled RDV_Product table-load pipeline for dbo.HS_ProductSubcategory_ProductSubcategory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory --step-name Load_dbo_HS_ProductSubcategory_ProductSubcategory --script dbo.v_load_HS_ProductSubcategory_ProductSubcategory --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_ProductSubcategory_ProductSubcategory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Product_dbo_H_Product --description Modeled RDV_Product table-load pipeline for dbo.H_Product.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Product_dbo_H_Product --step-name Load_dbo_H_Product --script dbo.v_load_H_Product --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_Product --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Product_dbo_HS_Product_Product --description Modeled RDV_Product table-load pipeline for dbo.HS_Product_Product.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Product_dbo_HS_Product_Product --step-name Load_dbo_HS_Product_Product --script dbo.v_load_HS_Product_Product --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_Product_Product --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Product_dbo_L_ProductSubcategoryProductCategory --description Modeled RDV_Product table-load pipeline for dbo.L_ProductSubcategoryProductCategory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Product_dbo_L_ProductSubcategoryProductCategory --step-name Load_dbo_L_ProductSubcategoryProductCategory --script dbo.v_load_L_ProductSubcategoryProductCategory --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_ProductSubcategoryProductCategory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Product_dbo_L_ProductProductSubcategory --description Modeled RDV_Product table-load pipeline for dbo.L_ProductProductSubcategory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Product_dbo_L_ProductProductSubcategory --step-name Load_dbo_L_ProductProductSubcategory --script dbo.v_load_L_ProductProductSubcategory --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_ProductProductSubcategory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_H_Customer --description Modeled RDV_Sales table-load pipeline for dbo.H_Customer.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_H_Customer --step-name Load_dbo_H_Customer --script dbo.v_load_H_Customer --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_Customer --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_HS_Customer_Customer --description Modeled RDV_Sales table-load pipeline for dbo.HS_Customer_Customer.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_HS_Customer_Customer --step-name Load_dbo_HS_Customer_Customer --script dbo.v_load_HS_Customer_Customer --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_Customer_Customer --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_H_Store --description Modeled RDV_Sales table-load pipeline for dbo.H_Store.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_H_Store --step-name Load_dbo_H_Store --script dbo.v_load_H_Store --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_Store --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_HS_Store_Store --description Modeled RDV_Sales table-load pipeline for dbo.HS_Store_Store.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_HS_Store_Store --step-name Load_dbo_HS_Store_Store --script dbo.v_load_HS_Store_Store --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_Store_Store --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_H_SalesPerson --description Modeled RDV_Sales table-load pipeline for dbo.H_SalesPerson.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_H_SalesPerson --step-name Load_dbo_H_SalesPerson --script dbo.v_load_H_SalesPerson --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SalesPerson --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_HS_SalesPerson_SalesPerson --description Modeled RDV_Sales table-load pipeline for dbo.HS_SalesPerson_SalesPerson.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_HS_SalesPerson_SalesPerson --step-name Load_dbo_HS_SalesPerson_SalesPerson --script dbo.v_load_HS_SalesPerson_SalesPerson --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_SalesPerson_SalesPerson --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_H_SalesTerritory --description Modeled RDV_Sales table-load pipeline for dbo.H_SalesTerritory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_H_SalesTerritory --step-name Load_dbo_H_SalesTerritory --script dbo.v_load_H_SalesTerritory --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SalesTerritory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory --description Modeled RDV_Sales table-load pipeline for dbo.HS_SalesTerritory_SalesTerritory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory --step-name Load_dbo_HS_SalesTerritory_SalesTerritory --script dbo.v_load_HS_SalesTerritory_SalesTerritory --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_SalesTerritory_SalesTerritory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_H_SalesOrderHeader --description Modeled RDV_Sales table-load pipeline for dbo.H_SalesOrderHeader.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_H_SalesOrderHeader --step-name Load_dbo_H_SalesOrderHeader --script dbo.v_load_H_SalesOrderHeader --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SalesOrderHeader --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader --description Modeled RDV_Sales table-load pipeline for dbo.HS_SalesOrderHeader_SalesOrderHeader.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader --step-name Load_dbo_HS_SalesOrderHeader_SalesOrderHeader --script dbo.v_load_HS_SalesOrderHeader_SalesOrderHeader --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_SalesOrderHeader_SalesOrderHeader --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_H_SalesOrderDetail --description Modeled RDV_Sales table-load pipeline for dbo.H_SalesOrderDetail.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_H_SalesOrderDetail --step-name Load_dbo_H_SalesOrderDetail --script dbo.v_load_H_SalesOrderDetail --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SalesOrderDetail --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail --description Modeled RDV_Sales table-load pipeline for dbo.HS_SalesOrderDetail_SalesOrderDetail.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail --step-name Load_dbo_HS_SalesOrderDetail_SalesOrderDetail --script dbo.v_load_HS_SalesOrderDetail_SalesOrderDetail --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_SalesOrderDetail_SalesOrderDetail --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_H_SpecialOfferProduct --description Modeled RDV_Sales table-load pipeline for dbo.H_SpecialOfferProduct.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_H_SpecialOfferProduct --step-name Load_dbo_H_SpecialOfferProduct --script dbo.v_load_H_SpecialOfferProduct --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_SpecialOfferProduct --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_L_CustomerStore --description Modeled RDV_Sales table-load pipeline for dbo.L_CustomerStore.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_L_CustomerStore --step-name Load_dbo_L_CustomerStore --script dbo.v_load_L_CustomerStore --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_CustomerStore --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_L_CustomerSalesTerritory --description Modeled RDV_Sales table-load pipeline for dbo.L_CustomerSalesTerritory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_L_CustomerSalesTerritory --step-name Load_dbo_L_CustomerSalesTerritory --script dbo.v_load_L_CustomerSalesTerritory --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_CustomerSalesTerritory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_L_SalesOrderHeaderCustomer --description Modeled RDV_Sales table-load pipeline for dbo.L_SalesOrderHeaderCustomer.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_L_SalesOrderHeaderCustomer --step-name Load_dbo_L_SalesOrderHeaderCustomer --script dbo.v_load_L_SalesOrderHeaderCustomer --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderHeaderCustomer --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson --description Modeled RDV_Sales table-load pipeline for dbo.L_SalesOrderHeaderSalesPerson.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson --step-name Load_dbo_L_SalesOrderHeaderSalesPerson --script dbo.v_load_L_SalesOrderHeaderSalesPerson --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderHeaderSalesPerson --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory --description Modeled RDV_Sales table-load pipeline for dbo.L_SalesOrderHeaderSalesTerritory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory --step-name Load_dbo_L_SalesOrderHeaderSalesTerritory --script dbo.v_load_L_SalesOrderHeaderSalesTerritory --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderHeaderSalesTerritory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader --description Modeled RDV_Sales table-load pipeline for dbo.L_SalesOrderDetailSalesOrderHeader.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader --step-name Load_dbo_L_SalesOrderDetailSalesOrderHeader --script dbo.v_load_L_SalesOrderDetailSalesOrderHeader --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderDetailSalesOrderHeader --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct --description Modeled RDV_Sales table-load pipeline for dbo.L_SalesOrderDetailSpecialOfferProduct.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct --step-name Load_dbo_L_SalesOrderDetailSpecialOfferProduct --script dbo.v_load_L_SalesOrderDetailSpecialOfferProduct --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SalesOrderDetailSpecialOfferProduct --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name RDV_Sales_dbo_L_SpecialOfferProductProduct --description Modeled RDV_Sales table-load pipeline for dbo.L_SpecialOfferProductProduct.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline RDV_Sales_dbo_L_SpecialOfferProductProduct --step-name Load_dbo_L_SpecialOfferProductProduct --script dbo.v_load_L_SpecialOfferProductProduct --transform-workspace rdv\AdventureWorksRawVault\SalesTransforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\SalesBinding --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_SpecialOfferProductProduct --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Product_dbo_BH_Product --description Modeled BDV_Product table-load pipeline for dbo.BH_Product.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Product_dbo_BH_Product --step-name Load_dbo_BH_Product --script dbo.v_load_BH_Product --transform-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\Binding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_Product --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Product_dbo_BHS_Product_ProductClassification --description Modeled BDV_Product table-load pipeline for dbo.BHS_Product_ProductClassification.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Product_dbo_BHS_Product_ProductClassification --step-name Load_dbo_BHS_Product_ProductClassification --script dbo.v_load_BHS_Product_ProductClassification --transform-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\Binding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_Product_ProductClassification --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BH_Customer --description Modeled BDV_Sales table-load pipeline for dbo.BH_Customer.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BH_Customer --step-name Load_dbo_BH_Customer --script dbo.v_load_BH_Customer --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_Customer --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BHS_Customer_CustomerProfile --description Modeled BDV_Sales table-load pipeline for dbo.BHS_Customer_CustomerProfile.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BHS_Customer_CustomerProfile --step-name Load_dbo_BHS_Customer_CustomerProfile --script dbo.v_load_BHS_Customer_CustomerProfile --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_Customer_CustomerProfile --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BH_Store --description Modeled BDV_Sales table-load pipeline for dbo.BH_Store.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BH_Store --step-name Load_dbo_BH_Store --script dbo.v_load_BH_Store --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_Store --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BHS_Store_StoreProfile --description Modeled BDV_Sales table-load pipeline for dbo.BHS_Store_StoreProfile.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BHS_Store_StoreProfile --step-name Load_dbo_BHS_Store_StoreProfile --script dbo.v_load_BHS_Store_StoreProfile --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_Store_StoreProfile --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BH_SalesPerson --description Modeled BDV_Sales table-load pipeline for dbo.BH_SalesPerson.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BH_SalesPerson --step-name Load_dbo_BH_SalesPerson --script dbo.v_load_BH_SalesPerson --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_SalesPerson --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile --description Modeled BDV_Sales table-load pipeline for dbo.BHS_SalesPerson_SalesPersonProfile.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile --step-name Load_dbo_BHS_SalesPerson_SalesPersonProfile --script dbo.v_load_BHS_SalesPerson_SalesPersonProfile --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_SalesPerson_SalesPersonProfile --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BH_SalesTerritory --description Modeled BDV_Sales table-load pipeline for dbo.BH_SalesTerritory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BH_SalesTerritory --step-name Load_dbo_BH_SalesTerritory --script dbo.v_load_BH_SalesTerritory --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_SalesTerritory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile --description Modeled BDV_Sales table-load pipeline for dbo.BHS_SalesTerritory_SalesTerritoryProfile.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile --step-name Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile --script dbo.v_load_BHS_SalesTerritory_SalesTerritoryProfile --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_SalesTerritory_SalesTerritoryProfile --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BH_SalesOrder --description Modeled BDV_Sales table-load pipeline for dbo.BH_SalesOrder.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BH_SalesOrder --step-name Load_dbo_BH_SalesOrder --script dbo.v_load_BH_SalesOrder --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_SalesOrder --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile --description Modeled BDV_Sales table-load pipeline for dbo.BHS_SalesOrder_SalesOrderProfile.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile --step-name Load_dbo_BHS_SalesOrder_SalesOrderProfile --script dbo.v_load_BHS_SalesOrder_SalesOrderProfile --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_SalesOrder_SalesOrderProfile --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BH_SalesOrderLine --description Modeled BDV_Sales table-load pipeline for dbo.BH_SalesOrderLine.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BH_SalesOrderLine --step-name Load_dbo_BH_SalesOrderLine --script dbo.v_load_BH_SalesOrderLine --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_SalesOrderLine --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BH_OrderDate --description Modeled BDV_Sales table-load pipeline for dbo.BH_OrderDate.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BH_OrderDate --step-name Load_dbo_BH_OrderDate --script dbo.v_load_BH_OrderDate --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_OrderDate --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BL_SalesOrderCustomer --description Modeled BDV_Sales table-load pipeline for dbo.BL_SalesOrderCustomer.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BL_SalesOrderCustomer --step-name Load_dbo_BL_SalesOrderCustomer --script dbo.v_load_BL_SalesOrderCustomer --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderCustomer --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BL_SalesOrderStore --description Modeled BDV_Sales table-load pipeline for dbo.BL_SalesOrderStore.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BL_SalesOrderStore --step-name Load_dbo_BL_SalesOrderStore --script dbo.v_load_BL_SalesOrderStore --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderStore --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BL_SalesOrderSalesPerson --description Modeled BDV_Sales table-load pipeline for dbo.BL_SalesOrderSalesPerson.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BL_SalesOrderSalesPerson --step-name Load_dbo_BL_SalesOrderSalesPerson --script dbo.v_load_BL_SalesOrderSalesPerson --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderSalesPerson --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BL_SalesOrderTerritory --description Modeled BDV_Sales table-load pipeline for dbo.BL_SalesOrderTerritory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BL_SalesOrderTerritory --step-name Load_dbo_BL_SalesOrderTerritory --script dbo.v_load_BL_SalesOrderTerritory --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderTerritory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BL_SalesOrderDate --description Modeled BDV_Sales table-load pipeline for dbo.BL_SalesOrderDate.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BL_SalesOrderDate --step-name Load_dbo_BL_SalesOrderDate --script dbo.v_load_BL_SalesOrderDate --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderDate --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BL_SalesOrderLineOrder --description Modeled BDV_Sales table-load pipeline for dbo.BL_SalesOrderLineOrder.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BL_SalesOrderLineOrder --step-name Load_dbo_BL_SalesOrderLineOrder --script dbo.v_load_BL_SalesOrderLineOrder --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderLineOrder --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BL_SalesOrderLineProduct --description Modeled BDV_Sales table-load pipeline for dbo.BL_SalesOrderLineProduct.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BL_SalesOrderLineProduct --step-name Load_dbo_BL_SalesOrderLineProduct --script dbo.v_load_BL_SalesOrderLineProduct --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BL_SalesOrderLineProduct --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures --description Modeled BDV_Sales table-load pipeline for dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures --step-name Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures --script dbo.v_load_BLS_SalesOrderLineProduct_SalesOrderLineMeasures --transform-workspace bdv\AdventureWorksBusinessVault\SalesTransforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\SalesBinding --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name DW_Mart_awbi_DimProduct --description Modeled DW_Mart table-load pipeline for awbi.DimProduct.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline DW_Mart_awbi_DimProduct --step-name Load_awbi_DimProduct --script awbi.v_load_DimProduct --transform-workspace dw\AdventureWorksMetaDemo\Transforms\Workspace --binding-workspace dw\AdventureWorksMetaDemo\Binding --execution-connection-env AW_TARGET_SQL --target-connection-env AW_TARGET_SQL --target awbi.DimProduct --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name DW_Mart_awbi_DimOrderDate --description Modeled DW_Mart table-load pipeline for awbi.DimOrderDate.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline DW_Mart_awbi_DimOrderDate --step-name Load_awbi_DimOrderDate --script awbi.v_load_DimOrderDate --transform-workspace dw\AdventureWorksMetaDemo\Transforms\Workspace --binding-workspace dw\AdventureWorksMetaDemo\Binding --execution-connection-env AW_TARGET_SQL --target-connection-env AW_TARGET_SQL --target awbi.DimOrderDate --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name DW_Mart_awbi_DimSalesTerritory --description Modeled DW_Mart table-load pipeline for awbi.DimSalesTerritory.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline DW_Mart_awbi_DimSalesTerritory --step-name Load_awbi_DimSalesTerritory --script awbi.v_load_DimSalesTerritory --transform-workspace dw\AdventureWorksMetaDemo\Transforms\Workspace --binding-workspace dw\AdventureWorksMetaDemo\Binding --execution-connection-env AW_TARGET_SQL --target-connection-env AW_TARGET_SQL --target awbi.DimSalesTerritory --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name DW_Mart_awbi_DimCustomerChannel --description Modeled DW_Mart table-load pipeline for awbi.DimCustomerChannel.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline DW_Mart_awbi_DimCustomerChannel --step-name Load_awbi_DimCustomerChannel --script awbi.v_load_DimCustomerChannel --transform-workspace dw\AdventureWorksMetaDemo\Transforms\Workspace --binding-workspace dw\AdventureWorksMetaDemo\Binding --execution-connection-env AW_TARGET_SQL --target-connection-env AW_TARGET_SQL --target awbi.DimCustomerChannel --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-pipeline add-pipeline --workspace ops\Pipeline --name DW_Mart_awbi_FactSalesOrderLine --description Modeled DW_Mart table-load pipeline for awbi.FactSalesOrderLine.
+Ok
+meta-pipeline add-step --workspace ops\Pipeline --pipeline DW_Mart_awbi_FactSalesOrderLine --step-name Load_awbi_FactSalesOrderLine --script awbi.v_load_FactSalesOrderLine --transform-workspace dw\AdventureWorksMetaDemo\Transforms\Workspace --binding-workspace dw\AdventureWorksMetaDemo\Binding --execution-connection-env AW_TARGET_SQL --target-connection-env AW_TARGET_SQL --target awbi.FactSalesOrderLine --target-write insert-rows --target-data-type-system SqlServer
+Ok
+meta-orchestration --pipeline-workspace ops\Pipeline --new-workspace ops\Orchestration --description Modeled orchestration for one transform-backed table-producing pipeline per authored RDV, BDV, and DW/Mart transform.
+Creating...Ok
+meta-orchestration refresh-run-plan --workspace ops\Orchestration
+Building...Ok
+meta-orchestration inspect-run-plan --workspace ops\Orchestration
+DefaultRunPlan
+RetryPolicy: DefaultRetryPolicy (MaxAttempts=3)
+PlannedTasks: 56
+DependencyEdges: 67
+Graph:
+  BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification
+    --> DW_Mart_awbi_DimProduct.Load_awbi_DimProduct [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification]
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification]
+  BDV_Product_dbo_BH_Product.Load_dbo_BH_Product
+    --> DW_Mart_awbi_DimProduct.Load_awbi_DimProduct [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_Product]
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_Product]
+  BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile
+    --> DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile]
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile]
+  BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile]
+  BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile]
+  BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile
+    --> DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile]
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile]
+  BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile
+    (no outgoing dependencies)
+  BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer
+    --> DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_Customer]
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_Customer]
+  BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate
+    --> DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_OrderDate]
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_OrderDate]
+  BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_SalesOrder]
+  BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_SalesOrderLine]
+  BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_SalesPerson]
+  BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory
+    --> DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_SalesTerritory]
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BH_SalesTerritory]
+  BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store
+    (no outgoing dependencies)
+  BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures]
+  BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer]
+  BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BL_SalesOrderDate]
+  BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder]
+  BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct]
+  BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson]
+  BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore
+    (no outgoing dependencies)
+  BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory
+    --> DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine [OnSuccess/Data/AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory]
+  DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel
+    (no outgoing dependencies)
+  DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate
+    (no outgoing dependencies)
+  DW_Mart_awbi_DimProduct.Load_awbi_DimProduct
+    (no outgoing dependencies)
+  DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory
+    (no outgoing dependencies)
+  DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine
+    (no outgoing dependencies)
+  RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory
+    --> BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory]
+  RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory
+    --> BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory]
+  RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product
+    --> BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_Product_Product]
+  RDV_Product_dbo_H_Product.Load_dbo_H_Product
+    --> BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification [OnSuccess/Data/AdventureWorksRawVault.dbo.H_Product]
+    --> BDV_Product_dbo_BH_Product.Load_dbo_BH_Product [OnSuccess/Data/AdventureWorksRawVault.dbo.H_Product]
+  RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory
+    --> BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification [OnSuccess/Data/AdventureWorksRawVault.dbo.H_ProductCategory]
+  RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory
+    --> BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification [OnSuccess/Data/AdventureWorksRawVault.dbo.H_ProductSubcategory]
+  RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory
+    --> BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification [OnSuccess/Data/AdventureWorksRawVault.dbo.L_ProductProductSubcategory]
+  RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory
+    --> BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification [OnSuccess/Data/AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory]
+  RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer
+    --> BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_Customer_Customer]
+  RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail
+    --> BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_SalesOrderDetail_SalesOrderDetail]
+  RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader
+    --> BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader]
+    --> BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader]
+    --> BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader]
+    --> BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader]
+  RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson
+    (no outgoing dependencies)
+  RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory
+    --> BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_SalesTerritory_SalesTerritory]
+  RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store
+    --> BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.HS_Store_Store]
+  RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer
+    --> BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.H_Customer]
+    --> BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer [OnSuccess/Data/AdventureWorksRawVault.dbo.H_Customer]
+  RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail
+    --> BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine [OnSuccess/Data/AdventureWorksRawVault.dbo.H_SalesOrderDetail]
+  RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader
+    --> BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.H_SalesOrderHeader]
+    --> BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder [OnSuccess/Data/AdventureWorksRawVault.dbo.H_SalesOrderHeader]
+    --> BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate [OnSuccess/Data/AdventureWorksRawVault.dbo.H_SalesOrderHeader]
+  RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson
+    --> BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.H_SalesPerson]
+    --> BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson [OnSuccess/Data/AdventureWorksRawVault.dbo.H_SalesPerson]
+  RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory
+    --> BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.H_SalesTerritory]
+    --> BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory [OnSuccess/Data/AdventureWorksRawVault.dbo.H_SalesTerritory]
+  RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct
+    (no outgoing dependencies)
+  RDV_Sales_dbo_H_Store.Load_dbo_H_Store
+    --> BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.H_Store]
+    --> BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store [OnSuccess/Data/AdventureWorksRawVault.dbo.H_Store]
+  RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory
+    (no outgoing dependencies)
+  RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore
+    --> BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile [OnSuccess/Data/AdventureWorksRawVault.dbo.L_CustomerStore]
+    --> BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore [OnSuccess/Data/AdventureWorksRawVault.dbo.L_CustomerStore]
+  RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader
+    --> BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader]
+    --> BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader]
+  RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct
+    --> BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct]
+    --> BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct]
+  RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer
+    --> BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer]
+    --> BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer]
+  RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson
+    --> BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson]
+  RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory
+    --> BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory]
+  RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct
+    --> BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct]
+    --> BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct [OnSuccess/Data/AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct]
+meta-orchestration execute --workspace ops\Orchestration --pipeline-workspace ops\Pipeline --max-degree-of-parallelism 4 --run-artifacts-root ops\RunArtifacts
+56 pipelines executed successfully.
+Post-orchestration mart proof from BDV-backed persisted tables:
+meta-sql execute --connection-env AW_TARGET_SQL --query SELECT
+    COUNT_BIG(*) AS FactRows,
+    SUM(SalesAmount) AS SalesAmount,
+    SUM(TaxAmount) AS TaxAmount,
+    SUM(FreightAmount) AS FreightAmount
+FROM awbi.FactSalesOrderLine;
+
+SELECT TOP (5)
+    ProductCategory,
+    COUNT_BIG(*) AS LineRows,
+    SUM(SalesAmount) AS SalesAmount
+FROM awbi.FactSalesOrderLine
+GROUP BY ProductCategory
+ORDER BY SalesAmount DESC;
+
+SELECT
+    Issue,
+    COUNT_BIG(*) AS ReviewRows,
+    SUM(TotalSuspectCount) AS TotalSuspectCount
+FROM dq.v_DataQualityReview
+GROUP BY Issue
+ORDER BY Issue;
+
+Result set 1
+FactRows | SalesAmount | TaxAmount | FreightAmount
+121317 | 109846381.399888 | 10186849.5419 | 3183390.9478
+
+Result set 2
+ProductCategory | LineRows | SalesAmount
+Bikes | 40031 | 94651172.704731
+Components | 18698 | 11802593.286430
+Clothing | 21394 | 2120542.524801
+Accessories | 41194 | 1272072.883926
+
+Result set 3
+Issue | ReviewRows | TotalSuspectCount
+Duplicate output rows | 6 | 0
+Missing referenced rows | 21 | 0
+Row multiplication | 6 | 0
+Unexpected NULLs from outer joins | 6 | 0
+Ok
+Modeled pipeline/orchestration gate passed for 56 transform-backed table-load pipelines.
+
+=== 07-author-process-tabular.cmd ===
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query SELECT COUNT_BIG(*) AS FactRows, SUM(SalesAmount) AS SalesAmount FROM awbi.FactSalesOrderLine;
+Granting mart read access to inferred Tabular service login: NT Service\MSOLAP$TABULAR
+meta-sql execute --connection-env AW_MASTER_SQL --quiet --query BEGIN TRY
+    IF SUSER_ID(N'NT Service\MSOLAP$TABULAR') IS NULL
+        CREATE LOGIN [NT Service\MSOLAP$TABULAR] FROM WINDOWS;
+END TRY
+BEGIN CATCH
+    PRINT CONCAT('Could not create Tabular service login NT Service\MSOLAP$TABULAR: ', ERROR_MESSAGE());
+END CATCH;
+meta-sql execute --connection-env AW_TARGET_SQL --quiet --query IF SUSER_ID(N'NT Service\MSOLAP$TABULAR') IS NOT NULL
+BEGIN
+    IF USER_ID(N'NT Service\MSOLAP$TABULAR') IS NULL
+        CREATE USER [NT Service\MSOLAP$TABULAR] FOR LOGIN [NT Service\MSOLAP$TABULAR];
+
+    IF ISNULL(IS_ROLEMEMBER(N'db_datareader', N'NT Service\MSOLAP$TABULAR'), 0) <> 1
+        ALTER ROLE db_datareader ADD MEMBER [NT Service\MSOLAP$TABULAR];
+END;
+meta-analytics --new-workspace analytics\Analytics
+Ok
+meta-analytics add-model --workspace analytics\Analytics --id AdventureWorksSales --name AdventureWorks Sales --default-culture en-US --description Generated sales analytics model over the BDV-backed AdventureWorks mart.
+Ok
+meta-analytics add-data-source --workspace analytics\Analytics --id Mart --model AdventureWorksSales --name AdventureWorks Mart --provider SqlServer --connection-reference AW_TARGET_SQL --source-kind Relational
+Ok
+meta-analytics add-table --workspace analytics\Analytics --id FactSalesOrderLine --model AdventureWorksSales --name Fact Sales Order Line --kind Fact --data-category Sales
+Ok
+meta-analytics add-table --workspace analytics\Analytics --id DimProduct --model AdventureWorksSales --name Product --kind Dimension --data-category Products
+Ok
+meta-analytics add-table --workspace analytics\Analytics --id DimOrderDate --model AdventureWorksSales --name Order Date --kind Dimension --data-category Time
+Ok
+meta-analytics add-table --workspace analytics\Analytics --id DimSalesTerritory --model AdventureWorksSales --name Sales Territory --kind Dimension --data-category Geography
+Ok
+meta-analytics add-table --workspace analytics\Analytics --id DimCustomerChannel --model AdventureWorksSales --name Customer Channel --kind Dimension --data-category Customers
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_SalesOrderId --table FactSalesOrderLine --name Sales Order ID --source-name SalesOrderId --data-type-id meta:type:Int64 --ordinal 10
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_SalesOrderDetailId --table FactSalesOrderLine --name Sales Order Detail ID --source-name SalesOrderDetailId --data-type-id meta:type:Int64 --ordinal 20
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_SalesOrderNumber --table FactSalesOrderLine --name Sales Order Number --source-name SalesOrderNumber --data-type-id meta:type:String --ordinal 30
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_OrderDate --table FactSalesOrderLine --name Order Date --source-name OrderDate --data-type-id meta:type:Date --ordinal 40
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_ProductId --table FactSalesOrderLine --name Product ID --source-name ProductId --data-type-id meta:type:Int64 --ordinal 50
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_ProductNumber --table FactSalesOrderLine --name Product Number --source-name ProductNumber --data-type-id meta:type:String --ordinal 60
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_ProductName --table FactSalesOrderLine --name Product Name --source-name ProductName --data-type-id meta:type:String --ordinal 70
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_ProductCategory --table FactSalesOrderLine --name Product Category --source-name ProductCategory --data-type-id meta:type:String --ordinal 80
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_ProductSubcategory --table FactSalesOrderLine --name Product Subcategory --source-name ProductSubcategory --data-type-id meta:type:String --ordinal 90
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_CustomerId --table FactSalesOrderLine --name Customer ID --source-name CustomerId --data-type-id meta:type:Int64 --ordinal 100
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_CustomerType --table FactSalesOrderLine --name Customer Type --source-name CustomerType --data-type-id meta:type:String --ordinal 110
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_TerritoryId --table FactSalesOrderLine --name Territory ID --source-name TerritoryId --data-type-id meta:type:Int64 --ordinal 120
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_TerritoryName --table FactSalesOrderLine --name Territory Name --source-name TerritoryName --data-type-id meta:type:String --ordinal 130
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_TerritoryGroup --table FactSalesOrderLine --name Territory Group --source-name TerritoryGroup --data-type-id meta:type:String --ordinal 140
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_SalesPersonBusinessEntityId --table FactSalesOrderLine --name Salesperson Business Entity ID --source-name SalesPersonBusinessEntityId --data-type-id meta:type:Int64 --ordinal 150
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_SalesPersonName --table FactSalesOrderLine --name Salesperson Name --source-name SalesPersonName --data-type-id meta:type:String --ordinal 160
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_OnlineOrderFlag --table FactSalesOrderLine --name Online Order Flag --source-name OnlineOrderFlag --data-type-id meta:type:Boolean --ordinal 170
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_OrderQuantity --table FactSalesOrderLine --name Order Quantity Column --source-name OrderQuantity --data-type-id meta:type:Int64 --ordinal 180 --is-hidden true --summarize-by Sum
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_UnitPrice --table FactSalesOrderLine --name Unit Price --source-name UnitPrice --data-type-id meta:type:Decimal --ordinal 190
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_SalesAmount --table FactSalesOrderLine --name Sales Amount Column --source-name SalesAmount --data-type-id meta:type:Decimal --ordinal 200 --is-hidden true --summarize-by Sum
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_DiscountAmount --table FactSalesOrderLine --name Discount Amount Column --source-name DiscountAmount --data-type-id meta:type:Decimal --ordinal 210 --is-hidden true --summarize-by Sum
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_TaxAmount --table FactSalesOrderLine --name Tax Amount Column --source-name TaxAmount --data-type-id meta:type:Decimal --ordinal 220 --is-hidden true --summarize-by Sum
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id FactSalesOrderLine_FreightAmount --table FactSalesOrderLine --name Freight Amount Column --source-name FreightAmount --data-type-id meta:type:Decimal --ordinal 230 --is-hidden true --summarize-by Sum
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimProduct_ProductId --table DimProduct --name Product ID --source-name ProductId --data-type-id meta:type:Int64 --ordinal 10 --is-key true --is-hidden true
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimProduct_ProductNumber --table DimProduct --name Product Number --source-name ProductNumber --data-type-id meta:type:String --ordinal 20
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimProduct_ProductName --table DimProduct --name Product Name --source-name ProductName --data-type-id meta:type:String --ordinal 30
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimProduct_ProductCategory --table DimProduct --name Product Category --source-name ProductCategory --data-type-id meta:type:String --ordinal 40
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimProduct_ProductSubcategory --table DimProduct --name Product Subcategory --source-name ProductSubcategory --data-type-id meta:type:String --ordinal 50
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimOrderDate_OrderDate --table DimOrderDate --name Order Date --source-name OrderDate --data-type-id meta:type:Date --ordinal 10 --is-key true --is-hidden true
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimOrderDate_OrderYear --table DimOrderDate --name Order Year --source-name OrderYear --data-type-id meta:type:Int32 --ordinal 20
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimOrderDate_OrderMonth --table DimOrderDate --name Order Month --source-name OrderMonth --data-type-id meta:type:Int32 --ordinal 30
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimOrderDate_OrderMonthName --table DimOrderDate --name Order Month Name --source-name OrderMonthName --data-type-id meta:type:String --ordinal 40
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimSalesTerritory_TerritoryId --table DimSalesTerritory --name Territory ID --source-name TerritoryId --data-type-id meta:type:Int64 --ordinal 10 --is-key true --is-hidden true
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimSalesTerritory_TerritoryName --table DimSalesTerritory --name Territory Name --source-name TerritoryName --data-type-id meta:type:String --ordinal 20
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimSalesTerritory_CountryRegionCode --table DimSalesTerritory --name Country Region Code --source-name CountryRegionCode --data-type-id meta:type:String --ordinal 30
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimSalesTerritory_TerritoryGroup --table DimSalesTerritory --name Territory Group --source-name TerritoryGroup --data-type-id meta:type:String --ordinal 40
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimCustomerChannel_CustomerId --table DimCustomerChannel --name Customer ID --source-name CustomerId --data-type-id meta:type:Int64 --ordinal 10 --is-key true --is-hidden true
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimCustomerChannel_CustomerAccountNumber --table DimCustomerChannel --name Customer Account Number --source-name CustomerAccountNumber --data-type-id meta:type:String --ordinal 20
+Ok
+meta-analytics add-attribute --workspace analytics\Analytics --id DimCustomerChannel_CustomerType --table DimCustomerChannel --name Customer Type --source-name CustomerType --data-type-id meta:type:String --ordinal 30
+Ok
+meta-analytics add-measure --workspace analytics\Analytics --id MeasureSalesAmount --table FactSalesOrderLine --source-attribute FactSalesOrderLine_SalesAmount --name Sales Amount --data-type-id meta:type:Decimal --format-string #,0.00
+Ok
+meta-analytics add-aggregation-behavior --workspace analytics\Analytics --id Aggregation_MeasureSalesAmount --measure MeasureSalesAmount --function Sum
+Ok
+meta-analytics add-measure --workspace analytics\Analytics --id MeasureOrderQuantity --table FactSalesOrderLine --source-attribute FactSalesOrderLine_OrderQuantity --name Order Quantity --data-type-id meta:type:Int64 --format-string #,0
+Ok
+meta-analytics add-aggregation-behavior --workspace analytics\Analytics --id Aggregation_MeasureOrderQuantity --measure MeasureOrderQuantity --function Sum
+Ok
+meta-analytics add-measure --workspace analytics\Analytics --id MeasureDiscountAmount --table FactSalesOrderLine --source-attribute FactSalesOrderLine_DiscountAmount --name Discount Amount --data-type-id meta:type:Decimal --format-string #,0.00
+Ok
+meta-analytics add-aggregation-behavior --workspace analytics\Analytics --id Aggregation_MeasureDiscountAmount --measure MeasureDiscountAmount --function Sum
+Ok
+meta-analytics add-measure --workspace analytics\Analytics --id MeasureTaxAmount --table FactSalesOrderLine --source-attribute FactSalesOrderLine_TaxAmount --name Tax Amount --data-type-id meta:type:Decimal --format-string #,0.00
+Ok
+meta-analytics add-aggregation-behavior --workspace analytics\Analytics --id Aggregation_MeasureTaxAmount --measure MeasureTaxAmount --function Sum
+Ok
+meta-analytics add-measure --workspace analytics\Analytics --id MeasureLineCount --table FactSalesOrderLine --source-attribute FactSalesOrderLine_SalesOrderDetailId --name Line Count --data-type-id meta:type:Int64 --format-string #,0
+Ok
+meta-analytics add-aggregation-behavior --workspace analytics\Analytics --id Aggregation_MeasureLineCount --measure MeasureLineCount --function Count
+Ok
+meta-analytics add-relationship --workspace analytics\Analytics --id RelationshipFactProduct --name Product --relationship-kind Regular --cardinality ManyToOne --cross-filter-direction Single --is-active true --is-required true --from-table FactSalesOrderLine --from-attribute FactSalesOrderLine_ProductId --to-table DimProduct --to-attribute DimProduct_ProductId
+Ok
+meta-analytics add-relationship --workspace analytics\Analytics --id RelationshipFactOrderDate --name Order Date --relationship-kind Regular --cardinality ManyToOne --cross-filter-direction Single --is-active true --is-required true --from-table FactSalesOrderLine --from-attribute FactSalesOrderLine_OrderDate --to-table DimOrderDate --to-attribute DimOrderDate_OrderDate
+Ok
+meta-analytics add-relationship --workspace analytics\Analytics --id RelationshipFactCustomerChannel --name Customer Channel --relationship-kind Regular --cardinality ManyToOne --cross-filter-direction Single --is-active true --is-required true --from-table FactSalesOrderLine --from-attribute FactSalesOrderLine_CustomerId --to-table DimCustomerChannel --to-attribute DimCustomerChannel_CustomerId
+Ok
+meta-analytics add-relationship --workspace analytics\Analytics --id RelationshipFactSalesTerritory --name Sales Territory --relationship-kind Regular --cardinality ManyToOne --cross-filter-direction Single --is-active true --is-required false --from-table FactSalesOrderLine --from-attribute FactSalesOrderLine_TerritoryId --to-table DimSalesTerritory --to-attribute DimSalesTerritory_TerritoryId
+Ok
+meta-convert analytics-to-tabular --workspace analytics\Analytics --out analytics\Tabular
+Ok
+Summary:
+  Tables: 5
+  Columns: 39
+  Measures: 5
+meta-tabular add-tabular-partition --workspace analytics\Tabular --id PartitionFactSalesOrderLine --tabular-table FactSalesOrderLine --tabular-data-source Mart --name Fact Sales Order Line Partition --ordinal 10 --mode Import --expression SELECT
+    SalesOrderId,
+    SalesOrderDetailId,
+    SalesOrderNumber,
+    OrderDate,
+    ProductId,
+    ProductNumber,
+    ProductName,
+    ProductCategory,
+    ProductSubcategory,
+    CustomerId,
+    CustomerType,
+    TerritoryId,
+    TerritoryName,
+    TerritoryGroup,
+    SalesPersonBusinessEntityId,
+    SalesPersonName,
+    OnlineOrderFlag,
+    OrderQuantity,
+    UnitPrice,
+    SalesAmount,
+    DiscountAmount,
+    TaxAmount,
+    FreightAmount
+FROM awbi.FactSalesOrderLine
+Ok
+meta-tabular add-tabular-partition --workspace analytics\Tabular --id PartitionDimProduct --tabular-table DimProduct --tabular-data-source Mart --name Product Partition --ordinal 20 --mode Import --expression SELECT
+    ProductId,
+    ProductNumber,
+    ProductName,
+    ProductCategory,
+    ProductSubcategory
+FROM awbi.DimProduct
+Ok
+meta-tabular add-tabular-partition --workspace analytics\Tabular --id PartitionDimOrderDate --tabular-table DimOrderDate --tabular-data-source Mart --name Order Date Partition --ordinal 30 --mode Import --expression SELECT
+    OrderDate,
+    OrderYear,
+    OrderMonth,
+    OrderMonthName
+FROM awbi.DimOrderDate
+Ok
+meta-tabular add-tabular-partition --workspace analytics\Tabular --id PartitionDimSalesTerritory --tabular-table DimSalesTerritory --tabular-data-source Mart --name Sales Territory Partition --ordinal 40 --mode Import --expression SELECT
+    TerritoryId,
+    TerritoryName,
+    CountryRegionCode,
+    TerritoryGroup
+FROM awbi.DimSalesTerritory
+Ok
+meta-tabular add-tabular-partition --workspace analytics\Tabular --id PartitionDimCustomerChannel --tabular-table DimCustomerChannel --tabular-data-source Mart --name Customer Channel Partition --ordinal 50 --mode Import --expression SELECT
+    CustomerId,
+    CustomerAccountNumber,
+    CustomerType
+FROM awbi.DimCustomerChannel
+Ok
+meta-tabular deploy --workspace analytics\Tabular --server .\TABULAR --database-name AdventureWorksMetaDemoTabular --drop-existing --no-process
+Ok
+Mode: drop, create
+Process: skipped
+Tables: 5
+Columns: 39
+Measures: 5
+Relationships: 4
+meta-tabular process --server .\TABULAR --database-name AdventureWorksMetaDemoTabular --refresh-type Full
+Ok
+Refresh type: Full
+dotnet restore analytics\TabularProof\TabularProof.csproj --ignore-failed-sources
+  Determining projects to restore...
+  Restored C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\analytics\TabularProof\TabularProof.csproj (in 357 ms).
+dotnet run --project analytics\TabularProof\TabularProof.csproj --no-restore -- .\TABULAR AdventureWorksMetaDemoTabular
+FactRows=121317
+SalesAmount=109846381.4144
+OrderQuantity=274914
+Tabular deploy/process/proof completed.
+Clean run completed through Source, RDV, BDV, DW/mart, DQ, transform-backed orchestration, and Tabular proof.

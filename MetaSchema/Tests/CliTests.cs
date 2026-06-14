@@ -282,6 +282,68 @@ public sealed class CliTests
     }
 
     [Fact]
+    public void SqlServerExtractor_ExtractsPhysicalDetailsForAliasTypes()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "MetaSchemaWorkspace");
+        var databaseName = $"MetaSchemaAliasTypes_{Guid.NewGuid():N}";
+        var masterConnectionString = "Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+        var databaseConnectionString = $"Server=.;Database={databaseName};Integrated Security=true;TrustServerCertificate=true;Encrypt=false";
+
+        try
+        {
+            CreateDatabase(masterConnectionString, databaseName);
+            ExecuteSql(databaseConnectionString, """
+                CREATE TYPE dbo.Name FROM nvarchar(50) NOT NULL;
+                CREATE TYPE dbo.Flag FROM bit NOT NULL;
+                """);
+            ExecuteSql(databaseConnectionString, """
+                CREATE TABLE dbo.AliasTypeDetailCase
+                (
+                    Id int NOT NULL,
+                    CustomerName dbo.Name NOT NULL,
+                    IsActive dbo.Flag NOT NULL,
+                    CONSTRAINT PK_AliasTypeDetailCase PRIMARY KEY (Id)
+                );
+                """);
+
+            var extractor = new SqlServerSchemaExtractor();
+            var workspace = extractor.ExtractMetaSchemaWorkspace(new SqlServerExtractRequest
+            {
+                NewWorkspacePath = workspacePath,
+                ConnectionString = databaseConnectionString,
+                SystemName = databaseName,
+                SchemaName = "dbo",
+                TableName = "AliasTypeDetailCase",
+            });
+
+            var fieldsByName = workspace.Instance
+                .GetOrCreateEntityRecords("Field")
+                .ToDictionary(row => row.Values["Name"], StringComparer.Ordinal);
+            var detailNamesByFieldId = workspace.Instance
+                .GetOrCreateEntityRecords("FieldDataTypeDetail")
+                .GroupBy(row => row.RelationshipIds["FieldId"], StringComparer.Ordinal)
+                .ToDictionary(
+                    group => group.Key,
+                    group => group.ToDictionary(row => row.Values["Name"], row => row.Values["Value"], StringComparer.Ordinal),
+                    StringComparer.Ordinal);
+
+            var customerName = fieldsByName["CustomerName"];
+            Assert.Equal("sqlserver:type:Name", customerName.Values["MetaDataTypeId"]);
+            Assert.Equal("50", detailNamesByFieldId[customerName.Id]["Length"]);
+
+            var isActive = fieldsByName["IsActive"];
+            Assert.Equal("sqlserver:type:Flag", isActive.Values["MetaDataTypeId"]);
+            Assert.False(detailNamesByFieldId.ContainsKey(isActive.Id));
+        }
+        finally
+        {
+            DropDatabase(masterConnectionString, databaseName);
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public void SqlServerExtractor_ExtractsIdentityColumnMetadata()
     {
         var tempRoot = Path.Combine(Path.GetTempPath(), "metaschema-tests", Guid.NewGuid().ToString("N"));

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaDataTypeConversion>
   <DataTypeMappingList>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:AccountNumber" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:AccountNumber</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:String</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:AccountNumber-to-nvarchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <Notes>SQL Server alias/user-defined type compatibility.</Notes>
+      <SourceDataTypeId>sqlserver:type:AccountNumber</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:nvarchar</TargetDataTypeId>
+    </DataTypeMapping>
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:bigint" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
       <SourceDataTypeId>sqlserver:type:bigint</SourceDataTypeId>
       <TargetDataTypeId>meta:type:Int64</TargetDataTypeId>
@@ -12,6 +21,15 @@
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:bit" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
       <SourceDataTypeId>sqlserver:type:bit</SourceDataTypeId>
       <TargetDataTypeId>meta:type:Boolean</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:Flag" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:Flag</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Boolean</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:Flag-to-bit" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <Notes>SQL Server alias/user-defined type compatibility.</Notes>
+      <SourceDataTypeId>sqlserver:type:Flag</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:bit</TargetDataTypeId>
     </DataTypeMapping>
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:char" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
       <SourceDataTypeId>sqlserver:type:char</SourceDataTypeId>
@@ -78,6 +96,51 @@
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:money" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
       <SourceDataTypeId>sqlserver:type:money</SourceDataTypeId>
       <TargetDataTypeId>meta:type:Decimal</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:Name" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:Name</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:String</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:Name-to-nvarchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <Notes>SQL Server alias/user-defined type compatibility.</Notes>
+      <SourceDataTypeId>sqlserver:type:Name</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:nvarchar</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:NameStyle" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:NameStyle</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:Boolean</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:NameStyle-to-bit" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <Notes>SQL Server alias/user-defined type compatibility.</Notes>
+      <SourceDataTypeId>sqlserver:type:NameStyle</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:bit</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:OrderNumber" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:OrderNumber</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:String</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:OrderNumber-to-nvarchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <Notes>SQL Server alias/user-defined type compatibility.</Notes>
+      <SourceDataTypeId>sqlserver:type:OrderNumber</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:nvarchar</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:Phone" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:Phone</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:String</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:Phone-to-nvarchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <Notes>SQL Server alias/user-defined type compatibility.</Notes>
+      <SourceDataTypeId>sqlserver:type:Phone</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:nvarchar</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:sysname" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <SourceDataTypeId>sqlserver:type:sysname</SourceDataTypeId>
+      <TargetDataTypeId>meta:type:String</TargetDataTypeId>
+    </DataTypeMapping>
+    <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:sysname-to-nvarchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
+      <Notes>SQL Server alias/user-defined type compatibility.</Notes>
+      <SourceDataTypeId>sqlserver:type:sysname</SourceDataTypeId>
+      <TargetDataTypeId>sqlserver:type:nvarchar</TargetDataTypeId>
     </DataTypeMapping>
     <DataTypeMapping Id="MetaDataTypeConversion:mapping:sqlserver:nchar" ConversionImplementationId="MetaDataTypeConversion:implementation:direct">
       <SourceDataTypeId>sqlserver:type:nchar</SourceDataTypeId>

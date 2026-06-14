@@ -376,18 +376,19 @@ public sealed class SqlServerSchemaExtractor
                 c.column_id as OrdinalPosition,
                 c.is_nullable,
                 ty.name as DataTypeName,
+                COALESCE(TYPE_NAME(c.system_type_id), ty.name) as SystemDataTypeName,
                 case
                     when c.max_length = -1 then -1
-                    when ty.name in ('nchar', 'nvarchar') then c.max_length / 2
+                    when COALESCE(TYPE_NAME(c.system_type_id), ty.name) in ('nchar', 'nvarchar') then c.max_length / 2
                     else c.max_length
                 end as LengthValue,
                 case
-                    when ty.name in ('decimal', 'numeric') then convert(int, c.precision)
-                    when ty.name in ('time', 'datetime2', 'datetimeoffset') then convert(int, c.scale)
+                    when COALESCE(TYPE_NAME(c.system_type_id), ty.name) in ('decimal', 'numeric') then convert(int, c.precision)
+                    when COALESCE(TYPE_NAME(c.system_type_id), ty.name) in ('time', 'datetime2', 'datetimeoffset') then convert(int, c.scale)
                     else null
                 end as PrecisionValue,
                 case
-                    when ty.name in ('decimal', 'numeric') then convert(int, c.scale)
+                    when COALESCE(TYPE_NAME(c.system_type_id), ty.name) in ('decimal', 'numeric') then convert(int, c.scale)
                     else null
                 end as ScaleValue,
                 c.is_identity,
@@ -417,12 +418,13 @@ public sealed class SqlServerSchemaExtractor
                 OrdinalPosition: ReadInt32(reader, 3),
                 IsNullable: reader.GetBoolean(4),
                 DataTypeName: reader.GetString(5),
-                Length: ReadNullableInt(reader, 6),
-                Precision: ReadNullableInt(reader, 7),
-                Scale: ReadNullableInt(reader, 8),
-                IsIdentity: reader.GetBoolean(9),
-                IdentitySeed: ReadNullableString(reader, 10),
-                IdentityIncrement: ReadNullableString(reader, 11)));
+                SystemDataTypeName: reader.GetString(6),
+                Length: ReadNullableInt(reader, 7),
+                Precision: ReadNullableInt(reader, 8),
+                Scale: ReadNullableInt(reader, 9),
+                IsIdentity: reader.GetBoolean(10),
+                IdentitySeed: ReadNullableString(reader, 11),
+                IdentityIncrement: ReadNullableString(reader, 12)));
         }
 
         return rows;
@@ -683,7 +685,7 @@ public sealed class SqlServerSchemaExtractor
 
     private static void AddFieldDataTypeDetails(Workspace workspace, string fieldId, ColumnRow columnRow)
     {
-        switch (columnRow.DataTypeName.ToLowerInvariant())
+        switch (columnRow.SystemDataTypeName.ToLowerInvariant())
         {
             case "char":
             case "varchar":
@@ -751,6 +753,7 @@ public sealed class SqlServerSchemaExtractor
         int OrdinalPosition,
         bool IsNullable,
         string DataTypeName,
+        string SystemDataTypeName,
         int? Length,
         int? Precision,
         int? Scale,

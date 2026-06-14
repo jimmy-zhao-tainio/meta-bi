@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptList>
+    <TransformScript Id="TransformScript:1">
+      <Name>dbo.v_load_BH_Customer</Name>
+      <SourcePath>001_load_BH_Customer.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:2">
+      <Name>dbo.v_load_BHS_Customer_CustomerProfile</Name>
+      <SourcePath>002_load_BHS_Customer_CustomerProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:3">
+      <Name>dbo.v_load_BH_Store</Name>
+      <SourcePath>003_load_BH_Store.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:4">
+      <Name>dbo.v_load_BHS_Store_StoreProfile</Name>
+      <SourcePath>004_load_BHS_Store_StoreProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:5">
+      <Name>dbo.v_load_BH_SalesPerson</Name>
+      <SourcePath>005_load_BH_SalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:6">
+      <Name>dbo.v_load_BHS_SalesPerson_SalesPersonProfile</Name>
+      <SourcePath>006_load_BHS_SalesPerson_SalesPersonProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:7">
+      <Name>dbo.v_load_BH_SalesTerritory</Name>
+      <SourcePath>007_load_BH_SalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:8">
+      <Name>dbo.v_load_BHS_SalesTerritory_SalesTerritoryProfile</Name>
+      <SourcePath>008_load_BHS_SalesTerritory_SalesTerritoryProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:9">
+      <Name>dbo.v_load_BH_SalesOrder</Name>
+      <SourcePath>009_load_BH_SalesOrder.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:10">
+      <Name>dbo.v_load_BHS_SalesOrder_SalesOrderProfile</Name>
+      <SourcePath>010_load_BHS_SalesOrder_SalesOrderProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:11">
+      <Name>dbo.v_load_BH_SalesOrderLine</Name>
+      <SourcePath>011_load_BH_SalesOrderLine.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:12">
+      <Name>dbo.v_load_BH_OrderDate</Name>
+      <SourcePath>012_load_BH_OrderDate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:13">
+      <Name>dbo.v_load_BL_SalesOrderCustomer</Name>
+      <SourcePath>013_load_BL_SalesOrderCustomer.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:14">
+      <Name>dbo.v_load_BL_SalesOrderStore</Name>
+      <SourcePath>014_load_BL_SalesOrderStore.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:15">
+      <Name>dbo.v_load_BL_SalesOrderSalesPerson</Name>
+      <SourcePath>015_load_BL_SalesOrderSalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:16">
+      <Name>dbo.v_load_BL_SalesOrderTerritory</Name>
+      <SourcePath>016_load_BL_SalesOrderTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:17">
+      <Name>dbo.v_load_BL_SalesOrderDate</Name>
+      <SourcePath>017_load_BL_SalesOrderDate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:18">
+      <Name>dbo.v_load_BL_SalesOrderLineOrder</Name>
+      <SourcePath>018_load_BL_SalesOrderLineOrder.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:19">
+      <Name>dbo.v_load_BL_SalesOrderLineProduct</Name>
+      <SourcePath>019_load_BL_SalesOrderLineProduct.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:20">
+      <Name>dbo.v_load_BLS_SalesOrderLineProduct_SalesOrderLineMeasures</Name>
+      <SourcePath>020_load_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.sql</SourcePath>
+    </TransformScript>
+  </TransformScriptList>
+</MetaTransformScript>

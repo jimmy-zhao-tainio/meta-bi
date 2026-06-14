@@ -78,6 +78,49 @@ internal sealed class SqlServerBusinessTypeLowering
             $"MetaDataVault logical type '{sourceTypeId}' has no sanctioned direct SqlServer lowering.");
     }
 
+    public LoweredSqlServerType LowerRawSourceRequired(string sourceTypeId)
+    {
+        if (string.IsNullOrWhiteSpace(sourceTypeId))
+        {
+            throw new InvalidOperationException("MetaRawDataVault source field type id is required.");
+        }
+
+        if (!_dataTypesById.TryGetValue(sourceTypeId, out var sourceType))
+        {
+            throw new InvalidOperationException(
+                $"MetaRawDataVault source field type '{sourceTypeId}' is not sanctioned in MetaDataType.");
+        }
+
+        string sqlServerTypeId;
+        if (_sqlServerTypesByLogicalTypeId.TryGetValue(sourceTypeId, out var mappedSqlServerTypeId))
+        {
+            sqlServerTypeId = mappedSqlServerTypeId;
+        }
+        else if (string.Equals(sourceType.DataTypeSystem.Id, SqlServerTypeSystemId, StringComparison.Ordinal))
+        {
+            sqlServerTypeId = sourceTypeId;
+        }
+        else if (string.Equals(sourceType.DataTypeSystem.Id, MetaTypeSystemId, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException(
+                $"MetaRawDataVault source field logical type '{sourceTypeId}' has no sanctioned direct SqlServer lowering.");
+        }
+        else
+        {
+            throw new InvalidOperationException(
+                $"MetaRawDataVault source field type '{sourceTypeId}' must belong to DataTypeSystem '{MetaTypeSystemId}' or '{SqlServerTypeSystemId}'.");
+        }
+
+        if (!_dataTypesById.TryGetValue(sqlServerTypeId, out var sqlServerType) ||
+            !string.Equals(sqlServerType.DataTypeSystem.Id, SqlServerTypeSystemId, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException(
+                $"MetaRawDataVault source field type '{sourceTypeId}' lowered to non-SqlServer type '{sqlServerTypeId}'.");
+        }
+
+        return new LoweredSqlServerType(sqlServerTypeId, GetDefaultDetails(sqlServerType.Name));
+    }
+
     private static bool IsSqlServerType(IReadOnlyDictionary<string, DataType> dataTypesById, string dataTypeId)
     {
         if (!dataTypesById.TryGetValue(dataTypeId, out var dataType))
@@ -87,4 +130,20 @@ internal sealed class SqlServerBusinessTypeLowering
 
         return string.Equals(dataType.DataTypeSystem.Id, SqlServerTypeSystemId, StringComparison.Ordinal);
     }
+
+    private static IReadOnlyList<(string Name, string Value)> GetDefaultDetails(string sqlServerTypeName)
+    {
+        return sqlServerTypeName.ToLowerInvariant() switch
+        {
+            "char" or "varchar" or "nchar" or "nvarchar" => [("Length", "256")],
+            "binary" or "varbinary" => [("Length", "32")],
+            "decimal" or "numeric" => [("Precision", "18"), ("Scale", "4")],
+            "time" or "datetime2" or "datetimeoffset" => [("Precision", "7")],
+            _ => [],
+        };
+    }
 }
+
+internal sealed record LoweredSqlServerType(
+    string DataTypeId,
+    IReadOnlyList<(string Name, string Value)> DefaultDetails);

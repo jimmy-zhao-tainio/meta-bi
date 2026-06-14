@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingTargetList>
+    <TransformBindingTarget Id="TransformScript:1:binding:target:1" TransformBindingId="TransformScript:1:binding">
+      <SqlIdentifier>dbo.BH_Product</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:2:binding:target:1" TransformBindingId="TransformScript:2:binding">
+      <SqlIdentifier>dbo.BHS_Product_ProductClassification</SqlIdentifier>
+    </TransformBindingTarget>
+  </TransformBindingTargetList>
+</MetaTransformBinding>

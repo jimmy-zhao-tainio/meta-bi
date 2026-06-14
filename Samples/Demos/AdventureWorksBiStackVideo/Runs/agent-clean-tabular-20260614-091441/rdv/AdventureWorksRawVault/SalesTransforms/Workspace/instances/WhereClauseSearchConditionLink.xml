@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <WhereClauseSearchConditionLinkList>
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:1" BooleanExpressionId="BooleanExpression:1" WhereClauseId="WhereClause:1">
+    </WhereClauseSearchConditionLink>
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:2" BooleanExpressionId="BooleanExpression:2" WhereClauseId="WhereClause:2">
+    </WhereClauseSearchConditionLink>
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:3" BooleanExpressionId="BooleanExpression:3" WhereClauseId="WhereClause:3">
+    </WhereClauseSearchConditionLink>
+    <WhereClauseSearchConditionLink Id="WhereClauseSearchConditionLink:4" BooleanExpressionId="BooleanExpression:4" WhereClauseId="WhereClause:4">
+    </WhereClauseSearchConditionLink>
+  </WhereClauseSearchConditionLinkList>
+</MetaTransformScript>

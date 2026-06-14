@@ -494,6 +494,54 @@ LEFT OUTER JOIN dbo.[Order] o
     }
 
     [Fact]
+    public async Task DataQualityToSql_UsesJoinInputColumnsWhenPredicateExpressionOrderIsReversed()
+    {
+        var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        var transformWorkspacePath = Path.Combine(rootPath, "transform");
+        var qualityWorkspacePath = Path.Combine(rootPath, "quality");
+        var outputPath = Path.Combine(rootPath, "DataQualityViews.sql");
+
+        try
+        {
+            await new MetaTransformScriptSqlService().ImportFromSqlCodeToWorkspaceAsync(
+                """
+                SELECT c.CustomerId, cp.ProfileName
+                FROM dbo.Customer c
+                INNER JOIN dbo.CustomerProfile cp
+                    ON cp.CustomerHubId = c.CustomerId;
+                """,
+                "dbo.TargetCustomerProfile",
+                transformWorkspacePath,
+                "dbo.v_customer_profile");
+
+            var discovery = new MetaDataQualityCandidateDiscoveryService()
+                .DiscoverFromTransformWorkspace(transformWorkspacePath);
+            foreach (var candidate in discovery.Model.DataQualityCandidateList)
+            {
+                candidate.Status = CandidateStatuses.Promoted;
+            }
+
+            var keyPart = Assert.Single(discovery.Model.JoinPatternKeyPartList);
+            Assert.Equal("CustomerId", keyPart.FirstJoinInputColumnName);
+            Assert.Equal("CustomerHubId", keyPart.SecondJoinInputColumnName);
+
+            discovery.Model.SaveToXmlWorkspace(qualityWorkspacePath);
+
+            new DataQualityToSqlConverter().Convert(qualityWorkspacePath, outputPath);
+            var sql = File.ReadAllText(outputPath);
+
+            Assert.Contains("[dq_left].[CustomerId] = [dq_right].[CustomerHubId]", sql, StringComparison.Ordinal);
+            Assert.Contains("FROM [dbo].[CustomerProfile] AS [dq_right]", sql, StringComparison.Ordinal);
+            Assert.Contains("CustomerHubId=", sql, StringComparison.Ordinal);
+            Assert.DoesNotContain("[dq_left].[CustomerHubId] = [dq_right].[CustomerId]", sql, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(rootPath);
+        }
+    }
+
+    [Fact]
     public void DataQualityToSql_GeneratesDeployableSqlForEmptyCandidateSet()
     {
         var rootPath = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));

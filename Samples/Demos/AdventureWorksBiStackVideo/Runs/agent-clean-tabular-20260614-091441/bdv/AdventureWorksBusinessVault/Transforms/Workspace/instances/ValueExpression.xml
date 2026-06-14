@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ValueExpressionList>
+    <ValueExpression Id="ValueExpression:1" PrimaryExpressionId="PrimaryExpression:4">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:2" PrimaryExpressionId="PrimaryExpression:5">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:3" PrimaryExpressionId="PrimaryExpression:9">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:4" PrimaryExpressionId="PrimaryExpression:12">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:5" PrimaryExpressionId="PrimaryExpression:15">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:6" PrimaryExpressionId="PrimaryExpression:17">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:7" PrimaryExpressionId="PrimaryExpression:20">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:8" PrimaryExpressionId="PrimaryExpression:22">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:9" PrimaryExpressionId="PrimaryExpression:25">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:10" PrimaryExpressionId="PrimaryExpression:26">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:11" PrimaryExpressionId="PrimaryExpression:27">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:12" PrimaryExpressionId="PrimaryExpression:31">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:13" PrimaryExpressionId="PrimaryExpression:34">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:14" PrimaryExpressionId="PrimaryExpression:40">
+    </ValueExpression>
+    <ValueExpression Id="ValueExpression:15" PrimaryExpressionId="PrimaryExpression:41">
+    </ValueExpression>
+  </ValueExpressionList>
+</MetaTransformScript>

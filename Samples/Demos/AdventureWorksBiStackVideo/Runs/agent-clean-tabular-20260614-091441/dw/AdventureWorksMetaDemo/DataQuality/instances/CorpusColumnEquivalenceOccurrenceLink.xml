@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <CorpusColumnEquivalenceOccurrenceLinkList>
+    <CorpusColumnEquivalenceOccurrenceLink Id="CorpusColumnEquivalenceOccurrenceLink.1" CorpusColumnEquivalenceId="CorpusColumnEquivalence.1" JoinPatternOccurrenceId="TransformScript:4.JoinPatternOccurrence.QualifiedJoin:3">
+    </CorpusColumnEquivalenceOccurrenceLink>
+    <CorpusColumnEquivalenceOccurrenceLink Id="CorpusColumnEquivalenceOccurrenceLink.2" CorpusColumnEquivalenceId="CorpusColumnEquivalence.2" JoinPatternOccurrenceId="TransformScript:1.JoinPatternOccurrence.QualifiedJoin:1">
+    </CorpusColumnEquivalenceOccurrenceLink>
+    <CorpusColumnEquivalenceOccurrenceLink Id="CorpusColumnEquivalenceOccurrenceLink.3" CorpusColumnEquivalenceId="CorpusColumnEquivalence.3" JoinPatternOccurrenceId="TransformScript:3.JoinPatternOccurrence.QualifiedJoin:2">
+    </CorpusColumnEquivalenceOccurrenceLink>
+    <CorpusColumnEquivalenceOccurrenceLink Id="CorpusColumnEquivalenceOccurrenceLink.4" CorpusColumnEquivalenceId="CorpusColumnEquivalence.4" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:4">
+    </CorpusColumnEquivalenceOccurrenceLink>
+  </CorpusColumnEquivalenceOccurrenceLinkList>
+</MetaDataQuality>

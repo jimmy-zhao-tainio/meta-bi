@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <TableList>
+    <Table Id="AdventureWorksRawVault.dbo.H_Address" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Address</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_AddressType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_AddressType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_AWBuildVersion" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_AWBuildVersion</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_BillOfMaterials" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_BillOfMaterials</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_BusinessEntity" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_BusinessEntity</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_BusinessEntityAddress" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_BusinessEntityAddress</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_BusinessEntityContact" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_BusinessEntityContact</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ContactType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ContactType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_CountryRegion" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_CountryRegion</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_CountryRegionCurrency" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_CountryRegionCurrency</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_CreditCard" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_CreditCard</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Culture" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Culture</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Currency" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Currency</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_CurrencyRate" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_CurrencyRate</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Customer" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Customer</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_DatabaseLog" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_DatabaseLog</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Department" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Department</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Document" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Document</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_EmailAddress" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_EmailAddress</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Employee" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Employee</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_EmployeeDepartmentHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_EmployeePayHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_EmployeePayHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ErrorLog" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ErrorLog</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Illustration" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Illustration</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_JobCandidate" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_JobCandidate</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Location" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Location</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Password" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Password</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Person" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Person</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_PersonCreditCard" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_PersonCreditCard</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_PersonPhone" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_PersonPhone</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_PhoneNumberType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_PhoneNumberType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Product" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Product</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductCategory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductCategory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductCostHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductCostHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductDescription" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductDescription</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductDocument" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductDocument</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductInventory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductInventory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductListPriceHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductListPriceHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductModel" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductModel</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductModelIllustration" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductModelIllustration</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductModelProductDescriptionCulture</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductPhoto" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductPhoto</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductProductPhoto" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductProductPhoto</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductReview" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductReview</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductSubcategory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductSubcategory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ProductVendor" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ProductVendor</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_PurchaseOrderDetail</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_PurchaseOrderHeader</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesOrderDetail" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesOrderDetail</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesOrderHeader" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesOrderHeader</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesOrderHeaderSalesReason</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesPersonQuotaHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesReason" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesReason</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesTaxRate" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesTaxRate</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesTerritory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SalesTerritoryHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ScrapReason" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ScrapReason</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Shift" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Shift</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ShipMethod" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ShipMethod</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_ShoppingCartItem" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_ShoppingCartItem</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SpecialOffer" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SpecialOffer</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_SpecialOfferProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_SpecialOfferProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_StateProvince" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_StateProvince</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Store" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Store</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_TransactionHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_TransactionHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_TransactionHistoryArchive</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_UnitMeasure" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_UnitMeasure</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_Vendor" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_Vendor</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_WorkOrder" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_WorkOrder</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.H_WorkOrderRouting" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>H_WorkOrderRouting</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Address_Address" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Address_Address</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_AddressType_AddressType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_AddressType_AddressType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_AWBuildVersion_AWBuildVersion" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_AWBuildVersion_AWBuildVersion</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_BillOfMaterials_BillOfMaterials" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_BillOfMaterials_BillOfMaterials</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_BusinessEntity_BusinessEntity" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_BusinessEntity_BusinessEntity</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_BusinessEntityAddress_BusinessEntityAddress" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_BusinessEntityAddress_BusinessEntityAddress</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_BusinessEntityContact_BusinessEntityContact" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_BusinessEntityContact_BusinessEntityContact</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ContactType_ContactType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ContactType_ContactType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_CountryRegion_CountryRegion" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_CountryRegion_CountryRegion</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_CountryRegionCurrency_CountryRegionCurrency" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_CountryRegionCurrency_CountryRegionCurrency</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_CreditCard_CreditCard" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_CreditCard_CreditCard</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Culture_Culture" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Culture_Culture</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Currency_Currency" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Currency_Currency</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_CurrencyRate_CurrencyRate" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_CurrencyRate_CurrencyRate</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Customer_Customer" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Customer_Customer</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_DatabaseLog_DatabaseLog" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_DatabaseLog_DatabaseLog</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Department_Department" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Department_Department</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Document_Document" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Document_Document</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_EmailAddress_EmailAddress" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_EmailAddress_EmailAddress</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Employee_Employee" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Employee_Employee</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_EmployeePayHistory_EmployeePayHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_EmployeePayHistory_EmployeePayHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ErrorLog_ErrorLog</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Illustration_Illustration" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Illustration_Illustration</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_JobCandidate_JobCandidate" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_JobCandidate_JobCandidate</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Location_Location" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Location_Location</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Password_Password" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Password_Password</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Person_Person" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Person_Person</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_PersonCreditCard_PersonCreditCard" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_PersonCreditCard_PersonCreditCard</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_PersonPhone_PersonPhone" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_PersonPhone_PersonPhone</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_PhoneNumberType_PhoneNumberType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_PhoneNumberType_PhoneNumberType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Product_Product" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Product_Product</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductCategory_ProductCategory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductCostHistory_ProductCostHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductCostHistory_ProductCostHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductDescription_ProductDescription" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductDescription_ProductDescription</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductDocument_ProductDocument" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductDocument_ProductDocument</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductInventory_ProductInventory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductInventory_ProductInventory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductListPriceHistory_ProductListPriceHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductListPriceHistory_ProductListPriceHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductModel_ProductModel" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductModel_ProductModel</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductModelIllustration_ProductModelIllustration" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductModelIllustration_ProductModelIllustration</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductPhoto_ProductPhoto" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductPhoto_ProductPhoto</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductProductPhoto_ProductProductPhoto" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductProductPhoto_ProductProductPhoto</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductReview_ProductReview" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductReview_ProductReview</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductSubcategory_ProductSubcategory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ProductVendor_ProductVendor</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_PurchaseOrderDetail_PurchaseOrderDetail" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_PurchaseOrderDetail_PurchaseOrderDetail</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_PurchaseOrderHeader_PurchaseOrderHeader" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_PurchaseOrderHeader_PurchaseOrderHeader</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesOrderDetail_SalesOrderDetail" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesOrderDetail_SalesOrderDetail</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesOrderHeader_SalesOrderHeader</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesPerson_SalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesReason_SalesReason" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesReason_SalesReason</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesTaxRate_SalesTaxRate</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesTerritory_SalesTerritory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesTerritory_SalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SalesTerritoryHistory_SalesTerritoryHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SalesTerritoryHistory_SalesTerritoryHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ScrapReason_ScrapReason" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ScrapReason_ScrapReason</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Shift_Shift" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Shift_Shift</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ShipMethod_ShipMethod" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ShipMethod_ShipMethod</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_ShoppingCartItem_ShoppingCartItem" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_ShoppingCartItem_ShoppingCartItem</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SpecialOffer_SpecialOffer</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_SpecialOfferProduct_SpecialOfferProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_SpecialOfferProduct_SpecialOfferProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_StateProvince_StateProvince" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_StateProvince_StateProvince</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Store_Store" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Store_Store</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_TransactionHistory_TransactionHistory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_TransactionHistoryArchive_TransactionHistoryArchive</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_UnitMeasure_UnitMeasure" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_UnitMeasure_UnitMeasure</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_Vendor_Vendor" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_Vendor_Vendor</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_WorkOrder_WorkOrder</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.HS_WorkOrderRouting_WorkOrderRouting" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>HS_WorkOrderRouting_WorkOrderRouting</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_AddressStateProvince" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_AddressStateProvince</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BillOfMaterialsProduct_ComponentID</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BillOfMaterialsProduct_ProductAssemblyID</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BillOfMaterialsUnitMeasure</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BusinessEntityAddressAddress</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BusinessEntityAddressAddressType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BusinessEntityAddressBusinessEntity</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BusinessEntityContactBusinessEntity</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BusinessEntityContactContactType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_BusinessEntityContactPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_CountryRegionCurrencyCountryRegion</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_CountryRegionCurrencyCurrency</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_CurrencyRateCurrency_FromCurrencyCode</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_CurrencyRateCurrency_ToCurrencyCode</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_CustomerPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_CustomerPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_CustomerSalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_CustomerStore" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_CustomerStore</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_DocumentEmployee" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_DocumentEmployee</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_EmailAddressPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_EmailAddressPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_EmployeeDepartmentHistoryDepartment</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_EmployeeDepartmentHistoryEmployee</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_EmployeeDepartmentHistoryShift</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_EmployeePayHistoryEmployee</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_EmployeePerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_EmployeePerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_JobCandidateEmployee" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_JobCandidateEmployee</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PasswordPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PasswordPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PersonBusinessEntity" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PersonBusinessEntity</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PersonCreditCardCreditCard</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PersonCreditCardPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PersonPhonePerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PersonPhonePerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PersonPhonePhoneNumberType</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductCostHistoryProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductDocumentDocument" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductDocumentDocument</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductDocumentProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductDocumentProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductInventoryLocation" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductInventoryLocation</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductInventoryProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductInventoryProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductListPriceHistoryProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductModelIllustrationIllustration</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductModelIllustrationProductModel</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductModelProductDescriptionCultureCulture</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductModelProductDescriptionCultureProductDescription</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductModelProductDescriptionCultureProductModel</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductProductModel" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductProductModel</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductProductPhotoProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductProductPhotoProductPhoto</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductProductSubcategory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductProductSubcategory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductReviewProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductReviewProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductSubcategoryProductCategory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductUnitMeasure_SizeUnitMeasureCode</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductUnitMeasure_WeightUnitMeasureCode</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductVendorProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductVendorProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductVendorUnitMeasure</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ProductVendorVendor" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ProductVendorVendor</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PurchaseOrderDetailProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PurchaseOrderDetailPurchaseOrderHeader</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PurchaseOrderHeaderEmployee</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PurchaseOrderHeaderShipMethod</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_PurchaseOrderHeaderVendor</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderDetailSalesOrderHeader</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderDetailSpecialOfferProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderAddress_BillToAddressID</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderAddress_ShipToAddressID</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderCreditCard</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderCurrencyRate</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderCustomer</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderSalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderSalesReasonSalesOrderHeader</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderSalesReasonSalesReason</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderSalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesOrderHeaderShipMethod</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesPersonEmployee" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesPersonEmployee</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesPersonQuotaHistorySalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesPersonSalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesTaxRateStateProvince</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesTerritoryCountryRegion</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesTerritoryHistorySalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SalesTerritoryHistorySalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_ShoppingCartItemProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SpecialOfferProductProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_SpecialOfferProductSpecialOffer</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_StateProvinceCountryRegion</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_StateProvinceSalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_StoreBusinessEntity" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_StoreBusinessEntity</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_StoreSalesPerson" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_StoreSalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_TransactionHistoryProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_VendorBusinessEntity" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_VendorBusinessEntity</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_WorkOrderProduct" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_WorkOrderProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_WorkOrderRoutingLocation</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_WorkOrderRoutingWorkOrder</Name>
+    </Table>
+    <Table Id="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason" SchemaId="AdventureWorksRawVault.dbo">
+      <Name>L_WorkOrderScrapReason</Name>
+    </Table>
+  </TableList>
+</MetaSql>

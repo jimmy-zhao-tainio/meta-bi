@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubKeyPartDataTypeDetailList>
+    <BusinessHubKeyPartDataTypeDetail Id="CustomerId:datatype-detail:length" BusinessHubKeyPartId="CustomerId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="ProductId:datatype-detail:length" BusinessHubKeyPartId="ProductId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="SalesOrderId:datatype-detail:length" BusinessHubKeyPartId="SalesOrderId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="SalesOrderLineDetailId:datatype-detail:length" BusinessHubKeyPartId="SalesOrderLineDetailId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="SalesOrderLineOrderId:datatype-detail:length" BusinessHubKeyPartId="SalesOrderLineOrderId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="SalesPersonBusinessEntityId:datatype-detail:length" BusinessHubKeyPartId="SalesPersonBusinessEntityId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="SalesTerritoryId:datatype-detail:length" BusinessHubKeyPartId="SalesTerritoryId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="StoreId:datatype-detail:length" BusinessHubKeyPartId="StoreId">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+  </BusinessHubKeyPartDataTypeDetailList>
+</MetaBusinessDataVault>

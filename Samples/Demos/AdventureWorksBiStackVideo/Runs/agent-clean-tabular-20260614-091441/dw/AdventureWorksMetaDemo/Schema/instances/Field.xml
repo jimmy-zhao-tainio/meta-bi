@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldList>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel:field:CustomerAccountNumber" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerAccountNumber</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel:field:CustomerId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerId</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel:field:CustomerType" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerType</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate:field:OrderDate" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>OrderDate</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate:field:OrderMonth" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderMonth</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate:field:OrderMonthName" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>OrderMonthName</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate:field:OrderYear" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderYear</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductCategory" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductCategory</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductId</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductName" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductName</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductNumber" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductNumber</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductSubcategory" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductSubcategory</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory:field:CountryRegionCode" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory:field:TerritoryGroup" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryGroup</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory:field:TerritoryId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryId</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory:field:TerritoryName" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryName</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:CustomerId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerId</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:CustomerType" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerType</Name>
+      <Ordinal>11</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:DiscountAmount" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>DiscountAmount</Name>
+      <Ordinal>21</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:FreightAmount" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>FreightAmount</Name>
+      <Ordinal>23</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:OnlineOrderFlag" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bit</MetaDataTypeId>
+      <Name>OnlineOrderFlag</Name>
+      <Ordinal>17</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:OrderDate" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>OrderDate</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:OrderQuantity" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderQuantity</Name>
+      <Ordinal>18</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductCategory" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductCategory</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductId</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductName" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductName</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductNumber" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductNumber</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductSubcategory" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductSubcategory</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesAmount" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesAmount</Name>
+      <Ordinal>20</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesOrderDetailId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SalesOrderDetailId</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesOrderId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SalesOrderId</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesOrderNumber" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SalesOrderNumber</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesPersonBusinessEntityId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SalesPersonBusinessEntityId</Name>
+      <Ordinal>15</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesPersonName" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>SalesPersonName</Name>
+      <Ordinal>16</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:TaxAmount" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TaxAmount</Name>
+      <Ordinal>22</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:TerritoryGroup" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryGroup</Name>
+      <Ordinal>14</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:TerritoryId" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryId</Name>
+      <Ordinal>12</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:TerritoryName" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryName</Name>
+      <Ordinal>13</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:UnitPrice" TableId="sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>UnitPrice</Name>
+      <Ordinal>19</Ordinal>
+    </Field>
+  </FieldList>
+</MetaSchema>

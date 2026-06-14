@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BinaryExpressionList>
+    <BinaryExpression Id="BinaryExpression:1" ScalarExpressionId="ScalarExpression:373">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:2" ScalarExpressionId="ScalarExpression:375">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:3" ScalarExpressionId="ScalarExpression:385">
+      <BinaryExpressionType>Divide</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:4" ScalarExpressionId="ScalarExpression:387">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:5" ScalarExpressionId="ScalarExpression:398">
+      <BinaryExpressionType>Divide</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:6" ScalarExpressionId="ScalarExpression:400">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:7" ScalarExpressionId="ScalarExpression:418">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:8" ScalarExpressionId="ScalarExpression:420">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:9" ScalarExpressionId="ScalarExpression:429">
+      <BinaryExpressionType>Divide</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:10" ScalarExpressionId="ScalarExpression:431">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:11" ScalarExpressionId="ScalarExpression:441">
+      <BinaryExpressionType>Divide</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:12" ScalarExpressionId="ScalarExpression:443">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+  </BinaryExpressionList>
+</MetaTransformScript>

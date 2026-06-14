@@ -2,7 +2,7 @@
 
 `MetaOrchestration` owns dependency planning, policy-facing access analysis, and lock-aware run plans across `MetaPipeline` units.
 
-It does not own SQL parsing, SQL binding, pipeline task execution, operational DB evidence, calendars, or external orchestrator execution. The current bounded slice derives task/object effects, infers data dependencies, records determinism/synchronization issues from already-bound transform profiles, and can create a run plan when policy is complete.
+It does not own SQL parsing, SQL binding, pipeline task execution, operational DB evidence, calendars, or external orchestrator execution. The current bounded slice automatically derives task/object effects, infers the safe dependency graph from already-bound transform profiles, records determinism/synchronization issues when the model cannot prove safe ordering, and creates a run plan when policy is complete.
 
 ## Stage 1 Contract
 
@@ -60,7 +60,7 @@ Invalid and policy-requiring workspaces are still saved so the issues can be rev
 
 ## Automatic Inference
 
-Dependency inference uses derived semantics rather than raw access kinds.
+Dependency inference is automatic for the safe modeled cases. It uses derived semantics rather than raw access kinds, so orchestration is not a hand-written schedule pasted on top of the pipeline.
 
 The safe automatic case is published-producer to dependency-consumer:
 
@@ -71,6 +71,10 @@ The safe automatic case is published-producer to dependency-consumer:
 The actual model records `TaskDependency` first, then projects cross-pipeline data edges to `PipelineDependency` for overview.
 
 A lone reset write is allowed when no other pipeline touches that object. A same-pipeline reset followed by a write is treated as an isolated replace sequence, and consumers wait for the effective producer task.
+
+The boundary is deliberate: when a dependency, write order, or lock behavior can be inferred safely from modeled profiles, `MetaOrchestration` writes it. When it cannot, it writes a modeled issue or requires an explicit policy row instead of smuggling a scheduler guess into runtime code.
+
+That makes the ordinary modeled path automatic in practice: bound transform tasks and modeled executable tasks become task profiles, safe producer/consumer relationships become dependencies, and complete policy becomes a runnable plan. Dynamic SQL or legacy opaque procedural SQL needs explicit guarantees before orchestration can rely on it.
 
 The analyzer distinguishes:
 
@@ -184,7 +188,7 @@ Failure handlers are not post-run action hooks. A handler pipeline is part of th
 
 ## CLI
 
-`MetaOrchestration` does not currently have an empty `init` command. The root `--new-workspace` command creates the orchestration workspace by inferring from modeled pipeline profiles. Transform-backed pipeline steps require transform and binding workspaces during inference; executable process steps are included as dependency-neutral task profiles. Run planning is a resolution/planning pass inside that same workspace.
+`MetaOrchestration` does not currently have an empty `init` command. The root `--new-workspace` command creates the orchestration workspace by inferring from modeled pipeline profiles. Transform-backed pipeline steps require transform and binding workspaces during inference; executable process steps are included as dependency-neutral task profiles. Run planning is a resolution/planning pass inside that same workspace, so the common path is model -> inferred orchestration workspace -> refreshed run plan -> execution.
 
 ```cmd
 meta-orchestration --pipeline-workspace .\PipelineWS --transform-workspace .\TransformWS --binding-workspace .\BindingWS --new-workspace .\OrchestrationWS

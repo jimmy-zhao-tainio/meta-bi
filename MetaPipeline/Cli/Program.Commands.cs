@@ -285,6 +285,8 @@ internal static partial class Program
                                 ["TransformScriptId"] = executionDefinition.TransformScriptId,
                                 ["TransformBindingId"] = executionDefinition.TransformBindingId
                                     ?? throw new MetaPipeline.MetaPipelineConfigurationException("Transform execution requires a transform binding."),
+                                ["TransformWorkspacePath"] = Path.GetFullPath(parse.TransformWorkspacePath),
+                                ["BindingWorkspacePath"] = Path.GetFullPath(parse.BindingWorkspacePath),
                                 ["TimeoutSeconds"] = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : string.Empty,
                             },
                             new Dictionary<string, string>
@@ -389,6 +391,8 @@ internal static partial class Program
                         {
                             ["TransformScriptId"] = executionDefinition.TransformScriptId,
                             ["TransformBindingId"] = transformBindingId,
+                            ["TransformWorkspacePath"] = Path.GetFullPath(parse.TransformWorkspacePath),
+                            ["BindingWorkspacePath"] = Path.GetFullPath(parse.BindingWorkspacePath),
                             ["TimeoutSeconds"] = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : string.Empty,
                         },
                         new Dictionary<string, string>

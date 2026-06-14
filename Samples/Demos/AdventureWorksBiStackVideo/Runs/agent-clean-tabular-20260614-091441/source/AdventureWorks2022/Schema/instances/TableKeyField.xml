@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableKeyFieldList>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:key:PK_AWBuildVersion_SystemInformationID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:SystemInformationID" TableKeyId="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:key:PK_AWBuildVersion_SystemInformationID">
+      <FieldName>SystemInformationID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:key:PK_DatabaseLog_DatabaseLogID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseLogID" TableKeyId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:key:PK_DatabaseLog_DatabaseLogID">
+      <FieldName>DatabaseLogID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:key:PK_ErrorLog_ErrorLogID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorLogID" TableKeyId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:key:PK_ErrorLog_ErrorLogID">
+      <FieldName>ErrorLogID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:key:PK_Department_DepartmentID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:DepartmentID" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:key:PK_Department_DepartmentID">
+      <FieldName>DepartmentID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:key:PK_Employee_BusinessEntityID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:key:PK_Employee_BusinessEntityID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:StartDate" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID">
+      <FieldName>StartDate</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID:field:3" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:DepartmentID" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID">
+      <FieldName>DepartmentID</FieldName>
+      <Ordinal>3</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID:field:4" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:ShiftID" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:key:PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID">
+      <FieldName>ShiftID</FieldName>
+      <Ordinal>4</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:key:PK_EmployeePayHistory_BusinessEntityID_RateChangeDate:field:1" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:key:PK_EmployeePayHistory_BusinessEntityID_RateChangeDate">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:key:PK_EmployeePayHistory_BusinessEntityID_RateChangeDate:field:2" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:RateChangeDate" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:key:PK_EmployeePayHistory_BusinessEntityID_RateChangeDate">
+      <FieldName>RateChangeDate</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:key:PK_JobCandidate_JobCandidateID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:JobCandidateID" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:key:PK_JobCandidate_JobCandidateID">
+      <FieldName>JobCandidateID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:key:PK_Shift_ShiftID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:ShiftID" TableKeyId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:key:PK_Shift_ShiftID">
+      <FieldName>ShiftID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:key:PK_Address_AddressID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:Address:key:PK_Address_AddressID">
+      <FieldName>AddressID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:key:PK_AddressType_AddressTypeID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:AddressTypeID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:key:PK_AddressType_AddressTypeID">
+      <FieldName>AddressTypeID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:key:PK_BusinessEntity_BusinessEntityID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:key:PK_BusinessEntity_BusinessEntityID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:AddressID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID">
+      <FieldName>AddressID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID:field:3" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:AddressTypeID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:key:PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID">
+      <FieldName>AddressTypeID</FieldName>
+      <Ordinal>3</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:PersonID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID">
+      <FieldName>PersonID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID:field:3" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:ContactTypeID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:key:PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID">
+      <FieldName>ContactTypeID</FieldName>
+      <Ordinal>3</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:key:PK_ContactType_ContactTypeID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:ContactTypeID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:key:PK_ContactType_ContactTypeID">
+      <FieldName>ContactTypeID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:key:PK_CountryRegion_CountryRegionCode:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:CountryRegionCode" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:key:PK_CountryRegion_CountryRegionCode">
+      <FieldName>CountryRegionCode</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:key:PK_EmailAddress_BusinessEntityID_EmailAddressID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:key:PK_EmailAddress_BusinessEntityID_EmailAddressID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:key:PK_EmailAddress_BusinessEntityID_EmailAddressID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddressID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:key:PK_EmailAddress_BusinessEntityID_EmailAddressID">
+      <FieldName>EmailAddressID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:key:PK_Password_BusinessEntityID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:Password:key:PK_Password_BusinessEntityID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:key:PK_Person_BusinessEntityID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:Person:key:PK_Person_BusinessEntityID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumber" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID">
+      <FieldName>PhoneNumber</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID:field:3" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumberTypeID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:key:PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID">
+      <FieldName>PhoneNumberTypeID</FieldName>
+      <Ordinal>3</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:key:PK_PhoneNumberType_PhoneNumberTypeID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:PhoneNumberTypeID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:key:PK_PhoneNumberType_PhoneNumberTypeID">
+      <FieldName>PhoneNumberTypeID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:key:PK_StateProvince_StateProvinceID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceID" TableKeyId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:key:PK_StateProvince_StateProvinceID">
+      <FieldName>StateProvinceID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:key:PK_BillOfMaterials_BillOfMaterialsID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:BillOfMaterialsID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:key:PK_BillOfMaterials_BillOfMaterialsID">
+      <FieldName>BillOfMaterialsID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:Culture:key:PK_Culture_CultureID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:CultureID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:Culture:key:PK_Culture_CultureID">
+      <FieldName>CultureID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:key:PK_Document_DocumentNode:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentNode" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:Document:key:PK_Document_DocumentNode">
+      <FieldName>DocumentNode</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:key:UQ__Document__F73921F7C81C642F:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:rowguid" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:Document:key:UQ__Document__F73921F7C81C642F">
+      <FieldName>rowguid</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:key:PK_Illustration_IllustrationID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:IllustrationID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:key:PK_Illustration_IllustrationID">
+      <FieldName>IllustrationID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:key:PK_Location_LocationID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:LocationID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:Location:key:PK_Location_LocationID">
+      <FieldName>LocationID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:key:PK_Product_ProductID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:Product:key:PK_Product_ProductID">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:key:PK_ProductCategory_ProductCategoryID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ProductCategoryID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:key:PK_ProductCategory_ProductCategoryID">
+      <FieldName>ProductCategoryID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:key:PK_ProductCostHistory_ProductID_StartDate:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:key:PK_ProductCostHistory_ProductID_StartDate">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:key:PK_ProductCostHistory_ProductID_StartDate:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:StartDate" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:key:PK_ProductCostHistory_ProductID_StartDate">
+      <FieldName>StartDate</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:key:PK_ProductDescription_ProductDescriptionID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:ProductDescriptionID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:key:PK_ProductDescription_ProductDescriptionID">
+      <FieldName>ProductDescriptionID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:key:PK_ProductDocument_ProductID_DocumentNode:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:key:PK_ProductDocument_ProductID_DocumentNode">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:key:PK_ProductDocument_ProductID_DocumentNode:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:DocumentNode" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:key:PK_ProductDocument_ProductID_DocumentNode">
+      <FieldName>DocumentNode</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:key:PK_ProductInventory_ProductID_LocationID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:key:PK_ProductInventory_ProductID_LocationID">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:key:PK_ProductInventory_ProductID_LocationID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:LocationID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:key:PK_ProductInventory_ProductID_LocationID">
+      <FieldName>LocationID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:key:PK_ProductListPriceHistory_ProductID_StartDate:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:key:PK_ProductListPriceHistory_ProductID_StartDate">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:key:PK_ProductListPriceHistory_ProductID_StartDate:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:StartDate" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:key:PK_ProductListPriceHistory_ProductID_StartDate">
+      <FieldName>StartDate</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:key:PK_ProductModel_ProductModelID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:ProductModelID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:key:PK_ProductModel_ProductModelID">
+      <FieldName>ProductModelID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:key:PK_ProductModelIllustration_ProductModelID_IllustrationID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:ProductModelID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:key:PK_ProductModelIllustration_ProductModelID_IllustrationID">
+      <FieldName>ProductModelID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:key:PK_ProductModelIllustration_ProductModelID_IllustrationID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:IllustrationID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:key:PK_ProductModelIllustration_ProductModelID_IllustrationID">
+      <FieldName>IllustrationID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ProductModelID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID">
+      <FieldName>ProductModelID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ProductDescriptionID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID">
+      <FieldName>ProductDescriptionID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID:field:3" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:CultureID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:key:PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID">
+      <FieldName>CultureID</FieldName>
+      <Ordinal>3</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:key:PK_ProductPhoto_ProductPhotoID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ProductPhotoID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:key:PK_ProductPhoto_ProductPhotoID">
+      <FieldName>ProductPhotoID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:key:PK_ProductProductPhoto_ProductID_ProductPhotoID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:key:PK_ProductProductPhoto_ProductID_ProductPhotoID">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:key:PK_ProductProductPhoto_ProductID_ProductPhotoID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ProductPhotoID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:key:PK_ProductProductPhoto_ProductID_ProductPhotoID">
+      <FieldName>ProductPhotoID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:key:PK_ProductReview_ProductReviewID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ProductReviewID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:key:PK_ProductReview_ProductReviewID">
+      <FieldName>ProductReviewID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:key:PK_ProductSubcategory_ProductSubcategoryID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductSubcategoryID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:key:PK_ProductSubcategory_ProductSubcategoryID">
+      <FieldName>ProductSubcategoryID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:key:PK_ScrapReason_ScrapReasonID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:ScrapReasonID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:key:PK_ScrapReason_ScrapReasonID">
+      <FieldName>ScrapReasonID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:key:PK_TransactionHistory_TransactionID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:key:PK_TransactionHistory_TransactionID">
+      <FieldName>TransactionID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:key:PK_TransactionHistoryArchive_TransactionID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:key:PK_TransactionHistoryArchive_TransactionID">
+      <FieldName>TransactionID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:key:PK_UnitMeasure_UnitMeasureCode:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:UnitMeasureCode" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:key:PK_UnitMeasure_UnitMeasureCode">
+      <FieldName>UnitMeasureCode</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:key:PK_WorkOrder_WorkOrderID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:WorkOrderID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:key:PK_WorkOrder_WorkOrderID">
+      <FieldName>WorkOrderID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:WorkOrderID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence">
+      <FieldName>WorkOrderID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence:field:3" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:OperationSequence" TableKeyId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:key:PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence">
+      <FieldName>OperationSequence</FieldName>
+      <Ordinal>3</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:key:PK_ProductVendor_ProductID_BusinessEntityID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:key:PK_ProductVendor_ProductID_BusinessEntityID">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:key:PK_ProductVendor_ProductID_BusinessEntityID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:key:PK_ProductVendor_ProductID_BusinessEntityID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:key:PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:PurchaseOrderID" TableKeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:key:PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID">
+      <FieldName>PurchaseOrderID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:key:PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:PurchaseOrderDetailID" TableKeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:key:PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID">
+      <FieldName>PurchaseOrderDetailID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:key:PK_PurchaseOrderHeader_PurchaseOrderID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:PurchaseOrderID" TableKeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:key:PK_PurchaseOrderHeader_PurchaseOrderID">
+      <FieldName>PurchaseOrderID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:key:PK_ShipMethod_ShipMethodID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipMethodID" TableKeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:key:PK_ShipMethod_ShipMethodID">
+      <FieldName>ShipMethodID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:key:PK_Vendor_BusinessEntityID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:key:PK_Vendor_BusinessEntityID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:key:PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CountryRegionCode" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:key:PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode">
+      <FieldName>CountryRegionCode</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:key:PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CurrencyCode" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:key:PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode">
+      <FieldName>CurrencyCode</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:key:PK_CreditCard_CreditCardID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CreditCardID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:key:PK_CreditCard_CreditCardID">
+      <FieldName>CreditCardID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:key:PK_Currency_CurrencyCode:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:CurrencyCode" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:key:PK_Currency_CurrencyCode">
+      <FieldName>CurrencyCode</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:key:PK_CurrencyRate_CurrencyRateID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:CurrencyRateID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:key:PK_CurrencyRate_CurrencyRateID">
+      <FieldName>CurrencyRateID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:key:PK_Customer_CustomerID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:CustomerID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:key:PK_Customer_CustomerID">
+      <FieldName>CustomerID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:key:PK_PersonCreditCard_BusinessEntityID_CreditCardID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:key:PK_PersonCreditCard_BusinessEntityID_CreditCardID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:key:PK_PersonCreditCard_BusinessEntityID_CreditCardID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:CreditCardID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:key:PK_PersonCreditCard_BusinessEntityID_CreditCardID">
+      <FieldName>CreditCardID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:key:PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SalesOrderID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:key:PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID">
+      <FieldName>SalesOrderID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:key:PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:SalesOrderDetailID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:key:PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID">
+      <FieldName>SalesOrderDetailID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:key:PK_SalesOrderHeader_SalesOrderID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:key:PK_SalesOrderHeader_SalesOrderID">
+      <FieldName>SalesOrderID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:key:PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:SalesOrderID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:key:PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID">
+      <FieldName>SalesOrderID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:key:PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:SalesReasonID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:key:PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID">
+      <FieldName>SalesReasonID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:key:PK_SalesPerson_BusinessEntityID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:key:PK_SalesPerson_BusinessEntityID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:key:PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:key:PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:key:PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:QuotaDate" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:key:PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate">
+      <FieldName>QuotaDate</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:key:PK_SalesReason_SalesReasonID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:SalesReasonID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:key:PK_SalesReason_SalesReasonID">
+      <FieldName>SalesReasonID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:key:PK_SalesTaxRate_SalesTaxRateID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:SalesTaxRateID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:key:PK_SalesTaxRate_SalesTaxRateID">
+      <FieldName>SalesTaxRateID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:key:PK_SalesTerritory_TerritoryID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:TerritoryID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:key:PK_SalesTerritory_TerritoryID">
+      <FieldName>TerritoryID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:StartDate" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID">
+      <FieldName>StartDate</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID:field:3" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:TerritoryID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:key:PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID">
+      <FieldName>TerritoryID</FieldName>
+      <Ordinal>3</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:key:PK_ShoppingCartItem_ShoppingCartItemID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartItemID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:key:PK_ShoppingCartItem_ShoppingCartItemID">
+      <FieldName>ShoppingCartItemID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:key:PK_SpecialOffer_SpecialOfferID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:SpecialOfferID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:key:PK_SpecialOffer_SpecialOfferID">
+      <FieldName>SpecialOfferID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:key:PK_SpecialOfferProduct_SpecialOfferID_ProductID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:SpecialOfferID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:key:PK_SpecialOfferProduct_SpecialOfferID_ProductID">
+      <FieldName>SpecialOfferID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:key:PK_SpecialOfferProduct_SpecialOfferID_ProductID:field:2" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:ProductID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:key:PK_SpecialOfferProduct_SpecialOfferID_ProductID">
+      <FieldName>ProductID</FieldName>
+      <Ordinal>2</Ordinal>
+    </TableKeyField>
+    <TableKeyField Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:key:PK_Store_BusinessEntityID:field:1" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:BusinessEntityID" TableKeyId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:key:PK_Store_BusinessEntityID">
+      <FieldName>BusinessEntityID</FieldName>
+      <Ordinal>1</Ordinal>
+    </TableKeyField>
+  </TableKeyFieldList>
+</MetaSchema>

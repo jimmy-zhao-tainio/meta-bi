@@ -1,0 +1,103 @@
+call "C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\00-env.cmd"
+AW_SQL_SERVER=localhost
+AW_SOURCE_DATABASE=AdventureWorks2022
+AW_TARGET_DATABASE=AdventureWorksMetaDemo
+AW_TABULAR_SERVER=.\TABULAR
+AW_TABULAR_DATABASE=AdventureWorksMetaDemoTabular
+AW_RUN_ROOT=Runs
+Extracting current RDV and BDV schemas for strict transform binding.
+meta-schema extract sqlserver --new-workspace rdv\AdventureWorksRawVault\Schema --connection-env AW_RDV_SQL --system AdventureWorksRawVault --all-schemas --all-tables
+Extracting...Ok
+meta-schema extract sqlserver --new-workspace bdv\AdventureWorksBusinessVault\Schema --connection-env AW_BDV_SQL --system AdventureWorksBusinessVault --all-schemas --all-tables
+Extracting...Ok
+meta-transform-script from sql-files --manifest rdv\AdventureWorksRawVault\Transforms\manifest.tsv --new-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --report logs\04-rdv-transform-import-report.tsv --verbose
+ok [1/8] 001_load_H_ProductCategory.sql
+ok [2/8] 002_load_HS_ProductCategory_ProductCategory.sql
+ok [3/8] 003_load_H_ProductSubcategory.sql
+ok [4/8] 004_load_HS_ProductSubcategory_ProductSubcategory.sql
+ok [5/8] 005_load_H_Product.sql
+ok [6/8] 006_load_HS_Product_Product.sql
+ok [7/8] 007_load_L_ProductSubcategoryProductCategory.sql
+ok [8/8] 008_load_L_ProductProductSubcategory.sql
+Ok
+Workspace:
+  Scripts: 8
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\rdv\AdventureWorksRawVault\Transforms\Workspace
+Report:
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\logs\04-rdv-transform-import-report.tsv
+meta-transform-binding bind --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --source-schema source\AdventureWorks2022\Schema --target-schema rdv\AdventureWorksRawVault\Schema --execute-system AdventureWorksRawVault --new-workspace rdv\AdventureWorksRawVault\Binding --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataTypeConversion\Workspace
+Binding...Ok
+Clearing RDV Product slice tables before load.
+meta-sql execute --connection-env AW_RDV_SQL --quiet --query DELETE FROM dbo.L_ProductProductSubcategory;
+DELETE FROM dbo.L_ProductSubcategoryProductCategory;
+DELETE FROM dbo.HS_Product_Product;
+DELETE FROM dbo.H_Product;
+DELETE FROM dbo.HS_ProductSubcategory_ProductSubcategory;
+DELETE FROM dbo.H_ProductSubcategory;
+DELETE FROM dbo.HS_ProductCategory_ProductCategory;
+DELETE FROM dbo.H_ProductCategory;
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_H_ProductCategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_ProductCategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_HS_ProductCategory_ProductCategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_ProductCategory_ProductCategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_H_ProductSubcategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_ProductSubcategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_HS_ProductSubcategory_ProductSubcategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_ProductSubcategory_ProductSubcategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_H_Product --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.H_Product --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_HS_Product_Product --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.HS_Product_Product --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_L_ProductSubcategoryProductCategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_ProductSubcategoryProductCategory --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace rdv\AdventureWorksRawVault\Transforms\Workspace --binding-workspace rdv\AdventureWorksRawVault\Binding --script dbo.v_load_L_ProductProductSubcategory --execution-connection-env AW_RDV_SQL --target-connection-env AW_RDV_SQL --target dbo.L_ProductProductSubcategory --target-data-type-system SqlServer
+Ok
+RDV Product slice counts:
+meta-sql execute --connection-env AW_RDV_SQL --query SELECT 'H_ProductCategory' AS TableName, COUNT_BIG(*) AS RowTotal FROM dbo.H_ProductCategory
+UNION ALL SELECT 'HS_ProductCategory_ProductCategory', COUNT_BIG(*) FROM dbo.HS_ProductCategory_ProductCategory
+UNION ALL SELECT 'H_ProductSubcategory', COUNT_BIG(*) FROM dbo.H_ProductSubcategory
+UNION ALL SELECT 'HS_ProductSubcategory_ProductSubcategory', COUNT_BIG(*) FROM dbo.HS_ProductSubcategory_ProductSubcategory
+UNION ALL SELECT 'H_Product', COUNT_BIG(*) FROM dbo.H_Product
+UNION ALL SELECT 'HS_Product_Product', COUNT_BIG(*) FROM dbo.HS_Product_Product
+UNION ALL SELECT 'L_ProductSubcategoryProductCategory', COUNT_BIG(*) FROM dbo.L_ProductSubcategoryProductCategory
+UNION ALL SELECT 'L_ProductProductSubcategory', COUNT_BIG(*) FROM dbo.L_ProductProductSubcategory;
+
+Result set 1
+TableName | RowTotal
+H_ProductCategory | 4
+HS_ProductCategory_ProductCategory | 4
+H_ProductSubcategory | 37
+HS_ProductSubcategory_ProductSubcategory | 37
+H_Product | 504
+HS_Product_Product | 504
+L_ProductSubcategoryProductCategory | 37
+L_ProductProductSubcategory | 295
+Ok
+meta-transform-script from sql-files --manifest bdv\AdventureWorksBusinessVault\Transforms\manifest.tsv --new-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --report logs\04-bdv-transform-import-report.tsv --verbose
+ok [1/2] 001_load_BH_Product.sql
+ok [2/2] 002_load_BHS_Product_ProductClassification.sql
+Ok
+Workspace:
+  Scripts: 2
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\bdv\AdventureWorksBusinessVault\Transforms\Workspace
+Report:
+  Path: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\logs\04-bdv-transform-import-report.tsv
+meta-transform-binding bind --transform-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --source-schema rdv\AdventureWorksRawVault\Schema --target-schema bdv\AdventureWorksBusinessVault\Schema --execute-system AdventureWorksBusinessVault --new-workspace bdv\AdventureWorksBusinessVault\Binding --data-type-conversion-workspace C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\stages\..\..\..\..\..\..\MetaDataTypeConversion\Workspace
+Binding...Ok
+Clearing BDV Product slice tables before load.
+meta-sql execute --connection-env AW_BDV_SQL --quiet --query DELETE FROM dbo.BHS_Product_ProductClassification;
+DELETE FROM dbo.BH_Product;
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\Binding --script dbo.v_load_BH_Product --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BH_Product --target-data-type-system SqlServer
+Ok
+meta-pipeline execute-sqlserver --transform-workspace bdv\AdventureWorksBusinessVault\Transforms\Workspace --binding-workspace bdv\AdventureWorksBusinessVault\Binding --script dbo.v_load_BHS_Product_ProductClassification --execution-connection-env AW_BDV_SQL --target-connection-env AW_BDV_SQL --target dbo.BHS_Product_ProductClassification --target-data-type-system SqlServer
+Ok
+BDV Product slice counts:
+meta-sql execute --connection-env AW_BDV_SQL --query SELECT 'BH_Product' AS TableName, COUNT_BIG(*) AS RowTotal FROM dbo.BH_Product
+UNION ALL SELECT 'BHS_Product_ProductClassification', COUNT_BIG(*) FROM dbo.BHS_Product_ProductClassification;
+
+Result set 1
+TableName | RowTotal
+BH_Product | 504
+BHS_Product_ProductClassification | 504
+Ok
+Product vault load slice passed.

@@ -102,21 +102,6 @@ public sealed class MetaOrchestrationRuntimeService
                 throw new InvalidOperationException(
                     $"Run plan '{runPlan.Name}' has no planned tasks.");
             }
-            if (RunPlanContainsTransformBackedTasks(plannedTasks))
-            {
-                if (string.IsNullOrWhiteSpace(request.TransformWorkspacePath))
-                {
-                    throw new InvalidOperationException(
-                        "Run plan contains transform-backed tasks, but no transform workspace was provided.");
-                }
-
-                if (string.IsNullOrWhiteSpace(request.BindingWorkspacePath))
-                {
-                    throw new InvalidOperationException(
-                        "Run plan contains transform-backed tasks, but no binding workspace was provided.");
-                }
-            }
-
             supervisorState.SetRunPlan(runPlan.Name, plannedTasks.Length);
 
             journal.WriteEvent("RunPlanReady", runPlan.Name, plannedTasks.Length.ToString(CultureInfo.InvariantCulture));
@@ -1127,18 +1112,6 @@ public sealed class MetaOrchestrationRuntimeService
             startInfo.ArgumentList.Add(request.PipelineWorkspacePath);
             startInfo.ArgumentList.Add("--pipeline");
             startInfo.ArgumentList.Add(pipelineName);
-            if (!string.IsNullOrWhiteSpace(request.TransformWorkspacePath))
-            {
-                startInfo.ArgumentList.Add("--transform-workspace");
-                startInfo.ArgumentList.Add(request.TransformWorkspacePath);
-            }
-
-            if (!string.IsNullOrWhiteSpace(request.BindingWorkspacePath))
-            {
-                startInfo.ArgumentList.Add("--binding-workspace");
-                startInfo.ArgumentList.Add(request.BindingWorkspacePath);
-            }
-
             if (!string.IsNullOrWhiteSpace(request.DataTypeConversionWorkspacePath))
             {
                 startInfo.ArgumentList.Add("--data-type-conversion-workspace");

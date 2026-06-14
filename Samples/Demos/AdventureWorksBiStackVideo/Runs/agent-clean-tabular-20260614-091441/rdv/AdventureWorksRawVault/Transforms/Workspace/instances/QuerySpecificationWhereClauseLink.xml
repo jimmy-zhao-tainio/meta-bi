@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <QuerySpecificationWhereClauseLinkList>
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:1" QuerySpecificationId="QuerySpecification:8" WhereClauseId="WhereClause:1">
+    </QuerySpecificationWhereClauseLink>
+  </QuerySpecificationWhereClauseLinkList>
+</MetaTransformScript>

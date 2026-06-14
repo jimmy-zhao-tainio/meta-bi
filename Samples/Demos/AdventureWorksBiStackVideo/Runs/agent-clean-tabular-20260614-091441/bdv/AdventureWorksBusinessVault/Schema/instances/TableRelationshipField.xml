@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableRelationshipFieldList>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:relationship:FK_BHS_Customer_CustomerProfile_BH_Customer:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:HubHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:relationship:FK_BHS_Customer_CustomerProfile_BH_Customer" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:relationship:FK_BHS_Product_ProductClassification_BH_Product:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:field:HubHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductClassification:relationship:FK_BHS_Product_ProductClassification_BH_Product" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderProfile:relationship:FK_BHS_SalesOrder_SalesOrderProfile_BH_SalesOrder:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderProfile:field:HubHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderProfile:relationship:FK_BHS_SalesOrder_SalesOrderProfile_BH_SalesOrder" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:relationship:FK_BHS_SalesPerson_SalesPersonProfile_BH_SalesPerson:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:HubHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:relationship:FK_BHS_SalesPerson_SalesPersonProfile_BH_SalesPerson" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:relationship:FK_BHS_SalesTerritory_SalesTerritoryProfile_BH_SalesTerritory:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:HubHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:relationship:FK_BHS_SalesTerritory_SalesTerritoryProfile_BH_SalesTerritory" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:relationship:FK_BHS_Store_StoreProfile_BH_Store:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:HubHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:relationship:FK_BHS_Store_StoreProfile_BH_Store" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BLS_SalesOrderLineProduct_SalesOrderLineMeasures:relationship:FK_BLS_SalesOrderLineProduct_SalesOrderLineMeasures_BL_SalesOrderLineProduct:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BLS_SalesOrderLineProduct_SalesOrderLineMeasures:field:LinkHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BLS_SalesOrderLineProduct_SalesOrderLineMeasures:relationship:FK_BLS_SalesOrderLineProduct_SalesOrderLineMeasures_BL_SalesOrderLineProduct" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:relationship:FK_BL_SalesOrderCustomer_BH_Customer_CustomerHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:CustomerHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:relationship:FK_BL_SalesOrderCustomer_BH_Customer_CustomerHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:relationship:FK_BL_SalesOrderCustomer_BH_SalesOrder_SalesOrderHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:SalesOrderHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:relationship:FK_BL_SalesOrderCustomer_BH_SalesOrder_SalesOrderHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:relationship:FK_BL_SalesOrderDate_BH_OrderDate_OrderDateHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:field:OrderDateHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:relationship:FK_BL_SalesOrderDate_BH_OrderDate_OrderDateHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_OrderDate:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:relationship:FK_BL_SalesOrderDate_BH_SalesOrder_SalesOrderHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:field:SalesOrderHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderDate:relationship:FK_BL_SalesOrderDate_BH_SalesOrder_SalesOrderHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:relationship:FK_BL_SalesOrderLineOrder_BH_SalesOrderLine_SalesOrderLineHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:field:SalesOrderLineHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:relationship:FK_BL_SalesOrderLineOrder_BH_SalesOrderLine_SalesOrderLineHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:relationship:FK_BL_SalesOrderLineOrder_BH_SalesOrder_SalesOrderHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:field:SalesOrderHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineOrder:relationship:FK_BL_SalesOrderLineOrder_BH_SalesOrder_SalesOrderHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:relationship:FK_BL_SalesOrderLineProduct_BH_Product_ProductHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:ProductHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:relationship:FK_BL_SalesOrderLineProduct_BH_Product_ProductHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:relationship:FK_BL_SalesOrderLineProduct_BH_SalesOrderLine_SalesOrderLineHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:SalesOrderLineHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:relationship:FK_BL_SalesOrderLineProduct_BH_SalesOrderLine_SalesOrderLineHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:relationship:FK_BL_SalesOrderSalesPerson_BH_SalesOrder_SalesOrderHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:SalesOrderHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:relationship:FK_BL_SalesOrderSalesPerson_BH_SalesOrder_SalesOrderHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:relationship:FK_BL_SalesOrderSalesPerson_BH_SalesPerson_SalesPersonHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:SalesPersonHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:relationship:FK_BL_SalesOrderSalesPerson_BH_SalesPerson_SalesPersonHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:relationship:FK_BL_SalesOrderStore_BH_SalesOrder_SalesOrderHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:field:SalesOrderHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:relationship:FK_BL_SalesOrderStore_BH_SalesOrder_SalesOrderHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:relationship:FK_BL_SalesOrderStore_BH_Store_StoreHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:field:StoreHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderStore:relationship:FK_BL_SalesOrderStore_BH_Store_StoreHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:relationship:FK_BL_SalesOrderTerritory_BH_SalesOrder_SalesOrderHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:field:SalesOrderHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:relationship:FK_BL_SalesOrderTerritory_BH_SalesOrder_SalesOrderHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:relationship:FK_BL_SalesOrderTerritory_BH_SalesTerritory_SalesTerritoryHashKey:field:1" SourceFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:field:SalesTerritoryHashKey" TableRelationshipId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderTerritory:relationship:FK_BL_SalesOrderTerritory_BH_SalesTerritory_SalesTerritoryHashKey" TargetFieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:HashKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+  </TableRelationshipFieldList>
+</MetaSchema>

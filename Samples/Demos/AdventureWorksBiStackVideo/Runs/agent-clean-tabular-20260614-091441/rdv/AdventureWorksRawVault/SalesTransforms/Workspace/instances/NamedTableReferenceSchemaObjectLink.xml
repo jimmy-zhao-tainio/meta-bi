@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <NamedTableReferenceSchemaObjectLinkList>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:1" NamedTableReferenceId="NamedTableReference:1" SchemaObjectNameId="SchemaObjectName:7">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:2" NamedTableReferenceId="NamedTableReference:2" SchemaObjectNameId="SchemaObjectName:16">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:3" NamedTableReferenceId="NamedTableReference:3" SchemaObjectNameId="SchemaObjectName:23">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:4" NamedTableReferenceId="NamedTableReference:4" SchemaObjectNameId="SchemaObjectName:33">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:5" NamedTableReferenceId="NamedTableReference:5" SchemaObjectNameId="SchemaObjectName:40">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:6" NamedTableReferenceId="NamedTableReference:6" SchemaObjectNameId="SchemaObjectName:54">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:7" NamedTableReferenceId="NamedTableReference:7" SchemaObjectNameId="SchemaObjectName:61">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:8" NamedTableReferenceId="NamedTableReference:8" SchemaObjectNameId="SchemaObjectName:74">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:9" NamedTableReferenceId="NamedTableReference:9" SchemaObjectNameId="SchemaObjectName:81">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:10" NamedTableReferenceId="NamedTableReference:10" SchemaObjectNameId="SchemaObjectName:100">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:11" NamedTableReferenceId="NamedTableReference:11" SchemaObjectNameId="SchemaObjectName:109">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:12" NamedTableReferenceId="NamedTableReference:12" SchemaObjectNameId="SchemaObjectName:123">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:13" NamedTableReferenceId="NamedTableReference:13" SchemaObjectNameId="SchemaObjectName:132">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:14" NamedTableReferenceId="NamedTableReference:14" SchemaObjectNameId="SchemaObjectName:143">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:15" NamedTableReferenceId="NamedTableReference:15" SchemaObjectNameId="SchemaObjectName:154">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:16" NamedTableReferenceId="NamedTableReference:16" SchemaObjectNameId="SchemaObjectName:165">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:17" NamedTableReferenceId="NamedTableReference:17" SchemaObjectNameId="SchemaObjectName:176">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:18" NamedTableReferenceId="NamedTableReference:18" SchemaObjectNameId="SchemaObjectName:187">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:19" NamedTableReferenceId="NamedTableReference:19" SchemaObjectNameId="SchemaObjectName:200">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:20" NamedTableReferenceId="NamedTableReference:20" SchemaObjectNameId="SchemaObjectName:215">
+    </NamedTableReferenceSchemaObjectLink>
+    <NamedTableReferenceSchemaObjectLink Id="NamedTableReferenceSchemaObjectLink:21" NamedTableReferenceId="NamedTableReference:21" SchemaObjectNameId="SchemaObjectName:228">
+    </NamedTableReferenceSchemaObjectLink>
+  </NamedTableReferenceSchemaObjectLinkList>
+</MetaTransformScript>

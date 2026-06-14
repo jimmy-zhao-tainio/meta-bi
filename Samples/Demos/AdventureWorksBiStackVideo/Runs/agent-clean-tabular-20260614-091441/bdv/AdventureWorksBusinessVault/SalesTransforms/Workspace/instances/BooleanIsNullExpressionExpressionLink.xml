@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BooleanIsNullExpressionExpressionLinkList>
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:1" BooleanIsNullExpressionId="BooleanIsNullExpression:1" ScalarExpressionId="ScalarExpression:11">
+    </BooleanIsNullExpressionExpressionLink>
+    <BooleanIsNullExpressionExpressionLink Id="BooleanIsNullExpressionExpressionLink:2" BooleanIsNullExpressionId="BooleanIsNullExpression:2" ScalarExpressionId="ScalarExpression:20">
+    </BooleanIsNullExpressionExpressionLink>
+  </BooleanIsNullExpressionExpressionLinkList>
+</MetaTransformScript>

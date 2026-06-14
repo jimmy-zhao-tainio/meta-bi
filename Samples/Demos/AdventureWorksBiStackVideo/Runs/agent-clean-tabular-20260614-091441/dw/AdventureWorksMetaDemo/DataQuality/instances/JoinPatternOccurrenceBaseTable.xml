@@ -1,0 +1,1760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinPatternOccurrenceBaseTableList>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:4.JoinPatternOccurrence.QualifiedJoin:3.BaseTable.TableReference:8.TableReference:8" JoinPatternOccurrenceId="TransformScript:4.JoinPatternOccurrence.QualifiedJoin:3">
+      <BaseNamedTableReferenceId>NamedTableReference:6</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:7</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:8</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:8</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:4.JoinPatternOccurrence.QualifiedJoin:3.BaseTable.TableReference:9.TableReference:9" JoinPatternOccurrenceId="TransformScript:4.JoinPatternOccurrence.QualifiedJoin:3">
+      <BaseNamedTableReferenceId>NamedTableReference:7</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:8</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:9</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:9</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:1.JoinPatternOccurrence.QualifiedJoin:1.BaseTable.TableReference:1.TableReference:1" JoinPatternOccurrenceId="TransformScript:1.JoinPatternOccurrence.QualifiedJoin:1">
+      <BaseNamedTableReferenceId>NamedTableReference:1</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:1</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:1</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:1</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:1.JoinPatternOccurrence.QualifiedJoin:1.BaseTable.TableReference:2.TableReference:2" JoinPatternOccurrenceId="TransformScript:1.JoinPatternOccurrence.QualifiedJoin:1">
+      <BaseNamedTableReferenceId>NamedTableReference:2</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:2</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:2</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:2</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:3.JoinPatternOccurrence.QualifiedJoin:2.BaseTable.TableReference:5.TableReference:5" JoinPatternOccurrenceId="TransformScript:3.JoinPatternOccurrence.QualifiedJoin:2">
+      <BaseNamedTableReferenceId>NamedTableReference:4</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:5</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:5</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:5</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:3.JoinPatternOccurrence.QualifiedJoin:2.BaseTable.TableReference:6.TableReference:6" JoinPatternOccurrenceId="TransformScript:3.JoinPatternOccurrence.QualifiedJoin:2">
+      <BaseNamedTableReferenceId>NamedTableReference:5</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:6</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:6</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:6</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10.BaseTable.TableReference:23.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:23</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10.BaseTable.TableReference:23.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:23</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10.BaseTable.TableReference:23.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:23</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10.BaseTable.TableReference:23.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:23</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10.BaseTable.TableReference:23.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:23</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10.BaseTable.TableReference:23.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:23</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10.BaseTable.TableReference:23.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:23</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10.BaseTable.TableReference:24.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:24</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:25.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:25</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:25.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:25</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:25.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:25</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:25.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:25</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:25.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:25</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:25.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:25</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:25.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:25</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:25.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:25</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11.BaseTable.TableReference:26.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:26</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:27.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:27</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12.BaseTable.TableReference:28.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:28</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:29.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:29</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13.BaseTable.TableReference:30.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:30</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:31.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:31</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14.BaseTable.TableReference:32.TableReference:32" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14">
+      <BaseNamedTableReferenceId>NamedTableReference:19</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:20</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:32</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:32</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>11</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>11</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:33.TableReference:32" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:19</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:20</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:32</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:33</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15.BaseTable.TableReference:34.TableReference:34" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15">
+      <BaseNamedTableReferenceId>NamedTableReference:20</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:21</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:34</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:34</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>12</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>12</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>11</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:32" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:19</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:20</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:32</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:35.TableReference:34" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:20</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:21</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:34</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:35</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16.BaseTable.TableReference:36.TableReference:36" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16">
+      <BaseNamedTableReferenceId>NamedTableReference:21</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:22</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:36</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:36</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>13</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>13</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>12</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>11</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:32" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:19</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:20</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:32</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:34" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:20</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:21</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:34</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:37.TableReference:36" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:21</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:22</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:36</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:37</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17.BaseTable.TableReference:38.TableReference:38" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17">
+      <BaseNamedTableReferenceId>NamedTableReference:22</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:23</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:38</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:38</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>14</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>14</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>13</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>12</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>11</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:32" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:19</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:20</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:32</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:34" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:20</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:21</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:34</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:36" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:21</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:22</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:36</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:39.TableReference:38" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:22</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:23</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:38</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:39</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18.BaseTable.TableReference:40.TableReference:40" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18">
+      <BaseNamedTableReferenceId>NamedTableReference:23</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:24</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:40</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:40</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>15</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>15</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>14</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>13</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>12</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>11</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:32" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:19</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:20</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:32</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:34" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:20</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:21</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:34</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:36" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:21</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:22</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:36</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:38" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:22</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:23</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:38</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:41.TableReference:40" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:23</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:24</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:40</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:41</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19.BaseTable.TableReference:42.TableReference:42" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19">
+      <BaseNamedTableReferenceId>NamedTableReference:24</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:25</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:42</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:42</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>16</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>16</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>15</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>14</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>13</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>12</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>11</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:32" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:19</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:20</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:32</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:34" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:20</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:21</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:34</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:36" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:21</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:22</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:36</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:38" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:22</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:23</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:38</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:40" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:23</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:24</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:40</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:43.TableReference:42" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:24</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:25</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:42</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:43</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20.BaseTable.TableReference:44.TableReference:44" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20">
+      <BaseNamedTableReferenceId>NamedTableReference:25</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesPerson</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:26</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:44</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:44</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>17</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>17</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>16</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>15</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>14</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>13</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>12</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:24" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:15</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:16</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:24</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>11</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:26" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:16</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:17</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:26</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>10</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:28" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:17</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_OrderDate</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:18</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:28</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>9</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:30" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:18</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:19</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:30</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>8</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:32" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:19</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:20</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:32</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>7</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:34" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:20</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:21</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:34</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>6</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:36" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:21</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:22</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:36</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:38" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:22</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:23</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:38</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:40" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:23</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:24</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:40</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:42" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:24</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:25</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:42</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:45.TableReference:44" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:25</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesPerson</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:26</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:44</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:45</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21.BaseTable.TableReference:46.TableReference:46" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21">
+      <BaseNamedTableReferenceId>NamedTableReference:26</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:27</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:46</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:46</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:4.BaseTable.TableReference:11.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:4">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:11</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:4.BaseTable.TableReference:12.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:4">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:12</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:5.BaseTable.TableReference:13.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:5">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:13</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:5.BaseTable.TableReference:13.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:5">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:13</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:5.BaseTable.TableReference:14.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:5">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:14</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6.BaseTable.TableReference:15.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:15</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6.BaseTable.TableReference:15.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:15</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6.BaseTable.TableReference:15.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:15</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6.BaseTable.TableReference:16.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:16</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7.BaseTable.TableReference:17.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:17</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7.BaseTable.TableReference:17.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:17</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7.BaseTable.TableReference:17.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:17</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7.BaseTable.TableReference:17.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:17</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7.BaseTable.TableReference:18.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:18</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8.BaseTable.TableReference:19.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:19</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8.BaseTable.TableReference:19.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:19</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8.BaseTable.TableReference:19.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:19</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8.BaseTable.TableReference:19.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:19</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8.BaseTable.TableReference:19.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:19</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8.BaseTable.TableReference:20.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:20</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9.BaseTable.TableReference:21.TableReference:11" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9">
+      <BaseNamedTableReferenceId>NamedTableReference:8</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:9</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:11</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:21</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9.BaseTable.TableReference:21.TableReference:12" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9">
+      <BaseNamedTableReferenceId>NamedTableReference:9</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:10</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:12</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:21</JoinInputTableReferenceId>
+      <ResolutionDepth>5</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9.BaseTable.TableReference:21.TableReference:14" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9">
+      <BaseNamedTableReferenceId>NamedTableReference:10</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:11</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:14</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:21</JoinInputTableReferenceId>
+      <ResolutionDepth>4</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9.BaseTable.TableReference:21.TableReference:16" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9">
+      <BaseNamedTableReferenceId>NamedTableReference:11</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_Product</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:12</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:16</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:21</JoinInputTableReferenceId>
+      <ResolutionDepth>3</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9.BaseTable.TableReference:21.TableReference:18" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9">
+      <BaseNamedTableReferenceId>NamedTableReference:12</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:13</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:18</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:21</JoinInputTableReferenceId>
+      <ResolutionDepth>2</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinFirst &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9.BaseTable.TableReference:21.TableReference:20" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9">
+      <BaseNamedTableReferenceId>NamedTableReference:13</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:14</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:20</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:21</JoinInputTableReferenceId>
+      <ResolutionDepth>1</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirstInput &gt; JoinSecond</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+    <JoinPatternOccurrenceBaseTable Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9.BaseTable.TableReference:22.TableReference:22" JoinPatternOccurrenceId="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9">
+      <BaseNamedTableReferenceId>NamedTableReference:14</BaseNamedTableReferenceId>
+      <BaseObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</BaseObjectName>
+      <BaseSchemaObjectNameId>SchemaObjectName:15</BaseSchemaObjectNameId>
+      <BaseTableReferenceId>TableReference:22</BaseTableReferenceId>
+      <JoinInputTableReferenceId>TableReference:22</JoinInputTableReferenceId>
+      <ResolutionDepth>0</ResolutionDepth>
+      <ResolutionPath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinSecondInput</ResolutionPath>
+    </JoinPatternOccurrenceBaseTable>
+  </JoinPatternOccurrenceBaseTableList>
+</MetaDataQuality>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TableReferenceWithAliasList>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:1" TableReferenceId="TableReference:1">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:2" TableReferenceId="TableReference:2">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:3" TableReferenceId="TableReference:3">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:4" TableReferenceId="TableReference:5">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:5" TableReferenceId="TableReference:7">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:6" TableReferenceId="TableReference:8">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:7" TableReferenceId="TableReference:9">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:8" TableReferenceId="TableReference:11">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:9" TableReferenceId="TableReference:12">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:10" TableReferenceId="TableReference:13">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:11" TableReferenceId="TableReference:14">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:12" TableReferenceId="TableReference:15">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:13" TableReferenceId="TableReference:17">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:14" TableReferenceId="TableReference:18">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:15" TableReferenceId="TableReference:19">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:16" TableReferenceId="TableReference:21">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:17" TableReferenceId="TableReference:22">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:18" TableReferenceId="TableReference:23">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:19" TableReferenceId="TableReference:24">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:20" TableReferenceId="TableReference:25">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:21" TableReferenceId="TableReference:27">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:22" TableReferenceId="TableReference:28">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:23" TableReferenceId="TableReference:29">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:24" TableReferenceId="TableReference:30">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:25" TableReferenceId="TableReference:32">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:26" TableReferenceId="TableReference:33">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:27" TableReferenceId="TableReference:34">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:28" TableReferenceId="TableReference:36">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:29" TableReferenceId="TableReference:37">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:30" TableReferenceId="TableReference:39">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:31" TableReferenceId="TableReference:41">
+    </TableReferenceWithAlias>
+    <TableReferenceWithAlias Id="TableReferenceWithAlias:32" TableReferenceId="TableReference:43">
+    </TableReferenceWithAlias>
+  </TableReferenceWithAliasList>
+</MetaTransformScript>

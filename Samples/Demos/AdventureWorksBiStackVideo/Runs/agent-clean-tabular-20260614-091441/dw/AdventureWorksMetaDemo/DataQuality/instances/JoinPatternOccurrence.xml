@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinPatternOccurrenceList>
+    <JoinPatternOccurrence Id="TransformScript:4.JoinPatternOccurrence.QualifiedJoin:3" JoinPatternId="JoinPattern">
+      <FirstTableReferenceId>TableReference:8</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:3</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:3</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:4</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:4</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:3</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:9</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:4</TransformScriptId>
+      <TransformScriptName>awbi.v_load_DimCustomerChannel</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:1.JoinPatternOccurrence.QualifiedJoin:1" JoinPatternId="JoinPattern.1">
+      <FirstTableReferenceId>TableReference:1</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:1</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:1</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:1</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:1</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:1</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:2</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:1</TransformScriptId>
+      <TransformScriptName>awbi.v_load_DimProduct</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:3.JoinPatternOccurrence.QualifiedJoin:2" JoinPatternId="JoinPattern.2">
+      <FirstTableReferenceId>TableReference:5</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:2</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:2</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:3</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:3</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:2</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:6</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:3</TransformScriptId>
+      <TransformScriptName>awbi.v_load_DimSalesTerritory</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:10" JoinPatternId="JoinPattern.3">
+      <FirstTableReferenceId>TableReference:23</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:10</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:10</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:10</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:24</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:11" JoinPatternId="JoinPattern.4">
+      <FirstTableReferenceId>TableReference:25</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:11</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:11</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:11</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:26</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:12" JoinPatternId="JoinPattern.5">
+      <FirstTableReferenceId>TableReference:27</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:12</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:12</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:12</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:28</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:13" JoinPatternId="JoinPattern.6">
+      <FirstTableReferenceId>TableReference:29</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:13</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:13</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:13</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:30</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:14" JoinPatternId="JoinPattern.7">
+      <FirstTableReferenceId>TableReference:31</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:14</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:14</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:14</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:32</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:15" JoinPatternId="JoinPattern.8">
+      <FirstTableReferenceId>TableReference:33</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:15</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:15</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:15</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:34</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:16" JoinPatternId="JoinPattern.9">
+      <FirstTableReferenceId>TableReference:35</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:16</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:16</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:16</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:36</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:17" JoinPatternId="JoinPattern.10">
+      <FirstTableReferenceId>TableReference:37</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:17</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:17</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:17</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:38</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:18" JoinPatternId="JoinPattern.11">
+      <FirstTableReferenceId>TableReference:39</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:18</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:18</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:18</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:40</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:19" JoinPatternId="JoinPattern.12">
+      <FirstTableReferenceId>TableReference:41</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:19</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:19</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:19</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:42</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:20" JoinPatternId="JoinPattern.13">
+      <FirstTableReferenceId>TableReference:43</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:20</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:20</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:20</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:44</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:21" JoinPatternId="JoinPattern.14">
+      <FirstTableReferenceId>TableReference:45</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:21</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:21</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:21</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:46</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:4" JoinPatternId="JoinPattern.15">
+      <FirstTableReferenceId>TableReference:11</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:4</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:4</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:4</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:12</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:5" JoinPatternId="JoinPattern.16">
+      <FirstTableReferenceId>TableReference:13</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:5</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:5</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:5</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:14</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:6" JoinPatternId="JoinPattern.17">
+      <FirstTableReferenceId>TableReference:15</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:6</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:6</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:6</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:16</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:7" JoinPatternId="JoinPattern.18">
+      <FirstTableReferenceId>TableReference:17</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:7</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:7</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:7</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:18</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:8" JoinPatternId="JoinPattern.19">
+      <FirstTableReferenceId>TableReference:19</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:8</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:8</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:8</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:20</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+    <JoinPatternOccurrence Id="TransformScript:5.JoinPatternOccurrence.QualifiedJoin:9" JoinPatternId="JoinPattern.20">
+      <FirstTableReferenceId>TableReference:21</FirstTableReferenceId>
+      <JoinTableReferenceId>JoinTableReference:9</JoinTableReferenceId>
+      <QualifiedJoinId>QualifiedJoin:9</QualifiedJoinId>
+      <QueryExpressionId>QueryExpression:5</QueryExpressionId>
+      <QuerySpecificationId>QuerySpecification:5</QuerySpecificationId>
+      <ScopePath>MainQuery &gt; From &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst &gt; JoinFirst</ScopePath>
+      <SearchConditionBooleanExpressionId>BooleanExpression:9</SearchConditionBooleanExpressionId>
+      <SecondTableReferenceId>TableReference:22</SecondTableReferenceId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>awbi.v_load_FactSalesOrderLine</TransformScriptName>
+    </JoinPatternOccurrence>
+  </JoinPatternOccurrenceList>
+</MetaDataQuality>

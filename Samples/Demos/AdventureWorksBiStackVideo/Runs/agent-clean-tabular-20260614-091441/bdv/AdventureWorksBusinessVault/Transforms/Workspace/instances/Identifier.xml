@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <IdentifierList>
+    <Identifier Id="Identifier:1">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:2">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>v_load_BH_Product</Value>
+    </Identifier>
+    <Identifier Id="Identifier:3">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:4">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:6">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductID</Value>
+    </Identifier>
+    <Identifier Id="Identifier:7">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:8">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:9">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>LoadTimestamp</Value>
+    </Identifier>
+    <Identifier Id="Identifier:10">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>nvarchar</Value>
+    </Identifier>
+    <Identifier Id="Identifier:11">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>RecordSource</Value>
+    </Identifier>
+    <Identifier Id="Identifier:12">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:13">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>AuditId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:14">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:15">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:16">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>H_Product</Value>
+    </Identifier>
+    <Identifier Id="Identifier:17">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:18">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:19">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>v_load_BHS_Product_ProductClassification</Value>
+    </Identifier>
+    <Identifier Id="Identifier:20">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:21">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:22">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HubHashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:23">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>nvarchar</Value>
+    </Identifier>
+    <Identifier Id="Identifier:24">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hs</Value>
+    </Identifier>
+    <Identifier Id="Identifier:25">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductNumber</Value>
+    </Identifier>
+    <Identifier Id="Identifier:26">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductNumber</Value>
+    </Identifier>
+    <Identifier Id="Identifier:27">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>nvarchar</Value>
+    </Identifier>
+    <Identifier Id="Identifier:28">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hs</Value>
+    </Identifier>
+    <Identifier Id="Identifier:29">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Name</Value>
+    </Identifier>
+    <Identifier Id="Identifier:30">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:31">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>nvarchar</Value>
+    </Identifier>
+    <Identifier Id="Identifier:32">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>pc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:33">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Name</Value>
+    </Identifier>
+    <Identifier Id="Identifier:34">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductCategory</Value>
+    </Identifier>
+    <Identifier Id="Identifier:35">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>nvarchar</Value>
+    </Identifier>
+    <Identifier Id="Identifier:36">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:37">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Name</Value>
+    </Identifier>
+    <Identifier Id="Identifier:38">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductSubcategory</Value>
+    </Identifier>
+    <Identifier Id="Identifier:39">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>binary</Value>
+    </Identifier>
+    <Identifier Id="Identifier:40">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hs</Value>
+    </Identifier>
+    <Identifier Id="Identifier:41">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductNumber</Value>
+    </Identifier>
+    <Identifier Id="Identifier:42">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hs</Value>
+    </Identifier>
+    <Identifier Id="Identifier:43">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Name</Value>
+    </Identifier>
+    <Identifier Id="Identifier:44">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>pc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:45">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Name</Value>
+    </Identifier>
+    <Identifier Id="Identifier:46">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:47">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Name</Value>
+    </Identifier>
+    <Identifier Id="Identifier:48">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT_WS</Value>
+    </Identifier>
+    <Identifier Id="Identifier:49">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HASHBYTES</Value>
+    </Identifier>
+    <Identifier Id="Identifier:50">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashDiff</Value>
+    </Identifier>
+    <Identifier Id="Identifier:51">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:52">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>LoadTimestamp</Value>
+    </Identifier>
+    <Identifier Id="Identifier:53">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>nvarchar</Value>
+    </Identifier>
+    <Identifier Id="Identifier:54">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>RecordSource</Value>
+    </Identifier>
+    <Identifier Id="Identifier:55">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:56">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>AuditId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:57">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:58">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:59">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>H_Product</Value>
+    </Identifier>
+    <Identifier Id="Identifier:60">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:61">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:62">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:63">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>HS_Product_Product</Value>
+    </Identifier>
+    <Identifier Id="Identifier:64">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hs</Value>
+    </Identifier>
+    <Identifier Id="Identifier:65">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hs</Value>
+    </Identifier>
+    <Identifier Id="Identifier:66">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HubHashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:67">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:68">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:69">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:70">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:71">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>L_ProductProductSubcategory</Value>
+    </Identifier>
+    <Identifier Id="Identifier:72">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>lps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:73">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>lps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:74">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductHashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:75">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>h</Value>
+    </Identifier>
+    <Identifier Id="Identifier:76">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:77">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:78">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:79">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>H_ProductSubcategory</Value>
+    </Identifier>
+    <Identifier Id="Identifier:80">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:81">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:82">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:83">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>lps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:84">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductSubcategoryHashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:85">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:86">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:87">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>HS_ProductSubcategory_ProductSubcategory</Value>
+    </Identifier>
+    <Identifier Id="Identifier:88">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:89">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:90">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HubHashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:91">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:92">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:93">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:94">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:95">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>L_ProductSubcategoryProductCategory</Value>
+    </Identifier>
+    <Identifier Id="Identifier:96">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>lpc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:97">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>lpc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:98">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductSubcategoryHashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:99">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hps</Value>
+    </Identifier>
+    <Identifier Id="Identifier:100">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:101">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:102">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:103">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>H_ProductCategory</Value>
+    </Identifier>
+    <Identifier Id="Identifier:104">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hpc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:105">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hpc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:106">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:107">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>lpc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:108">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ProductCategoryHashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:109">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>AdventureWorksRawVault</Value>
+    </Identifier>
+    <Identifier Id="Identifier:110">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>dbo</Value>
+    </Identifier>
+    <Identifier Id="Identifier:111">
+      <QuoteType>SquareBracket</QuoteType>
+      <Value>HS_ProductCategory_ProductCategory</Value>
+    </Identifier>
+    <Identifier Id="Identifier:112">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>pc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:113">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>pc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:114">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HubHashKey</Value>
+    </Identifier>
+    <Identifier Id="Identifier:115">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>hpc</Value>
+    </Identifier>
+    <Identifier Id="Identifier:116">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>HashKey</Value>
+    </Identifier>
+  </IdentifierList>
+</MetaTransformScript>

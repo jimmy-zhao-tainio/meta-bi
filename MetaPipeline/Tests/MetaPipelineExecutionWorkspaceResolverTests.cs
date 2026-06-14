@@ -368,15 +368,15 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                 pipelineWorkspacePath,
                 script.Id,
                 binding.Id,
+                transformWorkspacePath,
+                bindingWorkspacePath,
                 "warehouse.CustomerLoad",
                 ["CustomerId", "CustomerName"]);
 
             var plan = new MetaPipelineModeledExecutionResolver().Resolve(
                 new MetaPipelineModeledExecutionRequest(
                     pipelineWorkspacePath,
-                    "CustomerLoad",
-                    transformWorkspacePath,
-                    bindingWorkspacePath));
+                    "CustomerLoad"));
 
             Assert.True(plan.IsSelect);
             Assert.Equal("warehouse.CustomerLoad", plan.TargetSqlIdentifier);
@@ -643,14 +643,12 @@ END
             BuildBindingWorkspace(
                 bindingWorkspacePath,
                 new BindingSeed("binding:1", script, "dbo.Target", []));
-            BuildTransformOnlyPipelineWorkspace(pipelineWorkspacePath, script.Id, "binding:1", "45");
+            BuildTransformOnlyPipelineWorkspace(pipelineWorkspacePath, script.Id, "binding:1", transformWorkspacePath, bindingWorkspacePath, "45");
 
             var plan = new MetaPipelineModeledExecutionResolver().Resolve(
                 new MetaPipelineModeledExecutionRequest(
                     pipelineWorkspacePath,
-                    "CustomerLoad",
-                    transformWorkspacePath,
-                    bindingWorkspacePath));
+                    "CustomerLoad"));
 
             Assert.False(plan.IsSelect);
             Assert.Equal("binding:1", plan.TransformBindingId);
@@ -699,14 +697,14 @@ END
                 updateScript.Id,
                 "binding:update",
                 deleteScript.Id,
-                "binding:delete");
+                "binding:delete",
+                transformWorkspacePath,
+                bindingWorkspacePath);
 
             var plan = new MetaPipelineModeledExecutionResolver().Resolve(
                 new MetaPipelineModeledExecutionRequest(
                     pipelineWorkspacePath,
-                    "CustomerLoad",
-                    transformWorkspacePath,
-                    bindingWorkspacePath));
+                    "CustomerLoad"));
 
             Assert.Equal(2, plan.Steps.Count);
             Assert.Equal("update", plan.Steps[0].TransformTaskName);
@@ -754,15 +752,15 @@ END
                 updateScript.Id,
                 "binding:update",
                 deleteScript.Id,
-                "binding:delete");
+                "binding:delete",
+                transformWorkspacePath,
+                bindingWorkspacePath);
 
             var plan = new MetaPipelineModeledExecutionResolver().ResolveStep(
                 new MetaPipelineModeledExecutionStepRequest(
                     pipelineWorkspacePath,
                     "CustomerLoad",
-                    "delete",
-                    transformWorkspacePath,
-                    bindingWorkspacePath));
+                    "delete"));
 
             var step = Assert.Single(plan.Steps);
             Assert.Equal("delete", step.TransformTaskName);
@@ -795,15 +793,13 @@ END
             BuildBindingWorkspace(
                 bindingWorkspacePath,
                 new BindingSeed("binding:1", script, "warehouse.CustomerLoad", ["CustomerId"]));
-            BuildTransformOnlyPipelineWorkspace(pipelineWorkspacePath, script.Id, "binding:1");
+            BuildTransformOnlyPipelineWorkspace(pipelineWorkspacePath, script.Id, "binding:1", transformWorkspacePath, bindingWorkspacePath);
 
             var exception = Assert.Throws<MetaPipelineConfigurationException>(() =>
                 new MetaPipelineModeledExecutionResolver().Resolve(
                     new MetaPipelineModeledExecutionRequest(
                         pipelineWorkspacePath,
-                        "CustomerLoad",
-                        transformWorkspacePath,
-                        bindingWorkspacePath)));
+                        "CustomerLoad")));
 
             Assert.Contains("SELECT-kind", exception.Message, StringComparison.OrdinalIgnoreCase);
             Assert.Contains("InsertRows", exception.Message, StringComparison.OrdinalIgnoreCase);
@@ -974,6 +970,8 @@ END
         string pipelineWorkspacePath,
         string transformScriptId,
         string transformBindingId,
+        string transformWorkspacePath,
+        string bindingWorkspacePath,
         string targetSqlIdentifier,
         IReadOnlyList<string> columnNames)
     {
@@ -1026,6 +1024,8 @@ END
             ExecutionConnectionReference = source,
             TransformScriptId = transformScriptId,
             TransformBindingId = transformBindingId,
+            TransformWorkspacePath = transformWorkspacePath,
+            BindingWorkspacePath = bindingWorkspacePath,
         });
 
         var rowStream = new RowStream
@@ -1087,6 +1087,8 @@ END
         string pipelineWorkspacePath,
         string transformScriptId,
         string transformBindingId,
+        string transformWorkspacePath,
+        string bindingWorkspacePath,
         string? timeoutSeconds = null)
     {
         var model = MetaPipelineModel.CreateEmpty();
@@ -1119,6 +1121,8 @@ END
             ExecutionConnectionReference = source,
             TransformScriptId = transformScriptId,
             TransformBindingId = transformBindingId,
+            TransformWorkspacePath = transformWorkspacePath,
+            BindingWorkspacePath = bindingWorkspacePath,
             TimeoutSeconds = timeoutSeconds,
         });
 
@@ -1130,7 +1134,9 @@ END
         string firstTransformScriptId,
         string firstTransformBindingId,
         string secondTransformScriptId,
-        string secondTransformBindingId)
+        string secondTransformBindingId,
+        string transformWorkspacePath,
+        string bindingWorkspacePath)
     {
         var model = MetaPipelineModel.CreateEmpty();
         var pipeline = new Pipeline
@@ -1170,6 +1176,8 @@ END
             ExecutionConnectionReference = source,
             TransformScriptId = firstTransformScriptId,
             TransformBindingId = firstTransformBindingId,
+            TransformWorkspacePath = transformWorkspacePath,
+            BindingWorkspacePath = bindingWorkspacePath,
         });
         model.TransformExecutionTaskList.Add(new TransformExecutionTask
         {
@@ -1178,6 +1186,8 @@ END
             ExecutionConnectionReference = source,
             TransformScriptId = secondTransformScriptId,
             TransformBindingId = secondTransformBindingId,
+            TransformWorkspacePath = transformWorkspacePath,
+            BindingWorkspacePath = bindingWorkspacePath,
         });
         model.TaskDependencyList.Add(new TaskDependency
         {

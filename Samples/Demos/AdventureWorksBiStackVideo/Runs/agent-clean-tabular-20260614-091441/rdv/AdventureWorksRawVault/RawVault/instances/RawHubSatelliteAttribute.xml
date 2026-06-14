@@ -1,0 +1,1369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawHubSatelliteAttributeList>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine1" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine1">
+      <Name>AddressLine1</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine2" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine2">
+      <Name>AddressLine2</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Address:field:City" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:City">
+      <Name>City</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Address:field:PostalCode" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:PostalCode">
+      <Name>PostalCode</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Address:field:SpatialLocation" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:SpatialLocation">
+      <Name>SpatialLocation</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Address:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Address:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:Database Version" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:Database Version">
+      <Name>Database Version</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:VersionDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:VersionDate">
+      <Name>VersionDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:StartDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:StartDate">
+      <Name>StartDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:EndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:EndDate">
+      <Name>EndDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:BOMLevel" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:BOMLevel">
+      <Name>BOMLevel</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:PerAssemblyQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:PerAssemblyQty">
+      <Name>PerAssemblyQty</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:ContactType:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:ContactType:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:ContactType:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:ContactType:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardType" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardType">
+      <Name>CardType</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardNumber">
+      <Name>CardNumber</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ExpMonth" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ExpMonth">
+      <Name>ExpMonth</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ExpYear" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ExpYear">
+      <Name>ExpYear</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Culture:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Culture:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Culture:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Culture:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Currency:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Currency:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Currency:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Currency:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:CurrencyRateDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:CurrencyRateDate">
+      <Name>CurrencyRateDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:AverageRate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:AverageRate">
+      <Name>AverageRate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:EndOfDayRate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:EndOfDayRate">
+      <Name>EndOfDayRate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:AccountNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:AccountNumber">
+      <Name>AccountNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:PostTime" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:PostTime">
+      <Name>PostTime</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseUser" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseUser">
+      <Name>DatabaseUser</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Event" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Event">
+      <Name>Event</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Schema" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Schema">
+      <Name>Schema</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Object" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Object">
+      <Name>Object</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:TSQL" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:TSQL">
+      <Name>TSQL</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:XmlEvent" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:XmlEvent">
+      <Name>XmlEvent</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:GroupName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:GroupName">
+      <Name>GroupName</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentLevel" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentLevel">
+      <Name>DocumentLevel</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Title" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Title">
+      <Name>Title</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FolderFlag" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FolderFlag">
+      <Name>FolderFlag</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileName">
+      <Name>FileName</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileExtension" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileExtension">
+      <Name>FileExtension</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Revision" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Revision">
+      <Name>Revision</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:ChangeNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:ChangeNumber">
+      <Name>ChangeNumber</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Status" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Status">
+      <Name>Status</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentSummary" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentSummary">
+      <Name>DocumentSummary</Name>
+      <Ordinal>9</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Document" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Document">
+      <Name>Document</Name>
+      <Ordinal>10</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>11</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Document:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>12</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddress" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddress">
+      <Name>EmailAddress</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:NationalIDNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:NationalIDNumber">
+      <Name>NationalIDNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:LoginID" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:LoginID">
+      <Name>LoginID</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:OrganizationNode" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:OrganizationNode">
+      <Name>OrganizationNode</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:OrganizationLevel" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:OrganizationLevel">
+      <Name>OrganizationLevel</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:JobTitle" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:JobTitle">
+      <Name>JobTitle</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:BirthDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:BirthDate">
+      <Name>BirthDate</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:MaritalStatus" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:MaritalStatus">
+      <Name>MaritalStatus</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:Gender" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:Gender">
+      <Name>Gender</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:HireDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:HireDate">
+      <Name>HireDate</Name>
+      <Ordinal>9</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:SalariedFlag" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:SalariedFlag">
+      <Name>SalariedFlag</Name>
+      <Ordinal>10</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:VacationHours" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:VacationHours">
+      <Name>VacationHours</Name>
+      <Ordinal>11</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:SickLeaveHours" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:SickLeaveHours">
+      <Name>SickLeaveHours</Name>
+      <Ordinal>12</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:CurrentFlag" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:CurrentFlag">
+      <Name>CurrentFlag</Name>
+      <Ordinal>13</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>14</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>15</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:EndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:EndDate">
+      <Name>EndDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:Rate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:Rate">
+      <Name>Rate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:PayFrequency" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:PayFrequency">
+      <Name>PayFrequency</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorTime" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorTime">
+      <Name>ErrorTime</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:UserName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:UserName">
+      <Name>UserName</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorNumber">
+      <Name>ErrorNumber</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorSeverity" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorSeverity">
+      <Name>ErrorSeverity</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorState" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorState">
+      <Name>ErrorState</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorProcedure" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorProcedure">
+      <Name>ErrorProcedure</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorLine" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorLine">
+      <Name>ErrorLine</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat:attr:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorMessage" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorMessage">
+      <Name>ErrorMessage</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Illustration:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:Diagram" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Illustration:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:Diagram">
+      <Name>Diagram</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Illustration:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Illustration:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Illustration:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:Resume" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:Resume">
+      <Name>Resume</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Location:field:CostRate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:CostRate">
+      <Name>CostRate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Availability" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Availability">
+      <Name>Availability</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Location:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordHash" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordHash">
+      <Name>PasswordHash</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordSalt" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordSalt">
+      <Name>PasswordSalt</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Password:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Password:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:PersonType" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:PersonType">
+      <Name>PersonType</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:NameStyle" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:NameStyle">
+      <Name>NameStyle</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Title" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Title">
+      <Name>Title</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:FirstName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:FirstName">
+      <Name>FirstName</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:MiddleName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:MiddleName">
+      <Name>MiddleName</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:LastName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:LastName">
+      <Name>LastName</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Suffix" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Suffix">
+      <Name>Suffix</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:EmailPromotion" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:EmailPromotion">
+      <Name>EmailPromotion</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:AdditionalContactInfo" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:AdditionalContactInfo">
+      <Name>AdditionalContactInfo</Name>
+      <Ordinal>9</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Demographics" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Demographics">
+      <Name>Demographics</Name>
+      <Ordinal>10</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>11</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:Person:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>12</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductNumber">
+      <Name>ProductNumber</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:MakeFlag" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:MakeFlag">
+      <Name>MakeFlag</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:FinishedGoodsFlag" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:FinishedGoodsFlag">
+      <Name>FinishedGoodsFlag</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Color" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Color">
+      <Name>Color</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SafetyStockLevel" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SafetyStockLevel">
+      <Name>SafetyStockLevel</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ReorderPoint" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ReorderPoint">
+      <Name>ReorderPoint</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:StandardCost" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:StandardCost">
+      <Name>StandardCost</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ListPrice" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ListPrice">
+      <Name>ListPrice</Name>
+      <Ordinal>9</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Size" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Size">
+      <Name>Size</Name>
+      <Ordinal>10</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight">
+      <Name>Weight</Name>
+      <Ordinal>11</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DaysToManufacture" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DaysToManufacture">
+      <Name>DaysToManufacture</Name>
+      <Ordinal>12</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductLine" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductLine">
+      <Name>ProductLine</Name>
+      <Ordinal>13</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Class" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Class">
+      <Name>Class</Name>
+      <Ordinal>14</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Style" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Style">
+      <Name>Style</Name>
+      <Ordinal>15</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellStartDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellStartDate">
+      <Name>SellStartDate</Name>
+      <Ordinal>16</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellEndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellEndDate">
+      <Name>SellEndDate</Name>
+      <Ordinal>17</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DiscontinuedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DiscontinuedDate">
+      <Name>DiscontinuedDate</Name>
+      <Ordinal>18</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>19</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>20</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:EndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:EndDate">
+      <Name>EndDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:StandardCost" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:StandardCost">
+      <Name>StandardCost</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:Description" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:Description">
+      <Name>Description</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Shelf" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Shelf">
+      <Name>Shelf</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Bin" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Bin">
+      <Name>Bin</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Quantity" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Quantity">
+      <Name>Quantity</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:EndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:EndDate">
+      <Name>EndDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ListPrice" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ListPrice">
+      <Name>ListPrice</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:CatalogDescription" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:CatalogDescription">
+      <Name>CatalogDescription</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:Instructions" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:Instructions">
+      <Name>Instructions</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbNailPhoto" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbNailPhoto">
+      <Name>ThumbNailPhoto</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbnailPhotoFileName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbnailPhotoFileName">
+      <Name>ThumbnailPhotoFileName</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhoto" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhoto">
+      <Name>LargePhoto</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhotoFileName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhotoFileName">
+      <Name>LargePhotoFileName</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:Primary" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:Primary">
+      <Name>Primary</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ReviewerName" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ReviewerName">
+      <Name>ReviewerName</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ReviewDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ReviewDate">
+      <Name>ReviewDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:EmailAddress" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:EmailAddress">
+      <Name>EmailAddress</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:Rating" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:Rating">
+      <Name>Rating</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:Comments" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:Comments">
+      <Name>Comments</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:AverageLeadTime" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:AverageLeadTime">
+      <Name>AverageLeadTime</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:StandardPrice" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:StandardPrice">
+      <Name>StandardPrice</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:LastReceiptCost" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:LastReceiptCost">
+      <Name>LastReceiptCost</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:LastReceiptDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:LastReceiptDate">
+      <Name>LastReceiptDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:MinOrderQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:MinOrderQty">
+      <Name>MinOrderQty</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:MaxOrderQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:MaxOrderQty">
+      <Name>MaxOrderQty</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:OnOrderQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:OnOrderQty">
+      <Name>OnOrderQty</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:DueDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:DueDate">
+      <Name>DueDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:OrderQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:OrderQty">
+      <Name>OrderQty</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:UnitPrice" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:UnitPrice">
+      <Name>UnitPrice</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:LineTotal" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:LineTotal">
+      <Name>LineTotal</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ReceivedQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ReceivedQty">
+      <Name>ReceivedQty</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:RejectedQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:RejectedQty">
+      <Name>RejectedQty</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:StockedQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:StockedQty">
+      <Name>StockedQty</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:RevisionNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:RevisionNumber">
+      <Name>RevisionNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:Status" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:Status">
+      <Name>Status</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:OrderDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:OrderDate">
+      <Name>OrderDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:ShipDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:ShipDate">
+      <Name>ShipDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:SubTotal" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:SubTotal">
+      <Name>SubTotal</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:TaxAmt" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:TaxAmt">
+      <Name>TaxAmt</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:Freight" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:Freight">
+      <Name>Freight</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:TotalDue" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:TotalDue">
+      <Name>TotalDue</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>9</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:CarrierTrackingNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:CarrierTrackingNumber">
+      <Name>CarrierTrackingNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:OrderQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:OrderQty">
+      <Name>OrderQty</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:UnitPrice" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:UnitPrice">
+      <Name>UnitPrice</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:UnitPriceDiscount" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:UnitPriceDiscount">
+      <Name>UnitPriceDiscount</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:LineTotal" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:LineTotal">
+      <Name>LineTotal</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:RevisionNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:RevisionNumber">
+      <Name>RevisionNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:OrderDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:OrderDate">
+      <Name>OrderDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:DueDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:DueDate">
+      <Name>DueDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:ShipDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:ShipDate">
+      <Name>ShipDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Status" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Status">
+      <Name>Status</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:OnlineOrderFlag" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:OnlineOrderFlag">
+      <Name>OnlineOrderFlag</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderNumber">
+      <Name>SalesOrderNumber</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:PurchaseOrderNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:PurchaseOrderNumber">
+      <Name>PurchaseOrderNumber</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:AccountNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:AccountNumber">
+      <Name>AccountNumber</Name>
+      <Ordinal>9</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:CreditCardApprovalCode" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:CreditCardApprovalCode">
+      <Name>CreditCardApprovalCode</Name>
+      <Ordinal>10</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SubTotal" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SubTotal">
+      <Name>SubTotal</Name>
+      <Ordinal>11</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:TaxAmt" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:TaxAmt">
+      <Name>TaxAmt</Name>
+      <Ordinal>12</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Freight" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Freight">
+      <Name>Freight</Name>
+      <Ordinal>13</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:TotalDue" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:TotalDue">
+      <Name>TotalDue</Name>
+      <Ordinal>14</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Comment" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Comment">
+      <Name>Comment</Name>
+      <Ordinal>15</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>16</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>17</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesQuota" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesQuota">
+      <Name>SalesQuota</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:Bonus" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:Bonus">
+      <Name>Bonus</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:CommissionPct" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:CommissionPct">
+      <Name>CommissionPct</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesYTD" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesYTD">
+      <Name>SalesYTD</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesLastYear" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:SalesLastYear">
+      <Name>SalesLastYear</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:SalesQuota" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:SalesQuota">
+      <Name>SalesQuota</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:ReasonType" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:ReasonType">
+      <Name>ReasonType</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:TaxType" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:TaxType">
+      <Name>TaxType</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:TaxRate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:TaxRate">
+      <Name>TaxRate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:Name">
+      <Name>Name</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Group" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Group">
+      <Name>Group</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:SalesYTD" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:SalesYTD">
+      <Name>SalesYTD</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:SalesLastYear" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:SalesLastYear">
+      <Name>SalesLastYear</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CostYTD" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CostYTD">
+      <Name>CostYTD</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CostLastYear" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CostLastYear">
+      <Name>CostLastYear</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:EndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:EndDate">
+      <Name>EndDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:StartTime" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:StartTime">
+      <Name>StartTime</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:EndTime" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:EndTime">
+      <Name>EndTime</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:sat:attr:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipBase" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipBase">
+      <Name>ShipBase</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipRate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ShipRate">
+      <Name>ShipRate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartID" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartID">
+      <Name>ShoppingCartID</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:Quantity" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:Quantity">
+      <Name>Quantity</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:DateCreated" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:DateCreated">
+      <Name>DateCreated</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Description" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Description">
+      <Name>Description</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:DiscountPct" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:DiscountPct">
+      <Name>DiscountPct</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Type" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Type">
+      <Name>Type</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Category" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Category">
+      <Name>Category</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:StartDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:StartDate">
+      <Name>StartDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:EndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:EndDate">
+      <Name>EndDate</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:MinQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:MinQty">
+      <Name>MinQty</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:MaxQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:MaxQty">
+      <Name>MaxQty</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>9</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>10</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceCode" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceCode">
+      <Name>StateProvinceCode</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:IsOnlyStateProvinceFlag" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:IsOnlyStateProvinceFlag">
+      <Name>IsOnlyStateProvinceFlag</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:Name">
+      <Name>Name</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat:attr:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:Demographics" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:Demographics">
+      <Name>Demographics</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:rowguid" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:rowguid">
+      <Name>rowguid</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:sat:attr:sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ReferenceOrderID" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ReferenceOrderID">
+      <Name>ReferenceOrderID</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ReferenceOrderLineID" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ReferenceOrderLineID">
+      <Name>ReferenceOrderLineID</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionDate">
+      <Name>TransactionDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionType" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionType">
+      <Name>TransactionType</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:Quantity" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:Quantity">
+      <Name>Quantity</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ActualCost" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ActualCost">
+      <Name>ActualCost</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ProductID" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ProductID">
+      <Name>ProductID</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ReferenceOrderID" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ReferenceOrderID">
+      <Name>ReferenceOrderID</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ReferenceOrderLineID" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ReferenceOrderLineID">
+      <Name>ReferenceOrderLineID</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionDate">
+      <Name>TransactionDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionType" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionType">
+      <Name>TransactionType</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:Quantity" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:Quantity">
+      <Name>Quantity</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ActualCost" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ActualCost">
+      <Name>ActualCost</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:Name">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:AccountNumber" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:AccountNumber">
+      <Name>AccountNumber</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:Name" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:Name">
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:CreditRating" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:CreditRating">
+      <Name>CreditRating</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:PreferredVendorStatus" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:PreferredVendorStatus">
+      <Name>PreferredVendorStatus</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:ActiveFlag" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:ActiveFlag">
+      <Name>ActiveFlag</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:PurchasingWebServiceURL" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:PurchasingWebServiceURL">
+      <Name>PurchasingWebServiceURL</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat:attr:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:OrderQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:OrderQty">
+      <Name>OrderQty</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:StockedQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:StockedQty">
+      <Name>StockedQty</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:ScrappedQty" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:ScrappedQty">
+      <Name>ScrappedQty</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:StartDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:StartDate">
+      <Name>StartDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:EndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:EndDate">
+      <Name>EndDate</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:DueDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:DueDate">
+      <Name>DueDate</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ScheduledStartDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ScheduledStartDate">
+      <Name>ScheduledStartDate</Name>
+      <Ordinal>1</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ScheduledEndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ScheduledEndDate">
+      <Name>ScheduledEndDate</Name>
+      <Ordinal>2</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualStartDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualStartDate">
+      <Name>ActualStartDate</Name>
+      <Ordinal>3</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualEndDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualEndDate">
+      <Name>ActualEndDate</Name>
+      <Ordinal>4</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualResourceHrs" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualResourceHrs">
+      <Name>ActualResourceHrs</Name>
+      <Ordinal>5</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:PlannedCost" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:PlannedCost">
+      <Name>PlannedCost</Name>
+      <Ordinal>6</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualCost" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualCost">
+      <Name>ActualCost</Name>
+      <Ordinal>7</Ordinal>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat:attr:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ModifiedDate" RawHubSatelliteId="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:sat" SourceFieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ModifiedDate">
+      <Name>ModifiedDate</Name>
+      <Ordinal>8</Ordinal>
+    </RawHubSatelliteAttribute>
+  </RawHubSatelliteAttributeList>
+</MetaRawDataVault>

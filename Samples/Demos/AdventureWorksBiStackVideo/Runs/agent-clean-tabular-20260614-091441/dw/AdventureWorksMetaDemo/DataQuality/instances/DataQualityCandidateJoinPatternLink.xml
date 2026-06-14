@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <DataQualityCandidateJoinPatternLinkList>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.8.1.JoinPatternLink.JoinPattern.8" DataQualityCandidateId="JoinOrphan.JoinPattern.8.1" JoinPatternId="JoinPattern.8">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.2.JoinPatternLink.JoinPattern" DataQualityCandidateId="JoinOrphan.JoinPattern.2" JoinPatternId="JoinPattern">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.7.3.JoinPatternLink.JoinPattern.7" DataQualityCandidateId="JoinOrphan.JoinPattern.7.3" JoinPatternId="JoinPattern.7">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.6.4.JoinPatternLink.JoinPattern.6" DataQualityCandidateId="JoinOrphan.JoinPattern.6.4" JoinPatternId="JoinPattern.6">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinMultiplicityExplosion.JoinPattern.6.5.JoinPatternLink.JoinPattern.6" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.6.5" JoinPatternId="JoinPattern.6">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OutputDuplicateRisk.JoinPattern.6.6.JoinPatternLink.JoinPattern.6" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.6.6" JoinPatternId="JoinPattern.6">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.5.7.JoinPatternLink.JoinPattern.5" DataQualityCandidateId="JoinOrphan.JoinPattern.5.7" JoinPatternId="JoinPattern.5">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.4.8.JoinPatternLink.JoinPattern.4" DataQualityCandidateId="JoinOrphan.JoinPattern.4.8" JoinPatternId="JoinPattern.4">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinMultiplicityExplosion.JoinPattern.4.9.JoinPatternLink.JoinPattern.4" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.4.9" JoinPatternId="JoinPattern.4">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OutputDuplicateRisk.JoinPattern.4.10.JoinPatternLink.JoinPattern.4" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.4.10" JoinPatternId="JoinPattern.4">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.3.11.JoinPatternLink.JoinPattern.3" DataQualityCandidateId="JoinOrphan.JoinPattern.3.11" JoinPatternId="JoinPattern.3">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.20.12.JoinPatternLink.JoinPattern.20" DataQualityCandidateId="JoinOrphan.JoinPattern.20.12" JoinPatternId="JoinPattern.20">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinMultiplicityExplosion.JoinPattern.20.13.JoinPatternLink.JoinPattern.20" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.20.13" JoinPatternId="JoinPattern.20">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OutputDuplicateRisk.JoinPattern.20.14.JoinPatternLink.JoinPattern.20" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.20.14" JoinPatternId="JoinPattern.20">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.19.15.JoinPatternLink.JoinPattern.19" DataQualityCandidateId="JoinOrphan.JoinPattern.19.15" JoinPatternId="JoinPattern.19">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinMultiplicityExplosion.JoinPattern.19.16.JoinPatternLink.JoinPattern.19" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.19.16" JoinPatternId="JoinPattern.19">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OutputDuplicateRisk.JoinPattern.19.17.JoinPatternLink.JoinPattern.19" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.19.17" JoinPatternId="JoinPattern.19">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.18.18.JoinPatternLink.JoinPattern.18" DataQualityCandidateId="JoinOrphan.JoinPattern.18.18" JoinPatternId="JoinPattern.18">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.1.19.JoinPatternLink.JoinPattern.1" DataQualityCandidateId="JoinOrphan.JoinPattern.1.19" JoinPatternId="JoinPattern.1">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.17.20.JoinPatternLink.JoinPattern.17" DataQualityCandidateId="JoinOrphan.JoinPattern.17.20" JoinPatternId="JoinPattern.17">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.2.21.JoinPatternLink.JoinPattern.2" DataQualityCandidateId="JoinOrphan.JoinPattern.2.21" JoinPatternId="JoinPattern.2">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.16.22.JoinPatternLink.JoinPattern.16" DataQualityCandidateId="JoinOrphan.JoinPattern.16.22" JoinPatternId="JoinPattern.16">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.15.23.JoinPatternLink.JoinPattern.15" DataQualityCandidateId="JoinOrphan.JoinPattern.15.23" JoinPatternId="JoinPattern.15">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.14.24.JoinPatternLink.JoinPattern.14" DataQualityCandidateId="JoinOrphan.JoinPattern.14.24" JoinPatternId="JoinPattern.14">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OuterJoinNullExpansion.JoinPattern.14.25.JoinPatternLink.JoinPattern.14" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.14.25" JoinPatternId="JoinPattern.14">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.13.26.JoinPatternLink.JoinPattern.13" DataQualityCandidateId="JoinOrphan.JoinPattern.13.26" JoinPatternId="JoinPattern.13">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OuterJoinNullExpansion.JoinPattern.13.27.JoinPatternLink.JoinPattern.13" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.13.27" JoinPatternId="JoinPattern.13">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.12.28.JoinPatternLink.JoinPattern.12" DataQualityCandidateId="JoinOrphan.JoinPattern.12.28" JoinPatternId="JoinPattern.12">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinMultiplicityExplosion.JoinPattern.12.29.JoinPatternLink.JoinPattern.12" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.12.29" JoinPatternId="JoinPattern.12">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OuterJoinNullExpansion.JoinPattern.12.30.JoinPatternLink.JoinPattern.12" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.12.30" JoinPatternId="JoinPattern.12">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OutputDuplicateRisk.JoinPattern.12.31.JoinPatternLink.JoinPattern.12" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.12.31" JoinPatternId="JoinPattern.12">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.11.32.JoinPatternLink.JoinPattern.11" DataQualityCandidateId="JoinOrphan.JoinPattern.11.32" JoinPatternId="JoinPattern.11">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OuterJoinNullExpansion.JoinPattern.11.33.JoinPatternLink.JoinPattern.11" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.11.33" JoinPatternId="JoinPattern.11">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.10.34.JoinPatternLink.JoinPattern.10" DataQualityCandidateId="JoinOrphan.JoinPattern.10.34" JoinPatternId="JoinPattern.10">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OuterJoinNullExpansion.JoinPattern.10.35.JoinPatternLink.JoinPattern.10" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.10.35" JoinPatternId="JoinPattern.10">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinOrphan.JoinPattern.9.36.JoinPatternLink.JoinPattern.9" DataQualityCandidateId="JoinOrphan.JoinPattern.9.36" JoinPatternId="JoinPattern.9">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="JoinMultiplicityExplosion.JoinPattern.9.37.JoinPatternLink.JoinPattern.9" DataQualityCandidateId="JoinMultiplicityExplosion.JoinPattern.9.37" JoinPatternId="JoinPattern.9">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OuterJoinNullExpansion.JoinPattern.9.38.JoinPatternLink.JoinPattern.9" DataQualityCandidateId="OuterJoinNullExpansion.JoinPattern.9.38" JoinPatternId="JoinPattern.9">
+    </DataQualityCandidateJoinPatternLink>
+    <DataQualityCandidateJoinPatternLink Id="OutputDuplicateRisk.JoinPattern.9.39.JoinPatternLink.JoinPattern.9" DataQualityCandidateId="OutputDuplicateRisk.JoinPattern.9.39" JoinPatternId="JoinPattern.9">
+    </DataQualityCandidateJoinPatternLink>
+  </DataQualityCandidateJoinPatternLinkList>
+</MetaDataQuality>

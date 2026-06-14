@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <TableList>
+    <Table Id="DimCustomerChannel" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Customers</DataCategory>
+      <Kind>Dimension</Kind>
+      <Name>Customer Channel</Name>
+    </Table>
+    <Table Id="DimOrderDate" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Time</DataCategory>
+      <Kind>Dimension</Kind>
+      <Name>Order Date</Name>
+    </Table>
+    <Table Id="DimProduct" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Products</DataCategory>
+      <Kind>Dimension</Kind>
+      <Name>Product</Name>
+    </Table>
+    <Table Id="DimSalesTerritory" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Geography</DataCategory>
+      <Kind>Dimension</Kind>
+      <Name>Sales Territory</Name>
+    </Table>
+    <Table Id="FactSalesOrderLine" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Sales</DataCategory>
+      <Kind>Fact</Kind>
+      <Name>Fact Sales Order Line</Name>
+    </Table>
+  </TableList>
+</MetaAnalytics>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationSourceColumnLinkList>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:1" ColumnId="TableReference:1:source-column:1" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ProductCategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:2" ColumnId="TableReference:1:source-column:2" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:3" ColumnId="TableReference:1:source-column:3" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:1:binding:validation:source:1:column:4" ColumnId="TableReference:1:source-column:4" ValidationSourceRowsetLinkId="TransformScript:1:binding:validation:source:1">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:5" ColumnId="TableReference:2:source-column:1" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ProductCategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:6" ColumnId="TableReference:2:source-column:2" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:7" ColumnId="TableReference:2:source-column:3" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:2:binding:validation:source:2:column:8" ColumnId="TableReference:2:source-column:4" ValidationSourceRowsetLinkId="TransformScript:2:binding:validation:source:2">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:3:binding:validation:source:3:column:9" ColumnId="TableReference:3:source-column:1" ValidationSourceRowsetLinkId="TransformScript:3:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductSubcategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:3:binding:validation:source:3:column:10" ColumnId="TableReference:3:source-column:2" ValidationSourceRowsetLinkId="TransformScript:3:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductCategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:3:binding:validation:source:3:column:11" ColumnId="TableReference:3:source-column:3" ValidationSourceRowsetLinkId="TransformScript:3:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:3:binding:validation:source:3:column:12" ColumnId="TableReference:3:source-column:4" ValidationSourceRowsetLinkId="TransformScript:3:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:3:binding:validation:source:3:column:13" ColumnId="TableReference:3:source-column:5" ValidationSourceRowsetLinkId="TransformScript:3:binding:validation:source:3">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:4:binding:validation:source:4:column:14" ColumnId="TableReference:4:source-column:1" ValidationSourceRowsetLinkId="TransformScript:4:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductSubcategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:4:binding:validation:source:4:column:15" ColumnId="TableReference:4:source-column:2" ValidationSourceRowsetLinkId="TransformScript:4:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductCategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:4:binding:validation:source:4:column:16" ColumnId="TableReference:4:source-column:3" ValidationSourceRowsetLinkId="TransformScript:4:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:4:binding:validation:source:4:column:17" ColumnId="TableReference:4:source-column:4" ValidationSourceRowsetLinkId="TransformScript:4:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:4:binding:validation:source:4:column:18" ColumnId="TableReference:4:source-column:5" ValidationSourceRowsetLinkId="TransformScript:4:binding:validation:source:4">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:19" ColumnId="TableReference:5:source-column:1" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:20" ColumnId="TableReference:5:source-column:2" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:21" ColumnId="TableReference:5:source-column:3" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:22" ColumnId="TableReference:5:source-column:4" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:MakeFlag</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:23" ColumnId="TableReference:5:source-column:5" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:FinishedGoodsFlag</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:24" ColumnId="TableReference:5:source-column:6" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Color</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:25" ColumnId="TableReference:5:source-column:7" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SafetyStockLevel</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:26" ColumnId="TableReference:5:source-column:8" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ReorderPoint</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:27" ColumnId="TableReference:5:source-column:9" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:StandardCost</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:28" ColumnId="TableReference:5:source-column:10" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ListPrice</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:29" ColumnId="TableReference:5:source-column:11" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Size</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:30" ColumnId="TableReference:5:source-column:12" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SizeUnitMeasureCode</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:31" ColumnId="TableReference:5:source-column:13" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:WeightUnitMeasureCode</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:32" ColumnId="TableReference:5:source-column:14" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:33" ColumnId="TableReference:5:source-column:15" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DaysToManufacture</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:34" ColumnId="TableReference:5:source-column:16" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductLine</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:35" ColumnId="TableReference:5:source-column:17" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Class</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:36" ColumnId="TableReference:5:source-column:18" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Style</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:37" ColumnId="TableReference:5:source-column:19" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductSubcategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:38" ColumnId="TableReference:5:source-column:20" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductModelID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:39" ColumnId="TableReference:5:source-column:21" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellStartDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:40" ColumnId="TableReference:5:source-column:22" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellEndDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:41" ColumnId="TableReference:5:source-column:23" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DiscontinuedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:42" ColumnId="TableReference:5:source-column:24" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:5:binding:validation:source:5:column:43" ColumnId="TableReference:5:source-column:25" ValidationSourceRowsetLinkId="TransformScript:5:binding:validation:source:5">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:44" ColumnId="TableReference:6:source-column:1" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:45" ColumnId="TableReference:6:source-column:2" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:46" ColumnId="TableReference:6:source-column:3" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:47" ColumnId="TableReference:6:source-column:4" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:MakeFlag</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:48" ColumnId="TableReference:6:source-column:5" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:FinishedGoodsFlag</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:49" ColumnId="TableReference:6:source-column:6" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Color</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:50" ColumnId="TableReference:6:source-column:7" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SafetyStockLevel</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:51" ColumnId="TableReference:6:source-column:8" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ReorderPoint</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:52" ColumnId="TableReference:6:source-column:9" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:StandardCost</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:53" ColumnId="TableReference:6:source-column:10" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ListPrice</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:54" ColumnId="TableReference:6:source-column:11" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Size</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:55" ColumnId="TableReference:6:source-column:12" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SizeUnitMeasureCode</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:56" ColumnId="TableReference:6:source-column:13" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:WeightUnitMeasureCode</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:57" ColumnId="TableReference:6:source-column:14" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:58" ColumnId="TableReference:6:source-column:15" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DaysToManufacture</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:59" ColumnId="TableReference:6:source-column:16" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductLine</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:60" ColumnId="TableReference:6:source-column:17" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Class</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:61" ColumnId="TableReference:6:source-column:18" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Style</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:62" ColumnId="TableReference:6:source-column:19" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductSubcategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:63" ColumnId="TableReference:6:source-column:20" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductModelID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:64" ColumnId="TableReference:6:source-column:21" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellStartDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:65" ColumnId="TableReference:6:source-column:22" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellEndDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:66" ColumnId="TableReference:6:source-column:23" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DiscontinuedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:67" ColumnId="TableReference:6:source-column:24" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:6:binding:validation:source:6:column:68" ColumnId="TableReference:6:source-column:25" ValidationSourceRowsetLinkId="TransformScript:6:binding:validation:source:6">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:7:binding:validation:source:7:column:69" ColumnId="TableReference:7:source-column:1" ValidationSourceRowsetLinkId="TransformScript:7:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductSubcategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:7:binding:validation:source:7:column:70" ColumnId="TableReference:7:source-column:2" ValidationSourceRowsetLinkId="TransformScript:7:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ProductCategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:7:binding:validation:source:7:column:71" ColumnId="TableReference:7:source-column:3" ValidationSourceRowsetLinkId="TransformScript:7:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:7:binding:validation:source:7:column:72" ColumnId="TableReference:7:source-column:4" ValidationSourceRowsetLinkId="TransformScript:7:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:7:binding:validation:source:7:column:73" ColumnId="TableReference:7:source-column:5" ValidationSourceRowsetLinkId="TransformScript:7:binding:validation:source:7">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:74" ColumnId="TableReference:8:source-column:1" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:75" ColumnId="TableReference:8:source-column:2" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Name</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:76" ColumnId="TableReference:8:source-column:3" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:77" ColumnId="TableReference:8:source-column:4" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:MakeFlag</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:78" ColumnId="TableReference:8:source-column:5" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:FinishedGoodsFlag</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:79" ColumnId="TableReference:8:source-column:6" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Color</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:80" ColumnId="TableReference:8:source-column:7" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SafetyStockLevel</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:81" ColumnId="TableReference:8:source-column:8" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ReorderPoint</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:82" ColumnId="TableReference:8:source-column:9" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:StandardCost</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:83" ColumnId="TableReference:8:source-column:10" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ListPrice</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:84" ColumnId="TableReference:8:source-column:11" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Size</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:85" ColumnId="TableReference:8:source-column:12" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SizeUnitMeasureCode</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:86" ColumnId="TableReference:8:source-column:13" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:WeightUnitMeasureCode</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:87" ColumnId="TableReference:8:source-column:14" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:88" ColumnId="TableReference:8:source-column:15" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DaysToManufacture</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:89" ColumnId="TableReference:8:source-column:16" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductLine</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:90" ColumnId="TableReference:8:source-column:17" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Class</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:91" ColumnId="TableReference:8:source-column:18" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Style</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:92" ColumnId="TableReference:8:source-column:19" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductSubcategoryID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:93" ColumnId="TableReference:8:source-column:20" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductModelID</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:94" ColumnId="TableReference:8:source-column:21" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellStartDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:95" ColumnId="TableReference:8:source-column:22" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SellEndDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:96" ColumnId="TableReference:8:source-column:23" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:DiscontinuedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:97" ColumnId="TableReference:8:source-column:24" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:rowguid</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+    <ValidationSourceColumnLink Id="TransformScript:8:binding:validation:source:8:column:98" ColumnId="TableReference:8:source-column:25" ValidationSourceRowsetLinkId="TransformScript:8:binding:validation:source:8">
+      <MetaSchemaFieldId>source:AdventureWorks2022:field:sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ModifiedDate</MetaSchemaFieldId>
+    </ValidationSourceColumnLink>
+  </ValidationSourceColumnLinkList>
+</MetaTransformBinding>

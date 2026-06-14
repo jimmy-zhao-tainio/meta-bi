@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BooleanExpressionList>
+    <BooleanExpression Id="BooleanExpression:1">
+    </BooleanExpression>
+    <BooleanExpression Id="BooleanExpression:2">
+    </BooleanExpression>
+    <BooleanExpression Id="BooleanExpression:3">
+    </BooleanExpression>
+    <BooleanExpression Id="BooleanExpression:4">
+    </BooleanExpression>
+    <BooleanExpression Id="BooleanExpression:5">
+    </BooleanExpression>
+    <BooleanExpression Id="BooleanExpression:6">
+    </BooleanExpression>
+    <BooleanExpression Id="BooleanExpression:7">
+    </BooleanExpression>
+  </BooleanExpressionList>
+</MetaTransformScript>

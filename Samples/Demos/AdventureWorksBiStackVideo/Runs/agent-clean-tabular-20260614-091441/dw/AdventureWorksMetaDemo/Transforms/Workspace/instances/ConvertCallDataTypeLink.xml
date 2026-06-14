@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ConvertCallDataTypeLinkList>
+    <ConvertCallDataTypeLink Id="ConvertCallDataTypeLink:1" ConvertCallId="ConvertCall:1" DataTypeReferenceId="DataTypeReference:1">
+    </ConvertCallDataTypeLink>
+  </ConvertCallDataTypeLinkList>
+</MetaTransformScript>

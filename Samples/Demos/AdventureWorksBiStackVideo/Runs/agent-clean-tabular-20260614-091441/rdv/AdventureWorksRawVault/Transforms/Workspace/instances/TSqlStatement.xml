@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TSqlStatementList>
+    <TSqlStatement Id="TSqlStatement:1">
+    </TSqlStatement>
+    <TSqlStatement Id="TSqlStatement:2">
+    </TSqlStatement>
+    <TSqlStatement Id="TSqlStatement:3">
+    </TSqlStatement>
+    <TSqlStatement Id="TSqlStatement:4">
+    </TSqlStatement>
+    <TSqlStatement Id="TSqlStatement:5">
+    </TSqlStatement>
+    <TSqlStatement Id="TSqlStatement:6">
+    </TSqlStatement>
+    <TSqlStatement Id="TSqlStatement:7">
+    </TSqlStatement>
+    <TSqlStatement Id="TSqlStatement:8">
+    </TSqlStatement>
+  </TSqlStatementList>
+</MetaTransformScript>

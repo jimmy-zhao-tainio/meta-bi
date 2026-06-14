@@ -65,6 +65,8 @@
       <PropertyList>
         <Property name="TransformScriptId" />
         <Property name="TransformBindingId" />
+        <Property name="TransformWorkspacePath" />
+        <Property name="BindingWorkspacePath" />
         <Property name="TimeoutSeconds" isRequired="false" />
       </PropertyList>
       <RelationshipList>

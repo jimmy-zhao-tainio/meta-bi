@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <AddForeignKeyList>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.fk.FK_BHS_Customer_CustomerProfile_BH_Customer" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.fk.FK_BHS_Customer_CustomerProfile_BH_Customer</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.fk.FK_BHS_Product_ProductClassification_BH_Product" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BHS_Product_ProductClassification.fk.FK_BHS_Product_ProductClassification_BH_Product</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.fk.FK_BHS_SalesOrder_SalesOrderProfile_BH_SalesOrder" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderProfile.fk.FK_BHS_SalesOrder_SalesOrderProfile_BH_SalesOrder</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.fk.FK_BHS_SalesPerson_SalesPersonProfile_BH_SalesPerson" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.fk.FK_BHS_SalesPerson_SalesPersonProfile_BH_SalesPerson</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.fk.FK_BHS_SalesTerritory_SalesTerritoryProfile_BH_SalesTerritory" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.fk.FK_BHS_SalesTerritory_SalesTerritoryProfile_BH_SalesTerritory</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.fk.FK_BHS_Store_StoreProfile_BH_Store" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.fk.FK_BHS_Store_StoreProfile_BH_Store</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.fk.FK_BLS_SalesOrderLineProduct_SalesOrderLineMeasures_BL_SalesOrderLineProduct" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BLS_SalesOrderLineProduct_SalesOrderLineMeasures.fk.FK_BLS_SalesOrderLineProduct_SalesOrderLineMeasures_BL_SalesOrderLineProduct</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.fk.FK_BL_SalesOrderCustomer_BH_Customer_CustomerHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.fk.FK_BL_SalesOrderCustomer_BH_Customer_CustomerHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.fk.FK_BL_SalesOrderCustomer_BH_SalesOrder_SalesOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.fk.FK_BL_SalesOrderCustomer_BH_SalesOrder_SalesOrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.fk.FK_BL_SalesOrderDate_BH_OrderDate_OrderDateHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.fk.FK_BL_SalesOrderDate_BH_OrderDate_OrderDateHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.fk.FK_BL_SalesOrderDate_BH_SalesOrder_SalesOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderDate.fk.FK_BL_SalesOrderDate_BH_SalesOrder_SalesOrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.fk.FK_BL_SalesOrderLineOrder_BH_SalesOrderLine_SalesOrderLineHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.fk.FK_BL_SalesOrderLineOrder_BH_SalesOrderLine_SalesOrderLineHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.fk.FK_BL_SalesOrderLineOrder_BH_SalesOrder_SalesOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineOrder.fk.FK_BL_SalesOrderLineOrder_BH_SalesOrder_SalesOrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.fk.FK_BL_SalesOrderLineProduct_BH_Product_ProductHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.fk.FK_BL_SalesOrderLineProduct_BH_Product_ProductHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.fk.FK_BL_SalesOrderLineProduct_BH_SalesOrderLine_SalesOrderLineHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.fk.FK_BL_SalesOrderLineProduct_BH_SalesOrderLine_SalesOrderLineHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.fk.FK_BL_SalesOrderSalesPerson_BH_SalesOrder_SalesOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.fk.FK_BL_SalesOrderSalesPerson_BH_SalesOrder_SalesOrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.fk.FK_BL_SalesOrderSalesPerson_BH_SalesPerson_SalesPersonHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.fk.FK_BL_SalesOrderSalesPerson_BH_SalesPerson_SalesPersonHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.fk.FK_BL_SalesOrderStore_BH_SalesOrder_SalesOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.fk.FK_BL_SalesOrderStore_BH_SalesOrder_SalesOrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.fk.FK_BL_SalesOrderStore_BH_Store_StoreHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderStore.fk.FK_BL_SalesOrderStore_BH_Store_StoreHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.fk.FK_BL_SalesOrderTerritory_BH_SalesOrder_SalesOrderHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.fk.FK_BL_SalesOrderTerritory_BH_SalesOrder_SalesOrderHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+    <AddForeignKey Id="AddForeignKey:AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.fk.FK_BL_SalesOrderTerritory_BH_SalesTerritory_SalesTerritoryHashKey" DeployManifestId="DeployManifest:1">
+      <SourceForeignKeyId>AdventureWorksBusinessVault.dbo.BL_SalesOrderTerritory.fk.FK_BL_SalesOrderTerritory_BH_SalesTerritory_SalesTerritoryHashKey</SourceForeignKeyId>
+    </AddForeignKey>
+  </AddForeignKeyList>
+</MetaSqlDeployManifest>

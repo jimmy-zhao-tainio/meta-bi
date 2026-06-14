@@ -2,16 +2,12 @@
 
 public sealed record MetaPipelineModeledExecutionRequest(
     string PipelineWorkspacePath,
-    string PipelineName,
-    string TransformWorkspacePath,
-    string BindingWorkspacePath);
+    string PipelineName);
 
 public sealed record MetaPipelineModeledExecutionStepRequest(
     string PipelineWorkspacePath,
     string PipelineName,
-    string StepName,
-    string TransformWorkspacePath,
-    string BindingWorkspacePath);
+    string StepName);
 
 public sealed record MetaPipelineModeledExecutionPlan(
     string PipelineWorkspacePath,
@@ -51,6 +47,8 @@ public sealed record MetaPipelineModeledExecutionStep(
     MetaPipelineModeledExecutionStepKind StepKind,
     string? TargetWriteTaskId,
     string? TargetWriteTaskName,
+    string? TransformWorkspacePath,
+    string? BindingWorkspacePath,
     string? TransformScriptId,
     string? TransformBindingId,
     string? TransformScriptName,

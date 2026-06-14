@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ScriptObjectViewList>
+    <ScriptObjectView Id="ScriptObjectView:1" TransformScriptId="TransformScript:1">
+      <TargetSqlIdentifier>awbi.DimProduct</TargetSqlIdentifier>
+    </ScriptObjectView>
+    <ScriptObjectView Id="ScriptObjectView:2" TransformScriptId="TransformScript:2">
+      <TargetSqlIdentifier>awbi.DimOrderDate</TargetSqlIdentifier>
+    </ScriptObjectView>
+    <ScriptObjectView Id="ScriptObjectView:3" TransformScriptId="TransformScript:3">
+      <TargetSqlIdentifier>awbi.DimSalesTerritory</TargetSqlIdentifier>
+    </ScriptObjectView>
+    <ScriptObjectView Id="ScriptObjectView:4" TransformScriptId="TransformScript:4">
+      <TargetSqlIdentifier>awbi.DimCustomerChannel</TargetSqlIdentifier>
+    </ScriptObjectView>
+    <ScriptObjectView Id="ScriptObjectView:5" TransformScriptId="TransformScript:5">
+      <TargetSqlIdentifier>awbi.FactSalesOrderLine</TargetSqlIdentifier>
+    </ScriptObjectView>
+  </ScriptObjectViewList>
+</MetaTransformScript>

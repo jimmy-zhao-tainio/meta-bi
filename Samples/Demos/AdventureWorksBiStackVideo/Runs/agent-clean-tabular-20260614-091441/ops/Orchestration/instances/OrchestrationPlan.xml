@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <OrchestrationPlanList>
+    <OrchestrationPlan Id="plan:default">
+      <DagStatus>Complete</DagStatus>
+      <Description>Modeled orchestration for one transform-backed table-producing pipeline per authored RDV, BDV, and DW/Mart transform.</Description>
+      <DeterminismStatus>Deterministic</DeterminismStatus>
+      <Name>Default</Name>
+      <SynchronizationStatus>Complete</SynchronizationStatus>
+    </OrchestrationPlan>
+  </OrchestrationPlanList>
+</MetaOrchestration>

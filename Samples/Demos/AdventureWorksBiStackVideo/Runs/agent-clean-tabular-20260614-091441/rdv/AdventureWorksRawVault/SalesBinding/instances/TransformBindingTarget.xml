@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingTargetList>
+    <TransformBindingTarget Id="TransformScript:1:binding:target:1" TransformBindingId="TransformScript:1:binding">
+      <SqlIdentifier>dbo.H_Customer</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:2:binding:target:1" TransformBindingId="TransformScript:2:binding">
+      <SqlIdentifier>dbo.HS_Customer_Customer</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:3:binding:target:1" TransformBindingId="TransformScript:3:binding">
+      <SqlIdentifier>dbo.H_Store</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:4:binding:target:1" TransformBindingId="TransformScript:4:binding">
+      <SqlIdentifier>dbo.HS_Store_Store</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:5:binding:target:1" TransformBindingId="TransformScript:5:binding">
+      <SqlIdentifier>dbo.H_SalesPerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:6:binding:target:1" TransformBindingId="TransformScript:6:binding">
+      <SqlIdentifier>dbo.HS_SalesPerson_SalesPerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:7:binding:target:1" TransformBindingId="TransformScript:7:binding">
+      <SqlIdentifier>dbo.H_SalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:8:binding:target:1" TransformBindingId="TransformScript:8:binding">
+      <SqlIdentifier>dbo.HS_SalesTerritory_SalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:9:binding:target:1" TransformBindingId="TransformScript:9:binding">
+      <SqlIdentifier>dbo.H_SalesOrderHeader</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:10:binding:target:1" TransformBindingId="TransformScript:10:binding">
+      <SqlIdentifier>dbo.HS_SalesOrderHeader_SalesOrderHeader</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:11:binding:target:1" TransformBindingId="TransformScript:11:binding">
+      <SqlIdentifier>dbo.H_SalesOrderDetail</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:12:binding:target:1" TransformBindingId="TransformScript:12:binding">
+      <SqlIdentifier>dbo.HS_SalesOrderDetail_SalesOrderDetail</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:13:binding:target:1" TransformBindingId="TransformScript:13:binding">
+      <SqlIdentifier>dbo.H_SpecialOfferProduct</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:14:binding:target:1" TransformBindingId="TransformScript:14:binding">
+      <SqlIdentifier>dbo.L_CustomerStore</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:15:binding:target:1" TransformBindingId="TransformScript:15:binding">
+      <SqlIdentifier>dbo.L_CustomerSalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:16:binding:target:1" TransformBindingId="TransformScript:16:binding">
+      <SqlIdentifier>dbo.L_SalesOrderHeaderCustomer</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:17:binding:target:1" TransformBindingId="TransformScript:17:binding">
+      <SqlIdentifier>dbo.L_SalesOrderHeaderSalesPerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:18:binding:target:1" TransformBindingId="TransformScript:18:binding">
+      <SqlIdentifier>dbo.L_SalesOrderHeaderSalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:19:binding:target:1" TransformBindingId="TransformScript:19:binding">
+      <SqlIdentifier>dbo.L_SalesOrderDetailSalesOrderHeader</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:20:binding:target:1" TransformBindingId="TransformScript:20:binding">
+      <SqlIdentifier>dbo.L_SalesOrderDetailSpecialOfferProduct</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:21:binding:target:1" TransformBindingId="TransformScript:21:binding">
+      <SqlIdentifier>dbo.L_SpecialOfferProductProduct</SqlIdentifier>
+    </TransformBindingTarget>
+  </TransformBindingTargetList>
+</MetaTransformBinding>

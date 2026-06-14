@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TableReferenceWithAliasAliasLinkList>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:1" IdentifierId="Identifier:23" TableReferenceWithAliasId="TableReferenceWithAlias:1">
+    </TableReferenceWithAliasAliasLink>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:2" IdentifierId="Identifier:60" TableReferenceWithAliasId="TableReferenceWithAlias:2">
+    </TableReferenceWithAliasAliasLink>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:3" IdentifierId="Identifier:83" TableReferenceWithAliasId="TableReferenceWithAlias:3">
+    </TableReferenceWithAliasAliasLink>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:4" IdentifierId="Identifier:120" TableReferenceWithAliasId="TableReferenceWithAlias:4">
+    </TableReferenceWithAliasAliasLink>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:5" IdentifierId="Identifier:143" TableReferenceWithAliasId="TableReferenceWithAlias:5">
+    </TableReferenceWithAliasAliasLink>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:6" IdentifierId="Identifier:259" TableReferenceWithAliasId="TableReferenceWithAlias:6">
+    </TableReferenceWithAliasAliasLink>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:7" IdentifierId="Identifier:294" TableReferenceWithAliasId="TableReferenceWithAlias:7">
+    </TableReferenceWithAliasAliasLink>
+    <TableReferenceWithAliasAliasLink Id="TableReferenceWithAliasAliasLink:8" IdentifierId="Identifier:329" TableReferenceWithAliasId="TableReferenceWithAlias:8">
+    </TableReferenceWithAliasAliasLink>
+  </TableReferenceWithAliasAliasLinkList>
+</MetaTransformScript>

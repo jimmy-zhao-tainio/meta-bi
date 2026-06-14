@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <QuerySpecificationList>
+    <QuerySpecification Id="QuerySpecification:1" QueryExpressionId="QueryExpression:1">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:2" QueryExpressionId="QueryExpression:2">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:3" QueryExpressionId="QueryExpression:3">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:4" QueryExpressionId="QueryExpression:4">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:5" QueryExpressionId="QueryExpression:5">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:6" QueryExpressionId="QueryExpression:6">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:7" QueryExpressionId="QueryExpression:7">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:8" QueryExpressionId="QueryExpression:8">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:9" QueryExpressionId="QueryExpression:9">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:10" QueryExpressionId="QueryExpression:10">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:11" QueryExpressionId="QueryExpression:11">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:12" QueryExpressionId="QueryExpression:12">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:13" QueryExpressionId="QueryExpression:13">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:14" QueryExpressionId="QueryExpression:14">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:15" QueryExpressionId="QueryExpression:15">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:16" QueryExpressionId="QueryExpression:16">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:17" QueryExpressionId="QueryExpression:17">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:18" QueryExpressionId="QueryExpression:18">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:19" QueryExpressionId="QueryExpression:19">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:20" QueryExpressionId="QueryExpression:20">
+    </QuerySpecification>
+    <QuerySpecification Id="QuerySpecification:21" QueryExpressionId="QueryExpression:21">
+    </QuerySpecification>
+  </QuerySpecificationList>
+</MetaTransformScript>

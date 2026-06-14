@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkSatelliteList>
+    <BusinessLinkSatellite Id="SalesOrderLineMeasures" BusinessLinkId="SalesOrderLineProduct">
+      <Name>SalesOrderLineMeasures</Name>
+    </BusinessLinkSatellite>
+  </BusinessLinkSatelliteList>
+</MetaBusinessDataVault>

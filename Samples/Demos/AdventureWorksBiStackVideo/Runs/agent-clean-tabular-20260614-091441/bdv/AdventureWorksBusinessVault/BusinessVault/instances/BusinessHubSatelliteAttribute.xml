@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteAttributeList>
+    <BusinessHubSatelliteAttribute Id="CountryRegionCode" BusinessHubSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="CustomerAccountNumber" BusinessHubSatelliteId="CustomerProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CustomerAccountNumber</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="CustomerType" BusinessHubSatelliteId="CustomerProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CustomerType</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="DueDate" BusinessHubSatelliteId="SalesOrderProfile">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>DueDate</Name>
+      <Ordinal>4</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="OnlineOrderFlag" BusinessHubSatelliteId="SalesOrderProfile">
+      <DataTypeId>meta:type:Boolean</DataTypeId>
+      <Name>OnlineOrderFlag</Name>
+      <Ordinal>3</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="OrderStatus" BusinessHubSatelliteId="SalesOrderProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>OrderStatus</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="ProductCategory" BusinessHubSatelliteId="ProductClassification">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductCategory</Name>
+      <Ordinal>3</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="ProductName" BusinessHubSatelliteId="ProductClassification">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductName</Name>
+      <Ordinal>2</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="ProductNumber" BusinessHubSatelliteId="ProductClassification">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductNumber</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="ProductSubcategory" BusinessHubSatelliteId="ProductClassification">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductSubcategory</Name>
+      <Ordinal>4</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="SalesOrderNumber" BusinessHubSatelliteId="SalesOrderProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>SalesOrderNumber</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="SalesPersonName" BusinessHubSatelliteId="SalesPersonProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>SalesPersonName</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="StoreName" BusinessHubSatelliteId="StoreProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>StoreName</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="TerritoryGroup" BusinessHubSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>TerritoryGroup</Name>
+      <Ordinal>3</Ordinal>
+    </BusinessHubSatelliteAttribute>
+    <BusinessHubSatelliteAttribute Id="TerritoryName" BusinessHubSatelliteId="SalesTerritoryProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>TerritoryName</Name>
+      <Ordinal>1</Ordinal>
+    </BusinessHubSatelliteAttribute>
+  </BusinessHubSatelliteAttributeList>
+</MetaBusinessDataVault>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetRowsetLinkList>
+    <ValidationTargetRowsetLink Id="TransformScript:1:binding:validation:target:1" RowsetId="QueryExpression:1:output-rowset" TransformBindingTargetId="TransformScript:1:binding:target:1" ValidationId="TransformScript:1:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:2:binding:validation:target:2" RowsetId="QueryExpression:2:output-rowset" TransformBindingTargetId="TransformScript:2:binding:target:1" ValidationId="TransformScript:2:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductCategory_ProductCategory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:3:binding:validation:target:3" RowsetId="QueryExpression:3:output-rowset" TransformBindingTargetId="TransformScript:3:binding:target:1" ValidationId="TransformScript:3:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:4:binding:validation:target:4" RowsetId="QueryExpression:4:output-rowset" TransformBindingTargetId="TransformScript:4:binding:target:1" ValidationId="TransformScript:4:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductSubcategory_ProductSubcategory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:5:binding:validation:target:5" RowsetId="QueryExpression:5:output-rowset" TransformBindingTargetId="TransformScript:5:binding:target:1" ValidationId="TransformScript:5:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:6:binding:validation:target:6" RowsetId="QueryExpression:6:output-rowset" TransformBindingTargetId="TransformScript:6:binding:target:1" ValidationId="TransformScript:6:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:7:binding:validation:target:7" RowsetId="QueryExpression:7:output-rowset" TransformBindingTargetId="TransformScript:7:binding:target:1" ValidationId="TransformScript:7:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:8:binding:validation:target:8" RowsetId="QueryExpression:8:output-rowset" TransformBindingTargetId="TransformScript:8:binding:target:1" ValidationId="TransformScript:8:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+  </ValidationTargetRowsetLinkList>
+</MetaTransformBinding>

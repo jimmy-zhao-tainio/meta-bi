@@ -94,6 +94,8 @@
         <Property name="SecondExpressionId" />
         <Property name="FirstExpressionDisplay" isRequired="false" />
         <Property name="SecondExpressionDisplay" isRequired="false" />
+        <Property name="FirstJoinInputColumnName" isRequired="false" />
+        <Property name="SecondJoinInputColumnName" isRequired="false" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="JoinPattern" />

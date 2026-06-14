@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <QualifiedJoinList>
+    <QualifiedJoin Id="QualifiedJoin:1" JoinTableReferenceId="JoinTableReference:1">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:2" JoinTableReferenceId="JoinTableReference:2">
+      <QualifiedJoinType>LeftOuter</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:3" JoinTableReferenceId="JoinTableReference:3">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:4" JoinTableReferenceId="JoinTableReference:4">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:5" JoinTableReferenceId="JoinTableReference:5">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:6" JoinTableReferenceId="JoinTableReference:6">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:7" JoinTableReferenceId="JoinTableReference:7">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:8" JoinTableReferenceId="JoinTableReference:8">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:9" JoinTableReferenceId="JoinTableReference:9">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:10" JoinTableReferenceId="JoinTableReference:10">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:11" JoinTableReferenceId="JoinTableReference:11">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:12" JoinTableReferenceId="JoinTableReference:12">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+  </QualifiedJoinList>
+</MetaTransformScript>

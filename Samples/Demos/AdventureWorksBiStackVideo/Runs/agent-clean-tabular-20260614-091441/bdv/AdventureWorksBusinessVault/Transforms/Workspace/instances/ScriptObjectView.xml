@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ScriptObjectViewList>
+    <ScriptObjectView Id="ScriptObjectView:1" TransformScriptId="TransformScript:1">
+      <TargetSqlIdentifier>dbo.BH_Product</TargetSqlIdentifier>
+    </ScriptObjectView>
+    <ScriptObjectView Id="ScriptObjectView:2" TransformScriptId="TransformScript:2">
+      <TargetSqlIdentifier>dbo.BHS_Product_ProductClassification</TargetSqlIdentifier>
+    </ScriptObjectView>
+  </ScriptObjectViewList>
+</MetaTransformScript>

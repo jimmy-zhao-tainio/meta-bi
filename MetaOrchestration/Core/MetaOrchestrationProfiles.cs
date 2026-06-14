@@ -80,8 +80,6 @@ public enum OrchestrationIssueCode
 
 public sealed record OrchestrationAnalysisRequest(
     string PipelineWorkspacePath,
-    string TransformWorkspacePath,
-    string BindingWorkspacePath,
     string PlanName,
     string? Description = null);
 
@@ -100,6 +98,8 @@ public sealed record PipelineTaskAccessProfile(
     string TransformScriptId,
     string TransformScriptName,
     string TransformBindingId,
+    string TransformWorkspacePath,
+    string BindingWorkspacePath,
     string StatementKind,
     IReadOnlyList<PipelineObjectAccessProfile> ObjectAccesses);
 

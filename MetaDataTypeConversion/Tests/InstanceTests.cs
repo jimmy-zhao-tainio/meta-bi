@@ -27,5 +27,41 @@ public sealed class InstanceTests
             row => string.Equals(row.SourceDataTypeId, "sqlserver:type:real", StringComparison.Ordinal) &&
                    string.Equals(row.TargetDataTypeId, "meta:type:Single", StringComparison.Ordinal) &&
                    string.Equals(row.ConversionImplementation.Id, "MetaDataTypeConversion:implementation:direct", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:Flag", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "meta:type:Boolean", StringComparison.Ordinal) &&
+                   string.Equals(row.ConversionImplementation.Id, "MetaDataTypeConversion:implementation:direct", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:Name", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "meta:type:String", StringComparison.Ordinal) &&
+                   string.Equals(row.ConversionImplementation.Id, "MetaDataTypeConversion:implementation:direct", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:NameStyle", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "meta:type:Boolean", StringComparison.Ordinal) &&
+                   string.Equals(row.ConversionImplementation.Id, "MetaDataTypeConversion:implementation:direct", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:Flag", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "sqlserver:type:bit", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:Name", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "sqlserver:type:nvarchar", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:NameStyle", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "sqlserver:type:bit", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:sysname", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "meta:type:String", StringComparison.Ordinal) &&
+                   string.Equals(row.ConversionImplementation.Id, "MetaDataTypeConversion:implementation:direct", StringComparison.Ordinal));
+        Assert.Contains(
+            model.DataTypeMappingList,
+            row => string.Equals(row.SourceDataTypeId, "sqlserver:type:sysname", StringComparison.Ordinal) &&
+                   string.Equals(row.TargetDataTypeId, "sqlserver:type:nvarchar", StringComparison.Ordinal));
     }
 }

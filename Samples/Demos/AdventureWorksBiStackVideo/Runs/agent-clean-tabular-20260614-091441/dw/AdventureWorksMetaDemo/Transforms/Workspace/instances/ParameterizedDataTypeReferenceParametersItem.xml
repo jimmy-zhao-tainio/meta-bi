@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ParameterizedDataTypeReferenceParametersItemList>
+    <ParameterizedDataTypeReferenceParametersItem Id="ParameterizedDataTypeReferenceParametersItem:1" LiteralId="Literal:1" ParameterizedDataTypeReferenceId="ParameterizedDataTypeReference:1">
+      <Ordinal>0</Ordinal>
+    </ParameterizedDataTypeReferenceParametersItem>
+  </ParameterizedDataTypeReferenceParametersItemList>
+</MetaTransformScript>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <FromClauseList>
+    <FromClause Id="FromClause:1">
+    </FromClause>
+    <FromClause Id="FromClause:2">
+    </FromClause>
+  </FromClauseList>
+</MetaTransformScript>

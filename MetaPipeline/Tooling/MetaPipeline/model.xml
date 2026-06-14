@@ -90,9 +90,11 @@
     </Entity>
     <Entity name="TransformExecutionTask">
       <PropertyList>
+        <Property name="BindingWorkspacePath" />
         <Property name="TimeoutSeconds" isRequired="false" />
         <Property name="TransformBindingId" />
         <Property name="TransformScriptId" />
+        <Property name="TransformWorkspacePath" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="ConnectionReference" role="ExecutionConnectionReference" />

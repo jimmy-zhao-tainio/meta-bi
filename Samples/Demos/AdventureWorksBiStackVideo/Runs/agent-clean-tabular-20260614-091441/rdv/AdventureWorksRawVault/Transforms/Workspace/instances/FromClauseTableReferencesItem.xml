@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <FromClauseTableReferencesItemList>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:1" FromClauseId="FromClause:1" TableReferenceId="TableReference:1">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:2" FromClauseId="FromClause:2" TableReferenceId="TableReference:2">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:3" FromClauseId="FromClause:3" TableReferenceId="TableReference:3">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:4" FromClauseId="FromClause:4" TableReferenceId="TableReference:4">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:5" FromClauseId="FromClause:5" TableReferenceId="TableReference:5">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:6" FromClauseId="FromClause:6" TableReferenceId="TableReference:6">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:7" FromClauseId="FromClause:7" TableReferenceId="TableReference:7">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:8" FromClauseId="FromClause:8" TableReferenceId="TableReference:8">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+  </FromClauseTableReferencesItemList>
+</MetaTransformScript>

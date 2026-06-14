@@ -230,6 +230,321 @@ public sealed class ConvertToMetaSqlTests
     }
 
     [Fact]
+    public async Task ConvertAsync_LowersRawSourceSqlAliasesToDeployableSqlServerTypes()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = MetaRawDataVaultModel.CreateEmpty();
+
+            var sourceSystem = new SourceSystem
+            {
+                Id = "SourceSystem:CRM",
+                Name = "CRM",
+            };
+            var sourceSchema = new SourceSchema
+            {
+                Id = "SourceSchema:CRM:dbo",
+                Name = "dbo",
+                SourceSystem = sourceSystem,
+            };
+            var sourceTable = new SourceTable
+            {
+                Id = "SourceTable:Customer",
+                Name = "Customer",
+                SourceSchema = sourceSchema,
+            };
+            var sourceField = new SourceField
+            {
+                Id = "SourceField:Customer:CustomerName",
+                Name = "CustomerName",
+                Ordinal = "1",
+                DataTypeId = "sqlserver:type:Name",
+                IsNullable = "false",
+                SourceTable = sourceTable,
+            };
+            var sourceFieldDetail = new SourceFieldDataTypeDetail
+            {
+                Id = "SourceFieldDetail:Customer:CustomerName:Length",
+                Name = "Length",
+                Value = "50",
+                SourceField = sourceField,
+            };
+            var sysnameSourceField = new SourceField
+            {
+                Id = "SourceField:Customer:SystemName",
+                Name = "SystemName",
+                Ordinal = "2",
+                DataTypeId = "sqlserver:type:sysname",
+                IsNullable = "false",
+                SourceTable = sourceTable,
+            };
+            var sysnameSourceFieldDetail = new SourceFieldDataTypeDetail
+            {
+                Id = "SourceFieldDetail:Customer:SystemName:Length",
+                Name = "Length",
+                Value = "128",
+                SourceField = sysnameSourceField,
+            };
+            var rawHub = new RawHub
+            {
+                Id = "RawHub:Customer",
+                Name = "Customer",
+                SourceTable = sourceTable,
+            };
+            var rawHubKeyPart = new RawHubKeyPart
+            {
+                Id = "RawHubKeyPart:Customer:CustomerName",
+                Name = "CustomerName",
+                Ordinal = "1",
+                RawHub = rawHub,
+                SourceField = sourceField,
+            };
+            var sysnameRawHubKeyPart = new RawHubKeyPart
+            {
+                Id = "RawHubKeyPart:Customer:SystemName",
+                Name = "SystemName",
+                Ordinal = "2",
+                RawHub = rawHub,
+                SourceField = sysnameSourceField,
+            };
+
+            model.SourceSystemList.Add(sourceSystem);
+            model.SourceSchemaList.Add(sourceSchema);
+            model.SourceTableList.Add(sourceTable);
+            model.SourceFieldList.Add(sourceField);
+            model.SourceFieldList.Add(sysnameSourceField);
+            model.SourceFieldDataTypeDetailList.Add(sourceFieldDetail);
+            model.SourceFieldDataTypeDetailList.Add(sysnameSourceFieldDetail);
+            model.RawHubList.Add(rawHub);
+            model.RawHubKeyPartList.Add(rawHubKeyPart);
+            model.RawHubKeyPartList.Add(sysnameRawHubKeyPart);
+
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "RawVault");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var details = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumnDataTypeDetail");
+            var customerHub = GetTable(tables, "H_Customer");
+            var customerName = GetColumn(columns, customerHub.Id, "CustomerName");
+
+            Assert.Equal("sqlserver:type:nvarchar", customerName.Values["MetaDataTypeId"]);
+            Assert.Equal("50", GetDetailValue(details, customerName.Id, "Length"));
+
+            var systemName = GetColumn(columns, customerHub.Id, "SystemName");
+            Assert.Equal("sqlserver:type:nvarchar", systemName.Values["MetaDataTypeId"]);
+            Assert.Equal("128", GetDetailValue(details, systemName.Id, "Length"));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
+    public async Task ConvertAsync_ShortensLongSqlServerPhysicalIdentifiers()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(root, "RawDataVault");
+        var targetPath = Path.Combine(root, "MetaSql");
+
+        try
+        {
+            var model = MetaRawDataVaultModel.CreateEmpty();
+            var longChildName = "SalesOrderDetailProductModelProductDescriptionCultureVersionHistoryRelationship";
+            var longParentName = "ProductModelProductDescriptionCultureLocalizationHistoryReference";
+            var longLinkName = longChildName + longParentName;
+
+            var sourceSystem = new SourceSystem
+            {
+                Id = "SourceSystem:AdventureWorks",
+                Name = "AdventureWorks",
+            };
+            var sourceSchema = new SourceSchema
+            {
+                Id = "SourceSchema:AdventureWorks:Production",
+                Name = "Production",
+                SourceSystem = sourceSystem,
+            };
+            var childTable = new SourceTable
+            {
+                Id = "SourceTable:" + longChildName,
+                Name = longChildName,
+                SourceSchema = sourceSchema,
+            };
+            var parentTable = new SourceTable
+            {
+                Id = "SourceTable:" + longParentName,
+                Name = longParentName,
+                SourceSchema = sourceSchema,
+            };
+            var childField = new SourceField
+            {
+                Id = "SourceField:" + longChildName + ":Id",
+                Name = longChildName + "IdentifierForAuditableRelationshipReplay",
+                Ordinal = "1",
+                DataTypeId = "sqlserver:type:nvarchar",
+                IsNullable = "false",
+                SourceTable = childTable,
+            };
+            var parentField = new SourceField
+            {
+                Id = "SourceField:" + longParentName + ":Id",
+                Name = longParentName + "IdentifierForAuditableRelationshipReplay",
+                Ordinal = "1",
+                DataTypeId = "sqlserver:type:nvarchar",
+                IsNullable = "false",
+                SourceTable = parentTable,
+            };
+            var childFieldDetail = new SourceFieldDataTypeDetail
+            {
+                Id = childField.Id + ":Length",
+                Name = "Length",
+                Value = "50",
+                SourceField = childField,
+            };
+            var parentFieldDetail = new SourceFieldDataTypeDetail
+            {
+                Id = parentField.Id + ":Length",
+                Name = "Length",
+                Value = "50",
+                SourceField = parentField,
+            };
+            var sourceRelationship = new SourceTableRelationship
+            {
+                Id = "SourceTableRelationship:" + longLinkName,
+                Name = "FK_" + longLinkName,
+                SourceTable = childTable,
+                TargetTable = parentTable,
+            };
+            var sourceRelationshipField = new SourceTableRelationshipField
+            {
+                Id = "SourceTableRelationshipField:" + longLinkName,
+                Ordinal = "1",
+                SourceTableRelationship = sourceRelationship,
+                SourceField = childField,
+                TargetField = parentField,
+            };
+            var childHub = new RawHub
+            {
+                Id = "RawHub:" + longChildName,
+                Name = longChildName,
+                SourceTable = childTable,
+            };
+            var parentHub = new RawHub
+            {
+                Id = "RawHub:" + longParentName,
+                Name = longParentName,
+                SourceTable = parentTable,
+            };
+            var childHubKeyPart = new RawHubKeyPart
+            {
+                Id = "RawHubKeyPart:" + longChildName,
+                Name = "Identifier",
+                Ordinal = "1",
+                RawHub = childHub,
+                SourceField = childField,
+            };
+            var parentHubKeyPart = new RawHubKeyPart
+            {
+                Id = "RawHubKeyPart:" + longParentName,
+                Name = "Identifier",
+                Ordinal = "1",
+                RawHub = parentHub,
+                SourceField = parentField,
+            };
+            var rawLink = new RawLink
+            {
+                Id = "RawLink:" + longLinkName,
+                Name = longLinkName,
+                LinkKind = "standard",
+                SourceTableRelationship = sourceRelationship,
+            };
+            var childLinkHub = new RawLinkHub
+            {
+                Id = "RawLinkHub:" + longChildName,
+                Ordinal = "1",
+                RoleName = longChildName + "Role",
+                RawHub = childHub,
+                RawLink = rawLink,
+            };
+            var parentLinkHub = new RawLinkHub
+            {
+                Id = "RawLinkHub:" + longParentName,
+                Ordinal = "2",
+                RoleName = longParentName + "Role",
+                RawHub = parentHub,
+                RawLink = rawLink,
+            };
+
+            model.SourceSystemList.Add(sourceSystem);
+            model.SourceSchemaList.Add(sourceSchema);
+            model.SourceTableList.Add(childTable);
+            model.SourceTableList.Add(parentTable);
+            model.SourceFieldList.Add(childField);
+            model.SourceFieldList.Add(parentField);
+            model.SourceFieldDataTypeDetailList.Add(childFieldDetail);
+            model.SourceFieldDataTypeDetailList.Add(parentFieldDetail);
+            model.SourceTableRelationshipList.Add(sourceRelationship);
+            model.SourceTableRelationshipFieldList.Add(sourceRelationshipField);
+            model.RawHubList.Add(childHub);
+            model.RawHubList.Add(parentHub);
+            model.RawHubKeyPartList.Add(childHubKeyPart);
+            model.RawHubKeyPartList.Add(parentHubKeyPart);
+            model.RawLinkList.Add(rawLink);
+            model.RawLinkHubList.Add(childLinkHub);
+            model.RawLinkHubList.Add(parentLinkHub);
+
+            await model.SaveToXmlWorkspaceAsync(workspacePath);
+
+            var sqlWorkspace = await Converter.ConvertAsync(
+                workspacePath,
+                targetPath,
+                GetImplementationWorkspacePath(repoRoot),
+                databaseName: "RawVault");
+
+            var tables = sqlWorkspace.Instance.GetOrCreateEntityRecords("Table");
+            var columns = sqlWorkspace.Instance.GetOrCreateEntityRecords("TableColumn");
+            var primaryKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("PrimaryKey");
+            var foreignKeys = sqlWorkspace.Instance.GetOrCreateEntityRecords("ForeignKey");
+
+            Assert.All(tables, row => AssertSqlServerIdentifier(row.Values["Name"]));
+            Assert.All(columns, row => AssertSqlServerIdentifier(row.Values["Name"]));
+            Assert.All(primaryKeys, row => AssertSqlServerIdentifier(row.Values["Name"]));
+            Assert.All(foreignKeys, row => AssertSqlServerIdentifier(row.Values["Name"]));
+
+            var shortenedForeignKeyName = foreignKeys
+                .Select(row => row.Values["Name"])
+                .OrderByDescending(row => row.Length)
+                .First();
+            Assert.Equal(128, shortenedForeignKeyName.Length);
+            Assert.StartsWith("FK_", shortenedForeignKeyName);
+            AssertStableHashSuffix(shortenedForeignKeyName);
+            Assert.All(foreignKeys, row => Assert.True(
+                row.Id.EndsWith(".fk." + row.Values["Name"], StringComparison.Ordinal),
+                $"Foreign key id '{row.Id}' must use the shortened physical name '{row.Values["Name"]}'."));
+            Assert.All(primaryKeys, row => Assert.True(
+                row.Id.EndsWith(".pk." + row.Values["Name"], StringComparison.Ordinal),
+                $"Primary key id '{row.Id}' must use the shortened physical name '{row.Values["Name"]}'."));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(root);
+        }
+    }
+
+    [Fact]
     public async Task ConvertAsync_ProjectsBusinessCommerceHelpersWorkspaceIntoSqlTables()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();
@@ -732,5 +1047,27 @@ public sealed class ConvertToMetaSqlTests
             currentTableColumnId == tableColumnId &&
             row.Values.TryGetValue("Name", out var currentName) &&
             string.Equals(currentName, detailName, StringComparison.Ordinal)).Values["Value"];
+    }
+
+    private static void AssertSqlServerIdentifier(string value)
+    {
+        Assert.True(
+            value.Length <= 128,
+            $"SQL Server identifier '{value}' has length {value.Length}; maximum is 128.");
+    }
+
+    private static void AssertStableHashSuffix(string value)
+    {
+        var suffix = value.Substring(value.Length - 13);
+        Assert.Equal('_', suffix[0]);
+        Assert.True(
+            suffix.Substring(1).All(IsLowerHexDigit),
+            $"Shortened identifier '{value}' must end with a stable lowercase hex hash suffix.");
+    }
+
+    private static bool IsLowerHexDigit(char value)
+    {
+        return (value >= '0' && value <= '9') ||
+               (value >= 'a' && value <= 'f');
     }
 }

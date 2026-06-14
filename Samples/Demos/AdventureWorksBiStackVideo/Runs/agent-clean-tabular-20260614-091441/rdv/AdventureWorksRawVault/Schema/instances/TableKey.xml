@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableKeyList>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address:key:PK_H_Address" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Address</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType:key:PK_H_AddressType" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_AddressType</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AWBuildVersion:key:PK_H_AWBuildVersion" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AWBuildVersion">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_AWBuildVersion</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials:key:PK_H_BillOfMaterials" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_BillOfMaterials</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity:key:PK_H_BusinessEntity" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_BusinessEntity</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:key:PK_H_BusinessEntityAddress" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_BusinessEntityAddress</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:key:PK_H_BusinessEntityContact" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_BusinessEntityContact</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType:key:PK_H_ContactType" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ContactType</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion:key:PK_H_CountryRegion" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegion">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_CountryRegion</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency:key:PK_H_CountryRegionCurrency" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CountryRegionCurrency">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_CountryRegionCurrency</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard:key:PK_H_CreditCard" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_CreditCard</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Culture:key:PK_H_Culture" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Culture">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Culture</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency:key:PK_H_Currency" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Currency">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Currency</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate:key:PK_H_CurrencyRate" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_CurrencyRate</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:key:PK_H_Customer" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Customer</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog:key:PK_H_DatabaseLog" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_DatabaseLog</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Department:key:PK_H_Department" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Department">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Department</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document:key:PK_H_Document" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Document">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Document</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:key:PK_H_EmailAddress" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_EmailAddress</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee:key:PK_H_Employee" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Employee</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory:key:PK_H_EmployeeDepartmentHistory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_EmployeeDepartmentHistory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory:key:PK_H_EmployeePayHistory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_EmployeePayHistory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog:key:PK_H_ErrorLog" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ErrorLog</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration:key:PK_H_Illustration" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Illustration</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate:key:PK_H_JobCandidate" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_JobCandidate</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location:key:PK_H_Location" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Location">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Location</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password:key:PK_H_Password" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Password</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person:key:PK_H_Person" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Person</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:key:PK_H_PersonCreditCard" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_PersonCreditCard</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:key:PK_H_PersonPhone" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_PersonPhone</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType:key:PK_H_PhoneNumberType" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_PhoneNumberType</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:key:PK_H_Product" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Product</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:key:PK_H_ProductCategory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductCategory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory:key:PK_H_ProductCostHistory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductCostHistory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription:key:PK_H_ProductDescription" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductDescription</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument:key:PK_H_ProductDocument" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductDocument</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory:key:PK_H_ProductInventory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductInventory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory:key:PK_H_ProductListPriceHistory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductListPriceHistory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel:key:PK_H_ProductModel" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductModel</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:key:PK_H_ProductModelIllustration" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductModelIllustration</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:key:PK_H_ProductModelProductDescriptionCulture" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductModelProductDescriptionCulture</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto:key:PK_H_ProductPhoto" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductPhoto</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:key:PK_H_ProductProductPhoto" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductProductPhoto</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview:key:PK_H_ProductReview" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductReview</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:key:PK_H_ProductSubcategory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductSubcategory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:key:PK_H_ProductVendor" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ProductVendor</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:key:PK_H_PurchaseOrderDetail" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_PurchaseOrderDetail</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader:key:PK_H_PurchaseOrderHeader" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_PurchaseOrderHeader</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:key:PK_H_SalesOrderDetail" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesOrderDetail</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:key:PK_H_SalesOrderHeader" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesOrderHeader</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason:key:PK_H_SalesOrderHeaderSalesReason" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesOrderHeaderSalesReason</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:key:PK_H_SalesPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory:key:PK_H_SalesPersonQuotaHistory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesPersonQuotaHistory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason:key:PK_H_SalesReason" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesReason</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate:key:PK_H_SalesTaxRate" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesTaxRate</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:key:PK_H_SalesTerritory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesTerritory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:key:PK_H_SalesTerritoryHistory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SalesTerritoryHistory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ScrapReason:key:PK_H_ScrapReason" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ScrapReason">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ScrapReason</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Shift:key:PK_H_Shift" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Shift">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Shift</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod:key:PK_H_ShipMethod" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ShipMethod</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem:key:PK_H_ShoppingCartItem" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_ShoppingCartItem</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer:key:PK_H_SpecialOffer" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SpecialOffer</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:key:PK_H_SpecialOfferProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_SpecialOfferProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince:key:PK_H_StateProvince" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_StateProvince</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:key:PK_H_Store" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Store</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory:key:PK_H_TransactionHistory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_TransactionHistory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive:key:PK_H_TransactionHistoryArchive" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_TransactionHistoryArchive</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure:key:PK_H_UnitMeasure" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_UnitMeasure</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor:key:PK_H_Vendor" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_Vendor</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder:key:PK_H_WorkOrder" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_WorkOrder</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:key:PK_H_WorkOrderRouting" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting">
+      <KeyType>primary</KeyType>
+      <Name>PK_H_WorkOrderRouting</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince:key:PK_L_AddressStateProvince" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_AddressStateProvince">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_AddressStateProvince</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID:key:PK_L_BillOfMaterialsProduct_ComponentID" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ComponentID">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BillOfMaterialsProduct_ComponentID</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID:key:PK_L_BillOfMaterialsProduct_ProductAssemblyID" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsProduct_ProductAssemblyID">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BillOfMaterialsProduct_ProductAssemblyID</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure:key:PK_L_BillOfMaterialsUnitMeasure" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BillOfMaterialsUnitMeasure">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BillOfMaterialsUnitMeasure</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress:key:PK_L_BusinessEntityAddressAddress" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddress">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BusinessEntityAddressAddress</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType:key:PK_L_BusinessEntityAddressAddressType" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressAddressType">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BusinessEntityAddressAddressType</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity:key:PK_L_BusinessEntityAddressBusinessEntity" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityAddressBusinessEntity">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BusinessEntityAddressBusinessEntity</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity:key:PK_L_BusinessEntityContactBusinessEntity" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactBusinessEntity">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BusinessEntityContactBusinessEntity</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType:key:PK_L_BusinessEntityContactContactType" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactContactType">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BusinessEntityContactContactType</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson:key:PK_L_BusinessEntityContactPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_BusinessEntityContactPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_BusinessEntityContactPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion:key:PK_L_CountryRegionCurrencyCountryRegion" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCountryRegion">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_CountryRegionCurrencyCountryRegion</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency:key:PK_L_CountryRegionCurrencyCurrency" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CountryRegionCurrencyCurrency">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_CountryRegionCurrencyCurrency</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode:key:PK_L_CurrencyRateCurrency_FromCurrencyCode" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_FromCurrencyCode">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_CurrencyRateCurrency_FromCurrencyCode</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode:key:PK_L_CurrencyRateCurrency_ToCurrencyCode" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CurrencyRateCurrency_ToCurrencyCode">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_CurrencyRateCurrency_ToCurrencyCode</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson:key:PK_L_CustomerPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_CustomerPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory:key:PK_L_CustomerSalesTerritory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_CustomerSalesTerritory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore:key:PK_L_CustomerStore" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_CustomerStore</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee:key:PK_L_DocumentEmployee" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_DocumentEmployee">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_DocumentEmployee</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson:key:PK_L_EmailAddressPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmailAddressPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_EmailAddressPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment:key:PK_L_EmployeeDepartmentHistoryDepartment" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryDepartment">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_EmployeeDepartmentHistoryDepartment</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee:key:PK_L_EmployeeDepartmentHistoryEmployee" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryEmployee">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_EmployeeDepartmentHistoryEmployee</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift:key:PK_L_EmployeeDepartmentHistoryShift" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeeDepartmentHistoryShift">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_EmployeeDepartmentHistoryShift</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee:key:PK_L_EmployeePayHistoryEmployee" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePayHistoryEmployee">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_EmployeePayHistoryEmployee</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson:key:PK_L_EmployeePerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_EmployeePerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_EmployeePerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee:key:PK_L_JobCandidateEmployee" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_JobCandidateEmployee">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_JobCandidateEmployee</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson:key:PK_L_PasswordPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PasswordPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PasswordPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity:key:PK_L_PersonBusinessEntity" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonBusinessEntity">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PersonBusinessEntity</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard:key:PK_L_PersonCreditCardCreditCard" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardCreditCard">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PersonCreditCardCreditCard</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson:key:PK_L_PersonCreditCardPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonCreditCardPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PersonCreditCardPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson:key:PK_L_PersonPhonePerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PersonPhonePerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType:key:PK_L_PersonPhonePhoneNumberType" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PersonPhonePhoneNumberType">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PersonPhonePhoneNumberType</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct:key:PK_L_ProductCostHistoryProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductCostHistoryProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductCostHistoryProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument:key:PK_L_ProductDocumentDocument" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentDocument">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductDocumentDocument</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct:key:PK_L_ProductDocumentProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductDocumentProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductDocumentProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation:key:PK_L_ProductInventoryLocation" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryLocation">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductInventoryLocation</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct:key:PK_L_ProductInventoryProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductInventoryProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductInventoryProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct:key:PK_L_ProductListPriceHistoryProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductListPriceHistoryProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductListPriceHistoryProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration:key:PK_L_ProductModelIllustrationIllustration" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationIllustration">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductModelIllustrationIllustration</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel:key:PK_L_ProductModelIllustrationProductModel" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelIllustrationProductModel">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductModelIllustrationProductModel</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture:key:PK_L_ProductModelProductDescriptionCultureCulture" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureCulture">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductModelProductDescriptionCultureCulture</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription:key:PK_L_ProductModelProductDescriptionCultureProductDescription" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductDescription">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductModelProductDescriptionCultureProductDescription</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel:key:PK_L_ProductModelProductDescriptionCultureProductModel" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductModelProductDescriptionCultureProductModel">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductModelProductDescriptionCultureProductModel</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel:key:PK_L_ProductProductModel" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductModel">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductProductModel</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct:key:PK_L_ProductProductPhotoProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductProductPhotoProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto:key:PK_L_ProductProductPhotoProductPhoto" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductPhotoProductPhoto">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductProductPhotoProductPhoto</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory:key:PK_L_ProductProductSubcategory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductProductSubcategory">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductProductSubcategory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct:key:PK_L_ProductReviewProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductReviewProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductReviewProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory:key:PK_L_ProductSubcategoryProductCategory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductSubcategoryProductCategory">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductSubcategoryProductCategory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode:key:PK_L_ProductUnitMeasure_SizeUnitMeasureCode" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_SizeUnitMeasureCode">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductUnitMeasure_SizeUnitMeasureCode</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode:key:PK_L_ProductUnitMeasure_WeightUnitMeasureCode" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductUnitMeasure_WeightUnitMeasureCode">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductUnitMeasure_WeightUnitMeasureCode</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct:key:PK_L_ProductVendorProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductVendorProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure:key:PK_L_ProductVendorUnitMeasure" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorUnitMeasure">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductVendorUnitMeasure</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor:key:PK_L_ProductVendorVendor" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ProductVendorVendor">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ProductVendorVendor</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct:key:PK_L_PurchaseOrderDetailProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PurchaseOrderDetailProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader:key:PK_L_PurchaseOrderDetailPurchaseOrderHeader" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderDetailPurchaseOrderHeader">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PurchaseOrderDetailPurchaseOrderHeader</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee:key:PK_L_PurchaseOrderHeaderEmployee" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderEmployee">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PurchaseOrderHeaderEmployee</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod:key:PK_L_PurchaseOrderHeaderShipMethod" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderShipMethod">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PurchaseOrderHeaderShipMethod</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor:key:PK_L_PurchaseOrderHeaderVendor" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_PurchaseOrderHeaderVendor">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_PurchaseOrderHeaderVendor</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader:key:PK_L_SalesOrderDetailSalesOrderHeader" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderDetailSalesOrderHeader</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct:key:PK_L_SalesOrderDetailSpecialOfferProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderDetailSpecialOfferProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID:key:PK_L_SalesOrderHeaderAddress_BillToAddressID" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_BillToAddressID">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderAddress_BillToAddressID</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID:key:PK_L_SalesOrderHeaderAddress_ShipToAddressID" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderAddress_ShipToAddressID">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderAddress_ShipToAddressID</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard:key:PK_L_SalesOrderHeaderCreditCard" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCreditCard">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderCreditCard</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate:key:PK_L_SalesOrderHeaderCurrencyRate" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCurrencyRate">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderCurrencyRate</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer:key:PK_L_SalesOrderHeaderCustomer" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderCustomer</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson:key:PK_L_SalesOrderHeaderSalesPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderSalesPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader:key:PK_L_SalesOrderHeaderSalesReasonSalesOrderHeader" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesOrderHeader">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderSalesReasonSalesOrderHeader</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason:key:PK_L_SalesOrderHeaderSalesReasonSalesReason" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesReasonSalesReason">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderSalesReasonSalesReason</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory:key:PK_L_SalesOrderHeaderSalesTerritory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderSalesTerritory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod:key:PK_L_SalesOrderHeaderShipMethod" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderShipMethod">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesOrderHeaderShipMethod</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee:key:PK_L_SalesPersonEmployee" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonEmployee">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesPersonEmployee</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson:key:PK_L_SalesPersonQuotaHistorySalesPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonQuotaHistorySalesPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesPersonQuotaHistorySalesPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory:key:PK_L_SalesPersonSalesTerritory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesPersonSalesTerritory">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesPersonSalesTerritory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince:key:PK_L_SalesTaxRateStateProvince" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTaxRateStateProvince">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesTaxRateStateProvince</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion:key:PK_L_SalesTerritoryCountryRegion" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryCountryRegion">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesTerritoryCountryRegion</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson:key:PK_L_SalesTerritoryHistorySalesPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesTerritoryHistorySalesPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory:key:PK_L_SalesTerritoryHistorySalesTerritory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesTerritoryHistorySalesTerritory">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SalesTerritoryHistorySalesTerritory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct:key:PK_L_ShoppingCartItemProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_ShoppingCartItemProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_ShoppingCartItemProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct:key:PK_L_SpecialOfferProductProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SpecialOfferProductProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer:key:PK_L_SpecialOfferProductSpecialOffer" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductSpecialOffer">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_SpecialOfferProductSpecialOffer</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion:key:PK_L_StateProvinceCountryRegion" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceCountryRegion">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_StateProvinceCountryRegion</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory:key:PK_L_StateProvinceSalesTerritory" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StateProvinceSalesTerritory">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_StateProvinceSalesTerritory</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity:key:PK_L_StoreBusinessEntity" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreBusinessEntity">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_StoreBusinessEntity</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson:key:PK_L_StoreSalesPerson" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_StoreSalesPerson">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_StoreSalesPerson</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct:key:PK_L_TransactionHistoryProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_TransactionHistoryProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_TransactionHistoryProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity:key:PK_L_VendorBusinessEntity" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_VendorBusinessEntity">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_VendorBusinessEntity</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct:key:PK_L_WorkOrderProduct" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderProduct">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_WorkOrderProduct</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation:key:PK_L_WorkOrderRoutingLocation" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingLocation">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_WorkOrderRoutingLocation</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder:key:PK_L_WorkOrderRoutingWorkOrder" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderRoutingWorkOrder">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_WorkOrderRoutingWorkOrder</Name>
+    </TableKey>
+    <TableKey Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason:key:PK_L_WorkOrderScrapReason" TableId="sqlserver:AdventureWorksRawVault:schema:dbo:table:L_WorkOrderScrapReason">
+      <KeyType>primary</KeyType>
+      <Name>PK_L_WorkOrderScrapReason</Name>
+    </TableKey>
+  </TableKeyList>
+</MetaSchema>

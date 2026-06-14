@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnLinkList>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:1" ColumnId="SelectElement:1:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:2" ColumnId="SelectElement:2:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:3" ColumnId="SelectElement:3:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:4" ColumnId="SelectElement:4:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductCategory</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:1:binding:validation:target:1:column:5" ColumnId="SelectElement:5:output" ValidationTargetRowsetLinkId="TransformScript:1:binding:validation:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimProduct:field:ProductSubcategory</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:6" ColumnId="SelectElement:6:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate:field:OrderDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:7" ColumnId="SelectElement:7:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate:field:OrderYear</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:8" ColumnId="SelectElement:8:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate:field:OrderMonth</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:2:binding:validation:target:2:column:9" ColumnId="SelectElement:9:output" ValidationTargetRowsetLinkId="TransformScript:2:binding:validation:target:2">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimOrderDate:field:OrderMonthName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:10" ColumnId="SelectElement:10:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory:field:TerritoryId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:11" ColumnId="SelectElement:11:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory:field:TerritoryName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:12" ColumnId="SelectElement:12:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory:field:CountryRegionCode</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:3:binding:validation:target:3:column:13" ColumnId="SelectElement:13:output" ValidationTargetRowsetLinkId="TransformScript:3:binding:validation:target:3">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimSalesTerritory:field:TerritoryGroup</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:14" ColumnId="SelectElement:14:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel:field:CustomerId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:15" ColumnId="SelectElement:15:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel:field:CustomerAccountNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:4:binding:validation:target:4:column:16" ColumnId="SelectElement:16:output" ValidationTargetRowsetLinkId="TransformScript:4:binding:validation:target:4">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:DimCustomerChannel:field:CustomerType</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:17" ColumnId="SelectElement:17:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesOrderId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:18" ColumnId="SelectElement:18:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesOrderDetailId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:19" ColumnId="SelectElement:19:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesOrderNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:20" ColumnId="SelectElement:20:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:OrderDate</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:21" ColumnId="SelectElement:21:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:22" ColumnId="SelectElement:22:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductNumber</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:23" ColumnId="SelectElement:23:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:24" ColumnId="SelectElement:24:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductCategory</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:25" ColumnId="SelectElement:25:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:ProductSubcategory</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:26" ColumnId="SelectElement:26:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:CustomerId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:27" ColumnId="SelectElement:27:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:CustomerType</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:28" ColumnId="SelectElement:28:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:TerritoryId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:29" ColumnId="SelectElement:29:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:TerritoryName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:30" ColumnId="SelectElement:30:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:TerritoryGroup</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:31" ColumnId="SelectElement:31:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesPersonBusinessEntityId</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:32" ColumnId="SelectElement:32:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesPersonName</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:33" ColumnId="SelectElement:33:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:OnlineOrderFlag</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:34" ColumnId="SelectElement:34:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:OrderQuantity</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:35" ColumnId="SelectElement:35:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:UnitPrice</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:36" ColumnId="SelectElement:36:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:SalesAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:37" ColumnId="SelectElement:37:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:DiscountAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:38" ColumnId="SelectElement:38:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:TaxAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+    <ValidationTargetColumnLink Id="TransformScript:5:binding:validation:target:5:column:39" ColumnId="SelectElement:39:output" ValidationTargetRowsetLinkId="TransformScript:5:binding:validation:target:5">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksMetaDemo:schema:awbi:table:FactSalesOrderLine:field:FreightAmount</MetaSchemaFieldId>
+    </ValidationTargetColumnLink>
+  </ValidationTargetColumnLinkList>
+</MetaTransformBinding>

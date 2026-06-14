@@ -1,0 +1,1293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldDataTypeDetailList>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:Database Version:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion:field:Database Version">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseUser:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:DatabaseUser">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Event:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Event">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Object:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Object">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Schema:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:Schema">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:TSQL:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog:field:TSQL">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorMessage:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorMessage">
+      <Name>Length</Name>
+      <Value>4000</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorProcedure:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:ErrorProcedure">
+      <Name>Length</Name>
+      <Value>126</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:UserName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog:field:UserName">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:GroupName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:GroupName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:Gender:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:Gender">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:JobTitle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:JobTitle">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:LoginID:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:LoginID">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:MaritalStatus:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:MaritalStatus">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:NationalIDNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:field:NationalIDNumber">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:EndTime:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:EndTime">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:StartTime:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift:field:StartTime">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:AddressLine1:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:AddressLine1">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:AddressLine2:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:AddressLine2">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:City">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:CountryRegionName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:CountryRegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:EmailAddress:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:EmailAddress">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:JobTitle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:JobTitle">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:PhoneNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:PhoneNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:PhoneNumberType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:PhoneNumberType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:PostalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:StateProvinceName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:StateProvinceName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:Suffix">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee:field:Title">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:Department:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:Department">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:GroupName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:GroupName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:JobTitle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:JobTitle">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:Suffix">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment:field:Title">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:Department:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:Department">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:GroupName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:GroupName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:Shift:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:Shift">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:Suffix">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory:field:Title">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.Loc.City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.Loc.City">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.Loc.CountryRegion:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.Loc.CountryRegion">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.Loc.State:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.Loc.State">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.PostalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.PostalCode">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.Type:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Addr.Type">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:EMail:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:EMail">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.First:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.First">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.Last:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.Last">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.Middle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.Middle">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.Prefix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.Prefix">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Name.Suffix">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Skills:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:Skills">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:WebSite:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate:field:WebSite">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Degree:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Degree">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.GPA:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.GPA">
+      <Name>Length</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.GPAScale:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.GPAScale">
+      <Name>Length</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Level:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Level">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Loc.City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Loc.City">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Loc.CountryRegion:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Loc.CountryRegion">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Loc.State:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Loc.State">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Major:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Major">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Minor:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.Minor">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.School:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation:field:Edu.School">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.FunctionCategory:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.FunctionCategory">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.IndustryCategory:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.IndustryCategory">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.JobTitle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.JobTitle">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.Loc.City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.Loc.City">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.Loc.CountryRegion:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.Loc.CountryRegion">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.Loc.State:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.Loc.State">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.OrgName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.OrgName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.Responsibility:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment:field:Emp.Responsibility">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine1:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine1">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine2:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:AddressLine2">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:City">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Address:field:PostalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:ContactType:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:CountryRegionCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:CountryRegionCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddress:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:field:EmailAddress">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordHash:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordHash">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordSalt:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Password:field:PasswordSalt">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:PersonType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:PersonType">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Suffix">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:Person:field:Title">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:field:PhoneNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:CountryRegionCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:CountryRegionCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:field:StateProvinceCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:City">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:CountryRegion:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:CountryRegion">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:EMailAddress:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:EMailAddress">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:EMailSpecialInstructions:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:EMailSpecialInstructions">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:EMailTelephoneNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:EMailTelephoneNumber">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:HomeAddressSpecialInstructions:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:HomeAddressSpecialInstructions">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:PostalCode">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:StateProvince:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:StateProvince">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:Street:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:Street">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:TelephoneNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:TelephoneNumber">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:TelephoneSpecialInstructions:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo:field:TelephoneSpecialInstructions">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion:field:CountryRegionCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion:field:CountryRegionCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion:field:CountryRegionName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion:field:CountryRegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion:field:StateProvinceCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion:field:StateProvinceCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion:field:StateProvinceName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion:field:StateProvinceName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:PerAssemblyQty:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:PerAssemblyQty">
+      <Name>Precision</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:PerAssemblyQty:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:PerAssemblyQty">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:UnitMeasureCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:field:UnitMeasureCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:CultureID:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:CultureID">
+      <Name>Length</Name>
+      <Value>6</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Culture:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Document:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Document">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentSummary:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:DocumentSummary">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileExtension:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileExtension">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:FileName">
+      <Name>Length</Name>
+      <Value>400</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Revision:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Revision">
+      <Name>Length</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Document:field:Title">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Availability:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Availability">
+      <Name>Precision</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Availability:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Availability">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Location:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Class:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Class">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Color:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Color">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductLine:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductLine">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:ProductNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Size:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Size">
+      <Name>Length</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SizeUnitMeasureCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:SizeUnitMeasureCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Style:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Style">
+      <Name>Length</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight">
+      <Name>Precision</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:Weight">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:WeightUnitMeasureCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:Product:field:WeightUnitMeasureCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:Description:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription:field:Description">
+      <Name>Length</Name>
+      <Value>400</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Shelf:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:field:Shelf">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:CultureID:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:field:CultureID">
+      <Name>Length</Name>
+      <Value>6</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhoto:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhoto">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhotoFileName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:LargePhotoFileName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbNailPhoto:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbNailPhoto">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbnailPhotoFileName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto:field:ThumbnailPhotoFileName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:Comments:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:Comments">
+      <Name>Length</Name>
+      <Value>3850</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:EmailAddress:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:EmailAddress">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ReviewerName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:field:ReviewerName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:field:TransactionType">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive:field:TransactionType">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:UnitMeasureCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure:field:UnitMeasureCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription:field:CultureID:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription:field:CultureID">
+      <Name>Length</Name>
+      <Value>6</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription:field:Description:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription:field:Description">
+      <Name>Length</Name>
+      <Value>400</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription:field:ProductModel:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription:field:ProductModel">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:BikeFrame:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:BikeFrame">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Color:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Color">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Copyright:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Copyright">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Crankset:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Crankset">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:MaintenanceDescription:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:MaintenanceDescription">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Manufacturer:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Manufacturer">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Material:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Material">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:NoOfYears:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:NoOfYears">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Pedal:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Pedal">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:PictureAngle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:PictureAngle">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:PictureSize:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:PictureSize">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:ProductLine:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:ProductLine">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:ProductPhotoID:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:ProductPhotoID">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:ProductURL:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:ProductURL">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:RiderExperience:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:RiderExperience">
+      <Name>Length</Name>
+      <Value>1024</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Saddle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Saddle">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Style:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Style">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Summary:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Summary">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:WarrantyDescription:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:WarrantyDescription">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:WarrantyPeriod:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:WarrantyPeriod">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Wheel:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription:field:Wheel">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:Instructions:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:Instructions">
+      <Name>Length</Name>
+      <Value>-1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:LaborHours:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:LaborHours">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:LaborHours:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:LaborHours">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:MachineHours:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:MachineHours">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:MachineHours:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:MachineHours">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:SetupHours:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:SetupHours">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:SetupHours:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:SetupHours">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:Step:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions:field:Step">
+      <Name>Length</Name>
+      <Value>1024</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualResourceHrs:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualResourceHrs">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualResourceHrs:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:field:ActualResourceHrs">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:UnitMeasureCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:field:UnitMeasureCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ReceivedQty:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ReceivedQty">
+      <Name>Precision</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ReceivedQty:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:ReceivedQty">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:RejectedQty:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:RejectedQty">
+      <Name>Precision</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:RejectedQty:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:RejectedQty">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:StockedQty:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:StockedQty">
+      <Name>Precision</Name>
+      <Value>9</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:StockedQty:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:field:StockedQty">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:AccountNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:AccountNumber">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:PurchasingWebServiceURL:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:field:PurchasingWebServiceURL">
+      <Name>Length</Name>
+      <Value>1024</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:AddressLine1:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:AddressLine1">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:AddressLine2:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:AddressLine2">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:AddressType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:AddressType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:City">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:CountryRegionName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:CountryRegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:PostalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:StateProvinceName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses:field:StateProvinceName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:ContactType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:ContactType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:EmailAddress:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:EmailAddress">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:PhoneNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:PhoneNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:PhoneNumberType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:PhoneNumberType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:Suffix">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts:field:Title">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CountryRegionCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CountryRegionCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CurrencyCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:field:CurrencyCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard:field:CardType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:CurrencyCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:CurrencyCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:FromCurrencyCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:FromCurrencyCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:ToCurrencyCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:field:ToCurrencyCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:AccountNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:field:AccountNumber">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:CarrierTrackingNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:CarrierTrackingNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:LineTotal:detail:Precision" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:LineTotal">
+      <Name>Precision</Name>
+      <Value>38</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:LineTotal:detail:Scale" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:field:LineTotal">
+      <Name>Scale</Name>
+      <Value>6</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:AccountNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:AccountNumber">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Comment:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:Comment">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:CreditCardApprovalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:CreditCardApprovalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:PurchaseOrderNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:PurchaseOrderNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:field:SalesOrderNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:ReasonType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason:field:ReasonType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CountryRegionCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:CountryRegionCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Group:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Group">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartID:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:field:ShoppingCartID">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Category:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Category">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Description:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Description">
+      <Name>Length</Name>
+      <Value>255</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Type:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer:field:Type">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:Store:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:AddressLine1:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:AddressLine1">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:AddressLine2:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:AddressLine2">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:AddressType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:AddressType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:City">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:CountryRegionName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:CountryRegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:EmailAddress:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:EmailAddress">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:PhoneNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:PhoneNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:PhoneNumberType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:PhoneNumberType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:PostalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:StateProvinceName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:StateProvinceName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:Suffix">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer:field:Title">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:Education:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:Education">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:Gender:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:Gender">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:MaritalStatus:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:MaritalStatus">
+      <Name>Length</Name>
+      <Value>1</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:Occupation:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:Occupation">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:YearlyIncome:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics:field:YearlyIncome">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:AddressLine1:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:AddressLine1">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:AddressLine2:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:AddressLine2">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:City">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:CountryRegionName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:CountryRegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:EmailAddress:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:EmailAddress">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:JobTitle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:JobTitle">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:PhoneNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:PhoneNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:PhoneNumberType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:PhoneNumberType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:PostalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:StateProvinceName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:StateProvinceName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:Suffix">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:TerritoryGroup:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:TerritoryGroup">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:TerritoryName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:TerritoryName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson:field:Title">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears:field:FullName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears:field:FullName">
+      <Name>Length</Name>
+      <Value>152</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears:field:JobTitle:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears:field:JobTitle">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears:field:SalesTerritory:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears:field:SalesTerritory">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:AddressLine1:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:AddressLine1">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:AddressLine2:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:AddressLine2">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:AddressType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:AddressType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:City:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:City">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:CountryRegionName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:CountryRegionName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:PostalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:StateProvinceName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses:field:StateProvinceName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:ContactType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:ContactType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:EmailAddress:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:EmailAddress">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:FirstName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:LastName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:MiddleName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:PhoneNumber:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:PhoneNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:PhoneNumberType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:PhoneNumberType">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:Suffix:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:Suffix">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:Title:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts:field:Title">
+      <Name>Length</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:BankName:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:BankName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:Brands:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:Brands">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:BusinessType:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:BusinessType">
+      <Name>Length</Name>
+      <Value>5</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:Internet:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:Internet">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:Name:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:Specialty:detail:Length" FieldId="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics:field:Specialty">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+  </FieldDataTypeDetailList>
+</MetaSchema>

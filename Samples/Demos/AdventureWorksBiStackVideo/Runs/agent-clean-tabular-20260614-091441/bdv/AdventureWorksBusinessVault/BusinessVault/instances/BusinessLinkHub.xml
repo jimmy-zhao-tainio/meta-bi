@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkHubList>
+    <BusinessLinkHub Id="SalesOrderCustomerCustomer" BusinessHubId="Customer" BusinessLinkId="SalesOrderCustomer">
+      <Ordinal>2</Ordinal>
+      <RoleName>Customer</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderCustomerOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderCustomer">
+      <Ordinal>1</Ordinal>
+      <RoleName>SalesOrder</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderDateDate" BusinessHubId="OrderDate" BusinessLinkId="SalesOrderDate">
+      <Ordinal>2</Ordinal>
+      <RoleName>OrderDate</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderDateOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderDate">
+      <Ordinal>1</Ordinal>
+      <RoleName>SalesOrder</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderLineOrderLine" BusinessHubId="SalesOrderLine" BusinessLinkId="SalesOrderLineOrder">
+      <Ordinal>1</Ordinal>
+      <RoleName>SalesOrderLine</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderLineOrderOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderLineOrder">
+      <Ordinal>2</Ordinal>
+      <RoleName>SalesOrder</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderLineProductLine" BusinessHubId="SalesOrderLine" BusinessLinkId="SalesOrderLineProduct">
+      <Ordinal>1</Ordinal>
+      <RoleName>SalesOrderLine</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderLineProductProduct" BusinessHubId="Product" BusinessLinkId="SalesOrderLineProduct">
+      <Ordinal>2</Ordinal>
+      <RoleName>Product</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderSalesPersonOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderSalesPerson">
+      <Ordinal>1</Ordinal>
+      <RoleName>SalesOrder</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderSalesPersonPerson" BusinessHubId="SalesPerson" BusinessLinkId="SalesOrderSalesPerson">
+      <Ordinal>2</Ordinal>
+      <RoleName>SalesPerson</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderStoreOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderStore">
+      <Ordinal>1</Ordinal>
+      <RoleName>SalesOrder</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderStoreStore" BusinessHubId="Store" BusinessLinkId="SalesOrderStore">
+      <Ordinal>2</Ordinal>
+      <RoleName>Store</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderTerritoryOrder" BusinessHubId="SalesOrder" BusinessLinkId="SalesOrderTerritory">
+      <Ordinal>1</Ordinal>
+      <RoleName>SalesOrder</RoleName>
+    </BusinessLinkHub>
+    <BusinessLinkHub Id="SalesOrderTerritoryTerritory" BusinessHubId="SalesTerritory" BusinessLinkId="SalesOrderTerritory">
+      <Ordinal>2</Ordinal>
+      <RoleName>SalesTerritory</RoleName>
+    </BusinessLinkHub>
+  </BusinessLinkHubList>
+</MetaBusinessDataVault>

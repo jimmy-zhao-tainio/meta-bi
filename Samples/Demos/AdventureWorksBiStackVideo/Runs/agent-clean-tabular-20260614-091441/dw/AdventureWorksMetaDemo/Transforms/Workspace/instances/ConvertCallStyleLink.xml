@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ConvertCallStyleLinkList>
+    <ConvertCallStyleLink Id="ConvertCallStyleLink:1" ConvertCallId="ConvertCall:1" ScalarExpressionId="ScalarExpression:17">
+    </ConvertCallStyleLink>
+  </ConvertCallStyleLinkList>
+</MetaTransformScript>

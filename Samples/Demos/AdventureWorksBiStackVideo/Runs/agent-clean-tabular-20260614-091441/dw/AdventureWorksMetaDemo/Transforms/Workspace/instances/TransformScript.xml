@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptList>
+    <TransformScript Id="TransformScript:1">
+      <Name>awbi.v_load_DimProduct</Name>
+      <SourcePath>001_load_DimProduct.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:2">
+      <Name>awbi.v_load_DimOrderDate</Name>
+      <SourcePath>002_load_DimOrderDate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:3">
+      <Name>awbi.v_load_DimSalesTerritory</Name>
+      <SourcePath>003_load_DimSalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:4">
+      <Name>awbi.v_load_DimCustomerChannel</Name>
+      <SourcePath>004_load_DimCustomerChannel.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:5">
+      <Name>awbi.v_load_FactSalesOrderLine</Name>
+      <SourcePath>005_load_FactSalesOrderLine.sql</SourcePath>
+    </TransformScript>
+  </TransformScriptList>
+</MetaTransformScript>

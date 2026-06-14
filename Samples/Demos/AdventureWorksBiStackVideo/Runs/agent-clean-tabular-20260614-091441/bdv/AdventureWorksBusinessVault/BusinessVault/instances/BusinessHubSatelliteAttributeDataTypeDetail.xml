@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteAttributeDataTypeDetailList>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CountryRegionCode:datatype-detail:length" BusinessHubSatelliteAttributeId="CountryRegionCode">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerAccountNumber:datatype-detail:length" BusinessHubSatelliteAttributeId="CustomerAccountNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="CustomerType:datatype-detail:length" BusinessHubSatelliteAttributeId="CustomerType">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="OrderStatus:datatype-detail:length" BusinessHubSatelliteAttributeId="OrderStatus">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductCategory:datatype-detail:length" BusinessHubSatelliteAttributeId="ProductCategory">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductName:datatype-detail:length" BusinessHubSatelliteAttributeId="ProductName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductNumber:datatype-detail:length" BusinessHubSatelliteAttributeId="ProductNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="ProductSubcategory:datatype-detail:length" BusinessHubSatelliteAttributeId="ProductSubcategory">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="SalesOrderNumber:datatype-detail:length" BusinessHubSatelliteAttributeId="SalesOrderNumber">
+      <Name>Length</Name>
+      <Value>25</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="SalesPersonName:datatype-detail:length" BusinessHubSatelliteAttributeId="SalesPersonName">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="StoreName:datatype-detail:length" BusinessHubSatelliteAttributeId="StoreName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="TerritoryGroup:datatype-detail:length" BusinessHubSatelliteAttributeId="TerritoryGroup">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+    <BusinessHubSatelliteAttributeDataTypeDetail Id="TerritoryName:datatype-detail:length" BusinessHubSatelliteAttributeId="TerritoryName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessHubSatelliteAttributeDataTypeDetail>
+  </BusinessHubSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

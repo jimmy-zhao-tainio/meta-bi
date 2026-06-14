@@ -1,0 +1,1012 @@
+﻿OccurredAtUtc	EventKind	Subject	Detail
+2026-06-14T07:34:00.4120667+00:00	RunStarted	orchestration	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\Orchestration
+2026-06-14T07:34:00.4258172+00:00	Process	meta-orchestration	32200
+2026-06-14T07:34:00.4262765+00:00	PipelineExecutable	meta-pipeline	
+2026-06-14T07:34:00.4325923+00:00	PipelineWorkspace	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\Pipeline	
+2026-06-14T07:34:00.4608251+00:00	LeaseAcquired	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\Orchestration	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\leases\2e6d8d73dd80bbbe26aa71f557108c8b71d6cf782247b134b0d8874e45643b55.tsv
+2026-06-14T07:34:00.4621374+00:00	Phase	Loading	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\Orchestration
+2026-06-14T07:34:00.5381673+00:00	Phase	Building	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\Orchestration
+2026-06-14T07:34:00.5512201+00:00	Phase	Saving	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\Orchestration
+2026-06-14T07:34:00.6106581+00:00	RetryPolicyResolved	DefaultRetryPolicy	MaxAttempts=3; RetryableFailureClasses=6
+2026-06-14T07:34:00.6145180+00:00	RunPlanReady	DefaultRunPlan	56
+2026-06-14T07:34:00.9839216+00:00	WorkerStarting	RDV_Product_dbo_HS_ProductCategory_ProductCategory	meta-pipeline
+2026-06-14T07:34:01.3639755+00:00	WorkerStarted	RDV_Product_dbo_HS_ProductCategory_ProductCategory	12188
+2026-06-14T07:34:01.3644622+00:00	WorkerControlPipe	RDV_Product_dbo_HS_ProductCategory_ProductCategory	meta-orchestration-49bc48d6b0904df5aa5c0214a63bfe1e
+2026-06-14T07:34:01.3649580+00:00	WorkerLog	RDV_Product_dbo_HS_ProductCategory_ProductCategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_ProductCategory_ProductCategory-12188.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_ProductCategory_ProductCategory-12188.stderr.log
+2026-06-14T07:34:01.3740070+00:00	WorkerStarting	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	meta-pipeline
+2026-06-14T07:34:01.4981636+00:00	WorkerStarted	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	6696
+2026-06-14T07:34:01.4984594+00:00	WorkerControlPipe	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	meta-orchestration-813934887dd146c796c5c0e5725feff8
+2026-06-14T07:34:01.4986700+00:00	WorkerLog	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory-6696.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory-6696.stderr.log
+2026-06-14T07:34:01.5065056+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductCategory_ProductCategory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:01.5233044+00:00	WorkerStarting	RDV_Product_dbo_HS_Product_Product	meta-pipeline
+2026-06-14T07:34:01.6446397+00:00	WorkerStarted	RDV_Product_dbo_HS_Product_Product	17420
+2026-06-14T07:34:01.6454675+00:00	WorkerControlPipe	RDV_Product_dbo_HS_Product_Product	meta-orchestration-bcbd0e0faf314c94be5a0b142b302417
+2026-06-14T07:34:01.6460103+00:00	WorkerLog	RDV_Product_dbo_HS_Product_Product	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_Product_Product-17420.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_Product_Product-17420.stderr.log
+2026-06-14T07:34:01.6468511+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductCategory_ProductCategory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:01.6547032+00:00	StartPipeline	RDV_Product_dbo_HS_ProductCategory_ProductCategory	RDV_Product_dbo_HS_ProductCategory_ProductCategory
+2026-06-14T07:34:01.6560070+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:01.6568037+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:01.6607255+00:00	StartPipeline	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory
+2026-06-14T07:34:01.6626951+00:00	WorkerStarting	RDV_Product_dbo_H_Product	meta-pipeline
+2026-06-14T07:34:01.8628165+00:00	WorkerStarted	RDV_Product_dbo_H_Product	33104
+2026-06-14T07:34:01.8633392+00:00	WorkerControlPipe	RDV_Product_dbo_H_Product	meta-orchestration-48c2220a52ef46e5882dd083c5618f35
+2026-06-14T07:34:01.8639759+00:00	WorkerLog	RDV_Product_dbo_H_Product	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_Product-33104.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_Product-33104.stderr.log
+2026-06-14T07:34:01.8646941+00:00	WorkerEvent	RDV_Product_dbo_HS_Product_Product	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:01.8666991+00:00	WorkerEvent	RDV_Product_dbo_HS_Product_Product	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:01.8735175+00:00	StartPipeline	RDV_Product_dbo_HS_Product_Product	RDV_Product_dbo_HS_Product_Product
+2026-06-14T07:34:01.9035433+00:00	WorkerEvent	RDV_Product_dbo_H_Product	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:01.9081780+00:00	WorkerEvent	RDV_Product_dbo_H_Product	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:01.9146360+00:00	StartPipeline	RDV_Product_dbo_H_Product	RDV_Product_dbo_H_Product
+2026-06-14T07:34:02.8094446+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductCategory_ProductCategory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:02.8125527+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:02.8194970+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:02.8278221+00:00	GrantTask	RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory	RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory; GrantId=grant-1; Attempt=1
+2026-06-14T07:34:02.8283280+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:02.8304584+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:02.8312796+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:02.8345328+00:00	GrantTask	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory; GrantId=grant-2; Attempt=1
+2026-06-14T07:34:02.8359053+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:02.8379397+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:03.0153928+00:00	WorkerEvent	RDV_Product_dbo_HS_Product_Product	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:03.0182971+00:00	WorkerEvent	RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product	TaskReady; ExitCode=0; 
+2026-06-14T07:34:03.0202528+00:00	GrantTask	RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product	RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product; GrantId=grant-3; Attempt=1
+2026-06-14T07:34:03.0213681+00:00	WorkerEvent	RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:03.0226169+00:00	WorkerEvent	RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:03.0278041+00:00	WorkerEvent	RDV_Product_dbo_H_Product	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:03.0312237+00:00	WorkerEvent	RDV_Product_dbo_H_Product.Load_dbo_H_Product	TaskReady; ExitCode=0; 
+2026-06-14T07:34:03.0335583+00:00	GrantTask	RDV_Product_dbo_H_Product.Load_dbo_H_Product	RDV_Product_dbo_H_Product.Load_dbo_H_Product; GrantId=grant-4; Attempt=1
+2026-06-14T07:34:03.0348600+00:00	WorkerEvent	RDV_Product_dbo_H_Product.Load_dbo_H_Product	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:03.0365318+00:00	WorkerEvent	RDV_Product_dbo_H_Product.Load_dbo_H_Product	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:03.5818213+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:03.5890092+00:00	TaskSucceeded	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory.Load_dbo_HS_ProductSubcategory_ProductSubcategory	0
+2026-06-14T07:34:03.5909481+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:03.5936885+00:00	TaskSucceeded	RDV_Product_dbo_HS_ProductCategory_ProductCategory.Load_dbo_HS_ProductCategory_ProductCategory	0
+2026-06-14T07:34:03.5948398+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductCategory_ProductCategory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:03.5978449+00:00	WorkerProcessExited	RDV_Product_dbo_HS_ProductCategory_ProductCategory	ExitCode=0; worker control channel closed
+2026-06-14T07:34:03.6072396+00:00	PipelineCompleted	RDV_Product_dbo_HS_ProductCategory_ProductCategory	
+2026-06-14T07:34:03.6088981+00:00	WorkerEvent	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:03.6094694+00:00	WorkerProcessExited	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	ExitCode=0; worker control channel closed
+2026-06-14T07:34:03.6102161+00:00	PipelineCompleted	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	
+2026-06-14T07:34:03.6125346+00:00	WorkerStarting	RDV_Product_dbo_H_ProductCategory	meta-pipeline
+2026-06-14T07:34:03.7616472+00:00	WorkerStarted	RDV_Product_dbo_H_ProductCategory	27632
+2026-06-14T07:34:03.7620933+00:00	WorkerControlPipe	RDV_Product_dbo_H_ProductCategory	meta-orchestration-f725a770437f4bdda7a408b726252efe
+2026-06-14T07:34:03.7625441+00:00	WorkerLog	RDV_Product_dbo_H_ProductCategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_ProductCategory-27632.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_ProductCategory-27632.stderr.log
+2026-06-14T07:34:03.7631786+00:00	WorkerEvent	RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:03.7638188+00:00	TaskSucceeded	RDV_Product_dbo_HS_Product_Product.Load_dbo_HS_Product_Product	0
+2026-06-14T07:34:03.7644238+00:00	WorkerEvent	RDV_Product_dbo_H_Product.Load_dbo_H_Product	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:03.7650554+00:00	TaskSucceeded	RDV_Product_dbo_H_Product.Load_dbo_H_Product	0
+2026-06-14T07:34:03.7671765+00:00	WorkerProcessExited	RDV_Product_dbo_HS_Product_Product	ExitCode=0; worker process exited
+2026-06-14T07:34:03.7680990+00:00	PipelineCompleted	RDV_Product_dbo_HS_Product_Product	
+2026-06-14T07:34:03.7686628+00:00	WorkerProcessExited	RDV_Product_dbo_H_Product	ExitCode=0; worker process exited
+2026-06-14T07:34:03.7693143+00:00	PipelineCompleted	RDV_Product_dbo_H_Product	
+2026-06-14T07:34:03.7699755+00:00	WorkerStarting	BDV_Product_dbo_BH_Product	meta-pipeline
+2026-06-14T07:34:03.8830910+00:00	WorkerStarted	BDV_Product_dbo_BH_Product	14292
+2026-06-14T07:34:03.8834864+00:00	WorkerControlPipe	BDV_Product_dbo_BH_Product	meta-orchestration-cd7b51a73f3e46e694ffde45a992c7e0
+2026-06-14T07:34:03.8839432+00:00	WorkerLog	BDV_Product_dbo_BH_Product	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Product_dbo_BH_Product-14292.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Product_dbo_BH_Product-14292.stderr.log
+2026-06-14T07:34:03.8844137+00:00	WorkerEvent	RDV_Product_dbo_H_ProductCategory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:03.8861497+00:00	WorkerStarting	RDV_Product_dbo_H_ProductSubcategory	meta-pipeline
+2026-06-14T07:34:04.0166489+00:00	WorkerStarted	RDV_Product_dbo_H_ProductSubcategory	31696
+2026-06-14T07:34:04.0172442+00:00	WorkerControlPipe	RDV_Product_dbo_H_ProductSubcategory	meta-orchestration-e3cde339e59b4e55b68d1bc2d7b07213
+2026-06-14T07:34:04.0207278+00:00	WorkerLog	RDV_Product_dbo_H_ProductSubcategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_ProductSubcategory-31696.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_ProductSubcategory-31696.stderr.log
+2026-06-14T07:34:04.0219279+00:00	WorkerEvent	RDV_Product_dbo_H_ProductCategory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:04.0231339+00:00	StartPipeline	RDV_Product_dbo_H_ProductCategory	RDV_Product_dbo_H_ProductCategory
+2026-06-14T07:34:04.0241090+00:00	WorkerEvent	BDV_Product_dbo_BH_Product	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:04.0252575+00:00	WorkerStarting	RDV_Product_dbo_L_ProductProductSubcategory	meta-pipeline
+2026-06-14T07:34:04.1266910+00:00	WorkerStarted	RDV_Product_dbo_L_ProductProductSubcategory	17844
+2026-06-14T07:34:04.1276748+00:00	WorkerControlPipe	RDV_Product_dbo_L_ProductProductSubcategory	meta-orchestration-c589ffe0c17449efaa25e586bb19fdbe
+2026-06-14T07:34:04.1282644+00:00	WorkerLog	RDV_Product_dbo_L_ProductProductSubcategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_L_ProductProductSubcategory-17844.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_L_ProductProductSubcategory-17844.stderr.log
+2026-06-14T07:34:04.1299643+00:00	WorkerEvent	RDV_Product_dbo_H_ProductSubcategory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:04.1312304+00:00	WorkerEvent	BDV_Product_dbo_BH_Product	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:04.1323716+00:00	StartPipeline	BDV_Product_dbo_BH_Product	BDV_Product_dbo_BH_Product
+2026-06-14T07:34:04.1331795+00:00	WorkerEvent	RDV_Product_dbo_H_ProductSubcategory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:04.1372678+00:00	StartPipeline	RDV_Product_dbo_H_ProductSubcategory	RDV_Product_dbo_H_ProductSubcategory
+2026-06-14T07:34:04.1598724+00:00	WorkerEvent	RDV_Product_dbo_L_ProductProductSubcategory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:04.1618249+00:00	WorkerEvent	RDV_Product_dbo_L_ProductProductSubcategory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:04.1680546+00:00	StartPipeline	RDV_Product_dbo_L_ProductProductSubcategory	RDV_Product_dbo_L_ProductProductSubcategory
+2026-06-14T07:34:05.0941719+00:00	WorkerEvent	RDV_Product_dbo_H_ProductCategory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:05.0960356+00:00	WorkerEvent	RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:05.0981889+00:00	GrantTask	RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory	RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory; GrantId=grant-5; Attempt=1
+2026-06-14T07:34:05.1002219+00:00	WorkerEvent	RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:05.1017749+00:00	WorkerEvent	RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:05.2005856+00:00	WorkerEvent	BDV_Product_dbo_BH_Product	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:05.2209674+00:00	WorkerEvent	BDV_Product_dbo_BH_Product.Load_dbo_BH_Product	TaskReady; ExitCode=0; 
+2026-06-14T07:34:05.2252112+00:00	GrantTask	BDV_Product_dbo_BH_Product.Load_dbo_BH_Product	BDV_Product_dbo_BH_Product.Load_dbo_BH_Product; GrantId=grant-6; Attempt=1
+2026-06-14T07:34:05.2266315+00:00	WorkerEvent	BDV_Product_dbo_BH_Product.Load_dbo_BH_Product	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:05.2280016+00:00	WorkerEvent	BDV_Product_dbo_BH_Product.Load_dbo_BH_Product	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:05.2493206+00:00	WorkerEvent	RDV_Product_dbo_H_ProductSubcategory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:05.2527435+00:00	WorkerEvent	RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:05.2549593+00:00	GrantTask	RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory	RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory; GrantId=grant-7; Attempt=1
+2026-06-14T07:34:05.2565955+00:00	WorkerEvent	RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:05.2580574+00:00	WorkerEvent	RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:05.2897402+00:00	WorkerEvent	RDV_Product_dbo_L_ProductProductSubcategory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:05.2921572+00:00	WorkerEvent	RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:05.2946301+00:00	GrantTask	RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory	RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory; GrantId=grant-8; Attempt=1
+2026-06-14T07:34:05.2951156+00:00	WorkerEvent	RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:05.2960099+00:00	WorkerEvent	RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:05.7554188+00:00	WorkerEvent	RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:05.7565393+00:00	TaskSucceeded	RDV_Product_dbo_H_ProductCategory.Load_dbo_H_ProductCategory	0
+2026-06-14T07:34:05.7584936+00:00	WorkerEvent	RDV_Product_dbo_H_ProductCategory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:05.7605873+00:00	PipelineCompleted	RDV_Product_dbo_H_ProductCategory	
+2026-06-14T07:34:05.7617301+00:00	WorkerStarting	RDV_Product_dbo_L_ProductSubcategoryProductCategory	meta-pipeline
+2026-06-14T07:34:05.9094587+00:00	WorkerStarted	RDV_Product_dbo_L_ProductSubcategoryProductCategory	12596
+2026-06-14T07:34:05.9099162+00:00	WorkerControlPipe	RDV_Product_dbo_L_ProductSubcategoryProductCategory	meta-orchestration-176cb2dd901a448a89f45733c6ffbc24
+2026-06-14T07:34:05.9103256+00:00	WorkerLog	RDV_Product_dbo_L_ProductSubcategoryProductCategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_L_ProductSubcategoryProductCategory-12596.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_L_ProductSubcategoryProductCategory-12596.stderr.log
+2026-06-14T07:34:05.9107847+00:00	WorkerProcessExited	RDV_Product_dbo_H_ProductCategory	ExitCode=0; worker process exited
+2026-06-14T07:34:05.9118767+00:00	WorkerEvent	RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:05.9125563+00:00	TaskSucceeded	RDV_Product_dbo_H_ProductSubcategory.Load_dbo_H_ProductSubcategory	0
+2026-06-14T07:34:05.9152947+00:00	WorkerEvent	RDV_Product_dbo_H_ProductSubcategory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:05.9165863+00:00	PipelineCompleted	RDV_Product_dbo_H_ProductSubcategory	
+2026-06-14T07:34:05.9176785+00:00	WorkerStarting	RDV_Sales_dbo_HS_Customer_Customer	meta-pipeline
+2026-06-14T07:34:06.1163499+00:00	WorkerStarted	RDV_Sales_dbo_HS_Customer_Customer	38540
+2026-06-14T07:34:06.1169130+00:00	WorkerControlPipe	RDV_Sales_dbo_HS_Customer_Customer	meta-orchestration-14f2480a927742809805d0c005c2c839
+2026-06-14T07:34:06.1173034+00:00	WorkerLog	RDV_Sales_dbo_HS_Customer_Customer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_Customer_Customer-38540.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_Customer_Customer-38540.stderr.log
+2026-06-14T07:34:06.1178651+00:00	WorkerEvent	RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:06.1186162+00:00	TaskSucceeded	RDV_Product_dbo_L_ProductProductSubcategory.Load_dbo_L_ProductProductSubcategory	0
+2026-06-14T07:34:06.1190501+00:00	WorkerEvent	RDV_Product_dbo_L_ProductSubcategoryProductCategory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:06.1197055+00:00	WorkerEvent	BDV_Product_dbo_BH_Product.Load_dbo_BH_Product	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:06.1206609+00:00	TaskSucceeded	BDV_Product_dbo_BH_Product.Load_dbo_BH_Product	0
+2026-06-14T07:34:06.1212316+00:00	WorkerEvent	RDV_Product_dbo_L_ProductSubcategoryProductCategory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:06.1264402+00:00	StartPipeline	RDV_Product_dbo_L_ProductSubcategoryProductCategory	RDV_Product_dbo_L_ProductSubcategoryProductCategory
+2026-06-14T07:34:06.1276276+00:00	WorkerProcessExited	RDV_Product_dbo_L_ProductProductSubcategory	ExitCode=0; worker process exited
+2026-06-14T07:34:06.1286119+00:00	PipelineCompleted	RDV_Product_dbo_L_ProductProductSubcategory	
+2026-06-14T07:34:06.1292919+00:00	WorkerProcessExited	RDV_Product_dbo_H_ProductSubcategory	ExitCode=0; worker process exited
+2026-06-14T07:34:06.1303964+00:00	WorkerProcessExited	BDV_Product_dbo_BH_Product	ExitCode=0; worker process exited
+2026-06-14T07:34:06.1333721+00:00	PipelineCompleted	BDV_Product_dbo_BH_Product	
+2026-06-14T07:34:06.1348246+00:00	WorkerStarting	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	meta-pipeline
+2026-06-14T07:34:06.2871963+00:00	WorkerStarted	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	36416
+2026-06-14T07:34:06.2877017+00:00	WorkerControlPipe	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	meta-orchestration-80ed10219f3441599c9c86157797c599
+2026-06-14T07:34:06.2880870+00:00	WorkerLog	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail-36416.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail-36416.stderr.log
+2026-06-14T07:34:06.2891545+00:00	WorkerEvent	RDV_Sales_dbo_HS_Customer_Customer	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:06.2916887+00:00	WorkerStarting	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	meta-pipeline
+2026-06-14T07:34:06.4430091+00:00	WorkerStarted	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	29880
+2026-06-14T07:34:06.4434535+00:00	WorkerControlPipe	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	meta-orchestration-818eff10a8074fb99928c5330a892518
+2026-06-14T07:34:06.4438453+00:00	WorkerLog	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader-29880.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader-29880.stderr.log
+2026-06-14T07:34:06.4443601+00:00	WorkerEvent	RDV_Sales_dbo_HS_Customer_Customer	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:06.4454098+00:00	StartPipeline	RDV_Sales_dbo_HS_Customer_Customer	RDV_Sales_dbo_HS_Customer_Customer
+2026-06-14T07:34:06.4462784+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:06.4483178+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:06.4567345+00:00	StartPipeline	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail
+2026-06-14T07:34:06.4937675+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:06.4981590+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:06.5029457+00:00	StartPipeline	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader
+2026-06-14T07:34:07.1911222+00:00	WorkerEvent	RDV_Product_dbo_L_ProductSubcategoryProductCategory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:07.1954574+00:00	WorkerEvent	RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:07.2006727+00:00	GrantTask	RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory	RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory; GrantId=grant-9; Attempt=1
+2026-06-14T07:34:07.2030392+00:00	WorkerEvent	RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:07.2063946+00:00	WorkerEvent	RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:07.5860411+00:00	WorkerEvent	RDV_Sales_dbo_HS_Customer_Customer	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:07.5891915+00:00	WorkerEvent	RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer	TaskReady; ExitCode=0; 
+2026-06-14T07:34:07.5910192+00:00	GrantTask	RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer	RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer; GrantId=grant-10; Attempt=1
+2026-06-14T07:34:07.5935776+00:00	WorkerEvent	RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:07.5947442+00:00	WorkerEvent	RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:07.6856819+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:07.6883944+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail	TaskReady; ExitCode=0; 
+2026-06-14T07:34:07.6897250+00:00	GrantTask	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail; GrantId=grant-11; Attempt=1
+2026-06-14T07:34:07.6906923+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:07.6916809+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:07.7566588+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:07.7590022+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader	TaskReady; ExitCode=0; 
+2026-06-14T07:34:07.7602411+00:00	GrantTask	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader; GrantId=grant-12; Attempt=1
+2026-06-14T07:34:07.7609732+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:07.7619154+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:08.0238396+00:00	WorkerEvent	RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:08.0246701+00:00	TaskSucceeded	RDV_Product_dbo_L_ProductSubcategoryProductCategory.Load_dbo_L_ProductSubcategoryProductCategory	0
+2026-06-14T07:34:08.0268250+00:00	WorkerEvent	RDV_Product_dbo_L_ProductSubcategoryProductCategory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:08.0275103+00:00	PipelineCompleted	RDV_Product_dbo_L_ProductSubcategoryProductCategory	
+2026-06-14T07:34:08.0281940+00:00	WorkerStarting	BDV_Product_dbo_BHS_Product_ProductClassification	meta-pipeline
+2026-06-14T07:34:08.1928969+00:00	WorkerStarted	BDV_Product_dbo_BHS_Product_ProductClassification	25228
+2026-06-14T07:34:08.1933997+00:00	WorkerControlPipe	BDV_Product_dbo_BHS_Product_ProductClassification	meta-orchestration-42af34c8b5e441aea9055d60bcc02c8e
+2026-06-14T07:34:08.1937927+00:00	WorkerLog	BDV_Product_dbo_BHS_Product_ProductClassification	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Product_dbo_BHS_Product_ProductClassification-25228.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Product_dbo_BHS_Product_ProductClassification-25228.stderr.log
+2026-06-14T07:34:08.1942849+00:00	WorkerProcessExited	RDV_Product_dbo_L_ProductSubcategoryProductCategory	ExitCode=0; worker process exited
+2026-06-14T07:34:08.2373622+00:00	WorkerEvent	BDV_Product_dbo_BHS_Product_ProductClassification	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:08.2401912+00:00	WorkerEvent	BDV_Product_dbo_BHS_Product_ProductClassification	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:08.2444586+00:00	StartPipeline	BDV_Product_dbo_BHS_Product_ProductClassification	BDV_Product_dbo_BHS_Product_ProductClassification
+2026-06-14T07:34:09.3489612+00:00	WorkerEvent	BDV_Product_dbo_BHS_Product_ProductClassification	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:09.3524112+00:00	WorkerEvent	BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification	TaskReady; ExitCode=0; 
+2026-06-14T07:34:09.3536610+00:00	GrantTask	BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification	BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification; GrantId=grant-13; Attempt=1
+2026-06-14T07:34:09.3545433+00:00	WorkerEvent	BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:09.3556586+00:00	WorkerEvent	BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:09.9951321+00:00	WorkerEvent	RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:09.9975136+00:00	TaskSucceeded	RDV_Sales_dbo_HS_Customer_Customer.Load_dbo_HS_Customer_Customer	0
+2026-06-14T07:34:10.0037487+00:00	WorkerEvent	RDV_Sales_dbo_HS_Customer_Customer	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:10.0054304+00:00	PipelineCompleted	RDV_Sales_dbo_HS_Customer_Customer	
+2026-06-14T07:34:10.0062613+00:00	WorkerStarting	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	meta-pipeline
+2026-06-14T07:34:10.1766543+00:00	WorkerStarted	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	37664
+2026-06-14T07:34:10.1773807+00:00	WorkerControlPipe	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	meta-orchestration-f64574c7fa72438cb0b716caebd24f10
+2026-06-14T07:34:10.1781653+00:00	WorkerLog	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesPerson_SalesPerson-37664.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesPerson_SalesPerson-37664.stderr.log
+2026-06-14T07:34:10.1792332+00:00	WorkerProcessExited	RDV_Sales_dbo_HS_Customer_Customer	ExitCode=0; worker process exited
+2026-06-14T07:34:10.2159809+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:10.2198081+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:10.2256840+00:00	StartPipeline	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	RDV_Sales_dbo_HS_SalesPerson_SalesPerson
+2026-06-14T07:34:10.3114120+00:00	WorkerEvent	BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:10.3123755+00:00	TaskSucceeded	BDV_Product_dbo_BHS_Product_ProductClassification.Load_dbo_BHS_Product_ProductClassification	0
+2026-06-14T07:34:10.3146360+00:00	WorkerEvent	BDV_Product_dbo_BHS_Product_ProductClassification	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:10.3159623+00:00	PipelineCompleted	BDV_Product_dbo_BHS_Product_ProductClassification	
+2026-06-14T07:34:10.3172827+00:00	WorkerStarting	DW_Mart_awbi_DimProduct	meta-pipeline
+2026-06-14T07:34:10.5140473+00:00	WorkerStarted	DW_Mart_awbi_DimProduct	12996
+2026-06-14T07:34:10.5145508+00:00	WorkerControlPipe	DW_Mart_awbi_DimProduct	meta-orchestration-f8a6c306f44c4394a5362bdfa76c326b
+2026-06-14T07:34:10.5151817+00:00	WorkerLog	DW_Mart_awbi_DimProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimProduct-12996.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimProduct-12996.stderr.log
+2026-06-14T07:34:10.5158050+00:00	WorkerProcessExited	BDV_Product_dbo_BHS_Product_ProductClassification	ExitCode=0; worker process exited
+2026-06-14T07:34:10.5481643+00:00	WorkerEvent	DW_Mart_awbi_DimProduct	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:10.5507781+00:00	WorkerEvent	DW_Mart_awbi_DimProduct	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:10.5547321+00:00	StartPipeline	DW_Mart_awbi_DimProduct	DW_Mart_awbi_DimProduct
+2026-06-14T07:34:11.5573566+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:11.5614782+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson	TaskReady; ExitCode=0; 
+2026-06-14T07:34:11.5636201+00:00	GrantTask	RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson	RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson; GrantId=grant-14; Attempt=1
+2026-06-14T07:34:11.5670150+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:11.5699857+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:11.8069896+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:11.8092120+00:00	TaskSucceeded	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader.Load_dbo_HS_SalesOrderHeader_SalesOrderHeader	0
+2026-06-14T07:34:11.8133243+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:11.8145670+00:00	PipelineCompleted	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	
+2026-06-14T07:34:11.8156842+00:00	WorkerStarting	BDV_Sales_dbo_BH_OrderDate	meta-pipeline
+2026-06-14T07:34:12.0342994+00:00	WorkerStarted	BDV_Sales_dbo_BH_OrderDate	19076
+2026-06-14T07:34:12.0349736+00:00	WorkerControlPipe	BDV_Sales_dbo_BH_OrderDate	meta-orchestration-155ba06247444c48b3fc9fcbb5b00f17
+2026-06-14T07:34:12.0356673+00:00	WorkerLog	BDV_Sales_dbo_BH_OrderDate	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_OrderDate-19076.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_OrderDate-19076.stderr.log
+2026-06-14T07:34:12.0366688+00:00	WorkerEvent	DW_Mart_awbi_DimProduct	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:12.0373983+00:00	WorkerProcessExited	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	ExitCode=0; worker process exited
+2026-06-14T07:34:12.0381793+00:00	WorkerEvent	DW_Mart_awbi_DimProduct.Load_awbi_DimProduct	TaskReady; ExitCode=0; 
+2026-06-14T07:34:12.0394527+00:00	GrantTask	DW_Mart_awbi_DimProduct.Load_awbi_DimProduct	DW_Mart_awbi_DimProduct.Load_awbi_DimProduct; GrantId=grant-15; Attempt=1
+2026-06-14T07:34:12.0405494+00:00	WorkerEvent	DW_Mart_awbi_DimProduct.Load_awbi_DimProduct	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:12.0414610+00:00	WorkerEvent	DW_Mart_awbi_DimProduct.Load_awbi_DimProduct	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:12.0755705+00:00	WorkerEvent	BDV_Sales_dbo_BH_OrderDate	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:12.0810397+00:00	WorkerEvent	BDV_Sales_dbo_BH_OrderDate	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:12.0861901+00:00	StartPipeline	BDV_Sales_dbo_BH_OrderDate	BDV_Sales_dbo_BH_OrderDate
+2026-06-14T07:34:12.5523186+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:12.5532781+00:00	TaskSucceeded	RDV_Sales_dbo_HS_SalesPerson_SalesPerson.Load_dbo_HS_SalesPerson_SalesPerson	0
+2026-06-14T07:34:12.5550149+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:12.5559705+00:00	PipelineCompleted	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	
+2026-06-14T07:34:12.5567394+00:00	WorkerStarting	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	meta-pipeline
+2026-06-14T07:34:12.8114356+00:00	WorkerStarted	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	22024
+2026-06-14T07:34:12.8132000+00:00	WorkerControlPipe	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	meta-orchestration-51aca0fb6b6441ad9ab9829eba04edb0
+2026-06-14T07:34:12.8138090+00:00	WorkerLog	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory-22024.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory-22024.stderr.log
+2026-06-14T07:34:12.8148291+00:00	WorkerProcessExited	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	ExitCode=0; worker process exited
+2026-06-14T07:34:12.8510403+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:12.8570203+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:12.8719898+00:00	StartPipeline	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory
+2026-06-14T07:34:13.4298750+00:00	WorkerEvent	DW_Mart_awbi_DimProduct.Load_awbi_DimProduct	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:13.4317729+00:00	TaskSucceeded	DW_Mart_awbi_DimProduct.Load_awbi_DimProduct	0
+2026-06-14T07:34:13.4341131+00:00	WorkerEvent	DW_Mart_awbi_DimProduct	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:13.4353866+00:00	PipelineCompleted	DW_Mart_awbi_DimProduct	
+2026-06-14T07:34:13.4374478+00:00	WorkerStarting	RDV_Sales_dbo_HS_Store_Store	meta-pipeline
+2026-06-14T07:34:13.6982405+00:00	WorkerStarted	RDV_Sales_dbo_HS_Store_Store	16948
+2026-06-14T07:34:13.6989932+00:00	WorkerControlPipe	RDV_Sales_dbo_HS_Store_Store	meta-orchestration-5a845368e0f2444eaf065469c7e18811
+2026-06-14T07:34:13.6994851+00:00	WorkerLog	RDV_Sales_dbo_HS_Store_Store	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_Store_Store-16948.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_Store_Store-16948.stderr.log
+2026-06-14T07:34:13.7000829+00:00	WorkerEvent	BDV_Sales_dbo_BH_OrderDate	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:13.7019553+00:00	WorkerProcessExited	DW_Mart_awbi_DimProduct	ExitCode=0; worker process exited
+2026-06-14T07:34:13.7032286+00:00	WorkerEvent	BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate	TaskReady; ExitCode=0; 
+2026-06-14T07:34:13.7071367+00:00	GrantTask	BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate	BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate; GrantId=grant-16; Attempt=1
+2026-06-14T07:34:13.7079656+00:00	WorkerEvent	BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:13.7113820+00:00	WorkerEvent	BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:13.7428843+00:00	WorkerEvent	RDV_Sales_dbo_HS_Store_Store	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:13.7482064+00:00	WorkerEvent	RDV_Sales_dbo_HS_Store_Store	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:13.7750894+00:00	StartPipeline	RDV_Sales_dbo_HS_Store_Store	RDV_Sales_dbo_HS_Store_Store
+2026-06-14T07:34:14.5649975+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:14.5700179+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:14.5732182+00:00	GrantTask	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory; GrantId=grant-17; Attempt=1
+2026-06-14T07:34:14.5744656+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:14.5781002+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:15.3591404+00:00	WorkerEvent	RDV_Sales_dbo_HS_Store_Store	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:15.3626130+00:00	WorkerEvent	RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store	TaskReady; ExitCode=0; 
+2026-06-14T07:34:15.3659920+00:00	GrantTask	RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store	RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store; GrantId=grant-18; Attempt=1
+2026-06-14T07:34:15.3684042+00:00	WorkerEvent	RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:15.3735798+00:00	WorkerEvent	RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:15.3898028+00:00	WorkerEvent	BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:15.3912956+00:00	TaskSucceeded	BDV_Sales_dbo_BH_OrderDate.Load_dbo_BH_OrderDate	0
+2026-06-14T07:34:15.3971983+00:00	WorkerEvent	BDV_Sales_dbo_BH_OrderDate	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:15.3985217+00:00	PipelineCompleted	BDV_Sales_dbo_BH_OrderDate	
+2026-06-14T07:34:15.4001942+00:00	WorkerStarting	DW_Mart_awbi_DimOrderDate	meta-pipeline
+2026-06-14T07:34:15.6527444+00:00	WorkerStarted	DW_Mart_awbi_DimOrderDate	36504
+2026-06-14T07:34:15.6538009+00:00	WorkerControlPipe	DW_Mart_awbi_DimOrderDate	meta-orchestration-350fe87765c24ccba2edf4508bd1f43a
+2026-06-14T07:34:15.6550838+00:00	WorkerLog	DW_Mart_awbi_DimOrderDate	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimOrderDate-36504.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimOrderDate-36504.stderr.log
+2026-06-14T07:34:15.6561813+00:00	WorkerProcessExited	BDV_Sales_dbo_BH_OrderDate	ExitCode=0; worker process exited
+2026-06-14T07:34:15.7034179+00:00	WorkerEvent	DW_Mart_awbi_DimOrderDate	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:15.7130564+00:00	WorkerEvent	DW_Mart_awbi_DimOrderDate	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:15.7189336+00:00	StartPipeline	DW_Mart_awbi_DimOrderDate	DW_Mart_awbi_DimOrderDate
+2026-06-14T07:34:15.7289041+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:15.7310182+00:00	TaskSucceeded	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory.Load_dbo_HS_SalesTerritory_SalesTerritory	0
+2026-06-14T07:34:15.7365352+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:15.7378460+00:00	PipelineCompleted	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	
+2026-06-14T07:34:15.7397172+00:00	WorkerStarting	RDV_Sales_dbo_H_Customer	meta-pipeline
+2026-06-14T07:34:16.0090164+00:00	WorkerStarted	RDV_Sales_dbo_H_Customer	36364
+2026-06-14T07:34:16.0104232+00:00	WorkerControlPipe	RDV_Sales_dbo_H_Customer	meta-orchestration-24e3c25718d94675a2d792e515f191ba
+2026-06-14T07:34:16.0111612+00:00	WorkerLog	RDV_Sales_dbo_H_Customer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_Customer-36364.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_Customer-36364.stderr.log
+2026-06-14T07:34:16.0117793+00:00	WorkerProcessExited	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	ExitCode=0; worker process exited
+2026-06-14T07:34:16.0651012+00:00	WorkerEvent	RDV_Sales_dbo_H_Customer	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:16.0704012+00:00	WorkerEvent	RDV_Sales_dbo_H_Customer	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:16.0787190+00:00	StartPipeline	RDV_Sales_dbo_H_Customer	RDV_Sales_dbo_H_Customer
+2026-06-14T07:34:16.6666920+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:16.6675756+00:00	TaskSucceeded	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail.Load_dbo_HS_SalesOrderDetail_SalesOrderDetail	0
+2026-06-14T07:34:16.6721623+00:00	WorkerEvent	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:16.6730900+00:00	PipelineCompleted	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	
+2026-06-14T07:34:16.6743924+00:00	WorkerStarting	RDV_Sales_dbo_H_SalesOrderDetail	meta-pipeline
+2026-06-14T07:34:16.9261273+00:00	WorkerStarted	RDV_Sales_dbo_H_SalesOrderDetail	19764
+2026-06-14T07:34:16.9272217+00:00	WorkerControlPipe	RDV_Sales_dbo_H_SalesOrderDetail	meta-orchestration-3a11c873a93544ec804c0054bf13bcd1
+2026-06-14T07:34:16.9279773+00:00	WorkerLog	RDV_Sales_dbo_H_SalesOrderDetail	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesOrderDetail-19764.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesOrderDetail-19764.stderr.log
+2026-06-14T07:34:16.9288531+00:00	WorkerEvent	RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:16.9302737+00:00	TaskSucceeded	RDV_Sales_dbo_HS_Store_Store.Load_dbo_HS_Store_Store	0
+2026-06-14T07:34:16.9308775+00:00	WorkerProcessExited	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	ExitCode=0; worker process exited
+2026-06-14T07:34:16.9313479+00:00	WorkerProcessExited	RDV_Sales_dbo_HS_Store_Store	ExitCode=0; worker process exited
+2026-06-14T07:34:16.9321320+00:00	PipelineCompleted	RDV_Sales_dbo_HS_Store_Store	
+2026-06-14T07:34:16.9330968+00:00	WorkerStarting	RDV_Sales_dbo_H_SalesOrderHeader	meta-pipeline
+2026-06-14T07:34:17.1563854+00:00	WorkerStarted	RDV_Sales_dbo_H_SalesOrderHeader	31368
+2026-06-14T07:34:17.1580594+00:00	WorkerControlPipe	RDV_Sales_dbo_H_SalesOrderHeader	meta-orchestration-2132d1e073684120a630a877fc86bc20
+2026-06-14T07:34:17.1588780+00:00	WorkerLog	RDV_Sales_dbo_H_SalesOrderHeader	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesOrderHeader-31368.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesOrderHeader-31368.stderr.log
+2026-06-14T07:34:17.1594363+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderDetail	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:17.1605338+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderDetail	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:17.1675163+00:00	StartPipeline	RDV_Sales_dbo_H_SalesOrderDetail	RDV_Sales_dbo_H_SalesOrderDetail
+2026-06-14T07:34:17.1985674+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderHeader	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:17.2047702+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderHeader	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:17.2140494+00:00	StartPipeline	RDV_Sales_dbo_H_SalesOrderHeader	RDV_Sales_dbo_H_SalesOrderHeader
+2026-06-14T07:34:17.3437550+00:00	WorkerEvent	DW_Mart_awbi_DimOrderDate	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:17.3490444+00:00	WorkerEvent	DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate	TaskReady; ExitCode=0; 
+2026-06-14T07:34:17.3525689+00:00	GrantTask	DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate	DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate; GrantId=grant-19; Attempt=1
+2026-06-14T07:34:17.3543738+00:00	WorkerEvent	DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:17.3584680+00:00	WorkerEvent	DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:17.7169715+00:00	WorkerEvent	RDV_Sales_dbo_H_Customer	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:17.7196941+00:00	WorkerEvent	RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer	TaskReady; ExitCode=0; 
+2026-06-14T07:34:17.7225298+00:00	GrantTask	RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer	RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer; GrantId=grant-20; Attempt=1
+2026-06-14T07:34:17.7246574+00:00	WorkerEvent	RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:17.7262674+00:00	WorkerEvent	RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:18.2658413+00:00	WorkerEvent	DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:18.2668030+00:00	TaskSucceeded	DW_Mart_awbi_DimOrderDate.Load_awbi_DimOrderDate	0
+2026-06-14T07:34:18.2700029+00:00	WorkerEvent	DW_Mart_awbi_DimOrderDate	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:18.2712566+00:00	PipelineCompleted	DW_Mart_awbi_DimOrderDate	
+2026-06-14T07:34:18.2720450+00:00	WorkerStarting	RDV_Sales_dbo_H_SalesPerson	meta-pipeline
+2026-06-14T07:34:18.4983863+00:00	WorkerStarted	RDV_Sales_dbo_H_SalesPerson	36652
+2026-06-14T07:34:18.4991063+00:00	WorkerControlPipe	RDV_Sales_dbo_H_SalesPerson	meta-orchestration-0a22c3d36dad4737a934342e3e54c823
+2026-06-14T07:34:18.4997284+00:00	WorkerLog	RDV_Sales_dbo_H_SalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesPerson-36652.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesPerson-36652.stderr.log
+2026-06-14T07:34:18.5004276+00:00	WorkerProcessExited	DW_Mart_awbi_DimOrderDate	ExitCode=0; worker process exited
+2026-06-14T07:34:18.5573066+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesPerson	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:18.5618883+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesPerson	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:18.5686594+00:00	StartPipeline	RDV_Sales_dbo_H_SalesPerson	RDV_Sales_dbo_H_SalesPerson
+2026-06-14T07:34:18.6647574+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderDetail	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:18.6678061+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail	TaskReady; ExitCode=0; 
+2026-06-14T07:34:18.6709318+00:00	GrantTask	RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail	RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail; GrantId=grant-21; Attempt=1
+2026-06-14T07:34:18.6720668+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:18.6736004+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:18.7130448+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderHeader	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:18.7175391+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader	TaskReady; ExitCode=0; 
+2026-06-14T07:34:18.7195075+00:00	GrantTask	RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader	RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader; GrantId=grant-22; Attempt=1
+2026-06-14T07:34:18.7213773+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:18.7254003+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:19.7805347+00:00	WorkerEvent	RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:19.7818881+00:00	TaskSucceeded	RDV_Sales_dbo_H_Customer.Load_dbo_H_Customer	0
+2026-06-14T07:34:19.7877147+00:00	WorkerEvent	RDV_Sales_dbo_H_Customer	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:19.7915827+00:00	PipelineCompleted	RDV_Sales_dbo_H_Customer	
+2026-06-14T07:34:19.7929394+00:00	WorkerStarting	BDV_Sales_dbo_BH_Customer	meta-pipeline
+2026-06-14T07:34:20.0181555+00:00	WorkerStarted	BDV_Sales_dbo_BH_Customer	27948
+2026-06-14T07:34:20.0198593+00:00	WorkerControlPipe	BDV_Sales_dbo_BH_Customer	meta-orchestration-db77d8dc576d432eaa4b22c46916c9f1
+2026-06-14T07:34:20.0208479+00:00	WorkerLog	BDV_Sales_dbo_BH_Customer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_Customer-27948.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_Customer-27948.stderr.log
+2026-06-14T07:34:20.0214520+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesPerson	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:20.0225025+00:00	WorkerProcessExited	RDV_Sales_dbo_H_Customer	ExitCode=0; worker process exited
+2026-06-14T07:34:20.0231433+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson	TaskReady; ExitCode=0; 
+2026-06-14T07:34:20.0245218+00:00	GrantTask	RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson	RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson; GrantId=grant-23; Attempt=1
+2026-06-14T07:34:20.0283383+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:20.0301098+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:20.0747726+00:00	WorkerEvent	BDV_Sales_dbo_BH_Customer	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:20.0825142+00:00	WorkerEvent	BDV_Sales_dbo_BH_Customer	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:20.0894098+00:00	StartPipeline	BDV_Sales_dbo_BH_Customer	BDV_Sales_dbo_BH_Customer
+2026-06-14T07:34:20.9903608+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:20.9918225+00:00	TaskSucceeded	RDV_Sales_dbo_H_SalesPerson.Load_dbo_H_SalesPerson	0
+2026-06-14T07:34:20.9943909+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesPerson	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:20.9960232+00:00	PipelineCompleted	RDV_Sales_dbo_H_SalesPerson	
+2026-06-14T07:34:20.9971314+00:00	WorkerStarting	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	meta-pipeline
+2026-06-14T07:34:21.2236534+00:00	WorkerStarted	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	21188
+2026-06-14T07:34:21.2243093+00:00	WorkerControlPipe	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	meta-orchestration-0b89ca33a3d74632ba21f89b477ff107
+2026-06-14T07:34:21.2249333+00:00	WorkerLog	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile-21188.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile-21188.stderr.log
+2026-06-14T07:34:21.2255745+00:00	WorkerProcessExited	RDV_Sales_dbo_H_SalesPerson	ExitCode=0; worker process exited
+2026-06-14T07:34:21.2676882+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:21.2726106+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:21.2798592+00:00	StartPipeline	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile
+2026-06-14T07:34:21.5718657+00:00	WorkerEvent	BDV_Sales_dbo_BH_Customer	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:21.5757320+00:00	WorkerEvent	BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer	TaskReady; ExitCode=0; 
+2026-06-14T07:34:21.5786708+00:00	GrantTask	BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer	BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer; GrantId=grant-24; Attempt=1
+2026-06-14T07:34:21.5803805+00:00	WorkerEvent	BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:21.5821937+00:00	WorkerEvent	BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:21.6736264+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:21.6756131+00:00	TaskSucceeded	RDV_Sales_dbo_H_SalesOrderHeader.Load_dbo_H_SalesOrderHeader	0
+2026-06-14T07:34:21.6803523+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderHeader	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:21.6828355+00:00	PipelineCompleted	RDV_Sales_dbo_H_SalesOrderHeader	
+2026-06-14T07:34:21.6845710+00:00	WorkerStarting	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	meta-pipeline
+2026-06-14T07:34:21.9266952+00:00	WorkerStarted	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	37624
+2026-06-14T07:34:21.9279241+00:00	WorkerControlPipe	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	meta-orchestration-bba4a24006ea465488248427445eb15d
+2026-06-14T07:34:21.9288054+00:00	WorkerLog	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile-37624.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile-37624.stderr.log
+2026-06-14T07:34:21.9301861+00:00	WorkerProcessExited	RDV_Sales_dbo_H_SalesOrderHeader	ExitCode=0; worker process exited
+2026-06-14T07:34:21.9737870+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:21.9776492+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:21.9837050+00:00	StartPipeline	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile
+2026-06-14T07:34:22.9031321+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:22.9064171+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile	TaskReady; ExitCode=0; 
+2026-06-14T07:34:22.9087964+00:00	GrantTask	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile; GrantId=grant-25; Attempt=1
+2026-06-14T07:34:22.9125888+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:22.9149847+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:23.6188680+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:23.6219640+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile	TaskReady; ExitCode=0; 
+2026-06-14T07:34:23.6236607+00:00	GrantTask	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile; GrantId=grant-26; Attempt=1
+2026-06-14T07:34:23.6253671+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:23.6272091+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:23.8342899+00:00	WorkerEvent	BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:23.8352628+00:00	TaskSucceeded	BDV_Sales_dbo_BH_Customer.Load_dbo_BH_Customer	0
+2026-06-14T07:34:23.8385630+00:00	WorkerEvent	BDV_Sales_dbo_BH_Customer	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:23.8400940+00:00	PipelineCompleted	BDV_Sales_dbo_BH_Customer	
+2026-06-14T07:34:23.8412638+00:00	WorkerStarting	BDV_Sales_dbo_BH_SalesOrder	meta-pipeline
+2026-06-14T07:34:23.9922878+00:00	WorkerStarted	BDV_Sales_dbo_BH_SalesOrder	34332
+2026-06-14T07:34:23.9932196+00:00	WorkerControlPipe	BDV_Sales_dbo_BH_SalesOrder	meta-orchestration-e1a10de52c89451887cf70f5a0b321ef
+2026-06-14T07:34:23.9938414+00:00	WorkerLog	BDV_Sales_dbo_BH_SalesOrder	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesOrder-34332.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesOrder-34332.stderr.log
+2026-06-14T07:34:23.9946933+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:23.9960657+00:00	TaskSucceeded	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile.Load_dbo_BHS_SalesPerson_SalesPersonProfile	0
+2026-06-14T07:34:23.9968757+00:00	WorkerProcessExited	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	ExitCode=0; worker process exited
+2026-06-14T07:34:23.9976701+00:00	PipelineCompleted	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	
+2026-06-14T07:34:23.9982677+00:00	WorkerProcessExited	BDV_Sales_dbo_BH_Customer	ExitCode=0; worker process exited
+2026-06-14T07:34:23.9990108+00:00	WorkerStarting	BDV_Sales_dbo_BH_SalesPerson	meta-pipeline
+2026-06-14T07:34:24.1611119+00:00	WorkerStarted	BDV_Sales_dbo_BH_SalesPerson	17800
+2026-06-14T07:34:24.1622017+00:00	WorkerControlPipe	BDV_Sales_dbo_BH_SalesPerson	meta-orchestration-172bad5f40d540ce81c280561b17ac46
+2026-06-14T07:34:24.1628894+00:00	WorkerLog	BDV_Sales_dbo_BH_SalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesPerson-17800.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesPerson-17800.stderr.log
+2026-06-14T07:34:24.1636485+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrder	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:24.1650743+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrder	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:24.1701800+00:00	StartPipeline	BDV_Sales_dbo_BH_SalesOrder	BDV_Sales_dbo_BH_SalesOrder
+2026-06-14T07:34:24.1950192+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesPerson	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:24.1977171+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesPerson	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:24.2038541+00:00	StartPipeline	BDV_Sales_dbo_BH_SalesPerson	BDV_Sales_dbo_BH_SalesPerson
+2026-06-14T07:34:25.2723436+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesPerson	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:25.2753781+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson	TaskReady; ExitCode=0; 
+2026-06-14T07:34:25.2780696+00:00	GrantTask	BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson	BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson; GrantId=grant-27; Attempt=1
+2026-06-14T07:34:25.2799694+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:25.2815398+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:25.2827545+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrder	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:25.2870838+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder	TaskReady; ExitCode=0; 
+2026-06-14T07:34:25.2888145+00:00	GrantTask	BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder	BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder; GrantId=grant-28; Attempt=1
+2026-06-14T07:34:25.2901424+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:25.2913679+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:25.9016226+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:25.9026626+00:00	TaskSucceeded	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile.Load_dbo_BHS_SalesOrder_SalesOrderProfile	0
+2026-06-14T07:34:25.9059356+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:25.9079752+00:00	PipelineCompleted	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	
+2026-06-14T07:34:25.9093745+00:00	WorkerStarting	BDV_Sales_dbo_BL_SalesOrderDate	meta-pipeline
+2026-06-14T07:34:26.0691633+00:00	WorkerStarted	BDV_Sales_dbo_BL_SalesOrderDate	34516
+2026-06-14T07:34:26.0698280+00:00	WorkerControlPipe	BDV_Sales_dbo_BL_SalesOrderDate	meta-orchestration-7ca12de69c184d0384a7a48a0b9e2d9a
+2026-06-14T07:34:26.0703477+00:00	WorkerLog	BDV_Sales_dbo_BL_SalesOrderDate	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderDate-34516.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderDate-34516.stderr.log
+2026-06-14T07:34:26.0709237+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:26.0722903+00:00	TaskSucceeded	BDV_Sales_dbo_BH_SalesPerson.Load_dbo_BH_SalesPerson	0
+2026-06-14T07:34:26.0728601+00:00	WorkerProcessExited	BDV_Sales_dbo_BH_SalesPerson	ExitCode=0; worker process exited
+2026-06-14T07:34:26.0735654+00:00	PipelineCompleted	BDV_Sales_dbo_BH_SalesPerson	
+2026-06-14T07:34:26.0740121+00:00	WorkerProcessExited	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	ExitCode=0; worker process exited
+2026-06-14T07:34:26.0948019+00:00	WorkerStarting	RDV_Sales_dbo_H_SalesTerritory	meta-pipeline
+2026-06-14T07:34:26.2459570+00:00	WorkerStarted	RDV_Sales_dbo_H_SalesTerritory	20104
+2026-06-14T07:34:26.2470244+00:00	WorkerControlPipe	RDV_Sales_dbo_H_SalesTerritory	meta-orchestration-00049e163a4e4586a66778f03f6fd0be
+2026-06-14T07:34:26.2476948+00:00	WorkerLog	RDV_Sales_dbo_H_SalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesTerritory-20104.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesTerritory-20104.stderr.log
+2026-06-14T07:34:26.2486052+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderDate	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:26.2503805+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderDate	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:26.2557288+00:00	StartPipeline	BDV_Sales_dbo_BL_SalesOrderDate	BDV_Sales_dbo_BL_SalesOrderDate
+2026-06-14T07:34:26.2827078+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesTerritory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:26.2851812+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesTerritory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:26.2900094+00:00	StartPipeline	RDV_Sales_dbo_H_SalesTerritory	RDV_Sales_dbo_H_SalesTerritory
+2026-06-14T07:34:26.4119375+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:26.4138174+00:00	TaskSucceeded	RDV_Sales_dbo_H_SalesOrderDetail.Load_dbo_H_SalesOrderDetail	0
+2026-06-14T07:34:26.4172085+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesOrderDetail	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:26.4181010+00:00	PipelineCompleted	RDV_Sales_dbo_H_SalesOrderDetail	
+2026-06-14T07:34:26.4188094+00:00	WorkerStarting	BDV_Sales_dbo_BH_SalesOrderLine	meta-pipeline
+2026-06-14T07:34:26.6386863+00:00	WorkerStarted	BDV_Sales_dbo_BH_SalesOrderLine	4960
+2026-06-14T07:34:26.6396459+00:00	WorkerControlPipe	BDV_Sales_dbo_BH_SalesOrderLine	meta-orchestration-d91a3368fefd4e478263d25c45189eb9
+2026-06-14T07:34:26.6402163+00:00	WorkerLog	BDV_Sales_dbo_BH_SalesOrderLine	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesOrderLine-4960.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesOrderLine-4960.stderr.log
+2026-06-14T07:34:26.6412288+00:00	WorkerProcessExited	RDV_Sales_dbo_H_SalesOrderDetail	ExitCode=0; worker process exited
+2026-06-14T07:34:26.6813516+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrderLine	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:26.6868743+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrderLine	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:26.6923616+00:00	StartPipeline	BDV_Sales_dbo_BH_SalesOrderLine	BDV_Sales_dbo_BH_SalesOrderLine
+2026-06-14T07:34:27.7475591+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderDate	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:27.7532623+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate	TaskReady; ExitCode=0; 
+2026-06-14T07:34:27.7563283+00:00	GrantTask	BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate	BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate; GrantId=grant-29; Attempt=1
+2026-06-14T07:34:27.7572680+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:27.7588628+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:27.7621087+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesTerritory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:27.7659265+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:27.7691467+00:00	GrantTask	RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory	RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory; GrantId=grant-30; Attempt=1
+2026-06-14T07:34:27.7708441+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:27.7726687+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:27.8117297+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:27.8127317+00:00	TaskSucceeded	BDV_Sales_dbo_BH_SalesOrder.Load_dbo_BH_SalesOrder	0
+2026-06-14T07:34:27.8168982+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrder	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:27.8182997+00:00	PipelineCompleted	BDV_Sales_dbo_BH_SalesOrder	
+2026-06-14T07:34:27.8197378+00:00	WorkerStarting	RDV_Sales_dbo_H_SpecialOfferProduct	meta-pipeline
+2026-06-14T07:34:28.0107381+00:00	WorkerStarted	RDV_Sales_dbo_H_SpecialOfferProduct	33856
+2026-06-14T07:34:28.0117484+00:00	WorkerControlPipe	RDV_Sales_dbo_H_SpecialOfferProduct	meta-orchestration-afe901263f114360898fa735941d1402
+2026-06-14T07:34:28.0125028+00:00	WorkerLog	RDV_Sales_dbo_H_SpecialOfferProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SpecialOfferProduct-33856.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SpecialOfferProduct-33856.stderr.log
+2026-06-14T07:34:28.0134869+00:00	WorkerProcessExited	BDV_Sales_dbo_BH_SalesOrder	ExitCode=0; worker process exited
+2026-06-14T07:34:28.0488852+00:00	WorkerEvent	RDV_Sales_dbo_H_SpecialOfferProduct	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:28.0527320+00:00	WorkerEvent	RDV_Sales_dbo_H_SpecialOfferProduct	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:28.0597002+00:00	StartPipeline	RDV_Sales_dbo_H_SpecialOfferProduct	RDV_Sales_dbo_H_SpecialOfferProduct
+2026-06-14T07:34:28.1678323+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrderLine	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:28.1710075+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine	TaskReady; ExitCode=0; 
+2026-06-14T07:34:28.1734033+00:00	GrantTask	BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine	BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine; GrantId=grant-31; Attempt=1
+2026-06-14T07:34:28.1756852+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:28.1776329+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:28.5421509+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:28.5434795+00:00	TaskSucceeded	RDV_Sales_dbo_H_SalesTerritory.Load_dbo_H_SalesTerritory	0
+2026-06-14T07:34:28.5454361+00:00	WorkerEvent	RDV_Sales_dbo_H_SalesTerritory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:28.5472032+00:00	PipelineCompleted	RDV_Sales_dbo_H_SalesTerritory	
+2026-06-14T07:34:28.5493177+00:00	WorkerStarting	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	meta-pipeline
+2026-06-14T07:34:28.7164380+00:00	WorkerStarted	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	26320
+2026-06-14T07:34:28.7171520+00:00	WorkerControlPipe	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	meta-orchestration-77407a52b07f4a14a4adeb59e60d5afb
+2026-06-14T07:34:28.7178353+00:00	WorkerLog	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile-26320.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile-26320.stderr.log
+2026-06-14T07:34:28.7183965+00:00	WorkerProcessExited	RDV_Sales_dbo_H_SalesTerritory	ExitCode=0; worker process exited
+2026-06-14T07:34:28.7524903+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:28.7559151+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:28.7603753+00:00	StartPipeline	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile
+2026-06-14T07:34:29.1661398+00:00	WorkerEvent	RDV_Sales_dbo_H_SpecialOfferProduct	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:29.1693348+00:00	WorkerEvent	RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct	TaskReady; ExitCode=0; 
+2026-06-14T07:34:29.1709789+00:00	GrantTask	RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct	RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct; GrantId=grant-32; Attempt=1
+2026-06-14T07:34:29.1731441+00:00	WorkerEvent	RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:29.1748958+00:00	WorkerEvent	RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:29.9744518+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:29.9773486+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile	TaskReady; ExitCode=0; 
+2026-06-14T07:34:29.9795872+00:00	GrantTask	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile; GrantId=grant-33; Attempt=1
+2026-06-14T07:34:29.9813648+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:29.9829719+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:30.0313701+00:00	WorkerEvent	RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:30.0322595+00:00	TaskSucceeded	RDV_Sales_dbo_H_SpecialOfferProduct.Load_dbo_H_SpecialOfferProduct	0
+2026-06-14T07:34:30.0352366+00:00	WorkerEvent	RDV_Sales_dbo_H_SpecialOfferProduct	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:30.0367559+00:00	PipelineCompleted	RDV_Sales_dbo_H_SpecialOfferProduct	
+2026-06-14T07:34:30.0377317+00:00	WorkerStarting	BDV_Sales_dbo_BH_SalesTerritory	meta-pipeline
+2026-06-14T07:34:30.2637884+00:00	WorkerStarted	BDV_Sales_dbo_BH_SalesTerritory	2084
+2026-06-14T07:34:30.2643285+00:00	WorkerControlPipe	BDV_Sales_dbo_BH_SalesTerritory	meta-orchestration-d775e3d15eda4156a2e571646991abbc
+2026-06-14T07:34:30.2647531+00:00	WorkerLog	BDV_Sales_dbo_BH_SalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesTerritory-2084.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesTerritory-2084.stderr.log
+2026-06-14T07:34:30.2652943+00:00	WorkerProcessExited	RDV_Sales_dbo_H_SpecialOfferProduct	ExitCode=0; worker process exited
+2026-06-14T07:34:30.3164741+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesTerritory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:30.3237394+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesTerritory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:30.3293774+00:00	StartPipeline	BDV_Sales_dbo_BH_SalesTerritory	BDV_Sales_dbo_BH_SalesTerritory
+2026-06-14T07:34:30.4933651+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:30.4943530+00:00	TaskSucceeded	BDV_Sales_dbo_BL_SalesOrderDate.Load_dbo_BL_SalesOrderDate	0
+2026-06-14T07:34:30.4970353+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderDate	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:30.4978911+00:00	PipelineCompleted	BDV_Sales_dbo_BL_SalesOrderDate	
+2026-06-14T07:34:30.4988061+00:00	WorkerStarting	RDV_Sales_dbo_H_Store	meta-pipeline
+2026-06-14T07:34:30.7025613+00:00	WorkerStarted	RDV_Sales_dbo_H_Store	17568
+2026-06-14T07:34:30.7036511+00:00	WorkerControlPipe	RDV_Sales_dbo_H_Store	meta-orchestration-baf1d988baeb43b6a9c22b7aa9e2645d
+2026-06-14T07:34:30.7053301+00:00	WorkerLog	RDV_Sales_dbo_H_Store	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_Store-17568.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_Store-17568.stderr.log
+2026-06-14T07:34:30.7076982+00:00	WorkerProcessExited	BDV_Sales_dbo_BL_SalesOrderDate	ExitCode=0; worker process exited
+2026-06-14T07:34:30.7414118+00:00	WorkerEvent	RDV_Sales_dbo_H_Store	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:30.7443198+00:00	WorkerEvent	RDV_Sales_dbo_H_Store	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:30.7518848+00:00	StartPipeline	RDV_Sales_dbo_H_Store	RDV_Sales_dbo_H_Store
+2026-06-14T07:34:30.9128724+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:30.9137206+00:00	TaskSucceeded	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile.Load_dbo_BHS_SalesTerritory_SalesTerritoryProfile	0
+2026-06-14T07:34:30.9163818+00:00	WorkerEvent	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:30.9179300+00:00	PipelineCompleted	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	
+2026-06-14T07:34:30.9192176+00:00	WorkerStarting	RDV_Sales_dbo_L_CustomerSalesTerritory	meta-pipeline
+2026-06-14T07:34:31.0761605+00:00	WorkerStarted	RDV_Sales_dbo_L_CustomerSalesTerritory	37620
+2026-06-14T07:34:31.0766562+00:00	WorkerControlPipe	RDV_Sales_dbo_L_CustomerSalesTerritory	meta-orchestration-0be17da27663443796b770edaec0fe43
+2026-06-14T07:34:31.0770882+00:00	WorkerLog	RDV_Sales_dbo_L_CustomerSalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_CustomerSalesTerritory-37620.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_CustomerSalesTerritory-37620.stderr.log
+2026-06-14T07:34:31.0776064+00:00	WorkerProcessExited	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	ExitCode=0; worker process exited
+2026-06-14T07:34:31.1262269+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerSalesTerritory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:31.1311684+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerSalesTerritory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:31.1372411+00:00	StartPipeline	RDV_Sales_dbo_L_CustomerSalesTerritory	RDV_Sales_dbo_L_CustomerSalesTerritory
+2026-06-14T07:34:31.5167897+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesTerritory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:31.5213334+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:31.5238943+00:00	GrantTask	BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory	BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory; GrantId=grant-34; Attempt=1
+2026-06-14T07:34:31.5275693+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:31.5297994+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:31.9069956+00:00	WorkerEvent	RDV_Sales_dbo_H_Store	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:31.9108434+00:00	WorkerEvent	RDV_Sales_dbo_H_Store.Load_dbo_H_Store	TaskReady; ExitCode=0; 
+2026-06-14T07:34:31.9131675+00:00	GrantTask	RDV_Sales_dbo_H_Store.Load_dbo_H_Store	RDV_Sales_dbo_H_Store.Load_dbo_H_Store; GrantId=grant-35; Attempt=1
+2026-06-14T07:34:31.9159500+00:00	WorkerEvent	RDV_Sales_dbo_H_Store.Load_dbo_H_Store	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:31.9173591+00:00	WorkerEvent	RDV_Sales_dbo_H_Store.Load_dbo_H_Store	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:32.2854257+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerSalesTerritory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:32.2886438+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:32.2903784+00:00	GrantTask	RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory	RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory; GrantId=grant-36; Attempt=1
+2026-06-14T07:34:32.2911343+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:32.2923739+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:32.3362606+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:32.3379341+00:00	TaskSucceeded	BDV_Sales_dbo_BH_SalesTerritory.Load_dbo_BH_SalesTerritory	0
+2026-06-14T07:34:32.3405885+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesTerritory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:32.3419142+00:00	PipelineCompleted	BDV_Sales_dbo_BH_SalesTerritory	
+2026-06-14T07:34:32.3427491+00:00	WorkerStarting	DW_Mart_awbi_DimSalesTerritory	meta-pipeline
+2026-06-14T07:34:32.5092402+00:00	WorkerStarted	DW_Mart_awbi_DimSalesTerritory	13068
+2026-06-14T07:34:32.5099971+00:00	WorkerControlPipe	DW_Mart_awbi_DimSalesTerritory	meta-orchestration-7d8d85d01b2647c091e2c83a542e0cc7
+2026-06-14T07:34:32.5106456+00:00	WorkerLog	DW_Mart_awbi_DimSalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimSalesTerritory-13068.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimSalesTerritory-13068.stderr.log
+2026-06-14T07:34:32.5112793+00:00	WorkerProcessExited	BDV_Sales_dbo_BH_SalesTerritory	ExitCode=0; worker process exited
+2026-06-14T07:34:32.5528825+00:00	WorkerEvent	DW_Mart_awbi_DimSalesTerritory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:32.5554698+00:00	WorkerEvent	DW_Mart_awbi_DimSalesTerritory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:32.5634405+00:00	StartPipeline	DW_Mart_awbi_DimSalesTerritory	DW_Mart_awbi_DimSalesTerritory
+2026-06-14T07:34:32.9342318+00:00	WorkerEvent	RDV_Sales_dbo_H_Store.Load_dbo_H_Store	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:32.9386215+00:00	TaskSucceeded	RDV_Sales_dbo_H_Store.Load_dbo_H_Store	0
+2026-06-14T07:34:32.9422243+00:00	WorkerEvent	RDV_Sales_dbo_H_Store	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:32.9434705+00:00	PipelineCompleted	RDV_Sales_dbo_H_Store	
+2026-06-14T07:34:32.9504370+00:00	WorkerStarting	BDV_Sales_dbo_BHS_Store_StoreProfile	meta-pipeline
+2026-06-14T07:34:33.2049082+00:00	WorkerStarted	BDV_Sales_dbo_BHS_Store_StoreProfile	28340
+2026-06-14T07:34:33.2058315+00:00	WorkerControlPipe	BDV_Sales_dbo_BHS_Store_StoreProfile	meta-orchestration-3046a1e8eef04ffa9327bc10add475ce
+2026-06-14T07:34:33.2063986+00:00	WorkerLog	BDV_Sales_dbo_BHS_Store_StoreProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_Store_StoreProfile-28340.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_Store_StoreProfile-28340.stderr.log
+2026-06-14T07:34:33.2070832+00:00	WorkerProcessExited	RDV_Sales_dbo_H_Store	ExitCode=0; worker process exited
+2026-06-14T07:34:33.2503071+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Store_StoreProfile	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:33.2549620+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Store_StoreProfile	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:33.2602704+00:00	StartPipeline	BDV_Sales_dbo_BHS_Store_StoreProfile	BDV_Sales_dbo_BHS_Store_StoreProfile
+2026-06-14T07:34:34.0821723+00:00	WorkerEvent	DW_Mart_awbi_DimSalesTerritory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:34.0862812+00:00	WorkerEvent	DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:34.0883023+00:00	GrantTask	DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory	DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory; GrantId=grant-37; Attempt=1
+2026-06-14T07:34:34.0891404+00:00	WorkerEvent	DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:34.0900372+00:00	WorkerEvent	DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:34.6210357+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:34.6364068+00:00	TaskSucceeded	RDV_Sales_dbo_L_CustomerSalesTerritory.Load_dbo_L_CustomerSalesTerritory	0
+2026-06-14T07:34:34.6396015+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerSalesTerritory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:34.6407981+00:00	PipelineCompleted	RDV_Sales_dbo_L_CustomerSalesTerritory	
+2026-06-14T07:34:34.6416800+00:00	WorkerStarting	BDV_Sales_dbo_BH_Store	meta-pipeline
+2026-06-14T07:34:34.8212658+00:00	WorkerStarted	BDV_Sales_dbo_BH_Store	33524
+2026-06-14T07:34:34.8220837+00:00	WorkerControlPipe	BDV_Sales_dbo_BH_Store	meta-orchestration-93e11bcdb630401f9cb8e0016863b59a
+2026-06-14T07:34:34.8225494+00:00	WorkerLog	BDV_Sales_dbo_BH_Store	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_Store-33524.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_Store-33524.stderr.log
+2026-06-14T07:34:34.8231599+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Store_StoreProfile	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:34.8239861+00:00	WorkerProcessExited	RDV_Sales_dbo_L_CustomerSalesTerritory	ExitCode=0; worker process exited
+2026-06-14T07:34:34.8246090+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile	TaskReady; ExitCode=0; 
+2026-06-14T07:34:34.8256931+00:00	GrantTask	BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile	BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile; GrantId=grant-38; Attempt=1
+2026-06-14T07:34:34.8265887+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:34.8281337+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:34.8591273+00:00	WorkerEvent	BDV_Sales_dbo_BH_Store	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:34.8613702+00:00	WorkerEvent	BDV_Sales_dbo_BH_Store	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:34.8683929+00:00	StartPipeline	BDV_Sales_dbo_BH_Store	BDV_Sales_dbo_BH_Store
+2026-06-14T07:34:34.9107588+00:00	WorkerEvent	DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:34.9124853+00:00	TaskSucceeded	DW_Mart_awbi_DimSalesTerritory.Load_awbi_DimSalesTerritory	0
+2026-06-14T07:34:34.9152720+00:00	WorkerEvent	DW_Mart_awbi_DimSalesTerritory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:34.9173821+00:00	PipelineCompleted	DW_Mart_awbi_DimSalesTerritory	
+2026-06-14T07:34:34.9197860+00:00	WorkerStarting	RDV_Sales_dbo_L_CustomerStore	meta-pipeline
+2026-06-14T07:34:35.0591318+00:00	WorkerStarted	RDV_Sales_dbo_L_CustomerStore	4248
+2026-06-14T07:34:35.0602244+00:00	WorkerControlPipe	RDV_Sales_dbo_L_CustomerStore	meta-orchestration-52e22d6f271d4d83b74ba2c84b5a6913
+2026-06-14T07:34:35.0608746+00:00	WorkerLog	RDV_Sales_dbo_L_CustomerStore	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_CustomerStore-4248.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_CustomerStore-4248.stderr.log
+2026-06-14T07:34:35.0613325+00:00	WorkerProcessExited	DW_Mart_awbi_DimSalesTerritory	ExitCode=0; worker process exited
+2026-06-14T07:34:35.0885560+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerStore	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:35.0909005+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerStore	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:35.0942167+00:00	StartPipeline	RDV_Sales_dbo_L_CustomerStore	RDV_Sales_dbo_L_CustomerStore
+2026-06-14T07:34:35.5516256+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:35.5531172+00:00	TaskSucceeded	BDV_Sales_dbo_BH_SalesOrderLine.Load_dbo_BH_SalesOrderLine	0
+2026-06-14T07:34:35.5551634+00:00	WorkerEvent	BDV_Sales_dbo_BH_SalesOrderLine	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:35.5561193+00:00	PipelineCompleted	BDV_Sales_dbo_BH_SalesOrderLine	
+2026-06-14T07:34:35.5573915+00:00	WorkerStarting	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	meta-pipeline
+2026-06-14T07:34:35.7262708+00:00	WorkerStarted	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	11684
+2026-06-14T07:34:35.7268334+00:00	WorkerControlPipe	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	meta-orchestration-f7a3c614100846c39fc8d88b6a7ee077
+2026-06-14T07:34:35.7279102+00:00	WorkerLog	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader-11684.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader-11684.stderr.log
+2026-06-14T07:34:35.7286998+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:35.7295819+00:00	TaskSucceeded	BDV_Sales_dbo_BHS_Store_StoreProfile.Load_dbo_BHS_Store_StoreProfile	0
+2026-06-14T07:34:35.7302961+00:00	WorkerProcessExited	BDV_Sales_dbo_BH_SalesOrderLine	ExitCode=0; worker process exited
+2026-06-14T07:34:35.7308257+00:00	WorkerProcessExited	BDV_Sales_dbo_BHS_Store_StoreProfile	ExitCode=0; worker process exited
+2026-06-14T07:34:35.7314996+00:00	PipelineCompleted	BDV_Sales_dbo_BHS_Store_StoreProfile	
+2026-06-14T07:34:35.7324113+00:00	WorkerStarting	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	meta-pipeline
+2026-06-14T07:34:35.8700279+00:00	WorkerStarted	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	39896
+2026-06-14T07:34:35.8709437+00:00	WorkerControlPipe	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	meta-orchestration-a83c365bde9743f8aae2a358a7c5b32a
+2026-06-14T07:34:35.8715021+00:00	WorkerLog	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct-39896.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct-39896.stderr.log
+2026-06-14T07:34:35.8721993+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:35.8735710+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:35.8976411+00:00	StartPipeline	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader
+2026-06-14T07:34:35.9272864+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:35.9301766+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:35.9361471+00:00	StartPipeline	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct
+2026-06-14T07:34:35.9407485+00:00	WorkerEvent	BDV_Sales_dbo_BH_Store	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:35.9444056+00:00	WorkerEvent	BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store	TaskReady; ExitCode=0; 
+2026-06-14T07:34:35.9490331+00:00	GrantTask	BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store	BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store; GrantId=grant-39; Attempt=1
+2026-06-14T07:34:35.9532262+00:00	WorkerEvent	BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:35.9550233+00:00	WorkerEvent	BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:36.2150574+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerStore	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:36.2185464+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore	TaskReady; ExitCode=0; 
+2026-06-14T07:34:36.2204535+00:00	GrantTask	RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore	RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore; GrantId=grant-40; Attempt=1
+2026-06-14T07:34:36.2211246+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:36.2223060+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:36.7853320+00:00	WorkerEvent	BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:36.7869416+00:00	TaskSucceeded	BDV_Sales_dbo_BH_Store.Load_dbo_BH_Store	0
+2026-06-14T07:34:36.7901122+00:00	WorkerEvent	BDV_Sales_dbo_BH_Store	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:36.7915338+00:00	PipelineCompleted	BDV_Sales_dbo_BH_Store	
+2026-06-14T07:34:36.7924911+00:00	WorkerStarting	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	meta-pipeline
+2026-06-14T07:34:36.9632578+00:00	WorkerStarted	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	29248
+2026-06-14T07:34:36.9640309+00:00	WorkerControlPipe	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	meta-orchestration-46d278127b3e41e3a632d24cbe3fa741
+2026-06-14T07:34:36.9645695+00:00	WorkerLog	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderCustomer-29248.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderCustomer-29248.stderr.log
+2026-06-14T07:34:36.9651612+00:00	WorkerProcessExited	BDV_Sales_dbo_BH_Store	ExitCode=0; worker process exited
+2026-06-14T07:34:36.9977673+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:37.0005674+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:37.0064582+00:00	StartPipeline	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	RDV_Sales_dbo_L_SalesOrderHeaderCustomer
+2026-06-14T07:34:37.0966506+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:37.1008490+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader	TaskReady; ExitCode=0; 
+2026-06-14T07:34:37.1026468+00:00	GrantTask	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader; GrantId=grant-41; Attempt=1
+2026-06-14T07:34:37.1040517+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:37.1059122+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:37.1244645+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:37.1257986+00:00	TaskSucceeded	RDV_Sales_dbo_L_CustomerStore.Load_dbo_L_CustomerStore	0
+2026-06-14T07:34:37.1283886+00:00	WorkerEvent	RDV_Sales_dbo_L_CustomerStore	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:37.1299611+00:00	PipelineCompleted	RDV_Sales_dbo_L_CustomerStore	
+2026-06-14T07:34:37.1312172+00:00	WorkerStarting	BDV_Sales_dbo_BHS_Customer_CustomerProfile	meta-pipeline
+2026-06-14T07:34:37.2918306+00:00	WorkerStarted	BDV_Sales_dbo_BHS_Customer_CustomerProfile	18104
+2026-06-14T07:34:37.2922935+00:00	WorkerControlPipe	BDV_Sales_dbo_BHS_Customer_CustomerProfile	meta-orchestration-c04af6c747754ac7a56c246a441b6a53
+2026-06-14T07:34:37.2926399+00:00	WorkerLog	BDV_Sales_dbo_BHS_Customer_CustomerProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_Customer_CustomerProfile-18104.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_Customer_CustomerProfile-18104.stderr.log
+2026-06-14T07:34:37.2930711+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:37.2936968+00:00	WorkerProcessExited	RDV_Sales_dbo_L_CustomerStore	ExitCode=0; worker process exited
+2026-06-14T07:34:37.2943516+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct	TaskReady; ExitCode=0; 
+2026-06-14T07:34:37.2955457+00:00	GrantTask	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct; GrantId=grant-42; Attempt=1
+2026-06-14T07:34:37.2962758+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:37.2977642+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:37.3236490+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Customer_CustomerProfile	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:37.3275519+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Customer_CustomerProfile	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:37.3327674+00:00	StartPipeline	BDV_Sales_dbo_BHS_Customer_CustomerProfile	BDV_Sales_dbo_BHS_Customer_CustomerProfile
+2026-06-14T07:34:37.9763246+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:37.9798003+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer	TaskReady; ExitCode=0; 
+2026-06-14T07:34:37.9837918+00:00	GrantTask	RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer	RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer; GrantId=grant-43; Attempt=1
+2026-06-14T07:34:37.9864408+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:37.9883825+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:38.4635896+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Customer_CustomerProfile	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:38.4676511+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile	TaskReady; ExitCode=0; 
+2026-06-14T07:34:38.4704362+00:00	GrantTask	BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile	BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile; GrantId=grant-44; Attempt=1
+2026-06-14T07:34:38.4722349+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:38.4745859+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:40.4445972+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:40.4461877+00:00	TaskSucceeded	BDV_Sales_dbo_BHS_Customer_CustomerProfile.Load_dbo_BHS_Customer_CustomerProfile	0
+2026-06-14T07:34:40.4522556+00:00	WorkerEvent	BDV_Sales_dbo_BHS_Customer_CustomerProfile	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:40.4536488+00:00	PipelineCompleted	BDV_Sales_dbo_BHS_Customer_CustomerProfile	
+2026-06-14T07:34:40.4551665+00:00	WorkerStarting	DW_Mart_awbi_DimCustomerChannel	meta-pipeline
+2026-06-14T07:34:41.0760371+00:00	WorkerStarted	DW_Mart_awbi_DimCustomerChannel	384
+2026-06-14T07:34:41.0784772+00:00	WorkerControlPipe	DW_Mart_awbi_DimCustomerChannel	meta-orchestration-28669a9743bd4e3aa0624fbcd7013c7b
+2026-06-14T07:34:41.0807255+00:00	WorkerLog	DW_Mart_awbi_DimCustomerChannel	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimCustomerChannel-384.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimCustomerChannel-384.stderr.log
+2026-06-14T07:34:41.0826658+00:00	WorkerProcessExited	BDV_Sales_dbo_BHS_Customer_CustomerProfile	ExitCode=0; worker process exited
+2026-06-14T07:34:41.1013772+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:41.1049248+00:00	TaskSucceeded	RDV_Sales_dbo_L_SalesOrderHeaderCustomer.Load_dbo_L_SalesOrderHeaderCustomer	0
+2026-06-14T07:34:41.1184878+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:41.1220192+00:00	PipelineCompleted	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	
+2026-06-14T07:34:41.1263952+00:00	WorkerStarting	BDV_Sales_dbo_BL_SalesOrderCustomer	meta-pipeline
+2026-06-14T07:34:41.5612465+00:00	WorkerStarted	BDV_Sales_dbo_BL_SalesOrderCustomer	39152
+2026-06-14T07:34:41.5620141+00:00	WorkerControlPipe	BDV_Sales_dbo_BL_SalesOrderCustomer	meta-orchestration-e8a6585d7a91495daed02a74bca0e606
+2026-06-14T07:34:41.5624438+00:00	WorkerLog	BDV_Sales_dbo_BL_SalesOrderCustomer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderCustomer-39152.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderCustomer-39152.stderr.log
+2026-06-14T07:34:41.5629040+00:00	WorkerEvent	DW_Mart_awbi_DimCustomerChannel	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:41.5635856+00:00	WorkerProcessExited	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	ExitCode=0; worker process exited
+2026-06-14T07:34:41.5639997+00:00	WorkerEvent	DW_Mart_awbi_DimCustomerChannel	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:41.5687392+00:00	StartPipeline	DW_Mart_awbi_DimCustomerChannel	DW_Mart_awbi_DimCustomerChannel
+2026-06-14T07:34:41.5950780+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderCustomer	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:41.5973280+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderCustomer	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:41.6025614+00:00	StartPipeline	BDV_Sales_dbo_BL_SalesOrderCustomer	BDV_Sales_dbo_BL_SalesOrderCustomer
+2026-06-14T07:34:42.3588967+00:00	WorkerEvent	DW_Mart_awbi_DimCustomerChannel	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:42.3616524+00:00	WorkerEvent	DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel	TaskReady; ExitCode=0; 
+2026-06-14T07:34:42.3639663+00:00	GrantTask	DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel	DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel; GrantId=grant-45; Attempt=1
+2026-06-14T07:34:42.3653304+00:00	WorkerEvent	DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:42.3667794+00:00	WorkerEvent	DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:42.6073818+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderCustomer	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:42.6161026+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer	TaskReady; ExitCode=0; 
+2026-06-14T07:34:42.6204501+00:00	GrantTask	BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer	BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer; GrantId=grant-46; Attempt=1
+2026-06-14T07:34:42.6234793+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:42.6286796+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:46.2011117+00:00	WorkerEvent	DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:46.2022973+00:00	TaskSucceeded	DW_Mart_awbi_DimCustomerChannel.Load_awbi_DimCustomerChannel	0
+2026-06-14T07:34:46.2065098+00:00	WorkerEvent	DW_Mart_awbi_DimCustomerChannel	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:46.2086285+00:00	PipelineCompleted	DW_Mart_awbi_DimCustomerChannel	
+2026-06-14T07:34:46.2108579+00:00	WorkerStarting	BDV_Sales_dbo_BL_SalesOrderStore	meta-pipeline
+2026-06-14T07:34:46.3547982+00:00	WorkerStarted	BDV_Sales_dbo_BL_SalesOrderStore	39740
+2026-06-14T07:34:46.3552575+00:00	WorkerControlPipe	BDV_Sales_dbo_BL_SalesOrderStore	meta-orchestration-726ab74577be46ee9e8c92f5cf53c72b
+2026-06-14T07:34:46.3556210+00:00	WorkerLog	BDV_Sales_dbo_BL_SalesOrderStore	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderStore-39740.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderStore-39740.stderr.log
+2026-06-14T07:34:46.3560572+00:00	WorkerProcessExited	DW_Mart_awbi_DimCustomerChannel	ExitCode=0; worker process exited
+2026-06-14T07:34:46.3852665+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderStore	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:46.3876287+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderStore	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:46.3937713+00:00	StartPipeline	BDV_Sales_dbo_BL_SalesOrderStore	BDV_Sales_dbo_BL_SalesOrderStore
+2026-06-14T07:34:47.0367629+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:47.0386343+00:00	TaskSucceeded	BDV_Sales_dbo_BL_SalesOrderCustomer.Load_dbo_BL_SalesOrderCustomer	0
+2026-06-14T07:34:47.0405834+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderCustomer	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:47.0414592+00:00	PipelineCompleted	BDV_Sales_dbo_BL_SalesOrderCustomer	
+2026-06-14T07:34:47.0423321+00:00	WorkerStarting	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	meta-pipeline
+2026-06-14T07:34:47.1714538+00:00	WorkerStarted	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	31936
+2026-06-14T07:34:47.1719411+00:00	WorkerControlPipe	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	meta-orchestration-04d0be1e448f49488df737cf6fc9fbe3
+2026-06-14T07:34:47.1724127+00:00	WorkerLog	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson-31936.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson-31936.stderr.log
+2026-06-14T07:34:47.1732923+00:00	WorkerProcessExited	BDV_Sales_dbo_BL_SalesOrderCustomer	ExitCode=0; worker process exited
+2026-06-14T07:34:47.2089587+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:47.2125415+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:47.2183839+00:00	StartPipeline	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson
+2026-06-14T07:34:47.2371999+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderStore	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:47.2401297+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore	TaskReady; ExitCode=0; 
+2026-06-14T07:34:47.2416466+00:00	GrantTask	BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore	BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore; GrantId=grant-47; Attempt=1
+2026-06-14T07:34:47.2427457+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:47.2440325+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:48.0611503+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:48.0636395+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson	TaskReady; ExitCode=0; 
+2026-06-14T07:34:48.0654358+00:00	GrantTask	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson; GrantId=grant-48; Attempt=1
+2026-06-14T07:34:48.0660609+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:48.0673471+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:48.0707118+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:48.0744641+00:00	TaskSucceeded	BDV_Sales_dbo_BL_SalesOrderStore.Load_dbo_BL_SalesOrderStore	0
+2026-06-14T07:34:48.0757965+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderStore	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:48.0773786+00:00	PipelineCompleted	BDV_Sales_dbo_BL_SalesOrderStore	
+2026-06-14T07:34:48.0784477+00:00	WorkerStarting	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	meta-pipeline
+2026-06-14T07:34:48.2424668+00:00	WorkerStarted	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	21292
+2026-06-14T07:34:48.2432620+00:00	WorkerControlPipe	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	meta-orchestration-9ce0125c59fb408caa2bacf1ffda7f31
+2026-06-14T07:34:48.2438535+00:00	WorkerLog	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory-21292.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory-21292.stderr.log
+2026-06-14T07:34:48.2444372+00:00	WorkerProcessExited	BDV_Sales_dbo_BL_SalesOrderStore	ExitCode=0; worker process exited
+2026-06-14T07:34:48.2694234+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:48.2712725+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:48.2762412+00:00	StartPipeline	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory
+2026-06-14T07:34:48.5721583+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:48.5732660+00:00	TaskSucceeded	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader.Load_dbo_L_SalesOrderDetailSalesOrderHeader	0
+2026-06-14T07:34:48.5782455+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:48.5794291+00:00	PipelineCompleted	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	
+2026-06-14T07:34:48.5802787+00:00	WorkerStarting	BDV_Sales_dbo_BL_SalesOrderLineOrder	meta-pipeline
+2026-06-14T07:34:48.7761773+00:00	WorkerStarted	BDV_Sales_dbo_BL_SalesOrderLineOrder	8224
+2026-06-14T07:34:48.7771015+00:00	WorkerControlPipe	BDV_Sales_dbo_BL_SalesOrderLineOrder	meta-orchestration-95ca808d2530469795bb0fdbd1482cde
+2026-06-14T07:34:48.7776575+00:00	WorkerLog	BDV_Sales_dbo_BL_SalesOrderLineOrder	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderLineOrder-8224.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderLineOrder-8224.stderr.log
+2026-06-14T07:34:48.7783657+00:00	WorkerProcessExited	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	ExitCode=0; worker process exited
+2026-06-14T07:34:48.7930409+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:48.7942157+00:00	TaskSucceeded	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct.Load_dbo_L_SalesOrderDetailSpecialOfferProduct	0
+2026-06-14T07:34:48.7970671+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:48.7984431+00:00	PipelineCompleted	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	
+2026-06-14T07:34:48.7998809+00:00	WorkerStarting	RDV_Sales_dbo_L_SpecialOfferProductProduct	meta-pipeline
+2026-06-14T07:34:48.9730278+00:00	WorkerStarted	RDV_Sales_dbo_L_SpecialOfferProductProduct	13788
+2026-06-14T07:34:48.9742350+00:00	WorkerControlPipe	RDV_Sales_dbo_L_SpecialOfferProductProduct	meta-orchestration-698c5db7b53d446c911734555fdb4484
+2026-06-14T07:34:48.9750937+00:00	WorkerLog	RDV_Sales_dbo_L_SpecialOfferProductProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SpecialOfferProductProduct-13788.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SpecialOfferProductProduct-13788.stderr.log
+2026-06-14T07:34:48.9764851+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineOrder	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:48.9791781+00:00	WorkerProcessExited	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	ExitCode=0; worker process exited
+2026-06-14T07:34:48.9803751+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineOrder	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:48.9850996+00:00	StartPipeline	BDV_Sales_dbo_BL_SalesOrderLineOrder	BDV_Sales_dbo_BL_SalesOrderLineOrder
+2026-06-14T07:34:49.0132635+00:00	WorkerEvent	RDV_Sales_dbo_L_SpecialOfferProductProduct	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:49.0156106+00:00	WorkerEvent	RDV_Sales_dbo_L_SpecialOfferProductProduct	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:49.0197577+00:00	StartPipeline	RDV_Sales_dbo_L_SpecialOfferProductProduct	RDV_Sales_dbo_L_SpecialOfferProductProduct
+2026-06-14T07:34:49.0500555+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:49.0508142+00:00	TaskSucceeded	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson.Load_dbo_L_SalesOrderHeaderSalesPerson	0
+2026-06-14T07:34:49.0525747+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:49.0533846+00:00	PipelineCompleted	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	
+2026-06-14T07:34:49.0542443+00:00	WorkerStarting	BDV_Sales_dbo_BL_SalesOrderSalesPerson	meta-pipeline
+2026-06-14T07:34:49.2337013+00:00	WorkerStarted	BDV_Sales_dbo_BL_SalesOrderSalesPerson	24676
+2026-06-14T07:34:49.2344145+00:00	WorkerControlPipe	BDV_Sales_dbo_BL_SalesOrderSalesPerson	meta-orchestration-346afe88769e4e249d57db3e89d6c5c5
+2026-06-14T07:34:49.2349197+00:00	WorkerLog	BDV_Sales_dbo_BL_SalesOrderSalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderSalesPerson-24676.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderSalesPerson-24676.stderr.log
+2026-06-14T07:34:49.2354199+00:00	WorkerProcessExited	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	ExitCode=0; worker process exited
+2026-06-14T07:34:49.2712454+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderSalesPerson	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:49.2739979+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderSalesPerson	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:49.2804530+00:00	StartPipeline	BDV_Sales_dbo_BL_SalesOrderSalesPerson	BDV_Sales_dbo_BL_SalesOrderSalesPerson
+2026-06-14T07:34:49.4271751+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:49.4297180+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:49.4311830+00:00	GrantTask	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory; GrantId=grant-49; Attempt=1
+2026-06-14T07:34:49.4318904+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:49.4333441+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:50.0856269+00:00	WorkerEvent	RDV_Sales_dbo_L_SpecialOfferProductProduct	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:50.0885400+00:00	WorkerEvent	RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct	TaskReady; ExitCode=0; 
+2026-06-14T07:34:50.0912750+00:00	GrantTask	RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct	RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct; GrantId=grant-50; Attempt=1
+2026-06-14T07:34:50.0937670+00:00	WorkerEvent	RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:50.0963168+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineOrder	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:50.0981541+00:00	WorkerEvent	RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:50.0991742+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder	TaskReady; ExitCode=0; 
+2026-06-14T07:34:50.1007448+00:00	GrantTask	BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder	BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder; GrantId=grant-51; Attempt=1
+2026-06-14T07:34:50.1021039+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:50.1064002+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:50.3570649+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderSalesPerson	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:50.3596534+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson	TaskReady; ExitCode=0; 
+2026-06-14T07:34:50.3614036+00:00	GrantTask	BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson	BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson; GrantId=grant-52; Attempt=1
+2026-06-14T07:34:50.3622728+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:50.3632965+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:50.8166222+00:00	WorkerEvent	RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:50.8173470+00:00	TaskSucceeded	RDV_Sales_dbo_L_SpecialOfferProductProduct.Load_dbo_L_SpecialOfferProductProduct	0
+2026-06-14T07:34:50.8191472+00:00	WorkerEvent	RDV_Sales_dbo_L_SpecialOfferProductProduct	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:50.8202528+00:00	PipelineCompleted	RDV_Sales_dbo_L_SpecialOfferProductProduct	
+2026-06-14T07:34:50.8212376+00:00	WorkerStarting	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	meta-pipeline
+2026-06-14T07:34:50.9995607+00:00	WorkerStarted	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	33628
+2026-06-14T07:34:51.0002215+00:00	WorkerControlPipe	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	meta-orchestration-c11c7f46840843b19b0a242c3eb34a1b
+2026-06-14T07:34:51.0007116+00:00	WorkerLog	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures-33628.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures-33628.stderr.log
+2026-06-14T07:34:51.0017510+00:00	WorkerProcessExited	RDV_Sales_dbo_L_SpecialOfferProductProduct	ExitCode=0; worker process exited
+2026-06-14T07:34:51.0392245+00:00	WorkerEvent	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:51.0427465+00:00	WorkerEvent	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:51.0479811+00:00	StartPipeline	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures
+2026-06-14T07:34:51.3317067+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:51.3324634+00:00	TaskSucceeded	BDV_Sales_dbo_BL_SalesOrderSalesPerson.Load_dbo_BL_SalesOrderSalesPerson	0
+2026-06-14T07:34:51.3343305+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderSalesPerson	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:51.3350208+00:00	PipelineCompleted	BDV_Sales_dbo_BL_SalesOrderSalesPerson	
+2026-06-14T07:34:51.3356802+00:00	WorkerStarting	BDV_Sales_dbo_BL_SalesOrderLineProduct	meta-pipeline
+2026-06-14T07:34:51.5074141+00:00	WorkerStarted	BDV_Sales_dbo_BL_SalesOrderLineProduct	31704
+2026-06-14T07:34:51.5083545+00:00	WorkerControlPipe	BDV_Sales_dbo_BL_SalesOrderLineProduct	meta-orchestration-545729a8197841328d6e034a9aa5f91d
+2026-06-14T07:34:51.5089835+00:00	WorkerLog	BDV_Sales_dbo_BL_SalesOrderLineProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderLineProduct-31704.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderLineProduct-31704.stderr.log
+2026-06-14T07:34:51.5099358+00:00	WorkerProcessExited	BDV_Sales_dbo_BL_SalesOrderSalesPerson	ExitCode=0; worker process exited
+2026-06-14T07:34:51.5440440+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineProduct	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:51.5464165+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineProduct	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:51.5513489+00:00	StartPipeline	BDV_Sales_dbo_BL_SalesOrderLineProduct	BDV_Sales_dbo_BL_SalesOrderLineProduct
+2026-06-14T07:34:51.5789755+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:51.5800905+00:00	TaskSucceeded	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory.Load_dbo_L_SalesOrderHeaderSalesTerritory	0
+2026-06-14T07:34:51.5824143+00:00	WorkerEvent	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:51.5831305+00:00	PipelineCompleted	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	
+2026-06-14T07:34:51.5837675+00:00	WorkerStarting	BDV_Sales_dbo_BL_SalesOrderTerritory	meta-pipeline
+2026-06-14T07:34:51.7662402+00:00	WorkerStarted	BDV_Sales_dbo_BL_SalesOrderTerritory	13088
+2026-06-14T07:34:51.7669891+00:00	WorkerControlPipe	BDV_Sales_dbo_BL_SalesOrderTerritory	meta-orchestration-ecc23a614b18407a931deaba094c4a2b
+2026-06-14T07:34:51.7673754+00:00	WorkerLog	BDV_Sales_dbo_BL_SalesOrderTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderTerritory-13088.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderTerritory-13088.stderr.log
+2026-06-14T07:34:51.7680720+00:00	WorkerProcessExited	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	ExitCode=0; worker process exited
+2026-06-14T07:34:51.8014728+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderTerritory	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:51.8068306+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderTerritory	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:51.8128387+00:00	StartPipeline	BDV_Sales_dbo_BL_SalesOrderTerritory	BDV_Sales_dbo_BL_SalesOrderTerritory
+2026-06-14T07:34:52.3069425+00:00	WorkerEvent	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:52.3101527+00:00	WorkerEvent	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	TaskReady; ExitCode=0; 
+2026-06-14T07:34:52.3124252+00:00	GrantTask	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures; GrantId=grant-53; Attempt=1
+2026-06-14T07:34:52.3144205+00:00	WorkerEvent	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:52.3157670+00:00	WorkerEvent	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:52.7775812+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineProduct	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:52.7797169+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct	TaskReady; ExitCode=0; 
+2026-06-14T07:34:52.7818238+00:00	GrantTask	BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct	BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct; GrantId=grant-54; Attempt=1
+2026-06-14T07:34:52.7831504+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:52.7843400+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:52.9438155+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderTerritory	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:52.9460323+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory	TaskReady; ExitCode=0; 
+2026-06-14T07:34:52.9475882+00:00	GrantTask	BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory	BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory; GrantId=grant-55; Attempt=1
+2026-06-14T07:34:52.9492221+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory	GrantAccepted; ExitCode=0; 
+2026-06-14T07:34:52.9511552+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory	TaskStarted; ExitCode=0; 
+2026-06-14T07:34:55.4456000+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:55.4473764+00:00	TaskSucceeded	BDV_Sales_dbo_BL_SalesOrderTerritory.Load_dbo_BL_SalesOrderTerritory	0
+2026-06-14T07:34:55.4520655+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderTerritory	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:55.4531833+00:00	PipelineCompleted	BDV_Sales_dbo_BL_SalesOrderTerritory	
+2026-06-14T07:34:55.4553263+00:00	WorkerStarting	DW_Mart_awbi_FactSalesOrderLine	meta-pipeline
+2026-06-14T07:34:55.6315100+00:00	WorkerStarted	DW_Mart_awbi_FactSalesOrderLine	30320
+2026-06-14T07:34:55.6321462+00:00	WorkerControlPipe	DW_Mart_awbi_FactSalesOrderLine	meta-orchestration-de1ec35b650f4d3dbb454a93d4cba1d9
+2026-06-14T07:34:55.6325515+00:00	WorkerLog	DW_Mart_awbi_FactSalesOrderLine	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_FactSalesOrderLine-30320.stdout.log; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_FactSalesOrderLine-30320.stderr.log
+2026-06-14T07:34:55.6330035+00:00	WorkerProcessExited	BDV_Sales_dbo_BL_SalesOrderTerritory	ExitCode=0; worker process exited
+2026-06-14T07:34:55.6766648+00:00	WorkerEvent	DW_Mart_awbi_FactSalesOrderLine	WorkerOnline; ExitCode=0; online
+2026-06-14T07:34:55.6801009+00:00	WorkerEvent	DW_Mart_awbi_FactSalesOrderLine	WorkerReady; ExitCode=0; ready
+2026-06-14T07:34:55.6861429+00:00	StartPipeline	DW_Mart_awbi_FactSalesOrderLine	DW_Mart_awbi_FactSalesOrderLine
+2026-06-14T07:34:56.6812225+00:00	WorkerEvent	DW_Mart_awbi_FactSalesOrderLine	PipelineStarted; ExitCode=0; pipeline started
+2026-06-14T07:34:56.6851254+00:00	WorkerEvent	DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine	TaskReady; ExitCode=0; 
+2026-06-14T07:34:57.0408118+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:34:57.0424917+00:00	TaskSucceeded	BDV_Sales_dbo_BL_SalesOrderLineOrder.Load_dbo_BL_SalesOrderLineOrder	0
+2026-06-14T07:34:57.0459873+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineOrder	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:34:57.0475307+00:00	PipelineCompleted	BDV_Sales_dbo_BL_SalesOrderLineOrder	
+2026-06-14T07:34:57.0894403+00:00	WorkerProcessExited	BDV_Sales_dbo_BL_SalesOrderLineOrder	ExitCode=0; worker process exited
+2026-06-14T07:35:04.0274797+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:35:04.0287099+00:00	TaskSucceeded	BDV_Sales_dbo_BL_SalesOrderLineProduct.Load_dbo_BL_SalesOrderLineProduct	0
+2026-06-14T07:35:04.0340724+00:00	WorkerEvent	BDV_Sales_dbo_BL_SalesOrderLineProduct	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:35:04.0351906+00:00	PipelineCompleted	BDV_Sales_dbo_BL_SalesOrderLineProduct	
+2026-06-14T07:35:04.0877744+00:00	WorkerProcessExited	BDV_Sales_dbo_BL_SalesOrderLineProduct	ExitCode=0; worker process exited
+2026-06-14T07:35:04.5726740+00:00	WorkerEvent	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:35:04.5739119+00:00	TaskSucceeded	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures.Load_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	0
+2026-06-14T07:35:04.5752519+00:00	GrantTask	DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine	DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine; GrantId=grant-56; Attempt=1
+2026-06-14T07:35:04.5766180+00:00	WorkerEvent	DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine	GrantAccepted; ExitCode=0; 
+2026-06-14T07:35:04.5782863+00:00	WorkerEvent	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:35:04.5795073+00:00	PipelineCompleted	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	
+2026-06-14T07:35:04.5801139+00:00	WorkerEvent	DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine	TaskStarted; ExitCode=0; 
+2026-06-14T07:35:04.6099118+00:00	WorkerProcessExited	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	ExitCode=0; worker process exited
+2026-06-14T07:35:15.0787045+00:00	WorkerEvent	DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine	TaskSucceeded; ExitCode=0; 
+2026-06-14T07:35:15.0799016+00:00	TaskSucceeded	DW_Mart_awbi_FactSalesOrderLine.Load_awbi_FactSalesOrderLine	0
+2026-06-14T07:35:15.0832489+00:00	WorkerEvent	DW_Mart_awbi_FactSalesOrderLine	Closed; ExitCode=-1; worker control channel closed
+2026-06-14T07:35:15.0843569+00:00	PipelineCompleted	DW_Mart_awbi_FactSalesOrderLine	
+2026-06-14T07:35:15.1281226+00:00	WorkerProcessExited	DW_Mart_awbi_FactSalesOrderLine	ExitCode=0; worker process exited
+2026-06-14T07:35:15.1298394+00:00	WorkerLogSummary	RDV_Product_dbo_HS_ProductCategory_ProductCategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_ProductCategory_ProductCategory-12188.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_ProductCategory_ProductCategory-12188.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1318460+00:00	WorkerLogSummary	RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory-6696.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_ProductSubcategory_ProductSubcategory-6696.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1325492+00:00	WorkerLogSummary	RDV_Product_dbo_HS_Product_Product	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_Product_Product-17420.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_HS_Product_Product-17420.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1331763+00:00	WorkerLogSummary	RDV_Product_dbo_H_Product	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_Product-33104.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_Product-33104.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1339993+00:00	WorkerLogSummary	RDV_Product_dbo_H_ProductCategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_ProductCategory-27632.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_ProductCategory-27632.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1345690+00:00	WorkerLogSummary	BDV_Product_dbo_BH_Product	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Product_dbo_BH_Product-14292.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Product_dbo_BH_Product-14292.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1351511+00:00	WorkerLogSummary	RDV_Product_dbo_H_ProductSubcategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_ProductSubcategory-31696.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_H_ProductSubcategory-31696.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1356323+00:00	WorkerLogSummary	RDV_Product_dbo_L_ProductProductSubcategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_L_ProductProductSubcategory-17844.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_L_ProductProductSubcategory-17844.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1362733+00:00	WorkerLogSummary	RDV_Product_dbo_L_ProductSubcategoryProductCategory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_L_ProductSubcategoryProductCategory-12596.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Product_dbo_L_ProductSubcategoryProductCategory-12596.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1368165+00:00	WorkerLogSummary	RDV_Sales_dbo_HS_Customer_Customer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_Customer_Customer-38540.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_Customer_Customer-38540.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1373160+00:00	WorkerLogSummary	RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail-36416.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesOrderDetail_SalesOrderDetail-36416.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1378710+00:00	WorkerLogSummary	RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader-29880.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesOrderHeader_SalesOrderHeader-29880.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1384613+00:00	WorkerLogSummary	BDV_Product_dbo_BHS_Product_ProductClassification	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Product_dbo_BHS_Product_ProductClassification-25228.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Product_dbo_BHS_Product_ProductClassification-25228.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1390025+00:00	WorkerLogSummary	RDV_Sales_dbo_HS_SalesPerson_SalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesPerson_SalesPerson-37664.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesPerson_SalesPerson-37664.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1394342+00:00	WorkerLogSummary	DW_Mart_awbi_DimProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimProduct-12996.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimProduct-12996.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1400260+00:00	WorkerLogSummary	BDV_Sales_dbo_BH_OrderDate	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_OrderDate-19076.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_OrderDate-19076.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1405909+00:00	WorkerLogSummary	RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory-22024.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_SalesTerritory_SalesTerritory-22024.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1410796+00:00	WorkerLogSummary	RDV_Sales_dbo_HS_Store_Store	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_Store_Store-16948.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_HS_Store_Store-16948.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1416530+00:00	WorkerLogSummary	DW_Mart_awbi_DimOrderDate	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimOrderDate-36504.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimOrderDate-36504.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1421805+00:00	WorkerLogSummary	RDV_Sales_dbo_H_Customer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_Customer-36364.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_Customer-36364.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1427088+00:00	WorkerLogSummary	RDV_Sales_dbo_H_SalesOrderDetail	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesOrderDetail-19764.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesOrderDetail-19764.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1432559+00:00	WorkerLogSummary	RDV_Sales_dbo_H_SalesOrderHeader	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesOrderHeader-31368.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesOrderHeader-31368.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1437305+00:00	WorkerLogSummary	RDV_Sales_dbo_H_SalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesPerson-36652.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesPerson-36652.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1442088+00:00	WorkerLogSummary	BDV_Sales_dbo_BH_Customer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_Customer-27948.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_Customer-27948.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1447670+00:00	WorkerLogSummary	BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile-21188.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesPerson_SalesPersonProfile-21188.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1454029+00:00	WorkerLogSummary	BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile-37624.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesOrder_SalesOrderProfile-37624.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1458789+00:00	WorkerLogSummary	BDV_Sales_dbo_BH_SalesOrder	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesOrder-34332.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesOrder-34332.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1463251+00:00	WorkerLogSummary	BDV_Sales_dbo_BH_SalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesPerson-17800.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesPerson-17800.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1467933+00:00	WorkerLogSummary	BDV_Sales_dbo_BL_SalesOrderDate	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderDate-34516.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderDate-34516.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1472528+00:00	WorkerLogSummary	RDV_Sales_dbo_H_SalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesTerritory-20104.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SalesTerritory-20104.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1476718+00:00	WorkerLogSummary	BDV_Sales_dbo_BH_SalesOrderLine	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesOrderLine-4960.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesOrderLine-4960.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1480404+00:00	WorkerLogSummary	RDV_Sales_dbo_H_SpecialOfferProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SpecialOfferProduct-33856.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_SpecialOfferProduct-33856.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1484997+00:00	WorkerLogSummary	BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile-26320.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_SalesTerritory_SalesTerritoryProfile-26320.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1489138+00:00	WorkerLogSummary	BDV_Sales_dbo_BH_SalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesTerritory-2084.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_SalesTerritory-2084.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1492663+00:00	WorkerLogSummary	RDV_Sales_dbo_H_Store	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_Store-17568.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_H_Store-17568.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1496762+00:00	WorkerLogSummary	RDV_Sales_dbo_L_CustomerSalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_CustomerSalesTerritory-37620.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_CustomerSalesTerritory-37620.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1502377+00:00	WorkerLogSummary	DW_Mart_awbi_DimSalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimSalesTerritory-13068.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimSalesTerritory-13068.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1508056+00:00	WorkerLogSummary	BDV_Sales_dbo_BHS_Store_StoreProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_Store_StoreProfile-28340.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_Store_StoreProfile-28340.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1512632+00:00	WorkerLogSummary	BDV_Sales_dbo_BH_Store	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_Store-33524.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BH_Store-33524.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1517604+00:00	WorkerLogSummary	RDV_Sales_dbo_L_CustomerStore	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_CustomerStore-4248.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_CustomerStore-4248.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1522599+00:00	WorkerLogSummary	RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader-11684.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderDetailSalesOrderHeader-11684.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1528530+00:00	WorkerLogSummary	RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct-39896.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderDetailSpecialOfferProduct-39896.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1533478+00:00	WorkerLogSummary	RDV_Sales_dbo_L_SalesOrderHeaderCustomer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderCustomer-29248.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderCustomer-29248.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1538524+00:00	WorkerLogSummary	BDV_Sales_dbo_BHS_Customer_CustomerProfile	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_Customer_CustomerProfile-18104.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BHS_Customer_CustomerProfile-18104.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1544113+00:00	WorkerLogSummary	DW_Mart_awbi_DimCustomerChannel	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimCustomerChannel-384.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_DimCustomerChannel-384.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1549506+00:00	WorkerLogSummary	BDV_Sales_dbo_BL_SalesOrderCustomer	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderCustomer-39152.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderCustomer-39152.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1554180+00:00	WorkerLogSummary	BDV_Sales_dbo_BL_SalesOrderStore	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderStore-39740.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderStore-39740.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1558339+00:00	WorkerLogSummary	RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson-31936.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderSalesPerson-31936.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1564205+00:00	WorkerLogSummary	RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory-21292.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SalesOrderHeaderSalesTerritory-21292.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1570799+00:00	WorkerLogSummary	BDV_Sales_dbo_BL_SalesOrderLineOrder	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderLineOrder-8224.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderLineOrder-8224.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1577334+00:00	WorkerLogSummary	RDV_Sales_dbo_L_SpecialOfferProductProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SpecialOfferProductProduct-13788.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\RDV_Sales_dbo_L_SpecialOfferProductProduct-13788.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1582315+00:00	WorkerLogSummary	BDV_Sales_dbo_BL_SalesOrderSalesPerson	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderSalesPerson-24676.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderSalesPerson-24676.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1588035+00:00	WorkerLogSummary	BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures-33628.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BLS_SalesOrderLineProduct_SalesOrderLineMeasures-33628.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1592875+00:00	WorkerLogSummary	BDV_Sales_dbo_BL_SalesOrderLineProduct	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderLineProduct-31704.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderLineProduct-31704.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1597665+00:00	WorkerLogSummary	BDV_Sales_dbo_BL_SalesOrderTerritory	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderTerritory-13088.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\BDV_Sales_dbo_BL_SalesOrderTerritory-13088.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1601617+00:00	WorkerLogSummary	DW_Mart_awbi_FactSalesOrderLine	stdout=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_FactSalesOrderLine-30320.stdout.log; stdoutBytes=0; stdoutTruncated=False; stdoutDroppedBytes=0; stderr=C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\ops\RunArtifacts\runs\20260614-073400_920feff9c0a444a0ab82e7f372ee5f6a\logs\DW_Mart_awbi_FactSalesOrderLine-30320.stderr.log; stderrBytes=0; stderrTruncated=False; stderrDroppedBytes=0
+2026-06-14T07:35:15.1611713+00:00	RunCompleted	DefaultRunPlan	Succeeded

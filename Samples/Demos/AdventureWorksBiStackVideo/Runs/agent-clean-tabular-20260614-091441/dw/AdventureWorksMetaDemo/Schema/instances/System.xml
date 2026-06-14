@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SystemList>
+    <System Id="sqlserver:system:AdventureWorksMetaDemo">
+      <Description>AdventureWorksMetaDemo @ localhost</Description>
+      <Name>AdventureWorksMetaDemo</Name>
+    </System>
+  </SystemList>
+</MetaSchema>

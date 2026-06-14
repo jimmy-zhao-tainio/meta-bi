@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ColumnList>
+    <Column Id="TableReference:1:source-column:1" RowsetId="TableReference:1:rowset">
+      <Name>ProductCategoryID</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="TableReference:1:source-column:2" RowsetId="TableReference:1:rowset">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="TableReference:1:source-column:3" RowsetId="TableReference:1:rowset">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="TableReference:1:source-column:4" RowsetId="TableReference:1:rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:1:output" RowsetId="QueryExpression:1:output-rowset">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="SelectElement:2:output" RowsetId="QueryExpression:1:output-rowset">
+      <Name>ProductCategoryID</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="SelectElement:3:output" RowsetId="QueryExpression:1:output-rowset">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="SelectElement:4:output" RowsetId="QueryExpression:1:output-rowset">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:5:output" RowsetId="QueryExpression:1:output-rowset">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="TableReference:2:source-column:1" RowsetId="TableReference:2:rowset">
+      <Name>ProductCategoryID</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="TableReference:2:source-column:2" RowsetId="TableReference:2:rowset">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="TableReference:2:source-column:3" RowsetId="TableReference:2:rowset">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="TableReference:2:source-column:4" RowsetId="TableReference:2:rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:6:output" RowsetId="QueryExpression:2:output-rowset">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="SelectElement:7:output" RowsetId="QueryExpression:2:output-rowset">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="SelectElement:8:output" RowsetId="QueryExpression:2:output-rowset">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="SelectElement:9:output" RowsetId="QueryExpression:2:output-rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:10:output" RowsetId="QueryExpression:2:output-rowset">
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="SelectElement:11:output" RowsetId="QueryExpression:2:output-rowset">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </Column>
+    <Column Id="SelectElement:12:output" RowsetId="QueryExpression:2:output-rowset">
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </Column>
+    <Column Id="SelectElement:13:output" RowsetId="QueryExpression:2:output-rowset">
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </Column>
+    <Column Id="TableReference:3:source-column:1" RowsetId="TableReference:3:rowset">
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="TableReference:3:source-column:2" RowsetId="TableReference:3:rowset">
+      <Name>ProductCategoryID</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="TableReference:3:source-column:3" RowsetId="TableReference:3:rowset">
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="TableReference:3:source-column:4" RowsetId="TableReference:3:rowset">
+      <Name>rowguid</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="TableReference:3:source-column:5" RowsetId="TableReference:3:rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="SelectElement:14:output" RowsetId="QueryExpression:3:output-rowset">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="SelectElement:15:output" RowsetId="QueryExpression:3:output-rowset">
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="SelectElement:16:output" RowsetId="QueryExpression:3:output-rowset">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="SelectElement:17:output" RowsetId="QueryExpression:3:output-rowset">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:18:output" RowsetId="QueryExpression:3:output-rowset">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="TableReference:4:source-column:1" RowsetId="TableReference:4:rowset">
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="TableReference:4:source-column:2" RowsetId="TableReference:4:rowset">
+      <Name>ProductCategoryID</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="TableReference:4:source-column:3" RowsetId="TableReference:4:rowset">
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="TableReference:4:source-column:4" RowsetId="TableReference:4:rowset">
+      <Name>rowguid</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="TableReference:4:source-column:5" RowsetId="TableReference:4:rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="SelectElement:19:output" RowsetId="QueryExpression:4:output-rowset">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="SelectElement:20:output" RowsetId="QueryExpression:4:output-rowset">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="SelectElement:21:output" RowsetId="QueryExpression:4:output-rowset">
+      <Name>rowguid</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="SelectElement:22:output" RowsetId="QueryExpression:4:output-rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:23:output" RowsetId="QueryExpression:4:output-rowset">
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="SelectElement:24:output" RowsetId="QueryExpression:4:output-rowset">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </Column>
+    <Column Id="SelectElement:25:output" RowsetId="QueryExpression:4:output-rowset">
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </Column>
+    <Column Id="SelectElement:26:output" RowsetId="QueryExpression:4:output-rowset">
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:1" RowsetId="TableReference:5:rowset">
+      <Name>ProductID</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:2" RowsetId="TableReference:5:rowset">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:3" RowsetId="TableReference:5:rowset">
+      <Name>ProductNumber</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:4" RowsetId="TableReference:5:rowset">
+      <Name>MakeFlag</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:5" RowsetId="TableReference:5:rowset">
+      <Name>FinishedGoodsFlag</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:6" RowsetId="TableReference:5:rowset">
+      <Name>Color</Name>
+      <Ordinal>5</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:7" RowsetId="TableReference:5:rowset">
+      <Name>SafetyStockLevel</Name>
+      <Ordinal>6</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:8" RowsetId="TableReference:5:rowset">
+      <Name>ReorderPoint</Name>
+      <Ordinal>7</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:9" RowsetId="TableReference:5:rowset">
+      <Name>StandardCost</Name>
+      <Ordinal>8</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:10" RowsetId="TableReference:5:rowset">
+      <Name>ListPrice</Name>
+      <Ordinal>9</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:11" RowsetId="TableReference:5:rowset">
+      <Name>Size</Name>
+      <Ordinal>10</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:12" RowsetId="TableReference:5:rowset">
+      <Name>SizeUnitMeasureCode</Name>
+      <Ordinal>11</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:13" RowsetId="TableReference:5:rowset">
+      <Name>WeightUnitMeasureCode</Name>
+      <Ordinal>12</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:14" RowsetId="TableReference:5:rowset">
+      <Name>Weight</Name>
+      <Ordinal>13</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:15" RowsetId="TableReference:5:rowset">
+      <Name>DaysToManufacture</Name>
+      <Ordinal>14</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:16" RowsetId="TableReference:5:rowset">
+      <Name>ProductLine</Name>
+      <Ordinal>15</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:17" RowsetId="TableReference:5:rowset">
+      <Name>Class</Name>
+      <Ordinal>16</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:18" RowsetId="TableReference:5:rowset">
+      <Name>Style</Name>
+      <Ordinal>17</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:19" RowsetId="TableReference:5:rowset">
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>18</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:20" RowsetId="TableReference:5:rowset">
+      <Name>ProductModelID</Name>
+      <Ordinal>19</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:21" RowsetId="TableReference:5:rowset">
+      <Name>SellStartDate</Name>
+      <Ordinal>20</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:22" RowsetId="TableReference:5:rowset">
+      <Name>SellEndDate</Name>
+      <Ordinal>21</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:23" RowsetId="TableReference:5:rowset">
+      <Name>DiscontinuedDate</Name>
+      <Ordinal>22</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:24" RowsetId="TableReference:5:rowset">
+      <Name>rowguid</Name>
+      <Ordinal>23</Ordinal>
+    </Column>
+    <Column Id="TableReference:5:source-column:25" RowsetId="TableReference:5:rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>24</Ordinal>
+    </Column>
+    <Column Id="SelectElement:27:output" RowsetId="QueryExpression:5:output-rowset">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="SelectElement:28:output" RowsetId="QueryExpression:5:output-rowset">
+      <Name>ProductID</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="SelectElement:29:output" RowsetId="QueryExpression:5:output-rowset">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="SelectElement:30:output" RowsetId="QueryExpression:5:output-rowset">
+      <Name>RecordSource</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:31:output" RowsetId="QueryExpression:5:output-rowset">
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:1" RowsetId="TableReference:6:rowset">
+      <Name>ProductID</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:2" RowsetId="TableReference:6:rowset">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:3" RowsetId="TableReference:6:rowset">
+      <Name>ProductNumber</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:4" RowsetId="TableReference:6:rowset">
+      <Name>MakeFlag</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:5" RowsetId="TableReference:6:rowset">
+      <Name>FinishedGoodsFlag</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:6" RowsetId="TableReference:6:rowset">
+      <Name>Color</Name>
+      <Ordinal>5</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:7" RowsetId="TableReference:6:rowset">
+      <Name>SafetyStockLevel</Name>
+      <Ordinal>6</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:8" RowsetId="TableReference:6:rowset">
+      <Name>ReorderPoint</Name>
+      <Ordinal>7</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:9" RowsetId="TableReference:6:rowset">
+      <Name>StandardCost</Name>
+      <Ordinal>8</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:10" RowsetId="TableReference:6:rowset">
+      <Name>ListPrice</Name>
+      <Ordinal>9</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:11" RowsetId="TableReference:6:rowset">
+      <Name>Size</Name>
+      <Ordinal>10</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:12" RowsetId="TableReference:6:rowset">
+      <Name>SizeUnitMeasureCode</Name>
+      <Ordinal>11</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:13" RowsetId="TableReference:6:rowset">
+      <Name>WeightUnitMeasureCode</Name>
+      <Ordinal>12</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:14" RowsetId="TableReference:6:rowset">
+      <Name>Weight</Name>
+      <Ordinal>13</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:15" RowsetId="TableReference:6:rowset">
+      <Name>DaysToManufacture</Name>
+      <Ordinal>14</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:16" RowsetId="TableReference:6:rowset">
+      <Name>ProductLine</Name>
+      <Ordinal>15</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:17" RowsetId="TableReference:6:rowset">
+      <Name>Class</Name>
+      <Ordinal>16</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:18" RowsetId="TableReference:6:rowset">
+      <Name>Style</Name>
+      <Ordinal>17</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:19" RowsetId="TableReference:6:rowset">
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>18</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:20" RowsetId="TableReference:6:rowset">
+      <Name>ProductModelID</Name>
+      <Ordinal>19</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:21" RowsetId="TableReference:6:rowset">
+      <Name>SellStartDate</Name>
+      <Ordinal>20</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:22" RowsetId="TableReference:6:rowset">
+      <Name>SellEndDate</Name>
+      <Ordinal>21</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:23" RowsetId="TableReference:6:rowset">
+      <Name>DiscontinuedDate</Name>
+      <Ordinal>22</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:24" RowsetId="TableReference:6:rowset">
+      <Name>rowguid</Name>
+      <Ordinal>23</Ordinal>
+    </Column>
+    <Column Id="TableReference:6:source-column:25" RowsetId="TableReference:6:rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>24</Ordinal>
+    </Column>
+    <Column Id="SelectElement:32:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>HubHashKey</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="SelectElement:33:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="SelectElement:34:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>ProductNumber</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="SelectElement:35:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>MakeFlag</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:36:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>FinishedGoodsFlag</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="SelectElement:37:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>Color</Name>
+      <Ordinal>5</Ordinal>
+    </Column>
+    <Column Id="SelectElement:38:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>SafetyStockLevel</Name>
+      <Ordinal>6</Ordinal>
+    </Column>
+    <Column Id="SelectElement:39:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>ReorderPoint</Name>
+      <Ordinal>7</Ordinal>
+    </Column>
+    <Column Id="SelectElement:40:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>StandardCost</Name>
+      <Ordinal>8</Ordinal>
+    </Column>
+    <Column Id="SelectElement:41:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>ListPrice</Name>
+      <Ordinal>9</Ordinal>
+    </Column>
+    <Column Id="SelectElement:42:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>Size</Name>
+      <Ordinal>10</Ordinal>
+    </Column>
+    <Column Id="SelectElement:43:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>Weight</Name>
+      <Ordinal>11</Ordinal>
+    </Column>
+    <Column Id="SelectElement:44:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>DaysToManufacture</Name>
+      <Ordinal>12</Ordinal>
+    </Column>
+    <Column Id="SelectElement:45:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>ProductLine</Name>
+      <Ordinal>13</Ordinal>
+    </Column>
+    <Column Id="SelectElement:46:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>Class</Name>
+      <Ordinal>14</Ordinal>
+    </Column>
+    <Column Id="SelectElement:47:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>Style</Name>
+      <Ordinal>15</Ordinal>
+    </Column>
+    <Column Id="SelectElement:48:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>SellStartDate</Name>
+      <Ordinal>16</Ordinal>
+    </Column>
+    <Column Id="SelectElement:49:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>SellEndDate</Name>
+      <Ordinal>17</Ordinal>
+    </Column>
+    <Column Id="SelectElement:50:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>DiscontinuedDate</Name>
+      <Ordinal>18</Ordinal>
+    </Column>
+    <Column Id="SelectElement:51:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>rowguid</Name>
+      <Ordinal>19</Ordinal>
+    </Column>
+    <Column Id="SelectElement:52:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>20</Ordinal>
+    </Column>
+    <Column Id="SelectElement:53:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>HashDiff</Name>
+      <Ordinal>21</Ordinal>
+    </Column>
+    <Column Id="SelectElement:54:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>22</Ordinal>
+    </Column>
+    <Column Id="SelectElement:55:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>RecordSource</Name>
+      <Ordinal>23</Ordinal>
+    </Column>
+    <Column Id="SelectElement:56:output" RowsetId="QueryExpression:6:output-rowset">
+      <Name>AuditId</Name>
+      <Ordinal>24</Ordinal>
+    </Column>
+    <Column Id="TableReference:7:source-column:1" RowsetId="TableReference:7:rowset">
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="TableReference:7:source-column:2" RowsetId="TableReference:7:rowset">
+      <Name>ProductCategoryID</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="TableReference:7:source-column:3" RowsetId="TableReference:7:rowset">
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="TableReference:7:source-column:4" RowsetId="TableReference:7:rowset">
+      <Name>rowguid</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="TableReference:7:source-column:5" RowsetId="TableReference:7:rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="SelectElement:57:output" RowsetId="QueryExpression:7:output-rowset">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="SelectElement:58:output" RowsetId="QueryExpression:7:output-rowset">
+      <Name>ProductSubcategoryHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="SelectElement:59:output" RowsetId="QueryExpression:7:output-rowset">
+      <Name>ProductCategoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="SelectElement:60:output" RowsetId="QueryExpression:7:output-rowset">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:61:output" RowsetId="QueryExpression:7:output-rowset">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="SelectElement:62:output" RowsetId="QueryExpression:7:output-rowset">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:1" RowsetId="TableReference:8:rowset">
+      <Name>ProductID</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:2" RowsetId="TableReference:8:rowset">
+      <Name>Name</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:3" RowsetId="TableReference:8:rowset">
+      <Name>ProductNumber</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:4" RowsetId="TableReference:8:rowset">
+      <Name>MakeFlag</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:5" RowsetId="TableReference:8:rowset">
+      <Name>FinishedGoodsFlag</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:6" RowsetId="TableReference:8:rowset">
+      <Name>Color</Name>
+      <Ordinal>5</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:7" RowsetId="TableReference:8:rowset">
+      <Name>SafetyStockLevel</Name>
+      <Ordinal>6</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:8" RowsetId="TableReference:8:rowset">
+      <Name>ReorderPoint</Name>
+      <Ordinal>7</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:9" RowsetId="TableReference:8:rowset">
+      <Name>StandardCost</Name>
+      <Ordinal>8</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:10" RowsetId="TableReference:8:rowset">
+      <Name>ListPrice</Name>
+      <Ordinal>9</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:11" RowsetId="TableReference:8:rowset">
+      <Name>Size</Name>
+      <Ordinal>10</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:12" RowsetId="TableReference:8:rowset">
+      <Name>SizeUnitMeasureCode</Name>
+      <Ordinal>11</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:13" RowsetId="TableReference:8:rowset">
+      <Name>WeightUnitMeasureCode</Name>
+      <Ordinal>12</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:14" RowsetId="TableReference:8:rowset">
+      <Name>Weight</Name>
+      <Ordinal>13</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:15" RowsetId="TableReference:8:rowset">
+      <Name>DaysToManufacture</Name>
+      <Ordinal>14</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:16" RowsetId="TableReference:8:rowset">
+      <Name>ProductLine</Name>
+      <Ordinal>15</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:17" RowsetId="TableReference:8:rowset">
+      <Name>Class</Name>
+      <Ordinal>16</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:18" RowsetId="TableReference:8:rowset">
+      <Name>Style</Name>
+      <Ordinal>17</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:19" RowsetId="TableReference:8:rowset">
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>18</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:20" RowsetId="TableReference:8:rowset">
+      <Name>ProductModelID</Name>
+      <Ordinal>19</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:21" RowsetId="TableReference:8:rowset">
+      <Name>SellStartDate</Name>
+      <Ordinal>20</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:22" RowsetId="TableReference:8:rowset">
+      <Name>SellEndDate</Name>
+      <Ordinal>21</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:23" RowsetId="TableReference:8:rowset">
+      <Name>DiscontinuedDate</Name>
+      <Ordinal>22</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:24" RowsetId="TableReference:8:rowset">
+      <Name>rowguid</Name>
+      <Ordinal>23</Ordinal>
+    </Column>
+    <Column Id="TableReference:8:source-column:25" RowsetId="TableReference:8:rowset">
+      <Name>ModifiedDate</Name>
+      <Ordinal>24</Ordinal>
+    </Column>
+    <Column Id="SelectElement:63:output" RowsetId="QueryExpression:8:output-rowset">
+      <Name>HashKey</Name>
+      <Ordinal>0</Ordinal>
+    </Column>
+    <Column Id="SelectElement:64:output" RowsetId="QueryExpression:8:output-rowset">
+      <Name>ProductHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </Column>
+    <Column Id="SelectElement:65:output" RowsetId="QueryExpression:8:output-rowset">
+      <Name>ProductSubcategoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </Column>
+    <Column Id="SelectElement:66:output" RowsetId="QueryExpression:8:output-rowset">
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </Column>
+    <Column Id="SelectElement:67:output" RowsetId="QueryExpression:8:output-rowset">
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </Column>
+    <Column Id="SelectElement:68:output" RowsetId="QueryExpression:8:output-rowset">
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </Column>
+  </ColumnList>
+</MetaTransformBinding>

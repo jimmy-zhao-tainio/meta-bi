@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptList>
+    <TransformScript Id="TransformScript:1">
+      <Name>dbo.v_load_H_ProductCategory</Name>
+      <SourcePath>001_load_H_ProductCategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:2">
+      <Name>dbo.v_load_HS_ProductCategory_ProductCategory</Name>
+      <SourcePath>002_load_HS_ProductCategory_ProductCategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:3">
+      <Name>dbo.v_load_H_ProductSubcategory</Name>
+      <SourcePath>003_load_H_ProductSubcategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:4">
+      <Name>dbo.v_load_HS_ProductSubcategory_ProductSubcategory</Name>
+      <SourcePath>004_load_HS_ProductSubcategory_ProductSubcategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:5">
+      <Name>dbo.v_load_H_Product</Name>
+      <SourcePath>005_load_H_Product.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:6">
+      <Name>dbo.v_load_HS_Product_Product</Name>
+      <SourcePath>006_load_HS_Product_Product.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:7">
+      <Name>dbo.v_load_L_ProductSubcategoryProductCategory</Name>
+      <SourcePath>007_load_L_ProductSubcategoryProductCategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:8">
+      <Name>dbo.v_load_L_ProductProductSubcategory</Name>
+      <SourcePath>008_load_L_ProductProductSubcategory.sql</SourcePath>
+    </TransformScript>
+  </TransformScriptList>
+</MetaTransformScript>

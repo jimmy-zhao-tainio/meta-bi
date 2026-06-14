@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <JoinTableReferenceFirstTableReferenceLinkList>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:1" JoinTableReferenceId="JoinTableReference:1" TableReferenceId="TableReference:1">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:2" JoinTableReferenceId="JoinTableReference:2" TableReferenceId="TableReference:5">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:3" JoinTableReferenceId="JoinTableReference:3" TableReferenceId="TableReference:8">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:4" JoinTableReferenceId="JoinTableReference:4" TableReferenceId="TableReference:11">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:5" JoinTableReferenceId="JoinTableReference:5" TableReferenceId="TableReference:13">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:6" JoinTableReferenceId="JoinTableReference:6" TableReferenceId="TableReference:15">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:7" JoinTableReferenceId="JoinTableReference:7" TableReferenceId="TableReference:17">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:8" JoinTableReferenceId="JoinTableReference:8" TableReferenceId="TableReference:19">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:9" JoinTableReferenceId="JoinTableReference:9" TableReferenceId="TableReference:21">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:10" JoinTableReferenceId="JoinTableReference:10" TableReferenceId="TableReference:23">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:11" JoinTableReferenceId="JoinTableReference:11" TableReferenceId="TableReference:25">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:12" JoinTableReferenceId="JoinTableReference:12" TableReferenceId="TableReference:27">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:13" JoinTableReferenceId="JoinTableReference:13" TableReferenceId="TableReference:29">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:14" JoinTableReferenceId="JoinTableReference:14" TableReferenceId="TableReference:31">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:15" JoinTableReferenceId="JoinTableReference:15" TableReferenceId="TableReference:33">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:16" JoinTableReferenceId="JoinTableReference:16" TableReferenceId="TableReference:35">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:17" JoinTableReferenceId="JoinTableReference:17" TableReferenceId="TableReference:37">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:18" JoinTableReferenceId="JoinTableReference:18" TableReferenceId="TableReference:39">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:19" JoinTableReferenceId="JoinTableReference:19" TableReferenceId="TableReference:41">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:20" JoinTableReferenceId="JoinTableReference:20" TableReferenceId="TableReference:43">
+    </JoinTableReferenceFirstTableReferenceLink>
+    <JoinTableReferenceFirstTableReferenceLink Id="JoinTableReferenceFirstTableReferenceLink:21" JoinTableReferenceId="JoinTableReference:21" TableReferenceId="TableReference:45">
+    </JoinTableReferenceFirstTableReferenceLink>
+  </JoinTableReferenceFirstTableReferenceLinkList>
+</MetaTransformScript>

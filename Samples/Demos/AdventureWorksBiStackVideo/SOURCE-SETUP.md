@@ -50,16 +50,16 @@ Then run:
 After the readiness check passes, the recorded agent run should begin product work by extracting the source schema from the live SQL database:
 
 ```cmd
-meta-schema extract sqlserver --new-workspace SourceSchemaWS --connection-env AW_SOURCE_SQL --system AdventureWorks --all-schemas --all-tables
+meta-schema extract sqlserver --new-workspace source\AdventureWorks2022\Schema --connection-env AW_SOURCE_SQL --system AdventureWorks2022 --all-schemas --all-tables
 ```
 
-The scaffold version writes to `Runs\source-schema\SourceSchemaWS` and exists only as a reference/preflight command:
+The scaffold version writes to `Runs\source\%AW_SOURCE_DATABASE%\Schema` and exists only as a reference/preflight command:
 
 ```cmd
 03-extract-source-schema.cmd
 ```
 
-For the main video, do not pre-create `SourceSchemaWS`. Let the recorded agent create it inside its generated run folder.
+For the main video, do not pre-create the source schema workspace. Let the recorded agent create the source-database-scoped `Schema` folder inside its generated run folder.
 
 ## Tables expected by the first slice
 

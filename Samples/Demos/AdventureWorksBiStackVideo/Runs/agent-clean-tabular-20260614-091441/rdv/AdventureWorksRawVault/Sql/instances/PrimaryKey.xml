@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <PrimaryKeyList>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Address.pk.PK_H_Address" TableId="AdventureWorksRawVault.dbo.H_Address">
+      <Name>PK_H_Address</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_AddressType.pk.PK_H_AddressType" TableId="AdventureWorksRawVault.dbo.H_AddressType">
+      <Name>PK_H_AddressType</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_AWBuildVersion.pk.PK_H_AWBuildVersion" TableId="AdventureWorksRawVault.dbo.H_AWBuildVersion">
+      <Name>PK_H_AWBuildVersion</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_BillOfMaterials.pk.PK_H_BillOfMaterials" TableId="AdventureWorksRawVault.dbo.H_BillOfMaterials">
+      <Name>PK_H_BillOfMaterials</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_BusinessEntity.pk.PK_H_BusinessEntity" TableId="AdventureWorksRawVault.dbo.H_BusinessEntity">
+      <Name>PK_H_BusinessEntity</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.pk.PK_H_BusinessEntityAddress" TableId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress">
+      <Name>PK_H_BusinessEntityAddress</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_BusinessEntityContact.pk.PK_H_BusinessEntityContact" TableId="AdventureWorksRawVault.dbo.H_BusinessEntityContact">
+      <Name>PK_H_BusinessEntityContact</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ContactType.pk.PK_H_ContactType" TableId="AdventureWorksRawVault.dbo.H_ContactType">
+      <Name>PK_H_ContactType</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_CountryRegion.pk.PK_H_CountryRegion" TableId="AdventureWorksRawVault.dbo.H_CountryRegion">
+      <Name>PK_H_CountryRegion</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_CountryRegionCurrency.pk.PK_H_CountryRegionCurrency" TableId="AdventureWorksRawVault.dbo.H_CountryRegionCurrency">
+      <Name>PK_H_CountryRegionCurrency</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_CreditCard.pk.PK_H_CreditCard" TableId="AdventureWorksRawVault.dbo.H_CreditCard">
+      <Name>PK_H_CreditCard</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Culture.pk.PK_H_Culture" TableId="AdventureWorksRawVault.dbo.H_Culture">
+      <Name>PK_H_Culture</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Currency.pk.PK_H_Currency" TableId="AdventureWorksRawVault.dbo.H_Currency">
+      <Name>PK_H_Currency</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_CurrencyRate.pk.PK_H_CurrencyRate" TableId="AdventureWorksRawVault.dbo.H_CurrencyRate">
+      <Name>PK_H_CurrencyRate</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Customer.pk.PK_H_Customer" TableId="AdventureWorksRawVault.dbo.H_Customer">
+      <Name>PK_H_Customer</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_DatabaseLog.pk.PK_H_DatabaseLog" TableId="AdventureWorksRawVault.dbo.H_DatabaseLog">
+      <Name>PK_H_DatabaseLog</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Department.pk.PK_H_Department" TableId="AdventureWorksRawVault.dbo.H_Department">
+      <Name>PK_H_Department</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Document.pk.PK_H_Document" TableId="AdventureWorksRawVault.dbo.H_Document">
+      <Name>PK_H_Document</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_EmailAddress.pk.PK_H_EmailAddress" TableId="AdventureWorksRawVault.dbo.H_EmailAddress">
+      <Name>PK_H_EmailAddress</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Employee.pk.PK_H_Employee" TableId="AdventureWorksRawVault.dbo.H_Employee">
+      <Name>PK_H_Employee</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.pk.PK_H_EmployeeDepartmentHistory" TableId="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory">
+      <Name>PK_H_EmployeeDepartmentHistory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_EmployeePayHistory.pk.PK_H_EmployeePayHistory" TableId="AdventureWorksRawVault.dbo.H_EmployeePayHistory">
+      <Name>PK_H_EmployeePayHistory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ErrorLog.pk.PK_H_ErrorLog" TableId="AdventureWorksRawVault.dbo.H_ErrorLog">
+      <Name>PK_H_ErrorLog</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Illustration.pk.PK_H_Illustration" TableId="AdventureWorksRawVault.dbo.H_Illustration">
+      <Name>PK_H_Illustration</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_JobCandidate.pk.PK_H_JobCandidate" TableId="AdventureWorksRawVault.dbo.H_JobCandidate">
+      <Name>PK_H_JobCandidate</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Location.pk.PK_H_Location" TableId="AdventureWorksRawVault.dbo.H_Location">
+      <Name>PK_H_Location</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Password.pk.PK_H_Password" TableId="AdventureWorksRawVault.dbo.H_Password">
+      <Name>PK_H_Password</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Person.pk.PK_H_Person" TableId="AdventureWorksRawVault.dbo.H_Person">
+      <Name>PK_H_Person</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_PersonCreditCard.pk.PK_H_PersonCreditCard" TableId="AdventureWorksRawVault.dbo.H_PersonCreditCard">
+      <Name>PK_H_PersonCreditCard</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_PersonPhone.pk.PK_H_PersonPhone" TableId="AdventureWorksRawVault.dbo.H_PersonPhone">
+      <Name>PK_H_PersonPhone</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_PhoneNumberType.pk.PK_H_PhoneNumberType" TableId="AdventureWorksRawVault.dbo.H_PhoneNumberType">
+      <Name>PK_H_PhoneNumberType</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Product.pk.PK_H_Product" TableId="AdventureWorksRawVault.dbo.H_Product">
+      <Name>PK_H_Product</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductCategory.pk.PK_H_ProductCategory" TableId="AdventureWorksRawVault.dbo.H_ProductCategory">
+      <Name>PK_H_ProductCategory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductCostHistory.pk.PK_H_ProductCostHistory" TableId="AdventureWorksRawVault.dbo.H_ProductCostHistory">
+      <Name>PK_H_ProductCostHistory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductDescription.pk.PK_H_ProductDescription" TableId="AdventureWorksRawVault.dbo.H_ProductDescription">
+      <Name>PK_H_ProductDescription</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductDocument.pk.PK_H_ProductDocument" TableId="AdventureWorksRawVault.dbo.H_ProductDocument">
+      <Name>PK_H_ProductDocument</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductInventory.pk.PK_H_ProductInventory" TableId="AdventureWorksRawVault.dbo.H_ProductInventory">
+      <Name>PK_H_ProductInventory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductListPriceHistory.pk.PK_H_ProductListPriceHistory" TableId="AdventureWorksRawVault.dbo.H_ProductListPriceHistory">
+      <Name>PK_H_ProductListPriceHistory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductModel.pk.PK_H_ProductModel" TableId="AdventureWorksRawVault.dbo.H_ProductModel">
+      <Name>PK_H_ProductModel</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductModelIllustration.pk.PK_H_ProductModelIllustration" TableId="AdventureWorksRawVault.dbo.H_ProductModelIllustration">
+      <Name>PK_H_ProductModelIllustration</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.pk.PK_H_ProductModelProductDescriptionCulture" TableId="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture">
+      <Name>PK_H_ProductModelProductDescriptionCulture</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductPhoto.pk.PK_H_ProductPhoto" TableId="AdventureWorksRawVault.dbo.H_ProductPhoto">
+      <Name>PK_H_ProductPhoto</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductProductPhoto.pk.PK_H_ProductProductPhoto" TableId="AdventureWorksRawVault.dbo.H_ProductProductPhoto">
+      <Name>PK_H_ProductProductPhoto</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductReview.pk.PK_H_ProductReview" TableId="AdventureWorksRawVault.dbo.H_ProductReview">
+      <Name>PK_H_ProductReview</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductSubcategory.pk.PK_H_ProductSubcategory" TableId="AdventureWorksRawVault.dbo.H_ProductSubcategory">
+      <Name>PK_H_ProductSubcategory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ProductVendor.pk.PK_H_ProductVendor" TableId="AdventureWorksRawVault.dbo.H_ProductVendor">
+      <Name>PK_H_ProductVendor</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.pk.PK_H_PurchaseOrderDetail" TableId="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail">
+      <Name>PK_H_PurchaseOrderDetail</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.pk.PK_H_PurchaseOrderHeader" TableId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader">
+      <Name>PK_H_PurchaseOrderHeader</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesOrderDetail.pk.PK_H_SalesOrderDetail" TableId="AdventureWorksRawVault.dbo.H_SalesOrderDetail">
+      <Name>PK_H_SalesOrderDetail</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesOrderHeader.pk.PK_H_SalesOrderHeader" TableId="AdventureWorksRawVault.dbo.H_SalesOrderHeader">
+      <Name>PK_H_SalesOrderHeader</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason.pk.PK_H_SalesOrderHeaderSalesReason" TableId="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason">
+      <Name>PK_H_SalesOrderHeaderSalesReason</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesPerson.pk.PK_H_SalesPerson" TableId="AdventureWorksRawVault.dbo.H_SalesPerson">
+      <Name>PK_H_SalesPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory.pk.PK_H_SalesPersonQuotaHistory" TableId="AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory">
+      <Name>PK_H_SalesPersonQuotaHistory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesReason.pk.PK_H_SalesReason" TableId="AdventureWorksRawVault.dbo.H_SalesReason">
+      <Name>PK_H_SalesReason</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesTaxRate.pk.PK_H_SalesTaxRate" TableId="AdventureWorksRawVault.dbo.H_SalesTaxRate">
+      <Name>PK_H_SalesTaxRate</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesTerritory.pk.PK_H_SalesTerritory" TableId="AdventureWorksRawVault.dbo.H_SalesTerritory">
+      <Name>PK_H_SalesTerritory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.pk.PK_H_SalesTerritoryHistory" TableId="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory">
+      <Name>PK_H_SalesTerritoryHistory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ScrapReason.pk.PK_H_ScrapReason" TableId="AdventureWorksRawVault.dbo.H_ScrapReason">
+      <Name>PK_H_ScrapReason</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Shift.pk.PK_H_Shift" TableId="AdventureWorksRawVault.dbo.H_Shift">
+      <Name>PK_H_Shift</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ShipMethod.pk.PK_H_ShipMethod" TableId="AdventureWorksRawVault.dbo.H_ShipMethod">
+      <Name>PK_H_ShipMethod</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_ShoppingCartItem.pk.PK_H_ShoppingCartItem" TableId="AdventureWorksRawVault.dbo.H_ShoppingCartItem">
+      <Name>PK_H_ShoppingCartItem</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SpecialOffer.pk.PK_H_SpecialOffer" TableId="AdventureWorksRawVault.dbo.H_SpecialOffer">
+      <Name>PK_H_SpecialOffer</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.pk.PK_H_SpecialOfferProduct" TableId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct">
+      <Name>PK_H_SpecialOfferProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_StateProvince.pk.PK_H_StateProvince" TableId="AdventureWorksRawVault.dbo.H_StateProvince">
+      <Name>PK_H_StateProvince</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Store.pk.PK_H_Store" TableId="AdventureWorksRawVault.dbo.H_Store">
+      <Name>PK_H_Store</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_TransactionHistory.pk.PK_H_TransactionHistory" TableId="AdventureWorksRawVault.dbo.H_TransactionHistory">
+      <Name>PK_H_TransactionHistory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive.pk.PK_H_TransactionHistoryArchive" TableId="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive">
+      <Name>PK_H_TransactionHistoryArchive</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_UnitMeasure.pk.PK_H_UnitMeasure" TableId="AdventureWorksRawVault.dbo.H_UnitMeasure">
+      <Name>PK_H_UnitMeasure</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_Vendor.pk.PK_H_Vendor" TableId="AdventureWorksRawVault.dbo.H_Vendor">
+      <Name>PK_H_Vendor</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_WorkOrder.pk.PK_H_WorkOrder" TableId="AdventureWorksRawVault.dbo.H_WorkOrder">
+      <Name>PK_H_WorkOrder</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.H_WorkOrderRouting.pk.PK_H_WorkOrderRouting" TableId="AdventureWorksRawVault.dbo.H_WorkOrderRouting">
+      <Name>PK_H_WorkOrderRouting</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_AddressStateProvince.pk.PK_L_AddressStateProvince" TableId="AdventureWorksRawVault.dbo.L_AddressStateProvince">
+      <Name>PK_L_AddressStateProvince</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.pk.PK_L_BillOfMaterialsProduct_ComponentID" TableId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID">
+      <Name>PK_L_BillOfMaterialsProduct_ComponentID</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.pk.PK_L_BillOfMaterialsProduct_ProductAssemblyID" TableId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID">
+      <Name>PK_L_BillOfMaterialsProduct_ProductAssemblyID</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.pk.PK_L_BillOfMaterialsUnitMeasure" TableId="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure">
+      <Name>PK_L_BillOfMaterialsUnitMeasure</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.pk.PK_L_BusinessEntityAddressAddress" TableId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress">
+      <Name>PK_L_BusinessEntityAddressAddress</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.pk.PK_L_BusinessEntityAddressAddressType" TableId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType">
+      <Name>PK_L_BusinessEntityAddressAddressType</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.pk.PK_L_BusinessEntityAddressBusinessEntity" TableId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity">
+      <Name>PK_L_BusinessEntityAddressBusinessEntity</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.pk.PK_L_BusinessEntityContactBusinessEntity" TableId="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity">
+      <Name>PK_L_BusinessEntityContactBusinessEntity</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.pk.PK_L_BusinessEntityContactContactType" TableId="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType">
+      <Name>PK_L_BusinessEntityContactContactType</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.pk.PK_L_BusinessEntityContactPerson" TableId="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson">
+      <Name>PK_L_BusinessEntityContactPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.pk.PK_L_CountryRegionCurrencyCountryRegion" TableId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion">
+      <Name>PK_L_CountryRegionCurrencyCountryRegion</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.pk.PK_L_CountryRegionCurrencyCurrency" TableId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency">
+      <Name>PK_L_CountryRegionCurrencyCurrency</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.pk.PK_L_CurrencyRateCurrency_FromCurrencyCode" TableId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode">
+      <Name>PK_L_CurrencyRateCurrency_FromCurrencyCode</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.pk.PK_L_CurrencyRateCurrency_ToCurrencyCode" TableId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode">
+      <Name>PK_L_CurrencyRateCurrency_ToCurrencyCode</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_CustomerPerson.pk.PK_L_CustomerPerson" TableId="AdventureWorksRawVault.dbo.L_CustomerPerson">
+      <Name>PK_L_CustomerPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.pk.PK_L_CustomerSalesTerritory" TableId="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory">
+      <Name>PK_L_CustomerSalesTerritory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_CustomerStore.pk.PK_L_CustomerStore" TableId="AdventureWorksRawVault.dbo.L_CustomerStore">
+      <Name>PK_L_CustomerStore</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_DocumentEmployee.pk.PK_L_DocumentEmployee" TableId="AdventureWorksRawVault.dbo.L_DocumentEmployee">
+      <Name>PK_L_DocumentEmployee</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_EmailAddressPerson.pk.PK_L_EmailAddressPerson" TableId="AdventureWorksRawVault.dbo.L_EmailAddressPerson">
+      <Name>PK_L_EmailAddressPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.pk.PK_L_EmployeeDepartmentHistoryDepartment" TableId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment">
+      <Name>PK_L_EmployeeDepartmentHistoryDepartment</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.pk.PK_L_EmployeeDepartmentHistoryEmployee" TableId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee">
+      <Name>PK_L_EmployeeDepartmentHistoryEmployee</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.pk.PK_L_EmployeeDepartmentHistoryShift" TableId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift">
+      <Name>PK_L_EmployeeDepartmentHistoryShift</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.pk.PK_L_EmployeePayHistoryEmployee" TableId="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee">
+      <Name>PK_L_EmployeePayHistoryEmployee</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_EmployeePerson.pk.PK_L_EmployeePerson" TableId="AdventureWorksRawVault.dbo.L_EmployeePerson">
+      <Name>PK_L_EmployeePerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_JobCandidateEmployee.pk.PK_L_JobCandidateEmployee" TableId="AdventureWorksRawVault.dbo.L_JobCandidateEmployee">
+      <Name>PK_L_JobCandidateEmployee</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PasswordPerson.pk.PK_L_PasswordPerson" TableId="AdventureWorksRawVault.dbo.L_PasswordPerson">
+      <Name>PK_L_PasswordPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PersonBusinessEntity.pk.PK_L_PersonBusinessEntity" TableId="AdventureWorksRawVault.dbo.L_PersonBusinessEntity">
+      <Name>PK_L_PersonBusinessEntity</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.pk.PK_L_PersonCreditCardCreditCard" TableId="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard">
+      <Name>PK_L_PersonCreditCardCreditCard</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.pk.PK_L_PersonCreditCardPerson" TableId="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson">
+      <Name>PK_L_PersonCreditCardPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PersonPhonePerson.pk.PK_L_PersonPhonePerson" TableId="AdventureWorksRawVault.dbo.L_PersonPhonePerson">
+      <Name>PK_L_PersonPhonePerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.pk.PK_L_PersonPhonePhoneNumberType" TableId="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType">
+      <Name>PK_L_PersonPhonePhoneNumberType</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.pk.PK_L_ProductCostHistoryProduct" TableId="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct">
+      <Name>PK_L_ProductCostHistoryProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductDocumentDocument.pk.PK_L_ProductDocumentDocument" TableId="AdventureWorksRawVault.dbo.L_ProductDocumentDocument">
+      <Name>PK_L_ProductDocumentDocument</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductDocumentProduct.pk.PK_L_ProductDocumentProduct" TableId="AdventureWorksRawVault.dbo.L_ProductDocumentProduct">
+      <Name>PK_L_ProductDocumentProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductInventoryLocation.pk.PK_L_ProductInventoryLocation" TableId="AdventureWorksRawVault.dbo.L_ProductInventoryLocation">
+      <Name>PK_L_ProductInventoryLocation</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductInventoryProduct.pk.PK_L_ProductInventoryProduct" TableId="AdventureWorksRawVault.dbo.L_ProductInventoryProduct">
+      <Name>PK_L_ProductInventoryProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.pk.PK_L_ProductListPriceHistoryProduct" TableId="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct">
+      <Name>PK_L_ProductListPriceHistoryProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.pk.PK_L_ProductModelIllustrationIllustration" TableId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration">
+      <Name>PK_L_ProductModelIllustrationIllustration</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.pk.PK_L_ProductModelIllustrationProductModel" TableId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel">
+      <Name>PK_L_ProductModelIllustrationProductModel</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.pk.PK_L_ProductModelProductDescriptionCultureCulture" TableId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture">
+      <Name>PK_L_ProductModelProductDescriptionCultureCulture</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.pk.PK_L_ProductModelProductDescriptionCultureProductDescription" TableId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription">
+      <Name>PK_L_ProductModelProductDescriptionCultureProductDescription</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.pk.PK_L_ProductModelProductDescriptionCultureProductModel" TableId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel">
+      <Name>PK_L_ProductModelProductDescriptionCultureProductModel</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductProductModel.pk.PK_L_ProductProductModel" TableId="AdventureWorksRawVault.dbo.L_ProductProductModel">
+      <Name>PK_L_ProductProductModel</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.pk.PK_L_ProductProductPhotoProduct" TableId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct">
+      <Name>PK_L_ProductProductPhotoProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.pk.PK_L_ProductProductPhotoProductPhoto" TableId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto">
+      <Name>PK_L_ProductProductPhotoProductPhoto</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductProductSubcategory.pk.PK_L_ProductProductSubcategory" TableId="AdventureWorksRawVault.dbo.L_ProductProductSubcategory">
+      <Name>PK_L_ProductProductSubcategory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductReviewProduct.pk.PK_L_ProductReviewProduct" TableId="AdventureWorksRawVault.dbo.L_ProductReviewProduct">
+      <Name>PK_L_ProductReviewProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.pk.PK_L_ProductSubcategoryProductCategory" TableId="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory">
+      <Name>PK_L_ProductSubcategoryProductCategory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.pk.PK_L_ProductUnitMeasure_SizeUnitMeasureCode" TableId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode">
+      <Name>PK_L_ProductUnitMeasure_SizeUnitMeasureCode</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.pk.PK_L_ProductUnitMeasure_WeightUnitMeasureCode" TableId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode">
+      <Name>PK_L_ProductUnitMeasure_WeightUnitMeasureCode</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductVendorProduct.pk.PK_L_ProductVendorProduct" TableId="AdventureWorksRawVault.dbo.L_ProductVendorProduct">
+      <Name>PK_L_ProductVendorProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.pk.PK_L_ProductVendorUnitMeasure" TableId="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure">
+      <Name>PK_L_ProductVendorUnitMeasure</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ProductVendorVendor.pk.PK_L_ProductVendorVendor" TableId="AdventureWorksRawVault.dbo.L_ProductVendorVendor">
+      <Name>PK_L_ProductVendorVendor</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.pk.PK_L_PurchaseOrderDetailProduct" TableId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct">
+      <Name>PK_L_PurchaseOrderDetailProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.pk.PK_L_PurchaseOrderDetailPurchaseOrderHeader" TableId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader">
+      <Name>PK_L_PurchaseOrderDetailPurchaseOrderHeader</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.pk.PK_L_PurchaseOrderHeaderEmployee" TableId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee">
+      <Name>PK_L_PurchaseOrderHeaderEmployee</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.pk.PK_L_PurchaseOrderHeaderShipMethod" TableId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod">
+      <Name>PK_L_PurchaseOrderHeaderShipMethod</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.pk.PK_L_PurchaseOrderHeaderVendor" TableId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor">
+      <Name>PK_L_PurchaseOrderHeaderVendor</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.pk.PK_L_SalesOrderDetailSalesOrderHeader" TableId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader">
+      <Name>PK_L_SalesOrderDetailSalesOrderHeader</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.pk.PK_L_SalesOrderDetailSpecialOfferProduct" TableId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct">
+      <Name>PK_L_SalesOrderDetailSpecialOfferProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.pk.PK_L_SalesOrderHeaderAddress_BillToAddressID" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID">
+      <Name>PK_L_SalesOrderHeaderAddress_BillToAddressID</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.pk.PK_L_SalesOrderHeaderAddress_ShipToAddressID" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID">
+      <Name>PK_L_SalesOrderHeaderAddress_ShipToAddressID</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.pk.PK_L_SalesOrderHeaderCreditCard" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard">
+      <Name>PK_L_SalesOrderHeaderCreditCard</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.pk.PK_L_SalesOrderHeaderCurrencyRate" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate">
+      <Name>PK_L_SalesOrderHeaderCurrencyRate</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.pk.PK_L_SalesOrderHeaderCustomer" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer">
+      <Name>PK_L_SalesOrderHeaderCustomer</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.pk.PK_L_SalesOrderHeaderSalesPerson" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson">
+      <Name>PK_L_SalesOrderHeaderSalesPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.pk.PK_L_SalesOrderHeaderSalesReasonSalesOrderHeader" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader">
+      <Name>PK_L_SalesOrderHeaderSalesReasonSalesOrderHeader</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.pk.PK_L_SalesOrderHeaderSalesReasonSalesReason" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason">
+      <Name>PK_L_SalesOrderHeaderSalesReasonSalesReason</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.pk.PK_L_SalesOrderHeaderSalesTerritory" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory">
+      <Name>PK_L_SalesOrderHeaderSalesTerritory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.pk.PK_L_SalesOrderHeaderShipMethod" TableId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod">
+      <Name>PK_L_SalesOrderHeaderShipMethod</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesPersonEmployee.pk.PK_L_SalesPersonEmployee" TableId="AdventureWorksRawVault.dbo.L_SalesPersonEmployee">
+      <Name>PK_L_SalesPersonEmployee</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.pk.PK_L_SalesPersonQuotaHistorySalesPerson" TableId="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson">
+      <Name>PK_L_SalesPersonQuotaHistorySalesPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.pk.PK_L_SalesPersonSalesTerritory" TableId="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory">
+      <Name>PK_L_SalesPersonSalesTerritory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.pk.PK_L_SalesTaxRateStateProvince" TableId="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince">
+      <Name>PK_L_SalesTaxRateStateProvince</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.pk.PK_L_SalesTerritoryCountryRegion" TableId="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion">
+      <Name>PK_L_SalesTerritoryCountryRegion</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.pk.PK_L_SalesTerritoryHistorySalesPerson" TableId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson">
+      <Name>PK_L_SalesTerritoryHistorySalesPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.pk.PK_L_SalesTerritoryHistorySalesTerritory" TableId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory">
+      <Name>PK_L_SalesTerritoryHistorySalesTerritory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.pk.PK_L_ShoppingCartItemProduct" TableId="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct">
+      <Name>PK_L_ShoppingCartItemProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.pk.PK_L_SpecialOfferProductProduct" TableId="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct">
+      <Name>PK_L_SpecialOfferProductProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.pk.PK_L_SpecialOfferProductSpecialOffer" TableId="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer">
+      <Name>PK_L_SpecialOfferProductSpecialOffer</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.pk.PK_L_StateProvinceCountryRegion" TableId="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion">
+      <Name>PK_L_StateProvinceCountryRegion</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.pk.PK_L_StateProvinceSalesTerritory" TableId="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory">
+      <Name>PK_L_StateProvinceSalesTerritory</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_StoreBusinessEntity.pk.PK_L_StoreBusinessEntity" TableId="AdventureWorksRawVault.dbo.L_StoreBusinessEntity">
+      <Name>PK_L_StoreBusinessEntity</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_StoreSalesPerson.pk.PK_L_StoreSalesPerson" TableId="AdventureWorksRawVault.dbo.L_StoreSalesPerson">
+      <Name>PK_L_StoreSalesPerson</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.pk.PK_L_TransactionHistoryProduct" TableId="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct">
+      <Name>PK_L_TransactionHistoryProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_VendorBusinessEntity.pk.PK_L_VendorBusinessEntity" TableId="AdventureWorksRawVault.dbo.L_VendorBusinessEntity">
+      <Name>PK_L_VendorBusinessEntity</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_WorkOrderProduct.pk.PK_L_WorkOrderProduct" TableId="AdventureWorksRawVault.dbo.L_WorkOrderProduct">
+      <Name>PK_L_WorkOrderProduct</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.pk.PK_L_WorkOrderRoutingLocation" TableId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation">
+      <Name>PK_L_WorkOrderRoutingLocation</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.pk.PK_L_WorkOrderRoutingWorkOrder" TableId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder">
+      <Name>PK_L_WorkOrderRoutingWorkOrder</Name>
+    </PrimaryKey>
+    <PrimaryKey Id="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.pk.PK_L_WorkOrderScrapReason" TableId="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason">
+      <Name>PK_L_WorkOrderScrapReason</Name>
+    </PrimaryKey>
+  </PrimaryKeyList>
+</MetaSql>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetRowsetLinkList>
+    <ValidationTargetRowsetLink Id="TransformScript:1:binding:validation:target:1" RowsetId="QueryExpression:1:output-rowset" TransformBindingTargetId="TransformScript:1:binding:target:1" ValidationId="TransformScript:1:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:2:binding:validation:target:2" RowsetId="QueryExpression:2:output-rowset" TransformBindingTargetId="TransformScript:2:binding:target:1" ValidationId="TransformScript:2:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Customer_Customer</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:3:binding:validation:target:3" RowsetId="QueryExpression:3:output-rowset" TransformBindingTargetId="TransformScript:3:binding:target:1" ValidationId="TransformScript:3:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:4:binding:validation:target:4" RowsetId="QueryExpression:4:output-rowset" TransformBindingTargetId="TransformScript:4:binding:target:1" ValidationId="TransformScript:4:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Store_Store</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:5:binding:validation:target:5" RowsetId="QueryExpression:5:output-rowset" TransformBindingTargetId="TransformScript:5:binding:target:1" ValidationId="TransformScript:5:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:6:binding:validation:target:6" RowsetId="QueryExpression:6:output-rowset" TransformBindingTargetId="TransformScript:6:binding:target:1" ValidationId="TransformScript:6:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:7:binding:validation:target:7" RowsetId="QueryExpression:7:output-rowset" TransformBindingTargetId="TransformScript:7:binding:target:1" ValidationId="TransformScript:7:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:8:binding:validation:target:8" RowsetId="QueryExpression:8:output-rowset" TransformBindingTargetId="TransformScript:8:binding:target:1" ValidationId="TransformScript:8:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritory_SalesTerritory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:9:binding:validation:target:9" RowsetId="QueryExpression:9:output-rowset" TransformBindingTargetId="TransformScript:9:binding:target:1" ValidationId="TransformScript:9:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:10:binding:validation:target:10" RowsetId="QueryExpression:10:output-rowset" TransformBindingTargetId="TransformScript:10:binding:target:1" ValidationId="TransformScript:10:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderHeader_SalesOrderHeader</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:11:binding:validation:target:11" RowsetId="QueryExpression:11:output-rowset" TransformBindingTargetId="TransformScript:11:binding:target:1" ValidationId="TransformScript:11:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:12:binding:validation:target:12" RowsetId="QueryExpression:12:output-rowset" TransformBindingTargetId="TransformScript:12:binding:target:1" ValidationId="TransformScript:12:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesOrderDetail_SalesOrderDetail</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:13:binding:validation:target:13" RowsetId="QueryExpression:13:output-rowset" TransformBindingTargetId="TransformScript:13:binding:target:1" ValidationId="TransformScript:13:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:14:binding:validation:target:14" RowsetId="QueryExpression:14:output-rowset" TransformBindingTargetId="TransformScript:14:binding:target:1" ValidationId="TransformScript:14:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerStore</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:15:binding:validation:target:15" RowsetId="QueryExpression:15:output-rowset" TransformBindingTargetId="TransformScript:15:binding:target:1" ValidationId="TransformScript:15:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_CustomerSalesTerritory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:16:binding:validation:target:16" RowsetId="QueryExpression:16:output-rowset" TransformBindingTargetId="TransformScript:16:binding:target:1" ValidationId="TransformScript:16:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderCustomer</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:17:binding:validation:target:17" RowsetId="QueryExpression:17:output-rowset" TransformBindingTargetId="TransformScript:17:binding:target:1" ValidationId="TransformScript:17:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesPerson</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:18:binding:validation:target:18" RowsetId="QueryExpression:18:output-rowset" TransformBindingTargetId="TransformScript:18:binding:target:1" ValidationId="TransformScript:18:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderHeaderSalesTerritory</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:19:binding:validation:target:19" RowsetId="QueryExpression:19:output-rowset" TransformBindingTargetId="TransformScript:19:binding:target:1" ValidationId="TransformScript:19:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSalesOrderHeader</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:20:binding:validation:target:20" RowsetId="QueryExpression:20:output-rowset" TransformBindingTargetId="TransformScript:20:binding:target:1" ValidationId="TransformScript:20:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SalesOrderDetailSpecialOfferProduct</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+    <ValidationTargetRowsetLink Id="TransformScript:21:binding:validation:target:21" RowsetId="QueryExpression:21:output-rowset" TransformBindingTargetId="TransformScript:21:binding:target:1" ValidationId="TransformScript:21:binding:validation">
+      <MetaSchemaTableId>sqlserver:AdventureWorksRawVault:schema:dbo:table:L_SpecialOfferProductProduct</MetaSchemaTableId>
+    </ValidationTargetRowsetLink>
+  </ValidationTargetRowsetLinkList>
+</MetaTransformBinding>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularMeasureList>
+    <TabularMeasure Id="MeasureDiscountAmount" TabularTableId="FactSalesOrderLine">
+      <Expression>SUM('Fact Sales Order Line'[Discount Amount Column])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Discount Amount</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="MeasureLineCount" TabularTableId="FactSalesOrderLine">
+      <Expression>COUNT('Fact Sales Order Line'[Sales Order Detail ID])</Expression>
+      <FormatString>#,0</FormatString>
+      <Name>Line Count</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="MeasureOrderQuantity" TabularTableId="FactSalesOrderLine">
+      <Expression>SUM('Fact Sales Order Line'[Order Quantity Column])</Expression>
+      <FormatString>#,0</FormatString>
+      <Name>Order Quantity</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="MeasureSalesAmount" TabularTableId="FactSalesOrderLine">
+      <Expression>SUM('Fact Sales Order Line'[Sales Amount Column])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Sales Amount</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="MeasureTaxAmount" TabularTableId="FactSalesOrderLine">
+      <Expression>SUM('Fact Sales Order Line'[Tax Amount Column])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Tax Amount</Name>
+    </TabularMeasure>
+  </TabularMeasureList>
+</MetaTabular>

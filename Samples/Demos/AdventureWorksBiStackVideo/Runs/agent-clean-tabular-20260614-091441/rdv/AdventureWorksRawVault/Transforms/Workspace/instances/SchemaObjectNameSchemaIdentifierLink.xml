@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SchemaObjectNameSchemaIdentifierLinkList>
+    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:1" IdentifierId="Identifier:21" SchemaObjectNameId="SchemaObjectName:7">
+    </SchemaObjectNameSchemaIdentifierLink>
+    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:2" IdentifierId="Identifier:58" SchemaObjectNameId="SchemaObjectName:16">
+    </SchemaObjectNameSchemaIdentifierLink>
+    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:3" IdentifierId="Identifier:81" SchemaObjectNameId="SchemaObjectName:23">
+    </SchemaObjectNameSchemaIdentifierLink>
+    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:4" IdentifierId="Identifier:118" SchemaObjectNameId="SchemaObjectName:32">
+    </SchemaObjectNameSchemaIdentifierLink>
+    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:5" IdentifierId="Identifier:141" SchemaObjectNameId="SchemaObjectName:39">
+    </SchemaObjectNameSchemaIdentifierLink>
+    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:6" IdentifierId="Identifier:257" SchemaObjectNameId="SchemaObjectName:59">
+    </SchemaObjectNameSchemaIdentifierLink>
+    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:7" IdentifierId="Identifier:292" SchemaObjectNameId="SchemaObjectName:70">
+    </SchemaObjectNameSchemaIdentifierLink>
+    <SchemaObjectNameSchemaIdentifierLink Id="SchemaObjectNameSchemaIdentifierLink:8" IdentifierId="Identifier:327" SchemaObjectNameId="SchemaObjectName:81">
+    </SchemaObjectNameSchemaIdentifierLink>
+  </SchemaObjectNameSchemaIdentifierLinkList>
+</MetaTransformScript>

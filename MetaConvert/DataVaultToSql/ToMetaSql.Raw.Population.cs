@@ -1,4 +1,6 @@
 using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
 using MetaDataVaultImplementation;
 using MetaRawDataVault;
 using MetaSql;
@@ -7,6 +9,9 @@ namespace MetaConvert.DataVaultToSql;
 
 public static partial class Converter
 {
+    private const int SqlServerIdentifierMaxLength = 128;
+    private const int SqlServerIdentifierHashLength = 12;
+
     private static void PopulateRawMetaSqlModel(
         MetaRawDataVaultModel model,
         ConversionContext context,
@@ -378,13 +383,14 @@ public static partial class Converter
             throw new InvalidOperationException($"Projected schema '{schemaName}' is not present in conversion context.");
         }
 
-        var id = $"{schema.Id}.{name}";
+        var actualName = ShortenSqlServerIdentifier(name);
+        var id = $"{schema.Id}.{actualName}";
         EnsureUniqueId(context.MetaSql.TableList.Select(row => row.Id), id, "table");
 
         var table = new Table
         {
             Id = id,
-            Name = name,
+            Name = actualName,
             Schema = schema,
         };
 
@@ -400,17 +406,30 @@ public static partial class Converter
         IReadOnlyDictionary<string, List<SourceFieldDataTypeDetail>> sourceFieldDetailsByFieldId,
         IReadOnlySet<string>? protectedColumnNames = null)
     {
+        var loweredType = ResolveSourceFieldMetaDataType(context, sourceField.DataTypeId);
         var column = AddColumn(
             context,
             table,
             sourceField.Name,
-            sourceField.DataTypeId,
+            loweredType.DataTypeId,
             sourceField.IsNullable,
             reservedColumnNames,
             protectedColumnNames);
 
+        var detailNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var detail in GetGroup(sourceFieldDetailsByFieldId, sourceField.Id).OrderBy(row => row.Name, StringComparer.OrdinalIgnoreCase).ThenBy(row => row.Id, StringComparer.Ordinal))
         {
+            AddDetail(context, column, detail.Name, detail.Value);
+            detailNames.Add(detail.Name);
+        }
+
+        foreach (var detail in loweredType.DefaultDetails)
+        {
+            if (detailNames.Contains(detail.Name))
+            {
+                continue;
+            }
+
             AddDetail(context, column, detail.Name, detail.Value);
         }
 
@@ -473,6 +492,13 @@ public static partial class Converter
             : context.BusinessTypeLowering.LowerRequired(metaDataTypeId);
     }
 
+    private static LoweredSqlServerType ResolveSourceFieldMetaDataType(ConversionContext context, string metaDataTypeId)
+    {
+        return context.BusinessTypeLowering is null
+            ? new LoweredSqlServerType(metaDataTypeId, [])
+            : context.BusinessTypeLowering.LowerRawSourceRequired(metaDataTypeId);
+    }
+
     private static TableColumn AddColumn(
         ConversionContext context,
         Table table,
@@ -482,7 +508,7 @@ public static partial class Converter
         HashSet<string> reservedColumnNames,
         IReadOnlySet<string>? protectedColumnNames = null)
     {
-        var actualName = ReserveColumnName(reservedColumnNames, requestedName, protectedColumnNames);
+        var actualName = ReserveColumnName(reservedColumnNames, ShortenSqlServerIdentifier(requestedName), protectedColumnNames);
         var id = $"{table.Id}.{actualName}";
         EnsureUniqueId(context.MetaSql.TableColumnList.Select(row => row.Id), id, "table column");
         var ordinal = (context.MetaSql.TableColumnList.Count(row => ReferenceEquals(row.Table, table)) + 1).ToString(CultureInfo.InvariantCulture);
@@ -523,13 +549,14 @@ public static partial class Converter
         string name,
         TableColumn tableColumn)
     {
-        var id = $"{table.Id}.pk.{name}";
+        var actualName = ShortenSqlServerIdentifier(name);
+        var id = $"{table.Id}.pk.{actualName}";
         EnsureUniqueId(context.MetaSql.PrimaryKeyList.Select(row => row.Id), id, "primary key");
 
         var primaryKey = new PrimaryKey
         {
             Id = id,
-            Name = name,
+            Name = actualName,
             Table = table,
         };
         context.MetaSql.PrimaryKeyList.Add(primaryKey);
@@ -549,13 +576,14 @@ public static partial class Converter
         Table targetTable,
         IEnumerable<(TableColumn SourceColumn, TableColumn TargetColumn)> columnPairs)
     {
-        var id = $"{sourceTable.Id}.fk.{name}";
+        var actualName = ShortenSqlServerIdentifier(name);
+        var id = $"{sourceTable.Id}.fk.{actualName}";
         EnsureUniqueId(context.MetaSql.ForeignKeyList.Select(row => row.Id), id, "foreign key");
 
         var foreignKey = new ForeignKey
         {
             Id = id,
-            Name = name,
+            Name = actualName,
             SourceTable = sourceTable,
             TargetTable = targetTable,
         };
@@ -592,11 +620,26 @@ public static partial class Converter
         while (reservedColumnNames.Contains(actualName) ||
                (protectedColumnNames is not null && protectedColumnNames.Contains(actualName)))
         {
-            actualName = "_" + actualName;
+            actualName = ShortenSqlServerIdentifier("_" + actualName);
         }
 
         reservedColumnNames.Add(actualName);
         return actualName;
+    }
+
+    private static string ShortenSqlServerIdentifier(string value)
+    {
+        if (value.Length <= SqlServerIdentifierMaxLength)
+        {
+            return value;
+        }
+
+        var hash = Convert
+            .ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)))
+            .Substring(0, SqlServerIdentifierHashLength)
+            .ToLowerInvariant();
+        var suffix = "_" + hash;
+        return value.Substring(0, SqlServerIdentifierMaxLength - suffix.Length) + suffix;
     }
 
     private static void EnsureUniqueId(IEnumerable<string> existingIds, string id, string logicalName)

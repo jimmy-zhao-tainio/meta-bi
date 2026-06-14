@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingList>
+    <TransformBinding Id="TransformScript:1:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:1</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_BH_Product</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:2:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:2</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>dbo.v_load_BHS_Product_ProductClassification</TransformScriptName>
+    </TransformBinding>
+  </TransformBindingList>
+</MetaTransformBinding>

@@ -1,0 +1,9 @@
+Path	Target
+sql\001_load_H_ProductCategory.sql	dbo.H_ProductCategory
+sql\002_load_HS_ProductCategory_ProductCategory.sql	dbo.HS_ProductCategory_ProductCategory
+sql\003_load_H_ProductSubcategory.sql	dbo.H_ProductSubcategory
+sql\004_load_HS_ProductSubcategory_ProductSubcategory.sql	dbo.HS_ProductSubcategory_ProductSubcategory
+sql\005_load_H_Product.sql	dbo.H_Product
+sql\006_load_HS_Product_Product.sql	dbo.HS_Product_Product
+sql\007_load_L_ProductSubcategoryProductCategory.sql	dbo.L_ProductSubcategoryProductCategory
+sql\008_load_L_ProductProductSubcategory.sql	dbo.L_ProductProductSubcategory

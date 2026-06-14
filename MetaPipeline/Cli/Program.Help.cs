@@ -37,21 +37,19 @@ internal static partial class Program
                     "Execute a modeled pipeline's serial task chain.",
                     new[]
                     {
-                        "meta-pipeline execute --workspace <path> --pipeline <name> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
+                        "meta-pipeline execute --workspace <path> --pipeline <name> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
                     },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaPipeline workspace that contains the modeled serial task chain."),
                         new CliOptionDefinition("--pipeline <name>", "Required. Pipeline name to execute."),
-                        new CliOptionDefinition("--transform-workspace <path>", "Required when the pipeline contains transform tasks. MetaTransformScript workspace used by transform tasks."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Required when the pipeline contains transform tasks. MetaTransformBinding workspace used by transform tasks."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional shell-visible environment variable for an initialized MetaPipeline operational DB.")
                     },
                     new[]
                     {
                         "Executes the serial PipelineTask chain declared in a MetaPipeline workspace.",
-                        "Every transform task requires a binding workspace.",
+                        "Every transform task carries its own modeled transform workspace and binding workspace.",
                         "Executable tasks do not require transform or binding workspaces.",
                         "SELECT-kind scripts must feed exactly one InsertRows target write.",
                         "Non-SELECT scripts execute directly and must not feed a TargetWrite task.",
@@ -64,7 +62,7 @@ internal static partial class Program
                     },
                     new[]
                     {
-                        "meta-pipeline execute --workspace .\\PipelineWS --pipeline CustomerLoad --transform-workspace .\\TransformWS --binding-workspace .\\BindingWS"
+                        "meta-pipeline execute --workspace .\\PipelineWS --pipeline CustomerLoad"
                     }),
                 RunExecuteAsync),
             new CliCommandRoute(
@@ -73,14 +71,12 @@ internal static partial class Program
                     "Execute a modeled pipeline under an orchestration worker protocol.",
                     new[]
                     {
-                        "meta-pipeline execute-worker --workspace <path> --pipeline <name> --control-pipe <name> [--transform-workspace <path>] [--binding-workspace <path>] [--control-pipe-connect-timeout-seconds <n>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
+                        "meta-pipeline execute-worker --workspace <path> --pipeline <name> --control-pipe <name> [--control-pipe-connect-timeout-seconds <n>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
                     },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaPipeline workspace that contains the modeled serial task chain."),
                         new CliOptionDefinition("--pipeline <name>", "Required. Pipeline name to execute as a worker."),
-                        new CliOptionDefinition("--transform-workspace <path>", "Required when the pipeline contains transform tasks. MetaTransformScript workspace used by transform tasks."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Required when the pipeline contains transform tasks. MetaTransformBinding workspace used by transform tasks."),
                         new CliOptionDefinition("--control-pipe <name>", "Required. Named pipe used for orchestration worker control messages."),
                         new CliOptionDefinition("--control-pipe-connect-timeout-seconds <n>", "Optional timeout while connecting to the orchestration control pipe. 0 or omitted means no timeout."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
@@ -99,7 +95,7 @@ internal static partial class Program
                     },
                     new[]
                     {
-                        "meta-pipeline execute-worker --workspace .\\PipelineWS --pipeline CustomerLoad --transform-workspace .\\TransformWS --binding-workspace .\\BindingWS --control-pipe meta-worker-123"
+                        "meta-pipeline execute-worker --workspace .\\PipelineWS --pipeline CustomerLoad --control-pipe meta-worker-123"
                     }),
                 RunExecuteWorkerAsync),
             new CliCommandRoute(
@@ -108,15 +104,13 @@ internal static partial class Program
                     "Execute one modeled pipeline step.",
                     new[]
                     {
-                        "meta-pipeline execute-step --workspace <path> --pipeline <name> --step-name <name-or-id> [--transform-workspace <path>] [--binding-workspace <path>] [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
+                        "meta-pipeline execute-step --workspace <path> --pipeline <name> --step-name <name-or-id> [--data-type-conversion-workspace <path>] [--pipeline-db-connection-env <name>]"
                     },
                     new[]
                     {
                         new CliOptionDefinition("--workspace <path>", "Required. MetaPipeline workspace that contains the modeled step."),
                         new CliOptionDefinition("--pipeline <name>", "Required. Pipeline name containing the step."),
                         new CliOptionDefinition("--step-name <name-or-id>", "Required. Pipeline task name or id to execute."),
-                        new CliOptionDefinition("--transform-workspace <path>", "Required when the step is a transform task. MetaTransformScript workspace used by the step."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Required when the step is a transform task. MetaTransformBinding workspace used by the step."),
                         new CliOptionDefinition("--data-type-conversion-workspace <path>", "Optional conversion policy workspace; omitted uses the built-in defaults."),
                         new CliOptionDefinition("--pipeline-db-connection-env <name>", "Optional shell-visible environment variable for an initialized MetaPipeline operational DB.")
                     },
@@ -132,7 +126,7 @@ internal static partial class Program
                     },
                     new[]
                     {
-                        "meta-pipeline execute-step --workspace .\\PipelineWS --pipeline CustomerLoad --step-name load-customers --transform-workspace .\\TransformWS --binding-workspace .\\BindingWS"
+                        "meta-pipeline execute-step --workspace .\\PipelineWS --pipeline CustomerLoad --step-name load-customers"
                     }),
                 RunExecuteStepAsync),
             new CliCommandRoute(

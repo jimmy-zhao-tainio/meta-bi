@@ -50,8 +50,6 @@ public sealed class MetaOrchestrationAnalysisServiceTests
             "execute " +
             "--workspace NoSuchOrchestration " +
             "--pipeline-workspace NoSuchPipeline " +
-            "--transform-workspace NoSuchTransform " +
-            "--binding-workspace NoSuchBinding " +
             $"--pipeline-db-connection-env {envName}");
 
         Assert.NotEqual(0, result.ExitCode);
@@ -288,8 +286,6 @@ public sealed class MetaOrchestrationAnalysisServiceTests
             var result = service.Analyze(
                 new OrchestrationAnalysisRequest(
                     pipelineWorkspace,
-                    string.Empty,
-                    string.Empty,
                     "Default"));
 
             Assert.True(result.IsCompleteDag);
@@ -367,7 +363,7 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
-    public async Task Runtime_TransformBackedRunPlan_RequiresTransformAndBindingWorkspaces()
+    public async Task Runtime_TransformBackedRunPlan_DoesNotPassTransformBindingWorkerArguments()
     {
         var tempRoot = CreateTempRoot();
         try
@@ -378,16 +374,35 @@ public sealed class MetaOrchestrationAnalysisServiceTests
                         "LoadA",
                         Task("LoadA", 1, "load-a", "Select", Access("dbo.RawA", OrchestrationObjectAccessKind.Read, "Source")))));
 
-            var ex = await Assert.ThrowsAsync<InvalidOperationException>(
-                () => ExecuteWithFakePipelineWorkerAsync(
-                    tempRoot,
-                    model,
-                    """
-                    throw 'worker should not start'
-                    """,
-                    provideTransformBindingWorkspaces: false));
+            var result = await ExecuteWithFakePipelineWorkerAsync(
+                tempRoot,
+                model,
+                """
+                if ($WorkerArgs -contains '--transform-workspace') {
+                    throw 'unexpected --transform-workspace argument'
+                }
 
-            Assert.Contains("transform-backed tasks", ex.Message, StringComparison.OrdinalIgnoreCase);
+                if ($WorkerArgs -contains '--binding-workspace') {
+                    throw 'unexpected --binding-workspace argument'
+                }
+
+                $taskId = "pipeline:${pipeline}:task:1"
+                Send-WorkerEvent -Kind 'WorkerOnline' -Message 'online'
+                Send-WorkerEvent -Kind 'WorkerReady' -Message 'ready'
+                $startCommand = Read-StartPipelineCommand
+                Send-WorkerEvent -Kind 'PipelineStarted' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskReady' -TaskId $taskId -TaskName 'load-a' -Message 'ready'
+                $command = Read-WorkerCommand
+                Send-WorkerEvent -Kind 'GrantAccepted' -TaskId $taskId -TaskName 'load-a' -Message 'accepted'
+                Send-WorkerEvent -Kind 'TaskStarted' -TaskId $taskId -TaskName 'load-a' -Message 'started'
+                Send-WorkerEvent -Kind 'TaskSucceeded' -TaskId $taskId -TaskName 'load-a' -ExitCode 0 -Message 'completed'
+                """,
+                provideTransformBindingWorkspaces: false);
+
+            Assert.True(result.Succeeded);
+            var taskResult = Assert.Single(result.TaskResults);
+            Assert.Equal("LoadA", taskResult.PipelineName);
+            Assert.Equal("load-a", taskResult.StepName);
         }
         finally
         {
@@ -2179,6 +2194,50 @@ public sealed class MetaOrchestrationAnalysisServiceTests
     }
 
     [Fact]
+    public async Task Analyze_QualifiesInsertRowsTargetFromBindingValidation_WhenDownstreamReadsThreePartName()
+    {
+        var tempRoot = CreateTempRoot();
+        try
+        {
+            var transformWorkspace = Path.Combine(tempRoot, "Transform");
+            var bindingWorkspace = Path.Combine(tempRoot, "Binding");
+            var pipelineWorkspace = Path.Combine(tempRoot, "Pipeline");
+
+            var transformModel = await BuildTransformWorkspaceAsync(
+                transformWorkspace,
+                ("load-stage", "SELECT CustomerId FROM SourceDb.dbo.RawCustomer", "dbo.StageCustomer"),
+                ("load-dim", "SELECT CustomerId FROM WarehouseDb.dbo.StageCustomer", "dbo.DimCustomer"));
+            BuildBindingWorkspace(
+                bindingWorkspace,
+                (ResolveScript(transformModel, "load-stage"), ["SourceDb.dbo.RawCustomer"], "dbo.StageCustomer"),
+                (ResolveScript(transformModel, "load-dim"), ["WarehouseDb.dbo.StageCustomer"], "dbo.DimCustomer"));
+            AddValidatedTarget(
+                bindingWorkspace,
+                ResolveScript(transformModel, "load-stage"),
+                "dbo.StageCustomer",
+                "sqlserver:WarehouseDb:schema:dbo:table:StageCustomer");
+            BuildPipelineWorkspace(
+                pipelineWorkspace,
+                (PipelineName: "StageCustomer", Script: ResolveScript(transformModel, "load-stage"), InsertRowsTarget: "dbo.StageCustomer"),
+                (PipelineName: "DimCustomer", Script: ResolveScript(transformModel, "load-dim"), InsertRowsTarget: "dbo.DimCustomer"));
+
+            var result = Analyze(pipelineWorkspace, transformWorkspace, bindingWorkspace);
+
+            Assert.True(result.IsCompleteDag);
+            var edge = Assert.Single(result.Dependencies);
+            Assert.Equal("pipeline:StageCustomer", edge.PredecessorPipelineId);
+            Assert.Equal("pipeline:DimCustomer", edge.SuccessorPipelineId);
+            Assert.Contains(result.Pipelines.Single(item => item.PipelineName == "StageCustomer").Tasks.Single().ObjectAccesses, item =>
+                item.AccessKind == OrchestrationObjectAccessKind.Write &&
+                string.Equals(item.SqlIdentifier, "WarehouseDb.dbo.StageCustomer", StringComparison.Ordinal));
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
+    }
+
+    [Fact]
     public async Task Analyze_AllowsScalarFunctionDefinitionsInTransformWorkspace_WhenPipelineUsesView()
     {
         var tempRoot = CreateTempRoot();
@@ -3377,7 +3436,7 @@ INNER JOIN dw.DimCustomer AS d
                 (PipelineName: "TruncateStage", Script: ResolveScript(transformModel, "truncate-stage"), InsertRowsTarget: null),
                 (PipelineName: "ReadStage", Script: ResolveScript(transformModel, "read-stage"), InsertRowsTarget: "dbo.DimCustomer"));
 
-            var result = RunCli($"--pipeline-workspace \"{pipelineWorkspace}\" --transform-workspace \"{transformWorkspace}\" --binding-workspace \"{bindingWorkspace}\" --new-workspace \"{orchestrationWorkspace}\"");
+            var result = RunCli($"--pipeline-workspace \"{pipelineWorkspace}\" --new-workspace \"{orchestrationWorkspace}\"");
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("Cannot continue", result.Output, StringComparison.Ordinal);
@@ -3399,8 +3458,6 @@ INNER JOIN dw.DimCustomer AS d
         return new MetaOrchestrationAnalysisService().Analyze(
             new OrchestrationAnalysisRequest(
                 pipelineWorkspace,
-                transformWorkspace,
-                bindingWorkspace,
                 "Default"));
     }
 
@@ -4332,6 +4389,8 @@ INNER JOIN dw.DimCustomer AS d
             $"script:{pipelineName}:{taskName}",
             taskName,
             $"binding:{pipelineName}:{taskName}",
+            "transform-workspace",
+            "binding-workspace",
             statementKind,
             accesses);
     }
@@ -4346,6 +4405,8 @@ INNER JOIN dw.DimCustomer AS d
             taskName,
             "Executable",
             ordinal,
+            string.Empty,
+            string.Empty,
             string.Empty,
             string.Empty,
             string.Empty,
@@ -4562,10 +4623,47 @@ INNER JOIN dw.DimCustomer AS d
         model.SaveToXmlWorkspace(bindingWorkspace);
     }
 
+    private static void AddValidatedTarget(
+        string bindingWorkspace,
+        TransformScript script,
+        string targetSqlIdentifier,
+        string metaSchemaTableId)
+    {
+        var model = MetaTransformBindingModel.LoadFromXmlWorkspace(bindingWorkspace, searchUpward: false);
+        var binding = Assert.Single(model.TransformBindingList, item =>
+            string.Equals(item.MetaTransformScriptTransformScriptId, script.Id, StringComparison.Ordinal));
+        var target = Assert.Single(model.TransformBindingTargetList, item =>
+            string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
+            string.Equals(item.SqlIdentifier, targetSqlIdentifier, StringComparison.OrdinalIgnoreCase));
+        var targetRowset = Assert.Single(model.RowsetList, item =>
+            string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
+            string.Equals(item.DerivationKind, "Target", StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(item.SqlIdentifier, targetSqlIdentifier, StringComparison.OrdinalIgnoreCase));
+        var validation = new Validation
+        {
+            Id = $"{binding.Id}:validation",
+            TransformBinding = binding,
+        };
+        model.ValidationList.Add(validation);
+        model.ValidationTargetRowsetLinkList.Add(new ValidationTargetRowsetLink
+        {
+            Id = $"{validation.Id}:target:1",
+            Validation = validation,
+            TransformBindingTarget = target,
+            Rowset = targetRowset,
+            MetaSchemaTableId = metaSchemaTableId,
+        });
+        model.SaveToXmlWorkspace(bindingWorkspace);
+    }
+
     private static void BuildPipelineWorkspace(
         string pipelineWorkspace,
         params (string PipelineName, TransformScript Script, string? InsertRowsTarget)[] pipelines)
     {
+        var tempRoot = Directory.GetParent(Path.GetFullPath(pipelineWorkspace))?.FullName
+            ?? throw new InvalidOperationException("Pipeline workspace must have a parent directory.");
+        var transformWorkspace = Path.Combine(tempRoot, "Transform");
+        var bindingWorkspace = Path.Combine(tempRoot, "Binding");
         var model = MetaPipelineModel.CreateEmpty();
         foreach (var pipelineSeed in pipelines)
         {
@@ -4598,6 +4696,8 @@ INNER JOIN dw.DimCustomer AS d
                 ExecutionConnectionReference = connection,
                 TransformScriptId = pipelineSeed.Script.Id,
                 TransformBindingId = $"{pipelineSeed.Script.Id}:binding",
+                TransformWorkspacePath = transformWorkspace,
+                BindingWorkspacePath = bindingWorkspace,
             });
 
             if (string.IsNullOrWhiteSpace(pipelineSeed.InsertRowsTarget))

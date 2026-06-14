@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SelectScalarExpressionExpressionLinkList>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:1" ScalarExpressionId="ScalarExpression:1" SelectScalarExpressionId="SelectScalarExpression:1">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:2" ScalarExpressionId="ScalarExpression:2" SelectScalarExpressionId="SelectScalarExpression:2">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:3" ScalarExpressionId="ScalarExpression:3" SelectScalarExpressionId="SelectScalarExpression:3">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:4" ScalarExpressionId="ScalarExpression:6" SelectScalarExpressionId="SelectScalarExpression:4">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:5" ScalarExpressionId="ScalarExpression:7" SelectScalarExpressionId="SelectScalarExpression:5">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:6" ScalarExpressionId="ScalarExpression:8" SelectScalarExpressionId="SelectScalarExpression:6">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:7" ScalarExpressionId="ScalarExpression:11" SelectScalarExpressionId="SelectScalarExpression:7">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:8" ScalarExpressionId="ScalarExpression:14" SelectScalarExpressionId="SelectScalarExpression:8">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:9" ScalarExpressionId="ScalarExpression:19" SelectScalarExpressionId="SelectScalarExpression:9">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:10" ScalarExpressionId="ScalarExpression:24" SelectScalarExpressionId="SelectScalarExpression:10">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:11" ScalarExpressionId="ScalarExpression:38" SelectScalarExpressionId="SelectScalarExpression:11">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:12" ScalarExpressionId="ScalarExpression:39" SelectScalarExpressionId="SelectScalarExpression:12">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:13" ScalarExpressionId="ScalarExpression:42" SelectScalarExpressionId="SelectScalarExpression:13">
+    </SelectScalarExpressionExpressionLink>
+    <SelectScalarExpressionExpressionLink Id="SelectScalarExpressionExpressionLink:14" ScalarExpressionId="ScalarExpression:43" SelectScalarExpressionId="SelectScalarExpression:14">
+    </SelectScalarExpressionExpressionLink>
+  </SelectScalarExpressionExpressionLinkList>
+</MetaTransformScript>

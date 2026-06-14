@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptSchemaIdentifierLinkList>
+    <TransformScriptSchemaIdentifierLink Id="TransformScriptSchemaIdentifierLink:1" IdentifierId="Identifier:1" TransformScriptId="TransformScript:1">
+    </TransformScriptSchemaIdentifierLink>
+    <TransformScriptSchemaIdentifierLink Id="TransformScriptSchemaIdentifierLink:2" IdentifierId="Identifier:25" TransformScriptId="TransformScript:2">
+    </TransformScriptSchemaIdentifierLink>
+    <TransformScriptSchemaIdentifierLink Id="TransformScriptSchemaIdentifierLink:3" IdentifierId="Identifier:47" TransformScriptId="TransformScript:3">
+    </TransformScriptSchemaIdentifierLink>
+    <TransformScriptSchemaIdentifierLink Id="TransformScriptSchemaIdentifierLink:4" IdentifierId="Identifier:69" TransformScriptId="TransformScript:4">
+    </TransformScriptSchemaIdentifierLink>
+    <TransformScriptSchemaIdentifierLink Id="TransformScriptSchemaIdentifierLink:5" IdentifierId="Identifier:89" TransformScriptId="TransformScript:5">
+    </TransformScriptSchemaIdentifierLink>
+  </TransformScriptSchemaIdentifierLinkList>
+</MetaTransformScript>

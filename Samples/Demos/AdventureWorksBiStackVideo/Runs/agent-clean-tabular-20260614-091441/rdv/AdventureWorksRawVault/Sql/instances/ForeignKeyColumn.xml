@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <ForeignKeyColumnList>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Address_Address.fk.FK_HS_Address_Address_H_Address.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Address_Address.fk.FK_HS_Address_Address_H_Address" SourceColumnId="AdventureWorksRawVault.dbo.HS_Address_Address.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Address.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_AddressType_AddressType.fk.FK_HS_AddressType_AddressType_H_AddressType.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_AddressType_AddressType.fk.FK_HS_AddressType_AddressType_H_AddressType" SourceColumnId="AdventureWorksRawVault.dbo.HS_AddressType_AddressType.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_AddressType.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_AWBuildVersion_AWBuildVersion.fk.FK_HS_AWBuildVersion_AWBuildVersion_H_AWBuildVersion.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_AWBuildVersion_AWBuildVersion.fk.FK_HS_AWBuildVersion_AWBuildVersion_H_AWBuildVersion" SourceColumnId="AdventureWorksRawVault.dbo.HS_AWBuildVersion_AWBuildVersion.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_AWBuildVersion.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_BillOfMaterials_BillOfMaterials.fk.FK_HS_BillOfMaterials_BillOfMaterials_H_BillOfMaterials.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_BillOfMaterials_BillOfMaterials.fk.FK_HS_BillOfMaterials_BillOfMaterials_H_BillOfMaterials" SourceColumnId="AdventureWorksRawVault.dbo.HS_BillOfMaterials_BillOfMaterials.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BillOfMaterials.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_BusinessEntity_BusinessEntity.fk.FK_HS_BusinessEntity_BusinessEntity_H_BusinessEntity.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_BusinessEntity_BusinessEntity.fk.FK_HS_BusinessEntity_BusinessEntity_H_BusinessEntity" SourceColumnId="AdventureWorksRawVault.dbo.HS_BusinessEntity_BusinessEntity.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntity.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_BusinessEntityAddress_BusinessEntityAddress.fk.FK_HS_BusinessEntityAddress_BusinessEntityAddress_H_BusinessEntityAddress.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_BusinessEntityAddress_BusinessEntityAddress.fk.FK_HS_BusinessEntityAddress_BusinessEntityAddress_H_BusinessEntityAddress" SourceColumnId="AdventureWorksRawVault.dbo.HS_BusinessEntityAddress_BusinessEntityAddress.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_BusinessEntityContact_BusinessEntityContact.fk.FK_HS_BusinessEntityContact_BusinessEntityContact_H_BusinessEntityContact.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_BusinessEntityContact_BusinessEntityContact.fk.FK_HS_BusinessEntityContact_BusinessEntityContact_H_BusinessEntityContact" SourceColumnId="AdventureWorksRawVault.dbo.HS_BusinessEntityContact_BusinessEntityContact.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ContactType_ContactType.fk.FK_HS_ContactType_ContactType_H_ContactType.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ContactType_ContactType.fk.FK_HS_ContactType_ContactType_H_ContactType" SourceColumnId="AdventureWorksRawVault.dbo.HS_ContactType_ContactType.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ContactType.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_CountryRegion_CountryRegion.fk.FK_HS_CountryRegion_CountryRegion_H_CountryRegion.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_CountryRegion_CountryRegion.fk.FK_HS_CountryRegion_CountryRegion_H_CountryRegion" SourceColumnId="AdventureWorksRawVault.dbo.HS_CountryRegion_CountryRegion.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CountryRegion.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_CountryRegionCurrency_CountryRegionCurrency.fk.FK_HS_CountryRegionCurrency_CountryRegionCurrency_H_CountryRegionCurrency.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_CountryRegionCurrency_CountryRegionCurrency.fk.FK_HS_CountryRegionCurrency_CountryRegionCurrency_H_CountryRegionCurrency" SourceColumnId="AdventureWorksRawVault.dbo.HS_CountryRegionCurrency_CountryRegionCurrency.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CountryRegionCurrency.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_CreditCard_CreditCard.fk.FK_HS_CreditCard_CreditCard_H_CreditCard.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_CreditCard_CreditCard.fk.FK_HS_CreditCard_CreditCard_H_CreditCard" SourceColumnId="AdventureWorksRawVault.dbo.HS_CreditCard_CreditCard.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CreditCard.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Culture_Culture.fk.FK_HS_Culture_Culture_H_Culture.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Culture_Culture.fk.FK_HS_Culture_Culture_H_Culture" SourceColumnId="AdventureWorksRawVault.dbo.HS_Culture_Culture.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Culture.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Currency_Currency.fk.FK_HS_Currency_Currency_H_Currency.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Currency_Currency.fk.FK_HS_Currency_Currency_H_Currency" SourceColumnId="AdventureWorksRawVault.dbo.HS_Currency_Currency.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Currency.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_CurrencyRate_CurrencyRate.fk.FK_HS_CurrencyRate_CurrencyRate_H_CurrencyRate.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_CurrencyRate_CurrencyRate.fk.FK_HS_CurrencyRate_CurrencyRate_H_CurrencyRate" SourceColumnId="AdventureWorksRawVault.dbo.HS_CurrencyRate_CurrencyRate.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CurrencyRate.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Customer_Customer.fk.FK_HS_Customer_Customer_H_Customer.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Customer_Customer.fk.FK_HS_Customer_Customer_H_Customer" SourceColumnId="AdventureWorksRawVault.dbo.HS_Customer_Customer.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Customer.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_DatabaseLog_DatabaseLog.fk.FK_HS_DatabaseLog_DatabaseLog_H_DatabaseLog.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_DatabaseLog_DatabaseLog.fk.FK_HS_DatabaseLog_DatabaseLog_H_DatabaseLog" SourceColumnId="AdventureWorksRawVault.dbo.HS_DatabaseLog_DatabaseLog.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_DatabaseLog.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Department_Department.fk.FK_HS_Department_Department_H_Department.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Department_Department.fk.FK_HS_Department_Department_H_Department" SourceColumnId="AdventureWorksRawVault.dbo.HS_Department_Department.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Department.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Document_Document.fk.FK_HS_Document_Document_H_Document.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Document_Document.fk.FK_HS_Document_Document_H_Document" SourceColumnId="AdventureWorksRawVault.dbo.HS_Document_Document.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Document.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_EmailAddress_EmailAddress.fk.FK_HS_EmailAddress_EmailAddress_H_EmailAddress.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_EmailAddress_EmailAddress.fk.FK_HS_EmailAddress_EmailAddress_H_EmailAddress" SourceColumnId="AdventureWorksRawVault.dbo.HS_EmailAddress_EmailAddress.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_EmailAddress.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Employee_Employee.fk.FK_HS_Employee_Employee_H_Employee.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Employee_Employee.fk.FK_HS_Employee_Employee_H_Employee" SourceColumnId="AdventureWorksRawVault.dbo.HS_Employee_Employee.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Employee.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory.fk.FK_HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory_H_EmployeeDepartmentHistory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory.fk.FK_HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory_H_EmployeeDepartmentHistory" SourceColumnId="AdventureWorksRawVault.dbo.HS_EmployeeDepartmentHistory_EmployeeDepartmentHistory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_EmployeePayHistory_EmployeePayHistory.fk.FK_HS_EmployeePayHistory_EmployeePayHistory_H_EmployeePayHistory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_EmployeePayHistory_EmployeePayHistory.fk.FK_HS_EmployeePayHistory_EmployeePayHistory_H_EmployeePayHistory" SourceColumnId="AdventureWorksRawVault.dbo.HS_EmployeePayHistory_EmployeePayHistory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_EmployeePayHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.fk.FK_HS_ErrorLog_ErrorLog_H_ErrorLog.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.fk.FK_HS_ErrorLog_ErrorLog_H_ErrorLog" SourceColumnId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ErrorLog.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Illustration_Illustration.fk.FK_HS_Illustration_Illustration_H_Illustration.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Illustration_Illustration.fk.FK_HS_Illustration_Illustration_H_Illustration" SourceColumnId="AdventureWorksRawVault.dbo.HS_Illustration_Illustration.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Illustration.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_JobCandidate_JobCandidate.fk.FK_HS_JobCandidate_JobCandidate_H_JobCandidate.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_JobCandidate_JobCandidate.fk.FK_HS_JobCandidate_JobCandidate_H_JobCandidate" SourceColumnId="AdventureWorksRawVault.dbo.HS_JobCandidate_JobCandidate.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_JobCandidate.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Location_Location.fk.FK_HS_Location_Location_H_Location.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Location_Location.fk.FK_HS_Location_Location_H_Location" SourceColumnId="AdventureWorksRawVault.dbo.HS_Location_Location.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Location.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Password_Password.fk.FK_HS_Password_Password_H_Password.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Password_Password.fk.FK_HS_Password_Password_H_Password" SourceColumnId="AdventureWorksRawVault.dbo.HS_Password_Password.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Password.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Person_Person.fk.FK_HS_Person_Person_H_Person.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Person_Person.fk.FK_HS_Person_Person_H_Person" SourceColumnId="AdventureWorksRawVault.dbo.HS_Person_Person.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_PersonCreditCard_PersonCreditCard.fk.FK_HS_PersonCreditCard_PersonCreditCard_H_PersonCreditCard.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_PersonCreditCard_PersonCreditCard.fk.FK_HS_PersonCreditCard_PersonCreditCard_H_PersonCreditCard" SourceColumnId="AdventureWorksRawVault.dbo.HS_PersonCreditCard_PersonCreditCard.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PersonCreditCard.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_PersonPhone_PersonPhone.fk.FK_HS_PersonPhone_PersonPhone_H_PersonPhone.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_PersonPhone_PersonPhone.fk.FK_HS_PersonPhone_PersonPhone_H_PersonPhone" SourceColumnId="AdventureWorksRawVault.dbo.HS_PersonPhone_PersonPhone.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PersonPhone.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_PhoneNumberType_PhoneNumberType.fk.FK_HS_PhoneNumberType_PhoneNumberType_H_PhoneNumberType.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_PhoneNumberType_PhoneNumberType.fk.FK_HS_PhoneNumberType_PhoneNumberType_H_PhoneNumberType" SourceColumnId="AdventureWorksRawVault.dbo.HS_PhoneNumberType_PhoneNumberType.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PhoneNumberType.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Product_Product.fk.FK_HS_Product_Product_H_Product.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Product_Product.fk.FK_HS_Product_Product_H_Product" SourceColumnId="AdventureWorksRawVault.dbo.HS_Product_Product.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory.fk.FK_HS_ProductCategory_ProductCategory_H_ProductCategory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory.fk.FK_HS_ProductCategory_ProductCategory_H_ProductCategory" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductCategory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductCostHistory_ProductCostHistory.fk.FK_HS_ProductCostHistory_ProductCostHistory_H_ProductCostHistory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductCostHistory_ProductCostHistory.fk.FK_HS_ProductCostHistory_ProductCostHistory_H_ProductCostHistory" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductCostHistory_ProductCostHistory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductCostHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductDescription_ProductDescription.fk.FK_HS_ProductDescription_ProductDescription_H_ProductDescription.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductDescription_ProductDescription.fk.FK_HS_ProductDescription_ProductDescription_H_ProductDescription" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductDescription_ProductDescription.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductDescription.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductDocument_ProductDocument.fk.FK_HS_ProductDocument_ProductDocument_H_ProductDocument.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductDocument_ProductDocument.fk.FK_HS_ProductDocument_ProductDocument_H_ProductDocument" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductDocument_ProductDocument.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductDocument.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductInventory_ProductInventory.fk.FK_HS_ProductInventory_ProductInventory_H_ProductInventory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductInventory_ProductInventory.fk.FK_HS_ProductInventory_ProductInventory_H_ProductInventory" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductInventory_ProductInventory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductInventory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductListPriceHistory_ProductListPriceHistory.fk.FK_HS_ProductListPriceHistory_ProductListPriceHistory_H_ProductListPriceHistory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductListPriceHistory_ProductListPriceHistory.fk.FK_HS_ProductListPriceHistory_ProductListPriceHistory_H_ProductListPriceHistory" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductListPriceHistory_ProductListPriceHistory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductListPriceHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductModel_ProductModel.fk.FK_HS_ProductModel_ProductModel_H_ProductModel.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductModel_ProductModel.fk.FK_HS_ProductModel_ProductModel_H_ProductModel" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductModel_ProductModel.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModel.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductModelIllustration_ProductModelIllustration.fk.FK_HS_ProductModelIllustration_ProductModelIllustration_H_ProductModelIllustration.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductModelIllustration_ProductModelIllustration.fk.FK_HS_ProductModelIllustration_ProductModelIllustration_H_ProductModelIllustration" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductModelIllustration_ProductModelIllustration.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModelIllustration.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture.fk.FK_HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture_H_ProductModelProductDescriptionCulture.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture.fk.FK_HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture_H_ProductModelProductDescriptionCulture" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductModelProductDescriptionCulture_ProductModelProductDescriptionCulture.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductPhoto_ProductPhoto.fk.FK_HS_ProductPhoto_ProductPhoto_H_ProductPhoto.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductPhoto_ProductPhoto.fk.FK_HS_ProductPhoto_ProductPhoto_H_ProductPhoto" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductPhoto_ProductPhoto.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductPhoto.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductProductPhoto_ProductProductPhoto.fk.FK_HS_ProductProductPhoto_ProductProductPhoto_H_ProductProductPhoto.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductProductPhoto_ProductProductPhoto.fk.FK_HS_ProductProductPhoto_ProductProductPhoto_H_ProductProductPhoto" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductProductPhoto_ProductProductPhoto.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductProductPhoto.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductReview_ProductReview.fk.FK_HS_ProductReview_ProductReview_H_ProductReview.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductReview_ProductReview.fk.FK_HS_ProductReview_ProductReview_H_ProductReview" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductReview_ProductReview.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductReview.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory.fk.FK_HS_ProductSubcategory_ProductSubcategory_H_ProductSubcategory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory.fk.FK_HS_ProductSubcategory_ProductSubcategory_H_ProductSubcategory" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductSubcategory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.fk.FK_HS_ProductVendor_ProductVendor_H_ProductVendor.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.fk.FK_HS_ProductVendor_ProductVendor_H_ProductVendor" SourceColumnId="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductVendor.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_PurchaseOrderDetail_PurchaseOrderDetail.fk.FK_HS_PurchaseOrderDetail_PurchaseOrderDetail_H_PurchaseOrderDetail.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_PurchaseOrderDetail_PurchaseOrderDetail.fk.FK_HS_PurchaseOrderDetail_PurchaseOrderDetail_H_PurchaseOrderDetail" SourceColumnId="AdventureWorksRawVault.dbo.HS_PurchaseOrderDetail_PurchaseOrderDetail.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_PurchaseOrderHeader_PurchaseOrderHeader.fk.FK_HS_PurchaseOrderHeader_PurchaseOrderHeader_H_PurchaseOrderHeader.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_PurchaseOrderHeader_PurchaseOrderHeader.fk.FK_HS_PurchaseOrderHeader_PurchaseOrderHeader_H_PurchaseOrderHeader" SourceColumnId="AdventureWorksRawVault.dbo.HS_PurchaseOrderHeader_PurchaseOrderHeader.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesOrderDetail_SalesOrderDetail.fk.FK_HS_SalesOrderDetail_SalesOrderDetail_H_SalesOrderDetail.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesOrderDetail_SalesOrderDetail.fk.FK_HS_SalesOrderDetail_SalesOrderDetail_H_SalesOrderDetail" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesOrderDetail_SalesOrderDetail.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderDetail.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader.fk.FK_HS_SalesOrderHeader_SalesOrderHeader_H_SalesOrderHeader.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader.fk.FK_HS_SalesOrderHeader_SalesOrderHeader_H_SalesOrderHeader" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason.fk.FK_HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason_H_SalesOrderHeaderSalesReason.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason.fk.FK_HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason_H_SalesOrderHeaderSalesReason" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReason.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.fk.FK_HS_SalesPerson_SalesPerson_H_SalesPerson.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.fk.FK_HS_SalesPerson_SalesPerson_H_SalesPerson" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory.fk.FK_HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory_H_SalesPersonQuotaHistory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory.fk.FK_HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory_H_SalesPersonQuotaHistory" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesReason_SalesReason.fk.FK_HS_SalesReason_SalesReason_H_SalesReason.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesReason_SalesReason.fk.FK_HS_SalesReason_SalesReason_H_SalesReason" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesReason_SalesReason.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesReason.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.fk.FK_HS_SalesTaxRate_SalesTaxRate_H_SalesTaxRate.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.fk.FK_HS_SalesTaxRate_SalesTaxRate_H_SalesTaxRate" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTaxRate.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesTerritory_SalesTerritory.fk.FK_HS_SalesTerritory_SalesTerritory_H_SalesTerritory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesTerritory_SalesTerritory.fk.FK_HS_SalesTerritory_SalesTerritory_H_SalesTerritory" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesTerritory_SalesTerritory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SalesTerritoryHistory_SalesTerritoryHistory.fk.FK_HS_SalesTerritoryHistory_SalesTerritoryHistory_H_SalesTerritoryHistory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SalesTerritoryHistory_SalesTerritoryHistory.fk.FK_HS_SalesTerritoryHistory_SalesTerritoryHistory_H_SalesTerritoryHistory" SourceColumnId="AdventureWorksRawVault.dbo.HS_SalesTerritoryHistory_SalesTerritoryHistory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ScrapReason_ScrapReason.fk.FK_HS_ScrapReason_ScrapReason_H_ScrapReason.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ScrapReason_ScrapReason.fk.FK_HS_ScrapReason_ScrapReason_H_ScrapReason" SourceColumnId="AdventureWorksRawVault.dbo.HS_ScrapReason_ScrapReason.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ScrapReason.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Shift_Shift.fk.FK_HS_Shift_Shift_H_Shift.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Shift_Shift.fk.FK_HS_Shift_Shift_H_Shift" SourceColumnId="AdventureWorksRawVault.dbo.HS_Shift_Shift.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Shift.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ShipMethod_ShipMethod.fk.FK_HS_ShipMethod_ShipMethod_H_ShipMethod.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ShipMethod_ShipMethod.fk.FK_HS_ShipMethod_ShipMethod_H_ShipMethod" SourceColumnId="AdventureWorksRawVault.dbo.HS_ShipMethod_ShipMethod.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ShipMethod.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_ShoppingCartItem_ShoppingCartItem.fk.FK_HS_ShoppingCartItem_ShoppingCartItem_H_ShoppingCartItem.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_ShoppingCartItem_ShoppingCartItem.fk.FK_HS_ShoppingCartItem_ShoppingCartItem_H_ShoppingCartItem" SourceColumnId="AdventureWorksRawVault.dbo.HS_ShoppingCartItem_ShoppingCartItem.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ShoppingCartItem.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.fk.FK_HS_SpecialOffer_SpecialOffer_H_SpecialOffer.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.fk.FK_HS_SpecialOffer_SpecialOffer_H_SpecialOffer" SourceColumnId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SpecialOffer.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_SpecialOfferProduct_SpecialOfferProduct.fk.FK_HS_SpecialOfferProduct_SpecialOfferProduct_H_SpecialOfferProduct.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_SpecialOfferProduct_SpecialOfferProduct.fk.FK_HS_SpecialOfferProduct_SpecialOfferProduct_H_SpecialOfferProduct" SourceColumnId="AdventureWorksRawVault.dbo.HS_SpecialOfferProduct_SpecialOfferProduct.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_StateProvince_StateProvince.fk.FK_HS_StateProvince_StateProvince_H_StateProvince.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_StateProvince_StateProvince.fk.FK_HS_StateProvince_StateProvince_H_StateProvince" SourceColumnId="AdventureWorksRawVault.dbo.HS_StateProvince_StateProvince.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_StateProvince.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Store_Store.fk.FK_HS_Store_Store_H_Store.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Store_Store.fk.FK_HS_Store_Store_H_Store" SourceColumnId="AdventureWorksRawVault.dbo.HS_Store_Store.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Store.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.fk.FK_HS_TransactionHistory_TransactionHistory_H_TransactionHistory.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.fk.FK_HS_TransactionHistory_TransactionHistory_H_TransactionHistory" SourceColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_TransactionHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.fk.FK_HS_TransactionHistoryArchive_TransactionHistoryArchive_H_TransactionHistoryArchive.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.fk.FK_HS_TransactionHistoryArchive_TransactionHistoryArchive_H_TransactionHistoryArchive" SourceColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_UnitMeasure_UnitMeasure.fk.FK_HS_UnitMeasure_UnitMeasure_H_UnitMeasure.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_UnitMeasure_UnitMeasure.fk.FK_HS_UnitMeasure_UnitMeasure_H_UnitMeasure" SourceColumnId="AdventureWorksRawVault.dbo.HS_UnitMeasure_UnitMeasure.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_UnitMeasure.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_Vendor_Vendor.fk.FK_HS_Vendor_Vendor_H_Vendor.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_Vendor_Vendor.fk.FK_HS_Vendor_Vendor_H_Vendor" SourceColumnId="AdventureWorksRawVault.dbo.HS_Vendor_Vendor.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Vendor.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.fk.FK_HS_WorkOrder_WorkOrder_H_WorkOrder.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.fk.FK_HS_WorkOrder_WorkOrder_H_WorkOrder" SourceColumnId="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_WorkOrder.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.HS_WorkOrderRouting_WorkOrderRouting.fk.FK_HS_WorkOrderRouting_WorkOrderRouting_H_WorkOrderRouting.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.HS_WorkOrderRouting_WorkOrderRouting.fk.FK_HS_WorkOrderRouting_WorkOrderRouting_H_WorkOrderRouting" SourceColumnId="AdventureWorksRawVault.dbo.HS_WorkOrderRouting_WorkOrderRouting.HubHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_WorkOrderRouting.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_H_Address_AddressHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_H_Address_AddressHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_AddressStateProvince.AddressHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Address.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_H_StateProvince_StateProvinceHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_AddressStateProvince.fk.FK_L_AddressStateProvince_H_StateProvince_StateProvinceHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_AddressStateProvince.StateProvinceHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_StateProvince.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_H_BillOfMaterials_BillOfMaterialsHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_H_BillOfMaterials_BillOfMaterialsHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.BillOfMaterialsHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BillOfMaterials.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.fk.FK_L_BillOfMaterialsProduct_ComponentID_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ComponentID.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_BillOfMaterials_BillOfMaterialsHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_BillOfMaterials_BillOfMaterialsHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.BillOfMaterialsHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BillOfMaterials.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.fk.FK_L_BillOfMaterialsProduct_ProductAssemblyID_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BillOfMaterialsProduct_ProductAssemblyID.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_H_BillOfMaterials_BillOfMaterialsHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_H_BillOfMaterials_BillOfMaterialsHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.BillOfMaterialsHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BillOfMaterials.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_H_UnitMeasure_UnitMeasureHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.fk.FK_L_BillOfMaterialsUnitMeasure_H_UnitMeasure_UnitMeasureHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BillOfMaterialsUnitMeasure.UnitMeasureHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_UnitMeasure.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_H_BusinessEntityAddress_BusinessEntityAddressHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_H_BusinessEntityAddress_BusinessEntityAddressHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.BusinessEntityAddressHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_H_Address_AddressHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.fk.FK_L_BusinessEntityAddressAddress_H_Address_AddressHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddress.AddressHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Address.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_H_BusinessEntityAddress_BusinessEntityAddressHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_H_BusinessEntityAddress_BusinessEntityAddressHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.BusinessEntityAddressHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_H_AddressType_AddressTypeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.fk.FK_L_BusinessEntityAddressAddressType_H_AddressType_AddressTypeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressAddressType.AddressTypeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_AddressType.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntityAddress_BusinessEntityAddressHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntityAddress_BusinessEntityAddressHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.BusinessEntityAddressHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntity_BusinessEntityHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.fk.FK_L_BusinessEntityAddressBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityAddressBusinessEntity.BusinessEntityHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntity.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntityContact_BusinessEntityContactHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntityContact_BusinessEntityContactHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.BusinessEntityContactHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntity_BusinessEntityHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.fk.FK_L_BusinessEntityContactBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityContactBusinessEntity.BusinessEntityHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntity.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_H_BusinessEntityContact_BusinessEntityContactHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_H_BusinessEntityContact_BusinessEntityContactHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.BusinessEntityContactHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_H_ContactType_ContactTypeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.fk.FK_L_BusinessEntityContactContactType_H_ContactType_ContactTypeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityContactContactType.ContactTypeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ContactType.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_H_BusinessEntityContact_BusinessEntityContactHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_H_BusinessEntityContact_BusinessEntityContactHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.BusinessEntityContactHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_H_Person_PersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.fk.FK_L_BusinessEntityContactPerson_H_Person_PersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_BusinessEntityContactPerson.PersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegionCurrency_CountryRegionCurrencyHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegionCurrency_CountryRegionCurrencyHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.CountryRegionCurrencyHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CountryRegionCurrency.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegion_CountryRegionHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.fk.FK_L_CountryRegionCurrencyCountryRegion_H_CountryRegion_CountryRegionHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCountryRegion.CountryRegionHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CountryRegion.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_H_CountryRegionCurrency_CountryRegionCurrencyHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_H_CountryRegionCurrency_CountryRegionCurrencyHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.CountryRegionCurrencyHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CountryRegionCurrency.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_H_Currency_CurrencyHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.fk.FK_L_CountryRegionCurrencyCurrency_H_Currency_CurrencyHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CountryRegionCurrencyCurrency.CurrencyHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Currency.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_H_CurrencyRate_CurrencyRateHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_H_CurrencyRate_CurrencyRateHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.CurrencyRateHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CurrencyRate.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_H_Currency_CurrencyHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.fk.FK_L_CurrencyRateCurrency_FromCurrencyCode_H_Currency_CurrencyHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_FromCurrencyCode.CurrencyHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Currency.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_H_CurrencyRate_CurrencyRateHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_H_CurrencyRate_CurrencyRateHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.CurrencyRateHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CurrencyRate.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_H_Currency_CurrencyHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.fk.FK_L_CurrencyRateCurrency_ToCurrencyCode_H_Currency_CurrencyHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CurrencyRateCurrency_ToCurrencyCode.CurrencyHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Currency.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_H_Customer_CustomerHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_H_Customer_CustomerHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CustomerPerson.CustomerHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Customer.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_H_Person_PersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CustomerPerson.fk.FK_L_CustomerPerson_H_Person_PersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CustomerPerson.PersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_H_Customer_CustomerHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_H_Customer_CustomerHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.CustomerHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Customer.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.fk.FK_L_CustomerSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CustomerSalesTerritory.SalesTerritoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_H_Customer_CustomerHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_H_Customer_CustomerHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CustomerStore.CustomerHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Customer.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_H_Store_StoreHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_CustomerStore.fk.FK_L_CustomerStore_H_Store_StoreHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_CustomerStore.StoreHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Store.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_H_Document_DocumentHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_H_Document_DocumentHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_DocumentEmployee.DocumentHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Document.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_H_Employee_EmployeeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_DocumentEmployee.fk.FK_L_DocumentEmployee_H_Employee_EmployeeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_DocumentEmployee.EmployeeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Employee.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_H_EmailAddress_EmailAddressHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_H_EmailAddress_EmailAddressHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmailAddressPerson.EmailAddressHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_EmailAddress.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_H_Person_PersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmailAddressPerson.fk.FK_L_EmailAddressPerson_H_Person_PersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmailAddressPerson.PersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.EmployeeDepartmentHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_H_Department_DepartmentHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.fk.FK_L_EmployeeDepartmentHistoryDepartment_H_Department_DepartmentHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryDepartment.DepartmentHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Department.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.EmployeeDepartmentHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_H_Employee_EmployeeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.fk.FK_L_EmployeeDepartmentHistoryEmployee_H_Employee_EmployeeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryEmployee.EmployeeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Employee.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_H_EmployeeDepartmentHistory_EmployeeDepartmentHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.EmployeeDepartmentHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_H_Shift_ShiftHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.fk.FK_L_EmployeeDepartmentHistoryShift_H_Shift_ShiftHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeeDepartmentHistoryShift.ShiftHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Shift.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_H_EmployeePayHistory_EmployeePayHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_H_EmployeePayHistory_EmployeePayHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.EmployeePayHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_EmployeePayHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_H_Employee_EmployeeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.fk.FK_L_EmployeePayHistoryEmployee_H_Employee_EmployeeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeePayHistoryEmployee.EmployeeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Employee.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_H_Employee_EmployeeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_H_Employee_EmployeeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeePerson.EmployeeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Employee.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_H_Person_PersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_EmployeePerson.fk.FK_L_EmployeePerson_H_Person_PersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_EmployeePerson.PersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_H_JobCandidate_JobCandidateHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_H_JobCandidate_JobCandidateHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_JobCandidateEmployee.JobCandidateHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_JobCandidate.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_H_Employee_EmployeeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_JobCandidateEmployee.fk.FK_L_JobCandidateEmployee_H_Employee_EmployeeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_JobCandidateEmployee.EmployeeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Employee.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_H_Password_PasswordHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_H_Password_PasswordHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PasswordPerson.PasswordHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Password.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_H_Person_PersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PasswordPerson.fk.FK_L_PasswordPerson_H_Person_PersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PasswordPerson.PersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_H_Person_PersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_H_Person_PersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonBusinessEntity.PersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_H_BusinessEntity_BusinessEntityHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonBusinessEntity.fk.FK_L_PersonBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonBusinessEntity.BusinessEntityHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntity.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_H_PersonCreditCard_PersonCreditCardHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_H_PersonCreditCard_PersonCreditCardHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.PersonCreditCardHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PersonCreditCard.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_H_CreditCard_CreditCardHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.fk.FK_L_PersonCreditCardCreditCard_H_CreditCard_CreditCardHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonCreditCardCreditCard.CreditCardHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CreditCard.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_H_PersonCreditCard_PersonCreditCardHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_H_PersonCreditCard_PersonCreditCardHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.PersonCreditCardHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PersonCreditCard.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_H_Person_PersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.fk.FK_L_PersonCreditCardPerson_H_Person_PersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonCreditCardPerson.PersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_H_PersonPhone_PersonPhoneHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_H_PersonPhone_PersonPhoneHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonPhonePerson.PersonPhoneHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PersonPhone.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_H_Person_PersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonPhonePerson.fk.FK_L_PersonPhonePerson_H_Person_PersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonPhonePerson.PersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_H_PersonPhone_PersonPhoneHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_H_PersonPhone_PersonPhoneHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.PersonPhoneHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PersonPhone.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_H_PhoneNumberType_PhoneNumberTypeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.fk.FK_L_PersonPhonePhoneNumberType_H_PhoneNumberType_PhoneNumberTypeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PersonPhonePhoneNumberType.PhoneNumberTypeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PhoneNumberType.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_H_ProductCostHistory_ProductCostHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_H_ProductCostHistory_ProductCostHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.ProductCostHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductCostHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.fk.FK_L_ProductCostHistoryProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductCostHistoryProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_H_ProductDocument_ProductDocumentHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_H_ProductDocument_ProductDocumentHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductDocumentDocument.ProductDocumentHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductDocument.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_H_Document_DocumentHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductDocumentDocument.fk.FK_L_ProductDocumentDocument_H_Document_DocumentHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductDocumentDocument.DocumentHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Document.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_H_ProductDocument_ProductDocumentHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_H_ProductDocument_ProductDocumentHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductDocumentProduct.ProductDocumentHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductDocument.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductDocumentProduct.fk.FK_L_ProductDocumentProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductDocumentProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_H_ProductInventory_ProductInventoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_H_ProductInventory_ProductInventoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductInventoryLocation.ProductInventoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductInventory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_H_Location_LocationHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductInventoryLocation.fk.FK_L_ProductInventoryLocation_H_Location_LocationHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductInventoryLocation.LocationHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Location.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_H_ProductInventory_ProductInventoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_H_ProductInventory_ProductInventoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductInventoryProduct.ProductInventoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductInventory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductInventoryProduct.fk.FK_L_ProductInventoryProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductInventoryProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_H_ProductListPriceHistory_ProductListPriceHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_H_ProductListPriceHistory_ProductListPriceHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.ProductListPriceHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductListPriceHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.fk.FK_L_ProductListPriceHistoryProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductListPriceHistoryProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_H_ProductModelIllustration_ProductModelIllustrationHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_H_ProductModelIllustration_ProductModelIllustrationHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.ProductModelIllustrationHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModelIllustration.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_H_Illustration_IllustrationHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.fk.FK_L_ProductModelIllustrationIllustration_H_Illustration_IllustrationHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationIllustration.IllustrationHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Illustration.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_H_ProductModelIllustration_ProductModelIllustrationHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_H_ProductModelIllustration_ProductModelIllustrationHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.ProductModelIllustrationHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModelIllustration.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_H_ProductModel_ProductModelHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.fk.FK_L_ProductModelIllustrationProductModel_H_ProductModel_ProductModelHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelIllustrationProductModel.ProductModelHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModel.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_H_ProductModelProductDescriptionCulture_ProductModelProductDescri_041500cc3c79.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_H_ProductModelProductDescriptionCulture_ProductModelProductDescri_041500cc3c79" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.ProductModelProductDescriptionCultureHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_H_Culture_CultureHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.fk.FK_L_ProductModelProductDescriptionCultureCulture_H_Culture_CultureHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureCulture.CultureHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Culture.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductModelProductDescriptionCulture_ProductModelPr_2245e837153e.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductModelProductDescriptionCulture_ProductModelPr_2245e837153e" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.ProductModelProductDescriptionCultureHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductDescription_ProductDescriptionHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.fk.FK_L_ProductModelProductDescriptionCultureProductDescription_H_ProductDescription_ProductDescriptionHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductDescription.ProductDescriptionHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductDescription.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModelProductDescriptionCulture_ProductModelProductD_ac59eee6c09a.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModelProductDescriptionCulture_ProductModelProductD_ac59eee6c09a" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.ProductModelProductDescriptionCultureHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModel_ProductModelHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.fk.FK_L_ProductModelProductDescriptionCultureProductModel_H_ProductModel_ProductModelHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductModelProductDescriptionCultureProductModel.ProductModelHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModel.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductProductModel.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_H_ProductModel_ProductModelHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductProductModel.fk.FK_L_ProductProductModel_H_ProductModel_ProductModelHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductProductModel.ProductModelHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductModel.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_H_ProductProductPhoto_ProductProductPhotoHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_H_ProductProductPhoto_ProductProductPhotoHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.ProductProductPhotoHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductProductPhoto.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.fk.FK_L_ProductProductPhotoProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_H_ProductProductPhoto_ProductProductPhotoHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_H_ProductProductPhoto_ProductProductPhotoHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.ProductProductPhotoHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductProductPhoto.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_H_ProductPhoto_ProductPhotoHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.fk.FK_L_ProductProductPhotoProductPhoto_H_ProductPhoto_ProductPhotoHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductProductPhotoProductPhoto.ProductPhotoHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductPhoto.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductProductSubcategory.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_H_ProductSubcategory_ProductSubcategoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductProductSubcategory.fk.FK_L_ProductProductSubcategory_H_ProductSubcategory_ProductSubcategoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductProductSubcategory.ProductSubcategoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductSubcategory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_H_ProductReview_ProductReviewHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_H_ProductReview_ProductReviewHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductReviewProduct.ProductReviewHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductReview.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductReviewProduct.fk.FK_L_ProductReviewProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductReviewProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_H_ProductSubcategory_ProductSubcategoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_H_ProductSubcategory_ProductSubcategoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.ProductSubcategoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductSubcategory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_H_ProductCategory_ProductCategoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.fk.FK_L_ProductSubcategoryProductCategory_H_ProductCategory_ProductCategoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory.ProductCategoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductCategory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.fk.FK_L_ProductUnitMeasure_SizeUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_SizeUnitMeasureCode.UnitMeasureHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_UnitMeasure.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.fk.FK_L_ProductUnitMeasure_WeightUnitMeasureCode_H_UnitMeasure_UnitMeasureHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductUnitMeasure_WeightUnitMeasureCode.UnitMeasureHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_UnitMeasure.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_H_ProductVendor_ProductVendorHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_H_ProductVendor_ProductVendorHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductVendorProduct.ProductVendorHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductVendor.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductVendorProduct.fk.FK_L_ProductVendorProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductVendorProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_H_ProductVendor_ProductVendorHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_H_ProductVendor_ProductVendorHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.ProductVendorHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductVendor.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_H_UnitMeasure_UnitMeasureHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.fk.FK_L_ProductVendorUnitMeasure_H_UnitMeasure_UnitMeasureHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductVendorUnitMeasure.UnitMeasureHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_UnitMeasure.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_H_ProductVendor_ProductVendorHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_H_ProductVendor_ProductVendorHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductVendorVendor.ProductVendorHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ProductVendor.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_H_Vendor_VendorHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ProductVendorVendor.fk.FK_L_ProductVendorVendor_H_Vendor_VendorHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ProductVendorVendor.VendorHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Vendor.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.PurchaseOrderDetailHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.fk.FK_L_PurchaseOrderDetailProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderDetail_PurchaseOrderDetailHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.PurchaseOrderDetailHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.fk.FK_L_PurchaseOrderDetailPurchaseOrderHeader_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderDetailPurchaseOrderHeader.PurchaseOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.PurchaseOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_H_Employee_EmployeeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.fk.FK_L_PurchaseOrderHeaderEmployee_H_Employee_EmployeeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderEmployee.EmployeeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Employee.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.PurchaseOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.fk.FK_L_PurchaseOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderShipMethod.ShipMethodHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ShipMethod.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_H_PurchaseOrderHeader_PurchaseOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.PurchaseOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_H_Vendor_VendorHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.fk.FK_L_PurchaseOrderHeaderVendor_H_Vendor_VendorHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_PurchaseOrderHeaderVendor.VendorHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Vendor.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderDetail_SalesOrderDetailHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderDetail_SalesOrderDetailHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.SalesOrderDetailHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderDetail.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.fk.FK_L_SalesOrderDetailSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_H_SalesOrderDetail_SalesOrderDetailHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_H_SalesOrderDetail_SalesOrderDetailHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.SalesOrderDetailHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderDetail.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.fk.FK_L_SalesOrderDetailSpecialOfferProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct.SpecialOfferProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_H_Address_AddressHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.fk.FK_L_SalesOrderHeaderAddress_BillToAddressID_H_Address_AddressHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID.AddressHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Address.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_Address_AddressHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.fk.FK_L_SalesOrderHeaderAddress_ShipToAddressID_H_Address_AddressHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID.AddressHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Address.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_H_CreditCard_CreditCardHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.fk.FK_L_SalesOrderHeaderCreditCard_H_CreditCard_CreditCardHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCreditCard.CreditCardHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CreditCard.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_H_CurrencyRate_CurrencyRateHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.fk.FK_L_SalesOrderHeaderCurrencyRate_H_CurrencyRate_CurrencyRateHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCurrencyRate.CurrencyRateHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CurrencyRate.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_H_Customer_CustomerHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.fk.FK_L_SalesOrderHeaderCustomer_H_Customer_CustomerHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer.CustomerHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Customer.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_H_SalesPerson_SalesPersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.fk.FK_L_SalesOrderHeaderSalesPerson_H_SalesPerson_SalesPersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson.SalesPersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.SalesOrderHeaderSalesReasonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.fk.FK_L_SalesOrderHeaderSalesReasonSalesOrderHeader_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesOrderHeader.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesOrderHeaderSalesReason_SalesOrderHeaderSalesReasonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.SalesOrderHeaderSalesReasonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesReason_SalesReasonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.fk.FK_L_SalesOrderHeaderSalesReasonSalesReason_H_SalesReason_SalesReasonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesReasonSalesReason.SalesReasonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesReason.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.fk.FK_L_SalesOrderHeaderSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory.SalesTerritoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_H_SalesOrderHeader_SalesOrderHeaderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_H_SalesOrderHeader_SalesOrderHeaderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.SalesOrderHeaderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.fk.FK_L_SalesOrderHeaderShipMethod_H_ShipMethod_ShipMethodHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesOrderHeaderShipMethod.ShipMethodHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ShipMethod.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_H_SalesPerson_SalesPersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_H_SalesPerson_SalesPersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesPersonEmployee.SalesPersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_H_Employee_EmployeeHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesPersonEmployee.fk.FK_L_SalesPersonEmployee_H_Employee_EmployeeHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesPersonEmployee.EmployeeHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Employee.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPersonQuotaHistory_SalesPersonQuotaHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPersonQuotaHistory_SalesPersonQuotaHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.SalesPersonQuotaHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPerson_SalesPersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.fk.FK_L_SalesPersonQuotaHistorySalesPerson_H_SalesPerson_SalesPersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson.SalesPersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_H_SalesPerson_SalesPersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_H_SalesPerson_SalesPersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.SalesPersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.fk.FK_L_SalesPersonSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory.SalesTerritoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_H_SalesTaxRate_SalesTaxRateHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_H_SalesTaxRate_SalesTaxRateHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.SalesTaxRateHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTaxRate.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_H_StateProvince_StateProvinceHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.fk.FK_L_SalesTaxRateStateProvince_H_StateProvince_StateProvinceHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesTaxRateStateProvince.StateProvinceHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_StateProvince.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_H_SalesTerritory_SalesTerritoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_H_SalesTerritory_SalesTerritoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.SalesTerritoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_H_CountryRegion_CountryRegionHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.fk.FK_L_SalesTerritoryCountryRegion_H_CountryRegion_CountryRegionHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion.CountryRegionHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CountryRegion.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.SalesTerritoryHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_H_SalesPerson_SalesPersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.fk.FK_L_SalesTerritoryHistorySalesPerson_H_SalesPerson_SalesPersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesPerson.SalesPersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritoryHistory_SalesTerritoryHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.SalesTerritoryHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritory_SalesTerritoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.fk.FK_L_SalesTerritoryHistorySalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SalesTerritoryHistorySalesTerritory.SalesTerritoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_H_ShoppingCartItem_ShoppingCartItemHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_H_ShoppingCartItem_ShoppingCartItemHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.ShoppingCartItemHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ShoppingCartItem.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.fk.FK_L_ShoppingCartItemProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_ShoppingCartItemProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_H_SpecialOfferProduct_SpecialOfferProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.SpecialOfferProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.fk.FK_L_SpecialOfferProductProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_H_SpecialOfferProduct_SpecialOfferProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_H_SpecialOfferProduct_SpecialOfferProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.SpecialOfferProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_H_SpecialOffer_SpecialOfferHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.fk.FK_L_SpecialOfferProductSpecialOffer_H_SpecialOffer_SpecialOfferHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_SpecialOfferProductSpecialOffer.SpecialOfferHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SpecialOffer.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_H_StateProvince_StateProvinceHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_H_StateProvince_StateProvinceHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.StateProvinceHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_StateProvince.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_H_CountryRegion_CountryRegionHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.fk.FK_L_StateProvinceCountryRegion_H_CountryRegion_CountryRegionHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion.CountryRegionHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_CountryRegion.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_H_StateProvince_StateProvinceHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_H_StateProvince_StateProvinceHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.StateProvinceHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_StateProvince.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.fk.FK_L_StateProvinceSalesTerritory_H_SalesTerritory_SalesTerritoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory.SalesTerritoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_H_Store_StoreHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_H_Store_StoreHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_StoreBusinessEntity.StoreHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Store.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_H_BusinessEntity_BusinessEntityHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_StoreBusinessEntity.fk.FK_L_StoreBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_StoreBusinessEntity.BusinessEntityHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntity.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_H_Store_StoreHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_H_Store_StoreHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_StoreSalesPerson.StoreHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Store.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_H_SalesPerson_SalesPersonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_StoreSalesPerson.fk.FK_L_StoreSalesPerson_H_SalesPerson_SalesPersonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_StoreSalesPerson.SalesPersonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_H_TransactionHistory_TransactionHistoryHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_H_TransactionHistory_TransactionHistoryHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.TransactionHistoryHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_TransactionHistory.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.fk.FK_L_TransactionHistoryProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_TransactionHistoryProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_H_Vendor_VendorHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_H_Vendor_VendorHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_VendorBusinessEntity.VendorHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Vendor.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_H_BusinessEntity_BusinessEntityHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_VendorBusinessEntity.fk.FK_L_VendorBusinessEntity_H_BusinessEntity_BusinessEntityHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_VendorBusinessEntity.BusinessEntityHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_BusinessEntity.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_H_WorkOrder_WorkOrderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_H_WorkOrder_WorkOrderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_WorkOrderProduct.WorkOrderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_WorkOrder.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_H_Product_ProductHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_WorkOrderProduct.fk.FK_L_WorkOrderProduct_H_Product_ProductHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_WorkOrderProduct.ProductHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_H_WorkOrderRouting_WorkOrderRoutingHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_H_WorkOrderRouting_WorkOrderRoutingHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.WorkOrderRoutingHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_WorkOrderRouting.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_H_Location_LocationHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.fk.FK_L_WorkOrderRoutingLocation_H_Location_LocationHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingLocation.LocationHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_Location.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_H_WorkOrderRouting_WorkOrderRoutingHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_H_WorkOrderRouting_WorkOrderRoutingHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.WorkOrderRoutingHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_WorkOrderRouting.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_H_WorkOrder_WorkOrderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.fk.FK_L_WorkOrderRoutingWorkOrder_H_WorkOrder_WorkOrderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_WorkOrderRoutingWorkOrder.WorkOrderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_WorkOrder.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_H_WorkOrder_WorkOrderHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_H_WorkOrder_WorkOrderHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.WorkOrderHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_WorkOrder.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+    <ForeignKeyColumn Id="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_H_ScrapReason_ScrapReasonHashKey.column.1" ForeignKeyId="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.fk.FK_L_WorkOrderScrapReason_H_ScrapReason_ScrapReasonHashKey" SourceColumnId="AdventureWorksRawVault.dbo.L_WorkOrderScrapReason.ScrapReasonHashKey" TargetColumnId="AdventureWorksRawVault.dbo.H_ScrapReason.HashKey">
+      <Ordinal>1</Ordinal>
+    </ForeignKeyColumn>
+  </ForeignKeyColumnList>
+</MetaSql>
