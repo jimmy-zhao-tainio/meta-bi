@@ -2,6 +2,8 @@
 
 This is the acceptance checklist for a clean recorded run. It is intentionally stricter than a diagnostic exploration: if a gate fails, stop, fix the root cause outside the accepted run, delete or archive the failed attempt, and rerun from a fresh folder.
 
+Read `supervisor-meta.md` before approving gates. In particular, do not accept downstream SQL/DQ/orchestration/Tabular success as proof that the correct upstream product model exists.
+
 ## Accepted stack path
 
 ```text
@@ -16,6 +18,8 @@ RDV and BDV are required. Tabular is the analytics target for the accepted run u
    - `PLAN.md` exists before artifact-producing product commands.
    - The plan names source, RDV, BDV, DW/mart, Tabular, pipeline, orchestration, and proof stages.
    - Folder names are layer/database/role scoped, not root-level `*WS` folders.
+   - SQL deployment targets are layer-specific: RDV uses `AW_RDV_SQL`, BDV uses `AW_BDV_SQL`, and DW/mart uses `AW_DW_SQL`.
+   - Do not accept a plan that deploys every layer through one shared target connection unless the model explicitly requires one database and deploy-plan evidence is clean.
 
 2. Source gate
    - The source schema is extracted from the live SQL database with `meta-schema extract sqlserver`.
@@ -23,15 +27,20 @@ RDV and BDV are required. Tabular is the analytics target for the accepted run u
 
 3. RDV gate
    - RDV target structures exist as persisted raw-vault evidence, not only views or notes.
+   - RDV deploy-plan/deploy/extract uses `AW_RDV_SQL`, not the DW/mart target.
    - RDV load transforms are imported as `MetaTransformScript`.
    - RDV binding evidence exists or the exact product blocker is recorded.
 
 4. BDV gate
    - BDV target structures exist as persisted business-vault evidence.
+   - BDV deploy-plan/deploy/extract uses `AW_BDV_SQL`, not the DW/mart target.
    - BDV load transforms are imported as `MetaTransformScript`.
    - BDV transforms read from RDV, not directly from the source unless explicitly justified by the model.
 
 5. DW/mart gate
+   - `dw\<database>\Warehouse` exists as a `MetaDataWarehouse` workspace.
+   - The physical mart contract is generated from the DW model through `MetaSql`; `MetaSchema` extraction is verification/binding evidence, not the owning DW contract.
+   - DW/mart deploy-plan/deploy/extract uses `AW_DW_SQL`.
    - Mart target tables exist and are populated from BDV-backed transforms.
    - Mart proof queries run against persisted target tables, not only source views.
 

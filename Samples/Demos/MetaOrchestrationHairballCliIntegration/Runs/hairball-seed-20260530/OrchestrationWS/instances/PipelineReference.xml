@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <PipelineReferenceList>
+    <PipelineReference Id="plan-default:pipeline:audithairball" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>AuditHairball</MetaPipelinePipelineId>
+      <Name>AuditHairball</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:bridgel01l02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>BridgeL01L02</MetaPipelinePipelineId>
+      <Name>BridgeL01L02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:bridgel03l04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>BridgeL03L04</MetaPipelinePipelineId>
+      <Name>BridgeL03L04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:bridgel05l06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>BridgeL05L06</MetaPipelinePipelineId>
+      <Name>BridgeL05L06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:bridgel07l08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>BridgeL07L08</MetaPipelinePipelineId>
+      <Name>BridgeL07L08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:compositemart" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>CompositeMart</MetaPipelinePipelineId>
+      <Name>CompositeMart</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:extractseed01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>ExtractSeed01</MetaPipelinePipelineId>
+      <Name>ExtractSeed01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:extractseed02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>ExtractSeed02</MetaPipelinePipelineId>
+      <Name>ExtractSeed02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:extractseed03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>ExtractSeed03</MetaPipelinePipelineId>
+      <Name>ExtractSeed03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:extractseed04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>ExtractSeed04</MetaPipelinePipelineId>
+      <Name>ExtractSeed04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:extractseed05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>ExtractSeed05</MetaPipelinePipelineId>
+      <Name>ExtractSeed05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:extractseed06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>ExtractSeed06</MetaPipelinePipelineId>
+      <Name>ExtractSeed06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:extractseed07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>ExtractSeed07</MetaPipelinePipelineId>
+      <Name>ExtractSeed07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:extractseed08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>ExtractSeed08</MetaPipelinePipelineId>
+      <Name>ExtractSeed08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01hub" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Hub</MetaPipelinePipelineId>
+      <Name>Layer01Hub</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node01</MetaPipelinePipelineId>
+      <Name>Layer01Node01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node02</MetaPipelinePipelineId>
+      <Name>Layer01Node02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node03</MetaPipelinePipelineId>
+      <Name>Layer01Node03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node04</MetaPipelinePipelineId>
+      <Name>Layer01Node04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node05</MetaPipelinePipelineId>
+      <Name>Layer01Node05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node06</MetaPipelinePipelineId>
+      <Name>Layer01Node06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node07</MetaPipelinePipelineId>
+      <Name>Layer01Node07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node08</MetaPipelinePipelineId>
+      <Name>Layer01Node08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer01node09" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer01Node09</MetaPipelinePipelineId>
+      <Name>Layer01Node09</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02hub" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Hub</MetaPipelinePipelineId>
+      <Name>Layer02Hub</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02node01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Node01</MetaPipelinePipelineId>
+      <Name>Layer02Node01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02node02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Node02</MetaPipelinePipelineId>
+      <Name>Layer02Node02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02node03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Node03</MetaPipelinePipelineId>
+      <Name>Layer02Node03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02node04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Node04</MetaPipelinePipelineId>
+      <Name>Layer02Node04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02node05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Node05</MetaPipelinePipelineId>
+      <Name>Layer02Node05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02node06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Node06</MetaPipelinePipelineId>
+      <Name>Layer02Node06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02node07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Node07</MetaPipelinePipelineId>
+      <Name>Layer02Node07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer02node08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer02Node08</MetaPipelinePipelineId>
+      <Name>Layer02Node08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03hub" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Hub</MetaPipelinePipelineId>
+      <Name>Layer03Hub</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node01</MetaPipelinePipelineId>
+      <Name>Layer03Node01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node02</MetaPipelinePipelineId>
+      <Name>Layer03Node02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node03</MetaPipelinePipelineId>
+      <Name>Layer03Node03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node04</MetaPipelinePipelineId>
+      <Name>Layer03Node04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node05</MetaPipelinePipelineId>
+      <Name>Layer03Node05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node06</MetaPipelinePipelineId>
+      <Name>Layer03Node06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node07</MetaPipelinePipelineId>
+      <Name>Layer03Node07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node08</MetaPipelinePipelineId>
+      <Name>Layer03Node08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node09" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node09</MetaPipelinePipelineId>
+      <Name>Layer03Node09</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer03node10" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer03Node10</MetaPipelinePipelineId>
+      <Name>Layer03Node10</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04hub" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Hub</MetaPipelinePipelineId>
+      <Name>Layer04Hub</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node01</MetaPipelinePipelineId>
+      <Name>Layer04Node01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node02</MetaPipelinePipelineId>
+      <Name>Layer04Node02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node03</MetaPipelinePipelineId>
+      <Name>Layer04Node03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node04</MetaPipelinePipelineId>
+      <Name>Layer04Node04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node05</MetaPipelinePipelineId>
+      <Name>Layer04Node05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node06</MetaPipelinePipelineId>
+      <Name>Layer04Node06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node07</MetaPipelinePipelineId>
+      <Name>Layer04Node07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node08</MetaPipelinePipelineId>
+      <Name>Layer04Node08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer04node09" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer04Node09</MetaPipelinePipelineId>
+      <Name>Layer04Node09</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05hub" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Hub</MetaPipelinePipelineId>
+      <Name>Layer05Hub</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05node01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Node01</MetaPipelinePipelineId>
+      <Name>Layer05Node01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05node02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Node02</MetaPipelinePipelineId>
+      <Name>Layer05Node02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05node03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Node03</MetaPipelinePipelineId>
+      <Name>Layer05Node03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05node04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Node04</MetaPipelinePipelineId>
+      <Name>Layer05Node04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05node05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Node05</MetaPipelinePipelineId>
+      <Name>Layer05Node05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05node06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Node06</MetaPipelinePipelineId>
+      <Name>Layer05Node06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05node07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Node07</MetaPipelinePipelineId>
+      <Name>Layer05Node07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer05node08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer05Node08</MetaPipelinePipelineId>
+      <Name>Layer05Node08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06hub" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Hub</MetaPipelinePipelineId>
+      <Name>Layer06Hub</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node01</MetaPipelinePipelineId>
+      <Name>Layer06Node01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node02</MetaPipelinePipelineId>
+      <Name>Layer06Node02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node03</MetaPipelinePipelineId>
+      <Name>Layer06Node03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node04</MetaPipelinePipelineId>
+      <Name>Layer06Node04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node05</MetaPipelinePipelineId>
+      <Name>Layer06Node05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node06</MetaPipelinePipelineId>
+      <Name>Layer06Node06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node07</MetaPipelinePipelineId>
+      <Name>Layer06Node07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node08</MetaPipelinePipelineId>
+      <Name>Layer06Node08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node09" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node09</MetaPipelinePipelineId>
+      <Name>Layer06Node09</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer06node10" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer06Node10</MetaPipelinePipelineId>
+      <Name>Layer06Node10</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07hub" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Hub</MetaPipelinePipelineId>
+      <Name>Layer07Hub</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07node01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Node01</MetaPipelinePipelineId>
+      <Name>Layer07Node01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07node02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Node02</MetaPipelinePipelineId>
+      <Name>Layer07Node02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07node03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Node03</MetaPipelinePipelineId>
+      <Name>Layer07Node03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07node04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Node04</MetaPipelinePipelineId>
+      <Name>Layer07Node04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07node05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Node05</MetaPipelinePipelineId>
+      <Name>Layer07Node05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07node06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Node06</MetaPipelinePipelineId>
+      <Name>Layer07Node06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07node07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Node07</MetaPipelinePipelineId>
+      <Name>Layer07Node07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer07node08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer07Node08</MetaPipelinePipelineId>
+      <Name>Layer07Node08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08hub" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Hub</MetaPipelinePipelineId>
+      <Name>Layer08Hub</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08node01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Node01</MetaPipelinePipelineId>
+      <Name>Layer08Node01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08node02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Node02</MetaPipelinePipelineId>
+      <Name>Layer08Node02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08node03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Node03</MetaPipelinePipelineId>
+      <Name>Layer08Node03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08node04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Node04</MetaPipelinePipelineId>
+      <Name>Layer08Node04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08node05" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Node05</MetaPipelinePipelineId>
+      <Name>Layer08Node05</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08node06" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Node06</MetaPipelinePipelineId>
+      <Name>Layer08Node06</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08node07" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Node07</MetaPipelinePipelineId>
+      <Name>Layer08Node07</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:layer08node08" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>Layer08Node08</MetaPipelinePipelineId>
+      <Name>Layer08Node08</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:publishhairballfinal" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>PublishHairballFinal</MetaPipelinePipelineId>
+      <Name>PublishHairballFinal</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:regionalmart01" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>RegionalMart01</MetaPipelinePipelineId>
+      <Name>RegionalMart01</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:regionalmart02" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>RegionalMart02</MetaPipelinePipelineId>
+      <Name>RegionalMart02</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:regionalmart03" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>RegionalMart03</MetaPipelinePipelineId>
+      <Name>RegionalMart03</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+    <PipelineReference Id="plan-default:pipeline:regionalmart04" OrchestrationPlanId="plan:default">
+      <MetaPipelinePipelineId>RegionalMart04</MetaPipelinePipelineId>
+      <Name>RegionalMart04</Name>
+      <PipelineWorkspacePath>C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\RunsFresh2\hairball-seed-20260530\PipelineWS</PipelineWorkspacePath>
+    </PipelineReference>
+  </PipelineReferenceList>
+</MetaOrchestration>

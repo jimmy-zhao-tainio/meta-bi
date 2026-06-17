@@ -22,6 +22,7 @@ The generated run should include visible stage `.cmd` files and, when practical,
 
 - `BUSINESS-REQUIREMENTS.md`: business-user analytics request for the agent.
 - `agent-meta.md`: generic agent guide for `meta-bi` CLI workflow and command discipline.
+- `supervisor-meta.md`: supervisor guide for accepting or rejecting worker gates and preventing model-layer shortcuts.
 - `AGENT-TASK.md`: the prompt/task brief for the agent run.
 - `SOURCE-SETUP.md`: AdventureWorks OLTP source setup notes and official links.
 - `VIDEO-RUNBOOK.md`: recording sequence and cut points.
@@ -49,6 +50,10 @@ Then start a fresh agent context and give it:
 - `agent-meta.md`
 - `AGENT-TASK.md`
 - the connection environment variable names and values from `00-env.cmd`
+
+The supervising agent or human should separately read `supervisor-meta.md` before approving gates.
+
+`00-env.cmd` defines separate SQL targets for the modeled layers: `AW_RDV_SQL`, `AW_BDV_SQL`, and `AW_DW_SQL`. Use those for RDV, BDV, and DW/mart deploy-plan/deploy/extract work respectively. `AW_TARGET_SQL` is only an alias for the DW/mart target and should not be used for RDV or BDV deployment in the full-stack demo.
 
 The agent should perform the source schema extraction during the recorded run. The first generated product command should be this kind of command:
 

@@ -109,11 +109,23 @@ Use these variables when possible:
 - `AW_SQL_SERVER`
 - `AW_SOURCE_DATABASE`
 - `AW_SOURCE_SQL`
-- `AW_TARGET_DATABASE`
-- `AW_TARGET_SQL`
+- `AW_RDV_DATABASE`
+- `AW_RDV_SQL`
+- `AW_BDV_DATABASE`
+- `AW_BDV_SQL`
+- `AW_DW_DATABASE`
+- `AW_DW_SQL`
 - `AW_TABULAR_SERVER`
 - `AW_TABULAR_DATABASE`
 - `AW_RUN_ROOT`
+
+Use the layer-specific SQL connection variables for deployment and schema extraction:
+
+- RDV SQL work targets `AW_RDV_SQL`.
+- BDV SQL work targets `AW_BDV_SQL`.
+- DW/mart SQL work targets `AW_DW_SQL`.
+
+Do not deploy RDV, BDV, and DW/mart into one shared default target database unless the model explicitly calls for a single database and the deploy-plan proves it is clean. A full demo normally uses separate layer databases so full-database deploy planning does not collide with objects owned by another layer.
 
 ## First useful slice
 

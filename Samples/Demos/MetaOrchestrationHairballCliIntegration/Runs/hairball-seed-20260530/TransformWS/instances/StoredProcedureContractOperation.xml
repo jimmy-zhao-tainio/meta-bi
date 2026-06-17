@@ -1,0 +1,2748 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <StoredProcedureContractOperationList>
+    <StoredProcedureContractOperation Id="c773d3aef860419f998a7a5ca609b824" StoredProcedureContractId="9e7600cebd8848479b15949fd699740f">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>stage.Seed01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2f1ccecb94024d30865b02f56dc2479a" StoredProcedureContractId="9e7600cebd8848479b15949fd699740f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.Seed03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a1a5ccdb0d50455ca113e02354837983" StoredProcedureContractId="9e7600cebd8848479b15949fd699740f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1bdf74ac9524460d81f05deaf7ef561d" StoredProcedureContractId="9e7600cebd8848479b15949fd699740f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f924587b89e5424c84eca20dd0eace74" StoredProcedureContractId="9e7600cebd8848479b15949fd699740f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="40667e2c46b44ff2aa592fa39ef376d5" StoredProcedureContractId="c9399b7ea8e847a9ae62215391564da4">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="966cb7a562504d50b98d285c7c96a81d" StoredProcedureContractId="c9399b7ea8e847a9ae62215391564da4">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8cc1138f068b479f8aa3a8f8189ac15c" StoredProcedureContractId="c9399b7ea8e847a9ae62215391564da4">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6183cae80c92401187582a83a68d5dfa" StoredProcedureContractId="c9399b7ea8e847a9ae62215391564da4">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cf75ff74e0024709a72c9ee1e272a54f" StoredProcedureContractId="c9399b7ea8e847a9ae62215391564da4">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="98e16f371b294b2c8bac633c35501e1e" StoredProcedureContractId="12abb7fc711f40b19201f1fad05f298b">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3814497c38c54d8c9db99ac02157ec8b" StoredProcedureContractId="12abb7fc711f40b19201f1fad05f298b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6b011f7c448a43d6b45a2700519cf70a" StoredProcedureContractId="12abb7fc711f40b19201f1fad05f298b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5c58db57578042f7bcf9df2fd4c4428e" StoredProcedureContractId="c2b3ae8b13fd4d29a2864aa24f67ba80">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="36c7ca4d6c524a93877e29eb00ff2896" StoredProcedureContractId="c2b3ae8b13fd4d29a2864aa24f67ba80">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b779bee6895243e1832d57a36d5143b4" StoredProcedureContractId="c2b3ae8b13fd4d29a2864aa24f67ba80">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0e38baeb85a040c49b2fbb0849fe78a0" StoredProcedureContractId="c2b3ae8b13fd4d29a2864aa24f67ba80">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4a35f73904c74c088180ee250730b717" StoredProcedureContractId="c2b3ae8b13fd4d29a2864aa24f67ba80">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="39ca34571552495b90ec6ada479bca97" StoredProcedureContractId="289776bbcc804cee8537b777944dc71d">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="842aa87bd2ec4bc3ab6fdfc5bba67591" StoredProcedureContractId="289776bbcc804cee8537b777944dc71d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.Seed08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8b3262b76c994b09ac321aa9f355d753" StoredProcedureContractId="289776bbcc804cee8537b777944dc71d">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>stage.L01Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6cbe23bd660e4805a245e8876be61cc6" StoredProcedureContractId="289776bbcc804cee8537b777944dc71d">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>stage.L01Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2b9df9d3c61e40a1bbbcacb0751a552e" StoredProcedureContractId="289776bbcc804cee8537b777944dc71d">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1bac0c8fd5ae458fb8e60fc086010be0" StoredProcedureContractId="cc6488a2c7644017917b69054f47f9a5">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="191e2ecb892b4019ab537827d5b85b63" StoredProcedureContractId="cc6488a2c7644017917b69054f47f9a5">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d1217b87b44b4da28e6ee01932962ea1" StoredProcedureContractId="cc6488a2c7644017917b69054f47f9a5">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="23b641eaa0df46f7bd2eaf56b13da112" StoredProcedureContractId="cc6488a2c7644017917b69054f47f9a5">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="69fe41ba43e148a9b81121e04e4a3c97" StoredProcedureContractId="cc6488a2c7644017917b69054f47f9a5">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1072277de3464232807439008d575490" StoredProcedureContractId="4d5916347b9a4b33af7db45d5d96fb80">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer01Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e96f15dfa5234e5282afcd5de19194f7" StoredProcedureContractId="4d5916347b9a4b33af7db45d5d96fb80">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="02825d0ff85a474ea5a480dcb96e99a1" StoredProcedureContractId="4d5916347b9a4b33af7db45d5d96fb80">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6e101b6849824990b68e421dde36633d" StoredProcedureContractId="4d5916347b9a4b33af7db45d5d96fb80">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b6e187dbc33f4516842772a20eee76f0" StoredProcedureContractId="4d5916347b9a4b33af7db45d5d96fb80">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d0c314426d06431dbc5d8029d2fb8d9d" StoredProcedureContractId="4d5916347b9a4b33af7db45d5d96fb80">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1db705e22e944cca9193574332c0648f" StoredProcedureContractId="6d115ba04102402f8fb601a7db438e3e">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="61687da86537434daabdffbbb3474379" StoredProcedureContractId="6d115ba04102402f8fb601a7db438e3e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="db054976da3b4795a7896e9dbdd115ed" StoredProcedureContractId="6d115ba04102402f8fb601a7db438e3e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d78acb9387954992a798095dc1369b14" StoredProcedureContractId="6d115ba04102402f8fb601a7db438e3e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d673b36e644f4582919ba4a06a31000f" StoredProcedureContractId="dcee3a62aebb460781a6d9b51bf1b4f6">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4628d399d6254ab8bc942a1cb09881f3" StoredProcedureContractId="dcee3a62aebb460781a6d9b51bf1b4f6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a4fa74f161bd4ff9bdce1f18495cb892" StoredProcedureContractId="dcee3a62aebb460781a6d9b51bf1b4f6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="90eff17a91c1465c95805d9644edb6b3" StoredProcedureContractId="dcee3a62aebb460781a6d9b51bf1b4f6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f166e8bcaa604727b260597fceefbdf8" StoredProcedureContractId="dcee3a62aebb460781a6d9b51bf1b4f6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="89bb2574861e47fc8c7937850f012b64" StoredProcedureContractId="dcee3a62aebb460781a6d9b51bf1b4f6">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="63baea054cdc469895016855f8818d55" StoredProcedureContractId="dcee3a62aebb460781a6d9b51bf1b4f6">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="032df632093144a78124af25bba05859" StoredProcedureContractId="dcee3a62aebb460781a6d9b51bf1b4f6">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d2d2b41340b7414d97e456b550f7c841" StoredProcedureContractId="f115207b7cb6414f88046c11d119939e">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer01Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3e84e3b17d1a4f9989f178726e69bdec" StoredProcedureContractId="f115207b7cb6414f88046c11d119939e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5eaad2abfdc94f78a3baf91363e874f5" StoredProcedureContractId="f115207b7cb6414f88046c11d119939e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bfe1faf3cc5e4f91962bdcdbf5f2b517" StoredProcedureContractId="f115207b7cb6414f88046c11d119939e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cde67a9db5ff46578a3b59f2fa93796c" StoredProcedureContractId="ce3f7e2708fd4b278648fcf4179b18c6">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b6ddb5b015b84fe7ab70e983057b8cc5" StoredProcedureContractId="ce3f7e2708fd4b278648fcf4179b18c6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e024601ad71f46d2a391753243cfb005" StoredProcedureContractId="ce3f7e2708fd4b278648fcf4179b18c6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer01Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b8f8847a070c497bbd927ab32c47b0d7" StoredProcedureContractId="ce3f7e2708fd4b278648fcf4179b18c6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="19c5f28d45214ed09ce29d3b3d70cda9" StoredProcedureContractId="ce3f7e2708fd4b278648fcf4179b18c6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="eb1bc42d15654051a5fd2caee9f0f6c2" StoredProcedureContractId="ce3f7e2708fd4b278648fcf4179b18c6">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>core.L02Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ef352851076a496cbb687e601a7177b7" StoredProcedureContractId="ce3f7e2708fd4b278648fcf4179b18c6">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>core.L02Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6b44f566279a4032bc946dcb18eb5236" StoredProcedureContractId="ce3f7e2708fd4b278648fcf4179b18c6">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="124d1c0bf11d49f6a957338abec97244" StoredProcedureContractId="8d8eaa4cb563459797cf957218ffefe0">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="64edcb9d7d0d4aa2bd4f2a26d8233990" StoredProcedureContractId="8d8eaa4cb563459797cf957218ffefe0">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9e964ab0a9b34070a8b2561c47cbff2c" StoredProcedureContractId="8d8eaa4cb563459797cf957218ffefe0">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>core.L02Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e299558a4bd545339ed109f4bb3ac1d5" StoredProcedureContractId="8d8eaa4cb563459797cf957218ffefe0">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>core.L02Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="03b2d52076a04ac398744642148f3e19" StoredProcedureContractId="8d8eaa4cb563459797cf957218ffefe0">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1292188ec4b94c95bd0ac94408d539ce" StoredProcedureContractId="e923628630fe4abe9ac023048201c44b">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer01Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="fee032a72e514b52b85cf000ab0a71f2" StoredProcedureContractId="e923628630fe4abe9ac023048201c44b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer01Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7e95322121e54191aee32479f5123d85" StoredProcedureContractId="e923628630fe4abe9ac023048201c44b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="42da59e2ecc84038a4fa7fd9663e886a" StoredProcedureContractId="e923628630fe4abe9ac023048201c44b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="40063fd88afe4f17bd60da744a0c061c" StoredProcedureContractId="e923628630fe4abe9ac023048201c44b">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>core.L02Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6d4bd4ddec5e432db7924fd5d9875ae9" StoredProcedureContractId="e923628630fe4abe9ac023048201c44b">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>core.L02Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2210cc5ba178447b96f3918bfa4fac68" StoredProcedureContractId="e923628630fe4abe9ac023048201c44b">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3257dfdfb5fe4abe802b714443af5ca7" StoredProcedureContractId="dce4e35eb2404e958d96c8482730128f">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6e146a7dac4c4b05bc4505809c62e6ac" StoredProcedureContractId="dce4e35eb2404e958d96c8482730128f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ee9b648f9ada4b64a75886cf1c82f864" StoredProcedureContractId="dce4e35eb2404e958d96c8482730128f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f353e7ee527e4bd382ad6954f4e676e4" StoredProcedureContractId="dce4e35eb2404e958d96c8482730128f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="29fb44bfd9704950a738d6f319003010" StoredProcedureContractId="dce4e35eb2404e958d96c8482730128f">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6384c9cd5feb4bde8067df9074cbdfd7" StoredProcedureContractId="dce4e35eb2404e958d96c8482730128f">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e4c8fea978684da5a3cbf9de4af77dd4" StoredProcedureContractId="dce4e35eb2404e958d96c8482730128f">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d18d0ca82a064741b9e885970baa49da" StoredProcedureContractId="4013d4b284f0439fa0f0be4824202682">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1b87571085f3413ca77c05dedbf42a3a" StoredProcedureContractId="4013d4b284f0439fa0f0be4824202682">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0680c80ad8e0406fa8b1e378b04ddb80" StoredProcedureContractId="4013d4b284f0439fa0f0be4824202682">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>core.L02Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="73a27221c7fc4d98be91eb1ac69937ca" StoredProcedureContractId="4013d4b284f0439fa0f0be4824202682">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>core.L02Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="aa5ff5503506452095a6e5f8b2081f41" StoredProcedureContractId="4013d4b284f0439fa0f0be4824202682">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>core.L02Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e41b15c3d9604cb1af39e76d8e0d9f37" StoredProcedureContractId="4013d4b284f0439fa0f0be4824202682">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.L01Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bd147645ea1d47de8c4945a129901dac" StoredProcedureContractId="4013d4b284f0439fa0f0be4824202682">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>70</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e70e487bacfd491fbf0ab8e69bac25b9" StoredProcedureContractId="4c6eb89c31c64f44b37869d38fbd5e99">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1619e72f5aff46fba987774c39fbd294" StoredProcedureContractId="4c6eb89c31c64f44b37869d38fbd5e99">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b2fdf801c46b48c2aae160c64c24c525" StoredProcedureContractId="4c6eb89c31c64f44b37869d38fbd5e99">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer01Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cf73e9ce443c4ce6943e57f308e41653" StoredProcedureContractId="4c6eb89c31c64f44b37869d38fbd5e99">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4b667b5684c547a09ae78ad244351d1b" StoredProcedureContractId="4c6eb89c31c64f44b37869d38fbd5e99">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="16bb39b8baba45d5bab3f77afde42098" StoredProcedureContractId="4c6eb89c31c64f44b37869d38fbd5e99">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cbf92e90f93947a1ac91b5e89966b2ad" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L01L02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7eaca6540fb54b4c8705eaddade4b87a" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L01L02North</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f42f28b708174a65a66ed8e10e959053" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>core.L02Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d628db1fbf4f421f8ee9b4e7547ca171" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="78f0af7b1408488c888a10c70ce47a2e" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.L01Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="52971df0df09443f9b460cbdaa6cbc16" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.L01Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d38ecdc9693d473498eee04a8d3952a2" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>bridge.L01L02South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1319f085bf084671b1619e9bac0aefc9" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>bridge.L01L02South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0b95a534c1a74d1ba7cc7e685fa8bd35" StoredProcedureContractId="6ad2c8753b1a438a9155ddb8b130a4ad">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="73d4184358fc4b1b8516f5ce4f2c7c03" StoredProcedureContractId="481fd48c76c64a8c95410b735dc4fdc3">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="46c7e79f05544c38a3c7ad77e4308fff" StoredProcedureContractId="481fd48c76c64a8c95410b735dc4fdc3">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a204a95cb7aa46c897f0f155fc66fac0" StoredProcedureContractId="481fd48c76c64a8c95410b735dc4fdc3">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a71ed42785ee4cf499dde0638c675580" StoredProcedureContractId="425c8207d7da4d46930d6f95b77f9d51">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c2b20ad08f81496a9af193119cfd0c1e" StoredProcedureContractId="425c8207d7da4d46930d6f95b77f9d51">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="293960d345194c80a76397159607b040" StoredProcedureContractId="425c8207d7da4d46930d6f95b77f9d51">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2bd80e681fa44103ad181cfa92dcd00a" StoredProcedureContractId="425c8207d7da4d46930d6f95b77f9d51">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="77f7ec07fd8b42edafe591c0c5dfe88f" StoredProcedureContractId="8300c98420904ddc9f594be08fd964a7">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="885b65121d92492db822d2a991d572f6" StoredProcedureContractId="8300c98420904ddc9f594be08fd964a7">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1845e808c66a45d1ad07ed45cbda273b" StoredProcedureContractId="8300c98420904ddc9f594be08fd964a7">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="03e6252f50954e42a034116ca9260f3c" StoredProcedureContractId="8300c98420904ddc9f594be08fd964a7">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e852553ced53436b80ddc6ac7632edf6" StoredProcedureContractId="8300c98420904ddc9f594be08fd964a7">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="41798a79fecb4585878eb16df94da992" StoredProcedureContractId="8300c98420904ddc9f594be08fd964a7">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ef811e865d694ecab25e79a013249a4d" StoredProcedureContractId="4de9be10750c4f6aa7f30b0e6def95e3">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7816428367b6436ca05d742cdcf2eb52" StoredProcedureContractId="4de9be10750c4f6aa7f30b0e6def95e3">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.Seed05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9795531a0d9540b9b4d8fdea8a507ca4" StoredProcedureContractId="4de9be10750c4f6aa7f30b0e6def95e3">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L03Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="89d5cc66a64741ebb648238d978a6581" StoredProcedureContractId="4de9be10750c4f6aa7f30b0e6def95e3">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L03Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="44e2b3aa9c3b4cbcb5a96e631069b6a8" StoredProcedureContractId="4de9be10750c4f6aa7f30b0e6def95e3">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d3944f1b423848cb99724906769a02b8" StoredProcedureContractId="f7b42cd688714858a8b5f42e15969cab">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="edd404a9c1074039a8282138700f4c40" StoredProcedureContractId="f7b42cd688714858a8b5f42e15969cab">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9bbcddb316954ef1821086ca2bd3522c" StoredProcedureContractId="f7b42cd688714858a8b5f42e15969cab">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer02Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="560fa667dfff43c6bcb83de9633f9d6b" StoredProcedureContractId="f7b42cd688714858a8b5f42e15969cab">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="81488c92414448c580bb34cebbe31deb" StoredProcedureContractId="f7b42cd688714858a8b5f42e15969cab">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="89772816f993400f92f8384f9cc1d53f" StoredProcedureContractId="94488d4c9dc048f5aa60dbbd989bb39f">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>stage.Seed03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f9c934de9253458fb13573e1ffbbef78" StoredProcedureContractId="94488d4c9dc048f5aa60dbbd989bb39f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.Seed08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8afe47e5ec0d43acb684dffb62fff10f" StoredProcedureContractId="94488d4c9dc048f5aa60dbbd989bb39f">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L03Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f420feae53bb466a892d97b8b9385f7b" StoredProcedureContractId="94488d4c9dc048f5aa60dbbd989bb39f">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L03Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bf96a9abb4ea4405bf571a9f7dcb69f0" StoredProcedureContractId="94488d4c9dc048f5aa60dbbd989bb39f">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="afa98a1feffb4b6fb58c404006970669" StoredProcedureContractId="0085ae542afb444eb6cb4b55b5a6389a">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f0e0d2a4bf254bd0a862d6f649171a43" StoredProcedureContractId="0085ae542afb444eb6cb4b55b5a6389a">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ac7a254b70a542ee84ab4a9c2b93d464" StoredProcedureContractId="0085ae542afb444eb6cb4b55b5a6389a">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="473d6ef3b67849fda21faf94f9ec5379" StoredProcedureContractId="0085ae542afb444eb6cb4b55b5a6389a">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L03Node10</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2aa96f4c1afe4ca79fc58f12d26e009e" StoredProcedureContractId="0085ae542afb444eb6cb4b55b5a6389a">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L03Node10</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6f493606f01b4df3b7e869712bae8ae8" StoredProcedureContractId="0085ae542afb444eb6cb4b55b5a6389a">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4adc57069e054336bd044056a432819b" StoredProcedureContractId="1bd2b86626cb48ec8cf2454e3601948b">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer03Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="26dc3c89ade64001ab53f4ecd6bcdab9" StoredProcedureContractId="1bd2b86626cb48ec8cf2454e3601948b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L01L02North</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="015fbf167ee144d29571fa644cd0c16e" StoredProcedureContractId="1bd2b86626cb48ec8cf2454e3601948b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>bridge.L01L02South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="034a464b06d14d1891610780edf0778a" StoredProcedureContractId="1bd2b86626cb48ec8cf2454e3601948b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="97e1b6d06bfa44119182b3f5caacf6fe" StoredProcedureContractId="1bd2b86626cb48ec8cf2454e3601948b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b686a2eb38e04cbd89c881d92260acdb" StoredProcedureContractId="1bd2b86626cb48ec8cf2454e3601948b">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>hub.Layer03Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cc445ce8b8c344aab7e563375d89eee7" StoredProcedureContractId="1bd2b86626cb48ec8cf2454e3601948b">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>hub.Layer03Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6609776f0d644dc3929636bc8258dac8" StoredProcedureContractId="1bd2b86626cb48ec8cf2454e3601948b">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b092976cf37e4989ac1aeb5fce34bdba" StoredProcedureContractId="2d93d00790a442ee8751ddd4241c9d6e">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer03Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0afdd5481b1d4f2b9fde7506955926a0" StoredProcedureContractId="2d93d00790a442ee8751ddd4241c9d6e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="192f76138deb41319be162be847e6f7f" StoredProcedureContractId="2d93d00790a442ee8751ddd4241c9d6e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5dc73f8128024bd9ae20a6e0b75d3243" StoredProcedureContractId="2d93d00790a442ee8751ddd4241c9d6e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer01Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7ef72378c1574555addf7f82c6b9958f" StoredProcedureContractId="2d93d00790a442ee8751ddd4241c9d6e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ae5fbb699dc14792a63e61539faa3c3d" StoredProcedureContractId="2d93d00790a442ee8751ddd4241c9d6e">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.Seed05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="548141ffde284e67832fca24743e7e6a" StoredProcedureContractId="9d9ef30ef9a6488a90fe76715387d4ba">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="499b117c4716468da098cae2cdf4da3f" StoredProcedureContractId="9d9ef30ef9a6488a90fe76715387d4ba">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="18bbcc4217e14af28b09ae1bb2f6f6fe" StoredProcedureContractId="9d9ef30ef9a6488a90fe76715387d4ba">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3e02cf69ead841e08484f33b918fbd7a" StoredProcedureContractId="9d9ef30ef9a6488a90fe76715387d4ba">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer03Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3974cf69e82d4364b6d2ec1806e1148b" StoredProcedureContractId="9d9ef30ef9a6488a90fe76715387d4ba">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7138696f526b4e50ad0071930048868c" StoredProcedureContractId="9d9ef30ef9a6488a90fe76715387d4ba">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L04Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3067dae354514dc884c7443418cb4e15" StoredProcedureContractId="9d9ef30ef9a6488a90fe76715387d4ba">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L04Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4282cbffda9c4a1398cd7ca5a31cdcd3" StoredProcedureContractId="9d9ef30ef9a6488a90fe76715387d4ba">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="550fda8cc24849d189e02c2e31ad0f3b" StoredProcedureContractId="b38cb120786a42068328ab2b09c343eb">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e402a21c2492427aab7742cf4c681b59" StoredProcedureContractId="b38cb120786a42068328ab2b09c343eb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7bc996bb8b8d44abb32bba0268502157" StoredProcedureContractId="b38cb120786a42068328ab2b09c343eb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer03Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8e03439e0dbb48cf810f2cb1373f349f" StoredProcedureContractId="b38cb120786a42068328ab2b09c343eb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="20f8b7e5774d4fa79508cc23f6ed57bc" StoredProcedureContractId="b38cb120786a42068328ab2b09c343eb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d19aded94bd0480881273a20e89a2862" StoredProcedureContractId="04e1e6a016c4459ab538c063776af791">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4d79bcacf26849cf9de804a68604a1b2" StoredProcedureContractId="04e1e6a016c4459ab538c063776af791">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="96af85723a0c4b2b8862fc7647eb93f6" StoredProcedureContractId="04e1e6a016c4459ab538c063776af791">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3ccdced18c804c84a6c23349acea3448" StoredProcedureContractId="04e1e6a016c4459ab538c063776af791">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7c0de928574543bc9f419094944ffcf2" StoredProcedureContractId="04e1e6a016c4459ab538c063776af791">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L04Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c66f68ab2bad464bbaa400765896335e" StoredProcedureContractId="04e1e6a016c4459ab538c063776af791">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L04Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f471c22c4bfa4c71a9d9675a23971cba" StoredProcedureContractId="04e1e6a016c4459ab538c063776af791">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a855ade3ea8a4651bb20ec6d9302d55a" StoredProcedureContractId="f89226d325fd4be79a691a2599d2f433">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d1f395482c03443b88dbb5074112f06b" StoredProcedureContractId="f89226d325fd4be79a691a2599d2f433">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="072a535efd71481d821303ecab5746c9" StoredProcedureContractId="f89226d325fd4be79a691a2599d2f433">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="911f806368614cb78312ad12902b635a" StoredProcedureContractId="f89226d325fd4be79a691a2599d2f433">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L04Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="eeaf53a1c0cd4485a3ad3cf0edc285be" StoredProcedureContractId="f89226d325fd4be79a691a2599d2f433">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L04Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3000acc1d0c0499d9a7c99979c6f456e" StoredProcedureContractId="f89226d325fd4be79a691a2599d2f433">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c8df677a3eb84f509e7469384aa26216" StoredProcedureContractId="421f5a7f16f546a69d7344c6cadc65cb">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L01L02North</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3d444939321c42c180d317b33ca8ae92" StoredProcedureContractId="421f5a7f16f546a69d7344c6cadc65cb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node10</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="936ef2e1cf094f11925908b59192b78b" StoredProcedureContractId="421f5a7f16f546a69d7344c6cadc65cb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0184df1b2d144c9f8589e453bb2f56cf" StoredProcedureContractId="421f5a7f16f546a69d7344c6cadc65cb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3608b378f73e4a8b89320a3acee474a4" StoredProcedureContractId="421f5a7f16f546a69d7344c6cadc65cb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8f6f47da1d194a1bb438aad214f42daf" StoredProcedureContractId="421f5a7f16f546a69d7344c6cadc65cb">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L04Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bcbddf7373bf410d8c38288d04264245" StoredProcedureContractId="421f5a7f16f546a69d7344c6cadc65cb">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L04Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5cc9da74ed96480ba7a051f7d8f03b8d" StoredProcedureContractId="421f5a7f16f546a69d7344c6cadc65cb">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f89e2e2ab4f042e9833c2f30a45e3ad7" StoredProcedureContractId="9f77abd4e80349508e61d9b0d0fc5477">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L01L02South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ff4f45ed71844652a9ca18eee8ece456" StoredProcedureContractId="9f77abd4e80349508e61d9b0d0fc5477">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9b762ad03554401e91e9e290d057eb16" StoredProcedureContractId="9f77abd4e80349508e61d9b0d0fc5477">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L03Node10</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="378541708b924811a6efd39d683a2cd5" StoredProcedureContractId="9f77abd4e80349508e61d9b0d0fc5477">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer01Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b655ba072df04380b1d07b3249c16e5b" StoredProcedureContractId="9f77abd4e80349508e61d9b0d0fc5477">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.L01Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="748c47abce41422895fe443ab706486b" StoredProcedureContractId="9f77abd4e80349508e61d9b0d0fc5477">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>dw.L04Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ffe888f5b01c475bb63910cba0359dca" StoredProcedureContractId="9f77abd4e80349508e61d9b0d0fc5477">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>dw.L04Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7fd8ad3d2fcf489b85a3e16098cda6fa" StoredProcedureContractId="9f77abd4e80349508e61d9b0d0fc5477">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="63e5124733e04003b89db78a67533d74" StoredProcedureContractId="e3a5ce634425439fa9b30979e97aafbc">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer04Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4216cff8679e45e78bd97c04a163ce19" StoredProcedureContractId="e3a5ce634425439fa9b30979e97aafbc">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cbe81fad589247b7b7df3acd057f6dd3" StoredProcedureContractId="e3a5ce634425439fa9b30979e97aafbc">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L04Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5f9e8bcd6bd14adc92befa30edec54df" StoredProcedureContractId="e3a5ce634425439fa9b30979e97aafbc">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="accc0fbf7f9b4e29a4bc79147c343064" StoredProcedureContractId="e3a5ce634425439fa9b30979e97aafbc">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>hub.Layer04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="34cfbd6eaa514a428a2a03c50f943a0a" StoredProcedureContractId="e3a5ce634425439fa9b30979e97aafbc">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>hub.Layer04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="239b139e01bb43dd8f98a506f80e4bc8" StoredProcedureContractId="e3a5ce634425439fa9b30979e97aafbc">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cea36047f8554ab18dc619427f34d967" StoredProcedureContractId="2d717d1594e44ca38dfe8f009ad78670">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="403bacde39234c99bf1f206fc40c54a0" StoredProcedureContractId="2d717d1594e44ca38dfe8f009ad78670">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="af6a576b47c54a88b8776ff4790eee7b" StoredProcedureContractId="2d717d1594e44ca38dfe8f009ad78670">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer02Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="11fd4b0dbf844bcdbb5dd12b10307fdc" StoredProcedureContractId="2d717d1594e44ca38dfe8f009ad78670">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="045fd93eb3364d899a34e6c1896c0485" StoredProcedureContractId="2d717d1594e44ca38dfe8f009ad78670">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ae8039f9c84147fd984a914199262c06" StoredProcedureContractId="2d717d1594e44ca38dfe8f009ad78670">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e237798db6a04a499de299197d3eee4b" StoredProcedureContractId="a7ae19de2b17455b9bdd7835f4441c03">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5a11629506b14edf900398c80d0d6708" StoredProcedureContractId="a7ae19de2b17455b9bdd7835f4441c03">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8fa55581c19143d8a6486f3b9d0deb6f" StoredProcedureContractId="a7ae19de2b17455b9bdd7835f4441c03">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer01Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2baef1977e7b449b803b8e74f770b86e" StoredProcedureContractId="a7ae19de2b17455b9bdd7835f4441c03">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="de98f16df607454e94f4083fcf5773bb" StoredProcedureContractId="a7ae19de2b17455b9bdd7835f4441c03">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>hub.Layer04Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="86239f881555418e89a7e7cccefd2a50" StoredProcedureContractId="a7ae19de2b17455b9bdd7835f4441c03">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.L01Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bf069635fbed493a973b503b7e54db88" StoredProcedureContractId="a7ae19de2b17455b9bdd7835f4441c03">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>70</Ordinal>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="522b9380572b4b33b4df7f698c75a606" StoredProcedureContractId="598e557963c642f891b141916dc92380">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L03L04Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a793dfc3d2c04d74b85893f187410206" StoredProcedureContractId="598e557963c642f891b141916dc92380">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L03L04North</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="67c1bf6086d749feac836a236517aa4e" StoredProcedureContractId="598e557963c642f891b141916dc92380">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3639831fec6e44d19ff26b41c09e2b6a" StoredProcedureContractId="598e557963c642f891b141916dc92380">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>dw.L03Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="861e86e1ff0e4638b62138c0950a9f60" StoredProcedureContractId="598e557963c642f891b141916dc92380">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b6931b1f427945e4a77b962c891981d4" StoredProcedureContractId="598e557963c642f891b141916dc92380">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>bridge.L03L04South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7026491b4df2491183c064db7f918e63" StoredProcedureContractId="598e557963c642f891b141916dc92380">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>bridge.L03L04South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b536dc92aa3348018fa7a37e947a12ed" StoredProcedureContractId="598e557963c642f891b141916dc92380">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cda28f47c5a84b2786d7d5f5904bf1dc" StoredProcedureContractId="1ce1b9dfa4c642dca828f24740f0b667">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer03Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="34697db05a5c485aaaf1e03d68c62c3c" StoredProcedureContractId="1ce1b9dfa4c642dca828f24740f0b667">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer03Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2ee67a0328d24af4bb2b06e585f1b7b6" StoredProcedureContractId="1ce1b9dfa4c642dca828f24740f0b667">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="aafa519dcf884f688d4643701577dc57" StoredProcedureContractId="1ce1b9dfa4c642dca828f24740f0b667">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>mart.L05Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="76d30d6dd2a6438dad8c80cf0bc0a288" StoredProcedureContractId="1ce1b9dfa4c642dca828f24740f0b667">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>mart.L05Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a7db821e66794de68ab071dc3dccbb77" StoredProcedureContractId="1ce1b9dfa4c642dca828f24740f0b667">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8057de8b26e445f8aecb11ad141b12e0" StoredProcedureContractId="1f99e6b1aa744cd79def904a05928ab7">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L03L04Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6930acbe650f41878d8f8002abfeb9c5" StoredProcedureContractId="1f99e6b1aa744cd79def904a05928ab7">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="10dbe0145e8e46e78a6cf24862514f32" StoredProcedureContractId="1f99e6b1aa744cd79def904a05928ab7">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="33813ef272084fdeb40b2b1eafbd234f" StoredProcedureContractId="1f99e6b1aa744cd79def904a05928ab7">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1e7a6cbc31ba48888564aca5d6fde3fc" StoredProcedureContractId="1f99e6b1aa744cd79def904a05928ab7">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>mart.L05Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1abe6e4bd65040cc89096b0b30a2f7db" StoredProcedureContractId="1f99e6b1aa744cd79def904a05928ab7">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>mart.L05Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="26ac255de1244d98b0b832006f21c896" StoredProcedureContractId="1f99e6b1aa744cd79def904a05928ab7">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="dea6f3b794a746399950135bea2c2c9c" StoredProcedureContractId="0bdf33434e144f9b91f1a0d6c402b0e2">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>dw.L03Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f8b09a39bbfb447db9c84367144d1fba" StoredProcedureContractId="0bdf33434e144f9b91f1a0d6c402b0e2">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>mart.L05Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9f2e196b84994c2da0ad06eb3ea4f462" StoredProcedureContractId="0bdf33434e144f9b91f1a0d6c402b0e2">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="24d3a6fe5d354525a6e70a81ad1c8d36" StoredProcedureContractId="a62a27bb75c4409c9e6a4d58811fc57a">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6978eb7639a9438988d8d9b5e1a92b0f" StoredProcedureContractId="a62a27bb75c4409c9e6a4d58811fc57a">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d5b0a61b1ef3440c89351256f290cc26" StoredProcedureContractId="a62a27bb75c4409c9e6a4d58811fc57a">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L04Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0f775cc56abe4f258e6c9b8c3b2f4c62" StoredProcedureContractId="05b31c84a82848e9be7b38f20c02975f">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L03L04Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c0fb42fff5cd4fedbc426d2a9bf59586" StoredProcedureContractId="05b31c84a82848e9be7b38f20c02975f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="fc5852f1f95148c8af894a211fe47d1c" StoredProcedureContractId="05b31c84a82848e9be7b38f20c02975f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L05Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b7101510fb1140788fc2f01b3f395d3a" StoredProcedureContractId="05b31c84a82848e9be7b38f20c02975f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="002a45789bbb42ad8e924782b3b342f8" StoredProcedureContractId="05b31c84a82848e9be7b38f20c02975f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9252b252018f40808d1b00bbc73f58d7" StoredProcedureContractId="05b31c84a82848e9be7b38f20c02975f">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>mart.L05Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5bb0a6ad25934af3b496e2a9ba08358a" StoredProcedureContractId="05b31c84a82848e9be7b38f20c02975f">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>mart.L05Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="535d05b818b54115a4d698e8cefbdc76" StoredProcedureContractId="05b31c84a82848e9be7b38f20c02975f">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e7fc04d52361441da8b90ad1bf3d89b9" StoredProcedureContractId="49f4ed5c3a344f40a6f626b822ac2e9b">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer05Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="19c9943f275e49c886b394d145f001d5" StoredProcedureContractId="49f4ed5c3a344f40a6f626b822ac2e9b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c61f520b853d4644958f04ec89f005fc" StoredProcedureContractId="49f4ed5c3a344f40a6f626b822ac2e9b">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L05Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8c49ec9d87054218b72061577b67479f" StoredProcedureContractId="49f4ed5c3a344f40a6f626b822ac2e9b">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>hub.Layer05Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b1dcb1dd2ac948769a2093c3e9dacec1" StoredProcedureContractId="49f4ed5c3a344f40a6f626b822ac2e9b">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>hub.Layer05Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6fe04f80ac7a4bf2b65fa1dc54a0a3ee" StoredProcedureContractId="49f4ed5c3a344f40a6f626b822ac2e9b">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="db8482ba1f2949ef9f8cbf76088ad80c" StoredProcedureContractId="ca20169a56b3479ebea201f018a406b3">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer05Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5b8124c3f05d4c7aa83860329deeac10" StoredProcedureContractId="ca20169a56b3479ebea201f018a406b3">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L01L02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d652089fb5d749f29bf2b5b724b5223a" StoredProcedureContractId="ca20169a56b3479ebea201f018a406b3">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c16b4754eed746c196f38805e53bb1ad" StoredProcedureContractId="ca20169a56b3479ebea201f018a406b3">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bb3e08a0523e44c2b0146b1b81558ad7" StoredProcedureContractId="ca20169a56b3479ebea201f018a406b3">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>hub.Layer01Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e63c1ce93e5d4aa2bdfe708588128d33" StoredProcedureContractId="ca20169a56b3479ebea201f018a406b3">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="15fb10fdab844b63a41881868be81618" StoredProcedureContractId="6fdf66d5f33c40efbf46fc290baae251">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="00889ccf82954fc1aab4f297ea4587de" StoredProcedureContractId="6fdf66d5f33c40efbf46fc290baae251">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="22aa7c718adb48e68661167f31e8bc47" StoredProcedureContractId="6fdf66d5f33c40efbf46fc290baae251">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3dfd078d95894e36bc9722062735624a" StoredProcedureContractId="6fdf66d5f33c40efbf46fc290baae251">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1a97a1aa118042f78a815222aa601918" StoredProcedureContractId="419eb2f59a0b40148190b1cfb2ffa7ae">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c6becfca086b4875b3a4b28549ec4c3b" StoredProcedureContractId="419eb2f59a0b40148190b1cfb2ffa7ae">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="13ec3fcafc014dd19192133a17e7b408" StoredProcedureContractId="419eb2f59a0b40148190b1cfb2ffa7ae">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L03Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="aa0cb2e76ad645fdaf9d7d27dad36fdf" StoredProcedureContractId="419eb2f59a0b40148190b1cfb2ffa7ae">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>dw.L04Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a5964fc7b21f4b80b62e14d1e8f4aba8" StoredProcedureContractId="419eb2f59a0b40148190b1cfb2ffa7ae">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>mart.L05Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f4a5b2208e4144ae94b00626873d8ff4" StoredProcedureContractId="8a1ce778155949bc92abe96d4215fa37">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L03L04South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="38d100b4ab294c73bceb75de54f37f68" StoredProcedureContractId="8a1ce778155949bc92abe96d4215fa37">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5f7885dce4d44b9eafc536c22f396423" StoredProcedureContractId="8a1ce778155949bc92abe96d4215fa37">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L03Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e8f94beb454f4f31ba342753fedbdfe0" StoredProcedureContractId="ef2e2b73bd7c464b8b6ee65d199e6b30">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>dw.L03Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7661e8e701864438a96dd9682e17881c" StoredProcedureContractId="ef2e2b73bd7c464b8b6ee65d199e6b30">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d29efe699d7245e380e44917054e72f8" StoredProcedureContractId="ef2e2b73bd7c464b8b6ee65d199e6b30">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3927ce654bfe4c6b83b06c8092b05b5b" StoredProcedureContractId="ef2e2b73bd7c464b8b6ee65d199e6b30">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L05Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="769c8cbe508041029e4498868434d623" StoredProcedureContractId="ef2e2b73bd7c464b8b6ee65d199e6b30">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6c1b1f8352f5480a98ead4fffee9a6f3" StoredProcedureContractId="49c2da68c1764ca58b1fac15898550cb">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>dw.L04Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="999b7548c81645d6b4ff58d5f56843b9" StoredProcedureContractId="49c2da68c1764ca58b1fac15898550cb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>mart.L05Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ed444b1e16d6488b8ed9fb59e20f5f2f" StoredProcedureContractId="49c2da68c1764ca58b1fac15898550cb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="835c1b751ebc42a48ef604b2a25e871f" StoredProcedureContractId="e1c1135f0611494699ef023bf4aacf8d">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L01L02South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="951f7e42fa614c128fd422be6652f660" StoredProcedureContractId="e1c1135f0611494699ef023bf4aacf8d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="be2b353e264f453dbfd38f3e5626eedc" StoredProcedureContractId="e1c1135f0611494699ef023bf4aacf8d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L05Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2a0cdffeefb14482991b5a05e3cf7036" StoredProcedureContractId="e1c1135f0611494699ef023bf4aacf8d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L05Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f925d278a5c444f680869c3b287dc0cc" StoredProcedureContractId="e1c1135f0611494699ef023bf4aacf8d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6f1733371e7748269489ff440e54a974" StoredProcedureContractId="e1c1135f0611494699ef023bf4aacf8d">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>mart.L06Node10</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7fe7f2437fa4456e8fdd8fc02482ce7d" StoredProcedureContractId="e1c1135f0611494699ef023bf4aacf8d">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>mart.L06Node10</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="966ff56951194e9b9e9d39abafd9807a" StoredProcedureContractId="e1c1135f0611494699ef023bf4aacf8d">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1a99d40fc4fd4f8698f8ea9003330b98" StoredProcedureContractId="f14032aaee214ceeb9325560c2bdb63f">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer06Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5e7698ec7e6345858f9cb382f015389c" StoredProcedureContractId="f14032aaee214ceeb9325560c2bdb63f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>mart.L06Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a0eb9f877d214c54ae329ff96b563957" StoredProcedureContractId="f14032aaee214ceeb9325560c2bdb63f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L06Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f9f41ab54529426a8d153ff6f7fa15ad" StoredProcedureContractId="f14032aaee214ceeb9325560c2bdb63f">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>hub.Layer06Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bccc1d7f2ede49b7b9503873f1c96d97" StoredProcedureContractId="f14032aaee214ceeb9325560c2bdb63f">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>hub.Layer06Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="654ce1da994a474c9fc6df4d8a2e8d59" StoredProcedureContractId="f14032aaee214ceeb9325560c2bdb63f">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d5456410897d41988fb8ac9808ae9ca4" StoredProcedureContractId="02c77e1ed96d4dfaa0f38e379da11b3c">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer06Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3b2596c0261048dbac120a8b44e0456a" StoredProcedureContractId="02c77e1ed96d4dfaa0f38e379da11b3c">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="89bb61e6cbb446188756c022ef18e6d0" StoredProcedureContractId="02c77e1ed96d4dfaa0f38e379da11b3c">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9cff0320d994415090596a15be2ac685" StoredProcedureContractId="02c77e1ed96d4dfaa0f38e379da11b3c">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9f67bcfe8bfe41ceb767953c7a201e27" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L01L02South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b6ae341272dc4db58ff9707e0241b3d1" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L04Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0886eaa5431b4b5fb166921a9a2c16fa" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer03Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ed1d3d79365345c8a3c212e9c2cfe4e3" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer04Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f71e79f205284e56a4e65fa38b6414b9" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>hub.Layer05Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="60cb6c5408ff4020b065ca25e0ffbfa2" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>mart.L05Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c56ac313e4f44dc3bb18852f4cfd0832" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>70</Ordinal>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a99b58bd6c4e44bc98ab8e1b0f9307d3" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>80</Ordinal>
+      <SqlIdentifier>stage.L01Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2350fd9db9604df9afafdf7e17ad1534" StoredProcedureContractId="d26e2cde138d49d299504c5557d2d262">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>90</Ordinal>
+      <SqlIdentifier>stage.Seed08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bd5f153f7e274f209f9ed9819fbc81ff" StoredProcedureContractId="cde2f1e977234f78a7229e6403318c48">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L05L06Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5dfdc58e07234242aefd18abe27f26f5" StoredProcedureContractId="cde2f1e977234f78a7229e6403318c48">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L05L06North</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5b6e2c721dc1482496d5588d6921a4c6" StoredProcedureContractId="cde2f1e977234f78a7229e6403318c48">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L06Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0d59ad842fae4ea29aa6cfd7ea74d0fa" StoredProcedureContractId="cde2f1e977234f78a7229e6403318c48">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L06Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="71a0ba21aae64c3092efbffcf4d288e7" StoredProcedureContractId="cde2f1e977234f78a7229e6403318c48">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>bridge.L05L06South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0a0ba62cfe86498cacd494209507bca5" StoredProcedureContractId="cde2f1e977234f78a7229e6403318c48">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>bridge.L05L06South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a95b4917b98c4bf482360551838c0807" StoredProcedureContractId="cde2f1e977234f78a7229e6403318c48">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="21ada6a664d24d1fafb0c8e33246f2ad" StoredProcedureContractId="c604033af34e47fd95fdd77f782c10c5">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>dw.L03Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="35ca12933a104e27bcb131c05c2f791a" StoredProcedureContractId="c604033af34e47fd95fdd77f782c10c5">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L03Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="12c561fbb8bd422dbd9c261d094de9b7" StoredProcedureContractId="c604033af34e47fd95fdd77f782c10c5">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer05Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="08dea2b8418a4b91b0e3d90962e5317b" StoredProcedureContractId="c604033af34e47fd95fdd77f782c10c5">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L06Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6fd2755b8ec648d3b7135c22b46c9453" StoredProcedureContractId="c604033af34e47fd95fdd77f782c10c5">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>mart.L07Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="fa1e0fa9517d49f88806a9d2f0bc0811" StoredProcedureContractId="c604033af34e47fd95fdd77f782c10c5">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>mart.L07Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7f1fa88f2b4747acb00cbefa4a278a97" StoredProcedureContractId="c604033af34e47fd95fdd77f782c10c5">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="15c0996ce5a644dcb624dbd9bc6326c2" StoredProcedureContractId="510a7ac5384f49818a0973c4fbe64fce">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="247134724e394e9397c4da3bbe3caf84" StoredProcedureContractId="510a7ac5384f49818a0973c4fbe64fce">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>mart.L07Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1201440a3d534d088d778e813201ec57" StoredProcedureContractId="510a7ac5384f49818a0973c4fbe64fce">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="88c5f9d476354414b495282496df889a" StoredProcedureContractId="8da7601b3dea49b4b35da66326ead748">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer04Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="41f52beed11d4bea8d3e8e711a7f9a73" StoredProcedureContractId="8da7601b3dea49b4b35da66326ead748">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6a05cb72eeee41c4beca86745881a40c" StoredProcedureContractId="8da7601b3dea49b4b35da66326ead748">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4b8140eade124d8e85e3a309d50618e5" StoredProcedureContractId="c4b94bc8532544a6b1254b193928b051">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer07Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="84f69045853c4670a63a36e2a6ff37af" StoredProcedureContractId="c4b94bc8532544a6b1254b193928b051">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L04Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="84e87515d4fb421c9a8646f487bcea3c" StoredProcedureContractId="c4b94bc8532544a6b1254b193928b051">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer01Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4c39d76b5ae746ab94cf3b414ec116c0" StoredProcedureContractId="c4b94bc8532544a6b1254b193928b051">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer02Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d9f56b71045f4e4bac6016bff03e4551" StoredProcedureContractId="c4b94bc8532544a6b1254b193928b051">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>hub.Layer07Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="fe756f03e4f74e8b9f8d56595e9933b2" StoredProcedureContractId="c4b94bc8532544a6b1254b193928b051">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>hub.Layer07Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f3dc70db19374f40977672e26f9f1f9a" StoredProcedureContractId="c4b94bc8532544a6b1254b193928b051">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="aca8348076ef442eb17504621c71cd7d" StoredProcedureContractId="a4e042eabc0f41d984ad4adfde9ffda6">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer07Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="60623563aa544778b22da428447dba1f" StoredProcedureContractId="a4e042eabc0f41d984ad4adfde9ffda6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="07a5ac056e4e4c8b89d3be66e186f5bd" StoredProcedureContractId="a4e042eabc0f41d984ad4adfde9ffda6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L05Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ae6f452f913b4ca6a842e8a8ac3c1f91" StoredProcedureContractId="a4e042eabc0f41d984ad4adfde9ffda6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c5f54f91a258451781a569d4fcb87bc5" StoredProcedureContractId="a4e042eabc0f41d984ad4adfde9ffda6">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.L01Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b012dbeea2a94572a7dd09d6b599101f" StoredProcedureContractId="e3a550f901ca4fd4ba834bc1b8aa592d">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer05Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2dc1c081e372437d8e06db9e6a894118" StoredProcedureContractId="e3a550f901ca4fd4ba834bc1b8aa592d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5fdf136d9fcf4d539c652ba6e3848f7e" StoredProcedureContractId="e3a550f901ca4fd4ba834bc1b8aa592d">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>mart.L08Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9b24ca47a85342229cc633c92d2b10e3" StoredProcedureContractId="e3a550f901ca4fd4ba834bc1b8aa592d">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>mart.L08Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="44f524244513449cbe21c5021ef1c7e8" StoredProcedureContractId="e3a550f901ca4fd4ba834bc1b8aa592d">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="19d88d1579814b91976d064f85bbead0" StoredProcedureContractId="5939e069a3c847298b458dc7b041627a">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L05L06Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="29997a2b943f43d3ac0ca55d4708dcb9" StoredProcedureContractId="5939e069a3c847298b458dc7b041627a">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer03Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8814300c64d344f4b0b760046645a4ff" StoredProcedureContractId="5939e069a3c847298b458dc7b041627a">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="692942dd59da41f0b9ea49c2cf2e3731" StoredProcedureContractId="5939e069a3c847298b458dc7b041627a">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer05Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bdd11dfb493a4b298b2f211a8343620b" StoredProcedureContractId="5939e069a3c847298b458dc7b041627a">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e5c988f46b684332bfcf9ff3bccd38a1" StoredProcedureContractId="3375199bff94472494f1d7f0c85f81bf">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>dw.L04Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3b2d09084dca46bbbfea266cbe7ebe56" StoredProcedureContractId="3375199bff94472494f1d7f0c85f81bf">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>mart.L05Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bda7615ff88d4b90a523004cf5b5d5c6" StoredProcedureContractId="3375199bff94472494f1d7f0c85f81bf">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="abec5d4b1ecc41c1814019e9404131ff" StoredProcedureContractId="3375199bff94472494f1d7f0c85f81bf">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d038684cfeed430e8c68f67768dc8563" StoredProcedureContractId="3375199bff94472494f1d7f0c85f81bf">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>mart.L08Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3ce53743963d4844a19f0bfd0fb94f15" StoredProcedureContractId="3375199bff94472494f1d7f0c85f81bf">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>mart.L08Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f45faed56eea4961af0e0b6097ef009c" StoredProcedureContractId="3375199bff94472494f1d7f0c85f81bf">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9f2e6f995a0147b39d55533df1b0548c" StoredProcedureContractId="cf2417e18782490aa5554aa8db841fc2">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L05L06Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="1c7597795a9e444c8b907a2b7a7fe5bc" StoredProcedureContractId="cf2417e18782490aa5554aa8db841fc2">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer03Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="190c4d66f1d04336aaeded48847001c8" StoredProcedureContractId="cf2417e18782490aa5554aa8db841fc2">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L08Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2db60bbc53064618bcc06738fa0c996b" StoredProcedureContractId="cf2417e18782490aa5554aa8db841fc2">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>mart.L08Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ac56c117e8804236ae78e521f9147f28" StoredProcedureContractId="cf2417e18782490aa5554aa8db841fc2">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>mart.L08Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="98d6cdbe494440028ba5de37bfd4c5f3" StoredProcedureContractId="cf2417e18782490aa5554aa8db841fc2">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="195feb797e6d4124a76133ae2ff79f94" StoredProcedureContractId="bbf87af18c3e41979d47327e8d58f9dd">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer08Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5d7ca91bb23945208523f8490f279725" StoredProcedureContractId="bbf87af18c3e41979d47327e8d58f9dd">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e5e9dcfb3ad54bd48df34c8835e345a6" StoredProcedureContractId="bbf87af18c3e41979d47327e8d58f9dd">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L03Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="734f56069e534f778178b0e5e8243ab0" StoredProcedureContractId="bbf87af18c3e41979d47327e8d58f9dd">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>dw.L04Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="83762e1bf244438491a3feeef72e8ae5" StoredProcedureContractId="bbf87af18c3e41979d47327e8d58f9dd">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>hub.Layer08Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="42768a12201446fb98cda7149e72a322" StoredProcedureContractId="bbf87af18c3e41979d47327e8d58f9dd">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>hub.Layer08Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d5a71e0132b945259c0759050f57975d" StoredProcedureContractId="bbf87af18c3e41979d47327e8d58f9dd">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="549797599304423294b783f518ae41f0" StoredProcedureContractId="1ffb1da4f3094a378c18654d75ea814d">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>hub.Layer08Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3a1092fe84334e6ea6684d6c4a74cdc2" StoredProcedureContractId="1ffb1da4f3094a378c18654d75ea814d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="47b55407a4e044d993479cd03df157c3" StoredProcedureContractId="1ffb1da4f3094a378c18654d75ea814d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L04Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="231ebcda2463422da2c2819b8990ea77" StoredProcedureContractId="1ffb1da4f3094a378c18654d75ea814d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="32d9442befd84515b715b4cbb1e40341" StoredProcedureContractId="40fd8eeafb914e6e94a1e926ab9c8968">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>core.L02Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c56011603007420e82fdfed01de117fd" StoredProcedureContractId="40fd8eeafb914e6e94a1e926ab9c8968">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L04Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="66ea31e6f95a4927820cc7c2e21d33b7" StoredProcedureContractId="40fd8eeafb914e6e94a1e926ab9c8968">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L04Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a0be6e1f40a2442cafdf69d419759c6c" StoredProcedureContractId="40fd8eeafb914e6e94a1e926ab9c8968">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L05Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5d87f76292aa4b348e7b3675a1f1ae45" StoredProcedureContractId="40fd8eeafb914e6e94a1e926ab9c8968">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>mart.L05Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bf2f125062374d419d727c72eda68eef" StoredProcedureContractId="40fd8eeafb914e6e94a1e926ab9c8968">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>mart.L05Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="48ce618207404fad8637573bbef443d6" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L07L08Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="92a408aad68d4b01a6ddae8cd511642e" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L07L08North</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f42a82e982e64813bcc6e720a326a285" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer05Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e0c194bf56be4f169619e2b7906010aa" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer06Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5c2422c3219748c3a4a8eaeca6d11cd2" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>mart.L05Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="50e526ce1f6f4397a73cc5d9ed4296ed" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>mart.L06Node10</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a797ad7df6aa401fb47e464eb0e0b467" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>bridge.L07L08South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="86aa013f662b40c2af5337865b1bb728" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>bridge.L07L08South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7ef98a38c2bc4de6834bb55a8e5d4ef2" StoredProcedureContractId="0ae5c47d6113447da243f4e49050dfd1">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="16ec2fc910164da2978f19c015d968d6" StoredProcedureContractId="83c32fd05a76476ab5f27b4707d9f2b5">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.Region01Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="62459eefc3d34f848c7ef79a1bdd937f" StoredProcedureContractId="83c32fd05a76476ab5f27b4707d9f2b5">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer08Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4a029fd94e7749e2bad2f3f845bf66ae" StoredProcedureContractId="83c32fd05a76476ab5f27b4707d9f2b5">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L07Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a3b8c7438e194edd9c8807144471ad24" StoredProcedureContractId="83c32fd05a76476ab5f27b4707d9f2b5">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="695fa233d7b64930b5f5f9d3a28a4772" StoredProcedureContractId="83c32fd05a76476ab5f27b4707d9f2b5">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>wrk.Region01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0c5d68ddaa024b3ea12d5c3d74a0797c" StoredProcedureContractId="83c32fd05a76476ab5f27b4707d9f2b5">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>wrk.Region01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="03a67f9a9d9a4ef5b1c11fd292dcaf98" StoredProcedureContractId="83c32fd05a76476ab5f27b4707d9f2b5">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a504a13e69f549318fff3612dd12d846" StoredProcedureContractId="bfaa5a24dd0f486da788c5af772be9f1">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.Region01Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6de49f159659416eba7d04b13b7ffff7" StoredProcedureContractId="bfaa5a24dd0f486da788c5af772be9f1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>mart.L06Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="33bfa3b321564898a237b531be88f266" StoredProcedureContractId="bfaa5a24dd0f486da788c5af772be9f1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L06Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6ae76d4f1bb847018df4e18f4e639daa" StoredProcedureContractId="bfaa5a24dd0f486da788c5af772be9f1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L07Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="029e0f34ab4047d3a8c243191bdf19aa" StoredProcedureContractId="bfaa5a24dd0f486da788c5af772be9f1">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b22cd2c8669749c99a4dc7efc7669c69" StoredProcedureContractId="b200a4d3facc4fca84085e1ccd772156">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>mart.Region01Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7b5ddd674fdd4043bb6e4772df9d4607" StoredProcedureContractId="b200a4d3facc4fca84085e1ccd772156">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="536bab5832b34fb4a91f3e082bcb9f28" StoredProcedureContractId="b200a4d3facc4fca84085e1ccd772156">
+      <OperationKind>Mutation</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>audit.Region01LoadLog</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ed4d8245838444cc8e53ede86cfc6bc0" StoredProcedureContractId="34d1eadcccd048a28b52f756976ff9f2">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.Region02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5072e06cc6dd47f18b7e2bbfcf40a185" StoredProcedureContractId="34d1eadcccd048a28b52f756976ff9f2">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L01L02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="64f47009d74e41d1a017a70af967f6dc" StoredProcedureContractId="34d1eadcccd048a28b52f756976ff9f2">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer02Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="15c334ff7ae4447b9b25ea80ff2634cc" StoredProcedureContractId="34d1eadcccd048a28b52f756976ff9f2">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer05Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="bcc6625f14d648839884c4a653aa9000" StoredProcedureContractId="34d1eadcccd048a28b52f756976ff9f2">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>hub.Layer06Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c42a874778644fccabda8b9ec8b3d9fc" StoredProcedureContractId="34d1eadcccd048a28b52f756976ff9f2">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>wrk.Region02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9947cac944e049dfa54cec542d364bd3" StoredProcedureContractId="34d1eadcccd048a28b52f756976ff9f2">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>wrk.Region02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f530824731224e51b7eda301cd1deb01" StoredProcedureContractId="34d1eadcccd048a28b52f756976ff9f2">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e87db15f242a44c1b6d2bbc1a700cfb4" StoredProcedureContractId="b5f7ec8fe6d24224b857889b0b6450b0">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.Region02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6c29422425504060b56f6d7d99c309b0" StoredProcedureContractId="b5f7ec8fe6d24224b857889b0b6450b0">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f77d287f5c1d4a14861c76dfa64f211b" StoredProcedureContractId="b5f7ec8fe6d24224b857889b0b6450b0">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L08Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9e2dc2a4064242e7b9c8f97aa311b9da" StoredProcedureContractId="b5f7ec8fe6d24224b857889b0b6450b0">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5b68bcc98f08486480464939e52391a0" StoredProcedureContractId="e74f09bda8a9414c83b7ca0d26e83404">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>mart.Region02Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b9ef0c65a12340d7932dde5fcef2c29d" StoredProcedureContractId="e74f09bda8a9414c83b7ca0d26e83404">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L03L04North</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ced2d6904d834253b70824ba398dbb74" StoredProcedureContractId="e74f09bda8a9414c83b7ca0d26e83404">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>dw.L04Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="97e2db10cf51492da150f8c759dbd37e" StoredProcedureContractId="e74f09bda8a9414c83b7ca0d26e83404">
+      <OperationKind>Mutation</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>audit.Region02LoadLog</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="16139055b56345ada56151d30345d95e" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.Region03Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="9a4d48a41e3d446087413998a23c378c" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="aea41418482a4c708862e5a4e4d98004" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>core.L02Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="20ef8f83e813427681445ab14448447e" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>dw.L03Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5e17fac6a19649919a7d2c98f4fb1415" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>mart.L08Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="16a0333b71c54befb2c4e37a1f46360f" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.L01Node05</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="7170aa6a16ee49d98dd4b26979e4e14a" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>wrk.Region03Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="c139c70ba1b64cf89950f23dccd3bf55" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>wrk.Region03Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3b1f1e964f7945e1be49b879a7f9e952" StoredProcedureContractId="32afa7eceb044ef59e32a6190e9f6c38">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="3b99b4260d3a41218c5d2a2097124db8" StoredProcedureContractId="9b5535781bda40fd913efcf328e20e23">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.Region03Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="360077bddc0f4d4d8b6cac51c0893b3f" StoredProcedureContractId="9b5535781bda40fd913efcf328e20e23">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="21d6763760ed407591a8c96bdd24b81d" StoredProcedureContractId="9b5535781bda40fd913efcf328e20e23">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer03Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ee89ccfb7d46441c8fc7edfd2546d3b4" StoredProcedureContractId="9b5535781bda40fd913efcf328e20e23">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer06Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8a68c4010c0e435fbef897da781ce46c" StoredProcedureContractId="9b5535781bda40fd913efcf328e20e23">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>mart.L06Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5fcc0af2a66043119ed2c10e1f00619c" StoredProcedureContractId="9b5535781bda40fd913efcf328e20e23">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>mart.L07Node02</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a1f7bef12f6e49868c4bf5b3608ded03" StoredProcedureContractId="9b5535781bda40fd913efcf328e20e23">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>70</Ordinal>
+      <SqlIdentifier>stage.L01Node08</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5beee56ac414463d955b1d723eae8cfd" StoredProcedureContractId="250f142669804002b1e765df3d2acec4">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>mart.Region03Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="6b7ae361492f4c7a827742b04ad2874d" StoredProcedureContractId="250f142669804002b1e765df3d2acec4">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>audit.Region01LoadLog</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="95c06a6d47b349c0bf4687e64742e9b9" StoredProcedureContractId="250f142669804002b1e765df3d2acec4">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="37f874e85b24466eaa1de47e47e01846" StoredProcedureContractId="250f142669804002b1e765df3d2acec4">
+      <OperationKind>Mutation</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>audit.Region03LoadLog</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0df5d3ec6058431c8d80d7eb5c097f5f" StoredProcedureContractId="bf130fed08fe46d7b00fc352a450fabb">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.Region04Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b6ea8de75a1742619cc54c7a89566ef8" StoredProcedureContractId="bf130fed08fe46d7b00fc352a450fabb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>bridge.L01L02South</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8d031d5082274da5baa7b236411cf944" StoredProcedureContractId="bf130fed08fe46d7b00fc352a450fabb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L06Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="83c94ee82be5420bb2eecc90b86fb2aa" StoredProcedureContractId="bf130fed08fe46d7b00fc352a450fabb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L06Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a4f127b991884542aaabf6aa8d8af401" StoredProcedureContractId="bf130fed08fe46d7b00fc352a450fabb">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="98df61b782fa452bbbabab7d3f34b3c5" StoredProcedureContractId="bf130fed08fe46d7b00fc352a450fabb">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>wrk.Region04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0c5223fc73d2411ca555eecf901db083" StoredProcedureContractId="bf130fed08fe46d7b00fc352a450fabb">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>wrk.Region04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="71b6dc257e5d4bb3b53819f6b6f8d3d3" StoredProcedureContractId="bf130fed08fe46d7b00fc352a450fabb">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="8436c0578a4e420aa26c87a205f73a4d" StoredProcedureContractId="c3c86a15b1524f1b82b240a75cce7d1d">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.Region04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="480331fb000642d7bd3f23538f306850" StoredProcedureContractId="c3c86a15b1524f1b82b240a75cce7d1d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="dd9ddbc1c65d4bb58c0ad6e2115de4c9" StoredProcedureContractId="c3c86a15b1524f1b82b240a75cce7d1d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="52740cbc563047fb9779edc7a17cfc2a" StoredProcedureContractId="c3c86a15b1524f1b82b240a75cce7d1d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>hub.Layer03Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="fb44086dbfc645b98694ec6f206cd4f2" StoredProcedureContractId="c3c86a15b1524f1b82b240a75cce7d1d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>hub.Layer03Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="e9f4abc8dac84614bcb0ce283126f123" StoredProcedureContractId="c3c86a15b1524f1b82b240a75cce7d1d">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>mart.L07Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="779c40ddac96435eb22def128830d5de" StoredProcedureContractId="4702700cf713425381001f10436b6b63">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>mart.Region04Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="89e7f91536824dadba1c4554c74ec78d" StoredProcedureContractId="4702700cf713425381001f10436b6b63">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer07Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="678866f76eb743659d5d367d280df2b6" StoredProcedureContractId="4702700cf713425381001f10436b6b63">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.Region01Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="43e69e2c659943a2a9ca75dadcf896f0" StoredProcedureContractId="4702700cf713425381001f10436b6b63">
+      <OperationKind>Mutation</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>audit.Region04LoadLog</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="5cc7a40d3dd144dba3bb4828f156a377" StoredProcedureContractId="76422151c19a4f5a9df7c21e5f402825">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.CompositeStage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0e5ff8e2daf94edeb1b45d3d7c4cb607" StoredProcedureContractId="76422151c19a4f5a9df7c21e5f402825">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>mart.L08Node04</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="977cb47c6b6341e5ab18d0d6593a9ed8" StoredProcedureContractId="76422151c19a4f5a9df7c21e5f402825">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L08Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="f150ce7a4f064b0cada03ea5da38d8e8" StoredProcedureContractId="76422151c19a4f5a9df7c21e5f402825">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>wrk.CompositeCurated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="465f9998eeed4f62b72a051c89a4afc3" StoredProcedureContractId="76422151c19a4f5a9df7c21e5f402825">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>wrk.CompositeCurated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="a71fab4fa0094ab4aae40034581be694" StoredProcedureContractId="76422151c19a4f5a9df7c21e5f402825">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ff3e450ce80249598ee67936b48336ac" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.CompositeReconciled</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ba78daa847544694810a19513b330fb2" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>hub.Layer03Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="dfa416be324a4c59a414d90d57a2dce9" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>hub.Layer05Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="2d511eba8f434e8b8c3a1f2e7e8870d5" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L05Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="dbc622521c394880b973cde2a7beb8a3" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>mart.L05Node07</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="896b9ce0d0854db898e6d8beeaac391a" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.L01Node03</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="d19a28ebd75e4ead8b06ced41609aa65" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <OperationKind>Reset</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>wrk.CompositeCertified</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="43ac57e20305412b949faead55bce17b" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <OperationKind>Append</OperationKind>
+      <Ordinal>110</Ordinal>
+      <SqlIdentifier>wrk.CompositeCertified</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="b66a4ec5b4f342e6951cfabc5b106680" StoredProcedureContractId="eac3890c4ece490596a461e27dc57826">
+      <OperationKind>Call</OperationKind>
+      <Ordinal>120</Ordinal>
+      <SqlIdentifier>audit.MarkTransformStep</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="cef3cd31183243c793cef8437810357f" StoredProcedureContractId="a9a46701ec4c42d7aa9f7f7cf9cbd66f">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>wrk.CompositeCertified</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="189d1a08c79f4127ba2b669a98e5df26" StoredProcedureContractId="a9a46701ec4c42d7aa9f7f7cf9cbd66f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="ac38b628ee65413ab637138327a401ab" StoredProcedureContractId="a9a46701ec4c42d7aa9f7f7cf9cbd66f">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0fc711142a124f8ba636f38dbaa8c97f" StoredProcedureContractId="b98e7f2fe3ff4e2ea5f6bf79549f8702">
+      <AccessRole>Source</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>10</Ordinal>
+      <SqlIdentifier>bridge.L07L08Stage</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="0fe69e2bc82f433189e057afb1d57065" StoredProcedureContractId="b98e7f2fe3ff4e2ea5f6bf79549f8702">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>20</Ordinal>
+      <SqlIdentifier>dw.L04Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="20f65a3fc594425086913d72d7739245" StoredProcedureContractId="b98e7f2fe3ff4e2ea5f6bf79549f8702">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>30</Ordinal>
+      <SqlIdentifier>mart.L06Node06</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="4108c9aa4777463ba150ed959ef94503" StoredProcedureContractId="b98e7f2fe3ff4e2ea5f6bf79549f8702">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>40</Ordinal>
+      <SqlIdentifier>mart.L06Node09</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="202e8f48468e45b8a0dbf8219545e3fd" StoredProcedureContractId="b98e7f2fe3ff4e2ea5f6bf79549f8702">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>50</Ordinal>
+      <SqlIdentifier>mart.Region04Published</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="36de949099074f54a84eaf5a098afdc5" StoredProcedureContractId="b98e7f2fe3ff4e2ea5f6bf79549f8702">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>60</Ordinal>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="eb9176c129e3445b80048946269b29d1" StoredProcedureContractId="b98e7f2fe3ff4e2ea5f6bf79549f8702">
+      <AccessRole>Lookup</AccessRole>
+      <OperationKind>Read</OperationKind>
+      <Ordinal>70</Ordinal>
+      <SqlIdentifier>wrk.Region04Curated</SqlIdentifier>
+    </StoredProcedureContractOperation>
+    <StoredProcedureContractOperation Id="56a54f6001374a11bee3e18d3cdb5906" StoredProcedureContractId="b98e7f2fe3ff4e2ea5f6bf79549f8702">
+      <OperationKind>Mutation</OperationKind>
+      <Ordinal>100</Ordinal>
+      <SqlIdentifier>audit.HairballRunLog</SqlIdentifier>
+    </StoredProcedureContractOperation>
+  </StoredProcedureContractOperationList>
+</MetaTransformScript>

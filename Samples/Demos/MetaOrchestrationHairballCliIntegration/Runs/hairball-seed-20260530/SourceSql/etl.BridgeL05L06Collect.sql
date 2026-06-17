@@ -1,0 +1,6 @@
+CREATE PROCEDURE etl.BridgeL05L06Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END

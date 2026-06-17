@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript>
-  <TransformScriptStatementLinkList>
-    <TransformScriptStatementLink Id="TransformScriptStatementLink:1" TransformScriptId="TransformScript:1" TSqlStatementId="TSqlStatement:1">
-    </TransformScriptStatementLink>
-    <TransformScriptStatementLink Id="TransformScriptStatementLink:2" TransformScriptId="TransformScript:2" TSqlStatementId="TSqlStatement:2">
-    </TransformScriptStatementLink>
-  </TransformScriptStatementLinkList>
-</MetaTransformScript>

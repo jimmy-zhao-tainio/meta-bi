@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaPipeline>
+  <PipelineList>
+    <Pipeline Id="AuditHairball">
+      <Description></Description>
+      <Name>AuditHairball</Name>
+    </Pipeline>
+    <Pipeline Id="BridgeL01L02">
+      <Description></Description>
+      <Name>BridgeL01L02</Name>
+    </Pipeline>
+    <Pipeline Id="BridgeL03L04">
+      <Description></Description>
+      <Name>BridgeL03L04</Name>
+    </Pipeline>
+    <Pipeline Id="BridgeL05L06">
+      <Description></Description>
+      <Name>BridgeL05L06</Name>
+    </Pipeline>
+    <Pipeline Id="BridgeL07L08">
+      <Description></Description>
+      <Name>BridgeL07L08</Name>
+    </Pipeline>
+    <Pipeline Id="CompositeMart">
+      <Description></Description>
+      <Name>CompositeMart</Name>
+    </Pipeline>
+    <Pipeline Id="ExtractSeed01">
+      <Description></Description>
+      <Name>ExtractSeed01</Name>
+    </Pipeline>
+    <Pipeline Id="ExtractSeed02">
+      <Description></Description>
+      <Name>ExtractSeed02</Name>
+    </Pipeline>
+    <Pipeline Id="ExtractSeed03">
+      <Description></Description>
+      <Name>ExtractSeed03</Name>
+    </Pipeline>
+    <Pipeline Id="ExtractSeed04">
+      <Description></Description>
+      <Name>ExtractSeed04</Name>
+    </Pipeline>
+    <Pipeline Id="ExtractSeed05">
+      <Description></Description>
+      <Name>ExtractSeed05</Name>
+    </Pipeline>
+    <Pipeline Id="ExtractSeed06">
+      <Description></Description>
+      <Name>ExtractSeed06</Name>
+    </Pipeline>
+    <Pipeline Id="ExtractSeed07">
+      <Description></Description>
+      <Name>ExtractSeed07</Name>
+    </Pipeline>
+    <Pipeline Id="ExtractSeed08">
+      <Description></Description>
+      <Name>ExtractSeed08</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Hub">
+      <Description></Description>
+      <Name>Layer01Hub</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node01">
+      <Description></Description>
+      <Name>Layer01Node01</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node02">
+      <Description></Description>
+      <Name>Layer01Node02</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node03">
+      <Description></Description>
+      <Name>Layer01Node03</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node04">
+      <Description></Description>
+      <Name>Layer01Node04</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node05">
+      <Description></Description>
+      <Name>Layer01Node05</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node06">
+      <Description></Description>
+      <Name>Layer01Node06</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node07">
+      <Description></Description>
+      <Name>Layer01Node07</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node08">
+      <Description></Description>
+      <Name>Layer01Node08</Name>
+    </Pipeline>
+    <Pipeline Id="Layer01Node09">
+      <Description></Description>
+      <Name>Layer01Node09</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Hub">
+      <Description></Description>
+      <Name>Layer02Hub</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Node01">
+      <Description></Description>
+      <Name>Layer02Node01</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Node02">
+      <Description></Description>
+      <Name>Layer02Node02</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Node03">
+      <Description></Description>
+      <Name>Layer02Node03</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Node04">
+      <Description></Description>
+      <Name>Layer02Node04</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Node05">
+      <Description></Description>
+      <Name>Layer02Node05</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Node06">
+      <Description></Description>
+      <Name>Layer02Node06</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Node07">
+      <Description></Description>
+      <Name>Layer02Node07</Name>
+    </Pipeline>
+    <Pipeline Id="Layer02Node08">
+      <Description></Description>
+      <Name>Layer02Node08</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Hub">
+      <Description></Description>
+      <Name>Layer03Hub</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node01">
+      <Description></Description>
+      <Name>Layer03Node01</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node02">
+      <Description></Description>
+      <Name>Layer03Node02</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node03">
+      <Description></Description>
+      <Name>Layer03Node03</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node04">
+      <Description></Description>
+      <Name>Layer03Node04</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node05">
+      <Description></Description>
+      <Name>Layer03Node05</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node06">
+      <Description></Description>
+      <Name>Layer03Node06</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node07">
+      <Description></Description>
+      <Name>Layer03Node07</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node08">
+      <Description></Description>
+      <Name>Layer03Node08</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node09">
+      <Description></Description>
+      <Name>Layer03Node09</Name>
+    </Pipeline>
+    <Pipeline Id="Layer03Node10">
+      <Description></Description>
+      <Name>Layer03Node10</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Hub">
+      <Description></Description>
+      <Name>Layer04Hub</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node01">
+      <Description></Description>
+      <Name>Layer04Node01</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node02">
+      <Description></Description>
+      <Name>Layer04Node02</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node03">
+      <Description></Description>
+      <Name>Layer04Node03</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node04">
+      <Description></Description>
+      <Name>Layer04Node04</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node05">
+      <Description></Description>
+      <Name>Layer04Node05</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node06">
+      <Description></Description>
+      <Name>Layer04Node06</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node07">
+      <Description></Description>
+      <Name>Layer04Node07</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node08">
+      <Description></Description>
+      <Name>Layer04Node08</Name>
+    </Pipeline>
+    <Pipeline Id="Layer04Node09">
+      <Description></Description>
+      <Name>Layer04Node09</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Hub">
+      <Description></Description>
+      <Name>Layer05Hub</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Node01">
+      <Description></Description>
+      <Name>Layer05Node01</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Node02">
+      <Description></Description>
+      <Name>Layer05Node02</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Node03">
+      <Description></Description>
+      <Name>Layer05Node03</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Node04">
+      <Description></Description>
+      <Name>Layer05Node04</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Node05">
+      <Description></Description>
+      <Name>Layer05Node05</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Node06">
+      <Description></Description>
+      <Name>Layer05Node06</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Node07">
+      <Description></Description>
+      <Name>Layer05Node07</Name>
+    </Pipeline>
+    <Pipeline Id="Layer05Node08">
+      <Description></Description>
+      <Name>Layer05Node08</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Hub">
+      <Description></Description>
+      <Name>Layer06Hub</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node01">
+      <Description></Description>
+      <Name>Layer06Node01</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node02">
+      <Description></Description>
+      <Name>Layer06Node02</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node03">
+      <Description></Description>
+      <Name>Layer06Node03</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node04">
+      <Description></Description>
+      <Name>Layer06Node04</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node05">
+      <Description></Description>
+      <Name>Layer06Node05</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node06">
+      <Description></Description>
+      <Name>Layer06Node06</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node07">
+      <Description></Description>
+      <Name>Layer06Node07</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node08">
+      <Description></Description>
+      <Name>Layer06Node08</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node09">
+      <Description></Description>
+      <Name>Layer06Node09</Name>
+    </Pipeline>
+    <Pipeline Id="Layer06Node10">
+      <Description></Description>
+      <Name>Layer06Node10</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Hub">
+      <Description></Description>
+      <Name>Layer07Hub</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Node01">
+      <Description></Description>
+      <Name>Layer07Node01</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Node02">
+      <Description></Description>
+      <Name>Layer07Node02</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Node03">
+      <Description></Description>
+      <Name>Layer07Node03</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Node04">
+      <Description></Description>
+      <Name>Layer07Node04</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Node05">
+      <Description></Description>
+      <Name>Layer07Node05</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Node06">
+      <Description></Description>
+      <Name>Layer07Node06</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Node07">
+      <Description></Description>
+      <Name>Layer07Node07</Name>
+    </Pipeline>
+    <Pipeline Id="Layer07Node08">
+      <Description></Description>
+      <Name>Layer07Node08</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Hub">
+      <Description></Description>
+      <Name>Layer08Hub</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Node01">
+      <Description></Description>
+      <Name>Layer08Node01</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Node02">
+      <Description></Description>
+      <Name>Layer08Node02</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Node03">
+      <Description></Description>
+      <Name>Layer08Node03</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Node04">
+      <Description></Description>
+      <Name>Layer08Node04</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Node05">
+      <Description></Description>
+      <Name>Layer08Node05</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Node06">
+      <Description></Description>
+      <Name>Layer08Node06</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Node07">
+      <Description></Description>
+      <Name>Layer08Node07</Name>
+    </Pipeline>
+    <Pipeline Id="Layer08Node08">
+      <Description></Description>
+      <Name>Layer08Node08</Name>
+    </Pipeline>
+    <Pipeline Id="PublishHairballFinal">
+      <Description></Description>
+      <Name>PublishHairballFinal</Name>
+    </Pipeline>
+    <Pipeline Id="RegionalMart01">
+      <Description></Description>
+      <Name>RegionalMart01</Name>
+    </Pipeline>
+    <Pipeline Id="RegionalMart02">
+      <Description></Description>
+      <Name>RegionalMart02</Name>
+    </Pipeline>
+    <Pipeline Id="RegionalMart03">
+      <Description></Description>
+      <Name>RegionalMart03</Name>
+    </Pipeline>
+    <Pipeline Id="RegionalMart04">
+      <Description></Description>
+      <Name>RegionalMart04</Name>
+    </Pipeline>
+  </PipelineList>
+</MetaPipeline>

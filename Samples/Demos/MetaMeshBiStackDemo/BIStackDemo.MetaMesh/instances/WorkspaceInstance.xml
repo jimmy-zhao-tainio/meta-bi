@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceInstanceList>
+    <WorkspaceInstance Id="workspace:analytics" MeshId="mesh:bi-stack-demo">
+      <DisplayName>analytics</DisplayName>
+      <Handle>analytics</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaAnalytics</ModelName>
+      <Summary>Portable analytical intent.</Summary>
+      <WorkspaceKind>MetaAnalytics</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:binding" MeshId="mesh:bi-stack-demo">
+      <DisplayName>binding</DisplayName>
+      <Handle>binding</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Summary>Explicit transform contract binding.</Summary>
+      <WorkspaceKind>MetaTransformBinding</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:conversion" MeshId="mesh:bi-stack-demo">
+      <DisplayName>conversion</DisplayName>
+      <Handle>conversion</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaDataTypeConversion</ModelName>
+      <Summary>Sanctioned data type conversion policy.</Summary>
+      <WorkspaceKind>MetaDataTypeConversion</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:multidim" MeshId="mesh:bi-stack-demo">
+      <DisplayName>multidim</DisplayName>
+      <Handle>multidim</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaMultiDimensional</ModelName>
+      <Summary>Multidimensional implementation target.</Summary>
+      <WorkspaceKind>MetaMultiDimensional</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:orchestration" MeshId="mesh:bi-stack-demo">
+      <DisplayName>orchestration</DisplayName>
+      <Handle>orchestration</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaOrchestration</ModelName>
+      <Summary>Safe run graph and task planning.</Summary>
+      <WorkspaceKind>MetaOrchestration</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:pipeline" MeshId="mesh:bi-stack-demo">
+      <DisplayName>pipeline</DisplayName>
+      <Handle>pipeline</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaPipeline</ModelName>
+      <Summary>Executable modeled pipeline steps.</Summary>
+      <WorkspaceKind>MetaPipeline</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:quality" MeshId="mesh:bi-stack-demo">
+      <DisplayName>quality</DisplayName>
+      <Handle>quality</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaDataQuality</ModelName>
+      <Summary>Transform-derived data quality candidates.</Summary>
+      <WorkspaceKind>MetaDataQuality</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:source" MeshId="mesh:bi-stack-demo">
+      <DisplayName>source</DisplayName>
+      <Handle>source</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaSchema</ModelName>
+      <Summary>Source schema contract.</Summary>
+      <WorkspaceKind>MetaSchema</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:sql" MeshId="mesh:bi-stack-demo">
+      <DisplayName>sql</DisplayName>
+      <Handle>sql</Handle>
+      <Lifecycle>Generated</Lifecycle>
+      <ModelName>MetaSql</ModelName>
+      <Summary>SQL realization surface.</Summary>
+      <WorkspaceKind>MetaSql</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:tabular" MeshId="mesh:bi-stack-demo">
+      <DisplayName>tabular</DisplayName>
+      <Handle>tabular</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaTabular</ModelName>
+      <Summary>Tabular implementation target.</Summary>
+      <WorkspaceKind>MetaTabular</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:transform" MeshId="mesh:bi-stack-demo">
+      <DisplayName>transform</DisplayName>
+      <Handle>transform</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaTransformScript</ModelName>
+      <Summary>Bounded SQL transform syntax model.</Summary>
+      <WorkspaceKind>MetaTransformScript</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:vault" MeshId="mesh:bi-stack-demo">
+      <DisplayName>vault</DisplayName>
+      <Handle>vault</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaRawDataVault</ModelName>
+      <Summary>Raw Data Vault structure.</Summary>
+      <WorkspaceKind>MetaRawDataVault</WorkspaceKind>
+    </WorkspaceInstance>
+    <WorkspaceInstance Id="workspace:warehouse" MeshId="mesh:bi-stack-demo">
+      <DisplayName>warehouse</DisplayName>
+      <Handle>warehouse</Handle>
+      <Lifecycle>Authored</Lifecycle>
+      <ModelName>MetaDataWarehouse</ModelName>
+      <Summary>Dimensional warehouse intent.</Summary>
+      <WorkspaceKind>MetaDataWarehouse</WorkspaceKind>
+    </WorkspaceInstance>
+  </WorkspaceInstanceList>
+</MetaMesh>

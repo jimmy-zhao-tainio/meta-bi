@@ -1,0 +1,6 @@
+CREATE PROCEDURE etl.CompositeCurate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END

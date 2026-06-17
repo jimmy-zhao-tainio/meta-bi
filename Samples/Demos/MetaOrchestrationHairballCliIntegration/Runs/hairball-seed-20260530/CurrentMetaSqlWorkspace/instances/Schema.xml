@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <SchemaList>
+    <Schema Id="MetaOrchestrationHairball.audit" DatabaseId="MetaOrchestrationHairball">
+      <Name>audit</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.bridge" DatabaseId="MetaOrchestrationHairball">
+      <Name>bridge</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.core" DatabaseId="MetaOrchestrationHairball">
+      <Name>core</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.dw" DatabaseId="MetaOrchestrationHairball">
+      <Name>dw</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.hub" DatabaseId="MetaOrchestrationHairball">
+      <Name>hub</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.mart" DatabaseId="MetaOrchestrationHairball">
+      <Name>mart</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.raw" DatabaseId="MetaOrchestrationHairball">
+      <Name>raw</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.stage" DatabaseId="MetaOrchestrationHairball">
+      <Name>stage</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.wrk" DatabaseId="MetaOrchestrationHairball">
+      <Name>wrk</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.demo" DatabaseId="MetaOrchestrationHairball">
+      <Name>demo</Name>
+    </Schema>
+    <Schema Id="MetaOrchestrationHairball.etl" DatabaseId="MetaOrchestrationHairball">
+      <Name>etl</Name>
+    </Schema>
+  </SchemaList>
+</MetaSql>

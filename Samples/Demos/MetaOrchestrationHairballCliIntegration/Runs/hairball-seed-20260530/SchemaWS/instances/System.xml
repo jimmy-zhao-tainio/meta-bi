@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SystemList>
+    <System Id="hairball:system">
+      <Description>Generated schema workspace for the MetaOrchestration hairball CLI demo.</Description>
+      <Name>Hairball</Name>
+    </System>
+  </SystemList>
+</MetaSchema>

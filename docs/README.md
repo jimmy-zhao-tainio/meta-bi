@@ -24,6 +24,7 @@
 - [MetaLoad concern inventory](meta-load/META-LOAD.md)
 - [MetaOrchestration](orchestration/META-ORCHESTRATION.md)
 - [MetaPipeline](meta-pipeline/META-PIPELINE.md)
+- [MetaMesh ergonomics](meta-mesh/META-MESH-ERGONOMICS.md)
 - [MetaSql plan](meta-sql/META-SQL-PLAN.md)
 - [MetaTransform boundary](meta-transform/META-TRANSFORM-BOUNDARY.md)
 - [MetaTransformScript parser status](meta-transform-script/META-TRANSFORM-SCRIPT-PARSER-STATUS.md)

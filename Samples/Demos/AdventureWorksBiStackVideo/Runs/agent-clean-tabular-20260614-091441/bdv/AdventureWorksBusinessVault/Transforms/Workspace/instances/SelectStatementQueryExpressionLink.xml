@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript>
-  <SelectStatementQueryExpressionLinkList>
-    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:1" QueryExpressionId="QueryExpression:1" SelectStatementId="SelectStatement:1">
-    </SelectStatementQueryExpressionLink>
-    <SelectStatementQueryExpressionLink Id="SelectStatementQueryExpressionLink:2" QueryExpressionId="QueryExpression:2" SelectStatementId="SelectStatement:2">
-    </SelectStatementQueryExpressionLink>
-  </SelectStatementQueryExpressionLinkList>
-</MetaTransformScript>

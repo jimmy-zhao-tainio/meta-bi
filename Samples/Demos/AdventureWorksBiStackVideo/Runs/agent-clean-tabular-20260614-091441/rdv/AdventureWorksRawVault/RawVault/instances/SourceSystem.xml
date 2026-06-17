@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaRawDataVault>
-  <SourceSystemList>
-    <SourceSystem Id="sqlserver:system:AdventureWorks2022">
-      <Description>AdventureWorks2022 @ localhost</Description>
-      <Name>AdventureWorks2022</Name>
-    </SourceSystem>
-  </SourceSystemList>
-</MetaRawDataVault>

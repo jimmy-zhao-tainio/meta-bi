@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceLinkList>
+    <WorkspaceLink Id="link:analytics:derives:multidim" FromWorkspaceId="workspace:analytics" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:multidim">
+      <Kind>derives</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:analytics:derives:tabular" FromWorkspaceId="workspace:analytics" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:tabular">
+      <Kind>derives</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:binding:feeds:quality" FromWorkspaceId="workspace:binding" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:quality">
+      <Kind>feeds</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:pipeline:feeds:orchestration" FromWorkspaceId="workspace:pipeline" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:orchestration">
+      <Kind>feeds</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:source:feeds:transform" FromWorkspaceId="workspace:source" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:transform">
+      <Kind>feeds</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:source:uses:conversion" FromWorkspaceId="workspace:source" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:conversion">
+      <Kind>uses</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:transform:derives:sql" FromWorkspaceId="workspace:transform" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:sql">
+      <Kind>derives</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:transform:feeds:binding" FromWorkspaceId="workspace:transform" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:binding">
+      <Kind>feeds</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:transform:feeds:pipeline" FromWorkspaceId="workspace:transform" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:pipeline">
+      <Kind>feeds</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:vault:feeds:warehouse" FromWorkspaceId="workspace:vault" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:warehouse">
+      <Kind>feeds</Kind>
+    </WorkspaceLink>
+    <WorkspaceLink Id="link:warehouse:feeds:analytics" FromWorkspaceId="workspace:warehouse" MeshId="mesh:bi-stack-demo" ToWorkspaceId="workspace:analytics">
+      <Kind>feeds</Kind>
+    </WorkspaceLink>
+  </WorkspaceLinkList>
+</MetaMesh>

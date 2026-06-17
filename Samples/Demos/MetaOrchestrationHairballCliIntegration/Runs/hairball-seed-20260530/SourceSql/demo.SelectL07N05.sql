@@ -1,0 +1,8 @@
+CREATE VIEW demo.SelectL07N05
+AS
+SELECT
+    1 AS Value
+FROM dw.L03Node03 AS s0
+CROSS JOIN dw.L04Node07 AS s1
+CROSS JOIN mart.L06Node01 AS s2
+CROSS JOIN stage.Seed07 AS s3

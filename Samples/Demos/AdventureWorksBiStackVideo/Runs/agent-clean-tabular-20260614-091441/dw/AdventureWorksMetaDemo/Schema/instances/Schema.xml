@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaSchema>
-  <SchemaList>
-    <Schema Id="sqlserver:AdventureWorksMetaDemo:schema:awbi" SystemId="sqlserver:system:AdventureWorksMetaDemo">
-      <Name>awbi</Name>
-    </Schema>
-  </SchemaList>
-</MetaSchema>

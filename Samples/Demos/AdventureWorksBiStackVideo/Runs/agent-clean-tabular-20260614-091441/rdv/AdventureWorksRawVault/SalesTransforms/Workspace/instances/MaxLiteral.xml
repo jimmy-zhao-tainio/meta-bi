@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript>
-  <MaxLiteralList>
-    <MaxLiteral Id="MaxLiteral:1" LiteralId="Literal:33">
-      <LiteralType>Max</LiteralType>
-    </MaxLiteral>
-  </MaxLiteralList>
-</MetaTransformScript>

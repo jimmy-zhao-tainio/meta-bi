@@ -1,0 +1,8 @@
+CREATE VIEW demo.CompositeStage
+AS
+SELECT
+    1 AS Value
+FROM dw.L04Node03 AS s0
+CROSS JOIN dw.L04Node04 AS s1
+CROSS JOIN mart.L06Node09 AS s2
+CROSS JOIN mart.L07Node01 AS s3

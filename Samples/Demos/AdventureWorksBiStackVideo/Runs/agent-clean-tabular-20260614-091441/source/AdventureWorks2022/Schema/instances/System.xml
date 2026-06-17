@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaSchema>
-  <SystemList>
-    <System Id="sqlserver:system:AdventureWorks2022">
-      <Description>AdventureWorks2022 @ localhost</Description>
-      <Name>AdventureWorks2022</Name>
-    </System>
-  </SystemList>
-</MetaSchema>

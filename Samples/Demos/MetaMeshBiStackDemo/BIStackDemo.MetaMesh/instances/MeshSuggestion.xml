@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <MeshSuggestionList>
+    <MeshSuggestion Id="suggestion:providers" MeshId="mesh:bi-stack-demo">
+      <Message>Register CLI provider descriptors as the MetaCli contract matures; the handles and mounts are already usable without MetaHost.</Message>
+      <Severity>Info</Severity>
+      <SuggestionKind>MissingProviderDescriptors</SuggestionKind>
+    </MeshSuggestion>
+  </MeshSuggestionList>
+</MetaMesh>

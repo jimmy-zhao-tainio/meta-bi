@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <MeshList>
+    <Mesh Id="mesh:bi-stack-demo">
+      <Description>Representative BI workspace stack mapped to stable handles.</Description>
+      <Name>BIStackDemo</Name>
+      <RootPath>..\..\..\..</RootPath>
+    </Mesh>
+  </MeshList>
+</MetaMesh>

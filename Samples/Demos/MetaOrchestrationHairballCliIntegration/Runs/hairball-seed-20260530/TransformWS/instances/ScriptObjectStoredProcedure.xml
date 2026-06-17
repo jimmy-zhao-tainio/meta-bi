@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ScriptObjectStoredProcedureList>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:1" TransformScriptId="TransformScript:9">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL01N01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:2" TransformScriptId="TransformScript:12">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL01N04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:3" TransformScriptId="TransformScript:13">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL01N05
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:4" TransformScriptId="TransformScript:14">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL01N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:5" TransformScriptId="TransformScript:15">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL01N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:6" TransformScriptId="TransformScript:17">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL01N09
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:7" TransformScriptId="TransformScript:19">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL01Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:8" TransformScriptId="TransformScript:20">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL01Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:9" TransformScriptId="TransformScript:22">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL02N02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:10" TransformScriptId="TransformScript:24">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL02N04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:11" TransformScriptId="TransformScript:26">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL02N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:12" TransformScriptId="TransformScript:27">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL02N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:13" TransformScriptId="TransformScript:28">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL02N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:14" TransformScriptId="TransformScript:30">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL02Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:15" TransformScriptId="TransformScript:31">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL02Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:16" TransformScriptId="TransformScript:32">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL01L02Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:17" TransformScriptId="TransformScript:34">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL01L02South
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:18" TransformScriptId="TransformScript:36">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL03N02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:19" TransformScriptId="TransformScript:37">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL03N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:20" TransformScriptId="TransformScript:40">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL03N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:21" TransformScriptId="TransformScript:41">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL03N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:22" TransformScriptId="TransformScript:42">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL03N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:23" TransformScriptId="TransformScript:43">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL03N09
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:24" TransformScriptId="TransformScript:44">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL03N10
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:25" TransformScriptId="TransformScript:46">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL03Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:26" TransformScriptId="TransformScript:47">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL03Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:27" TransformScriptId="TransformScript:48">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:28" TransformScriptId="TransformScript:49">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL04N02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:29" TransformScriptId="TransformScript:50">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:30" TransformScriptId="TransformScript:51">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:31" TransformScriptId="TransformScript:53">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:32" TransformScriptId="TransformScript:54">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:33" TransformScriptId="TransformScript:58">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL04Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:34" TransformScriptId="TransformScript:59">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL04Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:35" TransformScriptId="TransformScript:60">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL03L04Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:36" TransformScriptId="TransformScript:62">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL03L04South
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:37" TransformScriptId="TransformScript:65">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL05N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:38" TransformScriptId="TransformScript:67">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL05N05
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:39" TransformScriptId="TransformScript:68">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL05N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:40" TransformScriptId="TransformScript:69">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL05N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:41" TransformScriptId="TransformScript:70">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL05N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:42" TransformScriptId="TransformScript:72">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL05Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:43" TransformScriptId="TransformScript:73">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL05Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:44" TransformScriptId="TransformScript:75">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:45" TransformScriptId="TransformScript:77">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:46" TransformScriptId="TransformScript:78">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N05
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:47" TransformScriptId="TransformScript:80">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:48" TransformScriptId="TransformScript:81">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:49" TransformScriptId="TransformScript:83">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL06N10
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:50" TransformScriptId="TransformScript:85">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL06Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:51" TransformScriptId="TransformScript:86">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL06Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:52" TransformScriptId="TransformScript:87">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL05L06Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:53" TransformScriptId="TransformScript:89">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL05L06South
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:54" TransformScriptId="TransformScript:92">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL07N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:55" TransformScriptId="TransformScript:95">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL07N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:56" TransformScriptId="TransformScript:97">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL07N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:57" TransformScriptId="TransformScript:99">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL07Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:58" TransformScriptId="TransformScript:100">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL07Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:59" TransformScriptId="TransformScript:101">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL08N01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:60" TransformScriptId="TransformScript:103">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL08N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:61" TransformScriptId="TransformScript:105">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL08N05
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:62" TransformScriptId="TransformScript:108">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL08N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:63" TransformScriptId="TransformScript:110">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL08Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:64" TransformScriptId="TransformScript:111">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL08Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:65" TransformScriptId="TransformScript:112">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL07L08Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:66" TransformScriptId="TransformScript:114">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL07L08South
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:67" TransformScriptId="TransformScript:116">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional01Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:68" TransformScriptId="TransformScript:117">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional01Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:69" TransformScriptId="TransformScript:118">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordRegional01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:70" TransformScriptId="TransformScript:120">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional02Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:71" TransformScriptId="TransformScript:121">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional02Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:72" TransformScriptId="TransformScript:122">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordRegional02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:73" TransformScriptId="TransformScript:124">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional03Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:74" TransformScriptId="TransformScript:125">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional03Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:75" TransformScriptId="TransformScript:126">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordRegional03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:76" TransformScriptId="TransformScript:128">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional04Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:77" TransformScriptId="TransformScript:129">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional04Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:78" TransformScriptId="TransformScript:130">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordRegional04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:79" TransformScriptId="TransformScript:132">
+      <DefinitionSql>CREATE PROCEDURE etl.CompositeCurate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:80" TransformScriptId="TransformScript:134">
+      <DefinitionSql>CREATE PROCEDURE etl.CompositeCertify
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:81" TransformScriptId="TransformScript:135">
+      <DefinitionSql>CREATE PROCEDURE etl.CompositePublish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+    <ScriptObjectStoredProcedure Id="ScriptObjectStoredProcedure:82" TransformScriptId="TransformScript:136">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordHairball
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+    </ScriptObjectStoredProcedure>
+  </ScriptObjectStoredProcedureList>
+</MetaTransformScript>

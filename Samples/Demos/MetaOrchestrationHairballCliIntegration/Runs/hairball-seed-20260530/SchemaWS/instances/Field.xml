@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldList>
+    <Field Id="hairball:field:audit:HairballRunLog:Value" TableId="hairball:table:audit:HairballRunLog">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:audit:Region01LoadLog:Value" TableId="hairball:table:audit:Region01LoadLog">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:audit:Region02LoadLog:Value" TableId="hairball:table:audit:Region02LoadLog">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:audit:Region03LoadLog:Value" TableId="hairball:table:audit:Region03LoadLog">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:audit:Region04LoadLog:Value" TableId="hairball:table:audit:Region04LoadLog">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L01L02North:Value" TableId="hairball:table:bridge:L01L02North">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L01L02South:Value" TableId="hairball:table:bridge:L01L02South">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L01L02Stage:Value" TableId="hairball:table:bridge:L01L02Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L03L04North:Value" TableId="hairball:table:bridge:L03L04North">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L03L04South:Value" TableId="hairball:table:bridge:L03L04South">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L03L04Stage:Value" TableId="hairball:table:bridge:L03L04Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L05L06North:Value" TableId="hairball:table:bridge:L05L06North">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L05L06South:Value" TableId="hairball:table:bridge:L05L06South">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L05L06Stage:Value" TableId="hairball:table:bridge:L05L06Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L07L08North:Value" TableId="hairball:table:bridge:L07L08North">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L07L08South:Value" TableId="hairball:table:bridge:L07L08South">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:bridge:L07L08Stage:Value" TableId="hairball:table:bridge:L07L08Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:core:L02Node01:Value" TableId="hairball:table:core:L02Node01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:core:L02Node02:Value" TableId="hairball:table:core:L02Node02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:core:L02Node03:Value" TableId="hairball:table:core:L02Node03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:core:L02Node04:Value" TableId="hairball:table:core:L02Node04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:core:L02Node05:Value" TableId="hairball:table:core:L02Node05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:core:L02Node06:Value" TableId="hairball:table:core:L02Node06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:core:L02Node07:Value" TableId="hairball:table:core:L02Node07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:core:L02Node08:Value" TableId="hairball:table:core:L02Node08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node01:Value" TableId="hairball:table:dw:L03Node01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node02:Value" TableId="hairball:table:dw:L03Node02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node03:Value" TableId="hairball:table:dw:L03Node03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node04:Value" TableId="hairball:table:dw:L03Node04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node05:Value" TableId="hairball:table:dw:L03Node05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node06:Value" TableId="hairball:table:dw:L03Node06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node07:Value" TableId="hairball:table:dw:L03Node07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node08:Value" TableId="hairball:table:dw:L03Node08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node09:Value" TableId="hairball:table:dw:L03Node09">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L03Node10:Value" TableId="hairball:table:dw:L03Node10">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node01:Value" TableId="hairball:table:dw:L04Node01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node02:Value" TableId="hairball:table:dw:L04Node02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node03:Value" TableId="hairball:table:dw:L04Node03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node04:Value" TableId="hairball:table:dw:L04Node04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node05:Value" TableId="hairball:table:dw:L04Node05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node06:Value" TableId="hairball:table:dw:L04Node06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node07:Value" TableId="hairball:table:dw:L04Node07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node08:Value" TableId="hairball:table:dw:L04Node08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:dw:L04Node09:Value" TableId="hairball:table:dw:L04Node09">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer01Curated:Value" TableId="hairball:table:hub:Layer01Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer01Published:Value" TableId="hairball:table:hub:Layer01Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer01Stage:Value" TableId="hairball:table:hub:Layer01Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer02Curated:Value" TableId="hairball:table:hub:Layer02Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer02Published:Value" TableId="hairball:table:hub:Layer02Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer02Stage:Value" TableId="hairball:table:hub:Layer02Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer03Curated:Value" TableId="hairball:table:hub:Layer03Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer03Published:Value" TableId="hairball:table:hub:Layer03Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer03Stage:Value" TableId="hairball:table:hub:Layer03Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer04Curated:Value" TableId="hairball:table:hub:Layer04Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer04Published:Value" TableId="hairball:table:hub:Layer04Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer04Stage:Value" TableId="hairball:table:hub:Layer04Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer05Curated:Value" TableId="hairball:table:hub:Layer05Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer05Published:Value" TableId="hairball:table:hub:Layer05Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer05Stage:Value" TableId="hairball:table:hub:Layer05Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer06Curated:Value" TableId="hairball:table:hub:Layer06Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer06Published:Value" TableId="hairball:table:hub:Layer06Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer06Stage:Value" TableId="hairball:table:hub:Layer06Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer07Curated:Value" TableId="hairball:table:hub:Layer07Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer07Published:Value" TableId="hairball:table:hub:Layer07Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer07Stage:Value" TableId="hairball:table:hub:Layer07Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer08Curated:Value" TableId="hairball:table:hub:Layer08Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer08Published:Value" TableId="hairball:table:hub:Layer08Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:hub:Layer08Stage:Value" TableId="hairball:table:hub:Layer08Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:CompositeFinal:Value" TableId="hairball:table:mart:CompositeFinal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:HairballFinal:Value" TableId="hairball:table:mart:HairballFinal">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L05Node01:Value" TableId="hairball:table:mart:L05Node01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L05Node02:Value" TableId="hairball:table:mart:L05Node02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L05Node03:Value" TableId="hairball:table:mart:L05Node03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L05Node04:Value" TableId="hairball:table:mart:L05Node04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L05Node05:Value" TableId="hairball:table:mart:L05Node05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L05Node06:Value" TableId="hairball:table:mart:L05Node06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L05Node07:Value" TableId="hairball:table:mart:L05Node07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L05Node08:Value" TableId="hairball:table:mart:L05Node08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node01:Value" TableId="hairball:table:mart:L06Node01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node02:Value" TableId="hairball:table:mart:L06Node02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node03:Value" TableId="hairball:table:mart:L06Node03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node04:Value" TableId="hairball:table:mart:L06Node04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node05:Value" TableId="hairball:table:mart:L06Node05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node06:Value" TableId="hairball:table:mart:L06Node06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node07:Value" TableId="hairball:table:mart:L06Node07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node08:Value" TableId="hairball:table:mart:L06Node08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node09:Value" TableId="hairball:table:mart:L06Node09">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L06Node10:Value" TableId="hairball:table:mart:L06Node10">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L07Node01:Value" TableId="hairball:table:mart:L07Node01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L07Node02:Value" TableId="hairball:table:mart:L07Node02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L07Node03:Value" TableId="hairball:table:mart:L07Node03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L07Node04:Value" TableId="hairball:table:mart:L07Node04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L07Node05:Value" TableId="hairball:table:mart:L07Node05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L07Node06:Value" TableId="hairball:table:mart:L07Node06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L07Node07:Value" TableId="hairball:table:mart:L07Node07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L07Node08:Value" TableId="hairball:table:mart:L07Node08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L08Node01:Value" TableId="hairball:table:mart:L08Node01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L08Node02:Value" TableId="hairball:table:mart:L08Node02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L08Node03:Value" TableId="hairball:table:mart:L08Node03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L08Node04:Value" TableId="hairball:table:mart:L08Node04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L08Node05:Value" TableId="hairball:table:mart:L08Node05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L08Node06:Value" TableId="hairball:table:mart:L08Node06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L08Node07:Value" TableId="hairball:table:mart:L08Node07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:L08Node08:Value" TableId="hairball:table:mart:L08Node08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:Region01Published:Value" TableId="hairball:table:mart:Region01Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:Region02Published:Value" TableId="hairball:table:mart:Region02Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:Region03Published:Value" TableId="hairball:table:mart:Region03Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:mart:Region04Published:Value" TableId="hairball:table:mart:Region04Published">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:raw:Source01:Value" TableId="hairball:table:raw:Source01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:raw:Source02:Value" TableId="hairball:table:raw:Source02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:raw:Source03:Value" TableId="hairball:table:raw:Source03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:raw:Source04:Value" TableId="hairball:table:raw:Source04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:raw:Source05:Value" TableId="hairball:table:raw:Source05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:raw:Source06:Value" TableId="hairball:table:raw:Source06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:raw:Source07:Value" TableId="hairball:table:raw:Source07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:raw:Source08:Value" TableId="hairball:table:raw:Source08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node01:Value" TableId="hairball:table:stage:L01Node01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node02:Value" TableId="hairball:table:stage:L01Node02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node03:Value" TableId="hairball:table:stage:L01Node03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node04:Value" TableId="hairball:table:stage:L01Node04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node05:Value" TableId="hairball:table:stage:L01Node05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node06:Value" TableId="hairball:table:stage:L01Node06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node07:Value" TableId="hairball:table:stage:L01Node07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node08:Value" TableId="hairball:table:stage:L01Node08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:L01Node09:Value" TableId="hairball:table:stage:L01Node09">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:Seed01:Value" TableId="hairball:table:stage:Seed01">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:Seed02:Value" TableId="hairball:table:stage:Seed02">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:Seed03:Value" TableId="hairball:table:stage:Seed03">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:Seed04:Value" TableId="hairball:table:stage:Seed04">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:Seed05:Value" TableId="hairball:table:stage:Seed05">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:Seed06:Value" TableId="hairball:table:stage:Seed06">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:Seed07:Value" TableId="hairball:table:stage:Seed07">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:stage:Seed08:Value" TableId="hairball:table:stage:Seed08">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:CompositeCertified:Value" TableId="hairball:table:wrk:CompositeCertified">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:CompositeCurated:Value" TableId="hairball:table:wrk:CompositeCurated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:CompositeReconciled:Value" TableId="hairball:table:wrk:CompositeReconciled">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:CompositeStage:Value" TableId="hairball:table:wrk:CompositeStage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:Region01Curated:Value" TableId="hairball:table:wrk:Region01Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:Region01Stage:Value" TableId="hairball:table:wrk:Region01Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:Region02Curated:Value" TableId="hairball:table:wrk:Region02Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:Region02Stage:Value" TableId="hairball:table:wrk:Region02Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:Region03Curated:Value" TableId="hairball:table:wrk:Region03Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:Region03Stage:Value" TableId="hairball:table:wrk:Region03Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:Region04Curated:Value" TableId="hairball:table:wrk:Region04Curated">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+    <Field Id="hairball:field:wrk:Region04Stage:Value" TableId="hairball:table:wrk:Region04Stage">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Value</Name>
+      <Ordinal>0</Ordinal>
+    </Field>
+  </FieldList>
+</MetaSchema>

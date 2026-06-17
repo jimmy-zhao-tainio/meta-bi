@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <TableList>
+    <Table Id="MetaOrchestrationHairball.audit.HairballRunLog" SchemaId="MetaOrchestrationHairball.audit">
+      <Name>HairballRunLog</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.audit.Region01LoadLog" SchemaId="MetaOrchestrationHairball.audit">
+      <Name>Region01LoadLog</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.audit.Region02LoadLog" SchemaId="MetaOrchestrationHairball.audit">
+      <Name>Region02LoadLog</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.audit.Region03LoadLog" SchemaId="MetaOrchestrationHairball.audit">
+      <Name>Region03LoadLog</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.audit.Region04LoadLog" SchemaId="MetaOrchestrationHairball.audit">
+      <Name>Region04LoadLog</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L01L02North" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L01L02North</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L01L02South" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L01L02South</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L01L02Stage" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L01L02Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L03L04North" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L03L04North</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L03L04South" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L03L04South</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L03L04Stage" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L03L04Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L05L06North" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L05L06North</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L05L06South" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L05L06South</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L05L06Stage" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L05L06Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L07L08North" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L07L08North</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L07L08South" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L07L08South</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.bridge.L07L08Stage" SchemaId="MetaOrchestrationHairball.bridge">
+      <Name>L07L08Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.core.L02Node01" SchemaId="MetaOrchestrationHairball.core">
+      <Name>L02Node01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.core.L02Node02" SchemaId="MetaOrchestrationHairball.core">
+      <Name>L02Node02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.core.L02Node03" SchemaId="MetaOrchestrationHairball.core">
+      <Name>L02Node03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.core.L02Node04" SchemaId="MetaOrchestrationHairball.core">
+      <Name>L02Node04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.core.L02Node05" SchemaId="MetaOrchestrationHairball.core">
+      <Name>L02Node05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.core.L02Node06" SchemaId="MetaOrchestrationHairball.core">
+      <Name>L02Node06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.core.L02Node07" SchemaId="MetaOrchestrationHairball.core">
+      <Name>L02Node07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.core.L02Node08" SchemaId="MetaOrchestrationHairball.core">
+      <Name>L02Node08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node01" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node02" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node03" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node04" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node05" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node06" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node07" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node08" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node09" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node09</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L03Node10" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L03Node10</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node01" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node02" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node03" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node04" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node05" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node06" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node07" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node08" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.dw.L04Node09" SchemaId="MetaOrchestrationHairball.dw">
+      <Name>L04Node09</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer01Curated" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer01Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer01Published" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer01Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer01Stage" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer01Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer02Curated" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer02Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer02Published" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer02Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer02Stage" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer02Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer03Curated" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer03Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer03Published" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer03Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer03Stage" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer03Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer04Curated" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer04Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer04Published" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer04Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer04Stage" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer04Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer05Curated" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer05Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer05Published" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer05Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer05Stage" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer05Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer06Curated" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer06Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer06Published" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer06Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer06Stage" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer06Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer07Curated" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer07Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer07Published" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer07Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer07Stage" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer07Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer08Curated" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer08Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer08Published" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer08Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.hub.Layer08Stage" SchemaId="MetaOrchestrationHairball.hub">
+      <Name>Layer08Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.CompositeFinal" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>CompositeFinal</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.HairballFinal" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>HairballFinal</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L05Node01" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L05Node01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L05Node02" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L05Node02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L05Node03" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L05Node03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L05Node04" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L05Node04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L05Node05" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L05Node05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L05Node06" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L05Node06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L05Node07" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L05Node07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L05Node08" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L05Node08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node01" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node02" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node03" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node04" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node05" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node06" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node07" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node08" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node09" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node09</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L06Node10" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L06Node10</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L07Node01" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L07Node01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L07Node02" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L07Node02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L07Node03" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L07Node03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L07Node04" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L07Node04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L07Node05" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L07Node05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L07Node06" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L07Node06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L07Node07" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L07Node07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L07Node08" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L07Node08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L08Node01" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L08Node01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L08Node02" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L08Node02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L08Node03" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L08Node03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L08Node04" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L08Node04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L08Node05" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L08Node05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L08Node06" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L08Node06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L08Node07" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L08Node07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.L08Node08" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>L08Node08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.Region01Published" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>Region01Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.Region02Published" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>Region02Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.Region03Published" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>Region03Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.mart.Region04Published" SchemaId="MetaOrchestrationHairball.mart">
+      <Name>Region04Published</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.raw.Source01" SchemaId="MetaOrchestrationHairball.raw">
+      <Name>Source01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.raw.Source02" SchemaId="MetaOrchestrationHairball.raw">
+      <Name>Source02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.raw.Source03" SchemaId="MetaOrchestrationHairball.raw">
+      <Name>Source03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.raw.Source04" SchemaId="MetaOrchestrationHairball.raw">
+      <Name>Source04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.raw.Source05" SchemaId="MetaOrchestrationHairball.raw">
+      <Name>Source05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.raw.Source06" SchemaId="MetaOrchestrationHairball.raw">
+      <Name>Source06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.raw.Source07" SchemaId="MetaOrchestrationHairball.raw">
+      <Name>Source07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.raw.Source08" SchemaId="MetaOrchestrationHairball.raw">
+      <Name>Source08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node01" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node02" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node03" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node04" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node05" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node06" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node07" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node08" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.L01Node09" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>L01Node09</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.Seed01" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>Seed01</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.Seed02" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>Seed02</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.Seed03" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>Seed03</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.Seed04" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>Seed04</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.Seed05" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>Seed05</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.Seed06" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>Seed06</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.Seed07" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>Seed07</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.stage.Seed08" SchemaId="MetaOrchestrationHairball.stage">
+      <Name>Seed08</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.CompositeCertified" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>CompositeCertified</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.CompositeCurated" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>CompositeCurated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.CompositeReconciled" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>CompositeReconciled</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.CompositeStage" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>CompositeStage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.Region01Curated" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>Region01Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.Region01Stage" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>Region01Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.Region02Curated" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>Region02Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.Region02Stage" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>Region02Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.Region03Curated" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>Region03Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.Region03Stage" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>Region03Stage</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.Region04Curated" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>Region04Curated</Name>
+    </Table>
+    <Table Id="MetaOrchestrationHairball.wrk.Region04Stage" SchemaId="MetaOrchestrationHairball.wrk">
+      <Name>Region04Stage</Name>
+    </Table>
+  </TableList>
+</MetaSql>

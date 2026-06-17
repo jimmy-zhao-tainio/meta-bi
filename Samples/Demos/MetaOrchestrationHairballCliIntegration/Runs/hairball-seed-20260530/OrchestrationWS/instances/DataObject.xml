@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <DataObjectList>
+    <DataObject Id="plan-default:object:audit-hairballrunlog" OrchestrationPlanId="plan:default">
+      <NormalizedKey>AUDIT.HAIRBALLRUNLOG</NormalizedKey>
+      <SqlIdentifier>audit.HairballRunLog</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:audit-region01loadlog" OrchestrationPlanId="plan:default">
+      <NormalizedKey>AUDIT.REGION01LOADLOG</NormalizedKey>
+      <SqlIdentifier>audit.Region01LoadLog</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:audit-region02loadlog" OrchestrationPlanId="plan:default">
+      <NormalizedKey>AUDIT.REGION02LOADLOG</NormalizedKey>
+      <SqlIdentifier>audit.Region02LoadLog</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:audit-region03loadlog" OrchestrationPlanId="plan:default">
+      <NormalizedKey>AUDIT.REGION03LOADLOG</NormalizedKey>
+      <SqlIdentifier>audit.Region03LoadLog</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:audit-region04loadlog" OrchestrationPlanId="plan:default">
+      <NormalizedKey>AUDIT.REGION04LOADLOG</NormalizedKey>
+      <SqlIdentifier>audit.Region04LoadLog</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l01l02north" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L01L02NORTH</NormalizedKey>
+      <SqlIdentifier>bridge.L01L02North</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l01l02south" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L01L02SOUTH</NormalizedKey>
+      <SqlIdentifier>bridge.L01L02South</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l01l02stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L01L02STAGE</NormalizedKey>
+      <SqlIdentifier>bridge.L01L02Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l03l04north" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L03L04NORTH</NormalizedKey>
+      <SqlIdentifier>bridge.L03L04North</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l03l04south" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L03L04SOUTH</NormalizedKey>
+      <SqlIdentifier>bridge.L03L04South</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l03l04stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L03L04STAGE</NormalizedKey>
+      <SqlIdentifier>bridge.L03L04Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l05l06north" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L05L06NORTH</NormalizedKey>
+      <SqlIdentifier>bridge.L05L06North</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l05l06south" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L05L06SOUTH</NormalizedKey>
+      <SqlIdentifier>bridge.L05L06South</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l05l06stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L05L06STAGE</NormalizedKey>
+      <SqlIdentifier>bridge.L05L06Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l07l08north" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L07L08NORTH</NormalizedKey>
+      <SqlIdentifier>bridge.L07L08North</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l07l08south" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L07L08SOUTH</NormalizedKey>
+      <SqlIdentifier>bridge.L07L08South</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:bridge-l07l08stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>BRIDGE.L07L08STAGE</NormalizedKey>
+      <SqlIdentifier>bridge.L07L08Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:core-l02node01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>CORE.L02NODE01</NormalizedKey>
+      <SqlIdentifier>core.L02Node01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:core-l02node02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>CORE.L02NODE02</NormalizedKey>
+      <SqlIdentifier>core.L02Node02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:core-l02node03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>CORE.L02NODE03</NormalizedKey>
+      <SqlIdentifier>core.L02Node03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:core-l02node04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>CORE.L02NODE04</NormalizedKey>
+      <SqlIdentifier>core.L02Node04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:core-l02node05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>CORE.L02NODE05</NormalizedKey>
+      <SqlIdentifier>core.L02Node05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:core-l02node06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>CORE.L02NODE06</NormalizedKey>
+      <SqlIdentifier>core.L02Node06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:core-l02node07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>CORE.L02NODE07</NormalizedKey>
+      <SqlIdentifier>core.L02Node07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:core-l02node08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>CORE.L02NODE08</NormalizedKey>
+      <SqlIdentifier>core.L02Node08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE01</NormalizedKey>
+      <SqlIdentifier>dw.L03Node01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE02</NormalizedKey>
+      <SqlIdentifier>dw.L03Node02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE03</NormalizedKey>
+      <SqlIdentifier>dw.L03Node03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE04</NormalizedKey>
+      <SqlIdentifier>dw.L03Node04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE05</NormalizedKey>
+      <SqlIdentifier>dw.L03Node05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE06</NormalizedKey>
+      <SqlIdentifier>dw.L03Node06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE07</NormalizedKey>
+      <SqlIdentifier>dw.L03Node07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE08</NormalizedKey>
+      <SqlIdentifier>dw.L03Node08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node09" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE09</NormalizedKey>
+      <SqlIdentifier>dw.L03Node09</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l03node10" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L03NODE10</NormalizedKey>
+      <SqlIdentifier>dw.L03Node10</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE01</NormalizedKey>
+      <SqlIdentifier>dw.L04Node01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE02</NormalizedKey>
+      <SqlIdentifier>dw.L04Node02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE03</NormalizedKey>
+      <SqlIdentifier>dw.L04Node03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE04</NormalizedKey>
+      <SqlIdentifier>dw.L04Node04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE05</NormalizedKey>
+      <SqlIdentifier>dw.L04Node05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE06</NormalizedKey>
+      <SqlIdentifier>dw.L04Node06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE07</NormalizedKey>
+      <SqlIdentifier>dw.L04Node07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE08</NormalizedKey>
+      <SqlIdentifier>dw.L04Node08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:dw-l04node09" OrchestrationPlanId="plan:default">
+      <NormalizedKey>DW.L04NODE09</NormalizedKey>
+      <SqlIdentifier>dw.L04Node09</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer01curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER01CURATED</NormalizedKey>
+      <SqlIdentifier>hub.Layer01Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer01published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER01PUBLISHED</NormalizedKey>
+      <SqlIdentifier>hub.Layer01Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer01stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER01STAGE</NormalizedKey>
+      <SqlIdentifier>hub.Layer01Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer02curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER02CURATED</NormalizedKey>
+      <SqlIdentifier>hub.Layer02Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer02published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER02PUBLISHED</NormalizedKey>
+      <SqlIdentifier>hub.Layer02Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer02stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER02STAGE</NormalizedKey>
+      <SqlIdentifier>hub.Layer02Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer03curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER03CURATED</NormalizedKey>
+      <SqlIdentifier>hub.Layer03Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer03published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER03PUBLISHED</NormalizedKey>
+      <SqlIdentifier>hub.Layer03Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer03stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER03STAGE</NormalizedKey>
+      <SqlIdentifier>hub.Layer03Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer04curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER04CURATED</NormalizedKey>
+      <SqlIdentifier>hub.Layer04Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer04published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER04PUBLISHED</NormalizedKey>
+      <SqlIdentifier>hub.Layer04Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer04stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER04STAGE</NormalizedKey>
+      <SqlIdentifier>hub.Layer04Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer05curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER05CURATED</NormalizedKey>
+      <SqlIdentifier>hub.Layer05Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer05published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER05PUBLISHED</NormalizedKey>
+      <SqlIdentifier>hub.Layer05Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer05stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER05STAGE</NormalizedKey>
+      <SqlIdentifier>hub.Layer05Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer06curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER06CURATED</NormalizedKey>
+      <SqlIdentifier>hub.Layer06Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer06published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER06PUBLISHED</NormalizedKey>
+      <SqlIdentifier>hub.Layer06Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer06stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER06STAGE</NormalizedKey>
+      <SqlIdentifier>hub.Layer06Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer07curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER07CURATED</NormalizedKey>
+      <SqlIdentifier>hub.Layer07Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer07published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER07PUBLISHED</NormalizedKey>
+      <SqlIdentifier>hub.Layer07Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer07stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER07STAGE</NormalizedKey>
+      <SqlIdentifier>hub.Layer07Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer08curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER08CURATED</NormalizedKey>
+      <SqlIdentifier>hub.Layer08Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer08published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER08PUBLISHED</NormalizedKey>
+      <SqlIdentifier>hub.Layer08Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:hub-layer08stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>HUB.LAYER08STAGE</NormalizedKey>
+      <SqlIdentifier>hub.Layer08Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-compositefinal" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.COMPOSITEFINAL</NormalizedKey>
+      <SqlIdentifier>mart.CompositeFinal</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-hairballfinal" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.HAIRBALLFINAL</NormalizedKey>
+      <SqlIdentifier>mart.HairballFinal</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l05node01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L05NODE01</NormalizedKey>
+      <SqlIdentifier>mart.L05Node01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l05node02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L05NODE02</NormalizedKey>
+      <SqlIdentifier>mart.L05Node02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l05node03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L05NODE03</NormalizedKey>
+      <SqlIdentifier>mart.L05Node03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l05node04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L05NODE04</NormalizedKey>
+      <SqlIdentifier>mart.L05Node04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l05node05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L05NODE05</NormalizedKey>
+      <SqlIdentifier>mart.L05Node05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l05node06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L05NODE06</NormalizedKey>
+      <SqlIdentifier>mart.L05Node06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l05node07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L05NODE07</NormalizedKey>
+      <SqlIdentifier>mart.L05Node07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l05node08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L05NODE08</NormalizedKey>
+      <SqlIdentifier>mart.L05Node08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE01</NormalizedKey>
+      <SqlIdentifier>mart.L06Node01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE02</NormalizedKey>
+      <SqlIdentifier>mart.L06Node02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE03</NormalizedKey>
+      <SqlIdentifier>mart.L06Node03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE04</NormalizedKey>
+      <SqlIdentifier>mart.L06Node04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE05</NormalizedKey>
+      <SqlIdentifier>mart.L06Node05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE06</NormalizedKey>
+      <SqlIdentifier>mart.L06Node06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE07</NormalizedKey>
+      <SqlIdentifier>mart.L06Node07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE08</NormalizedKey>
+      <SqlIdentifier>mart.L06Node08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node09" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE09</NormalizedKey>
+      <SqlIdentifier>mart.L06Node09</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l06node10" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L06NODE10</NormalizedKey>
+      <SqlIdentifier>mart.L06Node10</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l07node01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L07NODE01</NormalizedKey>
+      <SqlIdentifier>mart.L07Node01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l07node02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L07NODE02</NormalizedKey>
+      <SqlIdentifier>mart.L07Node02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l07node03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L07NODE03</NormalizedKey>
+      <SqlIdentifier>mart.L07Node03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l07node04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L07NODE04</NormalizedKey>
+      <SqlIdentifier>mart.L07Node04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l07node05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L07NODE05</NormalizedKey>
+      <SqlIdentifier>mart.L07Node05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l07node06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L07NODE06</NormalizedKey>
+      <SqlIdentifier>mart.L07Node06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l07node07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L07NODE07</NormalizedKey>
+      <SqlIdentifier>mart.L07Node07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l07node08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L07NODE08</NormalizedKey>
+      <SqlIdentifier>mart.L07Node08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l08node01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L08NODE01</NormalizedKey>
+      <SqlIdentifier>mart.L08Node01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l08node02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L08NODE02</NormalizedKey>
+      <SqlIdentifier>mart.L08Node02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l08node03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L08NODE03</NormalizedKey>
+      <SqlIdentifier>mart.L08Node03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l08node04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L08NODE04</NormalizedKey>
+      <SqlIdentifier>mart.L08Node04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l08node05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L08NODE05</NormalizedKey>
+      <SqlIdentifier>mart.L08Node05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l08node06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L08NODE06</NormalizedKey>
+      <SqlIdentifier>mart.L08Node06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l08node07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L08NODE07</NormalizedKey>
+      <SqlIdentifier>mart.L08Node07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-l08node08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.L08NODE08</NormalizedKey>
+      <SqlIdentifier>mart.L08Node08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-region01published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.REGION01PUBLISHED</NormalizedKey>
+      <SqlIdentifier>mart.Region01Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-region02published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.REGION02PUBLISHED</NormalizedKey>
+      <SqlIdentifier>mart.Region02Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-region03published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.REGION03PUBLISHED</NormalizedKey>
+      <SqlIdentifier>mart.Region03Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:mart-region04published" OrchestrationPlanId="plan:default">
+      <NormalizedKey>MART.REGION04PUBLISHED</NormalizedKey>
+      <SqlIdentifier>mart.Region04Published</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:raw-source01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>RAW.SOURCE01</NormalizedKey>
+      <SqlIdentifier>raw.Source01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:raw-source02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>RAW.SOURCE02</NormalizedKey>
+      <SqlIdentifier>raw.Source02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:raw-source03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>RAW.SOURCE03</NormalizedKey>
+      <SqlIdentifier>raw.Source03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:raw-source04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>RAW.SOURCE04</NormalizedKey>
+      <SqlIdentifier>raw.Source04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:raw-source05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>RAW.SOURCE05</NormalizedKey>
+      <SqlIdentifier>raw.Source05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:raw-source06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>RAW.SOURCE06</NormalizedKey>
+      <SqlIdentifier>raw.Source06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:raw-source07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>RAW.SOURCE07</NormalizedKey>
+      <SqlIdentifier>raw.Source07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:raw-source08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>RAW.SOURCE08</NormalizedKey>
+      <SqlIdentifier>raw.Source08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE01</NormalizedKey>
+      <SqlIdentifier>stage.L01Node01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE02</NormalizedKey>
+      <SqlIdentifier>stage.L01Node02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE03</NormalizedKey>
+      <SqlIdentifier>stage.L01Node03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE04</NormalizedKey>
+      <SqlIdentifier>stage.L01Node04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE05</NormalizedKey>
+      <SqlIdentifier>stage.L01Node05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE06</NormalizedKey>
+      <SqlIdentifier>stage.L01Node06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE07</NormalizedKey>
+      <SqlIdentifier>stage.L01Node07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE08</NormalizedKey>
+      <SqlIdentifier>stage.L01Node08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-l01node09" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.L01NODE09</NormalizedKey>
+      <SqlIdentifier>stage.L01Node09</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-seed01" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.SEED01</NormalizedKey>
+      <SqlIdentifier>stage.Seed01</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-seed02" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.SEED02</NormalizedKey>
+      <SqlIdentifier>stage.Seed02</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-seed03" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.SEED03</NormalizedKey>
+      <SqlIdentifier>stage.Seed03</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-seed04" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.SEED04</NormalizedKey>
+      <SqlIdentifier>stage.Seed04</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-seed05" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.SEED05</NormalizedKey>
+      <SqlIdentifier>stage.Seed05</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-seed06" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.SEED06</NormalizedKey>
+      <SqlIdentifier>stage.Seed06</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-seed07" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.SEED07</NormalizedKey>
+      <SqlIdentifier>stage.Seed07</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:stage-seed08" OrchestrationPlanId="plan:default">
+      <NormalizedKey>STAGE.SEED08</NormalizedKey>
+      <SqlIdentifier>stage.Seed08</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-compositecertified" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.COMPOSITECERTIFIED</NormalizedKey>
+      <SqlIdentifier>wrk.CompositeCertified</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-compositecurated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.COMPOSITECURATED</NormalizedKey>
+      <SqlIdentifier>wrk.CompositeCurated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-compositereconciled" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.COMPOSITERECONCILED</NormalizedKey>
+      <SqlIdentifier>wrk.CompositeReconciled</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-compositestage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.COMPOSITESTAGE</NormalizedKey>
+      <SqlIdentifier>wrk.CompositeStage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-region01curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.REGION01CURATED</NormalizedKey>
+      <SqlIdentifier>wrk.Region01Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-region01stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.REGION01STAGE</NormalizedKey>
+      <SqlIdentifier>wrk.Region01Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-region02curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.REGION02CURATED</NormalizedKey>
+      <SqlIdentifier>wrk.Region02Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-region02stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.REGION02STAGE</NormalizedKey>
+      <SqlIdentifier>wrk.Region02Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-region03curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.REGION03CURATED</NormalizedKey>
+      <SqlIdentifier>wrk.Region03Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-region03stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.REGION03STAGE</NormalizedKey>
+      <SqlIdentifier>wrk.Region03Stage</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-region04curated" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.REGION04CURATED</NormalizedKey>
+      <SqlIdentifier>wrk.Region04Curated</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:wrk-region04stage" OrchestrationPlanId="plan:default">
+      <NormalizedKey>WRK.REGION04STAGE</NormalizedKey>
+      <SqlIdentifier>wrk.Region04Stage</SqlIdentifier>
+    </DataObject>
+  </DataObjectList>
+</MetaOrchestration>

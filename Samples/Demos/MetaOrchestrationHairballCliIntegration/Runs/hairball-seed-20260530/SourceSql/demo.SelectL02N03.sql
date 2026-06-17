@@ -1,0 +1,7 @@
+CREATE VIEW demo.SelectL02N03
+AS
+SELECT
+    1 AS Value
+FROM stage.L01Node06 AS s0
+CROSS JOIN stage.Seed05 AS s1
+CROSS JOIN stage.Seed08 AS s2

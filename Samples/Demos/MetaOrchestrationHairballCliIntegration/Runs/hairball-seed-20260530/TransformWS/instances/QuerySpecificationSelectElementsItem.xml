@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <QuerySpecificationSelectElementsItemList>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:1" QuerySpecificationId="QuerySpecification:1" SelectElementId="SelectElement:1">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:2" QuerySpecificationId="QuerySpecification:2" SelectElementId="SelectElement:2">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:3" QuerySpecificationId="QuerySpecification:3" SelectElementId="SelectElement:3">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:4" QuerySpecificationId="QuerySpecification:4" SelectElementId="SelectElement:4">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:5" QuerySpecificationId="QuerySpecification:5" SelectElementId="SelectElement:5">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:6" QuerySpecificationId="QuerySpecification:6" SelectElementId="SelectElement:6">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:7" QuerySpecificationId="QuerySpecification:7" SelectElementId="SelectElement:7">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:8" QuerySpecificationId="QuerySpecification:8" SelectElementId="SelectElement:8">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:9" QuerySpecificationId="QuerySpecification:9" SelectElementId="SelectElement:9">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:10" QuerySpecificationId="QuerySpecification:10" SelectElementId="SelectElement:10">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:11" QuerySpecificationId="QuerySpecification:11" SelectElementId="SelectElement:11">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:12" QuerySpecificationId="QuerySpecification:12" SelectElementId="SelectElement:12">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:13" QuerySpecificationId="QuerySpecification:13" SelectElementId="SelectElement:13">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:14" QuerySpecificationId="QuerySpecification:14" SelectElementId="SelectElement:14">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:15" QuerySpecificationId="QuerySpecification:15" SelectElementId="SelectElement:15">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:16" QuerySpecificationId="QuerySpecification:16" SelectElementId="SelectElement:16">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:17" QuerySpecificationId="QuerySpecification:17" SelectElementId="SelectElement:17">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:18" QuerySpecificationId="QuerySpecification:18" SelectElementId="SelectElement:18">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:19" QuerySpecificationId="QuerySpecification:19" SelectElementId="SelectElement:19">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:20" QuerySpecificationId="QuerySpecification:20" SelectElementId="SelectElement:20">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:21" QuerySpecificationId="QuerySpecification:21" SelectElementId="SelectElement:21">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:22" QuerySpecificationId="QuerySpecification:22" SelectElementId="SelectElement:22">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:23" QuerySpecificationId="QuerySpecification:23" SelectElementId="SelectElement:23">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:24" QuerySpecificationId="QuerySpecification:24" SelectElementId="SelectElement:24">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:25" QuerySpecificationId="QuerySpecification:25" SelectElementId="SelectElement:25">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:26" QuerySpecificationId="QuerySpecification:26" SelectElementId="SelectElement:26">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:27" QuerySpecificationId="QuerySpecification:27" SelectElementId="SelectElement:27">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:28" QuerySpecificationId="QuerySpecification:28" SelectElementId="SelectElement:28">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:29" QuerySpecificationId="QuerySpecification:29" SelectElementId="SelectElement:29">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:30" QuerySpecificationId="QuerySpecification:30" SelectElementId="SelectElement:30">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:31" QuerySpecificationId="QuerySpecification:31" SelectElementId="SelectElement:31">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:32" QuerySpecificationId="QuerySpecification:32" SelectElementId="SelectElement:32">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:33" QuerySpecificationId="QuerySpecification:33" SelectElementId="SelectElement:33">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:34" QuerySpecificationId="QuerySpecification:34" SelectElementId="SelectElement:34">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:35" QuerySpecificationId="QuerySpecification:35" SelectElementId="SelectElement:35">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:36" QuerySpecificationId="QuerySpecification:36" SelectElementId="SelectElement:36">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:37" QuerySpecificationId="QuerySpecification:37" SelectElementId="SelectElement:37">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:38" QuerySpecificationId="QuerySpecification:38" SelectElementId="SelectElement:38">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:39" QuerySpecificationId="QuerySpecification:39" SelectElementId="SelectElement:39">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:40" QuerySpecificationId="QuerySpecification:40" SelectElementId="SelectElement:40">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:41" QuerySpecificationId="QuerySpecification:41" SelectElementId="SelectElement:41">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:42" QuerySpecificationId="QuerySpecification:42" SelectElementId="SelectElement:42">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:43" QuerySpecificationId="QuerySpecification:43" SelectElementId="SelectElement:43">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:44" QuerySpecificationId="QuerySpecification:44" SelectElementId="SelectElement:44">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:45" QuerySpecificationId="QuerySpecification:45" SelectElementId="SelectElement:45">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:46" QuerySpecificationId="QuerySpecification:46" SelectElementId="SelectElement:46">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:47" QuerySpecificationId="QuerySpecification:47" SelectElementId="SelectElement:47">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:48" QuerySpecificationId="QuerySpecification:48" SelectElementId="SelectElement:48">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:49" QuerySpecificationId="QuerySpecification:49" SelectElementId="SelectElement:49">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:50" QuerySpecificationId="QuerySpecification:50" SelectElementId="SelectElement:50">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:51" QuerySpecificationId="QuerySpecification:51" SelectElementId="SelectElement:51">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:52" QuerySpecificationId="QuerySpecification:52" SelectElementId="SelectElement:52">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:53" QuerySpecificationId="QuerySpecification:53" SelectElementId="SelectElement:53">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:54" QuerySpecificationId="QuerySpecification:54" SelectElementId="SelectElement:54">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:55" QuerySpecificationId="QuerySpecification:55" SelectElementId="SelectElement:55">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+  </QuerySpecificationSelectElementsItemList>
+</MetaTransformScript>

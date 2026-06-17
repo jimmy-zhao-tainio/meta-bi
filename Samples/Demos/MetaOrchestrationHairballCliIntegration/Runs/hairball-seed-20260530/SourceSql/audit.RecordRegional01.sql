@@ -1,0 +1,6 @@
+CREATE PROCEDURE audit.RecordRegional01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END

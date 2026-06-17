@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <StoredProcedureList>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL01N01" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL01N01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>9</DeployOrdinal>
+      <Name>ExportL01N01</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL01N04" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL01N04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>12</DeployOrdinal>
+      <Name>ExportL01N04</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL01N05" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL01N05
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>13</DeployOrdinal>
+      <Name>ExportL01N05</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL01N06" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL01N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>14</DeployOrdinal>
+      <Name>RefreshL01N06</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL01N07" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL01N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>15</DeployOrdinal>
+      <Name>RefreshL01N07</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL01N09" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL01N09
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>17</DeployOrdinal>
+      <Name>RefreshL01N09</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL01Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL01Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>19</DeployOrdinal>
+      <Name>HubL01Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL01Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL01Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>20</DeployOrdinal>
+      <Name>HubL01Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL02N02" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL02N02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>22</DeployOrdinal>
+      <Name>RefreshL02N02</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL02N04" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL02N04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>24</DeployOrdinal>
+      <Name>ExportL02N04</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL02N06" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL02N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>26</DeployOrdinal>
+      <Name>RefreshL02N06</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL02N07" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL02N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>27</DeployOrdinal>
+      <Name>RefreshL02N07</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL02N08" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL02N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>28</DeployOrdinal>
+      <Name>RefreshL02N08</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL02Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL02Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>30</DeployOrdinal>
+      <Name>HubL02Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL02Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL02Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>31</DeployOrdinal>
+      <Name>HubL02Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.BridgeL01L02Collect" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL01L02Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>32</DeployOrdinal>
+      <Name>BridgeL01L02Collect</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.BridgeL01L02South" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL01L02South
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>34</DeployOrdinal>
+      <Name>BridgeL01L02South</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL03N02" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL03N02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>36</DeployOrdinal>
+      <Name>ExportL03N02</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL03N03" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL03N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>37</DeployOrdinal>
+      <Name>ExportL03N03</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL03N06" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL03N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>40</DeployOrdinal>
+      <Name>RefreshL03N06</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL03N07" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL03N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>41</DeployOrdinal>
+      <Name>RefreshL03N07</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL03N08" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL03N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>42</DeployOrdinal>
+      <Name>ExportL03N08</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL03N09" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL03N09
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>43</DeployOrdinal>
+      <Name>RefreshL03N09</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL03N10" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL03N10
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>44</DeployOrdinal>
+      <Name>RefreshL03N10</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL03Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL03Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>46</DeployOrdinal>
+      <Name>HubL03Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL03Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL03Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>47</DeployOrdinal>
+      <Name>HubL03Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL04N01" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>48</DeployOrdinal>
+      <Name>RefreshL04N01</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL04N02" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL04N02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>49</DeployOrdinal>
+      <Name>ExportL04N02</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL04N03" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>50</DeployOrdinal>
+      <Name>RefreshL04N03</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL04N04" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>51</DeployOrdinal>
+      <Name>RefreshL04N04</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL04N06" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>53</DeployOrdinal>
+      <Name>RefreshL04N06</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL04N07" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL04N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>54</DeployOrdinal>
+      <Name>RefreshL04N07</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL04Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL04Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>58</DeployOrdinal>
+      <Name>HubL04Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL04Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL04Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>59</DeployOrdinal>
+      <Name>HubL04Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.BridgeL03L04Collect" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL03L04Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>60</DeployOrdinal>
+      <Name>BridgeL03L04Collect</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.BridgeL03L04South" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL03L04South
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>62</DeployOrdinal>
+      <Name>BridgeL03L04South</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL05N03" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL05N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>65</DeployOrdinal>
+      <Name>RefreshL05N03</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL05N05" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL05N05
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>67</DeployOrdinal>
+      <Name>RefreshL05N05</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL05N06" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL05N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>68</DeployOrdinal>
+      <Name>ExportL05N06</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL05N07" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL05N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>69</DeployOrdinal>
+      <Name>ExportL05N07</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL05N08" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL05N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>70</DeployOrdinal>
+      <Name>RefreshL05N08</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL05Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL05Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>72</DeployOrdinal>
+      <Name>HubL05Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL05Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL05Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>73</DeployOrdinal>
+      <Name>HubL05Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL06N02" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>75</DeployOrdinal>
+      <Name>ExportL06N02</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL06N04" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>77</DeployOrdinal>
+      <Name>ExportL06N04</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL06N05" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N05
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>78</DeployOrdinal>
+      <Name>ExportL06N05</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL06N07" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N07
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>80</DeployOrdinal>
+      <Name>ExportL06N07</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL06N08" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL06N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>81</DeployOrdinal>
+      <Name>ExportL06N08</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL06N10" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL06N10
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>83</DeployOrdinal>
+      <Name>RefreshL06N10</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL06Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL06Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>85</DeployOrdinal>
+      <Name>HubL06Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL06Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL06Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>86</DeployOrdinal>
+      <Name>HubL06Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.BridgeL05L06Collect" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL05L06Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>87</DeployOrdinal>
+      <Name>BridgeL05L06Collect</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.BridgeL05L06South" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL05L06South
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>89</DeployOrdinal>
+      <Name>BridgeL05L06South</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL07N03" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL07N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>92</DeployOrdinal>
+      <Name>RefreshL07N03</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL07N06" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL07N06
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>95</DeployOrdinal>
+      <Name>ExportL07N06</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL07N08" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL07N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>97</DeployOrdinal>
+      <Name>ExportL07N08</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL07Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL07Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>99</DeployOrdinal>
+      <Name>HubL07Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL07Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL07Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>100</DeployOrdinal>
+      <Name>HubL07Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL08N01" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL08N01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>101</DeployOrdinal>
+      <Name>RefreshL08N01</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.ExportL08N03" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.ExportL08N03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>103</DeployOrdinal>
+      <Name>ExportL08N03</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL08N05" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL08N05
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>105</DeployOrdinal>
+      <Name>RefreshL08N05</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.RefreshL08N08" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.RefreshL08N08
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>108</DeployOrdinal>
+      <Name>RefreshL08N08</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL08Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL08Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>110</DeployOrdinal>
+      <Name>HubL08Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.HubL08Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.HubL08Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>111</DeployOrdinal>
+      <Name>HubL08Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.BridgeL07L08Collect" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL07L08Collect
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>112</DeployOrdinal>
+      <Name>BridgeL07L08Collect</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.BridgeL07L08South" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.BridgeL07L08South
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>114</DeployOrdinal>
+      <Name>BridgeL07L08South</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.Regional01Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional01Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>116</DeployOrdinal>
+      <Name>Regional01Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.Regional01Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional01Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>117</DeployOrdinal>
+      <Name>Regional01Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.audit.procedure.RecordRegional01" SchemaId="MetaOrchestrationHairball.audit">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordRegional01
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>118</DeployOrdinal>
+      <Name>RecordRegional01</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.Regional02Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional02Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>120</DeployOrdinal>
+      <Name>Regional02Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.Regional02Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional02Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>121</DeployOrdinal>
+      <Name>Regional02Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.audit.procedure.RecordRegional02" SchemaId="MetaOrchestrationHairball.audit">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordRegional02
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>122</DeployOrdinal>
+      <Name>RecordRegional02</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.Regional03Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional03Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>124</DeployOrdinal>
+      <Name>Regional03Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.Regional03Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional03Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>125</DeployOrdinal>
+      <Name>Regional03Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.audit.procedure.RecordRegional03" SchemaId="MetaOrchestrationHairball.audit">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordRegional03
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>126</DeployOrdinal>
+      <Name>RecordRegional03</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.Regional04Curate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional04Curate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>128</DeployOrdinal>
+      <Name>Regional04Curate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.Regional04Publish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.Regional04Publish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>129</DeployOrdinal>
+      <Name>Regional04Publish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.audit.procedure.RecordRegional04" SchemaId="MetaOrchestrationHairball.audit">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordRegional04
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>130</DeployOrdinal>
+      <Name>RecordRegional04</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.CompositeCurate" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.CompositeCurate
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>132</DeployOrdinal>
+      <Name>CompositeCurate</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.CompositeCertify" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.CompositeCertify
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>134</DeployOrdinal>
+      <Name>CompositeCertify</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.etl.procedure.CompositePublish" SchemaId="MetaOrchestrationHairball.etl">
+      <DefinitionSql>CREATE PROCEDURE etl.CompositePublish
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT CAST(1 AS int) AS Value;
+END</DefinitionSql>
+      <DeployOrdinal>135</DeployOrdinal>
+      <Name>CompositePublish</Name>
+    </StoredProcedure>
+    <StoredProcedure Id="MetaOrchestrationHairball.audit.procedure.RecordHairball" SchemaId="MetaOrchestrationHairball.audit">
+      <DefinitionSql>CREATE PROCEDURE audit.RecordHairball
+AS
+BEGIN
+    SET NOCOUNT ON;
+    RETURN 0;
+END</DefinitionSql>
+      <DeployOrdinal>136</DeployOrdinal>
+      <Name>RecordHairball</Name>
+    </StoredProcedure>
+  </StoredProcedureList>
+</MetaSql>

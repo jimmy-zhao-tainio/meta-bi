@@ -1,0 +1,18 @@
+MetaOrchestration hairball demo
+Seed: 20260530
+RunRoot: C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\MetaOrchestrationHairballCliIntegration\Runs\hairball-seed-20260530
+Pipelines: 97
+TransformTasks: 137
+StoredProcedures: 82
+ResultRowsetStoredProcedures: 35
+MultiTaskPipelines: 17
+ExpectedPipelineEdges: 492
+ActualPipelineEdges: 492
+ExpectedDataEdges: 509
+ActualDataEdges: 509
+ExpectedMaxDependencyDepth: 24
+ActualMaxDependencyDepth: 24
+DagStatus: Complete
+DeterminismStatus: Deterministic
+SynchronizationStatus: Complete
+Oracle: PASS

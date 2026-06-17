@@ -1,0 +1,233 @@
+<Model name="MetaOrchestration">
+  <EntityList>
+    <Entity name="DataObject">
+      <PropertyList>
+        <Property name="NormalizedKey" />
+        <Property name="SqlIdentifier" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="OrchestrationPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DependencyIssue">
+      <PropertyList>
+        <Property name="BlocksAutomaticRunPlanning" />
+        <Property name="BlocksDag" />
+        <Property name="Code" />
+        <Property name="IssueDomain" />
+        <Property name="Message" />
+        <Property name="Severity" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataObject" isRequired="false" />
+        <Relationship entity="OrchestrationPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DependencyIssuePipeline">
+      <PropertyList>
+        <Property name="Role" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DependencyIssue" />
+        <Relationship entity="PipelineReference" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="LockCompatibilityPolicy">
+      <PropertyList>
+        <Property name="LeftEffect" />
+        <Property name="LockBehavior" />
+        <Property name="PolicyKind" />
+        <Property name="Reason" isRequired="false" />
+        <Property name="RightEffect" />
+        <Property name="Status" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataObject" />
+        <Relationship entity="DependencyIssue" isRequired="false" />
+        <Relationship entity="OrchestrationPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ObjectAccess">
+      <PropertyList>
+        <Property name="AccessKind" />
+        <Property name="AccessRole" />
+        <Property name="OperationKind" isRequired="false" />
+        <Property name="Ordinal" />
+        <Property name="Reason" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataObject" />
+        <Relationship entity="TaskAccessProfile" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OrchestrationPlan">
+      <PropertyList>
+        <Property name="DagStatus" />
+        <Property name="Description" isRequired="false" />
+        <Property name="DeterminismStatus" />
+        <Property name="Name" />
+        <Property name="SynchronizationStatus" />
+      </PropertyList>
+    </Entity>
+    <Entity name="PipelineDependency">
+      <PropertyList>
+        <Property name="DependencyKind" />
+        <Property name="Reason" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="OrchestrationPlan" />
+        <Relationship entity="PipelineReference" role="Predecessor" />
+        <Relationship entity="PipelineReference" role="Successor" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PipelineObjectAccess">
+      <PropertyList>
+        <Property name="AccessKind" />
+        <Property name="Reason" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataObject" />
+        <Relationship entity="PipelineReference" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PipelineReference">
+      <PropertyList>
+        <Property name="MetaPipelinePipelineId" />
+        <Property name="Name" />
+        <Property name="PipelineWorkspacePath" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="OrchestrationPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PlannedTask">
+      <PropertyList>
+        <Property name="Ordinal" />
+        <Property name="Reason" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="PipelineReference" />
+        <Relationship entity="RunPlan" />
+        <Relationship entity="TaskAccessProfile" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PlannedTaskLock">
+      <PropertyList>
+        <Property name="LockMode" />
+        <Property name="Reason" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataObject" />
+        <Relationship entity="LockCompatibilityPolicy" isRequired="false" />
+        <Relationship entity="PlannedTask" />
+        <Relationship entity="TaskObjectEffect" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RetryPolicy">
+      <PropertyList>
+        <Property name="BackoffMultiplier" />
+        <Property name="InitialDelayMilliseconds" />
+        <Property name="MaxAttempts" />
+        <Property name="MaxDelayMilliseconds" />
+        <Property name="Name" />
+        <Property name="PolicyKind" />
+        <Property name="Reason" isRequired="false" />
+        <Property name="RetryReadOnlyTasksByDefault" />
+        <Property name="RetryWriteTasksByDefault" />
+        <Property name="Status" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="OrchestrationPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RetryPolicyFailureClass">
+      <PropertyList>
+        <Property name="FailureClass" />
+        <Property name="Reason" isRequired="false" />
+        <Property name="RetryBehavior" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="RetryPolicy" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RunPlan">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Reason" isRequired="false" />
+        <Property name="RunPlanStatus" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="OrchestrationPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="RunPlanRetryPolicy">
+      <PropertyList>
+        <Property name="PolicyRole" />
+        <Property name="Reason" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="RetryPolicy" />
+        <Relationship entity="RunPlan" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TaskAccessProfile">
+      <PropertyList>
+        <Property name="MetaPipelinePipelineTaskId" />
+        <Property name="Ordinal" />
+        <Property name="StatementKind" />
+        <Property name="TaskName" />
+        <Property name="TransformBindingId" />
+        <Property name="TransformScriptId" />
+        <Property name="TransformScriptName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="PipelineReference" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TaskDependency">
+      <PropertyList>
+        <Property name="DependencyCondition" />
+        <Property name="DependencyKind" />
+        <Property name="Reason" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataObject" isRequired="false" />
+        <Relationship entity="OrchestrationPlan" />
+        <Relationship entity="TaskAccessProfile" role="Predecessor" />
+        <Relationship entity="TaskAccessProfile" role="Successor" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TaskObjectEffect">
+      <PropertyList>
+        <Property name="AccessDirection" />
+        <Property name="AccessPurpose" />
+        <Property name="CreatesDataDependency" />
+        <Property name="IsPublishedProducer" />
+        <Property name="LockMode" />
+        <Property name="Reason" isRequired="false" />
+        <Property name="RequiresSynchronization" />
+        <Property name="WriteEffect" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataObject" />
+        <Relationship entity="TaskAccessProfile" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TaskOrderingResolution">
+      <PropertyList>
+        <Property name="DependencyCondition" />
+        <Property name="Name" />
+        <Property name="Reason" isRequired="false" />
+        <Property name="ResolutionKind" />
+        <Property name="Status" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DataObject" isRequired="false" />
+        <Relationship entity="DependencyIssue" isRequired="false" />
+        <Relationship entity="OrchestrationPlan" />
+        <Relationship entity="TaskAccessProfile" role="Predecessor" />
+        <Relationship entity="TaskAccessProfile" role="Successor" />
+      </RelationshipList>
+    </Entity>
+  </EntityList>
+</Model>

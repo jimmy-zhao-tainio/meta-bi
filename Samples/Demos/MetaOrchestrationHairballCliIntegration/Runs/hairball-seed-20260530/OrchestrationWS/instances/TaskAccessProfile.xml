@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <TaskAccessProfileList>
+    <TaskAccessProfile Id="plan-default-pipeline-audithairball:task:audit-hairball" PipelineReferenceId="plan-default:pipeline:audithairball">
+      <MetaPipelinePipelineTaskId>AuditHairball.audit-hairball</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>audit-hairball</TaskName>
+      <TransformBindingId>TransformScript:136:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:136</TransformScriptId>
+      <TransformScriptName>audit.RecordHairball</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel01l02:task:bridge-l01-l02-collect" PipelineReferenceId="plan-default:pipeline:bridgel01l02">
+      <MetaPipelinePipelineTaskId>BridgeL01L02.bridge-l01-l02-collect</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>bridge-l01-l02-collect</TaskName>
+      <TransformBindingId>TransformScript:32:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:32</TransformScriptId>
+      <TransformScriptName>etl.BridgeL01L02Collect</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel01l02:task:bridge-l01-l02-north" PipelineReferenceId="plan-default:pipeline:bridgel01l02">
+      <MetaPipelinePipelineTaskId>BridgeL01L02.bridge-l01-l02-north</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>bridge-l01-l02-north</TaskName>
+      <TransformBindingId>TransformScript:33:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:33</TransformScriptId>
+      <TransformScriptName>demo.BridgeL01L02North</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel01l02:task:bridge-l01-l02-south" PipelineReferenceId="plan-default:pipeline:bridgel01l02">
+      <MetaPipelinePipelineTaskId>BridgeL01L02.bridge-l01-l02-south</MetaPipelinePipelineTaskId>
+      <Ordinal>5</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>bridge-l01-l02-south</TaskName>
+      <TransformBindingId>TransformScript:34:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:34</TransformScriptId>
+      <TransformScriptName>etl.BridgeL01L02South</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel03l04:task:bridge-l03-l04-collect" PipelineReferenceId="plan-default:pipeline:bridgel03l04">
+      <MetaPipelinePipelineTaskId>BridgeL03L04.bridge-l03-l04-collect</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>bridge-l03-l04-collect</TaskName>
+      <TransformBindingId>TransformScript:60:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:60</TransformScriptId>
+      <TransformScriptName>etl.BridgeL03L04Collect</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel03l04:task:bridge-l03-l04-north" PipelineReferenceId="plan-default:pipeline:bridgel03l04">
+      <MetaPipelinePipelineTaskId>BridgeL03L04.bridge-l03-l04-north</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>bridge-l03-l04-north</TaskName>
+      <TransformBindingId>TransformScript:61:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:61</TransformScriptId>
+      <TransformScriptName>demo.BridgeL03L04North</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel03l04:task:bridge-l03-l04-south" PipelineReferenceId="plan-default:pipeline:bridgel03l04">
+      <MetaPipelinePipelineTaskId>BridgeL03L04.bridge-l03-l04-south</MetaPipelinePipelineTaskId>
+      <Ordinal>5</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>bridge-l03-l04-south</TaskName>
+      <TransformBindingId>TransformScript:62:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:62</TransformScriptId>
+      <TransformScriptName>etl.BridgeL03L04South</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel05l06:task:bridge-l05-l06-collect" PipelineReferenceId="plan-default:pipeline:bridgel05l06">
+      <MetaPipelinePipelineTaskId>BridgeL05L06.bridge-l05-l06-collect</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>bridge-l05-l06-collect</TaskName>
+      <TransformBindingId>TransformScript:87:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:87</TransformScriptId>
+      <TransformScriptName>etl.BridgeL05L06Collect</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel05l06:task:bridge-l05-l06-north" PipelineReferenceId="plan-default:pipeline:bridgel05l06">
+      <MetaPipelinePipelineTaskId>BridgeL05L06.bridge-l05-l06-north</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>bridge-l05-l06-north</TaskName>
+      <TransformBindingId>TransformScript:88:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:88</TransformScriptId>
+      <TransformScriptName>demo.BridgeL05L06North</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel05l06:task:bridge-l05-l06-south" PipelineReferenceId="plan-default:pipeline:bridgel05l06">
+      <MetaPipelinePipelineTaskId>BridgeL05L06.bridge-l05-l06-south</MetaPipelinePipelineTaskId>
+      <Ordinal>5</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>bridge-l05-l06-south</TaskName>
+      <TransformBindingId>TransformScript:89:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:89</TransformScriptId>
+      <TransformScriptName>etl.BridgeL05L06South</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel07l08:task:bridge-l07-l08-collect" PipelineReferenceId="plan-default:pipeline:bridgel07l08">
+      <MetaPipelinePipelineTaskId>BridgeL07L08.bridge-l07-l08-collect</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>bridge-l07-l08-collect</TaskName>
+      <TransformBindingId>TransformScript:112:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:112</TransformScriptId>
+      <TransformScriptName>etl.BridgeL07L08Collect</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel07l08:task:bridge-l07-l08-north" PipelineReferenceId="plan-default:pipeline:bridgel07l08">
+      <MetaPipelinePipelineTaskId>BridgeL07L08.bridge-l07-l08-north</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>bridge-l07-l08-north</TaskName>
+      <TransformBindingId>TransformScript:113:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:113</TransformScriptId>
+      <TransformScriptName>demo.BridgeL07L08North</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-bridgel07l08:task:bridge-l07-l08-south" PipelineReferenceId="plan-default:pipeline:bridgel07l08">
+      <MetaPipelinePipelineTaskId>BridgeL07L08.bridge-l07-l08-south</MetaPipelinePipelineTaskId>
+      <Ordinal>5</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>bridge-l07-l08-south</TaskName>
+      <TransformBindingId>TransformScript:114:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:114</TransformScriptId>
+      <TransformScriptName>etl.BridgeL07L08South</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-compositemart:task:composite-stage" PipelineReferenceId="plan-default:pipeline:compositemart">
+      <MetaPipelinePipelineTaskId>CompositeMart.composite-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>composite-stage</TaskName>
+      <TransformBindingId>TransformScript:131:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:131</TransformScriptId>
+      <TransformScriptName>demo.CompositeStage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-compositemart:task:composite-curate" PipelineReferenceId="plan-default:pipeline:compositemart">
+      <MetaPipelinePipelineTaskId>CompositeMart.composite-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>composite-curate</TaskName>
+      <TransformBindingId>TransformScript:132:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:132</TransformScriptId>
+      <TransformScriptName>etl.CompositeCurate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-compositemart:task:composite-reconcile" PipelineReferenceId="plan-default:pipeline:compositemart">
+      <MetaPipelinePipelineTaskId>CompositeMart.composite-reconcile</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>composite-reconcile</TaskName>
+      <TransformBindingId>TransformScript:133:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:133</TransformScriptId>
+      <TransformScriptName>demo.CompositeReconcile</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-compositemart:task:composite-certify" PipelineReferenceId="plan-default:pipeline:compositemart">
+      <MetaPipelinePipelineTaskId>CompositeMart.composite-certify</MetaPipelinePipelineTaskId>
+      <Ordinal>6</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>composite-certify</TaskName>
+      <TransformBindingId>TransformScript:134:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:134</TransformScriptId>
+      <TransformScriptName>etl.CompositeCertify</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-compositemart:task:composite-publish" PipelineReferenceId="plan-default:pipeline:compositemart">
+      <MetaPipelinePipelineTaskId>CompositeMart.composite-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>7</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>composite-publish</TaskName>
+      <TransformBindingId>TransformScript:135:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:135</TransformScriptId>
+      <TransformScriptName>etl.CompositePublish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-extractseed01:task:extract-seed-01" PipelineReferenceId="plan-default:pipeline:extractseed01">
+      <MetaPipelinePipelineTaskId>ExtractSeed01.extract-seed-01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>extract-seed-01</TaskName>
+      <TransformBindingId>TransformScript:1:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:1</TransformScriptId>
+      <TransformScriptName>demo.ExtractSeed01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-extractseed02:task:extract-seed-02" PipelineReferenceId="plan-default:pipeline:extractseed02">
+      <MetaPipelinePipelineTaskId>ExtractSeed02.extract-seed-02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>extract-seed-02</TaskName>
+      <TransformBindingId>TransformScript:2:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:2</TransformScriptId>
+      <TransformScriptName>demo.ExtractSeed02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-extractseed03:task:extract-seed-03" PipelineReferenceId="plan-default:pipeline:extractseed03">
+      <MetaPipelinePipelineTaskId>ExtractSeed03.extract-seed-03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>extract-seed-03</TaskName>
+      <TransformBindingId>TransformScript:3:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:3</TransformScriptId>
+      <TransformScriptName>demo.ExtractSeed03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-extractseed04:task:extract-seed-04" PipelineReferenceId="plan-default:pipeline:extractseed04">
+      <MetaPipelinePipelineTaskId>ExtractSeed04.extract-seed-04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>extract-seed-04</TaskName>
+      <TransformBindingId>TransformScript:4:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:4</TransformScriptId>
+      <TransformScriptName>demo.ExtractSeed04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-extractseed05:task:extract-seed-05" PipelineReferenceId="plan-default:pipeline:extractseed05">
+      <MetaPipelinePipelineTaskId>ExtractSeed05.extract-seed-05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>extract-seed-05</TaskName>
+      <TransformBindingId>TransformScript:5:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+      <TransformScriptName>demo.ExtractSeed05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-extractseed06:task:extract-seed-06" PipelineReferenceId="plan-default:pipeline:extractseed06">
+      <MetaPipelinePipelineTaskId>ExtractSeed06.extract-seed-06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>extract-seed-06</TaskName>
+      <TransformBindingId>TransformScript:6:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:6</TransformScriptId>
+      <TransformScriptName>demo.ExtractSeed06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-extractseed07:task:extract-seed-07" PipelineReferenceId="plan-default:pipeline:extractseed07">
+      <MetaPipelinePipelineTaskId>ExtractSeed07.extract-seed-07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>extract-seed-07</TaskName>
+      <TransformBindingId>TransformScript:7:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:7</TransformScriptId>
+      <TransformScriptName>demo.ExtractSeed07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-extractseed08:task:extract-seed-08" PipelineReferenceId="plan-default:pipeline:extractseed08">
+      <MetaPipelinePipelineTaskId>ExtractSeed08.extract-seed-08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>extract-seed-08</TaskName>
+      <TransformBindingId>TransformScript:8:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:8</TransformScriptId>
+      <TransformScriptName>demo.ExtractSeed08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01hub:task:hub-l01-stage" PipelineReferenceId="plan-default:pipeline:layer01hub">
+      <MetaPipelinePipelineTaskId>Layer01Hub.hub-l01-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>hub-l01-stage</TaskName>
+      <TransformBindingId>TransformScript:18:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+      <TransformScriptName>demo.HubL01Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01hub:task:hub-l01-curate" PipelineReferenceId="plan-default:pipeline:layer01hub">
+      <MetaPipelinePipelineTaskId>Layer01Hub.hub-l01-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l01-curate</TaskName>
+      <TransformBindingId>TransformScript:19:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+      <TransformScriptName>etl.HubL01Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01hub:task:hub-l01-publish" PipelineReferenceId="plan-default:pipeline:layer01hub">
+      <MetaPipelinePipelineTaskId>Layer01Hub.hub-l01-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l01-publish</TaskName>
+      <TransformBindingId>TransformScript:20:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+      <TransformScriptName>etl.HubL01Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node01:task:export-l01-n01" PipelineReferenceId="plan-default:pipeline:layer01node01">
+      <MetaPipelinePipelineTaskId>Layer01Node01.export-l01-n01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l01-n01</TaskName>
+      <TransformBindingId>TransformScript:9:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:9</TransformScriptId>
+      <TransformScriptName>etl.ExportL01N01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node02:task:select-l01-n02" PipelineReferenceId="plan-default:pipeline:layer01node02">
+      <MetaPipelinePipelineTaskId>Layer01Node02.select-l01-n02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l01-n02</TaskName>
+      <TransformBindingId>TransformScript:10:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:10</TransformScriptId>
+      <TransformScriptName>demo.SelectL01N02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node03:task:select-l01-n03" PipelineReferenceId="plan-default:pipeline:layer01node03">
+      <MetaPipelinePipelineTaskId>Layer01Node03.select-l01-n03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l01-n03</TaskName>
+      <TransformBindingId>TransformScript:11:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:11</TransformScriptId>
+      <TransformScriptName>demo.SelectL01N03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node04:task:export-l01-n04" PipelineReferenceId="plan-default:pipeline:layer01node04">
+      <MetaPipelinePipelineTaskId>Layer01Node04.export-l01-n04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l01-n04</TaskName>
+      <TransformBindingId>TransformScript:12:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:12</TransformScriptId>
+      <TransformScriptName>etl.ExportL01N04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node05:task:export-l01-n05" PipelineReferenceId="plan-default:pipeline:layer01node05">
+      <MetaPipelinePipelineTaskId>Layer01Node05.export-l01-n05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l01-n05</TaskName>
+      <TransformBindingId>TransformScript:13:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+      <TransformScriptName>etl.ExportL01N05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node06:task:refresh-l01-n06" PipelineReferenceId="plan-default:pipeline:layer01node06">
+      <MetaPipelinePipelineTaskId>Layer01Node06.refresh-l01-n06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l01-n06</TaskName>
+      <TransformBindingId>TransformScript:14:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+      <TransformScriptName>etl.RefreshL01N06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node07:task:refresh-l01-n07" PipelineReferenceId="plan-default:pipeline:layer01node07">
+      <MetaPipelinePipelineTaskId>Layer01Node07.refresh-l01-n07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l01-n07</TaskName>
+      <TransformBindingId>TransformScript:15:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+      <TransformScriptName>etl.RefreshL01N07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node08:task:select-l01-n08" PipelineReferenceId="plan-default:pipeline:layer01node08">
+      <MetaPipelinePipelineTaskId>Layer01Node08.select-l01-n08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l01-n08</TaskName>
+      <TransformBindingId>TransformScript:16:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:16</TransformScriptId>
+      <TransformScriptName>demo.SelectL01N08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer01node09:task:refresh-l01-n09" PipelineReferenceId="plan-default:pipeline:layer01node09">
+      <MetaPipelinePipelineTaskId>Layer01Node09.refresh-l01-n09</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l01-n09</TaskName>
+      <TransformBindingId>TransformScript:17:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:17</TransformScriptId>
+      <TransformScriptName>etl.RefreshL01N09</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02hub:task:hub-l02-stage" PipelineReferenceId="plan-default:pipeline:layer02hub">
+      <MetaPipelinePipelineTaskId>Layer02Hub.hub-l02-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>hub-l02-stage</TaskName>
+      <TransformBindingId>TransformScript:29:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:29</TransformScriptId>
+      <TransformScriptName>demo.HubL02Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02hub:task:hub-l02-curate" PipelineReferenceId="plan-default:pipeline:layer02hub">
+      <MetaPipelinePipelineTaskId>Layer02Hub.hub-l02-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l02-curate</TaskName>
+      <TransformBindingId>TransformScript:30:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:30</TransformScriptId>
+      <TransformScriptName>etl.HubL02Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02hub:task:hub-l02-publish" PipelineReferenceId="plan-default:pipeline:layer02hub">
+      <MetaPipelinePipelineTaskId>Layer02Hub.hub-l02-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l02-publish</TaskName>
+      <TransformBindingId>TransformScript:31:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:31</TransformScriptId>
+      <TransformScriptName>etl.HubL02Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02node01:task:select-l02-n01" PipelineReferenceId="plan-default:pipeline:layer02node01">
+      <MetaPipelinePipelineTaskId>Layer02Node01.select-l02-n01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l02-n01</TaskName>
+      <TransformBindingId>TransformScript:21:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:21</TransformScriptId>
+      <TransformScriptName>demo.SelectL02N01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02node02:task:refresh-l02-n02" PipelineReferenceId="plan-default:pipeline:layer02node02">
+      <MetaPipelinePipelineTaskId>Layer02Node02.refresh-l02-n02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l02-n02</TaskName>
+      <TransformBindingId>TransformScript:22:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:22</TransformScriptId>
+      <TransformScriptName>etl.RefreshL02N02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02node03:task:select-l02-n03" PipelineReferenceId="plan-default:pipeline:layer02node03">
+      <MetaPipelinePipelineTaskId>Layer02Node03.select-l02-n03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l02-n03</TaskName>
+      <TransformBindingId>TransformScript:23:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:23</TransformScriptId>
+      <TransformScriptName>demo.SelectL02N03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02node04:task:export-l02-n04" PipelineReferenceId="plan-default:pipeline:layer02node04">
+      <MetaPipelinePipelineTaskId>Layer02Node04.export-l02-n04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l02-n04</TaskName>
+      <TransformBindingId>TransformScript:24:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:24</TransformScriptId>
+      <TransformScriptName>etl.ExportL02N04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02node05:task:select-l02-n05" PipelineReferenceId="plan-default:pipeline:layer02node05">
+      <MetaPipelinePipelineTaskId>Layer02Node05.select-l02-n05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l02-n05</TaskName>
+      <TransformBindingId>TransformScript:25:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:25</TransformScriptId>
+      <TransformScriptName>demo.SelectL02N05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02node06:task:refresh-l02-n06" PipelineReferenceId="plan-default:pipeline:layer02node06">
+      <MetaPipelinePipelineTaskId>Layer02Node06.refresh-l02-n06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l02-n06</TaskName>
+      <TransformBindingId>TransformScript:26:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:26</TransformScriptId>
+      <TransformScriptName>etl.RefreshL02N06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02node07:task:refresh-l02-n07" PipelineReferenceId="plan-default:pipeline:layer02node07">
+      <MetaPipelinePipelineTaskId>Layer02Node07.refresh-l02-n07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l02-n07</TaskName>
+      <TransformBindingId>TransformScript:27:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:27</TransformScriptId>
+      <TransformScriptName>etl.RefreshL02N07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer02node08:task:refresh-l02-n08" PipelineReferenceId="plan-default:pipeline:layer02node08">
+      <MetaPipelinePipelineTaskId>Layer02Node08.refresh-l02-n08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l02-n08</TaskName>
+      <TransformBindingId>TransformScript:28:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:28</TransformScriptId>
+      <TransformScriptName>etl.RefreshL02N08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03hub:task:hub-l03-stage" PipelineReferenceId="plan-default:pipeline:layer03hub">
+      <MetaPipelinePipelineTaskId>Layer03Hub.hub-l03-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>hub-l03-stage</TaskName>
+      <TransformBindingId>TransformScript:45:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:45</TransformScriptId>
+      <TransformScriptName>demo.HubL03Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03hub:task:hub-l03-curate" PipelineReferenceId="plan-default:pipeline:layer03hub">
+      <MetaPipelinePipelineTaskId>Layer03Hub.hub-l03-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l03-curate</TaskName>
+      <TransformBindingId>TransformScript:46:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:46</TransformScriptId>
+      <TransformScriptName>etl.HubL03Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03hub:task:hub-l03-publish" PipelineReferenceId="plan-default:pipeline:layer03hub">
+      <MetaPipelinePipelineTaskId>Layer03Hub.hub-l03-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l03-publish</TaskName>
+      <TransformBindingId>TransformScript:47:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:47</TransformScriptId>
+      <TransformScriptName>etl.HubL03Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node01:task:select-l03-n01" PipelineReferenceId="plan-default:pipeline:layer03node01">
+      <MetaPipelinePipelineTaskId>Layer03Node01.select-l03-n01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l03-n01</TaskName>
+      <TransformBindingId>TransformScript:35:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:35</TransformScriptId>
+      <TransformScriptName>demo.SelectL03N01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node02:task:export-l03-n02" PipelineReferenceId="plan-default:pipeline:layer03node02">
+      <MetaPipelinePipelineTaskId>Layer03Node02.export-l03-n02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l03-n02</TaskName>
+      <TransformBindingId>TransformScript:36:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:36</TransformScriptId>
+      <TransformScriptName>etl.ExportL03N02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node03:task:export-l03-n03" PipelineReferenceId="plan-default:pipeline:layer03node03">
+      <MetaPipelinePipelineTaskId>Layer03Node03.export-l03-n03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l03-n03</TaskName>
+      <TransformBindingId>TransformScript:37:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:37</TransformScriptId>
+      <TransformScriptName>etl.ExportL03N03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node04:task:select-l03-n04" PipelineReferenceId="plan-default:pipeline:layer03node04">
+      <MetaPipelinePipelineTaskId>Layer03Node04.select-l03-n04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l03-n04</TaskName>
+      <TransformBindingId>TransformScript:38:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:38</TransformScriptId>
+      <TransformScriptName>demo.SelectL03N04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node05:task:select-l03-n05" PipelineReferenceId="plan-default:pipeline:layer03node05">
+      <MetaPipelinePipelineTaskId>Layer03Node05.select-l03-n05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l03-n05</TaskName>
+      <TransformBindingId>TransformScript:39:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:39</TransformScriptId>
+      <TransformScriptName>demo.SelectL03N05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node06:task:refresh-l03-n06" PipelineReferenceId="plan-default:pipeline:layer03node06">
+      <MetaPipelinePipelineTaskId>Layer03Node06.refresh-l03-n06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l03-n06</TaskName>
+      <TransformBindingId>TransformScript:40:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:40</TransformScriptId>
+      <TransformScriptName>etl.RefreshL03N06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node07:task:refresh-l03-n07" PipelineReferenceId="plan-default:pipeline:layer03node07">
+      <MetaPipelinePipelineTaskId>Layer03Node07.refresh-l03-n07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l03-n07</TaskName>
+      <TransformBindingId>TransformScript:41:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:41</TransformScriptId>
+      <TransformScriptName>etl.RefreshL03N07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node08:task:export-l03-n08" PipelineReferenceId="plan-default:pipeline:layer03node08">
+      <MetaPipelinePipelineTaskId>Layer03Node08.export-l03-n08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l03-n08</TaskName>
+      <TransformBindingId>TransformScript:42:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:42</TransformScriptId>
+      <TransformScriptName>etl.ExportL03N08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node09:task:refresh-l03-n09" PipelineReferenceId="plan-default:pipeline:layer03node09">
+      <MetaPipelinePipelineTaskId>Layer03Node09.refresh-l03-n09</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l03-n09</TaskName>
+      <TransformBindingId>TransformScript:43:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:43</TransformScriptId>
+      <TransformScriptName>etl.RefreshL03N09</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer03node10:task:refresh-l03-n10" PipelineReferenceId="plan-default:pipeline:layer03node10">
+      <MetaPipelinePipelineTaskId>Layer03Node10.refresh-l03-n10</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l03-n10</TaskName>
+      <TransformBindingId>TransformScript:44:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:44</TransformScriptId>
+      <TransformScriptName>etl.RefreshL03N10</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04hub:task:hub-l04-stage" PipelineReferenceId="plan-default:pipeline:layer04hub">
+      <MetaPipelinePipelineTaskId>Layer04Hub.hub-l04-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>hub-l04-stage</TaskName>
+      <TransformBindingId>TransformScript:57:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:57</TransformScriptId>
+      <TransformScriptName>demo.HubL04Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04hub:task:hub-l04-curate" PipelineReferenceId="plan-default:pipeline:layer04hub">
+      <MetaPipelinePipelineTaskId>Layer04Hub.hub-l04-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l04-curate</TaskName>
+      <TransformBindingId>TransformScript:58:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:58</TransformScriptId>
+      <TransformScriptName>etl.HubL04Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04hub:task:hub-l04-publish" PipelineReferenceId="plan-default:pipeline:layer04hub">
+      <MetaPipelinePipelineTaskId>Layer04Hub.hub-l04-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l04-publish</TaskName>
+      <TransformBindingId>TransformScript:59:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:59</TransformScriptId>
+      <TransformScriptName>etl.HubL04Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node01:task:refresh-l04-n01" PipelineReferenceId="plan-default:pipeline:layer04node01">
+      <MetaPipelinePipelineTaskId>Layer04Node01.refresh-l04-n01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l04-n01</TaskName>
+      <TransformBindingId>TransformScript:48:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:48</TransformScriptId>
+      <TransformScriptName>etl.RefreshL04N01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node02:task:export-l04-n02" PipelineReferenceId="plan-default:pipeline:layer04node02">
+      <MetaPipelinePipelineTaskId>Layer04Node02.export-l04-n02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l04-n02</TaskName>
+      <TransformBindingId>TransformScript:49:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:49</TransformScriptId>
+      <TransformScriptName>etl.ExportL04N02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node03:task:refresh-l04-n03" PipelineReferenceId="plan-default:pipeline:layer04node03">
+      <MetaPipelinePipelineTaskId>Layer04Node03.refresh-l04-n03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l04-n03</TaskName>
+      <TransformBindingId>TransformScript:50:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:50</TransformScriptId>
+      <TransformScriptName>etl.RefreshL04N03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node04:task:refresh-l04-n04" PipelineReferenceId="plan-default:pipeline:layer04node04">
+      <MetaPipelinePipelineTaskId>Layer04Node04.refresh-l04-n04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l04-n04</TaskName>
+      <TransformBindingId>TransformScript:51:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:51</TransformScriptId>
+      <TransformScriptName>etl.RefreshL04N04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node05:task:select-l04-n05" PipelineReferenceId="plan-default:pipeline:layer04node05">
+      <MetaPipelinePipelineTaskId>Layer04Node05.select-l04-n05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l04-n05</TaskName>
+      <TransformBindingId>TransformScript:52:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:52</TransformScriptId>
+      <TransformScriptName>demo.SelectL04N05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node06:task:refresh-l04-n06" PipelineReferenceId="plan-default:pipeline:layer04node06">
+      <MetaPipelinePipelineTaskId>Layer04Node06.refresh-l04-n06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l04-n06</TaskName>
+      <TransformBindingId>TransformScript:53:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:53</TransformScriptId>
+      <TransformScriptName>etl.RefreshL04N06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node07:task:refresh-l04-n07" PipelineReferenceId="plan-default:pipeline:layer04node07">
+      <MetaPipelinePipelineTaskId>Layer04Node07.refresh-l04-n07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l04-n07</TaskName>
+      <TransformBindingId>TransformScript:54:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:54</TransformScriptId>
+      <TransformScriptName>etl.RefreshL04N07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node08:task:select-l04-n08" PipelineReferenceId="plan-default:pipeline:layer04node08">
+      <MetaPipelinePipelineTaskId>Layer04Node08.select-l04-n08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l04-n08</TaskName>
+      <TransformBindingId>TransformScript:55:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:55</TransformScriptId>
+      <TransformScriptName>demo.SelectL04N08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer04node09:task:select-l04-n09" PipelineReferenceId="plan-default:pipeline:layer04node09">
+      <MetaPipelinePipelineTaskId>Layer04Node09.select-l04-n09</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l04-n09</TaskName>
+      <TransformBindingId>TransformScript:56:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:56</TransformScriptId>
+      <TransformScriptName>demo.SelectL04N09</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05hub:task:hub-l05-stage" PipelineReferenceId="plan-default:pipeline:layer05hub">
+      <MetaPipelinePipelineTaskId>Layer05Hub.hub-l05-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>hub-l05-stage</TaskName>
+      <TransformBindingId>TransformScript:71:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:71</TransformScriptId>
+      <TransformScriptName>demo.HubL05Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05hub:task:hub-l05-curate" PipelineReferenceId="plan-default:pipeline:layer05hub">
+      <MetaPipelinePipelineTaskId>Layer05Hub.hub-l05-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l05-curate</TaskName>
+      <TransformBindingId>TransformScript:72:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:72</TransformScriptId>
+      <TransformScriptName>etl.HubL05Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05hub:task:hub-l05-publish" PipelineReferenceId="plan-default:pipeline:layer05hub">
+      <MetaPipelinePipelineTaskId>Layer05Hub.hub-l05-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l05-publish</TaskName>
+      <TransformBindingId>TransformScript:73:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:73</TransformScriptId>
+      <TransformScriptName>etl.HubL05Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05node01:task:select-l05-n01" PipelineReferenceId="plan-default:pipeline:layer05node01">
+      <MetaPipelinePipelineTaskId>Layer05Node01.select-l05-n01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l05-n01</TaskName>
+      <TransformBindingId>TransformScript:63:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:63</TransformScriptId>
+      <TransformScriptName>demo.SelectL05N01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05node02:task:select-l05-n02" PipelineReferenceId="plan-default:pipeline:layer05node02">
+      <MetaPipelinePipelineTaskId>Layer05Node02.select-l05-n02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l05-n02</TaskName>
+      <TransformBindingId>TransformScript:64:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:64</TransformScriptId>
+      <TransformScriptName>demo.SelectL05N02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05node03:task:refresh-l05-n03" PipelineReferenceId="plan-default:pipeline:layer05node03">
+      <MetaPipelinePipelineTaskId>Layer05Node03.refresh-l05-n03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l05-n03</TaskName>
+      <TransformBindingId>TransformScript:65:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:65</TransformScriptId>
+      <TransformScriptName>etl.RefreshL05N03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05node04:task:select-l05-n04" PipelineReferenceId="plan-default:pipeline:layer05node04">
+      <MetaPipelinePipelineTaskId>Layer05Node04.select-l05-n04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l05-n04</TaskName>
+      <TransformBindingId>TransformScript:66:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:66</TransformScriptId>
+      <TransformScriptName>demo.SelectL05N04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05node05:task:refresh-l05-n05" PipelineReferenceId="plan-default:pipeline:layer05node05">
+      <MetaPipelinePipelineTaskId>Layer05Node05.refresh-l05-n05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l05-n05</TaskName>
+      <TransformBindingId>TransformScript:67:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:67</TransformScriptId>
+      <TransformScriptName>etl.RefreshL05N05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05node06:task:export-l05-n06" PipelineReferenceId="plan-default:pipeline:layer05node06">
+      <MetaPipelinePipelineTaskId>Layer05Node06.export-l05-n06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l05-n06</TaskName>
+      <TransformBindingId>TransformScript:68:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:68</TransformScriptId>
+      <TransformScriptName>etl.ExportL05N06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05node07:task:export-l05-n07" PipelineReferenceId="plan-default:pipeline:layer05node07">
+      <MetaPipelinePipelineTaskId>Layer05Node07.export-l05-n07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l05-n07</TaskName>
+      <TransformBindingId>TransformScript:69:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:69</TransformScriptId>
+      <TransformScriptName>etl.ExportL05N07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer05node08:task:refresh-l05-n08" PipelineReferenceId="plan-default:pipeline:layer05node08">
+      <MetaPipelinePipelineTaskId>Layer05Node08.refresh-l05-n08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l05-n08</TaskName>
+      <TransformBindingId>TransformScript:70:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:70</TransformScriptId>
+      <TransformScriptName>etl.RefreshL05N08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06hub:task:hub-l06-stage" PipelineReferenceId="plan-default:pipeline:layer06hub">
+      <MetaPipelinePipelineTaskId>Layer06Hub.hub-l06-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>hub-l06-stage</TaskName>
+      <TransformBindingId>TransformScript:84:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:84</TransformScriptId>
+      <TransformScriptName>demo.HubL06Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06hub:task:hub-l06-curate" PipelineReferenceId="plan-default:pipeline:layer06hub">
+      <MetaPipelinePipelineTaskId>Layer06Hub.hub-l06-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l06-curate</TaskName>
+      <TransformBindingId>TransformScript:85:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:85</TransformScriptId>
+      <TransformScriptName>etl.HubL06Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06hub:task:hub-l06-publish" PipelineReferenceId="plan-default:pipeline:layer06hub">
+      <MetaPipelinePipelineTaskId>Layer06Hub.hub-l06-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l06-publish</TaskName>
+      <TransformBindingId>TransformScript:86:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:86</TransformScriptId>
+      <TransformScriptName>etl.HubL06Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node01:task:select-l06-n01" PipelineReferenceId="plan-default:pipeline:layer06node01">
+      <MetaPipelinePipelineTaskId>Layer06Node01.select-l06-n01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l06-n01</TaskName>
+      <TransformBindingId>TransformScript:74:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:74</TransformScriptId>
+      <TransformScriptName>demo.SelectL06N01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node02:task:export-l06-n02" PipelineReferenceId="plan-default:pipeline:layer06node02">
+      <MetaPipelinePipelineTaskId>Layer06Node02.export-l06-n02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l06-n02</TaskName>
+      <TransformBindingId>TransformScript:75:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:75</TransformScriptId>
+      <TransformScriptName>etl.ExportL06N02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node03:task:select-l06-n03" PipelineReferenceId="plan-default:pipeline:layer06node03">
+      <MetaPipelinePipelineTaskId>Layer06Node03.select-l06-n03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l06-n03</TaskName>
+      <TransformBindingId>TransformScript:76:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:76</TransformScriptId>
+      <TransformScriptName>demo.SelectL06N03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node04:task:export-l06-n04" PipelineReferenceId="plan-default:pipeline:layer06node04">
+      <MetaPipelinePipelineTaskId>Layer06Node04.export-l06-n04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l06-n04</TaskName>
+      <TransformBindingId>TransformScript:77:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:77</TransformScriptId>
+      <TransformScriptName>etl.ExportL06N04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node05:task:export-l06-n05" PipelineReferenceId="plan-default:pipeline:layer06node05">
+      <MetaPipelinePipelineTaskId>Layer06Node05.export-l06-n05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l06-n05</TaskName>
+      <TransformBindingId>TransformScript:78:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:78</TransformScriptId>
+      <TransformScriptName>etl.ExportL06N05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node06:task:select-l06-n06" PipelineReferenceId="plan-default:pipeline:layer06node06">
+      <MetaPipelinePipelineTaskId>Layer06Node06.select-l06-n06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l06-n06</TaskName>
+      <TransformBindingId>TransformScript:79:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:79</TransformScriptId>
+      <TransformScriptName>demo.SelectL06N06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node07:task:export-l06-n07" PipelineReferenceId="plan-default:pipeline:layer06node07">
+      <MetaPipelinePipelineTaskId>Layer06Node07.export-l06-n07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l06-n07</TaskName>
+      <TransformBindingId>TransformScript:80:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:80</TransformScriptId>
+      <TransformScriptName>etl.ExportL06N07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node08:task:export-l06-n08" PipelineReferenceId="plan-default:pipeline:layer06node08">
+      <MetaPipelinePipelineTaskId>Layer06Node08.export-l06-n08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l06-n08</TaskName>
+      <TransformBindingId>TransformScript:81:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:81</TransformScriptId>
+      <TransformScriptName>etl.ExportL06N08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node09:task:select-l06-n09" PipelineReferenceId="plan-default:pipeline:layer06node09">
+      <MetaPipelinePipelineTaskId>Layer06Node09.select-l06-n09</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l06-n09</TaskName>
+      <TransformBindingId>TransformScript:82:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:82</TransformScriptId>
+      <TransformScriptName>demo.SelectL06N09</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer06node10:task:refresh-l06-n10" PipelineReferenceId="plan-default:pipeline:layer06node10">
+      <MetaPipelinePipelineTaskId>Layer06Node10.refresh-l06-n10</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l06-n10</TaskName>
+      <TransformBindingId>TransformScript:83:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:83</TransformScriptId>
+      <TransformScriptName>etl.RefreshL06N10</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07hub:task:hub-l07-stage" PipelineReferenceId="plan-default:pipeline:layer07hub">
+      <MetaPipelinePipelineTaskId>Layer07Hub.hub-l07-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>hub-l07-stage</TaskName>
+      <TransformBindingId>TransformScript:98:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:98</TransformScriptId>
+      <TransformScriptName>demo.HubL07Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07hub:task:hub-l07-curate" PipelineReferenceId="plan-default:pipeline:layer07hub">
+      <MetaPipelinePipelineTaskId>Layer07Hub.hub-l07-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l07-curate</TaskName>
+      <TransformBindingId>TransformScript:99:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:99</TransformScriptId>
+      <TransformScriptName>etl.HubL07Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07hub:task:hub-l07-publish" PipelineReferenceId="plan-default:pipeline:layer07hub">
+      <MetaPipelinePipelineTaskId>Layer07Hub.hub-l07-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l07-publish</TaskName>
+      <TransformBindingId>TransformScript:100:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:100</TransformScriptId>
+      <TransformScriptName>etl.HubL07Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07node01:task:select-l07-n01" PipelineReferenceId="plan-default:pipeline:layer07node01">
+      <MetaPipelinePipelineTaskId>Layer07Node01.select-l07-n01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l07-n01</TaskName>
+      <TransformBindingId>TransformScript:90:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:90</TransformScriptId>
+      <TransformScriptName>demo.SelectL07N01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07node02:task:select-l07-n02" PipelineReferenceId="plan-default:pipeline:layer07node02">
+      <MetaPipelinePipelineTaskId>Layer07Node02.select-l07-n02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l07-n02</TaskName>
+      <TransformBindingId>TransformScript:91:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:91</TransformScriptId>
+      <TransformScriptName>demo.SelectL07N02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07node03:task:refresh-l07-n03" PipelineReferenceId="plan-default:pipeline:layer07node03">
+      <MetaPipelinePipelineTaskId>Layer07Node03.refresh-l07-n03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l07-n03</TaskName>
+      <TransformBindingId>TransformScript:92:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:92</TransformScriptId>
+      <TransformScriptName>etl.RefreshL07N03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07node04:task:select-l07-n04" PipelineReferenceId="plan-default:pipeline:layer07node04">
+      <MetaPipelinePipelineTaskId>Layer07Node04.select-l07-n04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l07-n04</TaskName>
+      <TransformBindingId>TransformScript:93:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:93</TransformScriptId>
+      <TransformScriptName>demo.SelectL07N04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07node05:task:select-l07-n05" PipelineReferenceId="plan-default:pipeline:layer07node05">
+      <MetaPipelinePipelineTaskId>Layer07Node05.select-l07-n05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l07-n05</TaskName>
+      <TransformBindingId>TransformScript:94:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:94</TransformScriptId>
+      <TransformScriptName>demo.SelectL07N05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07node06:task:export-l07-n06" PipelineReferenceId="plan-default:pipeline:layer07node06">
+      <MetaPipelinePipelineTaskId>Layer07Node06.export-l07-n06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l07-n06</TaskName>
+      <TransformBindingId>TransformScript:95:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:95</TransformScriptId>
+      <TransformScriptName>etl.ExportL07N06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07node07:task:select-l07-n07" PipelineReferenceId="plan-default:pipeline:layer07node07">
+      <MetaPipelinePipelineTaskId>Layer07Node07.select-l07-n07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l07-n07</TaskName>
+      <TransformBindingId>TransformScript:96:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:96</TransformScriptId>
+      <TransformScriptName>demo.SelectL07N07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer07node08:task:export-l07-n08" PipelineReferenceId="plan-default:pipeline:layer07node08">
+      <MetaPipelinePipelineTaskId>Layer07Node08.export-l07-n08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l07-n08</TaskName>
+      <TransformBindingId>TransformScript:97:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:97</TransformScriptId>
+      <TransformScriptName>etl.ExportL07N08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08hub:task:hub-l08-stage" PipelineReferenceId="plan-default:pipeline:layer08hub">
+      <MetaPipelinePipelineTaskId>Layer08Hub.hub-l08-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>hub-l08-stage</TaskName>
+      <TransformBindingId>TransformScript:109:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:109</TransformScriptId>
+      <TransformScriptName>demo.HubL08Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08hub:task:hub-l08-curate" PipelineReferenceId="plan-default:pipeline:layer08hub">
+      <MetaPipelinePipelineTaskId>Layer08Hub.hub-l08-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l08-curate</TaskName>
+      <TransformBindingId>TransformScript:110:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:110</TransformScriptId>
+      <TransformScriptName>etl.HubL08Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08hub:task:hub-l08-publish" PipelineReferenceId="plan-default:pipeline:layer08hub">
+      <MetaPipelinePipelineTaskId>Layer08Hub.hub-l08-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>hub-l08-publish</TaskName>
+      <TransformBindingId>TransformScript:111:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:111</TransformScriptId>
+      <TransformScriptName>etl.HubL08Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08node01:task:refresh-l08-n01" PipelineReferenceId="plan-default:pipeline:layer08node01">
+      <MetaPipelinePipelineTaskId>Layer08Node01.refresh-l08-n01</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l08-n01</TaskName>
+      <TransformBindingId>TransformScript:101:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:101</TransformScriptId>
+      <TransformScriptName>etl.RefreshL08N01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08node02:task:select-l08-n02" PipelineReferenceId="plan-default:pipeline:layer08node02">
+      <MetaPipelinePipelineTaskId>Layer08Node02.select-l08-n02</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l08-n02</TaskName>
+      <TransformBindingId>TransformScript:102:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:102</TransformScriptId>
+      <TransformScriptName>demo.SelectL08N02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08node03:task:export-l08-n03" PipelineReferenceId="plan-default:pipeline:layer08node03">
+      <MetaPipelinePipelineTaskId>Layer08Node03.export-l08-n03</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>export-l08-n03</TaskName>
+      <TransformBindingId>TransformScript:103:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:103</TransformScriptId>
+      <TransformScriptName>etl.ExportL08N03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08node04:task:select-l08-n04" PipelineReferenceId="plan-default:pipeline:layer08node04">
+      <MetaPipelinePipelineTaskId>Layer08Node04.select-l08-n04</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l08-n04</TaskName>
+      <TransformBindingId>TransformScript:104:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:104</TransformScriptId>
+      <TransformScriptName>demo.SelectL08N04</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08node05:task:refresh-l08-n05" PipelineReferenceId="plan-default:pipeline:layer08node05">
+      <MetaPipelinePipelineTaskId>Layer08Node05.refresh-l08-n05</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l08-n05</TaskName>
+      <TransformBindingId>TransformScript:105:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:105</TransformScriptId>
+      <TransformScriptName>etl.RefreshL08N05</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08node06:task:select-l08-n06" PipelineReferenceId="plan-default:pipeline:layer08node06">
+      <MetaPipelinePipelineTaskId>Layer08Node06.select-l08-n06</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l08-n06</TaskName>
+      <TransformBindingId>TransformScript:106:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:106</TransformScriptId>
+      <TransformScriptName>demo.SelectL08N06</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08node07:task:select-l08-n07" PipelineReferenceId="plan-default:pipeline:layer08node07">
+      <MetaPipelinePipelineTaskId>Layer08Node07.select-l08-n07</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>select-l08-n07</TaskName>
+      <TransformBindingId>TransformScript:107:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:107</TransformScriptId>
+      <TransformScriptName>demo.SelectL08N07</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-layer08node08:task:refresh-l08-n08" PipelineReferenceId="plan-default:pipeline:layer08node08">
+      <MetaPipelinePipelineTaskId>Layer08Node08.refresh-l08-n08</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>refresh-l08-n08</TaskName>
+      <TransformBindingId>TransformScript:108:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:108</TransformScriptId>
+      <TransformScriptName>etl.RefreshL08N08</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-publishhairballfinal:task:publish-hairball-final" PipelineReferenceId="plan-default:pipeline:publishhairballfinal">
+      <MetaPipelinePipelineTaskId>PublishHairballFinal.publish-hairball-final</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>publish-hairball-final</TaskName>
+      <TransformBindingId>TransformScript:137:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:137</TransformScriptId>
+      <TransformScriptName>demo.PublishHairballFinal</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart01:task:regional-01-stage" PipelineReferenceId="plan-default:pipeline:regionalmart01">
+      <MetaPipelinePipelineTaskId>RegionalMart01.regional-01-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>regional-01-stage</TaskName>
+      <TransformBindingId>TransformScript:115:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:115</TransformScriptId>
+      <TransformScriptName>demo.Regional01Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart01:task:regional-01-curate" PipelineReferenceId="plan-default:pipeline:regionalmart01">
+      <MetaPipelinePipelineTaskId>RegionalMart01.regional-01-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-01-curate</TaskName>
+      <TransformBindingId>TransformScript:116:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:116</TransformScriptId>
+      <TransformScriptName>etl.Regional01Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart01:task:regional-01-publish" PipelineReferenceId="plan-default:pipeline:regionalmart01">
+      <MetaPipelinePipelineTaskId>RegionalMart01.regional-01-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-01-publish</TaskName>
+      <TransformBindingId>TransformScript:117:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:117</TransformScriptId>
+      <TransformScriptName>etl.Regional01Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart01:task:regional-01-audit" PipelineReferenceId="plan-default:pipeline:regionalmart01">
+      <MetaPipelinePipelineTaskId>RegionalMart01.regional-01-audit</MetaPipelinePipelineTaskId>
+      <Ordinal>6</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-01-audit</TaskName>
+      <TransformBindingId>TransformScript:118:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:118</TransformScriptId>
+      <TransformScriptName>audit.RecordRegional01</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart02:task:regional-02-stage" PipelineReferenceId="plan-default:pipeline:regionalmart02">
+      <MetaPipelinePipelineTaskId>RegionalMart02.regional-02-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>regional-02-stage</TaskName>
+      <TransformBindingId>TransformScript:119:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:119</TransformScriptId>
+      <TransformScriptName>demo.Regional02Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart02:task:regional-02-curate" PipelineReferenceId="plan-default:pipeline:regionalmart02">
+      <MetaPipelinePipelineTaskId>RegionalMart02.regional-02-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-02-curate</TaskName>
+      <TransformBindingId>TransformScript:120:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:120</TransformScriptId>
+      <TransformScriptName>etl.Regional02Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart02:task:regional-02-publish" PipelineReferenceId="plan-default:pipeline:regionalmart02">
+      <MetaPipelinePipelineTaskId>RegionalMart02.regional-02-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-02-publish</TaskName>
+      <TransformBindingId>TransformScript:121:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:121</TransformScriptId>
+      <TransformScriptName>etl.Regional02Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart02:task:regional-02-audit" PipelineReferenceId="plan-default:pipeline:regionalmart02">
+      <MetaPipelinePipelineTaskId>RegionalMart02.regional-02-audit</MetaPipelinePipelineTaskId>
+      <Ordinal>6</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-02-audit</TaskName>
+      <TransformBindingId>TransformScript:122:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:122</TransformScriptId>
+      <TransformScriptName>audit.RecordRegional02</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart03:task:regional-03-stage" PipelineReferenceId="plan-default:pipeline:regionalmart03">
+      <MetaPipelinePipelineTaskId>RegionalMart03.regional-03-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>regional-03-stage</TaskName>
+      <TransformBindingId>TransformScript:123:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:123</TransformScriptId>
+      <TransformScriptName>demo.Regional03Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart03:task:regional-03-curate" PipelineReferenceId="plan-default:pipeline:regionalmart03">
+      <MetaPipelinePipelineTaskId>RegionalMart03.regional-03-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-03-curate</TaskName>
+      <TransformBindingId>TransformScript:124:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:124</TransformScriptId>
+      <TransformScriptName>etl.Regional03Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart03:task:regional-03-publish" PipelineReferenceId="plan-default:pipeline:regionalmart03">
+      <MetaPipelinePipelineTaskId>RegionalMart03.regional-03-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-03-publish</TaskName>
+      <TransformBindingId>TransformScript:125:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:125</TransformScriptId>
+      <TransformScriptName>etl.Regional03Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart03:task:regional-03-audit" PipelineReferenceId="plan-default:pipeline:regionalmart03">
+      <MetaPipelinePipelineTaskId>RegionalMart03.regional-03-audit</MetaPipelinePipelineTaskId>
+      <Ordinal>6</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-03-audit</TaskName>
+      <TransformBindingId>TransformScript:126:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:126</TransformScriptId>
+      <TransformScriptName>audit.RecordRegional03</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart04:task:regional-04-stage" PipelineReferenceId="plan-default:pipeline:regionalmart04">
+      <MetaPipelinePipelineTaskId>RegionalMart04.regional-04-stage</MetaPipelinePipelineTaskId>
+      <Ordinal>1</Ordinal>
+      <StatementKind>Select</StatementKind>
+      <TaskName>regional-04-stage</TaskName>
+      <TransformBindingId>TransformScript:127:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:127</TransformScriptId>
+      <TransformScriptName>demo.Regional04Stage</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart04:task:regional-04-curate" PipelineReferenceId="plan-default:pipeline:regionalmart04">
+      <MetaPipelinePipelineTaskId>RegionalMart04.regional-04-curate</MetaPipelinePipelineTaskId>
+      <Ordinal>3</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-04-curate</TaskName>
+      <TransformBindingId>TransformScript:128:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:128</TransformScriptId>
+      <TransformScriptName>etl.Regional04Curate</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart04:task:regional-04-publish" PipelineReferenceId="plan-default:pipeline:regionalmart04">
+      <MetaPipelinePipelineTaskId>RegionalMart04.regional-04-publish</MetaPipelinePipelineTaskId>
+      <Ordinal>4</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-04-publish</TaskName>
+      <TransformBindingId>TransformScript:129:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:129</TransformScriptId>
+      <TransformScriptName>etl.Regional04Publish</TransformScriptName>
+    </TaskAccessProfile>
+    <TaskAccessProfile Id="plan-default-pipeline-regionalmart04:task:regional-04-audit" PipelineReferenceId="plan-default:pipeline:regionalmart04">
+      <MetaPipelinePipelineTaskId>RegionalMart04.regional-04-audit</MetaPipelinePipelineTaskId>
+      <Ordinal>6</Ordinal>
+      <StatementKind>StoredProcedure</StatementKind>
+      <TaskName>regional-04-audit</TaskName>
+      <TransformBindingId>TransformScript:130:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:130</TransformScriptId>
+      <TransformScriptName>audit.RecordRegional04</TransformScriptName>
+    </TaskAccessProfile>
+  </TaskAccessProfileList>
+</MetaOrchestration>

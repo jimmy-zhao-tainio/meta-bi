@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaTransformScript>
-  <FunctionCallList>
-    <FunctionCall Id="FunctionCall:1" PrimaryExpressionId="PrimaryExpression:11">
-    </FunctionCall>
-    <FunctionCall Id="FunctionCall:2" PrimaryExpressionId="PrimaryExpression:14">
-    </FunctionCall>
-  </FunctionCallList>
-</MetaTransformScript>

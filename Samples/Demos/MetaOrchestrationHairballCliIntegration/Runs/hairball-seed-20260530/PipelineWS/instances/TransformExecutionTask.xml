@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaPipeline>
+  <TransformExecutionTaskList>
+    <TransformExecutionTask Id="AuditHairball.audit-hairball.TransformExecution" ExecutionConnectionReferenceId="AuditHairball.HAIRBALL_EXECUTION_SQL" PipelineTaskId="AuditHairball.audit-hairball">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:136:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:136</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL01L02.bridge-l01-l02-collect.TransformExecution" ExecutionConnectionReferenceId="BridgeL01L02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL01L02.bridge-l01-l02-collect">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:32:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:32</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL01L02.bridge-l01-l02-north.TransformExecution" ExecutionConnectionReferenceId="BridgeL01L02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL01L02.bridge-l01-l02-north">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:33:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:33</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL01L02.bridge-l01-l02-south.TransformExecution" ExecutionConnectionReferenceId="BridgeL01L02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL01L02.bridge-l01-l02-south">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:34:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:34</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL03L04.bridge-l03-l04-collect.TransformExecution" ExecutionConnectionReferenceId="BridgeL03L04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL03L04.bridge-l03-l04-collect">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:60:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:60</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL03L04.bridge-l03-l04-north.TransformExecution" ExecutionConnectionReferenceId="BridgeL03L04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL03L04.bridge-l03-l04-north">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:61:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:61</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL03L04.bridge-l03-l04-south.TransformExecution" ExecutionConnectionReferenceId="BridgeL03L04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL03L04.bridge-l03-l04-south">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:62:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:62</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL05L06.bridge-l05-l06-collect.TransformExecution" ExecutionConnectionReferenceId="BridgeL05L06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL05L06.bridge-l05-l06-collect">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:87:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:87</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL05L06.bridge-l05-l06-north.TransformExecution" ExecutionConnectionReferenceId="BridgeL05L06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL05L06.bridge-l05-l06-north">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:88:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:88</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL05L06.bridge-l05-l06-south.TransformExecution" ExecutionConnectionReferenceId="BridgeL05L06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL05L06.bridge-l05-l06-south">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:89:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:89</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL07L08.bridge-l07-l08-collect.TransformExecution" ExecutionConnectionReferenceId="BridgeL07L08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL07L08.bridge-l07-l08-collect">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:112:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:112</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL07L08.bridge-l07-l08-north.TransformExecution" ExecutionConnectionReferenceId="BridgeL07L08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL07L08.bridge-l07-l08-north">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:113:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:113</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="BridgeL07L08.bridge-l07-l08-south.TransformExecution" ExecutionConnectionReferenceId="BridgeL07L08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="BridgeL07L08.bridge-l07-l08-south">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:114:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:114</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="CompositeMart.composite-certify.TransformExecution" ExecutionConnectionReferenceId="CompositeMart.HAIRBALL_EXECUTION_SQL" PipelineTaskId="CompositeMart.composite-certify">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:134:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:134</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="CompositeMart.composite-curate.TransformExecution" ExecutionConnectionReferenceId="CompositeMart.HAIRBALL_EXECUTION_SQL" PipelineTaskId="CompositeMart.composite-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:132:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:132</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="CompositeMart.composite-publish.TransformExecution" ExecutionConnectionReferenceId="CompositeMart.HAIRBALL_EXECUTION_SQL" PipelineTaskId="CompositeMart.composite-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:135:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:135</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="CompositeMart.composite-reconcile.TransformExecution" ExecutionConnectionReferenceId="CompositeMart.HAIRBALL_EXECUTION_SQL" PipelineTaskId="CompositeMart.composite-reconcile">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:133:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:133</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="CompositeMart.composite-stage.TransformExecution" ExecutionConnectionReferenceId="CompositeMart.HAIRBALL_EXECUTION_SQL" PipelineTaskId="CompositeMart.composite-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:131:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:131</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="ExtractSeed01.extract-seed-01.TransformExecution" ExecutionConnectionReferenceId="ExtractSeed01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="ExtractSeed01.extract-seed-01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:1:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:1</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="ExtractSeed02.extract-seed-02.TransformExecution" ExecutionConnectionReferenceId="ExtractSeed02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="ExtractSeed02.extract-seed-02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:2:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:2</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="ExtractSeed03.extract-seed-03.TransformExecution" ExecutionConnectionReferenceId="ExtractSeed03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="ExtractSeed03.extract-seed-03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:3:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:3</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="ExtractSeed04.extract-seed-04.TransformExecution" ExecutionConnectionReferenceId="ExtractSeed04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="ExtractSeed04.extract-seed-04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:4:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:4</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="ExtractSeed05.extract-seed-05.TransformExecution" ExecutionConnectionReferenceId="ExtractSeed05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="ExtractSeed05.extract-seed-05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:5:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:5</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="ExtractSeed06.extract-seed-06.TransformExecution" ExecutionConnectionReferenceId="ExtractSeed06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="ExtractSeed06.extract-seed-06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:6:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:6</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="ExtractSeed07.extract-seed-07.TransformExecution" ExecutionConnectionReferenceId="ExtractSeed07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="ExtractSeed07.extract-seed-07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:7:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:7</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="ExtractSeed08.extract-seed-08.TransformExecution" ExecutionConnectionReferenceId="ExtractSeed08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="ExtractSeed08.extract-seed-08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:8:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:8</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Hub.hub-l01-curate.TransformExecution" ExecutionConnectionReferenceId="Layer01Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Hub.hub-l01-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:19:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:19</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Hub.hub-l01-publish.TransformExecution" ExecutionConnectionReferenceId="Layer01Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Hub.hub-l01-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:20:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:20</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Hub.hub-l01-stage.TransformExecution" ExecutionConnectionReferenceId="Layer01Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Hub.hub-l01-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:18:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:18</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node01.export-l01-n01.TransformExecution" ExecutionConnectionReferenceId="Layer01Node01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node01.export-l01-n01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:9:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:9</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node02.select-l01-n02.TransformExecution" ExecutionConnectionReferenceId="Layer01Node02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node02.select-l01-n02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:10:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:10</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node03.select-l01-n03.TransformExecution" ExecutionConnectionReferenceId="Layer01Node03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node03.select-l01-n03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:11:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:11</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node04.export-l01-n04.TransformExecution" ExecutionConnectionReferenceId="Layer01Node04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node04.export-l01-n04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:12:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:12</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node05.export-l01-n05.TransformExecution" ExecutionConnectionReferenceId="Layer01Node05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node05.export-l01-n05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:13:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:13</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node06.refresh-l01-n06.TransformExecution" ExecutionConnectionReferenceId="Layer01Node06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node06.refresh-l01-n06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:14:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:14</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node07.refresh-l01-n07.TransformExecution" ExecutionConnectionReferenceId="Layer01Node07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node07.refresh-l01-n07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:15:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:15</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node08.select-l01-n08.TransformExecution" ExecutionConnectionReferenceId="Layer01Node08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node08.select-l01-n08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:16:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:16</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer01Node09.refresh-l01-n09.TransformExecution" ExecutionConnectionReferenceId="Layer01Node09.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer01Node09.refresh-l01-n09">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:17:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:17</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Hub.hub-l02-curate.TransformExecution" ExecutionConnectionReferenceId="Layer02Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Hub.hub-l02-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:30:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:30</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Hub.hub-l02-publish.TransformExecution" ExecutionConnectionReferenceId="Layer02Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Hub.hub-l02-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:31:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:31</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Hub.hub-l02-stage.TransformExecution" ExecutionConnectionReferenceId="Layer02Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Hub.hub-l02-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:29:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:29</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Node01.select-l02-n01.TransformExecution" ExecutionConnectionReferenceId="Layer02Node01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Node01.select-l02-n01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:21:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:21</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Node02.refresh-l02-n02.TransformExecution" ExecutionConnectionReferenceId="Layer02Node02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Node02.refresh-l02-n02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:22:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:22</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Node03.select-l02-n03.TransformExecution" ExecutionConnectionReferenceId="Layer02Node03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Node03.select-l02-n03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:23:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:23</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Node04.export-l02-n04.TransformExecution" ExecutionConnectionReferenceId="Layer02Node04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Node04.export-l02-n04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:24:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:24</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Node05.select-l02-n05.TransformExecution" ExecutionConnectionReferenceId="Layer02Node05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Node05.select-l02-n05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:25:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:25</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Node06.refresh-l02-n06.TransformExecution" ExecutionConnectionReferenceId="Layer02Node06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Node06.refresh-l02-n06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:26:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:26</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Node07.refresh-l02-n07.TransformExecution" ExecutionConnectionReferenceId="Layer02Node07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Node07.refresh-l02-n07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:27:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:27</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer02Node08.refresh-l02-n08.TransformExecution" ExecutionConnectionReferenceId="Layer02Node08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer02Node08.refresh-l02-n08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:28:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:28</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Hub.hub-l03-curate.TransformExecution" ExecutionConnectionReferenceId="Layer03Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Hub.hub-l03-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:46:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:46</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Hub.hub-l03-publish.TransformExecution" ExecutionConnectionReferenceId="Layer03Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Hub.hub-l03-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:47:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:47</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Hub.hub-l03-stage.TransformExecution" ExecutionConnectionReferenceId="Layer03Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Hub.hub-l03-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:45:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:45</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node01.select-l03-n01.TransformExecution" ExecutionConnectionReferenceId="Layer03Node01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node01.select-l03-n01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:35:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:35</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node02.export-l03-n02.TransformExecution" ExecutionConnectionReferenceId="Layer03Node02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node02.export-l03-n02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:36:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:36</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node03.export-l03-n03.TransformExecution" ExecutionConnectionReferenceId="Layer03Node03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node03.export-l03-n03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:37:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:37</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node04.select-l03-n04.TransformExecution" ExecutionConnectionReferenceId="Layer03Node04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node04.select-l03-n04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:38:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:38</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node05.select-l03-n05.TransformExecution" ExecutionConnectionReferenceId="Layer03Node05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node05.select-l03-n05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:39:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:39</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node06.refresh-l03-n06.TransformExecution" ExecutionConnectionReferenceId="Layer03Node06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node06.refresh-l03-n06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:40:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:40</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node07.refresh-l03-n07.TransformExecution" ExecutionConnectionReferenceId="Layer03Node07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node07.refresh-l03-n07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:41:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:41</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node08.export-l03-n08.TransformExecution" ExecutionConnectionReferenceId="Layer03Node08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node08.export-l03-n08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:42:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:42</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node09.refresh-l03-n09.TransformExecution" ExecutionConnectionReferenceId="Layer03Node09.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node09.refresh-l03-n09">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:43:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:43</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer03Node10.refresh-l03-n10.TransformExecution" ExecutionConnectionReferenceId="Layer03Node10.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer03Node10.refresh-l03-n10">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:44:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:44</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Hub.hub-l04-curate.TransformExecution" ExecutionConnectionReferenceId="Layer04Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Hub.hub-l04-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:58:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:58</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Hub.hub-l04-publish.TransformExecution" ExecutionConnectionReferenceId="Layer04Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Hub.hub-l04-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:59:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:59</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Hub.hub-l04-stage.TransformExecution" ExecutionConnectionReferenceId="Layer04Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Hub.hub-l04-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:57:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:57</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node01.refresh-l04-n01.TransformExecution" ExecutionConnectionReferenceId="Layer04Node01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node01.refresh-l04-n01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:48:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:48</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node02.export-l04-n02.TransformExecution" ExecutionConnectionReferenceId="Layer04Node02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node02.export-l04-n02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:49:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:49</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node03.refresh-l04-n03.TransformExecution" ExecutionConnectionReferenceId="Layer04Node03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node03.refresh-l04-n03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:50:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:50</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node04.refresh-l04-n04.TransformExecution" ExecutionConnectionReferenceId="Layer04Node04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node04.refresh-l04-n04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:51:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:51</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node05.select-l04-n05.TransformExecution" ExecutionConnectionReferenceId="Layer04Node05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node05.select-l04-n05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:52:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:52</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node06.refresh-l04-n06.TransformExecution" ExecutionConnectionReferenceId="Layer04Node06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node06.refresh-l04-n06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:53:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:53</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node07.refresh-l04-n07.TransformExecution" ExecutionConnectionReferenceId="Layer04Node07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node07.refresh-l04-n07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:54:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:54</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node08.select-l04-n08.TransformExecution" ExecutionConnectionReferenceId="Layer04Node08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node08.select-l04-n08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:55:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:55</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer04Node09.select-l04-n09.TransformExecution" ExecutionConnectionReferenceId="Layer04Node09.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer04Node09.select-l04-n09">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:56:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:56</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Hub.hub-l05-curate.TransformExecution" ExecutionConnectionReferenceId="Layer05Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Hub.hub-l05-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:72:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:72</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Hub.hub-l05-publish.TransformExecution" ExecutionConnectionReferenceId="Layer05Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Hub.hub-l05-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:73:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:73</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Hub.hub-l05-stage.TransformExecution" ExecutionConnectionReferenceId="Layer05Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Hub.hub-l05-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:71:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:71</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Node01.select-l05-n01.TransformExecution" ExecutionConnectionReferenceId="Layer05Node01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Node01.select-l05-n01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:63:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:63</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Node02.select-l05-n02.TransformExecution" ExecutionConnectionReferenceId="Layer05Node02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Node02.select-l05-n02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:64:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:64</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Node03.refresh-l05-n03.TransformExecution" ExecutionConnectionReferenceId="Layer05Node03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Node03.refresh-l05-n03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:65:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:65</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Node04.select-l05-n04.TransformExecution" ExecutionConnectionReferenceId="Layer05Node04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Node04.select-l05-n04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:66:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:66</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Node05.refresh-l05-n05.TransformExecution" ExecutionConnectionReferenceId="Layer05Node05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Node05.refresh-l05-n05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:67:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:67</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Node06.export-l05-n06.TransformExecution" ExecutionConnectionReferenceId="Layer05Node06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Node06.export-l05-n06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:68:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:68</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Node07.export-l05-n07.TransformExecution" ExecutionConnectionReferenceId="Layer05Node07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Node07.export-l05-n07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:69:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:69</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer05Node08.refresh-l05-n08.TransformExecution" ExecutionConnectionReferenceId="Layer05Node08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer05Node08.refresh-l05-n08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:70:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:70</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Hub.hub-l06-curate.TransformExecution" ExecutionConnectionReferenceId="Layer06Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Hub.hub-l06-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:85:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:85</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Hub.hub-l06-publish.TransformExecution" ExecutionConnectionReferenceId="Layer06Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Hub.hub-l06-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:86:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:86</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Hub.hub-l06-stage.TransformExecution" ExecutionConnectionReferenceId="Layer06Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Hub.hub-l06-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:84:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:84</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node01.select-l06-n01.TransformExecution" ExecutionConnectionReferenceId="Layer06Node01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node01.select-l06-n01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:74:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:74</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node02.export-l06-n02.TransformExecution" ExecutionConnectionReferenceId="Layer06Node02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node02.export-l06-n02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:75:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:75</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node03.select-l06-n03.TransformExecution" ExecutionConnectionReferenceId="Layer06Node03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node03.select-l06-n03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:76:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:76</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node04.export-l06-n04.TransformExecution" ExecutionConnectionReferenceId="Layer06Node04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node04.export-l06-n04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:77:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:77</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node05.export-l06-n05.TransformExecution" ExecutionConnectionReferenceId="Layer06Node05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node05.export-l06-n05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:78:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:78</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node06.select-l06-n06.TransformExecution" ExecutionConnectionReferenceId="Layer06Node06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node06.select-l06-n06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:79:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:79</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node07.export-l06-n07.TransformExecution" ExecutionConnectionReferenceId="Layer06Node07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node07.export-l06-n07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:80:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:80</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node08.export-l06-n08.TransformExecution" ExecutionConnectionReferenceId="Layer06Node08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node08.export-l06-n08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:81:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:81</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node09.select-l06-n09.TransformExecution" ExecutionConnectionReferenceId="Layer06Node09.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node09.select-l06-n09">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:82:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:82</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer06Node10.refresh-l06-n10.TransformExecution" ExecutionConnectionReferenceId="Layer06Node10.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer06Node10.refresh-l06-n10">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:83:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:83</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Hub.hub-l07-curate.TransformExecution" ExecutionConnectionReferenceId="Layer07Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Hub.hub-l07-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:99:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:99</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Hub.hub-l07-publish.TransformExecution" ExecutionConnectionReferenceId="Layer07Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Hub.hub-l07-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:100:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:100</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Hub.hub-l07-stage.TransformExecution" ExecutionConnectionReferenceId="Layer07Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Hub.hub-l07-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:98:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:98</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Node01.select-l07-n01.TransformExecution" ExecutionConnectionReferenceId="Layer07Node01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Node01.select-l07-n01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:90:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:90</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Node02.select-l07-n02.TransformExecution" ExecutionConnectionReferenceId="Layer07Node02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Node02.select-l07-n02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:91:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:91</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Node03.refresh-l07-n03.TransformExecution" ExecutionConnectionReferenceId="Layer07Node03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Node03.refresh-l07-n03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:92:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:92</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Node04.select-l07-n04.TransformExecution" ExecutionConnectionReferenceId="Layer07Node04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Node04.select-l07-n04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:93:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:93</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Node05.select-l07-n05.TransformExecution" ExecutionConnectionReferenceId="Layer07Node05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Node05.select-l07-n05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:94:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:94</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Node06.export-l07-n06.TransformExecution" ExecutionConnectionReferenceId="Layer07Node06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Node06.export-l07-n06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:95:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:95</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Node07.select-l07-n07.TransformExecution" ExecutionConnectionReferenceId="Layer07Node07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Node07.select-l07-n07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:96:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:96</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer07Node08.export-l07-n08.TransformExecution" ExecutionConnectionReferenceId="Layer07Node08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer07Node08.export-l07-n08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:97:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:97</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Hub.hub-l08-curate.TransformExecution" ExecutionConnectionReferenceId="Layer08Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Hub.hub-l08-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:110:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:110</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Hub.hub-l08-publish.TransformExecution" ExecutionConnectionReferenceId="Layer08Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Hub.hub-l08-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:111:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:111</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Hub.hub-l08-stage.TransformExecution" ExecutionConnectionReferenceId="Layer08Hub.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Hub.hub-l08-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:109:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:109</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Node01.refresh-l08-n01.TransformExecution" ExecutionConnectionReferenceId="Layer08Node01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Node01.refresh-l08-n01">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:101:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:101</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Node02.select-l08-n02.TransformExecution" ExecutionConnectionReferenceId="Layer08Node02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Node02.select-l08-n02">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:102:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:102</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Node03.export-l08-n03.TransformExecution" ExecutionConnectionReferenceId="Layer08Node03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Node03.export-l08-n03">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:103:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:103</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Node04.select-l08-n04.TransformExecution" ExecutionConnectionReferenceId="Layer08Node04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Node04.select-l08-n04">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:104:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:104</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Node05.refresh-l08-n05.TransformExecution" ExecutionConnectionReferenceId="Layer08Node05.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Node05.refresh-l08-n05">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:105:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:105</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Node06.select-l08-n06.TransformExecution" ExecutionConnectionReferenceId="Layer08Node06.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Node06.select-l08-n06">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:106:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:106</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Node07.select-l08-n07.TransformExecution" ExecutionConnectionReferenceId="Layer08Node07.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Node07.select-l08-n07">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:107:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:107</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="Layer08Node08.refresh-l08-n08.TransformExecution" ExecutionConnectionReferenceId="Layer08Node08.HAIRBALL_EXECUTION_SQL" PipelineTaskId="Layer08Node08.refresh-l08-n08">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:108:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:108</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="PublishHairballFinal.publish-hairball-final.TransformExecution" ExecutionConnectionReferenceId="PublishHairballFinal.HAIRBALL_EXECUTION_SQL" PipelineTaskId="PublishHairballFinal.publish-hairball-final">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:137:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:137</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart01.regional-01-audit.TransformExecution" ExecutionConnectionReferenceId="RegionalMart01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart01.regional-01-audit">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:118:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:118</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart01.regional-01-curate.TransformExecution" ExecutionConnectionReferenceId="RegionalMart01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart01.regional-01-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:116:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:116</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart01.regional-01-publish.TransformExecution" ExecutionConnectionReferenceId="RegionalMart01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart01.regional-01-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:117:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:117</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart01.regional-01-stage.TransformExecution" ExecutionConnectionReferenceId="RegionalMart01.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart01.regional-01-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:115:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:115</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart02.regional-02-audit.TransformExecution" ExecutionConnectionReferenceId="RegionalMart02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart02.regional-02-audit">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:122:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:122</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart02.regional-02-curate.TransformExecution" ExecutionConnectionReferenceId="RegionalMart02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart02.regional-02-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:120:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:120</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart02.regional-02-publish.TransformExecution" ExecutionConnectionReferenceId="RegionalMart02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart02.regional-02-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:121:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:121</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart02.regional-02-stage.TransformExecution" ExecutionConnectionReferenceId="RegionalMart02.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart02.regional-02-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:119:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:119</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart03.regional-03-audit.TransformExecution" ExecutionConnectionReferenceId="RegionalMart03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart03.regional-03-audit">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:126:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:126</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart03.regional-03-curate.TransformExecution" ExecutionConnectionReferenceId="RegionalMart03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart03.regional-03-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:124:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:124</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart03.regional-03-publish.TransformExecution" ExecutionConnectionReferenceId="RegionalMart03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart03.regional-03-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:125:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:125</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart03.regional-03-stage.TransformExecution" ExecutionConnectionReferenceId="RegionalMart03.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart03.regional-03-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:123:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:123</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart04.regional-04-audit.TransformExecution" ExecutionConnectionReferenceId="RegionalMart04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart04.regional-04-audit">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:130:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:130</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart04.regional-04-curate.TransformExecution" ExecutionConnectionReferenceId="RegionalMart04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart04.regional-04-curate">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:128:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:128</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart04.regional-04-publish.TransformExecution" ExecutionConnectionReferenceId="RegionalMart04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart04.regional-04-publish">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:129:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:129</TransformScriptId>
+    </TransformExecutionTask>
+    <TransformExecutionTask Id="RegionalMart04.regional-04-stage.TransformExecution" ExecutionConnectionReferenceId="RegionalMart04.HAIRBALL_EXECUTION_SQL" PipelineTaskId="RegionalMart04.regional-04-stage">
+      <TimeoutSeconds></TimeoutSeconds>
+      <TransformBindingId>TransformScript:127:binding</TransformBindingId>
+      <TransformScriptId>TransformScript:127</TransformScriptId>
+    </TransformExecutionTask>
+  </TransformExecutionTaskList>
+</MetaPipeline>

@@ -1,0 +1,9 @@
+CREATE VIEW demo.BridgeL05L06North
+AS
+SELECT
+    1 AS Value
+FROM bridge.L05L06Stage AS s0
+CROSS JOIN bridge.L01L02North AS s1
+CROSS JOIN dw.L03Node09 AS s2
+CROSS JOIN hub.Layer02Published AS s3
+CROSS JOIN mart.L06Node02 AS s4

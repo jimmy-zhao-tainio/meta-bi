@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptList>
+    <TransformScript Id="TransformScript:1">
+      <Name>demo.ExtractSeed01</Name>
+      <SourcePath>demo.ExtractSeed01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:2">
+      <Name>demo.ExtractSeed02</Name>
+      <SourcePath>demo.ExtractSeed02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:3">
+      <Name>demo.ExtractSeed03</Name>
+      <SourcePath>demo.ExtractSeed03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:4">
+      <Name>demo.ExtractSeed04</Name>
+      <SourcePath>demo.ExtractSeed04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:5">
+      <Name>demo.ExtractSeed05</Name>
+      <SourcePath>demo.ExtractSeed05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:6">
+      <Name>demo.ExtractSeed06</Name>
+      <SourcePath>demo.ExtractSeed06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:7">
+      <Name>demo.ExtractSeed07</Name>
+      <SourcePath>demo.ExtractSeed07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:8">
+      <Name>demo.ExtractSeed08</Name>
+      <SourcePath>demo.ExtractSeed08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:9">
+      <Name>etl.ExportL01N01</Name>
+      <SourcePath>etl.ExportL01N01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:10">
+      <Name>demo.SelectL01N02</Name>
+      <SourcePath>demo.SelectL01N02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:11">
+      <Name>demo.SelectL01N03</Name>
+      <SourcePath>demo.SelectL01N03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:12">
+      <Name>etl.ExportL01N04</Name>
+      <SourcePath>etl.ExportL01N04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:13">
+      <Name>etl.ExportL01N05</Name>
+      <SourcePath>etl.ExportL01N05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:14">
+      <Name>etl.RefreshL01N06</Name>
+      <SourcePath>etl.RefreshL01N06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:15">
+      <Name>etl.RefreshL01N07</Name>
+      <SourcePath>etl.RefreshL01N07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:16">
+      <Name>demo.SelectL01N08</Name>
+      <SourcePath>demo.SelectL01N08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:17">
+      <Name>etl.RefreshL01N09</Name>
+      <SourcePath>etl.RefreshL01N09.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:18">
+      <Name>demo.HubL01Stage</Name>
+      <SourcePath>demo.HubL01Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:19">
+      <Name>etl.HubL01Curate</Name>
+      <SourcePath>etl.HubL01Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:20">
+      <Name>etl.HubL01Publish</Name>
+      <SourcePath>etl.HubL01Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:21">
+      <Name>demo.SelectL02N01</Name>
+      <SourcePath>demo.SelectL02N01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:22">
+      <Name>etl.RefreshL02N02</Name>
+      <SourcePath>etl.RefreshL02N02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:23">
+      <Name>demo.SelectL02N03</Name>
+      <SourcePath>demo.SelectL02N03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:24">
+      <Name>etl.ExportL02N04</Name>
+      <SourcePath>etl.ExportL02N04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:25">
+      <Name>demo.SelectL02N05</Name>
+      <SourcePath>demo.SelectL02N05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:26">
+      <Name>etl.RefreshL02N06</Name>
+      <SourcePath>etl.RefreshL02N06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:27">
+      <Name>etl.RefreshL02N07</Name>
+      <SourcePath>etl.RefreshL02N07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:28">
+      <Name>etl.RefreshL02N08</Name>
+      <SourcePath>etl.RefreshL02N08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:29">
+      <Name>demo.HubL02Stage</Name>
+      <SourcePath>demo.HubL02Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:30">
+      <Name>etl.HubL02Curate</Name>
+      <SourcePath>etl.HubL02Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:31">
+      <Name>etl.HubL02Publish</Name>
+      <SourcePath>etl.HubL02Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:32">
+      <Name>etl.BridgeL01L02Collect</Name>
+      <SourcePath>etl.BridgeL01L02Collect.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:33">
+      <Name>demo.BridgeL01L02North</Name>
+      <SourcePath>demo.BridgeL01L02North.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:34">
+      <Name>etl.BridgeL01L02South</Name>
+      <SourcePath>etl.BridgeL01L02South.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:35">
+      <Name>demo.SelectL03N01</Name>
+      <SourcePath>demo.SelectL03N01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:36">
+      <Name>etl.ExportL03N02</Name>
+      <SourcePath>etl.ExportL03N02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:37">
+      <Name>etl.ExportL03N03</Name>
+      <SourcePath>etl.ExportL03N03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:38">
+      <Name>demo.SelectL03N04</Name>
+      <SourcePath>demo.SelectL03N04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:39">
+      <Name>demo.SelectL03N05</Name>
+      <SourcePath>demo.SelectL03N05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:40">
+      <Name>etl.RefreshL03N06</Name>
+      <SourcePath>etl.RefreshL03N06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:41">
+      <Name>etl.RefreshL03N07</Name>
+      <SourcePath>etl.RefreshL03N07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:42">
+      <Name>etl.ExportL03N08</Name>
+      <SourcePath>etl.ExportL03N08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:43">
+      <Name>etl.RefreshL03N09</Name>
+      <SourcePath>etl.RefreshL03N09.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:44">
+      <Name>etl.RefreshL03N10</Name>
+      <SourcePath>etl.RefreshL03N10.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:45">
+      <Name>demo.HubL03Stage</Name>
+      <SourcePath>demo.HubL03Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:46">
+      <Name>etl.HubL03Curate</Name>
+      <SourcePath>etl.HubL03Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:47">
+      <Name>etl.HubL03Publish</Name>
+      <SourcePath>etl.HubL03Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:48">
+      <Name>etl.RefreshL04N01</Name>
+      <SourcePath>etl.RefreshL04N01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:49">
+      <Name>etl.ExportL04N02</Name>
+      <SourcePath>etl.ExportL04N02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:50">
+      <Name>etl.RefreshL04N03</Name>
+      <SourcePath>etl.RefreshL04N03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:51">
+      <Name>etl.RefreshL04N04</Name>
+      <SourcePath>etl.RefreshL04N04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:52">
+      <Name>demo.SelectL04N05</Name>
+      <SourcePath>demo.SelectL04N05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:53">
+      <Name>etl.RefreshL04N06</Name>
+      <SourcePath>etl.RefreshL04N06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:54">
+      <Name>etl.RefreshL04N07</Name>
+      <SourcePath>etl.RefreshL04N07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:55">
+      <Name>demo.SelectL04N08</Name>
+      <SourcePath>demo.SelectL04N08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:56">
+      <Name>demo.SelectL04N09</Name>
+      <SourcePath>demo.SelectL04N09.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:57">
+      <Name>demo.HubL04Stage</Name>
+      <SourcePath>demo.HubL04Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:58">
+      <Name>etl.HubL04Curate</Name>
+      <SourcePath>etl.HubL04Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:59">
+      <Name>etl.HubL04Publish</Name>
+      <SourcePath>etl.HubL04Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:60">
+      <Name>etl.BridgeL03L04Collect</Name>
+      <SourcePath>etl.BridgeL03L04Collect.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:61">
+      <Name>demo.BridgeL03L04North</Name>
+      <SourcePath>demo.BridgeL03L04North.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:62">
+      <Name>etl.BridgeL03L04South</Name>
+      <SourcePath>etl.BridgeL03L04South.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:63">
+      <Name>demo.SelectL05N01</Name>
+      <SourcePath>demo.SelectL05N01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:64">
+      <Name>demo.SelectL05N02</Name>
+      <SourcePath>demo.SelectL05N02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:65">
+      <Name>etl.RefreshL05N03</Name>
+      <SourcePath>etl.RefreshL05N03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:66">
+      <Name>demo.SelectL05N04</Name>
+      <SourcePath>demo.SelectL05N04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:67">
+      <Name>etl.RefreshL05N05</Name>
+      <SourcePath>etl.RefreshL05N05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:68">
+      <Name>etl.ExportL05N06</Name>
+      <SourcePath>etl.ExportL05N06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:69">
+      <Name>etl.ExportL05N07</Name>
+      <SourcePath>etl.ExportL05N07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:70">
+      <Name>etl.RefreshL05N08</Name>
+      <SourcePath>etl.RefreshL05N08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:71">
+      <Name>demo.HubL05Stage</Name>
+      <SourcePath>demo.HubL05Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:72">
+      <Name>etl.HubL05Curate</Name>
+      <SourcePath>etl.HubL05Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:73">
+      <Name>etl.HubL05Publish</Name>
+      <SourcePath>etl.HubL05Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:74">
+      <Name>demo.SelectL06N01</Name>
+      <SourcePath>demo.SelectL06N01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:75">
+      <Name>etl.ExportL06N02</Name>
+      <SourcePath>etl.ExportL06N02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:76">
+      <Name>demo.SelectL06N03</Name>
+      <SourcePath>demo.SelectL06N03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:77">
+      <Name>etl.ExportL06N04</Name>
+      <SourcePath>etl.ExportL06N04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:78">
+      <Name>etl.ExportL06N05</Name>
+      <SourcePath>etl.ExportL06N05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:79">
+      <Name>demo.SelectL06N06</Name>
+      <SourcePath>demo.SelectL06N06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:80">
+      <Name>etl.ExportL06N07</Name>
+      <SourcePath>etl.ExportL06N07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:81">
+      <Name>etl.ExportL06N08</Name>
+      <SourcePath>etl.ExportL06N08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:82">
+      <Name>demo.SelectL06N09</Name>
+      <SourcePath>demo.SelectL06N09.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:83">
+      <Name>etl.RefreshL06N10</Name>
+      <SourcePath>etl.RefreshL06N10.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:84">
+      <Name>demo.HubL06Stage</Name>
+      <SourcePath>demo.HubL06Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:85">
+      <Name>etl.HubL06Curate</Name>
+      <SourcePath>etl.HubL06Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:86">
+      <Name>etl.HubL06Publish</Name>
+      <SourcePath>etl.HubL06Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:87">
+      <Name>etl.BridgeL05L06Collect</Name>
+      <SourcePath>etl.BridgeL05L06Collect.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:88">
+      <Name>demo.BridgeL05L06North</Name>
+      <SourcePath>demo.BridgeL05L06North.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:89">
+      <Name>etl.BridgeL05L06South</Name>
+      <SourcePath>etl.BridgeL05L06South.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:90">
+      <Name>demo.SelectL07N01</Name>
+      <SourcePath>demo.SelectL07N01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:91">
+      <Name>demo.SelectL07N02</Name>
+      <SourcePath>demo.SelectL07N02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:92">
+      <Name>etl.RefreshL07N03</Name>
+      <SourcePath>etl.RefreshL07N03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:93">
+      <Name>demo.SelectL07N04</Name>
+      <SourcePath>demo.SelectL07N04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:94">
+      <Name>demo.SelectL07N05</Name>
+      <SourcePath>demo.SelectL07N05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:95">
+      <Name>etl.ExportL07N06</Name>
+      <SourcePath>etl.ExportL07N06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:96">
+      <Name>demo.SelectL07N07</Name>
+      <SourcePath>demo.SelectL07N07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:97">
+      <Name>etl.ExportL07N08</Name>
+      <SourcePath>etl.ExportL07N08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:98">
+      <Name>demo.HubL07Stage</Name>
+      <SourcePath>demo.HubL07Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:99">
+      <Name>etl.HubL07Curate</Name>
+      <SourcePath>etl.HubL07Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:100">
+      <Name>etl.HubL07Publish</Name>
+      <SourcePath>etl.HubL07Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:101">
+      <Name>etl.RefreshL08N01</Name>
+      <SourcePath>etl.RefreshL08N01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:102">
+      <Name>demo.SelectL08N02</Name>
+      <SourcePath>demo.SelectL08N02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:103">
+      <Name>etl.ExportL08N03</Name>
+      <SourcePath>etl.ExportL08N03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:104">
+      <Name>demo.SelectL08N04</Name>
+      <SourcePath>demo.SelectL08N04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:105">
+      <Name>etl.RefreshL08N05</Name>
+      <SourcePath>etl.RefreshL08N05.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:106">
+      <Name>demo.SelectL08N06</Name>
+      <SourcePath>demo.SelectL08N06.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:107">
+      <Name>demo.SelectL08N07</Name>
+      <SourcePath>demo.SelectL08N07.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:108">
+      <Name>etl.RefreshL08N08</Name>
+      <SourcePath>etl.RefreshL08N08.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:109">
+      <Name>demo.HubL08Stage</Name>
+      <SourcePath>demo.HubL08Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:110">
+      <Name>etl.HubL08Curate</Name>
+      <SourcePath>etl.HubL08Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:111">
+      <Name>etl.HubL08Publish</Name>
+      <SourcePath>etl.HubL08Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:112">
+      <Name>etl.BridgeL07L08Collect</Name>
+      <SourcePath>etl.BridgeL07L08Collect.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:113">
+      <Name>demo.BridgeL07L08North</Name>
+      <SourcePath>demo.BridgeL07L08North.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:114">
+      <Name>etl.BridgeL07L08South</Name>
+      <SourcePath>etl.BridgeL07L08South.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:115">
+      <Name>demo.Regional01Stage</Name>
+      <SourcePath>demo.Regional01Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:116">
+      <Name>etl.Regional01Curate</Name>
+      <SourcePath>etl.Regional01Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:117">
+      <Name>etl.Regional01Publish</Name>
+      <SourcePath>etl.Regional01Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:118">
+      <Name>audit.RecordRegional01</Name>
+      <SourcePath>audit.RecordRegional01.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:119">
+      <Name>demo.Regional02Stage</Name>
+      <SourcePath>demo.Regional02Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:120">
+      <Name>etl.Regional02Curate</Name>
+      <SourcePath>etl.Regional02Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:121">
+      <Name>etl.Regional02Publish</Name>
+      <SourcePath>etl.Regional02Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:122">
+      <Name>audit.RecordRegional02</Name>
+      <SourcePath>audit.RecordRegional02.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:123">
+      <Name>demo.Regional03Stage</Name>
+      <SourcePath>demo.Regional03Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:124">
+      <Name>etl.Regional03Curate</Name>
+      <SourcePath>etl.Regional03Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:125">
+      <Name>etl.Regional03Publish</Name>
+      <SourcePath>etl.Regional03Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:126">
+      <Name>audit.RecordRegional03</Name>
+      <SourcePath>audit.RecordRegional03.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:127">
+      <Name>demo.Regional04Stage</Name>
+      <SourcePath>demo.Regional04Stage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:128">
+      <Name>etl.Regional04Curate</Name>
+      <SourcePath>etl.Regional04Curate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:129">
+      <Name>etl.Regional04Publish</Name>
+      <SourcePath>etl.Regional04Publish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:130">
+      <Name>audit.RecordRegional04</Name>
+      <SourcePath>audit.RecordRegional04.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:131">
+      <Name>demo.CompositeStage</Name>
+      <SourcePath>demo.CompositeStage.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:132">
+      <Name>etl.CompositeCurate</Name>
+      <SourcePath>etl.CompositeCurate.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:133">
+      <Name>demo.CompositeReconcile</Name>
+      <SourcePath>demo.CompositeReconcile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:134">
+      <Name>etl.CompositeCertify</Name>
+      <SourcePath>etl.CompositeCertify.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:135">
+      <Name>etl.CompositePublish</Name>
+      <SourcePath>etl.CompositePublish.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:136">
+      <Name>audit.RecordHairball</Name>
+      <SourcePath>audit.RecordHairball.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:137">
+      <Name>demo.PublishHairballFinal</Name>
+      <SourcePath>demo.PublishHairballFinal.sql</SourcePath>
+    </TransformScript>
+  </TransformScriptList>
+</MetaTransformScript>

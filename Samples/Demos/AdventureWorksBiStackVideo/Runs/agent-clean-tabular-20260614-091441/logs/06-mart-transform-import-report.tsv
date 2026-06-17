@@ -1,6 +1,0 @@
-Status	Index	Total	Path	Target	ScriptName	FailureKind	ErrorSummary	Line	Column	Message
-Success	1	5	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\sql\001_load_DimProduct.sql	awbi.DimProduct	awbi.v_load_DimProduct					
-Success	2	5	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\sql\002_load_DimOrderDate.sql	awbi.DimOrderDate	awbi.v_load_DimOrderDate					
-Success	3	5	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\sql\003_load_DimSalesTerritory.sql	awbi.DimSalesTerritory	awbi.v_load_DimSalesTerritory					
-Success	4	5	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\sql\004_load_DimCustomerChannel.sql	awbi.DimCustomerChannel	awbi.v_load_DimCustomerChannel					
-Success	5	5	C:\Users\jimmy\Desktop\meta-bi\Samples\Demos\AdventureWorksBiStackVideo\Runs\agent-clean-tabular-20260614-091441\dw\AdventureWorksMetaDemo\Transforms\sql\005_load_FactSalesOrderLine.sql	awbi.FactSalesOrderLine	awbi.v_load_FactSalesOrderLine					

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaSchema>
-  <SchemaList>
-    <Schema Id="sqlserver:AdventureWorksRawVault:schema:dbo" SystemId="sqlserver:system:AdventureWorksRawVault">
-      <Name>dbo</Name>
-    </Schema>
-  </SchemaList>
-</MetaSchema>

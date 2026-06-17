@@ -1,0 +1,9 @@
+CREATE VIEW demo.SelectL08N02
+AS
+SELECT
+    1 AS Value
+FROM core.L02Node03 AS s0
+CROSS JOIN dw.L03Node03 AS s1
+CROSS JOIN hub.Layer03Published AS s2
+CROSS JOIN mart.L08Node01 AS s3
+CROSS JOIN stage.L01Node08 AS s4
