@@ -1,6 +1,0 @@
-CREATE PROCEDURE etl.Regional03Curate
-AS
-BEGIN
-    SET NOCOUNT ON;
-    RETURN 0;
-END

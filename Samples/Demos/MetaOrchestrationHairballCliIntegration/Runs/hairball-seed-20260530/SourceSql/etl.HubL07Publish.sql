@@ -1,6 +1,0 @@
-CREATE PROCEDURE etl.HubL07Publish
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT CAST(1 AS int) AS Value;
-END

@@ -1,9 +1,0 @@
-CREATE VIEW demo.HubL06Stage
-AS
-SELECT
-    1 AS Value
-FROM mart.L06Node01 AS s0
-CROSS JOIN mart.L06Node06 AS s1
-CROSS JOIN mart.L06Node07 AS s2
-CROSS JOIN mart.L06Node08 AS s3
-CROSS JOIN mart.L06Node09 AS s4

@@ -1,6 +1,0 @@
-CREATE VIEW demo.SelectL03N05
-AS
-SELECT
-    1 AS Value
-FROM bridge.L01L02North AS s0
-CROSS JOIN stage.Seed03 AS s1

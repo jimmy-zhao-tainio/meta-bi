@@ -1,6 +1,0 @@
-CREATE PROCEDURE audit.RecordHairball
-AS
-BEGIN
-    SET NOCOUNT ON;
-    RETURN 0;
-END

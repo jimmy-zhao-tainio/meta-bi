@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaOrchestration>
-  <RunPlanRetryPolicyList>
-    <RunPlanRetryPolicy Id="plan-default-run-plan-defaultrunplan:retry-policy:default" RetryPolicyId="plan-default:retry-policy:defaultretrypolicy" RunPlanId="plan-default:run-plan:defaultrunplan">
-      <PolicyRole>Default</PolicyRole>
-      <Reason>Run-level retry policy used by orchestration when a task attempt fails before terminal success.</Reason>
-    </RunPlanRetryPolicy>
-  </RunPlanRetryPolicyList>
-</MetaOrchestration>

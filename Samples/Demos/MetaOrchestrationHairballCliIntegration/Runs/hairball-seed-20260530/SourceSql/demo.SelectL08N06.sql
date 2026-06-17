@@ -1,6 +1,0 @@
-CREATE VIEW demo.SelectL08N06
-AS
-SELECT
-    1 AS Value
-FROM dw.L04Node02 AS s0
-CROSS JOIN mart.L07Node04 AS s1

@@ -1,7 +1,0 @@
-CREATE VIEW demo.BridgeL07L08North
-AS
-SELECT
-    1 AS Value
-FROM bridge.L07L08Stage AS s0
-CROSS JOIN bridge.L05L06Stage AS s1
-CROSS JOIN dw.L03Node10 AS s2

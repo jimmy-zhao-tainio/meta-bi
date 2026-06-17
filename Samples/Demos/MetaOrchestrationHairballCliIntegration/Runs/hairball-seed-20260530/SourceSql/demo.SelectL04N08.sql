@@ -1,7 +1,0 @@
-CREATE VIEW demo.SelectL04N08
-AS
-SELECT
-    1 AS Value
-FROM core.L02Node08 AS s0
-CROSS JOIN hub.Layer03Stage AS s1
-CROSS JOIN stage.Seed03 AS s2

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MetaSql>
-  <DatabaseList>
-    <Database Id="MetaOrchestrationHairball">
-      <Name>MetaOrchestrationHairball</Name>
-    </Database>
-  </DatabaseList>
-</MetaSql>
