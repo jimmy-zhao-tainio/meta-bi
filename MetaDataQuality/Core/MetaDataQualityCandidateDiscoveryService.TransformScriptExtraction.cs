@@ -1336,7 +1336,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                         QuerySpecificationId = querySpecificationId,
                         JoinTableReferenceId = joinBase.Id,
                         QualifiedJoinId = qualifiedJoin.Id,
-                        QualifiedJoinType = qualifiedJoin.QualifiedJoinType,
+                        QualifiedJoinType = qualifiedJoin.QualifiedJoinType ?? string.Empty,
                         SearchConditionBooleanExpressionId = searchConditionBooleanExpressionId,
                         EqualityPredicateCount = equalityPredicates.Count,
                         EqualityPredicates = equalityPredicates,
@@ -2121,7 +2121,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 return false;
             }
 
-            unaryExpressionType = unary.UnaryExpressionType;
+            unaryExpressionType = unary.UnaryExpressionType ?? string.Empty;
             innerScalarExpressionId = unaryInner.ScalarExpression.Id;
             return !string.IsNullOrWhiteSpace(innerScalarExpressionId);
         }
@@ -2146,7 +2146,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 return false;
             }
 
-            binaryExpressionType = binary.BinaryExpressionType;
+            binaryExpressionType = binary.BinaryExpressionType ?? string.Empty;
             firstScalarExpressionId = first.ScalarExpression.Id;
             secondScalarExpressionId = second.ScalarExpression.Id;
             return !string.IsNullOrWhiteSpace(firstScalarExpressionId)
@@ -2259,14 +2259,21 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
                 .ToArray();
             var qualifiedName = NormalizeSqlIdentifierPath(nameParts);
             if (!string.IsNullOrWhiteSpace(qualifiedName) &&
-                scalarFunctionByQualifiedName.TryGetValue(qualifiedName, out scalarFunction))
+                scalarFunctionByQualifiedName.TryGetValue(qualifiedName, out var qualifiedFunction))
             {
+                scalarFunction = qualifiedFunction;
                 return true;
             }
 
             var unqualifiedName = NormalizeSqlIdentifierPart(nameIdentifier.Value);
-            return !string.IsNullOrWhiteSpace(unqualifiedName) &&
-                   scalarFunctionByUnqualifiedName.TryGetValue(unqualifiedName, out scalarFunction);
+            if (!string.IsNullOrWhiteSpace(unqualifiedName) &&
+                scalarFunctionByUnqualifiedName.TryGetValue(unqualifiedName, out var unqualifiedFunction))
+            {
+                scalarFunction = unqualifiedFunction;
+                return true;
+            }
+
+            return false;
         }
 
         private IReadOnlyList<string> GetFunctionCallCallTargetParts(FunctionCall functionCall)
@@ -2344,7 +2351,7 @@ public sealed partial class MetaDataQualityCandidateDiscoveryService
             if (tableReferenceAliasByAliasId.TryGetValue(aliasBase.Id, out var aliasLink)
                 && identifierById.TryGetValue(aliasLink.Identifier.Id, out var aliasIdentifier))
             {
-                aliasName = aliasIdentifier.Value;
+                aliasName = aliasIdentifier.Value ?? string.Empty;
             }
 
             if (!tableReferenceWithAliasAndColumnsByAliasId.TryGetValue(aliasBase.Id, out var aliasAndColumns))

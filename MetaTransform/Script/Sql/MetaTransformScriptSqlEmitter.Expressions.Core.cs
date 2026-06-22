@@ -194,7 +194,8 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         var globalVariableExpression = FindByBaseId(model.GlobalVariableExpressionList, valueExpression.Id);
         if (globalVariableExpression is not null)
         {
-            return globalVariableExpression.Name;
+            return globalVariableExpression.Name
+                ?? throw new InvalidOperationException($"GlobalVariableExpression '{globalVariableExpression.Id}' is missing its required name.");
         }
 
         throw new InvalidOperationException($"Unsupported MetaTransformScript ValueExpression id '{valueExpression.Id}'.");

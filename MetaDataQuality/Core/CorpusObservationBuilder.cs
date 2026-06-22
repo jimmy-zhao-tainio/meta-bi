@@ -144,7 +144,7 @@ internal static class CorpusObservationBuilder
             occurrence.TransformScriptId,
             occurrence.TransformScriptName,
             joinPattern.Id,
-            joinPattern.QualifiedJoinType,
+            joinPattern.QualifiedJoinType ?? string.Empty,
             leftObjectName,
             rightObjectName,
             sideA,
@@ -160,7 +160,7 @@ internal static class CorpusObservationBuilder
     private static bool TryResolveSingleSideTableName(
         IReadOnlyDictionary<string, JoinPatternOccurrenceBaseTable[]> baseTablesByOccurrenceId,
         string occurrenceId,
-        string joinInputTableReferenceId,
+        string? joinInputTableReferenceId,
         out string baseObjectName)
     {
         baseObjectName = string.Empty;

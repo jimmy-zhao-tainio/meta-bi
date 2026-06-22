@@ -5,8 +5,8 @@ param(
     [string] $Configuration = "Debug",
     [string[]] $Project,
     [switch] $SkipMetaCliBuild,
-    [bool] $BuildToolingProjects = $true,
-    [bool] $PackLocalMetaPackages = $true,
+    [switch] $SkipToolingProjectBuild,
+    [switch] $SkipPackLocalMetaPackages,
     [string] $LocalPackageSource,
     [switch] $List
 )
@@ -83,6 +83,7 @@ $metaCliProject = Join-Path $metaRepoRoot "Meta\Cli\Meta.Cli.csproj"
 $metaCliDll = Join-Path $metaRepoRoot "Meta\Cli\bin\$Configuration\net8.0\meta.dll"
 $metaCoreProject = Join-Path $metaRepoRoot "Meta\Core\Meta.Core.csproj"
 $metaAdaptersProject = Join-Path $metaRepoRoot "Meta\Adapters\Meta.Adapters.csproj"
+$stableBuildArgs = @("-m:1", "-nr:false")
 
 if ([string]::IsNullOrWhiteSpace($LocalPackageSource)) {
     $LocalPackageSource = Join-Path $script:RepoRoot "artifacts\local-meta-packages"
@@ -173,7 +174,7 @@ if (-not (Test-Path $metaAdaptersProject)) {
 if (-not $SkipMetaCliBuild) {
     if ($PSCmdlet.ShouldProcess($metaCliProject, "Build upstream meta CLI")) {
         Invoke-Checked "Building upstream meta CLI" {
-            & dotnet build $metaCliProject -c $Configuration --nologo
+            & dotnet build $metaCliProject -c $Configuration --nologo @stableBuildArgs
         }
     }
 }
@@ -182,7 +183,9 @@ if (-not (Test-Path $metaCliDll)) {
     throw "Could not find upstream meta CLI at '$metaCliDll'. Build it first or omit -SkipMetaCliBuild."
 }
 
-$usingLocalMetaPackages = $BuildToolingProjects -and $PackLocalMetaPackages
+$buildToolingProjects = -not $SkipToolingProjectBuild
+$packLocalMetaPackages = -not $SkipPackLocalMetaPackages
+$usingLocalMetaPackages = $buildToolingProjects -and $packLocalMetaPackages
 if ($usingLocalMetaPackages) {
     $LocalPackageSource = Get-FullPath $LocalPackageSource
     $localNuGetPackages = Get-FullPath $localNuGetPackages
@@ -220,13 +223,13 @@ if ($usingLocalMetaPackages) {
 
     if ($PSCmdlet.ShouldProcess($metaCoreProject, "Pack local Meta.Core")) {
         Invoke-Checked "Packing local Meta.Core" {
-            & dotnet pack $metaCoreProject -c $Configuration --nologo -o $LocalPackageSource
+            & dotnet pack $metaCoreProject -c $Configuration --nologo -o $LocalPackageSource @stableBuildArgs
         }
     }
 
     if ($PSCmdlet.ShouldProcess($metaAdaptersProject, "Pack local Meta.Adapters")) {
         Invoke-Checked "Packing local Meta.Adapters" {
-            & dotnet pack $metaAdaptersProject -c $Configuration --nologo -o $LocalPackageSource
+            & dotnet pack $metaAdaptersProject -c $Configuration --nologo -o $LocalPackageSource @stableBuildArgs
         }
     }
 }
@@ -243,7 +246,7 @@ foreach ($target in $selectedTargets) {
     }
 }
 
-if ($BuildToolingProjects) {
+if ($buildToolingProjects) {
     $builtProjects = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
     $previousNuGetPackages = $env:NUGET_PACKAGES
     try {
@@ -257,6 +260,7 @@ if ($BuildToolingProjects) {
             }
 
             $buildArgs = @("build", $target.ToolingProjectPath, "--nologo")
+            $buildArgs += $stableBuildArgs
             if ($usingLocalMetaPackages) {
                 $buildArgs += "/p:RestoreConfigFile=$localNuGetConfig"
                 $buildArgs += "/p:RestoreNoCache=true"

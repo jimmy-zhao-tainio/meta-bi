@@ -955,7 +955,12 @@ CROSS APPLY
             .Where(item => item.Target.Id == applyRowset.Id)
             .OrderBy(item => int.Parse(item.Ordinal))
             .ToArray();
-        Assert.Equal(["ApplyLeft", "ApplyRight"], applyInputs.Select(item => item.InputRole).ToArray());
+        Assert.Equal(
+            ["ApplyLeft", "ApplyRight"],
+            applyInputs
+                .Select(item => item.InputRole
+                    ?? throw new InvalidOperationException("Apply source target is missing its input role."))
+                .ToArray());
 
         var applySource = Assert.Single(bindingModel.TableSourceList, item => item.ExposedName == "applySource");
         Assert.Contains(bindingModel.RowsetList, item => item.Id == applySource.Rowset.Id && item.DerivationKind == "DerivedTable");

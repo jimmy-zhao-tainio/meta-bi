@@ -484,7 +484,7 @@ public sealed class TransformBindingValidationService
 
     private static void ThrowResolutionFailure(
         bool isSource,
-        string sqlIdentifier,
+        string? sqlIdentifier,
         SchemaTableResolutionResult resolution)
     {
         var code = resolution.FailureKind switch
@@ -517,7 +517,7 @@ public sealed class TransformBindingValidationService
     private static SchemaTableResolutionResult ResolveSourceSchemaIdentifier(
         MetaSchemaTableResolver sourceResolver,
         TransformBindingValidationOptions options,
-        string sqlIdentifier)
+        string? sqlIdentifier)
     {
         var executeSystemName = options.ExecuteSystemName?.Trim() ?? string.Empty;
         if (string.IsNullOrWhiteSpace(executeSystemName))
@@ -572,7 +572,7 @@ public sealed class TransformBindingValidationService
         return model.RowsetList.SingleOrDefault(item => string.Equals(item.Id, finalLink.Rowset.Id, StringComparison.Ordinal));
     }
 
-    private static int ParseOrdinal(string ordinal)
+    private static int ParseOrdinal(string? ordinal)
     {
         return int.TryParse(ordinal, out var value)
             ? value

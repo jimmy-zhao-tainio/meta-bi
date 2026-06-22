@@ -21,7 +21,7 @@ internal readonly record struct SourceSqlIdentifierExpansionResult(
 internal static class SourceSqlIdentifierExpansion
 {
     public static SourceSqlIdentifierExpansionResult Expand(
-        string sqlIdentifier,
+        string? sqlIdentifier,
         string? executeSystemName,
         string? executeSystemDefaultSchemaName)
     {
@@ -86,7 +86,7 @@ internal static class SourceSqlIdentifierExpansion
         }
     }
 
-    public static bool TryGetPartCount(string sqlIdentifier, out int partCount)
+    public static bool TryGetPartCount(string? sqlIdentifier, out int partCount)
     {
         var parse = Parse(sqlIdentifier);
         if (!parse.IsSuccess)
@@ -99,7 +99,7 @@ internal static class SourceSqlIdentifierExpansion
         return true;
     }
 
-    private static SourceSqlIdentifierParseResult Parse(string sqlIdentifier)
+    private static SourceSqlIdentifierParseResult Parse(string? sqlIdentifier)
     {
         if (string.IsNullOrWhiteSpace(sqlIdentifier))
         {

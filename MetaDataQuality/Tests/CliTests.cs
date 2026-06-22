@@ -199,16 +199,16 @@ FROM joined_cte;
                 occurrence =>
                     !string.IsNullOrWhiteSpace(occurrence.QualifiedJoinId)
                     && (!string.IsNullOrWhiteSpace(occurrence.CteId)
-                        || occurrence.ScopePath.Contains("CTE:", StringComparison.OrdinalIgnoreCase)));
+                        || (occurrence.ScopePath ?? string.Empty).Contains("CTE:", StringComparison.OrdinalIgnoreCase)));
             Assert.Contains(
                 result.Model.JoinPatternOccurrenceBaseTableList,
-                row => row.BaseObjectName.Contains("Customer", StringComparison.OrdinalIgnoreCase)
-                       || row.BaseObjectName.Contains("Order", StringComparison.OrdinalIgnoreCase));
+                row => (row.BaseObjectName ?? string.Empty).Contains("Customer", StringComparison.OrdinalIgnoreCase)
+                       || (row.BaseObjectName ?? string.Empty).Contains("Order", StringComparison.OrdinalIgnoreCase));
             Assert.Contains(
                 result.Model.JoinPatternKeyPartList,
                 row =>
-                    row.FirstExpressionDisplay.Contains("CustomerId", StringComparison.OrdinalIgnoreCase)
-                    || row.SecondExpressionDisplay.Contains("CustomerId", StringComparison.OrdinalIgnoreCase));
+                    (row.FirstExpressionDisplay ?? string.Empty).Contains("CustomerId", StringComparison.OrdinalIgnoreCase)
+                    || (row.SecondExpressionDisplay ?? string.Empty).Contains("CustomerId", StringComparison.OrdinalIgnoreCase));
         }
         finally
         {
@@ -255,13 +255,13 @@ INNER JOIN dbo.[Order] o
             Assert.Contains(
                 predicateParts,
                 row =>
-                    row.FirstExpressionDisplay.Contains("CustomerId", StringComparison.OrdinalIgnoreCase)
-                    || row.SecondExpressionDisplay.Contains("CustomerId", StringComparison.OrdinalIgnoreCase));
+                    (row.FirstExpressionDisplay ?? string.Empty).Contains("CustomerId", StringComparison.OrdinalIgnoreCase)
+                    || (row.SecondExpressionDisplay ?? string.Empty).Contains("CustomerId", StringComparison.OrdinalIgnoreCase));
             Assert.Contains(
                 predicateParts,
                 row =>
-                    row.FirstExpressionDisplay.Contains("RegionId", StringComparison.OrdinalIgnoreCase)
-                    || row.SecondExpressionDisplay.Contains("RegionId", StringComparison.OrdinalIgnoreCase));
+                    (row.FirstExpressionDisplay ?? string.Empty).Contains("RegionId", StringComparison.OrdinalIgnoreCase)
+                    || (row.SecondExpressionDisplay ?? string.Empty).Contains("RegionId", StringComparison.OrdinalIgnoreCase));
         }
         finally
         {

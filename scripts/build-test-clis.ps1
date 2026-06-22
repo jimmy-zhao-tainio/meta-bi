@@ -4,7 +4,7 @@ param(
     [string] $Configuration = "Debug",
     [string[]] $Project,
     [string] $MetaRepo,
-    [bool] $PackLocalMetaPackages = $true,
+    [switch] $SkipPackLocalMetaPackages,
     [string] $LocalPackageSource,
     [switch] $List
 )
@@ -99,9 +99,11 @@ if ($Project -and $Project.Count -gt 0) {
 }
 
 $buildArgsSuffix = @()
+$stableBuildArgs = @("-m:1", "-nr:false")
 $previousNuGetPackages = $env:NUGET_PACKAGES
+$packLocalMetaPackages = -not $SkipPackLocalMetaPackages
 try {
-    if ($PackLocalMetaPackages) {
+    if ($packLocalMetaPackages) {
         if (-not (Test-Path $metaCoreProject)) {
             throw "Could not find upstream Meta.Core project at '$metaCoreProject'. Use -MetaRepo to point at the core meta repository."
         }
@@ -134,11 +136,11 @@ try {
         Set-Content -LiteralPath $localNuGetConfig -Value $nugetConfigContents -Encoding UTF8
 
         Invoke-Checked "Packing local Meta.Core" {
-            & dotnet pack $metaCoreProject -c $Configuration --nologo -o $LocalPackageSource
+            & dotnet pack $metaCoreProject -c $Configuration --nologo -o $LocalPackageSource @stableBuildArgs
         }
 
         Invoke-Checked "Packing local Meta.Adapters" {
-            & dotnet pack $metaAdaptersProject -c $Configuration --nologo -o $LocalPackageSource
+            & dotnet pack $metaAdaptersProject -c $Configuration --nologo -o $LocalPackageSource @stableBuildArgs
         }
 
         $env:NUGET_PACKAGES = $localNuGetPackages
@@ -152,7 +154,7 @@ try {
         }
 
         Invoke-Checked "Building $($target.Name) CLI" {
-            & dotnet build $projectPath -c $Configuration --nologo @buildArgsSuffix
+            & dotnet build $projectPath -c $Configuration --nologo @stableBuildArgs @buildArgsSuffix
         }
 
         $executablePath = Join-RepoPath $target.Executable

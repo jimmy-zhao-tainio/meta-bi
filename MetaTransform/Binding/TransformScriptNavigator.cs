@@ -1260,7 +1260,7 @@ internal sealed partial class TransformScriptNavigator
         return related?.GetType().GetProperty("Id")?.GetValue(related) as string ?? string.Empty;
     }
 
-    private static int ParseOrdinal(string ordinal)
+    private static int ParseOrdinal(string? ordinal)
     {
         return int.TryParse(ordinal, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value)
             ? value

@@ -91,7 +91,7 @@ internal sealed class MetaSchemaTableResolver
         return ResolveCore(normalizedParts);
     }
 
-    public SchemaTableResolutionResult ResolveSqlIdentifier(string sqlIdentifier)
+    public SchemaTableResolutionResult ResolveSqlIdentifier(string? sqlIdentifier)
     {
         if (string.IsNullOrWhiteSpace(sqlIdentifier))
         {
@@ -194,7 +194,7 @@ internal sealed class MetaSchemaTableResolver
             : trimmed;
     }
 
-    private static int ParseOrdinal(string ordinal)
+    private static int ParseOrdinal(string? ordinal)
     {
         return int.TryParse(ordinal, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value)
             ? value

@@ -70,7 +70,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         return related is null ? string.Empty : GetString(related, "Id");
     }
 
-    private static int ParseOrdinal(string ordinal) =>
+    private static int ParseOrdinal(string? ordinal) =>
         int.TryParse(ordinal, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value) ? value : 0;
 
     private static string? ResolveOwnerProperty(Type type)
@@ -122,7 +122,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
                property.PropertyType.GetProperty("Id") is not null;
     }
 
-    private static bool IsTrue(string value) =>
+    private static bool IsTrue(string? value) =>
         string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
 
     private static string RenderIdentifier(Identifier identifier)

@@ -203,7 +203,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             : renderedName + "(" + string.Join(", ", parameters) + ")";
     }
 
-    private static string RenderSqlDataTypeOption(string sqlDataTypeOption)
+    private static string RenderSqlDataTypeOption(string? sqlDataTypeOption)
     {
         return MetaTransformScriptSqlServerDataTypes.RenderSqlName(sqlDataTypeOption);
     }
@@ -219,22 +219,22 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
         if (FindByBaseId(model.IntegerLiteralList, literal.Id) is not null)
         {
-            return literal.Value;
+            return RequireLiteralValue(literal);
         }
 
         if (FindByBaseId(model.NumericLiteralList, literal.Id) is not null)
         {
-            return literal.Value;
+            return RequireLiteralValue(literal);
         }
 
         if (FindByBaseId(model.RealLiteralList, literal.Id) is not null)
         {
-            return literal.Value;
+            return RequireLiteralValue(literal);
         }
 
         if (FindByBaseId(model.BinaryLiteralList, literal.Id) is not null)
         {
-            return literal.Value;
+            return RequireLiteralValue(literal);
         }
 
         if (FindByBaseId(model.NullLiteralList, literal.Id) is not null)
@@ -248,6 +248,11 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         }
 
         throw new InvalidOperationException($"Unsupported MetaTransformScript Literal type '{literal.LiteralType}'.");
+    }
+
+    private static string RequireLiteralValue(Literal literal)
+    {
+        return literal.Value ?? throw new InvalidOperationException($"Literal '{literal.Id}' is missing its required value.");
     }
 
     private string RenderFunctionCall(FunctionCall functionCall)

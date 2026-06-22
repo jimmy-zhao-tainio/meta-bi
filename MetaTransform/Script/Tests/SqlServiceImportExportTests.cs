@@ -245,7 +245,8 @@ FROM dbo.XmlSource AS s
 
         var parameterNames = model.TransformScriptFunctionParametersItemList
             .OrderBy(item => int.Parse(item.Ordinal))
-            .Select(item => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, item.Identifier.Id, StringComparison.Ordinal)).Value)
+            .Select(item => model.IdentifierList.Single(identifier => string.Equals(identifier.Id, item.Identifier.Id, StringComparison.Ordinal)).Value
+                ?? throw new InvalidOperationException("Function parameter identifier is missing its value."))
             .ToArray();
         Assert.Equal(["@CustomerId", "@FromDate"], parameterNames);
     }
@@ -554,14 +555,16 @@ FROM sales.Customer AS c
             windowFrameClause => Assert.Equal("Range", windowFrameClause.WindowFrameType));
 
         var topDelimiterTypes = model.WindowFrameClauseTopLinkList
-            .Select(link => model.WindowDelimiterList.Single(windowDelimiter => string.Equals(windowDelimiter.Id, link.WindowDelimiter.Id, StringComparison.Ordinal)).WindowDelimiterType)
+            .Select(link => model.WindowDelimiterList.Single(windowDelimiter => string.Equals(windowDelimiter.Id, link.WindowDelimiter.Id, StringComparison.Ordinal)).WindowDelimiterType
+                ?? throw new InvalidOperationException("Window delimiter is missing its type."))
             .OrderBy(static value => value, StringComparer.Ordinal)
             .ToArray();
 
         Assert.Equal(["CurrentRow", "UnboundedPreceding"], topDelimiterTypes);
 
         var bottomDelimiterTypes = model.WindowFrameClauseBottomLinkList
-            .Select(link => model.WindowDelimiterList.Single(windowDelimiter => string.Equals(windowDelimiter.Id, link.WindowDelimiter.Id, StringComparison.Ordinal)).WindowDelimiterType)
+            .Select(link => model.WindowDelimiterList.Single(windowDelimiter => string.Equals(windowDelimiter.Id, link.WindowDelimiter.Id, StringComparison.Ordinal)).WindowDelimiterType
+                ?? throw new InvalidOperationException("Window delimiter is missing its type."))
             .ToArray();
 
         Assert.Equal(["CurrentRow"], bottomDelimiterTypes);
@@ -608,7 +611,8 @@ FROM sales.Customer AS c
         var model = new MetaTransformScriptSqlService().ImportFromSqlCode(sql, "dbo.v_test");
 
         var sqlDataTypeOptions = model.SqlDataTypeReferenceList
-            .Select(row => row.SqlDataTypeOption)
+            .Select(row => row.SqlDataTypeOption
+                ?? throw new InvalidOperationException("SQL data type reference is missing its option."))
             .OrderBy(static value => value, StringComparer.Ordinal)
             .ToArray();
 
@@ -786,7 +790,8 @@ RETURN
                 var sqlDataType = Assert.Single(
                     model.SqlDataTypeReferenceList,
                     row => string.Equals(row.ParameterizedDataTypeReference.Id, parameterized.Id, StringComparison.Ordinal));
-                return sqlDataType.SqlDataTypeOption;
+                return sqlDataType.SqlDataTypeOption
+                    ?? throw new InvalidOperationException("SQL data type reference is missing its option.");
             })
             .OrderBy(static value => value, StringComparer.Ordinal)
             .ToArray();

@@ -257,8 +257,13 @@ internal sealed partial class TransformBindingSession
         };
     }
 
-    private static string? TryResolveFullTextTableFunctionName(string functionType)
+    private static string? TryResolveFullTextTableFunctionName(string? functionType)
     {
+        if (string.IsNullOrWhiteSpace(functionType))
+        {
+            return null;
+        }
+
         return functionType.Trim() switch
         {
             "Contains" => "CONTAINSTABLE",

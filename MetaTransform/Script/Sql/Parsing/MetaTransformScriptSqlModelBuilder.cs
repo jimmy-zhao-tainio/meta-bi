@@ -43,7 +43,12 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
 
         foreach (var row in rows)
         {
-            var rowId = row?.GetType().GetProperty("Id")?.GetValue(row) as string;
+            if (row is null)
+            {
+                continue;
+            }
+
+            var rowId = row.GetType().GetProperty("Id")?.GetValue(row) as string;
             if (string.Equals(rowId, id, StringComparison.Ordinal))
             {
                 return row;

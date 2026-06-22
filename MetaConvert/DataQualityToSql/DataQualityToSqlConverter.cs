@@ -1571,7 +1571,7 @@ public sealed class DataQualityToSqlConverter
 
             contexts.Add(new JoinRenderContext(
                 pattern.Id,
-                pattern.QualifiedJoinType,
+                pattern.QualifiedJoinType ?? string.Empty,
                 leftTables[0],
                 rightTables[0],
                 keyParts,
@@ -2539,7 +2539,7 @@ public sealed class DataQualityToSqlConverter
     private static string[] ResolveSideTableNames(
         IReadOnlyDictionary<string, JoinPatternOccurrenceBaseTable[]> baseTablesByOccurrenceId,
         string occurrenceId,
-        string joinInputTableReferenceId)
+        string? joinInputTableReferenceId)
     {
         if (!baseTablesByOccurrenceId.TryGetValue(occurrenceId, out var rows))
         {

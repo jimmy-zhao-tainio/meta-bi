@@ -52,10 +52,17 @@ internal static class MetaTransformScriptSqlServerDataTypes
         return SqlNameToOption.TryGetValue(NormalizeSqlTypeName(sqlName), out option!);
     }
 
-    public static string RenderSqlName(string option) =>
-        OptionToSqlName.TryGetValue(option, out var sqlName)
+    public static string RenderSqlName(string? option)
+    {
+        if (string.IsNullOrWhiteSpace(option))
+        {
+            throw new InvalidOperationException("SqlDataTypeOption is required.");
+        }
+
+        return OptionToSqlName.TryGetValue(option, out var sqlName)
             ? sqlName
             : throw new InvalidOperationException($"Unsupported SqlDataTypeOption '{option}'.");
+    }
 
     public static IReadOnlyList<string> GetDefaultParametersForSqlName(string sqlName)
     {

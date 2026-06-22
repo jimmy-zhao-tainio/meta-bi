@@ -1532,7 +1532,7 @@ public sealed partial class MetaTransformScriptSqlService
             return "max";
         }
 
-        return literal.Value;
+        return literal.Value ?? throw new InvalidOperationException($"Literal '{literalId}' is missing its required value.");
     }
 
     private static IEnumerable<string> SplitLines(string text)
@@ -1585,7 +1585,7 @@ public sealed partial class MetaTransformScriptSqlService
                     : "[" + identifier.Value.Replace("]", "]]", StringComparison.Ordinal) + "]";
     }
 
-    private static int ParseOrdinal(string ordinal) =>
+    private static int ParseOrdinal(string? ordinal) =>
         int.TryParse(ordinal, out var value) ? value : 0;
 
     private static MetaTransformScriptSqlModuleKind ToPublicModuleKind(ScriptObjectType scriptObjectType)
