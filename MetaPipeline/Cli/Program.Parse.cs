@@ -1,5 +1,7 @@
 internal static partial class Program
 {
+    private const string DefaultWorkspacePath = ".";
+
     private static (
         bool Ok,
         string PipelineWorkspacePath,
@@ -49,6 +51,22 @@ internal static partial class Program
                 continue;
             }
 
+            if (string.Equals(arg, "--transform-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --transform-workspace.");
+                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("--transform-workspace can only be provided once.");
+                transformWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--binding-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --binding-workspace.");
+                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("--binding-workspace can only be provided once.");
+                bindingWorkspacePath = args[++i];
+                continue;
+            }
+
             if (string.Equals(arg, "--data-type-conversion-workspace", StringComparison.OrdinalIgnoreCase))
             {
                 if (i + 1 >= args.Length) return FailParse("missing value for --data-type-conversion-workspace.");
@@ -68,7 +86,7 @@ internal static partial class Program
             return FailParse($"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(pipelineWorkspacePath)) return FailParse("missing required option --workspace <path>.");
+        if (string.IsNullOrWhiteSpace(pipelineWorkspacePath)) pipelineWorkspacePath = DefaultWorkspacePath;
         if (string.IsNullOrWhiteSpace(pipelineName)) return FailParse("missing required option --pipeline <name>.");
         if (string.IsNullOrWhiteSpace(stepName)) return FailParse("missing required option --step-name <name-or-id>.");
 
@@ -141,6 +159,22 @@ internal static partial class Program
                 continue;
             }
 
+            if (string.Equals(arg, "--transform-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --transform-workspace.");
+                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("--transform-workspace can only be provided once.");
+                transformWorkspacePath = args[++i];
+                continue;
+            }
+
+            if (string.Equals(arg, "--binding-workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 >= args.Length) return FailParse("missing value for --binding-workspace.");
+                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("--binding-workspace can only be provided once.");
+                bindingWorkspacePath = args[++i];
+                continue;
+            }
+
             if (string.Equals(arg, "--data-type-conversion-workspace", StringComparison.OrdinalIgnoreCase))
             {
                 if (i + 1 >= args.Length) return FailParse("missing value for --data-type-conversion-workspace.");
@@ -182,7 +216,7 @@ internal static partial class Program
             return FailParse($"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(pipelineWorkspacePath)) return FailParse("missing required option --workspace <path>.");
+        if (string.IsNullOrWhiteSpace(pipelineWorkspacePath)) pipelineWorkspacePath = DefaultWorkspacePath;
         if (string.IsNullOrWhiteSpace(pipelineName)) return FailParse("missing required option --pipeline <name>.");
 
         return (
@@ -578,7 +612,7 @@ internal static partial class Program
             return FailParse($"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(workspacePath)) return FailParse("missing required option --workspace <path>.");
+        if (string.IsNullOrWhiteSpace(workspacePath)) workspacePath = DefaultWorkspacePath;
         if (string.IsNullOrWhiteSpace(name)) return FailParse("missing required option --name <name>.");
 
         return (true, workspacePath, name, description, string.Empty);
@@ -619,7 +653,7 @@ internal static partial class Program
 
         if (string.IsNullOrWhiteSpace(workspacePath))
         {
-            return (false, workspacePath, "missing required option --workspace <path>.");
+            workspacePath = DefaultWorkspacePath;
         }
 
         return (true, workspacePath, string.Empty);
@@ -734,7 +768,7 @@ internal static partial class Program
             return FailParse($"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(workspacePath)) return FailParse("missing required option --workspace <path>.");
+        if (string.IsNullOrWhiteSpace(workspacePath)) workspacePath = DefaultWorkspacePath;
         if (string.IsNullOrWhiteSpace(pipelineName)) return FailParse("missing required option --pipeline <name>.");
         if (string.IsNullOrWhiteSpace(executablePath)) return FailParse("missing required option --executable <path>.");
 
@@ -945,7 +979,7 @@ internal static partial class Program
             return FailParse($"unknown option '{arg}'.");
         }
 
-        if (string.IsNullOrWhiteSpace(workspacePath)) return FailParse("missing required option --workspace <path>.");
+        if (string.IsNullOrWhiteSpace(workspacePath)) workspacePath = DefaultWorkspacePath;
         if (string.IsNullOrWhiteSpace(pipelineName)) return FailParse("missing required option --pipeline <name>.");
         if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("missing required option --transform-workspace <path>.");
         if (string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("missing required option --binding-workspace <path>.");

@@ -11,7 +11,8 @@ public static class CliTestRunner
         string executableName,
         string arguments,
         string? pathPrefix = null,
-        TimeSpan? timeout = null)
+        TimeSpan? timeout = null,
+        string? workingDirectory = null)
     {
         var cliRelativeDirectory = Path.Combine(cliOwnerDirectory, "Cli");
         var executableRelativePath = Path.Combine(
@@ -27,7 +28,8 @@ public static class CliTestRunner
             executableName,
             arguments,
             pathPrefix,
-            timeout);
+            timeout,
+            workingDirectory);
     }
 
     public static (int ExitCode, string Output) RunExecutable(
@@ -36,7 +38,8 @@ public static class CliTestRunner
         string displayName,
         string arguments,
         string? pathPrefix = null,
-        TimeSpan? timeout = null)
+        TimeSpan? timeout = null,
+        string? workingDirectory = null)
     {
         var repoRoot = FindRepositoryRoot(requiredRelativePath);
         var executablePath = Path.Combine(repoRoot, executableRelativePath);
@@ -50,7 +53,7 @@ public static class CliTestRunner
         {
             FileName = executablePath,
             Arguments = arguments,
-            WorkingDirectory = repoRoot,
+            WorkingDirectory = workingDirectory ?? repoRoot,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,

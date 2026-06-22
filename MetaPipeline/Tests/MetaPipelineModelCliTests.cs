@@ -38,7 +38,8 @@ public sealed class MetaPipelineModelCliTests
         Assert.Contains("--pipeline", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--pipeline-db-connection-env", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Options:", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Required. MetaPipeline workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Optional. MetaPipeline workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Default: current working", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("B/KB/MB/GB rate", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -54,6 +55,32 @@ public sealed class MetaPipelineModelCliTests
         Assert.Contains("B/KB/MB/GB rate", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--transform-script-id", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("--transform-binding-id", result.Output, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void WorkspaceCommands_WhenWorkspaceIsOmitted_UseCurrentDirectory()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaPipeline.Tests", Guid.NewGuid().ToString("N"));
+        var workspacePath = Path.Combine(tempRoot, "pipeline");
+
+        try
+        {
+            Assert.Equal(0, RunCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+
+            var add = RunCli("add-pipeline --name CwdPipeline", workingDirectory: workspacePath);
+
+            Assert.Equal(0, add.ExitCode);
+
+            var inspect = RunCli("inspect", workingDirectory: workspacePath);
+
+            Assert.Equal(0, inspect.ExitCode);
+            Assert.Contains("Pipelines: 1", inspect.Output, StringComparison.Ordinal);
+            Assert.Contains("Pipeline: CwdPipeline", inspect.Output, StringComparison.Ordinal);
+        }
+        finally
+        {
+            DeleteDirectoryIfExists(tempRoot);
+        }
     }
 
     [Fact]
@@ -538,8 +565,8 @@ public sealed class MetaPipelineModelCliTests
         model.SaveToXmlWorkspace(bindingWorkspacePath);
     }
 
-    private static (int ExitCode, string Output) RunCli(string arguments) =>
-        CliTestRunner.RunStandardCli("MetaPipeline", "meta-pipeline.exe", arguments);
+    private static (int ExitCode, string Output) RunCli(string arguments, string? workingDirectory = null) =>
+        CliTestRunner.RunStandardCli("MetaPipeline", "meta-pipeline.exe", arguments, workingDirectory: workingDirectory);
 
     private static string ResolveCmdExe() =>
         Environment.GetEnvironmentVariable("ComSpec") ?? "cmd.exe";

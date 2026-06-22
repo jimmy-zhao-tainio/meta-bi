@@ -107,6 +107,8 @@ internal sealed class ContractWorkspace : IDisposable
                 ExecutionConnectionReference = connection,
                 TransformScriptId = pipelineSeed.Script.Id,
                 TransformBindingId = binding.Id,
+                TransformWorkspacePath = TransformWorkspacePath,
+                BindingWorkspacePath = BindingWorkspacePath,
             });
 
             if (string.IsNullOrWhiteSpace(pipelineSeed.InsertRowsTarget))
@@ -181,8 +183,6 @@ internal sealed class ContractWorkspace : IDisposable
         return new MetaOrchestrationAnalysisService().Analyze(
             new OrchestrationAnalysisRequest(
                 PipelineWorkspacePath,
-                TransformWorkspacePath,
-                BindingWorkspacePath,
                 "ContractWitness"));
     }
 
