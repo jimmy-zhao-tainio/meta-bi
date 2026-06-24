@@ -14,6 +14,11 @@ If meaning needs to survive generation, round-trip, or translation, it must be m
 XML, SQL, C#, and future forms are working surfaces over the same modeled structure, and no surface should gain semantic authority just because it is the current persistence format.
 XML workspace files are important deterministic artifacts, but they are not product truth above natural SQL or C# representation.
 
+Semantic precision must still be readable to both humans and agents, but prose cannot rescue vague model surfaces.
+Do not split or name concepts so finely that the reader can no longer understand the model surface.
+Do not rely on surrounding documentation to teach hidden semantics into a weak name or weak shape.
+If a technically precise structure obscures the domain meaning, improve the names, types, prose, or model boundary before accepting it.
+
 ## Non-Negotiable Isomorphism Rule
 
 For sanctioned slices, C# must be represented naturally as C#:
@@ -32,7 +37,7 @@ Use an entity + relationship when any of these are true:
 - identity of the thing matters
 - multiple instances can exist
 - relationship direction/role matters
-- ordering/ordinal matters
+- ordering matters
 - lifecycle/history matters
 - additional attributes may grow around the concept
 
@@ -72,8 +77,18 @@ Do not use role relationships as a generic substitute for missing model structur
 
 - Preserve declared structure once.
 - Model inheritance separately from declaration ownership.
-- Keep ordered collections explicit (with ordinal where needed).
+- Order is a relationship between entities.
+- Keep ordered collections explicit with linked order relationships, ordered relationships, sequence/member entities, or another structural relationship model.
+- Do not encode order by padding text with leading zeros (`001`, `010`, `095`) so lexical sorting pretends to be numeric ordering.
+- If order matters, model it as order: a previous/next relationship, ordered relationship, sequence entity, or another explicit structure with order semantics.
+- Do not use scalar `Ordinal`, `Position`, or `Order` properties as the normal way to model ordering.
+- Use numeric order values only when the number itself is domain truth or an external surface requires numeric position as authored data.
+- Avoid vague ordering names such as `Order`. Use names and relationships that carry the semantics, such as `PreviousStep`, `PreviousSegment`, or a dedicated sequence/member entity.
+- If a value must be interpreted as an integer, number, date, identifier, or other non-plain-text shape, that meaning belongs in the model surface. It must not live only in reader knowledge or prose.
+- Text values should declare domain meaning. They must not carry implementation hacks for sorting, grouping, or display stability.
 - Keep polymorphic references typed to declared base type, not exploded concrete alternatives.
+
+Leading zeros are only acceptable when they are part of an external/domain value that is itself text, such as a source code, account number, postal code, or other authored identifier. They are not acceptable for modeled ordering values.
 
 ## Isomorphism Discipline
 
@@ -87,13 +102,31 @@ Each surface should be able to act as an authoring surface for the same modeled 
 
 If two surfaces disagree, reconcile before extending the model.
 
+## Provider Integrity Proof
+
+Do not treat a standalone `check` command as product truth.
+
+The first integrity judge is relationship / referential integrity in the modeled instance graph.
+The stronger product judge is isomorphism: the represented structure must survive projection into sanctioned surfaces such as generated C# and SQL without semantic drift.
+
+XML is one deterministic working surface, not the semantic authority.
+A workspace can be mechanically jumbled as XML and still be acceptable if it loads, binds, and round-trips through the modeled surfaces correctly.
+
+Diagnostics should be evidence produced by real load, bind, convert, generate, or round-trip operations.
+The provider of the modeling software must prove it knows how to model by making those operations preserve the representation-integrity and isomorphism contract.
+
+Do not add public commands whose purpose is to compensate for XML being more permissive than C# references or SQL foreign keys.
+
 ## Practical Review Checklist
 
 - [ ] Any "magic property" representing a hidden relationship was challenged.
 - [ ] Relationship multiplicity is explicit.
 - [ ] Role disambiguation is used only for same-kind multi-relationships.
-- [ ] Ordered members are explicit and stable.
+- [ ] Ordered members are explicit and stable through relationships rather than scalar ordering properties.
+- [ ] No ordering value relies on leading-zero text padding.
+- [ ] Property names do not rely on prose to reveal hidden type or ordering semantics.
 - [ ] Round-trip acceptance criteria are defined for the affected surface.
+- [ ] Provider integrity is proven through load, bind, convert, generate, or round-trip behavior rather than a standalone `check` concept.
 
 ## Operational Pitfalls (Cross-Repo)
 
