@@ -11,7 +11,12 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
-    <ProjectReference Include="..\CliDefinition\MetaTransformBinding.CliDefinition.csproj" />
+    <ProjectReference Include="..\..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\MetaTransform.Binding.csproj" />
+    <ProjectReference Include="..\Tooling\MetaTransformBinding.Tooling.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="meta-transform-binding.MetaCli\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

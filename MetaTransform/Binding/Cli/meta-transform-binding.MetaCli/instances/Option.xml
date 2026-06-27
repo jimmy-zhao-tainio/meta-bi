@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="opt-transform-workspace" ParameterId="param-transform-workspace">
+    </Option>
+    <Option Id="opt-source-schema" ParameterId="param-source-schema">
+    </Option>
+    <Option Id="opt-target-schema" ParameterId="param-target-schema">
+    </Option>
+    <Option Id="opt-execute-system" ParameterId="param-execute-system">
+    </Option>
+    <Option Id="opt-new-workspace" ParameterId="param-new-workspace">
+    </Option>
+    <Option Id="opt-execute-system-default-schema-name" ParameterId="param-execute-system-default-schema-name">
+    </Option>
+    <Option Id="opt-ignore-target-columns" ParameterId="param-ignore-target-columns">
+    </Option>
+    <Option Id="opt-ignore-target-columns-if-present" ParameterId="param-ignore-target-columns-if-present">
+    </Option>
+    <Option Id="opt-data-type-conversion-workspace" ParameterId="param-data-type-conversion-workspace">
+    </Option>
+    <Option Id="opt-allow-partial" ParameterId="param-allow-partial">
+    </Option>
+    <Option Id="opt-partial-report" ParameterId="param-partial-report">
+    </Option>
+  </OptionList>
+</MetaCli>

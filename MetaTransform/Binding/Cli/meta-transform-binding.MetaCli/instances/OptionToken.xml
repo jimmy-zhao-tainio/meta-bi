@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionTokenList>
+    <OptionToken Id="token-transform-workspace" OptionId="opt-transform-workspace">
+      <Token>--transform-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-source-schema" OptionId="opt-source-schema">
+      <Token>--source-schema</Token>
+    </OptionToken>
+    <OptionToken Id="token-target-schema" OptionId="opt-target-schema">
+      <Token>--target-schema</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-system" OptionId="opt-execute-system">
+      <Token>--execute-system</Token>
+    </OptionToken>
+    <OptionToken Id="token-new-workspace" OptionId="opt-new-workspace">
+      <Token>--new-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-execute-system-default-schema-name" OptionId="opt-execute-system-default-schema-name">
+      <Token>--execute-system-default-schema-name</Token>
+    </OptionToken>
+    <OptionToken Id="token-ignore-target-columns" OptionId="opt-ignore-target-columns">
+      <Token>--ignore-target-columns</Token>
+    </OptionToken>
+    <OptionToken Id="token-ignore-target-columns-if-present" OptionId="opt-ignore-target-columns-if-present">
+      <Token>--ignore-target-columns-if-present</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-type-conversion-workspace" OptionId="opt-data-type-conversion-workspace">
+      <Token>--data-type-conversion-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-allow-partial" OptionId="opt-allow-partial">
+      <Token>--allow-partial</Token>
+    </OptionToken>
+    <OptionToken Id="token-partial-report" OptionId="opt-partial-report">
+      <Token>--partial-report</Token>
+    </OptionToken>
+  </OptionTokenList>
+</MetaCli>

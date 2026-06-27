@@ -19,11 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\\..\\..\\Tests\\Common\\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaConvert\\SqlToTransformScript\\MetaConvert.SqlToTransformScript.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaConvert\\TransformScriptToSql\\MetaConvert.TransformScriptToSql.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaSql\\Core\\MetaSql.Core.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaSql\\DeployManifest\\Tooling\\MetaSqlDeployManifest.Tooling.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaSql\\Tooling\\MetaSql.Tooling.csproj" />
+    <ProjectReference Include="..\\..\\Binding\\Cli\\MetaTransformBinding.Cli.csproj" />
     <ProjectReference Include="..\\Sql\\MetaTransformScript.Sql.csproj" />
     <ProjectReference Include="..\\..\\Binding\\MetaTransform.Binding.csproj" />
   </ItemGroup>

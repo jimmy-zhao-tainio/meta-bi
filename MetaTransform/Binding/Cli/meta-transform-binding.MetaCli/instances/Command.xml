@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <CommandList>
+    <Command Id="cmd-help" ApplicationId="app-meta-transform-binding">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-bind" ApplicationId="app-meta-transform-binding">
+      <Description>Bind transform scripts and validate them against source and target schema contracts into a new workspace.</Description>
+      <Name>bind</Name>
+      <Token>bind</Token>
+    </Command>
+  </CommandList>
+</MetaCli>
