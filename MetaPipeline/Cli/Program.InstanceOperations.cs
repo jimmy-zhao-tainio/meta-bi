@@ -1,6 +1,3 @@
-using Meta.Core.Operations;
-using Meta.Core.Services;
-
 internal static partial class Program
 {
     private static MetaPipeline.Pipeline ResolvePipeline(
@@ -29,74 +26,6 @@ internal static partial class Program
             throw new MetaPipeline.MetaPipelineConfigurationException(
                 $"Pipeline '{pipelineName}' already exists.");
         }
-    }
-
-    private static WorkspaceOp CreateUpsertOperation(
-        string entityName,
-        RowPatch rowPatch)
-    {
-        return new WorkspaceOp
-        {
-            Type = WorkspaceOpTypes.BulkUpsertRows,
-            EntityName = entityName,
-            RowPatches = { rowPatch },
-        };
-    }
-
-    private static RowPatch CreateRowPatch(
-        string id,
-        IReadOnlyDictionary<string, string>? values = null,
-        IReadOnlyDictionary<string, string>? relationships = null)
-    {
-        var rowPatch = new RowPatch
-        {
-            Id = id,
-        };
-
-        if (values is not null)
-        {
-            foreach (var value in values)
-            {
-                rowPatch.Values[value.Key] = value.Value;
-            }
-        }
-
-        if (relationships is not null)
-        {
-            foreach (var relationship in relationships)
-            {
-                rowPatch.RelationshipIds[relationship.Key] = relationship.Value;
-            }
-        }
-
-        return rowPatch;
-    }
-
-    private static void ApplyInstanceUpserts(
-        string workspacePath,
-        params WorkspaceOp[] operations)
-    {
-        ApplyInstanceUpserts(workspacePath, (IEnumerable<WorkspaceOp>)operations);
-    }
-
-    private static void ApplyInstanceUpserts(
-        string workspacePath,
-        IEnumerable<WorkspaceOp> operations)
-    {
-        var workspaceService = new WorkspaceService();
-        var workspace = workspaceService.LoadAsync(workspacePath, searchUpward: false)
-            .GetAwaiter()
-            .GetResult();
-
-        foreach (var operation in operations)
-        {
-            BulkRelationshipResolver.ResolveRelationshipIds(workspace, operation);
-            WorkspaceOperationApplier.Apply(workspace, operation);
-        }
-
-        workspaceService.SaveAsync(workspace)
-            .GetAwaiter()
-            .GetResult();
     }
 
     private static MetaPipeline.ConnectionReference GetOrAddConnectionReference(
@@ -128,13 +57,15 @@ internal static partial class Program
             return match;
         }
 
-        return new MetaPipeline.ConnectionReference
+        var connection = new MetaPipeline.ConnectionReference
         {
             Id = ScopedId(pipeline.Id, name),
             Pipeline = pipeline,
             Name = name.Trim(),
             EnvironmentVariableName = environmentVariableName.Trim(),
         };
+        model.ConnectionReferenceList.Add(connection);
+        return connection;
     }
 
     private static string ResolveTaskLabel(
@@ -186,34 +117,44 @@ internal static partial class Program
         MetaPipeline.MetaPipelineModel model,
         MetaPipeline.Pipeline pipeline)
     {
-        return model.PipelineTaskList
+        var tasks = model.PipelineTaskList
             .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
-            .Select(item => new
-            {
-                Task = item,
-                Ordinal = ParseOrdinalOrZero(item.Ordinal),
-            })
-            .OrderByDescending(static item => item.Ordinal)
-            .ThenByDescending(static item => item.Task.Name, StringComparer.OrdinalIgnoreCase)
-            .Select(static item => item.Task)
-            .FirstOrDefault();
+            .ToArray();
+        if (tasks.Length == 0)
+        {
+            return null;
+        }
+
+        var predecessorTaskIds = model.TaskDependencyList
+            .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
+            .Select(static item => item.Predecessor.Id)
+            .ToHashSet(StringComparer.Ordinal);
+
+        var terminalTasks = tasks
+            .Where(item => !predecessorTaskIds.Contains(item.Id))
+            .ToArray();
+
+        return terminalTasks.Length switch
+        {
+            1 => terminalTasks[0],
+            _ => throw new MetaPipeline.MetaPipelineConfigurationException(
+                $"Pipeline '{pipeline.Name}' must have exactly one terminal task before appending a new step."),
+        };
     }
 
-    private static WorkspaceOp CreateSerialDependencyOperation(
+    private static void AddSerialDependency(
+        MetaPipeline.MetaPipelineModel model,
         MetaPipeline.Pipeline pipeline,
-        string predecessorTaskId,
-        string successorTaskId)
+        MetaPipeline.PipelineTask predecessorTask,
+        MetaPipeline.PipelineTask successorTask)
     {
-        return CreateUpsertOperation(
-            "TaskDependency",
-            CreateRowPatch(
-                ScopedId(predecessorTaskId, "Before", successorTaskId),
-                relationships: new Dictionary<string, string>
-                {
-                    ["PipelineId"] = pipeline.Id,
-                    ["PredecessorId"] = predecessorTaskId,
-                    ["SuccessorId"] = successorTaskId,
-                }));
+        model.TaskDependencyList.Add(new MetaPipeline.TaskDependency
+        {
+            Id = ScopedId(predecessorTask.Id, "Before", successorTask.Id),
+            Pipeline = pipeline,
+            Predecessor = predecessorTask,
+            Successor = successorTask,
+        });
     }
 
     private static MetaPipeline.PipelineTask ResolvePipelineTask(
@@ -236,23 +177,101 @@ internal static partial class Program
         };
     }
 
-    private static int ResolveNextTaskOrdinal(
+    private static IReadOnlyList<MetaPipeline.PipelineTask> ResolveOrderedPipelineTasks(
         MetaPipeline.MetaPipelineModel model,
         MetaPipeline.Pipeline pipeline)
     {
-        var maxOrdinal = model.PipelineTaskList
+        var tasks = model.PipelineTaskList
             .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
-            .Select(static item => ParseOrdinalOrZero(item.Ordinal))
-            .DefaultIfEmpty(0)
-            .Max();
-        return maxOrdinal + 1;
+            .ToArray();
+        if (tasks.Length <= 1)
+        {
+            return tasks;
+        }
+
+        var tasksById = tasks.ToDictionary(static item => item.Id, StringComparer.Ordinal);
+        var dependencies = model.TaskDependencyList
+            .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
+            .ToArray();
+        if (dependencies.Length == 0)
+        {
+            throw new MetaPipeline.MetaPipelineConfigurationException(
+                $"Pipeline '{pipeline.Name}' has multiple tasks but no TaskDependency rows. Serial pipelines must declare task order.");
+        }
+
+        var successorByPredecessor = new Dictionary<string, string>(StringComparer.Ordinal);
+        var predecessorBySuccessor = new Dictionary<string, string>(StringComparer.Ordinal);
+        foreach (var dependency in dependencies)
+        {
+            if (!tasksById.ContainsKey(dependency.Predecessor.Id))
+            {
+                throw new MetaPipeline.MetaPipelineConfigurationException(
+                    $"Pipeline '{pipeline.Name}' dependency '{dependency.Id}' references missing predecessor '{dependency.Predecessor.Id}'.");
+            }
+
+            if (!tasksById.ContainsKey(dependency.Successor.Id))
+            {
+                throw new MetaPipeline.MetaPipelineConfigurationException(
+                    $"Pipeline '{pipeline.Name}' dependency '{dependency.Id}' references missing successor '{dependency.Successor.Id}'.");
+            }
+
+            if (string.Equals(dependency.Predecessor.Id, dependency.Successor.Id, StringComparison.Ordinal))
+            {
+                throw new MetaPipeline.MetaPipelineConfigurationException(
+                    $"Pipeline '{pipeline.Name}' dependency '{dependency.Id}' points a task to itself.");
+            }
+
+            if (!successorByPredecessor.TryAdd(dependency.Predecessor.Id, dependency.Successor.Id))
+            {
+                throw new MetaPipeline.MetaPipelineConfigurationException(
+                    $"Pipeline '{pipeline.Name}' task '{tasksById[dependency.Predecessor.Id].Name}' has multiple successors.");
+            }
+
+            if (!predecessorBySuccessor.TryAdd(dependency.Successor.Id, dependency.Predecessor.Id))
+            {
+                throw new MetaPipeline.MetaPipelineConfigurationException(
+                    $"Pipeline '{pipeline.Name}' task '{tasksById[dependency.Successor.Id].Name}' has multiple predecessors.");
+            }
+        }
+
+        var startTasks = tasks
+            .Where(item => !predecessorBySuccessor.ContainsKey(item.Id))
+            .ToArray();
+        if (startTasks.Length != 1)
+        {
+            throw new MetaPipeline.MetaPipelineConfigurationException(
+                $"Pipeline '{pipeline.Name}' must have exactly one first task for serial execution.");
+        }
+
+        var ordered = new List<MetaPipeline.PipelineTask>();
+        var seen = new HashSet<string>(StringComparer.Ordinal);
+        var current = startTasks[0];
+        while (true)
+        {
+            if (!seen.Add(current.Id))
+            {
+                throw new MetaPipeline.MetaPipelineConfigurationException(
+                    $"Pipeline '{pipeline.Name}' contains a cycle in TaskDependency rows.");
+            }
+
+            ordered.Add(current);
+            if (!successorByPredecessor.TryGetValue(current.Id, out var successorId))
+            {
+                break;
+            }
+
+            current = tasksById[successorId];
+        }
+
+        if (ordered.Count != tasks.Length)
+        {
+            throw new MetaPipeline.MetaPipelineConfigurationException(
+                $"Pipeline '{pipeline.Name}' TaskDependency rows do not form one connected serial chain.");
+        }
+
+        return ordered;
     }
 
-    private static int ParseOrdinalOrZero(string value) =>
-        int.TryParse(value, out var ordinal) ? ordinal : 0;
-
-    private static int ParseOrdinalOrMax(string value) =>
-        int.TryParse(value, out var ordinal) ? ordinal : int.MaxValue;
 
     private static string NaturalId(string name)
     {

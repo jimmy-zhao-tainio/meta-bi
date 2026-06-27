@@ -50,7 +50,6 @@ public sealed class MetaPipelineModelValidationServiceTests
             Id = "CustomerLoad.prepare",
             Pipeline = pipeline,
             Name = "prepare",
-            Ordinal = "1",
         };
         model.PipelineTaskList.Add(task);
         model.ExecutableTaskList.Add(new ExecutableTask
@@ -148,7 +147,6 @@ public sealed class MetaPipelineModelValidationServiceTests
             Id = "CustomerLoad.load",
             Pipeline = pipeline,
             Name = "load",
-            Ordinal = "1",
         };
         model.PipelineTaskList.Add(loadTask);
         var targetWritePipelineTask = new PipelineTask
@@ -156,7 +154,6 @@ public sealed class MetaPipelineModelValidationServiceTests
             Id = "CustomerLoad.load.target-write",
             Pipeline = pipeline,
             Name = "load.target-write",
-            Ordinal = "2",
         };
         model.PipelineTaskList.Add(targetWritePipelineTask);
 
@@ -248,14 +245,13 @@ public sealed class MetaPipelineModelValidationServiceTests
         Pipeline pipeline,
         ConnectionReference source,
         string name,
-        string ordinal)
+        string token)
     {
         var task = new PipelineTask
         {
             Id = "CustomerLoad." + name,
             Pipeline = pipeline,
             Name = name,
-            Ordinal = ordinal,
         };
         model.PipelineTaskList.Add(task);
         model.TransformExecutionTaskList.Add(new TransformExecutionTask
@@ -263,8 +259,8 @@ public sealed class MetaPipelineModelValidationServiceTests
             Id = task.Id + ".TransformExecution",
             PipelineTask = task,
             ExecutionConnectionReference = source,
-            TransformScriptId = "TransformScript:" + ordinal,
-            TransformBindingId = "binding:" + ordinal,
+            TransformScriptId = "TransformScript:" + token,
+            TransformBindingId = "binding:" + token,
         });
         return task;
     }

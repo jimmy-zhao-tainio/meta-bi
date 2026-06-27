@@ -13,7 +13,7 @@ public sealed class MetaPipelineModelCliTests
         var result = RunCli("--help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("--new-workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("new-workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("init", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("add-pipeline", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("add-step", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -38,8 +38,8 @@ public sealed class MetaPipelineModelCliTests
         Assert.Contains("--pipeline", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--pipeline-db-connection-env", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Options:", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Optional. MetaPipeline workspace", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Default: current working", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("MetaPipeline workspace. Defaults", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Defaults to the current working", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("B/KB/MB/GB rate", result.Output, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -65,7 +65,7 @@ public sealed class MetaPipelineModelCliTests
 
         try
         {
-            Assert.Equal(0, RunCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunCli($"new-workspace \"{workspacePath}\"").ExitCode);
 
             var add = RunCli("add-pipeline --name CwdPipeline", workingDirectory: workspacePath);
 
@@ -73,7 +73,7 @@ public sealed class MetaPipelineModelCliTests
 
             var inspect = RunCli("inspect", workingDirectory: workspacePath);
 
-            Assert.Equal(0, inspect.ExitCode);
+            Assert.True(inspect.ExitCode == 0, inspect.Output);
             Assert.Contains("Pipelines: 1", inspect.Output, StringComparison.Ordinal);
             Assert.Contains("Pipeline: CwdPipeline", inspect.Output, StringComparison.Ordinal);
         }
@@ -92,7 +92,7 @@ public sealed class MetaPipelineModelCliTests
         Assert.Contains("--workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--pipeline", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--step-name", result.Output, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("Required. Pipeline task name or id", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Pipeline task name or id", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("exactly one", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("diagnostic", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("execute-worker", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -158,6 +158,7 @@ public sealed class MetaPipelineModelCliTests
             Environment.SetEnvironmentVariable(
                 pipelineDbEnv,
                 $"Server=.;Database={missingDatabase};Integrated Security=true;TrustServerCertificate=true;Encrypt=false;Connect Timeout=1");
+            Assert.Equal(0, RunCli($"new-workspace \"{Path.Combine(tempRoot, "pipeline")}\"").ExitCode);
 
             var result = RunCli(
                 $"execute --workspace \"{Path.Combine(tempRoot, "pipeline")}\" --pipeline CustomerLoad --transform-workspace \"{Path.Combine(tempRoot, "transform")}\" --binding-workspace \"{Path.Combine(tempRoot, "binding")}\" --pipeline-db-connection-env {pipelineDbEnv}");
@@ -201,7 +202,7 @@ public sealed class MetaPipelineModelCliTests
                 ["CustomerId", "CustomerName", "TotalAmount"],
                 [0, 1, 2]);
 
-            var created = RunCli($"--new-workspace \"{workspacePath}\"");
+            var created = RunCli($"new-workspace \"{workspacePath}\"");
 
             Assert.Equal(0, created.ExitCode);
             Assert.Contains("Ok", created.Output, StringComparison.Ordinal);
@@ -227,7 +228,7 @@ public sealed class MetaPipelineModelCliTests
 
             var inspect = RunCli($"inspect --workspace \"{workspacePath}\"");
 
-            Assert.Equal(0, inspect.ExitCode);
+            Assert.True(inspect.ExitCode == 0, inspect.Output);
             Assert.Contains("Tasks: 4", inspect.Output, StringComparison.Ordinal);
             Assert.Contains("RowStreamColumns: 6", inspect.Output, StringComparison.Ordinal);
             Assert.Contains("load-customers [TransformExecution]", inspect.Output, StringComparison.Ordinal);
@@ -314,7 +315,7 @@ public sealed class MetaPipelineModelCliTests
 
         try
         {
-            Assert.Equal(0, RunCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunCli($"new-workspace \"{workspacePath}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-pipeline --workspace \"{workspacePath}\" --name ExecutableSuccess").ExitCode);
             Assert.Equal(0, RunCli(
                 $"add-executable-step --workspace \"{workspacePath}\" --pipeline ExecutableSuccess --step-name run-success --executable \"{cmdExe}\" --arguments \"/c exit /b 0\"").ExitCode);
@@ -375,7 +376,7 @@ public sealed class MetaPipelineModelCliTests
                 [],
                 []);
 
-            Assert.Equal(0, RunCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunCli($"new-workspace \"{workspacePath}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-pipeline --workspace \"{workspacePath}\" --name CustomerMutation").ExitCode);
 
             var add = RunCli(
@@ -432,7 +433,7 @@ public sealed class MetaPipelineModelCliTests
                 ["CustomerId"],
                 [0]);
 
-            Assert.Equal(0, RunCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunCli($"new-workspace \"{workspacePath}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-pipeline --workspace \"{workspacePath}\" --name CustomerLoad").ExitCode);
             Assert.Equal(0, RunCli(
                 $"add-step --workspace \"{workspacePath}\" --pipeline CustomerLoad --step-name load-customers --script \"{transformScript.Name}\" --transform-workspace \"{transformWorkspacePath}\" --binding-workspace \"{bindingWorkspacePath}\" --execution-connection-env {sourceEnv} --target-connection-env {targetEnv} --target dbo.TargetCustomer").ExitCode);
@@ -488,7 +489,7 @@ public sealed class MetaPipelineModelCliTests
                 ["CustomerId", "CustomerName"],
                 [0, 1]);
 
-            Assert.Equal(0, RunCli($"--new-workspace \"{workspacePath}\"").ExitCode);
+            Assert.Equal(0, RunCli($"new-workspace \"{workspacePath}\"").ExitCode);
             Assert.Equal(0, RunCli($"add-pipeline --workspace \"{workspacePath}\" --name CustomerLoad").ExitCode);
             Assert.Equal(0, RunCli(
                 $"add-step --workspace \"{workspacePath}\" --pipeline CustomerLoad --step-name load-customers --script \"{transformScript.Name}\" --transform-workspace \"{transformWorkspacePath}\" --binding-workspace \"{bindingWorkspacePath}\" --execution-connection-env {sourceEnv} --target-connection-env {targetEnv} --target dbo.TargetCustomer").ExitCode);

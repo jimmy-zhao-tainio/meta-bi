@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-data-quality">
+      <ExecutableName>meta-data-quality</ExecutableName>
+      <Name>meta-data-quality</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

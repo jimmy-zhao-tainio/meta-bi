@@ -17,8 +17,6 @@ namespace MetaPipeline
 
         public string Name { get; set; } = string.Empty;
 
-        public string Ordinal { get; set; } = string.Empty;
-
         public Pipeline Pipeline { get; set; } = null!;
 
     }

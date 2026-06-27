@@ -1,4 +1,4 @@
-using Meta.Core.Domain;
+using MetaDataTypeConversion;
 
 namespace MetaDataTypeConversion.Core;
 
@@ -29,56 +29,55 @@ public sealed record MetaDataTypeConversionCheckResult(
 
 public interface IMetaDataTypeConversionService
 {
-    MetaDataTypeConversionCheckResult Check(Workspace workspace);
-    DataTypeMappingResolution Resolve(Workspace workspace, string sourceDataTypeId);
-    DataTypeMappingResolution Resolve(Workspace workspace, string sourceDataTypeId, string targetDataTypeSystemName);
-    DataTypeCompatibilityResolution ResolveCompatibility(Workspace workspace, string sourceDataTypeId, string targetDataTypeId);
+    MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model);
+    DataTypeMappingResolution Resolve(MetaDataTypeConversionModel model, string sourceDataTypeId);
+    DataTypeMappingResolution Resolve(MetaDataTypeConversionModel model, string sourceDataTypeId, string targetDataTypeSystemName);
+    DataTypeCompatibilityResolution ResolveCompatibility(MetaDataTypeConversionModel model, string sourceDataTypeId, string targetDataTypeId);
 }
 
 public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionService
 {
-    public MetaDataTypeConversionCheckResult Check(Workspace workspace)
+    public MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model)
     {
-        ArgumentNullException.ThrowIfNull(workspace);
+        ArgumentNullException.ThrowIfNull(model);
 
-        var implementations = workspace.Instance.GetOrCreateEntityRecords("ConversionImplementation")
-            .OrderBy(record => record.Id, StringComparer.Ordinal)
+        var implementations = model.ConversionImplementationList
+            .OrderBy(row => row.Id, StringComparer.Ordinal)
             .ToList();
-        var mappings = workspace.Instance.GetOrCreateEntityRecords("DataTypeMapping")
-            .OrderBy(record => record.Id, StringComparer.Ordinal)
+        var mappings = model.DataTypeMappingList
+            .OrderBy(row => row.Id, StringComparer.Ordinal)
             .ToList();
 
-        var implementationById = implementations.ToDictionary(record => record.Id, StringComparer.Ordinal);
+        var implementationById = implementations.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var errors = new List<string>();
 
         foreach (var mapping in mappings)
         {
-            var sourceDataTypeId = RequireValue(mapping, "SourceDataTypeId");
-            var targetDataTypeId = RequireValue(mapping, "TargetDataTypeId");
+            var sourceDataTypeId = RequireValue(mapping.Id, mapping.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId));
+            var targetDataTypeId = RequireValue(mapping.Id, mapping.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId));
             if (string.IsNullOrWhiteSpace(TryGetDataTypeSystemName(targetDataTypeId)))
             {
                 errors.Add($"DataTypeMapping '{mapping.Id}' has TargetDataTypeId '{targetDataTypeId}' with an unsupported data type id shape.");
             }
 
-
-            if (!mapping.RelationshipIds.TryGetValue("ConversionImplementationId", out var implementationId) ||
-                string.IsNullOrWhiteSpace(implementationId))
+            if (mapping.ConversionImplementation is null ||
+                string.IsNullOrWhiteSpace(mapping.ConversionImplementation.Id))
             {
-                errors.Add($"DataTypeMapping '{mapping.Id}' is missing required relationship 'ConversionImplementationId'.");
+                errors.Add($"DataTypeMapping '{mapping.Id}' is missing required relationship 'ConversionImplementation'.");
                 continue;
             }
 
-            if (!implementationById.ContainsKey(implementationId))
+            if (!implementationById.ContainsKey(mapping.ConversionImplementation.Id))
             {
-                errors.Add($"DataTypeMapping '{mapping.Id}' references missing ConversionImplementation '{implementationId}'.");
+                errors.Add($"DataTypeMapping '{mapping.Id}' references missing ConversionImplementation '{mapping.ConversionImplementation.Id}'.");
             }
         }
 
         var duplicateSources = mappings
             .GroupBy(
-                record => new DataTypeMappingKey(
-                    RequireValue(record, "SourceDataTypeId"),
-                    NormalizeDataTypeSystemName(TryGetDataTypeSystemName(RequireValue(record, "TargetDataTypeId")) ?? string.Empty)),
+                row => new DataTypeMappingKey(
+                    RequireValue(row.Id, row.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId)),
+                    NormalizeDataTypeSystemName(TryGetDataTypeSystemName(RequireValue(row.Id, row.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId))) ?? string.Empty)),
                 DataTypeMappingKeyComparer.Instance)
             .Where(group => group.Count() > 1)
             .OrderBy(group => group.Key.SourceDataTypeId, StringComparer.Ordinal)
@@ -86,26 +85,26 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
 
         foreach (var duplicateSource in duplicateSources)
         {
-            var ids = string.Join(", ", duplicateSource.Select(record => record.Id).OrderBy(id => id, StringComparer.Ordinal));
+            var ids = string.Join(", ", duplicateSource.Select(row => row.Id).OrderBy(id => id, StringComparer.Ordinal));
             errors.Add($"SourceDataTypeId '{duplicateSource.Key.SourceDataTypeId}' is mapped more than once for target data type system '{duplicateSource.Key.TargetDataTypeSystemName}' ({ids}).");
         }
 
         return new MetaDataTypeConversionCheckResult(mappings.Count, implementations.Count, errors);
     }
 
-    public DataTypeMappingResolution Resolve(Workspace workspace, string sourceDataTypeId)
+    public DataTypeMappingResolution Resolve(MetaDataTypeConversionModel model, string sourceDataTypeId)
     {
-        ArgumentNullException.ThrowIfNull(workspace);
+        ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(sourceDataTypeId);
 
-        var check = Check(workspace);
+        var check = Check(model);
         if (check.HasErrors)
         {
             throw new InvalidOperationException("MetaDataTypeConversion workspace is invalid. Run 'meta-data-type-conversion check' first.");
         }
 
-        var mappings = workspace.Instance.GetOrCreateEntityRecords("DataTypeMapping")
-            .Where(record => string.Equals(RequireValue(record, "SourceDataTypeId"), sourceDataTypeId, StringComparison.Ordinal))
+        var mappings = model.DataTypeMappingList
+            .Where(row => string.Equals(RequireValue(row.Id, row.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId)), sourceDataTypeId, StringComparison.Ordinal))
             .ToList();
 
         if (mappings.Count == 0)
@@ -118,36 +117,36 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
             var targetSystems = string.Join(
                 ", ",
                 mappings
-                    .Select(record => TryGetDataTypeSystemName(RequireValue(record, "TargetDataTypeId")) ?? "<unknown>")
+                    .Select(row => TryGetDataTypeSystemName(RequireValue(row.Id, row.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId))) ?? "<unknown>")
                     .Distinct(StringComparer.OrdinalIgnoreCase)
                     .OrderBy(value => value, StringComparer.OrdinalIgnoreCase));
             throw new InvalidOperationException(
                 $"Source data type '{sourceDataTypeId}' resolves ambiguously to {mappings.Count} DataTypeMappings. Specify a target data type system. Available target systems: {targetSystems}.");
         }
 
-        return CreateResolution(workspace, mappings[0]);
+        return CreateResolution(model, mappings[0]);
     }
 
     public DataTypeMappingResolution Resolve(
-        Workspace workspace,
+        MetaDataTypeConversionModel model,
         string sourceDataTypeId,
         string targetDataTypeSystemName)
     {
-        ArgumentNullException.ThrowIfNull(workspace);
+        ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(sourceDataTypeId);
         ArgumentException.ThrowIfNullOrWhiteSpace(targetDataTypeSystemName);
 
-        var check = Check(workspace);
+        var check = Check(model);
         if (check.HasErrors)
         {
             throw new InvalidOperationException("MetaDataTypeConversion workspace is invalid. Run 'meta-data-type-conversion check' first.");
         }
 
         var normalizedTargetSystem = NormalizeDataTypeSystemName(targetDataTypeSystemName);
-        var mappings = workspace.Instance.GetOrCreateEntityRecords("DataTypeMapping")
-            .Where(record => string.Equals(RequireValue(record, "SourceDataTypeId"), sourceDataTypeId, StringComparison.Ordinal))
-            .Where(record => string.Equals(
-                NormalizeDataTypeSystemName(TryGetDataTypeSystemName(RequireValue(record, "TargetDataTypeId")) ?? string.Empty),
+        var mappings = model.DataTypeMappingList
+            .Where(row => string.Equals(RequireValue(row.Id, row.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId)), sourceDataTypeId, StringComparison.Ordinal))
+            .Where(row => string.Equals(
+                NormalizeDataTypeSystemName(TryGetDataTypeSystemName(RequireValue(row.Id, row.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId))) ?? string.Empty),
                 normalizedTargetSystem,
                 StringComparison.Ordinal))
             .ToList();
@@ -162,19 +161,19 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
             throw new InvalidOperationException($"Source data type '{sourceDataTypeId}' resolves ambiguously to {mappings.Count} DataTypeMappings for target data type system '{targetDataTypeSystemName}'.");
         }
 
-        return CreateResolution(workspace, mappings[0]);
+        return CreateResolution(model, mappings[0]);
     }
 
     public DataTypeCompatibilityResolution ResolveCompatibility(
-        Workspace workspace,
+        MetaDataTypeConversionModel model,
         string sourceDataTypeId,
         string targetDataTypeId)
     {
-        ArgumentNullException.ThrowIfNull(workspace);
+        ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(sourceDataTypeId);
         ArgumentException.ThrowIfNullOrWhiteSpace(targetDataTypeId);
 
-        var check = Check(workspace);
+        var check = Check(model);
         if (check.HasErrors)
         {
             throw new InvalidOperationException("MetaDataTypeConversion workspace is invalid. Run 'meta-data-type-conversion check' first.");
@@ -182,8 +181,8 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
 
         var source = sourceDataTypeId.Trim();
         var target = targetDataTypeId.Trim();
-        var mappings = workspace.Instance.GetOrCreateEntityRecords("DataTypeMapping")
-            .Select(record => CreateResolution(workspace, record))
+        var mappings = model.DataTypeMappingList
+            .Select(row => CreateResolution(model, row))
             .ToArray();
 
         if (string.Equals(source, target, StringComparison.Ordinal))
@@ -233,32 +232,32 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
         throw new InvalidOperationException($"No sanctioned data type conversion path exists from '{source}' to '{target}'.");
     }
 
-    private static DataTypeMappingResolution CreateResolution(Workspace workspace, GenericRecord mapping)
+    private static DataTypeMappingResolution CreateResolution(MetaDataTypeConversionModel model, DataTypeMapping mapping)
     {
-        var implementations = workspace.Instance.GetOrCreateEntityRecords("ConversionImplementation")
-            .ToDictionary(record => record.Id, StringComparer.Ordinal);
+        var implementations = model.ConversionImplementationList
+            .ToDictionary(row => row.Id, StringComparer.Ordinal);
 
-        if (!mapping.RelationshipIds.TryGetValue("ConversionImplementationId", out var implementationId) ||
-            string.IsNullOrWhiteSpace(implementationId))
+        if (mapping.ConversionImplementation is null ||
+            string.IsNullOrWhiteSpace(mapping.ConversionImplementation.Id))
         {
-            throw new InvalidOperationException($"DataTypeMapping '{mapping.Id}' is missing required relationship 'ConversionImplementationId'.");
+            throw new InvalidOperationException($"DataTypeMapping '{mapping.Id}' is missing required relationship 'ConversionImplementation'.");
         }
 
-        if (!implementations.TryGetValue(implementationId, out var implementation))
+        if (!implementations.TryGetValue(mapping.ConversionImplementation.Id, out var implementation))
         {
-            throw new InvalidOperationException($"DataTypeMapping '{mapping.Id}' references missing ConversionImplementation '{implementationId}'.");
+            throw new InvalidOperationException($"DataTypeMapping '{mapping.Id}' references missing ConversionImplementation '{mapping.ConversionImplementation.Id}'.");
         }
 
-        var targetDataTypeId = RequireValue(mapping, "TargetDataTypeId");
+        var targetDataTypeId = RequireValue(mapping.Id, mapping.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId));
 
         return new DataTypeMappingResolution(
             mapping.Id,
-            RequireValue(mapping, "SourceDataTypeId"),
+            RequireValue(mapping.Id, mapping.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId)),
             targetDataTypeId,
             TryGetDataTypeSystemName(targetDataTypeId) ?? string.Empty,
-            implementationId,
-            RequireValue(implementation, "Name"),
-            mapping.Values.TryGetValue("Notes", out var notes) ? notes : null);
+            implementation.Id,
+            RequireValue(implementation.Id, implementation.Name, nameof(ConversionImplementation.Name)),
+            mapping.Notes);
     }
 
     private static bool IsKnownDataType(IEnumerable<DataTypeMappingResolution> mappings, string dataTypeId) =>
@@ -295,11 +294,11 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
 
     private static string NormalizeDataTypeSystemName(string value) => value.Trim().ToLowerInvariant();
 
-    private static string RequireValue(GenericRecord record, string propertyName)
+    private static string RequireValue(string recordId, string? value, string propertyName)
     {
-        if (!record.Values.TryGetValue(propertyName, out var value) || string.IsNullOrWhiteSpace(value))
+        if (string.IsNullOrWhiteSpace(value))
         {
-            throw new InvalidOperationException($"Record '{record.Id}' is missing required property '{propertyName}'.");
+            throw new InvalidOperationException($"Record '{recordId}' is missing required property '{propertyName}'.");
         }
 
         return value;

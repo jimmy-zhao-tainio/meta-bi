@@ -1,5 +1,5 @@
 using Microsoft.Data.SqlClient;
-using Meta.Core.Domain;
+using MetaDataTypeConversion;
 using MetaDataTypeConversion.Core;
 using System.Data;
 using System.Globalization;
@@ -12,7 +12,7 @@ public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter,
     private readonly string destinationTableName;
     private readonly MetaPipelineExecutionContext? executionContext;
     private readonly string targetDataTypeSystemName;
-    private readonly Workspace dataTypeConversionWorkspace;
+    private readonly MetaDataTypeConversionModel dataTypeConversionWorkspace;
     private readonly IMetaDataTypeConversionService dataTypeConversionService = new MetaDataTypeConversionService();
     private readonly int? timeoutSeconds;
     private SqlConnection? connection;

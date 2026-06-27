@@ -910,9 +910,6 @@ namespace MetaPipeline
                     case "Name":
                         row.Name = reader.ReadElementContentAsString();
                         break;
-                    case "Ordinal":
-                        row.Ordinal = reader.ReadElementContentAsString();
-                        break;
                     default:
                         throw new InvalidDataException($"Unknown XML element '{reader.LocalName}' on 'PipelineTask'.");
                 }
@@ -952,7 +949,6 @@ namespace MetaPipeline
                 builder.Append('"');
                 builder.Append(">\n");
                 AppendElement(builder, "Name", RequireText(row.Name, $"Entity 'PipelineTask' row '{row.Id}' is missing required property 'Name'."), "      ");
-                AppendElement(builder, "Ordinal", RequireText(row.Ordinal, $"Entity 'PipelineTask' row '{row.Id}' is missing required property 'Ordinal'."), "      ");
                 builder.Append("    </PipelineTask>\n");
             }
             builder.Append("  </PipelineTaskList>\n");
@@ -2451,7 +2447,6 @@ namespace MetaPipeline
             if (HasUnexpectedProperties(typeof(PipelineTask),
                 "Id",
                 "Name",
-                "Ordinal",
                 "Pipeline"))
             {
                 return true;

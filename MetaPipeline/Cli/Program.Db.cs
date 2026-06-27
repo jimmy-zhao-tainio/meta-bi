@@ -1,11 +1,12 @@
 using Meta.Core.Connections;
 using Meta.Core.Presentation.Cli;
+using MetaCli.Core;
 
 internal static partial class Program
 {
-    private static async Task<int> RunCreatePipelineDbAsync(string[] args, int startIndex)
+    private static async Task<int> RunCreatePipelineDbAsync(MetaCliInvocation invocation)
     {
-        var parse = ParseCreatePipelineDbArgs(args, startIndex);
+        var parse = ReadCreatePipelineDbArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("create-pipeline-db"));
@@ -49,9 +50,9 @@ internal static partial class Program
         }
     }
 
-    private static async Task<int> RunPrunePipelineDbAsync(string[] args, int startIndex)
+    private static async Task<int> RunPrunePipelineDbAsync(MetaCliInvocation invocation)
     {
-        var parse = ParsePrunePipelineDbArgs(args, startIndex);
+        var parse = ReadPrunePipelineDbArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("prune-pipeline-db"));

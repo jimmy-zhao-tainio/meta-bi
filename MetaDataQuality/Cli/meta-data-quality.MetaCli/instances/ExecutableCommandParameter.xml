@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-from-transform-workspace:parameter:param-from-transform-workspace-transform-workspace" ExecutableCommandId="exec-from-transform-workspace" ParameterId="param-from-transform-workspace-transform-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-transform-workspace:parameter:param-from-transform-workspace-new-workspace" ExecutableCommandId="exec-from-transform-workspace" ParameterId="param-from-transform-workspace-new-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-from-transform-workspace:parameter:param-from-transform-workspace-binding-workspace" ExecutableCommandId="exec-from-transform-workspace" ParameterId="param-from-transform-workspace-binding-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-inspect:parameter:param-inspect-workspace" ExecutableCommandId="exec-inspect" ParameterId="param-inspect-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-inspect:parameter:param-inspect-show-cases" ExecutableCommandId="exec-inspect" ParameterId="param-inspect-show-cases">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-inspect:parameter:param-inspect-top-cases" ExecutableCommandId="exec-inspect" ParameterId="param-inspect-top-cases">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-inspect:parameter:param-inspect-show-candidate-ids" ExecutableCommandId="exec-inspect" ParameterId="param-inspect-show-candidate-ids">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-promote:parameter:param-promote-workspace" ExecutableCommandId="exec-promote" ParameterId="param-promote-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-promote:parameter:param-promote-all" ExecutableCommandId="exec-promote" ParameterId="param-promote-all">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-promote:parameter:param-promote-candidate-id" ExecutableCommandId="exec-promote" ParameterId="param-promote-candidate-id">
+    </ExecutableCommandParameter>
+  </ExecutableCommandParameterList>
+</MetaCli>

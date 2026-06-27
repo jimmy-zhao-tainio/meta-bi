@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <CommandList>
+    <Command Id="cmd-help" ApplicationId="app-meta-data-type-conversion">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-new-workspace" ApplicationId="app-meta-data-type-conversion">
+      <Description>Create a seeded MetaDataTypeConversion workspace.</Description>
+      <Name>new-workspace</Name>
+      <Token>new-workspace</Token>
+    </Command>
+    <Command Id="cmd-check" ApplicationId="app-meta-data-type-conversion">
+      <Description>Validate sanctioned type mappings.</Description>
+      <Name>check</Name>
+      <Token>check</Token>
+    </Command>
+    <Command Id="cmd-resolve" ApplicationId="app-meta-data-type-conversion">
+      <Description>Resolve one source data type id through the sanctioned mappings.</Description>
+      <Name>resolve</Name>
+      <Token>resolve</Token>
+    </Command>
+  </CommandList>
+</MetaCli>

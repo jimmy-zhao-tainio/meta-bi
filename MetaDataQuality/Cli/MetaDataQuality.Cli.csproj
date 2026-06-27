@@ -11,8 +11,13 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Core\MetaDataQuality.Core.csproj" />
     <ProjectReference Include="..\Tooling\MetaDataQuality.Tooling.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="meta-data-quality.MetaCli\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

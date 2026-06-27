@@ -11,6 +11,11 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\..\..\meta\MetaCli\Core\MetaCli.Core.csproj" />
     <ProjectReference Include="..\Core\MetaDataTypeConversion.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="meta-data-type-conversion.MetaCli\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

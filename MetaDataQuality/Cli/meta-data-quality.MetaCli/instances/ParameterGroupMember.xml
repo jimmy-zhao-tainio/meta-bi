@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-promote-selection-all" ParameterGroupId="group-promote-selection" ParameterId="param-promote-all">
+    </ParameterGroupMember>
+    <ParameterGroupMember Id="member-promote-selection-candidate-id" ParameterGroupId="group-promote-selection" ParameterId="param-promote-candidate-id" PreviousMemberId="member-promote-selection-all">
+    </ParameterGroupMember>
+  </ParameterGroupMemberList>
+</MetaCli>

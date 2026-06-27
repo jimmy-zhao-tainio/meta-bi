@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterList>
+    <Parameter Id="param-from-transform-workspace-transform-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace to analyze.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>transform-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-from-transform-workspace-new-workspace" ValueShapeId="shape-path">
+      <Description>Directory where the generated MetaDataQuality workspace will be created.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>new-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-from-transform-workspace-binding-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformBinding workspace used to scan only validated scripts.</Description>
+      <Name>binding-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataQuality workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-show-cases" ValueShapeId="shape-flag">
+      <Description>Show candidate adjustment cases.</Description>
+      <Name>show-cases</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-top-cases" ValueShapeId="shape-count">
+      <DefaultValue>20</DefaultValue>
+      <Description>Show up to n candidate cases. Implies --show-cases.</Description>
+      <Name>top-cases</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-show-candidate-ids" ValueShapeId="shape-flag">
+      <Description>Include candidate ids in adjustment output. Implies --show-cases.</Description>
+      <Name>show-candidate-ids</Name>
+    </Parameter>
+    <Parameter Id="param-promote-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataQuality workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-promote-all" ValueShapeId="shape-flag">
+      <Description>Promote every generated data-quality candidate.</Description>
+      <Name>all</Name>
+    </Parameter>
+    <Parameter Id="param-promote-candidate-id" ValueShapeId="shape-text">
+      <Description>Promote one generated candidate. May be provided more than once.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>candidate-id</Name>
+    </Parameter>
+  </ParameterList>
+</MetaCli>

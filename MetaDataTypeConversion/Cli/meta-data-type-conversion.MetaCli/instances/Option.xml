@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="opt-check-workspace" ParameterId="param-check-workspace">
+    </Option>
+    <Option Id="opt-resolve-workspace" ParameterId="param-resolve-workspace">
+    </Option>
+    <Option Id="opt-resolve-source-data-type" ParameterId="param-resolve-source-data-type">
+    </Option>
+    <Option Id="opt-resolve-target-data-type-system" ParameterId="param-resolve-target-data-type-system">
+    </Option>
+  </OptionList>
+</MetaCli>

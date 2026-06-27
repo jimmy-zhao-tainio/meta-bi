@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <CommandList>
+    <Command Id="cmd-help" ApplicationId="app-meta-pipeline">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-new-workspace" ApplicationId="app-meta-pipeline">
+      <Description>Create an empty sanctioned MetaPipeline workspace.</Description>
+      <Name>new-workspace</Name>
+      <Token>new-workspace</Token>
+    </Command>
+    <Command Id="cmd-execute" ApplicationId="app-meta-pipeline">
+      <Description>Execute a modeled pipeline's serial task chain with compact live progress including B/KB/MB/GB rate.</Description>
+      <Name>execute</Name>
+      <Token>execute</Token>
+    </Command>
+    <Command Id="cmd-execute-worker" ApplicationId="app-meta-pipeline">
+      <Description>Execute a modeled pipeline as an orchestration worker boundary over a named pipe; stdout and stderr are diagnostics only; preserves that pipeline context and handles GrantTask and StopPipeline.</Description>
+      <Name>execute-worker</Name>
+      <Token>execute-worker</Token>
+    </Command>
+    <Command Id="cmd-execute-step" ApplicationId="app-meta-pipeline">
+      <Description>Execute exactly one modeled pipeline task by task name or id; diagnostic surface, while orchestration uses execute-worker.</Description>
+      <Name>execute-step</Name>
+      <Token>execute-step</Token>
+    </Command>
+    <Command Id="cmd-execute-sqlserver" ApplicationId="app-meta-pipeline">
+      <Description>Execute one SQL Server transform script with script selection options and compact live progress including B/KB/MB/GB rate.</Description>
+      <Name>execute-sqlserver</Name>
+      <Token>execute-sqlserver</Token>
+    </Command>
+    <Command Id="cmd-create-pipeline-db" ApplicationId="app-meta-pipeline">
+      <Description>Create or update the SQL Server MetaPipeline operational DB for diagnostic logs, audit logs, metrics, and failures; it does not store model truth.</Description>
+      <Name>create-pipeline-db</Name>
+      <Token>create-pipeline-db</Token>
+    </Command>
+    <Command Id="cmd-prune-pipeline-db" ApplicationId="app-meta-pipeline">
+      <Description>Prune old completed RunDiagnosticsLog rows while preserving RunLog and audit lineage.</Description>
+      <Name>prune-pipeline-db</Name>
+      <Token>prune-pipeline-db</Token>
+    </Command>
+    <Command Id="cmd-add-pipeline" ApplicationId="app-meta-pipeline">
+      <Description>Add one Pipeline instance to a MetaPipeline workspace.</Description>
+      <Name>add-pipeline</Name>
+      <Token>add-pipeline</Token>
+    </Command>
+    <Command Id="cmd-inspect" ApplicationId="app-meta-pipeline">
+      <Description>Show a compact MetaPipeline workspace summary.</Description>
+      <Name>inspect</Name>
+      <Token>inspect</Token>
+    </Command>
+    <Command Id="cmd-add-executable-step" ApplicationId="app-meta-pipeline">
+      <Description>Append one executable-backed task instance to the pipeline's serial task chain.</Description>
+      <Name>add-executable-step</Name>
+      <Token>add-executable-step</Token>
+    </Command>
+    <Command Id="cmd-add-step" ApplicationId="app-meta-pipeline">
+      <Description>Append one transform-backed task instance to the pipeline's serial task chain.</Description>
+      <Name>add-step</Name>
+      <Token>add-step</Token>
+    </Command>
+  </CommandList>
+</MetaCli>

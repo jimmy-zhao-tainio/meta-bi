@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionTokenList>
+    <OptionToken Id="token-check-workspace" OptionId="opt-check-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-resolve-workspace" OptionId="opt-resolve-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-resolve-source-data-type" OptionId="opt-resolve-source-data-type">
+      <Token>--source-data-type</Token>
+    </OptionToken>
+    <OptionToken Id="token-resolve-target-data-type-system" OptionId="opt-resolve-target-data-type-system">
+      <Token>--target-data-type-system</Token>
+    </OptionToken>
+  </OptionTokenList>
+</MetaCli>

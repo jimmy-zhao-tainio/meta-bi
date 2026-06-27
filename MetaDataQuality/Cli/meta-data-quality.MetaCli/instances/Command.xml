@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <CommandList>
+    <Command Id="cmd-help" ApplicationId="app-meta-data-quality">
+      <Description>Show help.</Description>
+      <Name>help</Name>
+      <Token>help</Token>
+    </Command>
+    <Command Id="cmd-from-transform-workspace" ApplicationId="app-meta-data-quality">
+      <Description>Create generated DQ views from a full MetaTransformScript workspace.</Description>
+      <Name>from-transform-workspace</Name>
+      <Token>from-transform-workspace</Token>
+    </Command>
+    <Command Id="cmd-inspect" ApplicationId="app-meta-data-quality">
+      <Description>Review the generated DQ pack and optional adjustments.</Description>
+      <Name>inspect</Name>
+      <Token>inspect</Token>
+    </Command>
+    <Command Id="cmd-promote" ApplicationId="app-meta-data-quality">
+      <Description>Promote generated DQ candidates for SQL output.</Description>
+      <Name>promote</Name>
+      <Token>promote</Token>
+    </Command>
+  </CommandList>
+</MetaCli>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupList>
+    <ParameterGroup Id="group-promote-selection" ExecutableCommandId="exec-promote">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Choose either all candidates or one or more candidate ids.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>selection</Name>
+    </ParameterGroup>
+  </ParameterGroupList>
+</MetaCli>

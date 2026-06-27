@@ -1,4 +1,4 @@
-using Meta.Core.Domain;
+using MetaDataTypeConversion;
 using MetaDataTypeConversion.Core;
 using MetaSchema;
 using MetaTransformBinding;
@@ -8,7 +8,7 @@ namespace MetaTransform.Binding;
 public sealed class TransformBindingValidationService
 {
     private readonly IMetaDataTypeConversionService dataTypeConversionService;
-    private readonly Workspace dataTypeConversionWorkspace;
+    private readonly MetaDataTypeConversionModel dataTypeConversionWorkspace;
 
     public TransformBindingValidationService()
         : this(
@@ -19,7 +19,7 @@ public sealed class TransformBindingValidationService
 
     internal TransformBindingValidationService(
         IMetaDataTypeConversionService dataTypeConversionService,
-        Workspace dataTypeConversionWorkspace)
+        MetaDataTypeConversionModel dataTypeConversionWorkspace)
     {
         this.dataTypeConversionService = dataTypeConversionService ?? throw new ArgumentNullException(nameof(dataTypeConversionService));
         this.dataTypeConversionWorkspace = dataTypeConversionWorkspace ?? throw new ArgumentNullException(nameof(dataTypeConversionWorkspace));
@@ -99,7 +99,7 @@ public sealed class TransformBindingValidationService
         MetaSchemaTableResolver targetResolver,
         TransformBindingValidationOptions options,
         IMetaDataTypeConversionService dataTypeConversionService,
-        Workspace dataTypeConversionWorkspace,
+        MetaDataTypeConversionModel dataTypeConversionWorkspace,
         List<Validation> validations,
         List<ValidationSourceRowsetLink> sourceRowsetLinks,
         List<ValidationTargetRowsetLink> targetRowsetLinks,
@@ -176,7 +176,7 @@ public sealed class TransformBindingValidationService
         MetaSchemaTableResolver sourceResolver,
         TransformBindingValidationOptions options,
         IMetaDataTypeConversionService dataTypeConversionService,
-        Workspace dataTypeConversionWorkspace,
+        MetaDataTypeConversionModel dataTypeConversionWorkspace,
         IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId,
         Dictionary<string, List<ResolvedSourceColumnType>> sourceColumnTypeCandidatesByName,
         List<ValidationSourceRowsetLink> sourceRowsetLinks,
@@ -257,7 +257,7 @@ public sealed class TransformBindingValidationService
         IReadOnlySet<string> ignoredTargetColumnNames,
         IReadOnlySet<string> ignoredTargetColumnNamesIfPresent,
         IMetaDataTypeConversionService dataTypeConversionService,
-        Workspace dataTypeConversionWorkspace,
+        MetaDataTypeConversionModel dataTypeConversionWorkspace,
         Rowset? finalRowset,
         IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId,
         IReadOnlyDictionary<string, List<ResolvedSourceColumnType>> sourceColumnTypeCandidatesByName,
@@ -581,7 +581,7 @@ public sealed class TransformBindingValidationService
 
     private static string EnsureMetaDataTypeKnown(
         IMetaDataTypeConversionService dataTypeConversionService,
-        Workspace dataTypeConversionWorkspace,
+        MetaDataTypeConversionModel dataTypeConversionWorkspace,
         string metaDataTypeId,
         string missingCode,
         string notSanctionedCode,

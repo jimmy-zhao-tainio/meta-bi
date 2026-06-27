@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="opt-execute-workspace" ParameterId="param-execute-workspace">
+    </Option>
+    <Option Id="opt-execute-pipeline" ParameterId="param-execute-pipeline">
+    </Option>
+    <Option Id="opt-execute-transform-workspace" ParameterId="param-execute-transform-workspace">
+    </Option>
+    <Option Id="opt-execute-binding-workspace" ParameterId="param-execute-binding-workspace">
+    </Option>
+    <Option Id="opt-execute-data-type-conversion-workspace" ParameterId="param-execute-data-type-conversion-workspace">
+    </Option>
+    <Option Id="opt-execute-pipeline-db-connection-env" ParameterId="param-execute-pipeline-db-connection-env">
+    </Option>
+    <Option Id="opt-execute-worker-workspace" ParameterId="param-execute-worker-workspace">
+    </Option>
+    <Option Id="opt-execute-worker-pipeline" ParameterId="param-execute-worker-pipeline">
+    </Option>
+    <Option Id="opt-execute-worker-control-pipe" ParameterId="param-execute-worker-control-pipe">
+    </Option>
+    <Option Id="opt-execute-worker-transform-workspace" ParameterId="param-execute-worker-transform-workspace">
+    </Option>
+    <Option Id="opt-execute-worker-binding-workspace" ParameterId="param-execute-worker-binding-workspace">
+    </Option>
+    <Option Id="opt-execute-worker-control-pipe-connect-timeout-seconds" ParameterId="param-execute-worker-control-pipe-connect-timeout-seconds">
+    </Option>
+    <Option Id="opt-execute-worker-data-type-conversion-workspace" ParameterId="param-execute-worker-data-type-conversion-workspace">
+    </Option>
+    <Option Id="opt-execute-worker-pipeline-db-connection-env" ParameterId="param-execute-worker-pipeline-db-connection-env">
+    </Option>
+    <Option Id="opt-execute-step-workspace" ParameterId="param-execute-step-workspace">
+    </Option>
+    <Option Id="opt-execute-step-pipeline" ParameterId="param-execute-step-pipeline">
+    </Option>
+    <Option Id="opt-execute-step-step-name" ParameterId="param-execute-step-step-name">
+    </Option>
+    <Option Id="opt-execute-step-transform-workspace" ParameterId="param-execute-step-transform-workspace">
+    </Option>
+    <Option Id="opt-execute-step-binding-workspace" ParameterId="param-execute-step-binding-workspace">
+    </Option>
+    <Option Id="opt-execute-step-data-type-conversion-workspace" ParameterId="param-execute-step-data-type-conversion-workspace">
+    </Option>
+    <Option Id="opt-execute-step-pipeline-db-connection-env" ParameterId="param-execute-step-pipeline-db-connection-env">
+    </Option>
+    <Option Id="opt-execute-sqlserver-transform-workspace" ParameterId="param-execute-sqlserver-transform-workspace">
+    </Option>
+    <Option Id="opt-execute-sqlserver-binding-workspace" ParameterId="param-execute-sqlserver-binding-workspace">
+    </Option>
+    <Option Id="opt-execute-sqlserver-script" ParameterId="param-execute-sqlserver-script">
+    </Option>
+    <Option Id="opt-execute-sqlserver-binding" ParameterId="param-execute-sqlserver-binding">
+    </Option>
+    <Option Id="opt-execute-sqlserver-execution-connection-env" ParameterId="param-execute-sqlserver-execution-connection-env">
+    </Option>
+    <Option Id="opt-execute-sqlserver-target-connection-env" ParameterId="param-execute-sqlserver-target-connection-env">
+    </Option>
+    <Option Id="opt-execute-sqlserver-target" ParameterId="param-execute-sqlserver-target">
+    </Option>
+    <Option Id="opt-execute-sqlserver-batch-size" ParameterId="param-execute-sqlserver-batch-size">
+    </Option>
+    <Option Id="opt-execute-sqlserver-timeout-seconds" ParameterId="param-execute-sqlserver-timeout-seconds">
+    </Option>
+    <Option Id="opt-execute-sqlserver-target-data-type-system" ParameterId="param-execute-sqlserver-target-data-type-system">
+    </Option>
+    <Option Id="opt-execute-sqlserver-data-type-conversion-workspace" ParameterId="param-execute-sqlserver-data-type-conversion-workspace">
+    </Option>
+    <Option Id="opt-execute-sqlserver-pipeline-db-connection-env" ParameterId="param-execute-sqlserver-pipeline-db-connection-env">
+    </Option>
+    <Option Id="opt-create-pipeline-db-pipeline-db-connection-env" ParameterId="param-create-pipeline-db-pipeline-db-connection-env">
+    </Option>
+    <Option Id="opt-create-pipeline-db-pipeline-db-name" ParameterId="param-create-pipeline-db-pipeline-db-name">
+    </Option>
+    <Option Id="opt-prune-pipeline-db-pipeline-db-connection-env" ParameterId="param-prune-pipeline-db-pipeline-db-connection-env">
+    </Option>
+    <Option Id="opt-prune-pipeline-db-retention-days" ParameterId="param-prune-pipeline-db-retention-days">
+    </Option>
+    <Option Id="opt-prune-pipeline-db-dry-run" ParameterId="param-prune-pipeline-db-dry-run">
+    </Option>
+    <Option Id="opt-add-pipeline-workspace" ParameterId="param-add-pipeline-workspace">
+    </Option>
+    <Option Id="opt-add-pipeline-name" ParameterId="param-add-pipeline-name">
+    </Option>
+    <Option Id="opt-add-pipeline-description" ParameterId="param-add-pipeline-description">
+    </Option>
+    <Option Id="opt-inspect-workspace" ParameterId="param-inspect-workspace">
+    </Option>
+    <Option Id="opt-add-executable-step-workspace" ParameterId="param-add-executable-step-workspace">
+    </Option>
+    <Option Id="opt-add-executable-step-pipeline" ParameterId="param-add-executable-step-pipeline">
+    </Option>
+    <Option Id="opt-add-executable-step-executable" ParameterId="param-add-executable-step-executable">
+    </Option>
+    <Option Id="opt-add-executable-step-step-name" ParameterId="param-add-executable-step-step-name">
+    </Option>
+    <Option Id="opt-add-executable-step-arguments" ParameterId="param-add-executable-step-arguments">
+    </Option>
+    <Option Id="opt-add-executable-step-working-directory" ParameterId="param-add-executable-step-working-directory">
+    </Option>
+    <Option Id="opt-add-executable-step-success-exit-code" ParameterId="param-add-executable-step-success-exit-code">
+    </Option>
+    <Option Id="opt-add-executable-step-timeout-seconds" ParameterId="param-add-executable-step-timeout-seconds">
+    </Option>
+    <Option Id="opt-add-step-workspace" ParameterId="param-add-step-workspace">
+    </Option>
+    <Option Id="opt-add-step-pipeline" ParameterId="param-add-step-pipeline">
+    </Option>
+    <Option Id="opt-add-step-script" ParameterId="param-add-step-script">
+    </Option>
+    <Option Id="opt-add-step-transform-workspace" ParameterId="param-add-step-transform-workspace">
+    </Option>
+    <Option Id="opt-add-step-binding-workspace" ParameterId="param-add-step-binding-workspace">
+    </Option>
+    <Option Id="opt-add-step-execution-connection-env" ParameterId="param-add-step-execution-connection-env">
+    </Option>
+    <Option Id="opt-add-step-step-name" ParameterId="param-add-step-step-name">
+    </Option>
+    <Option Id="opt-add-step-binding" ParameterId="param-add-step-binding">
+    </Option>
+    <Option Id="opt-add-step-target-connection-env" ParameterId="param-add-step-target-connection-env">
+    </Option>
+    <Option Id="opt-add-step-target" ParameterId="param-add-step-target">
+    </Option>
+    <Option Id="opt-add-step-target-write" ParameterId="param-add-step-target-write">
+    </Option>
+    <Option Id="opt-add-step-batch-size" ParameterId="param-add-step-batch-size">
+    </Option>
+    <Option Id="opt-add-step-timeout-seconds" ParameterId="param-add-step-timeout-seconds">
+    </Option>
+    <Option Id="opt-add-step-target-data-type-system" ParameterId="param-add-step-target-data-type-system">
+    </Option>
+  </OptionList>
+</MetaCli>

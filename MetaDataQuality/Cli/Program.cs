@@ -1,128 +1,53 @@
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
+using MetaCli.Core;
 using MetaDataQuality;
 using MetaDataQuality.Core;
 
 internal static class Program
 {
     private const string AppName = "meta-data-quality";
+    private const string ApplicationId = "app-meta-data-quality";
+    private const string CommandWorkspaceDirectoryName = "meta-data-quality.MetaCli";
 
     private static readonly ConsolePresenter Presenter = new();
-    private static readonly IReadOnlyList<CliCommandRoute> CommandRoutes = BuildCommandRoutes();
-    private static readonly IReadOnlyDictionary<string, CliCommandRoute> CommandRoutesByName = CommandRoutes
-        .ToDictionary(route => route.Definition.Name, StringComparer.OrdinalIgnoreCase);
-    private static readonly CliAppDefinition Cli = new(
-        AppName,
-        new[]
-        {
-            "meta-data-quality <command> [options]"
-        },
-        CommandRoutes.Select(route => route.Definition).ToArray(),
-        Next: "meta-data-quality from-transform-workspace --help");
-
-    internal static CliAppDefinition CreateAppDefinition() => Cli;
-
-    private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes() =>
-        new[]
-        {
-            new CliCommandRoute(
-                new CliCommandDefinition(
-                    "help",
-                    "Show this help.",
-                    new[] { "meta-data-quality help" }),
-                _ =>
-                {
-                    PrintHelp();
-                    return Task.FromResult(0);
-                }),
-            new CliCommandRoute(
-                new CliCommandDefinition(
-                    "from-transform-workspace",
-                    "Create generated DQ views from a full MetaTransformScript workspace.",
-                    new[] { "meta-data-quality from-transform-workspace --transform-workspace <path> --new-workspace <path> [--binding-workspace <path>]" },
-                    new[]
-                    {
-                        new CliOptionDefinition("--transform-workspace <path>", "Required. MetaTransformScript workspace to analyze."),
-                        new CliOptionDefinition("--new-workspace <path>", "Required. Directory where the generated MetaDataQuality workspace will be created."),
-                        new CliOptionDefinition("--binding-workspace <path>", "Optional. MetaTransformBinding workspace used to scan only validated scripts.")
-                    },
-                    new[]
-                    {
-                        "Scans all TransformScript instances in one workspace.",
-                        "When --binding-workspace is supplied, only TransformScript rows with Validation-backed TransformBinding rows are scanned.",
-                        "Creates one MetaDataQuality workspace with generated DQ views."
-                    }),
-                args => Task.FromResult(RunCommandWithHelp(args, "from-transform-workspace", commandArgs => RunFromTransformWorkspace(commandArgs, startIndex: 1)))),
-            new CliCommandRoute(
-                new CliCommandDefinition(
-                    "inspect",
-                    "Review the generated DQ pack and optional adjustments.",
-                    new[] { "meta-data-quality inspect --workspace <path> [--show-cases] [--top-cases <n>] [--show-candidate-ids]" },
-                    new[]
-                    {
-                        new CliOptionDefinition("--workspace <path>", "Required. MetaDataQuality workspace to inspect."),
-                        new CliOptionDefinition("--show-cases", "Optional. Show candidate adjustment cases."),
-                        new CliOptionDefinition("--top-cases <n>", "Optional. Show up to n candidate cases. Implies --show-cases. Default: 20."),
-                        new CliOptionDefinition("--show-candidate-ids", "Optional. Include candidate ids in adjustment output. Implies --show-cases.")
-                    },
-                    new[]
-                    {
-                        "Default output guides the full-pack-first path.",
-                        "Use --show-cases when you want to make small adjustments before SQL generation.",
-                        "Use --show-candidate-ids when promoting individual generated candidates."
-                    }),
-                args => Task.FromResult(RunCommandWithHelp(args, "inspect", commandArgs => RunInspect(commandArgs, startIndex: 1)))),
-            new CliCommandRoute(
-                new CliCommandDefinition(
-                    "promote",
-                    "Promote generated DQ candidates for SQL output.",
-                    new[] { "meta-data-quality promote --workspace <path> (--all | --candidate-id <id> [--candidate-id <id> ...])" },
-                    new[]
-                    {
-                        new CliOptionDefinition("--workspace <path>", "Required. MetaDataQuality workspace to update."),
-                        new CliOptionDefinition("--all", "Promote every generated data-quality candidate."),
-                        new CliOptionDefinition("--candidate-id <id>", "Promote one generated candidate. May be provided more than once.")
-                    },
-                    new[]
-                    {
-                        "Promotes generated DQ candidates for data-quality-to-sql output."
-                    }),
-                args => Task.FromResult(RunCommandWithHelp(args, "promote", commandArgs => RunPromote(commandArgs, startIndex: 1))))
-        };
 
     static int Main(string[] args)
     {
-        if (Meta.Core.Presentation.Cli.CliVersion.TryWriteVersion(Presenter, Cli.Name, args, out var versionExitCode))
+        if (CliVersion.TryWriteVersion(Presenter, AppName, args, out var versionExitCode))
         {
             return versionExitCode;
         }
 
-        if (args.Length == 0 || IsHelpToken(args[0]))
-        {
-            PrintHelp();
-            return 0;
-        }
+        Environment.ExitCode = 0;
+        var runtime = new MetaCliRuntime<MetaDataQualityModel>(CommandWorkspacePath, ApplicationId)
+            .UseDefaultHelp()
+            .Bind("exec-from-transform-workspace", RunFromTransformWorkspace)
+            .Bind("exec-inspect", RunInspect)
+            .Bind("exec-promote", RunPromote);
 
-        if (CommandRoutesByName.TryGetValue(args[0], out var route))
-        {
-            return route.ExecuteAsync(args).GetAwaiter().GetResult();
-        }
-
-        return Fail($"unknown command '{args[0]}'.", $"{AppName} help");
+        runtime.Run(args);
+        return Environment.ExitCode;
     }
 
-    private static int RunFromTransformWorkspace(string[] args, int startIndex)
+    private static string CommandWorkspacePath
     {
-        var parse = ParseFromTransformWorkspaceArgs(args, startIndex);
-        if (!parse.Ok)
+        get
         {
-            return Fail(parse.ErrorMessage, HelpCommand("from-transform-workspace"));
+            return Path.Combine(AppContext.BaseDirectory, CommandWorkspaceDirectoryName);
         }
+    }
 
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parse.NewWorkspacePath);
+    private static void RunFromTransformWorkspace(MetaCliInvocation invocation)
+    {
+        var transformWorkspacePathValue = invocation.Required("transform-workspace");
+        var newWorkspacePathValue = invocation.Required("new-workspace");
+        var bindingWorkspacePathValue = invocation.Optional("binding-workspace");
+
+        var targetValidation = CliNewWorkspaceTargetValidator.Validate(newWorkspacePathValue);
         if (!targetValidation.Ok)
         {
-            return Fail(
+            Fail(
                 targetValidation.ErrorMessage,
                 "choose a new folder or empty the target directory and retry.",
                 4,
@@ -131,13 +56,13 @@ internal static class Program
 
         try
         {
-            var transformWorkspacePath = Path.GetFullPath(parse.TransformWorkspacePath);
+            var transformWorkspacePath = Path.GetFullPath(transformWorkspacePathValue);
             var discovery = new MetaDataQualityCandidateDiscoveryService()
                 .DiscoverFromTransformWorkspace(
                     transformWorkspacePath,
-                    string.IsNullOrWhiteSpace(parse.BindingWorkspacePath)
+                    string.IsNullOrWhiteSpace(bindingWorkspacePathValue)
                         ? null
-                        : Path.GetFullPath(parse.BindingWorkspacePath));
+                        : Path.GetFullPath(bindingWorkspacePathValue));
 
             var model = discovery.Model;
             model.SaveToXmlWorkspace(targetValidation.FullPath);
@@ -145,40 +70,38 @@ internal static class Program
             Presenter.WriteInfo($"Workspace: {targetValidation.FullPath}");
             Presenter.WriteInfo($"Views ready to create: {model.DataQualityCandidateList.Count}");
             Presenter.WriteInfo($"Relationships captured: {model.JoinPatternOccurrenceList.Count}");
-            if (!string.IsNullOrWhiteSpace(parse.BindingWorkspacePath))
+            if (!string.IsNullOrWhiteSpace(bindingWorkspacePathValue))
             {
                 Presenter.WriteInfo($"Transform scripts scanned: {discovery.AnalyzedTransformScriptCount}/{discovery.TransformScriptCount}");
                 Presenter.WriteInfo($"Transform scripts skipped by BindingWS: {discovery.BindingSkippedTransformScriptCount}");
             }
-            return 0;
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is not MetaCliExitException)
         {
-            return Fail(
+            Fail(
                 "Cannot create data-quality workspace.",
                 "check the transform workspace and retry.",
                 4,
                 new[]
                 {
-                    $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
-                    $"  BindingWorkspace: {(string.IsNullOrWhiteSpace(parse.BindingWorkspacePath) ? "<none>" : Path.GetFullPath(parse.BindingWorkspacePath))}",
+                    $"  TransformWorkspace: {Path.GetFullPath(transformWorkspacePathValue)}",
+                    $"  BindingWorkspace: {(string.IsNullOrWhiteSpace(bindingWorkspacePathValue) ? "<none>" : Path.GetFullPath(bindingWorkspacePathValue))}",
                     $"  {ex.Message}",
                 });
         }
     }
 
-    private static int RunInspect(string[] args, int startIndex)
+    private static void RunInspect(MetaCliInvocation invocation, MetaDataQualityModel model)
     {
-        var parse = ParseInspectArgs(args, startIndex);
-        if (!parse.Ok)
-        {
-            return Fail(parse.ErrorMessage, HelpCommand("inspect"));
-        }
+        var workspacePath = ResolveWorkspacePath(invocation);
+        var topCases = ReadPositiveInt(invocation.Required("top-cases"), "--top-cases");
+        var showCases = invocation.Flag("show-cases")
+                        || invocation.IsPresent("top-cases")
+                        || invocation.Flag("show-candidate-ids");
+        var showCandidateIds = invocation.Flag("show-candidate-ids");
 
         try
         {
-            var workspacePath = Path.GetFullPath(parse.WorkspacePath);
-            var model = MetaDataQualityModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
             var candidateCount = model.DataQualityCandidateList.Count;
             var promoted = model.DataQualityCandidateList.Count(item =>
                 string.Equals(item.Status, CandidateStatuses.Promoted, StringComparison.OrdinalIgnoreCase));
@@ -309,11 +232,11 @@ internal static class Program
                 Presenter.WriteInfo($"Pending candidates: {pending}");
             }
 
-            if (parse.ShowCases && pendingSituations.Length > 0)
+            if (showCases && pendingSituations.Length > 0)
             {
                 Presenter.WriteInfo(string.Empty);
                 Presenter.WriteInfo("Relationship Cases:");
-                var visible = pendingSituations.Take(parse.TopCases).ToArray();
+                var visible = pendingSituations.Take(topCases).ToArray();
                 for (var i = 0; i < visible.Length; i++)
                 {
                     var situation = visible[i];
@@ -321,7 +244,7 @@ internal static class Program
                     Presenter.WriteInfo($"     Keys: {situation.JoinCondition}");
                     Presenter.WriteInfo($"     SQL join: {situation.JoinType}");
                     Presenter.WriteInfo($"     Checks: {string.Join(", ", situation.ViewLabels)}");
-                    if (parse.ShowCandidateIds)
+                    if (showCandidateIds)
                     {
                         Presenter.WriteInfo($"     Candidate ids: {string.Join(", ", situation.PendingCandidateIds)}");
                     }
@@ -332,43 +255,36 @@ internal static class Program
                     Presenter.WriteInfo($"  Showing {visible.Length} of {pendingSituations.Length} relationships. Increase with --top-cases.");
                 }
             }
-            else if (parse.ShowCases && pendingSituations.Length == 0)
+            else if (showCases && pendingSituations.Length == 0)
             {
                 Presenter.WriteInfo(string.Empty);
                 Presenter.WriteInfo("  No generated candidates remain to promote.");
             }
-
-            return 0;
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is not MetaCliExitException)
         {
-            return Fail(
+            Fail(
                 "Cannot inspect data-quality workspace.",
                 "check the workspace path and retry.",
                 4,
                 new[]
                 {
-                    $"  Workspace: {Path.GetFullPath(parse.WorkspacePath)}",
+                    $"  Workspace: {workspacePath}",
                     $"  {ex.Message}",
                 });
         }
     }
 
-    private static int RunPromote(string[] args, int startIndex)
+    private static void RunPromote(MetaCliInvocation invocation, MetaDataQualityModel model)
     {
-        var parse = ParsePromoteArgs(args, startIndex);
-        if (!parse.Ok)
-        {
-            return Fail(parse.ErrorMessage, HelpCommand("promote"));
-        }
+        var workspacePath = ResolveWorkspacePath(invocation);
+        var candidateIds = invocation.Values("candidate-id");
+        var promoteAll = invocation.Flag("all");
 
         try
         {
-            var workspacePath = Path.GetFullPath(parse.WorkspacePath);
-            var model = MetaDataQualityModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
-
             var promotedCount = 0;
-            if (parse.PromoteAll)
+            if (promoteAll)
             {
                 foreach (var candidate in model.DataQualityCandidateList)
                 {
@@ -383,15 +299,16 @@ internal static class Program
             {
                 var byId = model.DataQualityCandidateList
                     .ToDictionary(item => item.Id, StringComparer.Ordinal);
-                foreach (var candidateId in parse.CandidateIds.Distinct(StringComparer.Ordinal))
+                foreach (var candidateId in candidateIds.Distinct(StringComparer.Ordinal))
                 {
-                    if (!byId.TryGetValue(candidateId, out var candidate))
+                    if (!byId.TryGetValue(candidateId, out var candidate) || candidate is null)
                     {
-                        return Fail(
+                        Fail(
                             $"Data quality candidate id '{candidateId}' was not found.",
                             "run meta-data-quality inspect --workspace <path> and retry.",
                             4,
                             new[] { $"  Workspace: {workspacePath}" });
+                        continue;
                     }
 
                     if (!string.Equals(candidate.Status, CandidateStatuses.Promoted, StringComparison.OrdinalIgnoreCase))
@@ -407,242 +324,36 @@ internal static class Program
                 string.Equals(item.Status, CandidateStatuses.Promoted, StringComparison.OrdinalIgnoreCase));
             Presenter.WriteInfo($"Candidates promoted this run: {promotedCount}");
             Presenter.WriteInfo($"Candidates promoted for SQL: {totalPromoted}");
-            return 0;
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is not MetaCliExitException)
         {
-            return Fail(
+            Fail(
                 "Cannot promote data-quality candidates.",
                 "check the workspace and candidate ids, then retry.",
                 4,
                 new[]
                 {
-                    $"  Workspace: {Path.GetFullPath(parse.WorkspacePath)}",
+                    $"  Workspace: {workspacePath}",
                     $"  {ex.Message}",
                 });
         }
     }
 
-    private static (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, string BindingWorkspacePath, string ErrorMessage) ParseFromTransformWorkspaceArgs(string[] args, int startIndex)
+    private static string ResolveWorkspacePath(MetaCliInvocation invocation) =>
+        Path.GetFullPath(invocation.Optional("workspace") ?? Directory.GetCurrentDirectory());
+
+    private static int ReadPositiveInt(string value, string parameterName)
     {
-        var transformWorkspacePath = string.Empty;
-        var newWorkspacePath = string.Empty;
-        var bindingWorkspacePath = string.Empty;
-
-        (bool Ok, string TransformWorkspacePath, string NewWorkspacePath, string BindingWorkspacePath, string ErrorMessage) FailParse(string message) =>
-            (false, transformWorkspacePath, newWorkspacePath, bindingWorkspacePath, message);
-
-        for (var i = startIndex; i < args.Length; i++)
+        if (int.TryParse(value, out var result) && result > 0)
         {
-            var arg = args[i];
-            if (string.Equals(arg, "--transform-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return FailParse("missing value for --transform-workspace.");
-                if (!string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("--transform-workspace can only be provided once.");
-                transformWorkspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return FailParse("missing value for --new-workspace.");
-                if (!string.IsNullOrWhiteSpace(newWorkspacePath)) return FailParse("--new-workspace can only be provided once.");
-                newWorkspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--binding-workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return FailParse("missing value for --binding-workspace.");
-                if (!string.IsNullOrWhiteSpace(bindingWorkspacePath)) return FailParse("--binding-workspace can only be provided once.");
-                bindingWorkspacePath = args[++i];
-                continue;
-            }
-
-            return FailParse($"unknown option '{arg}'.");
+            return result;
         }
 
-        if (string.IsNullOrWhiteSpace(transformWorkspacePath)) return FailParse("missing required option --transform-workspace <path>.");
-        if (string.IsNullOrWhiteSpace(newWorkspacePath)) return FailParse("missing required option --new-workspace <path>.");
-        return (true, transformWorkspacePath, newWorkspacePath, bindingWorkspacePath, string.Empty);
+        Fail($"{parameterName} must be a positive integer.", "run meta-data-quality help inspect and retry.");
+        throw new MetaCliExitException(2);
     }
 
-    private static (bool Ok, string WorkspacePath, string ErrorMessage) ParseWorkspaceOnlyArgs(string[] args, int startIndex)
-    {
-        var workspacePath = string.Empty;
-        for (var i = startIndex; i < args.Length; i++)
-        {
-            var arg = args[i];
-            if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return (false, workspacePath, "missing value for --workspace.");
-                if (!string.IsNullOrWhiteSpace(workspacePath)) return (false, workspacePath, "--workspace can only be provided once.");
-                workspacePath = args[++i];
-                continue;
-            }
-
-            return (false, workspacePath, $"unknown option '{arg}'.");
-        }
-
-        if (string.IsNullOrWhiteSpace(workspacePath))
-        {
-            return (false, workspacePath, "missing required option --workspace <path>.");
-        }
-
-        return (true, workspacePath, string.Empty);
-    }
-
-    private static (bool Ok, string WorkspacePath, bool ShowCases, int TopCases, bool ShowCandidateIds, string ErrorMessage) ParseInspectArgs(string[] args, int startIndex)
-    {
-        var workspacePath = string.Empty;
-        var showCases = false;
-        var topCases = 20;
-        var showCandidateIds = false;
-        for (var i = startIndex; i < args.Length; i++)
-        {
-            var arg = args[i];
-            if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return (false, workspacePath, showCases, topCases, showCandidateIds, "missing value for --workspace.");
-                if (!string.IsNullOrWhiteSpace(workspacePath)) return (false, workspacePath, showCases, topCases, showCandidateIds, "--workspace can only be provided once.");
-                workspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--show-cases", StringComparison.OrdinalIgnoreCase))
-            {
-                showCases = true;
-                continue;
-            }
-
-            if (string.Equals(arg, "--top-cases", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return (false, workspacePath, showCases, topCases, showCandidateIds, "missing value for --top-cases.");
-                var value = args[++i];
-                if (!int.TryParse(value, out topCases) || topCases <= 0)
-                {
-                    return (false, workspacePath, showCases, topCases, showCandidateIds, "--top-cases must be a positive integer.");
-                }
-
-                showCases = true;
-                continue;
-            }
-
-            if (string.Equals(arg, "--show-candidate-ids", StringComparison.OrdinalIgnoreCase))
-            {
-                showCandidateIds = true;
-                showCases = true;
-                continue;
-            }
-
-            return (false, workspacePath, showCases, topCases, showCandidateIds, $"unknown option '{arg}'.");
-        }
-
-        if (string.IsNullOrWhiteSpace(workspacePath))
-        {
-            return (false, workspacePath, showCases, topCases, showCandidateIds, "missing required option --workspace <path>.");
-        }
-
-        return (true, workspacePath, showCases, topCases, showCandidateIds, string.Empty);
-    }
-
-    private static (bool Ok, string WorkspacePath, IReadOnlyList<string> CandidateIds, bool PromoteAll, string ErrorMessage) ParsePromoteArgs(string[] args, int startIndex)
-    {
-        var workspacePath = string.Empty;
-        var candidateIds = new List<string>();
-        var promoteAll = false;
-
-        for (var i = startIndex; i < args.Length; i++)
-        {
-            var arg = args[i];
-            if (string.Equals(arg, "--workspace", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return (false, workspacePath, candidateIds, promoteAll, "missing value for --workspace.");
-                if (!string.IsNullOrWhiteSpace(workspacePath)) return (false, workspacePath, candidateIds, promoteAll, "--workspace can only be provided once.");
-                workspacePath = args[++i];
-                continue;
-            }
-
-            if (string.Equals(arg, "--candidate-id", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 >= args.Length) return (false, workspacePath, candidateIds, promoteAll, "missing value for --candidate-id.");
-                candidateIds.Add(args[++i]);
-                continue;
-            }
-
-            if (string.Equals(arg, "--all", StringComparison.OrdinalIgnoreCase))
-            {
-                promoteAll = true;
-                continue;
-            }
-
-            return (false, workspacePath, candidateIds, promoteAll, $"unknown option '{arg}'.");
-        }
-
-        if (string.IsNullOrWhiteSpace(workspacePath))
-        {
-            return (false, workspacePath, candidateIds, promoteAll, "missing required option --workspace <path>.");
-        }
-
-        if (promoteAll && candidateIds.Count > 0)
-        {
-            return (false, workspacePath, candidateIds, promoteAll, "use either --all or one-or-more --candidate-id values, not both.");
-        }
-
-        if (!promoteAll && candidateIds.Count == 0)
-        {
-            return (false, workspacePath, candidateIds, promoteAll, "specify --all or one-or-more --candidate-id values.");
-        }
-
-        return (true, workspacePath, candidateIds, promoteAll, string.Empty);
-    }
-
-    private static bool IsHelpToken(string value)
-    {
-        return string.Equals(value, "help", StringComparison.OrdinalIgnoreCase)
-               || string.Equals(value, "--help", StringComparison.OrdinalIgnoreCase)
-               || string.Equals(value, "-h", StringComparison.OrdinalIgnoreCase);
-    }
-
-    private static void PrintHelp()
-    {
-        CliHelpRenderer.WriteAppHelp(Presenter, Cli);
-    }
-
-    private static void PrintFromTransformWorkspaceHelp()
-    {
-        PrintCommandHelp("from-transform-workspace");
-    }
-
-    private static void PrintInspectHelp()
-    {
-        PrintCommandHelp("inspect");
-    }
-
-    private static void PrintPromoteHelp()
-    {
-        PrintCommandHelp("promote");
-    }
-
-    private static int RunCommandWithHelp(string[] args, string commandName, Func<string[], int> execute)
-    {
-        if (args.Length >= 2 && IsHelpToken(args[1]))
-        {
-            PrintCommandHelp(commandName);
-            return 0;
-        }
-
-        return execute(args);
-    }
-
-    private static void PrintCommandHelp(string commandName)
-    {
-        CliHelpRenderer.WriteCommandHelp(Presenter, Cli, Cli.GetCommand(commandName));
-    }
-
-    private static string HelpCommand(string commandName) => Cli.GetCommand(commandName).HelpCommand(Cli.Name);
-
-    private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
+    private static void Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
     {
         var renderedDetails = new List<string>();
         if (details != null)
@@ -652,7 +363,7 @@ internal static class Program
 
         renderedDetails.Add($"Next: {next}");
         Presenter.WriteFailure(message, renderedDetails);
-        return exitCode;
+        throw new MetaCliExitException(exitCode);
     }
 
     private static IReadOnlyDictionary<string, string> ResolveCandidateTypeMap(MetaDataQualityModel model)
@@ -690,7 +401,7 @@ internal static class Program
         }
     }
 
-    private static string FormatQualifiedJoinType(string value)
+    private static string FormatQualifiedJoinType(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
@@ -711,7 +422,7 @@ internal static class Program
     private static string[] ResolveSideTableNames(
         IReadOnlyDictionary<string, JoinPatternOccurrenceBaseTable[]> baseTablesByOccurrenceId,
         string joinPatternOccurrenceId,
-        string joinInputTableReferenceId)
+        string? joinInputTableReferenceId)
     {
         if (!baseTablesByOccurrenceId.TryGetValue(joinPatternOccurrenceId, out var rows))
         {

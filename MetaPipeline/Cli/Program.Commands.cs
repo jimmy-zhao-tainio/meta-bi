@@ -1,14 +1,14 @@
-using Meta.Core.Operations;
 using Meta.Core.Presentation.Cli;
+using MetaCli.Core;
 
 internal static partial class Program
 {
-    private static int RunNewWorkspace(string[] args, int startIndex)
+    private static int RunNewWorkspace(MetaCliInvocation invocation)
     {
-        var parse = ParseNewWorkspaceArgs(args, startIndex);
+        var parse = ReadNewWorkspaceArgs(invocation);
         if (!parse.Ok)
         {
-            return Fail(parse.ErrorMessage, $"{Cli.Name} --help");
+            return Fail(parse.ErrorMessage, HelpCommand("new-workspace"));
         }
 
         var targetValidation = CliNewWorkspaceTargetValidator.Validate(parse.NewWorkspacePath);
@@ -28,9 +28,9 @@ internal static partial class Program
         return 0;
     }
 
-    private static int RunAddPipeline(string[] args, int startIndex)
+    private static int RunAddPipeline(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
     {
-        var parse = ParseAddPipelineArgs(args, startIndex);
+        var parse = ReadAddPipelineArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("add-pipeline"));
@@ -39,7 +39,6 @@ internal static partial class Program
         try
         {
             var workspacePath = Path.GetFullPath(parse.WorkspacePath);
-            var model = MetaPipeline.MetaPipelineModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
             EnsurePipelineNameAvailable(model, parse.Name);
 
             var pipeline = new MetaPipeline.Pipeline
@@ -48,17 +47,8 @@ internal static partial class Program
                 Name = parse.Name.Trim(),
                 Description = parse.Description.Trim(),
             };
-            ApplyInstanceUpserts(
-                workspacePath,
-                CreateUpsertOperation(
-                    "Pipeline",
-                    CreateRowPatch(
-                        pipeline.Id,
-                        new Dictionary<string, string>
-                        {
-                            ["Name"] = pipeline.Name,
-                            ["Description"] = pipeline.Description,
-                        })));
+            model.PipelineList.Add(pipeline);
+            model.SaveToXmlWorkspace(workspacePath);
 
             Presenter.WriteOk();
             return 0;
@@ -73,9 +63,9 @@ internal static partial class Program
         }
     }
 
-    private static int RunInspect(string[] args, int startIndex)
+    private static int RunInspect(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
     {
-        var parse = ParseWorkspaceOnlyArgs(args, startIndex, "meta-pipeline inspect --help");
+        var parse = ReadWorkspaceOnlyArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("inspect"));
@@ -83,8 +73,6 @@ internal static partial class Program
 
         try
         {
-            var workspacePath = Path.GetFullPath(parse.WorkspacePath);
-            var model = MetaPipeline.MetaPipelineModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
             Presenter.WriteOk("Loaded MetaPipeline workspace");
             Presenter.WriteKeyValueBlock("MetaPipeline", new[]
             {
@@ -98,21 +86,17 @@ internal static partial class Program
 
             foreach (var pipeline in model.PipelineList.OrderBy(static item => item.Name, StringComparer.OrdinalIgnoreCase))
             {
-                var tasks = model.PipelineTaskList
-                    .Where(item => string.Equals(item.Pipeline.Id, pipeline.Id, StringComparison.Ordinal))
-                    .OrderBy(static item => ParseOrdinalOrMax(item.Ordinal))
-                    .ThenBy(static item => item.Name, StringComparer.OrdinalIgnoreCase)
-                    .ToArray();
+                var tasks = ResolveOrderedPipelineTasks(model, pipeline);
 
                 Presenter.WriteKeyValueBlock($"Pipeline: {pipeline.Name}", new[]
                 {
                     ("Id", pipeline.Id),
-                    ("Tasks", tasks.Length.ToString()),
+                    ("Tasks", tasks.Count.ToString()),
                 });
 
                 foreach (var task in tasks)
                 {
-                    Presenter.WriteInfo($"  {task.Ordinal}. {task.Name} [{ResolveTaskLabel(model, task)}]");
+                    Presenter.WriteInfo($"  {task.Name} [{ResolveTaskLabel(model, task)}]");
                 }
             }
 
@@ -128,9 +112,9 @@ internal static partial class Program
         }
     }
 
-    private static int RunAddExecutableStep(string[] args, int startIndex)
+    private static int RunAddExecutableStep(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
     {
-        var parse = ParseAddExecutableStepArgs(args, startIndex);
+        var parse = ReadAddExecutableStepArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("add-executable-step"));
@@ -139,53 +123,36 @@ internal static partial class Program
         try
         {
             var workspacePath = Path.GetFullPath(parse.WorkspacePath);
-            var model = MetaPipeline.MetaPipelineModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
             var pipeline = ResolvePipeline(model, parse.PipelineName);
             var taskName = ResolveExecutableStepName(parse.StepName, parse.ExecutablePath);
             EnsureTaskNameAvailable(model, pipeline, taskName);
-            var nextOrdinal = ResolveNextTaskOrdinal(model, pipeline);
             var taskId = ScopedId(pipeline.Id, taskName);
             var previousTerminalTask = ResolveCurrentTerminalTask(model, pipeline);
 
-            var operations = new List<WorkspaceOp>
+            var task = new MetaPipeline.PipelineTask
             {
-                CreateUpsertOperation(
-                    "PipelineTask",
-                    CreateRowPatch(
-                        taskId,
-                        new Dictionary<string, string>
-                        {
-                            ["Name"] = taskName,
-                            ["Ordinal"] = nextOrdinal.ToString(),
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["PipelineId"] = pipeline.Id,
-                        })),
-                CreateUpsertOperation(
-                    "ExecutableTask",
-                    CreateRowPatch(
-                        ScopedId(taskId, "Executable"),
-                        new Dictionary<string, string>
-                        {
-                            ["ExecutablePath"] = parse.ExecutablePath.Trim(),
-                            ["Arguments"] = parse.Arguments.Trim(),
-                            ["WorkingDirectory"] = parse.WorkingDirectory.Trim(),
-                            ["SuccessExitCode"] = parse.SuccessExitCodeSpecified ? parse.SuccessExitCode.ToString() : string.Empty,
-                            ["TimeoutSeconds"] = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : string.Empty,
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["PipelineTaskId"] = taskId,
-                        })),
+                Id = taskId,
+                Pipeline = pipeline,
+                Name = taskName,
             };
+            model.PipelineTaskList.Add(task);
+            model.ExecutableTaskList.Add(new MetaPipeline.ExecutableTask
+            {
+                Id = ScopedId(taskId, "Executable"),
+                PipelineTask = task,
+                ExecutablePath = parse.ExecutablePath.Trim(),
+                Arguments = parse.Arguments.Trim(),
+                WorkingDirectory = parse.WorkingDirectory.Trim(),
+                SuccessExitCode = parse.SuccessExitCodeSpecified ? parse.SuccessExitCode.ToString() : null,
+                TimeoutSeconds = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : null,
+            });
 
             if (previousTerminalTask is not null)
             {
-                operations.Add(CreateSerialDependencyOperation(pipeline, previousTerminalTask.Id, taskId));
+                AddSerialDependency(model, pipeline, previousTerminalTask, task);
             }
 
-            ApplyInstanceUpserts(workspacePath, operations);
+            model.SaveToXmlWorkspace(workspacePath);
 
             Presenter.WriteOk();
             return 0;
@@ -200,9 +167,9 @@ internal static partial class Program
         }
     }
 
-    private static int RunAddStep(string[] args, int startIndex)
+    private static int RunAddStep(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
     {
-        var parse = ParseAddStepArgs(args, startIndex);
+        var parse = ReadAddStepArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("add-step"));
@@ -211,7 +178,6 @@ internal static partial class Program
         try
         {
             var workspacePath = Path.GetFullPath(parse.WorkspacePath);
-            var model = MetaPipeline.MetaPipelineModel.LoadFromXmlWorkspace(workspacePath, searchUpward: false);
             var pipeline = ResolvePipeline(model, parse.PipelineName);
             var selection = new MetaPipeline.MetaPipelineTransformSelectionResolver().Resolve(
                 parse.TransformWorkspacePath,
@@ -233,7 +199,6 @@ internal static partial class Program
             var taskBaseName = ResolveStepName(parse.StepName, executionDefinition.TransformScriptName);
             var transformTaskName = taskBaseName;
             EnsureTaskNameAvailable(model, pipeline, transformTaskName);
-            var nextOrdinal = ResolveNextTaskOrdinal(model, pipeline);
             var transformTaskId = ScopedId(pipeline.Id, transformTaskName);
             var previousTerminalTask = ResolveCurrentTerminalTask(model, pipeline);
 
@@ -248,60 +213,32 @@ internal static partial class Program
                         $"Transform script '{executionDefinition.TransformScriptName}' is not SELECT-kind and cannot use target connection, target write, batch-size, or target-data-type-system options.");
                 }
 
-                var mutationOperations = new List<WorkspaceOp>
+                var mutationTransformTask = new MetaPipeline.PipelineTask
                 {
-                    CreateUpsertOperation(
-                        "ConnectionReference",
-                        CreateRowPatch(
-                            executionConnection.Id,
-                            new Dictionary<string, string>
-                            {
-                                ["Name"] = executionConnection.Name,
-                                ["EnvironmentVariableName"] = executionConnection.EnvironmentVariableName,
-                            },
-                            new Dictionary<string, string>
-                            {
-                                ["PipelineId"] = pipeline.Id,
-                            })),
-                    CreateUpsertOperation(
-                        "PipelineTask",
-                        CreateRowPatch(
-                            transformTaskId,
-                            new Dictionary<string, string>
-                            {
-                                ["Name"] = transformTaskName,
-                                ["Ordinal"] = nextOrdinal.ToString(),
-                            },
-                            new Dictionary<string, string>
-                            {
-                                ["PipelineId"] = pipeline.Id,
-                            })),
-                    CreateUpsertOperation(
-                        "TransformExecutionTask",
-                        CreateRowPatch(
-                            ScopedId(transformTaskId, "TransformExecution"),
-                            new Dictionary<string, string>
-                            {
-                                ["TransformScriptId"] = executionDefinition.TransformScriptId,
-                                ["TransformBindingId"] = executionDefinition.TransformBindingId
-                                    ?? throw new MetaPipeline.MetaPipelineConfigurationException("Transform execution requires a transform binding."),
-                                ["TransformWorkspacePath"] = Path.GetFullPath(parse.TransformWorkspacePath),
-                                ["BindingWorkspacePath"] = Path.GetFullPath(parse.BindingWorkspacePath),
-                                ["TimeoutSeconds"] = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : string.Empty,
-                            },
-                            new Dictionary<string, string>
-                            {
-                                ["PipelineTaskId"] = transformTaskId,
-                                ["ExecutionConnectionReferenceId"] = executionConnection.Id,
-                            })),
+                    Id = transformTaskId,
+                    Pipeline = pipeline,
+                    Name = transformTaskName,
                 };
+                model.PipelineTaskList.Add(mutationTransformTask);
+                model.TransformExecutionTaskList.Add(new MetaPipeline.TransformExecutionTask
+                {
+                    Id = ScopedId(transformTaskId, "TransformExecution"),
+                    PipelineTask = mutationTransformTask,
+                    ExecutionConnectionReference = executionConnection,
+                    TransformScriptId = executionDefinition.TransformScriptId,
+                    TransformBindingId = executionDefinition.TransformBindingId
+                        ?? throw new MetaPipeline.MetaPipelineConfigurationException("Transform execution requires a transform binding."),
+                    TransformWorkspacePath = Path.GetFullPath(parse.TransformWorkspacePath),
+                    BindingWorkspacePath = Path.GetFullPath(parse.BindingWorkspacePath),
+                    TimeoutSeconds = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : null,
+                });
 
                 if (previousTerminalTask is not null)
                 {
-                    mutationOperations.Add(CreateSerialDependencyOperation(pipeline, previousTerminalTask.Id, transformTaskId));
+                    AddSerialDependency(model, pipeline, previousTerminalTask, mutationTransformTask);
                 }
 
-                ApplyInstanceUpserts(workspacePath, mutationOperations);
+                model.SaveToXmlWorkspace(workspacePath);
 
                 Presenter.WriteOk();
                 return 0;
@@ -342,176 +279,89 @@ internal static partial class Program
                     "SELECT-kind transform tasks require a resolved row-stream shape.");
             _ = MetaPipeline.SqlServerMultipartIdentifier.Parse(targetSqlIdentifier);
 
-            var operations = new List<WorkspaceOp>
+            var transformTask = new MetaPipeline.PipelineTask
             {
-                CreateUpsertOperation(
-                    "ConnectionReference",
-                    CreateRowPatch(
-                        executionConnection.Id,
-                        new Dictionary<string, string>
-                        {
-                            ["Name"] = executionConnection.Name,
-                            ["EnvironmentVariableName"] = executionConnection.EnvironmentVariableName,
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["PipelineId"] = pipeline.Id,
-                        })),
-                CreateUpsertOperation(
-                    "ConnectionReference",
-                    CreateRowPatch(
-                        targetConnection.Id,
-                        new Dictionary<string, string>
-                        {
-                            ["Name"] = targetConnection.Name,
-                            ["EnvironmentVariableName"] = targetConnection.EnvironmentVariableName,
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["PipelineId"] = pipeline.Id,
-                        })),
-                CreateUpsertOperation(
-                    "PipelineTask",
-                    CreateRowPatch(
-                        transformTaskId,
-                        new Dictionary<string, string>
-                        {
-                            ["Name"] = transformTaskName,
-                            ["Ordinal"] = nextOrdinal.ToString(),
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["PipelineId"] = pipeline.Id,
-                        })),
-                CreateUpsertOperation(
-                    "TransformExecutionTask",
-                    CreateRowPatch(
-                        ScopedId(transformTaskId, "TransformExecution"),
-                        new Dictionary<string, string>
-                        {
-                            ["TransformScriptId"] = executionDefinition.TransformScriptId,
-                            ["TransformBindingId"] = transformBindingId,
-                            ["TransformWorkspacePath"] = Path.GetFullPath(parse.TransformWorkspacePath),
-                            ["BindingWorkspacePath"] = Path.GetFullPath(parse.BindingWorkspacePath),
-                            ["TimeoutSeconds"] = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : string.Empty,
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["PipelineTaskId"] = transformTaskId,
-                            ["ExecutionConnectionReferenceId"] = executionConnection.Id,
-                        })),
-                CreateUpsertOperation(
-                    "RowStream",
-                    CreateRowPatch(
-                        rowStreamId,
-                        new Dictionary<string, string>
-                        {
-                            ["Name"] = rowStreamName,
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["PipelineId"] = pipeline.Id,
-                        })),
+                Id = transformTaskId,
+                Pipeline = pipeline,
+                Name = transformTaskName,
             };
+            model.PipelineTaskList.Add(transformTask);
+            model.TransformExecutionTaskList.Add(new MetaPipeline.TransformExecutionTask
+            {
+                Id = ScopedId(transformTaskId, "TransformExecution"),
+                PipelineTask = transformTask,
+                ExecutionConnectionReference = executionConnection,
+                TransformScriptId = executionDefinition.TransformScriptId,
+                TransformBindingId = transformBindingId,
+                TransformWorkspacePath = Path.GetFullPath(parse.TransformWorkspacePath),
+                BindingWorkspacePath = Path.GetFullPath(parse.BindingWorkspacePath),
+                TimeoutSeconds = parse.TimeoutSecondsSpecified ? parse.TimeoutSeconds!.Value.ToString() : null,
+            });
+
+            var rowStream = new MetaPipeline.RowStream
+            {
+                Id = rowStreamId,
+                Pipeline = pipeline,
+                Name = rowStreamName,
+            };
+            model.RowStreamList.Add(rowStream);
 
             foreach (var column in rowStreamShape.Columns)
             {
-                operations.Add(
-                    CreateUpsertOperation(
-                        "RowStreamColumn",
-                        CreateRowPatch(
-                            ScopedId(rowStreamId, column.Name),
-                            new Dictionary<string, string>
-                            {
-                                ["Name"] = column.Name,
-                                ["Ordinal"] = column.Ordinal.ToString(),
-                            },
-                            new Dictionary<string, string>
-                            {
-                                ["RowStreamId"] = rowStreamId,
-                            })));
+                model.RowStreamColumnList.Add(new MetaPipeline.RowStreamColumn
+                {
+                    Id = ScopedId(rowStreamId, column.Name),
+                    RowStream = rowStream,
+                    Name = column.Name,
+                    Ordinal = column.Ordinal.ToString(),
+                });
             }
 
             var targetWriteDetailId = ScopedId(targetWriteTaskId, "TargetWrite");
-            operations.Add(
-                CreateUpsertOperation(
-                    "RowStreamProducer",
-                    CreateRowPatch(
-                        ScopedId(transformTaskId, "Produces", rowStreamId),
-                        relationships: new Dictionary<string, string>
-                        {
-                            ["PipelineTaskId"] = transformTaskId,
-                            ["RowStreamId"] = rowStreamId,
-                        })));
+            model.RowStreamProducerList.Add(new MetaPipeline.RowStreamProducer
+            {
+                Id = ScopedId(transformTaskId, "Produces", rowStreamId),
+                PipelineTask = transformTask,
+                RowStream = rowStream,
+            });
 
-            operations.Add(
-                CreateUpsertOperation(
-                    "PipelineTask",
-                    CreateRowPatch(
-                        targetWriteTaskId,
-                        new Dictionary<string, string>
-                        {
-                            ["Name"] = targetWriteTaskName,
-                            ["Ordinal"] = (nextOrdinal + 1).ToString(),
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["PipelineId"] = pipeline.Id,
-                        })));
-            operations.Add(
-                CreateUpsertOperation(
-                    "TargetWriteTask",
-                    CreateRowPatch(
-                        targetWriteDetailId,
-                        relationships: new Dictionary<string, string>
-                        {
-                            ["PipelineTaskId"] = targetWriteTaskId,
-                            ["TargetConnectionReferenceId"] = targetConnection.Id,
-                        })));
-            operations.Add(
-                CreateUpsertOperation(
-                    "InsertRowsTargetWriteTask",
-                    CreateRowPatch(
-                        ScopedId(targetWriteDetailId, "InsertRows"),
-                        new Dictionary<string, string>
-                        {
-                            ["TargetSqlIdentifier"] = targetSqlIdentifier,
-                            ["BatchSize"] = parse.BatchSizeSpecified ? parse.BatchSize.ToString() : string.Empty,
-                            ["TargetDataTypeSystemName"] = parse.TargetDataTypeSystemSpecified ? parse.TargetDataTypeSystemName.Trim() : string.Empty,
-                        },
-                        new Dictionary<string, string>
-                        {
-                            ["TargetWriteTaskId"] = targetWriteDetailId,
-                        })));
+            var targetWritePipelineTask = new MetaPipeline.PipelineTask
+            {
+                Id = targetWriteTaskId,
+                Pipeline = pipeline,
+                Name = targetWriteTaskName,
+            };
+            model.PipelineTaskList.Add(targetWritePipelineTask);
+            var targetWriteTask = new MetaPipeline.TargetWriteTask
+            {
+                Id = targetWriteDetailId,
+                PipelineTask = targetWritePipelineTask,
+                TargetConnectionReference = targetConnection,
+            };
+            model.TargetWriteTaskList.Add(targetWriteTask);
+            model.InsertRowsTargetWriteTaskList.Add(new MetaPipeline.InsertRowsTargetWriteTask
+            {
+                Id = ScopedId(targetWriteDetailId, "InsertRows"),
+                TargetWriteTask = targetWriteTask,
+                TargetSqlIdentifier = targetSqlIdentifier,
+                BatchSize = parse.BatchSizeSpecified ? parse.BatchSize.ToString() : null,
+                TargetDataTypeSystemName = parse.TargetDataTypeSystemSpecified ? parse.TargetDataTypeSystemName.Trim() : null,
+            });
 
-            operations.Add(
-                CreateUpsertOperation(
-                    "RowStreamConsumer",
-                    CreateRowPatch(
-                        ScopedId(targetWriteTaskId, "Consumes", rowStreamId),
-                        relationships: new Dictionary<string, string>
-                        {
-                            ["PipelineTaskId"] = targetWriteTaskId,
-                            ["RowStreamId"] = rowStreamId,
-                        })));
+            model.RowStreamConsumerList.Add(new MetaPipeline.RowStreamConsumer
+            {
+                Id = ScopedId(targetWriteTaskId, "Consumes", rowStreamId),
+                PipelineTask = targetWritePipelineTask,
+                RowStream = rowStream,
+            });
             if (previousTerminalTask is not null)
             {
-                operations.Add(CreateSerialDependencyOperation(pipeline, previousTerminalTask.Id, transformTaskId));
+                AddSerialDependency(model, pipeline, previousTerminalTask, transformTask);
             }
 
-            operations.Add(
-                CreateUpsertOperation(
-                    "TaskDependency",
-                    CreateRowPatch(
-                        ScopedId(transformTaskId, "Before", targetWriteTaskId),
-                        relationships: new Dictionary<string, string>
-                        {
-                            ["PipelineId"] = pipeline.Id,
-                            ["PredecessorId"] = transformTaskId,
-                            ["SuccessorId"] = targetWriteTaskId,
-                        })));
+            AddSerialDependency(model, pipeline, transformTask, targetWritePipelineTask);
 
-            ApplyInstanceUpserts(workspacePath, operations);
+            model.SaveToXmlWorkspace(workspacePath);
 
             Presenter.WriteOk();
             return 0;

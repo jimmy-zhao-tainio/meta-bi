@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-check:parameter:param-check-workspace" ExecutableCommandId="exec-check" ParameterId="param-check-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-resolve:parameter:param-resolve-workspace" ExecutableCommandId="exec-resolve" ParameterId="param-resolve-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-resolve:parameter:param-resolve-source-data-type" ExecutableCommandId="exec-resolve" ParameterId="param-resolve-source-data-type">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-resolve:parameter:param-resolve-target-data-type-system" ExecutableCommandId="exec-resolve" ParameterId="param-resolve-target-data-type-system">
+    </ExecutableCommandParameter>
+  </ExecutableCommandParameterList>
+</MetaCli>

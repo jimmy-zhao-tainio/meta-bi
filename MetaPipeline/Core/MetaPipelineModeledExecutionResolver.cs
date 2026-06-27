@@ -11,7 +11,20 @@ public sealed class MetaPipelineModeledExecutionResolver
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
         var model = MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
-        var pipeline = ResolvePipeline(model, request.PipelineName);
+        return Resolve(model, pipelineWorkspacePath, request.PipelineName);
+    }
+
+    public MetaPipelineModeledExecutionPlan Resolve(
+        MetaPipelineModel model,
+        string pipelineWorkspacePath,
+        string pipelineName)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentException.ThrowIfNullOrWhiteSpace(pipelineWorkspacePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(pipelineName);
+
+        pipelineWorkspacePath = Path.GetFullPath(pipelineWorkspacePath);
+        var pipeline = ResolvePipeline(model, pipelineName);
         var orderedTasks = ResolveSerialTaskOrder(model, pipeline);
         var steps = new List<MetaPipelineModeledExecutionStep>();
         var workspaceResolver = new MetaPipelineExecutionWorkspaceResolver();
@@ -187,8 +200,23 @@ public sealed class MetaPipelineModeledExecutionResolver
 
         var pipelineWorkspacePath = Path.GetFullPath(request.PipelineWorkspacePath);
         var model = MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
-        var pipeline = ResolvePipeline(model, request.PipelineName);
-        var pipelineTask = ResolvePipelineTask(model, pipeline, request.StepName);
+        return ResolveStep(model, pipelineWorkspacePath, request.PipelineName, request.StepName);
+    }
+
+    public MetaPipelineModeledExecutionPlan ResolveStep(
+        MetaPipelineModel model,
+        string pipelineWorkspacePath,
+        string pipelineName,
+        string stepName)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentException.ThrowIfNullOrWhiteSpace(pipelineWorkspacePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(pipelineName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(stepName);
+
+        pipelineWorkspacePath = Path.GetFullPath(pipelineWorkspacePath);
+        var pipeline = ResolvePipeline(model, pipelineName);
+        var pipelineTask = ResolvePipelineTask(model, pipeline, stepName);
         var executableTask = ResolveExecutableTask(model, pipelineTask);
         var transformExecution = ResolveTransformExecutionTask(model, pipelineTask);
         if (executableTask is not null && transformExecution is not null)
@@ -477,21 +505,6 @@ public sealed class MetaPipelineModeledExecutionResolver
         {
             throw new MetaPipelineConfigurationException(
                 $"Pipeline '{pipeline.Name}' TaskDependency rows do not form one connected serial chain.");
-        }
-
-        for (var index = 1; index < ordered.Count; index++)
-        {
-            var previousOrdinal = ParseNonNegativeOrdinal(
-                ordered[index - 1].Ordinal,
-                $"Pipeline '{pipeline.Name}' task '{ordered[index - 1].Name}' contains invalid Ordinal '{ordered[index - 1].Ordinal}'.");
-            var currentOrdinal = ParseNonNegativeOrdinal(
-                ordered[index].Ordinal,
-                $"Pipeline '{pipeline.Name}' task '{ordered[index].Name}' contains invalid Ordinal '{ordered[index].Ordinal}'.");
-            if (currentOrdinal <= previousOrdinal)
-            {
-                throw new MetaPipelineConfigurationException(
-                    $"Pipeline '{pipeline.Name}' serial task order must follow increasing Ordinal values.");
-            }
         }
 
         return ordered;

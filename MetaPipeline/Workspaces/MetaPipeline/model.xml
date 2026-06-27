@@ -19,7 +19,6 @@
     <Entity name="PipelineTask">
       <PropertyList>
         <Property name="Name" />
-        <Property name="Ordinal" />
       </PropertyList>
       <RelationshipList>
         <Relationship entity="Pipeline" />

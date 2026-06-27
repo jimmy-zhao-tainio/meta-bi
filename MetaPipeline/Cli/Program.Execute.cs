@@ -1,17 +1,14 @@
 using Meta.Core.Connections;
+using MetaCli.Core;
 using MetaOrchestration.WorkerProtocol;
 
 internal static partial class Program
 {
-    private static async Task<int> RunExecuteAsync(string[] args)
+    private static async Task<int> RunExecuteAsync(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel pipelineModel)
     {
-        if (args.Length >= 2 && IsHelpToken(args[1]))
-        {
-            PrintExecuteHelp();
-            return 0;
-        }
-
-        var parse = ParseExecutePipelineArgs(args, 1);
+        var parse = ReadExecutePipelineArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("execute"));
@@ -36,7 +33,6 @@ internal static partial class Program
                     .ConfigureAwait(false);
             }
 
-            var pipelineModel = MetaPipeline.MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
             var validation = new MetaPipeline.MetaPipelineModelValidationService()
                 .ValidatePipeline(pipelineModel, parse.PipelineName);
             if (!validation.IsValid)
@@ -59,9 +55,9 @@ internal static partial class Program
             }
 
             plan = new MetaPipeline.MetaPipelineModeledExecutionResolver().Resolve(
-                new MetaPipeline.MetaPipelineModeledExecutionRequest(
-                    parse.PipelineWorkspacePath,
-                    parse.PipelineName));
+                pipelineModel,
+                pipelineWorkspacePath,
+                parse.PipelineName);
 
             if (operationalDb is not null && operationalRunId is Guid startedRunId)
             {
@@ -235,15 +231,11 @@ internal static partial class Program
         }
     }
 
-    private static async Task<int> RunExecuteWorkerAsync(string[] args)
+    private static async Task<int> RunExecuteWorkerAsync(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel pipelineModel)
     {
-        if (args.Length >= 2 && IsHelpToken(args[1]))
-        {
-            PrintExecuteWorkerHelp();
-            return 0;
-        }
-
-        var parse = ParseExecutePipelineArgs(args, 1);
+        var parse = ReadExecutePipelineArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("execute-worker"));
@@ -295,7 +287,6 @@ internal static partial class Program
                     .ConfigureAwait(false);
             }
 
-            var pipelineModel = MetaPipeline.MetaPipelineModel.LoadFromXmlWorkspace(pipelineWorkspacePath, searchUpward: false);
             var validation = new MetaPipeline.MetaPipelineModelValidationService()
                 .ValidatePipeline(pipelineModel, parse.PipelineName);
             if (!validation.IsValid)
@@ -318,9 +309,9 @@ internal static partial class Program
             }
 
             plan = new MetaPipeline.MetaPipelineModeledExecutionResolver().Resolve(
-                new MetaPipeline.MetaPipelineModeledExecutionRequest(
-                    parse.PipelineWorkspacePath,
-                    parse.PipelineName));
+                pipelineModel,
+                pipelineWorkspacePath,
+                parse.PipelineName);
             ValidateStartPipelineCommand(startCommand, plan);
 
             if (operationalDb is not null && operationalRunId is Guid startedRunId)
@@ -426,15 +417,11 @@ internal static partial class Program
         }
     }
 
-    private static async Task<int> RunExecuteStepAsync(string[] args)
+    private static async Task<int> RunExecuteStepAsync(
+        MetaCliInvocation invocation,
+        MetaPipeline.MetaPipelineModel pipelineModel)
     {
-        if (args.Length >= 2 && IsHelpToken(args[1]))
-        {
-            PrintExecuteStepHelp();
-            return 0;
-        }
-
-        var parse = ParseExecuteStepArgs(args, 1);
+        var parse = ReadExecuteStepArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("execute-step"));
@@ -460,10 +447,10 @@ internal static partial class Program
             }
 
             plan = new MetaPipeline.MetaPipelineModeledExecutionResolver().ResolveStep(
-                new MetaPipeline.MetaPipelineModeledExecutionStepRequest(
-                    parse.PipelineWorkspacePath,
-                    parse.PipelineName,
-                    parse.StepName));
+                pipelineModel,
+                pipelineWorkspacePath,
+                parse.PipelineName,
+                parse.StepName);
 
             if (operationalDb is not null && operationalRunId is Guid startedRunId)
             {
@@ -639,15 +626,9 @@ internal static partial class Program
         }
     }
 
-    private static async Task<int> RunExecuteSqlServerAsync(string[] args)
+    private static async Task<int> RunExecuteSqlServerAsync(MetaCliInvocation invocation)
     {
-        if (args.Length >= 2 && IsHelpToken(args[1]))
-        {
-            PrintExecuteSqlServerHelp();
-            return 0;
-        }
-
-        var parse = ParseExecuteSqlServerArgs(args, 1);
+        var parse = ReadExecuteSqlServerArgs(invocation);
         if (!parse.Ok)
         {
             return Fail(parse.ErrorMessage, HelpCommand("execute-sqlserver"));

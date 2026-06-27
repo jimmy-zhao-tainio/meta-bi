@@ -25,7 +25,6 @@ public sealed class MetaPipelineModelValidationService
             return MetaPipelineModelValidationResult.From(errors);
         }
 
-        ValidateTaskOrdinals(pipeline, pipelineTasks, errors);
         ValidateTaskDependencies(model, pipeline, pipelineTasks, errors);
         ValidateTaskDetails(model, pipeline, pipelineTasks, errors);
         ValidateRowStreamLinks(model, pipeline, pipelineTasks, errors);
@@ -55,27 +54,6 @@ public sealed class MetaPipelineModelValidationService
         }
 
         return matches[0];
-    }
-
-    private static void ValidateTaskOrdinals(
-        Pipeline pipeline,
-        IReadOnlyList<PipelineTask> pipelineTasks,
-        ICollection<string> errors)
-    {
-        var seenOrdinals = new HashSet<int>();
-        foreach (var task in pipelineTasks)
-        {
-            if (!int.TryParse(task.Ordinal, out var ordinal) || ordinal <= 0)
-            {
-                errors.Add($"Pipeline '{pipeline.Name}' task '{task.Name}' has invalid Ordinal '{task.Ordinal}'. Expected a positive integer.");
-                continue;
-            }
-
-            if (!seenOrdinals.Add(ordinal))
-            {
-                errors.Add($"Pipeline '{pipeline.Name}' reuses Ordinal '{ordinal}' across tasks.");
-            }
-        }
     }
 
     private static void ValidateTaskDependencies(
@@ -192,16 +170,6 @@ public sealed class MetaPipelineModelValidationService
             return;
         }
 
-        for (var index = 1; index < ordered.Count; index++)
-        {
-            var previousOrdinal = ParseOrdinalOrZero(ordered[index - 1].Ordinal);
-            var currentOrdinal = ParseOrdinalOrZero(ordered[index].Ordinal);
-            if (currentOrdinal <= previousOrdinal)
-            {
-                errors.Add($"Pipeline '{pipeline.Name}' serial task order must follow increasing Ordinal values.");
-                return;
-            }
-        }
     }
 
     private static void ValidateTaskDetails(
@@ -293,9 +261,6 @@ public sealed class MetaPipelineModelValidationService
             }
         }
     }
-
-    private static int ParseOrdinalOrZero(string value) =>
-        int.TryParse(value, out var ordinal) ? ordinal : 0;
 }
 
 public sealed record MetaPipelineModelValidationResult(

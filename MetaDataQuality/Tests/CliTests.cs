@@ -29,7 +29,8 @@ public sealed class CliTests
         var result = RunCli("from-transform-workspace --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Command: from-transform-workspace", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("Usage:", result.Output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("meta-data-quality from-transform-workspace", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Options:", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--transform-workspace <path>", result.Output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("--new-workspace <path>", result.Output, StringComparison.OrdinalIgnoreCase);
@@ -76,8 +77,12 @@ public sealed class CliTests
             Assert.DoesNotContain("Review The Results:", inspect.Output, StringComparison.Ordinal);
             Assert.Contains("Corpus Inference:", inspect.Output, StringComparison.Ordinal);
 
+            var inspectFromCurrentDirectory = RunCli("inspect", workingDirectory: qualityWorkspacePath);
+            Assert.Equal(0, inspectFromCurrentDirectory.ExitCode);
+            Assert.Contains("Corpus Inference:", inspectFromCurrentDirectory.Output, StringComparison.Ordinal);
+
             var firstCandidate = model.DataQualityCandidateList[0];
-            var promoted = RunCli($"promote --workspace \"{qualityWorkspacePath}\" --candidate-id \"{firstCandidate.Id}\"");
+            var promoted = RunCli($"promote --candidate-id \"{firstCandidate.Id}\"", workingDirectory: qualityWorkspacePath);
             Assert.Equal(0, promoted.ExitCode);
             Assert.Contains("Candidates promoted this run: 1", promoted.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Ok", promoted.Output, StringComparison.Ordinal);
@@ -669,8 +674,8 @@ LEFT OUTER JOIN dbo.[Order] o
         }
     }
 
-    private static (int ExitCode, string Output) RunCli(string arguments) =>
-        CliTestRunner.RunStandardCli("MetaDataQuality", "meta-data-quality.exe", arguments);
+    private static (int ExitCode, string Output) RunCli(string arguments, string? workingDirectory = null) =>
+        CliTestRunner.RunStandardCli("MetaDataQuality", "meta-data-quality.exe", arguments, workingDirectory: workingDirectory);
 
     private static void DeleteDirectoryIfExists(string path)
     {

@@ -1005,14 +1005,12 @@ END
             Id = "CustomerLoad.transform",
             Pipeline = pipeline,
             Name = "transform",
-            Ordinal = "1",
         };
         var targetWriteTask = new PipelineTask
         {
             Id = "CustomerLoad.target-write",
             Pipeline = pipeline,
             Name = "target-write",
-            Ordinal = "2",
         };
         model.PipelineTaskList.Add(transformTask);
         model.PipelineTaskList.Add(targetWriteTask);
@@ -1111,7 +1109,6 @@ END
             Id = "CustomerLoad.transform",
             Pipeline = pipeline,
             Name = "transform",
-            Ordinal = "1",
         };
         model.PipelineTaskList.Add(task);
         model.TransformExecutionTaskList.Add(new TransformExecutionTask
@@ -1158,14 +1155,12 @@ END
             Id = "CustomerLoad.update",
             Pipeline = pipeline,
             Name = "update",
-            Ordinal = "1",
         };
         var secondTask = new PipelineTask
         {
             Id = "CustomerLoad.delete",
             Pipeline = pipeline,
             Name = "delete",
-            Ordinal = "2",
         };
         model.PipelineTaskList.Add(firstTask);
         model.PipelineTaskList.Add(secondTask);

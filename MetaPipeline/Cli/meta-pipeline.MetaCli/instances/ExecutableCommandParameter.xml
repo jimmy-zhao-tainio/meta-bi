@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-new-workspace:parameter:param-new-workspace-path" ExecutableCommandId="exec-new-workspace" ParameterId="param-new-workspace-path">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-transform-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-transform-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-binding-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-binding-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-data-type-conversion-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-data-type-conversion-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline-db-connection-env" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline-db-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-pipeline" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-pipeline">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-control-pipe" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-control-pipe">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-transform-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-transform-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-binding-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-binding-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-control-pipe-connect-timeout-seconds" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-control-pipe-connect-timeout-seconds">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-data-type-conversion-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-data-type-conversion-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-pipeline-db-connection-env" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-pipeline-db-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-workspace" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-pipeline" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-pipeline">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-step-name" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-step-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-transform-workspace" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-transform-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-binding-workspace" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-binding-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-data-type-conversion-workspace" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-data-type-conversion-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-pipeline-db-connection-env" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-pipeline-db-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-transform-workspace" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-transform-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-binding-workspace" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-binding-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-script" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-script">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-binding" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-binding">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-execution-connection-env" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-execution-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-target-connection-env" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-target-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-target" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-target">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-batch-size" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-batch-size">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-timeout-seconds" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-timeout-seconds">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-target-data-type-system" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-target-data-type-system">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-data-type-conversion-workspace" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-data-type-conversion-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-pipeline-db-connection-env" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-pipeline-db-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-create-pipeline-db:parameter:param-create-pipeline-db-pipeline-db-connection-env" ExecutableCommandId="exec-create-pipeline-db" ParameterId="param-create-pipeline-db-pipeline-db-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-create-pipeline-db:parameter:param-create-pipeline-db-pipeline-db-name" ExecutableCommandId="exec-create-pipeline-db" ParameterId="param-create-pipeline-db-pipeline-db-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-prune-pipeline-db:parameter:param-prune-pipeline-db-pipeline-db-connection-env" ExecutableCommandId="exec-prune-pipeline-db" ParameterId="param-prune-pipeline-db-pipeline-db-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-prune-pipeline-db:parameter:param-prune-pipeline-db-retention-days" ExecutableCommandId="exec-prune-pipeline-db" ParameterId="param-prune-pipeline-db-retention-days">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-prune-pipeline-db:parameter:param-prune-pipeline-db-dry-run" ExecutableCommandId="exec-prune-pipeline-db" ParameterId="param-prune-pipeline-db-dry-run">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-pipeline:parameter:param-add-pipeline-workspace" ExecutableCommandId="exec-add-pipeline" ParameterId="param-add-pipeline-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-pipeline:parameter:param-add-pipeline-name" ExecutableCommandId="exec-add-pipeline" ParameterId="param-add-pipeline-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-pipeline:parameter:param-add-pipeline-description" ExecutableCommandId="exec-add-pipeline" ParameterId="param-add-pipeline-description">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-inspect:parameter:param-inspect-workspace" ExecutableCommandId="exec-inspect" ParameterId="param-inspect-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-executable-step:parameter:param-add-executable-step-workspace" ExecutableCommandId="exec-add-executable-step" ParameterId="param-add-executable-step-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-executable-step:parameter:param-add-executable-step-pipeline" ExecutableCommandId="exec-add-executable-step" ParameterId="param-add-executable-step-pipeline">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-executable-step:parameter:param-add-executable-step-executable" ExecutableCommandId="exec-add-executable-step" ParameterId="param-add-executable-step-executable">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-executable-step:parameter:param-add-executable-step-step-name" ExecutableCommandId="exec-add-executable-step" ParameterId="param-add-executable-step-step-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-executable-step:parameter:param-add-executable-step-arguments" ExecutableCommandId="exec-add-executable-step" ParameterId="param-add-executable-step-arguments">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-executable-step:parameter:param-add-executable-step-working-directory" ExecutableCommandId="exec-add-executable-step" ParameterId="param-add-executable-step-working-directory">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-executable-step:parameter:param-add-executable-step-success-exit-code" ExecutableCommandId="exec-add-executable-step" ParameterId="param-add-executable-step-success-exit-code">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-executable-step:parameter:param-add-executable-step-timeout-seconds" ExecutableCommandId="exec-add-executable-step" ParameterId="param-add-executable-step-timeout-seconds">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-workspace" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-pipeline" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-pipeline">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-script" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-script">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-transform-workspace" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-transform-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-binding-workspace" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-binding-workspace">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-execution-connection-env" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-execution-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-step-name" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-step-name">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-binding" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-binding">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-target-connection-env" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-target-connection-env">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-target" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-target">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-target-write" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-target-write">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-batch-size" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-batch-size">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-timeout-seconds" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-timeout-seconds">
+    </ExecutableCommandParameter>
+    <ExecutableCommandParameter Id="exec-add-step:parameter:param-add-step-target-data-type-system" ExecutableCommandId="exec-add-step" ParameterId="param-add-step-target-data-type-system">
+    </ExecutableCommandParameter>
+  </ExecutableCommandParameterList>
+</MetaCli>

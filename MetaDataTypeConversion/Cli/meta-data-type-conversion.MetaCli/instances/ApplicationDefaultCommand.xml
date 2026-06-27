@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationDefaultCommandList>
+    <ApplicationDefaultCommand Id="app-meta-data-type-conversion:default-command" ApplicationId="app-meta-data-type-conversion" ExecutableCommandId="exec-help">
+    </ApplicationDefaultCommand>
+  </ApplicationDefaultCommandList>
+</MetaCli>

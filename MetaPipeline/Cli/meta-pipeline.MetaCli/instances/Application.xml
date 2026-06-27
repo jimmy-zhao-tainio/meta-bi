@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-pipeline">
+      <ExecutableName>meta-pipeline</ExecutableName>
+      <Name>meta-pipeline</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>
