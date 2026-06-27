@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterList>
+    <Parameter Id="param-new-workspace-path" ValueShapeId="shape-path">
+      <Description>Directory where the sanctioned workspace will be created.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>path</Name>
+    </Parameter>
+  </ParameterList>
+</MetaCli>

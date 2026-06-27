@@ -1,192 +1,58 @@
-using Meta.Core.Domain;
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using Meta.Core.Services;
-using MetaDataType.Core;
+using MetaCli.Core;
+using MetaDataType.Instance;
+using MetaDataTypeModel = MetaDataType.MetaDataTypeModel;
 
 internal static class Program
 {
     private const string AppName = "meta-data-type";
-
+    private const string ApplicationId = "app-meta-data-type";
+    private const string CommandWorkspaceDirectoryName = "meta-data-type.MetaCli";
     private static readonly ConsolePresenter Presenter = new();
-    private static readonly IReadOnlyList<CliCommandRoute> CommandRoutes = BuildCommandRoutes();
-    private static readonly IReadOnlyDictionary<string, CliCommandRoute> CommandRoutesByName = CommandRoutes
-        .ToDictionary(route => route.Definition.Name, StringComparer.OrdinalIgnoreCase);
-    private static readonly CliAppDefinition Cli = new(
-        AppName,
-        new[]
-        {
-            "meta-data-type [--new-workspace <path> | <command> [options]]"
-        },
-        CommandRoutes.Select(route => route.Definition).ToArray(),
-        Next: "meta-data-type --new-workspace --help");
 
-    internal static CliAppDefinition CreateAppDefinition() => Cli;
-
-    private static IReadOnlyList<CliCommandRoute> BuildCommandRoutes() =>
-        new[]
-        {
-            new CliCommandRoute(
-                new CliCommandDefinition(
-                    "help",
-                    "Show this help.",
-                    new[] { "meta-data-type help" }),
-                _ =>
-                {
-                    PrintHelp();
-                    return Task.FromResult(0);
-                }),
-            new CliCommandRoute(
-                new CliCommandDefinition(
-                    "--new-workspace",
-                    "Create a new MetaDataType workspace.",
-                    new[] { "meta-data-type --new-workspace <path>" },
-                    new[]
-                    {
-                        new CliOptionDefinition("--new-workspace <path>", "Required. Directory where the sanctioned workspace will be created.")
-                    },
-                    new[]
-                    {
-                        "Creates a new workspace with the MetaDataType model, sanctioned type instances, and validates it."
-                    }),
-                RunNewWorkspaceAsync)
-        };
-
-    static async Task<int> Main(string[] args)
+    static int Main(string[] args)
     {
-        if (Meta.Core.Presentation.Cli.CliVersion.TryWriteVersion(Presenter, Cli.Name, args, out var versionExitCode))
+        if (CliVersion.TryWriteVersion(Presenter, AppName, args, out var versionExitCode))
         {
             return versionExitCode;
         }
 
-        if (args.Length == 0 || IsHelpToken(args[0]))
-        {
-            PrintHelp();
-            return 0;
-        }
+        Environment.ExitCode = 0;
+        var runtime = new MetaCliRuntime<MetaDataTypeModel>(CommandWorkspacePath, ApplicationId)
+            .UseDefaultHelp()
+            .Bind("exec-new-workspace", RunNewWorkspace);
 
-        if (CommandRoutesByName.TryGetValue(args[0], out var route))
-        {
-            return await route.ExecuteAsync(args).ConfigureAwait(false);
-        }
-
-        if (args[0].StartsWith("--", StringComparison.Ordinal))
-        {
-            return await RunNewWorkspaceAsync(args).ConfigureAwait(false);
-        }
-
-        return Fail($"unknown command '{args[0]}'.", $"{AppName} help");
+        runtime.Run(args);
+        return Environment.ExitCode;
     }
 
-    private static async Task<int> RunNewWorkspaceAsync(string[] args)
+    private static string CommandWorkspacePath =>
+        Path.Combine(AppContext.BaseDirectory, CommandWorkspaceDirectoryName);
+
+    private static void RunNewWorkspace(MetaCliInvocation invocation)
     {
-        if (args.Length > 1 && IsHelpToken(args[1]))
-        {
-            PrintCommandHelp("--new-workspace");
-            return 0;
-        }
-
-        var parseResult = ParseNewWorkspaceOnly(args, startIndex: 0);
-        if (!parseResult.Ok)
-        {
-            return Fail(parseResult.ErrorMessage, HelpCommand("--new-workspace"));
-        }
-
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(parseResult.NewWorkspacePath);
+        var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("path"));
         if (!targetValidation.Ok)
         {
-            return Fail(targetValidation.ErrorMessage, "choose a new folder or empty the target directory and retry.", 4, targetValidation.Details);
+            throw new InvalidOperationException(targetValidation.ErrorMessage);
         }
 
         var workspacePath = targetValidation.FullPath;
         Directory.CreateDirectory(workspacePath);
 
-        var workspace = MetaDataTypeWorkspaces.CreateMetaDataTypeWorkspace(workspacePath);
-        var validation = new ValidationService().Validate(workspace);
-        if (validation.HasErrors)
-        {
-            return Fail(
-                "MetaDataType workspace is invalid.",
-                "fix the sanctioned model and retry workspace creation.",
-                4,
-                validation.Issues
-                    .Where(item => item.Severity == IssueSeverity.Error)
-                    .Select(item => $"  - {item.Code}: {item.Message}"));
-        }
+        var model = MetaDataTypeInstance.Default;
+        model.SaveToXmlWorkspace(workspacePath);
 
-        await new WorkspaceService().SaveAsync(workspace).ConfigureAwait(false);
-
-        Presenter.WriteOk(
+        Presenter.WriteKeyValueBlock(
             "MetaDataType workspace created",
-            ("Path", workspacePath),
-            ("Model", workspace.Model.Name),
-            ("DataTypeSystems", workspace.Instance.GetOrCreateEntityRecords("DataTypeSystem").Count.ToString()),
-            ("DataTypes", workspace.Instance.GetOrCreateEntityRecords("DataType").Count.ToString()));
-            
-        return 0;
-    }
-
-    private static (bool Ok, string NewWorkspacePath, string ErrorMessage) ParseNewWorkspaceOnly(string[] args, int startIndex)
-    {
-        var newWorkspacePath = string.Empty;
-        for (var i = startIndex; i < args.Length; i++)
-        {
-            var arg = args[i];
-            if (!string.Equals(arg, "--new-workspace", StringComparison.OrdinalIgnoreCase))
+            new[]
             {
-                return (false, newWorkspacePath, $"unknown option '{arg}'.");
-            }
-
-            if (i + 1 >= args.Length)
-            {
-                return (false, newWorkspacePath, "missing value for --new-workspace.");
-            }
-
-            if (!string.IsNullOrWhiteSpace(newWorkspacePath))
-            {
-                return (false, newWorkspacePath, "--new-workspace can only be provided once.");
-            }
-
-            newWorkspacePath = args[++i];
-        }
-
-        if (string.IsNullOrWhiteSpace(newWorkspacePath))
-        {
-            return (false, string.Empty, "missing required option --new-workspace <path>.");
-        }
-
-        return (true, newWorkspacePath, string.Empty);
-    }
-
-    private static bool IsHelpToken(string value)
-    {
-        return string.Equals(value, "help", StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(value, "--help", StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(value, "-h", StringComparison.OrdinalIgnoreCase);
-    }
-
-    private static void PrintHelp()
-    {
-        CliHelpRenderer.WriteAppHelp(Presenter, Cli);
-    }
-
-    private static void PrintCommandHelp(string commandName)
-    {
-        CliHelpRenderer.WriteCommandHelp(Presenter, Cli, Cli.GetCommand(commandName));
-    }
-
-    private static string HelpCommand(string commandName) => Cli.GetCommand(commandName).HelpCommand(Cli.Name);
-
-    private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
-    {
-        var renderedDetails = new List<string>();
-        if (details != null)
-        {
-            renderedDetails.AddRange(details);
-        }
-
-        renderedDetails.Add($"Next: {next}");
-        Presenter.WriteFailure(message, renderedDetails);
-        return exitCode;
+                ("Path", workspacePath),
+                ("Model", "MetaDataType"),
+                ("DataTypeSystems", model.DataTypeSystemList.Count.ToString()),
+                ("DataTypes", model.DataTypeList.Count.ToString())
+            });
     }
 }

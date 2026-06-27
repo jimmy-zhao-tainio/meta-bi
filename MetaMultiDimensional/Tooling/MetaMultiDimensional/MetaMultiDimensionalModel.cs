@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaMultiDimensional
 {
-    public sealed partial class MetaMultiDimensionalModel
+    public sealed partial class MetaMultiDimensionalModel : IMetaWorkspaceModel<MetaMultiDimensionalModel>
     {
         public static MetaMultiDimensionalModel CreateEmpty() => new();
 

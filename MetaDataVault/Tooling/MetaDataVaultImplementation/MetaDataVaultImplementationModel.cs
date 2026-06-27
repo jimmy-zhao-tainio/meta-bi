@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaDataVaultImplementation
 {
-    public sealed partial class MetaDataVaultImplementationModel
+    public sealed partial class MetaDataVaultImplementationModel : IMetaWorkspaceModel<MetaDataVaultImplementationModel>
     {
         public static MetaDataVaultImplementationModel CreateEmpty() => new();
 

@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaPipeline
 {
-    public sealed partial class MetaPipelineModel
+    public sealed partial class MetaPipelineModel : IMetaWorkspaceModel<MetaPipelineModel>
     {
         public static MetaPipelineModel CreateEmpty() => new();
 

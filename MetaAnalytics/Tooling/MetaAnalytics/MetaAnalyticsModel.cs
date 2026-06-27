@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaAnalytics
 {
-    public sealed partial class MetaAnalyticsModel
+    public sealed partial class MetaAnalyticsModel : IMetaWorkspaceModel<MetaAnalyticsModel>
     {
         public static MetaAnalyticsModel CreateEmpty() => new();
 

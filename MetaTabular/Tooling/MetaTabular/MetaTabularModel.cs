@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaTabular
 {
-    public sealed partial class MetaTabularModel
+    public sealed partial class MetaTabularModel : IMetaWorkspaceModel<MetaTabularModel>
     {
         public static MetaTabularModel CreateEmpty() => new();
 

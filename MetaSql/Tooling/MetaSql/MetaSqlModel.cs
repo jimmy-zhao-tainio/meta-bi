@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaSql
 {
-    public sealed partial class MetaSqlModel
+    public sealed partial class MetaSqlModel : IMetaWorkspaceModel<MetaSqlModel>
     {
         public static MetaSqlModel CreateEmpty() => new();
 

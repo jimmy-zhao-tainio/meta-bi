@@ -5,44 +5,42 @@ namespace MetaDataType.Tests;
 public sealed class CliTests
 {
     [Fact]
-    public void Help_ShowsNewWorkspaceSwitch()
+    public void Help_ShowsNewWorkspaceCommand()
     {
         var result = RunCli("help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("meta-data-type [--new-workspace <path> | <command> [options]]", result.Output);
-        Assert.Contains("--new-workspace", result.Output);
+        Assert.Contains("meta-data-type <command> [options]", result.Output);
+        Assert.Contains("new-workspace", result.Output);
         Assert.DoesNotContain("init", result.Output);
     }
 
     [Fact]
     public void NewWorkspace_Help_ShowsRequiredOptions()
     {
-        var result = RunCli("--new-workspace --help");
+        var result = RunCli("new-workspace --help");
 
         Assert.Equal(0, result.ExitCode);
-        Assert.Contains("Options:", result.Output);
-        Assert.Contains("--new-workspace <path>", result.Output);
+        Assert.Contains("meta-data-type new-workspace <path>", result.Output);
+        Assert.Contains("Create a MetaDataType workspace.", result.Output);
     }
 
     [Fact]
     public void NewWorkspace_FailsWhenPathMissing()
     {
-        var result = RunCli("--new-workspace");
+        var result = RunCli("new-workspace");
 
-        Assert.Equal(1, result.ExitCode);
-        Assert.Contains("Cannot continue", result.Output);
-        Assert.Contains("missing value for --new-workspace", result.Output);
+        Assert.Equal(2, result.ExitCode);
+        Assert.Contains("Required parameter 'path' was not provided.", result.Output);
     }
 
     [Fact]
-    public void NewWorkspace_FailsWhenUnknownOptionProvided()
+    public void UnknownOption_IsRejected()
     {
-        var result = RunCli("--bad nope");
+        var result = RunCli("new-workspace target --bad");
 
-        Assert.Equal(1, result.ExitCode);
-        Assert.Contains("Cannot continue", result.Output);
-        Assert.Contains("unknown option '--bad'", result.Output);
+        Assert.Equal(2, result.ExitCode);
+        Assert.Contains("Option '--bad' is not recognized.", result.Output);
     }
 
     [Fact]
@@ -50,9 +48,8 @@ public sealed class CliTests
     {
         var result = RunCli("init --new-workspace nowhere");
 
-        Assert.Equal(1, result.ExitCode);
-        Assert.Contains("Cannot continue", result.Output);
-        Assert.Contains("unknown command 'init'", result.Output);
+        Assert.Equal(2, result.ExitCode);
+        Assert.Contains("Unknown command 'init'.", result.Output);
     }
 
     [Fact]
@@ -61,10 +58,10 @@ public sealed class CliTests
         var workspacePath = Path.Combine(Path.GetTempPath(), "MetaDataType-tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var result = RunCli($"--new-workspace \"{workspacePath}\"");
+            var result = RunCli($"new-workspace \"{workspacePath}\"");
 
             Assert.Equal(0, result.ExitCode);
-            Assert.Contains("Ok", result.Output);
+            Assert.Contains("MetaDataType workspace created:", result.Output);
             Assert.True(File.Exists(Path.Combine(workspacePath, "workspace.xml")));
             Assert.True(File.Exists(Path.Combine(workspacePath, "model.xml")));
             

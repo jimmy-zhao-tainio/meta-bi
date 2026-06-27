@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaTransformScript
 {
-    public sealed partial class MetaTransformScriptModel
+    public sealed partial class MetaTransformScriptModel : IMetaWorkspaceModel<MetaTransformScriptModel>
     {
         public static MetaTransformScriptModel CreateEmpty() => new();
 

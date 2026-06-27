@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaSchema
 {
-    public sealed partial class MetaSchemaModel
+    public sealed partial class MetaSchemaModel : IMetaWorkspaceModel<MetaSchemaModel>
     {
         public static MetaSchemaModel CreateEmpty() => new();
 

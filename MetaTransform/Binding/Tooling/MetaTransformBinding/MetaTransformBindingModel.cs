@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaTransformBinding
 {
-    public sealed partial class MetaTransformBindingModel
+    public sealed partial class MetaTransformBindingModel : IMetaWorkspaceModel<MetaTransformBindingModel>
     {
         public static MetaTransformBindingModel CreateEmpty() => new();
 

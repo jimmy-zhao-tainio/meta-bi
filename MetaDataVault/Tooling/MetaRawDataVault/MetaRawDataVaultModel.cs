@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaRawDataVault
 {
-    public sealed partial class MetaRawDataVaultModel
+    public sealed partial class MetaRawDataVaultModel : IMetaWorkspaceModel<MetaRawDataVaultModel>
     {
         public static MetaRawDataVaultModel CreateEmpty() => new();
 

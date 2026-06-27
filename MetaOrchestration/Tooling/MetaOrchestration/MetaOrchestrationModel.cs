@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaOrchestration
 {
-    public sealed partial class MetaOrchestrationModel
+    public sealed partial class MetaOrchestrationModel : IMetaWorkspaceModel<MetaOrchestrationModel>
     {
         public static MetaOrchestrationModel CreateEmpty() => new();
 

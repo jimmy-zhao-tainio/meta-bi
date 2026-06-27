@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaDataQuality
 {
-    public sealed partial class MetaDataQualityModel
+    public sealed partial class MetaDataQualityModel : IMetaWorkspaceModel<MetaDataQualityModel>
     {
         public static MetaDataQualityModel CreateEmpty() => new();
 

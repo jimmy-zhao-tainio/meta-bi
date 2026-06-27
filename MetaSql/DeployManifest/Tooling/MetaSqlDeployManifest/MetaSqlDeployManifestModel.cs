@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaSqlDeployManifest
 {
-    public sealed partial class MetaSqlDeployManifestModel
+    public sealed partial class MetaSqlDeployManifestModel : IMetaWorkspaceModel<MetaSqlDeployManifestModel>
     {
         public static MetaSqlDeployManifestModel CreateEmpty() => new();
 

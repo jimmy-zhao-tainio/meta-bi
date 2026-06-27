@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaDataType
 {
-    public sealed partial class MetaDataTypeModel
+    public sealed partial class MetaDataTypeModel : IMetaWorkspaceModel<MetaDataTypeModel>
     {
         public static MetaDataTypeModel CreateEmpty() => new();
 

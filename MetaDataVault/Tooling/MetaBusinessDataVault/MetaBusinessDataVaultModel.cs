@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaBusinessDataVault
 {
-    public sealed partial class MetaBusinessDataVaultModel
+    public sealed partial class MetaBusinessDataVaultModel : IMetaWorkspaceModel<MetaBusinessDataVaultModel>
     {
         public static MetaBusinessDataVaultModel CreateEmpty() => new();
 

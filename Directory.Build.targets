@@ -1,5 +1,19 @@
 <Project>
-  <ItemGroup Condition="'$(OutputType)' == 'Exe' and $([System.String]::Copy('$(AssemblyName)').StartsWith('meta'))">
-    <Compile Include="$(MSBuildThisFileDirectory)Build\CliVersion.cs" Link="CliVersion.cs" />
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Build\CliVersion.cs" Link="CliVersion.cs" Condition="'$(OutputType)' == 'Exe'" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <MetaRepoRoot Condition="'$(MetaRepoRoot)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\meta\'))</MetaRepoRoot>
+  </PropertyGroup>
+
+  <ItemGroup Condition="Exists('$(MetaRepoRoot)Meta\Core\Meta.Core.csproj')">
+    <PackageReference Remove="Meta.Core" />
+    <ProjectReference Include="$(MetaRepoRoot)Meta\Core\Meta.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('$(MetaRepoRoot)Meta\Adapters\Meta.Adapters.csproj')">
+    <PackageReference Remove="Meta.Adapters" />
+    <ProjectReference Include="$(MetaRepoRoot)Meta\Adapters\Meta.Adapters.csproj" />
   </ItemGroup>
 </Project>

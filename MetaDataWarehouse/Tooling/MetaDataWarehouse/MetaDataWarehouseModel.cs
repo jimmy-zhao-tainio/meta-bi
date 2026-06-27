@@ -22,7 +22,7 @@ using Meta.Core.Serialization;
 
 namespace MetaDataWarehouse
 {
-    public sealed partial class MetaDataWarehouseModel
+    public sealed partial class MetaDataWarehouseModel : IMetaWorkspaceModel<MetaDataWarehouseModel>
     {
         public static MetaDataWarehouseModel CreateEmpty() => new();
 
