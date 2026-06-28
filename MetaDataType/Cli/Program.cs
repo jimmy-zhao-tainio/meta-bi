@@ -1,8 +1,7 @@
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
-using Meta.Core.Services;
 using MetaCli.Core;
-using MetaDataType.Instance;
+using MetaDataType.Core;
 using MetaDataTypeModel = MetaDataType.MetaDataTypeModel;
 
 internal static class Program
@@ -19,10 +18,14 @@ internal static class Program
             return versionExitCode;
         }
 
+        var handlers = new MetaDataTypeCommandHandlers(
+            Presenter,
+            new MetaDataTypeWorkspaceService());
+
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaDataTypeModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-new-workspace", RunNewWorkspace);
+            .Bind("exec-new-workspace", handlers.RunNewWorkspace);
 
         runtime.Run(args);
         return Environment.ExitCode;
@@ -30,29 +33,4 @@ internal static class Program
 
     private static string CommandWorkspacePath =>
         Path.Combine(AppContext.BaseDirectory, CommandWorkspaceDirectoryName);
-
-    private static void RunNewWorkspace(MetaCliInvocation invocation)
-    {
-        var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("path"));
-        if (!targetValidation.Ok)
-        {
-            throw new InvalidOperationException(targetValidation.ErrorMessage);
-        }
-
-        var workspacePath = targetValidation.FullPath;
-        Directory.CreateDirectory(workspacePath);
-
-        var model = MetaDataTypeInstance.Default;
-        model.SaveToXmlWorkspace(workspacePath);
-
-        Presenter.WriteKeyValueBlock(
-            "MetaDataType workspace created",
-            new[]
-            {
-                ("Path", workspacePath),
-                ("Model", "MetaDataType"),
-                ("DataTypeSystems", model.DataTypeSystemList.Count.ToString()),
-                ("DataTypes", model.DataTypeList.Count.ToString())
-            });
-    }
 }

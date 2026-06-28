@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Globalization;
 using Meta.Core.Presentation.Cli;
 
-internal sealed class PipelineConsoleProgressRenderer : IProgress<MetaPipeline.BufferedPipelineExecutionProgress>, IDisposable
+internal sealed class PipelineConsoleProgressRenderer : MetaPipeline.IMetaPipelineExecutionProgress
 {
     private const int ProgressRailWidth = 20;
     private readonly object sync = new();

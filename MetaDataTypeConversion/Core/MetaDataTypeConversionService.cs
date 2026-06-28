@@ -27,8 +27,15 @@ public sealed record MetaDataTypeConversionCheckResult(
     public bool HasErrors => Errors.Count > 0;
 }
 
+public sealed record CreateMetaDataTypeConversionWorkspaceResult(
+    string WorkspacePath,
+    string ModelName,
+    int ConversionImplementationCount,
+    int DataTypeMappingCount);
+
 public interface IMetaDataTypeConversionService
 {
+    CreateMetaDataTypeConversionWorkspaceResult CreateWorkspace(string workspacePath);
     MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model);
     DataTypeMappingResolution Resolve(MetaDataTypeConversionModel model, string sourceDataTypeId);
     DataTypeMappingResolution Resolve(MetaDataTypeConversionModel model, string sourceDataTypeId, string targetDataTypeSystemName);
@@ -37,6 +44,23 @@ public interface IMetaDataTypeConversionService
 
 public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionService
 {
+    public CreateMetaDataTypeConversionWorkspaceResult CreateWorkspace(string workspacePath)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
+
+        var fullPath = Path.GetFullPath(workspacePath);
+        Directory.CreateDirectory(fullPath);
+
+        var model = MetaDataTypeConversion.Instance.MetaDataTypeConversionInstance.Default;
+        model.SaveToXmlWorkspace(fullPath);
+
+        return new CreateMetaDataTypeConversionWorkspaceResult(
+            fullPath,
+            "MetaDataTypeConversion",
+            model.ConversionImplementationList.Count,
+            model.DataTypeMappingList.Count);
+    }
+
     public MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model)
     {
         ArgumentNullException.ThrowIfNull(model);

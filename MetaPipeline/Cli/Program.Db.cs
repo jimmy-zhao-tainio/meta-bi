@@ -1,9 +1,10 @@
-using Meta.Core.Connections;
 using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
 
 internal static partial class Program
 {
+    private static readonly MetaPipeline.MetaPipelineOperationalDbAdminService OperationalDbAdminService = new();
+
     private static async Task<int> RunCreatePipelineDbAsync(MetaCliInvocation invocation)
     {
         var parse = ReadCreatePipelineDbArgs(invocation);
@@ -14,12 +15,12 @@ internal static partial class Program
 
         try
         {
-            var connectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(
-                parse.PipelineDbConnectionEnvironmentVariableName);
             using (var activity = CliActivityLine.Start("Creating"))
             {
-                await new MetaPipeline.MetaPipelineOperationalDbStore(connectionString)
-                    .CreateDatabaseAndBootstrapAsync(parse.PipelineDbName)
+                await OperationalDbAdminService
+                    .CreateDatabaseAndBootstrapAsync(
+                        parse.PipelineDbConnectionEnvironmentVariableName,
+                        parse.PipelineDbName)
                     .ConfigureAwait(false);
 
                 activity.Succeed();
@@ -27,7 +28,7 @@ internal static partial class Program
 
             return 0;
         }
-        catch (ConnectionEnvironmentVariableException ex)
+        catch (Meta.Core.Connections.ConnectionEnvironmentVariableException ex)
         {
             return Fail(
                 "Cannot create MetaPipeline operational DB.",
@@ -60,12 +61,13 @@ internal static partial class Program
 
         try
         {
-            var connectionString = ConnectionEnvironmentVariableResolver.ResolveRequired(
-                parse.PipelineDbConnectionEnvironmentVariableName);
             using (var activity = CliActivityLine.Start(parse.DryRun ? "Checking" : "Pruning"))
             {
-                await new MetaPipeline.MetaPipelineOperationalDbStore(connectionString)
-                    .PruneAsync(parse.RetentionDays, parse.DryRun)
+                await OperationalDbAdminService
+                    .PruneAsync(
+                        parse.PipelineDbConnectionEnvironmentVariableName,
+                        parse.RetentionDays,
+                        parse.DryRun)
                     .ConfigureAwait(false);
 
                 activity.Succeed();
@@ -73,7 +75,7 @@ internal static partial class Program
 
             return 0;
         }
-        catch (ConnectionEnvironmentVariableException ex)
+        catch (Meta.Core.Connections.ConnectionEnvironmentVariableException ex)
         {
             return Fail(
                 "Cannot prune MetaPipeline operational DB.",
