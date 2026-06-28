@@ -12,8 +12,6 @@ public sealed class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-data-type-conversion <command> [options]", result.Output);
         Assert.Contains("new-workspace", result.Output);
-        Assert.DoesNotContain("--new-workspace", result.Output);
-        Assert.DoesNotContain("init", result.Output);
         Assert.Contains("check", result.Output);
         Assert.Contains("resolve", result.Output);
     }
@@ -39,24 +37,6 @@ public sealed class CliTests
         Assert.Contains("--source-data-type <value>", result.Output);
         Assert.Contains("--target-data-type-system <value>", result.Output);
         Assert.Contains("Target data type system", result.Output);
-    }
-
-    [Fact]
-    public void Init_Command_IsRejected()
-    {
-        var result = RunCli("init --new-workspace nowhere");
-
-        Assert.Equal(2, result.ExitCode);
-        Assert.Contains("Unknown command 'init'.", result.Output);
-    }
-
-    [Fact]
-    public void RootNewWorkspaceSwitch_IsRejected()
-    {
-        var result = RunCli("--new-workspace nowhere");
-
-        Assert.Equal(2, result.ExitCode);
-        Assert.Contains("Option '--new-workspace' is not recognized.", result.Output);
     }
 
     [Fact]

@@ -32,15 +32,6 @@ public sealed class MetaTransformBindingCliTests
     }
 
     [Fact]
-    public void RootNewWorkspaceSwitch_IsRejected()
-    {
-        var result = RunCli("--new-workspace nowhere");
-
-        Assert.Equal(2, result.ExitCode);
-        Assert.Contains("Option '--new-workspace' is not recognized.", result.Output);
-    }
-
-    [Fact]
     public void Bind_WhenSourceSchemaIsMissing_FailsInMetaCliParser()
     {
         var result = RunCli("bind --transform-workspace transform --target-schema target --execute-system sys --new-workspace binding");

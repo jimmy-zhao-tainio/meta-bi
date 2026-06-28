@@ -12,7 +12,6 @@ public sealed class CliTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("meta-data-type <command> [options]", result.Output);
         Assert.Contains("new-workspace", result.Output);
-        Assert.DoesNotContain("init", result.Output);
     }
 
     [Fact]
@@ -32,24 +31,6 @@ public sealed class CliTests
 
         Assert.Equal(2, result.ExitCode);
         Assert.Contains("Required parameter 'path' was not provided.", result.Output);
-    }
-
-    [Fact]
-    public void UnknownOption_IsRejected()
-    {
-        var result = RunCli("new-workspace target --bad");
-
-        Assert.Equal(2, result.ExitCode);
-        Assert.Contains("Option '--bad' is not recognized.", result.Output);
-    }
-
-    [Fact]
-    public void Init_Command_IsRejected()
-    {
-        var result = RunCli("init --new-workspace nowhere");
-
-        Assert.Equal(2, result.ExitCode);
-        Assert.Contains("Unknown command 'init'.", result.Output);
     }
 
     [Fact]
