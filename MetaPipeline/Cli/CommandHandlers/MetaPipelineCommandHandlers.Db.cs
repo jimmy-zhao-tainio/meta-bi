@@ -1,11 +1,9 @@
 using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
 
-internal static partial class Program
+internal sealed partial class MetaPipelineCommandHandlers
 {
-    private static readonly MetaPipeline.MetaPipelineOperationalDbAdminService OperationalDbAdminService = new();
-
-    private static async Task<int> RunCreatePipelineDbAsync(MetaCliInvocation invocation)
+    private async Task<int> RunCreatePipelineDbAsync(MetaCliInvocation invocation)
     {
         var parse = ReadCreatePipelineDbArgs(invocation);
         if (!parse.Ok)
@@ -17,7 +15,7 @@ internal static partial class Program
         {
             using (var activity = CliActivityLine.Start("Creating"))
             {
-                await OperationalDbAdminService
+                await operationalDbAdminService
                     .CreateDatabaseAndBootstrapAsync(
                         parse.PipelineDbConnectionEnvironmentVariableName,
                         parse.PipelineDbName)
@@ -51,7 +49,7 @@ internal static partial class Program
         }
     }
 
-    private static async Task<int> RunPrunePipelineDbAsync(MetaCliInvocation invocation)
+    private async Task<int> RunPrunePipelineDbAsync(MetaCliInvocation invocation)
     {
         var parse = ReadPrunePipelineDbArgs(invocation);
         if (!parse.Ok)
@@ -63,7 +61,7 @@ internal static partial class Program
         {
             using (var activity = CliActivityLine.Start(parse.DryRun ? "Checking" : "Pruning"))
             {
-                await OperationalDbAdminService
+                await operationalDbAdminService
                     .PruneAsync(
                         parse.PipelineDbConnectionEnvironmentVariableName,
                         parse.RetentionDays,

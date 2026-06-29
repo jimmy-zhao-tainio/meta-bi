@@ -1,6 +1,6 @@
 using MetaCli.Core;
 
-internal static partial class Program
+internal sealed partial class MetaPipelineCommandHandlers
 {
     private const string DefaultWorkspacePath = ".";
 

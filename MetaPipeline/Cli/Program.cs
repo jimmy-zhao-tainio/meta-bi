@@ -2,7 +2,7 @@ using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
 
-internal static partial class Program
+internal static class Program
 {
     private const string AppName = "meta-pipeline";
     private const string ApplicationId = "app-meta-pipeline";
@@ -16,20 +16,27 @@ internal static partial class Program
             return versionExitCode;
         }
 
+        var handlers = new MetaPipelineCommandHandlers(
+            Presenter,
+            AppName,
+            new MetaPipeline.MetaPipelineWorkspaceService(),
+            new MetaPipeline.MetaPipelineExecutionCommandService(),
+            new MetaPipeline.MetaPipelineOperationalDbAdminService());
+
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaPipeline.MetaPipelineModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
-            .Bind("exec-new-workspace", invocation => Complete(() => RunNewWorkspace(invocation)))
-            .Bind("exec-add-pipeline", (invocation, model) => Complete(() => RunAddPipeline(invocation, model)))
-            .Bind("exec-inspect", (invocation, model) => Complete(() => RunInspect(invocation, model)))
-            .Bind("exec-add-step", (invocation, model) => Complete(() => RunAddStep(invocation, model)))
-            .Bind("exec-add-executable-step", (invocation, model) => Complete(() => RunAddExecutableStep(invocation, model)))
-            .Bind("exec-execute", (invocation, model) => CompleteAsync(() => RunExecuteAsync(invocation, model)))
-            .Bind("exec-execute-step", (invocation, model) => CompleteAsync(() => RunExecuteStepAsync(invocation, model)))
-            .Bind("exec-execute-worker", (invocation, model) => CompleteAsync(() => RunExecuteWorkerAsync(invocation, model)))
-            .Bind("exec-execute-sqlserver", invocation => CompleteAsync(() => RunExecuteSqlServerAsync(invocation)))
-            .Bind("exec-create-pipeline-db", invocation => CompleteAsync(() => RunCreatePipelineDbAsync(invocation)))
-            .Bind("exec-prune-pipeline-db", invocation => CompleteAsync(() => RunPrunePipelineDbAsync(invocation)));
+            .Bind("exec-new-workspace", handlers.RunNewWorkspace)
+            .Bind("exec-add-pipeline", handlers.RunAddPipeline)
+            .Bind("exec-inspect", handlers.RunInspect)
+            .Bind("exec-add-step", handlers.RunAddStep)
+            .Bind("exec-add-executable-step", handlers.RunAddExecutableStep)
+            .Bind("exec-execute", handlers.RunExecute)
+            .Bind("exec-execute-step", handlers.RunExecuteStep)
+            .Bind("exec-execute-worker", handlers.RunExecuteWorker)
+            .Bind("exec-execute-sqlserver", handlers.RunExecuteSqlServer)
+            .Bind("exec-create-pipeline-db", handlers.RunCreatePipelineDb)
+            .Bind("exec-prune-pipeline-db", handlers.RunPrunePipelineDb);
 
         runtime.Run(args);
         return Environment.ExitCode;
@@ -37,33 +44,4 @@ internal static partial class Program
 
     private static string CommandWorkspacePath =>
         Path.Combine(AppContext.BaseDirectory, CommandWorkspaceDirectoryName);
-
-    private static void Complete(Func<int> action)
-    {
-        var exitCode = action();
-        if (exitCode != 0)
-        {
-            throw new MetaCliExitException(exitCode);
-        }
-    }
-
-    private static void CompleteAsync(Func<Task<int>> action)
-    {
-        Complete(() => action().GetAwaiter().GetResult());
-    }
-
-    private static string HelpCommand(string commandName) => $"{AppName} help {commandName}";
-
-    private static int Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
-    {
-        var renderedDetails = new List<string>();
-        if (details != null)
-        {
-            renderedDetails.AddRange(details.Where(static detail => !string.IsNullOrWhiteSpace(detail)));
-        }
-
-        renderedDetails.Add($"Next: {next}");
-        Presenter.WriteFailure(message, renderedDetails);
-        return exitCode;
-    }
 }

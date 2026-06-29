@@ -1,11 +1,9 @@
 using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
 
-internal static partial class Program
+internal sealed partial class MetaPipelineCommandHandlers
 {
-    private static readonly MetaPipeline.MetaPipelineWorkspaceService WorkspaceService = new();
-
-    private static int RunNewWorkspace(MetaCliInvocation invocation)
+    private int RunNewWorkspaceCore(MetaCliInvocation invocation)
     {
         var parse = ReadNewWorkspaceArgs(invocation);
         if (!parse.Ok)
@@ -23,12 +21,12 @@ internal static partial class Program
                 targetValidation.Details);
         }
 
-        WorkspaceService.CreateWorkspace(targetValidation.FullPath);
-        Presenter.WriteOk();
+        workspaceService.CreateWorkspace(targetValidation.FullPath);
+        presenter.WriteOk();
         return 0;
     }
 
-    private static int RunAddPipeline(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
+    private int RunAddPipelineCore(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
     {
         var parse = ReadAddPipelineArgs(invocation);
         if (!parse.Ok)
@@ -38,13 +36,13 @@ internal static partial class Program
 
         try
         {
-            WorkspaceService.AddPipeline(
+            workspaceService.AddPipeline(
                 model,
                 parse.WorkspacePath,
                 parse.Name,
                 parse.Description);
 
-            Presenter.WriteOk();
+            presenter.WriteOk();
             return 0;
         }
         catch (Exception ex)
@@ -57,7 +55,7 @@ internal static partial class Program
         }
     }
 
-    private static int RunInspect(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
+    private int RunInspectCore(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
     {
         var parse = ReadWorkspaceOnlyArgs(invocation);
         if (!parse.Ok)
@@ -67,10 +65,10 @@ internal static partial class Program
 
         try
         {
-            var result = WorkspaceService.Inspect(model);
+            var result = workspaceService.Inspect(model);
 
-            Presenter.WriteOk("Loaded MetaPipeline workspace");
-            Presenter.WriteKeyValueBlock("MetaPipeline", new[]
+            presenter.WriteOk("Loaded MetaPipeline workspace");
+            presenter.WriteKeyValueBlock("MetaPipeline", new[]
             {
                 ("Pipelines", result.PipelineCount.ToString()),
                 ("Tasks", result.TaskCount.ToString()),
@@ -82,7 +80,7 @@ internal static partial class Program
 
             foreach (var pipeline in result.Pipelines)
             {
-                Presenter.WriteKeyValueBlock($"Pipeline: {pipeline.Name}", new[]
+                presenter.WriteKeyValueBlock($"Pipeline: {pipeline.Name}", new[]
                 {
                     ("Id", pipeline.Id),
                     ("Tasks", pipeline.Tasks.Count.ToString()),
@@ -90,7 +88,7 @@ internal static partial class Program
 
                 foreach (var task in pipeline.Tasks)
                 {
-                    Presenter.WriteInfo($"  {task.Name} [{task.Label}]");
+                    presenter.WriteInfo($"  {task.Name} [{task.Label}]");
                 }
             }
 
@@ -106,7 +104,7 @@ internal static partial class Program
         }
     }
 
-    private static int RunAddExecutableStep(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
+    private int RunAddExecutableStepCore(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
     {
         var parse = ReadAddExecutableStepArgs(invocation);
         if (!parse.Ok)
@@ -116,7 +114,7 @@ internal static partial class Program
 
         try
         {
-            WorkspaceService.AddExecutableStep(
+            workspaceService.AddExecutableStep(
                 model,
                 new MetaPipeline.MetaPipelineAddExecutableStepRequest(
                     parse.WorkspacePath,
@@ -130,7 +128,7 @@ internal static partial class Program
                     parse.TimeoutSeconds,
                     parse.TimeoutSecondsSpecified));
 
-            Presenter.WriteOk();
+            presenter.WriteOk();
             return 0;
         }
         catch (Exception ex)
@@ -143,7 +141,7 @@ internal static partial class Program
         }
     }
 
-    private static int RunAddStep(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
+    private int RunAddStepCore(MetaCliInvocation invocation, MetaPipeline.MetaPipelineModel model)
     {
         var parse = ReadAddStepArgs(invocation);
         if (!parse.Ok)
@@ -153,7 +151,7 @@ internal static partial class Program
 
         try
         {
-            WorkspaceService.AddStep(
+            workspaceService.AddStep(
                 model,
                 new MetaPipeline.MetaPipelineAddStepRequest(
                     parse.WorkspacePath,
@@ -175,7 +173,7 @@ internal static partial class Program
                     parse.TargetDataTypeSystemName,
                     parse.TargetDataTypeSystemSpecified));
 
-            Presenter.WriteOk();
+            presenter.WriteOk();
             return 0;
         }
         catch (Exception ex)

@@ -179,9 +179,8 @@ internal sealed class MetaDataQualityCommandHandlers
 
         try
         {
-            var result = promotionService.Promote(model, candidateIds, promoteAll);
+            var result = promotionService.PromoteWorkspace(model, workspacePath, candidateIds, promoteAll);
 
-            model.SaveToXmlWorkspace(workspacePath);
             presenter.WriteInfo($"Candidates promoted this run: {result.PromotedThisRunCount}");
             presenter.WriteInfo($"Candidates promoted for SQL: {result.TotalPromotedCount}");
         }

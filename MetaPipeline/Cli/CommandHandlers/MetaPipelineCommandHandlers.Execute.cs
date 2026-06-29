@@ -1,10 +1,8 @@
 using MetaCli.Core;
 
-internal static partial class Program
+internal sealed partial class MetaPipelineCommandHandlers
 {
-    private static readonly MetaPipeline.MetaPipelineExecutionCommandService PipelineExecutionService = new();
-
-    private static async Task<int> RunExecuteAsync(
+    private async Task<int> RunExecuteAsync(
         MetaCliInvocation invocation,
         MetaPipeline.MetaPipelineModel pipelineModel)
     {
@@ -14,7 +12,7 @@ internal static partial class Program
             return Fail(parse.ErrorMessage, HelpCommand("execute"));
         }
 
-        var outcome = await PipelineExecutionService.ExecutePipelineAsync(
+        var outcome = await pipelineExecutionService.ExecutePipelineAsync(
             new MetaPipeline.MetaPipelineExecutionPipelineCommandRequest(
                 pipelineModel,
                 parse.PipelineWorkspacePath,
@@ -29,7 +27,7 @@ internal static partial class Program
         return WriteExecuteOutcome(outcome, parse.PipelineDbConnectionEnvironmentVariableName);
     }
 
-    private static async Task<int> RunExecuteWorkerAsync(
+    private async Task<int> RunExecuteWorkerAsync(
         MetaCliInvocation invocation,
         MetaPipeline.MetaPipelineModel pipelineModel)
     {
@@ -48,7 +46,7 @@ internal static partial class Program
                 ["  Missing required option --control-pipe <name>."]);
         }
 
-        var outcome = await PipelineExecutionService.ExecuteWorkerAsync(
+        var outcome = await pipelineExecutionService.ExecuteWorkerAsync(
             new MetaPipeline.MetaPipelineWorkerExecutionCommandRequest(
                 pipelineModel,
                 parse.PipelineWorkspacePath,
@@ -64,7 +62,7 @@ internal static partial class Program
         return WriteExecuteWorkerOutcome(outcome, parse.PipelineDbConnectionEnvironmentVariableName);
     }
 
-    private static async Task<int> RunExecuteStepAsync(
+    private async Task<int> RunExecuteStepAsync(
         MetaCliInvocation invocation,
         MetaPipeline.MetaPipelineModel pipelineModel)
     {
@@ -74,7 +72,7 @@ internal static partial class Program
             return Fail(parse.ErrorMessage, HelpCommand("execute-step"));
         }
 
-        var outcome = await PipelineExecutionService.ExecuteStepAsync(
+        var outcome = await pipelineExecutionService.ExecuteStepAsync(
             new MetaPipeline.MetaPipelineExecutionStepCommandRequest(
                 pipelineModel,
                 parse.PipelineWorkspacePath,
@@ -90,7 +88,7 @@ internal static partial class Program
         return WriteExecuteStepOutcome(outcome, parse.PipelineDbConnectionEnvironmentVariableName);
     }
 
-    private static async Task<int> RunExecuteSqlServerAsync(MetaCliInvocation invocation)
+    private async Task<int> RunExecuteSqlServerAsync(MetaCliInvocation invocation)
     {
         var parse = ReadExecuteSqlServerArgs(invocation);
         if (!parse.Ok)
@@ -98,7 +96,7 @@ internal static partial class Program
             return Fail(parse.ErrorMessage, HelpCommand("execute-sqlserver"));
         }
 
-        var outcome = await PipelineExecutionService.ExecuteSqlServerAsync(
+        var outcome = await pipelineExecutionService.ExecuteSqlServerAsync(
             new MetaPipeline.MetaPipelineDirectSqlServerExecutionCommandRequest(
                 parse.TransformWorkspacePath,
                 parse.BindingWorkspacePath,
@@ -121,7 +119,7 @@ internal static partial class Program
     private static MetaPipeline.IMetaPipelineExecutionProgress? CreateProgress(int totalSteps) =>
         PipelineConsoleProgressRenderer.TryCreate(totalSteps);
 
-    private static int WriteExecuteOutcome(
+    private int WriteExecuteOutcome(
         MetaPipeline.MetaPipelineExecutionCommandOutcome outcome,
         string pipelineDbConnectionEnvironmentVariableName)
     {
@@ -163,7 +161,7 @@ internal static partial class Program
         };
     }
 
-    private static int WriteExecuteStepOutcome(
+    private int WriteExecuteStepOutcome(
         MetaPipeline.MetaPipelineExecutionCommandOutcome outcome,
         string pipelineDbConnectionEnvironmentVariableName)
     {
@@ -200,7 +198,7 @@ internal static partial class Program
         };
     }
 
-    private static int WriteExecuteWorkerOutcome(
+    private int WriteExecuteWorkerOutcome(
         MetaPipeline.MetaPipelineExecutionCommandOutcome outcome,
         string pipelineDbConnectionEnvironmentVariableName)
     {
@@ -237,7 +235,7 @@ internal static partial class Program
         };
     }
 
-    private static int WriteExecuteSqlServerOutcome(
+    private int WriteExecuteSqlServerOutcome(
         MetaPipeline.MetaPipelineExecutionCommandOutcome outcome,
         string pipelineDbConnectionEnvironmentVariableName)
     {
@@ -274,15 +272,15 @@ internal static partial class Program
         };
     }
 
-    private static void WriteOkWhenNoLiveProgress(MetaPipeline.MetaPipelineExecutionCommandOutcome outcome)
+    private void WriteOkWhenNoLiveProgress(MetaPipeline.MetaPipelineExecutionCommandOutcome outcome)
     {
         if (!outcome.ProgressRendered)
         {
-            Presenter.WriteOk();
+            presenter.WriteOk();
         }
     }
 
-    private static int WriteOperationalDbUnavailable(
+    private int WriteOperationalDbUnavailable(
         string pipelineDbConnectionEnvironmentVariableName,
         IEnumerable<string> details) =>
         Fail(

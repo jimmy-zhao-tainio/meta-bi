@@ -47,6 +47,23 @@ public sealed class MetaDataQualityPromotionService
             string.Equals(item.Status, CandidateStatuses.Promoted, StringComparison.OrdinalIgnoreCase));
         return new MetaDataQualityPromotionResult(promotedCount, totalPromoted);
     }
+
+    public MetaDataQualityPromotionResult PromoteWorkspace(
+        MetaDataQualityModel model,
+        string workspacePath,
+        IReadOnlyList<string> candidateIds,
+        bool promoteAll)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        if (string.IsNullOrWhiteSpace(workspacePath))
+        {
+            throw new ArgumentException("Workspace path is required.", nameof(workspacePath));
+        }
+
+        var result = Promote(model, candidateIds, promoteAll);
+        model.SaveToXmlWorkspace(workspacePath);
+        return result;
+    }
 }
 
 public sealed record MetaDataQualityPromotionResult(

@@ -22,6 +22,7 @@ internal static class Program
         var handlers = new MetaTransformBindingCommandHandlers(
             Presenter,
             new TransformBindingWorkspaceService(),
+            new TransformBindingPartialReportService(),
             AppName);
 
         Environment.ExitCode = 0;

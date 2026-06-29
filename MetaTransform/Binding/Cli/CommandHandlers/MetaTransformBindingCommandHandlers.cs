@@ -1,4 +1,3 @@
-using System.Text;
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
@@ -8,15 +7,18 @@ internal sealed class MetaTransformBindingCommandHandlers
 {
     private readonly ConsolePresenter presenter;
     private readonly TransformBindingWorkspaceService service;
+    private readonly TransformBindingPartialReportService partialReportService;
     private readonly string appName;
 
     public MetaTransformBindingCommandHandlers(
         ConsolePresenter presenter,
         TransformBindingWorkspaceService service,
+        TransformBindingPartialReportService partialReportService,
         string appName)
     {
         this.presenter = presenter;
         this.service = service;
+        this.partialReportService = partialReportService;
         this.appName = appName;
     }
 
@@ -58,16 +60,16 @@ internal sealed class MetaTransformBindingCommandHandlers
                 dataTypeConversionWorkspacePath: parse.DataTypeConversionWorkspacePath,
                 allowPartial: parse.AllowPartial);
 
-            WritePartialReport(parse.PartialReportPath, result.ObjectIssues ?? []);
+            var partialReportFullPath = partialReportService.Write(parse.PartialReportPath, result.ObjectIssues ?? []);
 
             activity.Succeed(FormatBindingActivityResult(result));
 
             if (parse.AllowPartial && result.SkippedTransformScriptCount > 0)
             {
                 WritePartialBindingSummary(result);
-                if (!string.IsNullOrWhiteSpace(parse.PartialReportPath))
+                if (!string.IsNullOrWhiteSpace(partialReportFullPath))
                 {
-                    presenter.WriteInfo($"Partial report: {Path.GetFullPath(parse.PartialReportPath)}");
+                    presenter.WriteInfo($"Partial report: {partialReportFullPath}");
                 }
             }
         }
@@ -182,38 +184,6 @@ internal sealed class MetaTransformBindingCommandHandlers
         return columns.ToArray();
     }
 
-    private static void WritePartialReport(
-        string partialReportPath,
-        IReadOnlyList<BindWorkspaceObjectIssue> objectIssues)
-    {
-        if (string.IsNullOrWhiteSpace(partialReportPath))
-        {
-            return;
-        }
-
-        var reportFullPath = Path.GetFullPath(partialReportPath);
-        var directory = Path.GetDirectoryName(reportFullPath);
-        if (!string.IsNullOrWhiteSpace(directory))
-        {
-            Directory.CreateDirectory(directory);
-        }
-
-        using var writer = new StreamWriter(reportFullPath, append: false, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
-        writer.WriteLine("TransformScriptId\tTransformScriptName\tStage\tCode\tMessage");
-        foreach (var issue in objectIssues)
-        {
-            writer.Write(Tsv(issue.TransformScriptId));
-            writer.Write('\t');
-            writer.Write(Tsv(issue.TransformScriptName));
-            writer.Write('\t');
-            writer.Write(Tsv(issue.Stage));
-            writer.Write('\t');
-            writer.Write(Tsv(issue.Code));
-            writer.Write('\t');
-            writer.WriteLine(Tsv(issue.Message));
-        }
-    }
-
     private static string FormatBindingActivityResult(BindToWorkspaceResult result)
     {
         if (result.SkippedTransformScriptCount == 0)
@@ -246,12 +216,6 @@ internal sealed class MetaTransformBindingCommandHandlers
         string.Equals(stage, "Binding", StringComparison.OrdinalIgnoreCase) ? "Binding failures" :
         string.Equals(stage, "Validation", StringComparison.OrdinalIgnoreCase) ? "Validation failures" :
         $"{stage} failures";
-
-    private static string Tsv(string value) =>
-        (value ?? string.Empty)
-            .Replace('\t', ' ')
-            .Replace('\r', ' ')
-            .Replace('\n', ' ');
 
     private string HelpCommand(string commandName) => $"{appName} help {commandName}";
 

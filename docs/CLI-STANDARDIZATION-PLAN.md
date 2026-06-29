@@ -40,25 +40,54 @@ Stop and fix the boundary when a production CLI has any of these:
 
 Generic parser rejection belongs in MetaCli runtime tests. Product CLI tests should prove current modeled behavior and domain behavior.
 
+## Scope Boundaries
+
+Tracked production CLI surfaces:
+
+- `../meta/Meta/Cli`
+- `../meta/MetaCli/Cli`
+- `../meta/MetaDocs/Cli`
+- `../meta/MetaMesh/Cli`
+- `../meta/MetaWeave/Cli`
+- every live `meta-bi/**/Cli/*.Cli.csproj` outside generated package artifacts
+
+Ignored for this plan:
+
+- installer utilities such as `MetaInstaller` / `Meta/Installer`
+- demo-only programs under `Samples/Demos`
+- copied source snapshots under `artifacts/public-sector-pilot`
+
+Do not let ignored surfaces create false positives in CLI architecture scans.
+
+## Current Status
+
+- Done: live `meta-bi` production CLIs now use checked-in `.MetaCli` workspaces, `MetaCliRuntime<TModel>`, runtime-owned help/parsing, and executable command bindings.
+- Done: `../meta` production CLIs `meta-cli`, `meta-docs`, `meta-mesh`, and `meta-weave` use the same runtime shape.
+- Exception: `../meta/Meta/Cli` still needs the full standard shape. It has `meta.MetaCli` material, but its runtime/help path remains custom enough that it should be treated as not ported.
+- Cleanup tail: the tracked `meta-bi` runtime-shaped CLIs have been service-thinned/audited. Remaining tracked exception is `../meta/Meta/Cli`.
+
 ## Phase 1: Tighten Runtime-Aligned CLIs
 
 These already use authored `.MetaCli` workspaces and `MetaCliRuntime<TModel>`, but not all are equally service-thin.
 
-1. `meta-data-type`
-   - move workspace creation behind a service
-   - keep CLI as invocation reader and presenter only
-2. `meta-data-type-conversion`
-   - keep as the baseline for a mostly clean service-backed CLI
-   - split handlers from `Program.cs` if useful
-3. `meta-transform-binding`
-   - keep binding behavior in core service
-   - move adapter/report shaping out of `Program.cs` where it becomes nontrivial
-4. `meta-data-quality`
-   - move `inspect` summarization out of CLI
-   - keep CLI presentation separate from discovery/promote behavior
-5. `meta-pipeline`
+1. Done: `meta-data-type`
+   - workspace creation is behind `MetaDataTypeWorkspaceService`
+   - command handler is invocation reader/presenter only
+   - target-validation failures use the shared presenter failure shape
+2. Done: `meta-data-type-conversion`
+   - service-backed baseline remains clean
+   - command handler reads invocation values, calls `IMetaDataTypeConversionService`, and presents structured results
+3. Done: `meta-transform-binding`
+   - binding behavior remains in core services
+   - partial TSV report artifact writing moved out of the CLI handler into `TransformBindingPartialReportService`
+4. Done: `meta-data-quality`
+   - discovery/inspection/promote behavior remains in core services
+   - promotion persistence moved into `MetaDataQualityPromotionService`
+   - inspect prose remains in the CLI handler because console presentation belongs in CLI code
+5. Done: `meta-pipeline`
    - runtime is in place
-   - move execution/orchestration behavior out of `Cli/Program.*` into services
+   - command bodies were moved out of `Cli/Program.*` into `Cli/CommandHandlers/MetaPipelineCommandHandlers.*`
+   - `Program.cs` is now version/runtime/bindings only
 
 ## Phase 2: Port Remaining BI CLIs
 

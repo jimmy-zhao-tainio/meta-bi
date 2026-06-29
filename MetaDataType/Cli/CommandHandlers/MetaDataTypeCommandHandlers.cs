@@ -21,7 +21,11 @@ internal sealed class MetaDataTypeCommandHandlers
         var targetValidation = CliNewWorkspaceTargetValidator.Validate(invocation.Required("path"));
         if (!targetValidation.Ok)
         {
-            throw new InvalidOperationException(targetValidation.ErrorMessage);
+            Fail(
+                targetValidation.ErrorMessage,
+                "choose a new folder or empty the target directory and retry.",
+                4,
+                targetValidation.Details);
         }
 
         var result = service.CreateWorkspace(targetValidation.FullPath);
@@ -35,5 +39,18 @@ internal sealed class MetaDataTypeCommandHandlers
                 ("DataTypeSystems", result.DataTypeSystemCount.ToString()),
                 ("DataTypes", result.DataTypeCount.ToString())
             });
+    }
+
+    private void Fail(string message, string next, int exitCode = 1, IEnumerable<string>? details = null)
+    {
+        var renderedDetails = new List<string>();
+        if (details != null)
+        {
+            renderedDetails.AddRange(details.Where(static detail => !string.IsNullOrWhiteSpace(detail)));
+        }
+
+        renderedDetails.Add($"Next: {next}");
+        presenter.WriteFailure(message, renderedDetails);
+        throw new MetaCliExitException(exitCode);
     }
 }
